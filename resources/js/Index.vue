@@ -182,10 +182,10 @@
     }, 
 
     mounted(){
-        this.axios.get('auth/user').then(res=>{
-            console.log(res)
+        this.axios.get('/api/auth/user').then(res=>{
+            // console.log(res)
         })
-        }
+    }
 
    
   }
