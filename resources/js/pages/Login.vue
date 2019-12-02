@@ -4,7 +4,7 @@
         <div class="user_card">
             <div class="links" style="top:-35px;">
               <a href="/" class="mr-auto text-white">ホーム</a>
-              <a href="/Register" class="ml-auto text">登録</a>
+              <a href="/register" class="ml-auto text">登録</a>
             </div>
 
             <div class="d-flex justify-content-center">
