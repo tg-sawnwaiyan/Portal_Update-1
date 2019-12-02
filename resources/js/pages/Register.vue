@@ -107,13 +107,14 @@
 
     methods: {
       getCities() {
-         this.axios.get('auth/getCities/')
+         this.axios.get('api/getCities/')
          .then(function (response) {
+             console.log(response)
           this.cities = response.data;
           }.bind(this));
       },
       getTownship(){
-        this.axios.get('auth/township',{
+        this.axios.get('api/township',{
           params:{
             city:this.city
           },
@@ -122,7 +123,7 @@
         })
       },
       getType(){
-        this.axios.get('auth/getTypes',{
+        this.axios.get('api/getTypes',{
           params:{
             type:this.type
           },
