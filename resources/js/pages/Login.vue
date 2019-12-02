@@ -1,7 +1,10 @@
 <template>
     <div class="container">
-        <div class="card card-default">
-            <div class="card-header">Connexion</div>
+        <div class="user_card">
+            <div class="links">
+              <a href="/" class="mr-auto text-white">ホーム</a>
+              <a href="/Register" class="ml-auto text">登録</a>
+            </div>
             <div class="card-body">
                 <div class="alert alert-danger" v-if="has_error">
                     <p>Erreur, impossible de se connecter avec ces identifiants.</p>
