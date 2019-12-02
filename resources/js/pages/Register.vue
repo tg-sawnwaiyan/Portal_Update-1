@@ -13,8 +13,7 @@
                         <div id="preview">
                             <img v-if="url" :src="url" class="img-thumbnail img" />
                         </div>
-                    </div>
-               
+                    </div>               
                       
                     <div class="form-group" v-bind:class="{ 'has-error': has_error && errors.username }">
                         <label for="usrename">User Name</label>
@@ -27,17 +26,18 @@
                         <span class="help-block text-danger" v-if="has_error && errors.email">{{ errors.email[0] }}</span>
                     </div>
                     <div class="form-group">
+                        {{cities}}
                       <label>Select Cities:</label>
                       <select class='form-control custom-select' v-model="city" @change="getTownship() , show ^= show">
                         <option value="">Select City</option>
-                        <option v-for ="city in cities"  :value='city.id'>{{ city.city_name }}</option>
+                        <option v-for ="city in cities" :value='city.id' :key="city.id">{{ city.city_name }}</option>
                       </select>
                     </div>
                     <div class="" v-bind:class="{'is-hide form-group' : show }"> 
                       <label>Select Township:</label>
                       <select class='form-control custom-select' v-model='township' >
                         <option value="">Select township</option>
-                        <option v-for ="township in townships"   :value='township.id'>{{ township.township_name }}</option>
+                        <option v-for ="township in townships" :value='township.id' :key='township.id'>{{ township.township_name }}</option>
                       </select>
                     </div>
                     <div class=""  @change="getType()"> 
@@ -107,13 +107,14 @@
 
     methods: {
       getCities() {
-         this.axios.get('auth/getCities/')
+         this.axios.get('api/getCities/')
          .then(function (response) {
+             console.log(response)
           this.cities = response.data;
           }.bind(this));
       },
       getTownship(){
-        this.axios.get('auth/township',{
+        this.axios.get('api/township',{
           params:{
             city:this.city
           },
@@ -122,7 +123,7 @@
         })
       },
       getType(){
-        this.axios.get('auth/getTypes',{
+        this.axios.get('api/getTypes',{
           params:{
             type:this.type
           },
