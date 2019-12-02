@@ -1,24 +1,56 @@
 <template>
-    <div class="container">
-        <div class="card card-default">
-            <div class="card-header">Connexion</div>
-            <div class="card-body">
-                <div class="alert alert-danger" v-if="has_error">
+    <div class="loginwrapper">
+		<div class="d-flex justify-content-center h-100">
+        <div class="user_card">
+            <div class="links" style="top:-35px;">
+              <a href="/" class="mr-auto text-white">ホーム</a>
+              <a href="/Register" class="ml-auto text">登録</a>
+            </div>
+
+            <div class="d-flex justify-content-center">
+              <div class="brand_logo_container">
+                <img src="/images/sample_1.png" class="brand_logo" alt="logo">
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-center">
+              <div class="row width">
+                <div class="col-12 m-t-80">               
+                <form autocomplete="off" @submit.prevent="login" method="post">
+                    <div class="input-group m-b-20">
+											<div class="input-group-append">
+												<span class="input-group-text"><i class="fas fa-user"></i></span>
+											</div>                      
+                      <input type="email" id="email" class="form-control input_user" placeholder="ユーザー名" v-model="email" required autofocus>                                            
+                    </div>
+                    <div class="input-group m-b-20">
+											<div class="input-group-append">
+												<span class="input-group-text"><i class="fas fa-key"></i></span>
+											</div>
+											<input type="password" class="form-control input_pass" name="password" value=""  id="password" v-model="password" placeholder="パスワード" required >
+                        
+                    </div>
+                    
+                    <div class="d-flex justify-content-center mt-3">
+                      <button type="submit" name="button" id="getUser" class="btn login_btn">ログイン</button>
+                    </div>
+                </form>
+                <div class="mt-4">
+                  <div class="d-flex justify-content-center links">
+                    <span><a href="">パスワードをお忘れですか？</a></span>
+
+                  </div>
+                </div>
+                 <div class="alert alert-danger" v-if="has_error">
                     <p>Erreur, impossible de se connecter avec ces identifiants.</p>
                 </div>
-                <form autocomplete="off" @submit.prevent="login" method="post">
-                    <div class="form-group">
-                        <label for="email">E-mail</label>
-                        <input type="email" id="email" class="form-control" placeholder="user@example.com" v-model="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Mot de passe</label>
-                        <input type="password" id="password" class="form-control" v-model="password" required>
-                    </div>
-                    <button type="submit" class="btn btn-default">Connexion</button>
-                </form>
+                </div>
+              </div>
             </div>
+
+
         </div>
+    </div>
     </div>
 </template>
 <script>
