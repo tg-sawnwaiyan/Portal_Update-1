@@ -42,7 +42,7 @@ Route::group(['middleware' => ['auth']], function() {
 
 
 Route::prefix('auth')->group(function () {
-    Route::post('register', 'AuthController@register');
+    Route::post('register', 'registerController@store');
     Route::get('getCities','registerController@getCities');
     Route::get('township','registerController@getTownship');
     Route::get('getTypes','registerController@getTypes');
