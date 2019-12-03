@@ -22,7 +22,9 @@
 
                 <label class="heading-lbl">電話番号<span class="error">*</span></label>
 
-                <input type="text" class="form-control customer-phone col-10 float-right"  placeholder="Phone" v-model="customer_info.phone">
+                <input type="text" class="form-control customer-phone col-10 float-right" id="phone" placeholder="Phone" v-model="customer_info.phone" v-on:keypress="isNumberOnly" maxlength="14">
+                <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>    
+                <span class="error" v-else></span> 
 
         </div>
 
@@ -1359,6 +1361,8 @@ export default {
                         theme:'snow',
                         access_val: '',
                         detail_info: '', stations:[], station_list:[],
+                        ph_length: false,
+                        ph_num: false,
                 },
                 }
         },
@@ -1776,6 +1780,18 @@ export default {
                         });
                 }
             },
+            isNumberOnly: function(event) {
+                var input_data = $('#phone').val();
+                var code = 0;
+                code = input_data.charCodeAt();
+                if((48 <= code && code <= 57) && (this.customer_info.phone.length >= 10 && this.customer_info.phone.length <= 14)){
+                    this.ph_num = false;
+                    this.ph_length = false;
+                }else{
+                    this.ph_num = true;
+                    this.ph_length = true;
+                }
+            }
             
            
         }
