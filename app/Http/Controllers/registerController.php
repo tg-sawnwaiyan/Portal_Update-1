@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\User;
 use App\Customer;
@@ -22,25 +20,29 @@ class registerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index()
     {   $type = Type::all();
         $cities = DB::table('cities')->get();
         $townships = DB::table('townships')->get();
         return view('register',compact('type','townships','cities'));
     }
-
+    public function getCities()
+    {
+        // $cities = $_GET['cities'];
+        $data = DB::table('cities')->select('id','city_name')->get();
+        return response()->json(array('result' => true,'cities' => $data),200);
+    }
     public function getTownship()
     {
-        $cities = $_GET['cities'];
+        $cities = $_GET['city'];
         $data = DB::table('townships')->select('id','township_name','city_id')->where('city_id',$cities)->get();
-        return response()->json(array('result' => true,'data' => $data),200);
+        return response()->json(array('result' => true,'townships' => $data),200);
     }
     public function getType()
     {
         $type = $_GET['type'];
         $data = DB::table('types')->select('id','name','user_id','parent')->where('parent',$type)->get();
-        return response()->json(array('result' => true,'data' => $data),200);
+        return response()->json(array('result' => true,'types' => $data),200);
     }
     /**
      * Show the form for creating a new resource.
@@ -51,7 +53,6 @@ class registerController extends Controller
     {
         //
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -62,7 +63,7 @@ class registerController extends Controller
     {
 
         $this->validate($request, [
-            'img' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            // 'img' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'name' => 'required|min:3|max:50',
             'email' => 'required|email|unique:customers',
             'phone' => 'max:13',
@@ -130,11 +131,10 @@ class registerController extends Controller
             $admin_email = 'thuzar.ts92@gmail.com';
             \Mail::to($admin_email)->send(new customerCreateMail($customer));
 
-            Session::flash('success', "Special message goes here");
+            Session::flash('success reg', "Special message goes here");
             return Redirect::back();
 
     }
-
     /**
      * Display the specified resource.
      *
@@ -145,7 +145,6 @@ class registerController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -156,7 +155,6 @@ class registerController extends Controller
     {
         //
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -168,7 +166,6 @@ class registerController extends Controller
     {
         //
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -179,9 +176,7 @@ class registerController extends Controller
     {
         //
     }
-
     // regisert end
-
     public function reset()
     {
         return view('auth.passwordReset');
@@ -189,7 +184,6 @@ class registerController extends Controller
     public function insertUesr(Request $request)
     {
         $getEmail = $request->email;
-
         $CheckUserEmail = User::where('email',$getEmail)->select('email')->value('email');
         $checkResetEmail = password_reset::where('email',$getEmail)->select('email')->value('email');
         if(!empty($checkResetEmail)){
@@ -199,7 +193,6 @@ class registerController extends Controller
                 $getUserId = User::where('email',$getEmail)->select('id')->value('id');
                 $getCustomerId = Customer::where('email',$getEmail)->select('id')->value('id');
                 $getTime = Carbon\Carbon::now();
-
                 $data = array([
                     'email' => $getEmail,
                     'user_id' => $getUserId,
@@ -208,25 +201,19 @@ class registerController extends Controller
                 ]);
                 DB::table('password_reset')->insert($data);
                 return back()->with('reset','Check Your email for new password. When admin approved,you can use your password');
-
-
-
             }else{
                 return back()->with('reset','Your Email is not register');
             }
         }
     }
-
     public function getReset()
     {
         $getReset = DB::table('password_reset_view')->get();
         return response()->json($getReset);
     }
-
     public function approve($id)
     {
         $getEmail = password_reset::where('id',$id)->select('email')->value('email');
-
         $password = str_random(6);
         $hashPass = bcrypt($password);
         $updateUser = array(
@@ -236,24 +223,14 @@ class registerController extends Controller
             'password' => $password,
             'status' => 1
         );
-
         $updateCustomer = array(
             'password' => $hashPass
         );
         DB::table('password_reset')->where('id',$id)->update($updateReset);
         DB::table('users')->where('email',$getEmail)->update($updateUser);
         DB::table('customers')->where('email',$getEmail)->update($updateCustomer);
-
         $resetPass= password_reset_view::findOrFail($id);
         \Mail::to($getEmail)->send(new sendResetPasswordMail($resetPass));
-
         return response()->json('success approved and send mail');
     }
-
-
-
-
-
-
-
 }
