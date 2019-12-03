@@ -785,7 +785,6 @@
                 this.locast = localStorage.getItem("nursing_fav");
             }
 
-
          this.axios.get('api/getmap',{
               params:{
               id: this.id,
@@ -805,7 +804,7 @@
               this.subjects = response.data.subjects;
               this.sub_child = response.data.sub_child;
               //console.log("aaa",this.subjects);
-              this.id = id;
+              // this.id = id;
 
             })
               this.search();
