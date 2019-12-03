@@ -1447,10 +1447,13 @@ search(){
             this.markers = response.data.nursing;
             var mmarker = new Array()
             var item = []
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> ddc573d8a1f3e7e02fe1ee2226f4e3704f5f9c27
             if(this.nus_data.length > 0){
 
                 for (var i = 0; i < this.searchmarkers.length; i++) {
