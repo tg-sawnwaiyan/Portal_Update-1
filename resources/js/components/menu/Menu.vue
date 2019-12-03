@@ -41,12 +41,12 @@
                   <li class="social-link" v-if="!$auth.check()"><a href="http://localhost:8000/registerForm"><i class="fab fa-twitter"></i></a></li>
                   <li class="social-link" v-if="!$auth.check()"><a href="http://localhost:8000/registerForm"><i class="fab fa-facebook-f"></i></a></li>
         
-                  <li class="nav-item col-12 userprofile-name pc" v-else>
-                 
+                  <li class="col-12 userprofile-name pc" v-else>
+                    <i class="fa fa-user userprofile-img" aria-hidden="true"></i>
                   </li>
-                  <li v-if="$auth.check()" class="nav-item btn login-register-btn col-lg-6 p-lr-0">
+                  <!-- <li v-if="$auth.check()" class="nav-item btn login-register-btn col-lg-6 p-lr-0">
                       <a href="#" @click.prevent="$auth.logout()">Logout</a>
-                  </li>
+                  </li> -->
                 </ul>
               </div>
           </div>
