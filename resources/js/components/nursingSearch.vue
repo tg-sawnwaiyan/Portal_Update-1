@@ -743,6 +743,8 @@
   } from '../event-bus.js';
   import jp_cities from '../google-map-kml/jp_cities.json';
   import jp_township from '../google-map-kml/jp_township.json';
+  import five_percent from '../google-map-kml/japan-cities_5percent.json';
+
   export default {
 
     name: "mymap",
@@ -1098,11 +1100,12 @@ coordinates(theCity, lat, lng){
 
                 const result = jp_township.features //jp_cities
                 const jp_city = jp_cities.features //convert
-
+                const tt = five_percent.features
+                console.log(tt)
                 var townshipName = [];
                 for (let i = 0; i < this.getTownships.length; i++) {
                     if(this.getTownships[i]['id'] == this.township_id){
-                        townshipName.push(this.getTownships[i]['township_name'])
+                        townshipName.push(this.getTownships[i]['postalcode'])
                     }
                 }
                 var township_name = townshipName.toString();
@@ -1128,8 +1131,8 @@ coordinates(theCity, lat, lng){
                     }
                 }
                 }else{
-                    for (var i = 0; i < result.length; i++) {
-                    if (result[i].properties.NL_NAME_1 == theCity && result[i].properties.NL_NAME_2 == township_name) {
+                    for (var i = 0; i < tt.length; i++) {
+                    if (result[i].properties.NL_NAME_1 == theCity && result[i].properties.N03_007 == township_name) {
                     coordinates.push(result[i].geometry['coordinates'])
                     }
                 }
