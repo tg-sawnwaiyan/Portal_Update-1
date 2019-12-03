@@ -355,7 +355,7 @@ class JobController extends Controller
     public function search(Request $request) {
         $request = $request->all();
         $search_word = $request['search_word'];
-        $customer_id = $request['customer_id'];
+        $customer_id = auth()->user()->customer_id;
 
         $query = Job::query();
         $query = $query->where('customer_id', $customer_id);
