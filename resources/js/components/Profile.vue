@@ -45,12 +45,11 @@
             <i class="fa fa-plus-circle"></i>
             <input type="radio" v-model="btntype" value="create" v-on:change="changeBtnType('hospital-lbl','nursing-lbl')" name="btntype" id="hospital" />
             作成
-          </label>
+          </label> 
         </li>
 
         <li role="presentation" class="subtab2 nav-item">
           <label for="nursing" class="typelabel nav-link active" id="nursing-lbl">
-
             <input type="radio" v-model="btntype" value="view" v-on:change="changeBtnType('nursing-lbl','hospital-lbl')" name="btntype" id="nursing" />
             <span v-if="loginuser"><i class="fas fa-briefcase-medical" style="font-size:18px;"></i>&nbsp;マイページ</span>
             <span v-if="!loginuser"><i class="fas fa-briefcase-medical"></i></span>
