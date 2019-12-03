@@ -67,6 +67,7 @@ body {
     background: #eee;
     border-radius: 0px 5px 5px 0px;
     font-weight: bold;
+    z-index: 99;
 }
 
 .box {
@@ -628,7 +629,6 @@ body {
 
 /*End lightbox */
 
-
 /* End Profile */
 
 
@@ -640,7 +640,7 @@ html {
 }
 
 .user_card {
-    /* height: 400px; */
+    height: 400px;
     width: 350px;
     margin-top: auto;
     margin-bottom: auto;
@@ -656,6 +656,8 @@ html {
     -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 5px;
     font-size: 14px;
+    margin-top: 50vh;
+    transform: translateY(-50%);
 }
 
 .brand_logo_container {
@@ -688,6 +690,10 @@ width: 100%; */
 
 .form_container {
     margin-top: 100px;
+}
+.loginwrapper{
+    background: #e1e1e1;
+    height: 100vh;
 }
 
 .login_btn {
@@ -796,6 +802,9 @@ width: 100%; */
 
 
 /*end radio check*/
+.links{
+    position: relative;
+}
 
 .links a {
     color: #d2cfcf !important;
@@ -843,7 +852,9 @@ width: 100%; */
 .registerform_container {
     margin-top: 80px;
 }
-
+.registerformwrapper{
+    padding: 20px 40px;
+}
 .user_registercard {
     width: 700px;
     height: auto;
@@ -852,85 +863,30 @@ width: 100%; */
 .user_registercard form label {
     color: #a93f0c!important;
     font-weight: bold;
-    ;
     align-self: flex-end;
+    padding:0px;
 }
 
 
 /* .form-type-managed-file {
-
     position: relative;
-
     overflow: hidden;
-
 } */
 
 .inputfile>input[type="file"] {
     /* display: inline-block; */
     /* padding: 35px 0 0 0;
-
     height: 20px; */
     /* overflow: hidden; */
     /* -webkit-box-sizing: border-box;
-
     -moz-box-sizing: border-box;
-
     box-sizing: border-box;
-
-    background-size: 60px 60px; */
-    display: none;
+    background-size: 60px 60px;   
+     margin-left: -108px; */
+     display: none;
+   
 }
 
-
-/* #file {
-
-
-
-position: relative;
-
-
-
-top: 150px;
-
-
-
-font-family: calibri;
-
-
-
-width: 150px;
-
-
-
-padding: 10px;
-
-
-
--webkit-border-radius: 5px;
-
-
-
--moz-border-radius: 5px;
-
-
-
-border: 1px dashed #BBB;
-
-
-
-text-align: center;
-
-
-
-background-color: #DDD;
-
-
-
-cursor: pointer;
-
-
-
-} */
 
 ::-webkit-file-upload-button {
     padding: 5px;
@@ -949,14 +905,13 @@ cursor: pointer;
 
 .register_btn {
     color: white !important;
-    width: 120px;
+    width: 30%;
 }
 
 .register_btn:focus {
     box-shadow: none !important;
     outline: 0px !important;
 }
-
 
 /* End Register form*/
 
@@ -3812,6 +3767,8 @@ screen and (min-width: 750px) {
         z-index: 2;
     }
     /*end job search*/
+    /*register form*/
+   
 }
 
 
@@ -4253,6 +4210,9 @@ div.b {
     }
     .customer-sidebar {
         display: none;
+    }
+    .registerformwrapper{
+        padding: 0px;
     }
 }
 
