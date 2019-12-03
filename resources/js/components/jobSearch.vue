@@ -436,7 +436,7 @@
                      <div class="job-content">
                       <div class="job-header">
                         <h5 class="job-tit">
-                          <router-link :to="{name: 'job_details', params:{id:job.jobid}}">{{job.recordstatus}}{{job.title}}</router-link>
+                          <router-link :to="{name: 'job_details', params:{id:job.jobid}}">{{job.title}}</router-link>
                           </h5>
                         <div class="clearfix">
                           <p class="job_status">{{job.employment_status}}</p>

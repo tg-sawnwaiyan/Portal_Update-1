@@ -531,15 +531,14 @@ class SearchMapController extends Controller
          $occupationID = $_GET['occupationID'];
          $empstatus = $_GET['empstatus'];
 
-        $query = "SELECT j.id as jobid, j.*,c.*,n.*,h.*,
+        $query = "SELECT j.id as jobid,j.recordstatus as job_record, j.*,c.*,n.*,h.*,
                 (CASE c.type_id WHEN '2' THEN CONCAT((500000+j.id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT((200000+j.id),'-',LPAD(j.id, 4, '0')) END) as jobnum 
                 from  jobs as j              
                 join customers as c on c.id = j.customer_id
                 left Join townships as t on t.id = j.township_id 
                 left Join nursing_profiles As n on n.customer_id = c.id 
-                left Join hospital_profiles As h on h.customer_id = c.id 
-               
-                where ";
+                left Join hospital_profiles As h on h.customer_id = c.id               
+                where j.recordstatus=1";
 
         if($id == -1)
         {
@@ -598,7 +597,7 @@ class SearchMapController extends Controller
               $empstatus = implode(',', $empstatus);
           }
 
-          $query .= "t.city_id =".$id;
+          $query .= " and t.city_id =".$id;
 
           if($townshipID != '0')
           {
