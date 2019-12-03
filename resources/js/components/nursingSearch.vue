@@ -615,9 +615,10 @@
                           </span>
                         </div>
                         </div>
+
                         <div class="col-4 text-right">
-                        <span class="btn fav-profile fav-item fav-color" :class="'view_pro_id'+nus.nursing_id" style="display:block;" @click="favAddFun('add',nus.nursing_id);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
-                        <span class="btn fav-profile fav-item fav-color" :class="'done_pro_id'+nus.nursing_id" style="color:#aaa;display:none;" @click="favAddFun('remove',nus.nursing_id);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
+                        <span class="btn fav-profile fav-item fav-color" v-if="!checkarr[nus.nursing_id]" :class="'view_pro_id'+nus.nursing_id" style="display:block;" @click="favAddFun('add',nus.nursing_id);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
+                        <span class="btn fav-profile fav-item fav-color" v-if="checkarr[nus.nursing_id]" :class="'done_pro_id'+nus.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',nus.nursing_id);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                         </div>
                     </div>
                     </div>
@@ -805,7 +806,8 @@
         show_paginate: false,
         onchangeid:0,
         localst:'',
-        selected: undefined
+        selected: undefined,
+        checkarr:[]
       }
     },
     created(){
@@ -923,13 +925,13 @@ searchfreeword(){
         var search_word = 'all';
       }
 
-        if(localStorage.getItem("nursing_fav") == null){
+      if(localStorage.getItem("nursing_fav") == null){
 
-            this.locast = 0;
-        }
-        else{
-            this.locast = localStorage.getItem("nursing_fav");
-        }
+          this.locast = 0;
+      }
+      else{
+          this.locast = localStorage.getItem("nursing_fav");
+      }
      
     
   
@@ -1070,13 +1072,21 @@ nursingSearchData(index){
             this.FacTypeID = [];
             this.SpecialFeatureID = [];
             this.onchangeid = 1;
+              if(localStorage.getItem("nursing_fav") == null){
+
+                this.locast = 0;
+            }
+            else{
+                this.locast = localStorage.getItem("nursing_fav");
+            }
 
             this.axios.get('/api/getmap',{
                     params:{
                     id: this.id,
                     township_id:this.township_id,
                     moving_in:this.moving_in,
-                    per_month:this.per_month
+                    per_month:this.per_month,
+                    local:this.locast
                     },
 
                 })
@@ -1311,6 +1321,7 @@ changeMap(response){
                 this.fac_types = response.data.fac_types
                 this.medical_acceptance = response.data.medical_acceptance
                 this.nus_data = response.data.nursing
+                console.log(this.nus_data);
                 this.markers = response.data.nursing;
 
                 var mmarker = new Array();
@@ -1319,144 +1330,11 @@ changeMap(response){
                     mmarker.push([this.markers[i]['alphabet'], this.markers[i]['lat'], this.markers[i]['lng']])
                     item.push(this.markers[i])
                 }
+              
 
-                if(this.getCity.length > 0)
+                if(this.getCity.length > 0) //if city  choose
                 {
-//                      this.coordinates(theCity,lat,lng);
-//                      this.infoWindow(item, mmarker);
-//                  }
-//                  else{
-//                     this.coordinates(theCity,lat,lng);
-//                  }
-
-
-
-//         },
-
-// changeSearch()
-//         {
-
-//             if(this.townshipID == null || this.townshipID == '')
-//             {
-//             this.townshipID[0] = 0;
-//             }
-//             if(this.SpecialFeatureID == null || this.SpecialFeatureID == '')
-//             {
-//             this.SpecialFeatureID[0] = 0;
-//             }
-//             if(this.MedicalAcceptanceID == null || this.MedicalAcceptanceID == '')
-//             {
-//             this.MedicalAcceptanceID[0] = 0;
-//             }
-//             if(this.FacTypeID == null || this.FacTypeID == '')
-//             {
-//             this.FacTypeID[0] = 0;
-//             }
-//             if(this.MoveID == null || this.MoveID == '')
-//             {
-//             this.MoveID[0] = 0;
-//             }
-//             if(this.onchangeid == 1)
-//             {
-//                 if(this.township_id == -1)
-//                 {
-//                     this.townshipID[0] = 0;
-//                 }
-//                 else{
-//                     this.townshipID[0] = this.township_id;
-//                 }
-//             }
-//             else{
-
-//                 this.township_id = -1;
-//             }
-
-
-
-//             this.axios.get('api/getnursingsearch',{
-//             params:{
-//                 id: this.id,
-//                 townshipID:this.townshipID,
-//                 SpecialFeatureID:this.SpecialFeatureID,
-//                 MedicalAcceptanceID:this.MedicalAcceptanceID,
-//                 FacTypeID:this.FacTypeID,
-//                 MoveID:this.MoveID,
-//                 Moving_in:this.moving_in,
-//                 Per_month:this.per_month
-//             },
-//             }).then((response)=>{
-//             console.log(localStorage.getItem("nursing_fav"));
-//             // if(localStorage.getItem("nursing_fav")) {
-//             //     var fav_arr = JSON.parse("[" + localStorage.getItem("nursing_fav") + "]");
-//             //     for(var i=0; i<fav_arr.length; i++){
-//             //         if(response.data.nursing.includes(fav_arr[i])){
-//             //             response.data.nursing.indexOf(fav_arr[i])
-
-//             //         }
-//             //     }
-
-//             // }
-//             console.log(JSON.parse("[" + localStorage.getItem("nursing_fav") + "]"));
-//             this.nus_data = response.data.nursing;
-//             this.specialfeature = response.data.specialfeature;
-//             this.medicalacceptance = response.data.medicalacceptance;
-//             this.factype = response.data.factype;
-//             this.citylatlng = response.data.city;
-
-//             if(this.nus_data.length == 0)
-//             {
-
-//                 const theCity = this.nus_data[0]['city_name']
-//                 const lat = this.nus_data[0]['lat']
-//                 const lng = this.nus_data[0]['lng']
-
-//                 this.coordinates(theCity,lat,lng);
-//             }
-
-
-//             });
-
-//         },
-        // clearmap(citylatlng)
-        // {
-        //     // for clean googleMap
-        //         var lat = citylatlng[0]['latitude']
-        //         var lng = citylatlng[0]['longitude']
-        //         var theCity = citylatlng[0]['city_eng']
-        //         const result = jp_township.features
-
-
-        //         const coordinates = []
-        //         for (var i = 0; i < result.length; i++) {
-        //             if (result[i].Name == theCity) {
-        //             coordinates.push(result[i].geometry['coordinates'])
-        //             }
-        //         }
-        //         var coordinate = coordinates.reduce((acc, val) => acc.concat(val), []);
-        //         var data = {
-        //             type: "Feature",
-        //             geometry: {
-        //             "type": "Polygon",
-        //             "coordinates": coordinate
-        //             },
-        //         };
-
-        //         var mapProp = {
-        //             center: new google.maps.LatLng(lat, lng),
-        //             zoom: 6,
-        //             mapTypeId: google.maps.MapTypeId.ROADMAP,
-        //         };
-        //         this.map = new google.maps.Map(document.getElementById("mymap"), mapProp);
-        //         this.map.data.addGeoJson(data);
-        //         this.map.data.setStyle({
-        //             strokeColor: "red",
-        //             fillColor: 'red',
-        //             strokeOpacity: 0.8,
-        //             fillOpacity: 0.1,
-        //             strokeWeight: 1
-        //         })
-        // },
-
+                
                     const theCity = response.data.getCity[0]['city_name']
                     const lat = response.data.getCity[0]['latitude']
                     const lng = response.data.getCity[0]['longitude']
@@ -1471,7 +1349,8 @@ changeMap(response){
                         this.coordinates(theCity,lat,lng);
                     }
                 }
-                else{
+                else{ //if city not choose
+                    
                      this.coordinates(null,this.markers[0]['lat'],this.markers[0]['lng']);
                      this.infoWindow(item, mmarker);
                 }
@@ -1562,14 +1441,22 @@ search(){
             this.markers = response.data.nursing;
             var mmarker = new Array()
             var item = []
-         
+
 
            
 
             if(this.nus_data.length > 0){
              
                 for (var i = 0; i < this.searchmarkers.length; i++) {
-
+              
+                    if(this.searchmarkers[i]['fav_check'] == 'check')
+                    {
+                      this.checkarr[this.searchmarkers[i]['nursing_id']] = true;
+                    }
+                    else{
+                      this.checkarr[this.searchmarkers[i]['nursing_id']] = false;
+                    }
+                  
                     mmarker.push([this.searchmarkers[i]['alphabet'], this.searchmarkers[i]['lat'], this.searchmarkers[i]['lng']])
                     item.push(this.searchmarkers[i])
                 }
@@ -1613,8 +1500,8 @@ search(){
 
             });
 
-
-
+console.log('check')
+  console.log(this.checkarr);
 
         },
         // hover animate function
@@ -1652,8 +1539,12 @@ search(){
         },
         favAddFun(status,index){
             if(status == 'add'){
-                $('.view_pro_id'+index).css('display','none');
-                $('.done_pro_id'+index).css('display','block');
+                
+                  this.checkarr[index] = true;
+                   
+                  $('.done_pro_id'+index).css('display','block');
+                  $('.view_pro_id'+index).css('display','none');
+               
                 if(localStorage.getItem("nursing_fav")){
                     var fav_arr = JSON.parse("[" + localStorage.getItem("nursing_fav") + "]");
                     fav_arr.push(index);
@@ -1669,8 +1560,11 @@ search(){
                 $(".fav-nursing-link-box>a").css({'cursor':'pointer','pointer-events':'auto'});
             }
             else{
-                $('.view_pro_id'+index).css('display','block');
+            
+                this.checkarr[index] = false;
                 $('.done_pro_id'+index).css('display','none');
+                $('.view_pro_id'+index).css('display','block');
+               
                 var fav_arr = JSON.parse("[" + localStorage.getItem("nursing_fav") + "]");
                 var index = fav_arr.indexOf(index);
                 if (index > -1) {
