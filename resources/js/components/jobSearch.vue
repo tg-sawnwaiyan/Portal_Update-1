@@ -310,7 +310,7 @@
           </div>
         </div>
 
-          <div  id="job_search" class="col-12 jobselect pad-free">
+          <div  id="job_search" class="col-12 jobselect">
                <span v-if="!job_data.length">
                 <div class="container-fuid m-t-20">
                     <p class="nosearch-icon">
@@ -327,11 +327,11 @@
                 <tr>
                   <th>地域</th>
                   <td>
-                    <select id="selectCity"   class="col-9 form-control custom-select mt-2 mb-2" v-model="id" @change="changeTownship">
+                    <select id="selectCity"   class="col-10 form-control custom-select mt-2 mb-2" v-model="id" @change="changeTownship">
                          <option value="-1">▼市区町村</option>
                       <option v-for = "city in cities" :value="city.id" :key="city.id" >{{city.city_name}}</option>
                     </select>
-                    <button @click="toggleContent4" class="btn col-3 seemore-btn">
+                    <button @click="toggleContent4" class="btn col-2 seemore-btn">
                       <i class="fa" aria-hidden="true"></i>
                           <!-- <em>{{city.city_name}}</em> -->
                           <span id="close6"><i class="fas fa-arrow-circle-up"></i> 市区町村エリアを閉じる </span>
@@ -430,7 +430,7 @@
               </tbody>
             </table>
             </div>
-             <div class=" col-12">
+             <div>
                 <div class="row">
                    <div id="job_detail" class="col-md-6 col-sm-12" style="margin-top:20px;" v-for="job in displayItems" :key="job.jobid">
                      <div class="job-content">
