@@ -204,23 +204,24 @@
     },
       onFileChange(e) {
       const file = e.target.files[0];
-      this.images = file.name;
+      console.log(file);
+      this.images = file;
       this.url = URL.createObjectURL(file);
     },
       register() {
         var app = this
         this.$auth.register({
           data: {
-            images:app.images,
-            username:app.username,
+            img:app.images,
+            name:app.username,
             email: app.email,
             password: app.password,
-            password_confirmation: app.password_confirmation,
-            city:app.city,
+            comfirm_password: app.password_confirmation,
+            cities:app.city,
             township:app.township,
-            typ:app.type,
-            phone:app.phone,
-            address:app.address
+            types:app.type,
+            phone:app.phone
+            // address:app.address
           },
           success: function () {
             this.$swal({
