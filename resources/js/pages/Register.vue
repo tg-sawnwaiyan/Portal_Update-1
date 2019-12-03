@@ -1,77 +1,119 @@
 <template>
     <div class="container">
         <div class="card card-default">
-            <div class="card-header">Inscription</div>
+            <div class="card-header">Register</div>
             <div class="card-body">
                 <div class="alert alert-danger" v-if="has_error && !success">
                     <p v-if="error == 'registration_validation_error'">Validation error (s), please consult the message (s) below.</p>
                     <p v-else>Error, can not register at the moment. If the problem persists, please contact an administrator.</p>
                 </div>
+
                 <form autocomplete="off" @submit.prevent="register" v-if="!success" method="post">
-                    <div class="form-group">
-                        <input type="file" @change="onFileChange" v-bind="img"/>
-                        <div id="preview">
-                            <img v-if="url" :src="url" class="img-thumbnail img" />
+                    <div id="preview">
+                        <img v-if="url" :src="url" class="img-thumbnail img" />
+                    </div>
+                    <div class="input-group mb-3 inputfile">
+                        <label class="col-4 col-lg-3 control-label">ロゴを添付</label>
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-image"></i></span>
+                        </div>
+                        <span class="btn all-btn choose-btn" style="color: #a93f0c!important;box-shadow:none!important;" @click="choosefile()">Choose</span> <span id="imgname" style = "padding: 8px 0 0 30px;"></span>
+                        <input type="file" class="inputfile" @change="onFileChange"/>
+                        <!-- <input type="file" accept="image/*" @change="showMyImage(this)" name="img" id="file" ref="file" class="form-control inputfile"> -->
+                    </div>
+                    <div class="input-group mb-3">
+                        <label class="col-4 col-lg-3 control-label">事業者名</label>
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input type="text" class="form-control" name="name" v-model="username" required placeholder="事業者名を入力してください。">
+                    </div>
+                    
+                    <div class="input-group mb-3">
+                        <label class="col-4 col-lg-3 control-label">メールアドレス </label>
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                        </div>
+                        <input type="email" class="form-control" name="email" v-model="email" required placeholder="メールアドレスを入力してください。">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <label class="col-4 col-lg-3 control-label">パスワード </label>
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        <input type="password" class="form-control" name="password" @keyup="password_validate()" v-model="password" id="pwd" required placeholder="パスワードを入力してください。">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <label class="col-4 col-lg-3 control-label">パスワード確認</label>
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        <input type="password" class="form-control" name="comfirm_password" id="confirm_pwd" @keyup="password_validate()" v-model="password_confirmation" required placeholder="パスワードをもう一度確認してください。">
+                        <br>
+                    </div>
+                    <div class="error p-l-162" id="passworderror" style="display:none;">※パスワードが一致しません。</div>
+
+                    <div class="input-group mb-3">
+                        <label class="col-4 col-lg-3 control-label">事業者タイプ</label>
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-list"></i></span>
+                        </div>
+                        <select id="type" class="form-control custom-select" name="types" :value="type.id" v-model="type" required>
+                            <option value="">事業者タイプを選択してください。</option>
+                            <option value="2">病院</option>
+                            <option value="3">介護</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group mb-3 hide form-check form-check-inline" id="showHideActionNursing">
+                        <label class="col-4 col-lg-3 control-label">看護種類</label>
+                        <div class="input-group-append " id="nursing">
+                        </div>
+                        <div class="error" id="radioerror" style="margin-bottom: 6px;margin-left: 210px;">必須</div>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <label class="col-4 col-lg-3 control-label">都道府県</label>
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-map"></i></span>
+
+                        </div>
+                        <select name="cities" id="cities" v-model="city" @change="getTownship()" class="form-control custom-select" required>
+                            <option value="">都道府県を選択してください。</option>
+                            <option v-for ="city in cities" :value='city.id' :key="city.id">{{ city.city_name }}</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group mb-3" v-if="!show">
+                        <label class="col-4 col-lg-3 control-label">市区町村</label>
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-map"></i></span>
+                        </div>
+                        <select name="township" id="township" v-model='township' class="form-control custom-select" required>
+                            <option value="">市区町村を選択してください。</option>
+                            <option v-for ="township in townships" :value='township.id' :key='township.id'>{{ township.township_name }}</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <label class="col-4 col-lg-3 control-label">電話番号</label>
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                        </div>
+                        <input class="form-control" id="phone" name="phone" v-model="phone" required placeholder="電話番号を入力してください。" maxlength="14">
+                    </div>
+                    <div id="jsErrorMessage" class="error p-l-162"></div>
+
+                    <div class="form-group ">
+                        <div class="form-group row float-right">
+                            <div class="col-12">
+                                <button type="submit" class="btn register_btn login_btn" id="sub_btn">作成する</button>
+                            </div>
                         </div>
                     </div>
-               
-                      
-                    <div class="form-group" v-bind:class="{ 'has-error': has_error && errors.username }">
-                        <label for="usrename">User Name</label>
-                        <input type="text" id="username" class="form-control" placeholder="John Smith" v-model="username">
-                        <span class="help-block text-danger" v-if="has_error && errors.username">{{ errors.username[0] }}</span>
-                    </div>
-                    <div class="form-group" v-bind:class="{ 'has-error': has_error && errors.email }">
-                        <label for="email">E-mail</label>
-                        <input type="email" id="email" class="form-control" placeholder="user@example.com" v-model="email">
-                        <span class="help-block text-danger" v-if="has_error && errors.email">{{ errors.email[0] }}</span>
-                    </div>
-                    <div class="form-group">
-                      <label>Select Cities:</label>
-                      <select class='form-control custom-select' v-model="city" @change="getTownship() , show ^= show">
-                        <option value="">Select City</option>
-                        <option v-for ="city in cities"  :value='city.id'>{{ city.city_name }}</option>
-                      </select>
-                    </div>
-                    <div class="" v-bind:class="{'is-hide form-group' : show }"> 
-                      <label>Select Township:</label>
-                      <select class='form-control custom-select' v-model='township' >
-                        <option value="">Select township</option>
-                        <option v-for ="township in townships"   :value='township.id'>{{ township.township_name }}</option>
-                      </select>
-                    </div>
-                    <div class=""  @change="getType()"> 
-                      <label>Select Township:</label>
-                      <select class='form-control custom-select' v-model='type' >
-                      <option value="">タイプを選択</option>
-                      <option :value="1">病院</option>
-                      <option :value="2">看護</option>
-                      </select>
-                    </div>
-                    <div class="custom-control custom-radio" v-for="type in types" :key="type.id">
-                      <input type="radio" class="custom-control-input" :value="type.id" v-model="typ" :id="type.id">
-                      <label class="custom-control-label" :for="type.id" >{{type.name}}</label>
-                    </div>
-                    <div class="form-group" v-bind:class="{ 'has-error': has_error && errors.password }">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" class="form-control" v-model="password">
-                        <span class="help-block text-danger" v-if="has_error && errors.password">{{ errors.password[0] }}</span>
-                    </div>
-                    <div class="form-group" v-bind:class="{ 'has-error': has_error && errors.password }">
-                        <label for="password_confirmation">Confirm Password</label>
-                        <input type="password" id="password_confirmation" class="form-control" v-model="password_confirmation">
-                    </div>
-                    <div class="form-group" v-bind:class="{ 'has-error': has_error && errors.phone }">
-                        <label for="phone">Phone Number</label>
-                        <input type="number" id="phone" class="form-control"  v-model="phone">
-                        <span class="help-block text-danger" v-if="has_error && errors.phone">{{ errors.phone[0] }}</span>
-                    </div>
-                    <div class="form-group" v-bind:class="{ 'has-error': has_error && errors.address }">
-                        <label for="usrename">Address</label>
-                        <input type="text" id="address" class="form-control" placeholder="John Smith" v-model="address">
-                        <span class="help-block text-danger" v-if="has_error && errors.address">{{ errors.address[0] }}</span>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Register</button>
+
                 </form>
             </div>
         </div>
@@ -107,30 +149,59 @@
 
     methods: {
       getCities() {
-         this.axios.get('auth/getCities/')
+         this.axios.get('/api/auth/getCities')
          .then(function (response) {
-          this.cities = response.data;
+             console.log("getCities")
+             console.log(response)
+          this.cities = response.data.cities;
           }.bind(this));
       },
       getTownship(){
-        this.axios.get('auth/township',{
+        this.show = false;
+        this.axios.get('/api/auth/township',{
           params:{
             city:this.city
           },
         }).then((response)=>{
-          this.townships = response.data
+            console.log("townships")
+            console.log(response.data.townships)
+          this.townships = response.data.townships
         })
       },
       getType(){
-        this.axios.get('auth/getTypes',{
+        this.axios.get('/api/auth/getTypes',{
           params:{
             type:this.type
           },
         }).then((response)=>{ 
-          this.types = response.data
-          console.log(response.data)
+          this.types = response.data.types
+          console.log("response.data types")
+          console.log(response.data.types)
         })
       },
+    isNumberOnly(event) {
+        if(!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105) 
+            && event.keyCode != 8 && event.keyCode != 46 && !(event.keyCode >= 37 && event.keyCode <= 40)) 
+        {
+            event.preventDefault();
+        }
+    },
+    password_validate() {
+        var pwd = $('#pwd').val();
+        var confirm_pwd = $('#confirm_pwd').val();
+        window.pwd_same = false;
+        var nursing_type_exist = false;
+        if(pwd != confirm_pwd) {
+            $('#passworderror').css("display","block");
+        }
+        else {
+            $('#passworderror').css("display","none");
+            window.pwd_same = true;
+        }
+    },
+    choosefile() {
+        $('.inputfile').trigger('click');
+    },
       onFileChange(e) {
       const file = e.target.files[0];
       this.images = file.name;
@@ -147,21 +218,26 @@
             password_confirmation: app.password_confirmation,
             city:app.city,
             township:app.township,
-            typ:app.typ,
+            typ:app.type,
             phone:app.phone,
             address:app.address
           },
           success: function () {
             this.$swal({
-          title: 'What is your Name?',
-          input: 'text',
-          inputPlaceholder: 'Enter your name here',
-          showCloseButton: true,
-        });
+                position: 'top-end',
+                type: 'success',
+                // title: '作成されました',
+                title: '確認のためもうちょっとしばらくお待ちください。',
+                showConfirmButton: false,
+                timer: 1800,
+                width: 250,
+                height: 200,
+            })
             //app.success = true
             //this.$router.push({name: 'login', params: {successRegistrationRedirect: true}})
           },
           error: function (res) {
+            console.log("error")
             console.log(res.response.data.errors)
             app.has_error = true
             app.error = res.response.data.error
@@ -179,9 +255,6 @@
 </script>
 
 <style>
-.is-hide{
-  display:none;
-}
 
 .img{
     opacity: 1;
