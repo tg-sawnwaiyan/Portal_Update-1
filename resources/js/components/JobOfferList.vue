@@ -311,11 +311,9 @@
                     },
                     searchJobOffer() {
                         var search_word = $("#search-item").val();
-                        var customer_id = $("#customer-id").val();
 
                         let fd = new FormData();
                         fd.append("search_word", search_word);
-                        fd.append("customer_id", customer_id);
                         this.axios.post("/api/job/search", fd).then(response => {
                             this.jobs = response.data;
                             if (this.jobs.length > this.size) {
