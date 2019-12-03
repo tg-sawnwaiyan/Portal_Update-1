@@ -586,8 +586,6 @@ class SearchMapController extends Controller
               $occupationID = implode(',', $occupationID);
           }
 
-
-
           //to check if employment status is check or not
           
           if ($empstatus[0] === '0' && count($empstatus) === 1) {
@@ -642,7 +640,7 @@ class SearchMapController extends Controller
         }
        
 
- 
+        
         $job_data = DB::select($query);
         $city = DB::table('cities')->get();
 
