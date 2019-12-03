@@ -683,10 +683,12 @@ html {
     /* top: 35%;
     width: 100%; */
 }
-.loginwrapper{
+
+.loginwrapper {
     background: #e1e1e1;
     height: 100vh;
 }
+
 .login_btn {
     width: 100%;
     background: #d2571c !important;
@@ -789,9 +791,10 @@ html {
 
 
 /*end radio check*/
-.links{
-   position: relative;
-   /* top: -100px; */
+
+.links {
+    position: relative;
+    /* top: -100px; */
 }
 
 .links a {
@@ -1574,9 +1577,8 @@ p {
 /* Create News */
 
 .error {
-    color: #ff0000;   
+    color: #ff0000;
     margin-bottom: 18px;
-    
 }
 
 .show-news-img {
@@ -2431,9 +2433,11 @@ ul.sub-ul li {
 .m-t-50 {
     margin-top: 50px;
 }
-.m-t-80{
+
+.m-t-80 {
     margin-top: 80px;
 }
+
 .m-l-10p {
     margin-left: 10% !important;
 }
@@ -3823,7 +3827,6 @@ screen and (min-width: 750px) {
 
 /* Create News */
 
-
 .show-news-img {
     height: 100px;
     margin: 15px 0px;
@@ -3836,7 +3839,6 @@ screen and (min-width: 750px) {
     justify-content: center;
     align-items: center;
 }
-
 
 .btn-primary {
     display: block;
@@ -4330,9 +4332,11 @@ div.b {
 .pad-10 {
     padding: 10px !important;
 }
-.p-l-162{
-    padding-left:162px;
+
+.p-l-162 {
+    padding-left: 162px;
 }
+
 .m-0 {
     margin: 0px;
 }
@@ -4663,7 +4667,7 @@ li.userprofile-name>a {
 .maintab-content {
     padding: 7px;
     /*for no scroll*/
-    margin: 60px 0 0 0;
+    margin: 75px 0 0 0;
 }
 
 .tab-content {
