@@ -968,30 +968,4 @@ table > tbody > tr th{
 .page-item .spanclass{
   cursor: pointer;
 }
-.nosearch-icon{
-    border: 1px solid #b0abab;
-    width: 60px;
-    height: 60px;
-    border-radius: 10px;
-    text-align: center;
-    margin: 0 auto 10px;
-    line-height: 60px;
-    vertical-align: middle;
-    background: #ddd;
-}
-.nosearch-data{
-    font-size: 25px;
-    color: #f57e46;
-    font-weight: bold;
-    margin: 20px 0;
-    text-align: center;
-}
-.nosearch{
-    font-size: 14px;
-    color: #a5a5a5;
-    font-weight: bold;
-    margin: 20px 0;
-    text-align: center;
-}
-
 </style>

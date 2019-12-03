@@ -97,10 +97,10 @@
                             </label> -->
                         <div>
                             <button class="btn confirmed" v-if="job.recordstatus == 1" @click="confirm(job.id)">OFF</button>
-                            
+
                             <button class="btn confirm-borderbtn" v-if="job.recordstatus == 0" @click="confirm(job.id)">ON</button>
                         </div>
-                          
+
                             <span class="job_id">求人番号：{{job.jobid}}</span>
                         </h5>
                                         </div>
@@ -197,7 +197,7 @@
                     loginuser: true
                 };
             },
-            
+
             created() {
                 this.axios.get("/api/job/index").then(response => {
                     console.log(response.data);
@@ -271,7 +271,7 @@
                                     location.reload();
                                 });
 
-                    
+
                     },
                 deleteJob(id) {
                         this.$swal({
