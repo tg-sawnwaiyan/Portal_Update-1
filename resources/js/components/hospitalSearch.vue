@@ -321,7 +321,7 @@
             </div> -->
           </div>
           </div>
-          <div id="hos_search" class="col-12 hospitalselect pad-free">
+          <div id="hos_search" class="row hospitalselect">
                <span v-if="!hos_data.length">
                 <div class="container-fuid m-t-20">
                     <p class="nosearch-icon">
@@ -339,11 +339,11 @@
               <tr>
                 <th>地域</th>
                 <td>
-                  <select id="selectCity" class="col-9 form-control custom-select mt-2 mb-2" v-model="id" @change="ChangeTownship">
+                  <select id="selectCity" class="col-10 form-control custom-select mt-2 mb-2" v-model="id" @change="ChangeTownship">
                      <option value="-1">▼市区町村</option>
                     <option v-for="city in cities" :value="city.id" :key="city.id">{{city.city_name}}</option>
                   </select>
-                  <button @click="toggleContent" class="btn col-3 seemore-btn">
+                  <button @click="toggleContent" class="btn col-2 seemore-btn">
                     <i class="fa" aria-hidden="true"></i>
                     <!-- <em>{{city.city_name}}</em> -->
                     <span id="close"><i class="fas fa-arrow-circle-up"></i> 市区町村エリアを閉じる</span>
@@ -1071,7 +1071,7 @@
     padding: 10px;
     font-size: 100%;
 }
-.nosearch-icon{
+/* .nosearch-icon{
     border: 1px solid #b0abab;
     width: 60px;
     height: 60px;
@@ -1095,6 +1095,6 @@
     font-weight: bold;
     margin: 20px 0;
     text-align: center;
-}
+} */
 
 </style>
