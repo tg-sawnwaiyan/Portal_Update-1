@@ -821,7 +821,25 @@ width: 100%; */
     position: relative;
     float: right;
 }
+.alert-danger{
+    width: 100%;
+    margin:0px;
+    padding: 0px;    
+    font-size: 90%;
+    position: absolute;
+    top:210px;
+    color: #ea0f0f;
+    font-weight: bold;
+    background-color: #ffebeb;
+    padding: 5px;
+    list-style-type: none;
+    border: 1px #ff6666 solid;
+    line-height: 1.2;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
 
+}
 
 /* End Login */
 
@@ -1528,7 +1546,37 @@ p {
 
 } */
 
+/*no data*/
 
+.nosearch-icon{
+    border: 1px solid #b0abab;
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 0 auto 10px;
+    line-height: 60px;
+    vertical-align: middle;
+    background: #ddd;
+}
+.nosearch-data{
+    font-size: 25px;
+    color: #f57e46;
+    font-weight: bold;
+    margin: 20px 0;
+    text-align: center;
+}
+.nosearch{
+    font-size: 14px;
+    color: #a5a5a5;
+    font-weight: bold;
+    margin: 20px 0;
+    text-align: center;
+}
+
+
+
+/*end no data*/
 /* Create News */
 
 .error {

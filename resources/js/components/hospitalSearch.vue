@@ -1071,7 +1071,7 @@
     padding: 10px;
     font-size: 100%;
 }
-.nosearch-icon{
+/* .nosearch-icon{
     border: 1px solid #b0abab;
     width: 60px;
     height: 60px;
@@ -1095,6 +1095,6 @@
     font-weight: bold;
     margin: 20px 0;
     text-align: center;
-}
+} */
 
 </style>
