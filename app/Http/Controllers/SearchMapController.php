@@ -430,7 +430,7 @@ class SearchMapController extends Controller
             }
             else{
 
-                $query .= " (h.access like '%" . $searchword . "%' or h.medical_department like '%".$searchword."%') group by c.id";
+                $query .= " (ci.city_name like '%" . $searchword . "%' or t.township_name like '%" . $searchword . "%' or c.name like '%".$searchword."%') group by c.id";
             }
            
         }
@@ -499,7 +499,8 @@ class SearchMapController extends Controller
            
             if($searchword != 'undefined')
             {
-                $query .= " and (h.access like '%" . $searchword . "%' or h.medical_department like '%".$searchword."%')";
+               
+                $query .= " and (ci.city_name like '%" . $searchword . "%' or t.township_name like '%" . $searchword . "%' or c.name like '%".$searchword."%') group by c.id";
             }
            
             $query .=  " group by c.id";
@@ -532,7 +533,7 @@ class SearchMapController extends Controller
          $occupationID = $_GET['occupationID'];
          $empstatus = $_GET['empstatus'];
 
-        $query = "SELECT j.id as jobid, j.*,c.*,n.*,h.*,
+        $query = "SELECT j.id as jobid,j.recordstatus as job_record, j.*,c.*,n.*,h.*,
                 (CASE c.type_id WHEN '2' THEN CONCAT((500000+j.id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT((200000+j.id),'-',LPAD(j.id, 4, '0')) END) as jobnum 
                 from  jobs as j              
                 join customers as c on c.id = j.customer_id
@@ -588,8 +589,6 @@ class SearchMapController extends Controller
               $occupationID = implode(',', $occupationID);
           }
 
-
-
           //to check if employment status is check or not
           
           if ($empstatus[0] === '0' && count($empstatus) === 1) {
@@ -602,7 +601,7 @@ class SearchMapController extends Controller
               $empstatus = implode(',', $empstatus);
           }
 
-          $query .= "t.city_id =".$id;
+          $query .= " and t.city_id =".$id;
 
           if($townshipID != '0')
           {
@@ -641,7 +640,13 @@ class SearchMapController extends Controller
         
 
         }
+<<<<<<< HEAD
          
+=======
+       
+
+        
+>>>>>>> 91fdbc5c362ceb503b59f48fda7c5d95bac585a4
         $job_data = DB::select($query);
         $city = DB::table('cities')->get();
 

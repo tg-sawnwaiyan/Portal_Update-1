@@ -1,17 +1,30 @@
 <template>
-    <div class="container">
-        <div class="card card-default">
-            <div class="card-header">Register</div>
-            <div class="card-body">
+    <div class="loginwrapper">
+        <div class="d-flex justify-content-center h-100">     
+            <div class="user_card user_registercard">
+                <div class="links">
+                    <a href="/" class="mr-auto text-white" style="color: #a93f0c!important;font-weight:bold;">ホーム</a>
+                    <a href="/login" class="ml-auto text" style="color: #a93f0c!important;font-weight:bold;">ログイン</a>
+                </div>
+
+                <div class="d-flex justify-content-center registerform_container">
+                    <div class="brand_logo_container">
+                        <img src="/images/sample_1.png" class="brand_logo" alt="Logo">
+                        <div id="preview">
+                          <img v-if="url" :src="url" class="brand_logo" alt="Logo">
+                        </div>                        
+                    </div>
+                </div>
+
                 <div class="alert alert-danger" v-if="has_error && !success">
                     <p v-if="error == 'registration_validation_error'">Validation error (s), please consult the message (s) below.</p>
                     <p v-else>Error, can not register at the moment. If the problem persists, please contact an administrator.</p>
                 </div>
 
-                <form autocomplete="off" @submit.prevent="register" v-if="!success" method="post">
-                    <div id="preview">
+                <form autocomplete="off" @submit.prevent="register" v-if="!success" method="post" class="registerformwrapper">
+                    <!-- <div id="preview">
                         <img v-if="url" :src="url" class="img-thumbnail img" />
-                    </div>
+                    </div> -->
                     <div class="input-group mb-3 inputfile">
                         <label class="col-4 col-lg-3 control-label">ロゴを添付</label>
                         <div class="input-group-append">
@@ -77,7 +90,7 @@
                     <div class="input-group mb-3">
                         <label class="col-4 col-lg-3 control-label">都道府県</label>
                         <div class="input-group-append">
-                            <span class="input-group-text"><i class="fas fa-map"></i></span>
+                            <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
 
                         </div>
                         <select name="cities" id="cities" v-model="city" @change="getTownship()" class="form-control custom-select" required>
@@ -89,7 +102,7 @@
                     <div class="input-group mb-3" v-if="!show">
                         <label class="col-4 col-lg-3 control-label">市区町村</label>
                         <div class="input-group-append">
-                            <span class="input-group-text"><i class="fas fa-map"></i></span>
+                            <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
                         </div>
                         <select name="township" id="township" v-model='township' class="form-control custom-select" required>
                             <option value="">市区町村を選択してください。</option>
@@ -100,19 +113,16 @@
                     <div class="input-group mb-3">
                         <label class="col-4 col-lg-3 control-label">電話番号</label>
                         <div class="input-group-append">
-                            <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                            <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
                         </div>
                         <input class="form-control" id="phone" name="phone" v-model="phone" required placeholder="電話番号を入力してください。" maxlength="14">
                     </div>
                     <div id="jsErrorMessage" class="error p-l-162"></div>
-
-                    <div class="form-group ">
-                        <div class="form-group row float-right">
-                            <div class="col-12">
-                                <button type="submit" class="btn register_btn login_btn" id="sub_btn">作成する</button>
-                            </div>
-                        </div>
-                    </div>
+                    
+                      <div class="form-group col-12 text-center">                          
+                              <button type="submit" class="btn register_btn login_btn" id="sub_btn">作成する</button>                          
+                      </div>
+                   
 
                 </form>
             </div>
