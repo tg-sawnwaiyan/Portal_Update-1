@@ -458,23 +458,30 @@
           </table>
           <div class="col-12">
             <div class="row">
-
               <div id="job_detail" class="col-md-12 col-sm-12 pad-free offset" style="margin-top:20px;" v-for="hos in displayItems" :key="hos.id">
                 <div class="hos-content">
-                  <div class="job-header">
-                  <h5 class="hos-title">
-                    <router-link :to="{name: 'profile', params: {cusid:hos.customer_id, type: 'hospital'}}" class="pseudolink">{{hos.name}}</router-link>
-                </h5>
+                <div class="job-header">
+                  <div class="row pad-free">
+                    <div class="col-8">
+                      <h5 class="hos-title">
+                          <router-link :to="{name: 'profile', params: {cusid:hos.customer_id, type: 'hospital'}}" >{{hos.name}}</router-link>
+                      </h5>
+                      <div class="clearfix d-flex m-t-20">
+                        <span v-for="(sub,index) in subject" :key="index+'-'+sub.name+'-'+hos.id">
+                          <span v-if="sub.customer_id == hos.customer_id" class="job_status">
+                            {{sub.name}}
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <p class="hos_phone float-right"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span>{{hos.phone}}</p>
+                    </div>
+                  </div>
+
 
                 </div>
-                <div class="clearfix col-12 m-b-20">
-                    <span v-for="(sub,index) in subject" :key="index+'-'+sub.name+'-'+hos.id">
-                    <span v-if="sub.customer_id == hos.customer_id" class="job_status">
-                      {{sub.name}}
-                    </span>
-                  </span>
-                  <p class="hos_phone float-right"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span>{{hos.phone}}</p>
-                  </div>
+
                 <div class="hos-body row clearfix">
                   <div class="col-3 job-img">
                     <img v-bind:src="'/upload/hospital_profile/' + hos.logo"  alt="img" class="img-fluid" @error="imgUrlAlt">
@@ -1071,4 +1078,30 @@
     padding: 10px;
     font-size: 100%;
 }
+/* .nosearch-icon{
+    border: 1px solid #b0abab;
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 0 auto 10px;
+    line-height: 60px;
+    vertical-align: middle;
+    background: #ddd;
+}
+.nosearch-data{
+    font-size: 25px;
+    color: #f57e46;
+    font-weight: bold;
+    margin: 20px 0;
+    text-align: center;
+}
+.nosearch{
+    font-size: 14px;
+    color: #a5a5a5;
+    font-weight: bold;
+    margin: 20px 0;
+    text-align: center;
+} */
+
 </style>

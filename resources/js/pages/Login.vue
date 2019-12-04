@@ -30,6 +30,7 @@
 											<input type="password" class="form-control input_pass" name="password" value=""  id="password" v-model="password" placeholder="パスワード" required >
                         
                     </div>
+                    <span class="alert alert-danger" v-if="has_error">パスワードが間違っています。</span>
                     
                     <div class="d-flex justify-content-center mt-3">
                       <button type="submit" name="button" id="getUser" class="btn login_btn">ログイン</button>
@@ -40,10 +41,7 @@
                     <span><a href="">パスワードをお忘れですか？</a></span>
 
                   </div>
-                </div>
-                 <div class="alert alert-danger" v-if="has_error">
-                    <p>Erreur, impossible de se connecter avec ces identifiants.</p>
-                </div>
+                </div>                 
                 </div>
               </div>
             </div>
