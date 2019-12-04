@@ -63,7 +63,7 @@ class registerController extends Controller
     {
 
         $this->validate($request, [
-            'img' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            // 'img' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'name' => 'required|min:3|max:50',
             'email' => 'required|email|unique:customers',
             'phone' => 'max:13',
@@ -131,7 +131,7 @@ class registerController extends Controller
             $admin_email = 'thuzar.ts92@gmail.com';
             \Mail::to($admin_email)->send(new customerCreateMail($customer));
 
-            Session::flash('success', "Special message goes here");
+            Session::flash('success reg', "Special message goes here");
             return Redirect::back();
 
     }

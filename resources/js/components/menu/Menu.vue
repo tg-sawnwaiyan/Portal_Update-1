@@ -19,7 +19,7 @@
               <router-link :to="{ name: 'News' }"> ニュース（ホーム）</router-link>
             </li>
             <li>
-              <router-link :to="{ name: 'nursingSearch' }"><i class="fas fa-phone-alt"></i>介護施設検索</router-link>
+              <router-link :to="{ name: 'nursingSearch' }">介護施設検索</router-link>
             </li>
             <li>
               <router-link :to="{ name: 'hospital_search' }"> 病院検索</router-link>
@@ -32,13 +32,12 @@
           <div class="collapse navbar-collapse  d-flex justify-content-end" id="navbarSupportedContent">
               <div class="d-flex">
                 <ul class="navbar-nav ml-auto pc  d-flex justify-content-end">
-                  
-                  <li class="nav-item" v-if="!$auth.check()">
-                    <router-link :to="{name: 'register'}" class="nav-link pad-free"> <i class="fas fa-phone-alt"></i>事業者 登録</router-link>
+                   <li class="nav-item" v-if="!$auth.check()">
+                    <router-link :to="{name: 'login'}" class="nav-link pad-free"><i class="fa fa-sign-in-alt"></i>&nbsp;&nbsp;<span>事業者 ログイン</span></router-link>
                   </li>
-                  <li class="nav-item" v-if="!$auth.check()">
-                    <router-link :to="{name: 'login'}" class="nav-link pad-free">事業者 ログイン</router-link>
-                  </li>
+                  <li class="nav-item  m-l-10" v-if="!$auth.check()">
+                    <router-link :to="{name: 'register'}" class="nav-link pad-free"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;<span>事業者 登録</span></router-link>
+                  </li> 
                   <li class="social-link" v-if="!$auth.check()"><a href="http://localhost:8000/registerForm"><i class="fab fa-twitter"></i></a></li>
                   <li class="social-link" v-if="!$auth.check()"><a href="http://localhost:8000/registerForm"><i class="fab fa-facebook-f"></i></a></li>
         

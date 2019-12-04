@@ -9,7 +9,7 @@ class AuthController extends Controller
     public function register(Request $request)
     {
 
-        return response()->json(['status' => 'success'], 200);
+        // return response()->json(['status' => 'success'], 200);
         $v = Validator::make($request->all(), [
             'email' => 'required|email|unique:users',
             'password'  => 'required|min:3|confirmed',
