@@ -42,7 +42,7 @@
                   <li class="social-link" v-if="!$auth.check()"><a href="http://localhost:8000/registerForm"><i class="fab fa-facebook-f"></i></a></li>
         
                   <li class="nav-item col-12 userprofile-name pc" v-else>
-                 
+                  {{user.data.name}}
                   </li>
                   <li v-if="$auth.check()" class="nav-item btn login-register-btn col-lg-6 p-lr-0">
                       <a href="#" @click.prevent="$auth.logout()">Logout</a>
@@ -62,10 +62,14 @@
 </template>
 <script>
   export default {
-    
-    computed: {
- 
-},
+    data(){
+      return{
+        user:''
+      }
+    },
+    mounted() {
+      this.user = this.$auth.watch._data
+      },
 
   }
 </script>
