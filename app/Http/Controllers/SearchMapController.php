@@ -499,7 +499,8 @@ class SearchMapController extends Controller
            
             if($searchword != 'undefined')
             {
-                $query .= " and (h.access like '%" . $searchword . "%' or h.medical_department like '%".$searchword."%')";
+               
+                $query .= " and (ci.city_name like '%" . $searchword . "%' or t.township_name like '%" . $searchword . "%' or c.name like '%".$searchword."%') group by c.id";
             }
            
             $query .=  " group by c.id";
@@ -538,8 +539,9 @@ class SearchMapController extends Controller
                 join customers as c on c.id = j.customer_id
                 left Join townships as t on t.id = j.township_id 
                 left Join nursing_profiles As n on n.customer_id = c.id 
-                left Join hospital_profiles As h on h.customer_id = c.id               
-                where j.recordstatus=1";
+                left Join hospital_profiles As h on h.customer_id = c.id 
+                left Join cities as ci on ci.id = t.city_id   
+                where ";
 
         if($id == -1)
         {
@@ -555,8 +557,9 @@ class SearchMapController extends Controller
                         left Join townships as t on t.id = j.township_id ";         
             }
             else{
+             
 
-                $query .= " (j.title like '%" . $searchword . "%' or j.description like '%".$searchword."%')";
+                $query .= " (j.title like '%" . $searchword . "%' or ci.city_name like '%" . $searchword . "%' or t.township_name like '%".$searchword."%')";
             }
            
         }
@@ -598,7 +601,7 @@ class SearchMapController extends Controller
               $empstatus = implode(',', $empstatus);
           }
 
-          $query .= " and t.city_id =".$id;
+          $query .= " t.city_id =".$id;
 
           if($townshipID != '0')
           {
@@ -630,17 +633,14 @@ class SearchMapController extends Controller
 
           if($searchword != 'undefined')
           {
-            $query .= " and (j.title like '%" . $searchword . "%' or j.description like '%".$searchword."%')";
+          
+            $query .= " and (j.title like '%" . $searchword . "%' or ci.city_name like '%" . $searchword . "%' or t.township_name like '%".$searchword."%')";
           }
-               
-            // $query .= " group by c.id";
 
         
 
         }
-       
-
-        
+         
         $job_data = DB::select($query);
         $city = DB::table('cities')->get();
 
