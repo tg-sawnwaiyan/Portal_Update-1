@@ -61,7 +61,7 @@ class registerController extends Controller
      */
     public function store(Request $request)
     {
-
+        print_r($request->img);exit;
         $this->validate($request, [
             'img' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'name' => 'required|min:3|max:50',
@@ -81,7 +81,9 @@ class registerController extends Controller
 
             // $destinationPath = public_path('/images');
             $image = $request->file('img');
+            print_r($image);
             $getName = time().'.'.$image->getClientOriginalExtension();
+            print_r($getName);exit;
             if($request->types == 2){
                 $image->move('upload/hospital_profile/', $getName);
             }

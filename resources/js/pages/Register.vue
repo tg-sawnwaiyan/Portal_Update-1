@@ -220,19 +220,20 @@
     },
       register() {
         var app = this
-        this.$auth.register({
-          data: {
-            img:app.images,
-            name:app.username,
-            email: app.email,
-            password: app.password,
-            comfirm_password: app.password_confirmation,
-            cities:app.city,
-            township:app.township,
-            types:app.type,
-            phone:app.phone
-            // address:app.address
-          },
+        console.log(app.images);
+        // testing
+        let fData = new FormData();
+                        fData.append('img', app.images)
+                        fData.append('name', app.username)
+                        fData.append('email', app.email)
+                        fData.append('password', app.password)
+                        fData.append('comfirm_password', app.password_confirmation)
+                        fData.append('cities', app.city)
+                        fData.append('township', app.township)
+                        fData.append('types', app.type)
+                        fData.append('phone', app.phone)
+        // end
+        this.$auth.register({ fData,
           success: function () {
             this.$swal({
                 position: 'top-end',
