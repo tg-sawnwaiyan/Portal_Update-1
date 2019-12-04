@@ -97,10 +97,10 @@
                             </label> -->
                         <div>
                             <button class="btn confirmed" v-if="job.recordstatus == 1" @click="confirm(job.id)">OFF</button>
-                            
+
                             <button class="btn confirm-borderbtn" v-if="job.recordstatus == 0" @click="confirm(job.id)">ON</button>
                         </div>
-                          
+
                             <span class="job_id">求人番号：{{job.jobid}}</span>
                         </h5>
                                         </div>
@@ -197,20 +197,20 @@
                     loginuser: true
                 };
             },
-            
+
             created() {
-                this.axios.get("/api/job/index").then(response => {
-                    console.log(response.data);
-                    this.jobs = response.data.profilejob;
-                    this.customer_id = response.data.user;
-                    if (this.jobs.length > this.size) {
-                    this.pagination = true;
-                    } else {
-                        this.pagination = false;
-                    }
+                //     this.axios.get("/api/job/index").then(response => {
+                //     console.log(response.data);
+                //     this.jobs = response.data.profilejob;
+                //     this.customer_id = response.data.user;
+                //     if (this.jobs.length > this.size) {
+                //     this.pagination = true;
+                //     } else {
+                //         this.pagination = false;
+                //     }
 
-                });
-
+                // });
+                this.getAllJobs();
                 this.axios.get('/api/user').then(response => {
                 this.pro_id = response.data.lat_lng[0].id;
                 this.loginuser = true;
@@ -257,21 +257,43 @@
                 }
             },
             methods: {
+                   getAllJobs() {
+                    this.axios.get("/api/job/index").then(response => {
+                        this.jobs = response.data.profilejob;
+                        this.customer_id = response.data.user;
+                        if (this.jobs.length > this.size) {
+                        this.pagination = true;
+                        } else {
+                            this.pagination = false;
+                        }
 
-                 confirm(id) {
+                    });
+                },
+
+                //  confirm(id) {
+                //     console.log(id);
+                //             this.axios.get(`/api/job/confirm/${id}`)
+                //                 .then(response => {
+                //                     this.jobs = response.data.jobs;
+                //                     // const path = `/jobofferlist/`;
+                //                     // // if ($route.path !== path) this.$router.push(path);
+                //                     // this.$router.push('/jobofferlist/').catch(err => {
+                //                     //     console.log('no go');
+                //                     // })
+                //                     location.reload();
+                //                 });
+
+                    
+                //     },
+                confirm(id) {
                     console.log(id);
                             this.axios.get(`/api/job/confirm/${id}`)
                                 .then(response => {
-                                    this.jobs = response.data.jobs;
-                                    // const path = `/jobofferlist/`;
-                                    // // if ($route.path !== path) this.$router.push(path);
-                                    // this.$router.push('/jobofferlist/').catch(err => {
-                                    //     console.log('no go');
-                                    // })
-                                    location.reload();
+                                    // this.jobs = response.data.jobs;
+                                    this.getAllJobs();
                                 });
 
-                    
+
                     },
                 deleteJob(id) {
                         this.$swal({
