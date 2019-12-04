@@ -430,7 +430,7 @@ class SearchMapController extends Controller
             }
             else{
 
-                $query .= " (h.access like '%" . $searchword . "%' or h.medical_department like '%".$searchword."%') group by c.id";
+                $query .= " (ci.city_name like '%" . $searchword . "%' or t.township_name like '%" . $searchword . "%' or c.name like '%".$searchword."%') group by c.id";
             }
            
         }
