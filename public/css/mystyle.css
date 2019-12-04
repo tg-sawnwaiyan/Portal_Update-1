@@ -468,7 +468,7 @@ body {
     color: #63b7ff;
 }
 
-.title1 span {
+.title5 span {
     background-color: #a3774a;
     color: #fff;
     padding: 2px 10px;
@@ -476,7 +476,7 @@ body {
     font-size: 13px;
 }
 
-.title2 span {
+.title4 span {
     background-color: #9579ef;
     color: #fff;
     padding: 2px 10px;
@@ -492,7 +492,7 @@ body {
     font-size: 13px;
 }
 
-.title4 span {
+.title2 span {
     background-color: #d1291d;
     color: #fff;
     padding: 2px 10px;
@@ -500,7 +500,7 @@ body {
     font-size: 13px;
 }
 
-.title5 span {
+.title1 span {
     background-color: #63b7ff;
     color: #fff;
     padding: 2px 10px;
@@ -3087,6 +3087,10 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
 
 
 /* profilepublish css end */
+.router-link-exact-active>i.fa,
+.router-link-exact-active>i.fas {
+    color: #ff9563 !important;
+}
 
 .custom-sidebar ul li {
     /* border-bottom: 1px dashed #eee; */
@@ -3157,10 +3161,8 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
     background: #eee;
 }
 
-.router-link-exact-active>i.fa,
-.router-link-exact-active>i.fas {
-    color: #ff9563 !important;
-}
+
+
 
 
 /*for main tab*/
@@ -5194,23 +5196,7 @@ a:hover {
 
 /* profilepublish css end */
 
-.custom-sidebar ul li {
-    border-bottom: 1px dashed #eee;
-}
 
-.router-link-exact-active {
-    background-color: rgba(0, 0, 0, 0.1);
-    border-left-color: #ff9563;
-    font-weight: bold;
-    border-radius: 0px !important;
-    border-left: 3px solid #ff9563;
-    color: #fff !important;
-}
-
-.router-link-exact-active>i.fa,
-.router-link-exact-active>i.fas {
-    color: #ff9563 !important;
-}
 
 
 /*for main tab*/
@@ -5248,23 +5234,6 @@ a:hover {
 
 /* profilepublish css end */
 
-.custom-sidebar ul li {
-    border-bottom: 1px dashed #eee;
-}
-
-.router-link-exact-active {
-    background-color: rgba(0, 0, 0, 0.1);
-    border-left-color: #ff9563;
-    font-weight: bold;
-    border-radius: 0px !important;
-    border-left: 3px solid #ff9563;
-    color: #fff !important;
-}
-
-.router-link-exact-active>i.fa,
-.router-link-exact-active>i.fas {
-    color: #ff9563 !important;
-}
 
 
 /*for main tab*/
