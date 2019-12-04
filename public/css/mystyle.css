@@ -3044,6 +3044,10 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
 
 
 /* profilepublish css end */
+.router-link-exact-active>i.fa,
+.router-link-exact-active>i.fas {
+    color: #ff9563 !important;
+}
 
 .custom-sidebar ul li {
     /* border-bottom: 1px dashed #eee; */
@@ -3114,10 +3118,8 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
     background: #eee;
 }
 
-.router-link-exact-active>i.fa,
-.router-link-exact-active>i.fas {
-    color: #ff9563 !important;
-}
+
+
 
 
 /*for main tab*/
@@ -5152,23 +5154,7 @@ a:hover {
 
 /* profilepublish css end */
 
-.custom-sidebar ul li {
-    border-bottom: 1px dashed #eee;
-}
 
-.router-link-exact-active {
-    background-color: rgba(0, 0, 0, 0.1);
-    border-left-color: #ff9563;
-    font-weight: bold;
-    border-radius: 0px !important;
-    border-left: 3px solid #ff9563;
-    color: #fff !important;
-}
-
-.router-link-exact-active>i.fa,
-.router-link-exact-active>i.fas {
-    color: #ff9563 !important;
-}
 
 
 /*for main tab*/
@@ -5206,23 +5192,6 @@ a:hover {
 
 /* profilepublish css end */
 
-.custom-sidebar ul li {
-    border-bottom: 1px dashed #eee;
-}
-
-.router-link-exact-active {
-    background-color: rgba(0, 0, 0, 0.1);
-    border-left-color: #ff9563;
-    font-weight: bold;
-    border-radius: 0px !important;
-    border-left: 3px solid #ff9563;
-    color: #fff !important;
-}
-
-.router-link-exact-active>i.fa,
-.router-link-exact-active>i.fas {
-    color: #ff9563 !important;
-}
 
 
 /*for main tab*/
