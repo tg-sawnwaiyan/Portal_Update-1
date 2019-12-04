@@ -396,7 +396,16 @@
 
         <!-- nursing list -->
        <div id="nursing-search" >
-        <div class="row">
+           <span v-if="!nus_data.length">
+                <div class="container-fuid m-t-20">
+                    <p class="nosearch-icon">
+                        <svg x="0px" y="0px" width="30" height="30" viewBox="0 0 172 172" style=" fill:red;"><g transform=""><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><path d="M0,172v-172h172v172z" fill="none"></path><path d="M3.44,168.56v-165.12h165.12v165.12z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><path d="M0,172v-172h172v172z" fill="none"></path><path d="M3.44,168.56v-165.12h165.12v165.12z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><g fill="#666666"><path d="M74.53333,17.2c-31.59643,0 -57.33333,25.73692 -57.33333,57.33333c0,31.59641 25.7369,57.33333 57.33333,57.33333c13.73998,0 26.35834,-4.87915 36.24766,-12.97839l34.23203,34.23203c1.43802,1.49778 3.5734,2.10113 5.5826,1.57735c2.0092,-0.52378 3.57826,-2.09284 4.10204,-4.10204c0.52378,-2.0092 -0.07957,-4.14458 -1.57735,-5.5826l-34.23203,-34.23203c8.09923,-9.88932 12.97839,-22.50768 12.97839,-36.24766c0,-31.59641 -25.7369,-57.33333 -57.33333,-57.33333zM74.53333,28.66667c25.39939,0 45.86667,20.46729 45.86667,45.86667c0,25.39937 -20.46728,45.86667 -45.86667,45.86667c-25.39939,0 -45.86667,-20.46729 -45.86667,-45.86667c0,-25.39937 20.46728,-45.86667 45.86667,-45.86667zM91.67734,51.52161c-1.51229,0.03575 -2.94918,0.66766 -3.99765,1.75807l-13.14636,13.14636l-13.14636,-13.14636c-1.07942,-1.10959 -2.56162,-1.73559 -4.10963,-1.73568c-2.33303,0.00061 -4.43306,1.41473 -5.31096,3.57628c-0.8779,2.16155 -0.3586,4.6395 1.31331,6.26669l13.14636,13.14636l-13.14636,13.14636c-1.49777,1.43802 -2.10111,3.5734 -1.57733,5.58259c0.52378,2.0092 2.09283,3.57825 4.10203,4.10203c2.0092,0.52378 4.14457,-0.07956 5.58259,-1.57733l13.14636,-13.14636l13.14636,13.14636c1.43802,1.49778 3.5734,2.10113 5.5826,1.57735c2.0092,-0.52378 3.57826,-2.09284 4.10204,-4.10204c0.52378,-2.0092 -0.07957,-4.14458 -1.57735,-5.5826l-13.14636,-13.14636l13.14636,-13.14636c1.70419,-1.63875 2.22781,-4.1555 1.31865,-6.33798c-0.90916,-2.18248 -3.06468,-3.58317 -5.42829,-3.52739z"></path></g></g></g></svg>
+                    </p>
+                     <p class="nosearch-data">お探しの条件に合う施設・物件は見つかりませんでした。</p>
+                     <p class="nosearch">条件を変更してみると、該当施設が増える可能性がございますので、再度、ご検索ください。</p>
+                </div>
+            </span>
+        <div class="row" v-else>
           <div class="card-carousel-wrapper col-12">
             <div class="nav-box" @click="moveCarousel(-1)" :disabled="atHeadOfList">
               <div class="nav-content mr-2">
@@ -418,12 +427,12 @@
 
                                     <p class="item-fav btn btn-sm" :class="'view_pro_id'+items.nursing_id" style="display:block;" @click="favAddFun('add',items.nursing_id);">
                                         <i class="fas fa-plus-square" style="color:#c40000;"></i> お気に入りに追加
-                                    </p>                                    
- 
+                                    </p>
+
                                     <p class="item-fav btn btn-sm" v-if="items.fav_check == 'check'" :class="'done_pro_id'+items.nursing_id" style="color:#aaa;display:none;" @click="favAddFun('remove',items.nursing_id);">
                                         <i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み
                                     </p>
-                                    
+
                                     <p class="item-name"><img :src="'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld='+items.alphabet+'|ff9563|000000'" alt="">
                                         <router-link :to="{name: 'profile', params: {cusid:items.cus_id, type: 'nursing'}}" class="pseudolink" style="font-weight:bold;#ff6117!important">{{items.name}}</router-link>
                                     </p>
@@ -475,8 +484,6 @@
                       </table>
 
                     </div>
-
-
                   </div>
                 </div>
               </div>
@@ -487,11 +494,8 @@
               </div>
             </div>
           </div>
-
-        </div>
          <div id="nursingView">
          <h5 class="profile_subtit">もっと探す条件</h5>
-      </div>
       </div>
       <!--list-->
           <div id="filtertable">
@@ -597,6 +601,7 @@
               </tbody>
       </table>
       </div>
+    </div>
       <!--end list-->
 
         <div class=" col-12">
@@ -701,6 +706,7 @@
                     </div>
                 </div>
                 </div>
+            </div>
                 <div class="offset-md-4 col-md-8 mt-3" v-if="show_paginate">
               <nav aria-label="Page navigation example">
                 <ul class="pagination">
@@ -779,8 +785,8 @@
         showOne: true,
         checkarr: [],
         currentOffset: 0,
-        windowSize: 4,
-        paginationFactor: 500,
+        windowSize: 3,
+        paginationFactor: 328,
         window:{
           width: 0,
           height: 0
@@ -835,17 +841,21 @@
             }
             else if (this.window.width >= 1024 && this.window.width < 1280) {
                 this.windowSize = 3;
-                console.log('aaaaaaa');
                console.log(this.window.width);
 
             }
             else if (this.window.width >= 1280 && this.window.width < 1440) {
-                this.windowSize = 4;
-               console.log(this.window.width);
+                this.windowSize = 2;
+                // this.paginationFactor=355;
+                // console.log(this.window.width);
+                // console.log(this.paginationFactor);
+                // console.log(this.windowSize);
+               
 
             }
             else if (this.window.width >= 1440 && this.window.width < 1880) {
-                this.windowSize = 4;
+                this.windowSize = 3;
+          
 
             }
             // else if( this.window.width > 1700) {
@@ -943,7 +953,7 @@ searchfreeword(){
           Moving_in:-1,
           Per_month:-1,
           local:this.locast
-     
+
           },})
           .then((response) => {
 
@@ -1030,7 +1040,7 @@ getStateClick(e) {
             else{
                 this.locast = localStorage.getItem("nursing_fav");
             }
-        
+
 
             this.axios.get('/api/getmap',{
                 params:{
@@ -1357,8 +1367,8 @@ changeMap(response){
 
         },
 
-    
-search(){  
+
+search(){
 
             if(this.townshipID == null || this.townshipID == '')
             {
@@ -1428,7 +1438,7 @@ search(){
                 Moving_in:this.moving_in,
                 Per_month:this.per_month,
                 local:this.locast
-               
+
             },
             }).then((response)=>{
 
@@ -1441,12 +1451,8 @@ search(){
             this.markers = response.data.nursing;
             var mmarker = new Array()
             var item = []
-
-
-           
-
             if(this.nus_data.length > 0){
-             
+
                 for (var i = 0; i < this.searchmarkers.length; i++) {
               
                     if(this.searchmarkers[i]['fav_check'] == 'check')
@@ -1569,7 +1575,7 @@ console.log('check')
                 var index = fav_arr.indexOf(index);
                 if (index > -1) {
                     fav_arr.splice(index, 1);
-                    localStorage.setItem("nursing_fav", fav_arr);   
+                    localStorage.setItem("nursing_fav", fav_arr);
                 }
                 $("#nus-fav-local").html(fav_arr.length);
 
@@ -1881,6 +1887,7 @@ div.overlay.standard { background: #fff url('/images/google/loading.jpg') no-rep
 
   #nursing-search .card-carousel--overflow-container {
     overflow: hidden;
+    width: 992px;
   }
 
   #nursing-search .card-carousel--nav__left,
