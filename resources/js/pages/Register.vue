@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper h-100">
+    <div class="loginwrapper">
         <div class="d-flex justify-content-center h-100">     
             <div class="user_card user_registercard">
                 <div class="links">
