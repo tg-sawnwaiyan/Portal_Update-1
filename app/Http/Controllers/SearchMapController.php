@@ -601,7 +601,7 @@ class SearchMapController extends Controller
               $empstatus = implode(',', $empstatus);
           }
 
-          $query .= " and t.city_id =".$id;
+          $query .= " t.city_id =".$id;
 
           if($townshipID != '0')
           {
@@ -640,13 +640,7 @@ class SearchMapController extends Controller
         
 
         }
-<<<<<<< HEAD
          
-=======
-       
-
-        
->>>>>>> 91fdbc5c362ceb503b59f48fda7c5d95bac585a4
         $job_data = DB::select($query);
         $city = DB::table('cities')->get();
 
