@@ -640,13 +640,7 @@ class SearchMapController extends Controller
         
 
         }
-<<<<<<< HEAD
          
-=======
-       
-
-        
->>>>>>> 91fdbc5c362ceb503b59f48fda7c5d95bac585a4
         $job_data = DB::select($query);
         $city = DB::table('cities')->get();
 
