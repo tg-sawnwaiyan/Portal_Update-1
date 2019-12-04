@@ -420,7 +420,7 @@
                     <div class="MarkerHover">
                         <table class="nursingSearch-tbl">
                         <tbody>
-                          <tr >
+                          <tr>
                             <td class="pt-2 pb-2"  v-for="items in nus_data" @mouseover="mouseover(items.alphabet)" @mouseleave="mouseleave(items.alphabet)" :id="items.alphabet" :key="items.nursing_id">
                                 <div class="wd-in">
                                     <p class="mb-2 clearfix"><span class="num-room">{{items.num_rooms}} </span><span class="float-right">{{items.date_of_establishment}}</span></p>
@@ -819,7 +819,7 @@
     created(){
       window.addEventListener('resize', this.handleResize)
             this.handleResize();
-            if(this.window.width > 320 && this.window.width < 450) {
+            if(this.window.width >= 320 && this.window.width < 450) {
                 this.windowSize = 1;
 
             }
@@ -831,21 +831,33 @@
 
             }
             else if(this.window.width >= 768 && this.window.width < 992) {
-                this.windowSize = 2;
+                this.windowSize = 1;
+                this.paginationFactor=340;
 
             }
             else if(this.window.width >= 992 && this.window.width < 1024) {
                 this.windowSize = 2;
-                console.log(this.window.width);
-                console.log(this.windowSize);
+                this.paginationFactor=318;
+                // console.log(this.window.width);
+                // console.log(this.windowSize);
             }
-            else if (this.window.width >= 1024 && this.window.width < 1280) {
+            
+            else if (this.window.width >= 1024 && this.window.width < 1200) {
                 this.windowSize = 3;
                console.log(this.window.width);
 
             }
+
+             else if (this.window.width >= 1200 && this.window.width < 1280) {
+                this.windowSize = 3;
+                this.paginationFactor=402;
+               console.log(this.window.width);
+
+            }
+            
             else if (this.window.width >= 1280 && this.window.width < 1440) {
                 this.windowSize = 2;
+                this.paginationFactor=436;
                 // this.paginationFactor=355;
                 // console.log(this.window.width);
                 // console.log(this.paginationFactor);
@@ -853,11 +865,14 @@
                
 
             }
+            
             else if (this.window.width >= 1440 && this.window.width < 1880) {
-                this.windowSize = 3;
+                this.windowSize = 2;
+                this.paginationFactor=317;
           
 
             }
+            
             // else if( this.window.width > 1700) {
 
             // }
@@ -1887,7 +1902,7 @@ div.overlay.standard { background: #fff url('/images/google/loading.jpg') no-rep
 
   #nursing-search .card-carousel--overflow-container {
     overflow: hidden;
-    width: 992px;
+    /* width: 992px; */
   }
 
   #nursing-search .card-carousel--nav__left,
@@ -2087,29 +2102,54 @@ div.overlay.standard { background: #fff url('/images/google/loading.jpg') no-rep
    #nursing-search .card-carousel {
         width: 560px!important;
     }
+           .wd-in {
+    width: 320px;
+}
 }
 /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (max-width: 1024px) and (min-width: 992px) {
+/* @media only screen and (max-width: 1024px) and (min-width: 992px) {
    #nursing-search .card-carousel {
         width: 823px!important;
     }
+        .wd-in {
+    width: 381px;
 }
-@media only screen and (max-width: 1200px) and (min-width: 992px) {
+} */
+
+@media only screen and (max-width: 1020px) and (min-width: 992px) {
    #nursing-search .card-carousel {
         width: 823px!important;
     }
+        .wd-in {
+    width: 295px;
+}
+}
+@media only screen and (max-width: 1200px) and (min-width: 1024px) {
+   #nursing-search .card-carousel {
+        width: 830px!important;
+    }
+    .wd-in {
+    width: 307px;
+}
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (max-width: 1440px) and (min-width: 1200px) {
+@media only screen and (max-width: 1440px) and (min-width: 1201px) {
     #nursing-search .card-carousel {
+        /* width: 988px!important; */
         width: 988px!important;
     }
+    .wd-in {
+    width: 415px;
+}
 }
 @media only screen and (max-width: 1880px) and (min-width: 1440px) {
      #nursing-search .card-carousel {
         width: 1033px!important;
     }
+    .wd-in {
+    width: 298px;
+}
 }
 
 
