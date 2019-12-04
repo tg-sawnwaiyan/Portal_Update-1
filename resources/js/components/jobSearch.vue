@@ -1,28 +1,35 @@
 <template>
 <layout>
 <div>
-   <div class="col-md-12" style="border-bottom: 1px dashed #ff6117;padding-bottom: 10px; margin-bottom: 20px;">
-     <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#ff6117;"></i>&nbsp;地図検索</h5></div>
+  <div class="col-md-12" style="border-bottom: 1px dashed #ff6117;padding-bottom: 10px; margin-bottom: 20px;">
+     <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#ff6117;"></i>&nbsp;地図検索</h5>
+  </div>
   <div class="search-map card-body" @mouseover="getStateHover">
     <div class="row" id="hos">
       <div class="col-md-12">
         <div>
           <!-- <div class="info-box"></div> -->
+          <!--start map-->
           <div class="row map-wrap">
-          <div class="col-lg-5 col-md-12 col-sm-12 float-left" style="padding-left: 75px;">
-            <!-- <h2 class="map-header" style="bottom: 184px;">老人ホームや病院<br/>で働きたいあなた<br/>の希望叶えます。</h2> -->
-            <h2 class="map-header" style="bottom: 120px;">あなたのやさしい<br/>手を求めてる。<br/>そんな老人ホーム<br/>や病院が見つかります。</h2>
-            <!--search input-->
-              <div class="wrap">
-                <div class="search">
-                    <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、駅名、施設名などを入力（例：東京駅）">
-                    <button type="submit" class="searchButton" @click="searchfreeword">
-                      <i class="fas fa-search"></i> 検索
-                  </button>
+
+          <!-- free word left wrapper--->
+            <div class="col-lg-5 col-md-12 col-sm-12 float-left p-l-75">
+              <!-- <h2 class="map-header" style="bottom: 184px;">老人ホームや病院<br/>で働きたいあなた<br/>の希望叶えます。</h2> -->
+              <h2 class="map-header" style="bottom: 120px;">あなたのやさしい<br/>手を求めてる。<br/>そんな老人ホーム<br/>や病院が見つかります。</h2>
+              <!--search input-->
+                <div class="wrap">
+                  <div class="search">
+                      <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、駅名、施設名などを入力（例：東京駅）">
+                      <button type="submit" class="searchButton" @click="searchfreeword">
+                        <i class="fas fa-search"></i> 検索
+                    </button>
+                  </div>
                 </div>
-              </div>
-            <!--end search input-->
+              <!--end search input-->
             </div>
+          <!--end free word left wrapper-->
+
+          <!--map right wrapper-->
           <div class="col-lg-7 col-sm-12 col-md-12 float-right">
               <div class="row divisions" id="divisionswrap">
                  <img src="/images/img_map1.png" alt="map" class="img-fluid" style="margin:0 auto;">
@@ -303,13 +310,11 @@
                     </div>
                   </div>
                 </div>
-              </div>
-
-            <!-- <div class="map">
-
-            </div> -->
+              </div>            
           </div>
+          <!--end map right wrapper-->
         </div>
+        <!--end map--->
 
           <div  id="job_search" class="row jobselect">
                <span class="col-12" v-if="!job_data.length">
@@ -499,12 +504,8 @@
               </nav>
             </div>
             </div>
-
-
-
         </div>
       </div>
-
     </div>
   </div>
   </div>
