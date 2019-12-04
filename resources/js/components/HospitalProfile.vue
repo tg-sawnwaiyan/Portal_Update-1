@@ -18,12 +18,14 @@
 
                 <!-- <input type="text" class="form-control customer-email col-10 float-right"  placeholder="Email" v-model="customer_info.email"> -->
         </div>
-        <div class="form-group form-group-wrapper">
+        <div class="form-group form-group-wrapper d-flex">
 
-                <label class="heading-lbl">電話番号<span class="error">*</span></label>
-
-                <input type="text" class="form-control customer-phone col-10 float-right"  placeholder="Phone" v-model="customer_info.phone">
-
+                <label class="heading-lbl col-2 pad-free">電話番号<span class="error">*</span></label>
+                <div class="col-10 row">
+                <input type="text" class="form-control customer-phone col-12" id="phone" placeholder="Phone" v-model="customer_info.phone" v-on:keyup="isNumberOnly" maxlength="14">
+                <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>    
+                <span class="error" v-else></span> 
+                </div>
         </div>
 
         <!-- <div class="form-group">
@@ -1358,8 +1360,10 @@ export default {
                         readonly:true,
                         theme:'snow',
                         access_val: '',
-                        detail_info: '', stations:[], station_list:[],
+                        detail_info: '', stations:[], station_list:[],                        
                 },
+                ph_length: false,
+                ph_num: false,
                 }
         },
         created(){
@@ -1749,7 +1753,19 @@ export default {
                                     document.getElementById('nursing').click();
                             })
                         }
+                },
+                isNumberOnly: function(event) {
+                var input_data = $('#phone').val();
+                var code = 0;
+                code = input_data.charCodeAt();
+                if((48 <= code && code <= 57) && (this.customer_info.phone.length >= 10 && this.customer_info.phone.length <= 14)){
+                    this.ph_num = false;
+                    this.ph_length = false;
+                }else{
+                    this.ph_num = true;
+                    this.ph_length = true;
                 }
+            }
             },
             getPostal: function(event) {
                 if (this.postal.length > 4) {
