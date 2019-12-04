@@ -3097,7 +3097,7 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
     position: fixed;
     top: 237px;
     right: 10px;
-    z-index: 99999;
+    /* z-index: 99999; */
 }
 
 #headerbar .router-link-exact-active {
