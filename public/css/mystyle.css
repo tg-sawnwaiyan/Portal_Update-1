@@ -8672,7 +8672,11 @@ ul.nur-caro-card>li.list-group-item {
 
 @media only screen and (max-width:320px) {}
 
-
+@media screen and (max-width: 979px) and (min-width: 752px){
+    .map-box-reponsive{
+        display: block;
+    }
+}
 /**************card carousel***********************/
 
 @media only screen and (max-width:768px) {
