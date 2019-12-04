@@ -43,14 +43,13 @@
         <li role="presentation" class="subtab1 nav-item" v-if="loginuser">
           <label for="hospital" class="typelabel nav-link" id="hospital-lbl">
             <i class="fa fa-plus-circle"></i>
-            <input type="radio" v-model="btntype" value="create" v-on:change="changeBtnType('hospital-lbl','nursing-lbl')" name="btntype" id="hospital" />
+            <input type="radio" v-m      odel="btntype" value="create" v-on:change="changeBtnType('hospital-lbl','nursing-lbl')" name="btntype" id="hospital" />
             作成
-          </label>
+          </label>             
         </li>
 
         <li role="presentation" class="subtab2 nav-item">
           <label for="nursing" class="typelabel nav-link active" id="nursing-lbl">
-
             <input type="radio" v-model="btntype" value="view" v-on:change="changeBtnType('nursing-lbl','hospital-lbl')" name="btntype" id="nursing" />
             <span v-if="loginuser"><i class="fas fa-briefcase-medical" style="font-size:18px;"></i>&nbsp;マイページ</span>
             <span v-if="!loginuser"><i class="fas fa-briefcase-medical"></i></span>
@@ -64,7 +63,7 @@
       <div class="tab-content hospital-borderColor tab-content1 tabs">
         <form class="col-md-12 pad-free">
           <div class="col-md-12 pad-free tab-pane" v-if="btntype == 'create'">
-            <hospitalProfile></hospitalProfile>
+            <hospitalProfile></hospitalProfile>      
           </div>
 
           <div class="col-md-12 pad-free" v-if="btntype == 'view'">
