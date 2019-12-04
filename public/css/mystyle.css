@@ -629,6 +629,7 @@ body {
 
 /*End lightbox */
 
+
 /* End Profile */
 
 
@@ -691,7 +692,8 @@ width: 100%; */
 .form_container {
     margin-top: 100px;
 }
-.loginwrapper{
+
+.loginwrapper {
     background: #e1e1e1;
     height: 100vh;
 }
@@ -802,7 +804,8 @@ width: 100%; */
 
 
 /*end radio check*/
-.links{
+
+.links {
     position: relative;
 }
 
@@ -821,13 +824,14 @@ width: 100%; */
     position: relative;
     float: right;
 }
-.alert-danger{
+
+.alert-danger {
     width: 100%;
-    margin:0px;
-    padding: 0px;    
+    margin: 0px;
+    padding: 0px;
     font-size: 90%;
     position: absolute;
-    top:210px;
+    top: 210px;
     color: #ea0f0f;
     font-weight: bold;
     background-color: #ffebeb;
@@ -838,8 +842,8 @@ width: 100%; */
     -moz-border-radius: 6px;
     -webkit-border-radius: 6px;
     border-radius: 6px;
-
 }
+
 
 /* End Login */
 
@@ -870,9 +874,11 @@ width: 100%; */
 .registerform_container {
     margin-top: 80px;
 }
-.registerformwrapper{
+
+.registerformwrapper {
     padding: 20px 40px;
 }
+
 .user_registercard {
     width: 700px;
     height: auto;
@@ -882,7 +888,7 @@ width: 100%; */
     color: #a93f0c!important;
     font-weight: bold;
     align-self: flex-end;
-    padding:0px;
+    padding: 0px;
 }
 
 
@@ -901,10 +907,8 @@ width: 100%; */
     box-sizing: border-box;
     background-size: 60px 60px;   
      margin-left: -108px; */
-     display: none;
-   
+    display: none;
 }
-
 
 ::-webkit-file-upload-button {
     padding: 5px;
@@ -930,6 +934,7 @@ width: 100%; */
     box-shadow: none !important;
     outline: 0px !important;
 }
+
 
 /* End Register form*/
 
@@ -1546,9 +1551,10 @@ p {
 
 } */
 
+
 /*no data*/
 
-.nosearch-icon{
+.nosearch-icon {
     border: 1px solid #b0abab;
     width: 60px;
     height: 60px;
@@ -1559,14 +1565,16 @@ p {
     vertical-align: middle;
     background: #ddd;
 }
-.nosearch-data{
+
+.nosearch-data {
     font-size: 25px;
     color: #f57e46;
     font-weight: bold;
     margin: 20px 0;
     text-align: center;
 }
-.nosearch{
+
+.nosearch {
     font-size: 14px;
     color: #a5a5a5;
     font-weight: bold;
@@ -1575,8 +1583,9 @@ p {
 }
 
 
-
 /*end no data*/
+
+
 /* Create News */
 
 .error {
@@ -3816,7 +3825,6 @@ screen and (min-width: 750px) {
     }
     /*end job search*/
     /*register form*/
-   
 }
 
 
@@ -4259,7 +4267,7 @@ div.b {
     .customer-sidebar {
         display: none;
     }
-    .registerformwrapper{
+    .registerformwrapper {
         padding: 0px;
     }
 }
@@ -8762,3 +8770,5 @@ ul.nur-caro-card>li.list-group-item {
 
 
 /**************end card carousel***********************/
+
+@media only screen and (max-width: 768px) {}
