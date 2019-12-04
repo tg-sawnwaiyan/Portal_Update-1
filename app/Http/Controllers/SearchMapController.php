@@ -601,7 +601,7 @@ class SearchMapController extends Controller
               $empstatus = implode(',', $empstatus);
           }
 
-          $query .= " and t.city_id =".$id;
+          $query .= " t.city_id =".$id;
 
           if($townshipID != '0')
           {
