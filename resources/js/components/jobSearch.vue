@@ -13,7 +13,7 @@
           <div class="row map-wrap">
 
           <!-- free word left wrapper--->
-            <div class="col-lg-5 col-md-12 col-sm-12 float-left p-l-75">
+            <div class="col-lg-5 col-md-12 col-sm-12 float-left p-l-75 leftwrapper">
               <!-- <h2 class="map-header" style="bottom: 184px;">老人ホームや病院<br/>で働きたいあなた<br/>の希望叶えます。</h2> -->
               <h2 class="map-header" style="bottom: 120px;">あなたのやさしい<br/>手を求めてる。<br/>そんな老人ホーム<br/>や病院が見つかります。</h2>
               <!--search input-->
@@ -47,7 +47,6 @@
                 <div class="col-sm-2 tohoku-box">
                   <div class="mb-3">
                     <div class="division-box">
-
                       <ul class="multiple-boxa">
                         <a data-info="Aomori" class="path Aomori card-text" @click="getStateClick" >
                             <li class="spanclass" id="2" @click="selected = 2" :class="{highlight:selected == 2}">青森</li>
