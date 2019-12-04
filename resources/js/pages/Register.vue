@@ -233,8 +233,8 @@
                         fData.append('types', app.type)
                         fData.append('phone', app.phone)
         // end
-        this.$auth.register({ fData,
-          success: function () {
+        this.axios.post('/api/register', fData)
+                            .then(response => {
             this.$swal({
                 position: 'top-end',
                 type: 'success',
@@ -247,15 +247,10 @@
             })
             //app.success = true
             //this.$router.push({name: 'login', params: {successRegistrationRedirect: true}})
-          },
-          error: function (res) {
-            console.log("error")
-            console.log(res.response.data.errors)
-            app.has_error = true
-            app.error = res.response.data.error
-            app.errors = res.response.data.errors || {}
-          }
-        })
+        }).catch(error=>{
+            if(error.response.status == 422){
+                app.errors = error.response.data.errors
+          }});
       }
 
     },
