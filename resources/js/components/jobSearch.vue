@@ -312,6 +312,55 @@
               </div>            
           </div>
           <!--end map right wrapper-->
+   <!--test-->
+   <div id="group1">
+     <h1>Group1</h1>
+     <ul>
+     <li>0</li>
+     <li>1</li>
+     <li>01</li>
+   </ul>
+   </div>
+   
+  <div id="group2">
+    <h1>Group 2</h1>
+     <ul>
+     <li>2</li>
+     <li>3</li>
+     <li>4</li>
+     <li>5</li>
+     <li>6</li>
+     <li>7</li>
+   </ul>
+  </div>
+   
+ <accordion :init-open="true">
+      <span slot="toggle-text">Toggle Content</span>
+      <p slot="content">
+        コンポーネントは Vue.js の最も強力な機能の 1 つです。基本的な HTML 要素を拡張して再利用可能なコードのカプセル化を助けます。高いレベルでは、コンポーネントは Vue.js のコンパイラが指定された振舞いを加えるカスタム要素です。場合によっては、特別な is 属性で拡張されたネイティブな HTML 要素の姿をとることもあります。
+      </p>
+    </accordion>
+     <accordion :init-open="true">
+      <span slot="toggle-text">Toggle Content</span>
+      <p slot="content">
+        コンポーネントは Vue.js の最も強力な機能の 1 つです。基本的な HTML 要素を拡張して再利用可能なコードのカプセル化を助けます。高いレベルでは、コンポーネントは Vue.js のコンパイラが指定された振舞いを加えるカスタム要素です。場合によっては、特別な is 属性で拡張されたネイティブな HTML 要素の姿をとることもあります。
+      </p>
+    </accordion>
+
+  <!-- <div class="accordion" id="accordion">
+    <div class="toggle" @click="toggle()">
+      <i class="fa fa-minus-circle" v-if="open"></i>
+      <i class="fa fa-plus-circle" v-else></i>
+      <slot name="toggle-text">00000</slot>
+    </div>
+    <transition name="slide">
+      <div class="content" v-show="open">
+        <slot name="content">1111</slot>
+      </div>
+    </transition>
+  </div> -->
+   <!--end test-->
+         
         </div>
         <!--end map--->
 
@@ -325,7 +374,7 @@
                      <p class="nosearch">条件を変更してみると、該当施設が増える可能性がございますので、再度、ご検索ください。</p>
                 </div>
             </span>
-            <div v-else>
+            <div v-else class="col-12">
              <h5 class="profile_header m-t-10" style="border-left: 5px solid #828282;">現在の検索条件</h5>
             <table class="table table-bordered col-12 ">
               <tbody>
@@ -514,10 +563,13 @@
 
 <script>
 import layout from '../components/home.vue'
-export default {
+import accordion from '../components/accordion.vue'
+export default {   
     components: {
-      layout
+      layout,
+      accordion
     },
+    props: ['initOpen'],
     data(){
       return{
         id:'',
@@ -547,7 +599,8 @@ export default {
         show_paginate: false,
         loginuser: true,
         selected: undefined,
-        locast:''
+        locast:'',
+        open:false       
       }
     },
     created() {
@@ -556,7 +609,9 @@ export default {
                 this.loginuser = true;
                 }).catch((error) => {
                     this.loginuser = false;
-                })
+                });
+        this.open = !this.initOpen
+
     },
     mounted() {
             $('#navtab').removeClass('news-tabColor hospital-tabColor nursing-tabColor job-tabColor');
@@ -565,11 +620,16 @@ export default {
             $('#upper-tab').addClass('job-borderColor');
         },
   methods:{
-
+    // toggle(id) {
+    // 	const index = this.opened.indexOf(id);
+    //   if (index > -1) {
+    //   	this.opened.splice(index, 1)
+    //   } else {
+    //   	this.opened.push(id)
+    //   }
+    // },
     search()
     {
-
-
         if(this.townshipID == null || this.townshipID == '')
         {
           this.townshipID[0] = 0;
@@ -869,6 +929,9 @@ export default {
 //  });
 ``
 // });
+
+      //Hide all panels     
+  
 </script>
 
 
@@ -969,4 +1032,74 @@ table > tbody > tr th{
 .page-item .spanclass{
   cursor: pointer;
 }
+/********/
+.container {
+  padding: 1rem 2%;
+}
+
+.toggle {
+  align-items: center;
+  background: #12C88A;
+  border-radius: 4px;
+  color: #FFF;
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-start;
+  padding: 1rem 1.2rem;
+  margin-bottom: 2px;
+}
+
+.toggle i {
+  font-size: 1.2rem;
+  margin-right: .6rem;
+}
+
+.content {
+  background: #F8F8F8;
+  border-radius: 4px;
+  padding: 1rem 1.2rem;
+}
+
+.content > * {
+  line-height: 1.8;
+  margin: 0;
+  opacity: 1;
+  padding: 0;
+  visibility: visible;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition:
+    padding-top .3s ease-out,
+    padding-bottom .3s ease-out;
+}
+
+.slide-enter-active > * {
+  transition:
+    line-height .3s ease-out,
+    opacity .1s linear .1s,
+    visibility .1s linear .1s;
+}
+
+.slide-leave-active > * {
+  transition:
+    line-height .3s ease-out,
+    opacity .1s linear,
+    visibility .1s linear;
+}
+
+.slide-enter,
+.slide-leave-to {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.slide-enter > *,
+.slide-leave-to > * {
+  line-height: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+
 </style>
