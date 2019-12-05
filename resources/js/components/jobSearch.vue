@@ -1,28 +1,35 @@
 <template>
 <layout>
 <div>
-   <div class="col-md-12" style="border-bottom: 1px dashed #ff6117;padding-bottom: 10px; margin-bottom: 20px;">
-     <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#ff6117;"></i>&nbsp;地図検索</h5></div>
+  <div class="col-md-12" style="border-bottom: 1px dashed #ff6117;padding-bottom: 10px; margin-bottom: 20px;">
+     <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#ff6117;"></i>&nbsp;地図検索</h5>
+  </div>
   <div class="search-map card-body" @mouseover="getStateHover">
     <div class="row" id="hos">
       <div class="col-md-12">
         <div>
           <!-- <div class="info-box"></div> -->
+          <!--start map-->
           <div class="row map-wrap">
-          <div class="col-lg-5 col-md-12 col-sm-12 float-left" style="padding-left: 75px;">
-            <!-- <h2 class="map-header" style="bottom: 184px;">老人ホームや病院<br/>で働きたいあなた<br/>の希望叶えます。</h2> -->
-            <h2 class="map-header" style="bottom: 120px;">あなたのやさしい<br/>手を求めてる。<br/>そんな老人ホーム<br/>や病院が見つかります。</h2>
-            <!--search input-->
-              <div class="wrap">
-                <div class="search">
-                    <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、駅名、施設名などを入力（例：東京駅）">
-                    <button type="submit" class="searchButton" @click="searchfreeword">
-                      <i class="fas fa-search"></i> 検索
-                  </button>
+
+          <!-- free word left wrapper--->
+            <div class="col-lg-5 col-md-12 col-sm-12 float-left p-l-75 leftwrapper">
+              <!-- <h2 class="map-header" style="bottom: 184px;">老人ホームや病院<br/>で働きたいあなた<br/>の希望叶えます。</h2> -->
+              <h2 class="map-header" style="bottom: 120px;">あなたのやさしい<br/>手を求めてる。<br/>そんな老人ホーム<br/>や病院が見つかります。</h2>
+              <!--search input-->
+                <div class="wrap">
+                  <div class="search">
+                      <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、駅名、施設名などを入力（例：東京駅）">
+                      <button type="submit" class="searchButton" @click="searchfreeword">
+                        <i class="fas fa-search"></i> 検索
+                    </button>
+                  </div>
                 </div>
-              </div>
-            <!--end search input-->
+              <!--end search input-->
             </div>
+          <!--end free word left wrapper-->
+
+          <!--map right wrapper-->
           <div class="col-lg-7 col-sm-12 col-md-12 float-right">
               <div class="row divisions" id="divisionswrap">
                  <img src="/images/img_map1.png" alt="map" class="img-fluid" style="margin:0 auto;">
@@ -40,7 +47,6 @@
                 <div class="col-sm-2 tohoku-box">
                   <div class="mb-3">
                     <div class="division-box">
-
                       <ul class="multiple-boxa">
                         <a data-info="Aomori" class="path Aomori card-text" @click="getStateClick" >
                             <li class="spanclass" id="2" @click="selected = 2" :class="{highlight:selected == 2}">青森</li>
@@ -303,13 +309,16 @@
                     </div>
                   </div>
                 </div>
-              </div>
-
-            <!-- <div class="map">
-
-            </div> -->
+              </div>            
           </div>
+          <!--end map right wrapper-->
+   <!--test--> 
+ 
+  
+   <!--end test-->
+         
         </div>
+        <!--end map--->
 
           <div  id="job_search" class="row jobselect">
                <span class="col-12" v-if="norecord_msg">
@@ -321,7 +330,7 @@
                      <p class="nosearch">条件を変更してみると、該当施設が増える可能性がございますので、再度、ご検索ください。</p>
                 </div>
             </span>
-            <div v-else>
+            <div v-else class="col-12">
              <h5 class="profile_header m-t-10" style="border-left: 5px solid #828282;">現在の検索条件</h5>
             <table class="table table-bordered col-12 ">
               <tbody>
@@ -444,7 +453,7 @@
                           <p class="job_id"><span>求人番号:</span>{{job.jobnum}}</p>
                         </div>
                       </div>
-                      <div class="job-body row  clearfix">
+                      <div class="job-body d-flex clearfix">
                         <!-- <div class="col-4 job-img">
                           <img src="/upload/news/nursing.JPG"  alt="">
                         </div> -->
@@ -499,12 +508,8 @@
               </nav>
             </div>
             </div>
-
-
-
         </div>
       </div>
-
     </div>
   </div>
   </div>
@@ -514,10 +519,13 @@
 
 <script>
 import layout from '../components/home.vue'
-export default {
+import accordion from '../components/accordion.vue'
+export default {   
     components: {
-      layout
+      layout,
+      accordion
     },
+    //props: ['initOpen'],
     data(){
       return{
         id:'',
@@ -548,6 +556,7 @@ export default {
         loginuser: true,
         selected: undefined,
         locast:'',
+        open:false,       
         norecord_msg: false,
       }
     },
@@ -557,7 +566,9 @@ export default {
                 this.loginuser = true;
                 }).catch((error) => {
                     this.loginuser = false;
-                })
+                });
+        this.open = !this.initOpen
+
     },
     mounted() {
             $('#navtab').removeClass('news-tabColor hospital-tabColor nursing-tabColor job-tabColor');
@@ -566,11 +577,16 @@ export default {
             $('#upper-tab').addClass('job-borderColor');
         },
   methods:{
-
+    // toggle(id) {
+    // 	const index = this.opened.indexOf(id);
+    //   if (index > -1) {
+    //   	this.opened.splice(index, 1)
+    //   } else {
+    //   	this.opened.push(id)
+    //   }
+    // },
     search()
     {
-
-
         if(this.townshipID == null || this.townshipID == '')
         {
           this.townshipID[0] = 0;
@@ -879,6 +895,9 @@ export default {
 //  });
 ``
 // });
+
+      //Hide all panels     
+  
 </script>
 
 
@@ -979,4 +998,74 @@ table > tbody > tr th{
 .page-item .spanclass{
   cursor: pointer;
 }
+/********/
+.container {
+  padding: 1rem 2%;
+}
+
+.toggle {
+  align-items: center;
+  background: #12C88A;
+  border-radius: 4px;
+  color: #FFF;
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-start;
+  padding: 1rem 1.2rem;
+  margin-bottom: 2px;
+}
+
+.toggle i {
+  font-size: 1.2rem;
+  margin-right: .6rem;
+}
+
+.content {
+  background: #F8F8F8;
+  border-radius: 4px;
+  padding: 1rem 1.2rem;
+}
+
+.content > * {
+  line-height: 1.8;
+  margin: 0;
+  opacity: 1;
+  padding: 0;
+  visibility: visible;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition:
+    padding-top .3s ease-out,
+    padding-bottom .3s ease-out;
+}
+
+.slide-enter-active > * {
+  transition:
+    line-height .3s ease-out,
+    opacity .1s linear .1s,
+    visibility .1s linear .1s;
+}
+
+.slide-leave-active > * {
+  transition:
+    line-height .3s ease-out,
+    opacity .1s linear,
+    visibility .1s linear;
+}
+
+.slide-enter,
+.slide-leave-to {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.slide-enter > *,
+.slide-leave-to > * {
+  line-height: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+
 </style>
