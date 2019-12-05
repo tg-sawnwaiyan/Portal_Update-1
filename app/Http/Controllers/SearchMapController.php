@@ -531,13 +531,13 @@ class SearchMapController extends Controller
         $subject = DB::select($sub_query);
         //subjects for filter 
         $subs = "SELECT *,'' as child from subjects where parent = " . 0 ." order by id";
-        $subjects = DB::select($subs);
+        $subjects = DB::select($subs); 
         $timetable = DB::table('schedule')->get();
         $sub_child = DB::table('subjects')->get();
         $city = DB::table('cities')->get();
         $getTownships  = DB::table('townships')->where('city_id', $id)->get();
 
-        foreach($subjects as $sub)
+        foreach($subjects as $sub)  
         {
             $id = $sub->id;
             $db_sub = "SELECT subjects.* from subjects where parent =". $id ." order by id";
@@ -552,7 +552,6 @@ class SearchMapController extends Controller
     public function getJobSearch($searchword)
     {
 
-     
          //for city
          $id = $_GET['id'];
          $townshipID = $_GET['townshipID'];
