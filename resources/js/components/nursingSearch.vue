@@ -1323,11 +1323,11 @@ changeMap(response){
                 this.cities = response.data.city
                 this.getCity = response.data.getCity
                 this.getTownships = response.data.getTownships
+                console.log(this.getTownships);
                 this.special_features = response.data.special_features
                 this.fac_types = response.data.fac_types
                 this.medical_acceptance = response.data.medical_acceptance
                 this.nus_data = response.data.nursing
-                console.log(this.nus_data);
                 this.markers = response.data.nursing;
 
                 var mmarker = new Array();

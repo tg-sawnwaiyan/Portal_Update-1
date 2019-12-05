@@ -10,7 +10,7 @@ class SearchMapController extends Controller
 {
     public function getMap()
     {
-        
+      
         $id = $_GET['id'];
         $township_id = $_GET['township_id'];
         $moving_in = $_GET['moving_in'];
