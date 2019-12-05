@@ -783,7 +783,6 @@
         medical_acceptance: [],
         show: false,
         showOne: true,
-        checkarr: [],
         currentOffset: 0,
         windowSize: 4,
         paginationFactor: 500,
@@ -812,8 +811,7 @@
         show_paginate: false,
         onchangeid:0,
         localst:'',
-        selected: undefined,
-        checkarr:[]
+        selected: undefined
       }
     },
     created(){
@@ -1450,15 +1448,6 @@ search(){
             if(this.nus_data.length > 0){
 
                 for (var i = 0; i < this.searchmarkers.length; i++) {
-              
-                    if(this.searchmarkers[i]['fav_check'] == 'check')
-                    {
-                      this.checkarr[this.searchmarkers[i]['nursing_id']] = true;
-                    }
-                    else{
-                      this.checkarr[this.searchmarkers[i]['nursing_id']] = false;
-                    }
-                  
                     mmarker.push([this.searchmarkers[i]['alphabet'], this.searchmarkers[i]['lat'], this.searchmarkers[i]['lng']])
                     item.push(this.searchmarkers[i])
                 }
@@ -1494,17 +1483,8 @@ search(){
                 }
 
               }
-
-
-
             this.show_paginate = true;
-
-
             });
-
-console.log('check')
-  console.log(this.checkarr);
-
         },
         // hover animate function
         mouseover(index) {
@@ -1540,14 +1520,9 @@ console.log('check')
             event.target.src = "images/noimage.jpg"
         },
         favAddFun(status,index,ind){
-            if(status == 'add'){
-                
-                  this.checkarr[index] = true;
+            if(status == 'add'){                
                   this.nus_data[ind].fav_check = 'check';
-                   
-                //   $('.done_pro_id'+index).css('display','block');
-                //   $('.view_pro_id'+index).css('display','none');
-               
+
                 if(localStorage.getItem("nursing_fav")){
                     var fav_arr = JSON.parse("[" + localStorage.getItem("nursing_fav") + "]");
                     fav_arr.push(index);
@@ -1564,11 +1539,8 @@ console.log('check')
             }
             else{
             
-                this.checkarr[index] = false;
                 this.nus_data[ind].fav_check = '';
-                // $('.done_pro_id'+index).css('display','none');
-                // $('.view_pro_id'+index).css('display','block');
-               
+
                 var fav_arr = JSON.parse("[" + localStorage.getItem("nursing_fav") + "]");
                 var index = fav_arr.indexOf(index);
                 if (index > -1) {
