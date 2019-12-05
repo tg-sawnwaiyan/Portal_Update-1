@@ -10,6 +10,7 @@ class SearchMapController extends Controller
 {
     public function getMap()
     {
+        
         $id = $_GET['id'];
         $township_id = $_GET['township_id'];
         $moving_in = $_GET['moving_in'];
@@ -35,7 +36,6 @@ class SearchMapController extends Controller
                     LEFT JOIN acceptance_transactions as acct on acct.customer_id = n.customer_id
                     LEFT JOIN medical_acceptance as med on med.id = acct.medical_acceptance_id
                     WHERE";
-
 
       
             if($id != null && $township_id == -1 && $moving_in == -1 && $per_month == -1 ){
@@ -66,7 +66,7 @@ class SearchMapController extends Controller
             $query .= " group by c.id order BY n.id ASC LIMIT 26";
 
 
-        $nursing_profile = DB::select($query);
+          $nursing_profile = DB::select($query);
 
 
          //to bind fav_nursing
@@ -115,11 +115,24 @@ class SearchMapController extends Controller
         $getTownships       = DB::table('townships')->where('city_id', $id)->get();
         $special_features   = DB::table('special_features')->get();
         $fac_types          = DB::table('fac_types')->get();
-        $subjects           = DB::table('subjects')->where('parent',0)->get();
-        $sub_child          = DB::table('subjects')->get();
+        $subs = "SELECT *,'' as child from subjects where parent = " . 0 ." order by id";
+        $subjects = DB::select($subs);
+
+       
+        foreach($subjects as $sub)
+        {
+            $id = $sub->id;
+            $db_sub = "SELECT subjects.* from subjects where parent =". $id ." order by id";
+            $subchild = DB::select($db_sub);
+            $sub->child = $subchild;
+        }
+      
+   
         $medical_acceptance = DB::table('medical_acceptance')->get();
         $occupations        = DB::table('occupation')->get();
 
+
+      
         return response()->json([
             'getTownships' => $getTownships,
             'getCity' => $getCity,
@@ -128,7 +141,6 @@ class SearchMapController extends Controller
             'fac_types' => $fac_types,
             'medical_acceptance' => $medical_acceptance,
             'subjects' => $subjects,
-            'sub_child' => $sub_child,
             'occupations' => $occupations,
             'nursing' => $nursing_profile,
             'alphabet' => $alphabet
@@ -393,8 +405,7 @@ class SearchMapController extends Controller
 
     public function getHospitalSearch($searchword)
     {
-
-     
+       
         //for city
         $id = $_GET['id'];
         $townshipID = $_GET['townshipID'];
@@ -436,6 +447,7 @@ class SearchMapController extends Controller
         }
         else
         {
+           
                //to check if township is check or not 
             if ($townshipID[0] == '0' && count($townshipID) == 1) //get param value of hospitalsearch.vue and if value is 0 and count =1 , this condition is "No Check"
             {
@@ -470,6 +482,8 @@ class SearchMapController extends Controller
             } else {
                 $subjectID = implode(',', $subjectID); // this condition is when array[0] has no '0'
             }
+
+      
                   
             if ($townshipID == '0' && $specialfeatureID == '0' &&  $subjectID == '0') {
                 $query .= " ci.id = " . $id ;
@@ -504,7 +518,7 @@ class SearchMapController extends Controller
             }
            
             $query .=  " group by c.id";
-
+        
            
         }
 
@@ -512,21 +526,32 @@ class SearchMapController extends Controller
         $hos_data = DB::select($query);
         $spe_query = "SELECT spe.*,spej.customer_id from  special_features as spe join special_features_junctions as spej on spe.id = spej.special_feature_id";
         $specialfeature = DB::select($spe_query);
+        //subjects for result
         $sub_query = "SELECT sub.*,subj.customer_id from  subjects as sub join subject_junctions as subj on sub.id = subj.subject_id";
         $subject = DB::select($sub_query);
+        //subjects for filter 
+        $subs = "SELECT *,'' as child from subjects where parent = " . 0 ." order by id";
+        $subjects = DB::select($subs); 
         $timetable = DB::table('schedule')->get();
         $sub_child = DB::table('subjects')->get();
         $city = DB::table('cities')->get();
         $getTownships  = DB::table('townships')->where('city_id', $id)->get();
+
+        foreach($subjects as $sub)  
+        {
+            $id = $sub->id;
+            $db_sub = "SELECT subjects.* from subjects where parent =". $id ." order by id";
+            $subchild = DB::select($db_sub);
+            $sub->child = $subchild;
+        }
         return response()->json(array("hospital" => $hos_data, "timetable" => $timetable, "specialfeature" => $specialfeature, 
-                                      "subject" => $subject,"sub_child"=>$sub_child,"city"=>$city,"township"=>$getTownships));
+                                      "subject" => $subject,"subjects"=>$subjects,"sub_child"=>$sub_child,"city"=>$city,"township"=>$getTownships));
     }
 
 
     public function getJobSearch($searchword)
     {
 
-     
          //for city
          $id = $_GET['id'];
          $townshipID = $_GET['townshipID'];
