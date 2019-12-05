@@ -1114,40 +1114,68 @@ nursingSearchData(index){
 coordinates(theCity, lat, lng){
 
 
-                // const result = jp_township.features //jp_cities
-                // const jp_city = jp_cities.features //convert
-                const tt = five_percent.features
                 var townshipName = [];
                 var town = [];
+                var city_coordinates = []
+                // get township postalcode
                 for (let i = 0; i < this.getTownships.length; i++) {
                     if(this.getTownships[i]['id'] == this.township_id){
                         townshipName.push(this.getTownships[i]['postalcode'])
                         town.push(this.getTownships[i]['township_name'])
+                    }else{
+                      console.log('tonw err')
                     }
                 }
-                console.log(town+':'+townshipName)
+
                 var township_name = townshipName.toString();
+
+                if(this.township_id == -1){
+                  this.axios.get("/api/cityJson").then(response => {
+                          var res = response.data
+                          
+                        for (var i = 0; i < res.length; i++) {
+                        if (res[i].properties.NAME_1 == theCity) {
+                          
+                        if(res[i].geometry.hasOwnProperty('geometries')){
+                            
+                            for(var j =0;j < res[i].geometry.geometries.length;j++){     
+
+                            city_coordinates.push(res[i].geometry.geometries[j]['coordinates']) ;
+                          }
+                        }
+                        else{
+                            city_coordinates.push(res[i].geometry['coordinates']) ;
+                          }
+                        }
+                    }
+                    this.boundariesGoogleMap(lat, lng);
+                  }); //end get city
+                  // console.log(city_coordinates)
+                }else{
+                  this.axios.get("/api/townshipJson").then(res => {
+                    var data = res.data
+                    var coordinates = [];
+                    for (let i = 0; i < data.length; i++) {
+
+                      if(data[i]['properties']['N03_007'] == townshipName){
+                        coordinates.push(data[i]['geometry']['coordinates'])
+                      }else{
+                        console.log('errr')
+                      }
+                      
+                    }
+                    
+                  }); //end get township
+                }//end else
+
+                
+
+                
                 const coordinates = []
-                const city_coordinates = []
+                
 
                 if(township_name == ''){
-                    for (var i = 0; i < jp_city.length; i++) {
-                    if (jp_city[i].properties.NAME_0 == theCity) {
-
-                    if(jp_city[i].geometry.hasOwnProperty('geometries'))
-                    {
-                        for(var j =0;j< jp_city[i].geometry.geometries.length;j++)
-                    {
-
-                        city_coordinates.push(jp_city[i].geometry.geometries[j]['coordinates']) ;
-                    }
-                    }
-                    else{
-                        city_coordinates.push(jp_city[i].geometry['coordinates']) ;
-
-                    }
-                    }
-                }
+                    
                 }else{
                     for (var i = 0; i < tt.length; i++) {
                     if (tt[i].properties.N03_001 == theCity && tt[i].properties.N03_007 == township_name) {
@@ -1156,7 +1184,12 @@ coordinates(theCity, lat, lng){
                 }
                 }
 
-                if(township_name == ''){
+               
+
+                
+},
+    boundariesGoogleMap(lat, lng){
+                if(this.township_id == -1){
                     var coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
 
                 }else{
@@ -1166,8 +1199,7 @@ coordinates(theCity, lat, lng){
                 for(let key in co)coordinate = coordinate.concat(co[key])
 
                 }
-
-                var mapProp = {
+                  var mapProp = {
                       center: new google.maps.LatLng(lat, lng),
                       mapTypeId: google.maps.MapTypeId.ROADMAP,
                       options: {
@@ -1204,7 +1236,7 @@ coordinates(theCity, lat, lng){
                     fillOpacity: 0.2,
                     strokeWeight: 1.2
                     })
-},
+    },
 infoWindow(item, mmarker){
         var infoWindowContent = new Array();
 
@@ -1322,7 +1354,7 @@ infoWindow(item, mmarker){
             // for clean googleMap
                 var lat = citylatlng[0]['latitude']
                 var lng = citylatlng[0]['longitude']
-                var theCity = citylatlng[0]['city_eng']
+                var theCity = citylatlng[0]['city_name']
                 const result = jp_township.features
                 const coordinates = []
                 for (var i = 0; i < result.length; i++) {
@@ -1380,7 +1412,7 @@ changeMap(response){
                 if(this.getCity.length > 0) //if city  choose
                 {
                 
-                    const theCity = response.data.getCity[0]['city_name']
+                    const theCity = response.data.getCity[0]['city_eng']
                     const lat = response.data.getCity[0]['latitude']
                     const lng = response.data.getCity[0]['longitude']
 
@@ -1501,7 +1533,7 @@ search(){
                     mmarker.push([this.searchmarkers[i]['alphabet'], this.searchmarkers[i]['lat'], this.searchmarkers[i]['lng']])
                     item.push(this.searchmarkers[i])
                 }
-                const theCity = this.searchmarkers[0]['city_name']
+                const theCity = this.searchmarkers[0]['city_eng']
                 const lat = this.searchmarkers[0]['lat']
                 const lng = this.searchmarkers[0]['lng']
 
@@ -1516,7 +1548,7 @@ search(){
                 //if choose city
                 if(this.citylatlng.length > 0)
                 {
-                    const theCity = this.citylatlng[0]['city_name']
+                    const theCity = this.citylatlng[0]['city_eng']
                     const lat = this.citylatlng[0]['latitude']
                     const lng = this.citylatlng[0]['longitude']
 

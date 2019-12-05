@@ -10,6 +10,7 @@ class SearchMapController extends Controller
 {
     public function getMap()
     {
+        
         $id = $_GET['id'];
         $township_id = $_GET['township_id'];
         $moving_in = $_GET['moving_in'];
@@ -35,7 +36,6 @@ class SearchMapController extends Controller
                     LEFT JOIN acceptance_transactions as acct on acct.customer_id = n.customer_id
                     LEFT JOIN medical_acceptance as med on med.id = acct.medical_acceptance_id
                     WHERE";
-
 
       
             if($id != null && $township_id == -1 && $moving_in == -1 && $per_month == -1 ){
@@ -66,7 +66,7 @@ class SearchMapController extends Controller
             $query .= " group by c.id order BY n.id ASC LIMIT 26";
 
 
-        $nursing_profile = DB::select($query);
+          $nursing_profile = DB::select($query);
 
 
          //to bind fav_nursing
@@ -115,11 +115,24 @@ class SearchMapController extends Controller
         $getTownships       = DB::table('townships')->where('city_id', $id)->get();
         $special_features   = DB::table('special_features')->get();
         $fac_types          = DB::table('fac_types')->get();
-        $subjects           = DB::table('subjects')->where('parent',0)->get();
-        $sub_child          = DB::table('subjects')->get();
+        $subs = "SELECT *,'' as child from subjects where parent = " . 0 ." order by id";
+        $subjects = DB::select($subs);
+
+       
+        foreach($subjects as $sub)
+        {
+            $id = $sub->id;
+            $db_sub = "SELECT subjects.* from subjects where parent =". $id ." order by id";
+            $subchild = DB::select($db_sub);
+            $sub->child = $subchild;
+        }
+      
+   
         $medical_acceptance = DB::table('medical_acceptance')->get();
         $occupations        = DB::table('occupation')->get();
 
+
+      
         return response()->json([
             'getTownships' => $getTownships,
             'getCity' => $getCity,
@@ -128,7 +141,6 @@ class SearchMapController extends Controller
             'fac_types' => $fac_types,
             'medical_acceptance' => $medical_acceptance,
             'subjects' => $subjects,
-            'sub_child' => $sub_child,
             'occupations' => $occupations,
             'nursing' => $nursing_profile,
             'alphabet' => $alphabet
@@ -393,8 +405,7 @@ class SearchMapController extends Controller
 
     public function getHospitalSearch($searchword)
     {
-
-     
+       
         //for city
         $id = $_GET['id'];
         $townshipID = $_GET['townshipID'];
@@ -430,12 +441,13 @@ class SearchMapController extends Controller
             }
             else{
 
-                $query .= " (h.access like '%" . $searchword . "%' or h.medical_department like '%".$searchword."%') group by c.id";
+                $query .= " (ci.city_name like '%" . $searchword . "%' or t.township_name like '%" . $searchword . "%' or c.name like '%".$searchword."%') group by c.id";
             }
            
         }
         else
         {
+           
                //to check if township is check or not 
             if ($townshipID[0] == '0' && count($townshipID) == 1) //get param value of hospitalsearch.vue and if value is 0 and count =1 , this condition is "No Check"
             {
@@ -470,6 +482,8 @@ class SearchMapController extends Controller
             } else {
                 $subjectID = implode(',', $subjectID); // this condition is when array[0] has no '0'
             }
+
+      
                   
             if ($townshipID == '0' && $specialfeatureID == '0' &&  $subjectID == '0') {
                 $query .= " ci.id = " . $id ;
@@ -499,11 +513,12 @@ class SearchMapController extends Controller
            
             if($searchword != 'undefined')
             {
-                $query .= " and (h.access like '%" . $searchword . "%' or h.medical_department like '%".$searchword."%')";
+               
+                $query .= " and (ci.city_name like '%" . $searchword . "%' or t.township_name like '%" . $searchword . "%' or c.name like '%".$searchword."%') group by c.id";
             }
            
             $query .=  " group by c.id";
-
+        
            
         }
 
@@ -511,14 +526,26 @@ class SearchMapController extends Controller
         $hos_data = DB::select($query);
         $spe_query = "SELECT spe.*,spej.customer_id from  special_features as spe join special_features_junctions as spej on spe.id = spej.special_feature_id";
         $specialfeature = DB::select($spe_query);
+        //subjects for result
         $sub_query = "SELECT sub.*,subj.customer_id from  subjects as sub join subject_junctions as subj on sub.id = subj.subject_id";
         $subject = DB::select($sub_query);
+        //subjects for filter 
+        $subs = "SELECT *,'' as child from subjects where parent = " . 0 ." order by id";
+        $subjects = DB::select($subs);
         $timetable = DB::table('schedule')->get();
         $sub_child = DB::table('subjects')->get();
         $city = DB::table('cities')->get();
         $getTownships  = DB::table('townships')->where('city_id', $id)->get();
+
+        foreach($subjects as $sub)
+        {
+            $id = $sub->id;
+            $db_sub = "SELECT subjects.* from subjects where parent =". $id ." order by id";
+            $subchild = DB::select($db_sub);
+            $sub->child = $subchild;
+        }
         return response()->json(array("hospital" => $hos_data, "timetable" => $timetable, "specialfeature" => $specialfeature, 
-                                      "subject" => $subject,"sub_child"=>$sub_child,"city"=>$city,"township"=>$getTownships));
+                                      "subject" => $subject,"subjects"=>$subjects,"sub_child"=>$sub_child,"city"=>$city,"township"=>$getTownships));
     }
 
 
@@ -538,8 +565,9 @@ class SearchMapController extends Controller
                 join customers as c on c.id = j.customer_id
                 left Join townships as t on t.id = j.township_id 
                 left Join nursing_profiles As n on n.customer_id = c.id 
-                left Join hospital_profiles As h on h.customer_id = c.id               
-                where j.recordstatus=1";
+                left Join hospital_profiles As h on h.customer_id = c.id 
+                left Join cities as ci on ci.id = t.city_id   
+                where ";
 
         if($id == -1)
         {
@@ -555,8 +583,9 @@ class SearchMapController extends Controller
                         left Join townships as t on t.id = j.township_id ";         
             }
             else{
+             
 
-                $query .= " (j.title like '%" . $searchword . "%' or j.description like '%".$searchword."%')";
+                $query .= " (j.title like '%" . $searchword . "%' or ci.city_name like '%" . $searchword . "%' or t.township_name like '%".$searchword."%')";
             }
            
         }
@@ -598,7 +627,7 @@ class SearchMapController extends Controller
               $empstatus = implode(',', $empstatus);
           }
 
-          $query .= " and t.city_id =".$id;
+          $query .= " t.city_id =".$id;
 
           if($townshipID != '0')
           {
@@ -630,17 +659,14 @@ class SearchMapController extends Controller
 
           if($searchword != 'undefined')
           {
-            $query .= " and (j.title like '%" . $searchword . "%' or j.description like '%".$searchword."%')";
+          
+            $query .= " and (j.title like '%" . $searchword . "%' or ci.city_name like '%" . $searchword . "%' or t.township_name like '%".$searchword."%')";
           }
-               
-            // $query .= " group by c.id";
 
         
 
         }
-       
-
-        
+         
         $job_data = DB::select($query);
         $city = DB::table('cities')->get();
 
@@ -658,7 +684,18 @@ class SearchMapController extends Controller
         return response()->json($getTownships);
     }
 
-
+    public function cityJson()
+    {
+        $path = public_path().('/google-map-json/jp_cities.json');
+        $json = file_get_contents($path);
+        $obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $json), true );
+        
+        foreach($obj as $key => $value){
+            $json = $value;
+            
+        }
+        return response()->json($json);
+    }
 
     public function townshipJson()
     {
@@ -667,10 +704,10 @@ class SearchMapController extends Controller
     $obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $json), true );
     
     foreach($obj as $key => $value){
-        $properties = $value;
+        $jsons = $value;
         
     }
-    return response()->json($properties);
+    return response()->json($jsons);
     
     }
 
