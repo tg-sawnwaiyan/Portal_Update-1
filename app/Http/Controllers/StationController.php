@@ -131,15 +131,15 @@ class StationController extends Controller
        
         $station_list = Station::all()->toArray();
         $nursing_station = StationJunctions::query()->where('customer_id','=',$customer_id)->get()->toArray();
-       
-        // $station = explode(',',$nursing_station);
-        for($indx=0; $indx<count($nursing_station); $indx++) {
+        
+        for($indx = 0; $indx<count($nursing_station); $indx++) {
             for($sec_indx = 0; $sec_indx<count($station_list); $sec_indx++) {
                 if($nursing_station[$indx]['station_id'] == $station_list[$sec_indx]['id']) {
-                    $station_list[$sec_indx]['checked'] = "checked";
+                    $nursing_station[$indx]['station_name'] = $station_list[$sec_indx]['station_name'];
+                    $nursing_station[$indx]['checked'] = "checked";
                 }
             }
         }
-        return $station_list;
+        return response()->json($nursing_station);
     }
 }
