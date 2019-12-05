@@ -1537,7 +1537,7 @@ export default {
                 $(document).scroll(function() {
 
                     $(".fixed-nav").css({"position": "fixed","top":"70px"});
-                    var cur_pos = $(this).scrollTop();
+                    // var cur_pos = $(this).scrollTop();
 
                 //     $('.ele').each(function(active_el){
 
@@ -1549,12 +1549,25 @@ export default {
                 //    });
 
                     var cur_pos = $(this).scrollTop();
-                     $('.ele').each(function(active_el){
+                    console.log("cur "+cur_pos)
 
-                        // if($(this).position().top <= cur_pos){
-                        //     $('.top-fixed-btn.active').removeClass('active');
-                        //     $('.top-fixed-btn').eq(active_el).addClass('active');
-                        // }
+                     $('.ele').each(function(active_el){
+                         console.log("each "+active_el)
+                         console.log("top "+$(this).position().top)
+                        if($(this).position().top <= (cur_pos+71)){
+                            console.log("if "+active_el)
+                                
+                            $('.top-fixed-btn.active').removeClass('active');
+                            $('.top-fixed-btn').eq(active_el).addClass('active');
+                            // if( active_el == 0){
+                            //     $('.top-fixed-btn').eq(active_el).addClass('active');
+                            //     console.log(active_el)
+                            // }
+                            // else{
+                            //     $('.top-fixed-btn').eq(active_el+1).addClass('active');
+                            //     console.log(active_el)
+                            // }
+                        }
                     });
                     if (cur_pos >= 100) {
                         $(".fixed-nav").css({"position": "fixed","top":"70px"});
@@ -1903,9 +1916,9 @@ export default {
 
 
              activate:function(el){
-
+                 console.log(el)
                  this.active_el = el;
-
+                console.log(this.active_el)
 
             },
 
