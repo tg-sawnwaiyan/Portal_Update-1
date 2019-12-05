@@ -45,7 +45,7 @@
                         </div>
                         <hr />
                         <h5 class="header">ニュース一覧</h5>
-                        <div v-if="!this.news_list.length" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
+                        <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
                         <div v-else class="container-fuid">
                             <div v-for="newsList in displayItems" :key="newsList.id" class="card card-default m-b-20">
 
@@ -120,6 +120,7 @@
                 news_list: [],
                 norecord: 0,
                 norecord_msg: false,
+                nosearch_msg: false,
                 categories: {
                     id: "",
                     name: ""
@@ -261,10 +262,10 @@
                         }else{
                             this.pagination = false;
                         }
-                        if(this.norecord != 0){
-                            this.norecord_msg = false;
+                        if(this.norecord != 0) {
+                            this.nosearch_msg = false;
                         }else{
-                            this.norecord_msg = true;
+                            this.nosearch_msg = true;
                         }
                     });
                 },
