@@ -321,7 +321,7 @@
                      <p class="nosearch">条件を変更してみると、該当施設が増える可能性がございますので、再度、ご検索ください。</p>
                 </div>
             </span>
-            <div v-else>
+            <div v-else class="col-12">
              <h5 class="profile_header m-t-10" style="border-left: 5px solid #828282;">現在の検索条件</h5>
             <table class="table table-bordered col-12 ">
               <tbody>

@@ -3087,6 +3087,7 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
 
 
 /* profilepublish css end */
+
 .router-link-exact-active>i.fa,
 .router-link-exact-active>i.fas {
     color: #ff9563 !important;
@@ -3160,9 +3161,6 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
 .div2:hover {
     background: #eee;
 }
-
-
-
 
 
 /*for main tab*/
@@ -5197,8 +5195,6 @@ a:hover {
 /* profilepublish css end */
 
 
-
-
 /*for main tab*/
 
 .nav_menu ul li a {
@@ -5233,7 +5229,6 @@ a:hover {
 
 
 /* profilepublish css end */
-
 
 
 /*for main tab*/
@@ -8774,9 +8769,22 @@ ul.nur-caro-card>li.list-group-item {
 
 /**************end card carousel***********************/
 
+#sp_headerbar {
+    display: none;
+}
+
+.sp_social {
+    display: none;
+}
+
 @media only screen and (max-width: 768px) {
     .main-header {
         padding: 0;
+        height: auto;
+    }
+    .nav-warp .d-flex {
+        align-items: center;
+        width: 100%;
     }
     .h-tel {
         display: none;
@@ -8785,6 +8793,41 @@ ul.nur-caro-card>li.list-group-item {
         display: none;
     }
     #navbarSupportedContent {
-        /* display: none !important; */
+        display: none !important;
+    }
+    #headerbar {
+        display: none;
+    }
+    #sp_headerbar {
+        display: block;
+        padding: 10px 20px;
+    }
+    #sp_headerbar ul li {
+        position: relative;
+    }
+    #sp_headerbar .count {
+        position: absolute;
+        top: -15px;
+        right: -20px;
+        width: 30px;
+        height: 30px;
+        padding: 1px 5px;    
+        margin-left: 6px;
+        background: #ff6117;
+        color: #fff;
+        border-radius: 50%;       
+        line-height: 30px;
+        vertical-align: middle;
+    }
+    .sp_social {
+        display: block;
+        margin-left: auto;
+    }
+    .sp_social li {
+        list-style: none;
+        display: inline-block;
+    }
+    .social-link:first-child a {
+        background: #0080aa;
     }
 }
