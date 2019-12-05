@@ -434,7 +434,7 @@
                                     </p>
 
                                     <p class="item-name"><img :src="'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld='+items.alphabet+'|ff9563|000000'" alt="">
-                                        <router-link :to="{name: 'profile', params: {cusid:items.cus_id, type: 'nursing'}}" class="pseudolink" style="font-weight:bold;#ff6117!important">{{items.name}}</router-link>
+                                        <router-link :to="{name: 'profile', params: {cusid:items.cus_id, type: 'nursing'}}" class="pseudolink" style="font-weight:bold;color:#ff6117 !important">{{items.name}}</router-link>
                                     </p>
                                     <p>{{items.city_name}} <i class="fas fa-angle-double-right" style="color:#b9b5b5;"></i> {{items.township_name}}</p>
                                 </div>
@@ -748,9 +748,9 @@
   import {
     eventBus
   } from '../event-bus.js';
-  import jp_cities from '../google-map-kml/jp_cities.json';
-  import jp_township from '../google-map-kml/jp_township.json';
-  import five_percent from '../google-map-kml/japan-cities_5percent.json';
+  // import jp_cities from '../google-map-kml/jp_cities.json';
+  // import jp_township from '../google-map-kml/jp_township.json';
+  // import five_percent from '../google-map-kml/japan-cities_5percent.json';
 
   export default {
 
@@ -1114,8 +1114,8 @@ nursingSearchData(index){
 coordinates(theCity, lat, lng){
 
 
-                const result = jp_township.features //jp_cities
-                const jp_city = jp_cities.features //convert
+                // const result = jp_township.features //jp_cities
+                // const jp_city = jp_cities.features //convert
                 const tt = five_percent.features
                 var townshipName = [];
                 var town = [];
@@ -1160,37 +1160,49 @@ coordinates(theCity, lat, lng){
                     var coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
 
                 }else{
-            
-                 if(coordinates[0].length == 2){
-                  var co = coordinates.reduce((acc, val) => acc.concat(val), []);
-                  var coordinate = co.reduce((acc, val) => acc.concat(val), []);
-                 }else if (coordinates[0].length == 1){
-                  var coordinate = coordinates.reduce((acc, val) => acc.concat(val), []);
-                 }
-                  
+               
+                var co = coordinates.reduce((acc, val) => acc.concat(val), []);
+                var coordinate = [];
+                for(let key in co)coordinate = coordinate.concat(co[key])
+
                 }
-                console.log(coordinate.length)
-                var data = {
-                    type: "Feature",
-                    geometry: {
-                    "type": "Polygon",
-                    "coordinates": coordinate
-                    },
-                };
+
                 var mapProp = {
-                    center: new google.maps.LatLng(lat, lng),
-                    mapTypeId: google.maps.MapTypeId.ROADMAP,
-                    zoom:7
-                };
+                      center: new google.maps.LatLng(lat, lng),
+                      mapTypeId: google.maps.MapTypeId.ROADMAP,
+                      options: {
+                      gestureHandling: 'greedy'
+                    }
+                  };
 
                     this.map = new google.maps.Map(document.getElementById("mymap"), mapProp);
-                    this.map.data.addGeoJson(data);
+                    try {
+                      var data = {
+                          type: "Feature",
+                          geometry: {
+                          "type": "Polygon",
+                          "coordinates": coordinate
+                          },
+                      };
+                      this.map.data.addGeoJson(data);
+                    } catch (error) {
+                      var coordinate = [coordinate]
+                      var data = {
+                          type: "Feature",
+                          geometry: {
+                          "type": "Polygon",
+                          "coordinates": coordinate
+                          },
+                      };
+                      this.map.data.addGeoJson(data);
+                    }
+                    
                     this.map.data.setStyle({
-                    strokeColor: "red",
-                    fillColor: 'red',
-                    strokeOpacity: 0.8,
-                    fillOpacity: 0.1,
-                    strokeWeight: 1
+                    strokeColor: "black",
+                    fillColor: 'green',
+                    strokeOpacity: 1,
+                    fillOpacity: 0.2,
+                    strokeWeight: 1.2
                     })
 },
 infoWindow(item, mmarker){
@@ -1247,13 +1259,10 @@ infoWindow(item, mmarker){
             ])
         }
          var markers = mmarker;
-        var bounds = new google.maps.LatLngBounds();
+         var bounds = new google.maps.LatLngBounds();
         this.markerHover = [];
         var infoWindow = new google.maps.InfoWindow(),marker, i;
         }
-
-
-
         for (let i = 0; i < this.markers.length; i++) {
             var beach = this.markers[i]
             var lats = this.markers[i]['lat']
@@ -1261,16 +1270,33 @@ infoWindow(item, mmarker){
             var img = this.markers[i]['alphabet']
             var myLatLng = new google.maps.LatLng(lats, lngs);
             var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
-
-
-            marker = new google.maps.Marker({
+            if(markers[i][1]== null){
+              marker = new google.maps.Marker({
             position: position,
             map: this.map,
-            zoom:12,
             icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' + img + '|ff9563|000000',
-            title: this.markers[i]['name']
+            title: this.markers[i]['name'],
+            zoom:4,
+            options: {
+              gestureHandling: 'greedy'
+            }
             });
 
+            }else{
+              marker = new google.maps.Marker({
+            position: position,
+            map: this.map,
+            icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' + img + '|ff9563|000000',
+            title: this.markers[i]['name'],
+            options: {
+              gestureHandling: 'greedy'
+            }
+            });
+            bounds.extend(position);
+            }
+            
+         
+            
             google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
                 infoWindow.setContent(infoWindowContent[i][0]);
@@ -1284,7 +1310,8 @@ infoWindow(item, mmarker){
             });
 
         }
-
+        this.map.fitBounds(bounds);
+        this.map.panToBounds(bounds);
         },
 
 // make infowindow, marker , google map
