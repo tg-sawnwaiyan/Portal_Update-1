@@ -312,53 +312,27 @@
               </div>            
           </div>
           <!--end map right wrapper-->
-   <!--test-->
-   <div id="group1">
-     <h1>Group1</h1>
-     <ul>
-     <li>0</li>
-     <li>1</li>
-     <li>01</li>
-   </ul>
-   </div>
-   
-  <div id="group2">
-    <h1>Group 2</h1>
-     <ul>
-     <li>2</li>
-     <li>3</li>
-     <li>4</li>
-     <li>5</li>
-     <li>6</li>
-     <li>7</li>
-   </ul>
-  </div>
-   
- <accordion :init-open="true">
+   <!--test--> 
+   <div class="row col-12">
+ <div class="col-12">
+   <accordion :init-open="true">
       <span slot="toggle-text">Toggle Content</span>
       <p slot="content">
         コンポーネントは Vue.js の最も強力な機能の 1 つです。基本的な HTML 要素を拡張して再利用可能なコードのカプセル化を助けます。高いレベルでは、コンポーネントは Vue.js のコンパイラが指定された振舞いを加えるカスタム要素です。場合によっては、特別な is 属性で拡張されたネイティブな HTML 要素の姿をとることもあります。
       </p>
     </accordion>
-     <accordion :init-open="true">
+ </div>
+    <div class="col-12">
+       <accordion :init-open="true">
       <span slot="toggle-text">Toggle Content</span>
       <p slot="content">
         コンポーネントは Vue.js の最も強力な機能の 1 つです。基本的な HTML 要素を拡張して再利用可能なコードのカプセル化を助けます。高いレベルでは、コンポーネントは Vue.js のコンパイラが指定された振舞いを加えるカスタム要素です。場合によっては、特別な is 属性で拡張されたネイティブな HTML 要素の姿をとることもあります。
       </p>
     </accordion>
-
-  <!-- <div class="accordion" id="accordion">
-    <div class="toggle" @click="toggle()">
-      <i class="fa fa-minus-circle" v-if="open"></i>
-      <i class="fa fa-plus-circle" v-else></i>
-      <slot name="toggle-text">00000</slot>
     </div>
-    <transition name="slide">
-      <div class="content" v-show="open">
-        <slot name="content">1111</slot>
-      </div>
-    </transition>
-  </div> -->
+   </div>
+
+  
    <!--end test-->
          
         </div>
@@ -569,7 +543,7 @@ export default {
       layout,
       accordion
     },
-    props: ['initOpen'],
+    //props: ['initOpen'],
     data(){
       return{
         id:'',

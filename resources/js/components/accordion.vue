@@ -17,15 +17,15 @@
   
   //import asideMenu from './components/menu/asideMenu.vue'
   export default { 
-    // props: ['initOpen'],
+    props: ['initOpen'],
     
-        props:{
+    //     props:{
 
-            content: {
-            type: Array,
-            required: true
-    },
-        },
+    //         content: {
+    //         type: Array,
+    //         required: true
+    // },
+       // },
 
 
   data() {
@@ -34,7 +34,7 @@
 
   },
    created() {
-    this.open = !!this.initOpen;
+    this.open = !this.initOpen;
   } ,
   methods: {
     toggle() {
