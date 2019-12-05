@@ -431,20 +431,23 @@
 
               <div id="job_detail" class="col-md-12 col-sm-12 pad-free offset" style="margin-top:20px;" v-for="hos in displayItems" :key="hos.id">
                 <div class="hos-content">
-                  <div class="job-header">
-                  <h5 class="hos-title">
-                    <router-link :to="{name: 'profile', params: {cusid:hos.customer_id, type: 'hospital'}}" class="pseudolink">{{hos.name}}</router-link>
-                </h5>
-
-                </div>
+                    <div class="job-header">
+                        <h5 class="hos-title">
+                            <router-link :to="{name: 'profile', params: {cusid:hos.customer_id, type: 'hospital'}}" class="pseudolink">{{hos.name}}</router-link>
+                            <span class="text-right">
+                                <span class="btn fav-profile fav-item fav-color" :class="'view_pro_id'+hos.nursing_id" style="" @click="favAddFun('add',hos.nursing_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
+                                <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == 'check'" :class="'done_pro_id'+hos.nursing_id" style="color:#aaa;" @click="favAddFun('remove',hos.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
+                            </span>
+                        </h5>
+                    </div>
                 <div class="clearfix col-12 m-b-20">
                     <span v-for="(sub,index) in subject" :key="index+'-'+sub.name+'-'+hos.id">
-                    <span v-if="sub.customer_id == hos.customer_id" class="job_status">
-                      {{sub.name}}
+                        <span v-if="sub.customer_id == hos.customer_id" class="job_status">
+                        {{sub.name}}
+                        </span>
                     </span>
-                  </span>
-                  <p class="hos_phone float-right"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span>{{hos.phone}}</p>
-                  </div>
+                    <p class="hos_phone float-right"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span>{{hos.phone}}</p>
+                </div>
                 <div class="hos-body row clearfix">
                   <div class="col-3 job-img">
                     <img v-bind:src="'/upload/hospital_profile/' + hos.logo"  alt="img" class="img-fluid" @error="imgUrlAlt">
