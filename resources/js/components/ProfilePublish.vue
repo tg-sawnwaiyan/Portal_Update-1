@@ -1537,7 +1537,7 @@ export default {
                 $(document).scroll(function() {
 
                     $(".fixed-nav").css({"position": "fixed","top":"70px"});
-                    var cur_pos = $(this).scrollTop();
+                    // var cur_pos = $(this).scrollTop();
 
                 //     $('.ele').each(function(active_el){
 
@@ -1549,12 +1549,12 @@ export default {
                 //    });
 
                     var cur_pos = $(this).scrollTop();
-                     $('.ele').each(function(active_el){
 
-                        // if($(this).position().top <= cur_pos){
-                        //     $('.top-fixed-btn.active').removeClass('active');
-                        //     $('.top-fixed-btn').eq(active_el).addClass('active');
-                        // }
+                     $('.ele').each(function(active_el){
+                        if($(this).position().top <= (cur_pos+71)){
+                            $('.top-fixed-btn.active').removeClass('active');
+                            $('.top-fixed-btn').eq(active_el).addClass('active');
+                        }
                     });
                     if (cur_pos >= 100) {
                         $(".fixed-nav").css({"position": "fixed","top":"70px"});
@@ -1568,6 +1568,14 @@ export default {
                 $(document).scroll(function() {
                     $(".fixed-nav").css({"position": "fixed","top":"100px"});
                     var cur_pos = $(this).scrollTop();
+
+                    $('.ele').each(function(active_el){
+                        if($(this).position().top <= (cur_pos+71)){
+                            $('.top-fixed-btn.active').removeClass('active');
+                            $('.top-fixed-btn').eq(active_el).addClass('active');
+                        }
+                    });
+                    
                     if (cur_pos >= 100) {
                         $(".fixed-nav").css({"position": "fixed","top":"100px"});
                     } else {
@@ -1903,9 +1911,9 @@ export default {
 
 
              activate:function(el){
-
+                 console.log(el)
                  this.active_el = el;
-
+                console.log(this.active_el)
 
             },
 

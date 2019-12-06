@@ -421,15 +421,15 @@
                         <table class="nursingSearch-tbl">
                         <tbody>
                           <tr >
-                            <td class="pt-2 pb-2"  v-for="items in nus_data" @mouseover="mouseover(items.alphabet)" @mouseleave="mouseleave(items.alphabet)" :id="items.alphabet" :key="items.nursing_id">
+                            <td class="pt-2 pb-2"  v-for="(items,index) in nus_data" @mouseover="mouseover(items.alphabet)" @mouseleave="mouseleave(items.alphabet)" :id="items.alphabet" :key="items.nursing_id">
                                 <div class="wd-in">
                                     <p class="mb-2 clearfix"><span class="num-room">{{items.num_rooms}} </span><span class="float-right">{{items.date_of_establishment}}</span></p>
 
-                                    <p class="item-fav btn btn-sm" :class="'view_pro_id'+items.nursing_id" style="display:block;" @click="favAddFun('add',items.nursing_id);">
-                                        <i class="fas fa-plus-square" style="color:#c40000;"></i> お気に入りに追加
+                                    <p class="item-fav btn btn-sm" v-if="items.fav_check == ''" :class="'view_pro_id'+items.nursing_id" style="" @click="favAddFun('add',items.nursing_id,index);">
+                                        <i class="fas fa-plus-square" style="color:#c40000;"></i> お気に入りに追加 {{items.fav_check}}
                                     </p>
 
-                                    <p class="item-fav btn btn-sm" v-if="items.fav_check == 'check'" :class="'done_pro_id'+items.nursing_id" style="color:#aaa;display:none;" @click="favAddFun('remove',items.nursing_id);">
+                                    <p class="item-fav btn btn-sm" v-if="items.fav_check == 'check'" :class="'done_pro_id'+items.nursing_id" style="color:#aaa;" @click="favAddFun('remove',items.nursing_id,index);">
                                         <i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み
                                     </p>
 
@@ -497,9 +497,13 @@
          <div id="nursingView">
          <h5 class="profile_subtit">もっと探す条件</h5>
       </div>
-      <!--list-->
+ <!-- nursing list -->
+
+
+
+      <!-- search list-->
           <div id="filtertable">
-       <table class="table table-bordered col-12 box-wrap select">
+       <table class="table table-bordered col-12 box-wrap">
               <tbody>
                 <tr>
                   <th>地域</th>
@@ -602,11 +606,11 @@
       </table>
       </div>
     </div>
-      <!--end list-->
+      <!--end search list-->
 
         <div class=" col-12">
             <div class="row">
-                <div id="job_detail" class="col-md-6 col-sm-12" style="margin-top:20px;" v-for="nus in displayItems" :key="nus.id">
+                <div id="job_detail" class="col-md-6 col-sm-12" style="margin-top:20px;" v-for="(nus,index) in displayItems" :key="nus.id">
                     <div class="nur-content">
                     <div class="job-header">
                     <div class="row pad-free">
@@ -622,8 +626,8 @@
                         </div>
 
                         <div class="col-4 text-right">
-                        <span class="btn fav-profile fav-item fav-color" v-if="!checkarr[nus.nursing_id]" :class="'view_pro_id'+nus.nursing_id" style="display:block;" @click="favAddFun('add',nus.nursing_id);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
-                        <span class="btn fav-profile fav-item fav-color" v-if="checkarr[nus.nursing_id]" :class="'done_pro_id'+nus.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',nus.nursing_id);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
+                        <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == ''" :class="'view_pro_id'+nus.nursing_id" style="display:block;" @click="favAddFun('add',nus.nursing_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
+                        <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == 'check'" :class="'done_pro_id'+nus.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',nus.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                         </div>
                     </div>
                     </div>
@@ -785,7 +789,6 @@
         medical_acceptance: [],
         show: false,
         showOne: true,
-        checkarr: [],
         currentOffset: 0,
         windowSize: 4,
         paginationFactor: 500,
@@ -814,8 +817,7 @@
         show_paginate: false,
         onchangeid:0,
         localst:'',
-        selected: undefined,
-        checkarr:[]
+        selected: undefined
       }
     },
     created(){
@@ -1521,15 +1523,6 @@ search(){
             if(this.nus_data.length > 0){
 
                 for (var i = 0; i < this.searchmarkers.length; i++) {
-              
-                    if(this.searchmarkers[i]['fav_check'] == 'check')
-                    {
-                      this.checkarr[this.searchmarkers[i]['nursing_id']] = true;
-                    }
-                    else{
-                      this.checkarr[this.searchmarkers[i]['nursing_id']] = false;
-                    }
-                  
                     mmarker.push([this.searchmarkers[i]['alphabet'], this.searchmarkers[i]['lat'], this.searchmarkers[i]['lng']])
                     item.push(this.searchmarkers[i])
                 }
@@ -1565,17 +1558,8 @@ search(){
                 }
 
               }
-
-
-
             this.show_paginate = true;
-
-
             });
-
-console.log('check')
-  console.log(this.checkarr);
-
         },
         // hover animate function
         mouseover(index) {
@@ -1610,14 +1594,10 @@ console.log('check')
         imgUrlAlt(event) {
             event.target.src = "images/noimage.jpg"
         },
-        favAddFun(status,index){
-            if(status == 'add'){
-                
-                  this.checkarr[index] = true;
-                   
-                  $('.done_pro_id'+index).css('display','block');
-                  $('.view_pro_id'+index).css('display','none');
-               
+        favAddFun(status,index,ind){
+            if(status == 'add'){                
+                  this.nus_data[ind].fav_check = 'check';
+
                 if(localStorage.getItem("nursing_fav")){
                     var fav_arr = JSON.parse("[" + localStorage.getItem("nursing_fav") + "]");
                     fav_arr.push(index);
@@ -1634,10 +1614,8 @@ console.log('check')
             }
             else{
             
-                this.checkarr[index] = false;
-                $('.done_pro_id'+index).css('display','none');
-                $('.view_pro_id'+index).css('display','block');
-               
+                this.nus_data[ind].fav_check = '';
+
                 var fav_arr = JSON.parse("[" + localStorage.getItem("nursing_fav") + "]");
                 var index = fav_arr.indexOf(index);
                 if (index > -1) {
