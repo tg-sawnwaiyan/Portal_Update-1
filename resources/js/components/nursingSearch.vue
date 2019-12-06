@@ -786,7 +786,7 @@
         showOne: true,
         currentOffset: 0,
         windowSize: 4,
-        paginationFactor: 500,
+        paginationFactor: 328,
         window:{
           width: 0,
           height: 0
@@ -818,7 +818,7 @@
     created(){
       window.addEventListener('resize', this.handleResize)
             this.handleResize();
-            if(this.window.width > 320 && this.window.width < 450) {
+            if(this.window.width >= 320 && this.window.width < 450) {
                 this.windowSize = 1;
 
             }
@@ -830,29 +830,50 @@
 
             }
             else if(this.window.width >= 768 && this.window.width < 992) {
-                this.windowSize = 2;
+                this.windowSize = 1;
+                this.paginationFactor=341;
 
             }
             else if(this.window.width >= 992 && this.window.width < 1024) {
                 this.windowSize = 2;
-                console.log(this.window.width);
-                console.log(this.windowSize);
+                this.paginationFactor=398;
+                
+                // console.log(this.window.width);
+                // console.log(this.windowSize);
             }
-            else if (this.window.width >= 1024 && this.window.width < 1280) {
+            
+            else if (this.window.width >= 1024 && this.window.width < 1200) {
                 this.windowSize = 3;
-                console.log('aaaaaaa');
+                this.paginationFactor=412;
                console.log(this.window.width);
 
             }
+
+             else if (this.window.width >= 1200 && this.window.width < 1280) {
+                this.windowSize = 2;
+                this.paginationFactor=412;
+              //  console.log(this.window.width);
+
+            }
+            
             else if (this.window.width >= 1280 && this.window.width < 1440) {
-                this.windowSize = 4;
-               console.log(this.window.width);
+                this.windowSize = 3;
+                this.paginationFactor=329;
+                // this.paginationFactor=355;
+                // console.log(this.window.width);
+                // console.log(this.paginationFactor);
+                // console.log(this.windowSize);
+               
 
             }
+            
             else if (this.window.width >= 1440 && this.window.width < 1880) {
-                this.windowSize = 4;
+                this.windowSize = 3;
+                this.paginationFactor=319;
+          
 
             }
+            
             // else if( this.window.width > 1700) {
 
             // }
@@ -1859,6 +1880,7 @@ div.overlay.standard { background: #fff url('/images/google/loading.jpg') no-rep
 
   #nursing-search .card-carousel--overflow-container {
     overflow: hidden;
+    /* width: 992px; */
   }
 
   #nursing-search .card-carousel--nav__left,
@@ -2056,31 +2078,56 @@ div.overlay.standard { background: #fff url('/images/google/loading.jpg') no-rep
 }
 @media only screen and (max-width: 992px) and (min-width: 768px) {
    #nursing-search .card-carousel {
-        width: 560px!important;
+        width: 342px!important;
     }
+           .wd-in {
+    width: 320px;
+}
 }
 /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (max-width: 1024px) and (min-width: 992px) {
+/* @media only screen and (max-width: 1024px) and (min-width: 992px) {
    #nursing-search .card-carousel {
         width: 823px!important;
     }
+        .wd-in {
+    width: 381px;
 }
-@media only screen and (max-width: 1200px) and (min-width: 992px) {
+} */
+
+@media only screen and (max-width: 1020px) and (min-width: 992px) {
    #nursing-search .card-carousel {
         width: 823px!important;
     }
+        .wd-in {
+    width: 377px;
+}
+}
+@media only screen and (max-width: 1200px) and (min-width: 1024px) {
+   #nursing-search .card-carousel {
+        width: 827px!important;
+    }
+    .wd-in {
+    width: 391px;
+}
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (max-width: 1440px) and (min-width: 1200px) {
+@media only screen and (max-width: 1440px) and (min-width: 1201px) {
     #nursing-search .card-carousel {
+        /* width: 988px!important; */
         width: 988px!important;
     }
+    .wd-in {
+    width: 308px;
+}
 }
 @media only screen and (max-width: 1880px) and (min-width: 1440px) {
      #nursing-search .card-carousel {
         width: 1033px!important;
     }
+    .wd-in {
+    width: 298px;
+}
 }
 
 

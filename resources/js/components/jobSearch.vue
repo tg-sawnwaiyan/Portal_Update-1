@@ -359,7 +359,7 @@
                       </div>
 
                     </div>
-                    <div>
+                    <!-- <div>
                      <button @click="getStation" class="btn col-2 seemore-btn">  Station </button>
                       <div v-for="com in company" :key="com.company_cd" class="col-4">
                           COMPANY {{com.company_name}}
@@ -370,7 +370,7 @@
                             </div>
                           </div>
                       </div>
-                    </div>
+                    </div> -->
                   </td>
                 </tr>
 
@@ -768,16 +768,16 @@ export default {
 
         this.search();
         },
-        getStation(){
+        // getStation(){
         
-           this.axios.get('api/getstation/'+ this.id)
-          .then((response)=>{
-            this.company = response.data.company;
+        //    this.axios.get('api/getstation/'+ this.id)
+        //   .then((response)=>{
+        //     this.company = response.data.company;
           
          
-         })
+        //  })
 
-        },
+        // },
 
       getStateClick(e){
 
