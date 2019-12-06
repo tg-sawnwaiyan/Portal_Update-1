@@ -8776,8 +8776,14 @@ ul.nur-caro-card>li.list-group-item {
 .sp_social {
     display: none;
 }
+.sp_nav {
+    display:none;
+}
 
 @media only screen and (max-width: 768px) {
+    li {
+        list-style: none;
+    }
     .main-header {
         padding: 0;
         height: auto;
@@ -8800,10 +8806,23 @@ ul.nur-caro-card>li.list-group-item {
     }
     #sp_headerbar {
         display: block;
-        padding: 10px 20px;
+        width: 96%;
+        margin: 10px auto;
+        background:#fff
     }
-    #sp_headerbar ul li {
+    #sp_headerbar .fav_his {
+        float: left;
+        text-align: center;
+    }
+    #sp_headerbar .fav_his li {
         position: relative;
+        display:inline-block;
+        padding: 0 10px;
+        border: 1px solid;
+        border-radius: 4px;
+    }
+    #sp_headerbar .fav_his li:first-child {
+        margin-right: 20px;
     }
     #sp_headerbar .count {
         position: absolute;
@@ -8814,6 +8833,7 @@ ul.nur-caro-card>li.list-group-item {
         padding: 1px 5px;    
         margin-left: 6px;
         background: #ff6117;
+        font-size: 11px;
         color: #fff;
         border-radius: 50%;       
         line-height: 30px;
@@ -8823,11 +8843,90 @@ ul.nur-caro-card>li.list-group-item {
         display: block;
         margin-left: auto;
     }
-    .sp_social li {
+    .sp_social .social-link {
+        float:left;
         list-style: none;
-        display: inline-block;
     }
     .social-link:first-child a {
         background: #0080aa;
+    }
+    .menu {
+        float: right;
+    }
+    .sp_nav {
+        display: block;
+        position: absolute;
+        top: 100px;
+        right:0;
+        width:100%;
+        padding-bottom: 50px;
+        background: #f7f7f7;
+    }
+    .sp_nav .menu_list {
+        width: 90%;
+        margin: 20px auto;
+        background: #fff;
+        border: 1px solid #ff6117;
+    }
+    .sp_nav .menu_list li {
+        border-bottom: 1px solid #ff6117;
+        padding: 8px 0 8px 20px;
+    }
+    .sp_nav .menu_list li:last-child {
+        border-bottom: 0px solid;
+    }
+    .sp_nav .menu_list li a {
+        color: #ff6117;
+    }
+    .sp_nav .contact_list {
+        text-align: center;
+    }
+    .sp_nav .contact_list li {
+        padding: 10px;
+    }
+    .sp_nav .contact_list li:first-child span {
+        padding: 10px 0 0 0;
+        line-height: 1.1;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .sp_nav .contact_list  i {
+        width: 25px;
+        height: 25px;
+        margin-right: 5px;
+        font-size: 15px;
+        color: #c91616;
+        text-align: center;
+        line-height: 25px;
+        background: #eee;
+        border-radius: 50%;
+        vertical-align: text-bottom;
+    }
+    .sp_nav .contact_list li:first-child  a {
+        padding: 10px;
+        color: #444;  
+        border: 1px solid;   
+        border-radius: 10px;     
+    }
+}
+
+@media only screen and (max-width: 380px) {
+    #sp_headerbar .fav_his {
+        float: none;
+        text-align: center;
+    }
+    .menu {
+        position: absolute;
+        top: 18px;
+        right: 16px;
+        font-size:20px;
+    }
+    .menu span {
+        display: none;
+    }
+    .sp_social {
+        position: absolute;       
+        top: 500px;
+        z-index: 1;
     }
 }
