@@ -37,6 +37,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('getjobsearch/{searchword}','SearchMapController@getJobSearch');
     Route::get('getCity','SearchMapController@getCity');
     Route::get('profile_view/{cusid}/{type}','ProfilePublishController@getCustomerLatLng');
+    Route::get('getstation/{id}','SearchMapController@getJobStation');
+    
 
 // public route api end
 
@@ -236,6 +238,7 @@ Route::group(['prefix' => 'customer'], function () {
 });
 
 Route::get('getReset','registerController@getReset');
+Route::post('register','registerController@store');
 // Route::get('getskill', 'JobApplyController@getSkills');
 Route::get('getjobtitle/{jobs_id}', 'JobApplyController@getJobTitle');
 Route::get('skill', 'JobController@getSkill');

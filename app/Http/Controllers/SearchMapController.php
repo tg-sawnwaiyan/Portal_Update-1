@@ -10,6 +10,7 @@ class SearchMapController extends Controller
 {
     public function getMap()
     {
+      
         $id = $_GET['id'];
         $township_id = $_GET['township_id'];
         $moving_in = $_GET['moving_in'];
@@ -35,7 +36,6 @@ class SearchMapController extends Controller
                     LEFT JOIN acceptance_transactions as acct on acct.customer_id = n.customer_id
                     LEFT JOIN medical_acceptance as med on med.id = acct.medical_acceptance_id
                     WHERE";
-
 
       
             if($id != null && $township_id == -1 && $moving_in == -1 && $per_month == -1 ){
@@ -66,7 +66,7 @@ class SearchMapController extends Controller
             $query .= " group by c.id order BY n.id ASC LIMIT 26";
 
 
-        $nursing_profile = DB::select($query);
+          $nursing_profile = DB::select($query);
 
 
          //to bind fav_nursing
@@ -115,11 +115,24 @@ class SearchMapController extends Controller
         $getTownships       = DB::table('townships')->where('city_id', $id)->get();
         $special_features   = DB::table('special_features')->get();
         $fac_types          = DB::table('fac_types')->get();
-        $subjects           = DB::table('subjects')->where('parent',0)->get();
-        $sub_child          = DB::table('subjects')->get();
+        $subs = "SELECT *,'' as child from subjects where parent = " . 0 ." order by id";
+        $subjects = DB::select($subs);
+
+       
+        foreach($subjects as $sub)
+        {
+            $id = $sub->id;
+            $db_sub = "SELECT subjects.* from subjects where parent =". $id ." order by id";
+            $subchild = DB::select($db_sub);
+            $sub->child = $subchild;
+        }
+      
+   
         $medical_acceptance = DB::table('medical_acceptance')->get();
         $occupations        = DB::table('occupation')->get();
 
+
+      
         return response()->json([
             'getTownships' => $getTownships,
             'getCity' => $getCity,
@@ -128,7 +141,6 @@ class SearchMapController extends Controller
             'fac_types' => $fac_types,
             'medical_acceptance' => $medical_acceptance,
             'subjects' => $subjects,
-            'sub_child' => $sub_child,
             'occupations' => $occupations,
             'nursing' => $nursing_profile,
             'alphabet' => $alphabet
@@ -393,8 +405,7 @@ class SearchMapController extends Controller
 
     public function getHospitalSearch($searchword)
     {
-
-     
+       
         //for city
         $id = $_GET['id'];
         $townshipID = $_GET['townshipID'];
@@ -436,6 +447,7 @@ class SearchMapController extends Controller
         }
         else
         {
+           
                //to check if township is check or not 
             if ($townshipID[0] == '0' && count($townshipID) == 1) //get param value of hospitalsearch.vue and if value is 0 and count =1 , this condition is "No Check"
             {
@@ -470,6 +482,8 @@ class SearchMapController extends Controller
             } else {
                 $subjectID = implode(',', $subjectID); // this condition is when array[0] has no '0'
             }
+
+      
                   
             if ($townshipID == '0' && $specialfeatureID == '0' &&  $subjectID == '0') {
                 $query .= " ci.id = " . $id ;
@@ -504,7 +518,7 @@ class SearchMapController extends Controller
             }
            
             $query .=  " group by c.id";
-
+        
            
         }
 
@@ -512,21 +526,32 @@ class SearchMapController extends Controller
         $hos_data = DB::select($query);
         $spe_query = "SELECT spe.*,spej.customer_id from  special_features as spe join special_features_junctions as spej on spe.id = spej.special_feature_id";
         $specialfeature = DB::select($spe_query);
+        //subjects for result
         $sub_query = "SELECT sub.*,subj.customer_id from  subjects as sub join subject_junctions as subj on sub.id = subj.subject_id";
         $subject = DB::select($sub_query);
+        //subjects for filter 
+        $subs = "SELECT *,'' as child from subjects where parent = " . 0 ." order by id";
+        $subjects = DB::select($subs); 
         $timetable = DB::table('schedule')->get();
         $sub_child = DB::table('subjects')->get();
         $city = DB::table('cities')->get();
         $getTownships  = DB::table('townships')->where('city_id', $id)->get();
+
+        foreach($subjects as $sub)  
+        {
+            $id = $sub->id;
+            $db_sub = "SELECT subjects.* from subjects where parent =". $id ." order by id";
+            $subchild = DB::select($db_sub);
+            $sub->child = $subchild;
+        }
         return response()->json(array("hospital" => $hos_data, "timetable" => $timetable, "specialfeature" => $specialfeature, 
-                                      "subject" => $subject,"sub_child"=>$sub_child,"city"=>$city,"township"=>$getTownships));
+                                      "subject" => $subject,"subjects"=>$subjects,"sub_child"=>$sub_child,"city"=>$city,"township"=>$getTownships));
     }
 
 
     public function getJobSearch($searchword)
     {
 
-     
          //for city
          $id = $_GET['id'];
          $townshipID = $_GET['townshipID'];
@@ -534,7 +559,7 @@ class SearchMapController extends Controller
          $empstatus = $_GET['empstatus'];
 
         $query = "SELECT j.id as jobid,j.recordstatus as job_record, j.*,c.*,n.*,h.*,
-                (CASE c.type_id WHEN '2' THEN CONCAT((500000+j.id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT((200000+j.id),'-',LPAD(j.id, 4, '0')) END) as jobnum 
+                (CASE c.type_id WHEN '2' THEN CONCAT((500000+c.id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT((200000+c.id),'-',LPAD(j.id, 4, '0')) END) as jobnum 
                 from  jobs as j              
                 join customers as c on c.id = j.customer_id
                 left Join townships as t on t.id = j.township_id 
@@ -549,7 +574,7 @@ class SearchMapController extends Controller
             if($searchword == 'all')
             {
                 $query = "SELECT j.id as jobid, j.*,c.*,n.*,h.*,
-                        (CASE c.type_id WHEN '2' THEN CONCAT((500000+j.id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT((200000+j.id),'-',LPAD(j.id, 4, '0')) END) as jobnum 
+                        (CASE c.type_id WHEN '2' THEN CONCAT((500000+c.id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT((200000+c.id),'-',LPAD(j.id, 4, '0')) END) as jobnum 
                         from  jobs as j
                         join customers as c on c.id = j.customer_id
                         left Join nursing_profiles As n on n.customer_id = c.id 
@@ -642,11 +667,68 @@ class SearchMapController extends Controller
         }
          
         $job_data = DB::select($query);
+
         $city = DB::table('cities')->get();
 
 
+        // $station = "SELECT * from"
+
      
         return response()->json(array('job'=>$job_data,'city'=>$city));
+    }
+
+    public function getJobStation($id)
+    {
+        $com_query = "SELECT c.company_cd,company_name,'' as line FROM s_companies as c
+                        left join s_lines as l on l.company_cd = c.company_cd
+                        left join stations as s on s.line_cd = l.line_cd
+                        where s.pref_cd = " .$id ." group by c.company_name";
+
+        $company = DB::select($com_query);
+
+  
+
+        foreach($company as $com)
+        {
+              $comid = $com->company_cd;
+              $db_line = "SELECT l.line_cd,l.line_name,'' as station from s_lines as l 
+                          left join stations as s on s.line_cd = l.line_cd
+                          left join s_companies as c on c.company_cd = l.company_cd
+                          where s.pref_cd = " .$id. " and l.company_cd = " . $comid.
+                          " group by l.line_cd";
+             $lines = DB::select($db_line);
+            
+
+             foreach($lines as $lin)
+             {
+                 $lineid = $lin->line_cd;
+                 $db_station = "SELECT * from stations as s
+                                left join s_lines as l on l.line_cd = s.line_cd
+                                left join s_companies as c on l.company_cd = c.company_cd
+                                where s.pref_cd = ".$id." and l.company_cd = " . $comid ." and l.line_cd = " . $lineid ;
+                
+                $station = DB::select($db_station);
+                $lin->station = $station;
+                                
+             }
+
+             $com->line = $lines;
+   
+            
+        }
+
+       
+
+        // $line_query = "SELECT l.line_cd,l.line_name FROM s_lines as l
+        //                 left join stations as s on l.line_cd = s.line_cd
+        //                 left join s_companies as c on c.company_cd = l.company_cd
+        //                 where pref_cd = 1 and c.company_cd = 102
+        //                 group by l.line_cd ";
+        
+        // $line = DB::select($line_query);  
+
+        return response()->json(array('company'=>$company));
+        
     }
 
 

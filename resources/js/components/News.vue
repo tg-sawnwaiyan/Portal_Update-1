@@ -154,63 +154,57 @@
 
                             </div>
 
-                            <div class="col-md-6 pad-free">
+                            <div class="col-sm-6 pad-free">
+                                <div class="col-sm-12 m-lr-0 pad-free" v-if="status =='0'">
+                                    <!-- two show -->
+                                    <div v-if="(w_width > 1279) || (w_width < 768 && w_width > 479)" class="row col-sm-12 p-l-0 m-0">
+                                        <div class="col-sm-6 m-b-8 p-l-0" v-for="latest_post_all_cat in latest_post_all_cats.slice(0, 2)" :key="latest_post_all_cat.id">
 
-                                <div class="col-md-12 m-lr-0 pad-free" v-if="status =='0'">
+                                            <div class="col-md-12 row m-0 pad-free">
 
-                                    <!-- <div class="row col-md-12 text-center"><h4 class="h_4 next-title" style="border-left: 5px solid orange;">関連ニュース</h4></div> -->
+                                                <div class="hovereffect fit-image">
 
-                                    <div v-if="w_width > 1279" class="row col-md-12 p-l-0 m-0">
-                                        
-                                            <div class="col-sm-6 m-b-8 p-l-0" v-for="latest_post_all_cat in latest_post_all_cats.slice(0, 2)" :key="latest_post_all_cat.id">
+                                                <clazy-load class="wrapper-1" @load="log"  src="images/noimage.jpg" :key="latest_post_all_cat.id">
 
-                                                <div class="col-md-12 row m-0 pad-free">
+                                                    <transition name="fade">
 
-                                                    <div class="hovereffect fit-image">
+                                                        <img :src="'/upload/news/' + latest_post_all_cat.photo " class="img-responsive fit-image" @error="imgUrlAlt">
 
-                                                    <clazy-load class="wrapper-1" @load="log"  src="images/noimage.jpg" :key="latest_post_all_cat.id">
+                                                    </transition>
 
-                                                        <transition name="fade">
+                                                    <!-- <img class="img-responsive fit-image" :src="'/upload/news/' + latest_post_all_cat.photo " alt="" @error="imgUrlAlt"> -->
 
-                                                            <img :src="'/upload/news/' + latest_post_all_cat.photo " class="img-responsive fit-image" @error="imgUrlAlt">
+                                                    <transition name="fade" slot="placeholder">
 
-                                                        </transition>
+                                                    <div class="preloader">
 
-                                                        <!-- <img class="img-responsive fit-image" :src="'/upload/news/' + latest_post_all_cat.photo " alt="" @error="imgUrlAlt"> -->
+                                                        <div class="circle">
 
-                                                        <transition name="fade" slot="placeholder">
-
-                                                        <div class="preloader">
-
-                                                            <div class="circle">
-
-                                                            <div class="circle-inner"></div>
-
-                                                            </div>
+                                                        <div class="circle-inner"></div>
 
                                                         </div>
 
-                                                        </transition>
+                                                    </div>
 
-                                                    </clazy-load>
+                                                    </transition>
 
-                                                        <div class="overlay">
+                                                </clazy-load>
 
-                                                            <router-link class="btn btn-sm all-btn secondary-bg-color m-t-20" :to="'/newsdetails/'+ latest_post_all_cat.id">詳細</router-link>
+                                                    <div class="overlay">
 
-                                                        </div>
+                                                        <router-link class="btn btn-sm all-btn secondary-bg-color m-t-20" :to="'/newsdetails/'+ latest_post_all_cat.id">詳細</router-link>
 
-                                                        <div class="info">
+                                                    </div>
 
-                                                            <div class="col-12" style="border:none;">
+                                                    <div class="info">
 
-                                                                <p class=" p_3">
+                                                        <div class="col-12" style="border:none;">
 
-                                                                    {{ latest_post_all_cat.main_point }}
+                                                            <p class=" p_3">
 
-                                                                </p>
+                                                                {{ latest_post_all_cat.main_point }}
 
-                                                            </div>
+                                                            </p>
 
                                                         </div>
 
@@ -219,15 +213,72 @@
                                                 </div>
 
                                             </div>
-                                      
-                                    </div>
-                                    <div v-if="w_width < 1280 && w_width > 767" class="row col-md-12 p-l-0 m-0">
-                                            Hello
+
+                                        </div>
                                     </div>
 
-                                    <div class="row col-md-12 p-l-0 m-0">
+                                    <!-- one show -->
+                                    <div v-if="(w_width < 1280 && w_width > 767) || (w_width < 480)" class="row col-sm-12 p-l-0 m-0">
+                                        <div class="col-sm-12 m-b-8 p-l-0" v-for="latest_post_all_cat in latest_post_all_cats.slice(0, 1)" :key="latest_post_all_cat.id">
+                                            <div class="col-md-12 row m-0 pad-free">
 
-                                        <div class="col-md-6 m-b-8 p-l-0" v-for="item in latest_post_all_cats.slice(2, 6)"  :key="item.id">
+                                                <div class="hovereffect fit-image">
+
+                                                <clazy-load class="wrapper-1" @load="log"  src="images/noimage.jpg" :key="latest_post_all_cat.id">
+
+                                                    <transition name="fade">
+
+                                                        <img :src="'/upload/news/' + latest_post_all_cat.photo " class="img-responsive fit-image" @error="imgUrlAlt">
+
+                                                    </transition>
+
+                                                    <!-- <img class="img-responsive fit-image" :src="'/upload/news/' + latest_post_all_cat.photo " alt="" @error="imgUrlAlt"> -->
+
+                                                    <transition name="fade" slot="placeholder">
+
+                                                    <div class="preloader">
+
+                                                        <div class="circle">
+
+                                                        <div class="circle-inner"></div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    </transition>
+
+                                                </clazy-load>
+
+                                                    <div class="overlay">
+
+                                                        <router-link class="btn btn-sm all-btn secondary-bg-color m-t-20" :to="'/newsdetails/'+ latest_post_all_cat.id">詳細</router-link>
+
+                                                    </div>
+
+                                                    <div class="info">
+
+                                                        <div class="col-12" style="border:none;">
+
+                                                            <p class=" p_3">
+
+                                                                {{ latest_post_all_cat.main_point }}
+
+                                                            </p>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- two show -->
+                                    <div class="row col-sm-12 p-l-0 m-0" v-if="(w_width > 1279) || (w_width < 768 && w_width > 479)">
+                                        <div class="col-sm-6 m-b-8 p-l-0" v-for="item in latest_post_all_cats.slice(2, 6)"  :key="item.id">
 
                                             <div class="col-md-12 row adslist-card news-3-card m-0">
 
@@ -282,31 +333,73 @@
 
 
                                         </div>
-
-
-
                                     </div>
 
+                                    <!-- one show -->
+                                    <div class="row col-sm-12 p-l-0 m-0" v-if="(w_width < 1280 && w_width > 767) || (w_width < 480)">
+                                        <div class="col-sm-12 m-b-8 p-l-0" v-for="item in latest_post_all_cats.slice(1, 3)"  :key="item.id">
+
+                                            <div class="col-md-12 row adslist-card news-3-card m-0">
+
+                                                <div class="col-md-4 img-box">
+
+                                                    <router-link :to="'/newsdetails/'+item.id">
+
+                                                        <clazy-load class="wrapper-4" @load="log" src="images/noimage.jpg" :key="item.id">
+
+                                                            <transition name="fade">
+
+                                                                <img :src="'/upload/news/' + item.photo"  class="fit-image-0"  @error="imgUrlAlt">
+
+                                                            </transition>
+
+                                                            <!-- <img v-bind:src="'/upload/news/' + item.photo" class="fit-image" style="height:5rem;width:6rem" @error="imgUrlAlt"> -->
+
+                                                            <transition name="fade" slot="placeholder">
+
+                                                                <div class="preloader">
+
+                                                                    <div class="circle">
+
+                                                                    <div class="circle-inner"></div>
+
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </transition>
+
+                                                        </clazy-load>
+
+                                                    </router-link>
+
+                                                </div>
+
+
+
+                                                <div class="col-md-8 txt-box">
+
+                                                    <router-link :to="'/newsdetails/'+item.id">
+
+                                                        <p> {{item.main_point}} </p>
+
+                                                    </router-link>
+
+                                                </div>
+
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
                                 </div>
-
                             </div>
-
                         </div>
-
-                        <!-- <div v-else>
-
-                                <NewsSearchListComponent :first_search_word="first_search_word"></NewsSearchListComponent>
-
-                        </div> -->
-
                     </div>
 
                     <div class="col-md-12 m-lr-0 p-0" v-if="status == '0'">
-
-                        <!-- <div class="row col-md-12 text-center"><h4 class="h_4 next-title" style="border-left: 5px solid orange;">関連ニュース</h4></div> -->
-
-                        <div class="row col-md-12 pad-free m-0">
-
+                        <div class="row col-md-12 pad-free m-0" v-if="(w_width > 1279) || (w_width < 768 && w_width > 479)">
                             <div class="col-md-3 m-b-8 p-l-0" v-for="item in latest_post_all_cats.slice(6, 14)"  :key="item.id">
 
                                 <div class="col-md-12 row adslist-card news-3-card m-0">
@@ -360,43 +453,63 @@
                                 </div>
 
                             </div>
+                        </div>
+                        
+                        <div class="row col-md-12 pad-free m-0" v-if="(w_width < 1280 && w_width > 767) || (w_width < 480)">
+                            <div class="col-md-3 m-b-8 p-l-0" v-for="item in latest_post_all_cats.slice(3, 11)"  :key="item.id">
 
-                            <!-- <div class="col-sm-3  col-md-3 mt-2" v-for="latest_post_all_cat in latest_post_all_cats" :key="latest_post_all_cat.id">
+                                <div class="col-md-12 row adslist-card news-3-card m-0">
 
-                                    <div class="hovereffect fit-image">
+                                    <div class="col-md-4 img-box">
 
-                                            <img class="img-responsive fit-image" :src="'/upload/news/' + latest_post_all_cat.photo " alt="" @error="imgUrlAlt">
+                                        <router-link :to="'/newsdetails/'+item.id">
 
-                                            <div class="overlay">
+                                        <clazy-load class="wrapper-4" @load="log"  src="images/noimage.jpg" :key="item.id">
 
-                                                    <router-link class="btn btn-sm all-btn secondary-bg-color m-t-20" :to="'/newsdetails/'+ latest_post_all_cat.id">詳細</router-link>
+                                            <!-- <img v-bind:src="'/upload/news/' + item.photo" class="fit-image" style="height:5rem;width:6rem" @error="imgUrlAlt"> -->
 
-                                            </div>
+                                            <transition name="fade">
 
-                                            <div class="info">
+                                                <img v-bind:src="'/upload/news/' + item.photo" class="fit-image-0" @error="imgUrlAlt">
 
-                                                    <div class="row">
+                                            </transition>
 
-                                                            <div class="col-12">
+                                            <transition name="fade" slot="placeholder">
 
-                                                                    <p class=" p_3">
+                                                <div class="preloader">
 
-                                                                            {{ latest_post_all_cat.main_point }}
+                                                    <div class="circle">
 
-                                                                    </p>
-
-                                                            </div>
+                                                    <div class="circle-inner"></div>
 
                                                     </div>
 
-                                            </div>
+                                                </div>
+
+                                            </transition>
+
+                                        </clazy-load>
+
+                                        </router-link>
 
                                     </div>
 
-                            </div> -->
 
+
+                                    <div class="col-md-8 txt-box">
+
+                                        <router-link :to="'/newsdetails/'+item.id">
+
+                                            <p> {{item.main_point}} </p>
+
+                                        </router-link>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
                         </div>
-
                     </div>
 
                 </div>
@@ -407,7 +520,7 @@
 
         <!-- </div> -->
         <div>
-            <span v-if="post_groups.length == 0">
+            <span v-if="norecord_msg">
                 <div class="container-fuid no_search_data">
                    <!-- <svg x="0px" y="0px" width="60" height="60" viewBox="0 0 172 172" style=" fill:#000000;"><g transform=""><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><path d="M0,172v-172h172v172z" fill="none"></path><path d="M3.44,168.56v-165.12h165.12v165.12z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><path d="M0,172v-172h172v172z" fill="none"></path><path d="M3.44,168.56v-165.12h165.12v165.12z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><g fill="#cccccc"><path d="M74.53333,17.2c-31.59643,0 -57.33333,25.73692 -57.33333,57.33333c0,31.59641 25.7369,57.33333 57.33333,57.33333c13.73998,0 26.35834,-4.87915 36.24766,-12.97839l34.23203,34.23203c1.43802,1.49778 3.5734,2.10113 5.5826,1.57735c2.0092,-0.52378 3.57826,-2.09284 4.10204,-4.10204c0.52378,-2.0092 -0.07957,-4.14458 -1.57735,-5.5826l-34.23203,-34.23203c8.09923,-9.88932 12.97839,-22.50768 12.97839,-36.24766c0,-31.59641 -25.7369,-57.33333 -57.33333,-57.33333zM74.53333,28.66667c25.39939,0 45.86667,20.46729 45.86667,45.86667c0,25.39937 -20.46728,45.86667 -45.86667,45.86667c-25.39939,0 -45.86667,-20.46729 -45.86667,-45.86667c0,-25.39937 20.46728,-45.86667 45.86667,-45.86667zM91.67734,51.52161c-1.51229,0.03575 -2.94918,0.66766 -3.99765,1.75807l-13.14636,13.14636l-13.14636,-13.14636c-1.07942,-1.10959 -2.56162,-1.73559 -4.10963,-1.73568c-2.33303,0.00061 -4.43306,1.41473 -5.31096,3.57628c-0.8779,2.16155 -0.3586,4.6395 1.31331,6.26669l13.14636,13.14636l-13.14636,13.14636c-1.49777,1.43802 -2.10111,3.5734 -1.57733,5.58259c0.52378,2.0092 2.09283,3.57825 4.10203,4.10203c2.0092,0.52378 4.14457,-0.07956 5.58259,-1.57733l13.14636,-13.14636l13.14636,13.14636c1.43802,1.49778 3.5734,2.10113 5.5826,1.57735c2.0092,-0.52378 3.57826,-2.09284 4.10204,-4.10204c0.52378,-2.0092 -0.07957,-4.14458 -1.57735,-5.5826l-13.14636,-13.14636l13.14636,-13.14636c1.70419,-1.63875 2.22781,-4.1555 1.31865,-6.33798c-0.90916,-2.18248 -3.06468,-3.58317 -5.42829,-3.52739z"></path></g></g></g></svg>
                     <br><br>
@@ -1052,7 +1165,9 @@
             is_cat_slided: false,
 
             computed_width: '100%',
-            w_width: $(window).width() + 16,
+            w_width: $(window).width(),
+            norecord_msg: false,
+            // w_width: $(window).width() + 16,
 
         }
 
@@ -1211,6 +1326,11 @@
                         this.post_groups = this.groupBy(response.data, 'name');
                     } else {
                         this.post_groups = [];
+                    }
+                    if(this.post_groups.length != 0){
+                        this.norecord_msg = false;
+                    }else{
+                        this.norecord_msg = true;
                     }
                 });
 
