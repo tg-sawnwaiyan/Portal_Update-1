@@ -784,8 +784,10 @@
                         </div>
                     </div>
 
-                    <div class="card" v-if="displayItems.length == 1">
-                        This is Only one comment.
+                    <div class="comment-btn-wrapper" v-if="displayItems.length == 1">
+                        <p class="no-comment-title">Hello Comment</p>
+                       <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn"> <i class="far fa-comment"></i>
+                              <span>口コミを追加する</span></router-link>
                     </div>
                </div>
                <div v-else class="col-md-12"> <p class="no-data-color pb-3">表示される口コミがありません。</p></div>

@@ -6088,7 +6088,27 @@ button.confirmed {
     opacity: 0.5;
     cursor: not-allowed;
 }
-
+.comment-btn-wrapper{
+    padding:25px;
+    text-align:center;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 0px 0px 10px 10px;
+    margin-bottom: 30px;
+    border: 2px solid #50ab1e;
+    border-top: 6px solid #50ab1e;
+    overflow: hidden;
+    width: 100%;
+}
+.no-comment-title{
+    padding: 20px;
+}
+.comment-btn{
+    background: #d2571c;
+    padding: 10px;
+    border: 1px solid #d2571c;
+    color: #fff;
+    border-radius: 10px;
+}
 
 /* End Commentlist */
 
