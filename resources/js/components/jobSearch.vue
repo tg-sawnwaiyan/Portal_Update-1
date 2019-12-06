@@ -305,11 +305,77 @@
                 </div>
               </div>
 
-            <!-- <div class="map">
+            <!-- <div class="map">-->
 
-            </div> -->
+
+
+            <!--</div> -->
           </div>
         </div>
+        <section>
+             <bulma-accordion :icon="'custom'">
+                        <!-- add as many of these items as you need - fill them with content via the slots -->
+                        <bulma-accordion-item>
+                            <p slot="title">Group_A</p>
+                            <i slot="icon-closed" class="fa fa-plus-circle" style="float:right;"></i>
+                            <i slot="icon-open" class="fa fa-minus-circle" style="float:right;"></i>
+                            <p slot="content" class="custom_group">
+                                <a data-info="Hokkaido" @click="getStateClick" >
+                                   <li id="1">北海道 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Aomori" @click="getStateClick" >
+                                    <li id="2">青森 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Iwate" @click="getStateClick" >
+                                    <li id="3">岩手 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Miyagi" @click="getStateClick" >
+                                    <li id="4">宮城 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Akita" @click="getStateClick">
+                                    <li id="5"> 秋田 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Yamagata" @click="getStateClick" >
+                                    <li id="6"> 山形 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Fukushima" @click="getStateClick" >
+                                    <li id="7"> 福島 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                            </p>
+                        </bulma-accordion-item>
+                       <bulma-accordion-item>
+                            <p slot="title">Group_B</p>
+                            <i slot="icon-closed" class="fa fa-plus-circle" style="float:right;"></i>
+                            <i slot="icon-open" class="fa fa-minus-circle" style="float:right;"></i>
+                            <p slot="content" class="custom_group">
+                                <a data-info="Tokyo" @click="getStateClick" >
+                                   <li id="13">東京 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Kanagawa" @click="getStateClick" >
+                                    <li id="14">神奈川 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Chiba" @click="getStateClick" >
+                                    <li id="11">埼玉 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Miyagi" @click="getStateClick" >
+                                    <li id="12">千葉 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Gunma" @click="getStateClick">
+                                    <li id="10"> 群馬 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Ibaraki" @click="getStateClick" >
+                                    <li id="8"> 茨城 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Tochigi" @click="getStateClick" >
+                                    <li id="9"> 栃木 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Yamanashi" @click="getStateClick" >
+                                    <li id="19"> 山梨 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                            </p>
+                        </bulma-accordion-item>
+                    </bulma-accordion>
+        </section>
 
           <div  id="job_search" class="row jobselect">
                <span class="col-12" v-if="!job_data.length">
@@ -514,9 +580,13 @@
 
 <script>
 import layout from '../components/home.vue'
+import { BulmaAccordion, BulmaAccordionItem } from "vue-bulma-accordion";
+
 export default {
     components: {
-      layout
+      layout,
+      BulmaAccordion,
+      BulmaAccordionItem
     },
     data(){
       return{
@@ -968,5 +1038,23 @@ table > tbody > tr th{
 }
 .page-item .spanclass{
   cursor: pointer;
+}
+.arrow_icon{
+    color: #828282 !important;
+    font-size: 16px;
+    float: right;
+    padding-right: 14px;
+}
+.custom_group{
+    color:#828282 !important;
+   font-size: 14px;
+}
+.custom_group a {
+    cursor: pointer;
+}
+.custom_group a li {
+    list-style: none;
+    border-bottom: 1px solid #eeeeee;
+    padding:5px;
 }
 </style>
