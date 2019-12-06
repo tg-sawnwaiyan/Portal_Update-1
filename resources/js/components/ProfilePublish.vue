@@ -785,9 +785,11 @@
                     </div>
 
                     <div class="comment-btn-wrapper" v-if="displayItems.length == 1">
-                        <p class="no-comment-title">Hello Comment</p>
-                       <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn"> <i class="far fa-comment"></i>
+                        <p class="no-comment-title">Comment here</p>
+                         <div>
+                             <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn"> <i class="fas fa-pencil-alt"></i>
                               <span>口コミを追加する</span></router-link>
+                         </div>
                     </div>
                </div>
                <div v-else class="col-md-12"> <p class="no-data-color pb-3">表示される口コミがありません。</p></div>
