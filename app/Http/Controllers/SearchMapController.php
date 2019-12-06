@@ -35,7 +35,7 @@ class SearchMapController extends Controller
                     LEFT JOIN special_features as spe on spe.id = spej.special_feature_id
                     LEFT JOIN acceptance_transactions as acct on acct.customer_id = n.customer_id
                     LEFT JOIN medical_acceptance as med on med.id = acct.medical_acceptance_id
-                    WHERE";
+                    WHERE c.status=1 and";
 
       
             if($id != null && $township_id == -1 && $moving_in == -1 && $per_month == -1 ){
@@ -176,13 +176,13 @@ class SearchMapController extends Controller
                     left join special_features_junctions as spej on spej.customer_id = n.customer_id  
                     left join special_features as spe on spe.id = spej.special_feature_id
                     left join acceptance_transactions as acct on acct.customer_id = n.customer_id
-                    left join medical_acceptance as med on med.id = acct.medical_acceptance_id where ";
+                    left join medical_acceptance as med on med.id = acct.medical_acceptance_id where c.status=1";
 
           if($id == -1)
           {
              if($searchword != 'all')
              {
-                $query .= " (n.method like '%" . $searchword . "%' or n.business_entity like '%".$searchword."%') group by c.id";
+                $query .= " and (n.method like '%" . $searchword . "%' or n.business_entity like '%".$searchword."%') group by c.id";
              }
              else{
                  
@@ -197,6 +197,7 @@ class SearchMapController extends Controller
                             left join special_features as spe on spe.id = spej.special_feature_id
                             left join acceptance_transactions as acct on acct.customer_id = n.customer_id
                             left join medical_acceptance as med on med.id = acct.medical_acceptance_id 
+                            where c.status = 1
                             group by c.id ";
              }
           }
@@ -266,7 +267,7 @@ class SearchMapController extends Controller
 
              
 
-                $query .= " ci.id = ".$id;
+                $query .= " and ci.id = ".$id;
 
                 if($townshipID != 0 )
                 {

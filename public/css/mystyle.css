@@ -7562,7 +7562,35 @@ ul.test>li:before {
 
 
 /*hospital search*/
-
+.table-innertitle{
+    position: relative;
+   
+}
+.table-innertitle:after{
+    content: '';
+    position: absolute;
+    top: 20px;
+    display: inline-block;
+    width: 18px;
+    height: 2px;
+    left: -30px;
+    border-radius: 2px;
+    background: #D2571C;
+    left: 15px;
+}
+.innerwrapper{
+    padding-left: 0px;
+    padding-right: 0px;    
+    margin-left: 0px;
+    
+    
+}
+.table-innerwrapper{    
+    background-color: rgb(245, 245, 245);
+    border-radius: 5px;
+    padding: 10px;
+   
+}
 .hos-content {
     position: relative;
     margin-bottom: 20px;

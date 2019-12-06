@@ -179,9 +179,7 @@
       HeaderMenu,
       asideMenu
     }, 
-
     mounted(){
-
         this.axios.get('/api/auth/user').then(res=>{
             console.log(res)
         })

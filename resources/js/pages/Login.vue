@@ -3,8 +3,10 @@
 		<div class="d-flex justify-content-center h-100">
         <div class="user_card">
             <div class="links" style="top:-80px;">
+              <!-- <router-link to="/" class="mr-auto text-white">ホーム</router-link> -->
+              <router-link to="/register" class="ml-auto text">登録</router-link>
               <a href="/" class="mr-auto text-white">ホーム</a>
-              <a href="/register" class="ml-auto text">登録</a>
+              <!-- <a href="/register" class="ml-auto text">登録</a> -->
             </div>
 
             <div class="d-flex justify-content-center">

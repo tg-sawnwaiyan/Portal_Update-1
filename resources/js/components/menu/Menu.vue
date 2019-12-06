@@ -43,7 +43,7 @@
             <li class="social-link" v-if="!$auth.check()"><a href="http://localhost:8000/registerForm"><i class="fab fa-facebook-f"></i></a></li>
   
             
-            <li class="col-12 userprofile-name pc" v-else>
+            <li class="col-12 userprofile-name pc" v-if="$auth.check()">
                     <span v-if="user.data.type_id == 1">
                         <i class="fa fa-user userprofile-img" aria-hidden="true"></i>
                         <label for="" style="color:#ff6117;font-weight:bold;">{{user.data.name}} </label>
@@ -98,9 +98,6 @@
     },
     mounted() {
       this.user = this.$auth.watch._data
-      console.log("this.user.data")
-      console.log(this.$auth.watch._data)
-      console.log(this.$auth.watch._data.data.name)
       },
 
   }
