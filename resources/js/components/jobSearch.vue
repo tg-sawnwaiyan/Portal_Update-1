@@ -359,6 +359,38 @@
                       </div>
 
                     </div>
+                    <div>
+                     <button @click="getStation" class="btn col-2 seemore-btn">  Station </button>
+
+                    <div class="form-check form-check-inline row col-12 align-items-start ">
+                        <div class="col-sm-2" v-for="com in company" :key="com.company_cd"  style="padding-left:0px;">
+                            <strong>{{com.company_name}}</strong>
+   
+                            <div v-for="lin in com.line" :key="lin.line_cd">
+                             
+                                <label class="form-check-label control control--checkbox" style="padding-left:5px;">
+                                <input  class="form-check-input" type="checkbox" :id="lin.id" :value="lin.id">
+                                
+                                <div class="control__indicator"></div>
+                                </label>
+                                <span class="pseudolink" @click="stationModal(lin.line_cd)" data-toggle="modal" data-target=".bd-example-modal-station">{{lin.line_name}}</span>
+                            </div>
+                            
+                           
+                        </div>
+                    </div>
+
+
+                      <!-- <div v-for="com in company" :key="com.company_cd" class="col-4">
+                          COMPANY {{com.company_name}}
+                          <div v-for="lin in com.line" :key="lin.line_cd">
+                           LINE {{lin.line_name}}
+                            <div v-for="sta in lin.station" :key="sta.station_cd">
+                              STATION {{sta.station_name}}
+                            </div>
+                          </div>
+                      </div> -->
+                    </div>
                   </td>
                 </tr>
 
@@ -441,6 +473,36 @@
             </table>
             </div>
              <div>
+
+                <div class="modal fade bd-example-modal-station stationcheck" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display:none;">
+                            <div class="modal-dialog modal-xl" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">{{line_name}}から探す</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <button class="btn btn-secondary">閉じる&times;</button>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        
+                                    </div>
+                                    <div class="modal-body">
+                                        <span class="job_ico"><i class="fas fa-map-marker-alt"></i></span><strong>住所</strong>
+                                        <br>
+                                        
+                                        <hr>
+                                        <span class="job_ico"><i class="fa fa-map-signs"></i></span><strong>最寄り駅</strong>
+                                        
+                                    </div>
+                                    <div class="modal-body">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
                 <div class="row">
                    <div id="job_detail" class="col-md-6 col-sm-12" style="margin-top:20px;" v-for="job in displayItems" :key="job.jobid">
                      <div class="job-content">
@@ -556,8 +618,11 @@ export default {
         loginuser: true,
         selected: undefined,
         locast:'',
+        company:[],
         open:false,       
         norecord_msg: false,
+        station_list: [],
+        line_name: '',
       }
     },
     created() {
@@ -755,6 +820,16 @@ export default {
 
         this.search();
         },
+        getStation(){
+        
+           this.axios.get('api/getstation/'+ this.id)
+          .then((response)=>{
+            this.company = response.data.company;
+          console.log('com',this.company)
+         
+         })
+
+        },
 
       getStateClick(e){
 
@@ -841,6 +916,18 @@ export default {
     },
     pageSelect(index) {
       this.currentPage = index - 1;
+    },
+    stationModal: function(line_cd) {
+        $('.stationcheck').css('display', 'block');
+        for(var i=0; i<this.company.length; i++){
+            var line_list = this.company[i].line;
+            for(var j=0; j<line_list.length; j++){
+                if(line_list[j].line_cd == line_cd){
+                    this.station_list = line_list[j].station;
+                    this.line_name = line_list[j].line_name;
+                }                
+            }
+        }
     }
     },
     computed: {
