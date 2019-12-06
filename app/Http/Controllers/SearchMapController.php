@@ -531,13 +531,13 @@ class SearchMapController extends Controller
         $subject = DB::select($sub_query);
         //subjects for filter 
         $subs = "SELECT *,'' as child from subjects where parent = " . 0 ." order by id";
-        $subjects = DB::select($subs);
+        $subjects = DB::select($subs); 
         $timetable = DB::table('schedule')->get();
         $sub_child = DB::table('subjects')->get();
         $city = DB::table('cities')->get();
         $getTownships  = DB::table('townships')->where('city_id', $id)->get();
 
-        foreach($subjects as $sub)
+        foreach($subjects as $sub)  
         {
             $id = $sub->id;
             $db_sub = "SELECT subjects.* from subjects where parent =". $id ." order by id";
@@ -552,7 +552,6 @@ class SearchMapController extends Controller
     public function getJobSearch($searchword)
     {
 
-     
          //for city
          $id = $_GET['id'];
          $townshipID = $_GET['townshipID'];
@@ -560,7 +559,7 @@ class SearchMapController extends Controller
          $empstatus = $_GET['empstatus'];
 
         $query = "SELECT j.id as jobid,j.recordstatus as job_record, j.*,c.*,n.*,h.*,
-                (CASE c.type_id WHEN '2' THEN CONCAT((500000+j.id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT((200000+j.id),'-',LPAD(j.id, 4, '0')) END) as jobnum 
+                (CASE c.type_id WHEN '2' THEN CONCAT((500000+c.id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT((200000+c.id),'-',LPAD(j.id, 4, '0')) END) as jobnum 
                 from  jobs as j              
                 join customers as c on c.id = j.customer_id
                 left Join townships as t on t.id = j.township_id 
@@ -575,7 +574,7 @@ class SearchMapController extends Controller
             if($searchword == 'all')
             {
                 $query = "SELECT j.id as jobid, j.*,c.*,n.*,h.*,
-                        (CASE c.type_id WHEN '2' THEN CONCAT((500000+j.id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT((200000+j.id),'-',LPAD(j.id, 4, '0')) END) as jobnum 
+                        (CASE c.type_id WHEN '2' THEN CONCAT((500000+c.id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT((200000+c.id),'-',LPAD(j.id, 4, '0')) END) as jobnum 
                         from  jobs as j
                         join customers as c on c.id = j.customer_id
                         left Join nursing_profiles As n on n.customer_id = c.id 

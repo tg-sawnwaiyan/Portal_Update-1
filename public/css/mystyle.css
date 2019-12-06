@@ -3097,7 +3097,7 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
     position: fixed;
     top: 237px;
     right: 10px;
-    z-index: 99999;
+    /* z-index: 99999; */
 }
 
 #headerbar .router-link-exact-active {
@@ -4348,7 +4348,9 @@ div.b {
 .p-l-0 {
     padding-left: 0px !important;
 }
-
+.p-l-75{
+    padding-left: 75px;
+}
 .p-r-0 {
     padding-right: 0px !important;
 }
@@ -8672,7 +8674,11 @@ ul.nur-caro-card>li.list-group-item {
 
 @media only screen and (max-width:320px) {}
 
-
+@media screen and (max-width: 979px) and (min-width: 752px){
+    .map-box-reponsive{
+        display: block;
+    }
+}
 /**************card carousel***********************/
 
 @media only screen and (max-width:768px) {
