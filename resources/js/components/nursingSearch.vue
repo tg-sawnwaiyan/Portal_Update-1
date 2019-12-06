@@ -785,7 +785,7 @@
         showOne: true,
         checkarr: [],
         currentOffset: 0,
-        windowSize: 3,
+        windowSize: 4,
         paginationFactor: 328,
         window:{
           width: 0,
@@ -832,32 +832,34 @@
             }
             else if(this.window.width >= 768 && this.window.width < 992) {
                 this.windowSize = 1;
-                this.paginationFactor=340;
+                this.paginationFactor=341;
 
             }
             else if(this.window.width >= 992 && this.window.width < 1024) {
                 this.windowSize = 2;
-                this.paginationFactor=318;
+                this.paginationFactor=398;
+                
                 // console.log(this.window.width);
                 // console.log(this.windowSize);
             }
             
             else if (this.window.width >= 1024 && this.window.width < 1200) {
                 this.windowSize = 3;
+                this.paginationFactor=412;
                console.log(this.window.width);
 
             }
 
              else if (this.window.width >= 1200 && this.window.width < 1280) {
-                this.windowSize = 3;
-                this.paginationFactor=402;
-               console.log(this.window.width);
+                this.windowSize = 2;
+                this.paginationFactor=412;
+              //  console.log(this.window.width);
 
             }
             
             else if (this.window.width >= 1280 && this.window.width < 1440) {
-                this.windowSize = 2;
-                this.paginationFactor=436;
+                this.windowSize = 3;
+                this.paginationFactor=329;
                 // this.paginationFactor=355;
                 // console.log(this.window.width);
                 // console.log(this.paginationFactor);
@@ -867,8 +869,8 @@
             }
             
             else if (this.window.width >= 1440 && this.window.width < 1880) {
-                this.windowSize = 2;
-                this.paginationFactor=317;
+                this.windowSize = 3;
+                this.paginationFactor=319;
           
 
             }
@@ -2100,7 +2102,7 @@ div.overlay.standard { background: #fff url('/images/google/loading.jpg') no-rep
 }
 @media only screen and (max-width: 992px) and (min-width: 768px) {
    #nursing-search .card-carousel {
-        width: 560px!important;
+        width: 342px!important;
     }
            .wd-in {
     width: 320px;
@@ -2121,15 +2123,15 @@ div.overlay.standard { background: #fff url('/images/google/loading.jpg') no-rep
         width: 823px!important;
     }
         .wd-in {
-    width: 295px;
+    width: 377px;
 }
 }
 @media only screen and (max-width: 1200px) and (min-width: 1024px) {
    #nursing-search .card-carousel {
-        width: 830px!important;
+        width: 827px!important;
     }
     .wd-in {
-    width: 307px;
+    width: 391px;
 }
 }
 
@@ -2140,7 +2142,7 @@ div.overlay.standard { background: #fff url('/images/google/loading.jpg') no-rep
         width: 988px!important;
     }
     .wd-in {
-    width: 415px;
+    width: 308px;
 }
 }
 @media only screen and (max-width: 1880px) and (min-width: 1440px) {

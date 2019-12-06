@@ -1,6 +1,6 @@
 <template>
 
-    <div id="main" class="col-md-10 offset-md-1 main-content pad-free" v-if="this.$route.path !== '/register' && this.$route.path !== '/login'">
+    <div id="main" class="main-content pad-free" v-if="this.$route.path !== '/register' && this.$route.path !== '/login'">
     <button onclick="topFunction()" id="myBtn">Top</button>
         <HeaderMenu></HeaderMenu>
 
