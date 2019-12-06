@@ -37,6 +37,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('getjobsearch/{searchword}','SearchMapController@getJobSearch');
     Route::get('getCity','SearchMapController@getCity');
     Route::get('profile_view/{cusid}/{type}','ProfilePublishController@getCustomerLatLng');
+    Route::get('getstation/{id}','SearchMapController@getJobStation');
+    
 
 // public route api end
 
