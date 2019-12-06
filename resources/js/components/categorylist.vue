@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="col-12">
-            <div class="row m-b-10" v-if="norecord !== 0">
+            <div class="row m-b-10" v-if="!norecord_msg">
                 <div class="col-md-12">
                     <router-link to="/createcategory" class="float-right main-bg-color create-btn all-btn">
                         <i class="fas fa-plus-circle"></i> 新しいカテゴリーを作成
@@ -11,7 +11,7 @@
             <!--card-->
             <div class="col-md-12 col-md-12 tab-content tab-content1 tabs pad-free border-style">
                 <div class="col-md-12 scrolldiv">
-                    <div v-if="norecord === 0" class="card card-default card-wrap">
+                    <div v-if="norecord_msg" class="card card-default card-wrap">
                         <p class="record-ico">
                             <i class="fa fa-exclamation"></i>
                         </p>
@@ -34,7 +34,7 @@
                         </div>
                         <hr />
                         <h5 class="header">カテゴリー一覧</h5>
-                        <div v-if="!this.categories.length" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
+                        <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
                         <div v-else class="container-fuid">
                             <div class="card card-default m-b-20" v-for="category in displayItems" :key="category.id">
                                 <div class="card-body">
@@ -93,6 +93,8 @@
                 return {
                     categories: [],
                     norecord: 0,
+                    norecord_msg: false,
+                    nosearch_msg: false,
                     currentPage: 0,
                     size: 10,
                     pageRange: 5,
@@ -109,6 +111,11 @@
                         this.pagination = true;
                     } else {
                         this.pagination = false;
+                    }
+                    if (this.norecord != 0) {
+                        this.norecord_msg = false;
+                    }else {
+                        this.norecord_msg = true;
                     }
                 });
             },
@@ -175,6 +182,11 @@
                                     } else {
                                         this.pagination = false;
                                     }
+                                    if (this.norecord != 0) {
+                                        this.norecord_msg = false;
+                                    }else {
+                                        this.norecord_msg = true;
+                                    }
                                     // let i = this.categories.map(item => item.id).indexOf(id); // find index of your object
                                     // this.categories.splice(i, 1);
                                     this.$swal({
@@ -204,6 +216,11 @@
                                 this.pagination = true;
                             }else{
                                 this.pagination = false;
+                            }
+                            if (this.categories.length != 0) {
+                                this.nosearch_msg = false;
+                            }else {
+                                this.nosearch_msg = true;
                             }
                         });
                     },

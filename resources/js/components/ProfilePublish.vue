@@ -783,6 +783,10 @@
                                 <div>{{comment.customer}}</div>
                         </div>
                     </div>
+
+                    <div class="card" v-if="displayItems.length == 1">
+                        This is Only one comment.
+                    </div>
                </div>
                <div v-else class="col-md-12"> <p class="no-data-color pb-3">表示される口コミがありません。</p></div>
                <div class="offset-md-4 col-md-8 mt-3" v-if="pagination">
@@ -1345,6 +1349,10 @@
                                 <div>{{comment.customer}}</div>
                         </div>
                     </div>
+
+                    <div class="card" v-if="displayItems.length == 1">
+                        This is Only one comment.
+                    </div>
                </div>
                <div v-else class="col-md-12"> <p class="no-data-color pb-3">表示される口コミがありません。</p></div>
                <div class="offset-md-4 col-md-8 mt-3" v-if="pagination">
@@ -1575,7 +1583,7 @@ export default {
                             $('.top-fixed-btn').eq(active_el).addClass('active');
                         }
                     });
-                    
+
                     if (cur_pos >= 100) {
                         $(".fixed-nav").css({"position": "fixed","top":"100px"});
                     } else {
