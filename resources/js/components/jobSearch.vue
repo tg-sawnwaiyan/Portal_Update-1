@@ -359,6 +359,18 @@
                       </div>
 
                     </div>
+                    <div>
+                     <button @click="getStation" class="btn col-2 seemore-btn">  Station </button>
+                      <div v-for="com in company" :key="com.company_cd" class="col-4">
+                          COMPANY {{com.company_name}}
+                          <div v-for="lin in com.line" :key="lin.line_cd">
+                           LINE {{lin.line_name}}
+                            <div v-for="sta in lin.station" :key="sta.station_cd">
+                              STATION {{sta.station_name}}
+                            </div>
+                          </div>
+                      </div>
+                    </div>
                   </td>
                 </tr>
 
@@ -556,6 +568,7 @@ export default {
         loginuser: true,
         selected: undefined,
         locast:'',
+        company:[],
         open:false,       
         norecord_msg: false,
       }
@@ -754,6 +767,16 @@ export default {
          })
 
         this.search();
+        },
+        getStation(){
+        
+           this.axios.get('api/getstation/'+ this.id)
+          .then((response)=>{
+            this.company = response.data.company;
+          
+         
+         })
+
         },
 
       getStateClick(e){

@@ -496,15 +496,16 @@
           </div>
          <div id="nursingView">
          <h5 class="profile_subtit">もっと探す条件</h5>
-      </div>
+        
+        </div>
       <!--list-->
           <div id="filtertable">
-       <table class="table table-bordered col-12 box-wrap select">
+     
+           <table class="table table-bordered col-12 box-wrap">    
               <tbody>
                 <tr>
                   <th>地域</th>
                   <td>
-
                         <div class="form-check form-check-inline col-sm-2"   v-for="township in getTownships" :key="township.id">
                         <label class="form-check-label control control--checkbox" style="padding-left:5px;">
                          <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @click="check">
@@ -1314,6 +1315,7 @@ infoWindow(item, mmarker){
         },
 // make infowindow, marker , google map
 changeMap(response){
+              
                 $('.select').removeClass('select');
                 $('#searchMap').addClass('select');
                 $('#showSearchMap').removeClass('select');
@@ -1321,11 +1323,11 @@ changeMap(response){
                 this.cities = response.data.city
                 this.getCity = response.data.getCity
                 this.getTownships = response.data.getTownships
+                console.log(this.getTownships);
                 this.special_features = response.data.special_features
                 this.fac_types = response.data.fac_types
                 this.medical_acceptance = response.data.medical_acceptance
                 this.nus_data = response.data.nursing
-                console.log(this.nus_data);
                 this.markers = response.data.nursing;
 
                 var mmarker = new Array();
