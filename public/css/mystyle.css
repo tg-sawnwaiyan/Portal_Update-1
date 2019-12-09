@@ -1508,7 +1508,7 @@ p {
     display: inline-block;
     width: 20px;
     height: 20px;
-    margin: -5px 5px 0 0;
+    margin: 7px 5px 0 0;
     text-align: center;
     font-size: 12px;
     color: #fff !important;
@@ -8826,9 +8826,9 @@ ul.nur-caro-card>li.list-group-item {
         text-align: center;
     }
     #sp_headerbar .fav_his li {
-        position: relative;  
-        display: inline-block; 
-        cursor: pointer;    
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
     }
     #sp_headerbar .fav_his li .t-show {
         position: absolute;
@@ -8837,7 +8837,7 @@ ul.nur-caro-card>li.list-group-item {
         width: 100%;
         z-index: 2;
     }
-    #sp_headerbar .fav_his li p {       
+    #sp_headerbar .fav_his li p {
         padding: 0 10px;
         border: 1px solid;
         border-radius: 4px;
@@ -8884,7 +8884,7 @@ ul.nur-caro-card>li.list-group-item {
         height: 100%;
         padding-bottom: 150px;
         background: #f7f7f7;
-        opacity: 0.9; 
+        opacity: 0.9;
         overflow-y: auto;
         z-index: 1;
     }
@@ -8964,12 +8964,12 @@ ul.nur-caro-card>li.list-group-item {
         display: none;
     }
     .sp_social {
-        display: flex;
+        /* display: flex;
         position: absolute;
         top: 490px;
         width: 100%;
         align-items: center;
         justify-content: center;
-        z-index: 1;
+        z-index: 1; */
     }
 }
