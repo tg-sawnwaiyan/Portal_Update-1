@@ -724,11 +724,11 @@ export default {
 
             this.type = localStorage.getItem('cusType');
             this.cusid = Number(localStorage.getItem('cusId'));
-            this.axios
-            .get('/api/station/'+this.cusid)
-            .then(response=>{
-                    this.station_list = response.data;
-            });
+            // this.axios
+            // .get('/api/station/'+this.cusid)
+            // .then(response=>{
+            //         this.station_list = response.data;
+            // });
 
             this.axios
             .get('/api/customerinfo/'+this.cusid)
