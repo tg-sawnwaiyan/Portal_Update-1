@@ -485,15 +485,10 @@
                 else if (this.window.width >= 1024 && this.window.width < 1280) {
                     this.windowSize = 3;
                     this.paginationFactor = 260;
-                    console.log('aaaaaaa');
-                console.log(this.window.width);
-                    
+               
                 }
                 else if (this.window.width >= 1280 && this.window.width < 1440) {
                     this.windowSize = 4;
-                    console.log('bbbb');
-                    console.log(this.windowSize);
-
                 }
                 else if (this.window.width >= 1440 && this.window.width < 1880) {
                     this.windowSize = 4;            

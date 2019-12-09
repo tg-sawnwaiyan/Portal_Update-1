@@ -8767,6 +8767,10 @@ ul.nur-caro-card>li.list-group-item {
         width: 1045px!important;
         margin-left: 20px;
     }
+    .custom-table>.table th, .table td
+    {
+        
+    }
     .main-content {
         width: 100%;
     }
