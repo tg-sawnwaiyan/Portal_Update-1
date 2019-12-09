@@ -11,12 +11,12 @@
           <!-- <div class="info-box"></div> -->
           <div class="row map-wrap">
           <div class="col-lg-5 col-md-12 col-sm-12 float-left" style="padding-left: 75px;">
-            <h2 class="map-header" style="bottom: 120px;">赤ちゃんからおと<br/>なまでみんなで通<br/>える。そんな街<br/>名医が見つかります。</h2>
+            <h2 class="map-header" style="bottom: 120px;">赤ちゃんからおと<br/>なまでみんなで通<br/>える。そんな街の<br/>名医が見つかります。</h2>
 
             <!--search input-->
               <div class="wrap">
                 <div class="search">
-                    <input type="text" id="search-free-word" class="searchTerm" placeholder="地名、駅名、施設名などを入力（例：東京駅）">
+                    <input type="text" id="search-free-word" class="searchTerm" placeholder="地名、施設名などを入力（例：東京駅）">
                     <button type="submit" class="searchButton" @click="searchfreeword">
                       <i class="fas fa-search"></i> 検索
                   </button>
@@ -388,19 +388,20 @@
 
                 <td>
 
-                    <div class="form-check form-check-inline row col-12 align-items-start ">
-                        <div class="col-sm-2" v-for="(subject,index) in subjects" :key="index"  style="padding-left:0px;">
-                            <strong>{{subject.name}}</strong>
-   
-                            <div v-for="ch in subject.child" :key="ch.id+1">
+                    <div class="form-check form-check-inline row col-12 align-items-start innerwrapper">
+                        <div class="col-md-4 col-sm-6" v-for="(subject,index) in subjects" :key="index">
+                          <div class="row col-12 m-lr-0 m-b-10 table-innerwrapper">
+                            <strong class="table-innertitle col-12 m-b-10">{{subject.name}}</strong>
+                            
+                            <span class="col-6" v-for="ch in subject.child" :key="ch.id+1">
                              
                                 <label class="form-check-label control control--checkbox" style="padding-left:5px;">
                                 <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
                                 {{ch.name}} 
                                 <div class="control__indicator"></div>
                                 </label>
-                            </div>
-                            
+                            </span>                            
+                          </div>                      
                            
                         </div>
                     </div>

@@ -43,7 +43,7 @@
         <li role="presentation" class="subtab1 nav-item" v-if="loginuser">
           <label for="hospital" class="typelabel nav-link" id="hospital-lbl">
             <i class="fa fa-plus-circle"></i>
-            <input type="radio" v-m      odel="btntype" value="create" v-on:change="changeBtnType('hospital-lbl','nursing-lbl')" name="btntype" id="hospital" />
+            <input type="radio" v-model="btntype" value="create" v-on:change="changeBtnType('hospital-lbl','nursing-lbl')" name="btntype" id="hospital" />
             作成
           </label>             
         </li>

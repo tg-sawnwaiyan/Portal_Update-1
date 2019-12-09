@@ -35,7 +35,7 @@ class SearchMapController extends Controller
                     LEFT JOIN special_features as spe on spe.id = spej.special_feature_id
                     LEFT JOIN acceptance_transactions as acct on acct.customer_id = n.customer_id
                     LEFT JOIN medical_acceptance as med on med.id = acct.medical_acceptance_id
-                    WHERE";
+                    WHERE c.status=1 and";
 
       
             if($id != null && $township_id == -1 && $moving_in == -1 && $per_month == -1 ){
@@ -176,13 +176,13 @@ class SearchMapController extends Controller
                     left join special_features_junctions as spej on spej.customer_id = n.customer_id  
                     left join special_features as spe on spe.id = spej.special_feature_id
                     left join acceptance_transactions as acct on acct.customer_id = n.customer_id
-                    left join medical_acceptance as med on med.id = acct.medical_acceptance_id where ";
+                    left join medical_acceptance as med on med.id = acct.medical_acceptance_id where c.status=1";
 
           if($id == -1)
           {
              if($searchword != 'all')
              {
-                $query .= " (n.method like '%" . $searchword . "%' or n.business_entity like '%".$searchword."%') group by c.id";
+                $query .= " and (n.method like '%" . $searchword . "%' or n.business_entity like '%".$searchword."%') group by c.id";
              }
              else{
                  
@@ -197,6 +197,7 @@ class SearchMapController extends Controller
                             left join special_features as spe on spe.id = spej.special_feature_id
                             left join acceptance_transactions as acct on acct.customer_id = n.customer_id
                             left join medical_acceptance as med on med.id = acct.medical_acceptance_id 
+                            where c.status = 1
                             group by c.id ";
              }
           }
@@ -266,7 +267,7 @@ class SearchMapController extends Controller
 
              
 
-                $query .= " ci.id = ".$id;
+                $query .= " and ci.id = ".$id;
 
                 if($townshipID != 0 )
                 {
@@ -676,6 +677,60 @@ class SearchMapController extends Controller
      
         return response()->json(array('job'=>$job_data,'city'=>$city));
     }
+
+    // public function getJobStation($id)
+    // {
+    //     $com_query = "SELECT c.company_cd,company_name,'' as line FROM s_companies as c
+    //                     left join s_lines as l on l.company_cd = c.company_cd
+    //                     left join stations as s on s.line_cd = l.line_cd
+    //                     where s.pref_cd = " .$id ." group by c.company_name";
+
+    //     $company = DB::select($com_query);
+
+  
+
+    //     foreach($company as $com)
+    //     {
+    //           $comid = $com->company_cd;
+    //           $db_line = "SELECT l.line_cd,l.line_name,'' as station from s_lines as l 
+    //                       left join stations as s on s.line_cd = l.line_cd
+    //                       left join s_companies as c on c.company_cd = l.company_cd
+    //                       where s.pref_cd = " .$id. " and l.company_cd = " . $comid.
+    //                       " group by l.line_cd";
+    //          $lines = DB::select($db_line);
+            
+
+    //          foreach($lines as $lin)
+    //          {
+    //              $lineid = $lin->line_cd;
+    //              $db_station = "SELECT * from stations as s
+    //                             left join s_lines as l on l.line_cd = s.line_cd
+    //                             left join s_companies as c on l.company_cd = c.company_cd
+    //                             where s.pref_cd = ".$id." and l.company_cd = " . $comid ." and l.line_cd = " . $lineid ;
+                
+    //             $station = DB::select($db_station);
+    //             $lin->station = $station;
+                                
+    //          }
+
+    //          $com->line = $lines;
+   
+            
+    //     }
+
+       
+
+    //     // $line_query = "SELECT l.line_cd,l.line_name FROM s_lines as l
+    //     //                 left join stations as s on l.line_cd = s.line_cd
+    //     //                 left join s_companies as c on c.company_cd = l.company_cd
+    //     //                 where pref_cd = 1 and c.company_cd = 102
+    //     //                 group by l.line_cd ";
+        
+    //     // $line = DB::select($line_query);  
+
+    //     return response()->json(array('company'=>$company));
+        
+    // }
 
 
 

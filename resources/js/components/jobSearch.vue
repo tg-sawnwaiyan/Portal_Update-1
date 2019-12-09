@@ -19,7 +19,7 @@
               <!--search input-->
                 <div class="wrap">
                   <div class="search">
-                      <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、駅名、施設名などを入力（例：東京駅）">
+                      <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、施設名などを入力（例：東京駅）">
                       <button type="submit" class="searchButton" @click="searchfreeword">
                         <i class="fas fa-search"></i> 検索
                     </button>
@@ -359,6 +359,18 @@
                       </div>
 
                     </div>
+                    <!-- <div>
+                     <button @click="getStation" class="btn col-2 seemore-btn">  Station </button>
+                      <div v-for="com in company" :key="com.company_cd" class="col-4">
+                          COMPANY {{com.company_name}}
+                          <div v-for="lin in com.line" :key="lin.line_cd">
+                           LINE {{lin.line_name}}
+                            <div v-for="sta in lin.station" :key="sta.station_cd">
+                              STATION {{sta.station_name}}
+                            </div>
+                          </div>
+                      </div>
+                    </div> -->
                   </td>
                 </tr>
 
@@ -756,6 +768,16 @@ export default {
 
         this.search();
         },
+        // getStation(){
+        
+        //    this.axios.get('api/getstation/'+ this.id)
+        //   .then((response)=>{
+        //     this.company = response.data.company;
+          
+         
+        //  })
+
+        // },
 
       getStateClick(e){
 
