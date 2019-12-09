@@ -320,7 +320,214 @@
    <!--end test-->
 
         </div>
-        <!--end map--->
+        <section id="map-responsive">
+             <bulma-accordion :icon="'custom'">
+                        <!--Start hokkaido-box and  tohoku-box -->
+                        <bulma-accordion-item>
+                            <p slot="title" class="title is-4 has-text-weight-normal">北海道・東北</p>
+                            <i slot="icon-closed" class="fa fa-plus-circle map-addicon"></i>
+                            <i slot="icon-open" class="fa fa-minus-circle map-addicon"></i>
+                            <p slot="content" class="custom_group">
+                                <a data-info="Hokkaido" @click="getStateClick" >
+                                   <li id="1">北海道 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Aomori" @click="getStateClick" >
+                                    <li id="2">青森 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Iwate" @click="getStateClick" >
+                                    <li id="3">岩手 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Miyagi" @click="getStateClick" >
+                                    <li id="4">宮城 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Akita" @click="getStateClick">
+                                    <li id="5"> 秋田 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Yamagata" @click="getStateClick" >
+                                    <li id="6"> 山形 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Fukushima" @click="getStateClick" >
+                                    <li id="7"> 福島 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                            </p>
+                        </bulma-accordion-item>
+                    <!-- End hokkaido-box and  tohoku-box -->
+                    <!-- Start hokuriku-box-->
+                        <bulma-accordion-item>
+                            <p slot="title" class="title is-4 has-text-weight-normal">北陸・甲信越</p>
+                            <i slot="icon-closed" class="fa fa-plus-circle map-addicon"></i>
+                            <i slot="icon-open" class="fa fa-minus-circle map-addicon"></i>
+                            <p slot="content" class="custom_group">
+                                <a data-info="Niigata" @click="getStateClick" >
+                                   <li id="15">新潟 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Nagana" @click="getStateClick" >
+                                    <li id="20">長野 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Toyama" @click="getStateClick" >
+                                    <li id="16">富山 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Ishikawa" @click="getStateClick" >
+                                    <li id="17">石川 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Fukui" @click="getStateClick">
+                                    <li id="18"> 福井 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Yamanashi" @click="getStateClick" >
+                                    <li id="19"> 山梨 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                            </p>
+                        </bulma-accordion-item>
+                    <!-- End hokuriku-box-->
+                    <!--  Start kanto-box -->
+                       <bulma-accordion-item>
+                            <p slot="title" class="title is-4 has-text-weight-normal">関東</p>
+                            <i slot="icon-closed" class="fa fa-plus-circle map-addicon"></i>
+                            <i slot="icon-open" class="fa fa-minus-circle map-addicon"></i>
+                            <p slot="content" class="custom_group">
+                                <a data-info="Tokyo" @click="getStateClick" >
+                                   <li id="13">東京 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Kanagawa" @click="getStateClick" >
+                                    <li id="14">神奈川 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Chiba" @click="getStateClick" >
+                                    <li id="11">埼玉 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Miyagi" @click="getStateClick" >
+                                    <li id="12">千葉 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Gunma" @click="getStateClick">
+                                    <li id="10"> 群馬 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Ibaraki" @click="getStateClick" >
+                                    <li id="8"> 茨城 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Tochigi" @click="getStateClick" >
+                                    <li id="9"> 栃木 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                            </p>
+                        </bulma-accordion-item>
+                        <!-- End kanto-box -->
+                        <!--Start tokai-box -->
+                        <bulma-accordion-item>
+                            <p slot="title" class="title is-4 has-text-weight-normal">東海</p>
+                            <i slot="icon-closed" class="fa fa-plus-circle map-addicon"></i>
+                            <i slot="icon-open" class="fa fa-minus-circle map-addicon"></i>
+                            <p slot="content" class="custom_group">
+                                <a data-info="Aichi" @click="getStateClick" >
+                                   <li id="23">愛知 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Shizuoka" @click="getStateClick" >
+                                    <li id="22">静岡 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Gifu" @click="getStateClick" >
+                                    <li id="21">岐阜 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Mie" @click="getStateClick" >
+                                    <li id="24">三重 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                            </p>
+                        </bulma-accordion-item>
+                        <!--End tokai-box -->
+                        <!-- Start kinki-box -->
+                         <bulma-accordion-item>
+                            <p slot="title" class="title is-4 has-text-weight-normal">近畿</p>
+                            <i slot="icon-closed" class="fa fa-plus-circle map-addicon"></i>
+                            <i slot="icon-open" class="fa fa-minus-circle map-addicon"></i>
+                            <p slot="content" class="custom_group">
+                                <a data-info="Osaka" @click="getStateClick" >
+                                   <li id="27">大阪府 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Hyogo" @click="getStateClick" >
+                                    <li id="28">兵庫 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="kyoto" @click="getStateClick" >
+                                    <li id="26">京都府 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Nara" @click="getStateClick" >
+                                    <li id="29">奈良 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Shiga" @click="getStateClick">
+                                    <li id="25"> 滋賀 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Wakayama" @click="getStateClick" >
+                                    <li id="30"> 和歌山 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                            </p>
+                        </bulma-accordion-item>
+                        <!-- End kinki-box -->
+                        <!-- Start chugoku-box and shikoku-box-->
+                        <bulma-accordion-item>
+                            <p slot="title" class="title is-4 has-text-weight-normal">中国・四国</p>
+                            <i slot="icon-closed" class="fa fa-plus-circle map-addicon"></i>
+                            <i slot="icon-open" class="fa fa-minus-circle map-addicon"></i>
+                            <p slot="content" class="custom_group">
+                                <a data-info="Okayama" @click="getStateClick" >
+                                   <li id="33">岡山 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Hiroshima" @click="getStateClick" >
+                                    <li id="34">広島 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Yamaguchi" @click="getStateClick" >
+                                    <li id="35">山口 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Shimane" @click="getStateClick" >
+                                    <li id="32">島根 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Tottori" @click="getStateClick">
+                                    <li id="31"> 鳥取 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Ehime" @click="getStateClick" >
+                                    <li id="38"> 愛媛 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Kagawa" @click="getStateClick" >
+                                    <li id="37">香川 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Kochi" @click="getStateClick">
+                                    <li id="39"> 高知 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Tokushima" @click="getStateClick" >
+                                    <li id="36"> 徳島 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                            </p>
+                        </bulma-accordion-item>
+                        <!-- End chugoku-box and shikoku-box-->
+                        <!-- Start kyushu-box and  okinawa-box -->
+                        <bulma-accordion-item>
+                            <p slot="title" class="title is-4 has-text-weight-normal">九州・沖縄</p>
+                            <i slot="icon-closed" class="fa fa-plus-circle map-addicon"></i>
+                            <i slot="icon-open" class="fa fa-minus-circle map-addicon"></i>
+                            <p slot="content" class="custom_group">
+                                <a data-info="Fukuoka" @click="getStateClick" >
+                                   <li id="40">福岡 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Saga" @click="getStateClick" >
+                                    <li id="41">佐賀 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Nagasak" @click="getStateClick" >
+                                    <li id="42">長崎 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Oita" @click="getStateClick" >
+                                    <li id="44">大分 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Kumamoto" @click="getStateClick">
+                                    <li id="43"> 熊本 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Miyazaki" @click="getStateClick" >
+                                    <li id="45"> 宮崎 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Kagoshima" @click="getStateClick" >
+                                    <li id="46">鹿児島 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Okinawa" @click="getStateClick">
+                                    <li id="47"> 沖縄県 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                            </p>
+                        </bulma-accordion-item>
+                        <!--End kyushu-box and   okinawa-box-->
+                    </bulma-accordion>
+        </section>
 
           <div  id="job_search" class="row jobselect">
                <span class="col-12" v-if="norecord_msg">
@@ -1025,24 +1232,7 @@ table > tbody > tr th{
 .page-item .spanclass{
   cursor: pointer;
 }
-.arrow_icon{
-    color: #828282 !important;
-    font-size: 16px;
-    float: right;
-    padding-right: 14px;
-}
-.custom_group{
-    color:#828282 !important;
-   font-size: 14px;
-}
-.custom_group a {
-    cursor: pointer;
-}
-.custom_group a li {
-    list-style: none;
-    border-bottom: 1px solid #eeeeee;
-    padding:5px;
-}
+
 /********/
 .container {
   padding: 1rem 2%;

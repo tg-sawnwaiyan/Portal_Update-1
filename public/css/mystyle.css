@@ -938,7 +938,6 @@ width: 100%; */
 
 /* End Register form*/
 
-
 /* Search News List */
 
 .hovereffect {
@@ -1144,6 +1143,34 @@ scrollbar-width: thin;
 /* end no search data */
 
 
+/*  Start upandDown for Search Responsive*/
+.arrow_icon{
+    color: #828282 !important;
+    font-size: 16px;
+    float: right;
+    padding-right: 14px;
+}
+.custom_group{
+    color:#828282 !important;
+   font-size: 14px;
+}
+.custom_group a {
+    cursor: pointer;
+}
+.custom_group a li {
+    list-style: none;
+    border-bottom: 1px solid #eeeeee;
+    padding:5px;
+}
+.map-addicon{
+    position: absolute;
+    right: 20px;
+    top: 15px;
+}
+.card-header-title > p{
+    padding: 10px 10px 0px 10px !important;
+}
+/*  End upandDown for Search Responsive*/
 /* End Search News List */
 
 
@@ -8929,6 +8956,9 @@ ul.nur-caro-card>li.list-group-item {
 .sp_social {
     display: none;
 }
+#map-responsive{
+    display: none;
+}
 
 @media only screen and (max-width: 768px) {
     .main-header {
@@ -8982,5 +9012,9 @@ ul.nur-caro-card>li.list-group-item {
     }
     .social-link:first-child a {
         background: #0080aa;
+    }
+    /*map responsive*/
+    #map-responsive{
+        display: block;
     }
 }
