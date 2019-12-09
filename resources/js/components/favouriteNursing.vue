@@ -445,16 +445,15 @@
                 };
             },
             computed: {
-
-                    atEndOfList() {
-                        return this.currentOffset <= (this.paginationFactor * -1) * (this.fav_nursing.length - this.windowSize);
-                    },
-                    atHeadOfList() {
-                        return this.currentOffset === 0;
-                    },
-                    isdisable: function() {
-                        return this.disableBtn;
-                    }
+                atEndOfList() {
+                    return this.currentOffset <= (this.paginationFactor * -1) * (this.fav_nursing.length - this.windowSize);
+                },
+                atHeadOfList() {
+                    return this.currentOffset === 0;
+                },
+                isdisable: function() {
+                    return this.disableBtn;
+                }
             },
 
             created() {
