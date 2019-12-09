@@ -587,7 +587,7 @@
                                     </div> -->
 
                                     <!-- Test Station Area -->
-                                    <table class="table table-bordered table-wrapper">
+                                    <!-- <table class="table table-bordered table-wrapper">
                                             <tr>
                                                     <td>
                                                             <div class="form-group">
@@ -606,7 +606,7 @@
                                                             </div>
                                                     </td>
                                             </tr>
-                                    </table>
+                                    </table> -->
                                     <!-- End Test Station Area -->
 
                                     <div class="form-group">
@@ -1168,11 +1168,11 @@ export default {
                         });
                         this.chek_feature.push({special_feature_id:s_features});
 
-                var chek_station=[];
-                $.each($("input[name='station']:checked"), function(){
-                        chek_station.push($(this).val());
-                });
-                this.stations.push({station_id:chek_station});
+                // var chek_station=[];
+                // $.each($("input[name='station']:checked"), function(){
+                //         chek_station.push($(this).val());
+                // });
+                // this.stations.push({station_id:chek_station});
 
 
                 var acceptance=[];
@@ -1327,19 +1327,19 @@ export default {
                     }) ;
                 }
 
-                if(this.stations.length > 0) {
-                    this.axios
-                    .post(`/api/station_junctions/update/${this.cusid}`,this.stations)
-                    .then((response) => {
+                // if(this.stations.length > 0) {
+                //     this.axios
+                //     .post(`/api/station_junctions/update/${this.cusid}`,this.stations)
+                //     .then((response) => {
 
 
-                        }).catch(error=>{
-                        if(error.response.status == 422){
-                            this.stations = 'error';
-                            this.errors = error.response.data.errors
-                        }
-                    }) ;
-                }
+                //         }).catch(error=>{
+                //         if(error.response.status == 422){
+                //             this.stations = 'error';
+                //             this.errors = error.response.data.errors
+                //         }
+                //     }) ;
+                // }
 
                 if(this.gallery_list != 'error' && this.cooperate_list != 'error' && this.payment_list != 'error' && this.profile_arr != 'error' && this.customer_info_push  != 'error' && this.staff_info_push  != 'error' &&  acceptance!= 'error') {
                         

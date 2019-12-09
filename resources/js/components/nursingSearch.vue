@@ -15,7 +15,7 @@
             <!--search input-->
               <div class="wrap">
                 <div class="search">
-                    <input type="text"  id="search-free-word" class="searchTerm" placeholder="地名、駅名、施設名などを入力（例：東京駅）">
+                    <input type="text"  id="search-free-word" class="searchTerm" placeholder="地名、施設名などを入力（例：東京駅）">
                     <button class="searchButton"  @click="searchfreeword" >
                       <i class="fas fa-search"></i> 検索
                   </button>
@@ -396,7 +396,7 @@
 
         <!-- nursing list -->
        <div id="nursing-search" >
-           <span v-if="!nus_data.length">
+           <span v-if="norecord_msg">
                 <div class="container-fuid m-t-20">
                     <p class="nosearch-icon">
                         <svg x="0px" y="0px" width="30" height="30" viewBox="0 0 172 172" style=" fill:red;"><g transform=""><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><path d="M0,172v-172h172v172z" fill="none"></path><path d="M3.44,168.56v-165.12h165.12v165.12z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><path d="M0,172v-172h172v172z" fill="none"></path><path d="M3.44,168.56v-165.12h165.12v165.12z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><g fill="#666666"><path d="M74.53333,17.2c-31.59643,0 -57.33333,25.73692 -57.33333,57.33333c0,31.59641 25.7369,57.33333 57.33333,57.33333c13.73998,0 26.35834,-4.87915 36.24766,-12.97839l34.23203,34.23203c1.43802,1.49778 3.5734,2.10113 5.5826,1.57735c2.0092,-0.52378 3.57826,-2.09284 4.10204,-4.10204c0.52378,-2.0092 -0.07957,-4.14458 -1.57735,-5.5826l-34.23203,-34.23203c8.09923,-9.88932 12.97839,-22.50768 12.97839,-36.24766c0,-31.59641 -25.7369,-57.33333 -57.33333,-57.33333zM74.53333,28.66667c25.39939,0 45.86667,20.46729 45.86667,45.86667c0,25.39937 -20.46728,45.86667 -45.86667,45.86667c-25.39939,0 -45.86667,-20.46729 -45.86667,-45.86667c0,-25.39937 20.46728,-45.86667 45.86667,-45.86667zM91.67734,51.52161c-1.51229,0.03575 -2.94918,0.66766 -3.99765,1.75807l-13.14636,13.14636l-13.14636,-13.14636c-1.07942,-1.10959 -2.56162,-1.73559 -4.10963,-1.73568c-2.33303,0.00061 -4.43306,1.41473 -5.31096,3.57628c-0.8779,2.16155 -0.3586,4.6395 1.31331,6.26669l13.14636,13.14636l-13.14636,13.14636c-1.49777,1.43802 -2.10111,3.5734 -1.57733,5.58259c0.52378,2.0092 2.09283,3.57825 4.10203,4.10203c2.0092,0.52378 4.14457,-0.07956 5.58259,-1.57733l13.14636,-13.14636l13.14636,13.14636c1.43802,1.49778 3.5734,2.10113 5.5826,1.57735c2.0092,-0.52378 3.57826,-2.09284 4.10204,-4.10204c0.52378,-2.0092 -0.07957,-4.14458 -1.57735,-5.5826l-13.14636,-13.14636l13.14636,-13.14636c1.70419,-1.63875 2.22781,-4.1555 1.31865,-6.33798c-0.90916,-2.18248 -3.06468,-3.58317 -5.42829,-3.52739z"></path></g></g></g></svg>
@@ -405,7 +405,7 @@
                      <p class="nosearch">条件を変更してみると、該当施設が増える可能性がございますので、再度、ご検索ください。</p>
                 </div>
             </span>
-        <div class="row" v-else>
+        <div class="row" v-if="nus_data.length > 0">
           <div class="card-carousel-wrapper col-12">
             <div class="nav-box" @click="moveCarousel(-1)" :disabled="atHeadOfList">
               <div class="nav-content mr-2">
@@ -451,7 +451,7 @@
                                         </div>
                                         <div class="col-8 col-lg-8 col-md-7 m-b-15">
                                             <ul class="nursingSearch-list m-l-10">
-                                                <li class="d-flex"><p class="text-truncate"><span>住所</span><span> {{items.township_name}}{{items.address}}</span></p></li>
+                                                <li class="d-flex"><p class="text-truncate"><span>住所</span><span> {{items.township_name}} {{items.address}}</span></p></li>
                                                 <li class="d-flex"><span>電話 </span><span>{{items.phone}}</span></li>
                                                 <li class="d-flex"><span>サイト</span><a :href="'http://'+ items.website" target="_blank"  class="text-truncate">{{items.website}}</a></li>
                                             </ul>
@@ -812,7 +812,8 @@
         show_paginate: false,
         onchangeid:0,
         localst:'',
-        selected: undefined
+        selected: undefined,
+        norecord_msg: false,
       }
     },
     created(){
@@ -972,7 +973,7 @@ searchfreeword(){
 
           },})
           .then((response) => {
-
+              console.log(response)
             if(response.data.nursing.length > 0)
             {
                 $("#mymap").css("display", "block");
@@ -1188,7 +1189,7 @@ coordinates(theCity, lat, lng){
                 };
                 var mapProp = {
                     center: new google.maps.LatLng(lat, lng),
-                    zoom: 7,
+                    zoom: 5,
                     mapTypeId: google.maps.MapTypeId.ROADMAP,
                 };
 
@@ -1276,7 +1277,7 @@ infoWindow(item, mmarker){
             position: position,
             map: this.map,
             icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' + img + '|ff9563|000000',
-            zoom: 6,
+            zoom: 5,
             title: this.markers[i]['name']
             });
 
@@ -1321,7 +1322,7 @@ infoWindow(item, mmarker){
                 };
                 var mapProp = {
                     center: new google.maps.LatLng(lat, lng),
-                    zoom: 6,
+                    zoom: 5,
                     mapTypeId: google.maps.MapTypeId.ROADMAP,
                 };
                 this.map = new google.maps.Map(document.getElementById("mymap"), mapProp);
@@ -1349,6 +1350,11 @@ changeMap(response){
                 this.fac_types = response.data.fac_types
                 this.medical_acceptance = response.data.medical_acceptance
                 this.nus_data = response.data.nursing
+                if(this.nus_data.length != 0){
+                    this.norecord_msg = false;
+                }else{
+                    this.norecord_msg = true;
+                }
                 this.markers = response.data.nursing;
 
                 var mmarker = new Array();
@@ -1376,9 +1382,8 @@ changeMap(response){
                         this.coordinates(theCity,lat,lng);
                     }
                 }
-                else{ //if city not choose
-                    
-                     this.coordinates(null,this.markers[0]['lat'],this.markers[0]['lng']);
+                else{ //if city not choose                    
+                     this.coordinates(null,'38.25759','140.8667');
                      this.infoWindow(item, mmarker);
                 }
 
@@ -1483,7 +1488,7 @@ search(){
                 this.coordinates(theCity,lat,lng)
 
                 this.infoWindow(item, mmarker);
-
+                this.norecord_msg = false;
             }
             else{
                 //if choose city
@@ -1499,12 +1504,12 @@ search(){
                   console.log('else');
                      var mapProp = {
                      center: new google.maps.LatLng(35.6804, 139.7690),
-                     zoom: 8,
+                     zoom: 5,
                      mapTypeId: google.maps.MapTypeId.ROADMAP,
                      };
                     this.map = new google.maps.Map(document.getElementById("mymap"), mapProp);
                 }
-
+                this.norecord_msg = true;
               }
             this.show_paginate = true;
             });
