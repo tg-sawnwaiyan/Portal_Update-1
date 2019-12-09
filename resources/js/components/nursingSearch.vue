@@ -356,7 +356,7 @@
                     <option data-price-type="" value="10">10万円以下</option>
                     <option data-price-type="" value="12">12万円以下</option>
                     <option data-price-type="" value="14">14万円以下</option>
-                    <option data-price-type="" value="16">16万円以下</option>
+                    <option data-price-type="" value="16">16万円以下</option>     
                     <option data-price-type="" value="18">18万円以下</option>
                     <option data-price-type="" value="20">20万円以下</option>
                     <option data-price-type="" value="22">22万円以下</option>
@@ -954,6 +954,7 @@ searchfreeword(){
 
             if(response.data.nursing.length > 0)
             {
+             
                 $("#mymap").css("display", "block");
                 $("#filtertable").css("display", "block");
                 $("#nursing-search").css("display", "block");
@@ -1104,7 +1105,7 @@ nursingSearchData(index){
 
 
 
-
+        
         },
 // map change dropdown function
 // make infowindow, marker , google map
@@ -1340,7 +1341,7 @@ changeMap(response){
 
                 if(this.getCity.length > 0) //if city  choose
                 {
-                
+                   
                     const theCity = response.data.getCity[0]['city_name']
                     const lat = response.data.getCity[0]['latitude']
                     const lng = response.data.getCity[0]['longitude']
@@ -1348,15 +1349,17 @@ changeMap(response){
 
                     if(this.markers.length > 0 )
                     {
+                      
                         this.coordinates(theCity,lat,lng);
                         this.infoWindow(item, mmarker);
                     }
                     else{
+                      
                         this.coordinates(theCity,lat,lng);
                     }
                 }
                 else{ //if city not choose
-                    
+                    console.log(this.markers[0]['lat'])
                      this.coordinates(null,this.markers[0]['lat'],this.markers[0]['lng']);
                      this.infoWindow(item, mmarker);
                 }
@@ -1487,9 +1490,12 @@ search(){
               }
             this.show_paginate = true;
             });
+        
+
         },
         // hover animate function
         mouseover(index) {
+          
             for (let i = 0; i < this.markerHover.length; i++) {
 
                 if(this.markers[i]['alphabet'] == index)
