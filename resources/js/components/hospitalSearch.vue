@@ -364,27 +364,10 @@
               </tr>
               <tr class="toBeToggled1 ShowHide1">
                 <th>
-                  駅・路線から探す
+                  フリーワード
                 </th>
                 <td>
-                    <!-- <input type="text" class="form-control mt-2 mb-2" id="" placeholder="例）施設名、エリア"> -->
-                    <div class="form-check form-check-inline row col-12 align-items-start ">
-                        <div class="col-sm-2" v-for="(show_company,index) in company" :key="index"  style="padding-left:0px;">
-                            <strong>{{show_company.company_name}}</strong>
-   
-                            <!-- <div v-for="ch in subject.child" :key="ch.id+1">
-                             
-                                <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-                                <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
-                                {{ch.name}} 
-                                <div class="control__indicator"></div>
-                                </label>
-                            </div> -->
-                            
-                           
-                        </div>
-                    </div>
-
+                    <input type="text" class="form-control mt-2 mb-2" id="" placeholder="例）施設名、エリア">
                 </td>
               </tr>
               <tr class="toBeToggled1 ShowHide1">
