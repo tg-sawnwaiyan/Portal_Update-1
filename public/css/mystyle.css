@@ -5119,6 +5119,21 @@ a:hover {
 .custom-sidebar {
     /* height: 100vh;*/
     /* background: #b7dad2;  */
+    /* position: absolute;
+    z-index: 1000;
+    display: none; */
+}
+
+#menu-overlay{
+    display: none;
+    width:100%;
+    height:100%;
+    background-color: #000;
+    opacity: 0.4;
+    position: absolute;
+    top:0px;
+    left:0px;
+    z-index: 999;
 }
 
 
@@ -7586,7 +7601,35 @@ ul.test>li:before {
 
 
 /*hospital search*/
-
+.table-innertitle{
+    position: relative;
+   
+}
+.table-innertitle:after{
+    content: '';
+    position: absolute;
+    top: 20px;
+    display: inline-block;
+    width: 18px;
+    height: 2px;
+    left: -30px;
+    border-radius: 2px;
+    background: #D2571C;
+    left: 15px;
+}
+.innerwrapper{
+    padding-left: 0px;
+    padding-right: 0px;    
+    margin-left: 0px;
+    
+    
+}
+.table-innerwrapper{    
+    background-color: rgb(245, 245, 245);
+    border-radius: 5px;
+    padding: 10px;
+   
+}
 .hos-content {
     position: relative;
     margin-bottom: 20px;
@@ -8793,13 +8836,13 @@ ul.nur-caro-card>li.list-group-item {
     }
 }
 
-@media only screen and (max-width: 375px) and (min-width: 320px) {
+@media only screen and (min-width: 320px) and (max-width: 375px)  {
     #fav-history-page .card-carousel {
         width: 1336px;
     }
 }
 
-@media only screen and (max-width: 450px) and (min-width: 376px) {
+@media only screen and (min-width: 376px) and (max-width: 450px)  {
     #fav-history-page .card-carousel {
         width: 264px !important;
     }
@@ -8807,52 +8850,127 @@ ul.nur-caro-card>li.list-group-item {
 
 
 /* Medium devices (landscape tablets, 768px and up) */
-
-@media only screen and (max-width: 1023px) and (min-width: 768px) {
+@media only screen and (min-width: 449px) and (max-width: 768px)  {
     #fav-history-page .card-carousel {
-        width: 415px!important;
+        /* width: 515px !important; */
     }
 }
 
-@media only screen and (max-width: 768px) and (min-width: 449px) {
+@media only screen and (min-width: 768px) and (max-width: 1023px)  {
+    #fav-history-page .card-container {
+        /* padding: 0; */
+    }
+
     #fav-history-page .card-carousel {
-        width: 515px !important;
+        /* width: 415px!important; */
     }
 }
 
-@media only screen and (max-width: 992px) and (min-width: 768px) {
+
+
+/* @media only screen and (min-width: 768px) and (max-width: 992px)  {
     #fav-history-page .cardcarousel {
         width: 415px!important;
     }
-}
+} */
 
 
 /* Large devices (laptops/desktops, 992px and up) */
 
-@media only screen and (max-width: 1024px) and (min-width: 992px) {
+@media only screen and (min-width: 992px) and (max-width: 1024px) {
     #fav-history-page .card-carousel {
         width: 823px!important;
     }
 }
 
-@media only screen and (max-width: 1200px) and (min-width: 992px) {
+@media only screen and (min-width: 992px) and (max-width: 1200px)  {
     #fav-history-page .card-carousel {
-        width: 787px !important;
+        width: 783px !important;
     }
 }
 
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 
-@media only screen and (max-width: 1440px) and (min-width: 1200px) {
+@media only screen and (min-width: 1200px) and  (max-width: 1440px)  {
     #fav-history-page .card-carousel {
         width: 1045px!important;
     }
 }
 
-@media only screen and (max-width: 1880px) and (min-width: 1440px) {
+@media only screen and (min-width: 1440px) and (max-width: 1880px)  {
     #fav-history-page .card-carousel {
-        width: 1033px!important;
+        width: 1045px!important;
+        margin-left: 20px;
+    }
+    .main-content {
+        width: 100%;
+    }
+    .nav-warp {
+        max-width: 96%;
+        padding: 0;
+    }
+    .fixed-ads-fluid {
+        width: 100%;
+    }
+    #headerbar {
+        display: block;
+        top: 76px;
+    }
+    #headerbar li {
+        display: inline-block;
+    }
+    .gNav {
+        margin-left: 2%;
+    }
+    .gNav li a {
+        padding: 0 5px;
+    }
+    .navbar-expand-lg .navbar-nav .nav-link {
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+    .social-link:nth-child(3) {
+        margin-left: 5px;
+    }
+    .ads-slider {
+        margin: 0 0 20px 35px;
+    }
+    .adslist-card {
+        height: auto;
+    }
+    .ads-img {
+        display: block;
+        float: none;
+        max-width: 100%;
+        width: auto;
+        margin: 0 auto;
+    }
+    .fav-profile {
+        right: 37px;
+    }
+    .today .adslist-card .smallads-title {
+        top: 7px;
+    }
+    .sub-title>.ads-title {
+        position: unset;
+        margin: 10px 0 30px;
+    }
+    .job-img {
+        /* max-width: 80% !important;*/
+        margin: 0 auto 20px;
+        flex: unset;
+    }
+    .job-box {
+        /* max-width: 100% !important;*/
+        flex: unset;
+    }
+    .compare-wrap {
+        max-width: 82%;
+    }
+    .fav-update-wrap {
+        max-width: 19%;
+        flex: 0 0 18%;
     }
 }
 

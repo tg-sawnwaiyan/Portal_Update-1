@@ -3,8 +3,10 @@
         <div class="d-flex justify-content-center h-100">     
             <div class="user_card user_registercard">
                 <div class="links">
+                    <!-- <router-link to="/" class="mr-auto text-white" style="color: #a93f0c!important;font-weight:bold;">ホーム</router-link> -->
+                    <router-link to="/login" class="ml-auto text" style="color: #a93f0c!important;font-weight:bold;">ログイン</router-link>
                     <a href="/" class="mr-auto text-white" style="color: #a93f0c!important;font-weight:bold;">ホーム</a>
-                    <a href="/login" class="ml-auto text" style="color: #a93f0c!important;font-weight:bold;">ログイン</a>
+                    <!-- <a href="/login" class="ml-auto text" style="color: #a93f0c!important;font-weight:bold;">ログイン</a> -->
                 </div>
 
                 <div class="d-flex justify-content-center registerform_container">
