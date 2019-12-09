@@ -253,13 +253,12 @@
                 <h5 class="profile_header">特長 </h5>
 
                     <div  v-for="nurseprofile in nursing_profiles" :key="nurseprofile.id" class="col-md-12">
-                        <p v-html="nurseprofile.feature"></p>
-                        <!-- <div v-if="nurseprofile.features">
+                        <span v-if="nurseprofile.feature != null">
                             <p v-html="nurseprofile.feature"></p>
-                        </div>
-                        <div v-else>
+                        </span>
+                        <span v-else>
                             <p class="no-data-color">表示されるデータがありません。</p>
-                        </div> -->
+                        </span>
                     </div>
 
             </div>
@@ -1114,9 +1113,9 @@
                 <div class="col-12 m-b-20">
                     <h5 class="profile_subtit">医院からのお知らせ </h5>
 
-                    <p v-for="hospital in hospitals" :key="hospital.id" v-html="hospital.details_info" class="col-12">
-                        <!-- <span v-if="hospital.details_info">{{hospital.details_info}}</span>
-                        <span v-else><p class="no-data-color">表示されるデータがありません。</p></span> -->
+                    <p v-for="hospital in hospitals" :key="hospital.id" class="col-12">
+                        <span v-if="hospital.details_info != null">{{hospital.details_info}}</span>
+                        <span v-else><p class="no-data-color">表示されるデータがありません。</p></span>
 
                     </p>
                 </div>
@@ -1613,6 +1612,8 @@ export default {
 
                 this.axios.get('/api/profile/nursing/'+this.cusid) .then(response => {
                     this.nursing_profiles = response.data.feature;
+                    console.log('This is JSON value');
+                    console.log(this.nursing_profiles);
 
                     this.nus_method= response.data.method;
 
