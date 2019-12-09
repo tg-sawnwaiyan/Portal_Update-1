@@ -8898,7 +8898,7 @@ ul.nur-caro-card>li.list-group-item {
 
 @media only screen and (min-width: 1200px) and  (max-width: 1440px)  {
     #fav-history-page .card-carousel {
-        width: 1045px!important;
+        width: 783px!important;
     }
 }
 
@@ -8906,6 +8906,10 @@ ul.nur-caro-card>li.list-group-item {
     #fav-history-page .card-carousel {
         width: 1045px!important;
         margin-left: 20px;
+    }
+    .custom-table>.table th, .table td
+    {
+        
     }
     .main-content {
         width: 100%;

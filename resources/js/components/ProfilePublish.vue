@@ -1503,52 +1503,41 @@ export default {
         },
 
         created(){
-            if(this.loginuser == true) {
-            window.addEventListener('resize', this.handleResize)
-            this.handleResize();
-            if(this.window.width > 320 && this.window.width < 450) {
-                this.windowSize = 1;
-               
-            } 
-            
-            else if(this.window.width >= 450 && this.window.width < 768) {
-                this.windowSize = 2;
-              
-                console.log(this.window.width);
-               
-            } 
-            else if(this.window.width >= 768 && this.window.width < 992) {
-                this.windowSize = 4;
-               
-            }
-            else if(this.window.width >= 992 && this.window.width < 1024) {
-                this.windowSize = 4;               
-                console.log(this.window.width);
-                console.log(this.windowSize);
-            }
-            else if (this.window.width >= 1024 && this.window.width < 1280) {
-                this.windowSize = 6;
-                console.log('aaaaaaa');
-               console.log(this.window.width);
+                console.log('aaaaaa');
+                window.addEventListener('resize', this.handleResize);
+                this.handleResize();
+                console.log(this.window.width); 
+                if(this.window.width >= 320 && this.window.width < 450) {
+                    this.windowSize = 1;
                 
-            }
-            else if (this.window.width >= 1280 && this.window.width < 1440) {
-                this.windowSize = 8;
-               
-            }
-            else if (this.window.width >= 1440 && this.window.width < 1880) {
-                this.windowSize = 7;              
+                } 
                 
-            }
-        } else {
-            window.addEventListener('resize', this.handleResize)
-            this.handleResize();
-            if(this.window.width >=1280 && this.window.width < 1440) {
-                this.windowSize = 9;
-                  console.log("sss",this.window.width);
-               
-            } 
-        }
+                else if(this.window.width >= 450 && this.window.width < 768) {
+                    this.windowSize = 2;
+                
+                } 
+                else if(this.window.width >= 768 && this.window.width < 992) {
+                    this.windowSize = 4;
+                    console.log('tttt');
+                 console.log('768');
+                }
+                else if(this.window.width >= 992 && this.window.width < 1024) {
+                    this.windowSize = 7;
+                }
+                else if (this.window.width >= 1024 && this.window.width < 1280) {
+                    this.windowSize = 8;
+                    // console.log('1024');
+                    
+                }
+                else if (this.window.width >= 1280 && this.window.width < 1440) {
+                    this.windowSize = 9;
+                    
+                
+                }
+                else if (this.window.width >= 1440 && this.window.width < 1880) {
+                    this.windowSize = 9;              
+                    // console.log(this.paginationFactor);/
+                }
             // else if( this.window.width > 1700) {
 
             // }
@@ -1874,6 +1863,7 @@ export default {
             handleResize() {
                 this.window.width = window.innerWidth;
                 this.window.height = window.innerHeight;
+                console.log('hello');
             },
             changeBg(ch,a) {
                 $('.main-cost-table td').css({'background':'transparent'});
@@ -1943,9 +1933,9 @@ export default {
 
 
              activate:function(el){
-                 console.log(el)
+                //  console.log(el)
                  this.active_el = el;
-                console.log(this.active_el)
+                // console.log(this.active_el)
 
             },
 
@@ -2533,7 +2523,7 @@ export default {
   #pano-slider-page .card-carousel {       
         width: 415px!important;
     }
-     .thumbnails-pano
+     /* .thumbnails-pano
     {
     width: 200px;
     }
@@ -2543,20 +2533,20 @@ export default {
     .nav-content
     {
        margin-right: 48px; 
-    }
+    } */
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (max-width: 1023px) and (min-width: 769px) {
+/* @media only screen and (max-width: 1023px) and (min-width: 769px) {
   #pano-slider-page .card-carousel {        
         width: 415px!important;
     }
     
-}
+} */
 
-@media only screen and (max-width: 992px) and (min-width: 768px) {
+@media only screen and (max-width: 992px) and (min-width: 769px) {
   #pano-slider-page .card-carousel {
-        width: 415px!important;
+        width: 720px!important;
     }
      .thumbnails-pano
     {
@@ -2567,7 +2557,7 @@ export default {
     }
     .nav-content
     {
-       margin-right: 41px; 
+       margin-right: 30px; 
     }
 }
 /* Large devices (laptops/desktops, 992px and up) */
@@ -2575,31 +2565,35 @@ export default {
   #pano-slider-page .card-carousel {
         width: 823px!important;
     }
-    .thumbnails-pano
+    /* .thumbnails-pano
     {
     width: 827px;
     }
     #pano-slider-page{
-        margin-left: 15px;
+        margin-left: -7pxs;
     }
     .nav-content
     {
-       margin-right: 41px; 
-    }
+       margin-right: -8px; 
+    } */
     
 }
 @media only screen and (max-width: 1200px) and (min-width: 1025px) {
   #pano-slider-page .card-carousel {
-        width: 823px!important;
+        width: 930px!important;
     }
-    
-    #pano-slider-page{
+    /* .thumbnails-pano
+    {
+    width: 1000px;
+    }
+     */
+    /* #pano-slider-page{
         margin-left: -18px;
     }
      .nav-content
     {
        margin-right: -31px; 
-    }
+    } */
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
@@ -2609,15 +2603,15 @@ export default {
     }
     .thumbnails-pano
     {
-    width: 827px;
+    width: 1000px;
     }
-    #pano-slider-page{
+    /* #pano-slider-page{
         margin-left: 15px;
     }
     .nav-content
     {
        margin-right: 41px; 
-    }
+    } */
 }
 @media only screen and (max-width: 1880px) and (min-width: 1440px) {
     #pano-slider-page .card-carousel {
@@ -2625,7 +2619,7 @@ export default {
     }
     .thumbnails-pano
     {
-    width: 723px;
+    width: 1022px;
     }
     #pano-slider-page{
         margin-left: 15px;
