@@ -11,12 +11,12 @@
           <!-- <div class="info-box"></div> -->
           <div class="row map-wrap">
           <div class="col-lg-5 col-md-12 col-sm-12 float-left" style="padding-left: 75px;">
-            <h2 class="map-header" style="bottom: 120px;">赤ちゃんからおと<br/>なまでみんなで通<br/>える。そんな街<br/>名医が見つかります。</h2>
+            <h2 class="map-header" style="bottom: 120px;">赤ちゃんからおと<br/>なまでみんなで通<br/>える街の名医が見<br/>つかります。</h2>
 
             <!--search input-->
               <div class="wrap">
                 <div class="search">
-                    <input type="text" id="search-free-word" class="searchTerm" placeholder="地名、駅名、施設名などを入力（例：東京駅）">
+                    <input type="text" id="search-free-word" class="searchTerm" placeholder="地名、施設名などを入力（例：東京駅）">
                     <button type="submit" class="searchButton" @click="searchfreeword">
                       <i class="fas fa-search"></i> 検索
                   </button>
@@ -321,8 +321,8 @@
             </div> -->
           </div>
           </div>
-          <div id="hos_search" class="row hospitalselect">
-               <span v-if="!hos_data.length">
+          <div id="hos_search" class="col-12 hospitalselect pad-free">
+               <span v-if="norecord_msg">
                 <div class="container-fuid m-t-20">
                     <p class="nosearch-icon">
                         <svg x="0px" y="0px" width="30" height="30" viewBox="0 0 172 172" style=" fill:red;"><g transform=""><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><path d="M0,172v-172h172v172z" fill="none"></path><path d="M3.44,168.56v-165.12h165.12v165.12z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><path d="M0,172v-172h172v172z" fill="none"></path><path d="M3.44,168.56v-165.12h165.12v165.12z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><g fill="#666666"><path d="M74.53333,17.2c-31.59643,0 -57.33333,25.73692 -57.33333,57.33333c0,31.59641 25.7369,57.33333 57.33333,57.33333c13.73998,0 26.35834,-4.87915 36.24766,-12.97839l34.23203,34.23203c1.43802,1.49778 3.5734,2.10113 5.5826,1.57735c2.0092,-0.52378 3.57826,-2.09284 4.10204,-4.10204c0.52378,-2.0092 -0.07957,-4.14458 -1.57735,-5.5826l-34.23203,-34.23203c8.09923,-9.88932 12.97839,-22.50768 12.97839,-36.24766c0,-31.59641 -25.7369,-57.33333 -57.33333,-57.33333zM74.53333,28.66667c25.39939,0 45.86667,20.46729 45.86667,45.86667c0,25.39937 -20.46728,45.86667 -45.86667,45.86667c-25.39939,0 -45.86667,-20.46729 -45.86667,-45.86667c0,-25.39937 20.46728,-45.86667 45.86667,-45.86667zM91.67734,51.52161c-1.51229,0.03575 -2.94918,0.66766 -3.99765,1.75807l-13.14636,13.14636l-13.14636,-13.14636c-1.07942,-1.10959 -2.56162,-1.73559 -4.10963,-1.73568c-2.33303,0.00061 -4.43306,1.41473 -5.31096,3.57628c-0.8779,2.16155 -0.3586,4.6395 1.31331,6.26669l13.14636,13.14636l-13.14636,13.14636c-1.49777,1.43802 -2.10111,3.5734 -1.57733,5.58259c0.52378,2.0092 2.09283,3.57825 4.10203,4.10203c2.0092,0.52378 4.14457,-0.07956 5.58259,-1.57733l13.14636,-13.14636l13.14636,13.14636c1.43802,1.49778 3.5734,2.10113 5.5826,1.57735c2.0092,-0.52378 3.57826,-2.09284 4.10204,-4.10204c0.52378,-2.0092 -0.07957,-4.14458 -1.57735,-5.5826l-13.14636,-13.14636l13.14636,-13.14636c1.70419,-1.63875 2.22781,-4.1555 1.31865,-6.33798c-0.90916,-2.18248 -3.06468,-3.58317 -5.42829,-3.52739z"></path></g></g></g></svg>
@@ -339,11 +339,11 @@
               <tr>
                 <th>地域</th>
                 <td>
-                  <select id="selectCity" class="col-10 form-control custom-select mt-2 mb-2" v-model="id" @change="ChangeTownship">
+                  <select id="selectCity" class="col-9 form-control custom-select mt-2 mb-2" v-model="id" @change="ChangeTownship">
                      <option value="-1">▼市区町村</option>
                     <option v-for="city in cities" :value="city.id" :key="city.id">{{city.city_name}}</option>
                   </select>
-                  <button @click="toggleContent" class="btn col-2 seemore-btn">
+                  <button @click="toggleContent" class="btn col-3 seemore-btn">
                     <i class="fa" aria-hidden="true"></i>
                     <!-- <em>{{city.city_name}}</em> -->
                     <span id="close"><i class="fas fa-arrow-circle-up"></i> 市区町村エリアを閉じる</span>
@@ -389,52 +389,23 @@
 
                 <td>
 
-                    <div class="form-check form-check-inline row col-12 align-items-start ">
-                        <div class="col-sm-2" v-for="(subject,index) in subjects" :key="index"  style="padding-left:0px;">
-                            <div class="col-12 m-lr-0">
-                                  <strong> {{subject.name}} </strong>
-                            </div>
+                    <div class="form-check form-check-inline row col-12 align-items-start innerwrapper">
+                        <div class="col-md-4 col-sm-6" v-for="(subject,index) in subjects" :key="index">
+                          <div class="row col-12 m-lr-0 m-b-10 table-innerwrapper">
+                            <strong class="table-innertitle col-12 m-b-10">{{subject.name}}</strong>
 
-                            <div v-for="sub in sub_child" :key="sub.id+1" >
-                                 <div class="col-12" v-if="subject.id == sub.parent">
-                                        <label class=" form-check-label control control--checkbox"  style="padding-left:0px;">
-                                        <input class="form-check-input" type="checkbox" :id="sub.id" v-model="subjectID" :value="sub.id" >
-                                        {{sub.name}}
-                                        <div class="control__indicator"></div>
-                                        </label>
-                                 </div>
+                            <span class="col-6" v-for="ch in subject.child" :key="ch.id+1">
 
-                            </div>
+                                <label class="form-check-label control control--checkbox" style="padding-left:5px;">
+                                <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
+                                {{ch.name}}
+                                <div class="control__indicator"></div>
+                                </label>
+                            </span>
+                          </div>
 
                         </div>
                     </div>
-
-
-                  <!-- <div class="form-check form-check-inline col-sm-4" v-for="(subject,index) in subjects" :key="index"> -->
-
-
-
-
-
-                            <!-- <div class="form-check form-check-inline col-sm-4" v-for="sub in sub_child" :key="sub.id">
-                            <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-                            <input class="form-check-input" type="checkbox" :id="subject.id" v-model="subjectID" :value="subject.id">
-                            {{sub.name}}
-                            <div class="control__indicator"></div>
-                            </label>
-                            </div> -->
-
-
-                     <!-- </div> -->
-
-
-
-                    <!-- <label class="form-check-label" > -->
-                        <!-- <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-                      <input class="form-check-input" type="checkbox" :id="subject.id" v-model="subjectID" :value="subject.id">
-                      {{subject.name}}
-                      <div class="control__indicator"></div>
-                    </label> -->
 
                 </td>
               </tr>
@@ -458,33 +429,37 @@
           </table>
           <div class="col-12">
             <div class="row">
+
               <div id="job_detail" class="col-md-12 col-sm-12 pad-free offset" style="margin-top:20px;" v-for="hos in displayItems" :key="hos.id">
                 <div class="hos-content">
-                <div class="job-header">
-                  <div class="row pad-free">
-                    <div class="col-8">
-                      <h5 class="hos-title">
-                          <router-link :to="{name: 'profile', params: {cusid:hos.customer_id, type: 'hospital'}}" >{{hos.name}}</router-link>
-                      </h5>
-                      <div class="clearfix d-flex m-t-20">
-                        <span v-for="(sub,index) in subject" :key="index+'-'+sub.name+'-'+hos.id">
-                          <span v-if="sub.customer_id == hos.customer_id" class="job_status">
-                            {{sub.name}}
+                    <div class="job-header">
+                      <div class="row pad-free">
+                        <div class="col-8">
+                          <h5 class="hos-title">
+                            <router-link :to="{name: 'profile', params: {cusid:hos.customer_id, type: 'hospital'}}" class="pseudolink">{{hos.name}}</router-link>
+                          </h5>
+                        <div class="clearfix d-flex m-t-20">
+                          <span v-for="(sub,index) in subject" :key="index+'-'+sub.name+'-'+hos.id">
+                              <span v-if="sub.customer_id == hos.customer_id" class="job_status">
+                              {{sub.name}}
+                              </span>
                           </span>
-                        </span>
+                      </div>
+                        </div>
+                        <div class="col-4">
+                           <p class="text-right">
+                              <span class="btn fav-profile fav-item fav-color" :class="'view_pro_id'+hos.nursing_id" style="" @click="favAddFun('add',hos.nursing_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
+                              <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == 'check'" :class="'done_pro_id'+hos.nursing_id" style="color:#aaa;" @click="favAddFun('remove',hos.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
+                          </p>
+                          <!-- <p class="hos_phone float-right"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span>{{hos.phone}}</p> -->
+                        </div>
                       </div>
                     </div>
-                    <div class="col-4">
-                      <p class="hos_phone float-right"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span>{{hos.phone}}</p>
-                    </div>
-                  </div>
-
-
-                </div>
 
                 <div class="hos-body row clearfix">
                   <div class="col-3 job-img">
                     <img v-bind:src="'/upload/hospital_profile/' + hos.logo"  alt="img" class="img-fluid" @error="imgUrlAlt">
+                  <p class="hos_phone float-right m-t-20"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span>{{hos.phone}}</p>
                   </div>
                   <div class="col-4 job-box">
                     <table  class="table table-bordered table-sm">
@@ -628,7 +603,8 @@
         items: [],
         show_paginate: false,
         selected: undefined,
-        localst:''
+        localst:'',
+        norecord_msg: false,
       }
     },
     mounted() {
@@ -684,10 +660,16 @@
             this.timetable = response.data.timetable;
             this.specialfeatures = response.data.specialfeature;
             this.subject = response.data.subject;
+            this.subjects = response.data.subjects;
             if(this.hos_data.length > this.size) {
                 this.show_paginate = true;
             }else{
                 this.show_paginate = false;
+            }
+            if(this.hos_data.length != 0){
+              this.norecord_msg = false;
+            }else{
+              this.norecord_msg = true;
             }
           })
         },
@@ -725,10 +707,16 @@
                         this.specialfeatures = response.data.specialfeature;
                         this.getTownships = [];
                         this.subject = response.data.subject;
+                        this.subjects = response.data.subjects;
                         if(this.hos_data.length > this.size) {
                             this.show_paginate = true;
                         }else{
                             this.show_paginate = false;
+                        }
+                        if(this.hos_data.length != 0){
+                          this.norecord_msg = false;
+                        }else{
+                          this.norecord_msg = true;
                         }
                     }
                     else{
@@ -809,7 +797,7 @@
               this.getTownships = response.data.getTownships
               this.special_features = response.data.special_features
               this.subjects = response.data.subjects;
-              this.sub_child = response.data.sub_child;
+            //   this.sub_child = response.data.sub_child;
               //console.log("aaa",this.subjects);
               // this.id = id;
 
@@ -861,7 +849,7 @@
               this.getTownships = response.data.getTownships
               this.special_features = response.data.special_features
               this.subjects = response.data.subjects
-              this.sub_child = response.data.sub_child
+            //   this.sub_child = response.data.sub_child
               this.id = id;
 
             })
@@ -1078,7 +1066,7 @@
     padding: 10px;
     font-size: 100%;
 }
-/* .nosearch-icon{
+.nosearch-icon{
     border: 1px solid #b0abab;
     width: 60px;
     height: 60px;
@@ -1102,6 +1090,10 @@
     font-weight: bold;
     margin: 20px 0;
     text-align: center;
-} */
-
+}
+#job_detail .fav-profile{
+  position: relative;
+  top: 0;
+  right: 0;
+}
 </style>

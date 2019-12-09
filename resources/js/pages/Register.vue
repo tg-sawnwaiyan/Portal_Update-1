@@ -3,8 +3,10 @@
         <div class="d-flex justify-content-center h-100">     
             <div class="user_card user_registercard">
                 <div class="links">
+                    <!-- <router-link to="/" class="mr-auto text-white" style="color: #a93f0c!important;font-weight:bold;">ホーム</router-link> -->
+                    <router-link to="/login" class="ml-auto text" style="color: #a93f0c!important;font-weight:bold;">ログイン</router-link>
                     <a href="/" class="mr-auto text-white" style="color: #a93f0c!important;font-weight:bold;">ホーム</a>
-                    <a href="/login" class="ml-auto text" style="color: #a93f0c!important;font-weight:bold;">ログイン</a>
+                    <!-- <a href="/login" class="ml-auto text" style="color: #a93f0c!important;font-weight:bold;">ログイン</a> -->
                 </div>
 
                 <div class="d-flex justify-content-center registerform_container">
@@ -220,20 +222,21 @@
     },
       register() {
         var app = this
-        this.$auth.register({
-          data: {
-            img:app.images,
-            name:app.username,
-            email: app.email,
-            password: app.password,
-            comfirm_password: app.password_confirmation,
-            cities:app.city,
-            township:app.township,
-            types:app.type,
-            phone:app.phone
-            // address:app.address
-          },
-          success: function () {
+        console.log(app.images);
+        // testing
+        let fData = new FormData();
+                        fData.append('img', app.images)
+                        fData.append('name', app.username)
+                        fData.append('email', app.email)
+                        fData.append('password', app.password)
+                        fData.append('comfirm_password', app.password_confirmation)
+                        fData.append('cities', app.city)
+                        fData.append('township', app.township)
+                        fData.append('types', app.type)
+                        fData.append('phone', app.phone)
+        // end
+        this.axios.post('/api/register', fData)
+                            .then(response => {
             this.$swal({
                 position: 'top-end',
                 type: 'success',
@@ -246,15 +249,10 @@
             })
             //app.success = true
             //this.$router.push({name: 'login', params: {successRegistrationRedirect: true}})
-          },
-          error: function (res) {
-            console.log("error")
-            console.log(res.response.data.errors)
-            app.has_error = true
-            app.error = res.response.data.error
-            app.errors = res.response.data.errors || {}
-          }
-        })
+        }).catch(error=>{
+            if(error.response.status == 422){
+                app.errors = error.response.data.errors
+          }});
       }
 
     },

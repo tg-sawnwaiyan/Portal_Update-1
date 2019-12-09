@@ -783,6 +783,14 @@
                                 <div>{{comment.customer}}</div>
                         </div>
                     </div>
+
+                    <div class="comment-btn-wrapper" v-if="displayItems.length == 1">
+                        <p class="no-comment-title">Comment here</p>
+                         <div>
+                             <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn"> <i class="fas fa-pencil-alt"></i>
+                              <span>口コミを追加する</span></router-link>
+                         </div>
+                    </div>
                </div>
                <div v-else class="col-md-12"> <p class="no-data-color pb-3">表示される口コミがありません。</p></div>
                <div class="offset-md-4 col-md-8 mt-3" v-if="pagination">
@@ -852,7 +860,7 @@
                                     <div class="card-carousel--card">
                                         <!-- <div class="card-carousel--card--footer"> -->
 
-                                        <div class="thumbnails-pano">
+                                        <div class="thumbnails-pano" id="test">
                                             <div v-for="(image,index) in  panoimages" :key="image.id" :class="['thumbnail-image-panorama', (activePanoImage == index) ? 'active' : '']" @click="activatePanoImage(index)" >
                                                 <img  :src ="'/upload/nursing_profile/Imagepanorama/' + image" @error="imgUrlAlt">
                                             </div>
@@ -861,6 +869,7 @@
                                 </div>
                             </div>
                         </div>
+
                         </div>
 
                         <div class="nav-box"  @click="moveCarousel(1)" :disabled="atEndOfList">
@@ -1345,6 +1354,10 @@
                                 <div>{{comment.customer}}</div>
                         </div>
                     </div>
+
+                    <div class="card" v-if="displayItems.length == 1">
+                        This is Only one comment.
+                    </div>
                </div>
                <div v-else class="col-md-12"> <p class="no-data-color pb-3">表示される口コミがありません。</p></div>
                <div class="offset-md-4 col-md-8 mt-3" v-if="pagination">
@@ -1481,6 +1494,7 @@ export default {
         },
 
         created(){
+            if(this.loginuser == true) {
             window.addEventListener('resize', this.handleResize)
             this.handleResize();
             if(this.window.width > 320 && this.window.width < 450) {
@@ -1489,7 +1503,7 @@ export default {
             } 
             
             else if(this.window.width >= 450 && this.window.width < 768) {
-                this.windowSize = 4;
+                this.windowSize = 2;
               
                 console.log(this.window.width);
                
@@ -1504,19 +1518,28 @@ export default {
                 console.log(this.windowSize);
             }
             else if (this.window.width >= 1024 && this.window.width < 1280) {
-                this.windowSize = 8;
+                this.windowSize = 6;
                 console.log('aaaaaaa');
                console.log(this.window.width);
                 
             }
             else if (this.window.width >= 1280 && this.window.width < 1440) {
-                this.windowSize = 10;
+                this.windowSize = 8;
                
             }
             else if (this.window.width >= 1440 && this.window.width < 1880) {
-                this.windowSize = 10;              
+                this.windowSize = 7;              
                 
             }
+        } else {
+            window.addEventListener('resize', this.handleResize)
+            this.handleResize();
+            if(this.window.width >=1280 && this.window.width < 1440) {
+                this.windowSize = 9;
+                  console.log("sss",this.window.width);
+               
+            } 
+        }
             // else if( this.window.width > 1700) {
 
             // }
@@ -1537,7 +1560,7 @@ export default {
                 $(document).scroll(function() {
 
                     $(".fixed-nav").css({"position": "fixed","top":"70px"});
-                    var cur_pos = $(this).scrollTop();
+                    // var cur_pos = $(this).scrollTop();
 
                 //     $('.ele').each(function(active_el){
 
@@ -1549,12 +1572,12 @@ export default {
                 //    });
 
                     var cur_pos = $(this).scrollTop();
-                     $('.ele').each(function(active_el){
 
-                        // if($(this).position().top <= cur_pos){
-                        //     $('.top-fixed-btn.active').removeClass('active');
-                        //     $('.top-fixed-btn').eq(active_el).addClass('active');
-                        // }
+                     $('.ele').each(function(active_el){
+                        if($(this).position().top <= (cur_pos+71)){
+                            $('.top-fixed-btn.active').removeClass('active');
+                            $('.top-fixed-btn').eq(active_el).addClass('active');
+                        }
                     });
                     if (cur_pos >= 100) {
                         $(".fixed-nav").css({"position": "fixed","top":"70px"});
@@ -1568,6 +1591,14 @@ export default {
                 $(document).scroll(function() {
                     $(".fixed-nav").css({"position": "fixed","top":"100px"});
                     var cur_pos = $(this).scrollTop();
+
+                    $('.ele').each(function(active_el){
+                        if($(this).position().top <= (cur_pos+71)){
+                            $('.top-fixed-btn.active').removeClass('active');
+                            $('.top-fixed-btn').eq(active_el).addClass('active');
+                        }
+                    });
+
                     if (cur_pos >= 100) {
                         $(".fixed-nav").css({"position": "fixed","top":"100px"});
                     } else {
@@ -1903,9 +1934,9 @@ export default {
 
 
              activate:function(el){
-
+                 console.log(el)
                  this.active_el = el;
-
+                console.log(this.active_el)
 
             },
 
@@ -2455,6 +2486,18 @@ export default {
   #pano-slider-page .card-carousel {
         width: 200px!important;
     }
+  .thumbnails-pano
+    {
+    width: 827px;
+    }
+    #pano-slider-page{
+        margin-left: 3px;
+    }
+    .nav-content
+    {
+       margin-right: 16px; 
+    }
+    
 }
 
 
@@ -2462,46 +2505,123 @@ export default {
   #pano-slider-page .card-carousel {
         width: 207px !important;
     }
+     .thumbnails-pano
+    {
+    width: 827px;
+    }
+    #pano-slider-page{
+        margin-left: -17px;
+    }
+    .nav-content
+    {
+       margin-right: -35px; 
+    }
+ 
+   
 }
 
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (max-width: 1023px) and (min-width: 768px) {
-  #pano-slider-page .card-carousel {        
-        width: 415px!important;
-    }
-}
-@media only screen and (max-width: 768px) and (min-width: 449px) {
+@media only screen and (max-width: 768px) and (min-width: 451px) {
   #pano-slider-page .card-carousel {       
         width: 415px!important;
     }
+     .thumbnails-pano
+    {
+    width: 200px;
+    }
+    #pano-slider-page{
+        margin-left: 28px;
+    }
+    .nav-content
+    {
+       margin-right: 48px; 
+    }
 }
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 1023px) and (min-width: 769px) {
+  #pano-slider-page .card-carousel {        
+        width: 415px!important;
+    }
+    
+}
+
 @media only screen and (max-width: 992px) and (min-width: 768px) {
   #pano-slider-page .card-carousel {
         width: 415px!important;
     }
+     .thumbnails-pano
+    {
+    width: 827px;
+    }
+    #pano-slider-page{
+        margin-left: 15px;
+    }
+    .nav-content
+    {
+       margin-right: 41px; 
+    }
 }
 /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (max-width: 1024px) and (min-width: 992px) {
+@media only screen and (max-width: 1024px) and (min-width: 993px) {
   #pano-slider-page .card-carousel {
         width: 823px!important;
     }
+    .thumbnails-pano
+    {
+    width: 827px;
+    }
+    #pano-slider-page{
+        margin-left: 15px;
+    }
+    .nav-content
+    {
+       margin-right: 41px; 
+    }
+    
 }
-@media only screen and (max-width: 1200px) and (min-width: 992px) {
+@media only screen and (max-width: 1200px) and (min-width: 1025px) {
   #pano-slider-page .card-carousel {
         width: 823px!important;
+    }
+    
+    #pano-slider-page{
+        margin-left: -18px;
+    }
+     .nav-content
+    {
+       margin-right: -31px; 
     }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (max-width: 1440px) and (min-width: 1200px) {
+@media only screen and (max-width: 1440px) and (min-width: 1201px) {
    #pano-slider-page .card-carousel {
         width: 930px!important;
+    }
+    .thumbnails-pano
+    {
+    width: 827px;
+    }
+    #pano-slider-page{
+        margin-left: 15px;
+    }
+    .nav-content
+    {
+       margin-right: 41px; 
     }
 }
 @media only screen and (max-width: 1880px) and (min-width: 1440px) {
     #pano-slider-page .card-carousel {
         width: 1033px!important;
     }
+    .thumbnails-pano
+    {
+    width: 723px;
+    }
+    #pano-slider-page{
+        margin-left: 15px;
+    }
+   
 }
 
 

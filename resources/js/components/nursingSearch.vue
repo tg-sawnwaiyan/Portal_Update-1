@@ -11,11 +11,12 @@
         <div class="row map-wrap"  id="searchMap">
           <!-- search map and path -->
             <div class="col-lg-5 col-md-12 col-sm-12 float-left" style="padding-left: 75px;">
-            <h2 class="map-header">あなたらしい<br/>暮らしができる<br/> 老人ホームが <br/>見つかります。</h2>
+            <!-- <h2 class="map-header">あなたらしい<br/>暮らしができる<br/> 老人ホームが <br/>見つかります。</h2> -->
+            <h2 class="map-header">あなたらしい暮ら<br/>しができる。そん<br/>な老人ホームが見 <br/>つかります。</h2>
             <!--search input-->
               <div class="wrap">
                 <div class="search">
-                    <input type="text"  id="search-free-word" class="searchTerm" placeholder="地名、駅名、施設名などを入力（例：東京駅）">
+                    <input type="text"  id="search-free-word" class="searchTerm" placeholder="地名、施設名などを入力（例：東京駅）">
                     <button class="searchButton"  @click="searchfreeword" >
                       <i class="fas fa-search"></i> 検索
                   </button>
@@ -385,9 +386,18 @@
         <div class="row" >
           <div class="col-sm-12 col-md-12">
           <div style="position: relative;">
-              <div class="overlay standard hidden">&nbsp;</div>
 
-              <div id="mymap" class="select m-t-10 m-b-10"></div>
+            <div v-if="loading" class=" m-t-10 m-b-10 text-center overlay">
+                <div class="lds-ripple m-t-10 m-b-10" ><div></div><div></div></div>
+            </div>
+              <!-- <div class="overlay standard hidden">&nbsp;</div> -->
+              <div v-if="!loading" class="m-t-10 m-b-10">
+                <div id="mymap"></div>
+              </div>
+
+
+
+              <!-- <div id="mymap" class="select m-t-10 m-b-10"></div> -->
 
           </div>
           </div>
@@ -396,7 +406,7 @@
 
         <!-- nursing list -->
        <div id="nursing-search" >
-           <span v-if="!nus_data.length">
+           <span v-if="norecord_msg">
                 <div class="container-fuid m-t-20">
                     <p class="nosearch-icon">
                         <svg x="0px" y="0px" width="30" height="30" viewBox="0 0 172 172" style=" fill:red;"><g transform=""><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><path d="M0,172v-172h172v172z" fill="none"></path><path d="M3.44,168.56v-165.12h165.12v165.12z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><path d="M0,172v-172h172v172z" fill="none"></path><path d="M3.44,168.56v-165.12h165.12v165.12z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><g fill="#666666"><path d="M74.53333,17.2c-31.59643,0 -57.33333,25.73692 -57.33333,57.33333c0,31.59641 25.7369,57.33333 57.33333,57.33333c13.73998,0 26.35834,-4.87915 36.24766,-12.97839l34.23203,34.23203c1.43802,1.49778 3.5734,2.10113 5.5826,1.57735c2.0092,-0.52378 3.57826,-2.09284 4.10204,-4.10204c0.52378,-2.0092 -0.07957,-4.14458 -1.57735,-5.5826l-34.23203,-34.23203c8.09923,-9.88932 12.97839,-22.50768 12.97839,-36.24766c0,-31.59641 -25.7369,-57.33333 -57.33333,-57.33333zM74.53333,28.66667c25.39939,0 45.86667,20.46729 45.86667,45.86667c0,25.39937 -20.46728,45.86667 -45.86667,45.86667c-25.39939,0 -45.86667,-20.46729 -45.86667,-45.86667c0,-25.39937 20.46728,-45.86667 45.86667,-45.86667zM91.67734,51.52161c-1.51229,0.03575 -2.94918,0.66766 -3.99765,1.75807l-13.14636,13.14636l-13.14636,-13.14636c-1.07942,-1.10959 -2.56162,-1.73559 -4.10963,-1.73568c-2.33303,0.00061 -4.43306,1.41473 -5.31096,3.57628c-0.8779,2.16155 -0.3586,4.6395 1.31331,6.26669l13.14636,13.14636l-13.14636,13.14636c-1.49777,1.43802 -2.10111,3.5734 -1.57733,5.58259c0.52378,2.0092 2.09283,3.57825 4.10203,4.10203c2.0092,0.52378 4.14457,-0.07956 5.58259,-1.57733l13.14636,-13.14636l13.14636,13.14636c1.43802,1.49778 3.5734,2.10113 5.5826,1.57735c2.0092,-0.52378 3.57826,-2.09284 4.10204,-4.10204c0.52378,-2.0092 -0.07957,-4.14458 -1.57735,-5.5826l-13.14636,-13.14636l13.14636,-13.14636c1.70419,-1.63875 2.22781,-4.1555 1.31865,-6.33798c-0.90916,-2.18248 -3.06468,-3.58317 -5.42829,-3.52739z"></path></g></g></g></svg>
@@ -405,7 +415,7 @@
                      <p class="nosearch">条件を変更してみると、該当施設が増える可能性がございますので、再度、ご検索ください。</p>
                 </div>
             </span>
-        <div class="row" v-else>
+        <div class="row" v-if="nus_data.length > 0">
           <div class="card-carousel-wrapper col-12">
             <div class="nav-box" @click="moveCarousel(-1)" :disabled="atHeadOfList">
               <div class="nav-content mr-2">
@@ -421,20 +431,20 @@
                         <table class="nursingSearch-tbl">
                         <tbody>
                           <tr >
-                            <td class="pt-2 pb-2"  v-for="items in nus_data" @mouseover="mouseover(items.alphabet)" @mouseleave="mouseleave(items.alphabet)" :id="items.alphabet" :key="items.nursing_id">
+                            <td class="pt-2 pb-2"  v-for="(items,index) in nus_data" @mouseover="mouseover(items.alphabet)" @mouseleave="mouseleave(items.alphabet)" :id="items.alphabet" :key="items.nursing_id">
                                 <div class="wd-in">
                                     <p class="mb-2 clearfix"><span class="num-room">{{items.num_rooms}} </span><span class="float-right">{{items.date_of_establishment}}</span></p>
 
-                                    <p class="item-fav btn btn-sm" :class="'view_pro_id'+items.nursing_id" style="display:block;" @click="favAddFun('add',items.nursing_id);">
-                                        <i class="fas fa-plus-square" style="color:#c40000;"></i> お気に入りに追加
+                                    <p class="item-fav btn btn-sm" v-if="items.fav_check == ''" :class="'view_pro_id'+items.nursing_id" style="" @click="favAddFun('add',items.nursing_id,index);">
+                                        <i class="fas fa-plus-square" style="color:#c40000;"></i> お気に入りに追加 {{items.fav_check}}
                                     </p>
 
-                                    <p class="item-fav btn btn-sm" v-if="items.fav_check == 'check'" :class="'done_pro_id'+items.nursing_id" style="color:#aaa;display:none;" @click="favAddFun('remove',items.nursing_id);">
+                                    <p class="item-fav btn btn-sm" v-if="items.fav_check == 'check'" :class="'done_pro_id'+items.nursing_id" style="color:#aaa;" @click="favAddFun('remove',items.nursing_id,index);">
                                         <i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み
                                     </p>
 
                                     <p class="item-name"><img :src="'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld='+items.alphabet+'|ff9563|000000'" alt="">
-                                        <router-link :to="{name: 'profile', params: {cusid:items.cus_id, type: 'nursing'}}" class="pseudolink" style="font-weight:bold;#ff6117!important">{{items.name}}</router-link>
+                                        <router-link :to="{name: 'profile', params: {cusid:items.cus_id, type: 'nursing'}}" class="pseudolink" style="font-weight:bold;color:#ff6117 !important">{{items.name}}</router-link>
                                     </p>
                                     <p>{{items.city_name}} <i class="fas fa-angle-double-right" style="color:#b9b5b5;"></i> {{items.township_name}}</p>
                                 </div>
@@ -451,7 +461,7 @@
                                         </div>
                                         <div class="col-8 col-lg-8 col-md-7 m-b-15">
                                             <ul class="nursingSearch-list m-l-10">
-                                                <li class="d-flex"><p class="text-truncate"><span>住所</span><span> {{items.township_name}}{{items.address}}</span></p></li>
+                                                <li class="d-flex"><p class="text-truncate"><span>住所</span><span> {{items.township_name}} {{items.address}}</span></p></li>
                                                 <li class="d-flex"><span>電話 </span><span>{{items.phone}}</span></li>
                                                 <li class="d-flex"><span>サイト</span><a :href="'http://'+ items.website" target="_blank"  class="text-truncate">{{items.website}}</a></li>
                                             </ul>
@@ -496,15 +506,16 @@
           </div>
          <div id="nursingView">
          <h5 class="profile_subtit">もっと探す条件</h5>
-      </div>
+
+        </div>
       <!--list-->
           <div id="filtertable">
-       <table class="table table-bordered col-12 box-wrap select">
+
+           <table class="table table-bordered col-12 box-wrap">
               <tbody>
                 <tr>
                   <th>地域</th>
                   <td>
-
                         <div class="form-check form-check-inline col-sm-2"   v-for="township in getTownships" :key="township.id">
                         <label class="form-check-label control control--checkbox" style="padding-left:5px;">
                          <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @click="check">
@@ -602,11 +613,11 @@
       </table>
       </div>
     </div>
-      <!--end list-->
+      <!--end search list-->
 
         <div class=" col-12">
             <div class="row">
-                <div id="job_detail" class="col-md-6 col-sm-12" style="margin-top:20px;" v-for="nus in displayItems" :key="nus.id">
+                <div id="job_detail" class="col-md-6 col-sm-12" style="margin-top:20px;" v-for="(nus,index) in displayItems" :key="nus.id">
                     <div class="nur-content">
                     <div class="job-header">
                     <div class="row pad-free">
@@ -622,8 +633,8 @@
                         </div>
 
                         <div class="col-4 text-right">
-                        <span class="btn fav-profile fav-item fav-color" v-if="!checkarr[nus.nursing_id]" :class="'view_pro_id'+nus.nursing_id" style="display:block;" @click="favAddFun('add',nus.nursing_id);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
-                        <span class="btn fav-profile fav-item fav-color" v-if="checkarr[nus.nursing_id]" :class="'done_pro_id'+nus.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',nus.nursing_id);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
+                        <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == ''" :class="'view_pro_id'+nus.nursing_id" style="display:block;" @click="favAddFun('add',nus.nursing_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
+                        <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == 'check'" :class="'done_pro_id'+nus.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',nus.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                         </div>
                     </div>
                     </div>
@@ -748,8 +759,10 @@
   import {
     eventBus
   } from '../event-bus.js';
-  import jp_cities from '../google-map-kml/jp_cities.json';
-  import jp_township from '../google-map-kml/jp_township.json';
+  // import jp_cities from '../google-map-kml/jp_cities.json';
+  // import jp_township from '../google-map-kml/jp_township.json';
+  // import five_percent from '../google-map-kml/japan-cities_5percent.json';
+
   export default {
 
     name: "mymap",
@@ -783,10 +796,9 @@
         medical_acceptance: [],
         show: false,
         showOne: true,
-        checkarr: [],
         currentOffset: 0,
         windowSize: 4,
-        paginationFactor: 500,
+        paginationFactor: 328,
         window:{
           width: 0,
           height: 0
@@ -813,13 +825,15 @@
         onchangeid:0,
         localst:'',
         selected: undefined,
-        checkarr:[]
+        loading: false,
+        coordinate:[],
+        norecord_msg: false,
       }
     },
     created(){
       window.addEventListener('resize', this.handleResize)
             this.handleResize();
-            if(this.window.width > 320 && this.window.width < 450) {
+            if(this.window.width >= 320 && this.window.width < 450) {
                 this.windowSize = 1;
 
             }
@@ -831,29 +845,50 @@
 
             }
             else if(this.window.width >= 768 && this.window.width < 992) {
-                this.windowSize = 2;
+                this.windowSize = 1;
+                this.paginationFactor=341;
 
             }
             else if(this.window.width >= 992 && this.window.width < 1024) {
                 this.windowSize = 2;
-                console.log(this.window.width);
-                console.log(this.windowSize);
+                this.paginationFactor=398;
+
+                // console.log(this.window.width);
+                // console.log(this.windowSize);
             }
-            else if (this.window.width >= 1024 && this.window.width < 1280) {
+
+            else if (this.window.width >= 1024 && this.window.width < 1200) {
                 this.windowSize = 3;
-                console.log('aaaaaaa');
+                this.paginationFactor=412;
                console.log(this.window.width);
 
             }
+
+             else if (this.window.width >= 1200 && this.window.width < 1280) {
+                this.windowSize = 2;
+                this.paginationFactor=412;
+              //  console.log(this.window.width);
+
+            }
+
             else if (this.window.width >= 1280 && this.window.width < 1440) {
-                this.windowSize = 4;
-               console.log(this.window.width);
+                this.windowSize = 3;
+                this.paginationFactor=329;
+                // this.paginationFactor=355;
+                // console.log(this.window.width);
+                // console.log(this.paginationFactor);
+                // console.log(this.windowSize);
+
 
             }
+
             else if (this.window.width >= 1440 && this.window.width < 1880) {
-                this.windowSize = 4;
+                this.windowSize = 3;
+                this.paginationFactor=319;
+
 
             }
+
             // else if( this.window.width > 1700) {
 
             // }
@@ -865,6 +900,7 @@
             $('#upper-tab').addClass('nursing-borderColor');
         },
     computed: {
+
       atEndOfList() {
         return this.currentOffset <= (this.paginationFactor * -1) * (this.nus_data.length - this.windowSize);
       },
@@ -952,7 +988,7 @@ searchfreeword(){
 
           },})
           .then((response) => {
-
+              console.log(response)
             if(response.data.nursing.length > 0)
             {
                 $("#mymap").css("display", "block");
@@ -1018,6 +1054,7 @@ moveCarousel(direction) {
         },
 // map onclick function
 getStateClick(e) {
+
             this.township_id= -1;
             this.moving_in = -1;
             this.per_month = -1;
@@ -1051,6 +1088,7 @@ getStateClick(e) {
                   $("#mymap").css("display", "block");
                   $("#nursing-search").css("display", "block");
                   $("#filtertable").css("display", "block");
+
                   this.changeMap(response)
                 })
 
@@ -1059,6 +1097,7 @@ getStateClick(e) {
 // map onclick function
 // map change dropdown function
 nursingSearchData(index){
+
             if(index == 1) //if choose city
             {
                 this.township_id = -1;
@@ -1097,6 +1136,7 @@ nursingSearchData(index){
 
                 })
                 .then((response) => {
+
                     this.changeMap(response)
 
                 })
@@ -1110,77 +1150,120 @@ nursingSearchData(index){
 // map change dropdown function
 // make infowindow, marker , google map
 coordinates(theCity, lat, lng){
+            var mapProp = {
+                  center: new google.maps.LatLng(lat, lng),
+                  zoom:7,
+                  mapTypeId: google.maps.MapTypeId.ROADMAP,
+                  options: {
+                  gestureHandling: 'greedy'
+                }
+              };
 
-
-                const result = jp_township.features //jp_cities
-                const jp_city = jp_cities.features //convert
-
+                this.map = new google.maps.Map(document.getElementById("mymap"), mapProp);
+                this.loading = true
+                let  coor =[];
                 var townshipName = [];
+                var town = [];
+                const city_coordinates = [];
+                const arr = [];
+
+                // get township postalcode
                 for (let i = 0; i < this.getTownships.length; i++) {
                     if(this.getTownships[i]['id'] == this.township_id){
-                        townshipName.push(this.getTownships[i]['township_name'])
+                        townshipName.push(this.getTownships[i]['postalcode'])
+                        town.push(this.getTownships[i]['township_name'])
+                    }else{
+                      console.log('tonw err')
                     }
                 }
+
                 var township_name = townshipName.toString();
-                const coordinates = []
-                const city_coordinates = []
 
-                if(township_name == ''){
-                    for (var i = 0; i < jp_city.length; i++) {
-                    if (jp_city[i].properties.NAME_0 == theCity) {
 
-                    if(jp_city[i].geometry.hasOwnProperty('geometries'))
-                    {
-                        for(var j =0;j< jp_city[i].geometry.geometries.length;j++)
-                    {
+                if(township_name== ''){
 
-                        city_coordinates.push(jp_city[i].geometry.geometries[j]['coordinates']) ;
-                    }
-                    }
-                    else{
-                        city_coordinates.push(jp_city[i].geometry['coordinates']) ;
+                  this.axios.get("/api/cityJson").then(respon => {
+                          var res = respon.data
+                          this.loading = false
+                        for (var i = 0; i < res.length; i++) {
+                        if (res[i].properties.NAME_1 == theCity) {
 
+                        if(res[i].geometry.hasOwnProperty('geometries')){
+
+                            for(var j =0;j < res[i].geometry.geometries.length;j++){
+
+                            city_coordinates.push(res[i].geometry.geometries[j]['coordinates']) ;
+                          }
+                        }
+                        else{
+                          city_coordinates.push(res[i].geometry['coordinates']) ;
+                          }
+                        }
                     }
-                    }
-                }
+                     this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
+                     this.boundariesGoogleMap(lat,lng,this.coordinate);
+
+
+                  }); //end get city
                 }else{
-                    for (var i = 0; i < result.length; i++) {
-                    if (result[i].properties.NL_NAME_1 == theCity && result[i].properties.NL_NAME_2 == township_name) {
-                    coordinates.push(result[i].geometry['coordinates'])
+                  this.axios.get("/api/townshipJson").then(res => {
+                    var data = res.data
+                    this.loading = false
+                    var coordinates = [];
+                    for (let i = 0; i < data.length; i++) {
+
+                      if(data[i]['properties']['N03_007'] == township_name){
+                        coordinates.push(data[i]['geometry']['coordinates'])
+                      }else{
+                        console.log('errr')
+                      }
+
                     }
-                }
-                }
 
-                if(township_name == ''){
-                    var coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
-
-                }else{
                     var co = coordinates.reduce((acc, val) => acc.concat(val), []);
-                    var coordinate = co.reduce((acc, val) => acc.concat(val), []);
-                }
+                    var coord =  [];
+                    for(let key in co)coord= coord.concat(co[key])
+                    this.coordinate = coord
+                    this.boundariesGoogleMap(lat,lng,this.coordinate);
 
-                var data = {
-                    type: "Feature",
-                    geometry: {
-                    "type": "Polygon",
-                    "coordinates": coordinate
-                    },
-                };
-                var mapProp = {
-                    center: new google.maps.LatLng(lat, lng),
-                    zoom: 7,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP,
-                };
 
-                    this.map = new google.maps.Map(document.getElementById("mymap"), mapProp);
-                    this.map.data.addGeoJson(data);
-                    this.map.data.setStyle({
-                    strokeColor: "red",
-                    fillColor: 'red',
-                    strokeOpacity: 0.8,
-                    fillOpacity: 0.1,
-                    strokeWeight: 1
-                    })
+
+                  }); //end get township
+                }//end else
+
+
+
+},
+
+boundariesGoogleMap(lat,lng,coor){
+      try {
+        var data = {
+              type: "Feature",
+              geometry: {
+              "type": "Polygon",
+              "coordinates": coor
+              },
+          };
+          this.map.data.addGeoJson(data);
+      } catch (error) {
+        var coor = [coor]
+        var data = {
+              type: "Feature",
+              geometry: {
+              "type": "Polygon",
+              "coordinates": coor
+              },
+          };
+          this.map.data.addGeoJson(data);
+      }
+
+          this.map.data.setStyle({
+          strokeColor: "red",
+          fillColor: 'red',
+          strokeOpacity: 0.8,
+          fillOpacity: 0.1,
+          strokeWeight: 1
+          })
 },
 infoWindow(item, mmarker){
         var infoWindowContent = new Array();
@@ -1236,13 +1319,10 @@ infoWindow(item, mmarker){
             ])
         }
          var markers = mmarker;
-        var bounds = new google.maps.LatLngBounds();
+         var bounds = new google.maps.LatLngBounds();
         this.markerHover = [];
         var infoWindow = new google.maps.InfoWindow(),marker, i;
         }
-
-
-
         for (let i = 0; i < this.markers.length; i++) {
             var beach = this.markers[i]
             var lats = this.markers[i]['lat']
@@ -1250,15 +1330,19 @@ infoWindow(item, mmarker){
             var img = this.markers[i]['alphabet']
             var myLatLng = new google.maps.LatLng(lats, lngs);
             var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
-
-
             marker = new google.maps.Marker({
             position: position,
             map: this.map,
+            zoom:7,
             icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' + img + '|ff9563|000000',
-            zoom: 6,
-            title: this.markers[i]['name']
+            title: this.markers[i]['name'],
+            options: {
+              gestureHandling: 'greedy'
+            }
             });
+            // bounds.extend(position);
+
+
 
             google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
@@ -1273,6 +1357,8 @@ infoWindow(item, mmarker){
             });
 
         }
+        // this.map.fitBounds(bounds);
+        // this.map.panToBounds(bounds);
         },
 
 // make infowindow, marker , google map
@@ -1283,7 +1369,7 @@ infoWindow(item, mmarker){
             // for clean googleMap
                 var lat = citylatlng[0]['latitude']
                 var lng = citylatlng[0]['longitude']
-                var theCity = citylatlng[0]['city_eng']
+                var theCity = citylatlng[0]['city_name']
                 const result = jp_township.features
                 const coordinates = []
                 for (var i = 0; i < result.length; i++) {
@@ -1301,7 +1387,7 @@ infoWindow(item, mmarker){
                 };
                 var mapProp = {
                     center: new google.maps.LatLng(lat, lng),
-                    zoom: 6,
+                    zoom: 5,
                     mapTypeId: google.maps.MapTypeId.ROADMAP,
                 };
                 this.map = new google.maps.Map(document.getElementById("mymap"), mapProp);
@@ -1316,6 +1402,7 @@ infoWindow(item, mmarker){
         },
 // make infowindow, marker , google map
 changeMap(response){
+
                 $('.select').removeClass('select');
                 $('#searchMap').addClass('select');
                 $('#showSearchMap').removeClass('select');
@@ -1323,11 +1410,16 @@ changeMap(response){
                 this.cities = response.data.city
                 this.getCity = response.data.getCity
                 this.getTownships = response.data.getTownships
+                console.log(this.getTownships);
                 this.special_features = response.data.special_features
                 this.fac_types = response.data.fac_types
                 this.medical_acceptance = response.data.medical_acceptance
                 this.nus_data = response.data.nursing
-                console.log(this.nus_data);
+                if(this.nus_data.length != 0){
+                    this.norecord_msg = false;
+                }else{
+                    this.norecord_msg = true;
+                }
                 this.markers = response.data.nursing;
 
                 var mmarker = new Array();
@@ -1341,7 +1433,7 @@ changeMap(response){
                 if(this.getCity.length > 0) //if city  choose
                 {
 
-                    const theCity = response.data.getCity[0]['city_name']
+                    const theCity = response.data.getCity[0]['city_eng']
                     const lat = response.data.getCity[0]['latitude']
                     const lng = response.data.getCity[0]['longitude']
 
@@ -1349,6 +1441,7 @@ changeMap(response){
                     if(this.markers.length > 0 )
                     {
                         this.coordinates(theCity,lat,lng);
+
                         this.infoWindow(item, mmarker);
                     }
                     else{
@@ -1356,8 +1449,7 @@ changeMap(response){
                     }
                 }
                 else{ //if city not choose
-
-                     this.coordinates(null,this.markers[0]['lat'],this.markers[0]['lng']);
+                     this.coordinates(null,'38.25759','140.8667');
                      this.infoWindow(item, mmarker);
                 }
 
@@ -1450,19 +1542,10 @@ search(){
             if(this.nus_data.length > 0){
 
                 for (var i = 0; i < this.searchmarkers.length; i++) {
-
-                    if(this.searchmarkers[i]['fav_check'] == 'check')
-                    {
-                      this.checkarr[this.searchmarkers[i]['nursing_id']] = true;
-                    }
-                    else{
-                      this.checkarr[this.searchmarkers[i]['nursing_id']] = false;
-                    }
-
                     mmarker.push([this.searchmarkers[i]['alphabet'], this.searchmarkers[i]['lat'], this.searchmarkers[i]['lng']])
                     item.push(this.searchmarkers[i])
                 }
-                const theCity = this.searchmarkers[0]['city_name']
+                const theCity = this.searchmarkers[0]['city_eng']
                 const lat = this.searchmarkers[0]['lat']
                 const lng = this.searchmarkers[0]['lng']
 
@@ -1471,13 +1554,13 @@ search(){
                 this.coordinates(theCity,lat,lng)
 
                 this.infoWindow(item, mmarker);
-
+                this.norecord_msg = false;
             }
             else{
                 //if choose city
                 if(this.citylatlng.length > 0)
                 {
-                    const theCity = this.citylatlng[0]['city_name']
+                    const theCity = this.citylatlng[0]['city_eng']
                     const lat = this.citylatlng[0]['latitude']
                     const lng = this.citylatlng[0]['longitude']
 
@@ -1487,24 +1570,15 @@ search(){
                   console.log('else');
                      var mapProp = {
                      center: new google.maps.LatLng(35.6804, 139.7690),
-                     zoom: 8,
+                     zoom: 5,
                      mapTypeId: google.maps.MapTypeId.ROADMAP,
                      };
                     this.map = new google.maps.Map(document.getElementById("mymap"), mapProp);
                 }
-
+                this.norecord_msg = true;
               }
-
-
-
             this.show_paginate = true;
-
-
             });
-
-console.log('check')
-  console.log(this.checkarr);
-
         },
         // hover animate function
         mouseover(index) {
@@ -1539,13 +1613,9 @@ console.log('check')
         imgUrlAlt(event) {
             event.target.src = "images/noimage.jpg"
         },
-        favAddFun(status,index){
+        favAddFun(status,index,ind){
             if(status == 'add'){
-
-                  this.checkarr[index] = true;
-
-                  $('.done_pro_id'+index).css('display','block');
-                  $('.view_pro_id'+index).css('display','none');
+                  this.nus_data[ind].fav_check = 'check';
 
                 if(localStorage.getItem("nursing_fav")){
                     var fav_arr = JSON.parse("[" + localStorage.getItem("nursing_fav") + "]");
@@ -1563,9 +1633,7 @@ console.log('check')
             }
             else{
 
-                this.checkarr[index] = false;
-                $('.done_pro_id'+index).css('display','none');
-                $('.view_pro_id'+index).css('display','block');
+                this.nus_data[ind].fav_check = '';
 
                 var fav_arr = JSON.parse("[" + localStorage.getItem("nursing_fav") + "]");
                 var index = fav_arr.indexOf(index);
@@ -1608,6 +1676,42 @@ console.log('check')
 </script>
 
 <style scoped>
+.lds-ripple {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  top:230px;
+}
+.lds-ripple div {
+  position: absolute;
+  border: 4px solid black;
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+.lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+@keyframes lds-ripple {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
+  }
+}
+
+
+
 .highlight{
      background-color: #ccff60 !important;
     background-image: none;
@@ -1781,7 +1885,7 @@ console.log('check')
   }
   /* #mymap {background: transparent url('/images/google/loading.jpg') no-repeat center center;} */
 div#holder {
-    position: relative;
+    position: absolute;
 }
 
 .hidden {
@@ -1793,7 +1897,7 @@ div.overlay {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: #fff;
+    background-color: #5e5e5e;
     opacity: 0.7;
     z-index: 1;
 }
@@ -1883,6 +1987,7 @@ div.overlay.standard { background: #fff url('/images/google/loading.jpg') no-rep
 
   #nursing-search .card-carousel--overflow-container {
     overflow: hidden;
+    /* width: 992px; */
   }
 
   #nursing-search .card-carousel--nav__left,
@@ -2080,31 +2185,56 @@ div.overlay.standard { background: #fff url('/images/google/loading.jpg') no-rep
 }
 @media only screen and (max-width: 992px) and (min-width: 768px) {
    #nursing-search .card-carousel {
-        width: 560px!important;
+        width: 342px!important;
     }
+           .wd-in {
+    width: 320px;
+}
 }
 /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (max-width: 1024px) and (min-width: 992px) {
+/* @media only screen and (max-width: 1024px) and (min-width: 992px) {
    #nursing-search .card-carousel {
         width: 823px!important;
     }
+        .wd-in {
+    width: 381px;
 }
-@media only screen and (max-width: 1200px) and (min-width: 992px) {
+} */
+
+@media only screen and (max-width: 1020px) and (min-width: 992px) {
    #nursing-search .card-carousel {
         width: 823px!important;
     }
+        .wd-in {
+    width: 377px;
+}
+}
+@media only screen and (max-width: 1200px) and (min-width: 1024px) {
+   #nursing-search .card-carousel {
+        width: 827px!important;
+    }
+    .wd-in {
+    width: 391px;
+}
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (max-width: 1440px) and (min-width: 1200px) {
+@media only screen and (max-width: 1440px) and (min-width: 1201px) {
     #nursing-search .card-carousel {
+        /* width: 988px!important; */
         width: 988px!important;
     }
+    .wd-in {
+    width: 308px;
+}
 }
 @media only screen and (max-width: 1880px) and (min-width: 1440px) {
      #nursing-search .card-carousel {
         width: 1033px!important;
     }
+    .wd-in {
+    width: 298px;
+}
 }
 
 

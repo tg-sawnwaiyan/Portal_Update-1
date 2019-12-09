@@ -1,28 +1,37 @@
 <template>
 <layout>
 <div>
-   <div class="col-md-12" style="border-bottom: 1px dashed #ff6117;padding-bottom: 10px; margin-bottom: 20px;">
-     <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#ff6117;"></i>&nbsp;地図検索</h5></div>
+  <div class="col-md-12" style="border-bottom: 1px dashed #ff6117;padding-bottom: 10px; margin-bottom: 20px;">
+     <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#ff6117;"></i>&nbsp;地図検索</h5>
+  </div>
   <div class="search-map card-body" @mouseover="getStateHover">
     <div class="row" id="hos">
       <div class="col-md-12">
         <div>
           <!-- <div class="info-box"></div> -->
+          <!--start map-->
           <div class="row map-wrap">
-          <div class="col-lg-5 col-md-12 col-sm-12 float-left" style="padding-left: 75px;">
-            <!-- <h2 class="map-header" style="bottom: 184px;">老人ホームや病院<br/>で働きたいあなた<br/>の希望叶えます。</h2> -->
-            <h2 class="map-header" style="bottom: 120px;">あなたのやさしい<br/>手を求めてる。<br/>そんな老人ホーム<br/>や病院が見つかります。</h2>
-            <!--search input-->
-              <div class="wrap">
-                <div class="search">
-                    <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、駅名、施設名などを入力（例：東京駅）">
-                    <button type="submit" class="searchButton" @click="searchfreeword">
-                      <i class="fas fa-search"></i> 検索
-                  </button>
+
+          <!-- free word left wrapper--->
+            <div class="col-lg-5 col-md-12 col-sm-12 float-left p-l-75 leftwrapper">
+              <!-- <h2 class="map-header" style="bottom: 184px;">老人ホームや病院<br/>で働きたいあなた<br/>の希望叶えます。</h2> -->
+              <h2 class="map-header" style="bottom: 120px;">あなたのやさしい<br/>手を求めてる老人<br/>ホーム・病院が見<br/>つかります。</h2>
+
+
+              <!--search input-->
+                <div class="wrap">
+                  <div class="search">
+                      <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、施設名などを入力（例：東京駅）">
+                      <button type="submit" class="searchButton" @click="searchfreeword">
+                        <i class="fas fa-search"></i> 検索
+                    </button>
+                  </div>
                 </div>
-              </div>
-            <!--end search input-->
+              <!--end search input-->
             </div>
+          <!--end free word left wrapper-->
+
+          <!--map right wrapper-->
           <div class="col-lg-7 col-sm-12 col-md-12 float-right">
               <div class="row divisions" id="divisionswrap">
                  <img src="/images/img_map1.png" alt="map" class="img-fluid" style="margin:0 auto;">
@@ -40,7 +49,6 @@
                 <div class="col-sm-2 tohoku-box">
                   <div class="mb-3">
                     <div class="division-box">
-
                       <ul class="multiple-boxa">
                         <a data-info="Aomori" class="path Aomori card-text" @click="getStateClick" >
                             <li class="spanclass" id="2" @click="selected = 2" :class="{highlight:selected == 2}">青森</li>
@@ -304,81 +312,18 @@
                   </div>
                 </div>
               </div>
-
-            <!-- <div class="map">-->
-
-
-
-            <!--</div> -->
           </div>
+          <!--end map right wrapper-->
+   <!--test-->
+
+
+   <!--end test-->
+
         </div>
-        <section>
-             <bulma-accordion :icon="'custom'">
-                        <!-- add as many of these items as you need - fill them with content via the slots -->
-                        <bulma-accordion-item>
-                            <p slot="title">Group_A</p>
-                            <i slot="icon-closed" class="fa fa-plus-circle" style="float:right;"></i>
-                            <i slot="icon-open" class="fa fa-minus-circle" style="float:right;"></i>
-                            <p slot="content" class="custom_group">
-                                <a data-info="Hokkaido" @click="getStateClick" >
-                                   <li id="1">北海道 <i class="fas fa-angle-double-right arrow_icon"></i></li>
-                                </a>
-                                <a data-info="Aomori" @click="getStateClick" >
-                                    <li id="2">青森 <i class="fas fa-angle-double-right arrow_icon"></i></li>
-                                </a>
-                                <a data-info="Iwate" @click="getStateClick" >
-                                    <li id="3">岩手 <i class="fas fa-angle-double-right arrow_icon"></i></li>
-                                </a>
-                                <a data-info="Miyagi" @click="getStateClick" >
-                                    <li id="4">宮城 <i class="fas fa-angle-double-right arrow_icon"></i></li>
-                                </a>
-                                <a data-info="Akita" @click="getStateClick">
-                                    <li id="5"> 秋田 <i class="fas fa-angle-double-right arrow_icon"></i></li>
-                                </a>
-                                <a data-info="Yamagata" @click="getStateClick" >
-                                    <li id="6"> 山形 <i class="fas fa-angle-double-right arrow_icon"></i></li>
-                                </a>
-                                <a data-info="Fukushima" @click="getStateClick" >
-                                    <li id="7"> 福島 <i class="fas fa-angle-double-right arrow_icon"></i></li>
-                                </a>
-                            </p>
-                        </bulma-accordion-item>
-                       <bulma-accordion-item>
-                            <p slot="title">Group_B</p>
-                            <i slot="icon-closed" class="fa fa-plus-circle" style="float:right;"></i>
-                            <i slot="icon-open" class="fa fa-minus-circle" style="float:right;"></i>
-                            <p slot="content" class="custom_group">
-                                <a data-info="Tokyo" @click="getStateClick" >
-                                   <li id="13">東京 <i class="fas fa-angle-double-right arrow_icon"></i></li>
-                                </a>
-                                <a data-info="Kanagawa" @click="getStateClick" >
-                                    <li id="14">神奈川 <i class="fas fa-angle-double-right arrow_icon"></i></li>
-                                </a>
-                                <a data-info="Chiba" @click="getStateClick" >
-                                    <li id="11">埼玉 <i class="fas fa-angle-double-right arrow_icon"></i></li>
-                                </a>
-                                <a data-info="Miyagi" @click="getStateClick" >
-                                    <li id="12">千葉 <i class="fas fa-angle-double-right arrow_icon"></i></li>
-                                </a>
-                                <a data-info="Gunma" @click="getStateClick">
-                                    <li id="10"> 群馬 <i class="fas fa-angle-double-right arrow_icon"></i></li>
-                                </a>
-                                <a data-info="Ibaraki" @click="getStateClick" >
-                                    <li id="8"> 茨城 <i class="fas fa-angle-double-right arrow_icon"></i></li>
-                                </a>
-                                <a data-info="Tochigi" @click="getStateClick" >
-                                    <li id="9"> 栃木 <i class="fas fa-angle-double-right arrow_icon"></i></li>
-                                </a>
-                                <a data-info="Yamanashi" @click="getStateClick" >
-                                    <li id="19"> 山梨 <i class="fas fa-angle-double-right arrow_icon"></i></li>
-                                </a>
-                            </p>
-                        </bulma-accordion-item>
-                    </bulma-accordion>
-        </section>
+        <!--end map--->
 
           <div  id="job_search" class="row jobselect">
-               <span class="col-12" v-if="!job_data.length">
+               <span class="col-12" v-if="norecord_msg">
                 <div class="container-fuid m-t-20">
                     <p class="nosearch-icon">
                         <svg x="0px" y="0px" width="30" height="30" viewBox="0 0 172 172" style=" fill:red;"><g transform=""><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><path d="M0,172v-172h172v172z" fill="none"></path><path d="M3.44,168.56v-165.12h165.12v165.12z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><path d="M0,172v-172h172v172z" fill="none"></path><path d="M3.44,168.56v-165.12h165.12v165.12z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><g fill="#666666"><path d="M74.53333,17.2c-31.59643,0 -57.33333,25.73692 -57.33333,57.33333c0,31.59641 25.7369,57.33333 57.33333,57.33333c13.73998,0 26.35834,-4.87915 36.24766,-12.97839l34.23203,34.23203c1.43802,1.49778 3.5734,2.10113 5.5826,1.57735c2.0092,-0.52378 3.57826,-2.09284 4.10204,-4.10204c0.52378,-2.0092 -0.07957,-4.14458 -1.57735,-5.5826l-34.23203,-34.23203c8.09923,-9.88932 12.97839,-22.50768 12.97839,-36.24766c0,-31.59641 -25.7369,-57.33333 -57.33333,-57.33333zM74.53333,28.66667c25.39939,0 45.86667,20.46729 45.86667,45.86667c0,25.39937 -20.46728,45.86667 -45.86667,45.86667c-25.39939,0 -45.86667,-20.46729 -45.86667,-45.86667c0,-25.39937 20.46728,-45.86667 45.86667,-45.86667zM91.67734,51.52161c-1.51229,0.03575 -2.94918,0.66766 -3.99765,1.75807l-13.14636,13.14636l-13.14636,-13.14636c-1.07942,-1.10959 -2.56162,-1.73559 -4.10963,-1.73568c-2.33303,0.00061 -4.43306,1.41473 -5.31096,3.57628c-0.8779,2.16155 -0.3586,4.6395 1.31331,6.26669l13.14636,13.14636l-13.14636,13.14636c-1.49777,1.43802 -2.10111,3.5734 -1.57733,5.58259c0.52378,2.0092 2.09283,3.57825 4.10203,4.10203c2.0092,0.52378 4.14457,-0.07956 5.58259,-1.57733l13.14636,-13.14636l13.14636,13.14636c1.43802,1.49778 3.5734,2.10113 5.5826,1.57735c2.0092,-0.52378 3.57826,-2.09284 4.10204,-4.10204c0.52378,-2.0092 -0.07957,-4.14458 -1.57735,-5.5826l-13.14636,-13.14636l13.14636,-13.14636c1.70419,-1.63875 2.22781,-4.1555 1.31865,-6.33798c-0.90916,-2.18248 -3.06468,-3.58317 -5.42829,-3.52739z"></path></g></g></g></svg>
@@ -387,7 +332,7 @@
                      <p class="nosearch">条件を変更してみると、該当施設が増える可能性がございますので、再度、ご検索ください。</p>
                 </div>
             </span>
-            <div v-else>
+            <div v-else class="col-12">
              <h5 class="profile_header m-t-10" style="border-left: 5px solid #828282;">現在の検索条件</h5>
             <table class="table table-bordered col-12 ">
               <tbody>
@@ -416,6 +361,18 @@
                       </div>
 
                     </div>
+                    <!-- <div>
+                     <button @click="getStation" class="btn col-2 seemore-btn">  Station </button>
+                      <div v-for="com in company" :key="com.company_cd" class="col-4">
+                          COMPANY {{com.company_name}}
+                          <div v-for="lin in com.line" :key="lin.line_cd">
+                           LINE {{lin.line_name}}
+                            <div v-for="sta in lin.station" :key="sta.station_cd">
+                              STATION {{sta.station_name}}
+                            </div>
+                          </div>
+                      </div>
+                    </div> -->
                   </td>
                 </tr>
 
@@ -510,7 +467,7 @@
                           <p class="job_id"><span>求人番号:</span>{{job.jobnum}}</p>
                         </div>
                       </div>
-                      <div class="job-body row  clearfix">
+                      <div class="job-body d-flex clearfix">
                         <!-- <div class="col-4 job-img">
                           <img src="/upload/news/nursing.JPG"  alt="">
                         </div> -->
@@ -565,12 +522,8 @@
               </nav>
             </div>
             </div>
-
-
-
         </div>
       </div>
-
     </div>
   </div>
   </div>
@@ -588,6 +541,7 @@ export default {
       BulmaAccordion,
       BulmaAccordionItem
     },
+    //props: ['initOpen'],
     data(){
       return{
         id:'',
@@ -617,7 +571,10 @@ export default {
         show_paginate: false,
         loginuser: true,
         selected: undefined,
-        locast:''
+        locast:'',
+        company:[],
+        open:false,
+        norecord_msg: false,
       }
     },
     created() {
@@ -626,7 +583,9 @@ export default {
                 this.loginuser = true;
                 }).catch((error) => {
                     this.loginuser = false;
-                })
+                });
+        this.open = !this.initOpen
+
     },
     mounted() {
             $('#navtab').removeClass('news-tabColor hospital-tabColor nursing-tabColor job-tabColor');
@@ -635,11 +594,16 @@ export default {
             $('#upper-tab').addClass('job-borderColor');
         },
   methods:{
-
+    // toggle(id) {
+    // 	const index = this.opened.indexOf(id);
+    //   if (index > -1) {
+    //   	this.opened.splice(index, 1)
+    //   } else {
+    //   	this.opened.push(id)
+    //   }
+    // },
     search()
     {
-
-
         if(this.townshipID == null || this.townshipID == '')
         {
           this.townshipID[0] = 0;
@@ -677,7 +641,11 @@ export default {
           }else{
               this.show_paginate = false;
           }
-
+          if(this.job_data.length != 0){
+              this.norecord_msg = false;
+          }else{
+              this.norecord_msg = true;
+          }
 
         })
 
@@ -722,6 +690,11 @@ export default {
                     this.show_paginate = true;
                 }else{
                     this.show_paginate = false;
+                }
+                if(this.job_data.length != 0) {
+                    this.norecord_msg = false;
+                }else{
+                    this.norecord_msg = true;
                 }
 
               }
@@ -799,6 +772,16 @@ export default {
 
         this.search();
         },
+        // getStation(){
+
+        //    this.axios.get('api/getstation/'+ this.id)
+        //   .then((response)=>{
+        //     this.company = response.data.company;
+
+
+        //  })
+
+        // },
 
       getStateClick(e){
 
@@ -939,6 +922,9 @@ export default {
 //  });
 ``
 // });
+
+      //Hide all panels
+
 </script>
 
 
@@ -1057,4 +1043,74 @@ table > tbody > tr th{
     border-bottom: 1px solid #eeeeee;
     padding:5px;
 }
+/********/
+.container {
+  padding: 1rem 2%;
+}
+
+.toggle {
+  align-items: center;
+  background: #12C88A;
+  border-radius: 4px;
+  color: #FFF;
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-start;
+  padding: 1rem 1.2rem;
+  margin-bottom: 2px;
+}
+
+.toggle i {
+  font-size: 1.2rem;
+  margin-right: .6rem;
+}
+
+.content {
+  background: #F8F8F8;
+  border-radius: 4px;
+  padding: 1rem 1.2rem;
+}
+
+.content > * {
+  line-height: 1.8;
+  margin: 0;
+  opacity: 1;
+  padding: 0;
+  visibility: visible;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition:
+    padding-top .3s ease-out,
+    padding-bottom .3s ease-out;
+}
+
+.slide-enter-active > * {
+  transition:
+    line-height .3s ease-out,
+    opacity .1s linear .1s,
+    visibility .1s linear .1s;
+}
+
+.slide-leave-active > * {
+  transition:
+    line-height .3s ease-out,
+    opacity .1s linear,
+    visibility .1s linear;
+}
+
+.slide-enter,
+.slide-leave-to {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.slide-enter > *,
+.slide-leave-to > * {
+  line-height: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+
 </style>
