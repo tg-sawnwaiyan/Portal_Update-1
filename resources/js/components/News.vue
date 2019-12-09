@@ -1228,9 +1228,7 @@
 
         }
 
-
-
-    //     this.categoryId();
+    //     this.categoryId();  
 
     },
 
@@ -1427,8 +1425,6 @@
 
                 fd.append('category_id', cat_id)
 
-
-
                 $('.search-item').css('display', 'none');
 
                 this.categoryId = cat_id;
@@ -1458,10 +1454,7 @@
                         this.latest_post_all_cats = response.data;
 
                     });
-
             },
-
-
 
             searchCategory() {
 

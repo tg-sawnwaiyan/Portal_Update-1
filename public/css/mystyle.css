@@ -3355,7 +3355,45 @@ ul.main-tab li:after {
 
 
 /* Hospital Search */
+.table-innertitle{
+    position: relative;
+   
+}
+.table-innertitle:after{
+    content: '';
+    position: absolute;
+    top: 20px;
+    display: inline-block;
+    width: 18px;
+    height: 2px;
+    left: -30px;
+    border-radius: 2px;
+    background: #d2571c;
+    left: 15px;
 
+}
+.innerwrapper{
+    /* padding-left: 0px;
+    padding-right: 0px;     */
+    margin-left: 0px;
+    display: table;
+    padding: 0px 5px;
+    border-collapse: initial;
+    
+}
+.test {
+    display: table-cell;
+    background-color: rgb(245, 245, 245);  
+    padding: 12px;
+    width: 33.33%;
+   
+}
+.table-innerwrapper{    
+    background-color: rgb(245, 245, 245);
+    border-radius: 5px;
+    padding: 10px;
+   
+}
 .feature_list {
     display: inline-block;
     padding: 5px 10px;
@@ -5083,6 +5121,21 @@ a:hover {
 .custom-sidebar {
     /* height: 100vh;*/
     /* background: #b7dad2;  */
+    /* position: absolute;
+    z-index: 1000;
+    display: none; */
+}
+
+#menu-overlay{
+    display: none;
+    width:100%;
+    height:100%;
+    background-color: #000;
+    opacity: 0.4;
+    position: absolute;
+    top:0px;
+    left:0px;
+    z-index: 999;
 }
 
 
@@ -6099,8 +6152,38 @@ button.confirmed {
     opacity: 0.5;
     cursor: not-allowed;
 }
-
-
+.comment-btn-wrapper{
+    padding:0px 0px 40px;
+    text-align: center;
+    background-color: #FFF9EB;
+    border: 4px solid #f60;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    border: 2px solid #d2571c;    
+    width: 100%;
+}
+.no-comment-title{
+    padding: 20px;
+    font-size: 30px;
+}
+.comment-btn{
+    background: #f98f5d;
+    padding: 17px;
+    border: 1px solid #d2571c;
+    color: #fff;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 10px;
+    -webkit-transition: color .1s ease-in-out,background-color .1s ease-in-out;
+    transition: color .1s ease-in-out,background-color .1s ease-in-out;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.0125), 0 1px 1px rgba(0,0,0,0.05);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.0125), 0 1px 1px rgba(0,0,0,0.05);    
+    border-bottom-width: 4.2px;
+}
+.comment-btn:link, .comment-btn:visited {
+    -webkit-transition: all .1s ease-in;
+    transition: all .1s ease-in;
+}
 /* End Commentlist */
 
 .mailbox {
@@ -7520,7 +7603,35 @@ ul.test>li:before {
 
 
 /*hospital search*/
-
+.table-innertitle{
+    position: relative;
+   
+}
+.table-innertitle:after{
+    content: '';
+    position: absolute;
+    top: 20px;
+    display: inline-block;
+    width: 18px;
+    height: 2px;
+    left: -30px;
+    border-radius: 2px;
+    background: #D2571C;
+    left: 15px;
+}
+.innerwrapper{
+    padding-left: 0px;
+    padding-right: 0px;    
+    margin-left: 0px;
+    
+    
+}
+.table-innerwrapper{    
+    background-color: rgb(245, 245, 245);
+    border-radius: 5px;
+    padding: 10px;
+   
+}
 .hos-content {
     position: relative;
     margin-bottom: 20px;
@@ -7554,26 +7665,42 @@ ul.test>li:before {
 }
 
 .hos_phone {
-    background: #c40000;
-    padding: 5px 15px;
-    border-radius: 5px;
-    color: #fff!important;
-    /* position: absolute;
-    right: 15px;
-    top: 65px; */
-    border: 1px solid #c40000;
+    padding-left: 25px;
+    font-size: 10px;
+    float: right;
+}
+.hos_phone i{
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
+    font-size: 20px;
+    color: #c91616;
+    text-align: center;
+    line-height: 40px;
+    background: #eee;
+    border-radius: 50%;
+    vertical-align: bottom;
+}
+.phone-no{
+    color: #c40000;
+    font-size: 25px;
+    letter-spacing: -0.5px;
+    padding: 10px 0 0 0;
+    line-height: 1.1;
+    font-weight: bold;
+    vertical-align: middle;
 }
 
 .circle-phone {
     background: #fff;
-    width: 25px;
-    height: 25px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     display: inline-block;
     text-align: center;
     border: 1px solid #ffffff;
     vertical-align: middle;
-    /* line-height: 1.8; */
+    line-height: 2;
     margin-right: 8px;
     color: #c40000;
 }
@@ -8713,13 +8840,13 @@ ul.nur-caro-card>li.list-group-item {
     }
 }
 
-@media only screen and (max-width: 375px) and (min-width: 320px) {
+@media only screen and (min-width: 320px) and (max-width: 375px)  {
     #fav-history-page .card-carousel {
         width: 1336px;
     }
 }
 
-@media only screen and (max-width: 450px) and (min-width: 376px) {
+@media only screen and (min-width: 376px) and (max-width: 450px)  {
     #fav-history-page .card-carousel {
         width: 264px !important;
     }
@@ -8727,52 +8854,127 @@ ul.nur-caro-card>li.list-group-item {
 
 
 /* Medium devices (landscape tablets, 768px and up) */
-
-@media only screen and (max-width: 1023px) and (min-width: 768px) {
+@media only screen and (min-width: 449px) and (max-width: 768px)  {
     #fav-history-page .card-carousel {
-        width: 415px!important;
+        /* width: 515px !important; */
     }
 }
 
-@media only screen and (max-width: 768px) and (min-width: 449px) {
+@media only screen and (min-width: 768px) and (max-width: 1023px)  {
+    #fav-history-page .card-container {
+        /* padding: 0; */
+    }
+
     #fav-history-page .card-carousel {
-        width: 515px !important;
+        /* width: 415px!important; */
     }
 }
 
-@media only screen and (max-width: 992px) and (min-width: 768px) {
+
+
+/* @media only screen and (min-width: 768px) and (max-width: 992px)  {
     #fav-history-page .cardcarousel {
         width: 415px!important;
     }
-}
+} */
 
 
 /* Large devices (laptops/desktops, 992px and up) */
 
-@media only screen and (max-width: 1024px) and (min-width: 992px) {
+@media only screen and (min-width: 992px) and (max-width: 1024px) {
     #fav-history-page .card-carousel {
         width: 823px!important;
     }
 }
 
-@media only screen and (max-width: 1200px) and (min-width: 992px) {
+@media only screen and (min-width: 992px) and (max-width: 1200px)  {
     #fav-history-page .card-carousel {
-        width: 787px !important;
+        width: 783px !important;
     }
 }
 
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 
-@media only screen and (max-width: 1440px) and (min-width: 1200px) {
+@media only screen and (min-width: 1200px) and  (max-width: 1440px)  {
     #fav-history-page .card-carousel {
         width: 1045px!important;
     }
 }
 
-@media only screen and (max-width: 1880px) and (min-width: 1440px) {
+@media only screen and (min-width: 1440px) and (max-width: 1880px)  {
     #fav-history-page .card-carousel {
-        width: 1033px!important;
+        width: 1045px!important;
+        margin-left: 20px;
+    }
+    .main-content {
+        width: 100%;
+    }
+    .nav-warp {
+        max-width: 96%;
+        padding: 0;
+    }
+    .fixed-ads-fluid {
+        width: 100%;
+    }
+    #headerbar {
+        display: block;
+        top: 76px;
+    }
+    #headerbar li {
+        display: inline-block;
+    }
+    .gNav {
+        margin-left: 2%;
+    }
+    .gNav li a {
+        padding: 0 5px;
+    }
+    .navbar-expand-lg .navbar-nav .nav-link {
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+    .social-link:nth-child(3) {
+        margin-left: 5px;
+    }
+    .ads-slider {
+        margin: 0 0 20px 35px;
+    }
+    .adslist-card {
+        height: auto;
+    }
+    .ads-img {
+        display: block;
+        float: none;
+        max-width: 100%;
+        width: auto;
+        margin: 0 auto;
+    }
+    .fav-profile {
+        right: 37px;
+    }
+    .today .adslist-card .smallads-title {
+        top: 7px;
+    }
+    .sub-title>.ads-title {
+        position: unset;
+        margin: 10px 0 30px;
+    }
+    .job-img {
+        /* max-width: 80% !important;*/
+        margin: 0 auto 20px;
+        flex: unset;
+    }
+    .job-box {
+        /* max-width: 100% !important;*/
+        flex: unset;
+    }
+    .compare-wrap {
+        max-width: 82%;
+    }
+    .fav-update-wrap {
+        max-width: 19%;
+        flex: 0 0 18%;
     }
 }
 
