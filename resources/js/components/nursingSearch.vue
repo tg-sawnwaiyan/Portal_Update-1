@@ -11,7 +11,8 @@
         <div class="row map-wrap"  id="searchMap">
           <!-- search map and path -->
             <div class="col-lg-5 col-md-12 col-sm-12 float-left" style="padding-left: 75px;">
-            <h2 class="map-header">あなたらしい<br/>暮らしができる<br/> 老人ホームが <br/>見つかります。</h2>
+            <!-- <h2 class="map-header">あなたらしい<br/>暮らしができる<br/> 老人ホームが <br/>見つかります。</h2> -->
+            <h2 class="map-header">あなたらしい暮ら<br/>しができる。そん<br/>な老人ホームが見 <br/>つかります。</h2>
             <!--search input-->
               <div class="wrap">
                 <div class="search">
@@ -385,9 +386,18 @@
         <div class="row" >
           <div class="col-sm-12 col-md-12">
           <div style="position: relative;">
-              <div class="overlay standard hidden">&nbsp;</div>
+           
+            <div v-if="loading" class=" m-t-10 m-b-10 text-center overlay">
+                <div class="lds-ripple m-t-10 m-b-10" ><div></div><div></div></div>
+            </div>
+              <!-- <div class="overlay standard hidden">&nbsp;</div> -->
+              <div v-if="!loading" class="m-t-10 m-b-10">
+                <div id="mymap"></div>
+              </div>
+         
+              
 
-              <div id="mymap" class="select m-t-10 m-b-10"></div>
+              <!-- <div id="mymap" class="select m-t-10 m-b-10"></div> -->
 
           </div>
           </div>
@@ -434,7 +444,7 @@
                                     </p>
 
                                     <p class="item-name"><img :src="'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld='+items.alphabet+'|ff9563|000000'" alt="">
-                                        <router-link :to="{name: 'profile', params: {cusid:items.cus_id, type: 'nursing'}}" class="pseudolink" style="font-weight:bold;#ff6117!important">{{items.name}}</router-link>
+                                        <router-link :to="{name: 'profile', params: {cusid:items.cus_id, type: 'nursing'}}" class="pseudolink" style="font-weight:bold;color:#ff6117 !important">{{items.name}}</router-link>
                                     </p>
                                     <p>{{items.city_name}} <i class="fas fa-angle-double-right" style="color:#b9b5b5;"></i> {{items.township_name}}</p>
                                 </div>
@@ -603,7 +613,7 @@
       </table>
       </div>
     </div>
-      <!--end list-->
+      <!--end search list-->
 
         <div class=" col-12">
             <div class="row">
@@ -749,8 +759,10 @@
   import {
     eventBus
   } from '../event-bus.js';
-  import jp_cities from '../google-map-kml/jp_cities.json';
-  import jp_township from '../google-map-kml/jp_township.json';
+  // import jp_cities from '../google-map-kml/jp_cities.json';
+  // import jp_township from '../google-map-kml/jp_township.json';
+  // import five_percent from '../google-map-kml/japan-cities_5percent.json';
+
   export default {
 
     name: "mymap",
@@ -759,7 +771,7 @@
     },
 
     data() {
-
+   
       return {
         cityid:[],
         listid : '',
@@ -813,6 +825,8 @@
         onchangeid:0,
         localst:'',
         selected: undefined,
+        loading: false,
+        coordinate:[],
         norecord_msg: false,
       }
     },
@@ -886,6 +900,7 @@
             $('#upper-tab').addClass('nursing-borderColor');
         },
     computed: {
+     
       atEndOfList() {
         return this.currentOffset <= (this.paginationFactor * -1) * (this.nus_data.length - this.windowSize);
       },
@@ -1039,6 +1054,7 @@ moveCarousel(direction) {
         },
 // map onclick function
 getStateClick(e) {
+            
             this.township_id= -1;
             this.moving_in = -1;
             this.per_month = -1;
@@ -1072,6 +1088,7 @@ getStateClick(e) {
                   $("#mymap").css("display", "block");
                   $("#nursing-search").css("display", "block");
                   $("#filtertable").css("display", "block");
+                  
                   this.changeMap(response)
                 })
 
@@ -1080,6 +1097,7 @@ getStateClick(e) {
 // map onclick function
 // map change dropdown function
 nursingSearchData(index){
+            
             if(index == 1) //if choose city
             {
                 this.township_id = -1;
@@ -1118,6 +1136,7 @@ nursingSearchData(index){
 
                 })
                 .then((response) => {
+
                     this.changeMap(response)
 
                 })
@@ -1131,77 +1150,120 @@ nursingSearchData(index){
 // map change dropdown function
 // make infowindow, marker , google map
 coordinates(theCity, lat, lng){
-
-
-                const result = jp_township.features //jp_cities
-                const jp_city = jp_cities.features //convert
-
+            var mapProp = {
+                  center: new google.maps.LatLng(lat, lng),
+                  zoom:7,
+                  mapTypeId: google.maps.MapTypeId.ROADMAP,
+                  options: {
+                  gestureHandling: 'greedy'
+                }
+              };
+            
+                this.map = new google.maps.Map(document.getElementById("mymap"), mapProp);
+                this.loading = true
+                let  coor =[];
                 var townshipName = [];
+                var town = [];
+                const city_coordinates = [];
+                const arr = [];
+               
+                // get township postalcode
                 for (let i = 0; i < this.getTownships.length; i++) {
                     if(this.getTownships[i]['id'] == this.township_id){
-                        townshipName.push(this.getTownships[i]['township_name'])
+                        townshipName.push(this.getTownships[i]['postalcode'])
+                        town.push(this.getTownships[i]['township_name'])
+                    }else{
+                      console.log('tonw err')
                     }
                 }
+
                 var township_name = townshipName.toString();
-                const coordinates = []
-                const city_coordinates = []
+             
 
-                if(township_name == ''){
-                    for (var i = 0; i < jp_city.length; i++) {
-                    if (jp_city[i].properties.NAME_0 == theCity) {
+                if(township_name== ''){
 
-                    if(jp_city[i].geometry.hasOwnProperty('geometries'))
-                    {
-                        for(var j =0;j< jp_city[i].geometry.geometries.length;j++)
-                    {
+                  this.axios.get("/api/cityJson").then(respon => {
+                          var res = respon.data
+                          this.loading = false
+                        for (var i = 0; i < res.length; i++) {
+                        if (res[i].properties.NAME_1 == theCity) {
+                          
+                        if(res[i].geometry.hasOwnProperty('geometries')){
+                            
+                            for(var j =0;j < res[i].geometry.geometries.length;j++){     
 
-                        city_coordinates.push(jp_city[i].geometry.geometries[j]['coordinates']) ;
+                            city_coordinates.push(res[i].geometry.geometries[j]['coordinates']) ;
+                          }
+                        }
+                        else{
+                          city_coordinates.push(res[i].geometry['coordinates']) ;
+                          }
+                        }
                     }
-                    }
-                    else{
-                        city_coordinates.push(jp_city[i].geometry['coordinates']) ;
-
-                    }
-                    }
-                }
+                     this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
+                     this.boundariesGoogleMap(lat,lng,this.coordinate);
+                   
+                   
+                  }); //end get city
                 }else{
-                    for (var i = 0; i < result.length; i++) {
-                    if (result[i].properties.NL_NAME_1 == theCity && result[i].properties.NL_NAME_2 == township_name) {
-                    coordinates.push(result[i].geometry['coordinates'])
+                  this.axios.get("/api/townshipJson").then(res => {
+                    var data = res.data
+                    this.loading = false
+                    var coordinates = [];
+                    for (let i = 0; i < data.length; i++) {
+                     
+                      if(data[i]['properties']['N03_007'] == township_name){
+                        coordinates.push(data[i]['geometry']['coordinates'])
+                      }else{
+                        console.log('errr')
+                      }
+                      
                     }
-                }
-                }
 
-                if(township_name == ''){
-                    var coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
-
-                }else{
                     var co = coordinates.reduce((acc, val) => acc.concat(val), []);
-                    var coordinate = co.reduce((acc, val) => acc.concat(val), []);
-                }
+                    var coord =  [];
+                    for(let key in co)coord= coord.concat(co[key])
+                    this.coordinate = coord
+                    this.boundariesGoogleMap(lat,lng,this.coordinate);
+  
+                    
 
-                var data = {
-                    type: "Feature",
-                    geometry: {
-                    "type": "Polygon",
-                    "coordinates": coordinate
-                    },
-                };
-                var mapProp = {
-                    center: new google.maps.LatLng(lat, lng),
-                    zoom: 5,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP,
-                };
+                  }); //end get township
+                }//end else
+           
+          
+                
+},
 
-                    this.map = new google.maps.Map(document.getElementById("mymap"), mapProp);
-                    this.map.data.addGeoJson(data);
-                    this.map.data.setStyle({
-                    strokeColor: "red",
-                    fillColor: 'red',
-                    strokeOpacity: 0.8,
-                    fillOpacity: 0.1,
-                    strokeWeight: 1
-                    })
+boundariesGoogleMap(lat,lng,coor){
+      try {
+        var data = {
+              type: "Feature",
+              geometry: {
+              "type": "Polygon",
+              "coordinates": coor
+              },
+          };
+          this.map.data.addGeoJson(data);
+      } catch (error) {
+        var coor = [coor]
+        var data = {
+              type: "Feature",
+              geometry: {
+              "type": "Polygon",
+              "coordinates": coor
+              },
+          };
+          this.map.data.addGeoJson(data);
+      }
+
+          this.map.data.setStyle({
+          strokeColor: "red",
+          fillColor: 'red',
+          strokeOpacity: 0.8,
+          fillOpacity: 0.1,
+          strokeWeight: 1
+          })
 },
 infoWindow(item, mmarker){
         var infoWindowContent = new Array();
@@ -1257,13 +1319,10 @@ infoWindow(item, mmarker){
             ])
         }
          var markers = mmarker;
-        var bounds = new google.maps.LatLngBounds();
+         var bounds = new google.maps.LatLngBounds();
         this.markerHover = [];
         var infoWindow = new google.maps.InfoWindow(),marker, i;
         }
-
-
-
         for (let i = 0; i < this.markers.length; i++) {
             var beach = this.markers[i]
             var lats = this.markers[i]['lat']
@@ -1271,16 +1330,20 @@ infoWindow(item, mmarker){
             var img = this.markers[i]['alphabet']
             var myLatLng = new google.maps.LatLng(lats, lngs);
             var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
-
-
             marker = new google.maps.Marker({
             position: position,
             map: this.map,
+            zoom:7,
             icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' + img + '|ff9563|000000',
-            zoom: 5,
-            title: this.markers[i]['name']
+            title: this.markers[i]['name'],
+            options: {
+              gestureHandling: 'greedy'
+            }
             });
-
+            // bounds.extend(position);
+            
+         
+            
             google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
                 infoWindow.setContent(infoWindowContent[i][0]);
@@ -1294,6 +1357,8 @@ infoWindow(item, mmarker){
             });
 
         }
+        // this.map.fitBounds(bounds);
+        // this.map.panToBounds(bounds);
         },
 
 // make infowindow, marker , google map
@@ -1304,7 +1369,7 @@ infoWindow(item, mmarker){
             // for clean googleMap
                 var lat = citylatlng[0]['latitude']
                 var lng = citylatlng[0]['longitude']
-                var theCity = citylatlng[0]['city_eng']
+                var theCity = citylatlng[0]['city_name']
                 const result = jp_township.features
                 const coordinates = []
                 for (var i = 0; i < result.length; i++) {
@@ -1368,7 +1433,7 @@ changeMap(response){
                 if(this.getCity.length > 0) //if city  choose
                 {
                 
-                    const theCity = response.data.getCity[0]['city_name']
+                    const theCity = response.data.getCity[0]['city_eng']
                     const lat = response.data.getCity[0]['latitude']
                     const lng = response.data.getCity[0]['longitude']
 
@@ -1376,6 +1441,7 @@ changeMap(response){
                     if(this.markers.length > 0 )
                     {
                         this.coordinates(theCity,lat,lng);
+                        
                         this.infoWindow(item, mmarker);
                     }
                     else{
@@ -1479,7 +1545,7 @@ search(){
                     mmarker.push([this.searchmarkers[i]['alphabet'], this.searchmarkers[i]['lat'], this.searchmarkers[i]['lng']])
                     item.push(this.searchmarkers[i])
                 }
-                const theCity = this.searchmarkers[0]['city_name']
+                const theCity = this.searchmarkers[0]['city_eng']
                 const lat = this.searchmarkers[0]['lat']
                 const lng = this.searchmarkers[0]['lng']
 
@@ -1494,7 +1560,7 @@ search(){
                 //if choose city
                 if(this.citylatlng.length > 0)
                 {
-                    const theCity = this.citylatlng[0]['city_name']
+                    const theCity = this.citylatlng[0]['city_eng']
                     const lat = this.citylatlng[0]['latitude']
                     const lng = this.citylatlng[0]['longitude']
 
@@ -1610,6 +1676,42 @@ search(){
 </script>
 
 <style scoped>
+.lds-ripple {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  top:230px;
+}
+.lds-ripple div {
+  position: absolute;
+  border: 4px solid black;
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+.lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+@keyframes lds-ripple {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
+  }
+}
+
+
+
 .highlight{
      background-color: #ccff60 !important;
     background-image: none;
@@ -1783,7 +1885,7 @@ search(){
   }
   /* #mymap {background: transparent url('/images/google/loading.jpg') no-repeat center center;} */
 div#holder {
-    position: relative;
+    position: absolute;
 }
 
 .hidden {
@@ -1795,7 +1897,7 @@ div.overlay {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: #fff;
+    background-color: #5e5e5e;
     opacity: 0.7;
     z-index: 1;
 }

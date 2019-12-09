@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Customer;
 use DB;
-
+use Storage;
 class SearchMapController extends Controller
 {
     public function getMap()
@@ -740,4 +740,34 @@ class SearchMapController extends Controller
         $getTownships = DB::table('townships')->where('city_id', $id)->get();
         return response()->json($getTownships);
     }
+
+    public function cityJson()
+    {
+        $path = public_path().('/google-map-json/jp_cities.json');
+        $json = file_get_contents($path);
+        $obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $json), true );
+        
+        foreach($obj as $key => $value){
+            $json = $value;
+            
+        }
+        return response()->json($json);
+    }
+
+    public function townshipJson()
+    {
+    $path = public_path().('/google-map-json/japan-cities_5percent.json');
+    $json = file_get_contents($path);
+    $obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $json), true );
+    
+    foreach($obj as $key => $value){
+        $jsons = $value;
+        
+    }
+    return response()->json($jsons);
+    
+    }
+
+
+    
 }
