@@ -643,7 +643,7 @@
                     <div class="col-12 pad-free m-b-10 clearfix">
                         <span class="num-room"> {{nus.num_rooms}} </span>
                         <span class="nur_date">{{nus.date_of_establishment}}</span>
-                        <p class="hos_phone float-right" v-if="nus.phone"><span class="circle-phone" ><i class="fa fa-phone-alt"></i></span>{{nus.phone}}</p>
+                        <p class="hos_phone float-right" v-if="nus.phone"><span class="circle-phone" ><i class="fa fa-phone-alt"></i></span><span class="phone-no">{{nus.phone}}</span></p>
                     </div>
                     <div class="job-body row  clearfix">
                     <div class="col-4 job-img">
@@ -839,7 +839,7 @@
             }
 
             else if(this.window.width >= 450 && this.window.width < 768) {
-                this.windowSize = 2;
+                this.windowSize = 1;
 
                 console.log(this.window.width);
 
@@ -884,7 +884,7 @@
             
             else if (this.window.width >= 1440 && this.window.width < 1880) {
                 this.windowSize = 3;
-                this.paginationFactor=319;
+                this.paginationFactor=344;
           
 
             }
@@ -2137,7 +2137,7 @@ div.overlay.standard { background: #fff url('/images/google/loading.jpg') no-rep
     text-align: center;
 }
 .fav-profile {
-    top:10px;
+    top:0px;
     right:15px;
 }
 .nursing-tabColor .nav-link {
@@ -2239,7 +2239,7 @@ div.overlay.standard { background: #fff url('/images/google/loading.jpg') no-rep
         width: 1033px!important;
     }
     .wd-in {
-    width: 298px;
+    width: 323px;
 }
 }
 

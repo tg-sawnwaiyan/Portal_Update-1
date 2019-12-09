@@ -450,13 +450,12 @@
 
                   </td>
                 </tr>
-
               </tbody>
             </table>
             </div>
              <div>
                 <div class="row">
-                   <div id="job_detail" class="col-md-6 col-sm-12" style="margin-top:20px;" v-for="job in displayItems" :key="job.jobid">
+                   <div id="job_detail" class="col-md-6 col-sm-12" style="margin-top:20px;" v-for="(job,index) in displayItems" :key="index+'-'+job.title+'-'+job.jobid">
                      <div class="job-content">
                       <div class="job-header">
                         <h5 class="job-tit">
