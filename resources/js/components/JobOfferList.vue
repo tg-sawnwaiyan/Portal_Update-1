@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="col-12">
-            <div class="row m-b-10" v-if="this.jobs.length !== 0">
+            <div class="row m-b-10" v-if="!norecord_msg">
                 <div class="col-md-12">
                     <router-link to="/joboffercreate" class="float-right main-bg-color create-btn all-btn" style="color: blue;">
                         <i class="fas fa-plus-circle"></i> 新しい求人票を作成
@@ -18,7 +18,7 @@
             </nav>
             <div class="col-md-12 col-md-12 tab-content tab-content1 tabs pad-free border-style">
                 <div class="col-md-12 scrolldiv">
-                    <div v-if="!this.jobs.length" class="card card-default m-b-20 card-wrap">
+                    <div v-if="norecord_msg" class="card card-default m-b-20 card-wrap">
                         <p class="record-ico">
                             <i class="fa fa-exclamation"></i>
                         </p>
@@ -44,6 +44,8 @@
                         </div>
                         <hr />
                         <h5 class="header">求人採用一覧</h5>
+                        <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
+                        <div v-else class="container-fuid">
                         <!-- <table class="table table-hover custom-table">
               <thead style="background-color:rgb(183, 218, 210);">
                 <tr>
@@ -149,6 +151,7 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
                         <div class="offset-md-4 col-md-8 mt-3" v-if="pagination">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination">
@@ -194,7 +197,9 @@
                     pageRange: 5,
                     items: [],
                     pagination: false,
-                    loginuser: true
+                    loginuser: true,
+                    norecord_msg: false,
+                    nosearch_msg: false,
                 };
             },
 
@@ -265,6 +270,11 @@
                         this.pagination = true;
                         } else {
                             this.pagination = false;
+                        }
+                        if(this.jobs.length != 0){
+                            this.norecord_msg = false;
+                        }else{
+                            this.norecord_msg = true;
                         }
 
                     });
@@ -342,6 +352,11 @@
                             this.pagination = true;
                             } else {
                                 this.pagination = false;
+                            }
+                            if(this.jobs.length != 0){
+                                this.nosearch_msg = false;
+                            }else{
+                                this.nosearch_msg = true;
                             }
                         });
                     },
