@@ -2542,6 +2542,8 @@
         },
         {
             "name": "symfony/css-selector",
+<<<<<<< HEAD
+<<<<<<< HEAD
             "version": "v5.0.1",
             "source": {
                 "type": "git",
@@ -2552,6 +2554,26 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/css-selector/zipball/19d29e7098b7b2c3313cb03902ca30f100dcb837",
                 "reference": "19d29e7098b7b2c3313cb03902ca30f100dcb837",
+=======
+            "version": "v4.4.1",
+=======
+            "version": "v5.0.1",
+>>>>>>> df47207d940d1d5ea097ac5b85f66baf0e5fde5c
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/css-selector.git",
+                "reference": "19d29e7098b7b2c3313cb03902ca30f100dcb837"
+            },
+            "dist": {
+                "type": "zip",
+<<<<<<< HEAD
+                "url": "https://api.github.com/repos/symfony/css-selector/zipball/64acec7e0d67125e9f4656c68d4a38a42ab5a0b7",
+                "reference": "64acec7e0d67125e9f4656c68d4a38a42ab5a0b7",
+>>>>>>> f2f5c75af7b207a0596e40d7fbc18794f65a6b7c
+=======
+                "url": "https://api.github.com/repos/symfony/css-selector/zipball/19d29e7098b7b2c3313cb03902ca30f100dcb837",
+                "reference": "19d29e7098b7b2c3313cb03902ca30f100dcb837",
+>>>>>>> df47207d940d1d5ea097ac5b85f66baf0e5fde5c
                 "shasum": ""
             },
             "require": {
@@ -2560,7 +2582,15 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
+<<<<<<< HEAD
+<<<<<<< HEAD
                     "dev-master": "5.0-dev"
+=======
+                    "dev-master": "4.4-dev"
+>>>>>>> f2f5c75af7b207a0596e40d7fbc18794f65a6b7c
+=======
+                    "dev-master": "5.0-dev"
+>>>>>>> df47207d940d1d5ea097ac5b85f66baf0e5fde5c
                 }
             },
             "autoload": {
@@ -2591,7 +2621,15 @@
             ],
             "description": "Symfony CssSelector Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2019-11-18T17:27:11+00:00"
+=======
+            "time": "2019-10-12T00:35:04+00:00"
+>>>>>>> f2f5c75af7b207a0596e40d7fbc18794f65a6b7c
+=======
+            "time": "2019-11-18T17:27:11+00:00"
+>>>>>>> df47207d940d1d5ea097ac5b85f66baf0e5fde5c
         },
         {
             "name": "symfony/debug",
@@ -3029,6 +3067,8 @@
         },
         {
             "name": "symfony/mime",
+<<<<<<< HEAD
+<<<<<<< HEAD
             "version": "v5.0.1",
             "source": {
                 "type": "git",
@@ -3039,6 +3079,26 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/mime/zipball/0e6a4ced216e49d457eddcefb61132173a876d79",
                 "reference": "0e6a4ced216e49d457eddcefb61132173a876d79",
+=======
+            "version": "v4.4.1",
+=======
+            "version": "v5.0.1",
+>>>>>>> df47207d940d1d5ea097ac5b85f66baf0e5fde5c
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/mime.git",
+                "reference": "0e6a4ced216e49d457eddcefb61132173a876d79"
+            },
+            "dist": {
+                "type": "zip",
+<<<<<<< HEAD
+                "url": "https://api.github.com/repos/symfony/mime/zipball/010cc488e56cafe5f7494dea70aea93100c234df",
+                "reference": "010cc488e56cafe5f7494dea70aea93100c234df",
+>>>>>>> f2f5c75af7b207a0596e40d7fbc18794f65a6b7c
+=======
+                "url": "https://api.github.com/repos/symfony/mime/zipball/0e6a4ced216e49d457eddcefb61132173a876d79",
+                "reference": "0e6a4ced216e49d457eddcefb61132173a876d79",
+>>>>>>> df47207d940d1d5ea097ac5b85f66baf0e5fde5c
                 "shasum": ""
             },
             "require": {
@@ -3051,12 +3111,28 @@
             },
             "require-dev": {
                 "egulias/email-validator": "^2.1.10",
+<<<<<<< HEAD
+<<<<<<< HEAD
                 "symfony/dependency-injection": "^4.4|^5.0"
+=======
+                "symfony/dependency-injection": "^3.4|^4.1|^5.0"
+>>>>>>> f2f5c75af7b207a0596e40d7fbc18794f65a6b7c
+=======
+                "symfony/dependency-injection": "^4.4|^5.0"
+>>>>>>> df47207d940d1d5ea097ac5b85f66baf0e5fde5c
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
+<<<<<<< HEAD
+<<<<<<< HEAD
                     "dev-master": "5.0-dev"
+=======
+                    "dev-master": "4.4-dev"
+>>>>>>> f2f5c75af7b207a0596e40d7fbc18794f65a6b7c
+=======
+                    "dev-master": "5.0-dev"
+>>>>>>> df47207d940d1d5ea097ac5b85f66baf0e5fde5c
                 }
             },
             "autoload": {
@@ -3087,7 +3163,15 @@
                 "mime",
                 "mime-type"
             ],
+<<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2019-11-30T14:12:50+00:00"
+=======
+            "time": "2019-11-30T08:27:26+00:00"
+>>>>>>> f2f5c75af7b207a0596e40d7fbc18794f65a6b7c
+=======
+            "time": "2019-11-30T14:12:50+00:00"
+>>>>>>> df47207d940d1d5ea097ac5b85f66baf0e5fde5c
         },
         {
             "name": "symfony/polyfill-ctype",
