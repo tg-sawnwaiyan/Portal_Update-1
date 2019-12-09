@@ -8451,9 +8451,6 @@ ul.nur-caro-card>li.list-group-item {
     .main-content {
         width: 100%;
     }
-    .main-header {
-        height: auto;
-    }
     .nav-warp {
         max-width: 96%;
         padding: 0;
@@ -9023,7 +9020,7 @@ ul.nur-caro-card>li.list-group-item {
     display: none;
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1240px) {
     /* common */
     .pc-1024 {
         display: none;
@@ -9056,10 +9053,18 @@ ul.nur-caro-card>li.list-group-item {
     /*end header */
 }
 
+@media only screen and (max-width: 1024px) {}
+
 @media only screen and (max-width: 990px) {
+    /* common */
     li {
         list-style: none;
     }
+    .maintab-content {
+        padding: 7px;
+        margin: 110px 0 0 0;
+    }
+    /*end common */
     /* header */
     .main-header {
         padding: 0;
@@ -9217,6 +9222,12 @@ ul.nur-caro-card>li.list-group-item {
         display: none;
     }
     /*end  header */
+    /* ads slider */
+    .ads-slider {
+        width: 80%;
+        margin: 0 auto 20px;
+    }
+    /*end  ads slider */
 }
 
 @media only screen and (max-width: 380px) {
