@@ -15,11 +15,13 @@
           <!-- free word left wrapper--->
             <div class="col-lg-5 col-md-12 col-sm-12 float-left p-l-75 leftwrapper">
               <!-- <h2 class="map-header" style="bottom: 184px;">老人ホームや病院<br/>で働きたいあなた<br/>の希望叶えます。</h2> -->
-              <h2 class="map-header" style="bottom: 120px;">あなたのやさしい<br/>手を求めてる。<br/>そんな老人ホーム<br/>や病院が見つかります。</h2>
+              <h2 class="map-header" style="bottom: 120px;">あなたのやさしい<br/>手を求めてる老人<br/>ホーム・病院が見<br/>つかります。</h2>
+              
+
               <!--search input-->
                 <div class="wrap">
                   <div class="search">
-                      <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、駅名、施設名などを入力（例：東京駅）">
+                      <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、施設名などを入力（例：東京駅）">
                       <button type="submit" class="searchButton" @click="searchfreeword">
                         <i class="fas fa-search"></i> 検索
                     </button>
@@ -359,7 +361,7 @@
                       </div>
 
                     </div>
-                    <div>
+                    <!-- <div>
                      <button @click="getStation" class="btn col-2 seemore-btn">  Station </button>
                       <div v-for="com in company" :key="com.company_cd" class="col-4">
                           COMPANY {{com.company_name}}
@@ -370,7 +372,7 @@
                             </div>
                           </div>
                       </div>
-                    </div>
+                    </div> -->
                   </td>
                 </tr>
 
@@ -768,16 +770,16 @@ export default {
 
         this.search();
         },
-        getStation(){
+        // getStation(){
         
-           this.axios.get('api/getstation/'+ this.id)
-          .then((response)=>{
-            this.company = response.data.company;
+        //    this.axios.get('api/getstation/'+ this.id)
+        //   .then((response)=>{
+        //     this.company = response.data.company;
           
          
-         })
+        //  })
 
-        },
+        // },
 
       getStateClick(e){
 

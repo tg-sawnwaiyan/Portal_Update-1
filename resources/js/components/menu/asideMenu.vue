@@ -5,8 +5,8 @@
               <li>
                 <router-link to="/" class="nav-link"><i class="fa fa-home"></i>&nbsp;ホーム</router-link>
               </li>
-              <li  v-if="$auth.check(2)">
-                <router-link to="/news_list" class="nav-link"><i class="fa fa-newspaper"></i>&nbsp;ニュース一覧</router-link>
+              <li v-if="$auth.check(2)">
+                <router-link to="/news_list" class="nav-link" @click="menuToggle()"><i class="fa fa-newspaper"></i>&nbsp;ニュース一覧</router-link>
               </li>
               <li v-if="$auth.check(2)">
                 <router-link to="/categorylist" class="nav-link" ><i class="fa fa-file"></i>&nbsp;カテゴ一覧</router-link>
@@ -48,6 +48,18 @@
        
        
     },
+    methods: {
+        // testlogout(){
+        //     this.$auth.logout({
+        //         success: function() {                    
+        //             this.$router.push({
+        //                 name: 'News'
+        //             });
+        //         },
+        //     })
+            
+        // }
+    }
 
   }
 </script>

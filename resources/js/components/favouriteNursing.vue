@@ -248,7 +248,7 @@
                         </div>
                     </div>
                     <div class="m-t-20" id="fav-history-page">
-                        <div class="col-12">
+                        <div class="col-12 card-container">
                             <div class="card-carousel-wrapper">
                                     <div class="nav-box" @click="moveCarousel(-1)" :disabled="atHeadOfList">
                                         <div class="nav-content mr-2">
@@ -461,10 +461,10 @@
                 //for cardcarousel responsive
                 window.addEventListener('resize', this.handleResize)
                 this.handleResize();
-                console.log('nnnnnnn');
-                console.log(this.window.width);
+                // console.log('nnnnnnn');
+                // console.log(this.window.width);
                 if(this.window.width > 320 && this.window.width < 450) {
-                    this.windowSize = 1;                
+                    this.windowSize = 1;    
                 } 
                 
                 else if(this.window.width >= 450 && this.window.width < 768) {
@@ -484,6 +484,7 @@
                 }
                 else if (this.window.width >= 1024 && this.window.width < 1280) {
                     this.windowSize = 3;
+                    this.paginationFactor = 260;
                     console.log('aaaaaaa');
                 console.log(this.window.width);
                     
@@ -491,10 +492,12 @@
                 else if (this.window.width >= 1280 && this.window.width < 1440) {
                     this.windowSize = 4;
                     console.log('bbbb');
+                    console.log(this.windowSize);
+
                 }
                 else if (this.window.width >= 1440 && this.window.width < 1880) {
-                    this.windowSize = 5;              
-                    
+                    this.windowSize = 4;            
+                    console.log(this.window.width);
                 }
 
                 // $('.checkbox1').prop("checked", true);
@@ -738,3 +741,4 @@
             }
     };
 </script>
+
