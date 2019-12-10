@@ -357,7 +357,7 @@
                     <option data-price-type="" value="10">10万円以下</option>
                     <option data-price-type="" value="12">12万円以下</option>
                     <option data-price-type="" value="14">14万円以下</option>
-                    <option data-price-type="" value="16">16万円以下</option>     
+                    <option data-price-type="" value="16">16万円以下</option>
                     <option data-price-type="" value="18">18万円以下</option>
                     <option data-price-type="" value="20">20万円以下</option>
                     <option data-price-type="" value="22">22万円以下</option>
@@ -382,26 +382,27 @@
         </div>
       </div>
         <!-- google map  -->
-
         <section id="holder" >
         <div class="row" >
-          <div class="col-sm-12 col-md-12">    
-            <div v-if="loading" class=" m-t-10 m-b-10" style="background-color:gray;opacity:0.9;position:relative;z-index:10;">   
-               <div class="lds-ripple m-t-10 m-b-10" >
-                  <div></div><div></div>
-                </div>           
-                <div class="col-12 overlay" style="z-index:9">
-                 
-                </div>
+          <div class="col-sm-12 col-md-12">
+          <div style="position: relative;">
+           
+            <div v-if="loading" class=" m-t-10 m-b-10 text-center overlay">
+                <div class="lds-ripple m-t-10 m-b-10" ><div></div><div></div></div>
             </div>
-            <div v-if="!loading" class="m-t-10 m-b-10">
-              <div id="mymap"></div>
-            </div>     
-              <!-- <div id="mymap" class="select m-t-10 m-b-10"></div> -->       
+              <!-- <div class="overlay standard hidden">&nbsp;</div> -->
+              <div v-if="!loading" class="m-t-10 m-b-10">
+                <div id="mymap"></div>
+              </div>
+         
+              
+
+              <!-- <div id="mymap" class="select m-t-10 m-b-10"></div> -->
+
+          </div>
           </div>
         </div>
         </section>
-        
 
         <!-- nursing list -->
        <div id="nursing-search" >
@@ -505,26 +506,16 @@
           </div>
          <div id="nursingView">
          <h5 class="profile_subtit">もっと探す条件</h5>
-
+        
         </div>
       <!--list-->
           <div id="filtertable">
-
-           <table class="table table-bordered col-12 box-wrap">
+     
+           <table class="table table-bordered col-12 box-wrap">    
               <tbody>
                 <tr>
                   <th>地域</th>
                   <td>
-                    <select id="selectCity" class="col-9 form-control custom-select mt-2 mb-2" v-model="id" @change="ChangeTownship">
-                     <option value="-1">▼市区町村</option>
-                    <option v-for="city in cities" :value="city.id" :key="city.id">{{city.city_name}}</option>
-                  </select>
-                  <button @click="toggleContent" class="btn col-3 seemore-btn">
-                    <i class="fa" aria-hidden="true"></i>
-                    <!-- <em>{{city.city_name}}</em> -->
-                    <span id="close"><i class="fas fa-arrow-circle-up"></i> 市区町村エリアを閉じる</span>
-                  </button>
-                  <div class="toBeToggled" id="toBeToggled">
                         <div class="form-check form-check-inline col-sm-2"   v-for="township in getTownships" :key="township.id">
                         <label class="form-check-label control control--checkbox" style="padding-left:5px;">
                          <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @click="check">
@@ -532,7 +523,6 @@
                         <div class="control__indicator"></div>
                         </label>
                       </div>
-                  </div>
 
                   </td>
                 </tr>
@@ -781,7 +771,7 @@
     },
 
     data() {
-
+   
       return {
         cityid:[],
         listid : '',
@@ -835,7 +825,6 @@
         onchangeid:0,
         localst:'',
         selected: undefined,
-        toggleCheck: true,
         loading: false,
         coordinate:[],
         norecord_msg: false,
@@ -863,11 +852,11 @@
             else if(this.window.width >= 992 && this.window.width < 1024) {
                 this.windowSize = 2;
                 this.paginationFactor=398;
-
+                
                 // console.log(this.window.width);
                 // console.log(this.windowSize);
             }
-
+            
             else if (this.window.width >= 1024 && this.window.width < 1200) {
                 this.windowSize = 3;
                 this.paginationFactor=412;
@@ -881,7 +870,7 @@
               //  console.log(this.window.width);
 
             }
-
+            
             else if (this.window.width >= 1280 && this.window.width < 1440) {
                 this.windowSize = 3;
                 this.paginationFactor=329;
@@ -889,17 +878,17 @@
                 // console.log(this.window.width);
                 // console.log(this.paginationFactor);
                 // console.log(this.windowSize);
-
+               
 
             }
-
+            
             else if (this.window.width >= 1440 && this.window.width < 1880) {
                 this.windowSize = 3;
                 this.paginationFactor=344;
           
 
             }
-
+            
             // else if( this.window.width > 1700) {
 
             // }
@@ -911,7 +900,7 @@
             $('#upper-tab').addClass('nursing-borderColor');
         },
     computed: {
-
+     
       atEndOfList() {
         return this.currentOffset <= (this.paginationFactor * -1) * (this.nus_data.length - this.windowSize);
       },
@@ -985,9 +974,9 @@ searchfreeword(){
       else{
           this.locast = localStorage.getItem("nursing_fav");
       }
-
-
-
+     
+    
+  
 
         this.axios.get('/api/getnursingsearch/'+search_word,{
           params:{
@@ -1002,14 +991,13 @@ searchfreeword(){
               // console.log(response)
             if(response.data.nursing.length > 0)
             {
-             
                 $("#mymap").css("display", "block");
                 $("#filtertable").css("display", "block");
                 $("#nursing-search").css("display", "block");
                 this.changeMap(response);
             }
             else{
-                $("#mymap").css("display", "none");
+
                 $("#nursing-search").css("display", "none");
 
             }
@@ -1047,7 +1035,6 @@ showSearchMap() {
             $('#showSearchMap').addClass('select');
             $('#filter').addClass('select');
             $("#mymap").css("display", "none");
-            console.log('mymap')
             $("#nursing-search").css("display", "none");
             $("#filtertable").css("display", "none");
             document.getElementById('search-free-word').value = '';
@@ -1067,7 +1054,7 @@ moveCarousel(direction) {
         },
 // map onclick function
 getStateClick(e) {
-
+            
             this.township_id= -1;
             this.moving_in = -1;
             this.per_month = -1;
@@ -1098,11 +1085,10 @@ getStateClick(e) {
                 },
             })
                 .then((response) => {
-                 $("#mymap").css({'display' : 'block','height' : '500px','width':'100%'});  
-                 // $("#mymap").css('display', 'block');               
+                  $("#mymap").css("display", "block");
                   $("#nursing-search").css("display", "block");
                   $("#filtertable").css("display", "block");
-
+                  
                   this.changeMap(response)
                 })
 
@@ -1111,7 +1097,7 @@ getStateClick(e) {
 // map onclick function
 // map change dropdown function
 nursingSearchData(index){
-
+            
             if(index == 1) //if choose city
             {
                 this.township_id = -1;
@@ -1159,7 +1145,7 @@ nursingSearchData(index){
 
 
 
-        
+
         },
 // map change dropdown function
 // make infowindow, marker , google map
@@ -1188,6 +1174,8 @@ coordinates(theCity, lat, lng){
                   gestureHandling: 'greedy'
                 }
               };
+                }
+            
                 this.map = new google.maps.Map(document.getElementById("mymap"), mapProp);
                 this.loading = true
                 let  coor =[];
@@ -1223,9 +1211,9 @@ coordinates(theCity, lat, lng){
                 }else{
                   var township_name = townshipName;
                 }
-              
+
                 if(this.townshipID == 0){
-                  if(township_name== ''){
+
                       this.axios.get("/api/cityJson").then(respon => {
                               var res = respon.data
                               this.loading = false
@@ -1249,29 +1237,7 @@ coordinates(theCity, lat, lng){
                       
                       
                       }); //end get city
-                      }else{
-                      this.axios.get("/api/townshipJson").then(res => {
-                        var data = res.data
-                        this.loading = false
-                        var coordinates = [];
-                        for (let i = 0; i < data.length; i++) {
-                            if(data[i]['properties']['N03_007'] == township_name){
-                              coordinates.push(data[i]['geometry']['coordinates'])
-                            }
-
-                          }
-                        
-
-                        var co = coordinates.reduce((acc, val) => acc.concat(val), []);
-                        var coord =  [];
-                        for(let key in co)coord= coord.concat(co[key])
-                        this.coordinate = coord
-                        this.boundariesGoogleMap(lat,lng,this.coordinate);
-
-                        
-
-                      }); //end get township
-                      }//end else
+                  
                 }else{
 
                   this.axios.get('/api/townshipJson').then(res => {
@@ -1280,16 +1246,16 @@ coordinates(theCity, lat, lng){
                       var coordinates = [];
                       
                       for (let i = 0; i < township_name.length; i++) {
-                       
+                          console.log(township_name[i])
                         for (let k = 0; k < data.length; k++) {
-                          if(data[k]['properties']['N03_007'] == township_name[i]){
-                            console.log('if')
-                              coordinates.push(data[i]['geometry']['coordinates'])
+                          if(data[k]['properties']['N03_007'] === township_name[i]){
+                              coordinates.push(data[k])
                           }
                           
                         }
                         
                       }
+
                         var co = coordinates.reduce((acc, val) => acc.concat(val), []);
                         var coord =  [];
                         for(let key in co)coord= coord.concat(co[key])
@@ -1306,7 +1272,7 @@ coordinates(theCity, lat, lng){
 boundariesGoogleMap(lat,lng,coor){
   
       try {
-        console.log('try')
+
         var data = {
               type: "Feature",
               geometry: {
@@ -1316,20 +1282,11 @@ boundariesGoogleMap(lat,lng,coor){
           };
           this.map.data.addGeoJson(data);
       } catch (error) {
-        console.log('catch')
-        var coor = [coor]
-        if(this.townshipID==0){
-          var data = {
-                type: "Feature",
-                geometry: {
-                "type": "Polygon",
-                "coordinates": coor
-                },
-            };
-            this.map.data.addGeoJson(data); 
-       }else{
-           console.log(coor) 
-       }
+          var data = coor.reduce((acc, val) => acc.concat(val), []);
+
+          for (let i = 0; i < data.length; i++) {
+            this.map.data.addGeoJson(data[i]); 
+          }
       }
 
           this.map.data.setStyle({
@@ -1417,9 +1374,9 @@ infoWindow(item, mmarker){
             }
             });
             // bounds.extend(position);
-
-
-
+            
+         
+            
             google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
                 infoWindow.setContent(infoWindowContent[i][0]);
@@ -1478,7 +1435,7 @@ infoWindow(item, mmarker){
         },
 // make infowindow, marker , google map
 changeMap(response){
-
+              
                 $('.select').removeClass('select');
                 $('#searchMap').addClass('select');
                 $('#showSearchMap').removeClass('select');
@@ -1504,11 +1461,11 @@ changeMap(response){
                     mmarker.push([this.markers[i]['alphabet'], this.markers[i]['lat'], this.markers[i]['lng']])
                     item.push(this.markers[i])
                 }
-
+              
 
                 if(this.getCity.length > 0) //if city  choose
                 {
-
+                
                     const theCity = response.data.getCity[0]['city_eng']
                     const lat = response.data.getCity[0]['latitude']
                     const lng = response.data.getCity[0]['longitude']
@@ -1516,17 +1473,15 @@ changeMap(response){
 
                     if(this.markers.length > 0 )
                     {
-                      
                         this.coordinates(theCity,lat,lng);
-
+                        
                         this.infoWindow(item, mmarker);
                     }
                     else{
-                      
                         this.coordinates(theCity,lat,lng);
                     }
                 }
-                else{ //if city not choose
+                else{ //if city not choose                    
                      this.coordinates(null,'38.25759','140.8667');
                      this.infoWindow(item, mmarker);
                 }
@@ -1657,12 +1612,9 @@ search(){
               }
             this.show_paginate = true;
             });
-        
-
         },
         // hover animate function
         mouseover(index) {
-          
             for (let i = 0; i < this.markerHover.length; i++) {
 
                 if(this.markers[i]['alphabet'] == index)
@@ -1695,7 +1647,7 @@ search(){
             event.target.src = "images/noimage.jpg"
         },
         favAddFun(status,index,ind){
-            if(status == 'add'){
+            if(status == 'add'){                
                   this.nus_data[ind].fav_check = 'check';
 
                 if(localStorage.getItem("nursing_fav")){
@@ -1713,7 +1665,7 @@ search(){
                 $(".fav-nursing-link-box>a").css({'cursor':'pointer','pointer-events':'auto'});
             }
             else{
-
+            
                 this.nus_data[ind].fav_check = '';
 
                 var fav_arr = JSON.parse("[" + localStorage.getItem("nursing_fav") + "]");
@@ -1752,78 +1704,23 @@ search(){
     pageSelect(index) {
       this.currentPage = index - 1;
     },
-    toggleContent() {
-        this.toggleCheck = !this.toggleCheck;
-        if (this.toggleCheck == true) {
-          $('#close').empty();
-          $("#toBeToggled").slideDown();
-          $('#close').append('<i class="fas fa-arrow-circle-up"></i> 市区町村エリアを閉じる');
-
-        } else {
-          $('#close').empty();
-          $("#toBeToggled").slideUp();
-          $('#close').append('<i class="fas fa-arrow-circle-down"></i> 市区町村エリアを開く');
-        }
-      },
-      ChangeTownship(){
-
-        this.townshipID = [];
-         if(localStorage.getItem("nursing_fav") == null){
-
-                this.locast = 0;
-            }
-            else{
-                this.locast = localStorage.getItem("nursing_fav");
-            }
-
-         this.axios.get('api/getmap',{
-              params:{
-              id: this.id,
-              township_id:-1,
-              moving_in:-1,
-              per_month:-1,
-              local:this.locast
-          },
-          })
-            .then((response) => {
-
-              $('.hospitalselect').removeClass('hospitalselect');
-              this.cities = response.data.city
-              this.getCity = response.data.getCity
-              this.getTownships = response.data.getTownships
-              this.special_features = response.data.special_features
-              this.subjects = response.data.subjects;
-            //   this.sub_child = response.data.sub_child;
-              //console.log("aaa",this.subjects);
-              // this.id = id;
-
-            })
-              this.search();
-      },
     }
   };
 </script>
 
 <style scoped>
 .lds-ripple {
-  /* display: inline-block;
-  position: absolute;
+  display: inline-block;
+  position: relative;
   width: 80px;
   height: 80px;
-  top: 40%;
-  left: 50%; 
-  z-index: 1; */
-  position: relative;
-  width: 100% !important;
-  height: 440px !important;
- 
+  top:230px;
 }
 .lds-ripple div {
   position: absolute;
-  border: 4px solid#fff;
+  border: 4px solid black;
   opacity: 1;
   border-radius: 50%;
-  z-index: 999;
   animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
 .lds-ripple div:nth-child(2) {
@@ -1846,20 +1743,7 @@ search(){
   }
 }
 
-.overlay{
-  /* position: relative;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.19);
-  opacity: 0.1; */
-  top: 0;
-  background-color: rgba(0, 0, 0, 0.19);  
-  position: absolute;
-  background: #d2d2d2;
-  width: 100%;
-  height: 440px;
-}
+
 
 .highlight{
      background-color: #ccff60 !important;
@@ -1986,9 +1870,6 @@ search(){
     padding: 25px;
 
   }
-  .toBeToggled {
-    display: block;
-  }
 
   .toBeToggled2 {
     display: block;
@@ -2033,9 +1914,9 @@ search(){
 
   #mymap {
     width: 100%;
-    /* height: 500px; */
+    height: 500px;
   }
-
+  /* #mymap {background: transparent url('/images/google/loading.jpg') no-repeat center center;} */
 div#holder {
     position: absolute;
 }
@@ -2044,17 +1925,17 @@ div#holder {
     display: none;
 }
 
-/* div.overlay {
-    position: relative;
+div.overlay {
+    position: absolute;
     top: 0;
     width: 100%;
     height: 100%;
     background-color: #5e5e5e;
     opacity: 0.7;
     z-index: 1;
-} */
+}
 
-/* div.overlay.standard { background: #fff url('/images/google/loading.jpg') no-repeat 50% 50%; } */
+div.overlay.standard { background: #fff url('/images/google/loading.jpg') no-repeat 50% 50%; }
 
   .card_1 {
     display: inline-block;
