@@ -1480,6 +1480,10 @@ p {
     font-size: 10px;
 }
 
+.h-tel a:hover {
+    text-decoration: none;
+}
+
 .h-tel i {
     width: 25px;
     height: 25px;
@@ -1493,11 +1497,16 @@ p {
     vertical-align: text-bottom;
 }
 
-.h-tel span {
+.tel {
+    cursor: text;
+}
+
+.h-tel .tel span {
     padding: 10px 0 0 0;
     line-height: 1.1;
     font-size: 20px;
     font-weight: bold;
+    color: #444;
 }
 
 .main-header .navbar-nav {
@@ -1535,7 +1544,7 @@ p {
     display: inline-block;
     width: 20px;
     height: 20px;
-    margin: -5px 5px 0 0;
+    margin: 7px 5px 0 0;
     text-align: center;
     font-size: 12px;
     color: #fff !important;
@@ -3382,11 +3391,12 @@ ul.main-tab li:after {
 
 
 /* Hospital Search */
-.table-innertitle{
+
+.table-innertitle {
     position: relative;
-   
 }
-.table-innertitle:after{
+
+.table-innertitle:after {
     content: '';
     position: absolute;
     top: 20px;
@@ -3397,30 +3407,30 @@ ul.main-tab li:after {
     border-radius: 2px;
     background: #d2571c;
     left: 15px;
-
 }
-.innerwrapper{
+
+.innerwrapper {
     /* padding-left: 0px;
     padding-right: 0px;     */
     margin-left: 0px;
     display: table;
     padding: 0px 5px;
     border-collapse: initial;
-    
 }
+
 .test {
     display: table-cell;
-    background-color: rgb(245, 245, 245);  
+    background-color: rgb(245, 245, 245);
     padding: 12px;
     width: 33.33%;
-   
 }
-.table-innerwrapper{    
+
+.table-innerwrapper {
     background-color: rgb(245, 245, 245);
     border-radius: 5px;
     padding: 10px;
-   
 }
+
 .feature_list {
     display: inline-block;
     padding: 5px 10px;
@@ -5153,15 +5163,15 @@ a:hover {
     display: none; */
 }
 
-#menu-overlay{
+#menu-overlay {
     display: none;
-    width:100%;
-    height:100%;
+    width: 100%;
+    height: 100%;
     background-color: #000;
     opacity: 0.4;
     position: absolute;
-    top:0px;
-    left:0px;
+    top: 0px;
+    left: 0px;
     z-index: 999;
 }
 
@@ -6179,8 +6189,9 @@ button.confirmed {
     opacity: 0.5;
     cursor: not-allowed;
 }
-.comment-btn-wrapper{
-    padding:0px 0px 40px;
+
+.comment-btn-wrapper {
+    padding: 0px 0px 40px;
     text-align: center;
     background-color: #FFF9EB;
     border: 4px solid #f60;
@@ -6189,11 +6200,13 @@ button.confirmed {
     border: 2px solid #d2571c;
     width: 100%;
 }
-.no-comment-title{
+
+.no-comment-title {
     padding: 20px;
     font-size: 30px;
 }
-.comment-btn{
+
+.comment-btn {
     background: #f98f5d;
     padding: 17px;
     border: 1px solid #d2571c;
@@ -6201,16 +6214,20 @@ button.confirmed {
     font-weight: bold;
     font-size: 20px;
     border-radius: 10px;
-    -webkit-transition: color .1s ease-in-out,background-color .1s ease-in-out;
-    transition: color .1s ease-in-out,background-color .1s ease-in-out;
-    -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.0125), 0 1px 1px rgba(0,0,0,0.05);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.0125), 0 1px 1px rgba(0,0,0,0.05);
+    -webkit-transition: color .1s ease-in-out, background-color .1s ease-in-out;
+    transition: color .1s ease-in-out, background-color .1s ease-in-out;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.0125), 0 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.0125), 0 1px 1px rgba(0, 0, 0, 0.05);
     border-bottom-width: 4.2px;
 }
-.comment-btn:link, .comment-btn:visited {
+
+.comment-btn:link,
+.comment-btn:visited {
     -webkit-transition: all .1s ease-in;
     transition: all .1s ease-in;
 }
+
+
 /* End Commentlist */
 
 .mailbox {
@@ -7636,11 +7653,12 @@ ul.test>li:before {
 
 
 /*hospital search*/
-.table-innertitle{
-    position: relative;
 
+.table-innertitle {
+    position: relative;
 }
-.table-innertitle:after{
+
+.table-innertitle:after {
     content: '';
     position: absolute;
     top: 20px;
@@ -7652,19 +7670,19 @@ ul.test>li:before {
     background: #D2571C;
     left: 15px;
 }
-.innerwrapper{
+
+.innerwrapper {
     padding-left: 0px;
     padding-right: 0px;
     margin-left: 0px;
-
-
 }
-.table-innerwrapper{
+
+.table-innerwrapper {
     background-color: rgb(245, 245, 245);
     border-radius: 5px;
     padding: 10px;
-
 }
+
 .hos-content {
     position: relative;
     margin-bottom: 20px;
@@ -7702,7 +7720,8 @@ ul.test>li:before {
     font-size: 10px;
     float: right;
 }
-.hos_phone i{
+
+.hos_phone i {
     width: 40px;
     height: 40px;
     margin-right: 5px;
@@ -7714,7 +7733,8 @@ ul.test>li:before {
     border-radius: 50%;
     vertical-align: bottom;
 }
-.phone-no{
+
+.phone-no {
     color: #c40000;
     font-size: 25px;
     letter-spacing: -0.5px;
@@ -8460,7 +8480,7 @@ ul.nur-caro-card>li.list-group-item {
 
 /*end for date time picker*/
 
-@media only screen and (max-width: 1300px) {
+@media only screen and (max-width: 1400px) {
     .main-content {
         width: 100%;
     }
@@ -9002,7 +9022,7 @@ ul.nur-caro-card>li.list-group-item {
     }
 }
 
-@media only screen and (min-width: 1440px) and (max-width: 1880px)  {
+@media only screen and (min-width: 1440px) and (max-width: 1880px) {
     #fav-history-page .card-carousel {
         width: 1046px!important;
         margin-left: 20px;
@@ -9099,10 +9119,60 @@ ul.nur-caro-card>li.list-group-item {
     display: none;
 }
 
-@media only screen and (max-width: 768px) {
+.pc-1024 {
+    display: block;
+}
+
+.sp-1024 {
+    display: none;
+}
+
+@media only screen and (max-width: 1240px) {
+    /* common */
+    .pc-1024 {
+        display: none;
+    }
+    .sp-1024 {
+        display: block;
+    }
+    /*end  common */
+    /* header */
+    .main-header .nav-item {
+        padding: 3px 8px 5px 8px;
+    }
+    .main-header .navbar-nav .nav-link span {
+        font-size: 12px;
+    }
+    #app .logo-text {
+        padding: 0;
+    }
+    .h-tel span {
+        display: none;
+    }
+    .h-tel {
+        padding-left: 8px;
+    }
+    .tel {
+        display: block;
+        margin: 0 0 1px;
+        cursor: pointer;
+    }
+    /*end header */
+}
+
+@media only screen and (max-width: 1024px) {}
+
+@media only screen and (max-width: 990px) {
+    /* common */
     li {
         list-style: none;
     }
+    .maintab-content {
+        padding: 7px;
+        margin: 110px 0 0 0;
+    }
+    /*end common */
+    /* header */
     .main-header {
         padding: 0;
         height: auto;
@@ -9134,9 +9204,9 @@ ul.nur-caro-card>li.list-group-item {
         text-align: center;
     }
     #sp_headerbar .fav_his li {
-        position: relative;  
-        display: inline-block; 
-        cursor: pointer;    
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
     }
     #sp_headerbar .fav_his li .t-show {
         position: absolute;
@@ -9145,7 +9215,7 @@ ul.nur-caro-card>li.list-group-item {
         width: 100%;
         z-index: 2;
     }
-    #sp_headerbar .fav_his li p {       
+    #sp_headerbar .fav_his li p {
         padding: 0 10px;
         border: 1px solid;
         border-radius: 4px;
@@ -9192,7 +9262,7 @@ ul.nur-caro-card>li.list-group-item {
         height: 100%;
         padding-bottom: 150px;
         background: #f7f7f7;
-        opacity: 0.9; 
+        opacity: 0.9;
         overflow-y: auto;
         z-index: 1;
     }
@@ -9260,9 +9330,20 @@ ul.nur-caro-card>li.list-group-item {
     #map-responsive{
         display: block;
     }
+    .d-none-768 {
+        display: none;
+    }
+    /*end  header */
+    /* ads slider */
+    .ads-slider {
+        width: 80%;
+        margin: 0 auto 20px;
+    }
+    /*end  ads slider */
 }
 
 @media only screen and (max-width: 380px) {
+    /* header */
     #sp_headerbar .fav_his {
         float: none;
         text-align: center;
@@ -9276,13 +9357,16 @@ ul.nur-caro-card>li.list-group-item {
     .menu span {
         display: none;
     }
-    .sp_social {
-        display: flex;
-        position: absolute;
-        top: 490px;
-        width: 100%;
-        align-items: center;
-        justify-content: center;
-        z-index: 1;
+    .d-none-380 {
+        display: none !important;
     }
+    .sp_social.d-none-768 {
+        display: block;
+        text-align: center;
+    }
+    .sp_social .social-link {
+        float: none;
+        display: inline-block;
+    }
+    /*end header */
 }
