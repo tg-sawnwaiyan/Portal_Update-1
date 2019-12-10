@@ -3,6 +3,22 @@
           
               <div class="col-md-12 pad-free">
                 <div class="col-md-12 pad-free postal-search">
+                  <div class="col-md-12 m-t-10"><label>  都道府県<span class="error">*</span></label></div>
+                    <div class="col-md-6 p-0">
+                        <select v-model="city" class="division form-control" id="division">
+                            <option v-for="cities in city_list" :key="cities.id" v-bind:value="cities.id">
+                                {{cities.city_name}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-md-12 m-t-10"><label>  市区町村<span class="error">*</span></label></div>
+                    <div class="col-md-6 p-0">
+                        <select v-model="township" class="division form-control" id="division">
+                            <option v-for="townships in township_list" :key="townships.id" v-bind:value="townships.id">
+                                {{townships.township_name}}
+                            </option>
+                        </select>
+                    </div>
                   <div class="form-group m-t-10">
                     <label>郵便番号<span class="error">*</span></label>
                     <input type="text" v-model="comment.postal" name="postal" class="postal form-control white-bg-color" id="postal" v-on:keyup="getPostal" placeholder="郵便番号を入力してください。" maxlength="7"/>
@@ -12,7 +28,8 @@
                     <label>市区町村、番地（建物名）<span class="error">*</span></label>
                     <div class="row">
                       <div class="col-md-10" v-if="status === '0'">
-                        <input type="text" id="city" name="city" class="old-city form-control white-bg-color" placeholder="市区町村、番地を入力してください。" v-model="address">                        
+                        <input type="text" id="city" name="city" class="old-city form-control white-bg-color" placeholder="市区町村、番地を入力してください。" v-model="address"> 
+                                              
                       </div>
                       <div class="col-md-10" v-else>
                         <input type="text" id="city" name="city" class="city form-control white-bg-color" placeholder="市区町村、番地を入力してください。" v-model="comment.city">
@@ -66,6 +83,9 @@ export default {
   name: "GoogleMap",
   props:{
          address:String,
+         township:0,
+         city: 0,
+         township_list: []
         },
   data () {
     return {
@@ -83,6 +103,7 @@ export default {
         gmap_city: ''
       },
       address_btn: false,
+      city_list: []
     }
   },
   created() { 
@@ -98,6 +119,11 @@ export default {
     this.center = { lat: Number(localStorage.getItem('lat_num')), lng: Number(localStorage.getItem('lng_num')) }
     
     $('#gmap-search').css({'display':'none'});
+    console.log('testadd',this.$route.params.address)
+    this.axios.get('/api/hospital/citiesList')
+        .then(response => {
+            this.city_list = response.data;
+        });
   },
   methods: {    
     // receives a place object via the autocomplete component
