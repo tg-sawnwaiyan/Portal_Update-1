@@ -126,7 +126,7 @@
       <div class="sp_nav" v-show="isNav">
         <ul class="menu_list">
           <li>
-            <router-link :to="{ name: 'News' }"><i class="fas fa-newspaper"></i>  ニュース（ホーム）</router-link>
+            <router-link :to="{ name: 'News' }"  v-on:click='isNav = isNav'><i class="fas fa-newspaper"></i>  ニュース（ホーム）</router-link>
           </li>
           <li>
             <router-link :to="{ name: 'nursingSearch' }"><i class="fas fa-user-md"></i> 介護施設検索</router-link>
