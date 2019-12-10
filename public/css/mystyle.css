@@ -9183,6 +9183,11 @@ ul.nur-caro-card>li.list-group-item {
         text-decoration: none;
         opacity: 0.8;
     }
+
+    /*map responsive*/
+    #map-responsive{
+        display: block;
+    }
 }
 
 @media only screen and (max-width: 380px) {
