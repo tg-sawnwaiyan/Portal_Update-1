@@ -905,7 +905,7 @@ width: 100%; */
     /* -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    background-size: 60px 60px;   
+    background-size: 60px 60px;
      margin-left: -108px; */
     display: none;
 }
@@ -937,7 +937,6 @@ width: 100%; */
 
 
 /* End Register form*/
-
 
 /* Search News List */
 
@@ -1144,6 +1143,34 @@ scrollbar-width: thin;
 /* end no search data */
 
 
+/*  Start upandDown for Search Responsive*/
+.arrow_icon{
+    color: #828282 !important;
+    font-size: 16px;
+    float: right;
+    padding-right: 14px;
+}
+.custom_group{
+    color:#828282 !important;
+   font-size: 14px;
+}
+.custom_group a {
+    cursor: pointer;
+}
+.custom_group a li {
+    list-style: none;
+    border-bottom: 1px solid #eeeeee;
+    padding:5px;
+}
+.map-addicon{
+    position: absolute;
+    right: 20px;
+    top: 15px;
+}
+.card-header-title > p{
+    padding: 10px 10px 0px 10px !important;
+}
+/*  End upandDown for Search Responsive*/
 /* End Search News List */
 
 
@@ -9011,6 +9038,9 @@ ul.nur-caro-card>li.list-group-item {
 .sp_social {
     display: none;
 }
+#map-responsive{
+    display: none;
+}
 
 .sp_nav {
     display: none;
@@ -9149,6 +9179,14 @@ ul.nur-caro-card>li.list-group-item {
     .menu {
         float: right;
         cursor: pointer;
+        width: 100%;
+        margin: 0 auto;
+    }
+    ul.menu li.first-submenu {
+        float: right;
+        position: absolute;
+        right: 15px;
+        top: 75px;
     }
     .sp_nav {
         display: block;
@@ -9163,44 +9201,44 @@ ul.nur-caro-card>li.list-group-item {
         overflow-y: auto;
         z-index: 1;
     }
-    .sp_nav .menu_list {
+    ul.menu_list {
         width: 90%;
         margin: 20px auto;
         background: #fff;
         border: 1px solid #8c9090;
     }
-    .sp_nav .menu_list li {
+    ul.menu_list li {
         border-bottom: 1px solid #8c9090;
         padding: 8px 0 8px 20px;
     }
-    .sp_nav .menu_list li i {
+    ul.menu_list li i {
         color: #ff6117 !important;
     }
-    .sp_nav .menu_list li:last-child {
+    ul.menu_list li:last-child {
         border-bottom: 0px solid;
     }
-    .sp_nav .menu_list li a {
+    ul.menu_list li a {
         color: #444;
     }
-    .sp_nav .menu_list li a.router-link-exact-active {
+    ul.menu_list li a.router-link-exact-active {
         color: #ff6117 !important;
         background-color: transparent;
         border-left-color: transparent;
     }
-    .sp_nav .contact_list {
+    ul.contact_list {
         text-align: center;
     }
-    .sp_nav .contact_list li {
+    ul.contact_list li {
         padding: 10px;
         line-height: 1;
     }
-    .sp_nav .contact_list li:first-child span {
+    ul.contact_list li:first-child span {
         padding: 10px 0 0 0;
         line-height: 1.1;
         font-size: 20px;
         font-weight: bold;
     }
-    .sp_nav .contact_list i {
+    ul.contact_list i {
         width: 25px;
         height: 25px;
         margin-right: 5px;
@@ -9212,13 +9250,13 @@ ul.nur-caro-card>li.list-group-item {
         border-radius: 50%;
         vertical-align: text-bottom;
     }
-    .sp_nav .contact_list li:first-child a {
+    ul.contact_list li:first-child a {
         padding: 10px;
         color: #444;
         border: 1px solid;
         border-radius: 10px;
     }
-    .sp_nav .contact_list li:first-child a:hover {
+    ul.contact_list li:first-child a:hover {
         text-decoration: none;
         opacity: 0.8;
     }
@@ -9232,6 +9270,11 @@ ul.nur-caro-card>li.list-group-item {
         margin: 0 auto 20px;
     }
     /*end  ads slider */
+
+    /*map responsive*/
+    #map-responsive{
+        display: block;
+    }
 }
 
 @media only screen and (max-width: 380px) {

@@ -505,12 +505,12 @@
           </div>
          <div id="nursingView">
          <h5 class="profile_subtit">もっと探す条件</h5>
-        
+
         </div>
       <!--list-->
           <div id="filtertable">
-     
-           <table class="table table-bordered col-12 box-wrap">    
+
+           <table class="table table-bordered col-12 box-wrap">
               <tbody>
                 <tr>
                   <th>地域</th>
@@ -770,7 +770,7 @@
     },
 
     data() {
-   
+
       return {
         cityid:[],
         listid : '',
@@ -851,11 +851,11 @@
             else if(this.window.width >= 992 && this.window.width < 1024) {
                 this.windowSize = 2;
                 this.paginationFactor=398;
-                
+
                 // console.log(this.window.width);
                 // console.log(this.windowSize);
             }
-            
+
             else if (this.window.width >= 1024 && this.window.width < 1200) {
                 this.windowSize = 3;
                 this.paginationFactor=412;
@@ -869,7 +869,7 @@
               //  console.log(this.window.width);
 
             }
-            
+
             else if (this.window.width >= 1280 && this.window.width < 1440) {
                 this.windowSize = 3;
                 this.paginationFactor=329;
@@ -877,17 +877,17 @@
                 // console.log(this.window.width);
                 // console.log(this.paginationFactor);
                 // console.log(this.windowSize);
-               
+
 
             }
-            
+
             else if (this.window.width >= 1440 && this.window.width < 1880) {
                 this.windowSize = 3;
                 this.paginationFactor=344;
           
 
             }
-            
+
             // else if( this.window.width > 1700) {
 
             // }
@@ -899,7 +899,7 @@
             $('#upper-tab').addClass('nursing-borderColor');
         },
     computed: {
-     
+
       atEndOfList() {
         return this.currentOffset <= (this.paginationFactor * -1) * (this.nus_data.length - this.windowSize);
       },
@@ -973,9 +973,9 @@ searchfreeword(){
       else{
           this.locast = localStorage.getItem("nursing_fav");
       }
-     
-    
-  
+
+
+
 
         this.axios.get('/api/getnursingsearch/'+search_word,{
           params:{
@@ -1054,7 +1054,7 @@ moveCarousel(direction) {
         },
 // map onclick function
 getStateClick(e) {
-            
+
             this.township_id= -1;
             this.moving_in = -1;
             this.per_month = -1;
@@ -1089,7 +1089,7 @@ getStateClick(e) {
                  // $("#mymap").css('display', 'block');               
                   $("#nursing-search").css("display", "block");
                   $("#filtertable").css("display", "block");
-                  
+
                   this.changeMap(response)
                 })
 
@@ -1098,7 +1098,7 @@ getStateClick(e) {
 // map onclick function
 // map change dropdown function
 nursingSearchData(index){
-            
+
             if(index == 1) //if choose city
             {
                 this.township_id = -1;
@@ -1159,7 +1159,7 @@ coordinates(theCity, lat, lng){
                   gestureHandling: 'greedy'
                 }
               };
-            
+
                 this.map = new google.maps.Map(document.getElementById("mymap"), mapProp);
                 this.loading = true
                 let  coor =[];
@@ -1167,7 +1167,7 @@ coordinates(theCity, lat, lng){
                 var town = [];
                 const city_coordinates = [];
                 const arr = [];
-               
+
                 // get township postalcode
                 for (let i = 0; i < this.getTownships.length; i++) {
                     if(this.getTownships[i]['id'] == this.township_id){
@@ -1179,7 +1179,7 @@ coordinates(theCity, lat, lng){
                 }
 
                 var township_name = townshipName.toString();
-             
+
 
                 if(township_name== ''){
 
@@ -1188,10 +1188,10 @@ coordinates(theCity, lat, lng){
                           this.loading = false
                         for (var i = 0; i < res.length; i++) {
                         if (res[i].properties.NAME_1 == theCity) {
-                          
+
                         if(res[i].geometry.hasOwnProperty('geometries')){
-                            
-                            for(var j =0;j < res[i].geometry.geometries.length;j++){     
+
+                            for(var j =0;j < res[i].geometry.geometries.length;j++){
 
                             city_coordinates.push(res[i].geometry.geometries[j]['coordinates']) ;
                           }
@@ -1203,8 +1203,8 @@ coordinates(theCity, lat, lng){
                     }
                      this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
                      this.boundariesGoogleMap(lat,lng,this.coordinate);
-                   
-                   
+
+
                   }); //end get city
                 }else{
                   this.axios.get("/api/townshipJson").then(res => {
@@ -1212,13 +1212,13 @@ coordinates(theCity, lat, lng){
                     this.loading = false
                     var coordinates = [];
                     for (let i = 0; i < data.length; i++) {
-                     
+
                       if(data[i]['properties']['N03_007'] == township_name){
                         coordinates.push(data[i]['geometry']['coordinates'])
                       }else{
                         console.log('errr')
                       }
-                      
+
                     }
 
                     var co = coordinates.reduce((acc, val) => acc.concat(val), []);
@@ -1226,14 +1226,14 @@ coordinates(theCity, lat, lng){
                     for(let key in co)coord= coord.concat(co[key])
                     this.coordinate = coord
                     this.boundariesGoogleMap(lat,lng,this.coordinate);
-  
-                    
+
+
 
                   }); //end get township
                 }//end else
-           
-          
-                
+
+
+
 },
 
 boundariesGoogleMap(lat,lng,coor){
@@ -1342,9 +1342,9 @@ infoWindow(item, mmarker){
             }
             });
             // bounds.extend(position);
-            
-         
-            
+
+
+
             google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
                 infoWindow.setContent(infoWindowContent[i][0]);
@@ -1403,7 +1403,7 @@ infoWindow(item, mmarker){
         },
 // make infowindow, marker , google map
 changeMap(response){
-              
+
                 $('.select').removeClass('select');
                 $('#searchMap').addClass('select');
                 $('#showSearchMap').removeClass('select');
@@ -1429,11 +1429,11 @@ changeMap(response){
                     mmarker.push([this.markers[i]['alphabet'], this.markers[i]['lat'], this.markers[i]['lng']])
                     item.push(this.markers[i])
                 }
-              
+
 
                 if(this.getCity.length > 0) //if city  choose
                 {
-                
+
                     const theCity = response.data.getCity[0]['city_eng']
                     const lat = response.data.getCity[0]['latitude']
                     const lng = response.data.getCity[0]['longitude']
@@ -1442,14 +1442,14 @@ changeMap(response){
                     if(this.markers.length > 0 )
                     {
                         this.coordinates(theCity,lat,lng);
-                        
+
                         this.infoWindow(item, mmarker);
                     }
                     else{
                         this.coordinates(theCity,lat,lng);
                     }
                 }
-                else{ //if city not choose                    
+                else{ //if city not choose
                      this.coordinates(null,'38.25759','140.8667');
                      this.infoWindow(item, mmarker);
                 }
@@ -1615,7 +1615,7 @@ search(){
             event.target.src = "images/noimage.jpg"
         },
         favAddFun(status,index,ind){
-            if(status == 'add'){                
+            if(status == 'add'){
                   this.nus_data[ind].fav_check = 'check';
 
                 if(localStorage.getItem("nursing_fav")){
@@ -1633,7 +1633,7 @@ search(){
                 $(".fav-nursing-link-box>a").css({'cursor':'pointer','pointer-events':'auto'});
             }
             else{
-            
+
                 this.nus_data[ind].fav_check = '';
 
                 var fav_arr = JSON.parse("[" + localStorage.getItem("nursing_fav") + "]");
