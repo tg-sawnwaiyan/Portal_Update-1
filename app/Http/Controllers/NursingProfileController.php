@@ -243,4 +243,18 @@ class NursingProfileController extends Controller
         }
 
     }
+    public function getCities($township_id) {
+
+        $query = "SELECT townships.city_id,'' AS township_list FROM townships WHERE id = $township_id";
+        $cities = DB::select($query);
+        // $cId = $cities[0]['city_id'];
+        foreach($cities as $city){
+            $cId = $city->city_id;
+            $c_query = "SELECT townships.id,townships.township_name FROM townships WHERE city_id = $cId";
+            $townships = DB::select($c_query);
+            $city->township_list = $townships;
+        }
+        return $cities;
+        // return $cities;
+    }
 }

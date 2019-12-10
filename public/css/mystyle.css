@@ -9263,6 +9263,10 @@ ul.nur-caro-card>li.list-group-item {
         text-decoration: none;
         opacity: 0.8;
     }
+    /*map responsive*/
+    #map-responsive {
+        display: block;
+    }
     .d-none-768 {
         display: none;
     }
@@ -9273,10 +9277,6 @@ ul.nur-caro-card>li.list-group-item {
         margin: 0 auto 20px;
     }
     /*end  ads slider */
-    /*map responsive*/
-    #map-responsive {
-        display: block;
-    }
 }
 
 @media only screen and (max-width: 380px) {

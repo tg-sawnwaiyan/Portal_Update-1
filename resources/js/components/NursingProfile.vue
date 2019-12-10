@@ -578,9 +578,11 @@
                             <span class="btn all-btn main-bg-color" style="min-width: 0px;" @click="maptogglediv()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
                             <div class="col-md-10 float-right m-t-10 map-toggle-div toggle-div pad-free">
                                 <div class="col-md-12">
-
-                                    <GoogleMap :address="customer_info.address" :lat_num='nursing_info.latitude' :lng_num='nursing_info.longitude' v-if="nursing_info.latitude != 0"></GoogleMap>
-                                    <GoogleMap :address="customer_info.address" :lat_num='35.6803997' :lng_num='139.76901739' v-if="nursing_info.latitude == 0"></GoogleMap>
+                                    <div class="col-md-12 pad-free" id="mapbox">
+                                        <GoogleMap :address="customer_info.address" :township="customer_info.townships_id" :city="city_id" :township_list="township_list" :lat_num='nursing_info.latitude' :lng_num='nursing_info.longitude'></GoogleMap>
+                                    </div>
+                                    
+                                    <!-- <GoogleMap :address="customer_info.address" :lat_num='35.6803997' :lng_num='139.76901739' v-if="nursing_info.latitude == 0"></GoogleMap> -->
                                     <!-- <div class="form-group">
                                             <label>住所<span class="error">*</span></label>
                                             <quill-editor  ref="myQuilEditor"  name="address" :options="editorOption" @change="onCustomerAddressChange($event)" class="customer-address" v-model="customer_info.address"/>
@@ -636,7 +638,6 @@
 import 'quill/dist/quill.snow.css'
 import {quillEditor} from 'vue-quill-editor'
 import {Button, Input,Select} from 'iview'
-// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import GoogleMap from './GoogleMap.vue'
 import DatePicker from 'vue2-datepicker';
 
@@ -706,6 +707,8 @@ export default {
                 new_panorama_img: [],
                 ph_length: false,
                 ph_num: false,
+                city_id: 0,
+                township_list: []
             }
         },
 
@@ -731,9 +734,14 @@ export default {
             this.axios
             .get('/api/customerinfo/'+this.cusid)
             .then(response=>{
-                this.customer_info = response.data;   
-            });
-
+                this.customer_info = response.data; 
+                this.axios
+                .get('/api/nurscities/'+this.customer_info.townships_id)
+                .then(response=>{
+                    this.city_id = response.data[0].city_id; 
+                    this.township_list = response.data[0].township_list;
+                });
+            });            
             this.axios
             .get('/api/nursinginfo/'+this.cusid)
             .then(response=>{
