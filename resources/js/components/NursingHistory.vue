@@ -31,10 +31,10 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <gmap></gmap>
-                            <!-- <GmapMap id="googlemap" ref="map" :center="center" :zoom="10">
+                           
+                            <GmapMap id="googlemap" ref="map" :center="center" :zoom="10">
                                 <GmapMarker v-for="(m, index) in markers" :key="index" :position="m.position" :clickable="true" :draggable="true" @click="center=m.position" />
-                            </GmapMap> -->
+                            </GmapMap>
                         </div>
                         <div class="modal-body">
                             <span class="job_ico"><i class="fas fa-map-marker-alt"></i></span><strong>住所</strong>
@@ -236,11 +236,9 @@
 </template>
 
 <script>
- import gmap from './GMap.vue'
+
 export default {
-    components:{
-        gmap,
-    },
+
   data() {
     return {
       nur_profiles: [],
