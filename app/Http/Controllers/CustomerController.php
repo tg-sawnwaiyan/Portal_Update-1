@@ -174,7 +174,7 @@ class CustomerController extends Controller
                 'name'=>$getCustomer->name,
                 'email'=>$getCustomer->email,
                 'password'=>$getCustomer->password,
-                'type' => 'user',
+                'role' => 1,
                 'type_id' => $getCustomer->type_id,
                 'customer_id' =>$getCustomer->id
             );

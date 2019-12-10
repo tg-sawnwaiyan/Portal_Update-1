@@ -50,7 +50,7 @@
 
 
 
-                        <!-- </form>                                       -->
+                        <!-- </form> -->
 
                         <div class="row" v-if="status == '0'">
 

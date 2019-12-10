@@ -264,7 +264,11 @@ export default {
       specialfeature: [],
       currentOffset: 0,
       windowSize: 5,
-      paginationFactor: 267,
+      paginationFactor: 261,
+      window:{
+        width: 0,
+        height: 0
+        }
     };
   },
 
@@ -278,6 +282,54 @@ export default {
             },
 
   created() {
+
+ window.addEventListener('resize', this.handleResize)
+                this.handleResize(); 
+                if(this.window.width >=320 && this.window.width < 360) {
+                    this.windowSize = 1;  
+                  this.paginationFactor = 260;    
+                } 
+                else if(this.window.width >=360 && this.window.width < 375) {
+                    this.windowSize = 1;
+                     this.paginationFactor = 260;    
+                } 
+                 else if(this.window.width >=375 && this.window.width < 450) {
+                    this.windowSize = 1;
+                     this.paginationFactor = 260;    
+                }
+                
+                else if(this.window.width >= 414 && this.window.width < 768) {
+                    this.windowSize = 1;
+                     this.paginationFactor = 260; 
+                } 
+                else if(this.window.width >= 768 && this.window.width < 992) {
+                    this.windowSize = 2;
+                    this.paginationFactor = 260;  
+                }
+                else if(this.window.width >= 992 && this.window.width < 1024) {
+                    this.windowSize = 3; 
+                    this.paginationFactor = 255;                                 
+                }
+                else if(this.window.width >= 1024 && this.window.width < 1200) {
+                    this.windowSize = 3; 
+                      this.paginationFactor = 255;                                
+                }
+                else if (this.window.width >= 1200 && this.window.width < 1280) {
+                    this.windowSize = 3;
+                    this.paginationFactor = 260;                    
+                }
+                else if (this.window.width >= 1280 && this.window.width < 1440) {
+                    this.windowSize = 4;
+                    this.paginationFactor = 257;
+                    
+                }
+                else if (this.window.width >= 1440 && this.window.width < 1880) {
+                    this.windowSize = 4;
+                     this.paginationFactor = 260;            
+                    // console.log(this.window.width);
+                }
+    
+    
     this.local_sto = localStorage.getItem("nursing_history");
         if(this.local_sto){
             this.his_nus = this.local_sto.split(",").length;
@@ -293,6 +345,10 @@ export default {
   },
 
   methods: {
+      handleResize() {
+                    this.window.width = window.innerWidth;
+                    this.window.height = window.innerHeight;
+     },
 
      moveCarousel(direction) {
     // Find a more elegant way to express the :style. consider using props to make it truly generic
