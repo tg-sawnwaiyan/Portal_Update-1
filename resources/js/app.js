@@ -72,12 +72,12 @@ Vue.component('ads_slider', require('../js/components/ads_slider.vue'));
 Vue.use(VueClazyLoad)
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
-Vue.use(VueGoogleMaps, {
-  load: {
-    key: "AIzaSyC-2U_IRuSrajQavHadFp8FlXNi61MA3nw",
-    libraries: "places" // necessary for places input
-  }
-});
+// Vue.use(VueGoogleMaps, {
+//   load: {
+//     key: "AIzaSyC-2U_IRuSrajQavHadFp8FlXNi61MA3nw",
+//     // libraries: "places" // necessary for places input
+//   }
+// });
 // Set Vue globally
 window.Vue = Vue
 // Set Vue router
