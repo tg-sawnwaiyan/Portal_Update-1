@@ -905,7 +905,7 @@ width: 100%; */
     /* -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    background-size: 60px 60px;   
+    background-size: 60px 60px;
      margin-left: -108px; */
     display: none;
 }
@@ -937,7 +937,6 @@ width: 100%; */
 
 
 /* End Register form*/
-
 
 /* Search News List */
 
@@ -1144,6 +1143,34 @@ scrollbar-width: thin;
 /* end no search data */
 
 
+/*  Start upandDown for Search Responsive*/
+.arrow_icon{
+    color: #828282 !important;
+    font-size: 16px;
+    float: right;
+    padding-right: 14px;
+}
+.custom_group{
+    color:#828282 !important;
+   font-size: 14px;
+}
+.custom_group a {
+    cursor: pointer;
+}
+.custom_group a li {
+    list-style: none;
+    border-bottom: 1px solid #eeeeee;
+    padding:5px;
+}
+.map-addicon{
+    position: absolute;
+    right: 20px;
+    top: 15px;
+}
+.card-header-title > p{
+    padding: 10px 10px 0px 10px !important;
+}
+/*  End upandDown for Search Responsive*/
 /* End Search News List */
 
 
@@ -6159,7 +6186,7 @@ button.confirmed {
     border: 4px solid #f60;
     border-radius: 5px;
     margin-bottom: 30px;
-    border: 2px solid #d2571c;    
+    border: 2px solid #d2571c;
     width: 100%;
 }
 .no-comment-title{
@@ -6177,7 +6204,7 @@ button.confirmed {
     -webkit-transition: color .1s ease-in-out,background-color .1s ease-in-out;
     transition: color .1s ease-in-out,background-color .1s ease-in-out;
     -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.0125), 0 1px 1px rgba(0,0,0,0.05);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.0125), 0 1px 1px rgba(0,0,0,0.05);    
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.0125), 0 1px 1px rgba(0,0,0,0.05);
     border-bottom-width: 4.2px;
 }
 .comment-btn:link, .comment-btn:visited {
@@ -7214,6 +7241,12 @@ ul.test>li:before {
     width: 1303px;
     overflow: hidden;
 }
+#fav-hospital-page #fav-history-page .card-carousel{
+    display: flex;
+    justify-content: center;
+    width: 1353px;
+    overflow: hidden;
+}
 
 
 /*slick carousel*/
@@ -7605,7 +7638,7 @@ ul.test>li:before {
 /*hospital search*/
 .table-innertitle{
     position: relative;
-   
+
 }
 .table-innertitle:after{
     content: '';
@@ -7621,16 +7654,16 @@ ul.test>li:before {
 }
 .innerwrapper{
     padding-left: 0px;
-    padding-right: 0px;    
+    padding-right: 0px;
     margin-left: 0px;
-    
-    
+
+
 }
-.table-innerwrapper{    
+.table-innerwrapper{
     background-color: rgb(245, 245, 245);
     border-radius: 5px;
     padding: 10px;
-   
+
 }
 .hos-content {
     position: relative;
@@ -8847,6 +8880,13 @@ ul.nur-caro-card>li.list-group-item {
     #fav-history-page .card-carousel {
         overflow: visible;
     }
+    #fav-hospital-page  #fav-history-page .card-carousel{
+        width: 272px !important;
+    }
+    #fav-hospital-page #fav-history-page .card-carousel-wrapper
+    {
+        margin-left: -16px;
+    }
 }
 @media only screen and (min-width: 360px) and (max-width: 375px)  {
     #fav-history-page .card-carousel {
@@ -8854,6 +8894,13 @@ ul.nur-caro-card>li.list-group-item {
     }
     #fav-history-page .card-carousel {
         overflow: visible;
+    }
+    #fav-hospital-page  #fav-history-page .card-carousel{
+        width: 272px !important;
+    }
+    #fav-hospital-page #fav-history-page .card-carousel-wrapper
+    {
+        margin-left: -16px;
     }
 }
 
@@ -8864,6 +8911,13 @@ ul.nur-caro-card>li.list-group-item {
     #fav-history-page .card-carousel {
         overflow: visible;
     }
+    #fav-hospital-page  #fav-history-page .card-carousel{
+        width: 272px !important;
+    }
+    #fav-hospital-page #fav-history-page .card-carousel-wrapper
+    {
+        margin-left: -11px;
+    }
 }
 
 
@@ -8872,10 +8926,24 @@ ul.nur-caro-card>li.list-group-item {
     #fav-history-page .card-carousel {
         width: 261px !important;
     }
+    #fav-hospital-page  #fav-history-page .card-carousel{
+        width: 272px !important;
+    }
+    #fav-hospital-page #fav-history-page .card-carousel-wrapper
+    {
+        margin-left: 5px;
+    }
 }
 @media only screen and (min-width: 768px) and (max-width: 991px)  {
     #fav-history-page .card-carousel {
         width: 521px!important;
+    }
+    #fav-hospital-page  #fav-history-page .card-carousel{
+        width: 545px !important;
+    }
+    #fav-hospital-page #fav-history-page .card-carousel-wrapper
+    {
+        margin-left: -13px;
     }
     #fav-history-page .card-carousel {
         overflow: visible;
@@ -8887,7 +8955,7 @@ ul.nur-caro-card>li.list-group-item {
 
 @media only screen and (min-width: 992px) and (max-width: 1024px) {
     #fav-history-page .card-carousel {
-        width: 823px!important;
+        width: 799px!important;
     }
     .custom-table>.table th, .table td 
     {
@@ -8907,6 +8975,9 @@ ul.nur-caro-card>li.list-group-item {
     #fav-history-page .card-carousel {
         width: 768px !important;
     }
+    #fav-hospital-page  #fav-history-page .card-carousel{
+        width: 800px !important;
+    }
 
 }
 
@@ -8914,6 +8985,9 @@ ul.nur-caro-card>li.list-group-item {
     #fav-history-page .card-carousel {
         /* width: 783px!important; */
         width: 783px!important;
+    }
+    #fav-hospital-page  #fav-history-page .card-carousel{
+        width: 814px !important;
     }
 }
 /* Extra large devices (large laptops and desktops, 1200px and up) */
@@ -8923,6 +8997,9 @@ ul.nur-caro-card>li.list-group-item {
         /* width: 783px!important; */
         width: 1503px!important;
     }
+    #fav-hospital-page  #fav-history-page .card-carousel{
+        width: 1084px !important;
+    }
 }
 
 @media only screen and (min-width: 1440px) and (max-width: 1880px)  {
@@ -8930,9 +9007,8 @@ ul.nur-caro-card>li.list-group-item {
         width: 1046px!important;
         margin-left: 20px;
     }
-    .custom-table>.table th, .table td
-    {
-        
+    #fav-hospital-page  #fav-history-page .card-carousel{
+        width: 1084px !important;
     }
     .main-content {
         width: 100%;
@@ -9013,6 +9089,9 @@ ul.nur-caro-card>li.list-group-item {
 }
 
 .sp_social {
+    display: none;
+}
+#map-responsive{
     display: none;
 }
 
@@ -9175,6 +9254,11 @@ ul.nur-caro-card>li.list-group-item {
     .sp_nav .contact_list li:first-child a:hover {
         text-decoration: none;
         opacity: 0.8;
+    }
+
+    /*map responsive*/
+    #map-responsive{
+        display: block;
     }
 }
 

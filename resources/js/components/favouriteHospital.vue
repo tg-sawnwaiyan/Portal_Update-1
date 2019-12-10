@@ -39,7 +39,7 @@
         </div>
         <div class="row m-0">
 
-            <form class="col-md-12 pad-free">
+            <form class="col-md-12 pad-free" id="fav-hospital-page">
                 <div class="col-12"  id="fav-history-page">
                     <div class="row justify-content-lg-center">
                         <div class="card-carousel-wrapper">
@@ -232,7 +232,7 @@
                     specialfeature: [],
                     currentOffset: 0,
                     windowSize: 5,
-                    paginationFactor: 267,
+                    paginationFactor: 272,
                     window:{
                         width:0,
                         height:0
@@ -253,45 +253,45 @@
                 this.handleResize(); 
                 if(this.window.width >=320 && this.window.width < 360) {
                     this.windowSize = 1;  
-                  this.paginationFactor = 260;    
+                  this.paginationFactor = 268;    
                 } 
                 else if(this.window.width >=360 && this.window.width < 375) {
                     this.windowSize = 1;
-                     this.paginationFactor = 260;    
+                     this.paginationFactor = 270;    
                 } 
                  else if(this.window.width >=375 && this.window.width < 450) {
                     this.windowSize = 1;
-                     this.paginationFactor = 260;    
+                     this.paginationFactor = 270;    
                 }
                 
                 else if(this.window.width >= 414 && this.window.width < 768) {
                     this.windowSize = 1;
-                     this.paginationFactor = 260; 
+                     this.paginationFactor = 270; 
                 } 
                 else if(this.window.width >= 768 && this.window.width < 992) {
                     this.windowSize = 2;
-                    this.paginationFactor = 260;  
+                    this.paginationFactor = 269;  
                 }
                 else if(this.window.width >= 992 && this.window.width < 1024) {
                     this.windowSize = 3; 
-                    this.paginationFactor = 255;                                 
+                    this.paginationFactor = 266;                                 
                 }
                 else if(this.window.width >= 1024 && this.window.width < 1200) {
                     this.windowSize = 3; 
-                      this.paginationFactor = 255;                                
+                      this.paginationFactor = 265;                                
                 }
                 else if (this.window.width >= 1200 && this.window.width < 1280) {
                     this.windowSize = 3;
-                    this.paginationFactor = 260;                    
+                    this.paginationFactor = 270;                    
                 }
                 else if (this.window.width >= 1280 && this.window.width < 1440) {
                     this.windowSize = 4;
-                    this.paginationFactor = 257;
+                    this.paginationFactor = 271;
                     
                 }
                 else if (this.window.width >= 1440 && this.window.width < 1880) {
                     this.windowSize = 4;
-                     this.paginationFactor = 260;            
+                     this.paginationFactor = 271;            
                     // console.log(this.window.width);
                 }
 

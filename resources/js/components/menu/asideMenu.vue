@@ -28,7 +28,7 @@
               <li v-if="$auth.check(1)"><router-link to="/profiledit" class="nav-link"><i class="fa fa-map" ></i>&nbsp;&nbsp;  プロファイル編集</router-link></li>
               <li v-if="$auth.check(1)"><router-link to="/profile" class="nav-link"><i class="fa fa-map"></i>&nbsp;&nbsp;  マイページ</router-link></li>
               <li v-if="$auth.check(1)"><router-link to="/jobofferlist" class="nav-link"><i class="fa fa-edit" ></i>&nbsp;&nbsp;  仕事一覧</router-link></li>
-            
+
               <li v-if="$auth.check()">
                   <a href="#" @click.prevent="$auth.logout()" class="nav-link"><i class="fa fa-sign-out-alt"></i>&nbsp;&nbsp; ログアウト</a>
               </li>
@@ -41,23 +41,23 @@
   export default {
     data() {
       return {
-       
+
       }
     },
     mounted() {
-       
-       
+
+
     },
     methods: {
         // testlogout(){
         //     this.$auth.logout({
-        //         success: function() {                    
+        //         success: function() {
         //             this.$router.push({
         //                 name: 'News'
         //             });
         //         },
         //     })
-            
+
         // }
     }
 
