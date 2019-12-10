@@ -386,25 +386,86 @@
               </tr>
               <tr class="toBeToggled1 ShowHide1">
                 <th>診療科目</th>
-
                 <td>
+                    <div class="form-check form-check-inline row align-items-start innerwrapper">
+                        <div class="test" v-for="(subject,index) in subjects.slice(0,3)" :key="index">
+                          <div class="row col-12">
+                            <strong class="table-innertitle row col-12">{{subject.name}}</strong>
 
-                    <div class="form-check form-check-inline row col-12 align-items-start innerwrapper">
-                        <div class="col-md-4 col-sm-6" v-for="(subject,index) in subjects" :key="index">
-                          <div class="row col-12 m-lr-0 m-b-10 table-innerwrapper">
-                            <strong class="table-innertitle col-12 m-b-10">{{subject.name}}</strong>
-
-                            <span class="col-6" v-for="ch in subject.child" :key="ch.id+1">
+                            <div class="col-6" v-for="ch in subject.child" :key="ch.id+1">
 
                                 <label class="form-check-label control control--checkbox" style="padding-left:5px;">
                                 <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
                                 {{ch.name}}
                                 <div class="control__indicator"></div>
                                 </label>
-                            </span>
+                            </div>
+
                           </div>
 
+
                         </div>
+
+                    </div>
+                      <div class="form-check form-check-inline row align-items-start innerwrapper">
+                        <div class="test" v-for="(subject,index) in subjects.slice(3,6)" :key="index">
+                          <div class="row col-12">
+                            <strong class="table-innertitle row col-12">{{subject.name}}</strong>
+
+                            <div class="col-6" v-for="ch in subject.child" :key="ch.id+1">
+
+                                <label class="form-check-label control control--checkbox" style="padding-left:5px;">
+                                <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
+                                {{ch.name}}
+                                <div class="control__indicator"></div>
+                                </label>
+                            </div>
+
+                          </div>
+
+
+                        </div>
+
+                    </div>
+                      <div class="form-check form-check-inline row align-items-start innerwrapper">
+                        <div class="test" v-for="(subject,index) in subjects.slice(6,9)" :key="index">
+                          <div class="row col-12">
+                            <strong class="table-innertitle row col-12">{{subject.name}}</strong>
+
+                            <div class="col-6" v-for="ch in subject.child" :key="ch.id+1">
+
+                                <label class="form-check-label control control--checkbox" style="padding-left:5px;">
+                                <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
+                                {{ch.name}}
+                                <div class="control__indicator"></div>
+                                </label>
+                            </div>
+
+                          </div>
+
+
+                        </div>
+
+                    </div>
+                     <div class="form-check form-check-inline row align-items-start innerwrapper" style="width:33.98%;">
+                        <div class="test" v-for="(subject,index) in subjects.slice(9,10)" :key="index">
+                          <div class="row col-12">
+                            <strong class="table-innertitle row col-12">{{subject.name}}</strong>
+
+                            <div class="col-6" v-for="ch in subject.child" :key="ch.id+1">
+
+                                <label class="form-check-label control control--checkbox" style="padding-left:5px;">
+                                <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
+                                {{ch.name}}
+                                <div class="control__indicator"></div>
+                                </label>
+                            </div>
+
+                          </div>
+
+
+                        </div>
+
                     </div>
 
                 </td>
@@ -451,7 +512,7 @@
                               <span class="btn fav-profile fav-item fav-color" :class="'view_pro_id'+hos.nursing_id" style="" @click="favAddFun('add',hos.nursing_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                               <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == 'check'" :class="'done_pro_id'+hos.nursing_id" style="color:#aaa;" @click="favAddFun('remove',hos.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                           </p>
-                          <!-- <p class="hos_phone float-right"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span>{{hos.phone}}</p> -->
+
                         </div>
                       </div>
                     </div>
@@ -459,7 +520,8 @@
                 <div class="hos-body row clearfix">
                   <div class="col-3 job-img">
                     <img v-bind:src="'/upload/hospital_profile/' + hos.logo"  alt="img" class="img-fluid" @error="imgUrlAlt">
-                  <p class="hos_phone float-right m-t-20"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span>{{hos.phone}}</p>
+
+                  <!-- <p class="hos_phone text-center m-t-20"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span><span class="phone-no">{{hos.phone}}</span></p> -->
                   </div>
                   <div class="col-4 job-box">
                     <table  class="table table-bordered table-sm">
@@ -491,7 +553,9 @@
                   </div>
                   <div class="col-5">
                     <!--schedule-->
-                 <h5 class="header">診療時間</h5>
+                 <h5 class="header">診療時間
+                    <span class="hos_phone"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span><span class="phone-no">{{hos.phone}}</span></span>
+                 </h5>
                   <!-- <tr v-for="(time,index) in timetable" :key="index+'-'+time.id+'-'+hos.id">
                     <td v-if="hos.customer_id == time.customer_id" >
                       {{time.mon}} / {{time.tue}} / {{time.wed}} / {{time.thu}} / {{time.fri}} / {{time.sat}} / {{time.sun}} / {{time.part}}

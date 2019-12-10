@@ -277,7 +277,10 @@ const routes = [
     {
         name: "jobofferlist",
         path: "/jobofferlist",
-        component: JobOfferList
+        component: JobOfferList,
+        meta: {
+          auth: {roles: 1, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+        }
     },
     {
         name: "joboffercreate",
