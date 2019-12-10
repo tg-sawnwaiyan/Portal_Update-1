@@ -394,7 +394,7 @@
                             <div class="col-6" v-for="ch in subject.child" :key="ch.id+1">
                                 <label class="form-check-label control control--checkbox" style="padding-left:5px;">
                                 <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
-                                {{ch.name}} 
+                                {{ch.name}}
                                 <div class="control__indicator"></div>
                                 </label>
                             </div>               
@@ -491,26 +491,26 @@
                       <div class="row pad-free">
                         <div class="col-8">
                           <h5 class="hos-title">
-                            <router-link :to="{name: 'profile', params: {cusid:hos.customer_id, type: 'hospital'}}" class="pseudolink">{{hos.name}}</router-link>                           
+                            <router-link :to="{name: 'profile', params: {cusid:hos.customer_id, type: 'hospital'}}" class="pseudolink">{{hos.name}}</router-link>
                           </h5>
                         <div class="clearfix d-flex m-t-20">
                           <span v-for="(sub,index) in subject" :key="index+'-'+sub.name+'-'+hos.id">
                               <span v-if="sub.customer_id == hos.customer_id" class="job_status">
                               {{sub.name}}
                               </span>
-                          </span>      
+                          </span>
                       </div>
                         </div>
                         <div class="col-4">
-                           <p class="text-right">                             
+                           <p class="text-right">
                               <span class="btn fav-profile fav-item fav-color" :class="'view_pro_id'+hos.nursing_id" style="" @click="favAddFun('add',hos.nursing_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                               <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == 'check'" :class="'done_pro_id'+hos.nursing_id" style="color:#aaa;" @click="favAddFun('remove',hos.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                           </p>
                         
                         </div>
-                      </div>                       
+                      </div>
                     </div>
-               
+
                 <div class="hos-body row clearfix">
                   <div class="col-3 job-img">
                     <img v-bind:src="'/upload/hospital_profile/' + hos.logo"  alt="img" class="img-fluid" @error="imgUrlAlt">
@@ -701,7 +701,7 @@
             else{
                 this.locast = localStorage.getItem("nursing_fav");
             }
-           
+
 
           this.axios.get('api/gethospitalsearch/'+ search_word,{
             params:{
@@ -879,7 +879,7 @@
               var id = e.target.id;
               this.id = id;
             }
-          }     
+          }
 
           if(localStorage.getItem("nursing_fav") == null){
 
@@ -888,7 +888,7 @@
             else{
                 this.locast = localStorage.getItem("nursing_fav");
             }
-                
+
           this.axios.get('api/getmap',{
               params:{
               id: this.id,

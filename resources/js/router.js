@@ -20,7 +20,7 @@ import categorylist from "./components/categorylist.vue";
 import createcategory from "./components/createcategory.vue";
 import stationlist from "./components/stationlist.vue";
 import createstation from "./components/createstation.vue";
-import editstation from "./components/editstation.vue"; 
+import editstation from "./components/editstation.vue";
 import FacilitiesListComponent from "./components/FacilitiesListComponent.vue";
 import CreateFacilityComponent from "./components/CreateFacilityComponent.vue";
 import custedit from "./components/custedit.vue";
@@ -75,7 +75,7 @@ import Unauthorized from './components/403.vue';
 
 // Routes
 const routes = [
-  
+
 {
   path: '/Unauthorized',
   name: 'Unauthorized',
@@ -125,7 +125,7 @@ const routes = [
           auth: undefined
         }
     },
-  
+
     {
         name: 'jobSearch',
         path: '/jobSearch',
@@ -247,7 +247,7 @@ const routes = [
     {
         name: "createfacility",
         path: "/createfacility",
-        component: CreateFacilityComponent,      
+        component: CreateFacilityComponent,
 
     },
 
@@ -277,7 +277,10 @@ const routes = [
     {
         name: "jobofferlist",
         path: "/jobofferlist",
-        component: JobOfferList
+        component: JobOfferList,
+        meta: {
+          auth: {roles: 1, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+        }
     },
     {
         name: "joboffercreate",
