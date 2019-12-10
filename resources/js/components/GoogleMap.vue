@@ -3,22 +3,29 @@
           
               <div class="col-md-12 pad-free">
                 <div class="col-md-12 pad-free postal-search">
-                  <div class="col-md-12 m-t-10"><label>  都道府県<span class="error">*</span></label></div>
-                    <div class="col-md-6 p-0">
-                        <select v-model="city" class="division form-control" id="division">
-                            <option v-for="cities in city_list" :key="cities.id" v-bind:value="cities.id">
-                                {{cities.city_name}}
-                            </option>
-                        </select>
-                    </div>
-                    <div class="col-md-12 m-t-10"><label>  市区町村<span class="error">*</span></label></div>
-                    <div class="col-md-6 p-0">
-                        <select v-model="township" class="division form-control" id="division">
-                            <option v-for="townships in township_list" :key="townships.id" v-bind:value="townships.id">
-                                {{townships.township_name}}
-                            </option>
-                        </select>
-                    </div>
+                    <div class="col-md-12 row p-0 m-0">
+                        <div class="col-md-6 pad-free">
+                            <div class="col-md-12 p-l-0 m-t-10"><label>  都道府県<span class="error">*</span></label></div>
+                            <div class="col-md-12 p-l-0">
+                                <select v-model="city" class="division form-control" id="division">
+                                    <option v-for="cities in city_list" :key="cities.id" v-bind:value="cities.id">
+                                        {{cities.city_name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 pad-free">
+                            <div class="col-md-12 p-r-0 m-t-10"><label>  市区町村<span class="error">*</span></label></div>
+                            <div class="col-md-12 p-r-0">
+                                <select v-model="township" class="division form-control" id="division">
+                                    <option v-for="townships in township_list" :key="townships.id" v-bind:value="townships.id">
+                                        {{townships.township_name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>            
+                    
                   <div class="form-group m-t-10">
                     <label>郵便番号<span class="error">*</span></label>
                     <input type="text" v-model="comment.postal" name="postal" class="postal form-control white-bg-color" id="postal" v-on:keyup="getPostal" placeholder="郵便番号を入力してください。" maxlength="7"/>
@@ -27,29 +34,29 @@
                   <div class="form-group">
                     <label>市区町村、番地（建物名）<span class="error">*</span></label>
                     <div class="row">
-                      <div class="col-md-10" v-if="status === '0'">
+                      <div class="col-md-12" v-if="status === '0'">
                         <input type="text" id="city" name="city" class="old-city form-control white-bg-color" placeholder="市区町村、番地を入力してください。" v-model="address"> 
                                               
                       </div>
-                      <div class="col-md-10" v-else>
+                      <div class="col-md-12" v-else>
                         <input type="text" id="city" name="city" class="city form-control white-bg-color" placeholder="市区町村、番地を入力してください。" v-model="comment.city">
                         
                       </div>
-                      <div class="col-md-2">
+                      <!-- <div class="col-md-2">
                         <span class="btn news-post-btn all-btn" @click="searchAddress()">番地検索</span>
-                      </div>
+                      </div> -->
                     </div>
                     <p>例）東京都千代田区丸の内1-9-1　グラントウキョウノースタワー40階</p>                                    
                   </div>
                 </div>           
 
-                <label>場所検索はこちら</label>
+                <!-- <label>場所検索はこちら</label>
                 <gmap-autocomplete
                   @place_changed="setPlace" v-bind:value="comment.city" class="form-control m-b-10" id="gmap-search" style="display:none;">
                 </gmap-autocomplete>
                 <gmap-autocomplete
                   @place_changed="setPlace" class="form-control m-b-10 white-bg-color" id="gmap-search2" placeholder="場所を入力してください">
-                </gmap-autocomplete>
+                </gmap-autocomplete> -->
                 <!-- <span @click="addMarker">Add</span> -->
               </div>              
               <!-- <div class="col-md-12 pad-free" v-if="address_btn">
