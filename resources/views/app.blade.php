@@ -83,7 +83,7 @@
 </style>
 </head>
 <body>
-<div id="app">        
+<div id="app">
   <index ></index>
 </div>
 
@@ -107,7 +107,7 @@
 <script type="text/javascript">
 
  $(document).ready(function() {
-   
+
      /*added for back to top*/
      var mybutton = document.getElementById("myBtn");
         // When the user scrolls down 20px from the top of the document, show the button
@@ -132,7 +132,7 @@
         $('.his-hospital-link-box>a').css({'cursor':'pointer','pointer-events':'auto'});
     }
     else{
-        $("#hos-his-local").html(0);       
+        $("#hos-his-local").html(0);
         $('.his-hospital-link-box>a').css({'cursor':'not-allowed','pointer-events':'none'});
         $( '.his-hospital-link-box>a ').parent('div').css({'cursor':'not-allowed'});
     }
@@ -164,7 +164,7 @@
         $( '.fav-nursing-link-box>a').parent('div').css({'cursor':'not-allowed'});
     }
 
-    
+
 
 });
 
