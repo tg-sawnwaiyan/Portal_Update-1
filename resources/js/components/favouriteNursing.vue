@@ -564,7 +564,7 @@
                         }).then(response => { 
                              var l_sto = this.local_sto;
                             var l_sto_arr = l_sto.split(",");
-                            var rm_id = id.toString();
+                            var rm_id = id.toString(); 
                             var index = l_sto_arr.indexOf(rm_id);
                             if (index > -1) {
                                 l_sto_arr.splice(index, 1);

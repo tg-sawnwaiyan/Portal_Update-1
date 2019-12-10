@@ -412,9 +412,18 @@ class SearchMapController extends Controller
         $townshipID = $_GET['townshipID'];
         $specialfeatureID = $_GET['specialfeatureID'];
         $subjectID = $_GET['subjectID'];
+        $localst = $_GET['local'];
+          if($localst != 0)
+          {
+            $local = explode(',',$localst);
+          }
+          else{
+
+              $local = 0;
+          }
         
           
-          $query ="SELECT h.id as hos_id, c.id as cus_id, h.*,c.*
+          $query ="SELECT '' as fav_check,h.id as hos_id, c.id as cus_id, h.*,c.*
                   from  hospital_profiles as h 
                   join customers as c on h.customer_id = c.id 
                   left join townships as t on t.id = c.townships_id  
@@ -429,7 +438,7 @@ class SearchMapController extends Controller
         {
             if($searchword == "all") 
             {
-                $query ="SELECT h.id as hos_id, c.id as cus_id, h.*,c.*
+                $query ="SELECT '' as fav_check, h.id as hos_id, c.id as cus_id, h.*,c.*
                         from  hospital_profiles as h     
                         join customers as c on h.customer_id = c.id 
                         left join townships as t on t.id = c.townships_id  
@@ -537,7 +546,30 @@ class SearchMapController extends Controller
         $sub_child = DB::table('subjects')->get();
         $city = DB::table('cities')->get();
         $getTownships  = DB::table('townships')->where('city_id', $id)->get();
-        $getCompany = DB::select($com_query);
+
+
+        //to bind fav_hospital
+        for($i = 0;$i<count($hos_data);$i++)
+        {
+            $arr[] = ( $hos_data[$i]->hos_id);
+           
+        }
+        if($local != 0)
+        {
+            for($i = 0;$i<count($local);$i++)
+            {
+                $local_arr = (string)($local[$i]);
+               
+                if(in_array($local_arr, $arr))
+                {
+                   $id = array_search($local_arr,$arr);
+                   $hos_data[$id]->fav_check = "check";
+                  
+                }
+              
+            }
+        }
+      
         foreach($subjects as $sub)  
         {
             $id = $sub->id;
@@ -546,7 +578,7 @@ class SearchMapController extends Controller
             $sub->child = $subchild;
         }
         return response()->json(array("hospital" => $hos_data, "timetable" => $timetable, "specialfeature" => $specialfeature, 
-                                      "subject" => $subject,"subjects"=>$subjects,"sub_child"=>$sub_child,"city"=>$city,"township"=>$getTownships,"company"=>$getCompany));
+                                      "subject" => $subject,"subjects"=>$subjects,"sub_child"=>$sub_child,"city"=>$city,"township"=>$getTownships));
     }
 
 

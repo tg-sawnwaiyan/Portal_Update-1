@@ -1633,7 +1633,12 @@ search(){
             event.target.src = "images/noimage.jpg"
         },
         favAddFun(status,index,ind){
+         
+        
             if(status == 'add'){
+               alert(status);
+
+                console.log('add');
                   this.nus_data[ind].fav_check = 'check';
 
                 if(localStorage.getItem("nursing_fav")){
@@ -1651,7 +1656,7 @@ search(){
                 $(".fav-nursing-link-box>a").css({'cursor':'pointer','pointer-events':'auto'});
             }
             else{
-
+                 alert(status);
                 this.nus_data[ind].fav_check = '';
 
                 var fav_arr = JSON.parse("[" + localStorage.getItem("nursing_fav") + "]");
