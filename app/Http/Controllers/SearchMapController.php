@@ -537,7 +537,7 @@ class SearchMapController extends Controller
         $sub_child = DB::table('subjects')->get();
         $city = DB::table('cities')->get();
         $getTownships  = DB::table('townships')->where('city_id', $id)->get();
-
+        $getCompany = DB::select($com_query);
         foreach($subjects as $sub)  
         {
             $id = $sub->id;
@@ -546,7 +546,7 @@ class SearchMapController extends Controller
             $sub->child = $subchild;
         }
         return response()->json(array("hospital" => $hos_data, "timetable" => $timetable, "specialfeature" => $specialfeature, 
-                                      "subject" => $subject,"subjects"=>$subjects,"sub_child"=>$sub_child,"city"=>$city,"township"=>$getTownships));
+                                      "subject" => $subject,"subjects"=>$subjects,"sub_child"=>$sub_child,"city"=>$city,"township"=>$getTownships,"company"=>$getCompany));
     }
 
 
