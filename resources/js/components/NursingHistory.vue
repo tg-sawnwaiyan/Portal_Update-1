@@ -31,6 +31,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
+                           
                             <GmapMap id="googlemap" ref="map" :center="center" :zoom="10">
                                 <GmapMarker v-for="(m, index) in markers" :key="index" :position="m.position" :clickable="true" :draggable="true" @click="center=m.position" />
                             </GmapMap>
@@ -235,7 +236,9 @@
 </template>
 
 <script>
+
 export default {
+
   data() {
     return {
       nur_profiles: [],
@@ -246,26 +249,26 @@ export default {
       type: "nursing",
 
        iscompare: false,
-                    markers: [{
-                        position: {
-                            lat: 0.0,
-                            lng: 0.0
-                        }
-                    }],
-                    center: {
-                        lat: 0,
-                        lng: 0
-                    },
-                    his_nus:'',
-      address: '',
-      access: '',
-      custname: '',
-      payment_name: [],
-      specialfeature: [],
-      currentOffset: 0,
-      windowSize: 5,
-      paginationFactor: 267,
-    };
+        markers: [{
+            position: {
+                lat: 0.0,
+                lng: 0.0
+            }
+        }],
+        center: {
+            lat: 0,
+            lng: 0
+        },
+        his_nus:'',
+        address: '',
+        access: '',
+        custname: '',
+        payment_name: [],
+        specialfeature: [],
+        currentOffset: 0,
+        windowSize: 5,
+        paginationFactor: 267,
+        };
   },
 
   computed: {
