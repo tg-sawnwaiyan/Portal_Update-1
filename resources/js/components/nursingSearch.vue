@@ -385,7 +385,6 @@
 
         <section id="holder" >
         <div class="row" >
-<<<<<<< HEAD
           <div class="col-sm-12 col-md-12">    
             <div v-if="loading" class=" m-t-10 m-b-10" style="background-color:gray;opacity:0.9;position:relative;z-index:10;">   
                <div class="lds-ripple m-t-10 m-b-10" >
@@ -399,24 +398,6 @@
               <div id="mymap"></div>
             </div>     
               <!-- <div id="mymap" class="select m-t-10 m-b-10"></div> -->       
-=======
-          <div class="col-sm-12 col-md-12">
-          <div style="position: relative;">
-
-            <div v-if="loading" class=" m-t-10 m-b-10 text-center overlay">
-                <div class="lds-ripple m-t-10 m-b-10" ><div></div><div></div></div>
-            </div>
-              <!-- <div class="overlay standard hidden">&nbsp;</div> -->
-              <div v-if="!loading" class="m-t-10 m-b-10">
-                <div id="mymap"></div>
-              </div>
-
-
-
-              <!-- <div id="mymap" class="select m-t-10 m-b-10"></div> -->
-
-          </div>
->>>>>>> be37fe4127675eae4318f68753ff4837b7061151
           </div>
         </div>
         </section>
