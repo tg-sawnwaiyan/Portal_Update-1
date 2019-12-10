@@ -390,22 +390,16 @@
                     <div class="form-check form-check-inline row align-items-start innerwrapper">
                         <div class="test" v-for="(subject,index) in subjects.slice(0,3)" :key="index">
                           <div class="row col-12">
-                            <strong class="table-innertitle row col-12">{{subject.name}}</strong>
-                            
+                            <strong class="table-innertitle row col-12">{{subject.name}}</strong>  
                             <div class="col-6" v-for="ch in subject.child" :key="ch.id+1">
-                             
                                 <label class="form-check-label control control--checkbox" style="padding-left:5px;">
                                 <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
                                 {{ch.name}}
                                 <div class="control__indicator"></div>
                                 </label>
-                            </div>
-                            
-                          </div>
-                            
-                           
-                        </div>
-                       
+                            </div>               
+                          </div>   
+                        </div>   
                     </div>
                       <div class="form-check form-check-inline row align-items-start innerwrapper">
                         <div class="test" v-for="(subject,index) in subjects.slice(3,6)" :key="index">
