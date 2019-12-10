@@ -357,7 +357,7 @@
                     <option data-price-type="" value="10">10万円以下</option>
                     <option data-price-type="" value="12">12万円以下</option>
                     <option data-price-type="" value="14">14万円以下</option>
-                    <option data-price-type="" value="16">16万円以下</option>
+                    <option data-price-type="" value="16">16万円以下</option>     
                     <option data-price-type="" value="18">18万円以下</option>
                     <option data-price-type="" value="20">20万円以下</option>
                     <option data-price-type="" value="22">22万円以下</option>
@@ -1003,6 +1003,7 @@ searchfreeword(){
               console.log(response)
             if(response.data.nursing.length > 0)
             {
+             
                 $("#mymap").css("display", "block");
                 $("#filtertable").css("display", "block");
                 $("#nursing-search").css("display", "block");
@@ -1157,7 +1158,7 @@ nursingSearchData(index){
 
 
 
-
+        
         },
 // map change dropdown function
 // make infowindow, marker , google map
@@ -1452,11 +1453,13 @@ changeMap(response){
 
                     if(this.markers.length > 0 )
                     {
+                      
                         this.coordinates(theCity,lat,lng);
 
                         this.infoWindow(item, mmarker);
                     }
                     else{
+                      
                         this.coordinates(theCity,lat,lng);
                     }
                 }
@@ -1591,9 +1594,12 @@ search(){
               }
             this.show_paginate = true;
             });
+        
+
         },
         // hover animate function
         mouseover(index) {
+          
             for (let i = 0; i < this.markerHover.length; i++) {
 
                 if(this.markers[i]['alphabet'] == index)

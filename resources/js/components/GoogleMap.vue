@@ -3,16 +3,16 @@
           
               <div class="col-md-12 pad-free">
                 <div class="col-md-12 pad-free postal-search">
-                  <div class="col-md-12 m-t-10"><label>  都道府県</label></div>
-                    <div class="col-md-12 p-0">
+                  <div class="col-md-12 m-t-10"><label>  都道府県<span class="error">*</span></label></div>
+                    <div class="col-md-6 p-0">
                         <select v-model="city" class="division form-control" id="division">
                             <option v-for="cities in city_list" :key="cities.id" v-bind:value="cities.id">
                                 {{cities.city_name}}
                             </option>
                         </select>
                     </div>
-                    <div class="col-md-12 m-t-10"><label>  市区町村</label></div>
-                    <div class="col-md-12 p-0">
+                    <div class="col-md-12 m-t-10"><label>  市区町村<span class="error">*</span></label></div>
+                    <div class="col-md-6 p-0">
                         <select v-model="township" class="division form-control" id="division">
                             <option v-for="townships in township_list" :key="townships.id" v-bind:value="townships.id">
                                 {{townships.township_name}}
@@ -26,7 +26,6 @@
                   </div>
                   <div class="form-group">
                     <label>市区町村、番地（建物名）<span class="error">*</span></label>
-                    {{city}}
                     <div class="row">
                       <div class="col-md-10" v-if="status === '0'">
                         <input type="text" id="city" name="city" class="old-city form-control white-bg-color" placeholder="市区町村、番地を入力してください。" v-model="address"> 
