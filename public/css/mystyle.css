@@ -7258,6 +7258,12 @@ ul.test>li:before {
     width: 1303px;
     overflow: hidden;
 }
+#fav-hospital-page #fav-history-page .card-carousel{
+    display: flex;
+    justify-content: center;
+    width: 1353px;
+    overflow: hidden;
+}
 
 
 /*slick carousel*/
@@ -8887,75 +8893,142 @@ ul.nur-caro-card>li.list-group-item {
     }
 }
 
-@media only screen and (min-width: 320px) and (max-width: 375px) {
+@media only screen and (min-width: 320px) and (max-width: 360px)  {
     #fav-history-page .card-carousel {
-        width: 1336px;
+        width: 263px !important;
+    }
+    #fav-history-page .card-carousel {
+        overflow: visible;
+    }
+    #fav-hospital-page  #fav-history-page .card-carousel{
+        width: 272px !important;
+    }
+    #fav-hospital-page #fav-history-page .card-carousel-wrapper
+    {
+        margin-left: -16px;
+    }
+}
+@media only screen and (min-width: 360px) and (max-width: 375px)  {
+    #fav-history-page .card-carousel {
+        width: 261px !important;
+    }
+    #fav-history-page .card-carousel {
+        overflow: visible;
+    }
+    #fav-hospital-page  #fav-history-page .card-carousel{
+        width: 272px !important;
+    }
+    #fav-hospital-page #fav-history-page .card-carousel-wrapper
+    {
+        margin-left: -16px;
     }
 }
 
-@media only screen and (min-width: 376px) and (max-width: 450px) {
+@media only screen and (min-width: 375px) and (max-width: 450px)  {
     #fav-history-page .card-carousel {
-        width: 264px !important;
+        width: 261px !important;
+    }
+    #fav-history-page .card-carousel {
+        overflow: visible;
+    }
+    #fav-hospital-page  #fav-history-page .card-carousel{
+        width: 272px !important;
+    }
+    #fav-hospital-page #fav-history-page .card-carousel-wrapper
+    {
+        margin-left: -11px;
     }
 }
 
 
 /* Medium devices (landscape tablets, 768px and up) */
-
-@media only screen and (min-width: 449px) and (max-width: 768px) {
+@media only screen and (min-width: 414px) and (max-width: 768px)  {
     #fav-history-page .card-carousel {
-        /* width: 515px !important; */
+        width: 261px !important;
+    }
+    #fav-hospital-page  #fav-history-page .card-carousel{
+        width: 272px !important;
+    }
+    #fav-hospital-page #fav-history-page .card-carousel-wrapper
+    {
+        margin-left: 5px;
     }
 }
-
-@media only screen and (min-width: 768px) and (max-width: 1023px) {
-    #fav-history-page .card-container {
-        /* padding: 0; */
+@media only screen and (min-width: 768px) and (max-width: 991px)  {
+    #fav-history-page .card-carousel {
+        width: 521px!important;
+    }
+    #fav-hospital-page  #fav-history-page .card-carousel{
+        width: 545px !important;
+    }
+    #fav-hospital-page #fav-history-page .card-carousel-wrapper
+    {
+        margin-left: -13px;
     }
     #fav-history-page .card-carousel {
-        /* width: 415px!important; */
+        overflow: visible;
     }
+    
 }
-
-
-/* @media only screen and (min-width: 768px) and (max-width: 992px)  {
-    #fav-history-page .cardcarousel {
-        width: 415px!important;
-    }
-} */
-
 
 /* Large devices (laptops/desktops, 992px and up) */
 
 @media only screen and (min-width: 992px) and (max-width: 1024px) {
     #fav-history-page .card-carousel {
-        width: 823px!important;
+        width: 799px!important;
     }
+    .custom-table>.table th, .table td 
+    {
+        padding: 6px;
+    }
+    .nav-content {
+        margin-left: 3px;
+        margin-right: -10px;
+    }
+    .profile_wd {
+        width: 242px !important;
+    }
+
 }
 
-@media only screen and (min-width: 992px) and (max-width: 1200px) {
+@media only screen and (min-width: 1024px) and (max-width: 1200px)  {
     #fav-history-page .card-carousel {
-        width: 783px !important;
+        width: 768px !important;
     }
+    #fav-hospital-page  #fav-history-page .card-carousel{
+        width: 800px !important;
+    }
+
 }
 
-
+@media only screen and (min-width: 1200px) and  (max-width: 1280px)  {
+    #fav-history-page .card-carousel {
+        /* width: 783px!important; */
+        width: 783px!important;
+    }
+    #fav-hospital-page  #fav-history-page .card-carousel{
+        width: 814px !important;
+    }
+}
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 
-@media only screen and (min-width: 1200px) and (max-width: 1440px) {
+@media only screen and (min-width: 1280px) and  (max-width: 1440px)  {
     #fav-history-page .card-carousel {
-        width: 783px!important;
+        /* width: 783px!important; */
+        width: 1503px!important;
+    }
+    #fav-hospital-page  #fav-history-page .card-carousel{
+        width: 1084px !important;
     }
 }
 
 @media only screen and (min-width: 1440px) and (max-width: 1880px) {
     #fav-history-page .card-carousel {
-        width: 1045px!important;
+        width: 1046px!important;
         margin-left: 20px;
     }
-    .custom-table>.table th, .table td
-    {
-        
+    #fav-hospital-page  #fav-history-page .card-carousel{
+        width: 1084px !important;
     }
     .main-content {
         width: 100%;
