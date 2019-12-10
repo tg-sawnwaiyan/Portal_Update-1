@@ -1168,15 +1168,16 @@ coordinates(theCity, lat, lng){
                   center: new google.maps.LatLng(lat, lng),
                   minZoom: 7,
                   maxZoom: 14,
-                  zoom:10,
+                  zoom: 10,
                   mapTypeId: google.maps.MapTypeId.ROADMAP,
                   options: {
                   gestureHandling: 'greedy'
                 }
               };
                 }
-            
+                
                 this.map = new google.maps.Map(document.getElementById("mymap"), mapProp);
+                
                 this.loading = true
                 let  coor =[];
                 var townshipName = [];
@@ -1185,7 +1186,8 @@ coordinates(theCity, lat, lng){
                 const arr = [];
                
                 
-                if(this.townshipID == 0){
+                
+                if(this.township_id != -1){
                   // get township postalcode
                   for (let i = 0; i < this.getTownships.length; i++) {
                       if(this.getTownships[i]['id'] == this.township_id){
@@ -1193,12 +1195,12 @@ coordinates(theCity, lat, lng){
                           town.push(this.getTownships[i]['township_name'])
                       }
                   }
-                }else{
+                }else if(this.townshipID != 0){
                   for (let i = 0; i < this.townshipID.length; i++) {
                     for (let k = 0; k < this.getTownships.length; k++) {
                       if(this.getTownships[k]['id'] == this.townshipID[i]){
-                          townshipName.push(this.getTownships[i]['postalcode'])
-                          town.push(this.getTownships[i]['township_name'])
+                          townshipName.push(this.getTownships[k]['postalcode'])
+                          town.push(this.getTownships[k]['township_name'])
                       }
                       
                     }
@@ -1206,11 +1208,8 @@ coordinates(theCity, lat, lng){
                   }
                   
                 }
-                if(this.townshipID == 0){
-                  var township_name = townshipName.toString();
-                }else{
-                  var township_name = townshipName;
-                }
+                var township_name = townshipName;
+
 
                 if(this.townshipID == 0){
 
@@ -1246,7 +1245,7 @@ coordinates(theCity, lat, lng){
                       var coordinates = [];
                       
                       for (let i = 0; i < township_name.length; i++) {
-                          console.log(township_name[i])
+
                         for (let k = 0; k < data.length; k++) {
                           if(data[k]['properties']['N03_007'] === township_name[i]){
                               coordinates.push(data[k])
@@ -1282,11 +1281,19 @@ boundariesGoogleMap(lat,lng,coor){
           };
           this.map.data.addGeoJson(data);
       } catch (error) {
-          var data = coor.reduce((acc, val) => acc.concat(val), []);
+            var data = coor.reduce((acc, val) => acc.concat(val), []);
+            for (let i = 0; i < data.length; i++) {
+              this.map.data.addGeoJson(data[i]); 
+            }
+            var bounds = new google.maps.LatLngBounds();
+            this.map.data.forEach(function(feature){
+              var geo = feature.getGeometry();
+              geo.forEachLatLng(function(LatLng){
+                bounds.extend(LatLng)
+              });
+            });
+            this.map.fitBounds(bounds);
 
-          for (let i = 0; i < data.length; i++) {
-            this.map.data.addGeoJson(data[i]); 
-          }
       }
 
           this.map.data.setStyle({
