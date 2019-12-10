@@ -6568,7 +6568,8 @@ button.confirmed {
     overflow: hidden;
     background: transparent;
     width: 79.9%;
-    margin-top: -1px;
+    margin: -1px auto 0;
+    padding: 0;
     -moz-transition: all 1s ease-in-out;
     -webkit-transition: all 1s ease-in-out;
     transition: all 1s ease-in-out;
