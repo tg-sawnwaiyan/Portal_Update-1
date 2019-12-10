@@ -382,27 +382,26 @@
         </div>
       </div>
         <!-- google map  -->
+
         <section id="holder" >
         <div class="row" >
-          <div class="col-sm-12 col-md-12">
-          <div style="position: relative;">
-           
-            <div v-if="loading" class=" m-t-10 m-b-10 text-center overlay">
-                <div class="lds-ripple m-t-10 m-b-10" ><div></div><div></div></div>
+          <div class="col-sm-12 col-md-12">    
+            <div v-if="loading" class=" m-t-10 m-b-10" style="background-color:gray;opacity:0.9;position:relative;z-index:10;">   
+               <div class="lds-ripple m-t-10 m-b-10" >
+                  <div></div><div></div>
+                </div>           
+                <div class="col-12 overlay" style="z-index:9">
+                 
+                </div>
             </div>
-              <!-- <div class="overlay standard hidden">&nbsp;</div> -->
-              <div v-if="!loading" class="m-t-10 m-b-10">
-                <div id="mymap"></div>
-              </div>
-         
-              
-
-              <!-- <div id="mymap" class="select m-t-10 m-b-10"></div> -->
-
-          </div>
+            <div v-if="!loading" class="m-t-10 m-b-10">
+              <div id="mymap"></div>
+            </div>     
+              <!-- <div id="mymap" class="select m-t-10 m-b-10"></div> -->       
           </div>
         </div>
         </section>
+        
 
         <!-- nursing list -->
        <div id="nursing-search" >
@@ -997,7 +996,7 @@ searchfreeword(){
                 this.changeMap(response);
             }
             else{
-
+                $("#mymap").css("display", "none");
                 $("#nursing-search").css("display", "none");
 
             }
@@ -1035,6 +1034,7 @@ showSearchMap() {
             $('#showSearchMap').addClass('select');
             $('#filter').addClass('select');
             $("#mymap").css("display", "none");
+            console.log('mymap')
             $("#nursing-search").css("display", "none");
             $("#filtertable").css("display", "none");
             document.getElementById('search-free-word').value = '';
@@ -1085,7 +1085,8 @@ getStateClick(e) {
                 },
             })
                 .then((response) => {
-                  $("#mymap").css("display", "block");
+                 $("#mymap").css({'display' : 'block','height' : '500px','width':'100%'});  
+                 // $("#mymap").css('display', 'block');               
                   $("#nursing-search").css("display", "block");
                   $("#filtertable").css("display", "block");
                   
@@ -1677,17 +1678,24 @@ search(){
 
 <style scoped>
 .lds-ripple {
-  display: inline-block;
-  position: relative;
+  /* display: inline-block;
+  position: absolute;
   width: 80px;
   height: 80px;
-  top:230px;
+  top: 40%;
+  left: 50%; 
+  z-index: 1; */
+  position: relative;
+  width: 100% !important;
+  height: 440px !important;
+ 
 }
 .lds-ripple div {
   position: absolute;
-  border: 4px solid black;
+  border: 4px solid#fff;
   opacity: 1;
   border-radius: 50%;
+  z-index: 999;
   animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
 .lds-ripple div:nth-child(2) {
@@ -1710,7 +1718,20 @@ search(){
   }
 }
 
-
+.overlay{
+  /* position: relative;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.19);
+  opacity: 0.1; */
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.19);  
+  position: absolute;
+  background: #d2d2d2;
+  width: 100%;
+  height: 440px;
+}
 
 .highlight{
      background-color: #ccff60 !important;
@@ -1881,9 +1902,9 @@ search(){
 
   #mymap {
     width: 100%;
-    height: 500px;
+    /* height: 500px; */
   }
-  /* #mymap {background: transparent url('/images/google/loading.jpg') no-repeat center center;} */
+
 div#holder {
     position: absolute;
 }
@@ -1892,17 +1913,17 @@ div#holder {
     display: none;
 }
 
-div.overlay {
-    position: absolute;
+/* div.overlay {
+    position: relative;
     top: 0;
     width: 100%;
     height: 100%;
     background-color: #5e5e5e;
     opacity: 0.7;
     z-index: 1;
-}
+} */
 
-div.overlay.standard { background: #fff url('/images/google/loading.jpg') no-repeat 50% 50%; }
+/* div.overlay.standard { background: #fff url('/images/google/loading.jpg') no-repeat 50% 50%; } */
 
   .card_1 {
     display: inline-block;
