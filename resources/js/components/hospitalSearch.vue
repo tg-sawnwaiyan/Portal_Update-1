@@ -348,7 +348,6 @@
                     <!-- <em>{{city.city_name}}</em> -->
                     <span id="close"><i class="fas fa-arrow-circle-up"></i> 市区町村エリアを閉じる</span>
                   </button>
-
                   <div class="toBeToggled" id="toBeToggled">
 
                     <div class="form-check form-check-inline col-sm-2" v-for="township in getTownships" :key="township.id">
@@ -648,6 +647,7 @@
         subjects: [],
         sub_child:[],
         subject:[],
+        company:[],
         toggleCheck: true,
         toggleCheck_1: false,
         currentPage: 0,
@@ -714,6 +714,7 @@
             this.specialfeatures = response.data.specialfeature;
             this.subject = response.data.subject;
             this.subjects = response.data.subjects;
+            this.company = response.data.company;
             if(this.hos_data.length > this.size) {
                 this.show_paginate = true;
             }else{
@@ -902,6 +903,7 @@
               this.getTownships = response.data.getTownships
               this.special_features = response.data.special_features
               this.subjects = response.data.subjects
+              this.company = response.data.company
             //   this.sub_child = response.data.sub_child
               this.id = id;
 

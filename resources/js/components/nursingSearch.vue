@@ -382,27 +382,26 @@
         </div>
       </div>
         <!-- google map  -->
+
         <section id="holder" >
         <div class="row" >
-          <div class="col-sm-12 col-md-12">
-          <div style="position: relative;">
-
-            <div v-if="loading" class=" m-t-10 m-b-10 text-center overlay">
-                <div class="lds-ripple m-t-10 m-b-10" ><div></div><div></div></div>
+          <div class="col-sm-12 col-md-12">    
+            <div v-if="loading" class=" m-t-10 m-b-10" style="background-color:gray;opacity:0.9;position:relative;z-index:10;">   
+               <div class="lds-ripple m-t-10 m-b-10" >
+                  <div></div><div></div>
+                </div>           
+                <div class="col-12 overlay" style="z-index:9">
+                 
+                </div>
             </div>
-              <!-- <div class="overlay standard hidden">&nbsp;</div> -->
-              <div v-if="!loading" class="m-t-10 m-b-10">
-                <div id="mymap"></div>
-              </div>
-
-
-
-              <!-- <div id="mymap" class="select m-t-10 m-b-10"></div> -->
-
-          </div>
+            <div v-if="!loading" class="m-t-10 m-b-10">
+              <div id="mymap"></div>
+            </div>     
+              <!-- <div id="mymap" class="select m-t-10 m-b-10"></div> -->       
           </div>
         </div>
         </section>
+        
 
         <!-- nursing list -->
        <div id="nursing-search" >
@@ -516,6 +515,16 @@
                 <tr>
                   <th>地域</th>
                   <td>
+                    <select id="selectCity" class="col-9 form-control custom-select mt-2 mb-2" v-model="id" @change="ChangeTownship">
+                     <option value="-1">▼市区町村</option>
+                    <option v-for="city in cities" :value="city.id" :key="city.id">{{city.city_name}}</option>
+                  </select>
+                  <button @click="toggleContent" class="btn col-3 seemore-btn">
+                    <i class="fa" aria-hidden="true"></i>
+                    <!-- <em>{{city.city_name}}</em> -->
+                    <span id="close"><i class="fas fa-arrow-circle-up"></i> 市区町村エリアを閉じる</span>
+                  </button>
+                  <div class="toBeToggled" id="toBeToggled">
                         <div class="form-check form-check-inline col-sm-2"   v-for="township in getTownships" :key="township.id">
                         <label class="form-check-label control control--checkbox" style="padding-left:5px;">
                          <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @click="check">
@@ -523,6 +532,7 @@
                         <div class="control__indicator"></div>
                         </label>
                       </div>
+                  </div>
 
                   </td>
                 </tr>
@@ -825,6 +835,7 @@
         onchangeid:0,
         localst:'',
         selected: undefined,
+        toggleCheck: true,
         loading: false,
         coordinate:[],
         norecord_msg: false,
@@ -998,7 +1009,7 @@ searchfreeword(){
                 this.changeMap(response);
             }
             else{
-
+                $("#mymap").css("display", "none");
                 $("#nursing-search").css("display", "none");
 
             }
@@ -1036,6 +1047,7 @@ showSearchMap() {
             $('#showSearchMap').addClass('select');
             $('#filter').addClass('select');
             $("#mymap").css("display", "none");
+            console.log('mymap')
             $("#nursing-search").css("display", "none");
             $("#filtertable").css("display", "none");
             document.getElementById('search-free-word').value = '';
@@ -1086,7 +1098,8 @@ getStateClick(e) {
                 },
             })
                 .then((response) => {
-                  $("#mymap").css("display", "block");
+                 $("#mymap").css({'display' : 'block','height' : '500px','width':'100%'});  
+                 // $("#mymap").css('display', 'block');               
                   $("#nursing-search").css("display", "block");
                   $("#filtertable").css("display", "block");
 
@@ -1677,23 +1690,78 @@ search(){
     pageSelect(index) {
       this.currentPage = index - 1;
     },
+    toggleContent() {
+        this.toggleCheck = !this.toggleCheck;
+        if (this.toggleCheck == true) {
+          $('#close').empty();
+          $("#toBeToggled").slideDown();
+          $('#close').append('<i class="fas fa-arrow-circle-up"></i> 市区町村エリアを閉じる');
+
+        } else {
+          $('#close').empty();
+          $("#toBeToggled").slideUp();
+          $('#close').append('<i class="fas fa-arrow-circle-down"></i> 市区町村エリアを開く');
+        }
+      },
+      ChangeTownship(){
+
+        this.townshipID = [];
+         if(localStorage.getItem("nursing_fav") == null){
+
+                this.locast = 0;
+            }
+            else{
+                this.locast = localStorage.getItem("nursing_fav");
+            }
+
+         this.axios.get('api/getmap',{
+              params:{
+              id: this.id,
+              township_id:-1,
+              moving_in:-1,
+              per_month:-1,
+              local:this.locast
+          },
+          })
+            .then((response) => {
+
+              $('.hospitalselect').removeClass('hospitalselect');
+              this.cities = response.data.city
+              this.getCity = response.data.getCity
+              this.getTownships = response.data.getTownships
+              this.special_features = response.data.special_features
+              this.subjects = response.data.subjects;
+            //   this.sub_child = response.data.sub_child;
+              //console.log("aaa",this.subjects);
+              // this.id = id;
+
+            })
+              this.search();
+      },
     }
   };
 </script>
 
 <style scoped>
 .lds-ripple {
-  display: inline-block;
-  position: relative;
+  /* display: inline-block;
+  position: absolute;
   width: 80px;
   height: 80px;
-  top:230px;
+  top: 40%;
+  left: 50%; 
+  z-index: 1; */
+  position: relative;
+  width: 100% !important;
+  height: 440px !important;
+ 
 }
 .lds-ripple div {
   position: absolute;
-  border: 4px solid black;
+  border: 4px solid#fff;
   opacity: 1;
   border-radius: 50%;
+  z-index: 999;
   animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
 .lds-ripple div:nth-child(2) {
@@ -1716,7 +1784,20 @@ search(){
   }
 }
 
-
+.overlay{
+  /* position: relative;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.19);
+  opacity: 0.1; */
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.19);  
+  position: absolute;
+  background: #d2d2d2;
+  width: 100%;
+  height: 440px;
+}
 
 .highlight{
      background-color: #ccff60 !important;
@@ -1843,6 +1924,9 @@ search(){
     padding: 25px;
 
   }
+  .toBeToggled {
+    display: block;
+  }
 
   .toBeToggled2 {
     display: block;
@@ -1887,9 +1971,9 @@ search(){
 
   #mymap {
     width: 100%;
-    height: 500px;
+    /* height: 500px; */
   }
-  /* #mymap {background: transparent url('/images/google/loading.jpg') no-repeat center center;} */
+
 div#holder {
     position: absolute;
 }
@@ -1898,17 +1982,17 @@ div#holder {
     display: none;
 }
 
-div.overlay {
-    position: absolute;
+/* div.overlay {
+    position: relative;
     top: 0;
     width: 100%;
     height: 100%;
     background-color: #5e5e5e;
     opacity: 0.7;
     z-index: 1;
-}
+} */
 
-div.overlay.standard { background: #fff url('/images/google/loading.jpg') no-repeat 50% 50%; }
+/* div.overlay.standard { background: #fff url('/images/google/loading.jpg') no-repeat 50% 50%; } */
 
   .card_1 {
     display: inline-block;

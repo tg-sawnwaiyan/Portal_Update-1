@@ -2,12 +2,12 @@
 <!--navigation bar-->
 <nav class="navbar navbar-expand-lg  main-header">
   <div class="container nav-warp d-flex">
-    <div class="d-flex">
+    <div class="d-flex align-items-center">
       <a class="navbar-brand logo-text" href="/">
         LOGO <span>HERE</span>
       </a>
-      <p class="h-tel"><i class="fas fa-phone-alt"></i><span>03-1234-5678</span><br>&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:mpm_secretary@management-partners.co.jp">mpm_secretary@management-partners.co.jp</a></p>
-      <ul class="sp_social">
+      <div class="h-tel"><a class="tel" href="tel:03-1234-5678"><i class="fas fa-phone-alt"></i><span>03-1234-5678</span></a><br class="pc-1024"><a href="mailto:mpm_secretary@management-partners.co.jp"><p class="sp-1024"><i class="fas fa-envelope"></i></p><span>mpm_secretary@management-partners.co.jp</span></a></div>
+      <ul class="sp_social d-none-380">
         <li class="social-link" v-if="!$auth.check()"><a href="http://localhost:8000/registerForm"><i class="fab fa-twitter"></i></a></li>
         <li class="social-link" v-if="!$auth.check()"><a href="http://localhost:8000/registerForm"><i class="fab fa-facebook-f"></i></a></li>
       </ul>
@@ -128,7 +128,7 @@
       <div class="sp_nav" v-show="isNav">
         <ul class="menu_list">
           <li>
-            <router-link :to="{ name: 'News' }"><i class="fas fa-newspaper"></i>  ニュース（ホーム）</router-link>
+            <router-link :to="{ name: 'News' }"  v-on:click='isNav = isNav'><i class="fas fa-newspaper"></i>  ニュース（ホーム）</router-link>
           </li>
           <li>
             <router-link :to="{ name: 'nursingSearch' }"><i class="fas fa-user-md"></i> 介護施設検索</router-link>
@@ -149,6 +149,10 @@
         <ul class="contact_list">
           <li><a href="tel::03-1234-5678"><i class="fas fa-phone-alt"></i><span>03-1234-5678</span></a></li>   
           <li><a href="mailto:mpm_secretary@management-partners.co.jp"><i class="fas fa-envelope"></i>mpm_secretary@management-partners.co.jp</a></li>     
+        </ul>
+         <ul class="sp_social d-none-768">
+          <li class="social-link" v-if="!$auth.check()"><a href="http://localhost:8000/registerForm"><i class="fab fa-twitter"></i></a></li>
+          <li class="social-link" v-if="!$auth.check()"><a href="http://localhost:8000/registerForm"><i class="fab fa-facebook-f"></i></a></li>
         </ul>      
       </div>
     </transition>
