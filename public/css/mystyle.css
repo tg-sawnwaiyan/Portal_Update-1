@@ -9229,6 +9229,14 @@ ul.nur-caro-card>li.list-group-item {
         background-color: transparent;
         border-left-color: transparent;
     }
+    ul.menu_list li:hover,
+    ul.menu_list li.router-link-active,
+    ul.menu_list li.router-link-exact-active {
+        background-color: #e2e2e2;
+        cursor: pointer;
+    }   
+   
+
     ul.contact_list {
         text-align: center;
     }
