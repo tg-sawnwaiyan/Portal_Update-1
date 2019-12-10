@@ -988,7 +988,7 @@ searchfreeword(){
 
           },})
           .then((response) => {
-              console.log(response)
+              // console.log(response)
             if(response.data.nursing.length > 0)
             {
                 $("#mymap").css("display", "block");
@@ -1150,7 +1150,8 @@ nursingSearchData(index){
 // map change dropdown function
 // make infowindow, marker , google map
 coordinates(theCity, lat, lng){
-            var mapProp = {
+                if(this.township_id == -1){
+                  var mapProp = {
                   center: new google.maps.LatLng(lat, lng),
                   zoom:7,
                   mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -1158,6 +1159,16 @@ coordinates(theCity, lat, lng){
                   gestureHandling: 'greedy'
                 }
               };
+                }else{
+                  var mapProp = {
+                  center: new google.maps.LatLng(lat, lng),
+                  zoom:15,
+                  mapTypeId: google.maps.MapTypeId.ROADMAP,
+                  options: {
+                  gestureHandling: 'greedy'
+                }
+              };
+                }
             
                 this.map = new google.maps.Map(document.getElementById("mymap"), mapProp);
                 this.loading = true
@@ -1319,10 +1330,12 @@ infoWindow(item, mmarker){
             ])
         }
          var markers = mmarker;
-         var bounds = new google.maps.LatLngBounds();
+        //  var bounds = new google.maps.LatLngBounds();
         this.markerHover = [];
         var infoWindow = new google.maps.InfoWindow(),marker, i;
         }
+        console.log('aaaaaaaa')
+        console.log(this.coordinate)
         for (let i = 0; i < this.markers.length; i++) {
             var beach = this.markers[i]
             var lats = this.markers[i]['lat']
@@ -1410,7 +1423,7 @@ changeMap(response){
                 this.cities = response.data.city
                 this.getCity = response.data.getCity
                 this.getTownships = response.data.getTownships
-                console.log(this.getTownships);
+                // console.log(this.getTownships);
                 this.special_features = response.data.special_features
                 this.fac_types = response.data.fac_types
                 this.medical_acceptance = response.data.medical_acceptance
