@@ -453,15 +453,10 @@
                                 {{ch.name}} 
                                 <div class="control__indicator"></div>
                                 </label>
-                            </div>
-                            
-                          </div>
-                            
-                           
-                        </div>
-                       
-                    </div>
-
+                            </div>    
+                         </div>      
+                     </div>      
+                  </div>
                 </td>
               </tr>
 

@@ -195,7 +195,7 @@ class CustomerController extends Controller
                );            
             $lastid = User::where('email',$getCustomer->email)->select('id')->value('id'); //user table last id
             $model_has_roles = array(
-                'role_id'=>2,
+                'role_id'=>2,   
                 'model_type'=> 'App\User',
                 'model_id'=> $lastid,
             );
