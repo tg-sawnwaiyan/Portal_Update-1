@@ -9190,6 +9190,14 @@ ul.nur-caro-card>li.list-group-item {
     .menu {
         float: right;
         cursor: pointer;
+        width: 100%;
+        margin: 0 auto;
+    }
+    ul.menu li.first-submenu {
+        float: right;
+        position: absolute;
+        right: 10px;
+        top: 75px;
     }
     .sp_nav {
         display: block;
@@ -9204,44 +9212,55 @@ ul.nur-caro-card>li.list-group-item {
         overflow-y: auto;
         z-index: 1;
     }
-    .sp_nav .menu_list {
+    ul.menu_list {
         width: 90%;
         margin: 20px auto;
-        background: #fff;
-        border: 1px solid #8c9090;
+        /* border: 1px solid #8c9090; */
     }
-    .sp_nav .menu_list li {
-        border-bottom: 1px solid #8c9090;
+    ul.menu_list>li {
+        border-top: 1px solid #8c9090;
         padding: 8px 0 8px 20px;
+        border-left: 1px solid #8c9090;
+        border-right: 1px solid #8c9090;
+        background: #fff;
     }
-    .sp_nav .menu_list li i {
+    ul.menu_list li i {
         color: #ff6117 !important;
     }
-    .sp_nav .menu_list li:last-child {
-        border-bottom: 0px solid;
+    ul.menu_list li:last-child {
+        border: none;
+        padding: 20px 0px;
+        background: none;
     }
-    .sp_nav .menu_list li a {
+    ul.menu_list li a {
         color: #444;
     }
-    .sp_nav .menu_list li a.router-link-exact-active {
+    ul.menu_list li a.router-link-exact-active {
         color: #ff6117 !important;
         background-color: transparent;
         border-left-color: transparent;
     }
-    .sp_nav .contact_list {
+    ul.menu_list li:hover,
+    ul.menu_list li.router-link-active,
+    ul.menu_list li.router-link-exact-active {
+        background-color: #e2e2e2;
+        cursor: pointer;
+    }
+    ul.contact_list {
         text-align: center;
     }
-    .sp_nav .contact_list li {
+    ul.contact_list li {
         padding: 10px;
         line-height: 1;
+        border: none;
     }
-    .sp_nav .contact_list li:first-child span {
+    ul.contact_list li:first-child span {
         padding: 10px 0 0 0;
         line-height: 1.1;
         font-size: 20px;
         font-weight: bold;
     }
-    .sp_nav .contact_list i {
+    ul.contact_list i {
         width: 25px;
         height: 25px;
         margin-right: 5px;
@@ -9253,19 +9272,15 @@ ul.nur-caro-card>li.list-group-item {
         border-radius: 50%;
         vertical-align: text-bottom;
     }
-    .sp_nav .contact_list li:first-child a {
+    ul.contact_list li:first-child a {
         padding: 10px;
         color: #444;
         border: 1px solid;
         border-radius: 10px;
     }
-    .sp_nav .contact_list li:first-child a:hover {
+    ul.contact_list li:first-child a:hover {
         text-decoration: none;
         opacity: 0.8;
-    }
-    /*map responsive*/
-    #map-responsive {
-        display: block;
     }
     .d-none-768 {
         display: none;
@@ -9277,6 +9292,10 @@ ul.nur-caro-card>li.list-group-item {
         margin: 0 auto 20px;
     }
     /*end  ads slider */
+    /*map responsive*/
+    #map-responsive {
+        display: block;
+    }
 }
 
 @media only screen and (max-width: 380px) {
@@ -9285,13 +9304,17 @@ ul.nur-caro-card>li.list-group-item {
         float: none;
         text-align: center;
     }
-    .menu {
+    ul.menu li.first-submenu {
         position: absolute;
         top: 18px;
         right: 16px;
         font-size: 20px;
     }
-    .menu span {
+    ul.menu_list li i.fa-twitter,
+    ul.menu_list li i.fa-facebook-f {
+        color: inherit !important;
+    }
+    .first-submenu span {
         display: none;
     }
     .d-none-380 {
