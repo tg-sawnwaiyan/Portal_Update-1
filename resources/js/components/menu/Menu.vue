@@ -40,7 +40,9 @@
               <router-link :to="{name: 'register'}" class="nav-link pad-free"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;<span>事業者 登録</span></router-link>
             </li> 
             <li class="social-link" v-if="!$auth.check()"><a href="http://localhost:8000/registerForm"><i class="fab fa-twitter"></i></a></li>
-            <li class="social-link" v-if="!$auth.check()"><a href="http://localhost:8000/registerForm"><i class="fab fa-facebook-f"></i></a></li>          
+            <li class="social-link" v-if="!$auth.check()"><a href="http://localhost:8000/registerForm"><i class="fab fa-facebook-f"></i></a></li>
+  
+            
             <li class="col-12 userprofile-name pc" v-if="$auth.check()">
                     <span v-if="user.data.type_id == 1">
                         <i class="fa fa-user userprofile-img" aria-hidden="true"></i>
@@ -126,7 +128,7 @@
       <div class="sp_nav" v-show="isNav">
         <ul class="menu_list">
           <li>
-            <router-link :to="{ name: 'News' }"  v-on:click='isNav = isNav'><i class="fas fa-newspaper"></i>  ニュース（ホーム）</router-link>
+            <router-link :to="{ name: 'News' }"><i class="fas fa-newspaper"></i>  ニュース（ホーム）</router-link>
           </li>
           <li>
             <router-link :to="{ name: 'nursingSearch' }"><i class="fas fa-user-md"></i> 介護施設検索</router-link>

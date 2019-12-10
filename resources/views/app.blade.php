@@ -89,7 +89,8 @@
 
 <!-- <script src="/js/app.js" type="text/javascript"></script> -->
 <!-- <script src="{{ asset('js/map-api.js') }}"></script> -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2U_IRuSrajQavHadFp8FlXNi61MA3nw&sensor=false"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2U_IRuSrajQavHadFp8FlXNi61MA3nw"></script>
+<!-- <script src="http://maps.google.com/maps/api/js"></script> -->
 <script src="{{ asset('js/vue2-5-13.js') }}"></script>
 <script src="{{ asset('js/vue-scrollto.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/pannellum.js') }}"></script>

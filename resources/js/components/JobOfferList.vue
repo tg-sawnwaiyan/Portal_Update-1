@@ -264,6 +264,7 @@
             methods: {
                    getAllJobs() {
                     this.axios.get("/api/job/index").then(response => {
+                        console.log(response.data)
                         this.jobs = response.data.profilejob;
                         this.customer_id = response.data.user;
                         if (this.jobs.length > this.size) {
