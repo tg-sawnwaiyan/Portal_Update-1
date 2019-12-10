@@ -905,7 +905,7 @@ width: 100%; */
     /* -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    background-size: 60px 60px;   
+    background-size: 60px 60px;
      margin-left: -108px; */
     display: none;
 }
@@ -1142,6 +1142,44 @@ scrollbar-width: thin;
 
 
 /* end no search data */
+
+
+/*  Start upandDown for Search Responsive*/
+
+.arrow_icon {
+    color: #828282 !important;
+    font-size: 16px;
+    float: right;
+    padding-right: 14px;
+}
+
+.custom_group {
+    color: #828282 !important;
+    font-size: 14px;
+}
+
+.custom_group a {
+    cursor: pointer;
+}
+
+.custom_group a li {
+    list-style: none;
+    border-bottom: 1px solid #eeeeee;
+    padding: 5px;
+}
+
+.map-addicon {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+}
+
+.card-header-title>p {
+    padding: 10px 10px 0px 10px !important;
+}
+
+
+/*  End upandDown for Search Responsive*/
 
 
 /* End Search News List */
@@ -8926,10 +8964,8 @@ ul.nur-caro-card>li.list-group-item {
         width: 1045px!important;
         margin-left: 20px;
     }
-    .custom-table>.table th, .table td
-    {
-        
-    }
+    .custom-table>.table th,
+    .table td {}
     .main-content {
         width: 100%;
     }
@@ -9009,6 +9045,10 @@ ul.nur-caro-card>li.list-group-item {
 }
 
 .sp_social {
+    display: none;
+}
+
+#map-responsive {
     display: none;
 }
 
@@ -9232,6 +9272,10 @@ ul.nur-caro-card>li.list-group-item {
         margin: 0 auto 20px;
     }
     /*end  ads slider */
+    /*map responsive*/
+    #map-responsive {
+        display: block;
+    }
 }
 
 @media only screen and (max-width: 380px) {
