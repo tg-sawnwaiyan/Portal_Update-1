@@ -9185,7 +9185,7 @@ ul.nur-caro-card>li.list-group-item {
     ul.menu li.first-submenu {
         float: right;
         position: absolute;
-        right: 15px;
+        right: 10px;
         top: 75px;
     }
     .sp_nav {
@@ -9203,19 +9203,23 @@ ul.nur-caro-card>li.list-group-item {
     }
     ul.menu_list {
         width: 90%;
-        margin: 20px auto;
-        background: #fff;
-        border: 1px solid #8c9090;
+        margin: 20px auto;    
+        /* border: 1px solid #8c9090; */
     }
-    ul.menu_list li {
-        border-bottom: 1px solid #8c9090;
+    ul.menu_list > li {
+        border-top: 1px solid #8c9090;
         padding: 8px 0 8px 20px;
-    }
+        border-left: 1px solid #8c9090;
+        border-right: 1px solid #8c9090;
+        background: #fff;
+    }   
     ul.menu_list li i {
         color: #ff6117 !important;
     }
     ul.menu_list li:last-child {
-        border-bottom: 0px solid;
+        border: none;
+        padding: 20px 0px;
+        background: none;
     }
     ul.menu_list li a {
         color: #444;
@@ -9231,6 +9235,7 @@ ul.nur-caro-card>li.list-group-item {
     ul.contact_list li {
         padding: 10px;
         line-height: 1;
+        border: none;
     }
     ul.contact_list li:first-child span {
         padding: 10px 0 0 0;
@@ -9283,13 +9288,16 @@ ul.nur-caro-card>li.list-group-item {
         float: none;
         text-align: center;
     }
-    .menu {
+    ul.menu li.first-submenu{
         position: absolute;
         top: 18px;
         right: 16px;
         font-size: 20px;
     }
-    .menu span {
+    ul.menu_list li i.fa-twitter, ul.menu_list li i.fa-facebook-f {
+        color: inherit !important;
+    }
+    .first-submenu span {
         display: none;
     }
     .d-none-380 {

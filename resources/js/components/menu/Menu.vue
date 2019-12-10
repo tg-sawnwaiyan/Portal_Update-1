@@ -119,12 +119,14 @@
         </transition>
       </li>
     </ul>
+    
     <ul class="menu" @click='isNav = !isNav'>
     <li class="first-submenu">
       <span>メニュー</span>&nbsp;<i :class="!isNav ? open : close" style="width:15px;" ></i>     
     </li>
-    <transition name="slide" class="sp_nav">      
-        <ul class="menu_list child" v-if="isNav">
+    <transition name="slide">  
+      <div class="sp_nav"  v-if="isNav">    
+        <ul class="menu_list child">
           <li>
             <router-link :to="{ name: 'News' }"><i class="fas fa-newspaper"></i>  ニュース（ホーム）</router-link>
           </li>
@@ -140,25 +142,25 @@
           <li v-if="!$auth.check()">
             <router-link :to="{name: 'login'}" class="nav-link pad-free"><i class="fa fa-sign-in-alt"></i> 事業者 ログイン</router-link>
           </li>
-          <li v-if="!$auth.check()">
+          <li v-if="!$auth.check()" style="border-bottom:1px solid #8c9090;">
             <router-link :to="{name: 'register'}" class="nav-link pad-free"><i class="fa fa-user-plus"></i> 事業者 登録</router-link>
           </li>
           <li>
-          <ul class="contact_list">
-            <li><a href="tel::03-1234-5678"><i class="fas fa-phone-alt"></i><span>03-1234-5678</span></a></li>   
-            <li><a href="mailto:mpm_secretary@management-partners.co.jp"><i class="fas fa-envelope"></i>mpm_secretary@management-partners.co.jp</a></li>     
-          </ul>
-          </li>
-          <li>
-          <ul class="sp_social d-none-768">
+            <ul class="contact_list">
+              <li><a href="tel::03-1234-5678"><i class="fas fa-phone-alt"></i><span>03-1234-5678</span></a></li>   
+              <li><a href="mailto:mpm_secretary@management-partners.co.jp"><i class="fas fa-envelope"></i>mpm_secretary@management-partners.co.jp</a></li>     
+            </ul>
+            <ul class="sp_social d-none-768">
             <li class="social-link" v-if="!$auth.check()"><a href="https://twitter.com/login?lang=en"><i class="fab fa-twitter"></i></a></li>
             <li class="social-link" v-if="!$auth.check()"><a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a></li>
           </ul> 
-          </li>
+          </li>          
         </ul>
+        </div>
     </transition>
     </ul>
-  </div>
+    </div>
+  
 </nav>
 
   <!--end navigation bar-->
@@ -185,6 +187,7 @@
    -webkit-transition-timing-function: ease-in;
    -o-transition-timing-function: ease-in;
    transition-timing-function: ease-in;
+   transition: transform 0.5s ease;
 }
 
 .slide-leave-active {
@@ -199,13 +202,15 @@
 }
 
 .slide-enter-to, .slide-leave {
-   max-height: 100px;
+   max-height: 100vh;
    overflow: hidden;
 }
 
 .slide-enter, .slide-leave-to {
    overflow: hidden;
-   max-height: 0;
+   max-height: 100vh;
+  transform: translateX(-100%);
+  transition: all 0.5s ease-in 0s;
 }
 </style>
 <script>

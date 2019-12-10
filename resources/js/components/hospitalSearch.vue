@@ -348,7 +348,6 @@
                     <!-- <em>{{city.city_name}}</em> -->
                     <span id="close"><i class="fas fa-arrow-circle-up"></i> 市区町村エリアを閉じる</span>
                   </button>
-
                   <div class="toBeToggled" id="toBeToggled">
 
                     <div class="form-check form-check-inline col-sm-2" v-for="township in getTownships" :key="township.id">
@@ -390,22 +389,16 @@
                     <div class="form-check form-check-inline row align-items-start innerwrapper">
                         <div class="test" v-for="(subject,index) in subjects.slice(0,3)" :key="index">
                           <div class="row col-12">
-                            <strong class="table-innertitle row col-12">{{subject.name}}</strong>
-                            
+                            <strong class="table-innertitle row col-12">{{subject.name}}</strong>  
                             <div class="col-6" v-for="ch in subject.child" :key="ch.id+1">
-                             
                                 <label class="form-check-label control control--checkbox" style="padding-left:5px;">
                                 <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
                                 {{ch.name}}
                                 <div class="control__indicator"></div>
                                 </label>
-                            </div>
-                            
-                          </div>
-                            
-                           
-                        </div>
-                       
+                            </div>               
+                          </div>   
+                        </div>   
                     </div>
                       <div class="form-check form-check-inline row align-items-start innerwrapper">
                         <div class="test" v-for="(subject,index) in subjects.slice(3,6)" :key="index">
@@ -659,6 +652,7 @@
         subjects: [],
         sub_child:[],
         subject:[],
+        company:[],
         toggleCheck: true,
         toggleCheck_1: false,
         currentPage: 0,
@@ -725,6 +719,7 @@
             this.specialfeatures = response.data.specialfeature;
             this.subject = response.data.subject;
             this.subjects = response.data.subjects;
+            this.company = response.data.company;
             if(this.hos_data.length > this.size) {
                 this.show_paginate = true;
             }else{
@@ -913,6 +908,7 @@
               this.getTownships = response.data.getTownships
               this.special_features = response.data.special_features
               this.subjects = response.data.subjects
+              this.company = response.data.company
             //   this.sub_child = response.data.sub_child
               this.id = id;
 

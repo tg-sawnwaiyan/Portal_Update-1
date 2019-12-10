@@ -357,7 +357,7 @@
                     <option data-price-type="" value="10">10万円以下</option>
                     <option data-price-type="" value="12">12万円以下</option>
                     <option data-price-type="" value="14">14万円以下</option>
-                    <option data-price-type="" value="16">16万円以下</option>
+                    <option data-price-type="" value="16">16万円以下</option>     
                     <option data-price-type="" value="18">18万円以下</option>
                     <option data-price-type="" value="20">20万円以下</option>
                     <option data-price-type="" value="22">22万円以下</option>
@@ -515,6 +515,16 @@
                 <tr>
                   <th>地域</th>
                   <td>
+                    <select id="selectCity" class="col-9 form-control custom-select mt-2 mb-2" v-model="id" @change="ChangeTownship">
+                     <option value="-1">▼市区町村</option>
+                    <option v-for="city in cities" :value="city.id" :key="city.id">{{city.city_name}}</option>
+                  </select>
+                  <button @click="toggleContent" class="btn col-3 seemore-btn">
+                    <i class="fa" aria-hidden="true"></i>
+                    <!-- <em>{{city.city_name}}</em> -->
+                    <span id="close"><i class="fas fa-arrow-circle-up"></i> 市区町村エリアを閉じる</span>
+                  </button>
+                  <div class="toBeToggled" id="toBeToggled">
                         <div class="form-check form-check-inline col-sm-2"   v-for="township in getTownships" :key="township.id">
                         <label class="form-check-label control control--checkbox" style="padding-left:5px;">
                          <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @click="check">
@@ -522,6 +532,7 @@
                         <div class="control__indicator"></div>
                         </label>
                       </div>
+                  </div>
 
                   </td>
                 </tr>
@@ -824,6 +835,7 @@
         onchangeid:0,
         localst:'',
         selected: undefined,
+        toggleCheck: true,
         loading: false,
         coordinate:[],
         norecord_msg: false,
@@ -990,6 +1002,7 @@ searchfreeword(){
               console.log(response)
             if(response.data.nursing.length > 0)
             {
+             
                 $("#mymap").css("display", "block");
                 $("#filtertable").css("display", "block");
                 $("#nursing-search").css("display", "block");
@@ -1146,7 +1159,7 @@ nursingSearchData(index){
 
 
 
-
+        
         },
 // map change dropdown function
 // make infowindow, marker , google map
@@ -1441,11 +1454,13 @@ changeMap(response){
 
                     if(this.markers.length > 0 )
                     {
+                      
                         this.coordinates(theCity,lat,lng);
 
                         this.infoWindow(item, mmarker);
                     }
                     else{
+                      
                         this.coordinates(theCity,lat,lng);
                     }
                 }
@@ -1580,9 +1595,12 @@ search(){
               }
             this.show_paginate = true;
             });
+        
+
         },
         // hover animate function
         mouseover(index) {
+          
             for (let i = 0; i < this.markerHover.length; i++) {
 
                 if(this.markers[i]['alphabet'] == index)
@@ -1672,6 +1690,54 @@ search(){
     pageSelect(index) {
       this.currentPage = index - 1;
     },
+    toggleContent() {
+        this.toggleCheck = !this.toggleCheck;
+        if (this.toggleCheck == true) {
+          $('#close').empty();
+          $("#toBeToggled").slideDown();
+          $('#close').append('<i class="fas fa-arrow-circle-up"></i> 市区町村エリアを閉じる');
+
+        } else {
+          $('#close').empty();
+          $("#toBeToggled").slideUp();
+          $('#close').append('<i class="fas fa-arrow-circle-down"></i> 市区町村エリアを開く');
+        }
+      },
+      ChangeTownship(){
+
+        this.townshipID = [];
+         if(localStorage.getItem("nursing_fav") == null){
+
+                this.locast = 0;
+            }
+            else{
+                this.locast = localStorage.getItem("nursing_fav");
+            }
+
+         this.axios.get('api/getmap',{
+              params:{
+              id: this.id,
+              township_id:-1,
+              moving_in:-1,
+              per_month:-1,
+              local:this.locast
+          },
+          })
+            .then((response) => {
+
+              $('.hospitalselect').removeClass('hospitalselect');
+              this.cities = response.data.city
+              this.getCity = response.data.getCity
+              this.getTownships = response.data.getTownships
+              this.special_features = response.data.special_features
+              this.subjects = response.data.subjects;
+            //   this.sub_child = response.data.sub_child;
+              //console.log("aaa",this.subjects);
+              // this.id = id;
+
+            })
+              this.search();
+      },
     }
   };
 </script>
@@ -1857,6 +1923,9 @@ search(){
     width: 140px;
     padding: 25px;
 
+  }
+  .toBeToggled {
+    display: block;
   }
 
   .toBeToggled2 {
