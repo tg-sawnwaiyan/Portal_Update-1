@@ -722,21 +722,11 @@ export default {
 
             this.type = localStorage.getItem('cusType');
             this.cusid = Number(localStorage.getItem('cusId'));
-<<<<<<< HEAD
-            this.axios
-            .get('/api/station/'+this.cusid)
-            .then(response=>{
-                    this.station_list = response.data;
-                    console.log('Stations are');
-                    console.log(this.station_list);
-            });
-=======
             // this.axios
             // .get('/api/station/'+this.cusid)
             // .then(response=>{
             //         this.station_list = response.data;
             // });
->>>>>>> bcdf542b6d1e43be419a6ff816dd65d14e92c6ea
 
             this.axios
             .get('/api/customerinfo/'+this.cusid)
