@@ -7,7 +7,7 @@
                         <div class="col-md-6 pad-free">
                             <div class="col-md-12 p-l-0 m-t-10"><label>  都道府県<span class="error">*</span></label></div>
                             <div class="col-md-12 p-l-0">
-                                <select v-model="city" class="division form-control" id="division" @change="cityChange(city)">
+                                <select :value="city" class="division form-control" id="division" @change="cityChange($event)">
                                     <option v-for="cities in city_list" :key="cities.id" v-bind:value="cities.id">
                                         {{cities.city_name}}
                                     </option>
@@ -16,9 +16,16 @@
                         </div>
                         <div class="col-md-6 pad-free">
                             <div class="col-md-12 p-r-0 m-t-10"><label>  市区町村<span class="error">*</span></label></div>
-                            <div class="col-md-12 p-r-0">
-                                <select v-model="township" class="division form-control" id="township">
+                            <div class="col-md-12 p-r-0" v-if="test == 0">
+                                <select :value="township" class="division form-control" id="township">
                                     <option v-for="townships in township_list" :key="townships.id" v-bind:value="townships.id">
+                                        {{townships.township_name}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-12 p-r-0" v-else>
+                                <select :value="new_township" class="division form-control" id="township">
+                                    <option v-for="townships in new_townshiplist" :key="townships.id" v-bind:value="townships.id">
                                         {{townships.township_name}}
                                     </option>
                                 </select>
@@ -96,6 +103,9 @@ export default {
         },
   data () {
     return {
+        test:'0',
+        new_townshiplist:[],
+        new_township:'',
       status:'0',
       markers: [],
       addresses: [],
@@ -111,9 +121,21 @@ export default {
       },
       address_btn: false,
       city_list: [],
-      
+    //   selected_city:this.city,      
     }
   },
+//   computed:{
+//       selectedCity: {
+//           get: function(){
+//                 this.selected_city = this.city;
+//                 return this.selected_city;
+//           },
+//           set: function(newValue){
+//               this.city = newValue;
+//           }
+          
+//       }
+//   },
   created() {
     this.markers = [{
         position: {
@@ -239,12 +261,13 @@ export default {
               }
               
             },
-            cityChange(city_id){
+            cityChange(event){
+                this.test = 1;
                 this.axios
-                .get('/api/townshiplist/'+city_id)
+                .get('/api/townshiplist/'+event.target.value)
                 .then(response=>{
-                    this.township_list =response.data.townships; 
-                    this.township = this.township_list[0].id;
+                    this.new_townshiplist = response.data.townships; 
+                    this.new_township = this.township_list[0].id;
                     var move_lat = response.data.coordinate[0].latitude;
                     var move_lon = response.data.coordinate[0].longitude;
                     this.addressSelect(move_lat,move_lon)

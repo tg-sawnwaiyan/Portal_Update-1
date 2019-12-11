@@ -1286,7 +1286,6 @@ export default {
                 }
 
                 if(this.customer_info_push.length > 0) {
-                    console.log('jjjjjj',this.customer_info_push)
                         // check
                     this.axios
                         .post(`/api/customer/profile/${this.cusid}`,this.customer_info_push)
