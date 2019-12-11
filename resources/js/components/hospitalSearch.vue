@@ -389,76 +389,76 @@
                     <div class="form-check form-check-inline row align-items-start innerwrapper">
                         <div class="test" v-for="(subject,index) in subjects.slice(0,3)" :key="index">
                           <div class="row col-12">
-                            <strong class="table-innertitle row col-12">{{subject.name}}</strong>  
+                            <strong class="table-innertitle row col-12">{{subject.name}}</strong>
                             <div class="col-6" v-for="ch in subject.child" :key="ch.id+1">
                                 <label class="form-check-label control control--checkbox" style="padding-left:5px;">
                                 <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
                                 {{ch.name}}
                                 <div class="control__indicator"></div>
                                 </label>
-                            </div>               
-                          </div>   
-                        </div>   
+                            </div>
+                          </div>
+                        </div>
                     </div>
                       <div class="form-check form-check-inline row align-items-start innerwrapper">
                         <div class="test" v-for="(subject,index) in subjects.slice(3,6)" :key="index">
                           <div class="row col-12">
                             <strong class="table-innertitle row col-12">{{subject.name}}</strong>
-                            
+
                             <div class="col-6" v-for="ch in subject.child" :key="ch.id+1">
-                             
+
                                 <label class="form-check-label control control--checkbox" style="padding-left:5px;">
                                 <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
-                                {{ch.name}} 
+                                {{ch.name}}
                                 <div class="control__indicator"></div>
                                 </label>
                             </div>
-                            
+
                           </div>
-                            
-                           
+
+
                         </div>
-                       
+
                     </div>
                       <div class="form-check form-check-inline row align-items-start innerwrapper">
                         <div class="test" v-for="(subject,index) in subjects.slice(6,9)" :key="index">
                           <div class="row col-12">
                             <strong class="table-innertitle row col-12">{{subject.name}}</strong>
-                            
+
                             <div class="col-6" v-for="ch in subject.child" :key="ch.id+1">
-                             
+
                                 <label class="form-check-label control control--checkbox" style="padding-left:5px;">
                                 <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
-                                {{ch.name}} 
+                                {{ch.name}}
                                 <div class="control__indicator"></div>
                                 </label>
                             </div>
-                            
+
                           </div>
-                            
-                           
+
+
                         </div>
-                       
+
                     </div>
                      <div class="form-check form-check-inline row align-items-start innerwrapper" style="width:33.98%;">
                         <div class="test" v-for="(subject,index) in subjects.slice(9,10)" :key="index">
                           <div class="row col-12">
                             <strong class="table-innertitle row col-12">{{subject.name}}</strong>
-                            
+
                             <div class="col-6" v-for="ch in subject.child" :key="ch.id+1">
-                             
+
                                 <label class="form-check-label control control--checkbox" style="padding-left:5px;">
                                 <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
-                                {{ch.name}} 
+                                {{ch.name}}
                                 <div class="control__indicator"></div>
                                 </label>
                             </div>
-                            
+
                           </div>
-                            
-                           
+
+
                         </div>
-                       
+
                     </div>
 
                 </td>
@@ -505,7 +505,7 @@
                               <span class="btn fav-profile fav-item fav-color" :class="'view_pro_id'+hos.nursing_id" style="" @click="favAddFun('add',hos.nursing_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                               <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == 'check'" :class="'done_pro_id'+hos.nursing_id" style="color:#aaa;" @click="favAddFun('remove',hos.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                           </p>
-                        
+
                         </div>
                       </div>
                     </div>

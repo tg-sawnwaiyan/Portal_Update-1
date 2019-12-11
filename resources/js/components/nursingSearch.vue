@@ -357,7 +357,7 @@
                     <option data-price-type="" value="10">10万円以下</option>
                     <option data-price-type="" value="12">12万円以下</option>
                     <option data-price-type="" value="14">14万円以下</option>
-                    <option data-price-type="" value="16">16万円以下</option>     
+                    <option data-price-type="" value="16">16万円以下</option>
                     <option data-price-type="" value="18">18万円以下</option>
                     <option data-price-type="" value="20">20万円以下</option>
                     <option data-price-type="" value="22">22万円以下</option>
@@ -385,27 +385,29 @@
 
         <section id="holder" >
         <div class="row" >
-          <div class="col-sm-12 col-md-12">    
-            <div v-if="loading" class=" m-t-10 m-b-10" style="background-color:gray;opacity:0.9;position:relative;z-index:10;">   
+          <div class="col-sm-12 col-md-12">
+            <div v-if="loading" class=" m-t-10 m-b-10" style="background-color:gray;opacity:0.9;position:relative;z-index:10;">
                <div class="lds-ripple m-t-10 m-b-10" >
-                  <div></div><div></div>
+                   <div>
+                      <div></div><div></div>
+                   </div>                  
                 </div>           
                 <div class="col-12 overlay" style="z-index:9">
-                 
+
                 </div>
             </div>
             <div v-if="!loading" class="m-t-10 m-b-10">
               <div id="mymap"></div>
-            </div>     
-              <!-- <div id="mymap" class="select m-t-10 m-b-10"></div> -->       
+            </div>
+              <!-- <div id="mymap" class="select m-t-10 m-b-10"></div> -->
           </div>
         </div>
         </section>
-        
+
 
         <!-- nursing list -->
        <div id="nursing-search" >
-           <span v-if="norecord_msg">
+           <span v-if="norecord_msg && loading==false">
                 <div class="container-fuid m-t-20">
                     <p class="nosearch-icon">
                         <svg x="0px" y="0px" width="30" height="30" viewBox="0 0 172 172" style=" fill:red;"><g transform=""><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><path d="M0,172v-172h172v172z" fill="none"></path><path d="M3.44,168.56v-165.12h165.12v165.12z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><path d="M0,172v-172h172v172z" fill="none"></path><path d="M3.44,168.56v-165.12h165.12v165.12z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><g fill="#666666"><path d="M74.53333,17.2c-31.59643,0 -57.33333,25.73692 -57.33333,57.33333c0,31.59641 25.7369,57.33333 57.33333,57.33333c13.73998,0 26.35834,-4.87915 36.24766,-12.97839l34.23203,34.23203c1.43802,1.49778 3.5734,2.10113 5.5826,1.57735c2.0092,-0.52378 3.57826,-2.09284 4.10204,-4.10204c0.52378,-2.0092 -0.07957,-4.14458 -1.57735,-5.5826l-34.23203,-34.23203c8.09923,-9.88932 12.97839,-22.50768 12.97839,-36.24766c0,-31.59641 -25.7369,-57.33333 -57.33333,-57.33333zM74.53333,28.66667c25.39939,0 45.86667,20.46729 45.86667,45.86667c0,25.39937 -20.46728,45.86667 -45.86667,45.86667c-25.39939,0 -45.86667,-20.46729 -45.86667,-45.86667c0,-25.39937 20.46728,-45.86667 45.86667,-45.86667zM91.67734,51.52161c-1.51229,0.03575 -2.94918,0.66766 -3.99765,1.75807l-13.14636,13.14636l-13.14636,-13.14636c-1.07942,-1.10959 -2.56162,-1.73559 -4.10963,-1.73568c-2.33303,0.00061 -4.43306,1.41473 -5.31096,3.57628c-0.8779,2.16155 -0.3586,4.6395 1.31331,6.26669l13.14636,13.14636l-13.14636,13.14636c-1.49777,1.43802 -2.10111,3.5734 -1.57733,5.58259c0.52378,2.0092 2.09283,3.57825 4.10203,4.10203c2.0092,0.52378 4.14457,-0.07956 5.58259,-1.57733l13.14636,-13.14636l13.14636,13.14636c1.43802,1.49778 3.5734,2.10113 5.5826,1.57735c2.0092,-0.52378 3.57826,-2.09284 4.10204,-4.10204c0.52378,-2.0092 -0.07957,-4.14458 -1.57735,-5.5826l-13.14636,-13.14636l13.14636,-13.14636c1.70419,-1.63875 2.22781,-4.1555 1.31865,-6.33798c-0.90916,-2.18248 -3.06468,-3.58317 -5.42829,-3.52739z"></path></g></g></g></svg>
@@ -415,7 +417,7 @@
                 </div>
             </span>
         <div class="row" v-if="nus_data.length > 0">
-          <div class="card-carousel-wrapper col-12">
+          <div class="card-carousel-wrapper col-12" v-if="loading==false">
             <div class="nav-box" @click="moveCarousel(-1)" :disabled="atHeadOfList">
               <div class="nav-content mr-2">
                   <div class="card-carousel--nav__left"></div>
@@ -503,12 +505,11 @@
               </div>
             </div>
           </div>
-         <div id="nursingView">
+         <div id="nursingView" class="col-12">
          <h5 class="profile_subtit">もっと探す条件</h5>
-
         </div>
       <!--list-->
-          <div id="filtertable">
+          <div id="filtertable" class="col-12">
 
            <table class="table table-bordered col-12 box-wrap">
               <tbody>
@@ -626,7 +627,7 @@
       <!--end search list-->
 
         <div class=" col-12">
-            <div class="row">
+            <div class="row" v-if="loading==false">
                 <div id="job_detail" class="col-md-6 col-sm-12" style="margin-top:20px;" v-for="(nus,index) in displayItems" :key="nus.id">
                     <div class="nur-content">
                     <div class="job-header">
@@ -896,7 +897,7 @@
             else if (this.window.width >= 1440 && this.window.width < 1880) {
                 this.windowSize = 3;
                 this.paginationFactor=344;
-          
+
 
             }
 
@@ -1002,7 +1003,7 @@ searchfreeword(){
               console.log(response)
             if(response.data.nursing.length > 0)
             {
-             
+
                 $("#mymap").css("display", "block");
                 $("#filtertable").css("display", "block");
                 $("#nursing-search").css("display", "block");
@@ -1098,8 +1099,8 @@ getStateClick(e) {
                 },
             })
                 .then((response) => {
-                 $("#mymap").css({'display' : 'block','height' : '500px','width':'100%'});  
-                 // $("#mymap").css('display', 'block');               
+                 $("#mymap").css({'display' : 'block','height' : '500px','width':'100%'});
+                 // $("#mymap").css('display', 'block');
                   $("#nursing-search").css("display", "block");
                   $("#filtertable").css("display", "block");
 
@@ -1159,125 +1160,161 @@ nursingSearchData(index){
 
 
 
-        
+
         },
 // map change dropdown function
 // make infowindow, marker , google map
 coordinates(theCity, lat, lng){
-            var mapProp = {
-                  center: new google.maps.LatLng(lat, lng),
-                  zoom:7,
-                  mapTypeId: google.maps.MapTypeId.ROADMAP,
-                  options: {
-                  gestureHandling: 'greedy'
-                }
-              };
+  if(this.township_id == -1){
 
-                this.map = new google.maps.Map(document.getElementById("mymap"), mapProp);
-                this.loading = true
-                let  coor =[];
-                var townshipName = [];
-                var town = [];
-                const city_coordinates = [];
-                const arr = [];
+var mapProp = {
+center: new google.maps.LatLng(lat, lng),
+minZoom: 7,
+maxZoom: 14,
+zoom: 7,
+mapTypeId: google.maps.MapTypeId.ROADMAP,
+options: {
+gestureHandling: 'greedy'
+}
+};
+}else{
 
-                // get township postalcode
-                for (let i = 0; i < this.getTownships.length; i++) {
-                    if(this.getTownships[i]['id'] == this.township_id){
-                        townshipName.push(this.getTownships[i]['postalcode'])
-                        town.push(this.getTownships[i]['township_name'])
-                    }else{
-                      console.log('tonw err')
-                    }
-                }
+var mapProp = {
+center: new google.maps.LatLng(lat, lng),
+minZoom: 7,
+maxZoom: 14,
+zoom: 10,
+mapTypeId: google.maps.MapTypeId.ROADMAP,
+options: {
+gestureHandling: 'greedy'
+}
+};
+}
 
-                var township_name = townshipName.toString();
+this.map = new google.maps.Map(document.getElementById("mymap"), mapProp);
 
-
-                if(township_name== ''){
-
-                  this.axios.get("/api/cityJson").then(respon => {
-                          var res = respon.data
-                          this.loading = false
-                        for (var i = 0; i < res.length; i++) {
-                        if (res[i].properties.NAME_1 == theCity) {
-
-                        if(res[i].geometry.hasOwnProperty('geometries')){
-
-                            for(var j =0;j < res[i].geometry.geometries.length;j++){
-
-                            city_coordinates.push(res[i].geometry.geometries[j]['coordinates']) ;
-                          }
-                        }
-                        else{
-                          city_coordinates.push(res[i].geometry['coordinates']) ;
-                          }
-                        }
-                    }
-                     this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
-                     this.boundariesGoogleMap(lat,lng,this.coordinate);
+this.loading = true
+let  coor =[];
+var townshipName = [];
+var town = [];
+const city_coordinates = [];
+const arr = [];
 
 
-                  }); //end get city
-                }else{
-                  this.axios.get("/api/townshipJson").then(res => {
-                    var data = res.data
+
+if(this.township_id != -1){
+// get township postalcode
+for (let i = 0; i < this.getTownships.length; i++) {
+    if(this.getTownships[i]['id'] == this.township_id){
+        townshipName.push(this.getTownships[i]['postalcode'])
+        town.push(this.getTownships[i]['township_name'])
+    }
+}
+}else if(this.townshipID != 0){
+for (let i = 0; i < this.townshipID.length; i++) {
+  for (let k = 0; k < this.getTownships.length; k++) {
+    if(this.getTownships[k]['id'] == this.townshipID[i]){
+        townshipName.push(this.getTownships[k]['postalcode'])
+        town.push(this.getTownships[k]['township_name'])
+    }
+    
+  }
+  
+}
+
+}
+var township_name = townshipName;
+
+
+        if(this.townshipID == 0){
+
+            this.axios.get("/api/cityJson").then(respon => {
+                    var res = respon.data
                     this.loading = false
-                    var coordinates = [];
-                    for (let i = 0; i < data.length; i++) {
+                  for (var i = 0; i < res.length; i++) {
+                  if (res[i].properties.NAME_1 == theCity) {
+                    
+                  if(res[i].geometry.hasOwnProperty('geometries')){
+                      
+                      for(var j =0;j < res[i].geometry.geometries.length;j++){     
 
-                      if(data[i]['properties']['N03_007'] == township_name){
-                        coordinates.push(data[i]['geometry']['coordinates'])
-                      }else{
-                        console.log('errr')
-                      }
-
+                      city_coordinates.push(res[i].geometry.geometries[j]['coordinates']) ;
                     }
+                  }
+                  else{
+                    city_coordinates.push(res[i].geometry['coordinates']) ;
+                    }
+                  }
+              }
+              this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
+              this.boundariesGoogleMap(lat,lng,this.coordinate);
+            
+            
+            }); //end get city
 
-                    var co = coordinates.reduce((acc, val) => acc.concat(val), []);
-                    var coord =  [];
-                    for(let key in co)coord= coord.concat(co[key])
-                    this.coordinate = coord
-                    this.boundariesGoogleMap(lat,lng,this.coordinate);
+        }else{
 
+        this.axios.get('/api/townshipJson').then(res => {
+            var data = res.data
+            this.loading = false
+            var coordinates = [];
+            
+            for (let i = 0; i < township_name.length; i++) {
 
+              for (let k = 0; k < data.length; k++) {
+                if(data[k]['properties']['N03_007'] === township_name[i]){
+                    coordinates.push(data[k])
+                }
+                
+              }
+              
+            }
 
-                  }); //end get township
-                }//end else
+              var co = coordinates.reduce((acc, val) => acc.concat(val), []);
+              var coord =  [];
+              for(let key in co)coord= coord.concat(co[key])
+              this.coordinate = coord
+              this.boundariesGoogleMap(lat,lng,this.coordinate);
+        })
+        }
 
 
 
 },
 
 boundariesGoogleMap(lat,lng,coor){
-      try {
-        var data = {
-              type: "Feature",
-              geometry: {
-              "type": "Polygon",
-              "coordinates": coor
-              },
-          };
-          this.map.data.addGeoJson(data);
+  try {
+      var data = {
+            type: "Feature",
+            geometry: {
+            "type": "Polygon",
+            "coordinates": coor
+            },
+        };
+        this.map.data.addGeoJson(data);
       } catch (error) {
-        var coor = [coor]
-        var data = {
-              type: "Feature",
-              geometry: {
-              "type": "Polygon",
-              "coordinates": coor
-              },
-          };
-          this.map.data.addGeoJson(data);
+          var data = coor.reduce((acc, val) => acc.concat(val), []);
+          for (let i = 0; i < data.length; i++) {
+            this.map.data.addGeoJson(data[i]); 
+          }
+          var bounds = new google.maps.LatLngBounds();
+          this.map.data.forEach(function(feature){
+            var geo = feature.getGeometry();
+            geo.forEachLatLng(function(LatLng){
+              bounds.extend(LatLng)
+            });
+          });
+          this.map.fitBounds(bounds);
+
       }
 
-          this.map.data.setStyle({
-          strokeColor: "red",
-          fillColor: 'red',
-          strokeOpacity: 0.8,
-          fillOpacity: 0.1,
-          strokeWeight: 1
-          })
+        this.map.data.setStyle({
+        strokeColor: "red",
+        fillColor: 'red',
+        strokeOpacity: 0.8,
+        fillOpacity: 0.1,
+        strokeWeight: 1
+        })
 },
 infoWindow(item, mmarker){
         var infoWindowContent = new Array();
@@ -1454,13 +1491,13 @@ changeMap(response){
 
                     if(this.markers.length > 0 )
                     {
-                      
+
                         this.coordinates(theCity,lat,lng);
 
                         this.infoWindow(item, mmarker);
                     }
                     else{
-                      
+
                         this.coordinates(theCity,lat,lng);
                     }
                 }
@@ -1595,12 +1632,12 @@ search(){
               }
             this.show_paginate = true;
             });
-        
+
 
         },
         // hover animate function
         mouseover(index) {
-          
+
             for (let i = 0; i < this.markerHover.length; i++) {
 
                 if(this.markers[i]['alphabet'] == index)
@@ -1749,14 +1786,23 @@ search(){
   width: 80px;
   height: 80px;
   top: 40%;
-  left: 50%; 
+  left: 50%;
   z-index: 1; */
   position: relative;
   width: 100% !important;
   height: 440px !important;
- 
+
 }
-.lds-ripple div {
+.lds-ripple > div {
+  display: flex;
+  position: absolute;  
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center; 
+   z-index: 999;
+}
+.lds-ripple > div  div{
   position: absolute;
   border: 4px solid#fff;
   opacity: 1;
@@ -1764,20 +1810,16 @@ search(){
   z-index: 999;
   animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
-.lds-ripple div:nth-child(2) {
+.lds-ripple > div div:nth-child(2) {
   animation-delay: -0.5s;
 }
 @keyframes lds-ripple {
   0% {
-    top: 36px;
-    left: 36px;
     width: 0;
     height: 0;
     opacity: 1;
   }
   100% {
-    top: 0px;
-    left: 0px;
     width: 72px;
     height: 72px;
     opacity: 0;
@@ -1792,7 +1834,7 @@ search(){
   background-color: rgba(0, 0, 0, 0.19);
   opacity: 0.1; */
   top: 0;
-  background-color: rgba(0, 0, 0, 0.19);  
+  background-color: rgba(0, 0, 0, 0.19);
   position: absolute;
   background: #d2d2d2;
   width: 100%;
