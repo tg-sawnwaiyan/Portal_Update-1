@@ -15,7 +15,6 @@
 
 <script>
   
-  //import asideMenu from './components/menu/asideMenu.vue'
   export default { 
     props: ['initOpen'],
     

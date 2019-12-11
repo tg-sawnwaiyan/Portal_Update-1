@@ -7,8 +7,8 @@
                         <div class="col-md-6 pad-free">
                             <div class="col-md-12 p-l-0 m-t-10"><label>  都道府県<span class="error">*</span></label></div>
                             <div class="col-md-12 p-l-0">
-                                <select v-model="city" class="division form-control" id="division">
-                                    <option v-for="cities in city_list" :key="cities.id" v-bind:value="cities.id">
+                                <select v-model="city" class="division form-control" id="division" @change="cityChange(city)">
+                                    <option v-for="cities in city_list" :key="cities.id" v-bind:value="cities">
                                         {{cities.city_name}}
                                     </option>
                                 </select>
@@ -134,22 +134,28 @@ export default {
   },
   methods: {    
     // receives a place object via the autocomplete component
-    addressSelect: function (e) {
+    addressSelect: function (lat_add,lng_add) {
       // Add a new marker
       this.markers.push({
         position: {
-          lng: this.addresses[e.target.options.selectedIndex].longitude,
-          lat: this.addresses[e.target.options.selectedIndex].latitude
+          lng: lng_add,
+          lat: lat_add
         }
       });
+    //   this.markers.push({
+    //     position: {
+    //       lng: this.addresses[e.target.options.selectedIndex].longitude,
+    //       lat: this.addresses[e.target.options.selectedIndex].latitude
+    //     }
+    //   });
      
       // Remove the previous marker
       this.markers.shift()   
       // Scroll the map to the new position
       this.$refs.map.$mapPromise.then((map) => {
         map.panTo({
-          lng: this.addresses[e.target.options.selectedIndex].longitude,
-          lat: this.addresses[e.target.options.selectedIndex].latitude
+          lng: lng_add,
+          lat: lat_add
         });
       });
     },
@@ -234,6 +240,10 @@ export default {
               }
               
             },
+            // cityChange(address){
+            //     console.log(address)
+            //     addressSelect()
+            // }
             
   }
 };

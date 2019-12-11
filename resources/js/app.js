@@ -15,12 +15,10 @@ Vue.use(Vuex);
 //start editor
 //start onepage
 import 'animate.css'
-import 'fullpage-vue/src/fullpage.css'
-import VueFullpage from 'fullpage-vue'
-Vue.use(VueFullpage)
+// import 'fullpage-vue/src/fullpage.css'
+// import VueFullpage from 'fullpage-vue'
+// Vue.use(VueFullpage)
     //end onepage
-import CKEditor from '@ckeditor/ckeditor5-vue';
-Vue.use( CKEditor );
 //end editor
 //vue carousel
 import VueCarousel from '@chenfengyuan/vue-carousel';
@@ -36,8 +34,8 @@ Vue.use(VuePannellum);
 Vue.component('VPannellumn', VuePannellum)
 
 //vue Panorama 
-import Panorama from 'vuejs-panorama';
-Vue.use(Panorama);
+// import Panorama from 'vuejs-panorama';
+// Vue.use(Panorama);
 
 //vue sweetaler
 import VueSweetAlert from 'vue-sweetalert';

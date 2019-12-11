@@ -50,7 +50,7 @@
 
 
 
-                        <!-- </form>                                       -->
+                        <!-- </form> -->
 
                         <div class="row" v-if="status == '0'">
 
@@ -1061,35 +1061,13 @@
 <script>
 
     import layout from '../components/home.vue'
-
     import News from './News.vue'
-
-    import hospitalSearch from './hospitalSearch.vue'
-
-    import nursingSearch from './nursingSearch.vue'
-
-    import jobSearch from './jobSearch.vue'
-
-    import NewsSearchListComponent from './NewsSearchListComponent.vue'
-
-
 
     export default {
 
         components: {
-
-            News,
-
-            hospitalSearch,
-
-            nursingSearch,
-
-            NewsSearchListComponent,
-
-            jobSearch,
-
+            News,         
             layout
-
         },
 
       async mounted() {

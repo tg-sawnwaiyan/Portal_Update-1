@@ -25,6 +25,7 @@
                     &nbsp; <span class="job_count">{{his_hos}} 件</span>
                 </div>
             </div>
+            <div id="fav-hospital-page">
             <div class="col-12" id="fav-history-page">
                 <div class="row justify-content-lg-center">
                     <div class="card-carousel-wrapper">
@@ -192,6 +193,7 @@
                     </div>
                 </div>
             </div>
+            </div>
         </div>
 
     </div>
@@ -209,7 +211,11 @@
                     specialfeature: [],
                     currentOffset: 0,
                     windowSize: 5,
-                    paginationFactor: 267,
+                    paginationFactor: 272,
+                    window:{
+                        width:0,
+                        height:0
+                    }
                 };
             },
             computed: {
@@ -221,6 +227,58 @@
                     },
             },
             created() {
+
+                  //for cardcarousel responsive
+                window.addEventListener('resize', this.handleResize)
+                this.handleResize(); 
+                if(this.window.width >=320 && this.window.width < 360) {
+                    this.windowSize = 1;  
+                  this.paginationFactor = 268;    
+                } 
+                else if(this.window.width >=360 && this.window.width < 375) {
+                    this.windowSize = 1;
+                     this.paginationFactor = 270;    
+                } 
+                 else if(this.window.width >=375 && this.window.width < 450) {
+                    this.windowSize = 1;
+                     this.paginationFactor = 270;    
+                }
+                
+                else if(this.window.width >= 414 && this.window.width < 768) {
+                    this.windowSize = 1;
+                     this.paginationFactor = 270; 
+                } 
+                else if(this.window.width >= 768 && this.window.width < 992) {
+                    this.windowSize = 2;
+                    this.paginationFactor = 269;  
+                }
+                else if(this.window.width >= 992 && this.window.width < 1024) {
+                    this.windowSize = 3; 
+                    this.paginationFactor = 266;                                 
+                }
+                else if(this.window.width >= 1024 && this.window.width < 1200) {
+                    this.windowSize = 3; 
+                      this.paginationFactor = 265;                                
+                }
+                else if (this.window.width >= 1200 && this.window.width < 1280) {
+                    this.windowSize = 3;
+                    this.paginationFactor = 270;                    
+                }
+                else if (this.window.width >= 1280 && this.window.width < 1440) {
+                    this.windowSize = 4;
+                    this.paginationFactor = 271;
+                    
+                }
+                else if (this.window.width >= 1440 && this.window.width < 1880) {
+                    this.windowSize = 4;
+                     this.paginationFactor = 271;            
+                    // console.log(this.window.width);
+                }
+
+
+
+
+
                 this.local_sto = localStorage.getItem("hospital_history");
                 this.getAllCustomer(this.local_sto);
                 if(this.local_sto){
@@ -228,6 +286,10 @@
                 }
             },
             methods: {
+                 handleResize() {
+                    this.window.width = window.innerWidth;
+                    this.window.height = window.innerHeight;
+                },
 
                 moveCarousel(direction) {
                         // Find a more elegant way to express the :style. consider using props to make it truly generic
