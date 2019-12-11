@@ -6,9 +6,16 @@
                     <div class="col-md-12 row p-0 m-0">
                         <div class="col-md-6 pad-free">
                             <div class="col-md-12 p-l-0 m-t-10"><label>  都道府県<span class="error">*</span></label></div>
-                            <div class="col-md-12 p-l-0">
+                            <div class="col-md-12 p-l-0" v-if="test ==0 ">
                                 <select :value="city" class="division form-control" id="division" @change="cityChange($event)">
                                     <option v-for="cities in city_list" :key="cities.id" v-bind:value="cities.id">
+                                        {{cities.city_name}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-12 p-l-0" v-else>
+                                <select :value="city" class="division form-control" id="division" @change="cityChange($event)">
+                                    <option v-for="cities in city_list" :key="cities.id" v-bind:value="cities.id" :selected="cities.id == selected_city_id">
                                         {{cities.city_name}}
                                     </option>
                                 </select>
@@ -121,6 +128,7 @@ export default {
       },
       address_btn: false,
       city_list: [],
+      selected_city_id:'0',
     //   selected_city:this.city,      
     }
   },
@@ -263,6 +271,7 @@ export default {
             },
             cityChange(event){
                 this.test = 1;
+                this.selected_city_id = event.target.value;
                 this.axios
                 .get('/api/townshiplist/'+event.target.value)
                 .then(response=>{
