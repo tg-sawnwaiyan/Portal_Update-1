@@ -97,7 +97,7 @@
             <div class="row m-lr-0 ele pt-2"   id="element1">
                  <div class="row col-12 list-wrap m-lr-0 white-bg-color" v-for="cust in customer" :key="cust.id">
                     <!--for slideimage-->
-                    <div class="col-sm-5 detail_profile_left">
+                    <div class="col-md-5 detail_profile_left">
 
                            <div class="thumbnail-img">
 
@@ -148,7 +148,7 @@
 
                     <!--end for slide image-->
                     <!--for address-->
-                     <div class="col-sm-7 detail_profile_right">
+                     <div class="col-md-7 detail_profile_right">
                         <div class="row m-lr-0 pro-heading">
                              <div class="col-12 pad-free">
                                 <h5 class="profile_header">介護情報</h5>
@@ -936,7 +936,7 @@
                 <!-- ee-->
                  <div class="row col-12 list-wrap m-lr-0 white-bg-color" v-for="cust in customer" :key="cust.id">
                     <!--for slideimage-->
-                    <div class="col-sm-5 detail_profile_left">
+                    <div class="col-md-5 col-sm-12 detail_profile_left">
 
                            <div class="thumbnail-img">
 
@@ -1009,7 +1009,7 @@
                     <!--for address-->
 
 
-                     <div class="col-sm-7 detail_profile_right">
+                     <div class="col-md-7 col-sm-12 detail_profile_right">
 
                         <div class="row m-lr-0">
                             <div class="col-12 pro-heading pad-free">

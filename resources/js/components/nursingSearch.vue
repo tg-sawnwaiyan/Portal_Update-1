@@ -388,7 +388,9 @@
           <div class="col-sm-12 col-md-12">    
             <div v-if="loading" class=" m-t-10 m-b-10" style="background-color:gray;opacity:0.9;position:relative;z-index:10;">   
                <div class="lds-ripple m-t-10 m-b-10" >
-                  <div></div><div></div>
+                   <div>
+                      <div></div><div></div>
+                   </div>                  
                 </div>           
                 <div class="col-12 overlay" style="z-index:9">
                  
@@ -503,12 +505,11 @@
               </div>
             </div>
           </div>
-         <div id="nursingView">
+         <div id="nursingView" class="col-12">
          <h5 class="profile_subtit">もっと探す条件</h5>
-
         </div>
       <!--list-->
-          <div id="filtertable">
+          <div id="filtertable" class="col-12">
 
            <table class="table table-bordered col-12 box-wrap">
               <tbody>
@@ -625,7 +626,7 @@
     </div>
       <!--end search list-->
 
-        <div class=" col-12">
+        <div class=" col-12 pad-free">
             <div class="row">
                 <div id="job_detail" class="col-md-6 col-sm-12" style="margin-top:20px;" v-for="(nus,index) in displayItems" :key="nus.id">
                     <div class="nur-content">
@@ -1756,7 +1757,16 @@ search(){
   height: 440px !important;
  
 }
-.lds-ripple div {
+.lds-ripple > div {
+  display: flex;
+  position: absolute;  
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center; 
+   z-index: 999;
+}
+.lds-ripple > div  div{
   position: absolute;
   border: 4px solid#fff;
   opacity: 1;
@@ -1764,20 +1774,16 @@ search(){
   z-index: 999;
   animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
-.lds-ripple div:nth-child(2) {
+.lds-ripple > div div:nth-child(2) {
   animation-delay: -0.5s;
 }
 @keyframes lds-ripple {
   0% {
-    top: 36px;
-    left: 36px;
     width: 0;
     height: 0;
     opacity: 1;
   }
   100% {
-    top: 0px;
-    left: 0px;
     width: 72px;
     height: 72px;
     opacity: 0;
