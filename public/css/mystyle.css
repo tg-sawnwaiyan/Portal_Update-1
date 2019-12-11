@@ -8968,7 +8968,7 @@ ul.nur-caro-card>li.list-group-item {
     #fav-history-page .card-carousel {
         overflow: visible;
     }
-    
+
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
@@ -8977,7 +8977,7 @@ ul.nur-caro-card>li.list-group-item {
     #fav-history-page .card-carousel {
         width: 799px!important;
     }
-    .custom-table>.table th, .table td 
+    .custom-table>.table th, .table td
     {
         padding: 6px;
     }
