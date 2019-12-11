@@ -1074,6 +1074,7 @@ export default {
                 var customer_email = $('.customer-email').text(); 
                 var customer_phone = $('.customer-phone').val();
                 var customer_address = $('#city').val();
+                var customer_township = $('#township').val();
 
                 // var access = $('.transporation-access').val();
                 var moving_in_from = $('.nursing-moving-in-f').val();
@@ -1108,7 +1109,7 @@ export default {
                 var min_num_staff = $('.min-num-staff').val();
                 var num_staff = $('.num-staff').val();
                 // var nursing_remarks = $('.nursing-remarks').val();
-                this.customer_info_push.push({ name:customer_name,email:customer_email,phone:customer_phone,address:customer_address});
+                this.customer_info_push.push({ name:customer_name,email:customer_email,phone:customer_phone,address:customer_address,township:customer_township});
 
                 this.staff_info_push.push({staff:staff,nursing_staff:nursing_staff,min_num_staff:min_num_staff,num_staff:num_staff,nursing_remarks:this.nursing_remarks_val});
 
