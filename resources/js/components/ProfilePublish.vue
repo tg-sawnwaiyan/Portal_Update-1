@@ -230,7 +230,7 @@
 
                          <h5 class="header m-t-10">こだわりの特長</h5>
 
-                        <div class="row m-lr-0">
+                        <div class="row m-lr-0" v-if="specialfeature">
 
                             <ul class="fac_container" v-for="special in specialfeature" :key="special.id">
 
@@ -238,6 +238,10 @@
 
                             </ul>
 
+                        </div>
+
+                        <div class="row m-lr-0" v-else>
+                            <p class="no-data-color">表示されるデータがありません。</p>
                         </div>
 
                     </div>
