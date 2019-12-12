@@ -599,8 +599,8 @@
                                                                             <div class="row">
                                                                                     <div v-for="stat in station_list" :key="stat.id" class="col-md-3 m-b-20">
                                                                                             <label>
-                                                                                                    <input type="checkbox"  name="station" v-bind:value="stat.id" @click="featureCheck(stat.id)" v-model="stat.checked">
-                                                                                                    {{stat.name}}
+                                                                                                    <input type="checkbox"  name="station" v-bind:value="stat.station_id" @click="featureCheck(stat.station_id)" v-model="stat.checked">
+                                                                                                    {{stat.station_name}}
                                                                                             </label>
                                                                                     </div>
                                                                             </div>

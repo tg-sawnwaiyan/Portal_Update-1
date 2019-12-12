@@ -230,7 +230,7 @@
 
                          <h5 class="header m-t-10">こだわりの特長</h5>
 
-                        <div class="row m-lr-0">
+                        <div class="row m-lr-0" v-if="specialfeature">
 
                             <ul class="fac_container" v-for="special in specialfeature" :key="special.id">
 
@@ -238,6 +238,10 @@
 
                             </ul>
 
+                        </div>
+
+                        <div class="row m-lr-0" v-else>
+                            <p class="no-data-color">表示されるデータがありません。</p>
                         </div>
 
                     </div>
@@ -253,13 +257,12 @@
                 <h5 class="profile_header">特長 </h5>
 
                     <div  v-for="nurseprofile in nursing_profiles" :key="nurseprofile.id" class="col-md-12">
-                        <p v-html="nurseprofile.feature"></p>
-                        <!-- <div v-if="nurseprofile.features">
+                        <span v-if="nurseprofile.feature != null">
                             <p v-html="nurseprofile.feature"></p>
-                        </div>
-                        <div v-else>
+                        </span>
+                        <span v-else>
                             <p class="no-data-color">表示されるデータがありません。</p>
-                        </div> -->
+                        </span>
                     </div>
 
             </div>
@@ -1073,9 +1076,9 @@
                                         <th width="250" class="custom-bg-color">
                                             <font>件名 </font>
                                         </th>
-                                        <td v-if="subjects">
-                                            <label for="" v-for="sub in subjects" :key="sub.id">
-                                                {{sub.name}}
+                                        <td v-if="subject">
+                                            <label >
+                                                {{subject}} 
                                             </label>
                                             <!-- <font>{{cust.subject}}</font> -->
                                         </td>
@@ -1123,9 +1126,9 @@
                 <div class="col-12 m-b-20">
                     <h5 class="profile_subtit">医院からのお知らせ </h5>
 
-                    <p v-for="hospital in hospitals" :key="hospital.id" v-html="hospital.details_info" class="col-12">
-                        <!-- <span v-if="hospital.details_info">{{hospital.details_info}}</span>
-                        <span v-else><p class="no-data-color">表示されるデータがありません。</p></span> -->
+                    <p v-for="hospital in hospitals" :key="hospital.id" class="col-12">
+                        <span v-if="hospital.details_info != null">{!! hospital.details_info !!}</span>
+                        <span v-else><p class="no-data-color">表示されるデータがありません。</p></span>
 
                     </p>
                 </div>
@@ -1138,94 +1141,47 @@
 
                                     <tr class="first-row">
 
-                                        <th>
+                                        <th> 日付 </th>
 
-                                        日付
+                                        <th> 月 </th>
 
-                                        </th>
+                                        <th> 火 </th>
 
-                                        <th>
+                                        <th> 水 </th>
 
-                                            月
+                                        <th> 木 </th>
 
-                                        </th>
+                                        <th> 金 </th>
 
-                                        <th>
+                                        <th> 土 </th>
 
-                                            火
-
-                                        </th>
-
-                                        <th>
-
-                                            水
-
-                                        </th>
-
-                                        <th>
-
-                                            木
-
-                                        </th>
-
-                                        <th>
-
-                                            金
-
-                                        </th>
-
-                                        <th>
-
-                                            土
-
-                                        </th>
-
-                                        <th>
-
-                                            日
-
-                                        </th>
+                                        <th> 日 </th>
 
                                     </tr>
 
-                                    <tr class="last">
+                                    <tr class="last" v-if="am_arr[0]">
 
                                         <th class="second-row text-center">午前</th>
                                             <td v-for="(amval,index) in am_arr[0]" :key="index" class="text-center">
                                                 <span v-if="amval"> {{amval}} </span>
                                                 <span v-else> - </span>
-                                            </td>
-
-                                        <!-- <span v-if="am_arr[0]">
-                                            <td v-for="(amval,index) in am_arr[0]" :key="index" class="text-center">
-                                                <span v-if="amval"> {{amval}} </span>
-                                                <span v-else> - </span>
-                                            </td>
-                                        </span>
-                                        <span v-else>
-                                            <td v-for="indx in 6" :key="indx" class="text-center"> - </td>
-                                        </span> -->
-
+                                            </td> 
+                                    </tr>
+                                    <tr class="last" v-else>
+                                        <th class="second-row text-center">午前</th>
+                                        <td v-for="indx in 7" :key="indx" class="text-center"> - </td>
                                     </tr>
 
-                                    <tr class="last">
-
+                                    <tr class="last" v-if="pm_arr[0]">
                                         <th class="second-row text-center">午後</th>
                                             <td v-for="(amval,index) in pm_arr[0]" :key="index" class="text-center">
                                                 <span v-if="amval"> {{amval}} </span>
                                                 <span v-else> - </span>
                                             </td>
-
-                                        <!-- <span v-if="pm_arr[0]">
-                                            <td v-for="(amval,index) in pm_arr[0]" :key="index" class="text-center">
-                                                <span v-if="amval"> {{amval}} </span>
-                                                <span v-else> - </span>
-                                            </td>
-                                        </span>
-                                        <span v-else>
-                                            <td v-for="indx in 6" :key="indx" class="text-center"> - </td>
-                                        </span> -->
-
+                                    </tr>
+                                    <tr class="last" v-else>
+                                        <th class="second-row text-center">午後</th>
+                                        <td v-for="indx in 7" :key="indx" class="text-center"> - </td>
                                     </tr>
 
                                 </tbody>
@@ -1457,6 +1413,7 @@ export default {
                 fac_list:[],
                 staff:[],
                 schedules:[],
+                subject:'',
                 subjects:[],
                 hospitals:[],
                 nursing_profiles:[],
@@ -1627,6 +1584,8 @@ export default {
 
                 this.axios.get('/api/profile/nursing/'+this.cusid) .then(response => {
                     this.nursing_profiles = response.data.feature;
+                    console.log('This is JSON value');
+                    console.log(this.nursing_profiles);
 
                     this.nus_method= response.data.method;
 
@@ -1777,7 +1736,10 @@ export default {
                 });
 
                 this.axios.get('/api/profile/subject/'+this.cusid).then(response => {
-                      this.subjects = response.data;
+                        this.subjects = response.data;
+                      for(var i=0; i< response.data.length; i++) {
+                          this.subject += response.data[i]['name'] + " , ";
+                      }
 
                 });
 
