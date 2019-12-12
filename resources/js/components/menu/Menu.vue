@@ -119,16 +119,16 @@
         </transition>
       </li>
     </ul>
-    <div class="menu" v-on:click='isNav = !isNav'><span>メニュー</span> 
-        <transition name="fade">
-          <i :class="!isNav ? open : close" ></i>
-        </transition>
-    </div>
-    <transition name="slide">
-      <div class="sp_nav" v-show="isNav">
-        <ul class="menu_list">
+    
+    <ul class="menu" @click='isNav = !isNav'>
+    <li class="first-submenu">
+      <span>メニュー</span>&nbsp;<i :class="!isNav ? open : close" style="width:15px;" ></i>     
+    </li>
+    <transition name="slide">  
+      <div class="sp_nav"  v-if="isNav">    
+        <ul class="menu_list child">
           <li>
-            <router-link :to="{ name: 'News' }"  v-on:click='isNav = isNav'><i class="fas fa-newspaper"></i>  ニュース（ホーム）</router-link>
+            <router-link :to="{ name: 'News' }"><i class="fas fa-newspaper"></i>  ニュース（ホーム）</router-link>
           </li>
           <li>
             <router-link :to="{ name: 'nursingSearch' }"><i class="fas fa-user-md"></i> 介護施設検索</router-link>
@@ -142,21 +142,25 @@
           <li v-if="!$auth.check()">
             <router-link :to="{name: 'login'}" class="nav-link pad-free"><i class="fa fa-sign-in-alt"></i> 事業者 ログイン</router-link>
           </li>
-          <li v-if="!$auth.check()">
+          <li v-if="!$auth.check()" style="border-bottom:1px solid #8c9090;">
             <router-link :to="{name: 'register'}" class="nav-link pad-free"><i class="fa fa-user-plus"></i> 事業者 登録</router-link>
-          </li> 
+          </li>
+          <li>
+            <ul class="contact_list">
+              <li><a href="tel::03-1234-5678"><i class="fas fa-phone-alt"></i><span>03-1234-5678</span></a></li>   
+              <li><a href="mailto:mpm_secretary@management-partners.co.jp"><i class="fas fa-envelope"></i>mpm_secretary@management-partners.co.jp</a></li>     
+            </ul>
+            <ul class="sp_social d-none-768">
+            <li class="social-link" v-if="!$auth.check()"><a href="https://twitter.com/login?lang=en"><i class="fab fa-twitter"></i></a></li>
+            <li class="social-link" v-if="!$auth.check()"><a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a></li>
+          </ul> 
+          </li>          
         </ul>
-        <ul class="contact_list">
-          <li><a href="tel::03-1234-5678"><i class="fas fa-phone-alt"></i><span>03-1234-5678</span></a></li>   
-          <li><a href="mailto:mpm_secretary@management-partners.co.jp"><i class="fas fa-envelope"></i>mpm_secretary@management-partners.co.jp</a></li>     
-        </ul>
-         <ul class="sp_social d-none-768">
-          <li class="social-link" v-if="!$auth.check()"><a href="https://twitter.com/login?lang=en"><i class="fab fa-twitter"></i></a></li>
-          <li class="social-link" v-if="!$auth.check()"><a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a></li>
-        </ul>      
-      </div>
+        </div>
     </transition>
-  </div>
+    </ul>
+    </div>
+  
 </nav>
 
   <!--end navigation bar-->
@@ -174,18 +178,40 @@
 }
 
 
-.slide-enter-active,
-.slide-leave-active
-{
-  transition: transform 0.5s ease;
+.slide-enter-active {
+   -moz-transition-duration: 0.3s;
+   -webkit-transition-duration: 0.3s;
+   -o-transition-duration: 0.3s;
+   transition-duration: 0.3s;
+   -moz-transition-timing-function: ease-in;
+   -webkit-transition-timing-function: ease-in;
+   -o-transition-timing-function: ease-in;
+   transition-timing-function: ease-in;
+   transition: transform 0.5s ease;
 }
 
-.slide-enter,
-.slide-leave-to {
+.slide-leave-active {
+   -moz-transition-duration: 0.3s;
+   -webkit-transition-duration: 0.3s;
+   -o-transition-duration: 0.3s;
+   transition-duration: 0.3s;
+   -moz-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+   -webkit-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+   -o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+
+.slide-enter-to, .slide-leave {
+   max-height: 100vh;
+   overflow: hidden;
+}
+
+.slide-enter, .slide-leave-to {
+   overflow: hidden;
+   max-height: 100vh;
   transform: translateX(-100%);
   transition: all 0.5s ease-in 0s;
 }
-
 </style>
 <script>
   export default {
@@ -201,7 +227,7 @@
       }
     },
     mounted() {
-      this.user = this.$auth.watch._data
+      this.user = this.$auth.watch._data;
       },
 }
 </script>

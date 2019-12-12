@@ -599,8 +599,8 @@
                                                                             <div class="row">
                                                                                     <div v-for="stat in station_list" :key="stat.id" class="col-md-3 m-b-20">
                                                                                             <label>
-                                                                                                    <input type="checkbox"  name="station" v-bind:value="stat.id" @click="featureCheck(stat.id)" v-model="stat.checked">
-                                                                                                    {{stat.name}}
+                                                                                                    <input type="checkbox"  name="station" v-bind:value="stat.station_id" @click="featureCheck(stat.station_id)" v-model="stat.checked">
+                                                                                                    {{stat.station_name}}
                                                                                             </label>
                                                                                     </div>
                                                                             </div>
@@ -738,7 +738,7 @@ export default {
                 this.axios
                 .get('/api/nurscities/'+this.customer_info.townships_id)
                 .then(response=>{
-                    this.city_id = response.data[0].city_id; 
+                    this.city_id = Number(response.data[0].city_id); 
                     this.township_list = response.data[0].township_list;
                 });
             });            
@@ -1074,6 +1074,7 @@ export default {
                 var customer_email = $('.customer-email').text(); 
                 var customer_phone = $('.customer-phone').val();
                 var customer_address = $('#city').val();
+                var customer_township = $('#township').val();
 
                 // var access = $('.transporation-access').val();
                 var moving_in_from = $('.nursing-moving-in-f').val();
@@ -1108,7 +1109,7 @@ export default {
                 var min_num_staff = $('.min-num-staff').val();
                 var num_staff = $('.num-staff').val();
                 // var nursing_remarks = $('.nursing-remarks').val();
-                this.customer_info_push.push({ name:customer_name,email:customer_email,phone:customer_phone,address:customer_address});
+                this.customer_info_push.push({ name:customer_name,email:customer_email,phone:customer_phone,address:customer_address,township:customer_township});
 
                 this.staff_info_push.push({staff:staff,nursing_staff:nursing_staff,min_num_staff:min_num_staff,num_staff:num_staff,nursing_remarks:this.nursing_remarks_val});
 
