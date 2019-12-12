@@ -97,11 +97,24 @@
                                  <input type="checkbox" v-else @click="confirm(job.id)">
                                 <span class="slider round"></span>
                             </label> -->
-                        <div>
+                           <div class="model-7">
+                               <div class="checkbox">
+                                    <input type='checkbox' v-if="job.recordstatus == 1" @click="confirm(job.id)" checked/>                                                                             
+                                    <input type='checkbox' v-if="job.recordstatus==0" @click="confirm(job.id)"  />                                                                              
+                                    <label for="checkbox"></label>
+                                    <div v-if="job.recordstatus == 1" class="on">オン</div>
+                                    <div v-if="job.recordstatus == 0" class="on">オフ</div> 
+                                     
+                                    <!-- <span>OFF</span>  -->
+
+                             </div>
+                           </div>
+                           
+                        <!-- <div>
                             <button class="btn confirmed" v-if="job.recordstatus == 1" @click="confirm(job.id)">OFF</button>
 
                             <button class="btn confirm-borderbtn" v-if="job.recordstatus == 0" @click="confirm(job.id)">ON</button>
-                        </div>
+                        </div> -->
 
                             <span class="job_id">求人番号：{{job.jobid}}</span>
                         </h5>
@@ -200,6 +213,8 @@
                     loginuser: true,
                     norecord_msg: false,
                     nosearch_msg: false,
+                    subtitle: 'OFF'
+                   
                 };
             },
 
@@ -297,12 +312,14 @@
                     
                 //     },
                 confirm(id) {
-                    console.log(id);
-                            this.axios.get(`/api/job/confirm/${id}`)
-                                .then(response => {
-                                    // this.jobs = response.data.jobs;
-                                    this.getAllJobs();
-                                });
+                  
+                    this.axios.get(`/api/job/confirm/${id}`)
+                        .then(response => {
+
+                                
+                            // this.jobs = response.data.jobs;
+                            this.getAllJobs();
+                        });
 
 
                     },
@@ -384,65 +401,116 @@
     };
 </script>
 <style>
-.switch {
+
+/*eee*/
+
+
+/*=====================*/
+.checkbox {
   position: relative;
   display: inline-block;
-  width: 47px;
-  height: 26px;
 }
-
-/* Hide default HTML checkbox */
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
+.checkbox:after, .checkbox:before {
+  font-family: FontAwesome;
+  -webkit-font-feature-settings: normal;
+          font-feature-settings: normal;
+  -webkit-font-kerning: auto;
+          font-kerning: auto;
+  -webkit-font-language-override: normal;
+          font-language-override: normal;
+  font-stretch: normal;
+  font-style: normal;
+  font-synthesis: weight style;
+  font-variant: normal;
+  font-weight: normal;
+  text-rendering: auto;
 }
-
-/* The slider */
-.slider {
+.checkbox label {
+  width: 90px;
+  height: 42px;
+  background: #ccc;
+  position: relative;
+  display: inline-block;
+  border-radius: 46px;
+  transition: 0.4s;
+}
+.checkbox label:after {
+  content: '';
   position: absolute;
-  cursor: pointer;
-  top: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #0cc72c;
-  -webkit-transition: .4s;
-  transition: .4s;
+  top: -5px;
+  z-index: 2;
+  background: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  transition: 0.4s;
 }
-
-.slider:before {
+.checkbox input {
   position: absolute;
-  content: "";
-  height: 20px;
-  width: 20px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  opacity: 0;
+  cursor: pointer;
+}
+.checkbox input:hover + label:after {
+  box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
+}
+.checkbox input:checked + label:after {
+  left: 40px;
+}
+.model-7 .checkbox label {
+    background: none;
+    border: 2px solid #555;
+    height: 22px;
+    width: 50px;
+  
+}
+.model-7 .checkbox label:after {
+  background: #555;
+  box-shadow: none;
+  top: 1px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+
+}
+.model-7 .checkbox input:checked + label {
+  border-color: #329043;
+}
+.model-7 .checkbox input:checked + label:after {
+  background: #3fb454;
+  left: 26px;
+}
+.model-7 .checkbox:after, .model-11 .checkbox:before{
+ /* content: 'ON'; */
+  position: absolute;
+  right: 7px;
+  top: 6px;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 9px;
+  color:#555;
+}
+.model-7 .checkbox:before {
+  /* content: 'OFF'; */
+  position: absolute;
+  left:-1px;
+  top: 6px;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 9px;
+  color: #555;
 }
 
-input:checked + .slider {
-  background-color: #ccc;
+.on{
+    margin-left: 56px;
+    margin-top: -32px;
+    font-size: 15px;
+    font-weight: bold;
 }
 
-input:focus + .slider {
-  box-shadow: 0 0 1px #ccc;
-}
 
-input:checked + .slider:before {
-  -webkit-transform: translateX(20px);
-  -ms-transform: translateX(20px);
-  transform: translateX(20px);
-}
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 30px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
 </style>
