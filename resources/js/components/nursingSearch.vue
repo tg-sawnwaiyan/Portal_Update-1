@@ -388,7 +388,9 @@
           <div class="col-sm-12 col-md-12">
             <div v-if="loading" class=" m-t-10 m-b-10" style="background-color:gray;opacity:0.9;position:relative;z-index:10;">
                <div class="lds-ripple m-t-10 m-b-10" >
-                  <div></div><div></div>
+                   <div>
+                      <div></div><div></div>
+                   </div>
                 </div>
                 <div class="col-12 overlay" style="z-index:9">
 
@@ -503,12 +505,11 @@
               </div>
             </div>
           </div>
-         <div id="nursingView">
+         <div id="nursingView" class="col-12">
          <h5 class="profile_subtit">もっと探す条件</h5>
-
         </div>
       <!--list-->
-          <div id="filtertable">
+          <div id="filtertable" class="col-12">
 
            <table class="table table-bordered col-12 box-wrap">
               <tbody>
@@ -625,8 +626,8 @@
     </div>
       <!--end search list-->
 
-        <div class=" col-12">
-            <div class="row" v-if="loading==false">
+        <div class=" col-12 pad-free">
+            <div class="row">
                 <div id="job_detail" class="col-md-6 col-sm-12" style="margin-top:20px;" v-for="(nus,index) in displayItems" :key="nus.id">
                     <div class="nur-content">
                     <div class="job-header">
@@ -1164,120 +1165,156 @@ nursingSearchData(index){
 // map change dropdown function
 // make infowindow, marker , google map
 coordinates(theCity, lat, lng){
-            var mapProp = {
-                  center: new google.maps.LatLng(lat, lng),
-                  zoom:7,
-                  mapTypeId: google.maps.MapTypeId.ROADMAP,
-                  options: {
-                  gestureHandling: 'greedy'
-                }
-              };
+  if(this.township_id == -1){
 
-                this.map = new google.maps.Map(document.getElementById("mymap"), mapProp);
-                this.loading = true
-                let  coor =[];
-                var townshipName = [];
-                var town = [];
-                const city_coordinates = [];
-                const arr = [];
+var mapProp = {
+center: new google.maps.LatLng(lat, lng),
+minZoom: 7,
+maxZoom: 14,
+zoom: 7,
+mapTypeId: google.maps.MapTypeId.ROADMAP,
+options: {
+gestureHandling: 'greedy'
+}
+};
+}else{
 
-                // get township postalcode
-                for (let i = 0; i < this.getTownships.length; i++) {
-                    if(this.getTownships[i]['id'] == this.township_id){
-                        townshipName.push(this.getTownships[i]['postalcode'])
-                        town.push(this.getTownships[i]['township_name'])
-                    }else{
-                      console.log('tonw err')
-                    }
-                }
+var mapProp = {
+center: new google.maps.LatLng(lat, lng),
+minZoom: 7,
+maxZoom: 14,
+zoom: 10,
+mapTypeId: google.maps.MapTypeId.ROADMAP,
+options: {
+gestureHandling: 'greedy'
+}
+};
+}
 
-                var township_name = townshipName.toString();
+this.map = new google.maps.Map(document.getElementById("mymap"), mapProp);
 
-
-                if(township_name== ''){
-
-                  this.axios.get("/api/cityJson").then(respon => {
-                          var res = respon.data
-                          this.loading = false
-                        for (var i = 0; i < res.length; i++) {
-                        if (res[i].properties.NAME_1 == theCity) {
-
-                        if(res[i].geometry.hasOwnProperty('geometries')){
-
-                            for(var j =0;j < res[i].geometry.geometries.length;j++){
-
-                            city_coordinates.push(res[i].geometry.geometries[j]['coordinates']) ;
-                          }
-                        }
-                        else{
-                          city_coordinates.push(res[i].geometry['coordinates']) ;
-                          }
-                        }
-                    }
-                     this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
-                     this.boundariesGoogleMap(lat,lng,this.coordinate);
+this.loading = true
+let  coor =[];
+var townshipName = [];
+var town = [];
+const city_coordinates = [];
+const arr = [];
 
 
-                  }); //end get city
-                }else{
-                  this.axios.get("/api/townshipJson").then(res => {
-                    var data = res.data
+
+if(this.township_id != -1){
+// get township postalcode
+for (let i = 0; i < this.getTownships.length; i++) {
+    if(this.getTownships[i]['id'] == this.township_id){
+        townshipName.push(this.getTownships[i]['postalcode'])
+        town.push(this.getTownships[i]['township_name'])
+    }
+}
+}else if(this.townshipID != 0){
+for (let i = 0; i < this.townshipID.length; i++) {
+  for (let k = 0; k < this.getTownships.length; k++) {
+    if(this.getTownships[k]['id'] == this.townshipID[i]){
+        townshipName.push(this.getTownships[k]['postalcode'])
+        town.push(this.getTownships[k]['township_name'])
+    }
+
+  }
+
+}
+
+}
+var township_name = townshipName;
+
+
+        if(this.townshipID == 0){
+
+            this.axios.get("/api/cityJson").then(respon => {
+                    var res = respon.data
                     this.loading = false
-                    var coordinates = [];
-                    for (let i = 0; i < data.length; i++) {
+                  for (var i = 0; i < res.length; i++) {
+                  if (res[i].properties.NAME_1 == theCity) {
 
-                      if(data[i]['properties']['N03_007'] == township_name){
-                        coordinates.push(data[i]['geometry']['coordinates'])
-                      }else{
-                        console.log('errr')
-                      }
+                  if(res[i].geometry.hasOwnProperty('geometries')){
 
+                      for(var j =0;j < res[i].geometry.geometries.length;j++){
+
+                      city_coordinates.push(res[i].geometry.geometries[j]['coordinates']) ;
                     }
+                  }
+                  else{
+                    city_coordinates.push(res[i].geometry['coordinates']) ;
+                    }
+                  }
+              }
+              this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
+              this.boundariesGoogleMap(lat,lng,this.coordinate);
 
-                    var co = coordinates.reduce((acc, val) => acc.concat(val), []);
-                    var coord =  [];
-                    for(let key in co)coord= coord.concat(co[key])
-                    this.coordinate = coord
-                    this.boundariesGoogleMap(lat,lng,this.coordinate);
 
+            }); //end get city
 
+        }else{
 
-                  }); //end get township
-                }//end else
+        this.axios.get('/api/townshipJson').then(res => {
+            var data = res.data
+            this.loading = false
+            var coordinates = [];
+
+            for (let i = 0; i < township_name.length; i++) {
+
+              for (let k = 0; k < data.length; k++) {
+                if(data[k]['properties']['N03_007'] === township_name[i]){
+                    coordinates.push(data[k])
+                }
+
+              }
+
+            }
+
+              var co = coordinates.reduce((acc, val) => acc.concat(val), []);
+              var coord =  [];
+              for(let key in co)coord= coord.concat(co[key])
+              this.coordinate = coord
+              this.boundariesGoogleMap(lat,lng,this.coordinate);
+        })
+        }
 
 
 
 },
 
 boundariesGoogleMap(lat,lng,coor){
-      try {
-        var data = {
-              type: "Feature",
-              geometry: {
-              "type": "Polygon",
-              "coordinates": coor
-              },
-          };
-          this.map.data.addGeoJson(data);
+  try {
+      var data = {
+            type: "Feature",
+            geometry: {
+            "type": "Polygon",
+            "coordinates": coor
+            },
+        };
+        this.map.data.addGeoJson(data);
       } catch (error) {
-        var coor = [coor]
-        var data = {
-              type: "Feature",
-              geometry: {
-              "type": "Polygon",
-              "coordinates": coor
-              },
-          };
-          this.map.data.addGeoJson(data);
+          var data = coor.reduce((acc, val) => acc.concat(val), []);
+          for (let i = 0; i < data.length; i++) {
+            this.map.data.addGeoJson(data[i]);
+          }
+          var bounds = new google.maps.LatLngBounds();
+          this.map.data.forEach(function(feature){
+            var geo = feature.getGeometry();
+            geo.forEachLatLng(function(LatLng){
+              bounds.extend(LatLng)
+            });
+          });
+          this.map.fitBounds(bounds);
+
       }
 
-          this.map.data.setStyle({
-          strokeColor: "red",
-          fillColor: 'red',
-          strokeOpacity: 0.8,
-          fillOpacity: 0.1,
-          strokeWeight: 1
-          })
+        this.map.data.setStyle({
+        strokeColor: "red",
+        fillColor: 'red',
+        strokeOpacity: 0.8,
+        fillOpacity: 0.1,
+        strokeWeight: 1
+        })
 },
 infoWindow(item, mmarker){
         var infoWindowContent = new Array();
@@ -1756,7 +1793,16 @@ search(){
   height: 440px !important;
 
 }
-.lds-ripple div {
+.lds-ripple > div {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+   z-index: 999;
+}
+.lds-ripple > div  div{
   position: absolute;
   border: 4px solid#fff;
   opacity: 1;
@@ -1764,20 +1810,16 @@ search(){
   z-index: 999;
   animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
-.lds-ripple div:nth-child(2) {
+.lds-ripple > div div:nth-child(2) {
   animation-delay: -0.5s;
 }
 @keyframes lds-ripple {
   0% {
-    top: 36px;
-    left: 36px;
     width: 0;
     height: 0;
     opacity: 1;
   }
   100% {
-    top: 0px;
-    left: 0px;
     width: 72px;
     height: 72px;
     opacity: 0;

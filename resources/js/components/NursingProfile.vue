@@ -738,7 +738,7 @@ export default {
                 this.axios
                 .get('/api/nurscities/'+this.customer_info.townships_id)
                 .then(response=>{
-                    this.city_id = response.data[0].city_id; 
+                    this.city_id = Number(response.data[0].city_id); 
                     this.township_list = response.data[0].township_list;
                 });
             });            

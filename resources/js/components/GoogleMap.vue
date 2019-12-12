@@ -5,6 +5,7 @@
                 <div class="col-md-12 pad-free postal-search">
                     <div class="col-md-12 row p-0 m-0">
                         <div class="col-md-6 pad-free">
+                            {{township_list}}
                             <div class="col-md-12 p-l-0 m-t-10"><label>  都道府県<span class="error">*</span></label></div>
                             <div class="col-md-12 p-l-0">
                                 <select v-model="city" class="division form-control" id="division" @change="cityChange(city)">
@@ -90,9 +91,9 @@ export default {
   name: "GoogleMap",
   props:{
          address:String,
-         township:0,
-         city: 0,
-         township_list: []
+         township: Number,
+         city: Number,
+         township_list: Array
         },
   data () {
     return {
@@ -114,6 +115,8 @@ export default {
     }
   },
   created() { 
+      console.log("this.address")
+      console.log(this.address)
     this.markers = [{
         position: {
           lat: Number(localStorage.getItem('lat_num')),
@@ -126,7 +129,6 @@ export default {
     this.center = { lat: Number(localStorage.getItem('lat_num')), lng: Number(localStorage.getItem('lng_num')) }
     
     $('#gmap-search').css({'display':'none'});
-    console.log('testadd',this.$route.params.address)
     this.axios.get('/api/hospital/citiesList')
         .then(response => {
             this.city_list = response.data;
