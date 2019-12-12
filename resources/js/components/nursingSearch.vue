@@ -390,8 +390,13 @@
                <div class="lds-ripple m-t-10 m-b-10" >
                    <div>
                       <div></div><div></div>
+<<<<<<< HEAD
                    </div>
                 </div>
+=======
+                   </div>                  
+                </div>           
+>>>>>>> a57eaf585f765193126cbcb88a5b9ad0ecc3b90d
                 <div class="col-12 overlay" style="z-index:9">
 
                 </div>
@@ -626,8 +631,13 @@
     </div>
       <!--end search list-->
 
+<<<<<<< HEAD
         <div class=" col-12 pad-free">
             <div class="row">
+=======
+        <div class=" col-12">
+            <div class="row" v-if="loading==false">
+>>>>>>> a57eaf585f765193126cbcb88a5b9ad0ecc3b90d
                 <div id="job_detail" class="col-md-6 col-sm-12" style="margin-top:20px;" v-for="(nus,index) in displayItems" :key="nus.id">
                     <div class="nur-content">
                     <div class="job-header">

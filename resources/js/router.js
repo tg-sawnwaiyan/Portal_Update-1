@@ -24,7 +24,7 @@ import createcategory from "./components/createcategory.vue";
 import FacilitiesListComponent from "./components/FacilitiesListComponent.vue";
 import CreateFacilityComponent from "./components/CreateFacilityComponent.vue";
 // import custedit from "./components/custedit.vue";
-import CustomerSearchListComponent from "./components/CustomerSearchListComponent.vue";
+// import CustomerSearchListComponent from "./components/CustomerSearchListComponent.vue";
 import NewsSearchListComponent from "./components/NewsSearchListComponent.vue";
 // import map from "./components/map.vue";
 import EditFacilityComponent from "./components/EditFacilityComponent.vue";
@@ -165,11 +165,11 @@ const routes = [
           auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
         }
     },
-    {
-        name: "customersearchlist",
-        path: "/customersearchlist",
-        component: CustomerSearchListComponent
-    },
+    // {
+    //     name: "customersearchlist",
+    //     path: "/customersearchlist",
+    //     component: CustomerSearchListComponent
+    // },
     {
         name: "newssearchlist",
         path: "/newssearchlist",
