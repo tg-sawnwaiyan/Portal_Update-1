@@ -761,7 +761,7 @@
             <div class="row ele m-lr-0" id="element6">
                 <h5 class="profile_header col-12">口コミ</h5>
                 <!-- <div style="min-height:300px;"> -->
-                <div class="comment-ico  col-12" style="min-height:300px;">
+                <div class="comment-ico  col-12" >
                     <!-- <a href="/comment">
                         <i class="far fa-comment"></i>
                         <span>口コミを追加する</span>
@@ -784,19 +784,26 @@
                                 <div>{{comment.customer}}</div>
                         </div>
                     </div>
-
+                  
                     <div class="comment-btn-wrapper" v-if="displayItems.length == 1">
-                        <p class="no-comment-title">コメントは書くことができます。</p>
+                        <p><span class="nocomment-phone" >お電話でのご相談 </span></p>
+                        <p class="red  no-comment-title"><i class="fas fa-phone-alt phone-color"></i><a class="font-weight-bold" href="tel:0120591165">0120-59-1165</a><span class="fz12">（受付時間 平日 9：30-20：00）</span></p>
+                        <hr class="dotted">
+                        <p class="no-comment-web">WEBからご相談</p>
                          <div>
                              <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn"> <i class="fas fa-pencil-alt"></i>
                               <span>口コミを追加する</span></router-link>
                          </div>
                     </div>
+                      dfasgasdf
                </div>
                <div v-else class="col-md-12">
-                   <p class="no-data-color pb-3">表示される口コミがありません。</p>
+                   <br><p class="no-data-color pb-3">表示される口コミがありません。</p>
                    <div class="comment-btn-wrapper">
-                        <p class="no-comment-title">コメントは書くことができます。</p>
+                        <p><span class="nocomment-phone" >お電話でのご相談 </span></p>
+                         <p class="red  no-comment-title"><i class="fas fa-phone-alt phone-color"></i><a class="font-weight-bold" href="tel:0120591165">0120-59-1165</a><span class="fz12">（受付時間 平日 9：30-20：00）</span></p>
+                        <hr class="dotted">
+                        <p class="no-comment-web">WEBからご相談</p>
                          <div>
                              <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn"> <i class="fas fa-pencil-alt"></i>
                               <span>口コミを追加する</span></router-link>
@@ -2486,6 +2493,47 @@ export default {
     border: 1px solid #53c000;
     z-index: 4;
 }
+.phone-color {
+    width: 40px;
+    height: 38px;
+    margin-right: 5px;
+    font-size: 21px;
+    color: #c91616;
+    text-align: center;
+    line-height: 35px;
+    background: #ccc;
+    border-radius: 50%;
+    vertical-align: text-bottom;
+    position: relative;
+    bottom: 5px;
+}
+.nocomment-phone{
+    font-size: 30px;
+    position: relative;
+    top: 17px;
+    line-height: 62px;
+    color: #883914;
+    font-weight: bold;
+    }
+.fz12{
+    font-size: 17px;
+    position: relative;
+    bottom: 4px;
+}
+.dotted{
+    border-top: 1px dotted #883914;
+    width: 60%;
+    height: 1px;
+}
+.no-comment-web {
+    font-size: 30px;
+    position: relative;
+    top: 17px;
+    line-height: 62px;
+    color: #883914;
+    font-weight: bold;
+}
+
 
 
 @media only screen and (max-width: 375px) and (min-width: 320px) {
@@ -2641,4 +2689,5 @@ export default {
 }
 @media only screen and (max-width: 767px) {
 }
+ 
 </style>

@@ -749,13 +749,21 @@
             else{
                  var search_word = "all";
             }
+               if(localStorage.getItem("hospital_fav") == null){
+
+                this.locast = 0;
+            }
+            else{
+                this.locast = localStorage.getItem("hospital_fav");
+            }
 
             this.axios.get('api/gethospitalsearch/'+ search_word,{
             params:{
                 id: -1,
                 townshipID:-1,
                 specialfeatureID:-1,
-                subjectID:-1
+                subjectID:-1,
+                local:this.locast
             },
             }).then((response)=>{
                     if(response.data.hospital.length > 0)
