@@ -910,6 +910,9 @@ body::-webkit-scrollbar-thumb {
     float: right;
     padding-right: 14px;
 }
+.arrow_icon:before{
+    color: #d2571c;
+}
 
 .custom_group {
     color: #828282 !important;
@@ -923,7 +926,9 @@ body::-webkit-scrollbar-thumb {
 .custom_group a li {
     list-style: none;
     border-bottom: 1px solid #eeeeee;
-    padding: 5px;
+    padding: 10px 10px 10px 20px;
+    color: #8e3c15;
+    font-weight: bold;
 }
 
 .map-addicon {
@@ -932,9 +937,29 @@ body::-webkit-scrollbar-thumb {
     top: 15px;
 }
 
+.map-addicon:before{
+    color: #d2571c;
+    font-weight: bold;
+    font-size: 20px;
+}
+
 .card-header-title>p {
     padding: 10px 10px 0px 10px !important;
 }
+#map-responsive{
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px rgb(212, 201, 201);
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+.accordion-body .card-footer{
+    display: none;
+}
+.accordion > .card .card-header:hover, .card-header:active, .card-header:visited{
+    background: #ff611714 !important;
+  }
+
 /************************************  End Job Search ************************************************/
 
 
@@ -2775,7 +2800,7 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
     position: fixed;
     top: 237px;
     right: 10px;
-    /* z-index: 99999; */
+    z-index: 99999;
 }
 
 #headerbar .router-link-exact-active {
@@ -3089,6 +3114,7 @@ ul.main-tab li:after {
     background: #f7f0ed;
     overflow: auto;
     scrollbar-width: thin;
+   
 }
 
 .divisions {
@@ -8363,6 +8389,9 @@ ul.nur-caro-card>li.list-group-item {
     .wd-in {
         width: 256px;
     }
+    .map-wrap{
+        display: none;
+    }
 }
 
 @media only screen and (max-width:480px) {}
@@ -8547,6 +8576,47 @@ ul.nur-caro-card>li.list-group-item {
         padding-left: 15px;
         
     }
+    /*job search*/
+    ul.hokkaido-wrap {
+        left: 0px;
+    }   
+    .hokkaido-box {       
+        right: 8%;       
+    }
+    .tohoku-box {        
+        right: 18%;       
+    }  
+    
+    .kanto-box {        
+        right: 21%;       
+    }
+    .hokuriku-box {       
+        left: 52%;       
+    }
+    .tokai-box {
+        right: 31%;
+        
+    }
+    .kinki-box {        
+        left: 34%;
+     
+    }
+    .chugoku-box {        
+        left: 23%;
+       
+    }
+    .shikoku-box {       
+        left: 25%;      
+    }
+    .kyushu-box {       
+        left: 12%;        
+    }
+    .okinawa-box {
+       left: 24%;
+        
+    }
+    /*end job search*/
+    
 }
 @media only screen and (max-width:1024px){
     .divisions{       
@@ -8697,8 +8767,67 @@ ul.nur-caro-card>li.list-group-item {
     /*end header */
    
 }
+@media only screen and (max-width: 768px){
+    .tab{
+        max-width: 100% !important;
+        flex: 100% !important;
+    }
+}
 
-@media only screen and (max-width: 1024px) {}
+@media only screen and (max-width: 1024px) {
+    /*job search*/
+    ul.hokkaido-wrap {
+        left: 65px;
+    }
+    .divisions span {
+        margin-right: 10px;
+    }
+    .hokkaido-box {
+        position: absolute;
+        top: 11%;
+        right: 10%;
+        z-index: 2;
+    }
+    .tohoku-box {
+        right: 12%;        
+    }
+    .multiple-box {
+        width: 128px !important;
+    }
+    .multiple-boxa {
+        width: 127px !important;
+    }
+    .hokkaido-box .spanclass,
+    .kanto-box .spanclass,
+    .okinawa-box .spanclass {
+        margin-right: 1px;
+    }
+    .kanto-box {
+       right: 12%;
+    }
+    .hokuriku-box {
+        left: 53%;
+    }
+    .tokai-box {
+        right: 35%;
+    }
+    .kinki-box {
+        left: 27%;
+    }
+    .chugoku-box {
+        left: 12%;
+    }
+    .shikoku-box {
+        left: 15%;
+    }
+    .kyushu-box {       
+        left: -3%;
+    }
+    .okinawa-box {
+        left: 13%;
+    }
+    /*end job search*/
+}
 
 @media only screen and (max-width: 990px) {
     /* common */
@@ -8897,6 +9026,7 @@ ul.nur-caro-card>li.list-group-item {
     #map-responsive {
         display: block;
     }
+    
 }
 
 @media only screen and (max-width: 380px) {
