@@ -50,7 +50,7 @@
 
 
 
-                        <!-- </form>                                       -->
+                        <!-- </form> -->
 
                         <div class="row" v-if="status == '0'">
 
@@ -1061,35 +1061,13 @@
 <script>
 
     import layout from '../components/home.vue'
-
     import News from './News.vue'
-
-    import hospitalSearch from './hospitalSearch.vue'
-
-    import nursingSearch from './nursingSearch.vue'
-
-    import jobSearch from './jobSearch.vue'
-
-    import NewsSearchListComponent from './NewsSearchListComponent.vue'
-
-
 
     export default {
 
         components: {
-
-            News,
-
-            hospitalSearch,
-
-            nursingSearch,
-
-            NewsSearchListComponent,
-
-            jobSearch,
-
+            News,         
             layout
-
         },
 
       async mounted() {
@@ -1175,6 +1153,44 @@
 
     created() {
         console.log($(window).width());
+        console.log("new cre")
+        if(localStorage.getItem("hospital_history")){
+        $("#hos-his-local").html(localStorage.getItem("hospital_history").split(",").length);
+        $('.his-hospital-link-box>a').css({'cursor':'pointer','pointer-events':'auto'});
+    }
+    else{
+        $("#hos-his-local").html(0);
+        $('.his-hospital-link-box>a').css({'cursor':'not-allowed','pointer-events':'none'});
+        $( '.his-hospital-link-box>a ').parent('div').css({'cursor':'not-allowed'});
+    }
+    if(localStorage.getItem("nursing_history")){
+        $("#nus-his-local").html(localStorage.getItem("nursing_history").split(",").length);
+        $('.his-nursing-link-box>a').css({'cursor':'pointer','pointer-events':'auto'});
+    }
+    else{
+        $("#nus-his-local").html(0);
+        $('.his-nursing-link-box>a').css({'cursor':'not-allowed','pointer-events':'none'});
+        $( '.his-nursing-link-box>a').parent('div').css({'cursor':'not-allowed'});
+    }
+    if(localStorage.getItem("hospital_fav")){
+        $("#hos-fav-local").html(localStorage.getItem("hospital_fav").split(",").length);
+        $('.fav-hospital-link-box>a').css({'cursor':'pointer','pointer-events':'auto'});
+    }
+    else{
+        $("#hos-fav-local").html(0);
+        $('.fav-hospital-link-box>a').css({'cursor':'not-allowed','pointer-events':'none'});
+        $( '.fav-hospital-link-box>a').parent('div').css({'cursor':'not-allowed'});
+    }
+    if(localStorage.getItem("nursing_fav")){
+        console.log("hh"+localStorage.getItem("nursing_fav"))
+        $("#nus-fav-local").html(localStorage.getItem("nursing_fav").split(",").length);
+        $('.fav-nursing-link-box>a').css({'cursor':'pointer','pointer-events':'auto'});
+    }
+    else{
+        $("#nus-fav-local").html(0);
+        $('.fav-nursing-link-box>a').css({'cursor':'not-allowed','pointer-events':'none'});
+        $( '.fav-nursing-link-box>a').parent('div').css({'cursor':'not-allowed'});
+    }
 
         var today = new Date();
         var month =(String) (today.getMonth()+1);

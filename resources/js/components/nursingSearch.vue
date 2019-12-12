@@ -382,31 +382,32 @@
         </div>
       </div>
         <!-- google map  -->
+
         <section id="holder" >
         <div class="row" >
           <div class="col-sm-12 col-md-12">
-          <div style="position: relative;">
-           
-            <div v-if="loading" class=" m-t-10 m-b-10 text-center overlay">
-                <div class="lds-ripple m-t-10 m-b-10" ><div></div><div></div></div>
+            <div v-if="loading" class=" m-t-10 m-b-10" style="background-color:gray;opacity:0.9;position:relative;z-index:10;">
+               <div class="lds-ripple m-t-10 m-b-10" >
+                   <div>
+                      <div></div><div></div>
+                   </div>                  
+                </div>           
+                <div class="col-12 overlay" style="z-index:9">
+
+                </div>
             </div>
-              <!-- <div class="overlay standard hidden">&nbsp;</div> -->
-              <div v-if="!loading" class="m-t-10 m-b-10">
-                <div id="mymap"></div>
-              </div>
-         
-              
-
+            <div v-if="!loading" class="m-t-10 m-b-10">
+              <div id="mymap"></div>
+            </div>
               <!-- <div id="mymap" class="select m-t-10 m-b-10"></div> -->
-
-          </div>
           </div>
         </div>
         </section>
 
+
         <!-- nursing list -->
        <div id="nursing-search" >
-           <span v-if="norecord_msg">
+           <span v-if="norecord_msg && loading==false">
                 <div class="container-fuid m-t-20">
                     <p class="nosearch-icon">
                         <svg x="0px" y="0px" width="30" height="30" viewBox="0 0 172 172" style=" fill:red;"><g transform=""><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><path d="M0,172v-172h172v172z" fill="none"></path><path d="M3.44,168.56v-165.12h165.12v165.12z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><path d="M0,172v-172h172v172z" fill="none"></path><path d="M3.44,168.56v-165.12h165.12v165.12z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><g fill="#666666"><path d="M74.53333,17.2c-31.59643,0 -57.33333,25.73692 -57.33333,57.33333c0,31.59641 25.7369,57.33333 57.33333,57.33333c13.73998,0 26.35834,-4.87915 36.24766,-12.97839l34.23203,34.23203c1.43802,1.49778 3.5734,2.10113 5.5826,1.57735c2.0092,-0.52378 3.57826,-2.09284 4.10204,-4.10204c0.52378,-2.0092 -0.07957,-4.14458 -1.57735,-5.5826l-34.23203,-34.23203c8.09923,-9.88932 12.97839,-22.50768 12.97839,-36.24766c0,-31.59641 -25.7369,-57.33333 -57.33333,-57.33333zM74.53333,28.66667c25.39939,0 45.86667,20.46729 45.86667,45.86667c0,25.39937 -20.46728,45.86667 -45.86667,45.86667c-25.39939,0 -45.86667,-20.46729 -45.86667,-45.86667c0,-25.39937 20.46728,-45.86667 45.86667,-45.86667zM91.67734,51.52161c-1.51229,0.03575 -2.94918,0.66766 -3.99765,1.75807l-13.14636,13.14636l-13.14636,-13.14636c-1.07942,-1.10959 -2.56162,-1.73559 -4.10963,-1.73568c-2.33303,0.00061 -4.43306,1.41473 -5.31096,3.57628c-0.8779,2.16155 -0.3586,4.6395 1.31331,6.26669l13.14636,13.14636l-13.14636,13.14636c-1.49777,1.43802 -2.10111,3.5734 -1.57733,5.58259c0.52378,2.0092 2.09283,3.57825 4.10203,4.10203c2.0092,0.52378 4.14457,-0.07956 5.58259,-1.57733l13.14636,-13.14636l13.14636,13.14636c1.43802,1.49778 3.5734,2.10113 5.5826,1.57735c2.0092,-0.52378 3.57826,-2.09284 4.10204,-4.10204c0.52378,-2.0092 -0.07957,-4.14458 -1.57735,-5.5826l-13.14636,-13.14636l13.14636,-13.14636c1.70419,-1.63875 2.22781,-4.1555 1.31865,-6.33798c-0.90916,-2.18248 -3.06468,-3.58317 -5.42829,-3.52739z"></path></g></g></g></svg>
@@ -416,7 +417,7 @@
                 </div>
             </span>
         <div class="row" v-if="nus_data.length > 0">
-          <div class="card-carousel-wrapper col-12">
+          <div class="card-carousel-wrapper col-12" v-if="loading==false">
             <div class="nav-box" @click="moveCarousel(-1)" :disabled="atHeadOfList">
               <div class="nav-content mr-2">
                   <div class="card-carousel--nav__left"></div>
@@ -504,18 +505,27 @@
               </div>
             </div>
           </div>
-         <div id="nursingView">
+         <div id="nursingView" class="col-12">
          <h5 class="profile_subtit">もっと探す条件</h5>
-        
         </div>
       <!--list-->
-          <div id="filtertable">
-     
-           <table class="table table-bordered col-12 box-wrap">    
+          <div id="filtertable" class="col-12">
+
+           <table class="table table-bordered col-12 box-wrap">
               <tbody>
                 <tr>
                   <th>地域</th>
                   <td>
+                    <select id="selectCity" class="col-9 form-control custom-select mt-2 mb-2" v-model="id" @change="ChangeTownship">
+                     <option value="-1">▼市区町村</option>
+                    <option v-for="city in cities" :value="city.id" :key="city.id">{{city.city_name}}</option>
+                  </select>
+                  <button @click="toggleContent" class="btn col-3 seemore-btn">
+                    <i class="fa" aria-hidden="true"></i>
+                    <!-- <em>{{city.city_name}}</em> -->
+                    <span id="close"><i class="fas fa-arrow-circle-up"></i> 市区町村エリアを閉じる</span>
+                  </button>
+                  <div class="toBeToggled" id="toBeToggled">
                         <div class="form-check form-check-inline col-sm-2"   v-for="township in getTownships" :key="township.id">
                         <label class="form-check-label control control--checkbox" style="padding-left:5px;">
                          <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @click="check">
@@ -523,6 +533,7 @@
                         <div class="control__indicator"></div>
                         </label>
                       </div>
+                  </div>
 
                   </td>
                 </tr>
@@ -616,7 +627,7 @@
       <!--end search list-->
 
         <div class=" col-12">
-            <div class="row">
+            <div class="row" v-if="loading==false">
                 <div id="job_detail" class="col-md-6 col-sm-12" style="margin-top:20px;" v-for="(nus,index) in displayItems" :key="nus.id">
                     <div class="nur-content">
                     <div class="job-header">
@@ -771,7 +782,7 @@
     },
 
     data() {
-   
+
       return {
         cityid:[],
         listid : '',
@@ -825,6 +836,7 @@
         onchangeid:0,
         localst:'',
         selected: undefined,
+        toggleCheck: true,
         loading: false,
         coordinate:[],
         norecord_msg: false,
@@ -852,11 +864,11 @@
             else if(this.window.width >= 992 && this.window.width < 1024) {
                 this.windowSize = 2;
                 this.paginationFactor=398;
-                
+
                 // console.log(this.window.width);
                 // console.log(this.windowSize);
             }
-            
+
             else if (this.window.width >= 1024 && this.window.width < 1200) {
                 this.windowSize = 3;
                 this.paginationFactor=412;
@@ -870,7 +882,7 @@
               //  console.log(this.window.width);
 
             }
-            
+
             else if (this.window.width >= 1280 && this.window.width < 1440) {
                 this.windowSize = 3;
                 this.paginationFactor=329;
@@ -878,17 +890,17 @@
                 // console.log(this.window.width);
                 // console.log(this.paginationFactor);
                 // console.log(this.windowSize);
-               
+
 
             }
-            
+
             else if (this.window.width >= 1440 && this.window.width < 1880) {
                 this.windowSize = 3;
                 this.paginationFactor=344;
-          
+
 
             }
-            
+
             // else if( this.window.width > 1700) {
 
             // }
@@ -900,7 +912,7 @@
             $('#upper-tab').addClass('nursing-borderColor');
         },
     computed: {
-     
+
       atEndOfList() {
         return this.currentOffset <= (this.paginationFactor * -1) * (this.nus_data.length - this.windowSize);
       },
@@ -974,9 +986,9 @@ searchfreeword(){
       else{
           this.locast = localStorage.getItem("nursing_fav");
       }
-     
-    
-  
+
+
+
 
         this.axios.get('/api/getnursingsearch/'+search_word,{
           params:{
@@ -991,13 +1003,14 @@ searchfreeword(){
               console.log(response)
             if(response.data.nursing.length > 0)
             {
+
                 $("#mymap").css("display", "block");
                 $("#filtertable").css("display", "block");
                 $("#nursing-search").css("display", "block");
                 this.changeMap(response);
             }
             else{
-
+                $("#mymap").css("display", "none");
                 $("#nursing-search").css("display", "none");
 
             }
@@ -1035,6 +1048,7 @@ showSearchMap() {
             $('#showSearchMap').addClass('select');
             $('#filter').addClass('select');
             $("#mymap").css("display", "none");
+            console.log('mymap')
             $("#nursing-search").css("display", "none");
             $("#filtertable").css("display", "none");
             document.getElementById('search-free-word').value = '';
@@ -1054,7 +1068,7 @@ moveCarousel(direction) {
         },
 // map onclick function
 getStateClick(e) {
-            
+
             this.township_id= -1;
             this.moving_in = -1;
             this.per_month = -1;
@@ -1085,10 +1099,11 @@ getStateClick(e) {
                 },
             })
                 .then((response) => {
-                  $("#mymap").css("display", "block");
+                 $("#mymap").css({'display' : 'block','height' : '500px','width':'100%'});
+                 // $("#mymap").css('display', 'block');
                   $("#nursing-search").css("display", "block");
                   $("#filtertable").css("display", "block");
-                  
+
                   this.changeMap(response)
                 })
 
@@ -1097,7 +1112,7 @@ getStateClick(e) {
 // map onclick function
 // map change dropdown function
 nursingSearchData(index){
-            
+
             if(index == 1) //if choose city
             {
                 this.township_id = -1;
@@ -1150,120 +1165,156 @@ nursingSearchData(index){
 // map change dropdown function
 // make infowindow, marker , google map
 coordinates(theCity, lat, lng){
-            var mapProp = {
-                  center: new google.maps.LatLng(lat, lng),
-                  zoom:7,
-                  mapTypeId: google.maps.MapTypeId.ROADMAP,
-                  options: {
-                  gestureHandling: 'greedy'
-                }
-              };
-            
-                this.map = new google.maps.Map(document.getElementById("mymap"), mapProp);
-                this.loading = true
-                let  coor =[];
-                var townshipName = [];
-                var town = [];
-                const city_coordinates = [];
-                const arr = [];
-               
-                // get township postalcode
-                for (let i = 0; i < this.getTownships.length; i++) {
-                    if(this.getTownships[i]['id'] == this.township_id){
-                        townshipName.push(this.getTownships[i]['postalcode'])
-                        town.push(this.getTownships[i]['township_name'])
-                    }else{
-                      console.log('tonw err')
-                    }
-                }
+  if(this.township_id == -1){
 
-                var township_name = townshipName.toString();
-             
+var mapProp = {
+center: new google.maps.LatLng(lat, lng),
+minZoom: 7,
+maxZoom: 14,
+zoom: 7,
+mapTypeId: google.maps.MapTypeId.ROADMAP,
+options: {
+gestureHandling: 'greedy'
+}
+};
+}else{
 
-                if(township_name== ''){
+var mapProp = {
+center: new google.maps.LatLng(lat, lng),
+minZoom: 7,
+maxZoom: 14,
+zoom: 10,
+mapTypeId: google.maps.MapTypeId.ROADMAP,
+options: {
+gestureHandling: 'greedy'
+}
+};
+}
 
-                  this.axios.get("/api/cityJson").then(respon => {
-                          var res = respon.data
-                          this.loading = false
-                        for (var i = 0; i < res.length; i++) {
-                        if (res[i].properties.NAME_1 == theCity) {
-                          
-                        if(res[i].geometry.hasOwnProperty('geometries')){
-                            
-                            for(var j =0;j < res[i].geometry.geometries.length;j++){     
+this.map = new google.maps.Map(document.getElementById("mymap"), mapProp);
 
-                            city_coordinates.push(res[i].geometry.geometries[j]['coordinates']) ;
-                          }
-                        }
-                        else{
-                          city_coordinates.push(res[i].geometry['coordinates']) ;
-                          }
-                        }
-                    }
-                     this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
-                     this.boundariesGoogleMap(lat,lng,this.coordinate);
-                   
-                   
-                  }); //end get city
-                }else{
-                  this.axios.get("/api/townshipJson").then(res => {
-                    var data = res.data
-                    this.loading = false
-                    var coordinates = [];
-                    for (let i = 0; i < data.length; i++) {
-                     
-                      if(data[i]['properties']['N03_007'] == township_name){
-                        coordinates.push(data[i]['geometry']['coordinates'])
-                      }else{
-                        console.log('errr')
-                      }
-                      
-                    }
+this.loading = true
+let  coor =[];
+var townshipName = [];
+var town = [];
+const city_coordinates = [];
+const arr = [];
 
-                    var co = coordinates.reduce((acc, val) => acc.concat(val), []);
-                    var coord =  [];
-                    for(let key in co)coord= coord.concat(co[key])
-                    this.coordinate = coord
-                    this.boundariesGoogleMap(lat,lng,this.coordinate);
+
+
+if(this.township_id != -1){
+// get township postalcode
+for (let i = 0; i < this.getTownships.length; i++) {
+    if(this.getTownships[i]['id'] == this.township_id){
+        townshipName.push(this.getTownships[i]['postalcode'])
+        town.push(this.getTownships[i]['township_name'])
+    }
+}
+}else if(this.townshipID != 0){
+for (let i = 0; i < this.townshipID.length; i++) {
+  for (let k = 0; k < this.getTownships.length; k++) {
+    if(this.getTownships[k]['id'] == this.townshipID[i]){
+        townshipName.push(this.getTownships[k]['postalcode'])
+        town.push(this.getTownships[k]['township_name'])
+    }
+    
+  }
   
-                    
+}
 
-                  }); //end get township
-                }//end else
-           
-          
+}
+var township_name = townshipName;
+
+
+        if(this.townshipID == 0){
+
+            this.axios.get("/api/cityJson").then(respon => {
+                    var res = respon.data
+                    this.loading = false
+                  for (var i = 0; i < res.length; i++) {
+                  if (res[i].properties.NAME_1 == theCity) {
+                    
+                  if(res[i].geometry.hasOwnProperty('geometries')){
+                      
+                      for(var j =0;j < res[i].geometry.geometries.length;j++){     
+
+                      city_coordinates.push(res[i].geometry.geometries[j]['coordinates']) ;
+                    }
+                  }
+                  else{
+                    city_coordinates.push(res[i].geometry['coordinates']) ;
+                    }
+                  }
+              }
+              this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
+              this.boundariesGoogleMap(lat,lng,this.coordinate);
+            
+            
+            }); //end get city
+
+        }else{
+
+        this.axios.get('/api/townshipJson').then(res => {
+            var data = res.data
+            this.loading = false
+            var coordinates = [];
+            
+            for (let i = 0; i < township_name.length; i++) {
+
+              for (let k = 0; k < data.length; k++) {
+                if(data[k]['properties']['N03_007'] === township_name[i]){
+                    coordinates.push(data[k])
+                }
                 
+              }
+              
+            }
+
+              var co = coordinates.reduce((acc, val) => acc.concat(val), []);
+              var coord =  [];
+              for(let key in co)coord= coord.concat(co[key])
+              this.coordinate = coord
+              this.boundariesGoogleMap(lat,lng,this.coordinate);
+        })
+        }
+
+
+
 },
 
 boundariesGoogleMap(lat,lng,coor){
-      try {
-        var data = {
-              type: "Feature",
-              geometry: {
-              "type": "Polygon",
-              "coordinates": coor
-              },
-          };
-          this.map.data.addGeoJson(data);
+  try {
+      var data = {
+            type: "Feature",
+            geometry: {
+            "type": "Polygon",
+            "coordinates": coor
+            },
+        };
+        this.map.data.addGeoJson(data);
       } catch (error) {
-        var coor = [coor]
-        var data = {
-              type: "Feature",
-              geometry: {
-              "type": "Polygon",
-              "coordinates": coor
-              },
-          };
-          this.map.data.addGeoJson(data);
+          var data = coor.reduce((acc, val) => acc.concat(val), []);
+          for (let i = 0; i < data.length; i++) {
+            this.map.data.addGeoJson(data[i]); 
+          }
+          var bounds = new google.maps.LatLngBounds();
+          this.map.data.forEach(function(feature){
+            var geo = feature.getGeometry();
+            geo.forEachLatLng(function(LatLng){
+              bounds.extend(LatLng)
+            });
+          });
+          this.map.fitBounds(bounds);
+
       }
 
-          this.map.data.setStyle({
-          strokeColor: "red",
-          fillColor: 'red',
-          strokeOpacity: 0.8,
-          fillOpacity: 0.1,
-          strokeWeight: 1
-          })
+        this.map.data.setStyle({
+        strokeColor: "red",
+        fillColor: 'red',
+        strokeOpacity: 0.8,
+        fillOpacity: 0.1,
+        strokeWeight: 1
+        })
 },
 infoWindow(item, mmarker){
         var infoWindowContent = new Array();
@@ -1341,9 +1392,9 @@ infoWindow(item, mmarker){
             }
             });
             // bounds.extend(position);
-            
-         
-            
+
+
+
             google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
                 infoWindow.setContent(infoWindowContent[i][0]);
@@ -1402,7 +1453,7 @@ infoWindow(item, mmarker){
         },
 // make infowindow, marker , google map
 changeMap(response){
-              
+
                 $('.select').removeClass('select');
                 $('#searchMap').addClass('select');
                 $('#showSearchMap').removeClass('select');
@@ -1428,11 +1479,11 @@ changeMap(response){
                     mmarker.push([this.markers[i]['alphabet'], this.markers[i]['lat'], this.markers[i]['lng']])
                     item.push(this.markers[i])
                 }
-              
+
 
                 if(this.getCity.length > 0) //if city  choose
                 {
-                
+
                     const theCity = response.data.getCity[0]['city_eng']
                     const lat = response.data.getCity[0]['latitude']
                     const lng = response.data.getCity[0]['longitude']
@@ -1440,15 +1491,17 @@ changeMap(response){
 
                     if(this.markers.length > 0 )
                     {
+
                         this.coordinates(theCity,lat,lng);
-                        
+
                         this.infoWindow(item, mmarker);
                     }
                     else{
+
                         this.coordinates(theCity,lat,lng);
                     }
                 }
-                else{ //if city not choose                    
+                else{ //if city not choose
                      this.coordinates(null,'38.25759','140.8667');
                      this.infoWindow(item, mmarker);
                 }
@@ -1579,9 +1632,12 @@ search(){
               }
             this.show_paginate = true;
             });
+
+
         },
         // hover animate function
         mouseover(index) {
+
             for (let i = 0; i < this.markerHover.length; i++) {
 
                 if(this.markers[i]['alphabet'] == index)
@@ -1614,7 +1670,12 @@ search(){
             event.target.src = "images/noimage.jpg"
         },
         favAddFun(status,index,ind){
-            if(status == 'add'){                
+         
+        
+            if(status == 'add'){
+               alert(status);
+
+                console.log('add');
                   this.nus_data[ind].fav_check = 'check';
 
                 if(localStorage.getItem("nursing_fav")){
@@ -1632,7 +1693,7 @@ search(){
                 $(".fav-nursing-link-box>a").css({'cursor':'pointer','pointer-events':'auto'});
             }
             else{
-            
+                 alert(status);
                 this.nus_data[ind].fav_check = '';
 
                 var fav_arr = JSON.parse("[" + localStorage.getItem("nursing_fav") + "]");
@@ -1671,46 +1732,119 @@ search(){
     pageSelect(index) {
       this.currentPage = index - 1;
     },
+    toggleContent() {
+        this.toggleCheck = !this.toggleCheck;
+        if (this.toggleCheck == true) {
+          $('#close').empty();
+          $("#toBeToggled").slideDown();
+          $('#close').append('<i class="fas fa-arrow-circle-up"></i> 市区町村エリアを閉じる');
+
+        } else {
+          $('#close').empty();
+          $("#toBeToggled").slideUp();
+          $('#close').append('<i class="fas fa-arrow-circle-down"></i> 市区町村エリアを開く');
+        }
+      },
+      ChangeTownship(){
+
+        this.townshipID = [];
+         if(localStorage.getItem("nursing_fav") == null){
+
+                this.locast = 0;
+            }
+            else{
+                this.locast = localStorage.getItem("nursing_fav");
+            }
+
+         this.axios.get('api/getmap',{
+              params:{
+              id: this.id,
+              township_id:-1,
+              moving_in:-1,
+              per_month:-1,
+              local:this.locast
+          },
+          })
+            .then((response) => {
+
+              $('.hospitalselect').removeClass('hospitalselect');
+              this.cities = response.data.city
+              this.getCity = response.data.getCity
+              this.getTownships = response.data.getTownships
+              this.special_features = response.data.special_features
+              this.subjects = response.data.subjects;
+            //   this.sub_child = response.data.sub_child;
+              //console.log("aaa",this.subjects);
+              // this.id = id;
+
+            })
+              this.search();
+      },
     }
   };
 </script>
 
 <style scoped>
 .lds-ripple {
-  display: inline-block;
-  position: relative;
+  /* display: inline-block;
+  position: absolute;
   width: 80px;
   height: 80px;
-  top:230px;
+  top: 40%;
+  left: 50%;
+  z-index: 1; */
+  position: relative;
+  width: 100% !important;
+  height: 440px !important;
+
 }
-.lds-ripple div {
+.lds-ripple > div {
+  display: flex;
+  position: absolute;  
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center; 
+   z-index: 999;
+}
+.lds-ripple > div  div{
   position: absolute;
-  border: 4px solid black;
+  border: 4px solid#fff;
   opacity: 1;
   border-radius: 50%;
+  z-index: 999;
   animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
-.lds-ripple div:nth-child(2) {
+.lds-ripple > div div:nth-child(2) {
   animation-delay: -0.5s;
 }
 @keyframes lds-ripple {
   0% {
-    top: 36px;
-    left: 36px;
     width: 0;
     height: 0;
     opacity: 1;
   }
   100% {
-    top: 0px;
-    left: 0px;
     width: 72px;
     height: 72px;
     opacity: 0;
   }
 }
 
-
+.overlay{
+  /* position: relative;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.19);
+  opacity: 0.1; */
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.19);
+  position: absolute;
+  background: #d2d2d2;
+  width: 100%;
+  height: 440px;
+}
 
 .highlight{
      background-color: #ccff60 !important;
@@ -1837,6 +1971,9 @@ search(){
     padding: 25px;
 
   }
+  .toBeToggled {
+    display: block;
+  }
 
   .toBeToggled2 {
     display: block;
@@ -1881,9 +2018,9 @@ search(){
 
   #mymap {
     width: 100%;
-    height: 500px;
+    /* height: 500px; */
   }
-  /* #mymap {background: transparent url('/images/google/loading.jpg') no-repeat center center;} */
+
 div#holder {
     position: absolute;
 }
@@ -1892,17 +2029,17 @@ div#holder {
     display: none;
 }
 
-div.overlay {
-    position: absolute;
+/* div.overlay {
+    position: relative;
     top: 0;
     width: 100%;
     height: 100%;
     background-color: #5e5e5e;
     opacity: 0.7;
     z-index: 1;
-}
+} */
 
-div.overlay.standard { background: #fff url('/images/google/loading.jpg') no-repeat 50% 50%; }
+/* div.overlay.standard { background: #fff url('/images/google/loading.jpg') no-repeat 50% 50%; } */
 
   .card_1 {
     display: inline-block;

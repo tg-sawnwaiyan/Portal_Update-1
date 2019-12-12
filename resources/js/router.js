@@ -1,10 +1,10 @@
 import VueRouter from 'vue-router'
 // Pages
-import Home from './components/home'
+// import Home from './components/home'
 import Register from './pages/Register'
 import Login from './pages/Login'
-import Dashboard from './pages/user/Dashboard'
-import AdminDashboard from './pages/admin/Dashboard'
+// import Dashboard from './pages/user/Dashboard'
+// import AdminDashboard from './pages/admin/Dashboard'
 
 import Newsdetails from "./components/Newsdetails.vue";
 import hospitalSearch from "./components/hospitalSearch.vue";
@@ -18,13 +18,13 @@ import news_list from "./components/news_list.vue";
 import create_news from "./components/create_news.vue";
 import categorylist from "./components/categorylist.vue";
 import createcategory from "./components/createcategory.vue";
-import stationlist from "./components/stationlist.vue";
-import createstation from "./components/createstation.vue";
-import editstation from "./components/editstation.vue"; 
+// import stationlist from "./components/stationlist.vue";
+// import createstation from "./components/createstation.vue";
+// import editstation from "./components/editstation.vue";
 import FacilitiesListComponent from "./components/FacilitiesListComponent.vue";
 import CreateFacilityComponent from "./components/CreateFacilityComponent.vue";
-import custedit from "./components/custedit.vue";
-import CustomerSearchListComponent from "./components/CustomerSearchListComponent.vue";
+// import custedit from "./components/custedit.vue";
+// import CustomerSearchListComponent from "./components/CustomerSearchListComponent.vue";
 import NewsSearchListComponent from "./components/NewsSearchListComponent.vue";
 // import map from "./components/map.vue";
 import EditFacilityComponent from "./components/EditFacilityComponent.vue";
@@ -40,16 +40,16 @@ import advertisement from "./components/advertisement.vue";
 import createmedicalacceptance from "./components/createmedicalacceptance.vue";
 import medicalacceptancelist from "./components/medicalacceptancelist.vue";
 import editmedicalacceptance from "./components/editmedicalacceptance.vue";
-import userPasswordResetList from "./components/userPasswordResetList.vue";
+// import userPasswordResetList from "./components/userPasswordResetList.vue";
 import HospitalHistory from "./components/HospitalHistory.vue";
 import favouriteHospital from "./components/favouriteHospital.vue";
 import NursingHistory from "./components/NursingHistory.vue";
 // import HospitalProfile from "./components/HospitalProfile.vue";
 // import NursingProfile from "./components/NursingProfile.vue";
-import VideoUpload from "./components/VideoUpload.vue";
+// import VideoUpload from "./components/VideoUpload.vue";
 import GoogleMap from "./components/GoogleMap.vue";
-import type from "./components/Type.vue";
-import typelist from "./components/TypeList.vue";
+// import type from "./components/Type.vue";
+// import typelist from "./components/TypeList.vue";
 import subject from "./components/Subject.vue";
 import subjectlist from "./components/SubjectList.vue";
 import advertisementlist from "./components/advertisementlist.vue";
@@ -75,7 +75,7 @@ import Unauthorized from './components/403.vue';
 
 // Routes
 const routes = [
-  
+
 {
   path: '/Unauthorized',
   name: 'Unauthorized',
@@ -99,23 +99,23 @@ const routes = [
     }
   },
   // USER ROUTES
-  {
-    path: '/dashboard',
-    name: 'dashboard',
-    component: Dashboard,
-    meta: {
-      auth: true
-    }
-  },
-  // ADMIN ROUTES
-  {
-    path: '/admin',
-    name: 'admin.dashboard',
-    component: AdminDashboard,
-    meta: {
-      auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
-    }
-  },
+  // {
+  //   path: '/dashboard',
+  //   name: 'dashboard',
+  //   component: Dashboard,
+  //   meta: {
+  //     auth: true
+  //   }
+  // },
+  // // ADMIN ROUTES
+  // {
+  //   path: '/admin',
+  //   name: 'admin.dashboard',
+  //   component: AdminDashboard,
+  //   meta: {
+  //     auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+  //   }
+  // },
 
    {
         name: 'News',
@@ -125,7 +125,7 @@ const routes = [
           auth: undefined
         }
     },
-  
+
     {
         name: 'jobSearch',
         path: '/jobSearch',
@@ -165,21 +165,21 @@ const routes = [
           auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
         }
     },
-    {
-        name: "customersearchlist",
-        path: "/customersearchlist",
-        component: CustomerSearchListComponent
-    },
+    // {
+    //     name: "customersearchlist",
+    //     path: "/customersearchlist",
+    //     component: CustomerSearchListComponent
+    // },
     {
         name: "newssearchlist",
         path: "/newssearchlist",
         component: NewsSearchListComponent
     },
-    {
-        name: "custedit",
-        path: "/custsedit",
-        component: custedit
-    },
+    // {
+    //     name: "custedit",
+    //     path: "/custsedit",
+    //     component: custedit
+    // },
     {
         name: "jobsearchlist",
         path: "/jobsearchlist",
@@ -224,21 +224,21 @@ const routes = [
         path: "/editcategory",
         component: editcategory
     },
-    {
-        name: "stationlist",
-        path: "/stationlist",
-        component: stationlist
-    },
-    {
-        name: "createstation",
-        path: "/createstation",
-        component: createstation
-    },
-    {
-        name: "editstation",
-        path: "/editstation",
-        component: editstation
-    },
+    // {
+    //     name: "stationlist",
+    //     path: "/stationlist",
+    //     component: stationlist
+    // },
+    // {
+    //     name: "createstation",
+    //     path: "/createstation",
+    //     component: createstation
+    // },
+    // {
+    //     name: "editstation",
+    //     path: "/editstation",
+    //     component: editstation
+    // },
     {
         name: "facilitieslist",
         path: "/facilitieslist",
@@ -247,7 +247,7 @@ const routes = [
     {
         name: "createfacility",
         path: "/createfacility",
-        component: CreateFacilityComponent,      
+        component: CreateFacilityComponent,
 
     },
 
@@ -277,7 +277,10 @@ const routes = [
     {
         name: "jobofferlist",
         path: "/jobofferlist",
-        component: JobOfferList
+        component: JobOfferList,
+        meta: {
+          auth: {roles: 1, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+        }
     },
     {
         name: "joboffercreate",
@@ -311,11 +314,11 @@ const routes = [
         path: "/editmedicalacceptance",
         component: editmedicalacceptance
     },
-    {
-        name: "userPasswordResetList",
-        path: "/userPasswordResetList",
-        component: userPasswordResetList
-    },
+    // {
+    //     name: "userPasswordResetList",
+    //     path: "/userPasswordResetList",
+    //     component: userPasswordResetList
+    // },
     {
         name: "advertisement",
         path: "/advertisement",
@@ -332,16 +335,16 @@ const routes = [
         path: "/favouriteNursing",
         component: favouriteNursing
     },
-    {
-        name: "type",
-        path: "/type",
-        component: type
-    },
-    {
-        name: "typelist",
-        path: "/typelist",
-        component: typelist
-    },
+    // {
+    //     name: "type",
+    //     path: "/type",
+    //     component: type
+    // },
+    // {
+    //     name: "typelist",
+    //     path: "/typelist",
+    //     component: typelist
+    // },
     {
         name: "subject",
         path: "/subject",
@@ -372,11 +375,11 @@ const routes = [
       path: '/google_map',
       component: GoogleMap
     },
-  {
-    name: 'videoupload',
-    path: '/videoupload',
-    component: VideoUpload
-  },
+  // {
+  //   name: 'videoupload',
+  //   path: '/videoupload',
+  //   component: VideoUpload
+  // },
   {
     name: 'comment',
     path: '/comment/:customer_id',

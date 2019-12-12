@@ -348,7 +348,6 @@
                     <!-- <em>{{city.city_name}}</em> -->
                     <span id="close"><i class="fas fa-arrow-circle-up"></i> 市区町村エリアを閉じる</span>
                   </button>
-
                   <div class="toBeToggled" id="toBeToggled">
 
                     <div class="form-check form-check-inline col-sm-2" v-for="township in getTownships" :key="township.id">
@@ -391,81 +390,75 @@
                         <div class="test" v-for="(subject,index) in subjects.slice(0,3)" :key="index">
                           <div class="row col-12">
                             <strong class="table-innertitle row col-12">{{subject.name}}</strong>
-                            
                             <div class="col-6" v-for="ch in subject.child" :key="ch.id+1">
-                             
                                 <label class="form-check-label control control--checkbox" style="padding-left:5px;">
                                 <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
-                                {{ch.name}} 
+                                {{ch.name}}
                                 <div class="control__indicator"></div>
                                 </label>
                             </div>
-                            
                           </div>
-                            
-                           
                         </div>
-                       
                     </div>
                       <div class="form-check form-check-inline row align-items-start innerwrapper">
                         <div class="test" v-for="(subject,index) in subjects.slice(3,6)" :key="index">
                           <div class="row col-12">
                             <strong class="table-innertitle row col-12">{{subject.name}}</strong>
-                            
+
                             <div class="col-6" v-for="ch in subject.child" :key="ch.id+1">
-                             
+
                                 <label class="form-check-label control control--checkbox" style="padding-left:5px;">
                                 <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
-                                {{ch.name}} 
+                                {{ch.name}}
                                 <div class="control__indicator"></div>
                                 </label>
                             </div>
-                            
+
                           </div>
-                            
-                           
+
+
                         </div>
-                       
+
                     </div>
                       <div class="form-check form-check-inline row align-items-start innerwrapper">
                         <div class="test" v-for="(subject,index) in subjects.slice(6,9)" :key="index">
                           <div class="row col-12">
                             <strong class="table-innertitle row col-12">{{subject.name}}</strong>
-                            
+
                             <div class="col-6" v-for="ch in subject.child" :key="ch.id+1">
-                             
+
                                 <label class="form-check-label control control--checkbox" style="padding-left:5px;">
                                 <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
-                                {{ch.name}} 
+                                {{ch.name}}
                                 <div class="control__indicator"></div>
                                 </label>
                             </div>
-                            
+
                           </div>
-                            
-                           
+
+
                         </div>
-                       
+
                     </div>
                      <div class="form-check form-check-inline row align-items-start innerwrapper" style="width:33.98%;">
                         <div class="test" v-for="(subject,index) in subjects.slice(9,10)" :key="index">
                           <div class="row col-12">
                             <strong class="table-innertitle row col-12">{{subject.name}}</strong>
-                            
+
                             <div class="col-6" v-for="ch in subject.child" :key="ch.id+1">
-                             
+
                                 <label class="form-check-label control control--checkbox" style="padding-left:5px;">
                                 <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
-                                {{ch.name}} 
+                                {{ch.name}}
                                 <div class="control__indicator"></div>
                                 </label>
                             </div>
-                            
+
                           </div>
-                            
-                           
+
+
                         </div>
-                       
+
                     </div>
 
                 </td>
@@ -491,32 +484,35 @@
           <div class="col-12">
             <div class="row">
 
-              <div id="job_detail" class="col-md-12 col-sm-12 pad-free offset" style="margin-top:20px;" v-for="hos in displayItems" :key="hos.id">
+              <div id="job_detail" class="col-md-12 col-sm-12 pad-free offset" style="margin-top:20px;" v-for="(hos,index) in displayItems" :key="hos.id">
                 <div class="hos-content">
                     <div class="job-header">
                       <div class="row pad-free">
                         <div class="col-8">
                           <h5 class="hos-title">
-                            <router-link :to="{name: 'profile', params: {cusid:hos.customer_id, type: 'hospital'}}" class="pseudolink">{{hos.name}}</router-link>                           
+                            <router-link :to="{name: 'profile', params: {cusid:hos.customer_id, type: 'hospital'}}" class="pseudolink">{{hos.name}}</router-link>
                           </h5>
                         <div class="clearfix d-flex m-t-20">
                           <span v-for="(sub,index) in subject" :key="index+'-'+sub.name+'-'+hos.id">
                               <span v-if="sub.customer_id == hos.customer_id" class="job_status">
                               {{sub.name}}
                               </span>
-                          </span>      
+                          </span>
                       </div>
                         </div>
                         <div class="col-4">
-                           <p class="text-right">                             
-                              <span class="btn fav-profile fav-item fav-color" :class="'view_pro_id'+hos.nursing_id" style="" @click="favAddFun('add',hos.nursing_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
+                           <p class="text-right">
+                              <!-- <span class="btn fav-profile fav-item fav-color" :class="'view_pro_id'+hos.nursing_id" style="" @click="favAddFun('add',hos.nursing_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                               <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == 'check'" :class="'done_pro_id'+hos.nursing_id" style="color:#aaa;" @click="favAddFun('remove',hos.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
+                          -->
+                          <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == ''" :class="'view_pro_id'+hos.nursing_id" style="display:block;" @click="favAddFun('add',hos.hos_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
+                          <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == 'check'" :class="'done_pro_id'+hos.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',hos.hos_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                           </p>
-                        
+
                         </div>
-                      </div>                       
+                      </div>
                     </div>
-               
+
                 <div class="hos-body row clearfix">
                   <div class="col-3 job-img">
                     <img v-bind:src="'/upload/hospital_profile/' + hos.logo"  alt="img" class="img-fluid" @error="imgUrlAlt">
@@ -659,6 +655,7 @@
         subjects: [],
         sub_child:[],
         subject:[],
+        company:[],
         toggleCheck: true,
         toggleCheck_1: false,
         currentPage: 0,
@@ -700,14 +697,14 @@
 
               var search_word = $('#search-free-word').val();
             }
-           if(localStorage.getItem("nursing_fav") == null){
+           if(localStorage.getItem("hospital_fav") == null){
 
                 this.locast = 0;
             }
             else{
-                this.locast = localStorage.getItem("nursing_fav");
+                this.locast = localStorage.getItem("hospital_fav");
             }
-           
+
 
           this.axios.get('api/gethospitalsearch/'+ search_word,{
             params:{
@@ -720,11 +717,11 @@
           }).then((response)=>{
             this.getTownships = response.data.township;
             this.hos_data = response.data.hospital;
-            console.log(this.hos_data);
             this.timetable = response.data.timetable;
             this.specialfeatures = response.data.specialfeature;
             this.subject = response.data.subject;
             this.subjects = response.data.subjects;
+            this.company = response.data.company;
             if(this.hos_data.length > this.size) {
                 this.show_paginate = true;
             }else{
@@ -788,10 +785,56 @@
                     }
 
                 });
-
-
-
             },
+
+            favAddFun(status,index,ind){
+              
+            
+            if(status == 'add'){
+    
+                this.hos_data[ind].fav_check = 'check';
+                 
+                if(localStorage.getItem("hospital_fav")){
+                 
+                    var fav_arr = JSON.parse("[" + localStorage.getItem("hospital_fav") + "]");
+                    fav_arr.push(index);
+                    fav_arr = [...new Set(fav_arr)];
+                    localStorage.setItem("hospital_fav", fav_arr);
+                    $("#hos-fav-local").html(fav_arr.length);
+                }
+                else{
+                
+                    var fav_arr = [index];
+                    console.log(fav_arr);
+                    localStorage.setItem("hospital_fav", fav_arr);
+                    
+                    $("#hos-fav-local").html(fav_arr.length);
+                }
+                console.log('local');
+                    console.log(localStorage.getItem("hospital_fav"));
+                $(".fav-hospital-link-box>a").css({'cursor':'pointer','pointer-events':'auto'});
+            }
+            else{
+
+                this.hos_data[ind].fav_check = '';
+
+                var fav_arr = JSON.parse("[" + localStorage.getItem("hospital_fav") + "]");
+                var index = fav_arr.indexOf(index);
+                if (index > -1) {
+                    fav_arr.splice(index, 1);
+                    localStorage.setItem("hospital_fav", fav_arr);
+                }
+                $("#hos-fav-local").html(fav_arr.length);
+
+                if(fav_arr.length == 0){
+                    $(".fav-hospital-link-box>a").css({'cursor':'not-allowed','pointer-events':'none'})
+                }
+                else{
+                    $(".fav-hospital-link-box>a").css({'cursor':'pointer','pointer-events':'auto'})
+                }
+
+            }
+        },
 
         groupBy(array, key){
 
@@ -835,13 +878,13 @@
 
       ChangeTownship(){
 
-        this.townshipID = [];
-         if(localStorage.getItem("nursing_fav") == null){
+           this.townshipID = [];
+           if(localStorage.getItem("hospital_fav") == null){
 
                 this.locast = 0;
             }
             else{
-                this.locast = localStorage.getItem("nursing_fav");
+                this.locast = localStorage.getItem("hospital_fav");
             }
 
          this.axios.get('api/getmap',{
@@ -885,16 +928,16 @@
               var id = e.target.id;
               this.id = id;
             }
-          }     
+          }
 
-          if(localStorage.getItem("nursing_fav") == null){
+          if(localStorage.getItem("hospital_fav") == null){
 
                 this.locast = 0;
             }
             else{
-                this.locast = localStorage.getItem("nursing_fav");
+                this.locast = localStorage.getItem("hospital_fav");
             }
-                
+
           this.axios.get('api/getmap',{
               params:{
               id: this.id,
@@ -913,6 +956,7 @@
               this.getTownships = response.data.getTownships
               this.special_features = response.data.special_features
               this.subjects = response.data.subjects
+              this.company = response.data.company
             //   this.sub_child = response.data.sub_child
               this.id = id;
 

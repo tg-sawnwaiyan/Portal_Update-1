@@ -412,9 +412,18 @@ class SearchMapController extends Controller
         $townshipID = $_GET['townshipID'];
         $specialfeatureID = $_GET['specialfeatureID'];
         $subjectID = $_GET['subjectID'];
+        $localst = $_GET['local'];
+          if($localst != 0)
+          {
+            $local = explode(',',$localst);
+          }
+          else{
+
+              $local = 0;
+          }
         
           
-          $query ="SELECT h.id as hos_id, c.id as cus_id, h.*,c.*
+          $query ="SELECT '' as fav_check,h.id as hos_id, c.id as cus_id, h.*,c.*
                   from  hospital_profiles as h 
                   join customers as c on h.customer_id = c.id 
                   left join townships as t on t.id = c.townships_id  
@@ -429,7 +438,7 @@ class SearchMapController extends Controller
         {
             if($searchword == "all") 
             {
-                $query ="SELECT h.id as hos_id, c.id as cus_id, h.*,c.*
+                $query ="SELECT '' as fav_check, h.id as hos_id, c.id as cus_id, h.*,c.*
                         from  hospital_profiles as h     
                         join customers as c on h.customer_id = c.id 
                         left join townships as t on t.id = c.townships_id  
@@ -538,6 +547,29 @@ class SearchMapController extends Controller
         $city = DB::table('cities')->get();
         $getTownships  = DB::table('townships')->where('city_id', $id)->get();
 
+
+        //to bind fav_hospital
+        for($i = 0;$i<count($hos_data);$i++)
+        {
+            $arr[] = ( $hos_data[$i]->hos_id);
+           
+        }
+        if($local != 0)
+        {
+            for($i = 0;$i<count($local);$i++)
+            {
+                $local_arr = (string)($local[$i]);
+               
+                if(in_array($local_arr, $arr))
+                {
+                   $id = array_search($local_arr,$arr);
+                   $hos_data[$id]->fav_check = "check";
+                  
+                }
+              
+            }
+        }
+      
         foreach($subjects as $sub)  
         {
             $id = $sub->id;
@@ -743,28 +775,33 @@ class SearchMapController extends Controller
 
     public function cityJson()
     {
-        $path = public_path().('/google-map-json/jp_cities.json');
-        $json = file_get_contents($path);
-        $obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $json), true );
+        // $path = base_path().('/google-map-json/jp_cities.json');
+        // return $path;
+        // $json = file_get_contents(resource_path('views/google-map-json/jp_cities.json'));
+        // $json = file_get_contents('./upload/google-map-json/jp_cities.json');
+        // $obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $json), true );
+        // return $json;
         
-        foreach($obj as $key => $value){
-            $json = $value;
+        // foreach($obj as $key => $value){
+        //     $json = $value;
             
-        }
-        return response()->json($json);
+        // }
+        // return response()->json($json);
+        return "Testing";
     }
 
     public function townshipJson()
     {
-    $path = public_path().('/google-map-json/japan-cities_5percent.json');
-    $json = file_get_contents($path);
-    $obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $json), true );
+    // $path = public_path().('/google-map-json/japan-cities_5percent.json');
+    // $json = file_get_contents($path);
+    // $obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $json), true );
     
-    foreach($obj as $key => $value){
-        $jsons = $value;
+    // foreach($obj as $key => $value){
+    //     $jsons = $value;
         
-    }
-    return response()->json($jsons);
+    // }
+    // return response()->json($jsons);
+    return "Testing";
     
     }
 

@@ -196,6 +196,7 @@ class NursingProfileController extends Controller
         $customer->email = $request[0]['email'];
         $customer->phone = $request[0]['phone'];
         $customer->address = $request[0]['address'];
+        $customer->townships_id = $request[0]['township'];
 
         $customer->save();
     }
@@ -242,5 +243,26 @@ class NursingProfileController extends Controller
             } 
         }
 
+    }
+    public function getCities($township_id) {
+
+        $query = "SELECT townships.city_id,'' AS township_list FROM townships WHERE id = $township_id";
+        $cities = DB::select($query);
+        // $cId = $cities[0]['city_id'];
+        foreach($cities as $city){
+            $cId = $city->city_id;
+            $c_query = "SELECT townships.id,townships.township_name FROM townships WHERE city_id = $cId";
+            $townships = DB::select($c_query);
+            $city->township_list = $townships;
+        }
+        return $cities;
+        // return $cities;
+    }
+    public function getTownships($city_id) {
+        $query = "SELECT townships.id,townships.township_name FROM townships WHERE townships.city_id = $city_id";
+        $township_list = DB::select($query);
+        $c_query = "SELECT cities.latitude, cities.longitude FROM cities WHERE cities.id = $city_id";
+        $coordinate = DB::select($c_query);
+        return response()->json(array("townships"=>$township_list,"coordinate"=>$coordinate));
     }
 }
