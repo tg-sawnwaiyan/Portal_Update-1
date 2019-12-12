@@ -60,7 +60,7 @@
         </div>
         <!--end panorama-->
 
-            <div class="col-12 col-lg-12 col-md-10 tab typelabel nav-link fixed-nav" v-bind:style="{width:width}">
+            <div class="tab typelabel nav-link fixed-nav" v-bind:style="{width:width}">
             <!-- <div class="row col-12 m-t-10">
                 <h5 style="color:#000" class="h_4 header font15rem font-weight-bold">ひだまりこころクリニック　サンシャインサカエ院</h5>
             </div> -->
@@ -97,8 +97,10 @@
             <div class="row m-lr-0 ele pt-2"   id="element1">
                  <div class="row col-12 list-wrap m-lr-0 white-bg-color" v-for="cust in customer" :key="cust.id">
                     <!--for slideimage-->
-                    <div class="col-md-5 detail_profile_left">
-
+                    <div class="col-md-5 detail_profile_left col-slg-12">
+                           <div class="col-12 pad-free sp-1024">
+                                <h5 class="profile_header">介護情報</h5>
+                            </div>
                            <div class="thumbnail-img">
 
                              <div class="card-carousel">
@@ -148,15 +150,15 @@
 
                     <!--end for slide image-->
                     <!--for address-->
-                     <div class="col-md-7 detail_profile_right">
+                     <div class="col-md-7 detail_profile_right col-slg-12">
                         <div class="row m-lr-0 pro-heading">
-                             <div class="col-12 pad-free">
+                             <div class="col-12 pad-free pc-1024">
                                 <h5 class="profile_header">介護情報</h5>
                              </div>
                              <!-- <div class="col-12">
                                  <h5 class="h_4 font15rem font-weight-bold">{{customer[0].name}}</h5>
                              </div> -->
-                            <table class="table table-bordered">
+                            <table class="table table-bordered info_tbl">
                                     <tbody>
                                         <tr>
                                             <th width="200" class="custom-bg-color">
@@ -270,7 +272,7 @@
 
                     <div class="col-12">
 
-                        <table class="table table-striped table-bordered" v-for="nusmethod in nus_method" :key="nusmethod.id">
+                        <table class="table table-striped table-bordered payment-tbl" v-for="nusmethod in nus_method" :key="nusmethod.id">
 
                             <tr>
 
@@ -440,13 +442,13 @@
                     <h5 class="profile_header col-md-12"> 施設の概要</h5>
                     <div v-for="nus in nusfacilities" :key="nus.id" class="col-md-12" >
 
-                        <table border="1" class="table table-bordered cost_table">
+                        <table border="1" class="table table-bordered cost_table facility_tbl">
 
                             <tbody>
 
                                 <tr>
 
-                                <td width="250" class="custom-bg-color"> 事業主体</td>
+                                <th custom-bg-color> 事業主体</th>
 
                                 <td v-if="nus.business_entity">{{nus.business_entity}}</td>
                                 <td v-else>-</td>
@@ -455,7 +457,7 @@
 
                             <tr>
 
-                                <td width="250" class="custom-bg-color">開設年月日</td>
+                                <th custom-bg-color>開設年月日</th>
 
                                 <td v-if="nus.date_of_establishment">{{nus.date_of_establishment}}</td>
                                 <td v-else>-</td>
@@ -464,7 +466,7 @@
 
                             <tr>
 
-                                <td width="250" class="custom-bg-color"> 土地の権利形態 </td>
+                                <th custom-bg-color> 土地の権利形態 </th>
 
                                 <td v-if="nus.land_right_form">{{nus.land_right_form}}</td>
                                 <td v-else>-</td>
@@ -473,7 +475,7 @@
 
                             <tr>
 
-                                <td width="250" class="custom-bg-color">建物の権利形態</td>
+                                <th custom-bg-color>建物の権利形態</th>
 
                                 <td v-if="nus.building_right_form">{{nus.building_right_form}}</td>
                                 <td v-else>-</td>
@@ -482,7 +484,7 @@
 
                             <tr>
 
-                                <td width="250" class="custom-bg-color">敷地面積</td>
+                                <th custom-bg-color>敷地面積</th>
 
                                 <td v-if="nus.site_area">{{nus.site_area}}</td>
                                 <td v-else>-</td>
@@ -491,7 +493,7 @@
 
                             <tr>
 
-                                <td width="250" class="custom-bg-color">延床面積</td>
+                                <th custom-bg-color>延床面積</th>
 
                                 <td v-if="nus.floor_area">{{nus.floor_area}}</td>
                                 <td v-else>-</td>
@@ -500,7 +502,7 @@
 
                             <tr>
 
-                                <td width="250" class="custom-bg-color">構造</td>
+                                <th custom-bg-color>構造</th>
 
                                 <td v-if="nus.construction">{{nus.construction}}</td>
                                 <td v-else>-</td>
@@ -509,7 +511,7 @@
 
                             <tr>
 
-                                <td width="250" class="custom-bg-color">定員</td>
+                                <th custom-bg-color>定員</th>
 
                                 <td v-if="nus.capacity">{{nus.capacity}}</td>
                                 <td v-else>-</td>
@@ -518,7 +520,7 @@
 
                             <tr>
 
-                                <td width="250" class="custom-bg-color">総居室・戸数 </td>
+                                <th custom-bg-color>総居室・戸数 </th>
 
                                 <td v-if="nus.num_rooms">{{nus.num_rooms}}</td>
                                 <td v-else>-</td>
@@ -527,7 +529,7 @@
 
                             <tr>
 
-                                <td width="250" class="custom-bg-color">居住の権利形態 </td>
+                                <th custom-bg-color>居住の権利形態 </th>
 
                                 <td v-if="nus.residence_form"><p v-html="nus.residence_form"></p></td>
                                 <td v-else>-</td>
@@ -536,7 +538,7 @@
 
                             <tr>
 
-                                <td width="250" class="custom-bg-color">類型 </td>
+                                <th custom-bg-color>類型 </th>
 
                                 <td v-if="nus.fac_type">{{nus.fac_type}}</td>
                                 <td v-else>-</td>
@@ -545,7 +547,7 @@
 
                             <tr>
 
-                                <td width="250" class="custom-bg-color">入居条件</td>
+                                <th custom-bg-color>入居条件</th>
 
                                 <td v-if="nus.occupancy_condition">{{nus.occupancy_condition}}</td>
                                 <td v-else>-</td>
@@ -554,7 +556,7 @@
 
                             <tr>
 
-                                <td width="250" class="custom-bg-color">居室区分・間取り等 </td>
+                                <th custom-bg-color>居室区分・間取り等 </th>
 
                                 <td v-if="nus.room_floor">{{nus.room_floor}}</td>
                                 <td v-else>-</td>
@@ -563,7 +565,7 @@
 
                             <tr>
 
-                                <td width="250" class="custom-bg-color"> 居室設備</td>
+                                <th custom-bg-color> 居室設備</th>
 
                                 <td v-if="nus.living_room_facilities">{{nus.living_room_facilities}}</td>
                                 <td v-else>-</td>
@@ -572,7 +574,7 @@
 
                             <tr>
 
-                                <td width="250" class="custom-bg-color">共用施設・設備 </td>
+                                <th custom-bg-color>共用施設・設備 </th>
 
                                 <td v-if="nus.equipment">{{nus.equipment}}</td>
                                 <td v-else>-</td>
@@ -588,7 +590,7 @@
                     <div class="col-md-12">
                         <h5 class="profile_subtit">フォトアルバム</h5>
                         <div class="row gallery-list m-0">
-                            <div v-for="(image,index) in  light_images" :key="index" class="col-sm-4 col-md-4 col-lg-3 m-b-10 gallery-item">
+                            <div v-for="(image,index) in  light_images" :key="index" class="col-md-4 col-lg-3 m-b-10 gallery-item">
                                     <img  :src ="'/upload/nursing_profile/' + image.name"  class="img-fluid" @click="showLightbox(image.name)" @error="imgUrlAlt" >
                                     <span>{{image.title}}</span><br>
 
@@ -601,7 +603,7 @@
                     <div class="col-md-12  m-b-15">
                         <h5 class="profile_subtit">動画</h5>
                         <span v-if="videos == ''">
-                            <div class="col-sm-4 col-md-4 col-lg-3"> <p class="no-data-color">表示されるデータがありません。</p> </div>
+                            <div class="col-12"> <p class="no-data-color">表示されるデータがありません。</p> </div>
                         </span>
                         <span v-else>
                             <div v-for="(video) in  videos" :key="video.id" class="col-sm-4 col-md-4 col-lg-3">
@@ -650,15 +652,15 @@
 
                                 </div>
                         </div>
-                        <div class="col-md-12" v-else> <p class="no-data-color">表示されるデータがありません。</p> </div>
+                        <div class="col-12" v-else> <p class="no-data-color">表示されるデータがありません。</p> </div>
                     </div>
 
                     <div class="col-12">
                         <h5 class="profile_subtit"> 医療面の受入れ</h5>
-                        <div class="row col-12">
-                            <div v-for="maccept in medical_acceptance" :key="maccept.id" class="col-md-4" >
-                                <div class="col-md-12 accept-box">
-                                    <div class="float-left" v-for="(ma,index) in medical" :key="index" style="padding-right:20px;">
+                        <div class="row col-12" style="margin: 0 auto;">
+                            <div v-for="maccept in medical_acceptance" :key="maccept.id" class="col-md-4 col-sm-6 p-0" >
+                                <div class="accept-box">
+                                    <div class="float-left" v-for="(ma,index) in medical" :key="index" style="padding-right:10px;">
                                         <i v-if="ma.name === maccept.name && ma.accept_type === 'accept'" class="fas fa-check green"></i>
                                         <i v-if="ma.name === maccept.name && ma.accept_type === 'unaccept'" class="fas fa-times red"></i>
                                         <i v-if="ma.name === maccept.name && ma.accept_type === 'negotiate'" class="fas fa-adjust blue"></i>
@@ -680,7 +682,7 @@
 
                             <div v-for="st in staff" :key="st.id" class="col-md-12" >
 
-                                <table border="1" class="table table-bordered">
+                                <table border="1" class="table table-bordered staff_tbl">
 
                                     <tbody>
 
@@ -715,7 +717,7 @@
                             </div>
 
                         </div>
-                        <div v-else class="col-md-12"> <p class="no-data-color">表示されるデータがありません。</p> </div>
+                        <div v-else class="col-12"> <p class="no-data-color">表示されるデータがありません。</p> </div>
 
                     </div>
 
@@ -906,7 +908,7 @@
                 </div>
             </div>
             <!--end panorama-->
-           <div class="col-12 col-lg-12 col-md-10 tab typelabel nav-link fixed-nav" v-bind:style="{width:width}">
+           <div class="tab typelabel nav-link fixed-nav" v-bind:style="{width:width}">
                 <!-- <div class="row col-12 m-t-10">
                      <h5 style="color:#000" class="h_4 header font15rem font-weight-bold">ひだまりこころクリニック　サンシャインサカエ院</h5>
                 </div> -->
@@ -936,7 +938,7 @@
                 <!-- ee-->
                  <div class="row col-12 list-wrap m-lr-0 white-bg-color" v-for="cust in customer" :key="cust.id">
                     <!--for slideimage-->
-                    <div class="col-md-5 col-sm-12 detail_profile_left">
+                    <div class="col-md-5 col-slg-12 col-sm-12 detail_profile_left">
 
                            <div class="thumbnail-img">
 
@@ -1009,7 +1011,7 @@
                     <!--for address-->
 
 
-                     <div class="col-md-7 col-sm-12 detail_profile_right">
+                     <div class="col-md-7 col-sm-12 detail_profile_right col-slg-12">
 
                         <div class="row m-lr-0">
                             <div class="col-12 pro-heading pad-free">
@@ -1105,7 +1107,7 @@
                                 <li>{{sub.name}}</li>
                             </ul>
                         </div>
-                        <div class='row col-md-12' v-else> <p class="no-data-color">表示されるデータがありません。</p> </div>
+                        <div class='row col-12' v-else> <p class="no-data-color">表示されるデータがありません。</p> </div>
                     </div>
                     <!--end for address-->
                 </div>
@@ -1270,7 +1272,7 @@
             <div class="col-md-12">
                 <h5 class="profile_subtit">フォトアルバム</h5>
                 <div class="row m-0 gallery-list">
-                    <div v-for="(image,index) in  light_images" :key="index" class="col-sm-4 col-md-4 col-lg-3 m-b-10 gallery-item">
+                    <div v-for="(image,index) in  light_images" :key="index" class="col-sm-12 col-md-4 col-lg-3 m-b-10 gallery-item">
                         <img  :src ="'/upload/hospital_profile/' + image.name"  class="img-fluid" @click="showLightbox(image.name)" @error="imgUrlAlt" >
                         <span style="color:orange;font-weight:bold;">{{image.title}}</span><br>
 
@@ -1290,7 +1292,7 @@
                         </div>
                     </div>
                     <div class="row m-0" v-else>
-                        <div class="col-sm-4 col-md-4 col-lg-3">
+                        <div class="col-12">
                             <span> <p class="no-data-color">表示されるデータがありません。</p> </span>
                         </div>
                     </div>
