@@ -17,6 +17,7 @@
                         </div>                        
                     </div>
                 </div>
+                <div class="error" id="radioerror" style="margin-bottom: 6px;margin-left: 210px;" v-if="errors !=''">{{errors}}</div>
 
                 <div class="alert alert-danger" v-if="has_error && !success">
                     <p v-if="error == 'registration_validation_error'">Validation error (s), please consult the message (s) below.</p>
@@ -33,7 +34,7 @@
                             <span class="input-group-text"><i class="fas fa-image"></i></span>
                         </div>
                         <span class="btn all-btn choose-btn" style="color: #a93f0c!important;box-shadow:none!important;" @click="choosefile()">Choose</span> <span id="imgname" style = "padding: 8px 0 0 30px;"></span>
-                        <input type="file" class="inputfile" @change="onFileChange"/>
+                        <input type="file" class="inputfile" name="img" required @change="onFileChange"/>
                         <!-- <input type="file" accept="image/*" @change="showMyImage(this)" name="img" id="file" ref="file" class="form-control inputfile"> -->
                     </div>
                     <div class="input-group mb-3">
@@ -151,7 +152,7 @@
         password_confirmation: '',
         has_error: false,
         error: '',
-        errors: {},
+        errors: '',
         success: false,
         show: true,
         url: '',
@@ -251,7 +252,8 @@
             //this.$router.push({name: 'login', params: {successRegistrationRedirect: true}})
         }).catch(error=>{
             if(error.response.status == 422){
-                app.errors = error.response.data.errors
+                app.errors = error.response.data.message
+                console.log(app.errors);
           }});
       }
 
