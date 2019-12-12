@@ -13,7 +13,7 @@
           <div class="row map-wrap">
 
           <!-- free word left wrapper--->
-            <div class="col-lg-5 col-md-12 col-sm-12 float-left p-l-75 leftwrapper">
+            <div class="col-lg-5 col-md-12 col-sm-12 float-left map-leftwrapper">
               <!-- <h2 class="map-header" style="bottom: 184px;">老人ホームや病院<br/>で働きたいあなた<br/>の希望叶えます。</h2> -->
               <h2 class="map-header" style="bottom: 120px;">あなたのやさしい<br/>手を求めてる老人<br/>ホーム・病院が見<br/>つかります。</h2>
 
@@ -660,8 +660,8 @@
               </tbody>
             </table>
             </div>
-             <div>
-                <div class="row">
+             <div class="col-12">
+                <div class="row pad-free">
                    <div id="job_detail" class="col-md-6 col-sm-12" style="margin-top:20px;" v-for="(job,index) in displayItems" :key="index+'-'+job.title+'-'+job.jobid">
                      <div class="job-content">
                       <div class="job-header">
