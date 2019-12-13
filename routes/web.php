@@ -12,11 +12,13 @@
 */
 
 
+
+
+
+// Auth::routes();
 Route::get('/{any?}', ['middleware'=>'cors',function(){
-    return view('app');
+
+     return view('app');
 }])->where('any', '^(?!api\/)[\/\w\.-]*');
 
-// Route::get('/', function() {
-//     Artisan::call('cache:clear');
-//     return "Cache is cleared";
-// });
+

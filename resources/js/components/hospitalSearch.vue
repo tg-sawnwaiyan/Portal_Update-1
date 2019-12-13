@@ -175,7 +175,7 @@
                       <ul class="multiple-boxa">
 
                         <a data-info="Osaka" class="path Osaka card-text" @click="getStateClick">
-                            <li class="spanclass" id="27" @click="selected = 27" :class="{highlight:selected == 27}">大阪府</li>
+                            <li class="spanclass" id="27" @click="selected = 27" :class="{highlight:selected == 27}">大阪</li>
                         </a>
 
                         <a data-info="Hyogo" class="path Hyogo card-text" @click="getStateClick">
@@ -183,7 +183,7 @@
                         </a>
 
                         <a data-info="Kyoto" class="path Kyoto card-text" @click="getStateClick">
-                            <li class="spanclass"  id="26" @click="selected = 26" :class="{highlight:selected == 26}">京都府</li>
+                            <li class="spanclass"  id="26" @click="selected = 26" :class="{highlight:selected == 26}">京都</li>
                         </a>
 
                         <a data-info="Nara" class="path Nara card-text" @click="getStateClick">
@@ -307,7 +307,7 @@
                     <div class="division-box">
                       <ul class="">
                           <a data-info="Okinawa" class="path Okinawa card-text" @click="getStateClick">
-                              <li class="spanclass" id="47" @click="selected = 47" :class="{highlight:selected == 47}">沖縄県</li>
+                              <li class="spanclass" id="47" @click="selected = 47" :class="{highlight:selected == 47}">沖縄</li>
                         </a>
                       </ul>
                     </div>
