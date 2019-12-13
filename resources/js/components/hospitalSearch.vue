@@ -808,7 +808,8 @@
                     fav_arr.push(index);
                     fav_arr = [...new Set(fav_arr)];
                     localStorage.setItem("hospital_fav", fav_arr);
-                    $("#hos-fav-local").html(fav_arr.length);
+                    // $("#hos-fav-local").html(fav_arr.length);
+                    this.hosFav = fav_arr.length;
                 }
                 else{
                 
@@ -816,7 +817,8 @@
                     console.log(fav_arr);
                     localStorage.setItem("hospital_fav", fav_arr);
                     
-                    $("#hos-fav-local").html(fav_arr.length);
+                    // $("#hos-fav-local").html(fav_arr.length);
+                    this.hosFav = fav_arr.length;
                 }
                 console.log('local');
                     console.log(localStorage.getItem("hospital_fav"));
@@ -832,7 +834,8 @@
                     fav_arr.splice(index, 1);
                     localStorage.setItem("hospital_fav", fav_arr);
                 }
-                $("#hos-fav-local").html(fav_arr.length);
+                // $("#hos-fav-local").html(fav_arr.length);
+                this.hosFav = fav_arr.length;
 
                 if(fav_arr.length == 0){
                     $(".fav-hospital-link-box>a").css({'cursor':'not-allowed','pointer-events':'none'})

@@ -1669,13 +1669,10 @@ search(){
         imgUrlAlt(event) {
             event.target.src = "images/noimage.jpg"
         },
-        favAddFun(status,index,ind){
-         
+        
+        favAddFun(status,index,ind){      
         
             if(status == 'add'){
-               alert(status);
-
-                console.log('add');
                   this.nus_data[ind].fav_check = 'check';
 
                 if(localStorage.getItem("nursing_fav")){
@@ -1683,17 +1680,19 @@ search(){
                     fav_arr.push(index);
                     fav_arr = [...new Set(fav_arr)];
                     localStorage.setItem("nursing_fav", fav_arr);
-                    $("#nus-fav-local").html(fav_arr.length);
+                    // $("#nus-fav-local").html(fav_arr.length);
+                    this.nusFav = fav_arr.length;
                 }
                 else{
                     var fav_arr = [index];
                     localStorage.setItem("nursing_fav", fav_arr);
-                    $("#nus-fav-local").html(fav_arr.length);
+                    // $("#nus-fav-local").html(fav_arr.length);
+                    this.nusFav = fav_arr.length;
                 }
                 $(".fav-nursing-link-box>a").css({'cursor':'pointer','pointer-events':'auto'});
             }
             else{
-                 alert(status);
+                //  alert(status);
                 this.nus_data[ind].fav_check = '';
 
                 var fav_arr = JSON.parse("[" + localStorage.getItem("nursing_fav") + "]");
@@ -1702,7 +1701,8 @@ search(){
                     fav_arr.splice(index, 1);
                     localStorage.setItem("nursing_fav", fav_arr);
                 }
-                $("#nus-fav-local").html(fav_arr.length);
+                // $("#nus-fav-local").html(fav_arr.length);
+                this.nusFav = fav_arr.length;
 
                 if(fav_arr.length == 0){
                     $(".fav-nursing-link-box>a").css({'cursor':'not-allowed','pointer-events':'none'})

@@ -384,7 +384,8 @@ export default {
             var index = l_sto_arr.indexOf(rm_id);
             if (index > -1) {
                 l_sto_arr.splice(index, 1);
-                $("#nus-his-local").html(l_sto_arr.length);
+                // $("#nus-his-local").html(l_sto_arr.length);
+                this.nusHis = l_sto_arr.length;
                 if(l_sto_arr.length == 0){
                     $('.his-nursing-link-box>a').css({'cursor':'not-allowed','pointer-events':'none'})
                 }
