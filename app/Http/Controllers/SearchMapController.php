@@ -799,20 +799,21 @@ class SearchMapController extends Controller
         return true;
     }
 
-    public function cityJson()
-    {
-        $handle = public_path().('/google-map-json/jp_cities.json');
-        $file = File::files($handle);
-        $files = File::allFiles(public_path());
+    public function cityJson($theCity)
+    {   
+        $handle = public_path('google-map-json\\jp_cities.json');
+        // $file = File::allFiles($handle);
+        // $files = File::allFiles(public_path());
         // $path = public_path().('/google-map-json/jp_cities.json');
         // $json = file_get_contents($path);
-        // $obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $json), true );
-        return response()->json($file);
-        // foreach($obj as $key => $value){
-        //     $json = $value;
-            
-        // }
+        $obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $handle), true );
+        // dd($file);
         
+        foreach($obj as $key => $value){
+            $json = $value;
+            
+        }
+        return response()->json($json);
     }
 
     public function townshipJson()

@@ -1229,7 +1229,7 @@ var township_name = townshipName;
 
         if(this.townshipID == 0){
 
-            this.axios.get("/api/cityJson").then(respon => {
+            this.axios.get("/api/cityJson/"+theCity).then(respon => {
                     var res = respon.data
                     this.loading = false
                   for (var i = 0; i < res.length; i++) {

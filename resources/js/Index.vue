@@ -189,9 +189,9 @@
       asideMenu
     }, 
     mounted(){
-        this.axios.get('/api/auth/user').then(res=>{
-            console.log(res)            
-        })
+        // this.axios.get('/api/auth/user').then(res=>{
+        //     console.log(res)            
+        // })
 
         if(localStorage.getItem("hospital_history")){
             // $("#hos-his-local").html(localStorage.getItem("hospital_history").split(",").length);
