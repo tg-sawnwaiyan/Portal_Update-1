@@ -40,7 +40,7 @@
                                             <img :src="'/upload/advertisement/'+ ads.photo" class="img-fluid" alt="ads" @error="imgUrlAlt" />
                                         </div>
                                         <div class="row col-md-10">
-                                            <div class="col-md-2 max-width16">
+                                            <div class="col-md-2 max-width20">
                                                 <strong>タイトル :</strong>
                                             </div>
                                             <div class="col-md-10">{{ads.title}}</div>
@@ -58,7 +58,7 @@
                                 </div>
                             </div>
                         </div>
-                    
+
                         <div class="offset-md-4 col-md-8 mt-3" v-if="pagination">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination">
