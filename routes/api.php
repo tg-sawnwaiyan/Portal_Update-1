@@ -14,6 +14,10 @@ use App\HospitalProfile;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+// Route::get('/user', function (Request $request) {
+//     $user = $request->user();
+//    return $request;
+// })->middleware('auth:api');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {  
     if($request->user()->type_id == 2){

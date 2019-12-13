@@ -125,7 +125,7 @@
                     <router-link to="/favouriteNursing">
                     <i class="fa fa-chevron-circle-right is-nur"></i>
                     <span style="color:#d2571c;">
-                    介護&nbsp;<span id="nus-fav-local"></span>&nbsp;<span style="color:#000;">件</span>
+                    介護&nbsp;<span id="nus-fav-local" ref="nus_fav_local"></span>&nbsp;<span style="color:#000;">件</span>
                     </span>
                     </router-link>
                 </div>
@@ -166,13 +166,22 @@
         <router-view :key="$route.fullPath"></router-view>
     </div>
 </template>
+
+
+
+
+
+
+
+
+
 <script>
   import HeaderMenu from './components/menu/Menu.vue'
   import asideMenu from './components/menu/asideMenu.vue'
   export default {
     data() {
       return {
-      
+        nursing_fav:'',
       }
     },
     components: {
@@ -180,10 +189,10 @@
       asideMenu
     }, 
     mounted(){
-        this.axios.get('/api/auth/user').then(res=>{
-            console.log(res)
-        })
+
+
     },
+    
     methods: {
         menuToggle(){
             $("#admin-side-menu").toggle('medium');

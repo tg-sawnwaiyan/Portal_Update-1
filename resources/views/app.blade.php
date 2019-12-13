@@ -5,6 +5,7 @@
 
 <!-- CSRF Token -->
 <meta name="csrf-token" content="{{ csrf_token() }}">
+<meta name="user" content="Auth::user()">
 <title>{{ config('app.name', 'Healthcare Portal') }}</title>
 <script src="{{ asset('js/app.js') }}" defer></script>
 <script src="{{ asset('js/myJs.js') }}" defer></script>
@@ -81,6 +82,7 @@
         border-color: #fbaa84;
     }
 </style>
+
 </head>
 <body>
 <div id="app">
@@ -129,6 +131,7 @@
             </div>
         </li>
     </ul>
+
   <index ></index>
 </div>
 
@@ -150,6 +153,7 @@
 <script src="{{ asset('js/adsslider.js') }}" type="text/javascript"></script>
 
 <script type="text/javascript">
+
 
  $(document).ready(function() {
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Customer;
 use DB;
 use Storage;
+use File;
 class SearchMapController extends Controller
 {
     public function getMap()
@@ -64,7 +65,7 @@ class SearchMapController extends Controller
             }
 
             $query .= " group by c.id order BY n.id ASC LIMIT 26";
-
+    
 
           $nursing_profile = DB::select($query);
 
@@ -741,17 +742,45 @@ class SearchMapController extends Controller
         return response()->json($getTownships);
     }
 
+
+    function file_get_contents_chunked($file,$chunk_size,$callback)
+    {
+        try
+        {
+            $handle = fopen($file, "r");
+            $i = 0;
+            while (!feof($handle))
+            {
+                call_user_func_array($callback,array(fread($handle,$chunk_size),&$handle,$i));
+                $i++;
+            }
+    
+            fclose($handle);
+    
+        }
+        catch(Exception $e)
+        {
+             trigger_error("file_get_contents_chunked::" . $e->getMessage(),E_USER_NOTICE);
+             return false;
+        }
+    
+        return true;
+    }
+
     public function cityJson()
     {
-        $path = public_path().('/google-map-json/jp_cities.json');
-        $json = file_get_contents($path);
-        $obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $json), true );
-        
-        foreach($obj as $key => $value){
-            $json = $value;
+        $handle = public_path().('/google-map-json/jp_cities.json');
+        $file = File::files($handle);
+        $files = File::allFiles(public_path());
+        // $path = public_path().('/google-map-json/jp_cities.json');
+        // $json = file_get_contents($path);
+        // $obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $json), true );
+        return response()->json($file);
+        // foreach($obj as $key => $value){
+        //     $json = $value;
             
-        }
-        return response()->json($json);
+        // }
+        
     }
 
     public function townshipJson()
