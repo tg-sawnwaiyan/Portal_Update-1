@@ -4817,10 +4817,10 @@ a:hover {
 .custom-sidebar {
     /* height: 100vh;*/
     /* background: #b7dad2;  */
-    position: absolute;
+    /* position: absolute;
     z-index: 2;
     display: none;
-    left: 0px;
+    left: 0px; */
 }
 
 #menu-overlay {

@@ -63,7 +63,7 @@
         menuToggle(){
             $("#admin-side-menu").toggle('medium');
             $("#menu-overlay").toggle('medium');
-        },
+        }
     }
 
   }
