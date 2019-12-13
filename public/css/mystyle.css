@@ -2796,8 +2796,40 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
     border-right: 1px solid #63b7ff !important;
 }
 
+.cost_table th,
+.map_tbl th {
+    width: 250px;
+}
+
+.cost_table td,
+.map_tbl td {
+    width: calc(100% - 250px);
+}
+
+.info_tbl th {
+    width: 200px;
+}
+
+.payment-tbl th {
+    width: 30%;
+}
+
+.payment-tbl td {
+    width: 70%;
+}
+
 .facility_tbl th {
     width: 250px;
+}
+
+.staff_tbl th {
+    width: 350px;
+    font-weight: normal;
+}
+
+.staff_tbl td {
+    width: 500px;
+    font-weight: normal;
 }
 
 
@@ -9024,7 +9056,7 @@ ul.nur-caro-card>li.list-group-item {
 
 @media only screen and (max-width: 480px) {
     /* profile publish */
-    .info_tbl th,
+    /* .info_tbl th,
     .info_tbl td,
     .staff_tbl th,
     .staff_tbl td,
@@ -9035,9 +9067,60 @@ ul.nur-caro-card>li.list-group-item {
         width: 100%;
         display: block;
         border: none !important;
+    } */
+    .info_tbl th {
+        width: 90px;
+    }
+    .cash-lbl {
+        font-size: 1.4em;
+    }
+    .facility_tbl th {
+        width: 80px;
     }
     .gallery-list .gallery-item {
         width: 50%;
+    }
+    .main-cost-wrap {
+        width: 330px;
+        overflow-x: scroll;
+    }
+    .main-cost-table {
+        width: 550px !important;
+        float: none !important;
+    }
+    .changeLink {
+        font-size: 12px;
+    }
+    .staff_tbl tr,
+    .moving-in_tbl tr {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        border-bottom: 0;
+    }
+    .staff_tbl th,
+    .moving-in_tbl th {
+        width: 100px;
+    }
+    .staff_tbl td,
+    .moving-in_tbl td {
+        width: calc(100% - 100px);
+    }
+    .cost_table th,
+    .map_tbl th {
+        width: 100px;
+    }
+    .cost_table td,
+    .map_tbl td {
+        width: calc(100% - 100px);
+    }
+    #googlemap {
+        min-height: 200px;
     }
     /*End  profile publish */
 }

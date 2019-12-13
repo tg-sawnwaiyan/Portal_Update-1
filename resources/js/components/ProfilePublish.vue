@@ -161,7 +161,7 @@
                             <table class="table table-bordered info_tbl">
                                     <tbody>
                                         <tr>
-                                            <th width="200" class="custom-bg-color">
+                                            <th  class="custom-bg-color">
                                                 <font>入居時費用</font>
                                             </th>
                                             <td>
@@ -173,7 +173,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th width="200" class="custom-bg-color">
+                                            <th  class="custom-bg-color">
                                                 <font>月額費用</font>
                                             </th>
                                             <td>
@@ -185,7 +185,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th width="200" class="custom-bg-color">
+                                            <th  class="custom-bg-color">
                                                 <font>住所</font>
                                             </th>
                                             <td>
@@ -193,7 +193,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th width="200" class="custom-bg-color">
+                                            <th  class="custom-bg-color">
                                                 <font>電話番号</font>
                                             </th>
                                             <td>
@@ -201,7 +201,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th width="200" class="custom-bg-color">
+                                            <th  class="custom-bg-color">
                                                 <font>アクセス　</font>
                                             </th>
                                             <td v-if="cust.access">
@@ -210,7 +210,7 @@
                                             <td v-else> - </td>
                                         </tr>
                                         <!-- <tr>
-                                            <th width="200" class="custom-bg-color">
+                                            <th  class="custom-bg-color">
                                                 <font>駅</font>
                                             </th>
                                             <td>
@@ -276,13 +276,13 @@
 
                             <tr>
 
-                                <th width="30%" class="custom-bg-color">
+                                <th class="custom-bg-color">
 
                                     <font>支払方法</font>
 
                                 </th>
 
-                                <td width="50%" v-if="nusmethod.method">
+                                <td v-if="nusmethod.method">
 
                                     <font>{{nusmethod.method}}</font>
 
@@ -298,7 +298,7 @@
                     <div v-if="method_payment.length > 0" class="col-md-12">
                         <div class="cost_tb">
                             <div class="row" >
-                                <div class="col-md-12" >
+                                <div class="col-md-12  main-cost-wrap">
 
                                     <table class="table table-bordered cost_table main-cost-table">
 
@@ -342,12 +342,12 @@
                                     <label class="cost_heading_lbl m-b-15">{{cost.payment_name}}</label>
                                     <div class="col-md-12">
                                         <label class="cost_heading_lbl_mini"><i class="fas fa-yen-sign"></i> 入居にかかる費用</label>
-                                        <table id="costDetails" class="table table-condensed cost_table">
+                                        <table id="costDetails" class="table table-condensed cost_table moving-in_tbl">
                                             <tbody>
                                                 <tr>
-                                                    <th width="300">入居一時金または</th>
+                                                    <th>入居一時金または</th>
                                                     <td><span class="cash-lbl-mini">{{cost.deposit}}</span></td>
-                                                    <th width="300">その他（使途）</th>
+                                                    <th>その他（使途）</th>
                                                     <td>{{cost.other_use}}</td>
                                                 </tr>
                                             </tbody>
@@ -360,7 +360,7 @@
                                             <tbody>
 
                                                 <tr>
-                                                    <th width="300">賃料</th>
+                                                    <th>賃料</th>
                                                     <td><span class="cash-lbl-mini">{{cost.rent}}</span></td>
                                                 </tr>
 
@@ -396,7 +396,7 @@
 
                                                 <tr>
 
-                                                    <th width="300">返還制度</th>
+                                                    <th>返還制度</th>
 
                                                     <td>{{cost.refund_system}}</td>
 
@@ -688,25 +688,25 @@
 
                                         <tr>
 
-                                            <td width="350" class="custom-bg-color"> 介護に関わる職員体制（入居者：職員）</td>
+                                            <th class="custom-bg-color"> 介護に関わる職員体制（入居者：職員）</th>
 
-                                            <td width="500">{{st.staff}}</td>
+                                            <td>{{st.staff}}</td>
 
-                                            <td width="350" class="custom-bg-color"> 介護職員    </td>
+                                            <th class="custom-bg-color"> 介護職員    </th>
 
-                                            <td width="500">{{st.nursing_staff}}</td>
+                                            <td>{{st.nursing_staff}}</td>
 
                                         </tr>
 
                                         <tr>
 
-                                            <td width="350" class="custom-bg-color"> 夜間の最少職員数   </td>
+                                            <th class="custom-bg-color"> 夜間の最少職員数   </th>
 
-                                            <td width="500">{{st.min_num_staff}}</td>
+                                            <td>{{st.min_num_staff}}</td>
 
-                                            <td width="350" class="custom-bg-color">     看護職員数     </td>
+                                            <th class="custom-bg-color">     看護職員数     </th>
 
-                                            <td width="500">{{st.num_staff}}</td>
+                                            <td>{{st.num_staff}}</td>
 
                                         </tr>
 
@@ -736,18 +736,18 @@
                            </GmapMap>
 
                             <div class="m-t-20"  v-for="m in google" :key="m.id" >
-                                <table border="1" class="table table-bordered">
+                                <table border="1" class="table table-bordered map_tbl">
                                     <tbody>
                                     <tr>
-                                        <td width="250" class="custom-bg-color"> 公式サイト</td>
+                                        <th class="custom-bg-color"> 公式サイト</th>
                                         <td v-if="m.website">{{m.website}}</td> <td v-else> - </td>
                                     </tr>
                                     <tr>
-                                        <td width="250" class="custom-bg-color"> アクセス</td>
+                                        <th class="custom-bg-color"> アクセス</th>
                                         <td v-if="m.access"><p v-html="m.access"></p></td> <td v-else> - </td>
                                     </tr>
                                     <tr>
-                                        <td width="250" class="custom-bg-color">住所 </td>
+                                        <th class="custom-bg-color">住所 </th>
                                         <td v-if="m.address">{{m.address}}</td> <td v-else> - </td>
                                     </tr>
                                     </tbody>
