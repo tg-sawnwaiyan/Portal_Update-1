@@ -129,8 +129,10 @@ export default {
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
                             }).then(response =>{
+                                this.$loading(true);
                                    this.axios.post('/api/subjects/add', this.Subject)
                         .then(response => {
+                            this.$loading(false);
                             this.name = ''
                             console.log(response);
                             this.$swal({

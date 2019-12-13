@@ -243,8 +243,10 @@
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
                         }).then(response => {
+                            this.$loading(true);
                             this.axios.get(`/api/comments/confirm/${id}`)
                                 .then(response => {
+                                    this.$loading(false);
                                     this.comments = response.data.comments;
                                     this.$swal({
                                             title: "確認済",
