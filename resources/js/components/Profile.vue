@@ -159,12 +159,14 @@ export default {
                     hos_his_arr.push(response.data[0].pro_id);
                     hos_his_arr = [...new Set(hos_his_arr)];
                     localStorage.setItem("hospital_history", hos_his_arr);
-                    $("#hos-his-local").html(hos_his_arr.length);
+                    // $("#hos-his-local").html(hos_his_arr.length);
+                    this.hosHis = hos_his_arr.length;
                 }
                 else{
                     var hos_his_arr = [response.data[0].pro_id];
                     localStorage.setItem("hospital_history", hos_his_arr);
-                    $("#hos-his-local").html(hos_his_arr.length);
+                    // $("#hos-his-local").html(hos_his_arr.length);
+                    this.hosHis = hos_his_arr.length;
                     $('.his-hospital-link-box>a').css({'cursor':'pointer','pointer-events':'auto'});
                 }
                 if(localStorage.getItem("hospital_fav")){
@@ -178,12 +180,14 @@ export default {
                     nus_his_arr.push(response.data[0].pro_id);
                     nus_his_arr = [...new Set(nus_his_arr)];
                     localStorage.setItem("nursing_history", nus_his_arr);
-                    $("#nus-his-local").html(nus_his_arr.length);
+                    // $("#nus-his-local").html(nus_his_arr.length);
+                    this.nusHis = nus_his_arr.length;
                 }
                 else{
                     var nus_his_arr = [response.data[0].pro_id];
                     localStorage.setItem("nursing_history", nus_his_arr);
-                    $("#nus-his-local").html(nus_his_arr.length);
+                    // $("#nus-his-local").html(nus_his_arr.length);
+                    this.nusHis = nus_his_arr.length;
                     $('.his-nursing-link-box>a').css({'cursor':'pointer','pointer-events':'auto'});
                 }
 
