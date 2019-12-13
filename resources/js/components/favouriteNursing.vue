@@ -564,11 +564,12 @@
                         }).then(response => { 
                              var l_sto = this.local_sto;
                             var l_sto_arr = l_sto.split(",");
-                            var rm_id = id.toString();
+                            var rm_id = id.toString(); 
                             var index = l_sto_arr.indexOf(rm_id);
                             if (index > -1) {
                                 l_sto_arr.splice(index, 1);
-                                $("#nus-fav-local").html(l_sto_arr.length);
+                                // $("#nus-fav-local").html(l_sto_arr.length);
+                                this.nusFav = l_sto_arr.length;
                                 if(l_sto_arr.length == 0){
                                     $('.fav-nursing-link-box>a').css({'cursor':'not-allowed','pointer-events':'none'})
                                 }

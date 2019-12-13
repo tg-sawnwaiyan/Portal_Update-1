@@ -232,7 +232,7 @@
 
                          <h5 class="header m-t-10">こだわりの特長</h5>
 
-                        <div class="row m-lr-0">
+                        <div class="row m-lr-0" v-if="specialfeature">
 
                             <ul class="fac_container" v-for="special in specialfeature" :key="special.id">
 
@@ -240,6 +240,10 @@
 
                             </ul>
 
+                        </div>
+
+                        <div class="row m-lr-0" v-else>
+                            <p class="no-data-color">表示されるデータがありません。</p>
                         </div>
 
                     </div>
@@ -255,13 +259,12 @@
                 <h5 class="profile_header">特長 </h5>
 
                     <div  v-for="nurseprofile in nursing_profiles" :key="nurseprofile.id" class="col-md-12">
-                        <p v-html="nurseprofile.feature"></p>
-                        <!-- <div v-if="nurseprofile.features">
+                        <span v-if="nurseprofile.feature != null">
                             <p v-html="nurseprofile.feature"></p>
-                        </div>
-                        <div v-else>
+                        </span>
+                        <span v-else>
                             <p class="no-data-color">表示されるデータがありません。</p>
-                        </div> -->
+                        </span>
                     </div>
 
             </div>
@@ -762,14 +765,7 @@
 
             <div class="row ele m-lr-0" id="element6">
                 <h5 class="profile_header col-12">口コミ</h5>
-                <div class="comment-ico  col-12">
-                    <!-- <a href="/comment">
-                        <i class="far fa-comment"></i>
-                        <span>口コミを追加する</span>
-                    </a> -->
-                    <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comhov"> <i class="far fa-comment"></i>
-                              <span>口コミを追加する</span></router-link>
-                </div>
+                <!-- <div style="min-height:300px;"> -->
                <div class="col-lg-12 col-md-12 col-sm-12"  v-if="displayItems.length>0">
                     <div class="card mb-4" v-for="comment in displayItems" :key="comment.id">
                         <div class="card-body">
@@ -785,25 +781,35 @@
                                 <div>{{comment.customer}}</div>
                         </div>
                     </div>
-
+                  
                     <div class="comment-btn-wrapper" v-if="displayItems.length == 1">
-                        <p class="no-comment-title">コメントは書くことができます。</p>
+                        <p><span class="nocomment-phone" >お電話でのご相談 </span></p>
+                        <p class="red  no-comment-title"><i class="fas fa-phone-alt phone-color"></i><a class="font-weight-bold" href="tel:0120591165">0120-59-1165</a><span class="fz12">（受付時間 平日 9：30-20：00）</span></p>
+                        <hr class="dotted">
+                        <p class="no-comment-web">WEBからご相談</p>
                          <div>
-                             <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn"> <i class="fas fa-pencil-alt"></i>
+                             <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn"> <i class="far fa-comment"></i>
                               <span>口コミを追加する</span></router-link>
                          </div>
                     </div>
                </div>
                <div v-else class="col-md-12">
-                   <p class="no-data-color pb-3">表示される口コミがありません。</p>
+                   
+                   <p class="no-data-color pb-3 no-data-size">
+                       
+                       表示される口コミがありません。</p>
                    <div class="comment-btn-wrapper">
-                        <p class="no-comment-title">コメントは書くことができます。</p>
+                        <p><span class="nocomment-phone" >お電話でのご相談 </span></p>
+                         <p class="red  no-comment-title"><i class="fas fa-phone-alt phone-color"></i><a class="font-weight-bold" href="tel:0120591165">0120-59-1165</a><span class="fz12">（受付時間 平日 9：30-20：00）</span></p>
+                        <hr class="dotted">
+                        <p class="no-comment-web">WEBからご相談</p>
                          <div>
-                             <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn"> <i class="fas fa-pencil-alt"></i>
+                             <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn"> <i class="far fa-comment"></i>
                               <span>口コミを追加する</span></router-link>
                          </div>
                     </div>
                 </div>
+                <!-- </div> -->
                <div class="offset-md-4 col-md-8 mt-3" v-if="pagination">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination">
@@ -1066,9 +1072,9 @@
                                         <th width="250" class="custom-bg-color">
                                             <font>件名 </font>
                                         </th>
-                                        <td v-if="subjects">
-                                            <label for="" v-for="sub in subjects" :key="sub.id">
-                                                {{sub.name}}
+                                        <td v-if="subject">
+                                            <label >
+                                                {{subject}} 
                                             </label>
                                             <!-- <font>{{cust.subject}}</font> -->
                                         </td>
@@ -1116,9 +1122,9 @@
                 <div class="col-12 m-b-20">
                     <h5 class="profile_subtit">医院からのお知らせ </h5>
 
-                    <p v-for="hospital in hospitals" :key="hospital.id" v-html="hospital.details_info" class="col-12">
-                        <!-- <span v-if="hospital.details_info">{{hospital.details_info}}</span>
-                        <span v-else><p class="no-data-color">表示されるデータがありません。</p></span> -->
+                    <p v-for="hospital in hospitals" :key="hospital.id" class="col-12">
+                        <span v-if="hospital.details_info != null">{!! hospital.details_info !!}</span>
+                        <span v-else><p class="no-data-color">表示されるデータがありません。</p></span>
 
                     </p>
                 </div>
@@ -1131,94 +1137,47 @@
 
                                     <tr class="first-row">
 
-                                        <th>
+                                        <th> 日付 </th>
 
-                                        日付
+                                        <th> 月 </th>
 
-                                        </th>
+                                        <th> 火 </th>
 
-                                        <th>
+                                        <th> 水 </th>
 
-                                            月
+                                        <th> 木 </th>
 
-                                        </th>
+                                        <th> 金 </th>
 
-                                        <th>
+                                        <th> 土 </th>
 
-                                            火
-
-                                        </th>
-
-                                        <th>
-
-                                            水
-
-                                        </th>
-
-                                        <th>
-
-                                            木
-
-                                        </th>
-
-                                        <th>
-
-                                            金
-
-                                        </th>
-
-                                        <th>
-
-                                            土
-
-                                        </th>
-
-                                        <th>
-
-                                            日
-
-                                        </th>
+                                        <th> 日 </th>
 
                                     </tr>
 
-                                    <tr class="last">
+                                    <tr class="last" v-if="am_arr[0]">
 
                                         <th class="second-row text-center">午前</th>
                                             <td v-for="(amval,index) in am_arr[0]" :key="index" class="text-center">
                                                 <span v-if="amval"> {{amval}} </span>
                                                 <span v-else> - </span>
-                                            </td>
-
-                                        <!-- <span v-if="am_arr[0]">
-                                            <td v-for="(amval,index) in am_arr[0]" :key="index" class="text-center">
-                                                <span v-if="amval"> {{amval}} </span>
-                                                <span v-else> - </span>
-                                            </td>
-                                        </span>
-                                        <span v-else>
-                                            <td v-for="indx in 6" :key="indx" class="text-center"> - </td>
-                                        </span> -->
-
+                                            </td> 
+                                    </tr>
+                                    <tr class="last" v-else>
+                                        <th class="second-row text-center">午前</th>
+                                        <td v-for="indx in 7" :key="indx" class="text-center"> - </td>
                                     </tr>
 
-                                    <tr class="last">
-
+                                    <tr class="last" v-if="pm_arr[0]">
                                         <th class="second-row text-center">午後</th>
                                             <td v-for="(amval,index) in pm_arr[0]" :key="index" class="text-center">
                                                 <span v-if="amval"> {{amval}} </span>
                                                 <span v-else> - </span>
                                             </td>
-
-                                        <!-- <span v-if="pm_arr[0]">
-                                            <td v-for="(amval,index) in pm_arr[0]" :key="index" class="text-center">
-                                                <span v-if="amval"> {{amval}} </span>
-                                                <span v-else> - </span>
-                                            </td>
-                                        </span>
-                                        <span v-else>
-                                            <td v-for="indx in 6" :key="indx" class="text-center"> - </td>
-                                        </span> -->
-
+                                    </tr>
+                                    <tr class="last" v-else>
+                                        <th class="second-row text-center">午後</th>
+                                        <td v-for="indx in 7" :key="indx" class="text-center"> - </td>
                                     </tr>
 
                                 </tbody>
@@ -1342,15 +1301,16 @@
             </div>
             <div class="row ele m-lr-0" id="element3">
                 <h5 class="profile_header col-12 m-t-20">口コミ</h5>
-                <div class="comment-ico  col-12">
+                <!-- <div class="test"> -->
+                    <div class="comment-ico  col-12">
                     <!-- <a href="/comment">
                         <i class="far fa-comment"></i>
                         <span>口コミを追加する</span>
                     </a> -->
                     <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comhov"> <i class="far fa-comment"></i>
                               <span>口コミを追加する</span></router-link>
-                </div>
-               <div class="col-lg-12 col-md-12 col-sm-12"  v-if="displayItems.length>0">
+                   </div>
+                   <div class="col-lg-12 col-md-12 col-sm-12"  v-if="displayItems.length>0">
                     <div class="card mb-4" v-for="comment in displayItems" :key="comment.id">
                         <div class="card-body">
                             <div class="comment-title">
@@ -1370,7 +1330,11 @@
                         This is Only one comment.
                     </div>
                </div>
-               <div v-else class="col-md-12"> <p class="no-data-color pb-3">表示される口コミがありません。</p></div>
+                <div v-else class="col-md-12"> <p class="no-data-color pb-3">表示される口コミがありません。</p></div>
+            <!-- </div> -->
+                
+               
+              
                <div class="offset-md-4 col-md-8 mt-3" v-if="pagination">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination">
@@ -1445,6 +1409,7 @@ export default {
                 fac_list:[],
                 staff:[],
                 schedules:[],
+                subject:'',
                 subjects:[],
                 hospitals:[],
                 nursing_profiles:[],
@@ -1615,6 +1580,8 @@ export default {
 
                 this.axios.get('/api/profile/nursing/'+this.cusid) .then(response => {
                     this.nursing_profiles = response.data.feature;
+                    console.log('This is JSON value');
+                    console.log(this.nursing_profiles);
 
                     this.nus_method= response.data.method;
 
@@ -1765,7 +1732,10 @@ export default {
                 });
 
                 this.axios.get('/api/profile/subject/'+this.cusid).then(response => {
-                      this.subjects = response.data;
+                        this.subjects = response.data;
+                      for(var i=0; i< response.data.length; i++) {
+                          this.subject += response.data[i]['name'] + " , ";
+                      }
 
                 });
 
@@ -2481,6 +2451,50 @@ export default {
     border: 1px solid #53c000;
     z-index: 4;
 }
+.phone-color {
+    width: 40px;
+    height: 38px;
+    margin-right: 5px;
+    font-size: 21px;
+    color: #c91616;
+    text-align: center;
+    line-height: 35px;
+    background: #ccc;
+    border-radius: 50%;
+    vertical-align: text-bottom;
+    position: relative;
+    bottom: 5px;
+}
+.nocomment-phone{
+    font-size: 30px;
+    position: relative;
+    top: 17px;
+    line-height: 62px;
+    color: #883914;
+    font-weight: bold;
+    }
+.fz12{
+    font-size: 17px;
+    position: relative;
+    bottom: 4px;
+}
+.dotted{
+    border-top: 1px dotted #883914;
+    width: 60%;
+    height: 1px;
+    margin-bottom:30px;
+}
+.no-comment-web {
+    font-size: 30px;
+    line-height: 62px;
+    color: #883914;
+    font-weight: bold;
+}
+.no-data-size{
+    font-size: 25px;
+    text-align: center;
+}
+
 
 
 @media only screen and (max-width: 375px) and (min-width: 320px) {
@@ -2636,4 +2650,5 @@ export default {
 }
 @media only screen and (max-width: 767px) {
 }
+ 
 </style>
