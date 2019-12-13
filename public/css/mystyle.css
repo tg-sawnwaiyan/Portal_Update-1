@@ -81,7 +81,7 @@ p {
     margin-top: 21px;
 }
 
-#wrapper {   
+#wrapper {
     height: 100%;
 }
 
@@ -323,7 +323,7 @@ body::-webkit-scrollbar-thumb {
     font-size: 16px;
     background: linear-gradient(45deg, #ffbe9f, transparent);
     color: #444 !important;
-    padding: 10px 15px;  
+    padding: 10px 15px;
     margin-top: 10px;
 }
 
@@ -3101,7 +3101,7 @@ ul.main-tab li:after {
 }
 
 .map-leftwrapper{
-    padding-left: 75px;    
+    padding-left: 75px;
 }
 .map-header {
     color: #7F340F;
@@ -5169,7 +5169,7 @@ screen and (min-width: 750px) {
         /* white-space: pre-line; */
     }
     /*End Newdetails */
-    
+
     /* Newdetails */
     .p5 {
         font-size: 18px;
@@ -8346,6 +8346,15 @@ ul.nur-caro-card>li.list-group-item {
         transform: rotate(360deg);
     }
 }
+/* start for news_catsearch  admin page */
+.news_catsearch{
+    display: flex !important;
+    align-items: flex-end;
+}
+.news_catsearch label{
+    width:20%
+}
+/* end for news_catsearch  admin page */
 
 
 /*--------------------------------------------------------------------------------responsive -----------------------------------------------------------------------*/
@@ -8357,17 +8366,37 @@ ul.nur-caro-card>li.list-group-item {
     .map-wrap{
         overflow: auto;
     }
+    .news_catsearch label{
+        width:30%;
+    }
+    .news_catsearch section {
+        width :265px;
+    }
 }
 
 @media only screen and (max-width:768px) {
     .wd-in {
         width: 256px;
     }
+    .news_catsearch label{
+        width:45%;
+    }
 }
 
-@media only screen and (max-width:480px) {}
+@media only screen and (max-width:480px) {
+    .col-sm-12   .news_catsearch {
+       padding:15px;
+    }
+    .col-sm-12   .news_catsearch label {
+        display: none;
+    }
+}
 
-@media only screen and (max-width:320px) {}
+@media only screen and (max-width:320px) {
+    .col-sm-12   .news_catsearch  label {
+        width:55%;
+    }
+}
 
 @media screen and (max-width: 979px) and (min-width: 752px) {
     .map-box-reponsive {
@@ -8507,7 +8536,7 @@ ul.nur-caro-card>li.list-group-item {
 @media only screen and (min-width: 1023px) and (max-width: 1200px){
     .map-leftwrapper{
         padding-left: 0px;
-        
+
     }
 }
 
@@ -8532,25 +8561,25 @@ ul.nur-caro-card>li.list-group-item {
     }
     .map-wrap{
         overflow: hidden;
-    }    
-    
+    }
+
 }
 @media only screen and (max-width:1280px){
     .divisions {
         position: relative;
         z-index: 1;
         /* background: url(/images/img_map1.png) center top no-repeat; */
-        width: 779px;       
+        width: 779px;
         height: 425px;
     }
     .map-leftwrapper{
         padding-left: 15px;
-        
+
     }
 }
 @media only screen and (max-width:1024px){
-    .divisions{       
-        width: 550px;       
+    .divisions{
+        width: 550px;
         height: 425px;
     }
     .map-wrap{
@@ -8565,7 +8594,7 @@ ul.nur-caro-card>li.list-group-item {
     #fav-hospital-page  #fav-history-page .card-carousel{
         width: 1084px !important;
     }
-   
+
     .main-content {
         width: 100%;
     }
@@ -8695,7 +8724,7 @@ ul.nur-caro-card>li.list-group-item {
         cursor: pointer;
     }
     /*end header */
-   
+
 }
 
 @media only screen and (max-width: 1024px) {}
