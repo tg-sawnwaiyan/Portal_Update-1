@@ -202,7 +202,7 @@ class HospitalProfileController extends Controller
         $uploadData = array(
             'access' => $request[0]['access'],
             'specialist' =>  $request[0]['specialist'],
-            'details_info'=>  $request[0]['details_info'],
+            'details_info'=>  strip_tags($request[0]['details_info']),
             'closed_day' =>  $request[0]['close_day'],
             'facilities' =>  $request[0]['facilities'],
             'website' =>  $request[0]['website'],
