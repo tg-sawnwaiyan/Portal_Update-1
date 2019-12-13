@@ -4873,8 +4873,9 @@ a:hover {
     /* height: 100vh;*/
     /* background: #b7dad2;  */
     /* position: absolute;
-    z-index: 1000;
-    display: none; */
+    z-index: 2;
+    display: none;
+    left: 0px; */
 }
 
 #menu-overlay {
@@ -4883,10 +4884,10 @@ a:hover {
     height: 100%;
     background-color: #000;
     opacity: 0.4;
-    position: absolute;
+    position: fixed;
     top: 0px;
     left: 0px;
-    z-index: 999;
+    z-index: 1;
 }
 
 
