@@ -8365,6 +8365,23 @@ ul.nur-caro-card>li.list-group-item {
     .wd-in {
         width: 256px;
     }
+    #create_news
+    {
+        /* width:131px; */
+    }
+    #create_news .title
+    {
+        padding: 0px;
+        font-size: 9px;
+        padding-left: 10px;
+        margin-top: -7px;
+        
+    }
+    #create_news .column
+    {
+        max-width: none;
+    }
+      
 }
 
 @media only screen and (max-width:480px) {}

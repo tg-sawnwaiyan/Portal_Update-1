@@ -81,17 +81,19 @@
                                             <div class="col-md-4" v-for="news in displayItems" :key="news.id">
                                                 <label class="form-check-label control control--checkbox">
                                                     <input type="checkbox" :value="news.id" v-model="checkedNews">
-                                                    <div class="col-md-12 card card-default" style="float:left;height:150px;cursor:pointer;">
+                                                    <div id="create_news">
+                                                    <div class="col-md-12 card card-defaul" style="float:left;height:150px;cursor:pointer;">
                                                         <div class="card-body news-post">
                                                             <div class="row">
                                                                 <div class="col-md-3 pad-free" >
                                                                     <img :src="'/upload/news/'+ news.photo" class="img-fluid" alt="news" @error="imgUrlAlt">
                                                                 </div>
-                                                                <div class="col-md-9">
+                                                                <div class="col-md-9 title">
                                                                     {{news.title}}
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                    </div>
                                                     </div>
                                                     <div class="control__indicator"></div>
                                                 </label>
