@@ -21,6 +21,36 @@ import 'animate.css'
 //end onepage
 //end editor
 //vue carousel
+
+let globalData = new Vue({
+    data: { 
+        nusFav:0,
+        hosFav:0,
+        nusHis:0,
+        hosHis:0
+    }
+  });
+  Vue.mixin({
+    computed: {
+      nusFav: {
+        get: function () { return globalData.$data.nusFav },
+        set: function (newVal) { globalData.$data.nusFav = newVal; }
+      },
+      hosFav: {
+        get: function () { return globalData.$data.hosFav },
+        set: function (newVal) { globalData.$data.hosFav = newVal; }
+      },
+      nusHis: {
+        get: function () { return globalData.$data.nusHis },
+        set: function (newVal) { globalData.$data.nusHis = newVal; }
+      },
+      hosHis: {
+        get: function () { return globalData.$data.hosHis },
+        set: function (newVal) { globalData.$data.hosHis = newVal; }
+      },
+    }
+  })
+
 import VueCarousel from '@chenfengyuan/vue-carousel';
 Vue.component(VueCarousel.name, VueCarousel);
 
