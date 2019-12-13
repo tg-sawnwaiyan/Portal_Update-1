@@ -981,17 +981,6 @@ body::-webkit-scrollbar-thumb {
     color: #7F340F;
 }
 
-.map-resicon .icon{
-    display: inline-block;
-    vertical-align: middle;
-    background-size: contain;
-    background-repeat: no-repeat;
-} 
-.map-resicon i.fa {
-    color: #86B902;
-    position: relative;
-    margin-right: 8px;
-}
 .map-fa-icon{    
     width: 101px;
     height: 91px;
@@ -2014,13 +2003,7 @@ ul.sub-ul li {
         width: 90%;
     }
     /* .ads-card{
-
-
-
          width: 18rem;
-
-
-
     } */
     .smallads-title {
         font-size: 12px;
@@ -8451,7 +8434,11 @@ ul.nur-caro-card>li.list-group-item {
 
 @media only screen and (max-width:480px) {}
 
-@media only screen and (max-width:320px) {}
+@media only screen and (max-width:320px) {
+    .searchButton {
+        width: 35% !important;
+    }
+}
 
 @media screen and (max-width: 979px) and (min-width: 752px) {
     .map-box-reponsive {
@@ -9092,6 +9079,22 @@ ul.nur-caro-card>li.list-group-item {
     .map-text-wrapper{
         display: block;
     }
+    .searchButton {
+        width: 28%;
+    }
+    .searchTerm {
+        width: 80%;
+    }
+    .freeword-responsive h3{
+        padding: 0px;
+    }
+    .map-fa-icon {
+        width: 100%;
+    }
+    .freeword-responsive p{
+        text-align: center !important;
+    }
+    
 }
 @media only screen and (max-width: 380px) {
     /* header */
