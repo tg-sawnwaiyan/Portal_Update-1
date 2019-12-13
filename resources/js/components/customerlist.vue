@@ -114,7 +114,9 @@
                 };
             },
             created() {
+                this.$loading(true);
                 this.axios.get("/api/customers").then(response => {
+                    this.$loading(false);
                     this.customers = response.data;
                     this.norecord = this.customers.length;
                     if (this.norecord > this.size) {
@@ -242,7 +244,9 @@
                         var search_word = $("#search-word").val();
                         let fd = new FormData();
                         fd.append("search_word", search_word);
+                        this.$loading(true);
                         this.axios.post("/api/customer/search", fd).then(response => {
+                            this.$loading(false);
                             this.customers = response.data;
                             if(this.customers.length > this.size){
                                 this.pagination = true;

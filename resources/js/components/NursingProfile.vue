@@ -1061,6 +1061,7 @@ export default {
             },
 
             createProfile() {
+                this.$loading(true);
                 // $('#create-profile').prop('disabled', true);
                 document.getElementById("create-profile").disabled=true;
                 this.customer_info_push = [];
@@ -1269,11 +1270,13 @@ export default {
                         }
                     }) ;
                 }
-
+                
                 if(this.profile_arr.length > 0) {
+                    this.$loading(true);
                     this.axios
                         .post(`/api/nursing/profile/${this.cusid}`,this.profile_arr)
                         .then((response) => {
+                            this.$loading(false);
                             this.name = ''
                         }).catch(error=>{
 
@@ -1363,6 +1366,7 @@ export default {
                     }).then(response => {
                         document.getElementById('nursing').click();
                     })
+                    this.$loading(false);
                 }                
                 
             },

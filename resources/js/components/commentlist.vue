@@ -119,9 +119,11 @@
 
             },
             created() {
+                this.$loading(true);
                 this.axios
                     .get('/api/comments/comment'+ this.comments )
                     .then(response => {
+                        this.$loading(false);
                         this.comments = response.data;
                         this.norecord = this.comments.length;
                         if(this.norecord > this.size){
@@ -275,7 +277,9 @@
                         var search_word = $("#search-item").val();
                         let fd = new FormData();
                         fd.append("search_word", search_word);
+                        this.$loading(true);
                         this.axios.post("/api/comments/search", fd).then(response => {
+                            this.$loading(false);
                             this.comments = response.data;
                             if(this.comments.length > this.size){
                                 this.pagination = true;
