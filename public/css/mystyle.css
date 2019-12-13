@@ -9287,11 +9287,12 @@ ul.nur-caro-card>li.list-group-item {
     }
     .no-comment-title span {
         display: block;
+        line-height: 1.2;
     }
     .no-comment-title a {
         font-size: 20px;
     }
-    .phone-color[data-v-38df9351] {
+    .phone-color {
         width: 30px !important;
         height: 30px !important;
         font-size: 18px !important;
