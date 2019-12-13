@@ -59,8 +59,10 @@ export default {
      
               
                   if( `${this.$route.params.id}` && this.errors.name == null ){
+                    this.$loading(true);
                          this.axios.post(`/api/category/update/${this.$route.params.id}`, this.category)
                     .then((response) => {
+                      this.$loading(false);
                         this.name = ''
                         this.$swal({
                             position: 'top-end',

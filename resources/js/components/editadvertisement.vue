@@ -186,8 +186,10 @@ export default {
                         adsData.append('photo',this.advertisement.photo)
                         adsData.append('old_photo',this.old_photo)
                         //ads.photo=this.advertisement.photo
+                        this.$loading(true);
                         this.axios.post(`/api/advertisement/update/${this.$route.params.id}`, adsData)
                         .then((response) => {
+                            this.$loading(false);
                             // alert('Successfully Updated!')
                             this.$swal({
                                 position: 'top-end',

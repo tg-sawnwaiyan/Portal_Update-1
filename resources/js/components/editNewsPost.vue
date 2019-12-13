@@ -292,7 +292,7 @@
                         input.type = 'file';
                     },
                     updatepost() {
-                         this.$swal({
+                        this.$swal({
                             title:"確認",
                             text: "更新よろしいでしょうか。",
                             type: "info",
@@ -307,35 +307,39 @@
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
                         }).then(response => {
-                              let fData = new FormData();
-                        fData.append('photo', this.news.photo)
-                        fData.append('title', this.news.title)
-                        fData.append('main_point', this.news.main_point)
-                        fData.append('body', this.news.body)
-                        fData.append('category_id', this.news.category_id)
-                        fData.append('related_news', this.checkedNews)
-                        fData.append('old_photo',this.old_photo)
-
-                        this.axios.post(`/api/new/update/${this.$route.params.id}`, fData)
-                         this.$swal({
-                            position: 'top-end',
-                            type: 'success',
-                            title: '更新されました。',
-                            confirmButtonText: "はい",
-                            confirmButtonColor: "#6cb2eb",
-                            width: 250,
-                            height: 200,
-                        })
-                        //alert('Successfully Updated!')
-                        this.$router.push({
-                            name: 'news_list'
-                        })
-                        .catch(error=>{
-                        if(error.response.status == 422){
-                            this.errors = error.response.data.errors
-                        }
+                            let fData = new FormData();
+                            fData.append('photo', this.news.photo)
+                            fData.append('title', this.news.title)
+                            fData.append('main_point', this.news.main_point)
+                            fData.append('body', this.news.body)
+                            fData.append('category_id', this.news.category_id)
+                            fData.append('related_news', this.checkedNews)
+                            fData.append('old_photo',this.old_photo)
+                            this.$loading(true);
+                            this.axios.post(`/api/new/update/${this.$route.params.id}`, fData).then(response => {
+                                this.$loading(false);
+                                 this.$swal({
+                                    position: 'top-end',
+                                    type: 'success',
+                                    title: '更新されました。',
+                                    confirmButtonText: "はい",
+                                    confirmButtonColor: "#6cb2eb",
+                                    width: 250,
+                                    height: 200,
+                                })
+                                
+                                //alert('Successfully Updated!')
+                                this.$router.push({
+                                    name: 'news_list'
+                                })
+                            })
+                            .catch(error=>{
+                            if(error.response.status == 422){
+                                this.errors = error.response.data.errors
+                            }
+                            });
                         });
-                    });
+                    
                     },
                     getstates: function() {
                         this.news.category_id = this.selectedValue;

@@ -94,7 +94,9 @@
                 };
             },
             created() {
+                this.$loading(true);
                 this.axios.get("/api/facility/facilities").then(response => {
+                    this.$loading(false);
                     this.facilities = response.data;
                     this.norecord = this.facilities.length;
                     if (this.norecord > this.size) {
@@ -200,7 +202,9 @@
                     var search_word = $("#search-item").val();
                     let fd = new FormData();
                     fd.append("search_word", search_word);
+                    this.$loading(true);
                     this.axios.post("/api/facility/search", fd).then(response => {
+                    this.$loading(false);
                     this.facilities = response.data;
                     this.norecord = this.facilities.length;
                     if(this.facilities.length > this.size){
