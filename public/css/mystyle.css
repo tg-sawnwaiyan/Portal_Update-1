@@ -998,10 +998,6 @@ body::-webkit-scrollbar-thumb {
     overflow: hidden;
 }
 
-.map-text-wrapper {
-    display: flex;
-}
-
 .accordion-body .card-footer {
     display: none;
 }
@@ -1033,6 +1029,20 @@ body::-webkit-scrollbar-thumb {
     line-height: 1.2;
     color: #7F340F;
 }
+
+.map-fa-icon {
+    width: 101px;
+    height: 91px;
+    background: url(/images/map-responsive1.png) center top no-repeat;
+    /* background: url(../images/map-responsive1.png); */
+    display: inline-block;
+    vertical-align: middle;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
+/************************************  End Job Search ************************************************/
 
 
 /************************************  End Job Search ************************************************/
@@ -2047,13 +2057,7 @@ ul.sub-ul li {
         width: 90%;
     }
     /* .ads-card{
-
-
-
          width: 18rem;
-
-
-
     } */
     .smallads-title {
         font-size: 12px;
@@ -6210,15 +6214,15 @@ button.confirmed {
 /* start .profile */
 
 .fixed-nav {
-    /* position: fixed; */
-    z-index: 4;
-    overflow: hidden;
-    background: transparent;
     width: 79.9%;
-    margin: -1px;
+    margin: 0 auto;
+    padding: 0 !important;
+    background: transparent;
     -moz-transition: all 1s ease-in-out;
     -webkit-transition: all 1s ease-in-out;
     transition: all 1s ease-in-out;
+    overflow: hidden;
+    z-index: 4;
 }
 
 #hospitalView .top-fixed-btn {
@@ -6233,12 +6237,9 @@ button.confirmed {
 
 .top-fixed-btn {
     color: #000;
-    /* background: #fbaa84; */
-    /* background: #eff7ec; */
     width: 145px;
     cursor: pointer;
     padding: 5px;
-    /* transition: all .3s ease-in; */
     border-radius: 5px;
     text-decoration: none;
     position: relative;
@@ -8522,7 +8523,11 @@ ul.nur-caro-card>li.list-group-item {
 
 @media only screen and (max-width:480px) {}
 
-@media only screen and (max-width:320px) {}
+@media only screen and (max-width:320px) {
+    .searchButton {
+        width: 35% !important;
+    }
+}
 
 @media screen and (max-width: 979px) and (min-width: 752px) {
     .map-box-reponsive {
@@ -8898,6 +8903,9 @@ ul.nur-caro-card>li.list-group-item {
         max-width: 100% !important;
         flex: 100% !important;
     }
+    .map-text-wrapper {
+        display: flex;
+    }
 }
 
 @media only screen and (max-width: 1024px) {
@@ -9197,6 +9205,18 @@ ul.nur-caro-card>li.list-group-item {
     .gallery-list .gallery-item {
         width: 33%;
     }
+    .top-mail-btn {
+        top: -67px !important;
+    }
+    .fav-profile {
+        top: -2px;
+    }
+    .top-fixed-btn,
+    .top-fixed-btn.active {
+        width: auto;
+        padding: 5px 15px;
+        margin-bottom: 10px;
+    }
     /*End  profile publish */
 }
 
@@ -9298,7 +9318,43 @@ ul.nur-caro-card>li.list-group-item {
         font-size: 18px !important;
         line-height: 30px !important;
     }
+    .fav-profile {
+        width: 128px;
+        right: 11px;
+        padding: 5px 2px !important;
+        font-size: 12px;
+    }
+    .top-mail-btn {
+        right: 118px !important;
+        width: 128px !important;
+        font-size: 12px !important;
+    }
+    .top-fixed-btn,
+    .top-fixed-btn.active {
+        padding: 5px 9px;
+    }
     /*End  profile publish */
+}
+
+@media only screen and (max-width: 480px) {
+    .map-text-wrapper {
+        display: block;
+    }
+    .searchButton {
+        width: 28%;
+    }
+    .searchTerm {
+        width: 80%;
+    }
+    .freeword-responsive h3 {
+        padding: 0px;
+    }
+    .map-fa-icon {
+        width: 100%;
+    }
+    .freeword-responsive p {
+        text-align: center !important;
+    }
 }
 
 @media only screen and (max-width: 380px) {
@@ -9336,6 +9392,16 @@ ul.nur-caro-card>li.list-group-item {
     .gallery-list .gallery-item {
         padding: 3px;
         margin-bottom: 25px;
+        font-size: 11px;
+    }
+    .top-mail-btn {
+        right: 102px !important;
+        width: 98px !important;
+        font-size: 11px !important;
+    }
+    .fav-profile {
+        width: 116px;
+        right: 11px;
         font-size: 11px;
     }
     /*End  Profile Publish */
