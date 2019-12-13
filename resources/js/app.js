@@ -21,6 +21,36 @@ import 'animate.css'
 //end onepage
 //end editor
 //vue carousel
+
+let globalData = new Vue({
+    data: { 
+        nusFav:0,
+        hosFav:0,
+        nusHis:0,
+        hosHis:0
+    }
+  });
+  Vue.mixin({
+    computed: {
+      nusFav: {
+        get: function () { return globalData.$data.nusFav },
+        set: function (newVal) { globalData.$data.nusFav = newVal; }
+      },
+      hosFav: {
+        get: function () { return globalData.$data.hosFav },
+        set: function (newVal) { globalData.$data.hosFav = newVal; }
+      },
+      nusHis: {
+        get: function () { return globalData.$data.nusHis },
+        set: function (newVal) { globalData.$data.nusHis = newVal; }
+      },
+      hosHis: {
+        get: function () { return globalData.$data.hosHis },
+        set: function (newVal) { globalData.$data.hosHis = newVal; }
+      },
+    }
+  })
+
 import VueCarousel from '@chenfengyuan/vue-carousel';
 Vue.component(VueCarousel.name, VueCarousel);
 
@@ -84,13 +114,6 @@ Vue.use(VueRouter)
 Vue.use(VueAxios, axios)
 axios.defaults.baseURL = `${process.env.MIX_APP_URL}`
 Vue.use(VueAuth, auth)
-    // process.env.MIX_SENTRY_DSN_PUBLIC
-    // // Load Index
-    // if (process.env.MIX_ENV_MODE === 'production') {
-    //   Vue.config.devtools = false;
-    //   Vue.config.debug = false;
-    //   Vue.config.silent = true; 
-    // }
 
 Vue.component('index', Index)
 

@@ -6,7 +6,7 @@
         <div class="sidebar-scroll container-fluid">
             <div class="row">
                 <asideMenu v-if="$auth.check()"></asideMenu>
-                <!-- <div id="menu-overlay"></div> -->
+                <!-- <div id="menu-overlay" @click="menuToggle()"></div> -->
 <!-- login ================================================================================================== -->
                 <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12 pad-free" v-if="$auth.check()" id="content-all">
                     
@@ -116,7 +116,7 @@
                 </div>  
             </div>
         </div>
-        <!-- <ul class="navbar-nav pad-free" id="headerbar" v-if="!$auth.check()">
+        <ul class="navbar-nav pad-free" id="headerbar" v-if="!$auth.check()">
             <li class="fav-item fav-color btn all-btn m-r-10" style="color: #000 !important;">
                 <svg x="0px" y="0px" width="24" height="24" viewBox="0 0 172 172" style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g id="original-icon" fill="#c40000" opacity="0" visibility="hidden"><path d="M50.16667,78.83333h107.5v14.33333h-107.5zM50.16667,35.83333h107.5v14.33333h-107.5zM50.16667,121.83333h107.5v14.33333h-107.5zM21.5,75.25c-5.93706,0 -10.75,4.81294 -10.75,10.75c0,5.93706 4.81294,10.75 10.75,10.75c5.93706,0 10.75,-4.81294 10.75,-10.75c0,-5.93706 -4.81294,-10.75 -10.75,-10.75zM21.5,118.25c-5.93706,0 -10.75,4.81294 -10.75,10.75c0,5.93706 4.81294,10.75 10.75,10.75c5.93706,0 10.75,-4.81294 10.75,-10.75c0,-5.93706 -4.81294,-10.75 -10.75,-10.75zM21.5,32.25c-5.93706,0 -10.75,4.81294 -10.75,10.75c0,5.93706 4.81294,10.75 10.75,10.75c5.93706,0 10.75,-4.81294 10.75,-10.75c0,-5.93706 -4.81294,-10.75 -10.75,-10.75z"></path></g><g id="subtracted-icon" fill="#c40000"><path d="M50.16667,78.83333h107.5l0,10.81336c-1.5126,0.69131 -2.92913,1.65951 -4.17264,2.90462l-0.6155,0.61535h-102.71186zM50.16667,35.83333h107.5v14.33333h-107.5zM50.16667,121.83333h24.29256c-1.88479,4.7147 -1.16582,10.22759 2.1569,14.33333h-26.44946zM32.25,86c0,5.93706 -4.81294,10.75 -10.75,10.75c-5.93706,0 -10.75,-4.81294 -10.75,-10.75c0,-5.93706 4.81294,-10.75 10.75,-10.75c5.93706,0 10.75,4.81294 10.75,10.75zM32.25,129c0,5.93706 -4.81294,10.75 -10.75,10.75c-5.93706,0 -10.75,-4.81294 -10.75,-10.75c0,-5.93706 4.81294,-10.75 10.75,-10.75c5.93706,0 10.75,4.81294 10.75,10.75zM32.25,43c0,5.93706 -4.81294,10.75 -10.75,10.75c-5.93706,0 -10.75,-4.81294 -10.75,-10.75c0,-5.93706 4.81294,-10.75 10.75,-10.75c5.93706,0 10.75,4.81294 10.75,10.75zM123.60062,122.43755l-0.6045,-0.60422l1.20887,0z"></path></g><g><g id="Filled_3_" fill="#c40000"><path d="M123.60062,162.99169l-35.82908,-35.82908l10.13652,-10.13652l25.69256,25.69256l40.02993,-40.02993l10.13652,10.13652z"></path></g><g id="Filled_3_" fill="#000000" opacity="0"><path d="M183.90358,122.96087l-50.16644,50.16644c-2.79579,2.80295 -6.46615,4.20085 -10.13652,4.20085c-3.67037,0 -7.34073,-1.39789 -10.13652,-4.20085l-35.82908,-35.82908c-5.59874,-5.59874 -5.59874,-14.67429 0,-20.27304l10.13652,-10.13652c5.59157,-5.59874 14.68146,-5.59874 20.27304,0l15.55604,15.54887l29.89341,-29.88624c5.59157,-5.59874 14.68146,-5.59874 20.27304,0l10.13652,10.13652c5.59874,5.59874 5.59874,14.67429 0,20.27304z"></path></g></g></g></svg>
 
@@ -125,7 +125,7 @@
                     <router-link to="/favouriteNursing">
                     <i class="fa fa-chevron-circle-right is-nur"></i>
                     <span style="color:#d2571c;">
-                    介護&nbsp;<span id="nus-fav-local"></span>&nbsp;<span style="color:#000;">件</span>
+                    介護&nbsp;<span id="nus-fav-local">{{nusFav}}</span>&nbsp;<span style="color:#000;">件</span>
                     </span>
                     </router-link>
                 </div>
@@ -133,7 +133,7 @@
                     <router-link to="/favouriteHospital">
                     <i class="fa fa-chevron-circle-right is-hos"></i>
                     <span style="color:#2981cc;">
-                    病院&nbsp;<span id="hos-fav-local"></span>&nbsp;<span style="color:#000;">件</span>
+                    病院&nbsp;<span id="hos-fav-local">{{hosFav}}</span>&nbsp;<span style="color:#000;">件</span>
                     </span>
                     </router-link>
                 </div>
@@ -146,7 +146,7 @@
                     <router-link to="/nursing_history">
                         <i class="fa fa-chevron-circle-right is-nur"></i>
                         <span  style="color:#d2571c;">
-                        介護&nbsp;<span id="nus-his-local"></span>&nbsp;<span style="color:#000;">件</span>
+                        介護&nbsp;<span id="nus-his-local">{{nusHis}}</span>&nbsp;<span style="color:#000;">件</span>
                         </span>
                     </router-link>
                 </div>
@@ -155,12 +155,12 @@
                     <router-link to="/hospital_history">
                         <i class="fa fa-chevron-circle-right is-hos"></i>
                         <span style="color:#2981cc;">
-                        病院&nbsp;<span id="hos-his-local"></span>&nbsp;<span style="color:#000;">件</span>
+                        病院&nbsp;<span id="hos-his-local">{{hosHis}}</span>&nbsp;<span style="color:#000;">件</span>
                         </span>
                     </router-link>
                 </div>
             </li>
-        </ul> -->
+        </ul>
     </div>
     <div v-else>
         <router-view :key="$route.fullPath"></router-view>
@@ -172,7 +172,7 @@
   export default {
     data() {
       return {
-      
+        nursing_fav:'',
       }
     },
     components: {
@@ -180,10 +180,57 @@
       asideMenu
     }, 
     mounted(){
-        this.axios.get('/api/auth/user').then(res=>{
-            console.log(res)
-        })
+        // this.axios.get('/api/auth/user').then(res=>{
+        //     console.log(res)            
+        // })
+
+        if(localStorage.getItem("hospital_history")){
+            // $("#hos-his-local").html(localStorage.getItem("hospital_history").split(",").length);
+            this.hosHis = localStorage.getItem("hospital_history").split(",").length;
+            $('.his-hospital-link-box>a').css({'cursor':'pointer','pointer-events':'auto'});
+        }
+        else{
+            // $("#hos-his-local").html(0);
+            this.hosHis = 0;
+            $('.his-hospital-link-box>a').css({'cursor':'not-allowed','pointer-events':'none'});
+            $( '.his-hospital-link-box>a ').parent('div').css({'cursor':'not-allowed'});
+        }
+        if(localStorage.getItem("nursing_history")){            
+            // $("#nus-his-local").html(localStorage.getItem("nursing_history").split(",").length);
+            this.nusHis = localStorage.getItem("nursing_history").split(",").length;
+            $('.his-nursing-link-box>a').css({'cursor':'pointer','pointer-events':'auto'});
+        }
+        else{
+            // $("#nus-his-local").html(0);
+            this.nusHis = 0;
+            $('.his-nursing-link-box>a').css({'cursor':'not-allowed','pointer-events':'none'});
+            $( '.his-nursing-link-box>a').parent('div').css({'cursor':'not-allowed'});
+        }
+        if(localStorage.getItem("hospital_fav")){
+            this.hosFav = localStorage.getItem("hospital_fav").split(",").length;
+            // $("#hos-fav-local").html(localStorage.getItem("hospital_fav").split(",").length);
+            $('.fav-hospital-link-box>a').css({'cursor':'pointer','pointer-events':'auto'});
+        }
+        else{
+            // $("#hos-fav-local").html(0);
+            this.hosFav = 0;
+            $('.fav-hospital-link-box>a').css({'cursor':'not-allowed','pointer-events':'none'});
+            $( '.fav-hospital-link-box>a').parent('div').css({'cursor':'not-allowed'});
+        }
+        if(localStorage.getItem("nursing_fav")){
+            // $("#nus-fav-local").html(localStorage.getItem("nursing_fav").split(",").length);
+            this.nusFav = localStorage.getItem("nursing_fav").split(",").length;
+            $('.fav-nursing-link-box>a').css({'cursor':'pointer','pointer-events':'auto'});
+        }
+        else{
+            // $("#nus-fav-local").html(0);
+            this.nusFav = 0;
+            $('.fav-nursing-link-box>a').css({'cursor':'not-allowed','pointer-events':'none'});
+            $( '.fav-nursing-link-box>a').parent('div').css({'cursor':'not-allowed'});
+        }
+
     },
+    
     methods: {
         menuToggle(){
             $("#admin-side-menu").toggle('medium');

@@ -14,6 +14,10 @@ use App\HospitalProfile;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+// Route::get('/user', function (Request $request) {
+//     $user = $request->user();
+//    return $request;
+// })->middleware('auth:api');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {  
     if($request->user()->type_id == 2){
@@ -38,7 +42,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('getCity','SearchMapController@getCity');
     Route::get('profile_view/{cusid}/{type}','ProfilePublishController@getCustomerLatLng');
     Route::get('townshipJson','SearchMapController@townshipJson');
-    Route::get('cityJson','SearchMapController@cityJson');
+    Route::get('cityJson/{theCity}','SearchMapController@cityJson');
     // Route::get('getstation/{id}','SearchMapController@getJobStation');
     
 
