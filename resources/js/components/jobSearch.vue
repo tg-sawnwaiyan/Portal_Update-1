@@ -320,10 +320,11 @@
              
             </div>
             <div class="freeword-responsive"> 
-                <h3>
+                <h3 class="map-resicon">
                   <div class="map-text-wrapper">
                     <div>
-                      <img src="/images/map-responsive1.png" alt="" class="img-responsive">
+                      <!-- <img src="/images/map-responsive1.png" alt="" class="img-responsive"> -->
+                      <i class="fa icon map-fa-icon"></i>
                     </div>             
                     <div>
                       <p class="text-left"> &nbsp;あなたのやさしい 手を求めてる老人<br/>ホーム・病院が見つかります。</p>  

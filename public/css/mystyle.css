@@ -953,9 +953,7 @@ body::-webkit-scrollbar-thumb {
     margin-bottom: 30px;
     overflow: hidden;
 }
-.map-text-wrapper{
-    display: flex;
-}
+
 .accordion-body .card-footer{
     display: none;
 }
@@ -983,6 +981,28 @@ body::-webkit-scrollbar-thumb {
     color: #7F340F;
 }
 
+.map-resicon .icon{
+    display: inline-block;
+    vertical-align: middle;
+    background-size: contain;
+    background-repeat: no-repeat;
+} 
+.map-resicon i.fa {
+    color: #86B902;
+    position: relative;
+    margin-right: 8px;
+}
+.map-fa-icon{    
+    width: 101px;
+    height: 91px;
+    background: url(/images/map-responsive1.png) center top no-repeat;
+   /* background: url(../images/map-responsive1.png); */
+    display: inline-block;
+    vertical-align: middle;
+    background-size: contain;
+    background-repeat: no-repeat;
+    
+}
 /************************************  End Job Search ************************************************/
 
 
@@ -8425,8 +8445,7 @@ ul.nur-caro-card>li.list-group-item {
     }
     .searchTerm {
         width: 87%;
-    }
-
+    }   
 }
 
 @media only screen and (max-width:480px) {}
@@ -8436,7 +8455,8 @@ ul.nur-caro-card>li.list-group-item {
 @media screen and (max-width: 979px) and (min-width: 752px) {
     .map-box-reponsive {
         display: block;
-    }
+    }   
+
 }
 
 
@@ -8536,7 +8556,7 @@ ul.nur-caro-card>li.list-group-item {
     #fav-history-page .card-carousel {
         overflow: visible;
     }
-
+    
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
@@ -8807,6 +8827,9 @@ ul.nur-caro-card>li.list-group-item {
         max-width: 100% !important;
         flex: 100% !important;
     }
+    .map-text-wrapper{
+        display: flex;
+    }
 }
 
 @media only screen and (max-width: 1024px) {
@@ -9064,6 +9087,10 @@ ul.nur-caro-card>li.list-group-item {
     
 }
 
+@media only screen and (max-width: 480px) {
+.map-text-wrapper{
+    display: block;
+}
 @media only screen and (max-width: 380px) {
     /* header */
     #sp_headerbar .fav_his {
@@ -9093,7 +9120,6 @@ ul.nur-caro-card>li.list-group-item {
     .sp_social .social-link {
         float: none;
         display: inline-block;
-    }
-   
+    }    
     /*end header */
 }
