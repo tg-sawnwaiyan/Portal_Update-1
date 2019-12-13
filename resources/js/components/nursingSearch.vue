@@ -572,39 +572,39 @@
                   <select name="" id="" class="form-control custom-select" style="background-color: #fff;" @change="nursingSearchData" v-model="moving_in">
                     <option data-price-type="" value="-1">▼入居一時金</option>
                     <!-- <option data-price-type="" value="0">一時金なし</option> -->
-                    <option data-price-type="" value="50">50万円以下</option>
-                    <option data-price-type="" value="100">100万円以下</option>
-                    <option data-price-type="" value="200">200万円以下</option>
-                    <option data-price-type="" value="300">300万円以下</option>
-                    <option data-price-type="" value="400">400万円以下</option>
-                    <option data-price-type="" value="500">500万円以下</option>
-                    <option data-price-type="" value="600">600万円以下</option>
-                    <option data-price-type="" value="700">700万円以下</option>
-                    <option data-price-type="" value="800">800万円以下</option>
-                    <option data-price-type="" value="900">900万円以下</option>
-                    <option data-price-type="" value="1000">1,000万円以下</option>
-                    <option data-price-type="" value="2000">2,000万円以下</option>
-                    <option data-price-type="" value="3000">3,000万円以下</option>
-                    <option data-price-type="more" value="3000">3,000万円以上</option>
+                    <option data-price-type="" value="500000">50万円以下</option>
+                    <option data-price-type="" value="1000000">100万円以下</option>
+                    <option data-price-type="" value="2000000">200万円以下</option>
+                    <option data-price-type="" value="3000000">300万円以下</option>
+                    <option data-price-type="" value="4000000">400万円以下</option>
+                    <option data-price-type="" value="5000000">500万円以下</option>
+                    <option data-price-type="" value="6000000">600万円以下</option>
+                    <option data-price-type="" value="7000000">700万円以下</option>
+                    <option data-price-type="" value="8000000">800万円以下</option>
+                    <option data-price-type="" value="9000000">900万円以下</option>
+                    <option data-price-type="" value="1000000">1,000万円以下</option>
+                    <option data-price-type="" value="20000000">2,000万円以下</option>
+                    <option data-price-type="" value="30000000">3,000万円以下</option>
+                    <option data-price-type="more" value="30000000">3,000万円以上</option>
                   </select>
                   <select name="" id="" class="form-control  mt-1 custom-select" style="background-color: #fff;" @change="nursingSearchData" v-model="per_month">
                     <option data-price-type="" value="-1">▼月額利用料</option>
-                    <option data-price-type="" value="10">10万円以下</option>
-                    <option data-price-type="" value="12">12万円以下</option>
-                    <option data-price-type="" value="14">14万円以下</option>
-                    <option data-price-type="" value="16">16万円以下</option>
-                    <option data-price-type="" value="18">18万円以下</option>
-                    <option data-price-type="" value="20">20万円以下</option>
-                    <option data-price-type="" value="22">22万円以下</option>
-                    <option data-price-type="" value="24">24万円以下</option>
-                    <option data-price-type="" value="26">26万円以下</option>
-                    <option data-price-type="" value="28">28万円以下</option>
-                    <option data-price-type="" value="30">30万円以下</option>
-                    <option data-price-type="" value="35">35万円以下</option>
-                    <option data-price-type="" value="40">40万円以下</option>
-                    <option data-price-type="" value="45">45万円以下</option>
-                    <option data-price-type="" value="50">50万円以下</option>
-                    <option data-price-type="more" value="50">50万円以上</option>
+                    <option data-price-type="" value="100000">10万円以下</option>
+                    <option data-price-type="" value="120000">12万円以下</option>
+                    <option data-price-type="" value="140000">14万円以下</option>
+                    <option data-price-type="" value="160000">16万円以下</option>     
+                    <option data-price-type="" value="180000">18万円以下</option>
+                    <option data-price-type="" value="200000">20万円以下</option>
+                    <option data-price-type="" value="220000">22万円以下</option>
+                    <option data-price-type="" value="240000">24万円以下</option>
+                    <option data-price-type="" value="260000">26万円以下</option>
+                    <option data-price-type="" value="280000">28万円以下</option>
+                    <option data-price-type="" value="300000">30万円以下</option>
+                    <option data-price-type="" value="350000">35万円以下</option>
+                    <option data-price-type="" value="400000">40万円以下</option>
+                    <option data-price-type="" value="450000">45万円以下</option>
+                    <option data-price-type="" value="500000">50万円以下</option>
+                    <option data-price-type="more" value="500000">50万円以上</option>
                   </select>
                 </div>
               </div>
@@ -1002,6 +1002,7 @@
 
 <script>
   import layout from '../components/home.vue'
+
   import {
     eventBus
   } from '../event-bus.js';
@@ -1463,7 +1464,7 @@ var township_name = townshipName;
 
         if(this.townshipID == 0){
 
-            this.axios.get("/api/cityJson").then(respon => {
+            this.axios.get("/api/cityJson/"+theCity).then(respon => {
                     var res = respon.data
                     this.loading = false
                   for (var i = 0; i < res.length; i++) {
@@ -1924,6 +1925,7 @@ search(){
                     // $("#nus-fav-local").html(fav_arr.length);
                     this.nusFav = fav_arr.length;
                 }
+                
                 $(".fav-nursing-link-box>a").css({'cursor':'pointer','pointer-events':'auto'});
             }
             else{
