@@ -18,6 +18,7 @@ dd {
 
 body {
     font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+    /* background: #dfdfde; */
     background: #f8f8f8 !important;
     scrollbar-width: thin;
 }
@@ -307,10 +308,6 @@ body::-webkit-scrollbar-thumb {
     border-radius: 3px;
 }
 
-#Profile-page .accept-box {
-    margin: 7px;
-}
-
 .hos-fac-toggle-div {
     /* padding-top: 15px;
     border: 1px solid #eee; */
@@ -368,10 +365,9 @@ body::-webkit-scrollbar-thumb {
     z-index: 99999 !important;
 }
 
-
-/* .lightbox-image {
+.lightbox-image {
     background-size: unset !important;
-} */
+}
 
 .lightbox-main {
     width: 80% !important;
@@ -957,6 +953,10 @@ body::-webkit-scrollbar-thumb {
     padding-right: 14px;
 }
 
+.arrow_icon:before {
+    color: #d2571c;
+}
+
 .custom_group {
     color: #828282 !important;
     font-size: 14px;
@@ -969,7 +969,9 @@ body::-webkit-scrollbar-thumb {
 .custom_group a li {
     list-style: none;
     border-bottom: 1px solid #eeeeee;
-    padding: 5px;
+    padding: 10px 10px 10px 20px;
+    color: #8e3c15;
+    font-weight: bold;
 }
 
 .map-addicon {
@@ -978,8 +980,58 @@ body::-webkit-scrollbar-thumb {
     top: 15px;
 }
 
+.map-addicon:before {
+    color: #d2571c;
+    font-weight: bold;
+    font-size: 20px;
+}
+
 .card-header-title>p {
     padding: 10px 10px 0px 10px !important;
+}
+
+#map-responsive {
+    background-color: rgba(255, 255, 255, 0.8);
+    /* border-radius: 10px;
+    box-shadow: 0px 0px 5px rgb(212, 201, 201); */
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.map-text-wrapper {
+    display: flex;
+}
+
+.accordion-body .card-footer {
+    display: none;
+}
+
+.accordion>.card .card-header:hover,
+.card-header:active,
+.card-header:visited {
+    background: #ff611714 !important;
+}
+
+.accordion>.card .card-header-title>p {
+    color: #25201d;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.freeword-responsive {
+    margin: 20px 0px;
+}
+
+.freeword-responsive h3 {
+    padding: 0px 20px 10px;
+}
+
+.freeword-responsive p {
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #7F340F;
 }
 
 
@@ -2796,42 +2848,6 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
     border-right: 1px solid #63b7ff !important;
 }
 
-.cost_table th,
-.map_tbl th {
-    width: 250px;
-}
-
-.cost_table td,
-.map_tbl td {
-    width: calc(100% - 250px);
-}
-
-.info_tbl th {
-    width: 200px;
-}
-
-.payment-tbl th {
-    width: 30%;
-}
-
-.payment-tbl td {
-    width: 70%;
-}
-
-.facility_tbl th {
-    width: 250px;
-}
-
-.staff_tbl th {
-    width: 350px;
-    font-weight: normal;
-}
-
-.staff_tbl td {
-    width: 500px;
-    font-weight: normal;
-}
-
 
 /* profilepublish css end */
 
@@ -2860,7 +2876,7 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
     position: fixed;
     top: 237px;
     right: 10px;
-    /* z-index: 99999; */
+    z-index: 99999;
 }
 
 #headerbar .router-link-exact-active {
@@ -4983,6 +4999,42 @@ a:hover {
     color: #eee;
 }
 
+.cost_table th,
+.map_tbl th {
+    width: 250px;
+}
+
+.cost_table td,
+.map_tbl td {
+    width: calc(100% - 250px);
+}
+
+.info_tbl th {
+    width: 200px;
+}
+
+.payment-tbl th {
+    width: 30%;
+}
+
+.payment-tbl td {
+    width: 70%;
+}
+
+.facility_tbl th {
+    width: 250px;
+}
+
+.staff_tbl th {
+    width: 350px;
+    font-weight: normal;
+}
+
+.staff_tbl td {
+    width: 500px;
+    font-weight: normal;
+}
+
 
 /* profilepublish css end */
 
@@ -5794,34 +5846,36 @@ button.confirmed {
 }
 
 .comment-btn-wrapper {
-    padding: 0px 0px 40px;
+    width: 80%;
+    padding: 0px 0px 75px;
+    margin: 0 auto 68px;
     text-align: center;
     background-color: #FFF9EB;
-    border: 4px solid #f60;
-    border-radius: 5px;
-    margin-bottom: 30px;
     border: 2px solid #d2571c;
-    width: 100%;
+    border-radius: 5px;
 }
 
 .no-comment-title {
     padding: 20px;
     font-size: 30px;
+    padding-bottom: 10px;
 }
 
 .comment-btn {
-    background: #f98f5d;
-    padding: 17px;
-    border: 1px solid #d2571c;
+    background: #2ebb60;
+    padding: 11px;
+    border: 1px solid #245f2a;
     color: #fff;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 18px;
     border-radius: 10px;
     -webkit-transition: color .1s ease-in-out, background-color .1s ease-in-out;
     transition: color .1s ease-in-out, background-color .1s ease-in-out;
     -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.0125), 0 1px 1px rgba(0, 0, 0, 0.05);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.0125), 0 1px 1px rgba(0, 0, 0, 0.05);
     border-bottom-width: 4.2px;
+    position: relative;
+    top: 23px;
 }
 
 .comment-btn:link,
@@ -8454,6 +8508,15 @@ ul.nur-caro-card>li.list-group-item {
     .wd-in {
         width: 256px;
     }
+    .map-wrap {
+        display: none;
+    }
+    .searchButton {
+        width: 13%;
+    }
+    .searchTerm {
+        width: 87%;
+    }
 }
 
 @media only screen and (max-width:480px) {}
@@ -8635,6 +8698,41 @@ ul.nur-caro-card>li.list-group-item {
     .map-leftwrapper {
         padding-left: 15px;
     }
+    /*job search*/
+    ul.hokkaido-wrap {
+        left: 0px;
+    }
+    .hokkaido-box {
+        right: 8%;
+    }
+    .tohoku-box {
+        right: 18%;
+    }
+    .kanto-box {
+        right: 21%;
+    }
+    .hokuriku-box {
+        left: 52%;
+    }
+    .tokai-box {
+        right: 31%;
+    }
+    .kinki-box {
+        left: 34%;
+    }
+    .chugoku-box {
+        left: 23%;
+    }
+    .shikoku-box {
+        left: 25%;
+    }
+    .kyushu-box {
+        left: 12%;
+    }
+    .okinawa-box {
+        left: 24%;
+    }
+    /*end job search*/
 }
 
 @media only screen and (max-width:1024px) {
@@ -8794,7 +8892,15 @@ ul.nur-caro-card>li.list-group-item {
     /*end header */
 }
 
+@media only screen and (max-width: 768px) {
+    .tab {
+        max-width: 100% !important;
+        flex: 100% !important;
+    }
+}
+
 @media only screen and (max-width: 1024px) {
+    /* common */
     .col-slg-12 {
         -webkit-box-flex: 0;
         -ms-flex: 0 0 100%;
@@ -8807,6 +8913,59 @@ ul.nur-caro-card>li.list-group-item {
     .sp-1024 {
         display: block;
     }
+    /*End common */
+    /*job search*/
+    ul.hokkaido-wrap {
+        left: 65px;
+    }
+    .divisions span {
+        margin-right: 10px;
+    }
+    .hokkaido-box {
+        position: absolute;
+        top: 11%;
+        right: 10%;
+        z-index: 2;
+    }
+    .tohoku-box {
+        right: 12%;
+    }
+    .multiple-box {
+        width: 128px !important;
+    }
+    .multiple-boxa {
+        width: 127px !important;
+    }
+    .hokkaido-box .spanclass,
+    .kanto-box .spanclass,
+    .okinawa-box .spanclass {
+        margin-right: 1px;
+    }
+    .kanto-box {
+        right: 12%;
+    }
+    .hokuriku-box {
+        left: 53%;
+    }
+    .tokai-box {
+        right: 35%;
+    }
+    .kinki-box {
+        left: 27%;
+    }
+    .chugoku-box {
+        left: 12%;
+    }
+    .shikoku-box {
+        left: 15%;
+    }
+    .kyushu-box {
+        left: -3%;
+    }
+    .okinawa-box {
+        left: 13%;
+    }
+    /*end job search*/
     /* profile publish */
     .gallery-list .gallery-item {
         width: 33%;
@@ -8824,12 +8983,6 @@ ul.nur-caro-card>li.list-group-item {
     /* common */
     li {
         list-style: none;
-    }
-    .pc-990 {
-        display: none;
-    }
-    .sp-990 {
-        display: block;
     }
     .maintab-content {
         padding: 7px;
@@ -9121,6 +9274,27 @@ ul.nur-caro-card>li.list-group-item {
     }
     #googlemap {
         min-height: 200px;
+    }
+    .comment-btn-wrapper {
+        width: 100%;
+    }
+    .no-data-size {
+        font-size: 16px !important;
+    }
+    .nocomment-phone {
+        font-size: 25px !important;
+    }
+    .no-comment-title span {
+        display: block;
+    }
+    .no-comment-title a {
+        font-size: 20px;
+    }
+    .phone-color[data-v-38df9351] {
+        width: 30px !important;
+        height: 30px !important;
+        font-size: 18px !important;
+        line-height: 30px !important;
     }
     /*End  profile publish */
 }
