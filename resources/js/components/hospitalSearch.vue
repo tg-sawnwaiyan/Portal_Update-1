@@ -328,7 +328,7 @@
                       <i class="fa icon map-fa-icon"></i>
                     </div>             
                     <div>
-                      <p class="text-left"> &nbsp;赤ちゃんからおとなまでみんなで通<br/>える街の名医が見つかります。 </p>    
+                      <p class="text-left"> &nbsp;赤ちゃんからおとなまでみんなで通<br class="pc-768"/>える街の名医が見つかります。 </p>    
                     </div>
                   </div>
                 </h3>
