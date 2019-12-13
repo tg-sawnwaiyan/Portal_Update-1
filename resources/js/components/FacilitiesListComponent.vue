@@ -38,13 +38,13 @@
                             <div class="card card-default m-b-20" v-for="facility in displayItems" :key="facility.id">
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-9 m-t-8">
+                                        <div class="col-md-6 col-sm-8 m-t-8">
                                             <p>{{facility.description}}</p>
                                         </div>
-                                        <div class="col-md-3 text-right" style="margin-top: 8px;">
+                                        <div class="col-md-6 col-sm-4 text-right admin_page_edit">
                                             <router-link :to="{name: 'editfacility', params: { id: facility.id }}" class="btn edit-borderbtn">編集</router-link>
 
-                                            <button class="btn delete-borderbtn" @click="deleteFacility(facility.id)">削除</button>
+                                            <button class="btn text-danger delete-borderbtn" @click="deleteFacility(facility.id)">削除</button>
                                         </div>
                                     </div>
                                 </div>

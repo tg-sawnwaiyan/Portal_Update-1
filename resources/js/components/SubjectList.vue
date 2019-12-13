@@ -40,18 +40,16 @@
                                     <div class="row">
                                         <div class="col-md-9 m-t-8">{{subject.name}}</div>
                                         <div class="col-md-3 text-right">
-                                            <small>
-                            <router-link
-                                :to="{name:'subject', params:{id : subject.id}}"
+                            <router-link :to="{name:'subject', params:{id : subject.id}}"
                                 class="btn edit-borderbtn"
                             >編集</router-link>
-                            </small> &nbsp;
-                                            <small>
+
+
                             <a
                                 class="btn text-danger delete-borderbtn"
                                 @click="deleteSubject(subject.id)"
                             >削除</a>
-                            </small>
+
                                         </div>
                                     </div>
                                 </div>

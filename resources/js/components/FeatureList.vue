@@ -51,7 +51,7 @@
                                             <th class="text-right">
                                                 <!-- <button class="btn btn-sm btn-primary all-btn" v-if="getUser.status == 1">Approved</button> -->
                                                 <router-link :to="{name:'specialfeature', params:{id : feature.id}}" class="btn edit-borderbtn">編集</router-link>
-                                                <a class="btn text-danger delete-borderbtn" @click="deleteFeature(feature.id)">削除</a>
+                                                <button class="btn text-danger delete-borderbtn" @click="deleteFeature(feature.id)">削除</button>
                                             </th>
                                         </tr>
                                     </tbody>
