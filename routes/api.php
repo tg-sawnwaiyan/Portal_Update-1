@@ -285,6 +285,7 @@ Route::get('nursing-payment/{id}','PaymentMethodController@getPaymentByCustomerI
 Route::get('customerinfo/{id}','CustomerController@edit');
 Route::get('nursinginfo/{id}','NursingProfileController@edit');
 Route::get('nurscities/{township_id}','NursingProfileController@getCities');
+Route::get('townshiplist/{city_id}','NursingProfileController@getTownships');
 Route::get('hospitalinfo/{id}','HospitalProfileController@edit');
 Route::get('staffinfo/{id}', 'ProfilePublishController@getStaffbyCustomerId');
 

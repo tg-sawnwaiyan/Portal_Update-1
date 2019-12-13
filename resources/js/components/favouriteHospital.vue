@@ -340,7 +340,8 @@
                             var index = l_sto_arr.indexOf(rm_id);
                             if (index > -1) {
                                 l_sto_arr.splice(index, 1);
-                                $("#hos-fav-local").html(l_sto_arr.length);
+                                // $("#hos-fav-local").html(l_sto_arr.length);
+                                this.hosFav = l_sto_arr.length;
                                 if(l_sto_arr.length == 0){
                                     $('.fav-hospital-link-box>a').css({'cursor':'not-allowed','pointer-events':'none'})
                                 }

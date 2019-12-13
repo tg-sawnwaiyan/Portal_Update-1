@@ -18,9 +18,39 @@ import 'animate.css'
 // import 'fullpage-vue/src/fullpage.css'
 // import VueFullpage from 'fullpage-vue'
 // Vue.use(VueFullpage)
-    //end onepage
+//end onepage
 //end editor
 //vue carousel
+
+let globalData = new Vue({
+    data: { 
+        nusFav:0,
+        hosFav:0,
+        nusHis:0,
+        hosHis:0
+    }
+  });
+  Vue.mixin({
+    computed: {
+      nusFav: {
+        get: function () { return globalData.$data.nusFav },
+        set: function (newVal) { globalData.$data.nusFav = newVal; }
+      },
+      hosFav: {
+        get: function () { return globalData.$data.hosFav },
+        set: function (newVal) { globalData.$data.hosFav = newVal; }
+      },
+      nusHis: {
+        get: function () { return globalData.$data.nusHis },
+        set: function (newVal) { globalData.$data.nusHis = newVal; }
+      },
+      hosHis: {
+        get: function () { return globalData.$data.hosHis },
+        set: function (newVal) { globalData.$data.hosHis = newVal; }
+      },
+    }
+  })
+
 import VueCarousel from '@chenfengyuan/vue-carousel';
 Vue.component(VueCarousel.name, VueCarousel);
 
@@ -71,41 +101,40 @@ Vue.use(VueClazyLoad)
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
 Vue.use(VueGoogleMaps, {
-  load: {
-    key: "AIzaSyC-2U_IRuSrajQavHadFp8FlXNi61MA3nw",
-  }
+    load: {
+        key: "AIzaSyC-2U_IRuSrajQavHadFp8FlXNi61MA3nw",
+    }
 });
 // Set Vue globally
 window.Vue = Vue
-// Set Vue router
+    // Set Vue router
 Vue.router = router
 Vue.use(VueRouter)
-// Set Vue authentication
+    // Set Vue authentication
 Vue.use(VueAxios, axios)
-axios.defaults.baseURL = `${process.env.MIX_APP_URL}` 
+axios.defaults.baseURL = `${process.env.MIX_APP_URL}`
 Vue.use(VueAuth, auth)
-
 
 Vue.component('index', Index)
 
 router.beforeEach((to, from, next) => {
-  NProgress.start()
-  NProgress.set(0.1)
-  next()
+    NProgress.start()
+    NProgress.set(0.1)
+    next()
 })
 router.afterEach(() => {
-  setTimeout(() => NProgress.done(), 500)
+    setTimeout(() => NProgress.done(), 500)
 })
 
 const app = new Vue({
-  el: '#app',
-  router,
-  component:{
-    Index,
-    meta: {
-      auth: undefined
-    }
-  },
+    el: '#app',
+    router,
+    component: {
+        Index,
+        meta: {
+            auth: undefined
+        }
+    },
 
 });
 
