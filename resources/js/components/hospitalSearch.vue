@@ -175,7 +175,7 @@
                       <ul class="multiple-boxa">
 
                         <a data-info="Osaka" class="path Osaka card-text" @click="getStateClick">
-                            <li class="spanclass" id="27" @click="selected = 27" :class="{highlight:selected == 27}">大阪府</li>
+                            <li class="spanclass" id="27" @click="selected = 27" :class="{highlight:selected == 27}">大阪</li>
                         </a>
 
                         <a data-info="Hyogo" class="path Hyogo card-text" @click="getStateClick">
@@ -183,7 +183,7 @@
                         </a>
 
                         <a data-info="Kyoto" class="path Kyoto card-text" @click="getStateClick">
-                            <li class="spanclass"  id="26" @click="selected = 26" :class="{highlight:selected == 26}">京都府</li>
+                            <li class="spanclass"  id="26" @click="selected = 26" :class="{highlight:selected == 26}">京都</li>
                         </a>
 
                         <a data-info="Nara" class="path Nara card-text" @click="getStateClick">
@@ -307,7 +307,7 @@
                     <div class="division-box">
                       <ul class="">
                           <a data-info="Okinawa" class="path Okinawa card-text" @click="getStateClick">
-                              <li class="spanclass" id="47" @click="selected = 47" :class="{highlight:selected == 47}">沖縄県</li>
+                              <li class="spanclass" id="47" @click="selected = 47" :class="{highlight:selected == 47}">沖縄</li>
                         </a>
                       </ul>
                     </div>
@@ -749,13 +749,21 @@
             else{
                  var search_word = "all";
             }
+               if(localStorage.getItem("hospital_fav") == null){
+
+                this.locast = 0;
+            }
+            else{
+                this.locast = localStorage.getItem("hospital_fav");
+            }
 
             this.axios.get('api/gethospitalsearch/'+ search_word,{
             params:{
                 id: -1,
                 townshipID:-1,
                 specialfeatureID:-1,
-                subjectID:-1
+                subjectID:-1,
+                local:this.locast
             },
             }).then((response)=>{
                     if(response.data.hospital.length > 0)
@@ -800,7 +808,8 @@
                     fav_arr.push(index);
                     fav_arr = [...new Set(fav_arr)];
                     localStorage.setItem("hospital_fav", fav_arr);
-                    $("#hos-fav-local").html(fav_arr.length);
+                    // $("#hos-fav-local").html(fav_arr.length);
+                    this.hosFav = fav_arr.length;
                 }
                 else{
                 
@@ -808,7 +817,8 @@
                     console.log(fav_arr);
                     localStorage.setItem("hospital_fav", fav_arr);
                     
-                    $("#hos-fav-local").html(fav_arr.length);
+                    // $("#hos-fav-local").html(fav_arr.length);
+                    this.hosFav = fav_arr.length;
                 }
                 console.log('local');
                     console.log(localStorage.getItem("hospital_fav"));
@@ -824,7 +834,8 @@
                     fav_arr.splice(index, 1);
                     localStorage.setItem("hospital_fav", fav_arr);
                 }
-                $("#hos-fav-local").html(fav_arr.length);
+                // $("#hos-fav-local").html(fav_arr.length);
+                this.hosFav = fav_arr.length;
 
                 if(fav_arr.length == 0){
                     $(".fav-hospital-link-box>a").css({'cursor':'not-allowed','pointer-events':'none'})
@@ -937,7 +948,7 @@
             else{
                 this.locast = localStorage.getItem("hospital_fav");
             }
-
+          this.$loading(true);
           this.axios.get('api/getmap',{
               params:{
               id: this.id,
@@ -948,7 +959,7 @@
           },
           })
             .then((response) => {
-
+              this.$loading(false);
               $('#hos_search').css("display","block");
               $('.hospitalselect').removeClass('hospitalselect');
               this.cities = response.data.city

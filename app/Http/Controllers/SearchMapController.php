@@ -775,7 +775,7 @@ class SearchMapController extends Controller
 
     public function cityJson()
     {
-        // $path = base_path().('/google-map-json/jp_cities.json');
+        // $path = public_path().('/google-map-json/japan-cities_5percent.json');
         // return $path;
         // $json = file_get_contents(resource_path('views/google-map-json/jp_cities.json'));
         // $json = file_get_contents('./upload/google-map-json/jp_cities.json');
@@ -787,6 +787,20 @@ class SearchMapController extends Controller
             
         // }
         // return response()->json($json);
+
+        // $f = new SplFileObject($path, "r");
+        // $count = 0;
+        // while (!$f->eof()) { 
+        //     yield $f->fgets(); 
+        //     $count++;
+        // }
+
+        // $json = '';
+
+        // foreach ($count as $line) { 
+        //     $json = $line;
+        // }
+
         return "Testing";
     }
 
