@@ -97,7 +97,7 @@
             <div class="row m-lr-0 ele pt-2"   id="element1">
                  <div class="row col-12 list-wrap m-lr-0 white-bg-color" v-for="cust in customer" :key="cust.id">
                     <!--for slideimage-->
-                    <div class="col-md-5 detail_profile_left">
+                    <div class="col-sm-5 detail_profile_left">
 
                            <div class="thumbnail-img">
 
@@ -148,7 +148,7 @@
 
                     <!--end for slide image-->
                     <!--for address-->
-                     <div class="col-md-7 detail_profile_right">
+                     <div class="col-sm-7 detail_profile_right">
                         <div class="row m-lr-0 pro-heading">
                              <div class="col-12 pad-free">
                                 <h5 class="profile_header">介護情報</h5>
@@ -760,7 +760,8 @@
 
             <div class="row ele m-lr-0" id="element6">
                 <h5 class="profile_header col-12">口コミ</h5>
-                <div class="comment-ico  col-12">
+                <!-- <div style="min-height:300px;"> -->
+                <div class="comment-ico  col-12" style="min-height:300px;">
                     <!-- <a href="/comment">
                         <i class="far fa-comment"></i>
                         <span>口コミを追加する</span>
@@ -802,6 +803,7 @@
                          </div>
                     </div>
                 </div>
+                <!-- </div> -->
                <div class="offset-md-4 col-md-8 mt-3" v-if="pagination">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination">
@@ -936,7 +938,7 @@
                 <!-- ee-->
                  <div class="row col-12 list-wrap m-lr-0 white-bg-color" v-for="cust in customer" :key="cust.id">
                     <!--for slideimage-->
-                    <div class="col-md-5 col-sm-12 detail_profile_left">
+                    <div class="col-sm-5 detail_profile_left">
 
                            <div class="thumbnail-img">
 
@@ -1009,7 +1011,7 @@
                     <!--for address-->
 
 
-                     <div class="col-md-7 col-sm-12 detail_profile_right">
+                     <div class="col-sm-7 detail_profile_right">
 
                         <div class="row m-lr-0">
                             <div class="col-12 pro-heading pad-free">
@@ -1340,15 +1342,16 @@
             </div>
             <div class="row ele m-lr-0" id="element3">
                 <h5 class="profile_header col-12 m-t-20">口コミ</h5>
-                <div class="comment-ico  col-12">
+                <!-- <div class="test"> -->
+                    <div class="comment-ico  col-12">
                     <!-- <a href="/comment">
                         <i class="far fa-comment"></i>
                         <span>口コミを追加する</span>
                     </a> -->
                     <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comhov"> <i class="far fa-comment"></i>
                               <span>口コミを追加する</span></router-link>
-                </div>
-               <div class="col-lg-12 col-md-12 col-sm-12"  v-if="displayItems.length>0">
+                   </div>
+                   <div class="col-lg-12 col-md-12 col-sm-12"  v-if="displayItems.length>0">
                     <div class="card mb-4" v-for="comment in displayItems" :key="comment.id">
                         <div class="card-body">
                             <div class="comment-title">
@@ -1368,7 +1371,11 @@
                         This is Only one comment.
                     </div>
                </div>
-               <div v-else class="col-md-12"> <p class="no-data-color pb-3">表示される口コミがありません。</p></div>
+                <div v-else class="col-md-12"> <p class="no-data-color pb-3">表示される口コミがありません。</p></div>
+            <!-- </div> -->
+                
+               
+              
                <div class="offset-md-4 col-md-8 mt-3" v-if="pagination">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination">

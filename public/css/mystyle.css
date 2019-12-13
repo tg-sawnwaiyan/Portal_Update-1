@@ -948,10 +948,13 @@ body::-webkit-scrollbar-thumb {
 }
 #map-responsive{
     background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 10px;
-    box-shadow: 0px 0px 5px rgb(212, 201, 201);
+    /* border-radius: 10px;
+    box-shadow: 0px 0px 5px rgb(212, 201, 201); */
     margin-bottom: 30px;
     overflow: hidden;
+}
+.map-text-wrapper{
+    display: flex;
 }
 .accordion-body .card-footer{
     display: none;
@@ -959,6 +962,26 @@ body::-webkit-scrollbar-thumb {
 .accordion > .card .card-header:hover, .card-header:active, .card-header:visited{
     background: #ff611714 !important;
   }
+.accordion > .card .card-header-title > p{
+    color: #25201d;
+    font-weight: bold;
+    font-size: 16px;
+
+}
+.freeword-responsive{
+    margin: 20px 0px;
+}
+.freeword-responsive h3{
+    padding: 0px 20px 10px;
+    
+}
+.freeword-responsive p{
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #7F340F;
+}
 
 /************************************  End Job Search ************************************************/
 
@@ -6153,6 +6176,7 @@ button.confirmed {
 
 .ele {
     margin-top: 50px;
+  
 }
 
 .table-wrapper {
@@ -8392,6 +8416,13 @@ ul.nur-caro-card>li.list-group-item {
     .map-wrap{
         display: none;
     }
+    .searchButton{
+        width: 13%;
+    }
+    .searchTerm {
+        width: 87%;
+    }
+
 }
 
 @media only screen and (max-width:480px) {}
