@@ -1061,6 +1061,7 @@ export default {
             },
 
             createProfile() {
+                 
                 // $('#create-profile').prop('disabled', true);
                 document.getElementById("create-profile").disabled=true;
                 this.customer_info_push = [];
@@ -1233,7 +1234,7 @@ export default {
 
                 this.axios
                     .post(`/api/nursing/galleryupdate/${this.cusid}`,{'video':this.video_list, 'image': this.img_list, 'panorama': this.panorama_list})
-                    .then((response) => {            
+                    .then((response) => {                  
 
                     }).catch(error=>{
                     if(error.response.status == 422){
@@ -1298,7 +1299,7 @@ export default {
                     }) ;
                 }
 
-                if(this.staff_info_push.length > 0) {
+                if(this.staff_info_push.length   > 0) {
                     this.axios
                         .post(`/api/staff/profile/${this.cusid}`,this.staff_info_push)
                         .then((response) => {
@@ -1349,9 +1350,9 @@ export default {
                 //         }
                 //     }) ;
                 // }
-
+               
                 if(this.gallery_list != 'error' && this.cooperate_list != 'error' && this.payment_list != 'error' && this.profile_arr != 'error' && this.customer_info_push  != 'error' && this.staff_info_push  != 'error' &&  acceptance!= 'error') {
-                        
+                      
                     this.$swal({
                         position: 'top-end',
                         type: 'success',
@@ -1360,9 +1361,12 @@ export default {
                         confirmButtonColor: "#6cb2eb",
                         width: 250,
                         height: 200,
-                    }).then(response => {
+                    },)
+                    .then(response => {
+                    
                         document.getElementById('nursing').click();
                     })
+                      
                 }                
                 
             },

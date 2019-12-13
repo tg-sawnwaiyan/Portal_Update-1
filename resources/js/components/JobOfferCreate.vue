@@ -628,10 +628,11 @@
                 },
 
                 add() {
-                    console.log(this.joboffer);
+                 
                     if (this.$route.params.id) {
                         this.updateJob();
                     } else {
+                      
                         this.$swal({
                             title: "確認",
                             text: "作成よろしいでしょうか。",
@@ -646,11 +647,15 @@
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
-                        }).then(response => {
+                           
+                        }
+                        ).then(response => {
+                           this.$loading(true);
                             this.axios
                                 .post("/api/job/add", this.joboffer)
 
                             .then(response => {
+                               this.$loading(false);
                                     this.$swal({
                                         position: "top-end",
                                         type: "success",
@@ -672,6 +677,7 @@
                                     this.$route.params.id = null;
                                 })
                                 .catch(error => {
+                                   this.$loading(false);
                                     if (error.response.status == 422) {
                                         this.errors = error.response.data.errors;
                                     }
@@ -821,6 +827,7 @@
 
                 updateJob() {
                   // console.log('bbb');
+                   this.$loading(true);
                       if (this.$route.params.id){
                         this.$swal({
                         title: "確認",
@@ -837,9 +844,11 @@
                         confirmButtonClass:  "all-btn",
                         cancelButtonClass: "all-btn"
                     }).then(response => {
+                      
                         this.axios.post(`/api/job/update/${this.$route.params.id}`, this.joboffer)
 
                         .then(response => {
+                           this.$loading(false);
                           console.log("JOB");
                                 this.$swal({
                                     title: "更新されました。",
