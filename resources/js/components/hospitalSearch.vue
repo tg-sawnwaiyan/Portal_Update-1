@@ -945,7 +945,7 @@
             else{
                 this.locast = localStorage.getItem("hospital_fav");
             }
-
+          this.$loading(true);
           this.axios.get('api/getmap',{
               params:{
               id: this.id,
@@ -956,7 +956,7 @@
           },
           })
             .then((response) => {
-
+              this.$loading(false);
               $('#hos_search').css("display","block");
               $('.hospitalselect').removeClass('hospitalselect');
               this.cities = response.data.city
