@@ -780,7 +780,7 @@
                         </div>
                     </div>
                   
-                    <div class="comment-btn-wrapper" v-if="displayItems.length == 1">
+                    <div class="comment-btn-wrapper">
                         <p><span class="nocomment-phone" >お電話でのご相談 </span></p>
                         <p class="red  no-comment-title"><i class="fas fa-phone-alt phone-color"></i><a class="font-weight-bold" href="tel:0120591165">0120-59-1165</a><span class="fz12">（受付時間 平日 9：30-20：00）</span></p>
                         <hr class="dotted">
@@ -1299,15 +1299,6 @@
             </div>
             <div class="row ele m-lr-0" id="element3">
                 <h5 class="profile_header col-12 m-t-20">口コミ</h5>
-                <!-- <div class="test"> -->
-                    <div class="comment-ico  col-12">
-                    <!-- <a href="/comment">
-                        <i class="far fa-comment"></i>
-                        <span>口コミを追加する</span>
-                    </a> -->
-                    <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comhov"> <i class="far fa-comment"></i>
-                              <span>口コミを追加する</span></router-link>
-                   </div>
                    <div class="col-lg-12 col-md-12 col-sm-12"  v-if="displayItems.length>0">
                     <div class="card mb-4" v-for="comment in displayItems" :key="comment.id">
                         <div class="card-body">
@@ -1324,11 +1315,33 @@
                         </div>
                     </div>
 
-                    <div class="card" v-if="displayItems.length == 1">
-                        This is Only one comment.
+                    <div class="comment-btn-wrapper">
+                        <p><span class="nocomment-phone" >お電話でのご相談 </span></p>
+                        <p class="red  no-comment-title"><i class="fas fa-phone-alt phone-color"></i><a class="font-weight-bold" href="tel:0120591165">0120-59-1165</a><span class="fz12">（受付時間 平日 9：30-20：00）</span></p>
+                        <hr class="dotted">
+                        <p class="no-comment-web">WEBからご相談</p>
+                         <div>
+                             <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn"> <i class="far fa-comment"></i>
+                              <span>口コミを追加する</span></router-link>
+                         </div>
                     </div>
                </div>
-                <div v-else class="col-md-12"> <p class="no-data-color pb-3">表示される口コミがありません。</p></div>
+                <div v-else class="col-md-12">
+                   
+                   <p class="no-data-color pb-3 no-data-size">
+                       
+                       表示される口コミがありません。</p>
+                   <div class="comment-btn-wrapper">
+                        <p><span class="nocomment-phone" >お電話でのご相談 </span></p>
+                         <p class="red  no-comment-title"><i class="fas fa-phone-alt phone-color"></i><a class="font-weight-bold" href="tel:0120591165">0120-59-1165</a><span class="fz12">（受付時間 平日 9：30-20：00）</span></p>
+                        <hr class="dotted">
+                        <p class="no-comment-web">WEBからご相談</p>
+                         <div>
+                             <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn"> <i class="far fa-comment"></i>
+                              <span>口コミを追加する</span></router-link>
+                         </div>
+                    </div>
+                </div>
             <!-- </div> -->
                 
                
