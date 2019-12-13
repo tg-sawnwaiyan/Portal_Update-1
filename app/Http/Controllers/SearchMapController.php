@@ -801,33 +801,34 @@ class SearchMapController extends Controller
 
     public function cityJson($theCity)
     {   
-        $handle = public_path('google-map-json\\jp_cities.json');
-        // $file = File::allFiles($handle);
-        // $files = File::allFiles(public_path());
-        // $path = public_path().('/google-map-json/jp_cities.json');
-        // $json = file_get_contents($path);
-        $obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $handle), true );
-        // dd($file);
+        // $handle = public_path('google-map-json\\jp_cities.json');
+        // // $file = File::allFiles($handle);
+        // // $files = File::allFiles(public_path());
+        // // $path = public_path().('/google-map-json/jp_cities.json');
+        // // $json = file_get_contents($path);
+        // $obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $handle), true );
+        // // dd($file);
         
-        foreach($obj as $key => $value){
-            $json = $value;
+        // foreach($obj as $key => $value){
+        //     $json = $value;
             
-        }
-        return response()->json($json);
+        // }
+        // return response()->json($json);
+        return "Testing";
     }
 
     public function townshipJson()
     {
-    $path = public_path().('/google-map-json/japan-cities_5percent.json');
-    $json = file_get_contents($path);
-    $obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $json), true );
+    // $path = public_path().('/google-map-json/japan-cities_5percent.json');
+    // $json = file_get_contents($path);
+    // $obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $json), true );
     
-    foreach($obj as $key => $value){
-        $jsons = $value;
+    // foreach($obj as $key => $value){
+    //     $jsons = $value;
         
-    }
-    return response()->json($jsons);
-
+    // }
+    // return response()->json($jsons);
+    return "Testing";
     
     }
 
