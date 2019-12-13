@@ -1061,7 +1061,7 @@ export default {
             },
 
             createProfile() {
-                this.$loading(true);
+               
                 // $('#create-profile').prop('disabled', true);
                 document.getElementById("create-profile").disabled=true;
                 this.customer_info_push = [];
@@ -1209,6 +1209,7 @@ export default {
                 else{
                     this.panorama_list = [];
                 }
+                 this.$loading(true);
                
                 if(new_panorama.length > 0){
                     let fd = new FormData();
@@ -1352,21 +1353,20 @@ export default {
                 //         }
                 //     }) ;
                 // }
-
                 if(this.gallery_list != 'error' && this.cooperate_list != 'error' && this.payment_list != 'error' && this.profile_arr != 'error' && this.customer_info_push  != 'error' && this.staff_info_push  != 'error' &&  acceptance!= 'error') {
-                        
-                    this.$swal({
-                        position: 'top-end',
-                        type: 'success',
-                        title: '更新されました',
-                        confirmButtonText: "はい",
-                        confirmButtonColor: "#6cb2eb",
-                        width: 250,
-                        height: 200,
-                    }).then(response => {
+                  
+                    // this.$swal({
+                    //     position: 'top-end',
+                    //     type: 'success',
+                    //     title: '更新されました',
+                    //     confirmButtonText: "はい",
+                    //     confirmButtonColor: "#6cb2eb",
+                    //     width: 250,
+                    //     height: 200,
+                    // }).then(response => {
                         document.getElementById('nursing').click();
-                    })
-                    this.$loading(false);
+                    // })
+                  
                 }                
                 
             },

@@ -49,9 +49,7 @@ export default {
             return {
                  errors:{
                      name:""
-                 }
-              ,
-
+                 },
                  occupation: {
                         name: '',
                         parent:'',
@@ -60,28 +58,21 @@ export default {
                         id: '',
                         name: ''
                    },
-
                 selectedValue:0,
                 header: '職種作成',
                 subtitle: '作成する'
-
             }
         },
-
         created() {
-
              this.axios.get('/api/occupation/occupationList')
               .then(function (response) {
                    this.occupationList = response.data;
-
               }.bind(this));
         },
-
          mounted() {
              this.axios
                .get(`/api/occupation/edit/${this.$route.params.id}`)
                 .then((response) => {
-
                     if( `${this.$route.params.id}` == "undefined")
                     {
 
@@ -191,9 +182,10 @@ export default {
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
                         }).then(response => {
-                            this.axios
-                    .post(`/api/occupation/update/${this.$route.params.id}`, this.occupation)
+                            this.$loading(true);
+                            this.axios.post(`/api/occupation/update/${this.$route.params.id}`, this.occupation)
                     .then(response => {
+                        this.$loading(false);
                         // this.name = ''
                         //   alert('Successfully Updated!')
                         this.$swal({

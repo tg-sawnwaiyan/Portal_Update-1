@@ -184,9 +184,10 @@ export default {
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
                         }).then(response => { 
-                             this.axios
-                    .post(`api/subjects/update/${this.$route.params.id}`, this.Subject)
+                            this.$loading(true);
+                             this.axios.post(`api/subjects/update/${this.$route.params.id}`, this.Subject)
                     .then((response) => {
+                        this.$loading(false);
                         this.$swal({
                             position: 'top-end',
                             type: 'success',

@@ -1481,7 +1481,8 @@ export default {
         },
 
         created(){
-                console.log('aaaaaa');
+           
+             
                 window.addEventListener('resize', this.handleResize);
                 this.handleResize();
                 console.log(this.window.width); 
