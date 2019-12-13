@@ -1089,6 +1089,16 @@
             this.getLatestPostByCatID();
 
             this.getLatestPostFromAllCat();
+            
+            // this.axios.get('/api/auth/user') 
+            // .then(response => {
+            //     if(response.data.error == 'Unauthorized'){
+            //         $('#fav-box').css('display','block');                 
+            //     }
+            //     else{
+            //         $('#fav-box').css('display','none');
+            //     } 
+            // })
 
         },
 
@@ -1151,47 +1161,7 @@
 
     },
 
-    created() {
-        console.log($(window).width());
-        console.log("new cre")
-        if(localStorage.getItem("hospital_history")){
-        $("#hos-his-local").html(localStorage.getItem("hospital_history").split(",").length);
-        $('.his-hospital-link-box>a').css({'cursor':'pointer','pointer-events':'auto'});
-    }
-    else{
-        $("#hos-his-local").html(0);
-        $('.his-hospital-link-box>a').css({'cursor':'not-allowed','pointer-events':'none'});
-        $( '.his-hospital-link-box>a ').parent('div').css({'cursor':'not-allowed'});
-    }
-    if(localStorage.getItem("nursing_history")){
-        $("#nus-his-local").html(localStorage.getItem("nursing_history").split(",").length);
-        $('.his-nursing-link-box>a').css({'cursor':'pointer','pointer-events':'auto'});
-    }
-    else{
-        $("#nus-his-local").html(0);
-        $('.his-nursing-link-box>a').css({'cursor':'not-allowed','pointer-events':'none'});
-        $( '.his-nursing-link-box>a').parent('div').css({'cursor':'not-allowed'});
-    }
-    if(localStorage.getItem("hospital_fav")){
-        $("#hos-fav-local").html(localStorage.getItem("hospital_fav").split(",").length);
-        $('.fav-hospital-link-box>a').css({'cursor':'pointer','pointer-events':'auto'});
-    }
-    else{
-        $("#hos-fav-local").html(0);
-        $('.fav-hospital-link-box>a').css({'cursor':'not-allowed','pointer-events':'none'});
-        $( '.fav-hospital-link-box>a').parent('div').css({'cursor':'not-allowed'});
-    }
-    if(localStorage.getItem("nursing_fav")){
-        console.log("hh"+localStorage.getItem("nursing_fav"))
-        $("#nus-fav-local").html(localStorage.getItem("nursing_fav").split(",").length);
-        $('.fav-nursing-link-box>a').css({'cursor':'pointer','pointer-events':'auto'});
-    }
-    else{
-        $("#nus-fav-local").html(0);
-        $('.fav-nursing-link-box>a').css({'cursor':'not-allowed','pointer-events':'none'});
-        $( '.fav-nursing-link-box>a').parent('div').css({'cursor':'not-allowed'});
-    }
-
+    created() {      
         var today = new Date();
         var month =(String) (today.getMonth()+1);
         var date = (String) (today.getDate());
@@ -1219,16 +1189,7 @@
         }
 
         else{
-
-            // console.log(localStorage.getItem('date'));
-
-
-
               var localdate = localStorage.getItem('date');
-
-    // console.log(localdate);
-
-    // console.log(todaydate > localdate)
 
               if(todaydate > localdate)
 
