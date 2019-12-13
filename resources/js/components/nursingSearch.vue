@@ -2083,12 +2083,6 @@ search(){
   height: 440px;
 }
 
-.highlight{
-     background-color: #ccff60 !important;
-    background-image: none;
-    border: 1px solid #8e3c15;
-    color: #ff6117;
-}
   .path {
     cursor: pointer;
   }

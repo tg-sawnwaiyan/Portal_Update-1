@@ -1312,14 +1312,6 @@
     border: 1px solid #8e3c15;
     color: #ff6117; */
 }
-.highlight {
-  background-color: #ccff60 !important;
-    background-image: none;
-    border: 1px solid #8e3c15;
-    color: #ff6117;
-}
-
-
   .hospitalselect {
     display: none;
   }

@@ -1158,15 +1158,7 @@ export default {
 
 
 <style scoped>
-.highlight{
-    background-color: #ccff60 !important;
-    background-image: none;
-    border: 1px solid #8e3c15;
-    color: #ff6117;
-}
-.resHighlight{
-   background: #ccff6029 !important;
-}
+
 .jobselect {
   display: none;
 }
