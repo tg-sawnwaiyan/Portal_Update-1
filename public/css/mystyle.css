@@ -7203,7 +7203,7 @@ ul.test>li:before {
     padding: 5px;
     border-radius: 5px;
     background-color: #ffc;
-    width: 100%;
+    /* width: 70%; */
   
 }
 
@@ -8518,6 +8518,10 @@ ul.nur-caro-card>li.list-group-item {
     }
     .map-wrap {
         overflow: auto;
+    }
+    .tab-pane{
+        padding-left: 0px !important;
+        padding-right: 0px !important;
     }
 }
 

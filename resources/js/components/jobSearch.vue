@@ -569,14 +569,14 @@
                 <tr>
                   <th>地域</th>
                   <td>
-                    <div class="row col-12 mt-2 mb-2">
-                      <div class="col-lg-9">
+                    <div class="row mt-2 mb-2">
+                      <div class="col-lg-9 col-md-6 col-sm-12">
                       <select id="selectCity" class="form-control custom-select" v-model="id" @change="changeTownship">
                          <option value="-1">▼市区町村</option>
                       <option v-for = "city in cities" :value="city.id" :key="city.id" >{{city.city_name}}</option>
                     </select>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 col-md-6 col-sm-12">
                       <button @click="toggleContent4" class="btn seemore-btn">
                       <i class="fa" aria-hidden="true"></i>
                           <!-- <em>{{city.city_name}}</em> -->
