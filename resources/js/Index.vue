@@ -6,7 +6,7 @@
         <div class="sidebar-scroll container-fluid">
             <div class="row">
                 <asideMenu v-if="$auth.check()"></asideMenu>
-                <!-- <div id="menu-overlay"></div> -->
+                <!-- <div id="menu-overlay" @click="menuToggle()"></div> -->
 <!-- login ================================================================================================== -->
                 <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12 pad-free" v-if="$auth.check()" id="content-all">
                     
@@ -172,7 +172,7 @@
   export default {
     data() {
       return {
-      
+        nursing_fav:'',
       }
     },
     components: {
@@ -180,9 +180,9 @@
       asideMenu
     }, 
     mounted(){
-        this.axios.get('/api/auth/user').then(res=>{
-            console.log(res)            
-        })
+        // this.axios.get('/api/auth/user').then(res=>{
+        //     console.log(res)            
+        // })
 
         if(localStorage.getItem("hospital_history")){
             // $("#hos-his-local").html(localStorage.getItem("hospital_history").split(",").length);
@@ -230,6 +230,7 @@
         }
 
     },
+    
     methods: {
         menuToggle(){
             $("#admin-side-menu").toggle('medium');

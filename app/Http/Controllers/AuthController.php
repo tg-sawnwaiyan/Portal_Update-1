@@ -4,8 +4,14 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Artisan;
+use JWTAuth;
+use Tymon\JWTAuth\Manager;
+
 class AuthController extends Controller
 {
+
+
     public function register(Request $request)
     {
 
@@ -25,20 +31,26 @@ class AuthController extends Controller
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         //$user->save();
-       
+
     }
     public function login(Request $request)
     {
 
         $credentials = $request->only('email', 'password');
-        if ($token = $this->guard()->attempt($credentials)) {
+        $session = 60;
+        JWTAuth::factory()->setTTL($session);
+        if ($token = JWTAuth::attempt($credentials)) {
             return response()->json(['status' => 'success'], 200)->header('Authorization', $token);
         }
         return response()->json(['error' => 'login_error'], 401);
     }
-    public function logout()
+    public function me()
     {
-        $this->guard()->logout();
+        return response()->json(auth()->user());
+    }
+    public function logout()
+    {   Auth::logout();
+        JWTAuth::parseToken()->invalidate();
         return response()->json([
             'status' => 'success',
             'msg' => 'Logged out Successfully.'
@@ -54,12 +66,29 @@ class AuthController extends Controller
     }
     public function refresh()
     {
-        if ($token = $this->guard()->refresh()) {
-            return response()
-                ->json(['status' => 'successs'], 200)
-                ->header('Authorization', $token);
+        try {
+            Artisan::call('cache:clear');
+            $token = \Auth::guard()->refresh();
+            $user = JWTAuth::setToken($token)->toUser();
+            return $this->respondWithToken($token);
+        } catch (\Throwable $th) {
+            return response()->json($th);
         }
-        return response()->json(['error' => 'refresh_token_error'], 401);
+    }
+    protected function respondWithToken($token)
+    {
+       try {
+        $responseArray = [
+            'access_token' => $token,
+            'user' => auth()->user(),
+            'token_type' => 'bearer',
+            'expires_in' => auth()->factory()->getTTL() * 3600,
+        ];
+        return response()->json($responseArray);
+       } catch (Exception $e) {
+        return response()->json('token error');
+       }
+
     }
     private function guard()
     {

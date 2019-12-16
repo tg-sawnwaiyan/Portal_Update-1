@@ -114,13 +114,6 @@ Vue.use(VueRouter)
 Vue.use(VueAxios, axios)
 axios.defaults.baseURL = `${process.env.MIX_APP_URL}`
 Vue.use(VueAuth, auth)
-    // process.env.MIX_SENTRY_DSN_PUBLIC
-    // // Load Index
-    // if (process.env.MIX_ENV_MODE === 'production') {
-    //   Vue.config.devtools = false;
-    //   Vue.config.debug = false;
-    //   Vue.config.silent = true; 
-    // }
 
 Vue.component('index', Index)
 
