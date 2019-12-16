@@ -8354,6 +8354,15 @@ ul.nur-caro-card>li.list-group-item {
 
 
 /*--------------------------------------------------------------------------------responsive -----------------------------------------------------------------------*/
+@media only screen and (max-width:1280px) {
+
+.t-r{
+    margin-right: 59px;
+}
+
+}
+
+
 
 @media only screen and (max-width:1024px) {
     .wd-in {
@@ -8362,40 +8371,217 @@ ul.nur-caro-card>li.list-group-item {
     .map-wrap{
         overflow: auto;
     }
+    #create_news
+    {
+        width:283px;
+        margin-left: 12px;
+    }
+    #create_news .title
+    {
+        padding: 2px;
+        font-size:11px;
+        padding-left: 10px;
+        margin-top: -7px;
+        
+    }
+   .t_card
+    {
+        max-width: none;
+    }
+    /*category*/
+    .t-r{
+        margin-right: 45px;
+    }
+    /*subject*/
+    .o-r1
+    {
+        margin-right: 21px;
+        margin-top: 20px;
+    }
+    /*advertisement*/
+    .a-d1
+    {
+        margin-right: 0px;
+    }
+    .a-d2
+    {
+        /* margin-left: 48px; */
+        margin-top: 20px;
+    }
 }
-
+/*create_news*/
+.title{
+    font-size: 13px;
+}
+.card_height
+{
+    float:left;
+    height:170px;
+    cursor:pointer;
+}
+@media screen and (max-width: 979px) and (max-width:752px) {
+    /* .map-box-reponsive {
+        display: block;
+    } */
+    #create_news .title
+    {
+        padding: 2px;
+        font-size:13px;
+        padding-left: 10px;
+        margin-top: -7px;
+        
+    }
+   
+    #news .t_card2
+    {
+        margin-left: 40px;
+    }
+    
+ 
+   
+}
 @media only screen and (max-width:768px) {
     .wd-in {
         width: 256px;
     }
     #create_news
     {
-        /* width:131px; */
+        width:195px;
     }
     #create_news .title
     {
-        padding: 0px;
-        font-size: 9px;
+        padding: 2px;
+        font-size:12px;
         padding-left: 10px;
         margin-top: -7px;
         
     }
-    #create_news .column
+   .t_card
     {
         max-width: none;
     }
-      
+    .t_card2
+    {
+        margin-left: 40px;
+    }
+    .card_height
+{
+    float:left;
+    height:190px;
+    cursor:pointer;
+}
+ /*category*/
+.t-r{
+    margin-left: 17px;
+    margin-right: 0px;
+    margin-top: 20px;
+}
+.t-l{
+    
+    margin-left: 39px;
+}
+ /*category*/
+
+    /*occupation*/
+    .o-r1
+    {
+        margin-right: 0px;
+
+    }
+    .o-r2
+    {
+        margin-left: 48px;
+        margin-top: 20px;
+    }
+    /*occupation*/
+
+     /*advertisement*/
+    .a-d1
+    {
+        margin-right: 0px;
+    }
+    .a-d2
+    {
+        margin-left: 48px;
+        margin-top: 20px;
+    }
+
 }
 
-@media only screen and (max-width:480px) {}
+/* @media only screen and (max-width:752px) {
+
+
+    #create_news
+    {
+        width:195px;
+    }
+    .t_card3
+    {
+        padding-left: 55px;
+    }
+
+ 
+  
+} */
+
+
+@media only screen and (max-width:480px) {
+    .t_card
+    {
+        margin-left: 22px;
+    }
+    #create_news .title
+    {
+        padding: 14px;
+        font-size:12px;
+        padding-left: 10px;
+        margin-top: -7px;
+        
+    }
+    .card_height
+    {
+        float:left;
+        height:236px;
+        cursor:pointer;
+    }
+    .mb{
+        margin-bottom: 20px;
+    }
+     /*category*/
+     .t-r{
+        margin-right: 31px;
+    }
+    /*occupation*/
+    .o-r1
+    {
+        margin-right: 19px;
+
+    }
+    .o-r2
+    {
+        margin-left: 29px;
+    }
+    /*occupation*/
+
+     /*advertisement*/
+
+    .a-d1
+    {
+        margin-right: 0px;
+    }
+    .a-d2
+    {
+        margin-left: 12px;
+        margin-top: 20px;
+    }
+ 
+}
 
 @media only screen and (max-width:320px) {}
 
-@media screen and (max-width: 979px) and (min-width: 752px) {
-    .map-box-reponsive {
-        display: block;
-    }
-}
+
+
+
 
 
 /**************card carousel***********************/

@@ -1,16 +1,16 @@
 <template>
     <!-- Page Content  -->
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card  text-dark">
+    <div class="row" id="news">
+        <div class="col-md-12 t_card2  t_card3">
+            <div class="card text-dark">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
                             <h4 class="page-header header">ニュースの作成</h4>
                             <br>
                         </div>
-
-                        <form @submit.prevent="add" class="col-md-12">
+                    <div class="row">
+                        <form @submit.prevent="add" class="col-12">
                             <div class="form-group">
                                 <!-- <button class="btn main-bg-color white all-btn" type="button">
                                                     種類
@@ -65,7 +65,7 @@
                                         <div class="row">
                                             <label> カテゴリー:</label>
                                             <div class="col-md-5">
-                                                <select v-model="category_id_1" id="categories" class="form-control" @change='getPostsByCatId()'>
+                                                <select v-model="category_id_1" id="categories" class="form-control mb" @change='getPostsByCatId()'>
                                                     <option v-for="category in categories" :key="category.id" v-bind:value="category.id">
                                                         {{category.name}}
                                                     </option>
@@ -77,12 +77,13 @@
                                             </div>
                                         </div>
                                         <br/>
+                                        
                                         <div class="row">
-                                            <div class="col-md-4" v-for="news in displayItems" :key="news.id">
+                                            <div class="col-md-4 t_card t2_card" v-for="news in displayItems" :key="news.id" style="max-width:none;">
                                                 <label class="form-check-label control control--checkbox">
                                                     <input type="checkbox" :value="news.id" v-model="checkedNews">
                                                     <div id="create_news">
-                                                    <div class="col-md-12 card card-defaul" style="float:left;height:150px;cursor:pointer;">
+                                                    <div class="col-md-12 card card-defaul card_height">
                                                         <div class="card-body news-post">
                                                             <div class="row">
                                                                 <div class="col-md-3 pad-free" >
@@ -131,6 +132,7 @@
                                 <router-link :to="{name: 'news_list'}" class="btn btn-danger all-btn">キャンセル</router-link>
                             </div>
                         </form>
+                    </div>
                     </div>
                 </div>
                 <!-- {{ related_news }} -->
@@ -375,3 +377,5 @@
             }
     }
 </script>
+
+
