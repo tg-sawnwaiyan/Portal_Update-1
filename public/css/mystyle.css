@@ -8512,7 +8512,7 @@ ul.nur-caro-card>li.list-group-item {
     display: flex !important;
     align-items: flex-end;
 }
-.news_catsearch label{
+ .news_catsearch label{
     width:20%
 }
 /* end for news_catsearch  admin page */
@@ -8550,11 +8550,20 @@ ul.nur-caro-card>li.list-group-item {
     }
 }
 
+@media only screen and (max-width:320px) {
+   .searchButton {
+       width: 35% !important;
+   }
+   .news_catsearch  label {
+       width:55%;
+   }
+}
+
 @media only screen and (max-width:480px) {
-    .col-sm-12   .news_catsearch {
+    .news_catsearch {
         padding:15px;
      }
-     .col-sm-12   .news_catsearch label {
+     .news_catsearch label {
          display: none;
      }
      .admin_page_edit{
@@ -8562,21 +8571,33 @@ ul.nur-caro-card>li.list-group-item {
          padding: 10px;
      }
      .admin_page_edit .edit-borderbtn,.admin_page_edit .delete-borderbtn {
-         /* border: 1px solid #ffc107 !important;
-         color: #ffc107;
-         background: #fff;
-         box-shadow: none !important; */
          min-width: 55px;
          font-size: 12px;
      }
+     .custom_title {
+         position: relative;
+         margin:5px 0;
+     }
+     .custom_title:after{
+            content: '';
+            position: absolute;
+            bottom:0;
+            display: inline-block;
+            width: 25px;
+            height: 3px;
+            left: 15px;
+            border-radius: 2px;
+            background: #d2571c;
+    }
 }
 
 @media only screen and (max-width:320px) {
     .searchButton {
         width: 35% !important;
     }
-    .col-sm-12   .news_catsearch  label {
+    .news_catsearch  label {
         width:55%;
+    }
 }
 
 @media screen and (max-width: 979px) and (min-width: 752px) {

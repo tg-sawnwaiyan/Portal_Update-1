@@ -26,40 +26,40 @@
 
                                 <div class="card-body news-post">
                                     <div class="row">
-                                        <div class="col-lg-2 col-md-3 col-sm-3">
+                                        <div class="col-lg-2 col-md-3">
                                             <!-- <img src="/images/hospitalpage.jpg" alt="" class="img-fluid"> -->
                                             <!-- <img :src="(customer.logo)" class="col-md-12 " alt=" " style="height:150px;" > -->
                                             <img :src="'/upload/hospital_profile/'+ customer.logo" class="img-fluid" alt="cust" v-if="customer.type_id == 2" @error="imgUrlAlt" />
                                             <img :src="'/upload/nursing_profile/'+ customer.logo" class="img-fluid" alt="cust" v-if="customer.type_id != 2" @error="imgUrlAlt" />
                                         </div>
-                                        <div class="col-lg-10 col-md-9 col-sm-9">
+                                        <div class="col-lg-10 col-md-9">
                                             <div class="row">
-                                                <div class="col-lg-2 col-md-4 col-sm-3">
+                                                <div class="col-lg-2 col-md-4 custom_title">
                                                     <strong>名前:</strong>
                                                 </div>
-                                                <div class="col-lg-10 col-md-8 col-sm-9">{{customer.name}}</div>
-                                                <div class="col-lg-2 col-md-4 col-sm-3">
-                                                    <strong>状態:</strong>
+                                                <div class="col-lg-10 col-md-8">{{customer.name}}</div>
+                                                <div class="col-lg-2 col-md-4 custom_title">
+                                                    <strong >状態:</strong>
                                                 </div>
-                                                <div class="col-lg-10 col-md-8 col-sm-9" v-if="customer.recordstatus == '1'">Activate</div>
-                                                <div class="col-lg-10 col-md-8 col-sm-9" v-else>Deactivate</div>
+                                                <div class="col-lg-10 col-md-8" v-if="customer.recordstatus == '1'">Activate</div>
+                                                <div class="col-lg-10 col-md-8" v-else>Deactivate</div>
 
-                                                <div class="col-lg-2 col-md-4 col-sm-3">
+                                                <div class="col-lg-2 col-md-4 custom_title">
                                                     <strong>メールアドレス:</strong>
                                                 </div>
-                                                <div class="col-lg-10 col-md-8 col-sm-9">{{customer.email}}</div>
+                                                <div class="col-lg-10 col-md-8">{{customer.email}}</div>
                                                 <!-- <div class="col-md-2 max-width13"><strong>Logo:</strong></div><div class="col-md-10">{{customer.logo}}</div> -->
-                                                <div class="col-lg-2 col-md-4 col-sm-3 ">
+                                                <div class="col-lg-2 col-md-4 custom_title">
                                                     <strong>電話番号:</strong>
                                                 </div>
-                                                <div class="col-lg-10 col-md-8 col-sm-9">{{customer.phone}}</div>
-                                                <div class="col-lg-2 col-md-4 col-sm-3">
+                                                <div class="col-lg-10 col-md-8">{{customer.phone}}</div>
+                                                <div class="col-lg-2 col-md-4 custom_title">
                                                     <strong>住所:</strong>
                                                 </div>
-                                                <div class="col-lg-10 col-md-8 col-sm-9">{{customer.address}}</div>
+                                                <div class="col-lg-10 col-md-8">{{customer.address}}</div>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-4 col-offset-4 pl-3">
+                                                <div class="row mt-3">
+                                                    <div class="col-md-6">
                                                         <button class="btn delete-borderbtn" @click="deleteCustomer(customer.id)">削除</button>
                                                         <!-- <router-link :to="{name:'custedit',params:{id:customer.id}}" class="btn main-bg-color all-btn white">Edit</router-link> -->
                                                         <!-- <button class="btn confirm-borderbtn" v-if="customer.status == 0">確認済</button> -->
