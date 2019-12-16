@@ -8541,7 +8541,14 @@ ul.nur-caro-card>li.list-group-item {
 }
 
 @media only screen and (max-width:480px) {}
-
+@media only screen and (max-width: 414px){
+    .sp-414{
+        display: block !important;
+    }
+    .pc-414{
+        display: none !important;
+    }
+}
 @media only screen and (max-width:320px) {
     .searchButton {
         width: 35% !important;
@@ -8886,6 +8893,12 @@ ul.nur-caro-card>li.list-group-item {
     display: none;
 }
 .pc-768{
+    display: block;
+}
+.sp-414{
+    display: none;
+}
+.pc-414{
     display: block;
 }
 @media only screen and (max-width: 1240px) {
