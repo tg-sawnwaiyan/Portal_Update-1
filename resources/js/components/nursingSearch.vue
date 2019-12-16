@@ -1342,8 +1342,7 @@ getStateClick(e) {
             else{
                 this.locast = localStorage.getItem("nursing_fav");
             }
-
-
+            this.$loading(true);
             this.axios.get('/api/getmap',{
                 params:{
                 id: this.id,
@@ -1354,6 +1353,7 @@ getStateClick(e) {
                 },
             })
                 .then((response) => {
+                  this.$loading(false);
                  $("#mymap").css({'display' : 'block','height' : '500px','width':'100%'});
                  // $("#mymap").css('display', 'block');
                   $("#nursing-search").css("display", "block");
