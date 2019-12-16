@@ -37,7 +37,7 @@ class AuthController extends Controller
     {
 
         $credentials = $request->only('email', 'password');
-        $session = 1;
+        $session = 60;
         JWTAuth::factory()->setTTL($session);
         if ($token = JWTAuth::attempt($credentials)) {
             return response()->json(['status' => 'success'], 200)->header('Authorization', $token);
@@ -82,7 +82,7 @@ class AuthController extends Controller
             'access_token' => $token,
             'user' => auth()->user(),
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 1,
+            'expires_in' => auth()->factory()->getTTL() * 3600,
         ];
         return response()->json($responseArray);
        } catch (Exception $e) {

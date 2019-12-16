@@ -7,6 +7,7 @@ use App\Customer;
 use DB;
 use Storage;
 use File;
+
 class SearchMapController extends Controller
 {
     public function getMap()
@@ -801,19 +802,20 @@ class SearchMapController extends Controller
 
     public function cityJson($theCity)
     {   
-        $handle = public_path('google-map-json\\jp_cities.json');
-        // $file = File::allFiles($handle);
-        // $files = File::allFiles(public_path());
-        // $path = public_path().('/google-map-json/jp_cities.json');
-        // $json = file_get_contents($path);
-        $obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $handle), true );
-        // dd($file);
+
+        // $handle = public_path('google-map-json\\jp_cities.json');
+       $file = Storage::disk('local')->getDriver()->getAdapter()->applyPathPrefix('google-map-json\jp_cities.json');
         
+        $json = file_get_contents($file);
+        $obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $json), true );
+        // dd($file);
+       
         foreach($obj as $key => $value){
-            $json = $value;
             
+            $jsons = $value;
         }
-        return response()->json($json);
+        return response()->json($jsons);
+        
     }
 
     public function townshipJson()
