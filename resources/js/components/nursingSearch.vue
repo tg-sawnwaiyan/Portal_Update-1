@@ -10,7 +10,7 @@
         <div>
         <div class="row map-wrap"  id="searchMap">
           <!-- search map and path -->
-            <div class="col-lg-5 col-md-12 col-sm-12 float-left" style="padding-left: 75px;">
+            <div class="col-lg-5 col-md-12 col-sm-12 float-left map-leftwrapper">
             <!-- <h2 class="map-header">あなたらしい<br/>暮らしができる<br/> 老人ホームが <br/>見つかります。</h2> -->
             <h2 class="map-header">あなたらしい暮ら<br/>しができる。そん<br/>な老人ホームが見 <br/>つかります。</h2>
             <!--search input-->

@@ -569,16 +569,21 @@
                 <tr>
                   <th>地域</th>
                   <td>
-                    <select id="selectCity"   class="col-10 col-md-9 form-control custom-select mt-2 mb-2" v-model="id" @change="changeTownship">
+                    <div class="row col-12 mt-2 mb-2">
+                      <div class="col-lg-9">
+                      <select id="selectCity" class="form-control custom-select" v-model="id" @change="changeTownship">
                          <option value="-1">▼市区町村</option>
                       <option v-for = "city in cities" :value="city.id" :key="city.id" >{{city.city_name}}</option>
                     </select>
-                    <button @click="toggleContent4" class="btn col-2 col-md-3 seemore-btn">
+                    </div>
+                    <div class="col-lg-3">
+                      <button @click="toggleContent4" class="btn seemore-btn">
                       <i class="fa" aria-hidden="true"></i>
                           <!-- <em>{{city.city_name}}</em> -->
                           <span id="close6"><i class="fas fa-arrow-circle-up"></i> 市区町村エリアを閉じる </span>
                     </button>
-
+                    </div>
+                    </div>
                     <div  class="toBeToggled4" id="toBeToggled4">
 
                       <div class="form-check form-check-inline col-sm-2"   v-for="township in getTownships" :key="township.id">

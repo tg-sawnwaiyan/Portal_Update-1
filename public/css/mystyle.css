@@ -7203,7 +7203,8 @@ ul.test>li:before {
     padding: 5px;
     border-radius: 5px;
     background-color: #ffc;
-    width: 205px;
+    width: 100%;
+  
 }
 
 .seemore-btn:hover {
