@@ -1324,15 +1324,15 @@ export default {
 
                 if(this.chek_feature.length > 0) {
                     this.axios
-                    .post(`/api/sfeature/update/${this.cusid}`,this.chek_feature)
-                    .then((response) => {
+                        .post(`/api/sfeature/update/${this.cusid}`,this.chek_feature)
+                        .then((response) => {
 
 
-                        }).catch(error=>{
-                        if(error.response.status == 422){
-                            this.chek_feature = 'error';
-                            this.errors = error.response.data.errors
-                        }
+                            }).catch(error=>{
+                            if(error.response.status == 422){
+                                this.chek_feature = 'error';
+                                this.errors = error.response.data.errors
+                            }
                     }) ;
                 }
 
