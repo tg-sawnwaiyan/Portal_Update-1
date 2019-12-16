@@ -51,20 +51,21 @@ class JobApplyController extends Controller
      */
     public function store(Request $request)
     {
-                $string = '';
-                $count = count($request->skills);
+            $string = '';
+            $count = count($request->skills);
 
-                for($i = 0;$i< $count ;$i++)
+            for($i = 0;$i< $count ;$i++)
+            {
+
+                if($i == $count-1)
                 {
-
-                    if($i == $count-1)
-                    {
-                        $string .= $request->skills[$i];
-                    }else{
-                        $string .= $request->skills[$i].',';
-                    }
-
+                    $string .= $request->skills[$i];
+                }else{
+                    $string .= $request->skills[$i].',';
                 }
+
+            }
+
             $jobapply = new JobApply;
             $jobapply->job_id = $request->job_id;
             $jobapply->first_name = $request->first_name;
@@ -74,7 +75,7 @@ class JobApplyController extends Controller
             $jobapply->postal = $request->postal;
             $jobapply->city_id = $request->city_id;
             $jobapply->street_address = $request->str_address;
-            // $jobapply->home_address = $request->home_address;
+            //$jobapply->home_address = $request->home_address;
             $jobapply->phone = $request->phone;
             $jobapply->email = $request->email;
             $jobapply->skill = $string;
@@ -92,14 +93,14 @@ class JobApplyController extends Controller
             //                 ->get();
 
 
-
-             $query = "SELECT j.*,c.email,c.name as cus_name,ci.city_name as city_name,(CASE c.type_id WHEN '2' THEN CONCAT((500000+c.id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT((200000+c.id),'-',LPAD(j.id, 4, '0')) END) as jobnum
+             $query = "SELECT j.*,c.email,c.name as cus_name,ci.city_name as city_name,(CASE c.type_id WHEN '2' THEN CONCAT((500000+c.id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT((200000+c.id),'-',LPAD(j.id, 4, '0')) END) as jobnum,
+                       (CASE c.type_id WHEN '2' THEN CONCAT(500000+c.id) ELSE CONCAT(200000+c.id) END) as cusnum
                         from customers as c join jobs as j on c.id = j.customer_id join townships as t on t.id = c.townships_id join cities as ci on ci.id = t.city_id 
                         where c.recordstatus=1 and j.id = " . $jobapply->job_id;
 
-            $infos = DB::select($query);    
-          
-
+            $infos = DB::select($query);  
+            
+        
             foreach($infos as $info) {
                 $job_title = $info->title;
                 $job_description = $info->description;
@@ -111,6 +112,7 @@ class JobApplyController extends Controller
                 $customer_mail = $info->email;
                 $customer_name = $info->cus_name;
                 $jobnum = $info->jobnum;
+                $cusnum = $info->cusnum;
                 $city_name = $info->city_name;
             }
 
@@ -126,6 +128,7 @@ class JobApplyController extends Controller
              $jobapply->job_working_hours = $job_working_hours;
              $jobapply->cus_name = $customer_name;
              $jobapply->jobnum = $jobnum;
+             $jobapply->cusnum = $cusnum;
              $jobapply->city_name = $city_name;
              \Mail::to($customer_mail)->send(new jobApplyMailToCustomer($jobapply));
              \Mail::to($jobapply->email)->send(new jobApplyMailToUser($jobapply));

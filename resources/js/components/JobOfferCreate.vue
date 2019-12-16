@@ -628,7 +628,7 @@
                 },
 
                 add() {
-                 
+              
                     if (this.$route.params.id) {
                         this.updateJob();
                     } else {
@@ -827,7 +827,7 @@
 
                 updateJob() {
                   // console.log('bbb');
-                   this.$loading(true);
+                    
                       if (this.$route.params.id){
                         this.$swal({
                         title: "確認",
@@ -844,12 +844,12 @@
                         confirmButtonClass:  "all-btn",
                         cancelButtonClass: "all-btn"
                     }).then(response => {
-                      
+                         this.$loading(true);
                         this.axios.post(`/api/job/update/${this.$route.params.id}`, this.joboffer)
 
                         .then(response => {
                            this.$loading(false);
-                          console.log("JOB");
+                        
                                 this.$swal({
                                     title: "更新されました。",
                                     // text: "ファイルが更新されました。",
