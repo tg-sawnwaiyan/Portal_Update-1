@@ -6772,23 +6772,6 @@ table.box-wrap th {
     display: inline-block;
 }
 
-@media (max-width:990px) {
-    .form-wrap .form-left {
-        padding: 10px 15px 5px 15px;
-        border-bottom: 1px solid #ced4da;
-    }
-    .form-wrap label {
-        display: block;
-    }
-    .form-wrap .form-control,
-    .form-wrap .full-wd.form-control {
-        width: 85% !important;
-    }
-    .eg-txt {
-        margin-top: 10px;
-    }
-}
-
 
 /* job-detail */
 
@@ -7282,6 +7265,7 @@ ul.test>li:before {
 .job_id {
     float: right;
     padding: 2px 10px;
+    margin-top: 5px;
     font-weight: bold;
     border: 1px solid #ddd;
     border-radius: 12px;
@@ -7290,6 +7274,14 @@ ul.test>li:before {
 
 .job-img img {
     max-width: 100%;
+}
+
+.job_detail_btn {
+    color: #fff !important;
+    border: none !important;
+    cursor: pointer;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12) !important;
+    background-color: #828282;
 }
 
 .job-body table td:first-child {
@@ -7835,7 +7827,7 @@ ul.nur-caro-card>li.list-group-item {
     margin-bottom: 8px;
     border-bottom: 1px solid #828282;
     color: #111;
-    font-weight: bolds;
+    font-weight: bold;
     letter-spacing: 1px;
 }
 
@@ -7848,7 +7840,7 @@ ul.nur-caro-card>li.list-group-item {
     margin-bottom: 8px;
     border-bottom: 1px solid #828282;
     color: #111;
-    font-weight: bolds;
+    font-weight: bold;
     letter-spacing: 1px;
 }
 
@@ -8898,16 +8890,6 @@ ul.nur-caro-card>li.list-group-item {
     /*end header */
 }
 
-@media only screen and (max-width: 768px) {
-    .tab {
-        max-width: 100% !important;
-        flex: 100% !important;
-    }
-    .map-text-wrapper {
-        display: flex;
-    }
-}
-
 @media only screen and (max-width: 1024px) {
     /* common */
     .col-slg-12 {
@@ -9218,6 +9200,71 @@ ul.nur-caro-card>li.list-group-item {
         margin-bottom: 10px;
     }
     /*End  profile publish */
+    /* job details */
+    .job_id {
+        float: none;
+        display: block;
+        width: 185px;
+        margin-top: 20px;
+        text-align: center;
+    }
+    .form-wrap .form-left {
+        padding: 10px 15px 5px 15px;
+        border-bottom: 1px solid #ced4da;
+    }
+    .form-wrap label {
+        display: block;
+    }
+    .form-wrap .form-control,
+    .form-wrap .full-wd.form-control {
+        width: 85% !important;
+    }
+    .eg-txt {
+        margin-top: 10px;
+    }
+    /*End job details */
+}
+
+@media only screen and (max-width: 768px) {
+    .tab {
+        max-width: 100% !important;
+        flex: 100% !important;
+    }
+    .map-text-wrapper {
+        display: flex;
+    }
+    /* job apply */
+    .register_box,
+    .confirm_box {
+        padding: 0;
+    }
+    .register_box .multi-step span,
+    .confirm_box .multi-step span {
+        display: none;
+    }
+    .multi-step {
+        margin-bottom: 20px;
+    }
+    .multi-step li {
+        width: 28.73%;
+        padding: 5px 10px;
+        margin-left: 10px;
+        font-size: 12px;
+    }
+    .multi-step li::before {
+        border-width: 7px;
+        margin-top: -6px;
+    }
+    .form-wrap .form-control,
+    .form-wrap .full-wd.form-control {
+        width: 90% !important;
+        margin: 10px;
+    }
+    .eg-txt {
+        padding-left: 5px;
+        width: 100%;
+    }
+    /*End job apply */
 }
 
 @media only screen and (max-width: 620px) {
@@ -9334,9 +9381,34 @@ ul.nur-caro-card>li.list-group-item {
         padding: 5px 9px;
     }
     /*End  profile publish */
+    /* Job Detail */
+    .job-title-color {
+        padding-left: 23px;
+        font-size: 16px;
+        background-size: 22px;
+    }
+    /*End Job Detail */
+    /* job apply */
+    .jop-apply-tit-wrap {
+        padding: 0;
+    }
+    .job-apply-color {
+        padding-left: 23px;
+        font-size: 16px;
+        background-size: 22px;
+    }
+    /*End job apply */
 }
 
 @media only screen and (max-width: 480px) {
+    /* common */
+    .p0-480 {
+        padding: 0;
+    }
+    .breadcrumb {
+        padding: 0 !important;
+    }
+    /*End common */
     .map-text-wrapper {
         display: block;
     }
