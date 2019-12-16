@@ -105,7 +105,9 @@
             },
 
             created() {
+                this.$loading(true);
                 this.axios.get("/api/feature/featurelist").then(response => {
+                    this.$loading(false);
                     this.features = response.data;
                     this.norecord = this.features.length;
                     if (this.norecord > this.size) {
@@ -211,7 +213,9 @@
                         var search_word = $("#search-item").val();
                         let fd = new FormData();
                         fd.append("search_word", search_word);
+                        this.$loading(true);
                         this.axios.post("/api/feature/search", fd).then(response => {
+                            this.$loading(false);
                             this.features = response.data;
                             if(this.features.length > this.size) {
                                 this.pagination = true;
