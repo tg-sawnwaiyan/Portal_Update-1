@@ -22,6 +22,7 @@ body {
     background: #f8f8f8 !important;
     scrollbar-width: thin;
 }
+
 p {
     font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
     font-size: 1em;
@@ -29,6 +30,7 @@ p {
     line-height: 1.7em;
     color: #000;
 }
+
 .form1 {
     /* border:1px solid#118063; */
     padding: 30px;
@@ -81,7 +83,7 @@ p {
     margin-top: 21px;
 }
 
-#wrapper {   
+#wrapper {
     height: 100%;
 }
 
@@ -109,6 +111,7 @@ p {
 #content .news-post p {
     font-size: 14px;
 }
+
 .img_2 {
     /* margin-left: 10%; */
     /* border:1px solid black; */
@@ -126,6 +129,7 @@ body::-webkit-scrollbar,
     width: 6px !important;
     background: #f7f7f7 !important;
 }
+
 .news-wrapper::-webkit-scrollbar-track,
 .ql-editor::-webkit-scrollbar-track,
 body::-webkit-scrollbar-track,
@@ -136,6 +140,7 @@ body::-webkit-scrollbar-track,
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3) !important;
     border-radius: 0px !important;
 }
+
 .news-wrapper::-webkit-scrollbar-thumb,
 .ql-editor::-webkit-scrollbar-thumb,
 .main-wrap::-webkit-scrollbar-thumb,
@@ -147,6 +152,7 @@ body::-webkit-scrollbar-thumb {
     background-color: #d7d7d7 !important;
     border-radius: 0px !important;
 }
+
 .info {
     width: 100%;
     height: 120px;
@@ -163,6 +169,7 @@ body::-webkit-scrollbar-thumb {
     text-align: justify;
     border-right: 1px solid #fff;
 }
+
 .scrolldiv {
     /* height: 550px;
     overflow-y: auto;
@@ -192,13 +199,17 @@ body::-webkit-scrollbar-thumb {
     border: 1px solid #eee;
     box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1);
 }
+
 #search-word {
     border: 1px solid #a7a3a3;
 }
+
+
 /********************************** End Common **********************************/
 
 
 /********************************** Profile & Profile publish**********************************/
+
 .heading-lbl {
     font-weight: bold;
     font-size: 1.15em;
@@ -269,6 +280,7 @@ body::-webkit-scrollbar-thumb {
 .hor-line {
     border-top: 2px solid #eee;
 }
+
 .toggle-div {
     display: block;
     /* margin-top: 15px; */
@@ -280,6 +292,7 @@ body::-webkit-scrollbar-thumb {
     border-radius: 5px;
     margin-bottom: 15px;
 }
+
 .gallery-area-photo,
 .gallery-area-video {
     margin-top: 15px;
@@ -287,6 +300,7 @@ body::-webkit-scrollbar-thumb {
     padding: 20px;
     border: 1px dashed #b7dad2;
 }
+
 .accept-box {
     border: 1px solid #ccc;
     padding: 10px;
@@ -323,7 +337,7 @@ body::-webkit-scrollbar-thumb {
     font-size: 16px;
     background: linear-gradient(45deg, #ffbe9f, transparent);
     color: #444 !important;
-    padding: 10px 15px;  
+    padding: 10px 15px;
     margin-top: 10px;
 }
 
@@ -334,6 +348,7 @@ body::-webkit-scrollbar-thumb {
     padding-top: 10px;
     background: #f5f5f5;
 }
+
 .pro-heading h5 {
     position: relative;
     margin: 0 15px 15px 0;
@@ -342,6 +357,8 @@ body::-webkit-scrollbar-thumb {
     line-height: 1.1;
     letter-spacing: 1px;
 }
+
+
 /* lightbox */
 
 .lightbox {
@@ -398,11 +415,12 @@ body::-webkit-scrollbar-thumb {
 
 /*End lightbox */
 
+
 /********************************** End Profile & Profile publish**********************************/
 
 
-
 /********************************** Common Admin And User Panel **********************************/
+
 .show-img {
     height: 100px;
     width: 100%;
@@ -410,6 +428,7 @@ body::-webkit-scrollbar-thumb {
     border-radius: 5px;
     padding: 0px;
 }
+
 .img-close-btn {
     position: absolute;
     top: 0px;
@@ -427,11 +446,13 @@ body::-webkit-scrollbar-thumb {
 .img-close-btn:hover {
     color: blue;
 }
+
 #image_preview {
     /* border: 1px solid #ccc; */
     border-radius: 5px;
     padding: 10px 0px;
 }
+
 .alert-danger {
     width: 100%;
     margin: 0px;
@@ -450,6 +471,7 @@ body::-webkit-scrollbar-thumb {
     -webkit-border-radius: 6px;
     border-radius: 6px;
 }
+
 .p_3 {
     /* padding: 22px; */
     /* margin-top: 22px; */
@@ -470,10 +492,13 @@ body::-webkit-scrollbar-thumb {
     font-weight: bold;
     letter-spacing: 3px;
 }
+
+
 /********************************** End Common Admin Panel **********************************/
 
 
 /********************************** News **********************************/
+
 .category_news_title {
     /* text-align: center; */
     padding: 0px 15px 15px 0px;
@@ -490,6 +515,7 @@ body::-webkit-scrollbar-thumb {
     padding: 10px 0px 0px 0px;
     margin-top: 20px;
 }
+
 
 /* .img-box img {
     border-radius: 3px;
@@ -683,16 +709,20 @@ body::-webkit-scrollbar-thumb {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
 }
+
 .fit-image {
     width: 100%;
     object-fit: cover;
     height: 220px;
     /* only if you want fixed height */
 }
+
+
 /********************************** End News **********************************/
 
 
 /********************************** Login And Register **********************************/
+
 .user_card {
     height: 400px;
     width: 350px;
@@ -763,6 +793,7 @@ body::-webkit-scrollbar-thumb {
     box-shadow: none !important;
     outline: 0px !important;
 }
+
 .input-group-text {
     background: #d2571c !important;
     color: white !important;
@@ -775,6 +806,7 @@ body::-webkit-scrollbar-thumb {
     box-shadow: none !important;
     outline: 0px !important;
 }
+
 .links {
     position: relative;
 }
@@ -859,6 +891,7 @@ body::-webkit-scrollbar-thumb {
     background-color: #ddd;
     cursor: pointer;
 }
+
 .register_btn {
     color: white !important;
     width: 30%;
@@ -868,13 +901,17 @@ body::-webkit-scrollbar-thumb {
     box-shadow: none !important;
     outline: 0px !important;
 }
+
 :focus {
     outline: -webkit-focus-ring-color auto 0px;
 }
+
+
 /********************************** End Login And Register **********************************/
 
 
 /****************************** no search data *************************/
+
 .nosearch-icon {
     border: 1px solid #b0abab;
     width: 60px;
@@ -886,6 +923,7 @@ body::-webkit-scrollbar-thumb {
     vertical-align: middle;
     background: #ddd;
 }
+
 .nosearch-data {
     font-size: 25px;
     color: #f57e46;
@@ -893,6 +931,7 @@ body::-webkit-scrollbar-thumb {
     margin: 20px 0;
     text-align: center;
 }
+
 .nosearch {
     font-size: 14px;
     color: #a5a5a5;
@@ -900,15 +939,22 @@ body::-webkit-scrollbar-thumb {
     margin: 20px 0;
     text-align: center;
 }
+
+
 /******************************** end no search data ****************************************/
 
 
 /***************************************** Job Search *****************************************/
+
 .arrow_icon {
     color: #828282 !important;
     font-size: 16px;
     float: right;
     padding-right: 14px;
+}
+
+.arrow_icon:before {
+    color: #d2571c;
 }
 
 .custom_group {
@@ -923,7 +969,9 @@ body::-webkit-scrollbar-thumb {
 .custom_group a li {
     list-style: none;
     border-bottom: 1px solid #eeeeee;
-    padding: 5px;
+    padding: 10px 10px 10px 20px;
+    color: #8e3c15;
+    font-weight: bold;
 }
 
 .map-addicon {
@@ -932,13 +980,72 @@ body::-webkit-scrollbar-thumb {
     top: 15px;
 }
 
+.map-addicon:before {
+    color: #d2571c;
+    font-weight: bold;
+    font-size: 20px;
+}
+
 .card-header-title>p {
     padding: 10px 10px 0px 10px !important;
+}
+
+#map-responsive {
+    background-color: rgba(255, 255, 255, 0.8);
+    /* border-radius: 10px;
+    box-shadow: 0px 0px 5px rgb(212, 201, 201); */
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.accordion-body .card-footer{
+    display: none;
+}
+
+.accordion>.card .card-header:hover,
+.card-header:active,
+.card-header:visited {
+    background: #ff611714 !important;
+}
+
+.accordion>.card .card-header-title>p {
+    color: #25201d;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.freeword-responsive {
+    margin: 20px 0px;
+}
+
+.freeword-responsive h3 {
+    padding: 0px 20px 10px;
+}
+
+.freeword-responsive p {
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #7F340F;
+}
+
+.map-fa-icon{    
+    width: 101px;
+    height: 91px;
+    background: url(/images/map-responsive1.png) center top no-repeat;
+   /* background: url(../images/map-responsive1.png); */
+    display: inline-block;
+    vertical-align: middle;
+    background-size: contain;
+    background-repeat: no-repeat;
+    
 }
 /************************************  End Job Search ************************************************/
 
 
 
+/************************************  End Job Search ************************************************/
 
 #hospitalView .profile_header {
     border-left: 5px solid #63b7ff;
@@ -1060,7 +1167,9 @@ body::-webkit-scrollbar-thumb {
     display: none;
 }
 
+
 /******************************* Main Header ******************************/
+
 .main-header {
     position: fixed;
     width: 100%;
@@ -1240,6 +1349,17 @@ body::-webkit-scrollbar-thumb {
     min-height: 100vh;
     background: #fff;
 }
+.full-content {
+    /* padding: 0px;*/
+    width: 100%;
+    margin: 0 auto;
+    box-shadow: 0px 1px 2px 0px #ccc !important;
+    -webkit-box-shadow: 0px 1px 2px 0px #ccc !important;
+    -ms-box-shadow: 0px 1px 2px 0px #ccc !important;
+    -moz-box-shadow: 0px 1px 2px 0px #ccc !important;
+    min-height: 100vh;
+    background: #fff;
+}
 
 .main-wrap {
     /* height: 700px; */
@@ -1277,6 +1397,7 @@ body::-webkit-scrollbar-thumb {
     margin: 20px 0;
     text-align: center;
 }
+
 .no_search_data {
     font-size: 20px;
     color: #a5a5a5;
@@ -1382,6 +1503,7 @@ body::-webkit-scrollbar-thumb {
     position: relative;
     left: 15px;
 }
+
 .related-card {
     margin-bottom: 20px;
     background: #f5f5f5;
@@ -1946,13 +2068,7 @@ ul.sub-ul li {
         width: 90%;
     }
     /* .ads-card{
-
-
-
          width: 18rem;
-
-
-
     } */
     .smallads-title {
         font-size: 12px;
@@ -2775,7 +2891,7 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
     position: fixed;
     top: 237px;
     right: 10px;
-    /* z-index: 99999; */
+    z-index: 99999;
 }
 
 #headerbar .router-link-exact-active {
@@ -3074,10 +3190,12 @@ ul.main-tab li:after {
 
 
 /********************************* Map *****************************/
+
 .search-map {
     background: white;
     padding: 15px !important;
 }
+
 .search-map {
     background: #fff;
     padding: 0px 15px 0px 15px !important;
@@ -3100,9 +3218,10 @@ ul.main-tab li:after {
     /* height: 532px; */
 }
 
-.map-leftwrapper{
-    padding-left: 75px;    
+.map-leftwrapper {
+    padding-left: 75px;
 }
+
 .map-header {
     color: #7F340F;
     font-weight: bold;
@@ -4769,8 +4888,9 @@ a:hover {
     /* height: 100vh;*/
     /* background: #b7dad2;  */
     /* position: absolute;
-    z-index: 1000;
-    display: none; */
+    z-index: 2;
+    display: none;
+    left: 0px; */
 }
 
 #menu-overlay {
@@ -4779,10 +4899,10 @@ a:hover {
     height: 100%;
     background-color: #000;
     opacity: 0.4;
-    position: absolute;
+    position: fixed;
     top: 0px;
     left: 0px;
-    z-index: 999;
+    z-index: 1;
 }
 
 
@@ -4893,6 +5013,42 @@ a:hover {
 .section#section4 {
     background: #666;
     color: #eee;
+}
+
+.cost_table th,
+.map_tbl th {
+    width: 250px;
+}
+
+.cost_table td,
+.map_tbl td {
+    width: calc(100% - 250px);
+}
+
+.info_tbl th {
+    width: 200px;
+}
+
+.payment-tbl th {
+    width: 30%;
+}
+
+.payment-tbl td {
+    width: 70%;
+}
+
+.facility_tbl th {
+    width: 250px;
+}
+
+.staff_tbl th {
+    width: 350px;
+    font-weight: normal;
+}
+
+.staff_tbl td {
+    width: 500px;
+    font-weight: normal;
 }
 
 
@@ -5169,7 +5325,6 @@ screen and (min-width: 750px) {
         /* white-space: pre-line; */
     }
     /*End Newdetails */
-    
     /* Newdetails */
     .p5 {
         font-size: 18px;
@@ -5443,6 +5598,7 @@ body::-webkit-scrollbar-thumb {
     }
 }
 
+
 /*view*/
 
 .m-t-l {
@@ -5706,15 +5862,13 @@ button.confirmed {
 }
 
 .comment-btn-wrapper {
+    width: 80%;
     padding: 0px 0px 75px;
+    margin: 0 auto 68px;
     text-align: center;
     background-color: #FFF9EB;
-    border: 4px solid #f60;
-    border-radius: 5px;
-    margin-bottom: 68px;
     border: 2px solid #d2571c;
-    width: 80%;
-    margin-left: 139px;
+    border-radius: 5px;
 }
 
 .no-comment-title {
@@ -6131,7 +6285,6 @@ button.confirmed {
 
 .ele {
     margin-top: 50px;
-  
 }
 
 .table-wrapper {
@@ -6778,7 +6931,8 @@ ul.test>li:before {
     width: 1303px;
     overflow: hidden;
 }
-#fav-hospital-page #fav-history-page .card-carousel{
+
+#fav-hospital-page #fav-history-page .card-carousel {
     display: flex;
     justify-content: center;
     width: 1353px;
@@ -8070,7 +8224,7 @@ ul.nur-caro-card>li.list-group-item {
         max-width: 19%;
         flex: 0 0 18%;
     }
-    .map-wrap{
+    .map-wrap {
         overflow: hidden;
     }
 }
@@ -8158,11 +8312,15 @@ ul.nur-caro-card>li.list-group-item {
 
 
 /* start count profie */
+
+
 /* .profile_count {
     color: #C40000;
     font-weight: bold;
     font-size: 25px;
 } */
+
+
 /* end count profile */
 
 
@@ -8174,8 +8332,6 @@ ul.nur-caro-card>li.list-group-item {
     font-size: 20px;
     font-weight: bold;
 }
-
-
 
 
 /*profile_edit*/
@@ -8368,7 +8524,7 @@ ul.nur-caro-card>li.list-group-item {
     .wd-in {
         width: 249px;
     }
-    .map-wrap{
+    .map-wrap {
         overflow: auto;
     }
     #create_news
@@ -8506,6 +8662,15 @@ ul.nur-caro-card>li.list-group-item {
         margin-top: 20px;
     }
 
+    .map-wrap {
+        display: none;
+    }
+    .searchButton {
+        width: 13%;
+    }
+    .searchTerm {
+        width: 87%;
+    }   
 }
 
 /* @media only screen and (max-width:752px) {
@@ -8575,6 +8740,17 @@ ul.nur-caro-card>li.list-group-item {
         margin-top: 20px;
     }
  
+@media only screen and (max-width:320px) {
+    .searchButton {
+        width: 35% !important;
+    }
+}
+
+@media screen and (max-width: 979px) and (min-width: 752px) {
+    .map-box-reponsive {
+        display: block;
+    }   
+
 }
 
 @media only screen and (max-width:320px) {}
@@ -8605,83 +8781,82 @@ ul.nur-caro-card>li.list-group-item {
     }
 }
 
-@media only screen and (min-width: 320px) and (max-width: 360px)  {
+@media only screen and (min-width: 320px) and (max-width: 360px) {
     #fav-history-page .card-carousel {
         width: 263px !important;
     }
     #fav-history-page .card-carousel {
         overflow: visible;
     }
-    #fav-hospital-page  #fav-history-page .card-carousel{
+    #fav-hospital-page #fav-history-page .card-carousel {
         width: 272px !important;
     }
-    #fav-hospital-page #fav-history-page .card-carousel-wrapper
-    {
-        margin-left: -16px;
-    }
-}
-@media only screen and (min-width: 360px) and (max-width: 375px)  {
-    #fav-history-page .card-carousel {
-        width: 261px !important;
-    }
-    #fav-history-page .card-carousel {
-        overflow: visible;
-    }
-    #fav-hospital-page  #fav-history-page .card-carousel{
-        width: 272px !important;
-    }
-    #fav-hospital-page #fav-history-page .card-carousel-wrapper
-    {
+    #fav-hospital-page #fav-history-page .card-carousel-wrapper {
         margin-left: -16px;
     }
 }
 
-@media only screen and (min-width: 375px) and (max-width: 450px)  {
+@media only screen and (min-width: 360px) and (max-width: 375px) {
     #fav-history-page .card-carousel {
         width: 261px !important;
     }
     #fav-history-page .card-carousel {
         overflow: visible;
     }
-    #fav-hospital-page  #fav-history-page .card-carousel{
+    #fav-hospital-page #fav-history-page .card-carousel {
         width: 272px !important;
     }
-    #fav-hospital-page #fav-history-page .card-carousel-wrapper
-    {
+    #fav-hospital-page #fav-history-page .card-carousel-wrapper {
+        margin-left: -16px;
+    }
+}
+
+@media only screen and (min-width: 375px) and (max-width: 450px) {
+    #fav-history-page .card-carousel {
+        width: 261px !important;
+    }
+    #fav-history-page .card-carousel {
+        overflow: visible;
+    }
+    #fav-hospital-page #fav-history-page .card-carousel {
+        width: 272px !important;
+    }
+    #fav-hospital-page #fav-history-page .card-carousel-wrapper {
         margin-left: -11px;
     }
 }
 
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 414px) and (max-width: 768px)  {
+
+@media only screen and (min-width: 414px) and (max-width: 768px) {
     #fav-history-page .card-carousel {
         width: 261px !important;
     }
-    #fav-hospital-page  #fav-history-page .card-carousel{
+    #fav-hospital-page #fav-history-page .card-carousel {
         width: 272px !important;
     }
-    #fav-hospital-page #fav-history-page .card-carousel-wrapper
-    {
+    #fav-hospital-page #fav-history-page .card-carousel-wrapper {
         margin-left: 5px;
     }
 }
-@media only screen and (min-width: 768px) and (max-width: 991px)  {
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
     #fav-history-page .card-carousel {
         width: 521px!important;
     }
-    #fav-hospital-page  #fav-history-page .card-carousel{
+    #fav-hospital-page #fav-history-page .card-carousel {
         width: 545px !important;
     }
-    #fav-hospital-page #fav-history-page .card-carousel-wrapper
-    {
+    #fav-hospital-page #fav-history-page .card-carousel-wrapper {
         margin-left: -13px;
     }
     #fav-history-page .card-carousel {
         overflow: visible;
     }
-
+    
 }
+
 
 /* Large devices (laptops/desktops, 992px and up) */
 
@@ -8689,8 +8864,8 @@ ul.nur-caro-card>li.list-group-item {
     #fav-history-page .card-carousel {
         width: 799px!important;
     }
-    .custom-table>.table th, .table td
-    {
+    .custom-table>.table th,
+    .table td {
         padding: 6px;
     }
     .nav-content {
@@ -8700,80 +8875,115 @@ ul.nur-caro-card>li.list-group-item {
     .profile_wd {
         width: 242px !important;
     }
-
 }
 
-@media only screen and (min-width: 1024px) and (max-width: 1200px)  {
+@media only screen and (min-width: 1024px) and (max-width: 1200px) {
     #fav-history-page .card-carousel {
         width: 768px !important;
     }
-    #fav-hospital-page  #fav-history-page .card-carousel{
+    #fav-hospital-page #fav-history-page .card-carousel {
         width: 800px !important;
     }
-
 }
-@media only screen and (min-width: 1023px) and (max-width: 1200px){
-    .map-leftwrapper{
+
+@media only screen and (min-width: 1023px) and (max-width: 1200px) {
+    .map-leftwrapper {
         padding-left: 0px;
-        
     }
 }
 
-@media only screen and (min-width: 1200px) and  (max-width: 1280px)  {
+@media only screen and (min-width: 1200px) and (max-width: 1280px) {
     #fav-history-page .card-carousel {
         /* width: 783px!important; */
         width: 783px!important;
     }
-    #fav-hospital-page  #fav-history-page .card-carousel{
+    #fav-hospital-page #fav-history-page .card-carousel {
         width: 814px !important;
     }
 }
+
+
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 
-@media only screen and (min-width: 1280px) and  (max-width: 1440px)  {
+@media only screen and (min-width: 1280px) and (max-width: 1440px) {
     #fav-history-page .card-carousel {
         /* width: 783px!important; */
         width: 1503px!important;
     }
-    #fav-hospital-page  #fav-history-page .card-carousel{
+    #fav-hospital-page #fav-history-page .card-carousel {
         width: 1084px !important;
     }
-    .map-wrap{
+    .map-wrap {
         overflow: hidden;
-    }    
-    
+    }
 }
-@media only screen and (max-width:1280px){
+
+@media only screen and (max-width:1280px) {
     .divisions {
         position: relative;
         z-index: 1;
         /* background: url(/images/img_map1.png) center top no-repeat; */
-        width: 779px;       
+        width: 779px;
         height: 425px;
     }
-    .map-leftwrapper{
+    .map-leftwrapper {
         padding-left: 15px;
-        
     }
+    /*job search*/
+    ul.hokkaido-wrap {
+        left: 0px;
+    }
+    .hokkaido-box {
+        right: 8%;
+    }
+    .tohoku-box {
+        right: 18%;
+    }
+    .kanto-box {
+        right: 21%;
+    }
+    .hokuriku-box {
+        left: 52%;
+    }
+    .tokai-box {
+        right: 31%;
+    }
+    .kinki-box {
+        left: 34%;
+    }
+    .chugoku-box {
+        left: 23%;
+    }
+    .shikoku-box {
+        left: 25%;
+    }
+    .kyushu-box {
+        left: 12%;
+    }
+    .okinawa-box {
+        left: 24%;
+    }
+    /*end job search*/
 }
-@media only screen and (max-width:1024px){
-    .divisions{       
-        width: 550px;       
+
+@media only screen and (max-width:1024px) {
+    .divisions {
+        width: 550px;
         height: 425px;
     }
-    .map-wrap{
+    .map-wrap {
         padding: 20px 10px;
     }
 }
+
 @media only screen and (min-width: 1440px) and (max-width: 1880px) {
     #fav-history-page .card-carousel {
         width: 1046px!important;
         margin-left: 20px;
     }
-    #fav-hospital-page  #fav-history-page .card-carousel{
+    #fav-hospital-page #fav-history-page .card-carousel {
         width: 1084px !important;
     }
-   
     .main-content {
         width: 100%;
     }
@@ -8872,6 +9082,16 @@ ul.nur-caro-card>li.list-group-item {
     display: none;
 }
 
+.pc-990 {
+    display: block;
+}
+
+.sp-990 {
+    display: none;
+}
+.pc-768{
+    display: block;
+}
 @media only screen and (max-width: 1240px) {
     /* common */
     .pc-1024 {
@@ -8903,10 +9123,100 @@ ul.nur-caro-card>li.list-group-item {
         cursor: pointer;
     }
     /*end header */
-   
 }
 
-@media only screen and (max-width: 1024px) {}
+@media only screen and (max-width: 768px) {
+    .tab {
+        max-width: 100% !important;
+        flex: 100% !important;
+    }
+    .map-text-wrapper{
+        display: flex;
+    }
+    .pc-768{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    /* common */
+    .col-slg-12 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .pc-1024 {
+        display: none;
+    }
+    .sp-1024 {
+        display: block;
+    }
+    /*End common */
+    /*job search*/
+    ul.hokkaido-wrap {
+        left: 65px;
+    }
+    .divisions span {
+        margin-right: 10px;
+    }
+    .hokkaido-box {
+        position: absolute;
+        top: 11%;
+        right: 10%;
+        z-index: 2;
+    }
+    .tohoku-box {
+        right: 12%;
+    }
+    .multiple-box {
+        width: 128px !important;
+    }
+    .multiple-boxa {
+        width: 127px !important;
+    }
+    .hokkaido-box .spanclass,
+    .kanto-box .spanclass,
+    .okinawa-box .spanclass {
+        margin-right: 1px;
+    }
+    .kanto-box {
+        right: 12%;
+    }
+    .hokuriku-box {
+        left: 53%;
+    }
+    .tokai-box {
+        right: 35%;
+    }
+    .kinki-box {
+        left: 27%;
+    }
+    .chugoku-box {
+        left: 12%;
+    }
+    .shikoku-box {
+        left: 15%;
+    }
+    .kyushu-box {
+        left: -3%;
+    }
+    .okinawa-box {
+        left: 13%;
+    }
+    /*end job search*/
+    /* profile publish */
+    .gallery-list .gallery-item {
+        width: 33%;
+        height: 160px;
+    }
+    .lightbox-arrow svg {
+        width: 30px !important;
+        height: 30px !important;
+        line-height: 30px;
+    }
+    /*End profile publish */
+}
 
 @media only screen and (max-width: 990px) {
     /* common */
@@ -9100,13 +9410,157 @@ ul.nur-caro-card>li.list-group-item {
         margin: 0 auto 20px;
     }
     /*end  ads slider */
-
     /*map responsive*/
     #map-responsive {
         display: block;
     }
+    /* profile publish */
+    .photocard-carousel-wrapper {
+        height: auto;
+    }
+    #Profile-page .accept-box {
+        margin: 5px 2px;
+        font-size: 14px;
+    }
+    .gallery-list .gallery-item {
+        width: 33%;
+        height: 130px;
+    }
+    .lightbox-arrow-left {
+        left: -20px !important;
+    }
+    .lightbox-arrow-right {
+        right: -20px !important;
+    }
+    .gallery-list .gallery-item {
+        width: 33%;
+    }
+    /*End  profile publish */
 }
 
+@media only screen and (max-width: 620px) {
+    /* profile publish */
+    .gallery-list .gallery-item {
+        height: 100px;
+    }
+    /*End  profile publish */
+}
+
+@media only screen and (max-width: 480px) {
+    /* profile publish */
+    /* .info_tbl th,
+    .info_tbl td,
+    .staff_tbl th,
+    .staff_tbl td,
+    .payment-tbl th,
+    .payment-tbl td,
+    .facility_tbl th,
+    .facility_tbl td {
+        width: 100%;
+        display: block;
+        border: none !important;
+    } */
+    .info_tbl th {
+        width: 90px;
+    }
+    .cash-lbl {
+        font-size: 1.4em;
+    }
+    .facility_tbl th {
+        width: 80px;
+    }
+    .gallery-list .gallery-item {
+        width: 50%;
+    }
+    .main-cost-wrap {
+        width: 330px;
+        overflow-x: scroll;
+    }
+    .main-cost-table {
+        width: 550px !important;
+        float: none !important;
+    }
+    .changeLink {
+        font-size: 12px;
+    }
+    .staff_tbl tr,
+    .moving-in_tbl tr {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        border-bottom: 0;
+    }
+    .staff_tbl th,
+    .moving-in_tbl th {
+        width: 100px;
+    }
+    .staff_tbl td,
+    .moving-in_tbl td {
+        width: calc(100% - 100px);
+    }
+    .cost_table th,
+    .map_tbl th {
+        width: 100px;
+    }
+    .cost_table td,
+    .map_tbl td {
+        width: calc(100% - 100px);
+    }
+    #googlemap {
+        min-height: 200px;
+    }
+    .comment-btn-wrapper {
+        width: 100%;
+    }
+    .no-data-size {
+        font-size: 16px !important;
+    }
+    .nocomment-phone {
+        font-size: 25px !important;
+    }
+    .no-comment-title span {
+        display: block;
+        line-height: 1.2;
+    }
+    .no-comment-title a {
+        font-size: 20px;
+    }
+    .phone-color {
+        width: 30px !important;
+        height: 30px !important;
+        font-size: 18px !important;
+        line-height: 30px !important;
+    }
+    /*End  profile publish */
+}
+
+@media only screen and (max-width: 480px) {
+    .map-text-wrapper{
+        display: block;
+    }
+    .searchButton {
+        width: 28%;
+    }
+    .searchTerm {
+        width: 80%;
+    }
+    .freeword-responsive h3{
+        padding: 0px;
+    }
+    .map-fa-icon {
+        width: 100%;
+    }
+    .freeword-responsive p{
+        text-align: center !important;
+        font-size: 20px;
+    }
+    
+}
 @media only screen and (max-width: 380px) {
     /* header */
     #sp_headerbar .fav_his {
@@ -9137,6 +9591,13 @@ ul.nur-caro-card>li.list-group-item {
         float: none;
         display: inline-block;
     }
-   
     /*end header */
+    /* Profile Publish */
+    .gallery-list .gallery-item {
+        padding: 3px;
+        margin-bottom: 25px;
+        font-size: 11px;
+    }
+    /*End  Profile Publish */
+}
 }

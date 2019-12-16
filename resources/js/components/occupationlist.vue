@@ -98,9 +98,11 @@
                 }
             },
             created() {
+                this.$loading(true);
                 this.axios
                     .get('/api/occupation/type')
                     .then(response => {
+                        this.$loading(false);
                         this.occupation = response.data;
                         this.norecord = this.occupation.length;
                         if (this.norecord > this.size) {
@@ -207,7 +209,9 @@
 
                         let fd = new FormData();
                         fd.append("search_word", search_word);
+                        this.$loading(true);
                         this.axios.post("/api/occupation/search", fd).then(response => {
+                            this.$loading(false);
                             this.occupation = response.data;
                             if(this.occupation.length > this.size){
                                 this.pagination = true;

@@ -265,8 +265,10 @@
                             fData.append('body', this.news.body)
                             fData.append('category_id', this.news.category_id)
                             fData.append('related_news', this.checkedNews)
+                            this.$loading(true);
                         this.axios.post('/api/new/add', fData)
                             .then(response => {
+                            this.$loading(false);
                             this.name = ''
                             console.log(response);
                             this.$swal({

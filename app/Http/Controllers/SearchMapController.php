@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Customer;
 use DB;
 use Storage;
+use File;
 class SearchMapController extends Controller
 {
     public function getMap()
@@ -64,7 +65,7 @@ class SearchMapController extends Controller
             }
 
             $query .= " group by c.id order BY n.id ASC LIMIT 26";
-
+    
 
           $nursing_profile = DB::select($query);
 
@@ -775,34 +776,46 @@ class SearchMapController extends Controller
         return response()->json($getTownships);
     }
 
-    public function cityJson()
+
+    function file_get_contents_chunked($file,$chunk_size,$callback)
     {
-        // $path = public_path().('/google-map-json/japan-cities_5percent.json');
-        // return $path;
-        // $json = file_get_contents(resource_path('views/google-map-json/jp_cities.json'));
-        // $json = file_get_contents('./upload/google-map-json/jp_cities.json');
-        // $obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $json), true );
-        // return $json;
+        try
+        {
+            $handle = fopen($file, "r");
+            $i = 0;
+            while (!feof($handle))
+            {
+                call_user_func_array($callback,array(fread($handle,$chunk_size),&$handle,$i));
+                $i++;
+            }
+    
+            fclose($handle);
+    
+        }
+        catch(Exception $e)
+        {
+             trigger_error("file_get_contents_chunked::" . $e->getMessage(),E_USER_NOTICE);
+             return false;
+        }
+    
+        return true;
+    }
+
+    public function cityJson($theCity)
+    {   
+        // $handle = public_path('google-map-json\\jp_cities.json');
+        // // $file = File::allFiles($handle);
+        // // $files = File::allFiles(public_path());
+        // // $path = public_path().('/google-map-json/jp_cities.json');
+        // // $json = file_get_contents($path);
+        // $obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $handle), true );
+        // // dd($file);
         
         // foreach($obj as $key => $value){
         //     $json = $value;
             
         // }
         // return response()->json($json);
-
-        // $f = new SplFileObject($path, "r");
-        // $count = 0;
-        // while (!$f->eof()) { 
-        //     yield $f->fgets(); 
-        //     $count++;
-        // }
-
-        // $json = '';
-
-        // foreach ($count as $line) { 
-        //     $json = $line;
-        // }
-
         return "Testing";
     }
 
