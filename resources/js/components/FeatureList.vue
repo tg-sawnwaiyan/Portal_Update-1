@@ -31,9 +31,9 @@
                         </div>
                         <hr />
                         <h5 class="header">特徴一覧</h5>
-                        <div class="col-md-12 pad-free scrolldiv">
+                        <div class="col-md-12 pad-free scrolldiv p0-480">
                             <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
-                            <div v-else class="container-fuid">
+                            <div v-else class="container-fuid scroll_responsive">
                                 <table class="table table-hover custom-table">
                                     <thead style="background-color:rgb(183, 218, 210);">
                                         <tr>

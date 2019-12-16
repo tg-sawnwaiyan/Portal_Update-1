@@ -2,7 +2,7 @@
     <div class="col-md-12 pad-free">
         <div class="col-md-12 col-md-12 tab-content tab-content1 tabs pad-free border-style">
             <div class="col-md-12 scrolldiv p-0">
-                <div class="scrolldiv col-12">
+                <div class="scrolldiv col-12 p0-480">
                     <div v-if="norecord_msg" class="card card-default card-wrap">
                         <p class="record-ico">
                             <i class="fa fa-exclamation"></i>

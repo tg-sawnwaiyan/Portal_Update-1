@@ -30,7 +30,7 @@
                         <div class="card card-default m-b-20" v-for="comment in displayItems" :key="comment.id">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-lg-6 col-md-7">
+                                    <div class="col-lg-6 col-md-7 p0-480">
                                         <!-- <strong>タイトル :</strong> {{comment.title}}  <br/>
                                         <strong>顧客名 :</strong> {{comment.name}}  <br/>
                                         <strong>メールアドレス:</strong>{{comment.email}} -->
