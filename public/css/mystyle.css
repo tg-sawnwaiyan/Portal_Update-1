@@ -7184,7 +7184,7 @@ ul.test>li:before {
     padding: 5px;
     border-radius: 5px;
     background-color: #ffc;
-    width: 205px;
+    /* width: 70%; */
 }
 
 .seemore-btn:hover {
@@ -8508,6 +8508,10 @@ ul.nur-caro-card>li.list-group-item {
     .map-wrap {
         overflow: auto;
     }
+    .tab-pane {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
 }
 
 @media only screen and (max-width:768px) {
@@ -8526,6 +8530,15 @@ ul.nur-caro-card>li.list-group-item {
 }
 
 @media only screen and (max-width:480px) {}
+
+@media only screen and (max-width: 414px) {
+    .sp-414 {
+        display: block !important;
+    }
+    .pc-414 {
+        display: none !important;
+    }
+}
 
 @media only screen and (max-width:320px) {
     .searchButton {
@@ -8873,6 +8886,14 @@ ul.nur-caro-card>li.list-group-item {
     display: block;
 }
 
+.sp-414 {
+    display: none;
+}
+
+.pc-414 {
+    display: block;
+}
+
 @media only screen and (max-width: 1240px) {
     /* common */
     .pc-1024 {
@@ -8904,19 +8925,6 @@ ul.nur-caro-card>li.list-group-item {
         cursor: pointer;
     }
     /*end header */
-}
-
-@media only screen and (max-width: 768px) {
-    .tab {
-        max-width: 100% !important;
-        flex: 100% !important;
-    }
-    .map-text-wrapper {
-        display: flex;
-    }
-    .pc-768 {
-        display: none;
-    }
 }
 
 @media only screen and (max-width: 1024px) {
@@ -9195,6 +9203,18 @@ ul.nur-caro-card>li.list-group-item {
     #map-responsive {
         display: block;
     }
+    .map-wrap {
+        display: none;
+    }
+    .highlight {
+        background-color: #ccff60 !important;
+        background-image: none;
+        border: 1px solid #8e3c15;
+        color: #ff6117;
+    }
+    .resHighlight {
+        background: #ccff6029 !important;
+    }
     /* profile publish */
     .photocard-carousel-wrapper {
         height: auto;
@@ -9255,6 +9275,9 @@ ul.nur-caro-card>li.list-group-item {
 }
 
 @media only screen and (max-width: 768px) {
+    .pc-768 {
+        display: none;
+    }
     .tab {
         max-width: 100% !important;
         flex: 100% !important;

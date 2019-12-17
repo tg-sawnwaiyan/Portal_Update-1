@@ -183,7 +183,7 @@
                                     </div>
                                         <!--end slider for ads-->
                                     <div class="row justify-content-md-center">
-                                        <div class="col-12 col-lg-12 col-md-10 tab  p0-480">
+                                        <div class="col-12 col-lg-12 col-md-10 tab p0-480">
                                         <!-- vue component -->
                                             <router-view :key="$route.fullPath"></router-view>
                                         </div>
