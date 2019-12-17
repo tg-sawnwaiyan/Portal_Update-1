@@ -2,17 +2,16 @@
     <!-- Page Content  -->
     <div class="row">
         <div class="col-12">
-            <div class="row m-b-10" v-if="norecord !== 0">
+            <div class="row m-b-10" v-if="!norecord_msg">
                 <div class="col-md-12">
                     <router-link to="/create_news" class="float-right main-bg-color create-btn all-btn" style="color: blue;">
                         <i class="fas fa-plus-circle"></i> 新しいニュースを作成
                     </router-link>
                 </div>
-                <!-- <a href="/joboffer" class="float-right" style="color: blue;"></a> -->
             </div>
             <div class="col-md-12 col-md-12 tab-content tab-content1 tabs pad-free border-style">
                 <div class="col-12 scrolldiv">
-                    <div v-if="norecord ==0" class="card card-default card-wrap">
+                    <div v-if="norecord_msg" class="card card-default card-wrap">
                         <p class="record-ico">
                             <i class="fa fa-exclamation"></i>
                         </p>
@@ -45,7 +44,7 @@
                         </div>
                         <hr />
                         <h5 class="header">ニュース一覧</h5>
-                        <div v-if="!this.news_list.length" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
+                        <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
                         <div v-else class="container-fuid">
                             <div v-for="newsList in displayItems" :key="newsList.id" class="card card-default m-b-20">
 
@@ -119,6 +118,8 @@
             return {
                 news_list: [],
                 norecord: 0,
+                norecord_msg: false,
+                nosearch_msg: false,
                 categories: {
                     id: "",
                     name: ""
@@ -132,15 +133,20 @@
             };
         },
         created() {
-
+            this.$loading(true);
             this.axios.get("/api/news_list").then(response => {
-                console.log(this.news_list.photo);
+                this.$loading(false);
                 this.news_list = response.data;
                 this.norecord = this.news_list.length
                 if (this.norecord > this.size) {
                     this.pagination = true;
                 } else {
                     this.pagination = false;
+                }
+                if(this.norecord != 0){
+                    this.norecord_msg = false;
+                }else{
+                    this.norecord_msg = true;
                 }
             });
 
@@ -164,19 +170,15 @@
                     if (this.pages < this.pageRange) {
                         start = 1;
                         end = this.pages;
-                        console.log('half1');
                     } else if (this.currentPage < half) {
                         start = 1;
                         end = start + this.pageRange - 1;
-                        console.log('half2');
                     } else if (this.pages - half < this.currentPage) {
                         end = this.pages;
                         start = end - this.pageRange + 1;
-                        console.log('half3');
                     } else {
                         start = this.currentPage - half + offset;
                         end = this.currentPage + half;
-                        console.log('half4');
                     }
                     let indexes = [];
                     for (let i = start; i <= end; i++) {
@@ -222,6 +224,11 @@
                                 } else {
                                     this.pagination = false;
                                 }
+                                if(this.norecord != 0){
+                                    this.norecord_msg = false;
+                                }else{
+                                    this.norecord_msg = true;
+                                }
                                 // let i = this.news_list.map(item => item.id).indexOf(id);
                                 // this.news_list.splice(i, 1);
                                 this.$swal({
@@ -246,14 +253,22 @@
                     let fd = new FormData();
                     fd.append("search_word", search_word);
                     fd.append("selected_category", selected_category);
+                    this.$loading(true);
                     this.axios.post("/api/news_list/search", fd).then(response => {
+                        this.$loading(false);
                         this.news_list = response.data;
+                        this.norecord = this.news_list.length;
                         if(this.news_list.length > this.size){
                             this.pagination = true;
                         }else{
                             this.pagination = false;
                         }
-                            });
+                        if(this.norecord != 0) {
+                            this.nosearch_msg = false;
+                        }else{
+                            this.nosearch_msg = true;
+                        }
+                    });
                 },
                 imgUrlAlt(event) {
                     event.target.src = "images/noimage.jpg"

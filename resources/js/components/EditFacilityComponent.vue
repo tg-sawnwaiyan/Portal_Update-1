@@ -54,7 +54,9 @@ export default {
   methods: {
     updateFacility() {
        if( `${this.$route.params.id}` && this.errors.description == null ){
+         this.$loading(true);
           this.axios.post(`/api/facility/update/${this.$route.params.id}`, this.facility).then(response => {
+            this.$loading(false);
           this.description = "";
           this.$swal({
                       position: 'top-end',

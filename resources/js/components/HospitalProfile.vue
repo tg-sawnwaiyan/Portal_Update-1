@@ -18,12 +18,14 @@
 
                 <!-- <input type="text" class="form-control customer-email col-10 float-right"  placeholder="Email" v-model="customer_info.email"> -->
         </div>
-        <div class="form-group form-group-wrapper">
+        <div class="form-group form-group-wrapper d-flex">
 
-                <label class="heading-lbl">電話番号<span class="error">*</span></label>
-
-                <input type="text" class="form-control customer-phone col-10 float-right"  placeholder="Phone" v-model="customer_info.phone">
-
+                <label class="heading-lbl col-2 pad-free">電話番号<span class="error">*</span></label>
+                <div class="col-10 row">
+                <input type="text" class="form-control customer-phone col-12" id="phone" placeholder="Phone" v-model="customer_info.phone" v-on:keyup="isNumberOnly" maxlength="14">
+                <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>    
+                <span class="error" v-else></span> 
+                </div>
         </div>
 
         <!-- <div class="form-group">
@@ -1222,32 +1224,27 @@
 
         </table> -->
         <!-- Test Station Area -->
-                                    <table class="table table-bordered table-wrapper">
-                                            <tr>
-                                                    <td>
-                                                            <div class="form-group">
-                                                                    <label  class="heading-lbl col-2 pad-free">駅</label>
-                                                                    <span class="btn all-btn main-bg-color" style="min-width: 0px;" @click="StationAdd()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate4}"></i></span>
-                                                                    <div class="col-md-10 float-right station-toggle-div toggle-div m-t-10">
-                                                                            <div class="row">
-                                                                                    <div v-for="stat in station_list" :key="stat.id" class="col-md-3 m-b-20">
-                                                                                            <label>
-                                                                                                    <input type="checkbox"  name="station" v-bind:value="stat.id" @click="stationCheck(stat.id)" v-model="stat.checked">
-                                                                                                    {{stat.name}}
-                                                                                            </label>
-                                                                                    </div>
-                                                                            </div>
-                                                                    </div>
-                                                            </div>
-                                                    </td>
-                                            </tr>
-                                    </table>
-                                    <!-- End Test Station Area -->
-
-
-
-
-
+        <!-- <table class="table table-bordered table-wrapper">
+                <tr>
+                        <td>
+                                <div class="form-group">
+                                        <label  class="heading-lbl col-2 pad-free">駅</label>
+                                        <span class="btn all-btn main-bg-color" style="min-width: 0px;" @click="StationAdd()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate4}"></i></span>
+                                        <div class="col-md-10 float-right station-toggle-div toggle-div m-t-10">
+                                                <div class="row">
+                                                        <div v-for="stat in station_list" :key="stat.id" class="col-md-3 m-b-20">
+                                                                <label>
+                                                                        <input type="checkbox"  name="station" v-bind:value="stat.id" @click="stationCheck(stat.id)" v-model="stat.checked">
+                                                                        {{stat.name}}
+                                                                </label>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </div>
+                        </td>
+                </tr>
+        </table> -->
+        <!-- End Test Station Area -->
         <table class="table table-bordered table-wrapper">
                     <tr>
                         <td>
@@ -1358,8 +1355,10 @@ export default {
                         readonly:true,
                         theme:'snow',
                         access_val: '',
-                        detail_info: '', stations:[], station_list:[],
+                        detail_info: '', stations:[], station_list:[],                        
                 },
+                ph_length: false,
+                ph_num: false,
                 }
         },
         created(){
@@ -1372,11 +1371,11 @@ export default {
                 this.type = localStorage.getItem('cusType');
                 this.cusid = Number(localStorage.getItem('cusId'));
 
-                this.axios
-                  .get('/api/station/'+this.cusid)
-                  .then(response=>{
-                      this.station_list = response.data;
-                });
+                // this.axios
+                //   .get('/api/station/'+this.cusid)
+                //   .then(response=>{
+                //       this.station_list = response.data;
+                // });
 
                 this.axios
                 .get('/api/clinical-subject/'+this.cusid)
@@ -1631,12 +1630,12 @@ export default {
                         });
                         this.subjects.push({subject_id:chek_subj});
 
-                    var chek_station=[];
-                    $.each($("input[name='station']:checked"), function(){
-                      alert($(this).val());
-                        chek_station.push($(this).val());
-                    });
-                    this.stations.push({station_id:chek_station});
+                    // var chek_station=[];
+                    // $.each($("input[name='station']:checked"), function(){
+                    //   alert($(this).val());
+                    //     chek_station.push($(this).val());
+                    // });
+                    // this.stations.push({station_id:chek_station});
 
                      // Consultation
                      for(var j = 0; j< 2; j++) {
@@ -1709,19 +1708,19 @@ export default {
                         }) ;
                         }
 
-                        if(this.stations.length > 0) {
-                          this.axios
-                          .post(`/api/station_junctions/update/${this.cusid}`,this.stations)
-                          .then((response) => {
+                        // if(this.stations.length > 0) {
+                        //   this.axios
+                        //   .post(`/api/station_junctions/update/${this.cusid}`,this.stations)
+                        //   .then((response) => {
 
 
-                              }).catch(error=>{
-                              if(error.response.status == 422){
-                                  this.stations = 'error';
-                                  this.errors = error.response.data.errors
-                              }
-                          }) ;
-                        }
+                        //       }).catch(error=>{
+                        //       if(error.response.status == 422){
+                        //           this.stations = 'error';
+                        //           this.errors = error.response.data.errors
+                        //       }
+                        //   }) ;
+                        // }
 
                         if(this.subjects.length > 0) {
                                 this.axios
@@ -1749,7 +1748,19 @@ export default {
                                     document.getElementById('nursing').click();
                             })
                         }
+                },
+                isNumberOnly: function(event) {
+                var input_data = $('#phone').val();
+                var code = 0;
+                code = input_data.charCodeAt();
+                if((48 <= code && code <= 57) && (this.customer_info.phone.length >= 10 && this.customer_info.phone.length <= 14)){
+                    this.ph_num = false;
+                    this.ph_length = false;
+                }else{
+                    this.ph_num = true;
+                    this.ph_length = true;
                 }
+            }
             },
             getPostal: function(event) {
                 if (this.postal.length > 4) {

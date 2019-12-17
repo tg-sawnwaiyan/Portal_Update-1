@@ -11,11 +11,12 @@
           <!-- <div class="info-box"></div> -->
           <div class="row map-wrap">
           <div class="col-lg-5 col-md-12 col-sm-12 float-left" style="padding-left: 75px;">
-            <h2 class="map-header" style="bottom: 247px;">あなたの街の名医<br/>見つかります。</h2>
+            <h2 class="map-header" style="bottom: 120px;">赤ちゃんからおと<br/>なまでみんなで通<br/>える街の名医が見<br/>つかります。</h2>
+
             <!--search input-->
               <div class="wrap">
                 <div class="search">
-                    <input type="text" id="search-free-word" class="searchTerm" placeholder="地名、駅名、施設名などを入力（例：東京駅）">
+                    <input type="text" id="search-free-word" class="searchTerm" placeholder="地名、施設名などを入力（例：東京駅）">
                     <button type="submit" class="searchButton" @click="searchfreeword">
                       <i class="fas fa-search"></i> 検索
                   </button>
@@ -174,7 +175,7 @@
                       <ul class="multiple-boxa">
 
                         <a data-info="Osaka" class="path Osaka card-text" @click="getStateClick">
-                            <li class="spanclass" id="27" @click="selected = 27" :class="{highlight:selected == 27}">大阪府</li>
+                            <li class="spanclass" id="27" @click="selected = 27" :class="{highlight:selected == 27}">大阪</li>
                         </a>
 
                         <a data-info="Hyogo" class="path Hyogo card-text" @click="getStateClick">
@@ -182,7 +183,7 @@
                         </a>
 
                         <a data-info="Kyoto" class="path Kyoto card-text" @click="getStateClick">
-                            <li class="spanclass"  id="26" @click="selected = 26" :class="{highlight:selected == 26}">京都府</li>
+                            <li class="spanclass"  id="26" @click="selected = 26" :class="{highlight:selected == 26}">京都</li>
                         </a>
 
                         <a data-info="Nara" class="path Nara card-text" @click="getStateClick">
@@ -306,22 +307,253 @@
                     <div class="division-box">
                       <ul class="">
                           <a data-info="Okinawa" class="path Okinawa card-text" @click="getStateClick">
-                              <li class="spanclass" id="47" @click="selected = 47" :class="{highlight:selected == 47}">沖縄県</li>
+                              <li class="spanclass" id="47" @click="selected = 47" :class="{highlight:selected == 47}">沖縄</li>
                         </a>
                       </ul>
                     </div>
                   </div>
                 </div>
               </div>
-
-
-            <!-- <div class="map">
-
-            </div> -->
           </div>
           </div>
+          <section id="map-responsive">
+            <div>
+             
+            </div>
+            <div class="freeword-responsive"> 
+                <h3 class="map-resicon">
+                  <div class="map-text-wrapper">
+                    <div>
+                      <!-- <img src="/images/map-responsive1.png" alt="" class="img-responsive"> -->
+                      <i class="fa icon map-fa-icon"></i>
+                    </div>             
+                    <div>
+                      <p class="text-left"> &nbsp;赤ちゃんからおとなまでみんなで通<br class="pc-768"/>える街の名医が見つかります。 </p>    
+                    </div>
+                  </div>
+                </h3>
+                
+                
+             <!--search input-->
+                <div class="search">
+                    <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、施設名などを入力（例：東京駅）">
+                    <button type="submit" class="searchButton" @click="searchfreeword">
+                      <i class="fas fa-search"></i> 検索
+                    </button>
+                </div>
+              <!--end search input-->
+            </div>
+             <bulma-accordion 
+              :icon="'custom'"
+              >
+                        <!--Start hokkaido-box and  tohoku-box -->
+                        <bulma-accordion-item>
+                            <p slot="title" class="title is-4 has-text-weight-normal">北海道・東北</p>
+                            <i slot="icon-closed" class="fa fa-plus-circle map-addicon"></i>
+                            <i slot="icon-open" class="fa fa-minus-circle map-addicon"></i>
+                            <p slot="content" class="custom_group">
+                                <a data-info="Hokkaido" @click="getStateClick">
+                                   <li id="1" @click="selected = 1" :class="{resHighlight:selected == 1}">北海道 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Aomori" @click="getStateClick" >
+                                    <li id="2"  @click="selected = 2" :class="{resHighlight:selected == 2}">青森 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Iwate" @click="getStateClick" >
+                                    <li id="3"  @click="selected = 3" :class="{resHighlight:selected == 3}">岩手 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Akita" @click="getStateClick">
+                                    <li id="5"  @click="selected = 5" :class="{resHighlight:selected == 5}"> 秋田 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Miyagi" @click="getStateClick" >
+                                    <li id="4"  @click="selected = 4" :class="{resHighlight:selected == 4}">宮城 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>                                
+                                <a data-info="Yamagata" @click="getStateClick" >
+                                    <li id="6"  @click="selected = 6" :class="{resHighlight:selected == 6}"> 山形 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Fukushima" @click="getStateClick" >
+                                    <li id="7"  @click="selected = 7" :class="{resHighlight:selected == 7}"> 福島 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                            </p>
+                        </bulma-accordion-item>
+                    <!-- End hokkaido-box and  tohoku-box -->
+                    <!--  Start kanto-box -->
+                       <bulma-accordion-item>
+                            <p slot="title" class="title is-4 has-text-weight-normal">関東</p>
+                            <i slot="icon-closed" class="fa fa-plus-circle map-addicon"></i>
+                            <i slot="icon-open" class="fa fa-minus-circle map-addicon"></i>
+                            <p slot="content" class="custom_group">
+                                <a data-info="Tokyo" @click="getStateClick" >
+                                   <li id="13"  @click="selected = 13" :class="{resHighlight:selected == 13}">東京 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Kanagawa" @click="getStateClick" >
+                                    <li id="14"  @click="selected = 14" :class="{resHighlight:selected == 14}">神奈川 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Chiba" @click="getStateClick" >
+                                    <li id="11" @click="selected = 11" :class="{resHighlight:selected == 11}">埼玉 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Miyagi" @click="getStateClick" >
+                                    <li id="12" @click="selected = 12" :class="{resHighlight:selected == 12}">千葉 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Gunma" @click="getStateClick">
+                                    <li id="10" @click="selected = 10" :class="{resHighlight:selected == 10}"> 群馬 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Ibaraki" @click="getStateClick" >
+                                    <li id="8" @click="selected = 8" :class="{resHighlight:selected == 8}"> 茨城 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Tochigi" @click="getStateClick" >
+                                    <li id="9" @click="selected = 9" :class="{resHighlight:selected == 9}"> 栃木 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                 <a data-info="Yamanashi" @click="getStateClick" >
+                                    <li id="19" @click="selected = 19" :class="{resHighlight:selected == 19}"> 山梨 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                            </p>
+                        </bulma-accordion-item>
+                        <!-- End kanto-box -->
+                    <!-- Start hokuriku-box-->
+                        <bulma-accordion-item>
+                            <p slot="title" class="title is-4 has-text-weight-normal">北陸</p>
+                            <i slot="icon-closed" class="fa fa-plus-circle map-addicon"></i>
+                            <i slot="icon-open" class="fa fa-minus-circle map-addicon"></i>
+                            <p slot="content" class="custom_group">
+                                <a data-info="Niigata" @click="getStateClick" >
+                                   <li id="15" @click="selected = 15" :class="{resHighlight:selected == 15}">新潟 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Nagana" @click="getStateClick" >
+                                    <li id="20" @click="selected = 20" :class="{resHighlight:selected == 20}">長野 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Toyama" @click="getStateClick" >
+                                    <li id="16" @click="selected = 16" :class="{resHighlight:selected == 16}">富山 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Ishikawa" @click="getStateClick" >
+                                    <li id="17" @click="selected = 17" :class="{resHighlight:selected == 17}">石川 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Fukui" @click="getStateClick">
+                                    <li id="18" @click="selected = 18" :class="{resHighlight:selected == 18}"> 福井 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>                               
+                            </p>
+                        </bulma-accordion-item>
+                    <!-- End hokuriku-box-->                    
+                        <!--Start tokai-box -->
+                        <bulma-accordion-item>
+                            <p slot="title" class="title is-4 has-text-weight-normal">東海</p>
+                            <i slot="icon-closed" class="fa fa-plus-circle map-addicon"></i>
+                            <i slot="icon-open" class="fa fa-minus-circle map-addicon"></i>
+                            <p slot="content" class="custom_group">
+                                <a data-info="Aichi" @click="getStateClick" >
+                                   <li id="23" @click="selected = 23" :class="{resHighlight:selected == 23}">愛知 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Shizuoka" @click="getStateClick" >
+                                    <li id="22" @click="selected = 22" :class="{resHighlight:selected == 22}">静岡 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Gifu" @click="getStateClick" >
+                                    <li id="21" @click="selected = 21" :class="{resHighlight:selected == 21}">岐阜 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Mie" @click="getStateClick" >
+                                    <li id="24" @click="selected = 24" :class="{resHighlight:selected == 24}">三重 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                            </p>
+                        </bulma-accordion-item>
+                        <!--End tokai-box -->
+                        <!-- Start kansai -box -->
+                         <bulma-accordion-item>
+                            <p slot="title" class="title is-4 has-text-weight-normal">関西</p>
+                            <i slot="icon-closed" class="fa fa-plus-circle map-addicon"></i>
+                            <i slot="icon-open" class="fa fa-minus-circle map-addicon"></i>
+                            <p slot="content" class="custom_group">
+                                <a data-info="Osaka" @click="getStateClick" >
+                                   <li id="27" @click="selected = 27" :class="{resHighlight:selected == 27}">大阪 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Hyogo" @click="getStateClick" >
+                                    <li id="28" @click="selected = 28" :class="{resHighlight:selected == 28}">兵庫 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="kyoto" @click="getStateClick" >
+                                    <li id="26" @click="selected = 26" :class="{resHighlight:selected == 26}">京都<i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Nara" @click="getStateClick" >
+                                    <li id="29" @click="selected = 29" :class="{resHighlight:selected == 29}">奈良 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Shiga" @click="getStateClick">
+                                    <li id="25" @click="selected = 25" :class="{resHighlight:selected == 25}"> 滋賀 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Wakayama" @click="getStateClick" >
+                                    <li id="30" @click="selected = 30" :class="{resHighlight:selected == 30}"> 和歌山 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                            </p>
+                        </bulma-accordion-item>
+                        <!-- End kinki-box -->
+                        <!-- Start chugoku-box and shikoku-box-->
+                        <bulma-accordion-item>
+                            <p slot="title" class="title is-4 has-text-weight-normal">中国・四国</p>
+                            <i slot="icon-closed" class="fa fa-plus-circle map-addicon"></i>
+                            <i slot="icon-open" class="fa fa-minus-circle map-addicon"></i>
+                            <p slot="content" class="custom_group">
+                                <a data-info="Okayama" @click="getStateClick" >
+                                   <li id="33" @click="selected = 33" :class="{resHighlight:selected == 33}">岡山 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Hiroshima" @click="getStateClick" >
+                                    <li id="34" @click="selected = 34" :class="{resHighlight:selected == 34}">広島 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Yamaguchi" @click="getStateClick" >
+                                    <li id="35" @click="selected = 35" :class="{resHighlight:selected == 35}">山口 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Shimane" @click="getStateClick" >
+                                    <li id="32" @click="selected = 32" :class="{resHighlight:selected == 32}">島根 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Tottori" @click="getStateClick">
+                                    <li id="31" @click="selected = 31" :class="{resHighlight:selected == 31}"> 鳥取 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Ehime" @click="getStateClick" >
+                                    <li id="38" @click="selected = 38" :class="{resHighlight:selected == 38}"> 愛媛 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Kagawa" @click="getStateClick" >
+                                    <li id="37" @click="selected = 37" :class="{resHighlight:selected == 37}">香川 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Kochi" @click="getStateClick">
+                                    <li id="39" @click="selected = 39" :class="{resHighlight:selected == 39}"> 高知 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Tokushima" @click="getStateClick" >
+                                    <li id="36" @click="selected = 36" :class="{resHighlight:selected == 36}"> 徳島 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                            </p>
+                        </bulma-accordion-item>
+                        <!-- End chugoku-box and shikoku-box-->
+                        <!-- Start kyushu-box and  okinawa-box -->
+                        <bulma-accordion-item>
+                            <p slot="title" class="title is-4 has-text-weight-normal">九州・沖縄</p>
+                            <i slot="icon-closed" class="fa fa-plus-circle map-addicon"></i>
+                            <i slot="icon-open" class="fa fa-minus-circle map-addicon"></i>
+                            <p slot="content" class="custom_group">
+                                <a data-info="Fukuoka" @click="getStateClick" >
+                                   <li id="40" @click="selected = 40" :class="{resHighlight:selected == 40}">福岡 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Saga" @click="getStateClick" >
+                                    <li id="41" @click="selected = 41" :class="{resHighlight:selected == 41}">佐賀 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Nagasak" @click="getStateClick" >
+                                    <li id="42" @click="selected = 42" :class="{resHighlight:selected == 42}">長崎 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Oita" @click="getStateClick" >
+                                    <li id="44" @click="selected = 44" :class="{resHighlight:selected == 44}">大分 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Kumamoto" @click="getStateClick">
+                                    <li id="43" @click="selected = 43" :class="{resHighlight:selected == 43}"> 熊本 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Miyazaki" @click="getStateClick" >
+                                    <li id="45" @click="selected = 45" :class="{resHighlight:selected == 45}"> 宮崎 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Kagoshima" @click="getStateClick" >
+                                    <li id="46" @click="selected = 46" :class="{resHighlight:selected == 46}">鹿児島 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                                <a data-info="Okinawa" @click="getStateClick">
+                                    <li id="47" @click="selected = 47" :class="{resHighlight:selected == 47}"> 沖縄 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                </a>
+                            </p>
+                        </bulma-accordion-item>
+                        <!--End kyushu-box and   okinawa-box-->
+                    </bulma-accordion>                   
+        </section>
           <div id="hos_search" class="col-12 hospitalselect pad-free">
-               <span v-if="!hos_data.length">
+               <span v-if="norecord_msg">
                 <div class="container-fuid m-t-20">
                     <p class="nosearch-icon">
                         <svg x="0px" y="0px" width="30" height="30" viewBox="0 0 172 172" style=" fill:red;"><g transform=""><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><path d="M0,172v-172h172v172z" fill="none"></path><path d="M3.44,168.56v-165.12h165.12v165.12z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><path d="M0,172v-172h172v172z" fill="none"></path><path d="M3.44,168.56v-165.12h165.12v165.12z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><g fill="#666666"><path d="M74.53333,17.2c-31.59643,0 -57.33333,25.73692 -57.33333,57.33333c0,31.59641 25.7369,57.33333 57.33333,57.33333c13.73998,0 26.35834,-4.87915 36.24766,-12.97839l34.23203,34.23203c1.43802,1.49778 3.5734,2.10113 5.5826,1.57735c2.0092,-0.52378 3.57826,-2.09284 4.10204,-4.10204c0.52378,-2.0092 -0.07957,-4.14458 -1.57735,-5.5826l-34.23203,-34.23203c8.09923,-9.88932 12.97839,-22.50768 12.97839,-36.24766c0,-31.59641 -25.7369,-57.33333 -57.33333,-57.33333zM74.53333,28.66667c25.39939,0 45.86667,20.46729 45.86667,45.86667c0,25.39937 -20.46728,45.86667 -45.86667,45.86667c-25.39939,0 -45.86667,-20.46729 -45.86667,-45.86667c0,-25.39937 20.46728,-45.86667 45.86667,-45.86667zM91.67734,51.52161c-1.51229,0.03575 -2.94918,0.66766 -3.99765,1.75807l-13.14636,13.14636l-13.14636,-13.14636c-1.07942,-1.10959 -2.56162,-1.73559 -4.10963,-1.73568c-2.33303,0.00061 -4.43306,1.41473 -5.31096,3.57628c-0.8779,2.16155 -0.3586,4.6395 1.31331,6.26669l13.14636,13.14636l-13.14636,13.14636c-1.49777,1.43802 -2.10111,3.5734 -1.57733,5.58259c0.52378,2.0092 2.09283,3.57825 4.10203,4.10203c2.0092,0.52378 4.14457,-0.07956 5.58259,-1.57733l13.14636,-13.14636l13.14636,13.14636c1.43802,1.49778 3.5734,2.10113 5.5826,1.57735c2.0092,-0.52378 3.57826,-2.09284 4.10204,-4.10204c0.52378,-2.0092 -0.07957,-4.14458 -1.57735,-5.5826l-13.14636,-13.14636l13.14636,-13.14636c1.70419,-1.63875 2.22781,-4.1555 1.31865,-6.33798c-0.90916,-2.18248 -3.06468,-3.58317 -5.42829,-3.52739z"></path></g></g></g></svg>
@@ -347,7 +579,6 @@
                     <!-- <em>{{city.city_name}}</em> -->
                     <span id="close"><i class="fas fa-arrow-circle-up"></i> 市区町村エリアを閉じる</span>
                   </button>
-
                   <div class="toBeToggled" id="toBeToggled">
 
                     <div class="form-check form-check-inline col-sm-2" v-for="township in getTownships" :key="township.id">
@@ -385,55 +616,81 @@
               </tr>
               <tr class="toBeToggled1 ShowHide1">
                 <th>診療科目</th>
-
                 <td>
-
-                    <div class="form-check form-check-inline row col-12 align-items-start ">
-                        <div class="col-sm-2" v-for="(subject,index) in subjects" :key="index"  style="padding-left:0px;">
-                            <div class="col-12 m-lr-0">
-                                  <strong> {{subject.name}} </strong>
+                    <div class="form-check form-check-inline row align-items-start innerwrapper">
+                        <div class="test" v-for="(subject,index) in subjects.slice(0,3)" :key="index">
+                          <div class="row col-12">
+                            <strong class="table-innertitle row col-12">{{subject.name}}</strong>
+                            <div class="col-6" v-for="ch in subject.child" :key="ch.id+1">
+                                <label class="form-check-label control control--checkbox" style="padding-left:5px;">
+                                <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
+                                {{ch.name}}
+                                <div class="control__indicator"></div>
+                                </label>
                             </div>
-
-                            <div v-for="sub in sub_child" :key="sub.id+1" >
-                                 <div class="col-12" v-if="subject.id == sub.parent">
-                                        <label class=" form-check-label control control--checkbox"  style="padding-left:0px;">
-                                        <input class="form-check-input" type="checkbox" :id="sub.id" v-model="subjectID" :value="sub.id" >
-                                        {{sub.name}}
-                                        <div class="control__indicator"></div>
-                                        </label>
-                                 </div>
-                               
-                            </div>
-
+                          </div>
                         </div>
                     </div>
+                      <div class="form-check form-check-inline row align-items-start innerwrapper">
+                        <div class="test" v-for="(subject,index) in subjects.slice(3,6)" :key="index">
+                          <div class="row col-12">
+                            <strong class="table-innertitle row col-12">{{subject.name}}</strong>
+
+                            <div class="col-6" v-for="ch in subject.child" :key="ch.id+1">
+
+                                <label class="form-check-label control control--checkbox" style="padding-left:5px;">
+                                <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
+                                {{ch.name}}
+                                <div class="control__indicator"></div>
+                                </label>
+                            </div>
+
+                          </div>
 
 
-                  <!-- <div class="form-check form-check-inline col-sm-4" v-for="(subject,index) in subjects" :key="index"> -->
+                        </div>
+
+                    </div>
+                      <div class="form-check form-check-inline row align-items-start innerwrapper">
+                        <div class="test" v-for="(subject,index) in subjects.slice(6,9)" :key="index">
+                          <div class="row col-12">
+                            <strong class="table-innertitle row col-12">{{subject.name}}</strong>
+
+                            <div class="col-6" v-for="ch in subject.child" :key="ch.id+1">
+
+                                <label class="form-check-label control control--checkbox" style="padding-left:5px;">
+                                <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
+                                {{ch.name}}
+                                <div class="control__indicator"></div>
+                                </label>
+                            </div>
+
+                          </div>
 
 
+                        </div>
+
+                    </div>
+                     <div class="form-check form-check-inline row align-items-start innerwrapper" style="width:33.98%;">
+                        <div class="test" v-for="(subject,index) in subjects.slice(9,10)" :key="index">
+                          <div class="row col-12">
+                            <strong class="table-innertitle row col-12">{{subject.name}}</strong>
+
+                            <div class="col-6" v-for="ch in subject.child" :key="ch.id+1">
+
+                                <label class="form-check-label control control--checkbox" style="padding-left:5px;">
+                                <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
+                                {{ch.name}}
+                                <div class="control__indicator"></div>
+                                </label>
+                            </div>
+
+                          </div>
 
 
+                        </div>
 
-                            <!-- <div class="form-check form-check-inline col-sm-4" v-for="sub in sub_child" :key="sub.id">
-                            <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-                            <input class="form-check-input" type="checkbox" :id="subject.id" v-model="subjectID" :value="subject.id">
-                            {{sub.name}}
-                            <div class="control__indicator"></div>
-                            </label>
-                            </div> -->
-
-
-                     <!-- </div> -->
-
-
-
-                    <!-- <label class="form-check-label" > -->
-                        <!-- <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-                      <input class="form-check-input" type="checkbox" :id="subject.id" v-model="subjectID" :value="subject.id">
-                      {{subject.name}}
-                      <div class="control__indicator"></div>
-                    </label> -->
+                    </div>
 
                 </td>
               </tr>
@@ -458,25 +715,40 @@
           <div class="col-12">
             <div class="row">
 
-              <div id="job_detail" class="col-md-12 col-sm-12 pad-free offset" style="margin-top:20px;" v-for="hos in displayItems" :key="hos.id">
+              <div id="job_detail" class="col-md-12 col-sm-12 pad-free offset" style="margin-top:20px;" v-for="(hos,index) in displayItems" :key="hos.id">
                 <div class="hos-content">
-                  <div class="job-header">
-                  <h5 class="hos-title">
-                    <router-link :to="{name: 'profile', params: {cusid:hos.customer_id, type: 'hospital'}}" class="pseudolink">{{hos.name}}</router-link>
-                </h5>
+                    <div class="job-header">
+                      <div class="row pad-free">
+                        <div class="col-8">
+                          <h5 class="hos-title">
+                            <router-link :to="{name: 'profile', params: {cusid:hos.customer_id, type: 'hospital'}}" class="pseudolink">{{hos.name}}</router-link>
+                          </h5>
+                        <div class="clearfix d-flex m-t-20">
+                          <span v-for="(sub,index) in subject" :key="index+'-'+sub.name+'-'+hos.id">
+                              <span v-if="sub.customer_id == hos.customer_id" class="job_status">
+                              {{sub.name}}
+                              </span>
+                          </span>
+                      </div>
+                        </div>
+                        <div class="col-4">
+                           <p class="text-right">
+                              <!-- <span class="btn fav-profile fav-item fav-color" :class="'view_pro_id'+hos.nursing_id" style="" @click="favAddFun('add',hos.nursing_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
+                              <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == 'check'" :class="'done_pro_id'+hos.nursing_id" style="color:#aaa;" @click="favAddFun('remove',hos.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
+                          -->
+                          <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == ''" :class="'view_pro_id'+hos.nursing_id" style="display:block;" @click="favAddFun('add',hos.hos_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
+                          <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == 'check'" :class="'done_pro_id'+hos.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',hos.hos_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
+                          </p>
 
-                </div>
-                <div class="clearfix col-12 m-b-20">
-                    <span v-for="(sub,index) in subject" :key="index+'-'+sub.name+'-'+hos.id">
-                    <span v-if="sub.customer_id == hos.customer_id" class="job_status">
-                      {{sub.name}}
-                    </span>
-                  </span>
-                  <p class="hos_phone float-right"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span>{{hos.phone}}</p>
-                  </div>
+                        </div>
+                      </div>
+                    </div>
+
                 <div class="hos-body row clearfix">
                   <div class="col-3 job-img">
                     <img v-bind:src="'/upload/hospital_profile/' + hos.logo"  alt="img" class="img-fluid" @error="imgUrlAlt">
+
+                  <!-- <p class="hos_phone text-center m-t-20"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span><span class="phone-no">{{hos.phone}}</span></p> -->
                   </div>
                   <div class="col-4 job-box">
                     <table  class="table table-bordered table-sm">
@@ -508,7 +780,9 @@
                   </div>
                   <div class="col-5">
                     <!--schedule-->
-                 <h5 class="header">診療時間</h5>
+                 <h5 class="header">診療時間
+                    <span class="hos_phone"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span><span class="phone-no">{{hos.phone}}</span></span>
+                 </h5>
                   <!-- <tr v-for="(time,index) in timetable" :key="index+'-'+time.id+'-'+hos.id">
                     <td v-if="hos.customer_id == time.customer_id" >
                       {{time.mon}} / {{time.tue}} / {{time.wed}} / {{time.thu}} / {{time.fri}} / {{time.sat}} / {{time.sun}} / {{time.part}}
@@ -612,6 +886,7 @@
         subjects: [],
         sub_child:[],
         subject:[],
+        company:[],
         toggleCheck: true,
         toggleCheck_1: false,
         currentPage: 0,
@@ -620,7 +895,8 @@
         items: [],
         show_paginate: false,
         selected: undefined,
-        localst:''
+        localst:'',
+        norecord_msg: false,
       }
     },
     mounted() {
@@ -652,14 +928,14 @@
 
               var search_word = $('#search-free-word').val();
             }
-           if(localStorage.getItem("nursing_fav") == null){
+           if(localStorage.getItem("hospital_fav") == null){
 
                 this.locast = 0;
             }
             else{
-                this.locast = localStorage.getItem("nursing_fav");
+                this.locast = localStorage.getItem("hospital_fav");
             }
-           
+
 
           this.axios.get('api/gethospitalsearch/'+ search_word,{
             params:{
@@ -672,14 +948,20 @@
           }).then((response)=>{
             this.getTownships = response.data.township;
             this.hos_data = response.data.hospital;
-            console.log(this.hos_data);
             this.timetable = response.data.timetable;
             this.specialfeatures = response.data.specialfeature;
             this.subject = response.data.subject;
+            this.subjects = response.data.subjects;
+            this.company = response.data.company;
             if(this.hos_data.length > this.size) {
                 this.show_paginate = true;
             }else{
                 this.show_paginate = false;
+            }
+            if(this.hos_data.length != 0){
+              this.norecord_msg = false;
+            }else{
+              this.norecord_msg = true;
             }
           })
         },
@@ -698,13 +980,21 @@
             else{
                  var search_word = "all";
             }
+               if(localStorage.getItem("hospital_fav") == null){
+
+                this.locast = 0;
+            }
+            else{
+                this.locast = localStorage.getItem("hospital_fav");
+            }
 
             this.axios.get('api/gethospitalsearch/'+ search_word,{
             params:{
                 id: -1,
                 townshipID:-1,
                 specialfeatureID:-1,
-                subjectID:-1
+                subjectID:-1,
+                local:this.locast
             },
             }).then((response)=>{
                     if(response.data.hospital.length > 0)
@@ -717,10 +1007,16 @@
                         this.specialfeatures = response.data.specialfeature;
                         this.getTownships = [];
                         this.subject = response.data.subject;
+                        this.subjects = response.data.subjects;
                         if(this.hos_data.length > this.size) {
                             this.show_paginate = true;
                         }else{
                             this.show_paginate = false;
+                        }
+                        if(this.hos_data.length != 0){
+                          this.norecord_msg = false;
+                        }else{
+                          this.norecord_msg = true;
                         }
                     }
                     else{
@@ -728,10 +1024,59 @@
                     }
 
                 });
-
-
-
             },
+
+            favAddFun(status,index,ind){
+              
+            
+            if(status == 'add'){
+    
+                this.hos_data[ind].fav_check = 'check';
+                 
+                if(localStorage.getItem("hospital_fav")){
+                 
+                    var fav_arr = JSON.parse("[" + localStorage.getItem("hospital_fav") + "]");
+                    fav_arr.push(index);
+                    fav_arr = [...new Set(fav_arr)];
+                    localStorage.setItem("hospital_fav", fav_arr);
+                    // $("#hos-fav-local").html(fav_arr.length);
+                    this.hosFav = fav_arr.length;
+                }
+                else{
+                
+                    var fav_arr = [index];
+                    console.log(fav_arr);
+                    localStorage.setItem("hospital_fav", fav_arr);
+                    
+                    // $("#hos-fav-local").html(fav_arr.length);
+                    this.hosFav = fav_arr.length;
+                }
+                console.log('local');
+                    console.log(localStorage.getItem("hospital_fav"));
+                $(".fav-hospital-link-box>a").css({'cursor':'pointer','pointer-events':'auto'});
+            }
+            else{
+
+                this.hos_data[ind].fav_check = '';
+
+                var fav_arr = JSON.parse("[" + localStorage.getItem("hospital_fav") + "]");
+                var index = fav_arr.indexOf(index);
+                if (index > -1) {
+                    fav_arr.splice(index, 1);
+                    localStorage.setItem("hospital_fav", fav_arr);
+                }
+                // $("#hos-fav-local").html(fav_arr.length);
+                this.hosFav = fav_arr.length;
+
+                if(fav_arr.length == 0){
+                    $(".fav-hospital-link-box>a").css({'cursor':'not-allowed','pointer-events':'none'})
+                }
+                else{
+                    $(".fav-hospital-link-box>a").css({'cursor':'pointer','pointer-events':'auto'})
+                }
+
+            }
+        },
 
         groupBy(array, key){
 
@@ -775,15 +1120,14 @@
 
       ChangeTownship(){
 
-        this.townshipID = [];
-         if(localStorage.getItem("nursing_fav") == null){
+           this.townshipID = [];
+           if(localStorage.getItem("hospital_fav") == null){
 
                 this.locast = 0;
             }
             else{
-                this.locast = localStorage.getItem("nursing_fav");
+                this.locast = localStorage.getItem("hospital_fav");
             }
-
 
          this.axios.get('api/getmap',{
               params:{
@@ -802,9 +1146,9 @@
               this.getTownships = response.data.getTownships
               this.special_features = response.data.special_features
               this.subjects = response.data.subjects;
-              this.sub_child = response.data.sub_child;
+            //   this.sub_child = response.data.sub_child;
               //console.log("aaa",this.subjects);
-              this.id = id;
+              // this.id = id;
 
             })
               this.search();
@@ -826,16 +1170,16 @@
               var id = e.target.id;
               this.id = id;
             }
-          }     
+          }
 
-          if(localStorage.getItem("nursing_fav") == null){
+          if(localStorage.getItem("hospital_fav") == null){
 
                 this.locast = 0;
             }
             else{
-                this.locast = localStorage.getItem("nursing_fav");
+                this.locast = localStorage.getItem("hospital_fav");
             }
-                
+          this.$loading(true);
           this.axios.get('api/getmap',{
               params:{
               id: this.id,
@@ -846,7 +1190,7 @@
           },
           })
             .then((response) => {
-
+              this.$loading(false);
               $('#hos_search').css("display","block");
               $('.hospitalselect').removeClass('hospitalselect');
               this.cities = response.data.city
@@ -854,7 +1198,8 @@
               this.getTownships = response.data.getTownships
               this.special_features = response.data.special_features
               this.subjects = response.data.subjects
-              this.sub_child = response.data.sub_child
+              this.company = response.data.company
+            //   this.sub_child = response.data.sub_child
               this.id = id;
 
             })
@@ -1096,5 +1441,9 @@
     margin: 20px 0;
     text-align: center;
 }
-
+#job_detail .fav-profile{
+  position: relative;
+  top: 0;
+  right: 0;
+}
 </style>

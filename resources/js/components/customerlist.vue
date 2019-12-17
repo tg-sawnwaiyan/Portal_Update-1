@@ -3,7 +3,7 @@
         <div class="col-md-12 col-md-12 tab-content tab-content1 tabs pad-free border-style">
             <div class="col-md-12 scrolldiv p-0">
                 <div class="scrolldiv col-12">
-                    <div v-if="norecord === 0" class="card card-default card-wrap">
+                    <div v-if="norecord_msg" class="card card-default card-wrap">
                         <p class="record-ico">
                             <i class="fa fa-exclamation"></i>
                         </p>
@@ -20,7 +20,7 @@
                         </div>
                         <hr />
                         <h5 class="header">事業者一覧</h5>
-                        <div v-if="!this.customers.length" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
+                        <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
                         <div v-else class="container-fuid">
                             <div v-for="customer in displayItems" :key="customer.id" class="card card-default m-b-20">
 
@@ -109,16 +109,25 @@
                     items: [],
                     pagination: false,
                     norecord: 0,
+                    norecord_msg: false,
+                    nosearch_msg: false,
                 };
             },
             created() {
+                this.$loading(true);
                 this.axios.get("/api/customers").then(response => {
+                    this.$loading(false);
                     this.customers = response.data;
                     this.norecord = this.customers.length;
                     if (this.norecord > this.size) {
                         this.pagination = true;
                     } else {
                         this.pagination = false;
+                    }
+                    if(this.norecord != 0){
+                        this.norecord_msg = false;
+                    }else{
+                        this.norecord_msg = true;
                     }
                 });
             },
@@ -190,6 +199,11 @@
                                 } else {
                                     this.pagination = false;
                                 }
+                                if(this.norecord != 0){
+                                    this.norecord_msg = false;
+                                }else{
+                                    this.norecord_msg = true;
+                                }
                                 //flash("Delete Success", "success");
                                 let a = this.customers.map(item => item.id).indexOf(id);
                                 this.customers.splice(a, 1);
@@ -230,12 +244,19 @@
                         var search_word = $("#search-word").val();
                         let fd = new FormData();
                         fd.append("search_word", search_word);
+                        this.$loading(true);
                         this.axios.post("/api/customer/search", fd).then(response => {
+                            this.$loading(false);
                             this.customers = response.data;
                             if(this.customers.length > this.size){
                                 this.pagination = true;
                             }else{
                                 this.pagination = false;
+                            }
+                            if(this.customers.length != 0) {
+                                this.nosearch_msg = false;
+                            }else{
+                                this.nosearch_msg = true;
                             }
                         });
                     },

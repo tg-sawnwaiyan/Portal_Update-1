@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="col-12">
-            <div class="row m-b-15" v-if="norecord!== 0">
+            <div class="row m-b-15" v-if="!norecord_msg">
                 <div class="col-md-12">
                     <router-link to="/advertisement" class="float-right main-bg-color create-btn all-btn" style="color: blue;">
                         <i class="fas fa-plus-circle"></i> 広告を作成
@@ -11,7 +11,7 @@
 
             <div class="col-md-12 col-md-12 tab-content tab-content1 tabs pad-free border-style">
                 <div class="scrolldiv col-12">
-                    <div v-if="!norecord" class="card card-default card-wrap">
+                    <div v-if="norecord_msg" class="card card-default card-wrap">
                         <p class="record-ico">
                             <i class="fa fa-exclamation"></i>
                         </p>
@@ -31,7 +31,7 @@
                         </div>
                         <hr />
                         <h5 class="header">広告一覧</h5>
-                        <div v-if="!this.advertisements.length" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
+                        <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
                         <div v-else class="container-fuid">
                             <div v-for="ads in displayItems" :key="ads.id" class="card card-default m-b-20">
                                 <div class="card-body news-post">
@@ -98,16 +98,25 @@
                     pageRange: 5,
                     items: [],
                     pagination: false,
+                    norecord_msg: false,
+                    nosearch_msg: false,
                 };
             },
             created() {
+                this.$loading(true);
                 this.axios.get("/api/advertisement/ads").then(response => {
+                    this.$loading(false);
                     this.advertisements = response.data;
                     this.norecord = this.advertisements.length;
                     if(this.norecord > this.size){
                         this.pagination = true;
                     }else{
                         this.pagination = false;
+                    }
+                    if(this.norecord != 0) {
+                        this.norecord_msg = false;
+                    }else{
+                        this.norecord_msg = true;
                     }
                 });
             },
@@ -175,6 +184,11 @@
                                 }else{
                                     this.pagination = false;
                                 }
+                                if(this.norecord != 0) {
+                                    this.norecord_msg = false;
+                                }else{
+                                    this.norecord_msg = true;
+                                }
                                 //alert("Delete Successfully!");
                                 //   let a = this.advertisements.map(item => item.id).indexOf(id);
                                 //   this.advertisements.splice(a, 1);
@@ -196,12 +210,19 @@
                         var search_word = $("#search-item").val();
                         let fd = new FormData();
                         fd.append("search_word", search_word);
+                        this.$loading(true);
                         this.axios.post("/api/advertisement/search", fd).then(response => {
+                            this.$loading(false);
                             this.advertisements = response.data;
                             if(this.advertisements.length > this.size){
                                 this.pagination = true;
                             }else{
                                 this.pagination = false;
+                            }
+                            if(this.advertisements.length != 0){
+                                this.nosearch_msg = false;
+                            }else{
+                                this.nosearch_msg = true;
                             }
                         });
                     },

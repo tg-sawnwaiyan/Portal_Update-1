@@ -255,14 +255,16 @@
                             cancelButtonClass: "all-btn"
                         }).then(response => {
                         let fData = new FormData();
-                        fData.append('photo', this.news.image)
-                        fData.append('title', this.news.title)
-                        fData.append('main_point', this.news.main_point)
-                        fData.append('body', this.news.body)
-                        fData.append('category_id', this.news.category_id)
-                        fData.append('related_news', this.checkedNews)
+                            fData.append('photo', this.news.image)
+                            fData.append('title', this.news.title)
+                            fData.append('main_point', this.news.main_point)
+                            fData.append('body', this.news.body)
+                            fData.append('category_id', this.news.category_id)
+                            fData.append('related_news', this.checkedNews)
+                            this.$loading(true);
                         this.axios.post('/api/new/add', fData)
                             .then(response => {
+                            this.$loading(false);
                             this.name = ''
                             console.log(response);
                             this.$swal({

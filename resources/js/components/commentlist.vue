@@ -4,7 +4,7 @@
             <!--card-->
             <div class="col-md-12 col-md-12 tab-content tab-content1 tabs pad-free border-style">
                 <div class="col-md-12 scrolldiv">
-                    <div v-if="norecord === 0" class="card card-default card-wrap">
+                    <div v-if="norecord_msg" class="card card-default card-wrap">
                         <p class="record-ico">
                             <i class="fa fa-exclamation"></i>
                         </p>
@@ -25,6 +25,8 @@
                         </div>
                         <hr />
                         <h5 class="header">コメント一覧</h5>
+                        <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
+                        <div v-else class="container-fuid">
                         <div class="card card-default m-b-20" v-for="comment in displayItems" :key="comment.id">
                             <div class="card-body">
                                 <div class="row">
@@ -62,7 +64,7 @@
                                 <div class="commentWrap">
                                    
                                     <div class="d-flex ">
-                                     <p class="comment-underline comment-title p-b-0">{{comment.title}} <span style="font-size:12px;color:#a7a2a2ee;">(コメント)</span>   <p class="comment-date"><i class="fa fa-calendar" aria-hidden="true"></i> {{comment.created_date | moment("YYYY年MM月DD日") }}投稿 <span class="ml-2"><i class="fa fa-clock" aria-hidden="true"></i> {{comment.created_time}}</span></p></p> 
+                                     <p class="comment-underline comment-title p-b-0">{{comment.title}} <span style="font-size:12px;color:#a7a2a2ee;">(コメント)</span>   <p class="comment-date"><i class="fa fa-calendar" aria-hidden="true"></i> {{comment.created_date | moment("YYYY年MM月DD日") }}投稿 <span class="ml-2"><i class="fa fa-clock" aria-hidden="true"></i> {{comment.created_time}}</span></p>
                                   
                                     </div>
                                     <!-- <h5 style="background:linear-gradient(45deg, #ffbe9f, transparent);padding:8px;">{{comment.title}} <span style="font-size:14px;">(コメント)</span></h5> -->                                                                     
@@ -70,6 +72,7 @@
                                  <div name="exp[]" class="col-md-12 m-t-20"><p style="color:#736e6e;">{{comment.comment}}</p></div>
                             </div>
                         </div>
+                    </div>
                         <div class="offset-md-4 col-md-8 mt-3" v-if="pagination">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination">
@@ -110,19 +113,28 @@
                     pageRange: 5,
                     items: [],
                     pagination: false,
+                    norecord_msg: false,
+                    nosearch_msg: false,
                 }
 
             },
             created() {
+                this.$loading(true);
                 this.axios
                     .get('/api/comments/comment'+ this.comments )
                     .then(response => {
+                        this.$loading(false);
                         this.comments = response.data;
                         this.norecord = this.comments.length;
                         if(this.norecord > this.size){
                             this.pagination = true;
                         }else{
                             this.pagination = false;
+                        }
+                        if(this.norecord != 0) {
+                            this.norecord_msg = false;
+                        }else{
+                            this.norecord_msg = true;
                         }
                     });
 
@@ -191,6 +203,11 @@
                                     }else{
                                         this.pagination = false; 
                                     }
+                                    if(this.norecord != 0) {
+                                        this.norecord_msg = false;
+                                    }else{
+                                        this.norecord_msg = true;
+                                    }
                                     // let i = this.categories.map(item => item.id).indexOf(id); // find index of your object
                                     // this.categories.splice(i, 1);
                                     this.$swal({
@@ -226,8 +243,10 @@
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
                         }).then(response => {
+                            this.$loading(true);
                             this.axios.get(`/api/comments/confirm/${id}`)
                                 .then(response => {
+                                    this.$loading(false);
                                     this.comments = response.data.comments;
                                     this.$swal({
                                             title: "確認済",
@@ -260,12 +279,19 @@
                         var search_word = $("#search-item").val();
                         let fd = new FormData();
                         fd.append("search_word", search_word);
+                        this.$loading(true);
                         this.axios.post("/api/comments/search", fd).then(response => {
+                            this.$loading(false);
                             this.comments = response.data;
                             if(this.comments.length > this.size){
                                 this.pagination = true;
                             }else{
                                 this.pagination = false;
+                            }
+                            if(this.comments.length != 0){
+                                this.nosearch_msg = false;
+                            }else{
+                                this.nosearch_msg = true;
                             }
                             });
                     },

@@ -39,9 +39,9 @@
                     <div class="form-group form-group-wrapper d-flex">
                             <label class="heading-lbl col-2 pad-free">電話番号<span class="error">*</span></label>
                             <div class="col-10 row">
-                            <input type="text" class="form-control customer-phone col-12" id="phone" placeholder="電話番号を入力してください。" v-model="customer_info.phone" v-on:keydown="isNumberOnly" @focusout="numberLength" maxlength="14">
-                            <span class="error" v-if="ph_error"></span>
-                            <span class="error" v-else-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>                            
+                            <input type="text" class="form-control customer-phone col-12" id="phone" placeholder="電話番号を入力してください。" v-model="customer_info.phone" v-on:keyup="isNumberOnly" maxlength="14">
+                            <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>    
+                            <span class="error" v-else></span>                        
                             </div>
                     </div>
                     <div class="form-group form-group-wrapper">
@@ -578,16 +578,18 @@
                             <span class="btn all-btn main-bg-color" style="min-width: 0px;" @click="maptogglediv()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
                             <div class="col-md-10 float-right m-t-10 map-toggle-div toggle-div pad-free">
                                 <div class="col-md-12">
-
-                                    <GoogleMap :address="customer_info.address" :lat_num='nursing_info.latitude' :lng_num='nursing_info.longitude' v-if="nursing_info.latitude != 0"></GoogleMap>
-                                    <GoogleMap :address="customer_info.address" :lat_num='35.6803997' :lng_num='139.76901739' v-if="nursing_info.latitude == 0"></GoogleMap>
+                                    <div class="col-md-12 pad-free" id="mapbox">
+                                        <GoogleMap :address="customer_info.address" :township="customer_info.townships_id" :city="city_id" :township_list="township_list" :lat_num='nursing_info.latitude' :lng_num='nursing_info.longitude'></GoogleMap>
+                                    </div>
+                                    
+                                    <!-- <GoogleMap :address="customer_info.address" :lat_num='35.6803997' :lng_num='139.76901739' v-if="nursing_info.latitude == 0"></GoogleMap> -->
                                     <!-- <div class="form-group">
                                             <label>住所<span class="error">*</span></label>
                                             <quill-editor  ref="myQuilEditor"  name="address" :options="editorOption" @change="onCustomerAddressChange($event)" class="customer-address" v-model="customer_info.address"/>
                                     </div> -->
 
                                     <!-- Test Station Area -->
-                                    <table class="table table-bordered table-wrapper">
+                                    <!-- <table class="table table-bordered table-wrapper">
                                             <tr>
                                                     <td>
                                                             <div class="form-group">
@@ -597,8 +599,8 @@
                                                                             <div class="row">
                                                                                     <div v-for="stat in station_list" :key="stat.id" class="col-md-3 m-b-20">
                                                                                             <label>
-                                                                                                    <input type="checkbox"  name="station" v-bind:value="stat.id" @click="featureCheck(stat.id)" v-model="stat.checked">
-                                                                                                    {{stat.name}}
+                                                                                                    <input type="checkbox"  name="station" v-bind:value="stat.station_id" @click="featureCheck(stat.station_id)" v-model="stat.checked">
+                                                                                                    {{stat.station_name}}
                                                                                             </label>
                                                                                     </div>
                                                                             </div>
@@ -606,7 +608,7 @@
                                                             </div>
                                                     </td>
                                             </tr>
-                                    </table>
+                                    </table> -->
                                     <!-- End Test Station Area -->
 
                                     <div class="form-group">
@@ -636,7 +638,6 @@
 import 'quill/dist/quill.snow.css'
 import {quillEditor} from 'vue-quill-editor'
 import {Button, Input,Select} from 'iview'
-// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import GoogleMap from './GoogleMap.vue'
 import DatePicker from 'vue2-datepicker';
 
@@ -705,8 +706,9 @@ export default {
                 panorama_length: 0,
                 new_panorama_img: [],
                 ph_length: false,
-                ph_error: false,
                 ph_num: false,
+                city_id: 0,
+                township_list: []
             }
         },
 
@@ -723,18 +725,23 @@ export default {
 
             this.type = localStorage.getItem('cusType');
             this.cusid = Number(localStorage.getItem('cusId'));
-            this.axios
-            .get('/api/station/'+this.cusid)
-            .then(response=>{
-                    this.station_list = response.data;
-            });
+            // this.axios
+            // .get('/api/station/'+this.cusid)
+            // .then(response=>{
+            //         this.station_list = response.data;
+            // });
 
             this.axios
             .get('/api/customerinfo/'+this.cusid)
             .then(response=>{
-                this.customer_info = response.data;   
-            });
-
+                this.customer_info = response.data; 
+                this.axios
+                .get('/api/nurscities/'+this.customer_info.townships_id)
+                .then(response=>{
+                    this.city_id = Number(response.data[0].city_id); 
+                    this.township_list = response.data[0].township_list;
+                });
+            });            
             this.axios
             .get('/api/nursinginfo/'+this.cusid)
             .then(response=>{
@@ -1054,6 +1061,7 @@ export default {
             },
 
             createProfile() {
+               
                 // $('#create-profile').prop('disabled', true);
                 document.getElementById("create-profile").disabled=true;
                 this.customer_info_push = [];
@@ -1067,6 +1075,7 @@ export default {
                 var customer_email = $('.customer-email').text(); 
                 var customer_phone = $('.customer-phone').val();
                 var customer_address = $('#city').val();
+                var customer_township = $('#township').val();
 
                 // var access = $('.transporation-access').val();
                 var moving_in_from = $('.nursing-moving-in-f').val();
@@ -1101,7 +1110,7 @@ export default {
                 var min_num_staff = $('.min-num-staff').val();
                 var num_staff = $('.num-staff').val();
                 // var nursing_remarks = $('.nursing-remarks').val();
-                this.customer_info_push.push({ name:customer_name,email:customer_email,phone:customer_phone,address:customer_address});
+                this.customer_info_push.push({ name:customer_name,email:customer_email,phone:customer_phone,address:customer_address,township:customer_township});
 
                 this.staff_info_push.push({staff:staff,nursing_staff:nursing_staff,min_num_staff:min_num_staff,num_staff:num_staff,nursing_remarks:this.nursing_remarks_val});
 
@@ -1169,11 +1178,11 @@ export default {
                         });
                         this.chek_feature.push({special_feature_id:s_features});
 
-                var chek_station=[];
-                $.each($("input[name='station']:checked"), function(){
-                        chek_station.push($(this).val());
-                });
-                this.stations.push({station_id:chek_station});
+                // var chek_station=[];
+                // $.each($("input[name='station']:checked"), function(){
+                //         chek_station.push($(this).val());
+                // });
+                // this.stations.push({station_id:chek_station});
 
 
                 var acceptance=[];
@@ -1200,6 +1209,7 @@ export default {
                 else{
                     this.panorama_list = [];
                 }
+                 this.$loading(true);
                
                 if(new_panorama.length > 0){
                     let fd = new FormData();
@@ -1261,11 +1271,13 @@ export default {
                         }
                     }) ;
                 }
-
+                
                 if(this.profile_arr.length > 0) {
+                    this.$loading(true);
                     this.axios
                         .post(`/api/nursing/profile/${this.cusid}`,this.profile_arr)
                         .then((response) => {
+                            this.$loading(false);
                             this.name = ''
                         }).catch(error=>{
 
@@ -1316,45 +1328,45 @@ export default {
 
                 if(this.chek_feature.length > 0) {
                     this.axios
-                    .post(`/api/sfeature/update/${this.cusid}`,this.chek_feature)
-                    .then((response) => {
+                        .post(`/api/sfeature/update/${this.cusid}`,this.chek_feature)
+                        .then((response) => {
 
 
-                        }).catch(error=>{
-                        if(error.response.status == 422){
-                            this.chek_feature = 'error';
-                            this.errors = error.response.data.errors
-                        }
+                            }).catch(error=>{
+                            if(error.response.status == 422){
+                                this.chek_feature = 'error';
+                                this.errors = error.response.data.errors
+                            }
                     }) ;
                 }
 
-                if(this.stations.length > 0) {
-                    this.axios
-                    .post(`/api/station_junctions/update/${this.cusid}`,this.stations)
-                    .then((response) => {
+                // if(this.stations.length > 0) {
+                //     this.axios
+                //     .post(`/api/station_junctions/update/${this.cusid}`,this.stations)
+                //     .then((response) => {
 
 
-                        }).catch(error=>{
-                        if(error.response.status == 422){
-                            this.stations = 'error';
-                            this.errors = error.response.data.errors
-                        }
-                    }) ;
-                }
-
+                //         }).catch(error=>{
+                //         if(error.response.status == 422){
+                //             this.stations = 'error';
+                //             this.errors = error.response.data.errors
+                //         }
+                //     }) ;
+                // }
                 if(this.gallery_list != 'error' && this.cooperate_list != 'error' && this.payment_list != 'error' && this.profile_arr != 'error' && this.customer_info_push  != 'error' && this.staff_info_push  != 'error' &&  acceptance!= 'error') {
-                        
-                    this.$swal({
-                        position: 'top-end',
-                        type: 'success',
-                        title: '更新されました',
-                        confirmButtonText: "はい",
-                        confirmButtonColor: "#6cb2eb",
-                        width: 250,
-                        height: 200,
-                    }).then(response => {
+                  
+                    // this.$swal({
+                    //     position: 'top-end',
+                    //     type: 'success',
+                    //     title: '更新されました',
+                    //     confirmButtonText: "はい",
+                    //     confirmButtonColor: "#6cb2eb",
+                    //     width: 250,
+                    //     height: 200,
+                    // }).then(response => {
                         document.getElementById('nursing').click();
-                    })
+                    // })
+                  
                 }                
                 
             },
@@ -1362,35 +1374,13 @@ export default {
                 var input_data = $('#phone').val();
                 var code = 0;
                 code = input_data.charCodeAt();
-                if((48 <= code && code <= 57)){
+                if((48 <= code && code <= 57) && (this.customer_info.phone.length >= 10 && this.customer_info.phone.length <= 14)){
                     this.ph_num = false;
-                    console.log('c')
-                }else{
-                    this.ph_num = true;
-                    console.log('d')
-                }
-
-                // if(!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105) 
-                //     && event.keyCode != 8 && event.keyCode != 46 && !(event.keyCode >= 37 && event.keyCode <= 40)) 
-                // {
-                //     // event.preventDefault();                    
-                //     this.ph_num = true;
-                // }
-                // else{
-                //     this.ph_num = false;
-                    
-                // }
-            },
-            numberLength: function(event) {                
-                if(this.customer_info.phone == ''){
-                    this.ph_error = true;
-                }else if(this.customer_info.phone.length >= 10 && this.customer_info.phone.length <= 14){
                     this.ph_length = false;
                 }else{
+                    this.ph_num = true;
                     this.ph_length = true;
                 }
-                
-                
             }
         }
 }

@@ -178,6 +178,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
+                                       
                                         <GmapMap id="googlemap" ref="map" :center="center" :zoom="10">
                                             <GmapMarker v-for="(m, index) in markers" :key="index" :position="m.position" :clickable="true" :draggable="true" @click="center=m.position" />
                                         </GmapMap>
@@ -248,7 +249,7 @@
                         </div>
                     </div>
                     <div class="m-t-20" id="fav-history-page">
-                        <div class="col-12">
+                        <div class="col-12 card-container">
                             <div class="card-carousel-wrapper">
                                     <div class="nav-box" @click="moveCarousel(-1)" :disabled="atHeadOfList">
                                         <div class="nav-content mr-2">
@@ -391,7 +392,9 @@
 </template>
 
 <script>
+
     export default {
+     
         data() {
                 return {
                     errors: [],
@@ -435,7 +438,7 @@
                     payment_name: [],
                     currentOffset: 0,
                     windowSize: 5,
-                    paginationFactor: 267,
+                    paginationFactor: 261,
                     disableBtn: false,
                     check:false,
                     window:{
@@ -445,56 +448,63 @@
                 };
             },
             computed: {
-
-                    atEndOfList() {
-                        return this.currentOffset <= (this.paginationFactor * -1) * (this.fav_nursing.length - this.windowSize);
-                    },
-                    atHeadOfList() {
-                        return this.currentOffset === 0;
-                    },
-                    isdisable: function() {
-                        return this.disableBtn;
-                    }
+                atEndOfList() {
+                    return this.currentOffset <= (this.paginationFactor * -1) * (this.fav_nursing.length - this.windowSize);
+                },
+                atHeadOfList() {
+                    return this.currentOffset === 0;
+                },
+                isdisable: function() {
+                    return this.disableBtn;
+                }
             },
 
             created() {
                 //for cardcarousel responsive
                 window.addEventListener('resize', this.handleResize)
-                this.handleResize();
-                console.log('nnnnnnn');
-                console.log(this.window.width);
-                if(this.window.width > 320 && this.window.width < 450) {
-                    this.windowSize = 1;                
+                this.handleResize(); 
+                if(this.window.width >=320 && this.window.width < 360) {
+                    this.windowSize = 1;  
+                  this.paginationFactor = 260;    
                 } 
-                
-                else if(this.window.width >= 450 && this.window.width < 768) {
+                else if(this.window.width >=360 && this.window.width < 375) {
                     this.windowSize = 1;
-                    console.log('bbb');
-                    console.log(this.window.width);
+                     this.paginationFactor = 260;    
+                } 
+                 else if(this.window.width >=375 && this.window.width < 450) {
+                    this.windowSize = 1;
+                     this.paginationFactor = 260;    
+                }
                 
+                else if(this.window.width >= 414 && this.window.width < 768) {
+                    this.windowSize = 1;
+                     this.paginationFactor = 260; 
                 } 
                 else if(this.window.width >= 768 && this.window.width < 992) {
                     this.windowSize = 2;
-                
+                    this.paginationFactor = 260;  
                 }
                 else if(this.window.width >= 992 && this.window.width < 1024) {
-                    this.windowSize = 3;               
-                    console.log(this.window.width);
-                    console.log(this.windowSize);
+                    this.windowSize = 3; 
+                    this.paginationFactor = 255;                                 
                 }
-                else if (this.window.width >= 1024 && this.window.width < 1280) {
+                else if(this.window.width >= 1024 && this.window.width < 1200) {
+                    this.windowSize = 3; 
+                      this.paginationFactor = 255;                                
+                }
+                else if (this.window.width >= 1200 && this.window.width < 1280) {
                     this.windowSize = 3;
-                    console.log('aaaaaaa');
-                console.log(this.window.width);
-                    
+                    this.paginationFactor = 260;                    
                 }
                 else if (this.window.width >= 1280 && this.window.width < 1440) {
                     this.windowSize = 4;
-                    console.log('bbbb');
+                    this.paginationFactor = 257;
+                    
                 }
                 else if (this.window.width >= 1440 && this.window.width < 1880) {
-                    this.windowSize = 5;              
-                    
+                    this.windowSize = 4;
+                     this.paginationFactor = 260;            
+                    // console.log(this.window.width);
                 }
 
                 // $('.checkbox1').prop("checked", true);
@@ -554,11 +564,12 @@
                         }).then(response => { 
                              var l_sto = this.local_sto;
                             var l_sto_arr = l_sto.split(",");
-                            var rm_id = id.toString();
+                            var rm_id = id.toString(); 
                             var index = l_sto_arr.indexOf(rm_id);
                             if (index > -1) {
                                 l_sto_arr.splice(index, 1);
-                                $("#nus-fav-local").html(l_sto_arr.length);
+                                // $("#nus-fav-local").html(l_sto_arr.length);
+                                this.nusFav = l_sto_arr.length;
                                 if(l_sto_arr.length == 0){
                                     $('.fav-nursing-link-box>a').css({'cursor':'not-allowed','pointer-events':'none'})
                                 }
@@ -738,3 +749,4 @@
             }
     };
 </script>
+

@@ -19,6 +19,7 @@
             <span v-if="!loginuser"><i class="fas fa-user-md"></i></span>
           </label>
         </li>
+ 
         <span class="btn fav-profile fav-item fav-color" v-if="!view_pro_id && !loginuser" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
         <span class="btn fav-profile fav-item fav-color" style="color:#aaa;" v-if="view_pro_id && !loginuser" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
       </ul>
@@ -44,12 +45,11 @@
             <i class="fa fa-plus-circle"></i>
             <input type="radio" v-model="btntype" value="create" v-on:change="changeBtnType('hospital-lbl','nursing-lbl')" name="btntype" id="hospital" />
             作成
-          </label>
+          </label>             
         </li>
 
         <li role="presentation" class="subtab2 nav-item">
           <label for="nursing" class="typelabel nav-link active" id="nursing-lbl">
-
             <input type="radio" v-model="btntype" value="view" v-on:change="changeBtnType('nursing-lbl','hospital-lbl')" name="btntype" id="nursing" />
             <span v-if="loginuser"><i class="fas fa-briefcase-medical" style="font-size:18px;"></i>&nbsp;マイページ</span>
             <span v-if="!loginuser"><i class="fas fa-briefcase-medical"></i></span>
@@ -63,7 +63,7 @@
       <div class="tab-content hospital-borderColor tab-content1 tabs">
         <form class="col-md-12 pad-free">
           <div class="col-md-12 pad-free tab-pane" v-if="btntype == 'create'">
-            <hospitalProfile></hospitalProfile>
+            <hospitalProfile></hospitalProfile>      
           </div>
 
           <div class="col-md-12 pad-free" v-if="btntype == 'view'">
@@ -159,12 +159,14 @@ export default {
                     hos_his_arr.push(response.data[0].pro_id);
                     hos_his_arr = [...new Set(hos_his_arr)];
                     localStorage.setItem("hospital_history", hos_his_arr);
-                    $("#hos-his-local").html(hos_his_arr.length);
+                    // $("#hos-his-local").html(hos_his_arr.length);
+                    this.hosHis = hos_his_arr.length;
                 }
                 else{
                     var hos_his_arr = [response.data[0].pro_id];
                     localStorage.setItem("hospital_history", hos_his_arr);
-                    $("#hos-his-local").html(hos_his_arr.length);
+                    // $("#hos-his-local").html(hos_his_arr.length);
+                    this.hosHis = hos_his_arr.length;
                     $('.his-hospital-link-box>a').css({'cursor':'pointer','pointer-events':'auto'});
                 }
                 if(localStorage.getItem("hospital_fav")){
@@ -178,12 +180,14 @@ export default {
                     nus_his_arr.push(response.data[0].pro_id);
                     nus_his_arr = [...new Set(nus_his_arr)];
                     localStorage.setItem("nursing_history", nus_his_arr);
-                    $("#nus-his-local").html(nus_his_arr.length);
+                    // $("#nus-his-local").html(nus_his_arr.length);
+                    this.nusHis = nus_his_arr.length;
                 }
                 else{
                     var nus_his_arr = [response.data[0].pro_id];
                     localStorage.setItem("nursing_history", nus_his_arr);
-                    $("#nus-his-local").html(nus_his_arr.length);
+                    // $("#nus-his-local").html(nus_his_arr.length);
+                    this.nusHis = nus_his_arr.length;
                     $('.his-nursing-link-box>a').css({'cursor':'pointer','pointer-events':'auto'});
                 }
 
@@ -235,12 +239,24 @@ export default {
                 fav_arr.push(this.pro_id);
                 fav_arr = [...new Set(fav_arr)];
                 localStorage.setItem(locReplace, fav_arr);
-                $(varReplace).html(fav_arr.length);
+                // $(varReplace).html(fav_arr.length);
+                if(this.type == 'nursing'){
+                    this.nusFav = fav_arr.length;
+                }
+                else{
+                    this.hosFav = fav_arr.length;
+                }                
             }
             else{
                 var fav_arr = [this.pro_id];
                 localStorage.setItem(locReplace, fav_arr);
-                $(varReplace).html(fav_arr.length);
+                // $(varReplace).html(fav_arr.length);
+                if(this.type == 'nursing'){
+                    this.nusFav = fav_arr.length;
+                }
+                else{
+                    this.hosFav = fav_arr.length;
+                }
             }
             $(linkBox).css({'cursor':'pointer','pointer-events':'auto'});
         }
@@ -251,7 +267,13 @@ export default {
                 fav_arr.splice(index, 1);
                 localStorage.setItem(locReplace, fav_arr);
             }
-            $(varReplace).html(fav_arr.length);
+            // $(varReplace).html(fav_arr.length);
+            if(this.type == 'nursing'){
+                this.nusFav = fav_arr.length;
+            }
+            else{
+                this.hosFav = fav_arr.length;
+            }
 
             if(fav_arr.length == 0){
                 $(linkBox).css({'cursor':'not-allowed','pointer-events':'none'})

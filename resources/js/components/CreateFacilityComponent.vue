@@ -32,6 +32,7 @@
   </div>
 </template>
 <script>
+  
 export default {
   data() {
     return {
@@ -60,9 +61,11 @@ export default {
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
-                        }).then(response => { 
+                        }).then(response => {
+                          this.$loading(true); 
                      this.axios.post("/api/facility/add", this.facility)
                     .then((response) => {
+                      this.$loading(false);
                         this.name = ''
                         this.$swal({
                             position: 'top-end',
@@ -104,6 +107,8 @@ export default {
                 },
   }
 };
+
+
 </script>
 
 

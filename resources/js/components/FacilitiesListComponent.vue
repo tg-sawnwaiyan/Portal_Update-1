@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="col-12">
-            <div class="row m-b-15" v-if="norecord !== 0">
+            <div class="row m-b-15" v-if="!norecord_msg">
                 <div class="col-md-12">
                     <router-link class="float-right main-bg-color create-btn all-btn" style="color: blue;" to="/createfacility">
                         <i class="fas fa-plus-circle"></i> 新しい施設を作成
@@ -13,7 +13,7 @@
             <!--card-->
             <div class="col-md-12 col-md-12 tab-content tab-content1 tabs pad-free border-style">
                 <div class="col-md-12 scrolldiv">
-                    <div v-if="norecord === 0" class="card card-default card-wrap">
+                    <div v-if="norecord_msg" class="card card-default card-wrap">
                         <p class="record-ico">
                             <i class="fa fa-exclamation"></i>
                         </p>
@@ -33,7 +33,7 @@
                         </div>
                         <hr />
                         <h5 class="header">施設一覧</h5>
-                        <div v-if="!this.facilities.length" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
+                        <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
                         <div v-else class="container-fuid">
                             <div class="card card-default m-b-20" v-for="facility in displayItems" :key="facility.id">
                                 <div class="card-body">
@@ -78,11 +78,14 @@
     </div>
 </template>
 <script>
+// import { timeout } from 'q';
     export default {
         data() {
                 return {
                     facilities: [],
                     norecord: 0,
+                    norecord_msg: false,
+                    nosearch_msg: false,
                     currentPage: 0,
                     size: 10,
                     pageRange: 5,
@@ -91,13 +94,20 @@
                 };
             },
             created() {
+                this.$loading(true);
                 this.axios.get("/api/facility/facilities").then(response => {
+                    this.$loading(false);
                     this.facilities = response.data;
                     this.norecord = this.facilities.length;
                     if (this.norecord > this.size) {
                         this.pagination = true;
                     } else {
                         this.pagination = false;
+                    }
+                    if (this.norecord != 0) {
+                        this.norecord_msg = false;
+                    }else{
+                        this.norecord_msg = true;
                     }
                 });
             },
@@ -164,6 +174,11 @@
                                     } else {
                                         this.pagination = false;
                                     }
+                                    if (this.norecord != 0) {
+                                        this.norecord_msg = false;
+                                    }else {
+                                        this.norecord_msg = true;
+                                    }
                                     //alert('Delete Successfully!');
                                     // let i = this.facilities.map(item => item.id).indexOf(id); // find index of your object
                                     // this.facilities.splice(i, 1);
@@ -187,12 +202,20 @@
                     var search_word = $("#search-item").val();
                     let fd = new FormData();
                     fd.append("search_word", search_word);
+                    this.$loading(true);
                     this.axios.post("/api/facility/search", fd).then(response => {
+                    this.$loading(false);
                     this.facilities = response.data;
+                    this.norecord = this.facilities.length;
                     if(this.facilities.length > this.size){
                         this.pagination = true;
                     }else{
                         this.pagination = false;
+                    }
+                    if (this.norecord != 0){
+                        this.nosearch_msg = false;
+                    }else {
+                        this.nosearch_msg = true;
                     }
                     });
                 },

@@ -1,10 +1,10 @@
 import VueRouter from 'vue-router'
 // Pages
-import Home from './components/home'
+// import Home from './components/home'
 import Register from './pages/Register'
 import Login from './pages/Login'
-import Dashboard from './pages/user/Dashboard'
-import AdminDashboard from './pages/admin/Dashboard'
+// import Dashboard from './pages/user/Dashboard'
+// import AdminDashboard from './pages/admin/Dashboard'
 
 import Newsdetails from "./components/Newsdetails.vue";
 import hospitalSearch from "./components/hospitalSearch.vue";
@@ -18,18 +18,18 @@ import news_list from "./components/news_list.vue";
 import create_news from "./components/create_news.vue";
 import categorylist from "./components/categorylist.vue";
 import createcategory from "./components/createcategory.vue";
-import stationlist from "./components/stationlist.vue";
-import createstation from "./components/createstation.vue";
-import editstation from "./components/editstation.vue"; 
+// import stationlist from "./components/stationlist.vue";
+// import createstation from "./components/createstation.vue";
+// import editstation from "./components/editstation.vue";
 import FacilitiesListComponent from "./components/FacilitiesListComponent.vue";
 import CreateFacilityComponent from "./components/CreateFacilityComponent.vue";
-import custedit from "./components/custedit.vue";
-import CustomerSearchListComponent from "./components/CustomerSearchListComponent.vue";
-import NewsSearchListComponent from "./components/NewsSearchListComponent.vue";
+// import custedit from "./components/custedit.vue";
+// import CustomerSearchListComponent from "./components/CustomerSearchListComponent.vue";
+// import NewsSearchListComponent from "./components/NewsSearchListComponent.vue";
 // import map from "./components/map.vue";
 import EditFacilityComponent from "./components/EditFacilityComponent.vue";
 import editcategory from "./components/editcategory.vue";
-import createcustomer from "./components/CreateCustomer.vue";
+// import createcustomer from "./components/CreateCustomer.vue";
 import joboffercreate from "./components/JobOfferCreate.vue";
 import editPost from "./components/editNewsPost.vue";
 import Profile from "./components/Profile.vue";
@@ -40,16 +40,16 @@ import advertisement from "./components/advertisement.vue";
 import createmedicalacceptance from "./components/createmedicalacceptance.vue";
 import medicalacceptancelist from "./components/medicalacceptancelist.vue";
 import editmedicalacceptance from "./components/editmedicalacceptance.vue";
-import userPasswordResetList from "./components/userPasswordResetList.vue";
+// import userPasswordResetList from "./components/userPasswordResetList.vue";
 import HospitalHistory from "./components/HospitalHistory.vue";
 import favouriteHospital from "./components/favouriteHospital.vue";
 import NursingHistory from "./components/NursingHistory.vue";
 // import HospitalProfile from "./components/HospitalProfile.vue";
 // import NursingProfile from "./components/NursingProfile.vue";
-import VideoUpload from "./components/VideoUpload.vue";
+// import VideoUpload from "./components/VideoUpload.vue";
 import GoogleMap from "./components/GoogleMap.vue";
-import type from "./components/Type.vue";
-import typelist from "./components/TypeList.vue";
+// import type from "./components/Type.vue";
+// import typelist from "./components/TypeList.vue";
 import subject from "./components/Subject.vue";
 import subjectlist from "./components/SubjectList.vue";
 import advertisementlist from "./components/advertisementlist.vue";
@@ -75,7 +75,7 @@ import Unauthorized from './components/403.vue';
 
 // Routes
 const routes = [
-  
+
 {
   path: '/Unauthorized',
   name: 'Unauthorized',
@@ -99,23 +99,23 @@ const routes = [
     }
   },
   // USER ROUTES
-  {
-    path: '/dashboard',
-    name: 'dashboard',
-    component: Dashboard,
-    meta: {
-      auth: true
-    }
-  },
-  // ADMIN ROUTES
-  {
-    path: '/admin',
-    name: 'admin.dashboard',
-    component: AdminDashboard,
-    meta: {
-      auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
-    }
-  },
+  // {
+  //   path: '/dashboard',
+  //   name: 'dashboard',
+  //   component: Dashboard,
+  //   meta: {
+  //     auth: true
+  //   }
+  // },
+  // // ADMIN ROUTES
+  // {
+  //   path: '/admin',
+  //   name: 'admin.dashboard',
+  //   component: AdminDashboard,
+  //   meta: {
+  //     auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+  //   }
+  // },
 
    {
         name: 'News',
@@ -125,7 +125,7 @@ const routes = [
           auth: undefined
         }
     },
-  
+
     {
         name: 'jobSearch',
         path: '/jobSearch',
@@ -145,17 +145,26 @@ const routes = [
     {
         name: "newdetails",
         path: "/newsdetails/:id",
-        component: Newsdetails
+        component: Newsdetails,
+        meta: {
+          auth: undefined
+        }
     },
     {
         name: "hospital_search",
         path: "/hospital_search",
-        component: hospitalSearch
+        component: hospitalSearch,
+        meta: {
+          auth: undefined
+        }
     },
     {
         name: "jobapply",
         path: "/jobapply/:job_id",
-        component: JobApply
+        component: JobApply,
+        meta: {
+          auth: false
+        }
     },
     {
         name: "customerlist",
@@ -165,31 +174,37 @@ const routes = [
           auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
         }
     },
-    {
-        name: "customersearchlist",
-        path: "/customersearchlist",
-        component: CustomerSearchListComponent
-    },
-    {
-        name: "newssearchlist",
-        path: "/newssearchlist",
-        component: NewsSearchListComponent
-    },
-    {
-        name: "custedit",
-        path: "/custsedit",
-        component: custedit
-    },
+    // {
+    //     name: "customersearchlist",
+    //     path: "/customersearchlist",
+    //     component: CustomerSearchListComponent
+    // },
+    // {
+    //     name: "newssearchlist",
+    //     path: "/newssearchlist",
+    //     component: NewsSearchListComponent,
+    // },
+    // {
+    //     name: "custedit",
+    //     path: "/custsedit",
+    //     component: custedit
+    // },
     {
         name: "jobsearchlist",
         path: "/jobsearchlist",
-        component: JobSearchListComponent
+        component: JobSearchListComponent,
+        meta: {
+          auth: undefined
+        }
     },
 
     {
         name: "job_details",
         path: "/job_details/:id",
-        component: job_details
+        component: job_details,
+        meta: {
+          auth: undefined
+        }
     },
     {
         name: "news_list",
@@ -202,65 +217,88 @@ const routes = [
     {
         name: "create_news",
         path: "/create_news",
-        component: create_news
+        component: create_news,
+        meta: {
+          auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+        }
     },
     {
         name: "editPost",
         path: "/editPost",
-        component: editPost
+        component: editPost,
+        meta: {
+          auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+        }
     },
     {
         name: "categorylist",
         path: "/categorylist",
-        component: categorylist
+        component: categorylist,
+        meta: {
+          auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+        }
     },
     {
         name: "createcategory",
         path: "/createcategory",
-        component: createcategory
+        component: createcategory,
+        meta: {
+          auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+        }
     },
     {
         name: "editcategory",
         path: "/editcategory",
-        component: editcategory
+        component: editcategory,
+        meta: {
+          auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+        }
     },
-    {
-        name: "stationlist",
-        path: "/stationlist",
-        component: stationlist
-    },
-    {
-        name: "createstation",
-        path: "/createstation",
-        component: createstation
-    },
-    {
-        name: "editstation",
-        path: "/editstation",
-        component: editstation
-    },
+    // {
+    //     name: "stationlist",
+    //     path: "/stationlist",
+    //     component: stationlist
+    // },
+    // {
+    //     name: "createstation",
+    //     path: "/createstation",
+    //     component: createstation
+    // },
+    // {
+    //     name: "editstation",
+    //     path: "/editstation",
+    //     component: editstation
+    // },
     {
         name: "facilitieslist",
         path: "/facilitieslist",
-        component: FacilitiesListComponent
+        component: FacilitiesListComponent,
+        meta: {
+          auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+        }
     },
     {
         name: "createfacility",
         path: "/createfacility",
-        component: CreateFacilityComponent,      
-
+        component: CreateFacilityComponent,
+        meta: {
+          auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+        }
     },
 
     {
         name: "editfacility",
         path: "/editfacility",
-        component: EditFacilityComponent
+        component: EditFacilityComponent,
+        meta: {
+            auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+        }
     },
-    {
-        name: "createcustomer",
-        path: "/createcustomer",
-        component: createcustomer
-    },
+    // {
+    //     name: "createcustomer",
+    //     path: "/createcustomer",
+    //     component: createcustomer
+    // },
     {
         name: "profile",
         path: "/profile",
@@ -272,167 +310,251 @@ const routes = [
     {
         name: "profiledit",
         path: "/profiledit",
-        component: ProfileEdit
+        component: ProfileEdit,
+        meta: {
+            auth: {roles: 1, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+        }
     },
     {
         name: "jobofferlist",
         path: "/jobofferlist",
-        component: JobOfferList
+        component: JobOfferList,
+        meta: {
+          auth: {roles: 1, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+        }
     },
     {
         name: "joboffercreate",
         path: "/joboffercreate",
-        component: joboffercreate
+        component: joboffercreate,
+        meta: {
+            auth: {roles: 1, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+        }
     },
     {
         name: "profilepublish",
         path: "/profilepublish",
-        component: ProfilePublish
+        component: ProfilePublish,
+        meta: {
+            auth: undefined
+        }
     },
     {
         name: "hospital_history",
         path: "/hospital_history",
-        component: HospitalHistory
+        component: HospitalHistory,
+        meta: {
+            auth: false
+        }
     },
     {
         name: "createmedicalacceptance",
         path: "/createmedicalacceptance",
-        component: createmedicalacceptance
+        component: createmedicalacceptance,
+        meta: {
+            auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+        }
     },
 
     {
         name: "medicalacceptancelist",
         path: "/medicalacceptancelist",
-        component: medicalacceptancelist
+        component: medicalacceptancelist,
+        meta: {
+            auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+        }
     },
 
     {
         name: "editmedicalacceptance",
         path: "/editmedicalacceptance",
-        component: editmedicalacceptance
+        component: editmedicalacceptance,
+        meta: {
+            auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+        }
     },
-    {
-        name: "userPasswordResetList",
-        path: "/userPasswordResetList",
-        component: userPasswordResetList
-    },
+    // {
+    //     name: "userPasswordResetList",
+    //     path: "/userPasswordResetList",
+    //     component: userPasswordResetList
+    // },
     {
         name: "advertisement",
         path: "/advertisement",
-        component: advertisement
+        component: advertisement,
+        meta: {
+            auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+        }
     },
 
     {
         name: "favouriteHospital",
         path: "/favouriteHospital",
-        component: favouriteHospital
+        component: favouriteHospital,
+        meta: {
+            auth: false
+        }
     },
     {
         name: "favouriteNursing",
         path: "/favouriteNursing",
-        component: favouriteNursing
+        component: favouriteNursing,
+        meta: {
+            auth: false
+        }
     },
-    {
-        name: "type",
-        path: "/type",
-        component: type
-    },
-    {
-        name: "typelist",
-        path: "/typelist",
-        component: typelist
-    },
+    // {
+    //     name: "type",
+    //     path: "/type",
+    //     component: type
+    // },
+    // {
+    //     name: "typelist",
+    //     path: "/typelist",
+    //     component: typelist
+    // },
     {
         name: "subject",
         path: "/subject",
-        component: subject
+        component: subject,
+        meta: {
+            auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+        }
     },
     {
         name: "subjectlist",
         path: "/subjectlist",
-        component: subjectlist
+        component: subjectlist,
+        meta: {
+            auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+        }
     },
     {
         name: "ads",
         path: "/ads",
-        component: advertisementlist
+        component: advertisementlist,
+        meta: {
+            auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+        }
     },
     {
         name: "editadvertisement",
         path: "/editads",
-        component: editadvertisement
+        component: editadvertisement,
+        meta: {
+            auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+        }
     },
     {
       name: 'nursing_history',
       path: '/nursing_history',
-      component: NursingHistory
+      component: NursingHistory,
+      meta: {
+        auth: false
+      }
     },
     {
       name: 'google_map',
       path: '/google_map',
-      component: GoogleMap
+      component: GoogleMap,
+      meta: {
+        auth: undefined
+      }
     },
-  {
-    name: 'videoupload',
-    path: '/videoupload',
-    component: VideoUpload
-  },
+  // {
+  //   name: 'videoupload',
+  //   path: '/videoupload',
+  //   component: VideoUpload
+  // },
   {
     name: 'comment',
     path: '/comment/:customer_id',
-    component: comment
+    component: comment,
+    meta: {
+        auth: false
+    }
   },
   {
     name: 'commentlist',
     path: '/commentlist',
-    component: commentlist
+    component: commentlist,
+    meta: {
+        auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+    }
   },
   {
     name: 'specialfeature',
     path: '/specialfeature',
-    component: specialfeature
+    component: specialfeature,
+    meta: {
+        auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+    }
   },
   {
     name: 'featurelist',
     path: '/featurelist',
-    component: featurelist
+    component: featurelist,
+    meta: {
+        auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+    }
   },
   {
     name: 'nursingFavouriteMail',
     path: '/nursingFavouriteMail',
-    component: nursingFavouriteMail
+    component: nursingFavouriteMail,
+    meta: {
+        auth: false
+    }
   },
   {
     name: 'nursingMailConfirm',
     path: '/nursingMailConfirm',
-    component: nursingMailConfirm
+    component: nursingMailConfirm,
+    meta: {
+        auth: false
+    }
   },
   {
     name: 'modal',
     path: '/modal',
-    component: modal
+    component: modal,
+    meta: {
+        auth: undefined
+    }
   },
   {
     name: 'termsAndConditions',
     path: '/termsAndConditions',
-    component: termsAndConditions
+    component: termsAndConditions,
+    meta: {
+        auth: false
+    }
   },
 
   {
     name: 'occupation',
     path: '/occupation',
-    component: occupation
+    component: occupation,
+    meta: {
+        auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+    }
   },
 
   {
     name: 'occupationlist',
     path: '/occupationlist',
-    component: occupationlist
+    component: occupationlist,
+    meta: {
+        auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+    }
   },
   {
     name:'jobapplylist',
     path:'/jobapplylist',
-    component:jobapplylist
+    component:jobapplylist,
+    meta: {
+        auth: {roles: 1, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+    }
   },
 
 ]

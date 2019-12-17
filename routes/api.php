@@ -14,6 +14,10 @@ use App\HospitalProfile;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+// Route::get('/user', function (Request $request) {
+//     $user = $request->user();
+//    return $request;
+// })->middleware('auth:api');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {  
     if($request->user()->type_id == 2){
@@ -37,14 +41,18 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('getjobsearch/{searchword}','SearchMapController@getJobSearch');
     Route::get('getCity','SearchMapController@getCity');
     Route::get('profile_view/{cusid}/{type}','ProfilePublishController@getCustomerLatLng');
+    Route::get('townshipJson','SearchMapController@townshipJson');
+    Route::get('cityJson/{theCity}','SearchMapController@cityJson');
+    // Route::get('getstation/{id}','SearchMapController@getJobStation');
+    
 
 // public route api end
 
 
 Route::prefix('auth')->group(function () {
-    Route::post('register', 'AuthController@register');
+    Route::post('register', 'registerController@store');
     Route::get('getCities','registerController@getCities');
-    Route::get('township','registerController@township');
+    Route::get('township','registerController@getTownship');
     Route::get('getTypes','registerController@getTypes');
     Route::post('login', 'AuthController@login');
     Route::get('refresh', 'AuthController@refresh');
@@ -236,6 +244,7 @@ Route::group(['prefix' => 'customer'], function () {
 });
 
 Route::get('getReset','registerController@getReset');
+Route::post('register','registerController@store');
 // Route::get('getskill', 'JobApplyController@getSkills');
 Route::get('getjobtitle/{jobs_id}', 'JobApplyController@getJobTitle');
 Route::get('skill', 'JobController@getSkill');
@@ -275,6 +284,8 @@ Route::get('nursing-payment/{id}','PaymentMethodController@getPaymentByCustomerI
 
 Route::get('customerinfo/{id}','CustomerController@edit');
 Route::get('nursinginfo/{id}','NursingProfileController@edit');
+Route::get('nurscities/{township_id}','NursingProfileController@getCities');
+Route::get('townshiplist/{city_id}','NursingProfileController@getTownships');
 Route::get('hospitalinfo/{id}','HospitalProfileController@edit');
 Route::get('staffinfo/{id}', 'ProfilePublishController@getStaffbyCustomerId');
 

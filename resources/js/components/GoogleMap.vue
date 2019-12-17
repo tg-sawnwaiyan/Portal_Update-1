@@ -3,6 +3,43 @@
           
               <div class="col-md-12 pad-free">
                 <div class="col-md-12 pad-free postal-search">
+                    <div class="col-md-12 row p-0 m-0">
+                        <div class="col-md-6 pad-free">
+                            <div class="col-md-12 p-l-0 m-t-10"><label>  都道府県<span class="error">*</span></label></div>
+                            <div class="col-md-12 p-l-0" v-if="test ==0 ">
+                                <select :value="city" class="division form-control" id="division" @change="cityChange($event)">
+                                    <option v-for="cities in city_list" :key="cities.id" v-bind:value="cities.id">
+                                        {{cities.city_name}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-12 p-l-0" v-else>
+                                <select :value="city" class="division form-control" id="division" @change="cityChange($event)">
+                                    <option v-for="cities in city_list" :key="cities.id" v-bind:value="cities.id" :selected="cities.id == selected_city_id">
+                                        {{cities.city_name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 pad-free">
+                            <div class="col-md-12 p-r-0 m-t-10"><label>  市区町村<span class="error">*</span></label></div>
+                            <div class="col-md-12 p-r-0" v-if="test == 0">
+                                <select :value="township" class="division form-control" id="township">
+                                    <option v-for="townships in township_list" :key="townships.id" v-bind:value="townships.id">
+                                        {{townships.township_name}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-12 p-r-0" v-else>
+                                <select :value="new_township" class="division form-control" id="township">
+                                    <option v-for="townships in new_townshiplist" :key="townships.id" v-bind:value="townships.id">
+                                        {{townships.township_name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>            
+                    
                   <div class="form-group m-t-10">
                     <label>郵便番号<span class="error">*</span></label>
                     <input type="text" v-model="comment.postal" name="postal" class="postal form-control white-bg-color" id="postal" v-on:keyup="getPostal" placeholder="郵便番号を入力してください。" maxlength="7"/>
@@ -11,28 +48,29 @@
                   <div class="form-group">
                     <label>市区町村、番地（建物名）<span class="error">*</span></label>
                     <div class="row">
-                      <div class="col-md-10" v-if="status === '0'">
-                        <input type="text" id="city" name="city" class="old-city form-control white-bg-color" placeholder="市区町村、番地を入力してください。" v-model="address">                        
+                      <div class="col-md-12" v-if="status === '0'">
+                        <input type="text" id="city" name="city" class="old-city form-control white-bg-color" placeholder="市区町村、番地を入力してください。" v-model="address"> 
+                                              
                       </div>
-                      <div class="col-md-10" v-else>
+                      <div class="col-md-12" v-else>
                         <input type="text" id="city" name="city" class="city form-control white-bg-color" placeholder="市区町村、番地を入力してください。" v-model="comment.city">
                         
                       </div>
-                      <div class="col-md-2">
+                      <!-- <div class="col-md-2">
                         <span class="btn news-post-btn all-btn" @click="searchAddress()">番地検索</span>
-                      </div>
+                      </div> -->
                     </div>
                     <p>例）東京都千代田区丸の内1-9-1　グラントウキョウノースタワー40階</p>                                    
                   </div>
                 </div>           
 
-                <label>場所検索はこちら</label>
+                <!-- <label>場所検索はこちら</label>
                 <gmap-autocomplete
                   @place_changed="setPlace" v-bind:value="comment.city" class="form-control m-b-10" id="gmap-search" style="display:none;">
                 </gmap-autocomplete>
                 <gmap-autocomplete
                   @place_changed="setPlace" class="form-control m-b-10 white-bg-color" id="gmap-search2" placeholder="場所を入力してください">
-                </gmap-autocomplete>
+                </gmap-autocomplete> -->
                 <!-- <span @click="addMarker">Add</span> -->
               </div>              
               <!-- <div class="col-md-12 pad-free" v-if="address_btn">
@@ -66,9 +104,15 @@ export default {
   name: "GoogleMap",
   props:{
          address:String,
+         township: Number,
+         city: Number,
+         township_list: Array
         },
   data () {
     return {
+        test:'0',
+        new_townshiplist:[],
+        new_township:'',
       status:'0',
       markers: [],
       addresses: [],
@@ -83,9 +127,24 @@ export default {
         gmap_city: ''
       },
       address_btn: false,
+      city_list: [],
+      selected_city_id:'0',
+    //   selected_city:this.city,      
     }
   },
-  created() { 
+//   computed:{
+//       selectedCity: {
+//           get: function(){
+//                 this.selected_city = this.city;
+//                 return this.selected_city;
+//           },
+//           set: function(newValue){
+//               this.city = newValue;
+//           }
+          
+//       }
+//   },
+  created() {
     this.markers = [{
         position: {
           lat: Number(localStorage.getItem('lat_num')),
@@ -98,25 +157,35 @@ export default {
     this.center = { lat: Number(localStorage.getItem('lat_num')), lng: Number(localStorage.getItem('lng_num')) }
     
     $('#gmap-search').css({'display':'none'});
+    this.axios.get('/api/hospital/citiesList')
+        .then(response => {
+            this.city_list = response.data;
+        });
   },
   methods: {    
     // receives a place object via the autocomplete component
-    addressSelect: function (e) {
+    addressSelect: function (lat_add,lng_add) {
       // Add a new marker
       this.markers.push({
         position: {
-          lng: this.addresses[e.target.options.selectedIndex].longitude,
-          lat: this.addresses[e.target.options.selectedIndex].latitude
+          lng: lng_add,
+          lat: lat_add
         }
       });
+    //   this.markers.push({
+    //     position: {
+    //       lng: this.addresses[e.target.options.selectedIndex].longitude,
+    //       lat: this.addresses[e.target.options.selectedIndex].latitude
+    //     }
+    //   });
      
       // Remove the previous marker
       this.markers.shift()   
       // Scroll the map to the new position
       this.$refs.map.$mapPromise.then((map) => {
         map.panTo({
-          lng: this.addresses[e.target.options.selectedIndex].longitude,
-          lat: this.addresses[e.target.options.selectedIndex].latitude
+          lng: lng_add,
+          lat: lat_add
         });
       });
     },
@@ -139,7 +208,6 @@ export default {
           lat: this.currentPlace.geometry.location.lat(),
           lng: this.currentPlace.geometry.location.lng()
         };
-        console.log(marker)
         this.markers.push({ position: marker });
         this.places.push(this.currentPlace);
         this.center = marker;
@@ -200,6 +268,19 @@ export default {
                 this.comment.gmap_city = '';
               }
               
+            },
+            cityChange(event){
+                this.test = 1;
+                this.selected_city_id = event.target.value;
+                this.axios
+                .get('/api/townshiplist/'+event.target.value)
+                .then(response=>{
+                    this.new_townshiplist = response.data.townships; 
+                    this.new_township = this.township_list[0].id;
+                    var move_lat = response.data.coordinate[0].latitude;
+                    var move_lon = response.data.coordinate[0].longitude;
+                    this.addressSelect(move_lat,move_lon)
+                });
             },
             
   }

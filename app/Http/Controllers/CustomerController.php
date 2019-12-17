@@ -160,8 +160,16 @@ class CustomerController extends Controller
 
     public function confirm($id)
     {
-        
+      
         $getCustomer = Customer::findOrFail($id);
+
+        $query = "SELECT c.latitude,c.longitude FROM cities as c
+                       left join  townships as t on t.city_id = c.id
+                       left join customers as cu on cu.townships_id = t.id
+                       where cu.id = " .$id. " group by c.id";
+                     
+        $citylatlng = DB::select($query);
+    
         $checkUser = User::where('email',$getCustomer->email)->select('email')->value('email');
         // $getUserId = User::where('email',$getCustomer->email)->value('id');
         $comfirmUser =  auth('api')->user()->id;
@@ -174,23 +182,29 @@ class CustomerController extends Controller
                 'name'=>$getCustomer->name,
                 'email'=>$getCustomer->email,
                 'password'=>$getCustomer->password,
-                'type' => 'user',
+                'role' => 1,
                 'type_id' => $getCustomer->type_id,
                 'customer_id' =>$getCustomer->id
             );
             DB::table('users')->insert($data);
             $insert = array(
-                'customer_id' => $getCustomer->id
+                'customer_id' => $getCustomer->id,
+                'latitude' => $citylatlng[0]->latitude,
+                'longitude' => $citylatlng[0]->longitude,
+
                );            
             $lastid = User::where('email',$getCustomer->email)->select('id')->value('id'); //user table last id
             $model_has_roles = array(
-                'role_id'=>2,
+                'role_id'=>2,   
                 'model_type'=> 'App\User',
                 'model_id'=> $lastid,
             );
-            if($getCustomer->type_id == 2){                
+         
+            if($getCustomer->type_id == 2){ 
+
                 \DB::table('hospital_profiles')->insert($insert);
             }else{
+       
                 \DB::table('nursing_profiles')->insert($insert);
             }  
            DB::table('model_has_roles')->insert($model_has_roles);

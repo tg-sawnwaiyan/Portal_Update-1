@@ -12,8 +12,8 @@ class JobController extends Controller
 
     public function index()
     {
-        $query = "SELECT jobs.* ,customers.type_id, 
-        (CASE customers.type_id WHEN '2' THEN CONCAT((500000+jobs.id),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((200000+jobs.id),'-',LPAD(jobs.id, 4, '0')) END) as jobid
+        $query = "SELECT jobs.* ,customers.type_id,      
+        (CASE customers.type_id WHEN '2' THEN CONCAT((500000+customers.id),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((200000+customers.id),'-',LPAD(jobs.id, 4, '0')) END) as jobid
         FROM `jobs`
         JOIN customers ON jobs.customer_id = customers.id
         LEFT JOIN job_applies ON jobs.id = job_applies.job_id
@@ -355,7 +355,7 @@ class JobController extends Controller
     public function search(Request $request) {
         $request = $request->all();
         $search_word = $request['search_word'];
-        $customer_id = $request['customer_id'];
+        $customer_id = auth()->user()->customer_id;
 
         $query = Job::query();
         $query = $query->where('customer_id', $customer_id);
