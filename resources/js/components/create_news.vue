@@ -1,8 +1,8 @@
 <template>
     <!-- Page Content  -->
     <div class="row" id="news">
-        <div class="col-md-12 t_card2  t_card3">
-            <div class="card text-dark">
+        <div class="col-md-12 t_card2 t_card3">
+            <div class="card text-dark t_card4">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
