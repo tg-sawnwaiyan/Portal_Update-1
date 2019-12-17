@@ -13,7 +13,7 @@
         <h4 class="job-title-color">{{jobDetail.title}} <label class="job_id" style="color:#000;">仕事番号: {{jobDetail.jobid}}</label></h4>
 
       </div>
-      <div class="col-sm-10 offset-1">
+      <div class="col-sm-10 col-12 offset-sm-1">
         <!-- <img src="/images/img1.jpg" class="img-responsive" style="width:150px;"> -->
 
         <div class="form-wrap mt-3 mb-3">
@@ -84,7 +84,7 @@
               <!-- <button type="button" class="btn btn-warning btn-width white">戻る</button> -->
               <!-- <span class="btn main-bg-color white all-btn" @click="jobApply()">確認画面へ進む</span> -->
               <router-link :to="{name: 'jobapply', params: { job_id: job_id }}"
-              class="btn white all-btn width17" style="background-color:#828282;" v-if="!login_user">この案件に応募する</router-link>
+              class="btn job_detail_btn" v-if="!login_user">この案件に応募する</router-link>
             </div>
           </div>
         </div>

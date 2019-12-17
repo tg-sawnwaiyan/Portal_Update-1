@@ -569,28 +569,36 @@
                 <tr>
                   <th>地域</th>
                   <td>
-                    <select id="selectCity"   class="col-10 col-md-9 form-control custom-select mt-2 mb-2" v-model="id" @change="changeTownship">
+                    <div class="row mt-2 mb-2">
+                      <div class="col-lg-9 col-md-6 col-sm-12">
+                      <select id="selectCity" class="form-control custom-select" v-model="id" @change="changeTownship">
                          <option value="-1">▼市区町村</option>
-                      <option v-for = "city in cities" :value="city.id" :key="city.id" >{{city.city_name}}</option>
+                      <option v-for="city in cities" :value="city.id" :key="city.id" >{{city.city_name}}</option>
                     </select>
-                    <button @click="toggleContent4" class="btn col-2 col-md-3 seemore-btn">
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 pc-414">
+                      <button @click="toggleContent4" class="btn seemore-btn">
                       <i class="fa" aria-hidden="true"></i>
                           <!-- <em>{{city.city_name}}</em> -->
                           <span id="close6"><i class="fas fa-arrow-circle-up"></i> 市区町村エリアを閉じる </span>
                     </button>
-
-                    <div  class="toBeToggled4" id="toBeToggled4">
-
-                      <div class="form-check form-check-inline col-sm-2"   v-for="township in getTownships" :key="township.id">
+                    </div>
+                    </div>
+                    <div class="toBeToggled4 pc-414" id="toBeToggled4">
+                      <div class="form-check form-check-inline col-lg-2 col-md-4 col-sm-4"   v-for="township in getTownships" :key="township.id">
                         <label class="form-check-label control control--checkbox" style="padding-left:5px;">
                          <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @change="getCheck($event)">
-
                         {{township.township_name}}
                         <div class="control__indicator"></div>
                         </label>
                       </div>
-
                     </div>
+                     <div class="sp-414">
+                        <select id="selectCity" class="form-control custom-select" v-model="townshipID" @change="getCheck($event)">
+                          <option value="-1">▼市区町村</option>
+                          <option v-for="township in getTownships" :key="township.id" :id="township.id" :value="township.id"> {{township.township_name}}</option>
+                        </select>
+                      </div>
                     <!-- <div>
                      <button @click="getStation" class="btn col-2 seemore-btn">  Station </button>
                       <div v-for="com in company" :key="com.company_cd" class="col-4">
@@ -611,9 +619,7 @@
                   フリーワード
                   </th>
                   <td>
-
                       <input type="text" class="form-control mt-2 mb-2" id=""  placeholder="例）施設名、エリア">
-
                   </td>
                 </tr>
                 <tr class="toBeToggled1 ShowHide">
@@ -1158,15 +1164,7 @@ export default {
 
 
 <style scoped>
-.highlight{
-    background-color: #ccff60 !important;
-    background-image: none;
-    border: 1px solid #8e3c15;
-    color: #ff6117;
-}
-.resHighlight{
-   background: #ccff6029 !important;
-}
+
 .jobselect {
   display: none;
 }
@@ -1327,5 +1325,10 @@ table > tbody > tr th{
   opacity: 0;
   visibility: hidden;
 }
-
+/************************responsive ****************************/
+@media only screen and (max-width:1024px) {
+  table > tbody > tr th{  
+  width:100px;
+}
+}
 </style>

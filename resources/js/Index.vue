@@ -27,7 +27,7 @@
                                     </div>
                                         <!--end slider for ads-->
                                     <div class="row justify-content-md-center">
-                                        <div class="col-12 col-lg-12 col-md-10 tab">
+                                        <div class="col-12 col-lg-12 col-md-10 tab p0-480">
                                         <!-- vue component -->
                                             <router-view :key="$route.fullPath"></router-view>
                                         </div>
@@ -75,13 +75,11 @@
                                 <div class="container-fluid main-wrapper">
                                     <!--slider for ads-->
                                     <div class="col-md-auto pad-free">
-                                    <div class="row col-md-12 pad-free fixed-ads-fluid" style="hight:200px">
-                                            <ads_slider></ads_slider>
-                                    </div>
+                                        <ads_slider></ads_slider>
                                     </div>
                                         <!--end slider for ads-->
                                     <div class="row justify-content-md-center">
-                                        <div class="col-12 col-lg-12 col-md-10 tab">
+                                        <div class="col-12 col-lg-12 col-md-10 tab p0-480">
                                         <!-- vue component -->
                                             <router-view :key="$route.fullPath"></router-view>
                                     </div>
@@ -191,7 +189,7 @@
                                     </div>
                                         <!--end slider for ads-->
                                     <div class="row justify-content-md-center">
-                                        <div class="col-12 col-lg-12 col-md-10 tab">
+                                        <div class="col-12 col-lg-12 col-md-10 tab p0-480">
                                         <!-- vue component -->
                                             <router-view :key="$route.fullPath"></router-view>
                                         </div>
@@ -239,13 +237,11 @@
                                 <div class="container-fluid main-wrapper">
                                     <!--slider for ads-->
                                     <div class="col-md-auto pad-free">
-                                    <div class="row col-md-12 pad-free fixed-ads-fluid" style="hight:200px">
-                                            <ads_slider></ads_slider>
-                                    </div>
+                                        <ads_slider></ads_slider>
                                     </div>
                                         <!--end slider for ads-->
                                     <div class="row justify-content-md-center">
-                                        <div class="col-12 col-lg-12 col-md-10 tab">
+                                        <div class="col-12 col-lg-12 col-md-10 tab p0-480">
                                         <!-- vue component -->
                                             <router-view :key="$route.fullPath"></router-view>
                                     </div>
