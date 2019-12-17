@@ -10,7 +10,7 @@
                     <div id="menu-overlay" @click="menuToggle()"></div>
             <!-- login ================================================================================================== -->
                     <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12 pad-free" v-if="$auth.check()" id="content-all">
-                        
+
                         <div class="maintab-content" id="v-pills-tabContent">
                             <span @click="menuToggle()">Click</span>
                             <!--section one-->
@@ -18,7 +18,7 @@
                                 <div class="container-fluid main-wrapper">
                                     <!--slider for ads-->
                                     <div class="col-md-auto pad-free">
-                                        
+
                                     </div>
                                         <!--end slider for ads-->
                                     <div class="row justify-content-md-center">
@@ -112,7 +112,7 @@
                                 </div>
                             </section>
                         </div>
-                    </div>  
+                    </div>
                 </div>
             </div>
             <ul class="navbar-nav pad-free" id="headerbar" v-if="!$auth.check()">
@@ -171,7 +171,7 @@
                     <!-- <div id="menu-overlay" @click="menuToggle()"></div> -->
             <!-- login ================================================================================================== -->
                     <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12 pad-free" v-if="$auth.check()" id="content-all">
-                        
+
                         <div class="maintab-content" id="v-pills-tabContent">
                             <!-- <span @click="menuToggle()">Click</span> -->
                             <!--section one-->
@@ -179,7 +179,7 @@
                                 <div class="container-fluid main-wrapper">
                                     <!--slider for ads-->
                                     <div class="col-md-auto pad-free">
-                                        
+
                                     </div>
                                         <!--end slider for ads-->
                                     <div class="row justify-content-md-center">
@@ -273,7 +273,7 @@
                                 </div>
                             </section>
                         </div>
-                    </div>  
+                    </div>
                 </div>
             </div>
             <ul class="navbar-nav pad-free" id="headerbar" v-if="!$auth.check()">
@@ -339,10 +339,10 @@
     components: {
       HeaderMenu,
       asideMenu
-    }, 
+    },
     mounted(){
         // this.axios.get('/api/auth/user').then(res=>{
-        //     console.log(res)            
+        //     console.log(res)
         // })
 
         if(localStorage.getItem("hospital_history")){
@@ -356,7 +356,7 @@
             $('.his-hospital-link-box>a').css({'cursor':'not-allowed','pointer-events':'none'});
             $( '.his-hospital-link-box>a ').parent('div').css({'cursor':'not-allowed'});
         }
-        if(localStorage.getItem("nursing_history")){            
+        if(localStorage.getItem("nursing_history")){
             // $("#nus-his-local").html(localStorage.getItem("nursing_history").split(",").length);
             this.nusHis = localStorage.getItem("nursing_history").split(",").length;
             $('.his-nursing-link-box>a').css({'cursor':'pointer','pointer-events':'auto'});
@@ -391,7 +391,7 @@
         }
 
     },
-    
+
     methods: {
         menuToggle(){
             $("#admin-side-menu").toggle('medium');
@@ -399,7 +399,7 @@
         },
     }
 
-   
+
   }
 </script>
 
