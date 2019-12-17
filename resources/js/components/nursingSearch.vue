@@ -321,7 +321,7 @@
                       <i class="fa icon map-fa-icon"></i>
                     </div>             
                     <div>
-                      <p class="text-left"> &nbsp;あなたらしい暮らしができる。そん<br/>な老人ホームが見つかります。</p>    
+                      <p class="text-left"> &nbsp;あなたらしい暮らしができる。そん<br class="pc-768"/>な老人ホームが見つかります。</p>    
                     </div>
                   </div>
                 </h3>

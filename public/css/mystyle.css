@@ -1044,9 +1044,6 @@ body::-webkit-scrollbar-thumb {
 
 /************************************  End Job Search ************************************************/
 
-
-/************************************  End Job Search ************************************************/
-
 #hospitalView .profile_header {
     border-left: 5px solid #63b7ff;
 }
@@ -1341,6 +1338,18 @@ body::-webkit-scrollbar-thumb {
 .main-content {
     /* padding: 0px;*/
     width: 80%;
+    margin: 0 auto;
+    box-shadow: 0px 1px 2px 0px #ccc !important;
+    -webkit-box-shadow: 0px 1px 2px 0px #ccc !important;
+    -ms-box-shadow: 0px 1px 2px 0px #ccc !important;
+    -moz-box-shadow: 0px 1px 2px 0px #ccc !important;
+    min-height: 100vh;
+    background: #fff;
+}
+
+.full-content {
+    /* padding: 0px;*/
+    width: 100%;
     margin: 0 auto;
     box-shadow: 0px 1px 2px 0px #ccc !important;
     -webkit-box-shadow: 0px 1px 2px 0px #ccc !important;
@@ -6223,6 +6232,9 @@ button.confirmed {
     transition: all 1s ease-in-out;
     overflow: hidden;
     z-index: 4;
+    left: 0;
+    right: 0;
+    text-align: center;
 }
 
 #hospitalView .top-fixed-btn {
@@ -8857,6 +8869,10 @@ ul.nur-caro-card>li.list-group-item {
     display: none;
 }
 
+.pc-768 {
+    display: block;
+}
+
 @media only screen and (max-width: 1240px) {
     /* common */
     .pc-1024 {
@@ -8888,6 +8904,19 @@ ul.nur-caro-card>li.list-group-item {
         cursor: pointer;
     }
     /*end header */
+}
+
+@media only screen and (max-width: 768px) {
+    .tab {
+        max-width: 100% !important;
+        flex: 100% !important;
+    }
+    .map-text-wrapper {
+        display: flex;
+    }
+    .pc-768 {
+        display: none;
+    }
 }
 
 @media only screen and (max-width: 1024px) {
@@ -9372,7 +9401,7 @@ ul.nur-caro-card>li.list-group-item {
         font-size: 12px;
     }
     .top-mail-btn {
-        right: 118px !important;
+        right: 135px !important;
         width: 128px !important;
         font-size: 12px !important;
     }
@@ -9426,6 +9455,7 @@ ul.nur-caro-card>li.list-group-item {
     }
     .freeword-responsive p {
         text-align: center !important;
+        font-size: 20px;
     }
 }
 
@@ -9467,7 +9497,7 @@ ul.nur-caro-card>li.list-group-item {
         font-size: 11px;
     }
     .top-mail-btn {
-        right: 102px !important;
+        right: 125px !important;
         width: 98px !important;
         font-size: 11px !important;
     }

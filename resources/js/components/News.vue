@@ -1421,13 +1421,13 @@
             },
 
             getLatestPostFromAllCat: function() {
-
+                this.$loading(true);
                 this.axios
 
                     .get('/api/get_latest_post_all_cat')
 
                     .then(response => {
-
+                        this.$loading(false);
                         this.latest_post_all_cats = response.data;
 
                     });
