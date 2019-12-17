@@ -625,8 +625,8 @@
                <div class="lds-ripple m-t-10 m-b-10" >
                    <div>
                       <div></div><div></div>
-                   </div>                  
-                </div>           
+                   </div>
+                </div>
                 <div class="col-12 overlay" style="z-index:9">
 
                 </div>
@@ -1453,9 +1453,9 @@ for (let i = 0; i < this.townshipID.length; i++) {
         townshipName.push(this.getTownships[k]['postalcode'])
         town.push(this.getTownships[k]['township_name'])
     }
-    
+
   }
-  
+
 }
 
 }
@@ -1469,10 +1469,10 @@ var township_name = townshipName;
                     this.loading = false
                   for (var i = 0; i < res.length; i++) {
                   if (res[i].properties.NAME_1 == theCity) {
-                    
+
                   if(res[i].geometry.hasOwnProperty('geometries')){
-                      
-                      for(var j =0;j < res[i].geometry.geometries.length;j++){     
+
+                      for(var j =0;j < res[i].geometry.geometries.length;j++){
 
                       city_coordinates.push(res[i].geometry.geometries[j]['coordinates']) ;
                     }
@@ -1484,8 +1484,8 @@ var township_name = townshipName;
               }
               this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
               this.boundariesGoogleMap(lat,lng,this.coordinate);
-            
-            
+
+
             }); //end get city
 
         }else{
@@ -1494,16 +1494,16 @@ var township_name = townshipName;
             var data = res.data
             this.loading = false
             var coordinates = [];
-            
+
             for (let i = 0; i < township_name.length; i++) {
 
               for (let k = 0; k < data.length; k++) {
                 if(data[k]['properties']['N03_007'] === township_name[i]){
                     coordinates.push(data[k])
                 }
-                
+
               }
-              
+
             }
 
               var co = coordinates.reduce((acc, val) => acc.concat(val), []);
@@ -1531,7 +1531,7 @@ boundariesGoogleMap(lat,lng,coor){
       } catch (error) {
           var data = coor.reduce((acc, val) => acc.concat(val), []);
           for (let i = 0; i < data.length; i++) {
-            this.map.data.addGeoJson(data[i]); 
+            this.map.data.addGeoJson(data[i]);
           }
           var bounds = new google.maps.LatLngBounds();
           this.map.data.forEach(function(feature){
@@ -2037,11 +2037,11 @@ search(){
 }
 .lds-ripple > div {
   display: flex;
-  position: absolute;  
+  position: absolute;
   width: 100%;
   height: 100%;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
    z-index: 999;
 }
 .lds-ripple > div  div{

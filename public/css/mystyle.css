@@ -8495,6 +8495,15 @@ ul.nur-caro-card>li.list-group-item {
         transform: rotate(360deg);
     }
 }
+/* start for news_catsearch  admin page */
+.news_catsearch{
+    display: flex !important;
+    align-items: flex-end;
+}
+ .news_catsearch label{
+    width:20%
+}
+/* end for news_catsearch  admin page */
 
 
 /*--------------------------------------------------------------------------------responsive -----------------------------------------------------------------------*/
@@ -8510,6 +8519,12 @@ ul.nur-caro-card>li.list-group-item {
         padding-left: 0px !important;
         padding-right: 0px !important;
     }
+    .news_catsearch label{
+        width:30%;
+    }
+    .news_catsearch section {
+        width :265px;
+    }
 }
 
 @media only screen and (max-width:768px) {
@@ -8524,10 +8539,17 @@ ul.nur-caro-card>li.list-group-item {
     }
     .searchTerm {
         width: 87%;
-    }   
+    }
 }
 
-@media only screen and (max-width:480px) {}
+@media only screen and (max-width:320px) {
+   .searchButton {
+       width: 35% !important;
+   }
+   .news_catsearch  label {
+       width:55%;
+   }
+}
 @media only screen and (max-width: 414px){
     .sp-414{
         display: block !important;
@@ -8536,15 +8558,53 @@ ul.nur-caro-card>li.list-group-item {
         display: none !important;
     }
 }
-@media only screen and (max-width:320px) {
-    .searchButton {
-        width: 35% !important;
+@media only screen and (max-width:480px) {
+    .news_catsearch {
+        padding:15px;
+     }
+     .news_catsearch label {
+         display: none;
+     }
+     .admin_page_edit{
+         text-align: justify !important;
+         padding: 10px;
+     }
+     .admin_page_edit .edit-borderbtn,.admin_page_edit .delete-borderbtn {
+         min-width: 55px;
+         font-size: 12px;
+     }
+     .custom_title {
+         position: relative;
+         margin:5px 0;
+     }
+     .custom_title:after{
+            content: '';
+            position: absolute;
+            bottom:0;
+            display: inline-block;
+            width: 25px;
+            height: 3px;
+            left: 15px;
+            border-radius: 2px;
+            background: #d2571c;
+    }
+    .scroll_responsive {
+        overflow-x: scroll;
+    }
+    .custom-table{
+        width: 555px;
     }
 }
 
 @media screen and (max-width: 979px) and (min-width: 752px) {
     .map-box-reponsive {
         display: block;
+    }
+    .scroll_responsive {
+        overflow-x: scroll;
+    }
+    .custom-table{
+        width: 550px;
     }
 }
 
