@@ -594,7 +594,7 @@
                       </div>
                     </div>
                      <div class="sp-414">
-                        <select id="selectCity" class="form-control custom-select" v-model="townshipID_rep" @change="getCheck($event)">
+                        <select id="selectCity" class="form-control custom-select" v-model="townshipID" @change="getCheck($event)">
                           <option value="-1">▼市区町村</option>
                           <option v-for="township in getTownships" :key="township.id" :id="township.id" :value="township.id"> {{township.township_name}}</option>
                         </select>
@@ -619,9 +619,7 @@
                   フリーワード
                   </th>
                   <td>
-
                       <input type="text" class="form-control mt-2 mb-2" id=""  placeholder="例）施設名、エリア">
-
                   </td>
                 </tr>
                 <tr class="toBeToggled1 ShowHide">
