@@ -8578,6 +8578,12 @@ ul.nur-caro-card>li.list-group-item {
             border-radius: 2px;
             background: #d2571c;
     }
+    .scroll_responsive {
+        overflow-x: scroll;
+    }
+    .custom-table{
+        width: 555px;
+    }
 }
 
 @media only screen and (max-width:320px) {
@@ -8592,6 +8598,12 @@ ul.nur-caro-card>li.list-group-item {
 @media screen and (max-width: 979px) and (min-width: 752px) {
     .map-box-reponsive {
         display: block;
+    }
+    .scroll_responsive {
+        overflow-x: scroll;
+    }
+    .custom-table{
+        width: 550px;
     }
 }
 
