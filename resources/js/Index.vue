@@ -6,6 +6,11 @@
 
             <div class="sidebar-scroll container-fluid">
                 <div class="row">
+                    <!-- <Slide isOpen>
+                        <a id="home" href="#"> 
+                            <span>Home</span>  
+                        </a>
+                    </Slide> -->
                     <asideMenu v-if="$auth.check()"></asideMenu>
                     <div id="menu-overlay" @click="menuToggle()"></div>
             <!-- login ================================================================================================== -->
@@ -169,7 +174,8 @@
 
             <div class="sidebar-scroll container-fluid">
                 <div class="row">
-                    <asideMenu v-if="$auth.check()"></asideMenu>
+                    <!-- <sidebar-menu :menu="menu" /> -->
+                    <!-- <asideMenu v-if="$auth.check()"></asideMenu> -->
                     <!-- <div id="menu-overlay" @click="menuToggle()"></div> -->
             <!-- login ================================================================================================== -->
                     <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12 pad-free" v-if="$auth.check()" id="content-all">
@@ -334,15 +340,19 @@
 <script>
   import HeaderMenu from './components/menu/Menu.vue'
   import asideMenu from './components/menu/asideMenu.vue'
+  import sidebarMenu from './components/menu/sidebarMenu.vue'
+  import {Slide} from 'vue-burger-menu'
   export default {
-    data() {
+    data: function() {        
       return {
-        nursing_fav:'',
+        nursing_fav:'',       
       }
     },
     components: {
       HeaderMenu,
-      asideMenu
+      asideMenu,
+      sidebarMenu,
+      Slide
     }, 
     mounted(){
         // this.axios.get('/api/auth/user').then(res=>{
