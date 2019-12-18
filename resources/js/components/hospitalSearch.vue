@@ -1198,6 +1198,7 @@
               this.cities = response.data.city
               this.getCity = response.data.getCity
               this.getTownships = response.data.getTownships
+              console.log(this.getTownships.length);
               this.special_features = response.data.special_features
               this.subjects = response.data.subjects
               this.company = response.data.company

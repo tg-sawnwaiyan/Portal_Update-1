@@ -584,21 +584,44 @@
                     </button>
                     </div>
                     </div>
-                    <div class="toBeToggled4 pc-414" id="toBeToggled4">
-                      <div class="form-check form-check-inline col-lg-2 col-md-4 col-sm-4"   v-for="township in getTownships" :key="township.id">
-                        <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-                         <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @change="getCheck($event)">
-                        {{township.township_name}}
-                        <div class="control__indicator"></div>
-                        </label>
-                      </div>
+                    <div class="toBeToggled4" id="toBeToggled4">   
+                      <!-- <div class="pc-768">
+                        <div class="form-check form-check-inline col-lg-2 col-md-4 col-sm-4" v-for="township in getTownships" :key="township.id">
+                        <div>
+                          <label class="form-check-label control control--checkbox" style="padding-left:5px;">
+                          <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @change="getCheck($event)">
+                          {{township.township_name}}
+                          <div class="control__indicator"></div>
+                          </label>
+                        </div>
+                      </div> 
+                      </div>                    -->
+                      
+                      <!--test-->                     
+                      <div class="dropdown">
+                          <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+                            Dropdown
+                          </button>                           
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <li>
+                                  <a class="dropdown-item" v-for="township in getTownships" :key="township.id">
+                                      <label class="form-check-label control control--checkbox">
+                                          <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @change="getCheck($event)">{{township.township_name}}
+                                            <div class="control__indicator"></div>
+                                      </label>
+                                  </a>
+                              </li>                                        
+                          </ul>
+                    </div>                                 
+                    <!--end test-->
+                      
                     </div>
-                     <div class="sp-414">
+                     <!-- <div class="sp-414">
                         <select id="selectCity" class="form-control custom-select" v-model="townshipID" @change="getCheck($event)">
                           <option value="-1">▼市区町村</option>
                           <option v-for="township in getTownships" :key="township.id" :id="township.id" :value="township.id"> {{township.township_name}}</option>
                         </select>
-                      </div>
+                      </div> -->
                     <!-- <div>
                      <button @click="getStation" class="btn col-2 seemore-btn">  Station </button>
                       <div v-for="com in company" :key="com.company_cd" class="col-4">
@@ -771,6 +794,33 @@
 import layout from '../components/home.vue'
 import { BulmaAccordion, BulmaAccordionItem } from "vue-bulma-accordion";
 
+var options = [];
+
+$( '.dropdown-menu a' ).on( 'click', function( event ) {
+
+   var $target = $( event.currentTarget ),
+       val = $target.attr( 'label' ),
+       $inp = $target.find( 'input' ),
+       idx;
+
+   if ( ( idx = options.indexOf( val ) ) > -1 ) {
+      options.splice( idx, 1 );
+      setTimeout( function() { $inp.prop( 'checked', false ) }, 0);
+   } else {
+      options.push( val );
+      setTimeout( function() { $inp.prop( 'checked', true ) }, 0);
+   }
+
+   $( event.target ).blur();
+      
+   console.log( options );
+   return false;
+});
+
+
+
+
+
 export default {
     components: {
       layout,
@@ -811,6 +861,7 @@ export default {
         company:[],
         open:false,
         norecord_msg: false,
+       
       }
     },
     created() {
@@ -922,6 +973,7 @@ export default {
                 this.job_data = response.data.job;
                 this.cities = response.data.city
                 this.getTownships = [];
+              
                 if(this.job_data.length > this.size) {
                     this.show_paginate = true;
                 }else{
@@ -1055,6 +1107,7 @@ export default {
           this.cities = response.data.city
           this.getCity = response.data.getCity
           this.getTownships = response.data.getTownships
+          
           this.occupations = response.data.occupations
           this.id = id
          })
@@ -1102,7 +1155,8 @@ export default {
     },
     pageSelect(index) {
       this.currentPage = index - 1;
-    }
+    },
+
     },
     computed: {
     pages() {
@@ -1324,10 +1378,28 @@ table > tbody > tr th{
   opacity: 0;
   visibility: hidden;
 }
+/* .dropdown{
+  display: none;
+} */
 /************************responsive ****************************/
 @media only screen and (max-width:1024px) {
   table > tbody > tr th{  
-  width:100px;
+    width:100px;
+  }
+ 
 }
+@media only screen and (max-width:750px){
+ 
+.dropdown {
+  display: block;
+  position: relative;
+  font-size: 14px;
+  color: #333;
+}
+.dropdown ul.dropdown-menu li{
+   max-height: 270px;
+    overflow: auto;
+}
+
 }
 </style>
