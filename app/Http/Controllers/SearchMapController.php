@@ -602,25 +602,27 @@ class SearchMapController extends Controller
                 left Join nursing_profiles As n on n.customer_id = c.id 
                 left Join hospital_profiles As h on h.customer_id = c.id 
                 left Join cities as ci on ci.id = t.city_id   
-                where ";
+                where  j.recordstatus=1 ";
 
         if($id == -1)
         {
 
             if($searchword == 'all')
             {
-                $query = "SELECT j.id as jobid, j.*,c.*,n.*,h.*,
+                $query = "SELECT j.id as jobid,j.recordstatus as job_record, j.*,c.*,n.*,h.*,
                         (CASE c.type_id WHEN '2' THEN CONCAT((500000+c.id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT((200000+c.id),'-',LPAD(j.id, 4, '0')) END) as jobnum 
                         from  jobs as j
                         join customers as c on c.id = j.customer_id
                         left Join nursing_profiles As n on n.customer_id = c.id 
                         left Join hospital_profiles As h on h.customer_id = c.id 
-                        left Join townships as t on t.id = j.township_id ";         
+                        left Join townships as t on t.id = j.township_id   
+                        where  j.recordstatus=1 ";  
+                               
             }
             else{
              
 
-                $query .= " (j.title like '%" . $searchword . "%' or ci.city_name like '%" . $searchword . "%' or t.township_name like '%".$searchword."%')";
+                $query .= " and (j.title like '%" . $searchword . "%' or ci.city_name like '%" . $searchword . "%' or t.township_name like '%".$searchword."%')";
             }
            
         }
@@ -662,7 +664,7 @@ class SearchMapController extends Controller
               $empstatus = implode(',', $empstatus);
           }
 
-          $query .= " t.city_id =".$id;
+          $query .= " and  t.city_id =".$id;
 
           if($townshipID != '0')
           {
