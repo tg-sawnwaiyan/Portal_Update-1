@@ -257,8 +257,8 @@ Route::get('facility_types', 'FacTypesController@index');
 Route::get('featurelist', 'SpecialFeatureController@index');
 
 Route::get('feature/{type}/{id}','SpecialFeatureController@getFeaturebyProfileType');
-Route::post('sfeature/update/{id}','SpecialFeaturesJunctionsController@update');
-Route::post('subject_junctions/update/{id}','SubjectJunctionsController@update');
+// Route::post('sfeature/update/{id}','SpecialFeaturesJunctionsController@update');
+// Route::post('subject_junctions/update/{id}','SubjectJunctionsController@update');
 Route::post('station_junctions/update/{id}','StationJunctionsController@update');
 
 Route::get('facility/{type}/{id}','FacilityController@getFacilitybyProfileType');
@@ -298,7 +298,7 @@ Route::post('nursing/paymentmethod/{id}', 'NursingProfileController@paymentupdat
 Route::post('nursing/profile/{id}', 'NursingProfileController@profileupdate');
 Route::post('hospital/profile/{id}', 'HospitalProfileController@profileupdate');
 
-Route::post('schedule/update/{id}', 'ScheduleController@update');
+// Route::post('schedule/update/{id}', 'ScheduleController@update');
 Route::get('schedule/{id}', 'ScheduleController@getSchedulebyCustomerId');
 
 Route::post('customer/profile/{id}', 'NursingProfileController@Customerprofileupdate');

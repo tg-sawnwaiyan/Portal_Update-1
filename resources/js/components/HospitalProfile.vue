@@ -1252,7 +1252,7 @@
                             <span class="btn all-btn main-bg-color" style="min-width: 0px;" @click="maptogglediv()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
                             <div class="col-md-10 float-right m-t-10 map-toggle-div toggle-div pad-free">
                                 <div class="col-md-12">
-                                    <GoogleMap :address="customer_info.address" :lat_num='hospital_info.latitude' :lng_num='hospital_info.longitude' v-if="hospital_info.latitude != 0"></GoogleMap>
+                                    <GoogleMap :address="customer_info.address" :township="customer_info.townships_id" :lat_num='hospital_info.latitude' :lng_num='hospital_info.longitude' v-if="hospital_info.latitude != 0"></GoogleMap>
                                     <GoogleMap :address="customer_info.address" :lat_num='35.6803997' :lng_num='139.76901739' v-if="hospital_info.latitude == 0"></GoogleMap>
 
                                     <div class="form-group">
@@ -1446,7 +1446,6 @@ export default {
             },
             preview_image(img_class,indx) {
                   $("."+img_class).html("<img src='"+URL.createObjectURL(event.target.files[0])+"' class='img-fluid hospital-image'>");
-                  document.getElementById('already-photo'+indx).src= URL.createObjectURL(event.target.files[0]);
             },
             facilityCheck(check_id) {
                     $('.facility-'+check_id).attr('checked','true');
@@ -1543,7 +1542,7 @@ export default {
             },
             onDetailInfoEditorChange({ editor, html, text }) {
                 // console.log('editor change!', editor, html, text)
-                this.detail_info = html
+                this.detail_info = jQuery(html).text();
             },
             galleryVideoAdd() {
                    this.video_arr.push({title:'',description:'',url:''});
@@ -1563,6 +1562,12 @@ export default {
                     var email = $('.customer-email').text();
                     var phone = $('.customer-phone').val();
                     var address = $('#city').val();
+                    var township = $('#township').val();
+                    if(this.detail_info === undefined) {
+                        var detail_info = "";
+                    } else {
+                        var detail_info = this.detail_info;
+                    }
                     //test
                     // this.customer_info_push.push({name:name,email:email,phone:phone,address:address});
 
@@ -1597,20 +1602,20 @@ export default {
                     }
                     
                     // 1
-                    // this.axios.post('/api/hospital/movephoto', pt)
-                    //     .then(response => {
-                    //         }).catch(error=>{
-                    //             console.log(error);
-                    //             if(error.response.status == 422){
-                    //                 this.errors = error.response.data.errors
-                    //             }
-                    //     })
+                    this.axios.post('/api/hospital/movephoto', pt)
+                        .then(response => {
+                            }).catch(error=>{
+                                console.log(error);
+                                if(error.response.status == 422){
+                                    this.errors = error.response.data.errors
+                                }
+                        })
 
-                      var video = document.getElementsByClassName('gallery-area-video');
+                    var video = document.getElementsByClassName('gallery-area-video');
                         for(var i = 0; i< video.length; i++) {
                            this.video_list.push({type:"video",photo:video[i].getElementsByClassName('video-url')[0].value,title:video[i].getElementsByClassName('title')[0].value, description:video[i].getElementsByClassName('description')[0].value});
                         }
-                     this.gallery_list = this.img_list.concat(this.video_list);
+                    this.gallery_list = this.img_list.concat(this.video_list);
 
 
                     var s_features =[];
@@ -1640,129 +1645,46 @@ export default {
                     // this.stations.push({station_id:chek_station});
 
                      // Consultation
-                     for(var j = 0; j< 2; j++) {
+                    for(var j = 0; j< 2; j++) {
                         for(var i = 0; i< 7; i++) {
                                 if(j == 0) { this.shedule_am[i] = $('.form-control.am-from'+i+'').val() + '-' + $('.form-control.am-to'+i+'').val(); }
                                 if(j == 1) { this.shedule_pm[i] = $('.form-control.pm-from'+i+'').val() + '-' + $('.form-control.pm-to'+i+'').val(); }
                         }
                         if(j == 0) { this.schedule_list.push(this.shedule_am); }
                         if(j == 1) { this.schedule_list.push(this.shedule_pm); }
-                      }
-                       this.save_hospital_info.push({name:name,email:email,phone:phone,address:address,
-                       latitude:latitude,longitude:longitude,access:this.access_val,specialist:specialist,details_info:this.detail_info,close_day:close_day,website:website,
-                       congestion:congestion,facilities:facilities,
-                       schedule_list:this.schedule_list,
-                       chek_feature:this.chek_feature,
-                       subjects:this.subjects
-                       });
-                        // 2
-                        if(this.gallery_list.length > 0) {
-                                this.axios
-                                    .post(`/api/hospital/galleryupdate/${this.cusid}`,this.gallery_list)
-                                        .then((response) => {
-                                        }).catch(error=>{
-                                        if(error.response.status == 422){
-                                            this.gallery_list = 'error';
-                                            this.errors = error.response.data.errors
-                                    }
-                                }) ;
-                        }
-                        // 3
-                        // if(this.customer_info_push.length > 0) {
-                        //         this.axios
-                        //                 .post(`/api/customer/profile/${this.cusid}`,this.customer_info_push)
-                        //                         .then((response) => {
+                    }
 
-                        //                         }).catch(error=>{
-                        //                         if(error.response.status == 422){
-                        //                           this.customer_info_push = 'error';
-                        //                           this.errors = error.response.data.errors
-                        //                 }
-                        //         }) ;
-                        // }
-                        // 4 // Confirm Path
-                        if(this.save_hospital_info.length > 0) {
-                                this.axios
-                                        .post(`/api/hospital/profile/${this.cusid}`,this.save_hospital_info)
-                                                .then((response) => {
-                                                     this.$swal({
-                                                      position: 'top-end',
-                                                      type: 'success',
-                                                      title: '更新されました',
-                                                      confirmButtonText: "はい",
-                                                      confirmButtonColor: "#6cb2eb",
-                                                      width: 250,
-                                                      height: 200,
-                                            }).then(response => {
+                    this.save_hospital_info.push({name:name,email:email,phone:phone,address:address,township:township,
+                        latitude:latitude,longitude:longitude,access:this.access_val,specialist:specialist,detail_info:detail_info,close_day:close_day,website:website,
+                        congestion:congestion,facilities:facilities,
+                        schedule_list:this.schedule_list,
+                        chek_feature:this.chek_feature,
+                        subjects:this.subjects,
+                        gallery_list:this.gallery_list
+                    });
+                      
+                    if(this.save_hospital_info.length > 0) {
+                        this.axios
+                            .post(`/api/hospital/profile/${this.cusid}`,this.save_hospital_info)
+                            .then((reponse) => {
+                                this.$swal({
+                                    position: 'top-end',
+                                    type: 'success',
+                                    title: '更新されました',
+                                    confirmButtonText: "はい",
+                                    confirmButtonColor: "#6cb2eb",
+                                    width: 250,
+                                    height: 200,
+                                }).then(response => {
                                     document.getElementById('nursing').click();
-                                  })
-                                                }).catch(error=>{
-                                                if(error.response.status == 422){
-                                                  this.save_hospital_info = 'error';
-                                                  this.errors = error.response.data.errors
-                                        }
-                                }) ;
-                        }
-                        return;
-                        // 5
-                        // if(this.schedule_list.length > 0) {
-                        //         this.axios
-                        //                 .post(`/api/schedule/update/${this.cusid}`,this.schedule_list)
-                        //                         .then((response) => {
-
-                        //                         }).catch(error=>{
-                        //                         if(error.response.status == 422){
-                        //                           this.schedule_list = 'error';
-                        //                           this.errors = error.response.data.errors
-                        //         }
-                        // }) ;
-                        // }
-                        
-                        // 6
-                        // if(this.chek_feature.length > 0) {
-                        //         this.axios
-                        //                 .post(`/api/sfeature/update/${this.cusid}`,this.chek_feature)
-                        //                         .then((response) => {
-
-                        //                         }).catch(error=>{
-                        //                         if(error.response.status == 422){
-                        //                           this.chek_feature = 'error';
-                        //                           this.errors = error.response.data.errors
-                        //         }
-                        // }) ;
-                        // }
-
-                        // if(this.stations.length > 0) {
-                        //   this.axios
-                        //   .post(`/api/station_junctions/update/${this.cusid}`,this.stations)
-                        //   .then((response) => {
-
-
-                        //       }).catch(error=>{
-                        //       if(error.response.status == 422){
-                        //           this.stations = 'error';
-                        //           this.errors = error.response.data.errors
-                        //       }
-                        //   }) ;
-                        // }
-
-                        // 7
-                        // if(this.subjects.length > 0) {
-                        //         this.axios
-                        //                 .post(`/api/subject_junctions/update/${this.cusid}`,this.subjects)
-                        //                         .then((response) => {
-
-                        //                         }).catch(error=>{
-                        //                         if(error.response.status == 422){
-                        //                           this.subjects = 'error';
-                        //                           this.errors = error.response.data.errors
-                        //         }
-                        // }) ;
-                        // }
-
-                        // if(this.gallery_list != 'error' && this.customer_info != 'error' && this.hospital_info != 'error' && this.schedule_list != 'error') {
-                           
-                        // }
+                                })
+                            }).catch(error=>{
+                                if(error.response.status == 422){
+                                    this.save_hospital_info = 'error';
+                                    this.errors = error.response.data.errors
+                                }
+                            }) ;
+                    }
                 },
                 isNumberOnly: function(event) {
                 var input_data = $('#phone').val();
