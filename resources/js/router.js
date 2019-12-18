@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 // import Home from './components/home'
 import Register from './pages/Register'
 import Login from './pages/Login'
+import PasswordResetMail from './pages/Passwordreset'
+import PasswordResetForm from './pages/Passwordresetform'
 // import Dashboard from './pages/user/Dashboard'
 // import AdminDashboard from './pages/admin/Dashboard'
 
@@ -94,6 +96,22 @@ const routes = [
     path: '/login',
     name: 'login',
     component: Login,
+    meta: {
+      auth: false
+    }
+  },
+  {
+    path: '/reset',
+    name: 'reset',
+    component: PasswordResetMail,
+    meta: {
+      auth: false
+    }
+  },
+  {
+    path: '/resetpassword',
+    name: 'resetpassword',
+    component: PasswordResetForm,
     meta: {
       auth: false
     }

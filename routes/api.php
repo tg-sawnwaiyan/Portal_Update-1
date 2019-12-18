@@ -244,6 +244,8 @@ Route::group(['prefix' => 'customer'], function () {
 });
 
 Route::get('getReset','registerController@getReset');
+Route::post('reset','registerController@reset');
+Route::post('resetpassword','registerController@resetpassword');
 Route::post('register','registerController@store');
 // Route::get('getskill', 'JobApplyController@getSkills');
 Route::get('getjobtitle/{jobs_id}', 'JobApplyController@getJobTitle');
