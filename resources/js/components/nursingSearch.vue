@@ -1322,7 +1322,7 @@ moveCarousel(direction) {
             }
         },
 // map onclick function
-getStateClick(e) {
+getStateClick(e,lat,lng) {
 
             this.township_id= -1;
             this.moving_in = -1;
@@ -1358,7 +1358,7 @@ getStateClick(e) {
                  // $("#mymap").css('display', 'block');
                   $("#nursing-search").css("display", "block");
                   $("#filtertable").css("display", "block");
-
+                  
                   this.changeMap(response)
                 })
 
@@ -1420,117 +1420,81 @@ nursingSearchData(index){
 // map change dropdown function
 // make infowindow, marker , google map
 coordinates(theCity, lat, lng){
-  if(this.township_id == -1){
+            
+    if(this.township_id == -1){
 
-var mapProp = {
-center: new google.maps.LatLng(lat, lng),
-minZoom: 7,
-maxZoom: 14,
-zoom: 7,
-mapTypeId: google.maps.MapTypeId.ROADMAP,
-options: {
-gestureHandling: 'greedy'
-}
-};
-}else{
+            var mapProp = {
+                center: new google.maps.LatLng(lat, lng),
+                minZoom: 7,
+                maxZoom: 14,
+                zoom: 7,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                options: {
+                    gestureHandling: 'greedy'
+                }
+            };
+        }else{
 
-var mapProp = {
-center: new google.maps.LatLng(lat, lng),
-minZoom: 7,
-maxZoom: 14,
-zoom: 10,
-mapTypeId: google.maps.MapTypeId.ROADMAP,
-options: {
-gestureHandling: 'greedy'
-}
-};
-}
+            var mapProp = {
+                center: new google.maps.LatLng(lat, lng),
+                minZoom: 7,
+                maxZoom: 14,
+                zoom: 10,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                options: {
+                    gestureHandling: 'greedy'
+                }
+            };
+        }
+    this.map = new google.maps.Map(document.getElementById("mymap"), mapProp);
 
-this.map = new google.maps.Map(document.getElementById("mymap"), mapProp);
-
-this.loading = true
-let  coor =[];
-var townshipName = [];
-var town = [];
-const city_coordinates = [];
-const arr = [];
-
+          this.loading = true
+          let  coor =[];
+          var townshipName = [];
+          var town = [];
+          const city_coordinates = [];
+          const arr = [];
 
 
-if(this.township_id != -1){
-// get township postalcode
-for (let i = 0; i < this.getTownships.length; i++) {
-    if(this.getTownships[i]['id'] == this.township_id){
-        townshipName.push(this.getTownships[i]['postalcode'])
-        town.push(this.getTownships[i]['township_name'])
-    }
-}
-}else if(this.townshipID != 0){
-for (let i = 0; i < this.townshipID.length; i++) {
-  for (let k = 0; k < this.getTownships.length; k++) {
-    if(this.getTownships[k]['id'] == this.townshipID[i]){
-        townshipName.push(this.getTownships[k]['postalcode'])
-        town.push(this.getTownships[k]['township_name'])
-    }
 
-  }
-
-}
+          if(this.township_id != -1){
+          // get township postalcode
+          for (let i = 0; i < this.getTownships.length; i++) {
+              if(this.getTownships[i]['id'] == this.township_id){
+                  townshipName.push(this.getTownships[i]['postalcode'])
+                  town.push(this.getTownships[i]['township_name'])
+              }
+          }
+          }else if(this.townshipID != 0){
+          for (let i = 0; i < this.townshipID.length; i++) {
+            for (let k = 0; k < this.getTownships.length; k++) {
+              if(this.getTownships[k]['id'] == this.townshipID[i]){
+                  townshipName.push(this.getTownships[k]['postalcode'])
+                  town.push(this.getTownships[k]['township_name'])
+              }
+              
+            }
+            
+          }
 
 }
 var township_name = townshipName;
 
-
-        if(this.townshipID == 0){
+        if(this.townshipID[0] == "-1" || this.townshipID.length == 0){
 
             this.axios.get("/api/cityJson/"+theCity).then(respon => {
-                    var res = respon.data
-                    console.log(res)
-                    this.loading = false
-                  for (var i = 0; i < res.length; i++) {
-                  if (res[i].properties.NAME_1 == theCity) {
-
-                  if(res[i].geometry.hasOwnProperty('geometries')){
-
-                      for(var j =0;j < res[i].geometry.geometries.length;j++){
-
-                      city_coordinates.push(res[i].geometry.geometries[j]['coordinates']) ;
-                    }
-                  }
-                  else{
-                    city_coordinates.push(res[i].geometry['coordinates']) ;
-                    }
-                  }
-              }
-              this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
-              this.boundariesGoogleMap(lat,lng,this.coordinate);
-
-
+                this.loading = false
+                var city_coordinates = respon.data
+                this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
+                this.boundariesGoogleMap(lat,lng,this.coordinate);            
             }); //end get city
 
         }else{
-
-        this.axios.get('/api/townshipJson').then(res => {
-            var data = res.data
+            this.axios.get('/api/townshipJson/'+township_name).then(res => {
             this.loading = false
-            var coordinates = [];
-
-            for (let i = 0; i < township_name.length; i++) {
-
-              for (let k = 0; k < data.length; k++) {
-                if(data[k]['properties']['N03_007'] === township_name[i]){
-                    coordinates.push(data[k])
-                }
-
-              }
-
-            }
-
-              var co = coordinates.reduce((acc, val) => acc.concat(val), []);
-              var coord =  [];
-              for(let key in co)coord= coord.concat(co[key])
-              this.coordinate = coord
-              this.boundariesGoogleMap(lat,lng,this.coordinate);
+            var city_coordinates = res.data
+            this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
+            this.boundariesGoogleMap(lat,lng,this.coordinate);       
         })
         }
 
@@ -1539,15 +1503,22 @@ var township_name = townshipName;
 },
 
 boundariesGoogleMap(lat,lng,coor){
+  
   try {
-      var data = {
-            type: "Feature",
-            geometry: {
-            "type": "Polygon",
-            "coordinates": coor
-            },
-        };
-        this.map.data.addGeoJson(data);
+      
+          var data = coor.reduce((acc, val) => acc.concat(val), []);
+          for (let i = 0; i < data.length; i++) {
+            this.map.data.addGeoJson(data[i]); 
+          }
+          var bounds = new google.maps.LatLngBounds();
+          this.map.data.forEach(function(feature){
+            var geo = feature.getGeometry();
+            geo.forEachLatLng(function(LatLng){
+              bounds.extend(LatLng)
+            });
+          });
+          this.map.fitBounds(bounds);
+
       } catch (error) {
           var data = coor.reduce((acc, val) => acc.concat(val), []);
           for (let i = 0; i < data.length; i++) {
@@ -1717,7 +1688,6 @@ changeMap(response){
                 this.cities = response.data.city
                 this.getCity = response.data.getCity
                 this.getTownships = response.data.getTownships
-                console.log(this.getTownships);
                 this.special_features = response.data.special_features
                 this.fac_types = response.data.fac_types
                 this.medical_acceptance = response.data.medical_acceptance
@@ -1761,6 +1731,7 @@ changeMap(response){
                      this.coordinates(null,'38.25759','140.8667');
                      this.infoWindow(item, mmarker);
                 }
+                
 
         },
 

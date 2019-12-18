@@ -178,10 +178,52 @@ class registerController extends Controller
         //
     }
     // regisert end
-    public function reset()
+    public function reset(Request $request)
     {
-        return view('auth.passwordReset');
+        // return view('auth.passwordReset');
+        $getEmail = $request->email;
+        $checkmail = User::where('email',$getEmail)->select('*')->get();
+        if(!empty($checkmail)){
+            
+            $getTime = Carbon\Carbon::now();
+            $token = md5($getEmail.$getTime);
+            $data = array([
+                'email' => $getEmail,
+                'token' => $token,
+                'created_at' => $getTime,
+            ]);
+            DB::table('password_resets')->insert($data);
+            $checkmail[0]["role"] = $token;
+            \Mail::to($getEmail)->send(new sendResetPasswordMail($checkmail));
+            return back()->with('reset','Check Your email for reset password');
+        }
+        else{
+            return back()->with('reset','Email Not Exist.');
+        }
     }
+
+    public function resetpassword(Request $request)
+    {
+        // return view('auth.passwordReset');
+        $hashPass = bcrypt($request->password);
+        $token = $request->token;
+        $checkmail = DB::select('SELECT email FROM password_resets WHERE token = "'.$token.'" AND created_at > DATE_SUB(CURDATE(), INTERVAL 2 DAY)');
+        if(!empty($checkmail)){    
+            $getEmail = $checkmail[0]->email;
+            $updatePass = array(
+                'password' => $hashPass
+            );
+            DB::table('users')->where('email',$getEmail)->update($updatePass);
+            DB::table('customers')->where('email',$getEmail)->update($updatePass);
+            DB::table('password_resets')->where('email',$getEmail)->delete();
+            return response()->json("success");
+        }
+        else{
+            DB::table('password_resets')->where('email',$getEmail)->delete();
+            return response()->json("Expired. Please reset mail send again.");
+        }
+    }
+
     public function insertUesr(Request $request)
     {
         $getEmail = $request->email;
@@ -234,4 +276,5 @@ class registerController extends Controller
         \Mail::to($getEmail)->send(new sendResetPasswordMail($resetPass));
         return response()->json('success approved and send mail');
     }
+
 }

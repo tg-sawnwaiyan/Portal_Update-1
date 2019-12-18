@@ -7,6 +7,8 @@ use App\Customer;
 use DB;
 use Storage;
 use File;
+use Response;
+
 class SearchMapController extends Controller
 {
     public function getMap()
@@ -800,38 +802,50 @@ class SearchMapController extends Controller
     }
 
     public function cityJson($theCity)
-    {   
-        // $handle = public_path('google-map-json\\jp_cities.json');
-        // // $file = File::allFiles($handle);
-        // // $files = File::allFiles(public_path());
-        // // $path = public_path().('/google-map-json/jp_cities.json');
-        // // $json = file_get_contents($path);
-        // $obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $handle), true );
-        // // dd($file);
-        
-        // foreach($obj as $key => $value){
-        //     $json = $value;
-            
-        // }
-        // return response()->json($json);
-        return "Testing";
-    }
-
-    public function townshipJson()
     {
-    // $path = public_path().('/google-map-json/japan-cities_5percent.json');
-    // $json = file_get_contents($path);
-    // $obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $json), true );
-    
-    // foreach($obj as $key => $value){
-    //     $jsons = $value;
+        if($theCity == 'null'){
+            $theCity = 'Tokyo';
+        }
+       
+        $path = public_path().('/google-map-json/gadm36_jpn_1.json');
+        $json = file_get_contents($path);
+        ini_set('memory_limit','-1');
+        $obj = json_decode(preg_replace('/[\x00-\x1F\x80-\xFF]/', '',$json), true );
+        //return count($json);
+        $forLoop = $obj['features'];
         
-    // }
-    // return response()->json($jsons);
-    return "Testing";
-    
+        for ($i=0; $i <count($forLoop) ; $i++) { 
+
+        if($forLoop[$i]['properties']['NAME_1'] == $theCity){
+
+            $jsonArray[] = $forLoop[$i];
+
+            }
+ 
+        }
+
+          return response()->json($jsonArray);
+       
     }
 
-
+    public function townshipJson($township_name)
+    {
+        $postalCode = explode(",",$township_name);
+        $path = public_path().('/google-map-json/japan-cities_5percent.json');
+        $json = file_get_contents($path);
+        ini_set('memory_limit','-1');
+        $obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $json), true );
+        $forLoop = $obj['features'];
+    
+            for ($i=0; $i <count($postalCode) ; $i++) { 
+                for ($j=0; $j <count($forLoop) ; $j++) { 
+                    if($forLoop[$j]['properties']['N03_007'] === $postalCode[$i]){
+                        $jsonArray[] = $forLoop[$j];
+                    }
+                }
+            }
+    
+        return response()->json($jsonArray);
+    }
     
 }
