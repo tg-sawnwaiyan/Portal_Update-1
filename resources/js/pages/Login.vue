@@ -40,8 +40,9 @@
                 </form>
                 <div class="mt-4">
                   <div class="d-flex justify-content-center links">
-                    <span><a href="">パスワードをお忘れですか？</a></span>
-
+                    <span>
+                        <router-link :to="{name: 'reset'}" class="nav-link pad-free">パスワードをお忘れですか？</router-link>
+                    </span>
                   </div>
                 </div>                 
                 </div>

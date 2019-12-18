@@ -16,10 +16,12 @@ class sendResetPasswordMail extends Mailable
      *
      * @return void
      */
-    public $resetPass;
-    public function __construct($resetPass)
+    public $checkmail;
+    // public $testurlen;
+    public function __construct($checkmail)
     {
-        $this->resetPass = $resetPass;
+        $this->checkmail = $checkmail;
+        // $this->testurlen = md5($getEmail);
     }
 
     /**
