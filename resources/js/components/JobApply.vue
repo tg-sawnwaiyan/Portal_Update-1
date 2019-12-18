@@ -15,18 +15,18 @@
         <!-- <div class="col-12 text-center p-3 jt1 mb-4">
           <h4>求人応募フォーム</h4>
         </div> -->
-        <div class="col-12 m-b-10">
+        <div class="col-12 m-b-10 jop-apply-tit-wrap">
           <h4 class="job-apply-color">{{Job.title}}</h4>
         </div>
 
       <div class="col-md-12 register_box mt-3" v-if="type == 'register'">
         <ul class="multi-step">
-          <li class="active">1.必要事項のご入力</li>
-          <li class="no-active">2.内容のご確認</li>
-          <li>3.送信完了</li>
+           <li class="active">1.<span>必要事項のご</span>入力</li>
+          <li class="active">2.<span>内容のご</span>確認</li>
+          <li>3.<span>送信</span>完了</li>
         </ul>
 <!-- test date-picker -->
-    <form class="col-md-12 form-wrap">
+    <form class="col-md-12 form-wrap p0-480">
         <div class="form-group m-0 row bd">
 
             <div class="col-md-3 col-sm-12 form-left">
@@ -221,7 +221,7 @@
             <div class="error">※未入力の必須項目がございます</div>
         </div>
         <div class="text-center mt-2 pb-5">
-            <button type="button" :disabled="isdisable" class="btn main-bg-color white all-btn width17" @click="checkValidate()">確認画面へ進む</button>
+            <button type="button" :disabled="isdisable" class="btn main-bg-color white all-btn" @click="checkValidate()">確認画面へ進む</button>
         </div>
 </form>
 
@@ -232,9 +232,9 @@
       <div class="col-md-12 confirm_box" v-if="type == 'confirm'">
         <div id="loader"></div>
         <ul class="multi-step">
-          <li class="active">1.必要事項のご入力</li>
-          <li class="active">2.内容のご確認</li>
-          <li>3.送信完了</li>
+          <li class="active">1.<span>必要事項のご</span>入力</li>
+          <li class="active">2.<span>内容のご</span>確認</li>
+          <li>3.<span>送信</span>完了</li>
         </ul>
         <form class="col-md-10 offset-md-1 form-wrap">
           <div class="form-group m-0 row bd">
@@ -371,9 +371,9 @@
       </div>
       <div class="col-md-12 confirm_box" v-if="type == 'completed'">
         <ul class="multi-step">
-          <li class="active">1.必要事項のご入力</li>
-          <li class="active">2.内容のご確認</li>
-          <li class="active">3.送信完了</li>
+          <li class="active">1.<span>必要事項のご</span>入力</li>
+          <li class="active">2.<span>内容のご</span>確認</li>
+          <li>3.<span>送信</span>完了</li>
         </ul>
         <div class="text-center">
           <h3>入力内容は送信されました‼</h3>

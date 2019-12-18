@@ -1,13 +1,12 @@
 <template>
     <!-- Page Content  -->
     <div class="row" id="news">
-        <div class="col-md-12 t_card2 t_card3">
-            <div class="card text-dark t_card4">
+        <div class="col-md-12">
+            <div class="card text-dark create_nw_p">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
                             <h4 class="page-header header">ニュースの作成</h4>
-                            <br>
                         </div>
                     <div class="row">
                         <form @submit.prevent="add" class="col-12">
@@ -59,7 +58,7 @@
 
                             <div class="form-group">
                                 <label>関連ニュース:</label>     
-                                <div class="col-md-12 card related-card">
+                                <div class="related-card">
                                     <div class="card-body">
                                         
                                         <div class="row">
@@ -83,7 +82,7 @@
                                                 <label class="form-check-label control control--checkbox">
                                                     <input type="checkbox" :value="news.id" v-model="checkedNews">
                                                     <div id="create_news">
-                                                    <div class="col-md-12 card card-defaul card_height">
+                                                    <div class="col-md-12 card card-default card_height">
                                                         <div class="card-body news-post">
                                                             <div class="row">
                                                                 <div class="col-md-3 pad-free" >

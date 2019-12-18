@@ -38,24 +38,13 @@
                             <div class="card card-default m-b-20" v-for="subject in displayItems" :key="subject.id">
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-9 m-t-8">{{subject.name}}</div>
-                                        <div class="col-md-3 text-right">
-                                            <small>
-                            <router-link
-                                :to="{name:'subject', params:{id : subject.id}}"
-                                class="btn edit-borderbtn"
-                            >編集</router-link>
-                            </small> &nbsp;
-                                            <small>
-                            <a
-                                class="btn text-danger delete-borderbtn"
-                                @click="deleteSubject(subject.id)"
-                            >削除</a>
-                            </small>
+                                        <div class="col-md-6 col-sm-8 m-t-8">{{subject.name}}</div>
+                                            <div class="col-md-6 col-sm-4 text-right admin_page_edit">
+                                                <router-link :to="{name:'subject', params:{id : subject.id}}" class="btn edit-borderbtn">編集</router-link>
+                                                <button class="btn text-danger delete-borderbtn" @click="deleteSubject(subject.id)">削除</button>                                      </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
                         </div>
                         <div class="offset-md-4 col-md-8 mt-3" v-if="pagination">
                             <nav aria-label="Page navigation example">

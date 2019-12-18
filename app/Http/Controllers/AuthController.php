@@ -31,7 +31,7 @@ class AuthController extends Controller
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         //$user->save();
-       
+
     }
     public function login(Request $request)
     {
@@ -65,7 +65,7 @@ class AuthController extends Controller
         ]);
     }
     public function refresh()
-    {      
+    {
         try {
             Artisan::call('cache:clear');
             $token = \Auth::guard()->refresh();
@@ -73,7 +73,7 @@ class AuthController extends Controller
             return $this->respondWithToken($token);
         } catch (\Throwable $th) {
             return response()->json($th);
-        }           
+        }
     }
     protected function respondWithToken($token)
     {
@@ -88,7 +88,7 @@ class AuthController extends Controller
        } catch (Exception $e) {
         return response()->json('token error');
        }
-        
+
     }
     private function guard()
     {
