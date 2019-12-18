@@ -605,15 +605,15 @@
 
                     <div class="col-md-12  m-b-15">
                         <h5 class="profile_subtit">動画</h5>
-                        <span v-if="videos == ''">
+                        <div class="row m-0" v-if="videos == ''">
                             <div class="col-12"> <p class="no-data-color">表示されるデータがありません。</p> </div>
-                        </span>
-                        <span v-else>
+                        </div>
+                        <div class="row m-0" v-else>
                             <div v-for="(video) in  videos" :key="video.id" class="col-sm-4 col-md-4 col-lg-3">
                                 <iframe :src="'https://www.youtube.com/embed/'+video.photo" controls></iframe>
                                 <span style="color:orange;font-weight:bold;">{{video.title}}</span><br>
                             </div>
-                        </span>
+                        </div>
                     </div>
 
                     <div class="col-12">

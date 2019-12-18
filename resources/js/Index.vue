@@ -7,12 +7,12 @@
             <div class="sidebar-scroll container-fluid">
                 <div class="row">                    
                     <asideMenu v-if="$auth.check()"></asideMenu>
-                    <div id="menu-overlay" @click="menuToggle()"></div>
+                    <!-- <div id="menu-overlay" @click="menuToggle()"></div> -->
             <!-- login ================================================================================================== -->
                     <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12 pad-free" v-if="$auth.check()" id="content-all">
 
                         <div class="maintab-content" id="v-pills-tabContent">
-                            <span @click="menuToggle()">Click</span>
+                            <!-- <span @click="menuToggle()">Click</span> -->
                             <!--section one-->
                             <section>
                                 <div class="container-fluid main-wrapper">
