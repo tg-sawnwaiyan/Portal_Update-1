@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a66a23d55bd7bc595ec56304d6005c36",
+    "content-hash": "1ec88c142e06aced4312ee784537ab65",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -682,6 +682,50 @@
                 "url"
             ],
             "time": "2019-07-01T23:21:34+00:00"
+        },
+        {
+            "name": "halaxa/json-machine",
+            "version": "0.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/halaxa/json-machine.git",
+                "reference": "8e3555b270540130bd3626ab76bf1f1e394485f1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/halaxa/json-machine/zipball/8e3555b270540130bd3626ab76bf1f1e394485f1",
+                "reference": "8e3555b270540130bd3626ab76bf1f1e394485f1",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "^6",
+                "phpunit/phpunit": "*"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "To run scripts in src/examples."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "JsonMachine\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Filip Halaxa",
+                    "email": "filip@halaxa.cz"
+                }
+            ],
+            "description": "Fast, efficient and easy-to-use JSON stream parser developed for unpredictably long JSON streams or documents.",
+            "time": "2019-03-20T19:33:36+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -4117,39 +4161,6 @@
             "time": "2019-01-29T11:11:52+00:00"
         },
         {
-            "name": "wesleytodd/universal-forms",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/wesleytodd/Universal-Forms-PHP.git",
-                "reference": "b01d13ee1b1ac6063657565513da533983c38ac9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/wesleytodd/Universal-Forms-PHP/zipball/b01d13ee1b1ac6063657565513da533983c38ac9",
-                "reference": "b01d13ee1b1ac6063657565513da533983c38ac9",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Wesleytodd\\UniversalForms": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "authors": [
-                {
-                    "name": "Wes Todd",
-                    "email": "wes@wesleytodd.com"
-                }
-            ],
-            "description": "A Universal Form Implementation in PHP",
-            "time": "2013-08-25T00:39:54+00:00"
-        },
-        {
             "name": "zendframework/zend-diactoros",
             "version": "2.2.1",
             "source": {
@@ -5915,13 +5926,45 @@
                 "validate"
             ],
             "time": "2019-11-24T13:36:37+00:00"
+        },
+        {
+            "name": "wesleytodd/universal-forms",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wesleytodd/Universal-Forms-PHP.git",
+                "reference": "b01d13ee1b1ac6063657565513da533983c38ac9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wesleytodd/Universal-Forms-PHP/zipball/b01d13ee1b1ac6063657565513da533983c38ac9",
+                "reference": "b01d13ee1b1ac6063657565513da533983c38ac9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Wesleytodd\\UniversalForms": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Wes Todd",
+                    "email": "wes@wesleytodd.com"
+                }
+            ],
+            "description": "A Universal Form Implementation in PHP",
+            "time": "2013-08-25T00:39:54+00:00"
         }
     ],
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "tymon/jwt-auth": 20,
-        "wesleytodd/universal-forms": 20
+        "tymon/jwt-auth": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
