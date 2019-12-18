@@ -215,9 +215,11 @@ class registerController extends Controller
             );
             DB::table('users')->where('email',$getEmail)->update($updatePass);
             DB::table('customers')->where('email',$getEmail)->update($updatePass);
+            DB::table('password_resets')->where('email',$getEmail)->delete();
             return response()->json("success");
         }
         else{
+            DB::table('password_resets')->where('email',$getEmail)->delete();
             return response()->json("Expired. Please reset mail send again.");
         }
     }

@@ -16,7 +16,7 @@
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fas fa-key"></i></span>
                                     </div>
-                                    <input type="password" class="form-control input_user" id="password" name="password" value="" v-model="password" required autofocus placeholder="パスワード ">
+                                    <input type="password" class="form-control input_user" id="password" @keyup="password_validate()" name="password" value="" v-model="password" required autofocus placeholder="New パスワード ">
                                     <span class="invalid-feedback" role="alert">
                                         <strong></strong>
                                     </span>
@@ -25,19 +25,20 @@
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fas fa-key"></i></span>
                                     </div>
-                                    <input type="password" class="form-control input_user" id="confirm_pass" name="confirm_pass" value="" v-model="confirm_pass" required autofocus placeholder="パスワード確認">
+                                    <input type="password" class="form-control input_user" id="confirm_pass" @keyup="password_validate()" name="confirm_pass" value="" v-model="confirm_pass" required autofocus placeholder="パスワード確認">
                                     <span class="invalid-feedback" role="alert">
                                         <strong></strong>
                                     </span>
                                 </div>
                                 
                                 <div class="d-flex justify-content-center mt-3">
-                                <button type="submit" name="button" id="getUser" class="btn login_btn">Submit</button>
+                                    <button type="submit" name="button" id="changePass" class="btn login_btn" :disabled="is_disabled">Change</button>
                                 </div>
-                            </form>
-                            <div class="col-12" v-if="has_error">
-                                <span class="alert alert-danger" v-if="has_error">パスワードが間違っています。</span>
-                            </div>
+
+                                <div class="d-flex justify-content-center mt-3" v-if="has_error">
+                                    <p class="alert alert-danger col-12" style="text-align:center" v-if="has_error">{{error_text}}</p>
+                                </div>
+                            </form>                            
                             
                             <div class="col-12" v-if="has_success">
                                 <p class="alert alert-success col-12" style="text-align:center;font-size:1.2em;">
@@ -60,8 +61,9 @@
       return {
         password: null,
         confirm_pass: null,
-        has_error: true,
-        has_success: false
+        has_error: false,
+        has_success: false,
+        is_disabled: false
       }
     },
     mounted() {
@@ -71,22 +73,38 @@
         console.log(this.$route.query.code)
     },
     methods: {
-      resetPass() {
-        // get the redirect object
-        var fData = new FormData();
-        fData.append('password', this.password);
-        fData.append('token', this.$route.query.code);
-        this.axios.post('/api/resetpassword',fData) 
-        .then(response => {
-            console.log(response)
-            if(response.data == "success"){
-                this.has_success = true;
-            }
-            else{
+        resetPass() {
+            // get the redirect object
+            var fData = new FormData();
+            fData.append('password', this.password);
+            fData.append('token', this.$route.query.code);
+            this.axios.post('/api/resetpassword',fData) 
+            .then(response => {
+                console.log(response)
+                if(response.data == "success"){
+                    this.has_success = true;
+                }
+                else{
+                    this.has_error = true;
+                    this.error_text = "Token Expired. Send Mail again.";
+                    this.is_disabled = true;
+                    $("#changePass").css('cursor','not-allowed')
+                }
+            })
+        },
+        password_validate() {
+            if($('#password').val() != $('#confirm_pass').val()) {
                 this.has_error = true;
+                this.error_text = "※パスワードが一致しません。";
+                this.is_disabled = true;
+                $("#changePass").css('cursor','not-allowed')
             }
-        })
-      }
+            else {
+                this.has_error = false;
+                this.is_disabled = false;
+                $("#changePass").css('cursor','pointer')
+            }
+        },
     }
   }
 </script>
