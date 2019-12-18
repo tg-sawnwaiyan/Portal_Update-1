@@ -622,7 +622,7 @@
         <section id="holder">
         <div class="row" >
           <div class="col-sm-12 col-md-12">
-            <div v-if="loading" class=" m-t-10 m-b-10" style="background-color:gray;opacity:0.9;position:relative;z-index:10;">
+            <div v-if="loading" class=" m-t-10 m-b-10" style="background-color:gray;opacity:0.8;position:relative;z-index:10;">
                <div class="lds-ripple m-t-10 m-b-10" >
                    <div>
                       <div></div><div></div>
@@ -693,10 +693,12 @@
                                     <span class="type-name">{{items.type_name}}</span>
 
                                     <div class="row" style="margin-top:10px;">
-                                        <div class="col-4 col-lg-4 col-md-5" style="padding-top:3px;">
-                                            <img :src="'/upload/nursing_profile/'+items.logo" alt="image" width="110px" @error="imgUrlAlt"/>
+                                        <div class="col-4 col-lg-5 col-md-5" style="padding-top:3px;">
+                                            <div class="carousel-img">
+                                              <img :src="'/upload/nursing_profile/'+items.logo" alt="image" class="img-fluid" @error="imgUrlAlt"/>
+                                            </div>
                                         </div>
-                                        <div class="col-8 col-lg-8 col-md-7 m-b-15">
+                                        <div class="col-8 col-lg-7 col-md-7 m-b-15">
                                             <ul class="nursingSearch-list m-l-10">
                                                 <li class="d-flex"><p class="text-truncate"><span>住所</span><span> {{items.township_name}} {{items.address}}</span></p></li>
                                                 <li class="d-flex"><span>電話 </span><span>{{items.phone}}</span></li>
@@ -1083,13 +1085,23 @@
     created(){
       window.addEventListener('resize', this.handleResize)
             this.handleResize();
-            if(this.window.width >= 320 && this.window.width < 450) {
+
+           if(this.window.width >= 360 && this.window.width < 375) {
                 this.windowSize = 1;
+                  this.paginationFactor=277;
+
+           }
+            else if(this.window.width >= 375 && this.window.width < 452) {
+                this.windowSize = 1;
+                this.paginationFactor=277;
+
 
             }
 
             else if(this.window.width >= 450 && this.window.width < 768) {
                 this.windowSize = 1;
+                  this.paginationFactor=277;
+                // this.paginationFactor=277;
 
                 console.log(this.window.width);
 
@@ -2347,6 +2359,7 @@ div#holder {
   #nursing-search .card-carousel--overflow-container {
     overflow: hidden;
     /* width: 992px; */
+    /* background: grey;  */
   }
 
   #nursing-search .card-carousel--nav__left,
@@ -2518,17 +2531,81 @@ div#holder {
 .page-item .spanclass{
   cursor: pointer;
 }
-@media only screen and (max-width: 375px) and (min-width: 320px) {
+.carousel-img{   
+    position: absolute;
+  }
+
+@media only screen and (max-width: 360px)  {
    #nursing-search .card-carousel {
         width: 200px!important;
     }
+     #nursing-search .card-carousel{
+      overflow: visible;
+    }
+    .nav-content
+    {
+     
+      border: none;
+      width: 0px;
+    }
+    #nursing-search .nav-box[disabled] .nav-content {
+    border:none;
+    background: #fff;
+}
+    
+}
+
+@media only screen and (max-width: 375px) {
+   #nursing-search .card-carousel {
+        width: 278px!important;
+    }
+    #nursing-search .card-carousel{
+      overflow: visible;
+    }
+    .nav-content
+    {
+     
+      border: none;
+      width: 0px;
+    }
+    #nursing-search .nav-box[disabled] .nav-content {
+    border:none;
+    background: #fff;
+}
+ #nursing-search .card-carousel--nav__left,
+ #nursing-search .card-carousel--nav__right {
+    margin-left:-7px;
+  }
 }
 
 
-@media only screen and (max-width: 450px) and (min-width: 376px) {
+
+
+@media only screen and (max-width: 450px) {
    #nursing-search .card-carousel {
-        width: 207px !important;
+        width: 280px !important;
     }
+     #nursing-search .card-carousel{
+      overflow: visible;
+    }
+    .nav-content
+    {
+     
+      border: none;
+      width: 0px;
+    }
+    #nursing-search .nav-box[disabled] .nav-content {
+    border:none;
+    background: #fff;
+
+}
+ #nursing-search .card-carousel--nav__left,
+ #nursing-search .card-carousel--nav__right {
+    margin-left:-7px;
+  }
+  .carousel-img{
+    width: 100px;   
+  }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -2536,10 +2613,13 @@ div#holder {
    #nursing-search .card-carousel {
         width: 415px!important;
     }
+    .carousel-img{
+      width: 140px;     
+    }
 }
 @media only screen and (max-width: 768px) and (min-width: 449px) {
    #nursing-search .card-carousel {
-        width: 415px!important;
+        width: 279px!important;
     }
 }
 @media only screen and (max-width: 992px) and (min-width: 768px) {
@@ -2595,6 +2675,7 @@ div#holder {
     width: 323px;
 }
 }
+
 
 
 </style>
