@@ -693,10 +693,12 @@
                                     <span class="type-name">{{items.type_name}}</span>
 
                                     <div class="row" style="margin-top:10px;">
-                                        <div class="col-4 col-lg-4 col-md-5" style="padding-top:3px;">
-                                            <img :src="'/upload/nursing_profile/'+items.logo" alt="image" width="110px" @error="imgUrlAlt"/>
+                                        <div class="col-4 col-lg-5 col-md-5" style="padding-top:3px;">
+                                            <div class="carousel-img">
+                                              <img :src="'/upload/nursing_profile/'+items.logo" alt="image" class="img-fluid" @error="imgUrlAlt"/>
+                                            </div>
                                         </div>
-                                        <div class="col-8 col-lg-8 col-md-7 m-b-15">
+                                        <div class="col-8 col-lg-7 col-md-7 m-b-15">
                                             <ul class="nursingSearch-list m-l-10">
                                                 <li class="d-flex"><p class="text-truncate"><span>住所</span><span> {{items.township_name}} {{items.address}}</span></p></li>
                                                 <li class="d-flex"><span>電話 </span><span>{{items.phone}}</span></li>
@@ -2529,7 +2531,9 @@ div#holder {
 .page-item .spanclass{
   cursor: pointer;
 }
-
+.carousel-img{   
+    position: absolute;
+  }
 
 @media only screen and (max-width: 360px)  {
    #nursing-search .card-carousel {
@@ -2599,12 +2603,18 @@ div#holder {
  #nursing-search .card-carousel--nav__right {
     margin-left:-7px;
   }
+  .carousel-img{
+    width: 100px;   
+  }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (max-width: 1023px) and (min-width: 768px) {
    #nursing-search .card-carousel {
         width: 415px!important;
+    }
+    .carousel-img{
+      width: 140px;     
     }
 }
 @media only screen and (max-width: 768px) and (min-width: 449px) {
@@ -2665,6 +2675,7 @@ div#holder {
     width: 323px;
 }
 }
+
 
 
 </style>
