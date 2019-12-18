@@ -39,20 +39,10 @@
                             <div class="card card-default m-b-20" v-for="category in displayItems" :key="category.id">
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-9 m-t-8">{{category.name}}</div>
-                                        <div class="col-md-3 text-right">
-                                            <small>
-                      <router-link
-                        :to="{name:'editcategory', params:{id : category.id}}"
-                        class="btn edit-borderbtn"
-                      >編集</router-link>
-                    </small> &nbsp;
-                                            <small>
-                      <a
-                        class="btn text-danger delete-borderbtn"
-                        @click="deleteCategory(category.id)"
-                      >削除</a>
-                    </small>
+                                        <div class="col-md-6 col-sm-8 m-t-8">{{category.name}}</div>
+                                        <div class="col-md-6 col-sm-4 text-right admin_page_edit">
+                                            <router-link :to="{name:'editcategory', params:{id : category.id}}" class="btn edit-borderbtn">編集</router-link>
+                                            <button class="btn text-danger delete-borderbtn" @click="deleteCategory(category.id)" >削除</button>
                                         </div>
                                     </div>
                                 </div>
@@ -104,7 +94,9 @@
             },
 
             created() {
+                this.$loading(true);
                 this.axios.get("/api/category/categories").then(response => {
+                    this.$loading(false);
                     this.categories = response.data;
                     this.norecord = this.categories.length;
                     if (this.norecord > this.size) {
@@ -210,7 +202,9 @@
                         var search_word = $("#search-item").val();
                         let fd = new FormData();
                         fd.append("search_word", search_word);
+                        this.$loading(true);
                         this.axios.post("/api/category/search", fd).then(response => {
+                            this.$loading(false);
                             this.categories = response.data;
                             if(this.categories.length > this.size) {
                                 this.pagination = true;

@@ -35,23 +35,13 @@
                             <div class="card card-default m-b-20" v-for="occupations in displayItems" :key="occupations.id">
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-9 m-t-8">{{occupations.name}}</div>
-                                        <div class="col-md-3 text-right">
-                                            <small>
-                            <router-link
-                                :to="{name:'occupation', params:{id : occupations.id}}"
-                                class="btn edit-borderbtn"
-                            >編集</router-link>
-                            </small> &nbsp;
-                                            <small>
-                            <a
-                                class="btn text-danger delete-borderbtn"
-                                @click="deleteType(occupations.id)"
-                            >削除</a>
-                            </small>
+                                        <div class="col-md-6 col-sm-8 m-t-8">{{occupations.name}}</div>
+                                            <div class="col-md-6 col-sm-4 text-right admin_page_edit">
+                                                <router-link :to="{name:'occupation', params:{id : occupations.id}}" class="btn edit-borderbtn">編集</router-link>
+                                                <button class="btn text-danger delete-borderbtn" @click="deleteType(occupations.id)">削除</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                             </div>
                         </div>
                         <div class="offset-md-4 col-md-8 mt-3" v-if="pagination">
@@ -98,9 +88,11 @@
                 }
             },
             created() {
+                this.$loading(true);
                 this.axios
                     .get('/api/occupation/type')
                     .then(response => {
+                        this.$loading(false);
                         this.occupation = response.data;
                         this.norecord = this.occupation.length;
                         if (this.norecord > this.size) {
@@ -207,7 +199,9 @@
 
                         let fd = new FormData();
                         fd.append("search_word", search_word);
+                        this.$loading(true);
                         this.axios.post("/api/occupation/search", fd).then(response => {
+                            this.$loading(false);
                             this.occupation = response.data;
                             if(this.occupation.length > this.size){
                                 this.pagination = true;

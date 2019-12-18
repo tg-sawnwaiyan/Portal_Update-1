@@ -30,7 +30,7 @@
                         <div class="card card-default m-b-20" v-for="comment in displayItems" :key="comment.id">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-8">
+                                    <div class="col-lg-6 col-md-7 p0-480">
                                         <!-- <strong>タイトル :</strong> {{comment.title}}  <br/>
                                         <strong>顧客名 :</strong> {{comment.name}}  <br/>
                                         <strong>メールアドレス:</strong>{{comment.email}} -->
@@ -50,7 +50,7 @@
                                        </table>
                                     </div>
 
-                                    <div class="col-md-4 text-right">
+                                    <div class="col-lg-6 col-md-5 text-right">
                                         <!-- <button class="'btn btn all-btn main-bg-color changeLink'+payment.id" type="button" @click="commentToggle(comment.id)"><span  :id="'icon' + comment.id"  class="fa fa-angle-down"></span></button> -->
                                         <button :class="'btn btn all-btn main-bg-color changeLink'+comment.id" style="min-width: 0px;" @click="commentToggle(comment.id)">
                                             <i :id="'icon' + comment.id" class="fa fa-angle-down"></i> 見る</button>
@@ -62,12 +62,12 @@
                             </div>
                             <div class="collapse card-body" :id="'changeLink' + comment.id">
                                 <div class="commentWrap">
-                                   
+
                                     <div class="d-flex ">
                                      <p class="comment-underline comment-title p-b-0">{{comment.title}} <span style="font-size:12px;color:#a7a2a2ee;">(コメント)</span>   <p class="comment-date"><i class="fa fa-calendar" aria-hidden="true"></i> {{comment.created_date | moment("YYYY年MM月DD日") }}投稿 <span class="ml-2"><i class="fa fa-clock" aria-hidden="true"></i> {{comment.created_time}}</span></p>
-                                  
+
                                     </div>
-                                    <!-- <h5 style="background:linear-gradient(45deg, #ffbe9f, transparent);padding:8px;">{{comment.title}} <span style="font-size:14px;">(コメント)</span></h5> -->                                                                     
+                                    <!-- <h5 style="background:linear-gradient(45deg, #ffbe9f, transparent);padding:8px;">{{comment.title}} <span style="font-size:14px;">(コメント)</span></h5> -->
                                 </div>
                                  <div name="exp[]" class="col-md-12 m-t-20"><p style="color:#736e6e;">{{comment.comment}}</p></div>
                             </div>
@@ -119,9 +119,11 @@
 
             },
             created() {
+                this.$loading(true);
                 this.axios
                     .get('/api/comments/comment'+ this.comments )
                     .then(response => {
+                        this.$loading(false);
                         this.comments = response.data;
                         this.norecord = this.comments.length;
                         if(this.norecord > this.size){
@@ -199,7 +201,7 @@
                                     if(this.norecord > this.size){
                                         this.pagination = true;
                                     }else{
-                                        this.pagination = false; 
+                                        this.pagination = false;
                                     }
                                     if(this.norecord != 0) {
                                         this.norecord_msg = false;
@@ -241,8 +243,10 @@
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
                         }).then(response => {
+                            this.$loading(true);
                             this.axios.get(`/api/comments/confirm/${id}`)
                                 .then(response => {
+                                    this.$loading(false);
                                     this.comments = response.data.comments;
                                     this.$swal({
                                             title: "確認済",
@@ -275,7 +279,9 @@
                         var search_word = $("#search-item").val();
                         let fd = new FormData();
                         fd.append("search_word", search_word);
+                        this.$loading(true);
                         this.axios.post("/api/comments/search", fd).then(response => {
+                            this.$loading(false);
                             this.comments = response.data;
                             if(this.comments.length > this.size){
                                 this.pagination = true;

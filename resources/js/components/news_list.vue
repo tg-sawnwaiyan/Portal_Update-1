@@ -8,7 +8,6 @@
                         <i class="fas fa-plus-circle"></i> 新しいニュースを作成
                     </router-link>
                 </div>
-                <!-- <a href="/joboffer" class="float-right" style="color: blue;"></a> -->
             </div>
             <div class="col-md-12 col-md-12 tab-content tab-content1 tabs pad-free border-style">
                 <div class="col-12 scrolldiv">
@@ -23,48 +22,48 @@
                             <i class="fas fa-plus-circle"></i> 新しいデータ作成
                         </a>
                     </div>
-                    <div v-else class="container-fuid">
+                    <div v-else class="">
                         <h4 class="main-color m-b-10">ニュース検索</h4>
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="form-group">
-                                    <div class="col-6 float-left">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
                                         <input type="text" class="form-control" placeholder="ニュース検索" id="search-item" @keyup="searchbyCategory()" />
                                     </div>
-                                    <div class="col-6 float-right row align-items-baseline">
-                                        <label for="selectBox col-2 col-form-label">カテゴリー</label>
-                                        <div class="col-10">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 news_catsearch">
+                                                <label for="selectBox" >カテゴリー</label>
+
                                             <select class="form-control" id="selectBox" @change="searchbyCategory()">
-                                                <option selected="selected" value>全体</option>
+                                                <option selected="selected" value >全体</option>
                                                 <option v-for="category in categories" :key="category.id" v-bind:value="category.id">{{category.name}}</option>
                                             </select>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <hr />
                         <h5 class="header">ニュース一覧</h5>
-                        <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
-                        <div v-else class="container-fuid">
+                        <div v-if="nosearch_msg" class="no_search_data">検索したデータ見つかりません。</div>
+                        <div v-else class="">
                             <div v-for="newsList in displayItems" :key="newsList.id" class="card card-default m-b-20">
 
                                 <div class="card-body news-post">
                                     <div class="row">
-                                        <div class="col-md-2" v-if="newsList.photo !=null" >
+                                        <div class="col-lg-2 col-md-3" v-if="newsList.photo !=null" >
                                             <img :src="'/upload/news/'+ newsList.photo" alt class="img-fluid" @error="imgUrlAlt" />
                                         </div>
                                         <div class="col-md-2" v-else> <img src="images/noimage.jpg" alt class="img-fluid"/></div>
-                                        <div class="col-md-10">
+                                        <div class="col-lg-10 col-md-9">
                                             <!-- <div class="row col-12 mb-2"> -->
-                                                <b>
-                        <router-link
-                          :to="{name: 'newdetails', params:{id:newsList.id}}"
-                          class="row col-12 mb-2"
-                        >{{newsList.title}}</router-link>
-                        <!-- <router-link :to="{name: 'job_details', params:{id:news_list.id}}" class="mr-auto">{{news_list.title}}<router-link> -->
-                        <!-- <a hrဖef="../news/news_details.html" class="mr-auto">{{newsList.title}} </a> -->
-                      </b>
+                                            <b>
+                                                <router-link
+                                                :to="{name: 'newdetails', params:{id:newsList.id}}"
+                                                class="row col-12 mb-2"
+                                                >{{newsList.title}}</router-link>
+                                                <!-- <router-link :to="{name: 'job_details', params:{id:news_list.id}}" class="mr-auto">{{news_list.title}}<router-link> -->
+                                                <!-- <a hrဖef="../news/news_details.html" class="mr-auto">{{newsList.title}} </a> -->
+                                            </b>
                                             <!-- </div> -->
 
                                             <p>{{newsList.main_point}}</p>
@@ -134,10 +133,9 @@
             };
         },
         created() {
-
+            this.$loading(true);
             this.axios.get("/api/news_list").then(response => {
-                // console.log(this.news_list.photo);
-                console.log(response);
+                this.$loading(false);
                 this.news_list = response.data;
                 this.norecord = this.news_list.length
                 if (this.norecord > this.size) {
@@ -255,7 +253,9 @@
                     let fd = new FormData();
                     fd.append("search_word", search_word);
                     fd.append("selected_category", selected_category);
+                    this.$loading(true);
                     this.axios.post("/api/news_list/search", fd).then(response => {
+                        this.$loading(false);
                         this.news_list = response.data;
                         this.norecord = this.news_list.length;
                         if(this.news_list.length > this.size){
