@@ -622,7 +622,7 @@
         <section id="holder">
         <div class="row" >
           <div class="col-sm-12 col-md-12">
-            <div v-if="loading" class=" m-t-10 m-b-10" style="background-color:gray;opacity:0.8;position:relative;z-index:10;">
+            <!-- <div v-if="loading" class=" m-t-10 m-b-10" style="background-color:gray;opacity:0.8;position:relative;z-index:10;">
                <div class="lds-ripple m-t-10 m-b-10" >
                    <div>
                       <div></div><div></div>
@@ -631,16 +631,22 @@
                 <div class="col-12 overlay" style="z-index:9">
 
                 </div>
-            </div>
-            <div v-if="!loading" class="m-t-10 m-b-10">
+            </div> -->
+            <div class="m-t-10 m-b-10">
+                <div v-if="loading" class=" m-t-10 m-b-10" style="background-color:#000;opacity:0.5;position:relative;z-index:10;">
+                    <div class="lds-ripple m-t-10 m-b-10" >
+                        <div>
+                            <div></div><div></div>
+                        </div>
+                        </div>
+                        <div class="col-12 overlay" style="z-index:9"></div>
+                    </div>
               <div id="mymap"></div>
             </div>
               <!-- <div id="mymap" class="select m-t-10 m-b-10"></div> -->
           </div>
         </div>
         </section>
-
-
         <!-- nursing list -->
        <div id="nursing-search" >
            <span v-if="norecord_msg && loading==false">
@@ -1354,7 +1360,7 @@ getStateClick(e,lat,lng) {
             else{
                 this.locast = localStorage.getItem("nursing_fav");
             }
-            this.$loading(true);
+            // this.$loading(true);
             this.axios.get('/api/getmap',{
                 params:{
                 id: this.id,
@@ -1365,7 +1371,7 @@ getStateClick(e,lat,lng) {
                 },
             })
                 .then((response) => {
-                  this.$loading(false);
+                //   this.$loading(false);
                  $("#mymap").css({'display' : 'block','height' : '500px','width':'100%'});
                  // $("#mymap").css('display', 'block');
                   $("#nursing-search").css("display", "block");
@@ -2033,9 +2039,9 @@ search(){
   top: 40%;
   left: 50%;
   z-index: 1; */
-  position: relative;
+  position: absolute;
   width: 100% !important;
-  height: 440px !important;
+  height: 500px !important;
 
 }
 .lds-ripple > div {
@@ -2049,7 +2055,7 @@ search(){
 }
 .lds-ripple > div  div{
   position: absolute;
-  border: 4px solid#fff;
+  border: 4px solid #fff;
   opacity: 1;
   border-radius: 50%;
   z-index: 999;
@@ -2081,9 +2087,9 @@ search(){
   top: 0;
   background-color: rgba(0, 0, 0, 0.19);
   position: absolute;
-  background: #d2d2d2;
+  background: #000;
   width: 100%;
-  height: 440px;
+  height: 500px;
 }
 
   .path {
