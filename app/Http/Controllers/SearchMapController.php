@@ -802,8 +802,7 @@ class SearchMapController extends Controller
     }
 
     public function cityJson($theCity)
-    {   
-       
+    {
         if($theCity == 'null'){
             $theCity = 'Tokyo';
         }
@@ -827,33 +826,26 @@ class SearchMapController extends Controller
 
           return response()->json($jsonArray);
        
-    
-        
     }
 
     public function townshipJson($township_name)
     {
-
-    $postalCode = explode(",",$township_name);
-    $path = public_path().('/google-map-json/japan-cities_5percent.json');
-    $json = file_get_contents($path);
-    ini_set('memory_limit','-1');
-    $obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $json), true );
-    $forLoop = $obj['features'];
-
-        for ($i=0; $i <count($postalCode) ; $i++) { 
-            for ($j=0; $j <count($forLoop) ; $j++) { 
-                if($forLoop[$j]['properties']['N03_007'] === $postalCode[$i]){
-                    $jsonArray[] = $forLoop[$j];
+        $postalCode = explode(",",$township_name);
+        $path = public_path().('/google-map-json/japan-cities_5percent.json');
+        $json = file_get_contents($path);
+        ini_set('memory_limit','-1');
+        $obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $json), true );
+        $forLoop = $obj['features'];
+    
+            for ($i=0; $i <count($postalCode) ; $i++) { 
+                for ($j=0; $j <count($forLoop) ; $j++) { 
+                    if($forLoop[$j]['properties']['N03_007'] === $postalCode[$i]){
+                        $jsonArray[] = $forLoop[$j];
+                    }
                 }
             }
-        }
-
-    return response()->json($jsonArray);
-
     
+        return response()->json($jsonArray);
     }
-
-
     
 }

@@ -1483,23 +1483,18 @@ var township_name = townshipName;
         if(this.townshipID[0] == "-1" || this.townshipID.length == 0){
 
             this.axios.get("/api/cityJson/"+theCity).then(respon => {
-                  
-                    var city_coordinates = respon.data
-                    this.loading = false
-                    this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
-                    this.boundariesGoogleMap(lat,lng,this.coordinate);
-
-            
+                this.loading = false
+                var city_coordinates = respon.data
+                this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
+                this.boundariesGoogleMap(lat,lng,this.coordinate);            
             }); //end get city
 
         }else{
             this.axios.get('/api/townshipJson/'+township_name).then(res => {
-            var city_coordinates = res.data
             this.loading = false
+            var city_coordinates = res.data
             this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
-            this.boundariesGoogleMap(lat,lng,this.coordinate);
-        
-              
+            this.boundariesGoogleMap(lat,lng,this.coordinate);       
         })
         }
 
