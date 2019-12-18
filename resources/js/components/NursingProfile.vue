@@ -1061,7 +1061,7 @@ export default {
             },
 
             createProfile() {
-                 
+               
                 // $('#create-profile').prop('disabled', true);
                 document.getElementById("create-profile").disabled=true;
                 this.customer_info_push = [];
@@ -1209,6 +1209,7 @@ export default {
                 else{
                     this.panorama_list = [];
                 }
+                 this.$loading(true);
                
                 if(new_panorama.length > 0){
                     let fd = new FormData();
@@ -1270,11 +1271,13 @@ export default {
                         }
                     }) ;
                 }
-
+                
                 if(this.profile_arr.length > 0) {
+                    this.$loading(true);
                     this.axios
                         .post(`/api/nursing/profile/${this.cusid}`,this.profile_arr)
                         .then((response) => {
+                            this.$loading(false);
                             this.name = ''
                         }).catch(error=>{
 

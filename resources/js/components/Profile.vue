@@ -239,12 +239,24 @@ export default {
                 fav_arr.push(this.pro_id);
                 fav_arr = [...new Set(fav_arr)];
                 localStorage.setItem(locReplace, fav_arr);
-                $(varReplace).html(fav_arr.length);
+                // $(varReplace).html(fav_arr.length);
+                if(this.type == 'nursing'){
+                    this.nusFav = fav_arr.length;
+                }
+                else{
+                    this.hosFav = fav_arr.length;
+                }                
             }
             else{
                 var fav_arr = [this.pro_id];
                 localStorage.setItem(locReplace, fav_arr);
-                $(varReplace).html(fav_arr.length);
+                // $(varReplace).html(fav_arr.length);
+                if(this.type == 'nursing'){
+                    this.nusFav = fav_arr.length;
+                }
+                else{
+                    this.hosFav = fav_arr.length;
+                }
             }
             $(linkBox).css({'cursor':'pointer','pointer-events':'auto'});
         }
@@ -255,7 +267,13 @@ export default {
                 fav_arr.splice(index, 1);
                 localStorage.setItem(locReplace, fav_arr);
             }
-            $(varReplace).html(fav_arr.length);
+            // $(varReplace).html(fav_arr.length);
+            if(this.type == 'nursing'){
+                this.nusFav = fav_arr.length;
+            }
+            else{
+                this.hosFav = fav_arr.length;
+            }
 
             if(fav_arr.length == 0){
                 $(linkBox).css({'cursor':'not-allowed','pointer-events':'none'})

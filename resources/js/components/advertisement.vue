@@ -148,9 +148,10 @@
                 adsData.append('link', this.ads.link)
                 adsData.append('location', this.ads.location)
                 adsData.append('photo', this.ads.photo)
-
+                this.$loading(true);
                 this.axios.post('/api/advertisement/add', adsData)
                     .then((response) => {
+                        this.$loading(false);
                         //alert('Successfully Created')
                         this.$swal({
                             position: 'top-end',

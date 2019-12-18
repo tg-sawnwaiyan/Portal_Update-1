@@ -100,9 +100,11 @@
                 }
             },
             created() {
+                this.$loading(true);
                 this.axios
                     .get('/api/subjects/subject')
                     .then(response => {
+                        this.$loading(false);
                         this.subjects = response.data;
                         this.norecord = this.subjects.length;
                         if (this.norecord > this.size) {
@@ -205,7 +207,9 @@
 
                         let fd = new FormData();
                         fd.append("search_word", search_word)
+                        this.$loading(true);
                         this.axios.post("/api/subjects/search", fd).then(response => {
+                        this.$loading(false);
                         this.subjects = response.data;
                         if(this.subjects.length > this.size){
                             this.pagination = true;

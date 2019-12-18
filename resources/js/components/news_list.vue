@@ -8,7 +8,6 @@
                         <i class="fas fa-plus-circle"></i> 新しいニュースを作成
                     </router-link>
                 </div>
-                <!-- <a href="/joboffer" class="float-right" style="color: blue;"></a> -->
             </div>
             <div class="col-md-12 col-md-12 tab-content tab-content1 tabs pad-free border-style">
                 <div class="col-12 scrolldiv">
@@ -134,10 +133,9 @@
             };
         },
         created() {
-
+            this.$loading(true);
             this.axios.get("/api/news_list").then(response => {
-                // console.log(this.news_list.photo);
-                console.log(response);
+                this.$loading(false);
                 this.news_list = response.data;
                 this.norecord = this.news_list.length
                 if (this.norecord > this.size) {
@@ -255,7 +253,9 @@
                     let fd = new FormData();
                     fd.append("search_word", search_word);
                     fd.append("selected_category", selected_category);
+                    this.$loading(true);
                     this.axios.post("/api/news_list/search", fd).then(response => {
+                        this.$loading(false);
                         this.news_list = response.data;
                         this.norecord = this.news_list.length;
                         if(this.news_list.length > this.size){

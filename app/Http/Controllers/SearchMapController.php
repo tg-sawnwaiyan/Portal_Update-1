@@ -21,17 +21,17 @@ class SearchMapController extends Controller
         {
           $local = explode(',',$localst);
         }
-        else{
+        else{          
 
             $local = 0;
         }
 
-        $query = "SELECT '' as fav_check,'' as alphabet,n.id as nursing_id,n.id,n.latitude as lat ,n.longitude as lng, n.*,c.*,c.id as cus_id,ci.city_name,t.township_name,ty.name AS type_name
+        $query = "SELECT '' as fav_check,'' as alphabet,n.id as nursing_id,n.id,n.latitude as lat ,n.longitude as lng, n.*,c.*,c.id as cus_id,ci.city_name,t.township_name,ty.description AS type_name
                     FROM nursing_profiles AS n
                     JOIN customers AS c  ON c.id = n.customer_id
                     LEFT JOIN townships AS t  ON t.id = c.townships_id
                     LEFT JOIN cities AS ci ON t.city_id = ci.id
-                    LEFT JOIN types AS ty ON c.type_id = ty.id
+                    LEFT JOIN fac_types AS ty ON n.fac_type = ty.id
                     LEFT JOIN special_features_junctions as spej on spej.customer_id = n.customer_id  
                     LEFT JOIN special_features as spe on spe.id = spej.special_feature_id
                     LEFT JOIN acceptance_transactions as acct on acct.customer_id = n.customer_id

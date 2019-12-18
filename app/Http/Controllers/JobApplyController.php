@@ -68,7 +68,7 @@ class JobApplyController extends Controller
 
             $jobapply = new JobApply;
             $jobapply->job_id = $request->job_id;
-            $jobapply->first_name = $request->first_name;
+            $jobapply->first_name = $request->first_name; 
             $jobapply->last_name = $request->last_name;
             $jobapply->birthday = $request->birthday;
             $jobapply->gender = $request->gender;
