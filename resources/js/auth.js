@@ -17,4 +17,4 @@ const config = {
   refreshData: {url: 'api/auth/refresh', method: 'GET', enabled: true, interval: 0.5}
 }
 
-export default config 
+export default config
