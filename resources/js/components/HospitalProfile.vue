@@ -49,7 +49,7 @@
                   <i id="gallery" class="fas fa-sort-down"></i>
             </span>
 
-          <div id="changeGalleryLink" class="col-md-12">
+          <!-- <div id="changeGalleryLink" class="col-md-12">
                 <div class="row" id ="gallery-photo">   
                         <div class="col-md-6 gallery-area-photo" v-bind:id="'photo'+indx" v-for="(img,indx) in img_arr" :key="img.id">
                                 <div class="col-md-12">
@@ -68,9 +68,9 @@
                                 </div>
                         </div>
                 </div>
-          </div>
+          </div> -->
 
-          <!-- <div class="col-md-12">
+        <div class="col-md-12">
 
 
             <div class="row" id="gallery-photo">
@@ -121,7 +121,7 @@
 
             </div>
 
-          </div> -->
+          </div>
 
         </div>
 
@@ -1563,7 +1563,8 @@ export default {
                     var email = $('.customer-email').text();
                     var phone = $('.customer-phone').val();
                     var address = $('#city').val();
-                    this.customer_info_push.push({name:name,email:email,phone:phone,address:address});
+                    //test
+                    // this.customer_info_push.push({name:name,email:email,phone:phone,address:address});
 
                     // var access = $('.access').val();
                     var subject = $('.subject').val();
@@ -1594,17 +1595,18 @@ export default {
                           }
                           this.img_list.push({type:"photo",photo:file_name,title:img[i].getElementsByClassName('title')[0].value, description:img[i].getElementsByClassName('description')[0].value});
                     }
+                    
+                    // 1
+                    // this.axios.post('/api/hospital/movephoto', pt)
+                    //     .then(response => {
+                    //         }).catch(error=>{
+                    //             console.log(error);
+                    //             if(error.response.status == 422){
+                    //                 this.errors = error.response.data.errors
+                    //             }
+                    //     })
 
-                    this.axios.post('/api/hospital/movephoto', pt)
-                        .then(response => {
-                            }).catch(error=>{
-                                console.log(error);
-                                if(error.response.status == 422){
-                                    this.errors = error.response.data.errors
-                                }
-                        })
-
-                    var video = document.getElementsByClassName('gallery-area-video');
+                      var video = document.getElementsByClassName('gallery-area-video');
                         for(var i = 0; i< video.length; i++) {
                            this.video_list.push({type:"video",photo:video[i].getElementsByClassName('video-url')[0].value,title:video[i].getElementsByClassName('title')[0].value, description:video[i].getElementsByClassName('description')[0].value});
                         }
@@ -1646,8 +1648,14 @@ export default {
                         if(j == 0) { this.schedule_list.push(this.shedule_am); }
                         if(j == 1) { this.schedule_list.push(this.shedule_pm); }
                       }
-                       this.save_hospital_info.push({latitude:latitude,longitude:longitude,access:this.access_val,specialist:specialist,details_info:this.detail_info,close_day:close_day,website:website,
-                       congestion:congestion,facilities:facilities});
+                       this.save_hospital_info.push({name:name,email:email,phone:phone,address:address,
+                       latitude:latitude,longitude:longitude,access:this.access_val,specialist:specialist,details_info:this.detail_info,close_day:close_day,website:website,
+                       congestion:congestion,facilities:facilities,
+                       schedule_list:this.schedule_list,
+                       chek_feature:this.chek_feature,
+                       subjects:this.subjects
+                       });
+                        // 2
                         if(this.gallery_list.length > 0) {
                                 this.axios
                                     .post(`/api/hospital/galleryupdate/${this.cusid}`,this.gallery_list)
@@ -1659,22 +1667,35 @@ export default {
                                     }
                                 }) ;
                         }
-                        if(this.customer_info_push.length > 0) {
-                                this.axios
-                                        .post(`/api/customer/profile/${this.cusid}`,this.customer_info_push)
-                                                .then((response) => {
+                        // 3
+                        // if(this.customer_info_push.length > 0) {
+                        //         this.axios
+                        //                 .post(`/api/customer/profile/${this.cusid}`,this.customer_info_push)
+                        //                         .then((response) => {
 
-                                                }).catch(error=>{
-                                                if(error.response.status == 422){
-                                                  this.customer_info_push = 'error';
-                                                  this.errors = error.response.data.errors
-                                        }
-                                }) ;
-                        }
+                        //                         }).catch(error=>{
+                        //                         if(error.response.status == 422){
+                        //                           this.customer_info_push = 'error';
+                        //                           this.errors = error.response.data.errors
+                        //                 }
+                        //         }) ;
+                        // }
+                        // 4 // Confirm Path
                         if(this.save_hospital_info.length > 0) {
                                 this.axios
                                         .post(`/api/hospital/profile/${this.cusid}`,this.save_hospital_info)
                                                 .then((response) => {
+                                                     this.$swal({
+                                                      position: 'top-end',
+                                                      type: 'success',
+                                                      title: '更新されました',
+                                                      confirmButtonText: "はい",
+                                                      confirmButtonColor: "#6cb2eb",
+                                                      width: 250,
+                                                      height: 200,
+                                            }).then(response => {
+                                    document.getElementById('nursing').click();
+                                  })
                                                 }).catch(error=>{
                                                 if(error.response.status == 422){
                                                   this.save_hospital_info = 'error';
@@ -1682,31 +1703,34 @@ export default {
                                         }
                                 }) ;
                         }
-                        if(this.schedule_list.length > 0) {
-                                this.axios
-                                        .post(`/api/schedule/update/${this.cusid}`,this.schedule_list)
-                                                .then((response) => {
+                        return;
+                        // 5
+                        // if(this.schedule_list.length > 0) {
+                        //         this.axios
+                        //                 .post(`/api/schedule/update/${this.cusid}`,this.schedule_list)
+                        //                         .then((response) => {
 
-                                                }).catch(error=>{
-                                                if(error.response.status == 422){
-                                                  this.schedule_list = 'error';
-                                                  this.errors = error.response.data.errors
-                                }
-                        }) ;
-                        }
+                        //                         }).catch(error=>{
+                        //                         if(error.response.status == 422){
+                        //                           this.schedule_list = 'error';
+                        //                           this.errors = error.response.data.errors
+                        //         }
+                        // }) ;
+                        // }
+                        
+                        // 6
+                        // if(this.chek_feature.length > 0) {
+                        //         this.axios
+                        //                 .post(`/api/sfeature/update/${this.cusid}`,this.chek_feature)
+                        //                         .then((response) => {
 
-                        if(this.chek_feature.length > 0) {
-                                this.axios
-                                        .post(`/api/sfeature/update/${this.cusid}`,this.chek_feature)
-                                                .then((response) => {
-
-                                                }).catch(error=>{
-                                                if(error.response.status == 422){
-                                                  this.chek_feature = 'error';
-                                                  this.errors = error.response.data.errors
-                                }
-                        }) ;
-                        }
+                        //                         }).catch(error=>{
+                        //                         if(error.response.status == 422){
+                        //                           this.chek_feature = 'error';
+                        //                           this.errors = error.response.data.errors
+                        //         }
+                        // }) ;
+                        // }
 
                         // if(this.stations.length > 0) {
                         //   this.axios
@@ -1722,32 +1746,23 @@ export default {
                         //   }) ;
                         // }
 
-                        if(this.subjects.length > 0) {
-                                this.axios
-                                        .post(`/api/subject_junctions/update/${this.cusid}`,this.subjects)
-                                                .then((response) => {
+                        // 7
+                        // if(this.subjects.length > 0) {
+                        //         this.axios
+                        //                 .post(`/api/subject_junctions/update/${this.cusid}`,this.subjects)
+                        //                         .then((response) => {
 
-                                                }).catch(error=>{
-                                                if(error.response.status == 422){
-                                                  this.subjects = 'error';
-                                                  this.errors = error.response.data.errors
-                                }
-                        }) ;
-                        }
+                        //                         }).catch(error=>{
+                        //                         if(error.response.status == 422){
+                        //                           this.subjects = 'error';
+                        //                           this.errors = error.response.data.errors
+                        //         }
+                        // }) ;
+                        // }
 
-                        if(this.gallery_list != 'error' && this.customer_info != 'error' && this.hospital_info != 'error' && this.schedule_list != 'error') {
-                            this.$swal({
-                                    position: 'top-end',
-                                    type: 'success',
-                                    title: '更新されました',
-                                    confirmButtonText: "はい",
-                                    confirmButtonColor: "#6cb2eb",
-                                    width: 250,
-                                    height: 200,
-                                }).then(response => {
-                                    document.getElementById('nursing').click();
-                            })
-                        }
+                        // if(this.gallery_list != 'error' && this.customer_info != 'error' && this.hospital_info != 'error' && this.schedule_list != 'error') {
+                           
+                        // }
                 },
                 isNumberOnly: function(event) {
                 var input_data = $('#phone').val();
