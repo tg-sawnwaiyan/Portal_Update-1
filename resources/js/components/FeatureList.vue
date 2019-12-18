@@ -31,9 +31,9 @@
                         </div>
                         <hr />
                         <h5 class="header">特徴一覧</h5>
-                        <div class="col-md-12 pad-free scrolldiv">
+                        <div class="col-md-12 pad-free scrolldiv p0-480">
                             <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
-                            <div v-else class="container-fuid">
+                            <div v-else class="container-fuid scroll_responsive">
                                 <table class="table table-hover custom-table">
                                     <thead style="background-color:rgb(183, 218, 210);">
                                         <tr>
@@ -51,7 +51,7 @@
                                             <th class="text-right">
                                                 <!-- <button class="btn btn-sm btn-primary all-btn" v-if="getUser.status == 1">Approved</button> -->
                                                 <router-link :to="{name:'specialfeature', params:{id : feature.id}}" class="btn edit-borderbtn">編集</router-link>
-                                                <a class="btn text-danger delete-borderbtn" @click="deleteFeature(feature.id)">削除</a>
+                                                <button class="btn text-danger delete-borderbtn" @click="deleteFeature(feature.id)">削除</button>
                                             </th>
                                         </tr>
                                     </tbody>
@@ -105,7 +105,9 @@
             },
 
             created() {
+                this.$loading(true);
                 this.axios.get("/api/feature/featurelist").then(response => {
+                    this.$loading(false);
                     this.features = response.data;
                     this.norecord = this.features.length;
                     if (this.norecord > this.size) {
@@ -211,7 +213,9 @@
                         var search_word = $("#search-item").val();
                         let fd = new FormData();
                         fd.append("search_word", search_word);
+                        this.$loading(true);
                         this.axios.post("/api/feature/search", fd).then(response => {
+                            this.$loading(false);
                             this.features = response.data;
                             if(this.features.length > this.size) {
                                 this.pagination = true;

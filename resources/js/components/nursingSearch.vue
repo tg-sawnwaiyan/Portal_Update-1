@@ -10,7 +10,7 @@
         <div>
         <div class="row map-wrap"  id="searchMap">
           <!-- search map and path -->
-            <div class="col-lg-5 col-md-12 col-sm-12 float-left" style="padding-left: 75px;">
+            <div class="col-lg-5 col-md-12 col-sm-12 float-left map-leftwrapper">
             <!-- <h2 class="map-header">あなたらしい<br/>暮らしができる<br/> 老人ホームが <br/>見つかります。</h2> -->
             <h2 class="map-header">あなたらしい暮ら<br/>しができる。そん<br/>な老人ホームが見 <br/>つかります。</h2>
             <!--search input-->
@@ -346,25 +346,25 @@
                             <i slot="icon-open" class="fa fa-minus-circle map-addicon"></i>
                             <p slot="content" class="custom_group">
                                 <a data-info="Hokkaido" @click="getStateClick">
-                                   <li id="1" @click="selected = 1" :class="{resHighlight:selected == 1}">北海道 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                   <li id="1" v-scroll-to="'#scroll-responsive'" @click="selected = 1" :class="{resHighlight:selected == 1}">北海道 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Aomori" @click="getStateClick" >
-                                    <li id="2"  @click="selected = 2" :class="{resHighlight:selected == 2}">青森 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="2" v-scroll-to="'#scroll-responsive'" @click="selected = 2" :class="{resHighlight:selected == 2}">青森 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Iwate" @click="getStateClick" >
-                                    <li id="3"  @click="selected = 3" :class="{resHighlight:selected == 3}">岩手 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="3" v-scroll-to="'#scroll-responsive'" @click="selected = 3" :class="{resHighlight:selected == 3}">岩手 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Akita" @click="getStateClick">
-                                    <li id="5"  @click="selected = 5" :class="{resHighlight:selected == 5}"> 秋田 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="5" v-scroll-to="'#scroll-responsive'" @click="selected = 5" :class="{resHighlight:selected == 5}"> 秋田 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Miyagi" @click="getStateClick" >
-                                    <li id="4"  @click="selected = 4" :class="{resHighlight:selected == 4}">宮城 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="4" v-scroll-to="'#scroll-responsive'" @click="selected = 4" :class="{resHighlight:selected == 4}">宮城 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>                                
                                 <a data-info="Yamagata" @click="getStateClick" >
-                                    <li id="6"  @click="selected = 6" :class="{resHighlight:selected == 6}"> 山形 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="6" v-scroll-to="'#scroll-responsive'" @click="selected = 6" :class="{resHighlight:selected == 6}"> 山形 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Fukushima" @click="getStateClick" >
-                                    <li id="7"  @click="selected = 7" :class="{resHighlight:selected == 7}"> 福島 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="7" v-scroll-to="'#scroll-responsive'" @click="selected = 7" :class="{resHighlight:selected == 7}"> 福島 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                             </p>
                         </bulma-accordion-item>
@@ -376,28 +376,28 @@
                             <i slot="icon-open" class="fa fa-minus-circle map-addicon"></i>
                             <p slot="content" class="custom_group">
                                 <a data-info="Tokyo" @click="getStateClick" >
-                                   <li id="13"  @click="selected = 13" :class="{resHighlight:selected == 13}">東京 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                   <li id="13" v-scroll-to="'#scroll-responsive'" @click="selected = 13" :class="{resHighlight:selected == 13}">東京 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Kanagawa" @click="getStateClick" >
-                                    <li id="14"  @click="selected = 14" :class="{resHighlight:selected == 14}">神奈川 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="14" v-scroll-to="'#scroll-responsive'" @click="selected = 14" :class="{resHighlight:selected == 14}">神奈川 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Chiba" @click="getStateClick" >
-                                    <li id="11" @click="selected = 11" :class="{resHighlight:selected == 11}">埼玉 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="11" v-scroll-to="'#scroll-responsive'" @click="selected = 11" :class="{resHighlight:selected == 11}">埼玉 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Miyagi" @click="getStateClick" >
-                                    <li id="12" @click="selected = 12" :class="{resHighlight:selected == 12}">千葉 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="12" v-scroll-to="'#scroll-responsive'" @click="selected = 12" :class="{resHighlight:selected == 12}">千葉 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Gunma" @click="getStateClick">
-                                    <li id="10" @click="selected = 10" :class="{resHighlight:selected == 10}"> 群馬 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="10" v-scroll-to="'#scroll-responsive'" @click="selected = 10" :class="{resHighlight:selected == 10}"> 群馬 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Ibaraki" @click="getStateClick" >
-                                    <li id="8" @click="selected = 8" :class="{resHighlight:selected == 8}"> 茨城 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="8" v-scroll-to="'#scroll-responsive'" @click="selected = 8" :class="{resHighlight:selected == 8}"> 茨城 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Tochigi" @click="getStateClick" >
-                                    <li id="9" @click="selected = 9" :class="{resHighlight:selected == 9}"> 栃木 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="9" v-scroll-to="'#scroll-responsive'" @click="selected = 9" :class="{resHighlight:selected == 9}"> 栃木 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                  <a data-info="Yamanashi" @click="getStateClick" >
-                                    <li id="19" @click="selected = 19" :class="{resHighlight:selected == 19}"> 山梨 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="19" v-scroll-to="'#scroll-responsive'" @click="selected = 19" :class="{resHighlight:selected == 19}"> 山梨 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                             </p>
                         </bulma-accordion-item>
@@ -409,19 +409,19 @@
                             <i slot="icon-open" class="fa fa-minus-circle map-addicon"></i>
                             <p slot="content" class="custom_group">
                                 <a data-info="Niigata" @click="getStateClick" >
-                                   <li id="15" @click="selected = 15" :class="{resHighlight:selected == 15}">新潟 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                   <li id="15" v-scroll-to="'#scroll-responsive'" @click="selected = 15" :class="{resHighlight:selected == 15}">新潟 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Nagana" @click="getStateClick" >
-                                    <li id="20" @click="selected = 20" :class="{resHighlight:selected == 20}">長野 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="20" v-scroll-to="'#scroll-responsive'" @click="selected = 20" :class="{resHighlight:selected == 20}">長野 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Toyama" @click="getStateClick" >
-                                    <li id="16" @click="selected = 16" :class="{resHighlight:selected == 16}">富山 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="16" v-scroll-to="'#scroll-responsive'" @click="selected = 16" :class="{resHighlight:selected == 16}">富山 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Ishikawa" @click="getStateClick" >
-                                    <li id="17" @click="selected = 17" :class="{resHighlight:selected == 17}">石川 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="17" v-scroll-to="'#scroll-responsive'" @click="selected = 17" :class="{resHighlight:selected == 17}">石川 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Fukui" @click="getStateClick">
-                                    <li id="18" @click="selected = 18" :class="{resHighlight:selected == 18}"> 福井 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="18" v-scroll-to="'#scroll-responsive'" @click="selected = 18" :class="{resHighlight:selected == 18}"> 福井 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>                               
                             </p>
                         </bulma-accordion-item>
@@ -433,16 +433,16 @@
                             <i slot="icon-open" class="fa fa-minus-circle map-addicon"></i>
                             <p slot="content" class="custom_group">
                                 <a data-info="Aichi" @click="getStateClick" >
-                                   <li id="23" @click="selected = 23" :class="{resHighlight:selected == 23}">愛知 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                   <li id="23" v-scroll-to="'#scroll-responsive'" @click="selected = 23" :class="{resHighlight:selected == 23}">愛知 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Shizuoka" @click="getStateClick" >
-                                    <li id="22" @click="selected = 22" :class="{resHighlight:selected == 22}">静岡 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="22" v-scroll-to="'#scroll-responsive'" @click="selected = 22" :class="{resHighlight:selected == 22}">静岡 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Gifu" @click="getStateClick" >
-                                    <li id="21" @click="selected = 21" :class="{resHighlight:selected == 21}">岐阜 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="21" v-scroll-to="'#scroll-responsive'" @click="selected = 21" :class="{resHighlight:selected == 21}">岐阜 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Mie" @click="getStateClick" >
-                                    <li id="24" @click="selected = 24" :class="{resHighlight:selected == 24}">三重 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="24" v-scroll-to="'#scroll-responsive'" @click="selected = 24" :class="{resHighlight:selected == 24}">三重 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                             </p>
                         </bulma-accordion-item>
@@ -454,22 +454,22 @@
                             <i slot="icon-open" class="fa fa-minus-circle map-addicon"></i>
                             <p slot="content" class="custom_group">
                                 <a data-info="Osaka" @click="getStateClick" >
-                                   <li id="27" @click="selected = 27" :class="{resHighlight:selected == 27}">大阪 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                   <li id="27" v-scroll-to="'#scroll-responsive'" @click="selected = 27" :class="{resHighlight:selected == 27}">大阪 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Hyogo" @click="getStateClick" >
-                                    <li id="28" @click="selected = 28" :class="{resHighlight:selected == 28}">兵庫 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="28" v-scroll-to="'#scroll-responsive'" @click="selected = 28" :class="{resHighlight:selected == 28}">兵庫 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="kyoto" @click="getStateClick" >
-                                    <li id="26" @click="selected = 26" :class="{resHighlight:selected == 26}">京都<i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="26" v-scroll-to="'#scroll-responsive'" @click="selected = 26" :class="{resHighlight:selected == 26}">京都<i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Nara" @click="getStateClick" >
-                                    <li id="29" @click="selected = 29" :class="{resHighlight:selected == 29}">奈良 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="29" v-scroll-to="'#scroll-responsive'" @click="selected = 29" :class="{resHighlight:selected == 29}">奈良 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Shiga" @click="getStateClick">
-                                    <li id="25" @click="selected = 25" :class="{resHighlight:selected == 25}"> 滋賀 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="25" v-scroll-to="'#scroll-responsive'" @click="selected = 25" :class="{resHighlight:selected == 25}"> 滋賀 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Wakayama" @click="getStateClick" >
-                                    <li id="30" @click="selected = 30" :class="{resHighlight:selected == 30}"> 和歌山 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="30" v-scroll-to="'#scroll-responsive'" @click="selected = 30" :class="{resHighlight:selected == 30}"> 和歌山 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                             </p>
                         </bulma-accordion-item>
@@ -481,31 +481,31 @@
                             <i slot="icon-open" class="fa fa-minus-circle map-addicon"></i>
                             <p slot="content" class="custom_group">
                                 <a data-info="Okayama" @click="getStateClick" >
-                                   <li id="33" @click="selected = 33" :class="{resHighlight:selected == 33}">岡山 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                   <li id="33" v-scroll-to="'#scroll-responsive'" @click="selected = 33" :class="{resHighlight:selected == 33}">岡山 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Hiroshima" @click="getStateClick" >
-                                    <li id="34" @click="selected = 34" :class="{resHighlight:selected == 34}">広島 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="34" v-scroll-to="'#scroll-responsive'" @click="selected = 34" :class="{resHighlight:selected == 34}">広島 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Yamaguchi" @click="getStateClick" >
-                                    <li id="35" @click="selected = 35" :class="{resHighlight:selected == 35}">山口 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="35" v-scroll-to="'#scroll-responsive'" @click="selected = 35" :class="{resHighlight:selected == 35}">山口 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Shimane" @click="getStateClick" >
-                                    <li id="32" @click="selected = 32" :class="{resHighlight:selected == 32}">島根 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="32" v-scroll-to="'#scroll-responsive'" @click="selected = 32" :class="{resHighlight:selected == 32}">島根 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Tottori" @click="getStateClick">
-                                    <li id="31" @click="selected = 31" :class="{resHighlight:selected == 31}"> 鳥取 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="31" v-scroll-to="'#scroll-responsive'" @click="selected = 31" :class="{resHighlight:selected == 31}"> 鳥取 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Ehime" @click="getStateClick" >
-                                    <li id="38" @click="selected = 38" :class="{resHighlight:selected == 38}"> 愛媛 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="38" v-scroll-to="'#scroll-responsive'" @click="selected = 38" :class="{resHighlight:selected == 38}"> 愛媛 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Kagawa" @click="getStateClick" >
-                                    <li id="37" @click="selected = 37" :class="{resHighlight:selected == 37}">香川 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="37" v-scroll-to="'#scroll-responsive'" @click="selected = 37" :class="{resHighlight:selected == 37}">香川 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Kochi" @click="getStateClick">
-                                    <li id="39" @click="selected = 39" :class="{resHighlight:selected == 39}"> 高知 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="39" v-scroll-to="'#scroll-responsive'" @click="selected = 39" :class="{resHighlight:selected == 39}"> 高知 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Tokushima" @click="getStateClick" >
-                                    <li id="36" @click="selected = 36" :class="{resHighlight:selected == 36}"> 徳島 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="36" v-scroll-to="'#scroll-responsive'" @click="selected = 36" :class="{resHighlight:selected == 36}"> 徳島 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                             </p>
                         </bulma-accordion-item>
@@ -517,28 +517,28 @@
                             <i slot="icon-open" class="fa fa-minus-circle map-addicon"></i>
                             <p slot="content" class="custom_group">
                                 <a data-info="Fukuoka" @click="getStateClick" >
-                                   <li id="40" @click="selected = 40" :class="{resHighlight:selected == 40}">福岡 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                   <li id="40" v-scroll-to="'#scroll-responsive'" @click="selected = 40" :class="{resHighlight:selected == 40}">福岡 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Saga" @click="getStateClick" >
-                                    <li id="41" @click="selected = 41" :class="{resHighlight:selected == 41}">佐賀 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="41" v-scroll-to="'#scroll-responsive'" @click="selected = 41" :class="{resHighlight:selected == 41}">佐賀 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Nagasak" @click="getStateClick" >
-                                    <li id="42" @click="selected = 42" :class="{resHighlight:selected == 42}">長崎 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="42" v-scroll-to="'#scroll-responsive'" @click="selected = 42" :class="{resHighlight:selected == 42}">長崎 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Oita" @click="getStateClick" >
-                                    <li id="44" @click="selected = 44" :class="{resHighlight:selected == 44}">大分 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="44" v-scroll-to="'#scroll-responsive'" @click="selected = 44" :class="{resHighlight:selected == 44}">大分 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Kumamoto" @click="getStateClick">
-                                    <li id="43" @click="selected = 43" :class="{resHighlight:selected == 43}"> 熊本 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="43" v-scroll-to="'#scroll-responsive'" @click="selected = 43" :class="{resHighlight:selected == 43}"> 熊本 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Miyazaki" @click="getStateClick" >
-                                    <li id="45" @click="selected = 45" :class="{resHighlight:selected == 45}"> 宮崎 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="45" v-scroll-to="'#scroll-responsive'" @click="selected = 45" :class="{resHighlight:selected == 45}"> 宮崎 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Kagoshima" @click="getStateClick" >
-                                    <li id="46" @click="selected = 46" :class="{resHighlight:selected == 46}">鹿児島 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="46" v-scroll-to="'#scroll-responsive'" @click="selected = 46" :class="{resHighlight:selected == 46}">鹿児島 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                                 <a data-info="Okinawa" @click="getStateClick">
-                                    <li id="47" @click="selected = 47" :class="{resHighlight:selected == 47}"> 沖縄 <i class="fas fa-angle-double-right arrow_icon"></i></li>
+                                    <li id="47" v-scroll-to="'#scroll-responsive'" @click="selected = 47" :class="{resHighlight:selected == 47}"> 沖縄 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
                             </p>
                         </bulma-accordion-item>
@@ -546,6 +546,7 @@
                     </bulma-accordion>                   
         </section>
         <!-- search city , township  -->
+        <div id="scroll-responsive">
         <div class="row select" id="filter" style="justify-content:space-between">
           <h5 class="profile_header" style="border-left: 5px solid #ff9563;">現在の検索条件</h5>
           <div class="col-sm-5 col-md-5">
@@ -625,8 +626,8 @@
                <div class="lds-ripple m-t-10 m-b-10" >
                    <div>
                       <div></div><div></div>
-                   </div>                  
-                </div>           
+                   </div>
+                </div>
                 <div class="col-12 overlay" style="z-index:9">
 
                 </div>
@@ -859,6 +860,7 @@
       </table>
       </div>
     </div>
+       </div>
       <!--end search list-->
 
         <div class=" col-12">
@@ -1136,6 +1138,23 @@
 
 
             }
+            // $(document).scroll(function() {
+            //         $(".custom_group").css({"position": "fixed","top":"100px"});
+            //         var cur_pos = $(this).scrollTop();
+
+            //         // $('.ele').each(function(active_el){
+            //         //     if($(this).position().top <= (cur_pos+71)){
+            //         //         $('.top-fixed-btn.active').removeClass('active');
+            //         //         $('.top-fixed-btn').eq(active_el).addClass('active');
+            //         //     }
+            //         // });
+
+            //         if (cur_pos >= 100) {
+            //             $(".custom_group").css({"position": "fixed","top":"100px"});
+            //         } else {
+            //             $(".custom_group").css({"position": "unset", "top": "unset"});
+            //         }
+            //     });
 
             // else if( this.window.width > 1700) {
 
@@ -1323,8 +1342,7 @@ getStateClick(e,lat,lng) {
             else{
                 this.locast = localStorage.getItem("nursing_fav");
             }
-
-
+            this.$loading(true);
             this.axios.get('/api/getmap',{
                 params:{
                 id: this.id,
@@ -1335,6 +1353,7 @@ getStateClick(e,lat,lng) {
                 },
             })
                 .then((response) => {
+                  this.$loading(false);
                  $("#mymap").css({'display' : 'block','height' : '500px','width':'100%'});
                  // $("#mymap").css('display', 'block');
                   $("#nursing-search").css("display", "block");
@@ -1508,7 +1527,7 @@ boundariesGoogleMap(lat,lng,coor){
       } catch (error) {
           var data = coor.reduce((acc, val) => acc.concat(val), []);
           for (let i = 0; i < data.length; i++) {
-            this.map.data.addGeoJson(data[i]); 
+            this.map.data.addGeoJson(data[i]);
           }
           var bounds = new google.maps.LatLngBounds();
           this.map.data.forEach(function(feature){
@@ -2014,11 +2033,11 @@ search(){
 }
 .lds-ripple > div {
   display: flex;
-  position: absolute;  
+  position: absolute;
   width: 100%;
   height: 100%;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
    z-index: 999;
 }
 .lds-ripple > div  div{
@@ -2060,12 +2079,6 @@ search(){
   height: 440px;
 }
 
-.highlight{
-     background-color: #ccff60 !important;
-    background-image: none;
-    border: 1px solid #8e3c15;
-    color: #ff6117;
-}
   .path {
     cursor: pointer;
   }
