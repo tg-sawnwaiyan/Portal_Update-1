@@ -788,7 +788,7 @@
                         <hr class="dotted">
                         <p class="no-comment-web">WEBからご相談</p>
                          <div>
-                             <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn"> <i class="far fa-comment"></i>
+                             <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
                               <span>口コミを追加する</span></router-link>
                          </div>
                     </div>
@@ -804,7 +804,7 @@
                         <hr class="dotted">
                         <p class="no-comment-web">WEBからご相談</p>
                          <div>
-                             <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn"> <i class="far fa-comment"></i>
+                             <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
                               <span>口コミを追加する</span></router-link>
                          </div>
                     </div>
@@ -1323,7 +1323,7 @@
                         <hr class="dotted">
                         <p class="no-comment-web">WEBからご相談</p>
                          <div>
-                             <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn"> <i class="far fa-comment"></i>
+                             <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
                               <span>口コミを追加する</span></router-link>
                          </div>
                     </div>
@@ -1339,7 +1339,7 @@
                         <hr class="dotted">
                         <p class="no-comment-web">WEBからご相談</p>
                          <div>
-                             <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn"> <i class="far fa-comment"></i>
+                             <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
                               <span>口コミを追加する</span></router-link>
                          </div>
                     </div>

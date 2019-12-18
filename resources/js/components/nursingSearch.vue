@@ -622,7 +622,7 @@
         <section id="holder">
         <div class="row" >
           <div class="col-sm-12 col-md-12">
-            <div v-if="loading" class=" m-t-10 m-b-10" style="background-color:gray;opacity:0.9;position:relative;z-index:10;">
+            <div v-if="loading" class=" m-t-10 m-b-10" style="background-color:gray;opacity:0.8;position:relative;z-index:10;">
                <div class="lds-ripple m-t-10 m-b-10" >
                    <div>
                       <div></div><div></div>
