@@ -1062,8 +1062,7 @@ export default {
 
             createProfile() {
                
-                // $('#create-profile').prop('disabled', true);
-                document.getElementById("create-profile").disabled=true;
+                // document.getElementById("create-profile").disabled=true;
                 this.customer_info_push = [];
                 this.staff_info_push = [];
                 this.gallery_list = [];
@@ -1077,7 +1076,6 @@ export default {
                 var customer_address = $('#city').val();
                 var customer_township = $('#township').val();
 
-                // var access = $('.transporation-access').val();
                 var moving_in_from = $('.nursing-moving-in-f').val();
                 var moving_in_to = $('.nursing-moving-in-t').val();
                 var per_month_from = $('.nursing-per-month-f').val();
@@ -1092,24 +1090,20 @@ export default {
                 var construction = $('.construction').val();
                 var capacity = $('.capacity').val();
                 var num_rooms = $('.num-rooms').val();
-                // var residence_form = $('.residence-form').val();
                 var fac_type = $('.fac-type').val();
                 var occupancy_condition = $('.occupancy-condition').val();
                 var room_floor = $('.room-floor').val();
                 var living_room_facilities = $('.living-room-facilities').val();
                 var equipment = $('.equipment').val();
-                // var acceptance_remark = $('.acceptance-remark').text();
                 var latitude = $('#new_lat').val();
                 var longitude = $('#new_long').val();
                 var website = $('.website').val();
-                // var feature = this.feature;
-                // var feature = $('.feature').val();
 
                 var staff = $('.staff').val();
                 var nursing_staff = $('.nursing-staff').val();
                 var min_num_staff = $('.min-num-staff').val();
                 var num_staff = $('.num-staff').val();
-                // var nursing_remarks = $('.nursing-remarks').val();
+            
                 this.customer_info_push.push({ name:customer_name,email:customer_email,phone:customer_phone,address:customer_address,township:customer_township});
 
                 this.staff_info_push.push({staff:staff,nursing_staff:nursing_staff,min_num_staff:min_num_staff,num_staff:num_staff,nursing_remarks:this.nursing_remarks_val});
@@ -1126,7 +1120,7 @@ export default {
                     }
                     this.img_list.push({type:"photo",photo:file_name,title:img[i].getElementsByClassName('title')[0].value, description:img[i].getElementsByClassName('description')[0].value});
                 }
-
+                
                 this.axios.post('/api/nursing/movephoto', pt)
                     .then(response => {
                     }).catch(error=>{
@@ -1196,8 +1190,6 @@ export default {
                         acceptance.push({id:id,type:type});
                 });
 
-                this.profile_arr.push({feature:this.feature_val,website:website,access:this.access_val,moving_in_from:moving_in_from,moving_in_to:moving_in_to,per_month_from:per_month_from,per_month_to:per_month_to,method:method,business_entity:business_entity, date_of_establishment:date_of_establishment,land_right_form:land_right_form,building_right_form:building_right_form, site_area:site_area,floor_area:floor_area,construction:construction,capacity:capacity,num_rooms:num_rooms,residence_form:this.residence_form_val,fac_type:fac_type, occupancy_condition:occupancy_condition,room_floor:room_floor,living_room_facilities:living_room_facilities,equipment:equipment,acceptance_remark:this.acceptance_remark_val,latitude:latitude,longitude:longitude});
-
                 var old_panorama = document.getElementsByClassName('panorama-old-img');
                 var new_panorama = document.getElementsByClassName('panorama-new-img');
 
@@ -1209,7 +1201,7 @@ export default {
                 else{
                     this.panorama_list = [];
                 }
-                 this.$loading(true);
+                //  this.$loading(true);
                
                 if(new_panorama.length > 0){
                     let fd = new FormData();
@@ -1218,7 +1210,7 @@ export default {
                             fd.append(i ,this.panorama_arr[i]["file"] )
                         }                   
                     }
-                        
+                    
                     this.axios.post('/api/nursing/movepanorama', fd)
                         .then(response => {
                         }).catch(error=>{
@@ -1228,150 +1220,48 @@ export default {
                         }
                     })
                 }
+
                 var fData = new FormData();
                 fData.append("image",this.img_list);
                 fData.append("video",this.video_list);
                 fData.append("panorama",this.panorama_list);               
 
-                this.axios
-                    .post(`/api/nursing/galleryupdate/${this.cusid}`,{'video':this.video_list, 'image': this.img_list, 'panorama': this.panorama_list})
-                    .then((response) => {                  
-
-                    }).catch(error=>{
-                    if(error.response.status == 422){
-                    this.gallery_list = 'error';
-                    this.errors = error.response.data.errors
-                    }
-                }) ;
-
-                if(this.cooperate_list.length > 0) {
-                    this.axios
-                        .post(`/api/nursing/cooperate/${this.cusid}`,this.cooperate_list)
-                        .then((response) => {
-                            this.name = '' 
-                        }).catch(error=>{
-                        if(error.response.status == 422){
-                        this.cooperate_list = 'error';
-                        this.errors = error.response.data.errors
-                        }
-                    }) ;
-                }
-
-                if(this.payment_list.length > 0) {
-                    this.axios
-                        .post(`/api/nursing/paymentmethod/${this.cusid}`,this.payment_list)
-                        .then((response) => {
-                            this.name = ''
-                        }).catch(error=>{
-
-                        if(error.response.status == 422){
-                        this.payment_list = 'error';
-                        this.errors = error.response.data.errors
-
-                        }
-                    }) ;
-                }
+                this.profile_arr.push({feature:this.feature_val,website:website,access:this.access_val,moving_in_from:moving_in_from,moving_in_to:moving_in_to,per_month_from:per_month_from,per_month_to:per_month_to,method:method,business_entity:business_entity, date_of_establishment:date_of_establishment,land_right_form:land_right_form,building_right_form:building_right_form, site_area:site_area,floor_area:floor_area,construction:construction,capacity:capacity,num_rooms:num_rooms,residence_form:this.residence_form_val,fac_type:fac_type, occupancy_condition:occupancy_condition,room_floor:room_floor,living_room_facilities:living_room_facilities,equipment:equipment,acceptance_remark:this.acceptance_remark_val,latitude:latitude,longitude:longitude,
+                                  cooperate_list:this.cooperate_list,
+                                  payment_list:this.payment_list,
+                                  customer_info_push:this.customer_info_push,
+                                  staff_info_push:this.staff_info_push,
+                                  acceptance:acceptance,
+                                  chek_feature:this.chek_feature,
+                                  video:this.video_list,
+                                  image: this.img_list,
+                                  panorama: this.panorama_list
+                });
                 
                 if(this.profile_arr.length > 0) {
-                    this.$loading(true);
                     this.axios
                         .post(`/api/nursing/profile/${this.cusid}`,this.profile_arr)
                         .then((response) => {
-                            this.$loading(false);
-                            this.name = ''
+                            this.$swal({
+                                    position: 'top-end',
+                                    type: 'success',
+                                    title: '更新されました',
+                                    confirmButtonText: "はい",
+                                    confirmButtonColor: "#6cb2eb",
+                                    width: 250,
+                                    height: 200,
+                                }).then(response => {
+                                    document.getElementById('nursing').click();
+                                })
                         }).catch(error=>{
-
+                            
                         if(error.response.status == 422){
                         this.profile_arr = 'error';
                         this.errors = error.response.data.errors
 
                         }
                     }) ;
-                }
-
-                if(this.customer_info_push.length > 0) {
-                        // check
-                    this.axios
-                        .post(`/api/customer/profile/${this.cusid}`,this.customer_info_push)
-                        .then((response) => {
-                        }).catch(error=>{
-                        if(error.response.status == 422){
-                        this.save_customer_info = 'error';
-                        this.errors = error.response.data.errors
-                        }
-                    }) ;
-                }
-
-                if(this.staff_info_push.length   > 0) {
-                    this.axios
-                        .post(`/api/staff/profile/${this.cusid}`,this.staff_info_push)
-                        .then((response) => {
-                        }).catch(error=>{
-
-                        if(error.response.status == 422){
-                                this.save_staff_info = 'error';
-                                this.errors = error.response.data.error
-                        }
-                    }) ;
-                }
-                if(acceptance.length > 0) {
-                    this.axios
-                        .post(`/api/acceptance/transactions/${this.cusid}`,acceptance)
-                        .then((response) => {
-                        }).catch(error=>{
-                            if(error.response.status == 422) {
-                                acceptance = 'error';
-                                this.errors = error.response.data.errors
-                            }
-                    }) ;
-                }
-
-                if(this.chek_feature.length > 0) {
-                    this.axios
-                        .post(`/api/sfeature/update/${this.cusid}`,this.chek_feature)
-                        .then((response) => {
-
-
-                            }).catch(error=>{
-                            if(error.response.status == 422){
-                                this.chek_feature = 'error';
-                                this.errors = error.response.data.errors
-                            }
-                    }) ;
-                }
-
-                // if(this.stations.length > 0) {
-                //     this.axios
-                //     .post(`/api/station_junctions/update/${this.cusid}`,this.stations)
-                //     .then((response) => {
-
-
-                //         }).catch(error=>{
-                //         if(error.response.status == 422){
-                //             this.stations = 'error';
-                //             this.errors = error.response.data.errors
-                //         }
-                //     }) ;
-                // }
-               
-                if(this.gallery_list != 'error' && this.cooperate_list != 'error' && this.payment_list != 'error' && this.profile_arr != 'error' && this.customer_info_push  != 'error' && this.staff_info_push  != 'error' &&  acceptance!= 'error') {
-                      
-                    this.$swal({
-                        position: 'top-end',
-                        type: 'success',
-                        title: '更新されました',
-                        confirmButtonText: "はい",
-                        confirmButtonColor: "#6cb2eb",
-                        width: 250,
-                        height: 200,
-                    },)
-                    .then(response => {
-                    
-                        document.getElementById('nursing').click();
-                    })
-                      
-                }                
-                
+                } 
             },
             isNumberOnly: function(event) {
                 var input_data = $('#phone').val();

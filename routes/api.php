@@ -291,11 +291,11 @@ Route::get('townshiplist/{city_id}','NursingProfileController@getTownships');
 Route::get('hospitalinfo/{id}','HospitalProfileController@edit');
 Route::get('staffinfo/{id}', 'ProfilePublishController@getStaffbyCustomerId');
 
-Route::post('nursing/galleryupdate/{id}', 'NursingProfileController@galleryupdate');
+// Route::post('nursing/galleryupdate/{id}', 'NursingProfileController@galleryupdate');
 Route::post('hospital/galleryupdate/{id}', 'HospitalProfileController@galleryupdate');
 
-Route::post('nursing/cooperate/{id}', 'NursingProfileController@cooperateupdate');
-Route::post('nursing/paymentmethod/{id}', 'NursingProfileController@paymentupdate');
+// Route::post('nursing/cooperate/{id}', 'NursingProfileController@cooperateupdate');
+// Route::post('nursing/paymentmethod/{id}', 'NursingProfileController@paymentupdate');
 
 Route::post('nursing/profile/{id}', 'NursingProfileController@profileupdate');
 Route::post('hospital/profile/{id}', 'HospitalProfileController@profileupdate');
@@ -303,9 +303,9 @@ Route::post('hospital/profile/{id}', 'HospitalProfileController@profileupdate');
 // Route::post('schedule/update/{id}', 'ScheduleController@update');
 Route::get('schedule/{id}', 'ScheduleController@getSchedulebyCustomerId');
 
-Route::post('customer/profile/{id}', 'NursingProfileController@Customerprofileupdate');
-Route::post('staff/profile/{id}', 'NursingProfileController@Staffprofileupdate');
-Route::post('acceptance/transactions/{id}', 'NursingProfileController@AcceptanceTransactions');
+// Route::post('customer/profile/{id}', 'NursingProfileController@Customerprofileupdate');
+// Route::post('staff/profile/{id}', 'NursingProfileController@Staffprofileupdate');
+// Route::post('acceptance/transactions/{id}', 'NursingProfileController@AcceptanceTransactions');
 
 Route::get('medical/acceptancewithtransactions/{id}', 'MedicalController@getAcceptanceWithTransactions');
 

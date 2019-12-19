@@ -120,6 +120,7 @@
 <!-- 
 <div class="loader" style="display:none"></div> -->
 <div id="app">
+
 <!-- <div id="fav-box">
     <ul class="navbar-nav pad-free" id="headerbar">
         <li class="fav-item fav-color btn all-btn m-r-10" style="color: #000 !important;">
@@ -187,10 +188,10 @@
 <script src="{{ asset('js/custom.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/adsslider.js') }}" type="text/javascript"></script>
 
-<script type="text/javascript">
 
       
 
+<script type="text/javascript">
  $(document).ready(function() {
   
     
