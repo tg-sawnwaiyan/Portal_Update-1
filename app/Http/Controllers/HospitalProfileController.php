@@ -10,6 +10,10 @@ use DB;
 use App\Medical;
 use App\Category;
 
+use App\Customer;
+use App\SubjectJunctions;
+use App\SpecialFeaturesJunctions;
+
 class HospitalProfileController extends Controller
 {
     /**
@@ -174,35 +178,28 @@ class HospitalProfileController extends Controller
             $upload_img = move_uploaded_file($file, $destination);
         }        
     }
-
-    public function galleryupdate($id,Request $request) {
-        $request = $request->all();
-
-        $gallery = Gallery::where('customer_id', $id)
-                        ->delete();
-
-        for($i=0; $i<count($request); $i++) {
-            $data = array(
-                'customer_id' => $id,
-                'type' => $request[$i]['type'],
-                'photo'=>$request[$i]['photo'],
-                'title'=>$request[$i]['title'],
-                'description'=>$request[$i]['description'],
-                'created_at' => date('Y/m/d H:i:s'),
-                'updated_at' => date('Y/m/d H:i:s')
-            );
-            DB::table('galleries')->insert($data);
-        }
-    }
-
+    
     public function profileupdate($id,Request $request) {
         $request = $request->all();
+        
         print_r($request);
+        // Customer Profile
+        $customer = Customer::find($id);
+
+        $customer->name = $request[0]['name'];
+        $customer->email = $request[0]['email'];
+        $customer->phone = $request[0]['phone'];
+        $customer->address = $request[0]['address'];
+        $customer->townships_id = $request[0]['township']; 
+        $customer->save();
+        // End 
+
+        // Hospital Profile
         $hospital = HospitalProfile::where('customer_id',$id);
         $uploadData = array(
             'access' => $request[0]['access'],
             'specialist' =>  $request[0]['specialist'],
-            'details_info'=>  strip_tags($request[0]['details_info']),
+            'details_info'=>  $request[0]['detail_info'],
             'closed_day' =>  $request[0]['close_day'],
             'facilities' =>  $request[0]['facilities'],
             'website' =>  $request[0]['website'],
@@ -210,8 +207,73 @@ class HospitalProfileController extends Controller
             'latitude' =>  $request[0]['latitude'],
             'longitude' =>  $request[0]['longitude']
        );
-
        $hospital->update($uploadData);
+       // End 
+
+        // Schedule 
+        $schedule = Schedule::where('customer_id', $id)
+                    ->delete();
+
+        for($i=0; $i<2; $i++) {
+            if($i == 0) { $part = 'am'; } else { $part = 'pm'; }
+            $data = array(
+                'customer_id' => $id,
+                'mon' => $request[0]['schedule_list'][$i][0],
+                'tue' => $request[0]['schedule_list'][$i][1],
+                'wed' => $request[0]['schedule_list'][$i][2],
+                'thu' => $request[0]['schedule_list'][$i][3],
+                'fri' => $request[0]['schedule_list'][$i][4],
+                'sat' => $request[0]['schedule_list'][$i][5],
+                'sun' => $request[0]['schedule_list'][$i][6],
+                'part' => $part,
+                'created_at' => date('Y/m/d H:i:s'),
+                'updated_at' => date('Y/m/d H:i:s') 
+            );
+            DB::table('schedule')->insert($data);
+        // End
+        }
+
+        // Special Feature
+        $feature = SpecialFeaturesJunctions::where('customer_id', $id)
+                    ->delete();
+
+        for($indx=0; $indx<count($request[0]['chek_feature'][0]['special_feature_id']); $indx++) {
+            $new_feature = new SpecialFeaturesJunctions();
+            $new_feature->customer_id = $id;
+            $new_feature->special_feature_id = $request[0]['chek_feature'][0]['special_feature_id'][$indx];
+            $new_feature->save();
+        }
+        // End
+
+        // SubjectJuncitonsUpdate 
+        $subject = SubjectJunctions::where('customer_id', $id)
+                    ->delete();
+
+        for($indx=0; $indx<count($request[0]['subjects'][0]['subject_id']); $indx++) {
+            $new_subject = new SubjectJunctions();
+            $new_subject->customer_id = $id;
+            $new_subject->subject_id = $request[0]['subjects'][0]['subject_id'][$indx];
+            $new_subject->save();
+        }
+        // End
+
+        // Photo And Video 
+        $gallery = Gallery::where('customer_id', $id)
+                        ->delete();
+
+        for($i=0; $i<count($request[0]['gallery_list']); $i++) {
+            $data = array(
+                'customer_id' => $id,
+                'type' => $request[0]['gallery_list'][$i]['type'],
+                'photo'=> $request[0]['gallery_list'][$i]['photo'],
+                'title'=> $request[0]['gallery_list'][$i]['title'],
+                'description'=> $request[0]['gallery_list'][$i]['description'],
+                'created_at' => date('Y/m/d H:i:s'),
+                'updated_at' => date('Y/m/d H:i:s')
+            );
+            DB::table('galleries')->insert($data);
+        }
+        // End
     }
 
 }

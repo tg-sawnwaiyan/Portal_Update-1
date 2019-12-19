@@ -278,9 +278,11 @@
             },
             methods: {
                    getAllJobs() {
+                    this.$loading(true);
                     this.axios.get("/api/job/index").then(response => {
-                        console.log(response.data)
+                        this.$loading(false);
                         this.jobs = response.data.profilejob;
+                  
                         this.customer_id = response.data.user;
                         if (this.jobs.length > this.size) {
                         this.pagination = true;
