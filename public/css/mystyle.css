@@ -1348,7 +1348,6 @@ body::-webkit-scrollbar-thumb {
 }
 
 .full-content {
-    /* padding: 0px;*/
     width: 100%;
     margin: 0 auto;
     box-shadow: 0px 1px 2px 0px #ccc !important;
@@ -1356,7 +1355,7 @@ body::-webkit-scrollbar-thumb {
     -ms-box-shadow: 0px 1px 2px 0px #ccc !important;
     -moz-box-shadow: 0px 1px 2px 0px #ccc !important;
     min-height: 100vh;
-    background: #fff;
+    background: #F9FAFB;
 }
 
 .main-wrap {
@@ -2567,7 +2566,7 @@ li.userprofile-name>a {
 }
 
 #admin-side-menu .nav-link {
-    color: #d2571c;
+    color: #444;
 }
 
 .nav-link {
@@ -2705,8 +2704,83 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
 }
 
 .custom-sidebar {
-    /* height: 100vh;*/
-    /* background: #b7dad2;  */
+    position: fixed;
+    top: 65px;
+    bottom: 0;
+    width: 280px;
+    height: 100%;
+    background: #fff;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
+    -ms-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
+    -webkit-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    transition: all .2s ease;
+}
+
+.content-all {
+    width: 100%;
+    min-height: 100vh;
+    padding-left: 280px;
+}
+
+.custom-sidebar ul.adminview-sidebar li a {
+    border: 1px solid #eee;
+    margin: 8px;
+    background: #f5f5f5;
+    padding: 5px;
+    border-radius: 0;
+}
+
+.custom-sidebar ul.adminview-sidebar li a.router-link-exact-active {
+    border-left: 3px solid #ff9563;
+}
+
+.custom-sidebar ul.adminview-sidebar li i {
+    padding-right: 10px;
+    color: #d2571c !important;
+}
+
+.userview-sidebar {
+    background-color: #f5f5f5;
+    padding-top: 180px;
+    height: 100vh;
+    padding-left: 22px;
+    padding-right: 7px;
+    margin-top: 4px;
+}
+
+
+/* .adminview-sidebar {
+    position: fixed;
+    top: 90px;
+    left: 10px;
+    height: calc(100% - 100px);
+    background: transparent;
+    overflow-y: auto;
+} */
+
+#menu-overlay {
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.4;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+}
+
+.custom-sidebar .admin-tit {
+    display: inline-block;
+    margin: 20px 20px 10px 40px;
+    font-size: 18px;
+}
+
+.custom-sidebar .admin-tit i {
+    margin-right: 10px;
 }
 
 
@@ -2869,20 +2943,19 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
     color: #ff9563 !important;
 }
 
-.custom-sidebar ul li {
-    /* border-bottom: 1px dashed #eee; */
-    border: 1px solid #eee;
-    margin: 12px;
-    background: #f5f5f5;
+.nav-pills .nav-link {
+    padding: 5px 15px !important;
 }
 
 .router-link-exact-active {
-    background-color: rgba(0, 0, 0, 0.1);
+    /* background-color: rgba(0, 0, 0, 0.1); */
     border-left-color: #ff9563;
     font-weight: bold;
     border-radius: 0px !important;
     border-left: 3px solid #ff9563;
-    color: #fff !important;
+    /* color: #fff !important; */
+    color: #ff9563 !important;
+    font-weight: bold;
 }
 
 #headerbar {
@@ -4808,10 +4881,6 @@ a:hover {
     border-top-right-radius: 0px !important;
 }
 
-#v-pills-tab li a {
-    padding: 0.5rem 10px 0.5rem 15px;
-}
-
 .text-pre {
     white-space: -moz-pre-wrap !important;
     white-space: -pre-wrap;
@@ -4858,49 +4927,6 @@ a:hover {
 
 .nav-pills .nav-link.active>a {
     color: #fff !important;
-}
-
-
-/*user view sidebar*/
-
-.userview-sidebar {
-    background-color: #f5f5f5;
-    padding-top: 180px;
-    height: 100vh;
-    padding-left: 22px;
-    padding-right: 7px;
-    margin-top: 4px;
-}
-
-.adminview-sidebar {
-    position: fixed;
-    top: 70px;
-    width: 13%;
-    height: calc(100% - 100px);
-    background: transparent;
-    overflow-y: auto;
-    /* box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1); */
-}
-
-.custom-sidebar {
-    /* height: 100vh;*/
-    /* background: #b7dad2;  */
-    /* position: absolute;
-    z-index: 2;
-    display: none;
-    left: 0px; */
-}
-
-#menu-overlay {
-    display: none;
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-    opacity: 0.4;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    z-index: 1;
 }
 
 
@@ -8499,6 +8525,21 @@ ul.nur-caro-card>li.list-group-item {
 }
 
 
+/* start for news_catsearch  admin page */
+
+.news_catsearch {
+    display: flex !important;
+    align-items: flex-end;
+}
+
+.news_catsearch label {
+    width: 20%
+}
+
+
+/* end for news_catsearch  admin page */
+
+
 /*--------------------------------------------------------------------------------responsive -----------------------------------------------------------------------*/
 
 @media only screen and (max-width:1024px) {
@@ -8511,6 +8552,12 @@ ul.nur-caro-card>li.list-group-item {
     .tab-pane {
         padding-left: 0px !important;
         padding-right: 0px !important;
+    }
+    .news_catsearch label {
+        width: 30%;
+    }
+    .news_catsearch section {
+        width: 265px;
     }
 }
 
@@ -8529,7 +8576,14 @@ ul.nur-caro-card>li.list-group-item {
     }
 }
 
-@media only screen and (max-width:480px) {}
+@media only screen and (max-width:320px) {
+    .searchButton {
+        width: 35% !important;
+    }
+    .news_catsearch label {
+        width: 55%;
+    }
+}
 
 @media only screen and (max-width: 414px) {
     .sp-414 {
@@ -8540,15 +8594,54 @@ ul.nur-caro-card>li.list-group-item {
     }
 }
 
-@media only screen and (max-width:320px) {
-    .searchButton {
-        width: 35% !important;
+@media only screen and (max-width:480px) {
+    .news_catsearch {
+        padding: 15px;
+    }
+    .news_catsearch label {
+        display: none;
+    }
+    .admin_page_edit {
+        text-align: justify !important;
+        padding: 10px;
+    }
+    .admin_page_edit .edit-borderbtn,
+    .admin_page_edit .delete-borderbtn {
+        min-width: 55px;
+        font-size: 12px;
+    }
+    .custom_title {
+        position: relative;
+        margin: 5px 0;
+    }
+    .custom_title:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        display: inline-block;
+        width: 25px;
+        height: 3px;
+        left: 15px;
+        border-radius: 2px;
+        background: #d2571c;
+    }
+    .scroll_responsive {
+        overflow-x: scroll;
+    }
+    .custom-table {
+        width: 555px;
     }
 }
 
 @media screen and (max-width: 979px) and (min-width: 752px) {
     .map-box-reponsive {
         display: block;
+    }
+    .scroll_responsive {
+        overflow-x: scroll;
+    }
+    .custom-table {
+        width: 550px;
     }
 }
 
@@ -8925,6 +9018,82 @@ ul.nur-caro-card>li.list-group-item {
         cursor: pointer;
     }
     /*end header */
+    /* Admin Sidebar  */
+    .custom-sidebar .admin-tit {
+        margin: 20px 0 10px 0;
+        text-align: center;
+    }
+    .admin-tit span {
+        display: none;
+    }
+    .custom-sidebar:hover .admin-tit {
+        display: flex;
+        margin: 20px 0 10px 40px;
+        align-items: center;
+    }
+    .nav-txt {
+        display: none;
+    }
+    .custom-sidebar {
+        width: 70px;
+        z-index: 99;
+    }
+    .custom-sidebar:hover {
+        width: 280px !important;
+    }
+    .content-all {
+        padding-left: 70px;
+    }
+    .custom-sidebar:hover .admin-tit span {
+        display: block;
+    }
+    .custom-sidebar:hover .nav-txt {
+        display: inline-block;
+    }
+    .custom-sidebar:hover ul.adminview-sidebar li a {
+        text-align: left !important;
+    }
+    .custom-sidebar ul.adminview-sidebar li a {
+        padding: 0 !important;
+        text-align: center;
+    }
+    .custom-sidebar ul.adminview-sidebar li i {
+        padding-right: 0;
+    }
+    .custom-sidebar:hover ul.adminview-sidebar li i {
+        padding-right: 10px;
+    }
+    .custom-sidebar:hover ul.adminview-sidebar li a {
+        padding: 5px 25px !important;
+    }
+    /* .custom-sidebar .admin-tit {
+        margin: 0;
+    }
+    .custom-sidebar ul.adminview-sidebar li {
+        position: relative;
+        margin: 0;
+    }
+    .nav-pills .nav-link {
+        padding: 0 !important;
+    }
+    .custom-sidebar ul.adminview-sidebar li:hover .nav-txt {
+        position: absolute;
+        display: block;
+        left: 50px;
+        top: 0;
+        width: 150px;
+        border: 1px solid #eee;
+        background: #f5f5f5;
+        padding: 5px 0;
+        text-align: center;
+    }
+    .custom-sidebar ul.adminview-sidebar li:hover #pageSubmenu i {
+        display: none;
+    }
+    .custom-sidebar ul.adminview-sidebar li:hover #pageSubmenu {
+        padding: 0;
+    } */
+    /*End Admin Sidebar  */
 }
 
 @media only screen and (max-width: 1024px) {

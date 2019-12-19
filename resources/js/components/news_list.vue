@@ -22,48 +22,48 @@
                             <i class="fas fa-plus-circle"></i> 新しいデータ作成
                         </a>
                     </div>
-                    <div v-else class="container-fuid">
+                    <div v-else class="">
                         <h4 class="main-color m-b-10">ニュース検索</h4>
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="form-group">
-                                    <div class="col-6 float-left">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
                                         <input type="text" class="form-control" placeholder="ニュース検索" id="search-item" @keyup="searchbyCategory()" />
                                     </div>
-                                    <div class="col-6 float-right row align-items-baseline">
-                                        <label for="selectBox col-2 col-form-label">カテゴリー</label>
-                                        <div class="col-10">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 news_catsearch">
+                                                <label for="selectBox" >カテゴリー</label>
+
                                             <select class="form-control" id="selectBox" @change="searchbyCategory()">
-                                                <option selected="selected" value>全体</option>
+                                                <option selected="selected" value >全体</option>
                                                 <option v-for="category in categories" :key="category.id" v-bind:value="category.id">{{category.name}}</option>
                                             </select>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <hr />
                         <h5 class="header">ニュース一覧</h5>
-                        <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
-                        <div v-else class="container-fuid">
+                        <div v-if="nosearch_msg" class="no_search_data">検索したデータ見つかりません。</div>
+                        <div v-else class="">
                             <div v-for="newsList in displayItems" :key="newsList.id" class="card card-default m-b-20">
 
                                 <div class="card-body news-post">
                                     <div class="row">
-                                        <div class="col-md-2" v-if="newsList.photo !=null" >
+                                        <div class="col-lg-2 col-md-3" v-if="newsList.photo !=null" >
                                             <img :src="'/upload/news/'+ newsList.photo" alt class="img-fluid" @error="imgUrlAlt" />
                                         </div>
                                         <div class="col-md-2" v-else> <img src="images/noimage.jpg" alt class="img-fluid"/></div>
-                                        <div class="col-md-10">
+                                        <div class="col-lg-10 col-md-9">
                                             <!-- <div class="row col-12 mb-2"> -->
-                                                <b>
-                        <router-link
-                          :to="{name: 'newdetails', params:{id:newsList.id}}"
-                          class="row col-12 mb-2"
-                        >{{newsList.title}}</router-link>
-                        <!-- <router-link :to="{name: 'job_details', params:{id:news_list.id}}" class="mr-auto">{{news_list.title}}<router-link> -->
-                        <!-- <a hrဖef="../news/news_details.html" class="mr-auto">{{newsList.title}} </a> -->
-                      </b>
+                                            <b>
+                                                <router-link
+                                                :to="{name: 'newdetails', params:{id:newsList.id}}"
+                                                class="row col-12 mb-2"
+                                                >{{newsList.title}}</router-link>
+                                                <!-- <router-link :to="{name: 'job_details', params:{id:news_list.id}}" class="mr-auto">{{news_list.title}}<router-link> -->
+                                                <!-- <a hrဖef="../news/news_details.html" class="mr-auto">{{newsList.title}} </a> -->
+                                            </b>
                                             <!-- </div> -->
 
                                             <p>{{newsList.main_point}}</p>
