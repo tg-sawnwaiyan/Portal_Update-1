@@ -8,6 +8,7 @@
                 <p class="admin-tit"><i class="fas fa-tachometer-alt"></i><span>管理画面</span></p>
                 <ul class="adminview-sidebar pc">
                     <li>
+                        <!-- <span>Visit Site</span> -->
                         <router-link to="/" class="nav-link"><i class="fa fa-home"></i>&nbsp;<span class="nav-txt">ホーム</span></router-link>
                     </li>
                     <li v-if="$auth.check(2)">

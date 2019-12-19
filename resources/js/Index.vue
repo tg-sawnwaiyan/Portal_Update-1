@@ -2,7 +2,8 @@
     <div>
         <div id="main" class="pad-free" :class="!$auth.check() ? inner : full" v-if="this.$route.path !== '/register' && this.$route.path !== '/login' && this.$route.path !== '/reset' && this.$route.path !== '/resetpassword'">
             <button onclick="topFunction()" id="myBtn">Top</button>
-            <HeaderMenu></HeaderMenu>
+            <HeaderMenu v-if="$auth.check() && !visit"></HeaderMenu>
+            <HeaderMenu v-if="!$auth.check()"></HeaderMenu>
 
             <div class="sidebar-scroll container-fluid">
                 <div class="row">                    
@@ -176,6 +177,7 @@
         nursing_fav:'',     
         inner : 'main-content',
         full: 'full-content',
+        visit: false,
       }
     },
     components: {
