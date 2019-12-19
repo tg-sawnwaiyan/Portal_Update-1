@@ -48,7 +48,7 @@
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination">
                                     <li class="page-item">
-                                        <span class="spanclass pc-768" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
+                                        <span class="spanclass pc-480" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
                                     </li>
                                     <li class="page-item">
                                         <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i><span class="pc-paginate"> 前へ</span></span>
@@ -60,7 +60,7 @@
                                         <span class="spanclass" @click="next"><span class="pc-paginate">次へ </span><i class='fas fa-angle-right'></i></span>
                                     </li>
                                     <li class="page-item">
-                                        <span class="spanclass pc-768" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
+                                        <span class="spanclass pc-480" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
                                     </li>
                                 </ul>
                             </nav>
