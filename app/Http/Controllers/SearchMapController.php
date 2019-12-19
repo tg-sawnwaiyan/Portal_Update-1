@@ -557,7 +557,7 @@ class SearchMapController extends Controller
             $arr[] = ( $hos_data[$i]->hos_id);
            
         }
-        if($local != 0)
+        if($local != 0 && isset($arr))
         {
             for($i = 0;$i<count($local);$i++)
             {
