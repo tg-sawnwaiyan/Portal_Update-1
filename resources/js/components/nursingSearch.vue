@@ -1102,7 +1102,8 @@
                     this.paginationFactor=277;
                 // this.paginationFactor=277;
 
-                console.log(this.window.width);
+              
+              
 
             }
             else if(this.window.width >= 768 && this.window.width < 992) {
@@ -1121,7 +1122,7 @@
             else if (this.window.width >= 1024 && this.window.width < 1200) {
                 this.windowSize = 3;
                 this.paginationFactor=412;
-                console.log(this.window.width);
+           
 
             }
 
@@ -1267,11 +1268,11 @@
                 },
                 })
                 .then((response) => {
-                    console.log(response)
+                  
                     if(response.data.nursing.length > 0)
                     {
 
-                        $("#mymap").css("display", "block");
+                        $("#mymap").css({'display' : 'block','height' : '500px','width':'100%'});
                         $("#filtertable").css("display", "block");
                         $("#nursing-search").css("display", "block");
                         this.changeMap(response);
@@ -1314,7 +1315,6 @@
                 $('#showSearchMap').addClass('select');
                 $('#filter').addClass('select');
                 $("#mymap").css("display", "none");
-                console.log('mymap')
                 $("#nursing-search").css("display", "none");
                 $("#filtertable").css("display", "none");
                 document.getElementById('search-free-word').value = '';
@@ -1469,56 +1469,49 @@
                     }
                 }
                 var township_name = townshipName;
-
-                if(this.townshipID[0] == "-1" || this.townshipID.length == 0){
-
-                    this.axios.get("/api/cityJson/"+theCity).then(respon => {
+               
+               if(theCity == null && (this.townshipID[0] == "-1" || this.townshipID.length == 0))
+               {
+                    this.loading = false
+                    
+               }
+               else if(theCity != null && (this.townshipID[0] == "-1" || this.townshipID.length == 0)){
+                
+                    this.loading = false;
+                        this.axios.get("/api/cityJson/"+theCity).then(respon => {
                         this.loading = false
-                        var city_coordinates = respon.data
-                        this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
-                        this.boundariesGoogleMap(lat,lng,this.coordinate);            
-                    }); //end get city
+                            var city_coordinates = respon.data
+                            this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
+                            this.boundariesGoogleMap(lat,lng,this.coordinate);            
+                        }); //end get city
 
-                }else{
+                } 
+                
+                else{
+                 
                     this.axios.get('/api/townshipJson/'+township_name).then(res => {
                         this.loading = false
                         var city_coordinates = res.data
                         this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
-                        this.boundariesGoogleMap(lat,lng,this.coordinate);       
+                         this.boundariesGoogleMap(lat,lng,this.coordinate);       
                     })
                 }
             },
 
             boundariesGoogleMap(lat,lng,coor){        
-                try {      
-                    var data = coor.reduce((acc, val) => acc.concat(val), []);
-                    for (let i = 0; i < data.length; i++) {
-                        this.map.data.addGeoJson(data[i]); 
-                    }
-                    var bounds = new google.maps.LatLngBounds();
-                    this.map.data.forEach(function(feature){
-                        var geo = feature.getGeometry();
-                        geo.forEachLatLng(function(LatLng){
-                        bounds.extend(LatLng)
-                        });
-                    });
-                    this.map.fitBounds(bounds);
-
-                } catch (error) {
-                    var data = coor.reduce((acc, val) => acc.concat(val), []);
-                    for (let i = 0; i < data.length; i++) {
-                        this.map.data.addGeoJson(data[i]);
-                    }
-                    var bounds = new google.maps.LatLngBounds();
-                    this.map.data.forEach(function(feature){
-                        var geo = feature.getGeometry();
-                        geo.forEachLatLng(function(LatLng){
-                        bounds.extend(LatLng)
-                        });
-                    });
-                    this.map.fitBounds(bounds);
-
+                 
+                var data = coor.reduce((acc, val) => acc.concat(val), []);
+                for (let i = 0; i < data.length; i++) {
+                    this.map.data.addGeoJson(data[i]); 
                 }
+                var bounds = new google.maps.LatLngBounds();
+                this.map.data.forEach(function(feature){
+                    var geo = feature.getGeometry();
+                    geo.forEachLatLng(function(LatLng){
+                    bounds.extend(LatLng)
+                    });
+                });
+                this.map.fitBounds(bounds);
 
                 this.map.data.setStyle({
                 strokeColor: "red",
@@ -1603,7 +1596,7 @@
                         gestureHandling: 'greedy'
                     }
                     });
-                    // bounds.extend(position);
+                    bounds.extend(position);
 
 
 
@@ -1620,7 +1613,7 @@
                     });
 
                 }
-                // this.map.fitBounds(bounds);
+                this.map.fitBounds(bounds);
                 // this.map.panToBounds(bounds);
             },
 
@@ -1822,7 +1815,7 @@
                         this.coordinates(theCity,lat,lng);
                     }
                     else{
-                    console.log('else');
+                   
                         var mapProp = {
                         center: new google.maps.LatLng(35.6804, 139.7690),
                         zoom: 5,

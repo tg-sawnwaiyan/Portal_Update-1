@@ -180,7 +180,7 @@
 <!-- Include after Vue (before closing body) -->
 <script src="{{ asset('js/vue-fullpage.min.js') }}"></script>
 <script src="{{ asset('js/sweetalert2.all.js') }}"></script>
-<!-- script for editor -->
+<!-- script for editor -->    
 <script src="{{ asset('js/popper.min.js') }}"></script>
 <!-- end script for editor -->
 <script src="{{ asset('js/jquery.scrolling-tabs.min.js') }}" type="text/javascript"></script>
@@ -189,7 +189,7 @@
 
 <script type="text/javascript">
 
-
+      
 
  $(document).ready(function() {
   
