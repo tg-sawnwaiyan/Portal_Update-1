@@ -10,6 +10,7 @@ use App\method_payment;
 use App\Customer;
 use App\Staff;
 use App\AcceptanceTransaction;
+use App\SpecialFeaturesJunctions;
 use DB;
 
 class NursingProfileController extends Controller
@@ -37,16 +38,6 @@ class NursingProfileController extends Controller
             $destination = 'upload/nursing_profile/Imagepanorama/'.$file->getClientOriginalName();
             $upload_img = move_uploaded_file($file, $destination);
         }
-        
-        // for($i = 0; $i<sizeof($request)-1; $i++){
-        //     if($request['type'] == 'photo') {
-        //         $destination = 'upload/nursing_profile/'.$request[$i]['photo'];
-        //     }
-        //     if($request['type'] == 'panorama') {                
-        //         $destination = 'upload/nursing_profile/Imagepanorama/'.$request['file_'.$i];
-        //     }
-        //     $upload_img = move_uploaded_file($request['file_'.$i], $destination);
-        // } 
     }
     public function movePhoto(Request $request) {
         $request = $request->all();
@@ -56,109 +47,11 @@ class NursingProfileController extends Controller
         }        
     }
 
-    public function galleryupdate($id,Request $request) {
-        $request = $request->all();
-        if(count($request["video"]) > 0){
-            $del_gallery = Gallery::where(['customer_id'=> $id,'type'=>'video'])->delete(); 
-            for($i=0; $i<count($request["video"]); $i++) {
-                $gallery = new Gallery;
-                $gallery->customer_id = $id;
-                $gallery->type = $request["video"][$i]['type'];
-                $gallery->photo = $request["video"][$i]['photo'];
-                $gallery->title = $request["video"][$i]['title'];
-                $gallery->description = $request["video"][$i]['description'];
-    
-                $gallery->save();
-            }
-        }
-        if(count($request["image"]) > 0){
-            $del_gallery = Gallery::where(['customer_id'=> $id,'type'=>'photo'])->delete(); 
-            for($i=0; $i<count($request["image"]); $i++) {
-                $gallery = new Gallery;
-                $gallery->customer_id = $id;
-                $gallery->type = $request["image"][$i]['type'];
-                $gallery->photo = $request["image"][$i]['photo'];
-                $gallery->title = $request["image"][$i]['title'];
-                $gallery->description = $request["image"][$i]['description'];
-    
-                $gallery->save();
-            }
-        }
-        if(count($request["panorama"]) > 0){
-            $del_gallery = Gallery::where(['customer_id'=> $id,'type'=>'panorama'])->delete(); 
-            for($i=0; $i<count($request["panorama"]); $i++) {
-                $gallery = new Gallery;
-                $gallery->customer_id = $id;
-                $gallery->type = $request["panorama"][$i]['type'];
-                $gallery->photo = $request["panorama"][$i]['photo'];
-                $gallery->title = $request["panorama"][$i]['title'];
-                $gallery->description = $request["panorama"][$i]['description'];
-    
-                $gallery->save();
-            }
-        }
-        // $del_gallery = Gallery::where('customer_id', $id) ->delete();
-       
-        
-    }
-
-    public function cooperateupdate($id,Request $request) {
-        $request = $request->all();
-
-        $medical = Cooperate_Medical::where('customer_id', $id)
-                        ->delete();
-
-        for($i=0; $i<count($request); $i++) {
-            $cop_medical = new Cooperate_Medical;
-            $cop_medical->customer_id = $id;
-            $cop_medical->name = $request[$i]['name'];
-            $cop_medical->clinical_subject = $request[$i]['subject'];
-            $cop_medical->details = $request[$i]['details'];
-            $cop_medical->medical_expense = $request[$i]['expense'];
-            $cop_medical->remark = $request[$i]['remark'];
-
-            $cop_medical->save();
-        }
-       
-    }
-
-    public function paymentupdate($id,Request $request) {
-        $request = $request->all();
-
-        $payment = method_payment::where('customer_id', $id)
-                        ->delete();
-
-        for($i=0; $i<count($request); $i++) {
-            $m_payment = new method_payment;
-            $m_payment->customer_id = $id;
-            $m_payment->payment_name = $request[$i]['payment_name'];
-            $m_payment->expense_moving = $request[$i]['expense_moving'];
-            $m_payment->monthly_fees = $request[$i]['monthly_fees'];
-            $m_payment->living_room_type = $request[$i]['living_room_type'];
-            $m_payment->area = $request[$i]['area'];
-            $m_payment->deposit = $request[$i]['deposit'];
-            $m_payment->other_use = $request[$i]['other_use'];
-            $m_payment->rent = $request[$i]['rent'];
-            $m_payment->admin_expense = $request[$i]['admin_expense'];
-            $m_payment->food_expense = $request[$i]['food_expense'];
-            $m_payment->nurse_care_surcharge = $request[$i]['nurse_care_surcharge'];
-            $m_payment->other_monthly_cost = $request[$i]['other_monthly_cost'];
-            $m_payment->refund_system = $request[$i]['refund_system'];
-            $m_payment->depreciation_period = $request[$i]['depreciation_period'];
-            $m_payment->initial_deprecration = $request[$i]['initial_deprecration'];
-            $m_payment->other_message_refund = $request[$i]['other_message_refund'];
-
-            $m_payment->save();
-
-        }
-        
-    }
-
     public function profileupdate($id,Request $request) {
         $request = $request->all();
-    
-        $nursing = NursingProfile::where('customer_id',$id)->first();
 
+        $nursing = NursingProfile::where('customer_id',$id)->first();
+        // Nursing Profile 
         $nursing->access = $request[0]['access'];
         $nursing->business_entity = $request[0]['business_entity'];
         $nursing->website = $request[0]['website'];
@@ -186,64 +79,158 @@ class NursingProfileController extends Controller
         $nursing->latitude = $request[0]['latitude'];
         $nursing->longitude = $request[0]['longitude'];
         $nursing->save();
-    }
+        // End
 
-    public function Customerprofileupdate($id,Request $request) {
-        $request = $request->all();
+        // Cooperate List
+        $medical = Cooperate_Medical::where('customer_id', $id)
+                        ->delete();
+
+        for($i=0; $i<count($request[0]['cooperate_list']); $i++) {
+            $cop_medical = new Cooperate_Medical;
+            $cop_medical->customer_id = $id;
+            $cop_medical->name = $request[0]['cooperate_list'][$i]['name'];
+            $cop_medical->clinical_subject = $request[0]['cooperate_list'][$i]['subject'];
+            $cop_medical->details = $request[0]['cooperate_list'][$i]['details'];
+            $cop_medical->medical_expense = $request[0]['cooperate_list'][$i]['expense'];
+            $cop_medical->remark = $request[0]['cooperate_list'][$i]['remark'];
+
+            $cop_medical->save();
+        }
+        // End
+
+        // Payment List
+        $payment = method_payment::where('customer_id', $id)
+                        ->delete();
+
+        for($i=0; $i<count($request[0]['payment_list']); $i++) {
+            $m_payment = new method_payment;
+            $m_payment->customer_id = $id;
+            $m_payment->payment_name = $request[0]['payment_list'][$i]['payment_name'];
+            $m_payment->expense_moving = $request[0]['payment_list'][$i]['expense_moving'];
+            $m_payment->monthly_fees = $request[0]['payment_list'][$i]['monthly_fees'];
+            $m_payment->living_room_type = $request[0]['payment_list'][$i]['living_room_type'];
+            $m_payment->area = $request[0]['payment_list'][$i]['area'];
+            $m_payment->deposit = $request[0]['payment_list'][$i]['deposit'];
+            $m_payment->other_use = $request[0]['payment_list'][$i]['other_use'];
+            $m_payment->rent = $request[0]['payment_list'][$i]['rent'];
+            $m_payment->admin_expense = $request[0]['payment_list'][$i]['admin_expense'];
+            $m_payment->food_expense = $request[0]['payment_list'][$i]['food_expense'];
+            $m_payment->nurse_care_surcharge = $request[0]['payment_list'][$i]['nurse_care_surcharge'];
+            $m_payment->other_monthly_cost = $request[0]['payment_list'][$i]['other_monthly_cost'];
+            $m_payment->refund_system = $request[0]['payment_list'][$i]['refund_system'];
+            $m_payment->depreciation_period = $request[0]['payment_list'][$i]['depreciation_period'];
+            $m_payment->initial_deprecration = $request[0]['payment_list'][$i]['initial_deprecration'];
+            $m_payment->other_message_refund = $request[0]['payment_list'][$i]['other_message_refund'];
+
+            $m_payment->save();
+        }
+        // End
+
+        // Customer Info List
         $customer = Customer::find($id);
 
-        $customer->name = $request[0]['name'];
-        $customer->email = $request[0]['email'];
-        $customer->phone = $request[0]['phone'];
-        $customer->address = $request[0]['address'];
-        $customer->townships_id = $request[0]['township'];
+        $customer->name = $request[0]['customer_info_push'][0]['name'];
+        $customer->email = $request[0]['customer_info_push'][0]['email'];
+        $customer->phone = $request[0]['customer_info_push'][0]['phone'];
+        $customer->address = $request[0]['customer_info_push'][0]['address'];
+        $customer->townships_id = $request[0]['customer_info_push'][0]['township'];
 
         $customer->save();
-    }
+        // End
 
-    public function Staffprofileupdate($id,Request $request) {
-        
-        $request = $request->all();
+        // Staff Info
         $staff = Staff::where('customer_id', $id)->first();
     
         if($staff) {
             $staff->customer_id = $id;
-            $staff->staff = $request[0]['staff'];
-            $staff->nursing_staff = $request[0]['nursing_staff'];
-            $staff->min_num_staff = $request[0]['min_num_staff'];
-            $staff->num_staff = $request[0]['num_staff'];
-            $staff->remarks = $request[0]['nursing_remarks'];
+            $staff->staff = $request[0]['staff_info_push'][0]['staff'];
+            $staff->nursing_staff = $request[0]['staff_info_push'][0]['nursing_staff'];
+            $staff->min_num_staff = $request[0]['staff_info_push'][0]['min_num_staff'];
+            $staff->num_staff = $request[0]['staff_info_push'][0]['num_staff'];
+            $staff->remarks = $request[0]['staff_info_push'][0]['nursing_remarks'];
             $staff->save();
         } else {
             $new_staff = new Staff;
             $new_staff->customer_id = $id;
-            $new_staff->staff = $request[0]['staff'];
-            $new_staff->nursing_staff = $request[0]['nursing_staff'];
-            $new_staff->min_num_staff = $request[0]['min_num_staff'];
-            $new_staff->num_staff = $request[0]['num_staff'];
-            $new_staff->remarks = $request[0]['nursing_remarks'];
+            $new_staff->staff = $request[0]['staff_info_push'][0]['staff'];
+            $new_staff->nursing_staff = $request[0]['staff_info_push'][0]['nursing_staff'];
+            $new_staff->min_num_staff = $request[0]['staff_info_push'][0]['min_num_staff'];
+            $new_staff->num_staff = $request[0]['staff_info_push'][0]['num_staff'];
+            $new_staff->remarks = $request[0]['staff_info_push'][0]['nursing_remarks'];
             $new_staff->save();
         }
-      
-    }
+        // End
 
-    public function AcceptanceTransactions($id,Request $request) {
-        $request = $request->all();
-
+        // Accepatance
         $transition = AcceptanceTransaction::where('customer_id', $id)
                         ->delete();
 
-        for($i=0; $i<count($request); $i++) { 
-            if($request[$i] != '') {
+        for($i=0; $i<count($request[0]['acceptance']); $i++) { 
+            if($request[0]['acceptance'][$i] != '') {
                 $accept_transaction = new AcceptanceTransaction;
                 $accept_transaction->customer_id = $id;
-                $accept_transaction->medical_acceptance_id = $request[$i]['id'];
-                $accept_transaction->accept_type = $request[$i]['type'];
+                $accept_transaction->medical_acceptance_id = $request[0]['acceptance'][$i]['id'];
+                $accept_transaction->accept_type = $request[0]['acceptance'][$i]['type'];
                 $accept_transaction->save();
             } 
         }
+        // End
 
+        // Feature
+        $feature = SpecialFeaturesJunctions::where('customer_id', $id)
+                    ->delete();
+
+        for($indx=0; $indx<count($request[0]['chek_feature'][0]['special_feature_id']); $indx++) {
+            $new_feature = new SpecialFeaturesJunctions();
+            $new_feature->customer_id = $id;
+            $new_feature->special_feature_id = $request[0]['chek_feature'][0]['special_feature_id'][$indx];
+            $new_feature->save();
+        }
+        // End
+
+        // Gallary 
+        if(count($request[0]["video"]) > 0){
+            $del_gallery = Gallery::where(['customer_id'=> $id,'type'=>'video'])->delete(); 
+            for($i=0; $i<count($request[0]["video"]); $i++) {
+                $gallery = new Gallery;
+                $gallery->customer_id = $id;
+                $gallery->type = $request[0]["video"][$i]['type'];
+                $gallery->photo = $request[0]["video"][$i]['photo'];
+                $gallery->title = $request[0]["video"][$i]['title'];
+                $gallery->description = $request[0]["video"][$i]['description'];
+    
+                $gallery->save();
+            }
+        }
+        if(count($request[0]["image"]) > 0){
+            $del_gallery = Gallery::where(['customer_id'=> $id,'type'=>'photo'])->delete(); 
+            for($i=0; $i<count($request[0]["image"]); $i++) {
+                $gallery = new Gallery;
+                $gallery->customer_id = $id;
+                $gallery->type = $request[0]["image"][$i]['type'];
+                $gallery->photo = $request[0]["image"][$i]['photo'];
+                $gallery->title = $request[0]["image"][$i]['title'];
+                $gallery->description = $request[0]["image"][$i]['description'];
+    
+                $gallery->save();
+            }
+        }
+        if(count($request[0]["panorama"]) > 0){
+            $del_gallery = Gallery::where(['customer_id'=> $id,'type'=>'panorama'])->delete(); 
+            for($i=0; $i<count($request[0]["panorama"]); $i++) {
+                $gallery = new Gallery;
+                $gallery->customer_id = $id;
+                $gallery->type = $request[0]["panorama"][$i]['type'];
+                $gallery->photo = $request[0]["panorama"][$i]['photo'];
+                $gallery->title = $request[0]["panorama"][$i]['title'];
+                $gallery->description = $request[0]["panorama"][$i]['description'];
+    
+                $gallery->save();
+            }
+        }
+        // End
     }
+
     public function getCities($township_id) {
 
         $query = "SELECT townships.city_id,'' AS township_list FROM townships WHERE id = $township_id";
