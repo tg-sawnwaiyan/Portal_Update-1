@@ -71,17 +71,21 @@
         // get the redirect object
         var redirect = this.$auth.redirect()
         var _this = this
+        this.$loading(true);
         this.$auth.login({
           params: {
             email: _this.email,
             password: _this.password
           },
           success: function() {
+            this.$loading(false);
             // handle redirection
             const redirectTo = redirect ? redirect.from.name : 'News'
             this.$router.push({name: redirectTo})
           },
           error: function(e) {
+            this.$loading(false);
+            console.log(e);
             _this.has_error = true
           },
           rememberMe: true,

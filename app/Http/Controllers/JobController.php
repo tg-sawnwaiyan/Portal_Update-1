@@ -12,6 +12,7 @@ class JobController extends Controller
 
     public function index()
     {
+      
         $query = "SELECT jobs.* ,customers.type_id,      
         (CASE customers.type_id WHEN '2' THEN CONCAT((500000+customers.id),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((200000+customers.id),'-',LPAD(jobs.id, 4, '0')) END) as jobid
         FROM `jobs`
