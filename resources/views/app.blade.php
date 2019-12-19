@@ -155,9 +155,10 @@
 
 <script type="text/javascript">
 
-
+ 
  $(document).ready(function() {
-    
+  
+   $('.loader').load();    
          /*added for back to top*/
      var mybutton = document.getElementById("myBtn");
         // When the user scrolls down 20px from the top of the document, show the button
@@ -176,6 +177,10 @@
             $("html, body").animate({ scrollTop: 0 }, "slow");
 	            return false;
         }  
+
+      
+
+     
 });
 
 
