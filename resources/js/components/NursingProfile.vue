@@ -1053,10 +1053,10 @@ export default {
                 }
                 else {
                     $('#cooperate'+id).removeClass("fas fa-sort-down");
-                    $('.cooperateChangeLink'+id).removeClass("fas fa-sort-down");
+                    $('.cooperateChangeLink'+id).removeClass("fas fa-sort-down"     );
                     $('#cooperate'+id).addClass("fas fa-sort-down animate rotate");
                     $('#cooperateChangeLink'+id).hide('medium');
-                }
+                }       
 
             },
 
@@ -1235,7 +1235,7 @@ export default {
 
                 this.axios
                     .post(`/api/nursing/galleryupdate/${this.cusid}`,{'video':this.video_list, 'image': this.img_list, 'panorama': this.panorama_list})
-                    .then((response) => {            
+                    .then((response) => {                  
 
                     }).catch(error=>{
                     if(error.response.status == 422){
@@ -1302,7 +1302,7 @@ export default {
                     }) ;
                 }
 
-                if(this.staff_info_push.length > 0) {
+                if(this.staff_info_push.length   > 0) {
                     this.axios
                         .post(`/api/staff/profile/${this.cusid}`,this.staff_info_push)
                         .then((response) => {
@@ -1353,20 +1353,23 @@ export default {
                 //         }
                 //     }) ;
                 // }
+               
                 if(this.gallery_list != 'error' && this.cooperate_list != 'error' && this.payment_list != 'error' && this.profile_arr != 'error' && this.customer_info_push  != 'error' && this.staff_info_push  != 'error' &&  acceptance!= 'error') {
-                  
-                    // this.$swal({
-                    //     position: 'top-end',
-                    //     type: 'success',
-                    //     title: '更新されました',
-                    //     confirmButtonText: "はい",
-                    //     confirmButtonColor: "#6cb2eb",
-                    //     width: 250,
-                    //     height: 200,
-                    // }).then(response => {
+                      
+                    this.$swal({
+                        position: 'top-end',
+                        type: 'success',
+                        title: '更新されました',
+                        confirmButtonText: "はい",
+                        confirmButtonColor: "#6cb2eb",
+                        width: 250,
+                        height: 200,
+                    },)
+                    .then(response => {
+                    
                         document.getElementById('nursing').click();
-                    // })
-                  
+                    })
+                      
                 }                
                 
             },
