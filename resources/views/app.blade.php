@@ -191,10 +191,7 @@
 
 
 
-<<<<<<< HEAD
 <script type="text/javascript">
-=======
->>>>>>> 26c24ce2dd00dcaea15a932b44712b39a399334a
  $(document).ready(function() {
   
     
