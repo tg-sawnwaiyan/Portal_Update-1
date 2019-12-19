@@ -15,12 +15,9 @@ Vue.use(Vuex);
 //start editor
 //start onepage
 import 'animate.css'
-// import 'fullpage-vue/src/fullpage.css'
-// import VueFullpage from 'fullpage-vue'
-// Vue.use(VueFullpage)
-//end onepage
-//end editor
-//vue carousel
+
+
+
 
 let globalData = new Vue({
     data: { 
@@ -85,6 +82,7 @@ Vue.use(require('vue-moment'));
 
 //vuejs loading
 import VueLoading from 'vuejs-loading-plugin'
+import { Button } from 'iview'
 Vue.use(VueLoading, {
     text: '送信中'
 })
@@ -138,8 +136,4 @@ const app = new Vue({
 
 });
 
-// export function createApp() {
-//   return new Vue({
-//     render: h => h(App)
-//   });
-// }
+

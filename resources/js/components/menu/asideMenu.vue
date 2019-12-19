@@ -36,55 +36,57 @@
                     <li v-if="$auth.check(1)"><router-link to="/jobofferlist" class="nav-link"><i class="fa fa-edit" ></i>&nbsp;&nbsp; <span class="nav-txt">仕事一覧</span> </router-link></li>
 
                     <li v-if="$auth.check()">
-                        <a href="#" @click.prevent="$auth.logout()" class="nav-link"><i class="fa fa-sign-out-alt"></i>&nbsp;<span class="nav-txt">ログアウト</span></a>
+                        <a href="#" @click.prevent="$auth.logout()" class="nav-link" ref="myid"><i class="fa fa-sign-out-alt"></i>&nbsp;<span class="nav-txt">ログアウト</span></a>
                     </li>
                 </ul>
             </div>
-        </div>
+        </div>     
     </div>
 </template>
-<style  scoped>
-.sidebar-menu {
-    position: absolute;
-    top: 100px;
-    left: 180px;
-}
-.slide-enter-active {
-   -moz-transition-duration: 0.3s;
-   -webkit-transition-duration: 0.3s;
-   -o-transition-duration: 0.3s;
-   transition-duration: 0.3s;
-   -moz-transition-timing-function: ease-in;
-   -webkit-transition-timing-function: ease-in;
-   -o-transition-timing-function: ease-in;
-   transition-timing-function: ease-in;
-   transition: transform 0.5s ease;
-}
+<script>
+</script>
 
-.slide-leave-active {
-   -moz-transition-duration: 0.3s;
-   -webkit-transition-duration: 0.3s;
-   -o-transition-duration: 0.3s;
-   transition-duration: 0.3s;
-   -moz-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-   -webkit-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-   -o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-}
-</style>
+
+
 <script>
   export default {
     data() {
       return {
-          isVisible: false,
-          sidebar_width : "70",
+        status:false,
       }
     },
-    mounted() {
+created() {
+    axios.interceptors.response.use((response) => {
+        console.log(response.data)
+        if(response.data.status == "Token is Expired" && this.status == false){
 
+            this.status = true
+        Swal.fire({
+            title: 'Your Login session is Expired!',
+            text: "Please Login Again.",
+            icon: 'warning',
+            showCancelButton: false,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'OK'
+        }).then((result) => {  
+            // console.log()
+            
+            if (result.value) {
+                this.$refs.myid.click();
+                response.data.status = "logout success"
+
+            }
+        })
+        }
+        
+        return response
+
+        })
 
     },
     methods: {
+       
         // testlogout(){
         //     this.$auth.logout({
         //         success: function() {
@@ -96,15 +98,13 @@
 
         // }
 
-        // menuToggle(){
-        //     $("#admin-side-menu").toggle('medium');
-        //     $("#menu-overlay").toggle('medium');
-        // },
-        collapse() {
-            this.isVisible = true 
+        menuToggle(){
+            $("#admin-side-menu").toggle('medium');
+            $("#menu-overlay").toggle('medium');
         }
-
     }
 
   }
 </script>
+
+
