@@ -38,13 +38,13 @@
                             <div class="card card-default m-b-20" v-for="facility in displayItems" :key="facility.id">
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-9 m-t-8">
+                                        <div class="col-md-6 col-sm-8 m-t-8">
                                             <p>{{facility.description}}</p>
                                         </div>
-                                        <div class="col-md-3 text-right" style="margin-top: 8px;">
+                                        <div class="col-md-6 col-sm-4 text-right admin_page_edit">
                                             <router-link :to="{name: 'editfacility', params: { id: facility.id }}" class="btn edit-borderbtn">編集</router-link>
 
-                                            <button class="btn delete-borderbtn" @click="deleteFacility(facility.id)">削除</button>
+                                            <button class="btn text-danger delete-borderbtn" @click="deleteFacility(facility.id)">削除</button>
                                         </div>
                                     </div>
                                 </div>
@@ -54,19 +54,19 @@
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination">
                                     <li class="page-item">
-                                        <span class="spanclass" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
+                                        <span class="spanclass pc-768" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
                                     </li>
                                     <li class="page-item">
-                                        <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i> 前へ</span>
+                                        <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i><span class="pc-paginate"> 前へ</span></span>
                                     </li>
                                     <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
                                         <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
                                     </li>
                                     <li class="page-item">
-                                        <span class="spanclass" @click="next">次へ <i class='fas fa-angle-right'></i></span>
+                                        <span class="spanclass" @click="next"><span class="pc-paginate">次へ </span><i class='fas fa-angle-right'></i></span>
                                     </li>
                                     <li class="page-item">
-                                        <span class="spanclass" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
+                                        <span class="spanclass pc-768" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
                                     </li>
                                 </ul>
                             </nav>

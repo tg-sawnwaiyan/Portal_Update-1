@@ -7,8 +7,6 @@ import VueAxios from 'vue-axios'
 import VueRouter from 'vue-router'
 import Index from './Index'
 import auth from './auth'
-import Slide from 'vue-burger-menu'
-Vue.use(Slide);
 
 import router from './router'
 import Vuex from 'vuex';

@@ -31,9 +31,9 @@
                         </div>
                         <hr />
                         <h5 class="header">特徴一覧</h5>
-                        <div class="col-md-12 pad-free scrolldiv">
+                        <div class="col-md-12 pad-free scrolldiv p0-480">
                             <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
-                            <div v-else class="container-fuid">
+                            <div v-else class="container-fuid scroll_responsive">
                                 <table class="table table-hover custom-table">
                                     <thead style="background-color:rgb(183, 218, 210);">
                                         <tr>
@@ -51,7 +51,7 @@
                                             <th class="text-right">
                                                 <!-- <button class="btn btn-sm btn-primary all-btn" v-if="getUser.status == 1">Approved</button> -->
                                                 <router-link :to="{name:'specialfeature', params:{id : feature.id}}" class="btn edit-borderbtn">編集</router-link>
-                                                <a class="btn text-danger delete-borderbtn" @click="deleteFeature(feature.id)">削除</a>
+                                                <button class="btn text-danger delete-borderbtn" @click="deleteFeature(feature.id)">削除</button>
                                             </th>
                                         </tr>
                                     </tbody>
@@ -60,19 +60,19 @@
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination">
                                             <li class="page-item">
-                                                <span class="spanclass" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
+                                                <span class="spanclass pc-768" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
                                             </li>
                                             <li class="page-item">
-                                                <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i> 前へ</span>
+                                                <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i> <span class="pc-paginate">前へ</span></span>
                                             </li>
                                             <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
                                                 <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
                                             </li>
                                             <li class="page-item">
-                                                <span class="spanclass" @click="next">次へ <i class='fas fa-angle-right'></i></span>
+                                                <span class="spanclass" @click="next"><span class="pc-paginate">次へ</span> <i class='fas fa-angle-right'></i></span>
                                             </li>
                                             <li class="page-item">
-                                                <span class="spanclass" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
+                                                <span class="spanclass pc-768" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
                                             </li>
                                         </ul>
                                     </nav>

@@ -2,7 +2,7 @@
     <div class="col-md-12 pad-free">
         <div class="col-md-12 col-md-12 tab-content tab-content1 tabs pad-free border-style">
             <div class="col-md-12 scrolldiv p-0">
-                <div class="scrolldiv col-12">
+                <div class="scrolldiv col-12 p0-480">
                     <div v-if="norecord_msg" class="card card-default card-wrap">
                         <p class="record-ico">
                             <i class="fa fa-exclamation"></i>
@@ -26,47 +26,49 @@
 
                                 <div class="card-body news-post">
                                     <div class="row">
-                                        <div class="col-md-2">
+                                        <div class="col-lg-2 col-md-3">
                                             <!-- <img src="/images/hospitalpage.jpg" alt="" class="img-fluid"> -->
                                             <!-- <img :src="(customer.logo)" class="col-md-12 " alt=" " style="height:150px;" > -->
                                             <img :src="'/upload/hospital_profile/'+ customer.logo" class="img-fluid" alt="cust" v-if="customer.type_id == 2" @error="imgUrlAlt" />
                                             <img :src="'/upload/nursing_profile/'+ customer.logo" class="img-fluid" alt="cust" v-if="customer.type_id != 2" @error="imgUrlAlt" />
                                         </div>
-                                        <div class="row col-md-10">
-                                            <div class="col-md-2 max-width13">
-                                                <strong>名前:</strong>
-                                            </div>
-                                            <div class="col-md-10">{{customer.name}}</div>
-                                            <div class="col-md-2 max-width13">
-                                                <strong>状態:</strong>
-                                            </div>
-                                            <div class="col-md-10" v-if="customer.recordstatus == '1'">Activate</div>
-                                            <div class="col-md-10" v-else>Deactivate</div>
-
-                                            <div class="col-md-2 max-width13">
-                                                <strong>メールアドレス:</strong>
-                                            </div>
-                                            <div class="col-md-10">{{customer.email}}</div>
-                                            <!-- <div class="col-md-2 max-width13"><strong>Logo:</strong></div><div class="col-md-10">{{customer.logo}}</div> -->
-                                            <div class="col-md-2 max-width13">
-                                                <strong>電話番号:</strong>
-                                            </div>
-                                            <div class="col-md-10">{{customer.phone}}</div>
-                                            <div class="col-md-2 max-width13">
-                                                <strong>住所:</strong>
-                                            </div>
-                                            <div class="col-md-10">{{customer.address}}</div>
-                                            <div class="row col-12 mt-2">
-                                                <div class="col-4 col-offset-4 pl-3">
-                                                    <button class="btn delete-borderbtn" @click="deleteCustomer(customer.id)">削除</button>
-                                                    <!-- <router-link :to="{name:'custedit',params:{id:customer.id}}" class="btn main-bg-color all-btn white">Edit</router-link> -->
-                                                    <!-- <button class="btn confirm-borderbtn" v-if="customer.status == 0">確認済</button> -->
-
-                                                    <button class="btn confirm-borderbtn" :id="'confirm-btn'+customer.id" v-if="customer.status == 0" @click="comfirm(customer.id)">確認</button>
+                                        <div class="col-lg-10 col-md-9">
+                                            <div class="row">
+                                                <div class="col-lg-2 col-md-4 custom_title">
+                                                    <strong>名前:</strong>
                                                 </div>
+                                                <div class="col-lg-10 col-md-8">{{customer.name}}</div>
+                                                <div class="col-lg-2 col-md-4 custom_title">
+                                                    <strong >状態:</strong>
+                                                </div>
+                                                <div class="col-lg-10 col-md-8" v-if="customer.recordstatus == '1'">Activate</div>
+                                                <div class="col-lg-10 col-md-8" v-else>Deactivate</div>
+
+                                                <div class="col-lg-2 col-md-4 custom_title">
+                                                    <strong>メールアドレス:</strong>
+                                                </div>
+                                                <div class="col-lg-10 col-md-8">{{customer.email}}</div>
+                                                <!-- <div class="col-md-2 max-width13"><strong>Logo:</strong></div><div class="col-md-10">{{customer.logo}}</div> -->
+                                                <div class="col-lg-2 col-md-4 custom_title">
+                                                    <strong>電話番号:</strong>
+                                                </div>
+                                                <div class="col-lg-10 col-md-8">{{customer.phone}}</div>
+                                                <div class="col-lg-2 col-md-4 custom_title">
+                                                    <strong>住所:</strong>
+                                                </div>
+                                                <div class="col-lg-10 col-md-8">{{customer.address}}</div>
+                                                </div>
+                                                <div class="row mt-3">
+                                                    <div class="col-md-6">
+                                                        <button class="btn delete-borderbtn" @click="deleteCustomer(customer.id)">削除</button>
+                                                        <!-- <router-link :to="{name:'custedit',params:{id:customer.id}}" class="btn main-bg-color all-btn white">Edit</router-link> -->
+                                                        <!-- <button class="btn confirm-borderbtn" v-if="customer.status == 0">確認済</button> -->
+
+                                                        <button class="btn confirm-borderbtn" :id="'confirm-btn'+customer.id" v-if="customer.status == 0" @click="comfirm(customer.id)">確認</button>
+                                                    </div>
                                             </div>
                                         </div>
-                                    </div>
+                                        </div>
                                 </div>
                             </div>
                         </div>
@@ -74,19 +76,19 @@
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination">
                                     <li class="page-item">
-                                        <span class="spanclass" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
+                                        <span class="spanclass pc-768" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
                                     </li>
                                     <li class="page-item">
-                                        <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i> 前へ</span>
+                                        <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i><span class="pc-paginate"> 前へ</span></span>
                                     </li>
                                     <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
                                         <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
                                     </li>
                                     <li class="page-item">
-                                        <span class="spanclass" @click="next">次へ <i class='fas fa-angle-right'></i></span>
+                                        <span class="spanclass" @click="next"><span class="pc-paginate">次へ </span><i class='fas fa-angle-right'></i></span>
                                     </li>
                                     <li class="page-item">
-                                        <span class="spanclass" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
+                                        <span class="spanclass pc-768" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
                                     </li>
                                 </ul>
                             </nav>

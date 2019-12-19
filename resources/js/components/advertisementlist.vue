@@ -36,46 +36,48 @@
                             <div v-for="ads in displayItems" :key="ads.id" class="card card-default m-b-20">
                                 <div class="card-body news-post">
                                     <div class="row">
-                                        <div class="col-md-2">
+                                        <div class="col-md-3">
                                             <img :src="'/upload/advertisement/'+ ads.photo" class="img-fluid" alt="ads" @error="imgUrlAlt" />
                                         </div>
-                                        <div class="row col-md-10">
-                                            <div class="col-md-2 max-width16">
+                                    <div class="col-md-9">
+                                        <div class="row">
+                                            <div class=" col-md-3 custom_title">
                                                 <strong>タイトル :</strong>
                                             </div>
-                                            <div class="col-md-10">{{ads.title}}</div>
+                                            <div class="col-md-9">{{ads.title}}</div>
                                             <!-- <div class="col-md-2 max-width16"><strong>描写  :</strong></div><div class="col-md-10">{{ads.description}}</div> -->
-
-                                            <div class="row col-12 mt-2">
-                                                <div class="col-4 col-offset-4 pl-3">
+                                        </div>
+                                            <div class="row mt-3">
+                                                <div class="col-md-6">
                                                     <router-link :to="{name: 'editadvertisement', params: { id: ads.id }}" class="btn edit-borderbtn">編集</router-link>
                                                     <button class="btn delete-borderbtn" @click="deleteAds(ads.id)">削除</button>
                                                     <!-- <button class="btn delete-borderbtn" @click="toggleModal">削除</button>                                 -->
                                                 </div>
-                                            </div>
+
                                         </div>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    
+
                         <div class="offset-md-4 col-md-8 mt-3" v-if="pagination">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination">
                                     <li class="page-item">
-                                        <span class="spanclass" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
+                                        <span class="spanclass pc-768" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
                                     </li>
                                     <li class="page-item">
-                                        <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i> 前へ</span>
+                                        <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i><span class="pc-paginate"> 前へ</span></span>
                                     </li>
                                     <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
                                         <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
                                     </li>
                                     <li class="page-item">
-                                        <span class="spanclass" @click="next">次へ <i class='fas fa-angle-right'></i></span>
+                                        <span class="spanclass" @click="next"><span class="pc-paginate">次へ </span><i class='fas fa-angle-right'></i></span>
                                     </li>
                                     <li class="page-item">
-                                        <span class="spanclass" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
+                                        <span class="spanclass pc-768" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
                                     </li>
                                 </ul>
                             </nav>
