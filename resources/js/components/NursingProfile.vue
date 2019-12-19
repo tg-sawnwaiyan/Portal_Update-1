@@ -1053,10 +1053,10 @@ export default {
                 }
                 else {
                     $('#cooperate'+id).removeClass("fas fa-sort-down");
-                    $('.cooperateChangeLink'+id).removeClass("fas fa-sort-down");
+                    $('.cooperateChangeLink'+id).removeClass("fas fa-sort-down"     );
                     $('#cooperate'+id).addClass("fas fa-sort-down animate rotate");
                     $('#cooperateChangeLink'+id).hide('medium');
-                }
+                }       
 
             },
 

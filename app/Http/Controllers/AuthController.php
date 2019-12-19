@@ -35,12 +35,12 @@ class AuthController extends Controller
     }
     public function login(Request $request)
     {
-
+       
         $credentials = $request->only('email', 'password');
         $session = 60;
         JWTAuth::factory()->setTTL($session);
         if ($token = JWTAuth::attempt($credentials)) {
-            return response()->json(['status' => 'success'], 200)->header('Authorization', $token);
+            return response()->json(['status' => 'success'], 200)->header('Authorization', $token); 
         }
         return response()->json(['error' => 'login_error'], 401);
     }
@@ -49,13 +49,15 @@ class AuthController extends Controller
         return response()->json(auth()->user());
     }
     public function logout()
-    {   Auth::logout();
+    {   
+        Auth::logout();
         JWTAuth::parseToken()->invalidate();
         return response()->json([
             'status' => 'success',
             'msg' => 'Logged out Successfully.'
         ], 200);
     }
+    
     public function user(Request $request)
     {
         $user = User::find(Auth::user()->id);
@@ -82,7 +84,7 @@ class AuthController extends Controller
             'access_token' => $token,
             'user' => auth()->user(),
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 3600,
+            'expires_in' => auth()->factory()->getTTL() * 1,
         ];
         return response()->json($responseArray);
        } catch (Exception $e) {

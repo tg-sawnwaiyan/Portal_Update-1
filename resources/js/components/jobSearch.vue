@@ -858,7 +858,7 @@ export default {
 
           var search_word = $('#search-free-word').val();
         }
-
+        this.$loading(true);
         this.axios.get('api/getjobsearch/'+search_word,{
 
           params:{
@@ -868,7 +868,7 @@ export default {
               empstatus:this.empstatus
           },
         }).then((response)=>{
-
+          this.$loading(false);
           this.job_data = response.data.job;
           this.cities = response.data.city
 
@@ -903,7 +903,7 @@ export default {
             else{
                 var search_word = "all";
             }
-
+             this.$loading(true);
             this.axios.get('api/getjobsearch/'+ search_word,{
                params:{
                     id: -1,
@@ -914,6 +914,7 @@ export default {
                 },
             })
             .then((response)=>{
+               this.$loading(false);
               if(response.data.job.length > 0)
               {
 
@@ -937,13 +938,7 @@ export default {
               else{
                   $('#job_search').css("display","none");
               }
-
-
-
             });
-
-
-
         },
 
     gotoJobdetail(jid) {
@@ -987,6 +982,7 @@ export default {
                 this.locast = localStorage.getItem("nursing_fav");
             }
 
+            this.$loading(true);
             this.axios.get('api/getmap',{
             params:{
               id: this.id,
@@ -997,7 +993,7 @@ export default {
           },
           })
           .then((response)=>{
-
+          this.$loading(false);
           $('.jobselect').removeClass('jobselect');
             this.cities = response.data.city
             this.getCity = response.data.getCity

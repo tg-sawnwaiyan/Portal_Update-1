@@ -236,8 +236,11 @@
                         fData.append('types', app.type)
                         fData.append('phone', app.phone)
         // end
+        this.$loading(true);
         this.axios.post('/api/register', fData)
-                            .then(response => {
+                            .then(response =>
+                             {
+                                 this.$loading(false);
             this.$swal({
                 position: 'top-end',
                 type: 'success',
