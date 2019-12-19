@@ -1,6 +1,6 @@
 <template>
- <div class="row">
-      <div class="col-12">
+ <div class="row t-r m-r-5">
+      <div class="col-12 t-l">
           <div class="card">
               <div class="card-body">
                     <div class="row">

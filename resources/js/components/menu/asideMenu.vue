@@ -3,7 +3,7 @@
        <div class="sidebar-menu"  @click="collapse()">
            click
        </div>
-        <div class="custom-sidebar" id="admin-side-menu"  v-bind:style="{width: isVisible ? '280px' : '70px'}">
+        <div class="custom-sidebar" id="admin-side-menu">
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                 <p class="admin-tit"><i class="fas fa-tachometer-alt"></i><span>管理画面</span></p>
                 <ul class="adminview-sidebar pc">

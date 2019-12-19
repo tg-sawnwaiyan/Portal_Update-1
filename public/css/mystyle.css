@@ -2191,6 +2191,10 @@ ul.sub-ul li {
     margin-top: 39px;
 }
 
+.m-t-50 {
+    margin-top: 50px;
+}
+
 .m-lr-0 {
     margin-left: 0px;
     margin-right: 0px;
@@ -8540,7 +8544,33 @@ ul.nur-caro-card>li.list-group-item {
 /* end for news_catsearch  admin page */
 
 
+/*create_news*/
+
+.create_nw_p {
+    padding: 11px;
+}
+
+
 /*--------------------------------------------------------------------------------responsive -----------------------------------------------------------------------*/
+
+@media only screen and (max-width:1440px) {
+    .card_height {
+        float: left;
+        height: 170px;
+        cursor: pointer;
+    }
+}
+
+@media only screen and (max-width:1280px) {
+    .card_height {
+        float: left;
+        height: 170px;
+        cursor: pointer;
+    }
+    .t-r {
+        margin-right: 59px;
+    }
+}
 
 @media only screen and (max-width:1024px) {
     .wd-in {
@@ -8548,6 +8578,63 @@ ul.nur-caro-card>li.list-group-item {
     }
     .map-wrap {
         overflow: auto;
+    }
+    #create_news {
+        width: 283px;
+        margin-left: 12px;
+    }
+    #create_news .title {
+        padding: 2px;
+        font-size: 11px;
+        padding-left: 10px;
+        margin-top: -7px;
+    }
+    .t_card {
+        max-width: none;
+    }
+    /*category*/
+    .t-r {
+        margin-right: 45px;
+    }
+    /*subject*/
+    .o-r1 {
+        margin-right: 21px;
+        margin-top: 20px;
+    }
+    /*advertisement*/
+    .a-d1 {
+        margin-right: 0px;
+    }
+    .a-d2 {
+        /* margin-left: 48px; */
+        margin-top: 20px;
+    }
+    /*create_news*/
+    .title {
+        font-size: 13px;
+    }
+    .card_height {
+        float: left;
+        height: 170px;
+        cursor: pointer;
+    }
+}
+
+@media screen and (max-width: 979px) and (max-width:752px) {
+    /* .map-box-reponsive {
+        display: block;
+    } */
+    #create_news .title {
+        padding: 2px;
+        font-size: 13px;
+        padding-left: 10px;
+        margin-top: -7px;
+    }
+    #news.t_card2 {
+        margin-left: 40px;
+    }
+    #news.t_card4 {
+        margin-left: 30px;
     }
     .tab-pane {
         padding-left: 0px !important;
@@ -8565,6 +8652,56 @@ ul.nur-caro-card>li.list-group-item {
     .wd-in {
         width: 256px;
     }
+    #create_news {
+        width: 231px;
+    }
+    #create_news .title {
+        padding: 2px;
+        font-size: 12px;
+        padding-left: 10px;
+        margin-top: -7px;
+    }
+    .t_card {
+        max-width: none;
+    }
+    .t_card2 {
+        margin-left: 40px;
+    }
+    .t_card4 {
+        margin-left: 40px;
+    }
+    .card_height {
+        float: left;
+        height: 190px;
+        cursor: pointer;
+    }
+    /*category*/
+    .t-r {
+        margin-left: 17px;
+        margin-right: 0px;
+        margin-top: 20px;
+    }
+    .t-l {
+        margin-left: 39px;
+    }
+    /*category*/
+    /*occupation*/
+    .o-r1 {
+        margin-right: 0px;
+    }
+    .o-r2 {
+        margin-left: 48px;
+        margin-top: 20px;
+    }
+    /*occupation*/
+    /*advertisement*/
+    .a-d1 {
+        margin-right: 53px;
+    }
+    .a-d2 {
+        margin-left: 78px;
+        margin-top: 20px;
+    }
     .map-wrap {
         display: none;
     }
@@ -8576,7 +8713,17 @@ ul.nur-caro-card>li.list-group-item {
     }
 }
 
+.card_height {
+    float: left;
+    height: 190px;
+    cursor: pointer;
+}
+
 @media only screen and (max-width:320px) {
+    /*create_news*/
+    .create_nw_p {
+        padding: 0px;
+    }
     .searchButton {
         width: 35% !important;
     }
@@ -8592,9 +8739,17 @@ ul.nur-caro-card>li.list-group-item {
     .pc-414 {
         display: none !important;
     }
+    /*create_news*/
+    .create_nw_p {
+        padding: 0px;
+    }
 }
 
 @media only screen and (max-width:480px) {
+    /*create_news*/
+    .create_nw_p {
+        padding: 0px;
+    }
     .news_catsearch {
         padding: 15px;
     }
@@ -8631,6 +8786,46 @@ ul.nur-caro-card>li.list-group-item {
     .custom-table {
         width: 555px;
     }
+    .t_card {
+        margin-left: 22px;
+    }
+    #create_news .title {
+        padding: 14px;
+        font-size: 12px;
+        padding-left: 10px;
+        margin-top: -7px;
+    }
+    .card_height {
+        float: left;
+        height: 236px;
+        cursor: pointer;
+    }
+    .mb {
+        margin-bottom: 20px;
+    }
+    /*category*/
+    .t-r {
+        margin-right: -8px;
+    }
+    .t-l {
+        margin-left: 1px;
+    }
+    /*occupation*/
+    .o-r1 {
+        margin-right: 19px;
+    }
+    .o-r2 {
+        margin-left: 29px;
+    }
+    /*occupation*/
+    /*advertisement*/
+    .a-d1 {
+        margin-right: 0px;
+    }
+    .a-d2 {
+        margin-left: 12px;
+        margin-top: 20px;
+    }
 }
 
 @media screen and (max-width: 979px) and (min-width: 752px) {
@@ -8644,6 +8839,8 @@ ul.nur-caro-card>li.list-group-item {
         width: 550px;
     }
 }
+
+@media only screen and (max-width:320px) {}
 
 
 /**************card carousel***********************/

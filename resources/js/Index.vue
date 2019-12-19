@@ -1,18 +1,18 @@
 <template>
     <div>
-        <div id="main" class="pad-free" :class="!$auth.check() ? inner : full" v-if="this.$route.path !== '/register' && this.$route.path !== '/login'">
+        <div id="main" class="pad-free" :class="!$auth.check() ? inner : full" v-if="this.$route.path !== '/register' && this.$route.path !== '/login' && this.$route.path !== '/reset' && this.$route.path !== '/resetpassword'">
             <button onclick="topFunction()" id="myBtn">Top</button>
             <HeaderMenu></HeaderMenu>
 
             <div class="sidebar-scroll container-fluid">
                 <div class="row">                    
                     <asideMenu v-if="$auth.check()"></asideMenu>
-                    <div id="menu-overlay" @click="menuToggle()"></div>
-            <!-- login ================================================================================================== -->
+                    <!-- <div id="menu-overlay" @click="menuToggle()"></div> -->
+                <!-- login ================================================================================================== -->
                     <div v-if="$auth.check()" id="content-all" class="content-all">
 
                         <div class="maintab-content" id="v-pills-tabContent">
-                            <span @click="menuToggle()">Click</span>
+                            <!-- <span @click="menuToggle()">Click</span> -->
                             <!--section one-->
                             <section>
                                 <div class="container-fluid main-wrapper">
@@ -62,7 +62,7 @@
                         </div>
                     </div>
 
-            <!-- not login================================================================================================================ -->
+                <!-- not login================================================================================================================ -->
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad-free"  v-if="!$auth.check()" id="content-all">
                         <div class="maintab-content" id="v-pills-tabContent">
                             <!--section one-->

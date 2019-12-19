@@ -1,7 +1,7 @@
 <template>
 
-<div class="row">
-      <div class="col-12">
+<div class="row o-r1 m-r-5">
+      <div class="col-12 o-r2">
           <div class="card">
               <div class="card-body">
                   <div class="row">
