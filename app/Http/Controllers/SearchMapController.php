@@ -809,7 +809,7 @@ class SearchMapController extends Controller
             $theCity = 'Tokyo';
         }
        
-        $path = public_path().('/google-map-json/gadm36_jpn_1.json');
+        $path = base_path().('/google-map-json/gadm36_jpn_1.json');
         $json = file_get_contents($path);
         ini_set('memory_limit','-1');
         $obj = json_decode(preg_replace('/[\x00-\x1F\x80-\xFF]/', '',$json), true );
@@ -833,7 +833,7 @@ class SearchMapController extends Controller
     public function townshipJson($township_name)
     {
         $postalCode = explode(",",$township_name);
-        $path = public_path().('/google-map-json/japan-cities_5percent.json');
+        $path = base_path().('/google-map-json/japan-cities_5percent.json');
         $json = file_get_contents($path);
         ini_set('memory_limit','-1');
         $obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $json), true );
