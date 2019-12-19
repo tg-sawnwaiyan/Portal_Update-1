@@ -1329,37 +1329,37 @@ export default {
                 quillEditor
         },
        data() {
-                return {
-                        fac_list: [],
-                        img_arr:[],img_list:[],
-                        video_arr:[], video_list:[],gallery_list:[],
-                        feature_list:[],
-                        profile_type:'hospital',
-                        schedule_arr:[],shedule_am:[],shedule_pm:[],
-                        schedule_list:[],
-                        customer_info:[],
-                        customer_info_push:[],
-                        hospital_info:[],  save_hospital_info:[],
-                        chek_feature : [],
-                        subjects:[],
-                        city: '',
-                        postal: '',clinical_subj:[],
-                        isRotate1: false,
-                        isRotate2: false,
-                        isRotate3: false,
-                        isRotate4: false,
-                        isRotate5: false,
-                          editorOption:{
-                        debug:'info',
-                        placeholder:'Type your post...',
-                        readonly:true,
-                        theme:'snow',
-                        access_val: '',
-                        detail_info: '', stations:[], station_list:[],                        
-                },
-                ph_length: false,
-                ph_num: false,
-                }
+            return {
+                fac_list: [],
+                img_arr:[],img_list:[],
+                video_arr:[], video_list:[],gallery_list:[],
+                feature_list:[],
+                profile_type:'hospital',
+                schedule_arr:[],shedule_am:[],shedule_pm:[],
+                schedule_list:[],
+                customer_info:[],
+                customer_info_push:[],
+                hospital_info:[],  save_hospital_info:[],
+                chek_feature : [],
+                subjects:[],
+                city: '',
+                postal: '',clinical_subj:[],
+                isRotate1: false,
+                isRotate2: false,
+                isRotate3: false,
+                isRotate4: false,
+                isRotate5: false,
+                    editorOption:{
+                debug:'info',
+                placeholder:'Type your post...',
+                readonly:true,
+                theme:'snow',
+                access_val: '',
+                detail_info: '', stations:[], station_list:[],                        
+            },
+            ph_length: false,
+            ph_num: false,
+            }
         },
         created(){
 
@@ -1557,6 +1557,7 @@ export default {
                 this.isRotate4 = !this.isRotate4;
             },
             Create_Profile () {
+                this.$loading(true);
                     this.customer_info = [];
                     var name = $('.customer-name').val();
                     var email = $('.customer-email').text();
@@ -1665,25 +1666,27 @@ export default {
                       
                     if(this.save_hospital_info.length > 0) {
                         this.axios
-                            .post(`/api/hospital/profile/${this.cusid}`,this.save_hospital_info)
-                            .then((reponse) => {
-                                this.$swal({
-                                    position: 'top-end',
-                                    type: 'success',
-                                    title: '更新されました',
-                                    confirmButtonText: "はい",
-                                    confirmButtonColor: "#6cb2eb",
-                                    width: 250,
-                                    height: 200,
-                                }).then(response => {
-                                    document.getElementById('nursing').click();
-                                })
-                            }).catch(error=>{
-                                if(error.response.status == 422){
-                                    this.save_hospital_info = 'error';
-                                    this.errors = error.response.data.errors
-                                }
-                            }) ;
+                        .post(`/api/hospital/profile/${this.cusid}`,this.save_hospital_info)
+                        .then((reponse) => {
+                            this.$swal({
+                                position: 'top-end',
+                                type: 'success',
+                                title: '更新されました',
+                                confirmButtonText: "はい",
+                                confirmButtonColor: "#6cb2eb",
+                                width: 250,
+                                height: 200,
+                            }).then(response => {
+                                document.getElementById('nursing').click();
+                            })
+                            this.$loading(false);
+                        }).catch(error=>{
+                            this.$loading(false);
+                            if(error.response.status == 422){
+                                this.save_hospital_info = 'error';
+                                this.errors = error.response.data.errors
+                            }
+                        }) ;
                     }
                 },
                 isNumberOnly: function(event) {
