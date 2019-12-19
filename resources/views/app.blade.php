@@ -24,6 +24,36 @@
 <script src="{{asset('js/nprogress.js')}}"></script>
 
 <style>
+
+   .loader {
+        border: 3px solid #F3F3F3;
+        border-radius: 50%;
+        border-top: 3px solid #999;
+        width: 25px;
+        height: 25px;
+        -webkit-animation: spin 2s linear infinite; /* Safari */
+        animation: spin 2s linear infinite;
+      }
+      .no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url("./images/loading1.gif") center no-repeat #fff;
+}
+      /* Safari */
+      @-webkit-keyframes spin {
+        0% { -webkit-transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); }
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
     .bg-light {
         background-color: #eae9e9 !important;
     }
@@ -81,10 +111,14 @@
         background: #fbaa84;
         border-color: #fbaa84;
     }
+  
 </style>
 
 </head>
 <body>
+<div class="se-pre-con"></div>
+<!-- 
+<div class="loader" style="display:none"></div> -->
 <div id="app">
 <!-- <div id="fav-box">
     <ul class="navbar-nav pad-free" id="headerbar">
@@ -155,12 +189,16 @@
 
 <script type="text/javascript">
 
- 
+
+
  $(document).ready(function() {
   
-   $('.loader').load();    
+    
+    
+    $(".se-pre-con").fadeOut("slow");
          /*added for back to top*/
      var mybutton = document.getElementById("myBtn");
+     console.log(mybutton);
         // When the user scrolls down 20px from the top of the document, show the button
         window.onscroll = function() {scrollFunction()};
             function scrollFunction() {
@@ -178,12 +216,13 @@
 	            return false;
         }  
 
-      
 
+     
      
 });
 
 
 </script>
+
 </body>
 </html>
