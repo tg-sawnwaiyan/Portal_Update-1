@@ -1071,6 +1071,8 @@
         },
 
       async mounted() {
+            this.visit = 'true';
+            localStorage.setItem('visit', this.visit);
 
             $('#navtab').removeClass('news-tabColor hospital-tabColor nursing-tabColor job-tabColor');
 
@@ -1421,7 +1423,7 @@
             },
 
             getLatestPostFromAllCat: function() {
-                this.$loading(true);
+                // this.$loading(true);
                 this.axios
 
                     .get('/api/get_latest_post_all_cat')

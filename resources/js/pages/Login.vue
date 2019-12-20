@@ -71,18 +71,22 @@
         // get the redirect object
         var redirect = this.$auth.redirect()
         var _this = this
+        this.$loading(true);
         this.$auth.login({
           params: {
             email: _this.email,
             password: _this.password
           },
           success: function() {
+            this.$loading(false);
+            this.visit = 'false';
+            localStorage.setItem('visit', this.visit);
             // handle redirection
-            const redirectTo = redirect ? redirect.from.name : 'News'
+            const redirectTo = this.$auth.user().role === 2 ? 'news_list' : 'profile'
             this.$router.push({name: redirectTo})
-            console.log(this.$auth)
           },
           error: function(e) {
+            this.$loading(false);
             console.log(e);
             _this.has_error = true
           },

@@ -599,17 +599,19 @@
                       
                       <!--test-->                     
                       <div class="dropdown">
-                          <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
-                            Dropdown
+                          <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown">
+                          市から探す
                           </button>                           
                           <!-- <ul class="dropdown-menu drop" aria-labelledby="dropdownMenuButton">
                               <li> -->
-                                <a id="inWrap" class="dropdown-item">
-                                  <div v-for="township in getTownships" :key="township.id">
-                                      <label class="form-check-label control control--checkbox">
+                                <a id="inWrap" data-value="option">
+                                  <div class="row">
+                                  <div class="col-lg-2 col-md-4 col-sm-4" v-for="township in getTownships" :key="township.id">
+                                      <label class="checkbox form-check-label control control--checkbox">
                                           <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @change="getCheck($event)">{{township.township_name}}
                                             <div class="control__indicator"></div>
                                       </label>
+                                  </div>
                                   </div>
                                 </a>
                               <!-- </li>                                        
@@ -765,19 +767,19 @@
               <nav aria-label="Page navigation example">
                 <ul class="pagination">
                   <li class="page-item">
-                    <span class="spanclass" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
+                    <span class="spanclass pc-480" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
                   </li>
                   <li class="page-item">
-                    <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i> 前へ</span>
+                    <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i><span class="pc-paginate"> 前へ</span></span>
                   </li>
                   <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
                     <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
                   </li>
                   <li class="page-item">
-                    <span class="spanclass" @click="next">次へ <i class='fas fa-angle-right'></i></span>
+                    <span class="spanclass" @click="next"><span class="pc-paginate">次へ </span><i class='fas fa-angle-right'></i></span>
                   </li>
                   <li class="page-item">
-                    <span class="spanclass" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
+                    <span class="spanclass pc-480" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
                   </li>
                 </ul>
               </nav>
@@ -800,7 +802,28 @@ import { BulmaAccordion, BulmaAccordionItem } from "vue-bulma-accordion";
 
 
 
+var options = [];
 
+$( '.dropdown button' ).on( 'click', function( event ) {
+
+   var $target = $( event.currentTarget ),
+       val = $target.attr( 'data-value' ),
+       $inp = $target.find( 'input' ),
+       idx;
+
+   if ( ( idx = options.indexOf( val ) ) > -1 ) {
+      options.splice( idx, 1 );
+      setTimeout( function() { $inp.prop( 'checked', false ) }, 0);
+   } else {
+      options.push( val );
+      setTimeout( function() { $inp.prop( 'checked', true ) }, 0);
+   }
+
+   $( event.target ).blur();
+      
+   console.log( options );
+   return false;
+});
 export default {
     components: {
       layout,
@@ -861,19 +884,21 @@ export default {
         window.addEventListener('resize', this.handleResize);
         this.handleResize();      
         //var labelinput = $('li#inWrap')
-          if(this.window.width >= 768){
-           console.log(this.window.width);
-           console.log('a')
-           //console.log(labelinput);
+          if(this.window.width >= 768){                  
            
-            $(document).ready(function(){
-              $('#inWrap').wrap('<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton"><li></li></ul>');
-              });
-            
+            console.log(this.window.width);
           }
           else{
               console.log(this.window.width);
-               console.log('aa')
+               $(document).ready(function(){
+                  $('#inWrap').wrap('<ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton"><li></li></ul>');
+                  $('.dropdown-menu').on('click', function(e) {
+                      if($(this).hasClass('dropdown-menu-form')) {
+                          e.stopPropagation();
+                      }
+                  });
+                  
+              });
           }
 
 
@@ -918,7 +943,7 @@ export default {
 
           var search_word = $('#search-free-word').val();
         }
-
+        this.$loading(true);
         this.axios.get('api/getjobsearch/'+search_word,{
 
           params:{
@@ -928,7 +953,7 @@ export default {
               empstatus:this.empstatus
           },
         }).then((response)=>{
-
+          this.$loading(false);
           this.job_data = response.data.job;
           this.cities = response.data.city
 
@@ -963,7 +988,7 @@ export default {
             else{
                 var search_word = "all";
             }
-
+             this.$loading(true);
             this.axios.get('api/getjobsearch/'+ search_word,{
                params:{
                     id: -1,
@@ -974,6 +999,7 @@ export default {
                 },
             })
             .then((response)=>{
+               this.$loading(false);
               if(response.data.job.length > 0)
               {
 
@@ -998,13 +1024,7 @@ export default {
               else{
                   $('#job_search').css("display","none");
               }
-
-
-
             });
-
-
-
         },
 
     gotoJobdetail(jid) {
@@ -1048,6 +1068,7 @@ export default {
                 this.locast = localStorage.getItem("nursing_fav");
             }
 
+            this.$loading(true);
             this.axios.get('api/getmap',{
             params:{
               id: this.id,
@@ -1058,7 +1079,7 @@ export default {
           },
           })
           .then((response)=>{
-
+          this.$loading(false);
           $('.jobselect').removeClass('jobselect');
             this.cities = response.data.city
             this.getCity = response.data.getCity
@@ -1397,18 +1418,5 @@ table > tbody > tr th{
   }
  
 }
-@media only screen and (max-width:750px){
- 
-.dropdown {
-  display: block;
-  position: relative;
-  font-size: 14px;
-  color: #333;
-}
-.dropdown ul.dropdown-menu li{
-   max-height: 270px;
-    overflow: auto;
-}
 
-}
 </style>

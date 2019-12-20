@@ -1123,7 +1123,7 @@
                     <h5 class="profile_subtit">医院からのお知らせ </h5>
 
                     <p v-for="hospital in hospitals" :key="hospital.id" class="col-12">
-                        <span v-if="hospital.details_info != null">{!! hospital.details_info !!}</span>
+                        <span v-if="hospital.details_info">{{ hospital.details_info }}</span>
                         <span v-else><p class="no-data-color">表示されるデータがありません。</p></span>
 
                     </p>

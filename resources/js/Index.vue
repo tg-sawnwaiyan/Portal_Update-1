@@ -1,15 +1,16 @@
 <template>
     <div>
-        <div id="main" class="main-content pad-free" v-if="this.$route.path !== '/register' && this.$route.path !== '/login' && this.$route.path !== '/reset' && this.$route.path !== '/resetpassword'">
+        <div id="main" class="pad-free" :class="!$auth.check() ? inner : (visit == 'true'?inner:full)" v-if="this.$route.path !== '/register' && this.$route.path !== '/login' && this.$route.path !== '/reset' && this.$route.path !== '/resetpassword'">
             <button onclick="topFunction()" id="myBtn">Top</button>
-            <HeaderMenu></HeaderMenu>
+            <HeaderMenu v-if="!$auth.check()"></HeaderMenu>
+            <AuthHeaderMenu v-if="$auth.check()"></AuthHeaderMenu>
 
             <div class="sidebar-scroll container-fluid">
-                <div class="row">                    
+                <div class="row"> 
                     <asideMenu v-if="$auth.check()"></asideMenu>
                     <!-- <div id="menu-overlay" @click="menuToggle()"></div> -->
-            <!-- login ================================================================================================== -->
-                    <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12 pad-free" v-if="$auth.check()" id="content-all">
+                <!-- login ================================================================================================== -->
+                    <div v-if="$auth.check() && visit == 'false'" id="content-all" class="content-all">
 
                         <div class="maintab-content" id="v-pills-tabContent">
                             <!-- <span @click="menuToggle()">Click</span> -->
@@ -62,8 +63,8 @@
                         </div>
                     </div>
 
-            <!-- not login================================================================================================================ -->
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad-free"  v-if="!$auth.check()" id="content-all">
+                <!-- not login================================================================================================================ -->
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad-free"  v-if="!$auth.check() || visit == 'true'" id="content-all">
                         <div class="maintab-content" id="v-pills-tabContent">
                             <!--section one-->
                             <section>
@@ -169,22 +170,34 @@
 </template>
 <script>
   import HeaderMenu from './components/menu/Menu.vue'
+  import AuthHeaderMenu from './components/menu/AuthMenu.vue'
   import asideMenu from './components/menu/asideMenu.vue'
   export default {
     data: function() {        
       return {
-        nursing_fav:'',       
+        nursing_fav:'',     
+        inner : 'main-content',
+        full: 'full-content',
       }
     },
     components: {
       HeaderMenu,
+      AuthHeaderMenu,
       asideMenu,
     }, 
     mounted(){
         // this.axios.get('/api/auth/user').then(res=>{
         //     console.log(res)
         // })
-
+        console.log("index " + this.$auth.check())
+        
+        if(localStorage.getItem("visit")){
+            this.visit = localStorage.getItem("visit");
+        }
+        else{
+            localStorage.setItem('visit', this.visit);
+        }
+        
         if(localStorage.getItem("hospital_history")){
             // $("#hos-his-local").html(localStorage.getItem("hospital_history").split(",").length);
             this.hosHis = localStorage.getItem("hospital_history").split(",").length;

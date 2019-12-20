@@ -169,19 +169,19 @@
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination">
                                     <li class="page-item">
-                                        <span class="spanclass" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
+                                        <span class="spanclass pc-480" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
                                     </li>
                                     <li class="page-item">
-                                        <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i> 前へ</span>
+                                        <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i><span class="pc-paginate"> 前へ</span></span>
                                     </li>
                                     <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
                                         <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
                                     </li>
                                     <li class="page-item">
-                                        <span class="spanclass" @click="next">次へ <i class='fas fa-angle-right'></i></span>
+                                        <span class="spanclass" @click="next"><span class="pc-paginate">次へ </span><i class='fas fa-angle-right'></i></span>
                                     </li>
                                     <li class="page-item">
-                                        <span class="spanclass" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
+                                        <span class="spanclass pc-480" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
                                     </li>
                                 </ul>
                             </nav>
@@ -206,7 +206,7 @@
                     count: "",
                     job_id: [],
                     currentPage: 0,
-                    size: 10,
+                    size: 1,
                     pageRange: 5,
                     items: [],
                     pagination: false,
@@ -278,9 +278,11 @@
             },
             methods: {
                    getAllJobs() {
+                    this.$loading(true);
                     this.axios.get("/api/job/index").then(response => {
-                        console.log(response.data)
+                        this.$loading(false);
                         this.jobs = response.data.profilejob;
+                  
                         this.customer_id = response.data.user;
                         if (this.jobs.length > this.size) {
                         this.pagination = true;
