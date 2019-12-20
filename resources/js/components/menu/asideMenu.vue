@@ -3,12 +3,12 @@
        <div class="sidebar-menu"  @click="collapse()">
            click
        </div>
-        <div class="custom-sidebar" id="admin-side-menu">
+        <div class="custom-sidebar" id="admin-side-menu" v-if="visit == 'false'">
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                 <p class="admin-tit"><i class="fas fa-tachometer-alt"></i><span>管理画面</span></p>
                 <ul class="adminview-sidebar pc">
                     <li>
-                        <!-- <span>Visit Site</span> -->
+                        <!-- <span class="nav-link" @click="visitSite()"><i class="fa fa-home"></i>&nbsp;<span class="nav-txt">Visit Site</span></span> -->
                         <router-link to="/" class="nav-link"><i class="fa fa-home"></i>&nbsp;<span class="nav-txt">ホーム</span></router-link>
                     </li>
                     <li v-if="$auth.check(2)">
@@ -40,7 +40,8 @@
                     </li>
                 </ul>
             </div>
-        </div>     
+        </div> 
+         
     </div>
 </template>
 <script>
@@ -56,8 +57,10 @@
       }
     },
 created() {
+    console.log("aside "+this.$auth.check())
+    console.log("aside visit "+this.visit)
     axios.interceptors.response.use((response) => {
-        console.log(response.data)
+        // console.log(response.data)
         if(response.data.status == "Token is Expired" && this.status == false){
 
             this.status = true
@@ -97,6 +100,10 @@ created() {
         //     })
 
         // }
+        // visitSite() {
+        //     this.visit = true;
+        //     this.$router.push({name: 'News'});
+        // },
 
         menuToggle(){
             $("#admin-side-menu").toggle('medium');

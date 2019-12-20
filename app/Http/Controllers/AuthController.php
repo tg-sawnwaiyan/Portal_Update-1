@@ -11,11 +11,11 @@ use Tymon\JWTAuth\Manager;
 class AuthController extends Controller
 {
 
-    public function __construct(){
+    // public function __construct(){
 
-    $this->middleware('auth:api', ['except' => ['login', 'register']]);
+    // $this->middleware('auth:api', ['except' => ['login', 'register']]);
 
-    }
+    // }
 
     public function register(Request $request)
     {
@@ -110,7 +110,7 @@ class AuthController extends Controller
             $user = JWTAuth::setToken($token)->toUser();
             return $this->respondWithToken($token);
         } catch (\Throwable $th) {
-            return response()->json($th);
+            return response()->json(['status' => 'Token is Expired']);
         }
     }
     protected function respondWithToken($token)
