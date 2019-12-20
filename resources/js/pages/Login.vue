@@ -82,7 +82,6 @@
             // handle redirection
             const redirectTo = redirect ? redirect.from.name : 'News'
             this.$router.push({name: redirectTo})
-            console.log(this.$auth)
           },
           error: function(e) {
             this.$loading(false);

@@ -11,46 +11,25 @@ class Authenticate extends Middleware
 {
     public function handle($request, Closure $next, ...$guards)
     {
-        try
-        {
-            if (! $user = JWTAuth::parseToken()->authenticate() )
-            {
-                 return response()->json([
-                   'code'   => 101, // means auth error in the api,
-                   'response' => null, // nothing to show ,
-                 ]);
+ 
+        try {
+            $user = JWTAuth::parseToken()->authenticate();
+        } catch (Exception $e) {
+            if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException){
+                return response()->json(['status' => 'Token is Invalid']);
+            }else if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException){
+               
+                return response()->json(['status' => 'Token is Expired']);
+            }else{
+                return response()->json(['status' => 'Authorization Token not found']);
             }
         }
-        catch (TokenExpiredException $e)
-        {
-            // If the token is expired, then it will be refreshed and added to the headers
-            try
-            {
-                $refreshed = JWTAuth::refresh(JWTAuth::getToken());
-                $user = JWTAuth::setToken($refreshed)->toUser();
-                header('Authorization: Bearer ' . $refreshed);
-            }
-            catch (JWTException $e)
-            {
-                 return response()->json([
-                   'code'   => 103, // means not refreshable 
-                   'response' => null // nothing to show 
-                 ]);
-            }
-        }
-        catch (JWTException $e)
-        {
-            return response()->json([
-                   'code'   => 101, // means auth error in the api,
-                   'response' => null // nothing to show 
-            ]);
-        }
-
-        // Login the user instance for global usage
-        Auth::login($user, false);
-
+    
         return  $next($request);
+        
     }
+
+ 
     protected function authenticate($request, array $guards)
     {
         if (empty($guards)) {
