@@ -1473,9 +1473,9 @@
                         }                    
                     }
                 }
-                var township_name = townshipName;
-              
-               
+
+               var township_name = townshipName;
+             
                if(this.ci == true && (this.townshipID[0] == "-1" || this.townshipID.length == 0))
                {
                    
