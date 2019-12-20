@@ -1078,6 +1078,7 @@
                 loading: false,
                 coordinate:[],
                 norecord_msg: false,
+                ci : false,
             }
         },
 
@@ -1230,6 +1231,7 @@
             },
 
             searchfreeword(){
+                this.ci = true;
                 //clear all drop down
                 this.id = -1;
                 this.township_id = -1;
@@ -1330,6 +1332,7 @@
             },
             // map onclick function
             getStateClick(e,lat,lng) {
+                this.ci = false;
                 this.township_id= -1;
                 this.moving_in = -1;
                 this.per_month = -1;
@@ -1373,6 +1376,7 @@
             // map onclick function
             // map change dropdown function
             nursingSearchData(index){
+                this.ci = false;
                 if(index == 1) //if choose city
                 {
                     this.township_id = -1;
@@ -1419,6 +1423,7 @@
             // map change dropdown function
             // make infowindow, marker , google map
             coordinates(theCity, lat, lng){
+             
                 
                 if(this.township_id == -1){
                     var mapProp = {
@@ -1469,26 +1474,28 @@
                     }
                 }
                 var township_name = townshipName;
+              
                
-               if(theCity == null && (this.townshipID[0] == "-1" || this.townshipID.length == 0))
+               if(this.ci == true && (this.townshipID[0] == "-1" || this.townshipID.length == 0))
                {
-                    this.loading = false
+                   
+                    this.loading = false;
                     
                }
-               else if(theCity != null && (this.townshipID[0] == "-1" || this.townshipID.length == 0)){
-                
+               else if(this.ci == false && (this.townshipID[0] == 0 || this.townshipID[0] == "-1" || this.townshipID.length == 0)){
+             
                     this.loading = false;
                         this.axios.get("/api/cityJson/"+theCity).then(respon => {
                         this.loading = false
                             var city_coordinates = respon.data
                             this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
                             this.boundariesGoogleMap(lat,lng,this.coordinate);            
-                        }); //end get city
+                        }); 
 
                 } 
                 
                 else{
-                 
+           
                     this.axios.get('/api/townshipJson/'+township_name).then(res => {
                         this.loading = false
                         var city_coordinates = res.data
@@ -1500,7 +1507,7 @@
 
             boundariesGoogleMap(lat,lng,coor){        
                  
-                var data = coor.reduce((acc, val) => acc.concat(val), []);
+                var data = coor.reduce((acc, val) => acc.concat(val), []);    
                 for (let i = 0; i < data.length; i++) {
                     this.map.data.addGeoJson(data[i]); 
                 }
@@ -1753,9 +1760,9 @@
 
                 if ($('#search-free-word').val() != '')
                 {
-                this.id = -1;
-
-                var search_word = $('#search-free-word').val();
+                    this.id = -1;
+  
+                    var search_word = $('#search-free-word').val();
                 }
 
 
@@ -1782,6 +1789,7 @@
 
                 },
                 }).then((response)=>{
+                   
 
                 this.nus_data = response.data.nursing;
                 this.specialfeature = response.data.specialfeature;
@@ -1793,6 +1801,7 @@
                 var mmarker = new Array()
                 var item = []
                 if(this.nus_data.length > 0){
+                   
 
                     for (var i = 0; i < this.searchmarkers.length; i++) {
                         mmarker.push([this.searchmarkers[i]['alphabet'], this.searchmarkers[i]['lat'], this.searchmarkers[i]['lng']])
@@ -1803,16 +1812,18 @@
                     const lng = this.searchmarkers[0]['lng']
 
                     // google map
-
+                 
                     this.coordinates(theCity,lat,lng)
 
                     this.infoWindow(item, mmarker);
                     this.norecord_msg = false;
                 }
                 else{
+                   
                     //if choose city
                     if(this.citylatlng.length > 0)
                     {
+                       
                         const theCity = this.citylatlng[0]['city_eng']
                         const lat = this.citylatlng[0]['latitude']
                         const lng = this.citylatlng[0]['longitude']
@@ -1820,6 +1831,7 @@
                         this.coordinates(theCity,lat,lng);
                     }
                     else{
+                        console.log('dd');
                    
                         var mapProp = {
                         center: new google.maps.LatLng(35.6804, 139.7690),

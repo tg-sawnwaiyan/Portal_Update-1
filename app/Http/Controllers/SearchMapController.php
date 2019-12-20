@@ -169,8 +169,6 @@ class SearchMapController extends Controller
               $local = 0;
           }
 
-   
-
           $query = "SELECT '' as fav_check,'' as alphabet, n.id as nursing_id,n.latitude as lat ,n.longitude as lng,c.id as cus_id,c.*,n.*, ci.id as city_id, ci.city_eng,ci.city_name,t.township_name,ty.name AS type_name 
                     from nursing_profiles as n  
                     left join customers as c on c.id = n.customer_id 
