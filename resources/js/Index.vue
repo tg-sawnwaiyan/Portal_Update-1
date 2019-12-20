@@ -2,8 +2,7 @@
     <div>
         <div id="main" class="pad-free" :class="!$auth.check() ? inner : full" v-if="this.$route.path !== '/register' && this.$route.path !== '/login' && this.$route.path !== '/reset' && this.$route.path !== '/resetpassword'">
             <button onclick="topFunction()" id="myBtn">Top</button>
-            <HeaderMenu v-if="$auth.check() && !visit"></HeaderMenu>
-            <HeaderMenu v-if="!$auth.check()"></HeaderMenu>
+            <HeaderMenu></HeaderMenu>
 
             <div class="sidebar-scroll container-fluid">
                 <div class="row">                    
@@ -64,7 +63,7 @@
                     </div>
 
                 <!-- not login================================================================================================================ -->
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad-free"  v-if="!$auth.check()" id="content-all">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad-free"  v-if="!$auth.check() || this.visit" id="content-all">
                         <div class="maintab-content" id="v-pills-tabContent">
                             <!--section one-->
                             <section>
@@ -177,7 +176,6 @@
         nursing_fav:'',     
         inner : 'main-content',
         full: 'full-content',
-        visit: false,
       }
     },
     components: {
@@ -185,10 +183,20 @@
       asideMenu,
     }, 
     mounted(){
+        console.log("auth i "+this.$auth.check())
         // this.axios.get('/api/auth/user').then(res=>{
         //     console.log(res)
         // })
-
+console.log("i-v "+this.visit)
+        if(localStorage.getItem("visit")){
+            this.visit = localStorage.getItem("visit");
+            console.log("loc v-index "+this.visit)
+        }
+        else{
+            localStorage.setItem('visit', this.visit);
+            console.log("not loc v in" + this.visit)
+        }
+        
         if(localStorage.getItem("hospital_history")){
             // $("#hos-his-local").html(localStorage.getItem("hospital_history").split(",").length);
             this.hosHis = localStorage.getItem("hospital_history").split(",").length;

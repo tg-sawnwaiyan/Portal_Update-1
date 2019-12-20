@@ -24,7 +24,8 @@ let globalData = new Vue({
         nusFav:0,
         hosFav:0,
         nusHis:0,
-        hosHis:0
+        hosHis:0,
+        visit:true
     }
   });
   Vue.mixin({
@@ -44,6 +45,10 @@ let globalData = new Vue({
       hosHis: {
         get: function () { return globalData.$data.hosHis },
         set: function (newVal) { globalData.$data.hosHis = newVal; }
+      },
+      visit: {
+        get: function () { return globalData.$data.visit },
+        set: function (newVal) { globalData.$data.visit = newVal; }
       },
     }
   })
