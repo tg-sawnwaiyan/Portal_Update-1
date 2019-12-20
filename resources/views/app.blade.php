@@ -8,8 +8,8 @@
 <meta name="user" content="Auth::user()">
 <title>{{ config('app.name', 'Healthcare Portal') }}</title>
 <script src="{{ asset('js/app.js') }}" defer></script>
+<script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
 <script src="{{ asset('js/myJs.js') }}" defer></script>
-<script src="{{ asset('js/jquery-1.11.1.min.js') }}"></script>
 <script src="{{ asset('js/vue-clazy-load.js') }}"></script>
 <!-- Fonts -->
 <!--mailbox-->
