@@ -79,8 +79,10 @@
           },
           success: function() {
             this.$loading(false);
+            this.visit = 'false';
+            localStorage.setItem('visit', this.visit);
             // handle redirection
-            const redirectTo = redirect ? redirect.from.name : 'News'
+            const redirectTo = this.$auth.user().role === 2 ? 'news_list' : 'profile'
             this.$router.push({name: redirectTo})
           },
           error: function(e) {

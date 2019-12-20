@@ -186,6 +186,7 @@ class SearchMapController extends Controller
              if($searchword != 'all')
              {
                 $query .= " and (n.method like '%" . $searchword . "%' or n.business_entity like '%".$searchword."%') group by c.id";
+              
              }
              else{
                  
