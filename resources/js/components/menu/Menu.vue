@@ -227,6 +227,7 @@
       }
     },
     mounted() {
+      console.log(this.$auth.check())
       this.user = this.$auth.watch._data;
       },
 }

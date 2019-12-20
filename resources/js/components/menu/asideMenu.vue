@@ -56,6 +56,7 @@
       }
     },
 created() {
+    
     axios.interceptors.response.use((response) => {
         console.log(response.data)
         if(response.data.status == "Token is Expired" && this.status == false){
