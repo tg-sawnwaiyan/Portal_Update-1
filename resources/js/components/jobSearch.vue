@@ -584,38 +584,7 @@
                     </button>
                     </div>
                     </div>
-                    <div class="toBeToggled4" id="toBeToggled4">   
-                      <!-- <div class="pc-768">
-                        <div class="form-check form-check-inline col-lg-2 col-md-4 col-sm-4" v-for="township in getTownships" :key="township.id">
-                        <div>
-                          <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-                          <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @change="getCheck($event)">
-                          {{township.township_name}}
-                          <div class="control__indicator"></div>
-                          </label>
-                        </div>
-                      </div> 
-                      </div>                    -->
-                      
-                      <!--test-->                     
-                      <div class="dropdown">
-                          <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
-                            Dropdown
-                          </button>                           
-                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <li>
-                                  <a class="dropdown-item" v-for="township in getTownships" :key="township.id">
-                                      <label class="form-check-label control control--checkbox">
-                                          <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @change="getCheck($event)">{{township.township_name}}
-                                            <div class="control__indicator"></div>
-                                      </label>
-                                  </a>
-                              </li>                                        
-                          </ul>
-                    </div>                                 
-                    <!--end test-->
-                      
-                    </div>
+                    
                      <!-- <div class="sp-414">
                         <select id="selectCity" class="form-control custom-select" v-model="townshipID" @change="getCheck($event)">
                           <option value="-1">▼市区町村</option>
@@ -690,6 +659,60 @@
                     </label>
                   </div>
 
+                  </td>
+                </tr>
+
+                <tr>
+                  <th>都市</th>
+                  <td>
+                    <div class="toBeToggled4" id="toBeToggled4">   
+                      <!-- <div class="pc-768">
+                        <div class="form-check form-check-inline col-lg-2 col-md-4 col-sm-4" v-for="township in getTownships" :key="township.id">
+                        <div>
+                          <label class="form-check-label control control--checkbox" style="padding-left:5px;">
+                          <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @change="getCheck($event)">
+                          {{township.township_name}}
+                          <div class="control__indicator"></div>
+                          </label>
+                        </div>
+                      </div> 
+                      </div>                    -->
+                      
+                      <!--test-->                     
+                      <!-- <div class="dropdown">
+                          <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+                            Dropdown
+                          </button>                           
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <li>
+                                  <a class="dropdown-item" v-for="township in getTownships" :key="township.id">
+                                      <label class="form-check-label control control--checkbox">
+                                          <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @change="getCheck($event)">{{township.township_name}}
+                                            <div class="control__indicator"></div>
+                                      </label>
+                                  </a>
+                              </li>                                        
+                          </ul>
+                    </div> -->
+
+                     <div class="form-group">
+                     
+                        <span class="btn btn all-btn job_dropdown" style="min-width: 0px;" @click="clinicalSubject()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate1}"></i></span>
+                        <div class="col-md-10 float-right clinical-subject-toggle-div toggle-div m-t-10" style="display:none;">
+                            <div class="row"> <div v-for="township in getTownships" :key="township.id" class="form-check form-check-inline col-sm-3">
+                                    <label class="form-check-label control control--checkbox">
+                                        <input type="checkbox" class="form-check-input"  :id="township.id" :value="township.id" v-model="townshipID" @click="CityCheck(township.id)">
+                                          {{township.township_name}}
+                                        <div class="control__indicator"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--end test-->
+                      
+                    </div>
                   </td>
                 </tr>
 
@@ -794,28 +817,28 @@
 import layout from '../components/home.vue'
 import { BulmaAccordion, BulmaAccordionItem } from "vue-bulma-accordion";
 
-var options = [];
+// var options = [];
 
-$( '.dropdown-menu a' ).on( 'click', function( event ) {
+// $( '.dropdown-menu a' ).on( 'click', function( event ) {
 
-   var $target = $( event.currentTarget ),
-       val = $target.attr( 'label' ),
-       $inp = $target.find( 'input' ),
-       idx;
+//    var $target = $( event.currentTarget ),
+//        val = $target.attr( 'label' ),
+//        $inp = $target.find( 'input' ),
+//        idx;
 
-   if ( ( idx = options.indexOf( val ) ) > -1 ) {
-      options.splice( idx, 1 );
-      setTimeout( function() { $inp.prop( 'checked', false ) }, 0);
-   } else {
-      options.push( val );
-      setTimeout( function() { $inp.prop( 'checked', true ) }, 0);
-   }
+//    if ( ( idx = options.indexOf( val ) ) > -1 ) {
+//       options.splice( idx, 1 );
+//       setTimeout( function() { $inp.prop( 'checked', false ) }, 0);
+//    } else {
+//       options.push( val );
+//       setTimeout( function() { $inp.prop( 'checked', true ) }, 0);
+//    }
 
-   $( event.target ).blur();
+//    $( event.target ).blur();
       
-   console.log( options );
-   return false;
-});
+//    console.log( options );
+//    return false;
+// });
 
 
 
@@ -830,6 +853,8 @@ export default {
     //props: ['initOpen'],
     data(){
       return{
+        isRotate1: true,
+
         id:'',
         townshipID:[],
         township_id:[],
@@ -881,6 +906,14 @@ export default {
             $('#upper-tab').addClass('job-borderColor');
         },
   methods:{
+    CityCheck(check_id) {
+              $('.subject-'+check_id).attr('true');
+            },
+    clinicalSubject() {
+        $(".clinical-subject-toggle-div").toggle('medium');
+        this.isRotate1 = !this.isRotate1;
+
+            },
     // toggle(id) {
     // 	const index = this.opened.indexOf(id);
     //   if (index > -1) {
@@ -1401,5 +1434,9 @@ table > tbody > tr th{
     overflow: auto;
 }
 
+}
+.job_dropdown
+{
+  background:#f7834b;
 }
 </style>
