@@ -183,18 +183,14 @@
       asideMenu,
     }, 
     mounted(){
-        console.log("auth i "+this.$auth.check())
         // this.axios.get('/api/auth/user').then(res=>{
         //     console.log(res)
         // })
-console.log("i-v "+this.visit)
         if(localStorage.getItem("visit")){
             this.visit = localStorage.getItem("visit");
-            console.log("loc v-index "+this.visit)
         }
         else{
             localStorage.setItem('visit', this.visit);
-            console.log("not loc v in" + this.visit)
         }
         
         if(localStorage.getItem("hospital_history")){
