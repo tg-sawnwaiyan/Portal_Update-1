@@ -584,7 +584,42 @@
                     </button>
                     </div>
                     </div>
-                    
+                    <div class="toBeToggled4" id="toBeToggled4">   
+                      <!-- <div class="pc-768">
+                        <div class="form-check form-check-inline col-lg-2 col-md-4 col-sm-4" v-for="township in getTownships" :key="township.id">
+                        <div>
+                          <label class="form-check-label control control--checkbox" style="padding-left:5px;">
+                          <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @change="getCheck($event)">
+                          {{township.township_name}}
+                          <div class="control__indicator"></div>
+                          </label>
+                        </div>
+                      </div> 
+                      </div>
+                       -->
+                      
+                      <!--test-->
+                      
+                      <div class="dropdown">
+                          <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+                            Dropdown
+                          </button>                           
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <li>
+                                  <a class="dropdown-item" v-for="township in getTownships" :key="township.id" >
+                                      <label class="form-check-label control control--checkbox" :value="township.id">
+                                      
+                                          <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @change="getCheck($event)">{{township.township_name}}
+                                          
+                                            <div class="control__indicator"></div>
+                                      </label>
+                                  </a>
+                              </li>                                        
+                          </ul>
+                    </div>                                 
+                    <!--end test-->
+                      
+                    </div>
                      <!-- <div class="sp-414">
                         <select id="selectCity" class="form-control custom-select" v-model="townshipID" @change="getCheck($event)">
                           <option value="-1">▼市区町村</option>
@@ -662,60 +697,6 @@
                   </td>
                 </tr>
 
-                <tr>
-                  <th>都市</th>
-                  <td>
-                    <div class="toBeToggled4" id="toBeToggled4">   
-                      <!-- <div class="pc-768">
-                        <div class="form-check form-check-inline col-lg-2 col-md-4 col-sm-4" v-for="township in getTownships" :key="township.id">
-                        <div>
-                          <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-                          <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @change="getCheck($event)">
-                          {{township.township_name}}
-                          <div class="control__indicator"></div>
-                          </label>
-                        </div>
-                      </div> 
-                      </div>                    -->
-                      
-                      <!--test-->                     
-                      <!-- <div class="dropdown">
-                          <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
-                            Dropdown
-                          </button>                           
-                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <li>
-                                  <a class="dropdown-item" v-for="township in getTownships" :key="township.id">
-                                      <label class="form-check-label control control--checkbox">
-                                          <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @change="getCheck($event)">{{township.township_name}}
-                                            <div class="control__indicator"></div>
-                                      </label>
-                                  </a>
-                              </li>                                        
-                          </ul>
-                    </div> -->
-
-                     <div class="form-group">
-                     
-                        <span class="btn btn all-btn job_dropdown" style="min-width: 0px;" @click="clinicalSubject()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate1}"></i></span>
-                        <div class="col-md-10 float-right clinical-subject-toggle-div toggle-div m-t-10" style="display:none;">
-                            <div class="row"> <div v-for="township in getTownships" :key="township.id" class="form-check form-check-inline col-sm-3">
-                                    <label class="form-check-label control control--checkbox">
-                                        <input type="checkbox" class="form-check-input"  :id="township.id" :value="township.id" v-model="townshipID" @click="CityCheck(township.id)">
-                                          {{township.township_name}}
-                                        <div class="control__indicator"></div>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!--end test-->
-                      
-                    </div>
-                  </td>
-                </tr>
-
                 <tr class="text-center">
                   <td colspan='2' style="border:none;">
                     <button @click="ShowHide4" class="btn seemore-btn">
@@ -785,19 +766,19 @@
               <nav aria-label="Page navigation example">
                 <ul class="pagination">
                   <li class="page-item">
-                    <span class="spanclass pc-480" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
+                    <span class="spanclass" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
                   </li>
                   <li class="page-item">
-                    <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i><span class="pc-paginate"> 前へ</span></span>
+                    <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i> 前へ</span>
                   </li>
                   <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
                     <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
                   </li>
                   <li class="page-item">
-                    <span class="spanclass" @click="next"><span class="pc-paginate">次へ </span><i class='fas fa-angle-right'></i></span>
+                    <span class="spanclass" @click="next">次へ <i class='fas fa-angle-right'></i></span>
                   </li>
                   <li class="page-item">
-                    <span class="spanclass pc-480" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
+                    <span class="spanclass" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
                   </li>
                 </ul>
               </nav>
@@ -817,28 +798,29 @@
 import layout from '../components/home.vue'
 import { BulmaAccordion, BulmaAccordionItem } from "vue-bulma-accordion";
 
-// var options = [];
+var options = [];
 
-// $( '.dropdown-menu a' ).on( 'click', function( event ) {
+$( '.dropdown-menu a' ).on( 'click', function( event ) {
+  console.log('clicked')
 
-//    var $target = $( event.currentTarget ),
-//        val = $target.attr( 'label' ),
-//        $inp = $target.find( 'input' ),
-//        idx;
+   var $target = $( event.currentTarget ),
+       val = $target.attr( ' ' ),
+       $inp = $target.find( 'input' ),
+       idx;
 
-//    if ( ( idx = options.indexOf( val ) ) > -1 ) {
-//       options.splice( idx, 1 );
-//       setTimeout( function() { $inp.prop( 'checked', false ) }, 0);
-//    } else {
-//       options.push( val );
-//       setTimeout( function() { $inp.prop( 'checked', true ) }, 0);
-//    }
+   if ( ( idx = options.indexOf( val ) ) > -1 ) {
+      options.splice( idx, 1 );
+      setTimeout( function() { $inp.prop( 'checked', false ) }, 0);
+   } else {
+      options.push( val );
+      setTimeout( function() { $inp.prop( 'checked', true ) }, 0);
+   }
 
-//    $( event.target ).blur();
+   $( event.target ).blur();
       
-//    console.log( options );
-//    return false;
-// });
+   console.log( options );
+   return false;
+});
 
 
 
@@ -853,8 +835,6 @@ export default {
     //props: ['initOpen'],
     data(){
       return{
-        isRotate1: true,
-
         id:'',
         townshipID:[],
         township_id:[],
@@ -906,14 +886,6 @@ export default {
             $('#upper-tab').addClass('job-borderColor');
         },
   methods:{
-    CityCheck(check_id) {
-              $('.subject-'+check_id).attr('true');
-            },
-    clinicalSubject() {
-        $(".clinical-subject-toggle-div").toggle('medium');
-        this.isRotate1 = !this.isRotate1;
-
-            },
     // toggle(id) {
     // 	const index = this.opened.indexOf(id);
     //   if (index > -1) {
@@ -942,7 +914,7 @@ export default {
 
           var search_word = $('#search-free-word').val();
         }
-        this.$loading(true);
+
         this.axios.get('api/getjobsearch/'+search_word,{
 
           params:{
@@ -952,7 +924,7 @@ export default {
               empstatus:this.empstatus
           },
         }).then((response)=>{
-          this.$loading(false);
+
           this.job_data = response.data.job;
           this.cities = response.data.city
 
@@ -987,7 +959,7 @@ export default {
             else{
                 var search_word = "all";
             }
-             this.$loading(true);
+
             this.axios.get('api/getjobsearch/'+ search_word,{
                params:{
                     id: -1,
@@ -998,7 +970,6 @@ export default {
                 },
             })
             .then((response)=>{
-               this.$loading(false);
               if(response.data.job.length > 0)
               {
 
@@ -1023,7 +994,13 @@ export default {
               else{
                   $('#job_search').css("display","none");
               }
+
+
+
             });
+
+
+
         },
 
     gotoJobdetail(jid) {
@@ -1067,7 +1044,6 @@ export default {
                 this.locast = localStorage.getItem("nursing_fav");
             }
 
-            this.$loading(true);
             this.axios.get('api/getmap',{
             params:{
               id: this.id,
@@ -1078,7 +1054,7 @@ export default {
           },
           })
           .then((response)=>{
-          this.$loading(false);
+
           $('.jobselect').removeClass('jobselect');
             this.cities = response.data.city
             this.getCity = response.data.getCity
@@ -1225,6 +1201,7 @@ export default {
 	},
 };
 
+
   // $("#search").on("click", function() {
   //   alert('a');
   //     // $("body").scrollTop(0);
@@ -1241,6 +1218,20 @@ export default {
 // });
 
       //Hide all panels
+      function showCheckboxes() {
+  if ($('#checkboxes').is(':visible')) {
+    $('#checkboxes').hide();
+  }
+  else {
+    $('#checkboxes').show();
+  }
+}
+
+                      
+$(document).click(function(e) {
+  if(e.target.nodeName == 'BODY')
+    $('#checkboxes').hide();
+});
 
 </script>
 
@@ -1430,9 +1421,5 @@ table > tbody > tr th{
     overflow: auto;
 }
 
-}
-.job_dropdown
-{
-  background:#f7834b;
 }
 </style>
