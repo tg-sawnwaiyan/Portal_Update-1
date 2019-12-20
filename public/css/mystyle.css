@@ -6540,6 +6540,9 @@ button.confirmed {
     color: #ff6117;
     font-weight: bold;
 }
+.lbl-size {
+    width: 400px;
+}
 
 
 /* nursing search */
@@ -8516,9 +8519,13 @@ ul.nur-caro-card>li.list-group-item {
 .pc-480{
     display: block;
 }
+.close-480 {
+    display: none;
+}
 .pc-paginate{
     display: inline;
 }
+
 /*--------------------------------------------------------------------------------responsive -----------------------------------------------------------------------*/
 @media only screen and (max-width:1440px) {
     
@@ -8636,12 +8643,19 @@ ul.nur-caro-card>li.list-group-item {
     }
 }
 @media screen and (max-width: 1024px) and (min-width: 768px) {
+    /*pagination*/
     .pagination {
         justify-content: center;
         text-align: center;
         margin-bottom: 10px;
         margin-right: 50%;
     }
+    /*end pagination*/
+    /*fav nursing*/
+    .lbl-size{
+        width: auto;
+    }
+    /*end fav nursing*/
 }
 @media only screen and (max-width:768px) {
     .wd-in {
@@ -8726,6 +8740,38 @@ ul.nur-caro-card>li.list-group-item {
 }
 
 @media only screen and (max-width:480px) {
+    /*fav nursing*/    
+    .close-480 {
+        display: block;
+    }
+    .btn-secondary {
+        line-height: 2px;
+        font-size: 20px;
+        height: 30px;
+        width: 35px;
+        padding: 0px;
+    }
+    .fnt-title {
+        font-size: 15px;
+    }
+    .fnt-check {
+        font-size: 13px;
+    }
+    .pb-4,
+    .py-4 {
+    padding-bottom: 0px !important;
+    }
+    #nursing .modal-footer {
+        padding: 0px;
+    }
+    .modal-hr hr {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+    .lbl-size{
+        width: auto;
+    }
+    /*end fav nursing*/
      /*pagination*/
      /* .page-item:first-child .spanclass,
      .page-item:last-child .spanclass,

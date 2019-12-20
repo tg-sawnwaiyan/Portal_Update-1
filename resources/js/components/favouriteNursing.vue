@@ -81,22 +81,23 @@
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLongTitle">比較する項目を選ぶ</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <button class="btn btn-secondary">閉じる&times;</button>
+                                            <button class="btn btn-secondary pc-480">閉じる&times;</button>
+                                            <button class="btn btn-secondary close-480"><span>&times;</span></button>
                                         </button>
                                     </div>
-                                    <div class="modal-body">
+                                    <div class="modal-body modal-hr">
                                         <div class="row">
                                             <div class="col-md-3">
-                                                <p>エリア</p>
+                                                <p class="fnt-title">エリア</p>
                                             </div>
                                             <div class="col-md-3">
-                                                <label class="form-check-label control control--checkbox">
+                                                <label class="form-check-label control control--checkbox fnt-check">
                                                     <input type="checkbox" value="address" v-model="address_check" class="form-check-input"> 住所
                                                     <div class="control__indicator"></div>
                                                 </label>
                                             </div>
                                             <div class="col-md-3">
-                                                <label class="form-check-label control control--checkbox">
+                                                <label class="form-check-label control control--checkbox fnt-check">
                                                     <input type="checkbox" v-model="tran_check" class="form-check-input"> 交通手段
                                                     <div class="control__indicator"></div>
                                                 </label>
@@ -105,21 +106,21 @@
                                         <hr>
                                         <div class="row">
                                             <div class="col-md-3">
-                                                <p>費用・条件</p>
+                                                <p class="fnt-title">費用・条件</p>
                                             </div>
                                             <div class="col-md-3">
-                                                <label class="form-check-label control control--checkbox">
+                                                <label class="form-check-label control control--checkbox fnt-check">
                                                     <input type="checkbox" v-model="month_check" class="form-check-input"> 月額費用
                                                     <div class="control__indicator"></div>
                                                 </label>
                                                 <br>
-                                                <label style="width:400px;"  class="form-check-label control control--checkbox">
+                                                <label  class="form-check-label control control--checkbox fnt-check lbl-size">
                                                     <input type="checkbox" v-model="condition_check" class="form-check-input"> 入居条件 （自立、要支援、要介護、認知症相談可）
                                                     <div class="control__indicator"></div>
                                                 </label>
                                             </div>
                                             <div class="col-md-3">
-                                                <label class="form-check-label control control--checkbox">
+                                                <label class="form-check-label control control--checkbox fnt-check">
                                                     <input type="checkbox" v-model="entry_check" class="form-check-input"> 入居一時金
                                                     <div class="control__indicator"></div>
                                                 </label>
@@ -128,10 +129,10 @@
                                         <hr>
                                         <div class="row">
                                             <div class="col-md-3">
-                                                <p>サービス内容</p>
+                                                <p class="fnt-title">サービス内容</p>
                                             </div>
                                             <div class="col-md-9">
-                                                <label class="form-check-label control control--checkbox">
+                                                <label class="form-check-label control control--checkbox fnt-check">
                                                     <input type="checkbox" v-model="special_check" class="form-check-input"> 特長 （24時間看護、職員体制、食事メニューの選択など）
                                                     <div class="control__indicator"></div>
                                                 </label>
@@ -140,16 +141,16 @@
                                         <hr>
                                         <div class="row pb-4">
                                             <div class="col-md-3">
-                                                <p>施設情報</p>
+                                                <p class="fnt-title">施設情報</p>
                                             </div>
                                             <div class="col-md-3">
-                                                <label class="form-check-label control control--checkbox">
+                                                <label class="form-check-label control control--checkbox fnt-check">
                                                     <input type="checkbox" v-model="capacity_check" class="form-check-input"> 定員
                                                     <div class="control__indicator"></div>
                                                 </label>
                                             </div>
                                             <div class="col-md-3">
-                                                <label class="form-check-label control control--checkbox">
+                                                <label class="form-check-label control control--checkbox fnt-check">
                                                     <input type="checkbox" v-model="opening_check" class="form-check-input"> 開設日
                                                      <div class="control__indicator"></div>
                                                 </label>
