@@ -164,13 +164,14 @@ Route::group(['middleware' => ['auth:api']], function() {
     // End Customer
 
     // News
-    Route::group(['prefix' => 'new'], function () {
+    Route::post('news_list/search', 'PostController@search');
+    Route::get('news_list', 'PostController@index');
+    Route::group(['prefix' => 'new'], function () {        
         Route::post('add', 'PostController@add');
         Route::get('editPost/{id}', 'PostController@edit');
         Route::post('update/{id}', 'PostController@update');
         Route::delete('delete/{id}', 'PostController@delete');
         Route::post('getPostsByCatId/{id}', 'PostController@getPostById');
-
     });
     // End News
 
@@ -318,11 +319,11 @@ Route::post('search', 'HomeController@search');
 Route::get('get_latest_posts_by_catId/{searchword}', 'HomeController@getLatestPostsByAllCatId');
 Route::get('get_cat_random', 'HomeController@getCategoryRandom');
 
-Route::get('news_list', 'PostController@index');
+
 Route::get('newdetails/{id}', 'PostController@show');
 Route::get('relatednews/{id}', 'PostController@show_related');
 // Route::get('newsdetailsrelated/{id}','PostController@relatednews');
-Route::post('news_list/search', 'PostController@search');
+
 
 Route::post('jobapply','JobApplyController@store');
 Route::get('jobapplylist/{jobs_id}','JobApplyController@getJobapplies');
