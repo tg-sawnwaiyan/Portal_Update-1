@@ -25,7 +25,7 @@ let globalData = new Vue({
         hosFav:0,
         nusHis:0,
         hosHis:0,
-        visit:true
+        visit:'true'
     }
   });
   Vue.mixin({

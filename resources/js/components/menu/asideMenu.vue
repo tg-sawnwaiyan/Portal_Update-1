@@ -3,19 +3,18 @@
        <div class="sidebar-menu"  @click="collapse()">
            click
        </div>
-        <div class="custom-sidebar" id="admin-side-menu">
-            <div class="admin-tit">
-                <a class="navbar-brand logo-text text-center" href="/">
-                    LOGO <span>HERE</span>
-                </a>
-            </div>
+        <div class="custom-sidebar" id="admin-side-menu" v-if="visit == 'false'">
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <p class="admin-tit"><i class="fas fa-tachometer-alt"></i><span>管理画面</span></p>
+                <!-- <span class="admin-tit"><i class="fas fa-tachometer-alt"></i><span>管理画面</span></p> -->
+                <div class="admin-logo">
+                    <a href="/">LOGO <span>HERE</span></a>
+                </div>
+                
                 <ul class="adminview-sidebar pc">
-                    <li><i class="fas fa-tachometer-alt"></i><span>管理画面</span></li>
                     <li>
                         <!-- <span class="nav-link" @click="visitSite()"><i class="fa fa-home"></i>&nbsp;<span class="nav-txt">Visit Site</span></span> -->
-                        <router-link to="/" class="nav-link"><i class="fa fa-home"></i>&nbsp;<span class="nav-txt">ホーム</span></router-link>
+                        <!-- <router-link to="/" class="nav-link"><i class="fa fa-home"></i>&nbsp;<span class="nav-txt">ホーム</span></router-link> -->
+                        <i class="fas fa-tachometer-alt"></i><span>管理画面</span>
                     </li>
                     <li v-if="$auth.check(2)">
                         <router-link to="/news_list" class="nav-link" @click="menuToggle()"><i class="fa fa-newspaper"></i>&nbsp;<span class="nav-txt">ニュース一覧</span></router-link>
@@ -47,7 +46,7 @@
                 </ul>
             </div>
         </div> 
-        <!-- <div v-if="!$auth.check() || this.visit"></div>     -->
+         
     </div>
 </template>
 <script>
@@ -63,27 +62,27 @@
       }
     },
 created() {
-    console.log("aside auth "+this.$auth.check())
-    console.log("aside v "+this.visit)
+    console.log("aside "+this.$auth.check())
+    console.log("aside visit "+this.visit)
     axios.interceptors.response.use((response) => {
         // console.log(response.data)
         if(response.data.status == "Token is Expired" && this.status == false){
 
             this.status = true
         Swal.fire({
-            title: 'Your Login session is Expired!',
-            text: "Please Login Again.",
+            title: 'セッションの有効期限が切れています。！',
+            text: "お手数ですがログイン画面より再度ログインしてください。",
             icon: 'warning',
             showCancelButton: false,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'OK'
+            confirmButtonText: 'はい'
         }).then((result) => {  
             // console.log()
             
             if (result.value) {
                 this.$refs.myid.click();
-                response.data.status = "logout success"
+                response.data.status = "ログアウト成功"
 
             }
         })

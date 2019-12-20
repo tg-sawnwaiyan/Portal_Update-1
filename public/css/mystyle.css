@@ -2570,7 +2570,13 @@ li.userprofile-name>a {
 }
 
 #admin-side-menu .nav-link {
-    color: #444;
+    color: rgba(255, 255, 255, .8) !important;
+    font-size: 14px;
+    font-weight: normal !important;
+}
+
+#admin-side-menu .router-link-exact-active {
+    background: #2c3b41;
 }
 
 .nav-link {
@@ -2713,14 +2719,14 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
     bottom: 0;
     width: 280px;
     height: 100%;
-    background: #fff;
-    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
+    background: #222D32;
+    /* box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
     -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
     -ms-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
     -webkit-transition: all .2s ease;
     -o-transition: all .2s ease;
-    transition: all .2s ease;
+    transition: all .2s ease; */
     z-index: 100;
 }
 
@@ -2730,21 +2736,34 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
     padding-left: 280px;
 }
 
+.custom-sidebar ul.adminview-sidebar li:first-child {
+    padding: 10px 10px 10px 22px;
+    background-color: #2C3B41;
+    font-size: 18px;
+    color: rgba(255, 255, 255, .8);
+}
+
+.custom-sidebar ul.adminview-sidebar li:first-child i {
+    color: rgba(255, 255, 255, .8);
+}
+
 .custom-sidebar ul.adminview-sidebar li a {
-    border: 1px solid #eee;
-    margin: 8px;
-    background: #f5f5f5;
-    padding: 5px;
-    border-radius: 0;
+    border-bottom: .5px solid #485163;
+    padding: 10px 5px;
 }
 
 .custom-sidebar ul.adminview-sidebar li a.router-link-exact-active {
-    border-left: 3px solid #ff9563;
+    border-left: 0px;
+    color: rgba(255, 255, 255, .8) !important;
+}
+
+.custom-sidebar .nav-pills .nav-link {
+    padding: 13px 15px !important;
 }
 
 .custom-sidebar ul.adminview-sidebar li i {
     padding-right: 10px;
-    color: #d2571c !important;
+    color: rgba(255, 255, 255, .8) !important;
 }
 
 .userview-sidebar {
@@ -2754,6 +2773,41 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
     padding-left: 22px;
     padding-right: 7px;
     margin-top: 4px;
+}
+
+.admin-header {
+    height: 50px;
+    background: #346e90 !important;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
+    -ms-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
+    line-height: 50px;
+    vertical-align: middle;
+}
+
+.admin-header .nav-warp {
+    margin-left: 270px;
+}
+
+.admin-header .userprofile-name {
+    margin-top: 7px;
+}
+
+.admin-header .userprofile-img {
+    width: 30px;
+    height: 30px;
+    line-height: 30px !important;
+    font-size: 17px;
+    color: #fff;
+    background: #ece1e1b3;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 50%;
+}
+
+.admin-header .userprofile-name label {
+    color: #fff !important;
 }
 
 
@@ -2778,6 +2832,25 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
     z-index: 1;
 }
 
+.custom-sidebar .admin-logo {
+    height: 50px;
+    padding: 0px;
+    font-size: 25px;
+    background: #2e5d79;
+    text-align: center;
+    line-height: 50px;
+    vertical-align: middle;
+}
+
+.custom-sidebar .admin-logo a {
+    color: rgba(255, 255, 255, .8) !important;
+    font-weight: bold;
+}
+
+.custom-sidebar .admin-logo a:hover {
+    text-decoration: none;
+}
+
 .custom-sidebar .admin-tit {
     display: inline-block;
     margin: 20px 20px 10px 40px;
@@ -2786,6 +2859,14 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
 
 .custom-sidebar .admin-tit i {
     margin-right: 10px;
+}
+
+.admin-header .gNav li a {
+    color: #fff !important;
+}
+
+.admin-header .gNav li a:after {
+    background: #fff;
 }
 
 

@@ -78,69 +78,69 @@ import Unauthorized from './components/403.vue';
 // Routes
 const routes = [
 
-{
-  path: '/Unauthorized',
-  name: 'Unauthorized',
-  component: Unauthorized,
-},
+    {
+        path: '/Unauthorized',
+        name: 'Unauthorized',
+        component: Unauthorized,
+    },
 
-  {
-    path: '/register',
-    name: 'register',
-    component: Register,
-    meta: {
-      auth: false
-    }
-  },
-  {
-    path: '/login',
-    name: 'login',
-    component: Login,
-    meta: {
-      auth: false
-    }
-  },
-  {
-    path: '/reset',
-    name: 'reset',
-    component: PasswordResetMail,
-    meta: {
-      auth: false
-    }
-  },
-  {
-    path: '/resetpassword',
-    name: 'resetpassword',
-    component: PasswordResetForm,
-    meta: {
-      auth: false
-    }
-  },
-  // USER ROUTES
-  // {
-  //   path: '/dashboard',
-  //   name: 'dashboard',
-  //   component: Dashboard,
-  //   meta: {
-  //     auth: true
-  //   }
-  // },
-  // // ADMIN ROUTES
-  // {
-  //   path: '/admin',
-  //   name: 'admin.dashboard',
-  //   component: AdminDashboard,
-  //   meta: {
-  //     auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
-  //   }
-  // },
+    {
+        path: '/register',
+        name: 'register',
+        component: Register,
+        meta: {
+            auth: false
+        }
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: Login,
+        meta: {
+            auth: false
+        }
+    },
+    {
+        path: '/reset',
+        name: 'reset',
+        component: PasswordResetMail,
+        meta: {
+            auth: false
+        }
+    },
+    {
+        path: '/resetpassword',
+        name: 'resetpassword',
+        component: PasswordResetForm,
+        meta: {
+            auth: false
+        }
+    },
+    // USER ROUTES
+    // {
+    //   path: '/dashboard',
+    //   name: 'dashboard',
+    //   component: Dashboard,
+    //   meta: {
+    //     auth: true
+    //   }
+    // },
+    // // ADMIN ROUTES
+    // {
+    //   path: '/admin',
+    //   name: 'admin.dashboard',
+    //   component: AdminDashboard,
+    //   meta: {
+    //     auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+    //   }
+    // },
 
-   {
+    {
         name: 'News',
         path: '/',
         component: News,
         meta: {
-          auth: undefined
+            auth: undefined
         }
     },
 
@@ -165,7 +165,7 @@ const routes = [
         path: "/newsdetails/:id",
         component: Newsdetails,
         meta: {
-          auth: undefined
+            auth: undefined
         }
     },
     {
@@ -173,7 +173,7 @@ const routes = [
         path: "/hospital_search",
         component: hospitalSearch,
         meta: {
-          auth: undefined
+            auth: undefined
         }
     },
     {
@@ -181,7 +181,7 @@ const routes = [
         path: "/jobapply/:job_id",
         component: JobApply,
         meta: {
-          auth: false
+            auth: false
         }
     },
     {
@@ -189,7 +189,7 @@ const routes = [
         path: "/customerlist",
         component: customerlist,
         meta: {
-          auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
         }
     },
     // {
@@ -212,7 +212,7 @@ const routes = [
         path: "/jobsearchlist",
         component: JobSearchListComponent,
         meta: {
-          auth: undefined
+            auth: undefined
         }
     },
 
@@ -221,7 +221,7 @@ const routes = [
         path: "/job_details/:id",
         component: job_details,
         meta: {
-          auth: undefined
+            auth: undefined
         }
     },
     {
@@ -229,7 +229,7 @@ const routes = [
         path: "/news_list",
         component: news_list,
         meta: {
-          auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
         }
     },
     {
@@ -237,7 +237,7 @@ const routes = [
         path: "/create_news",
         component: create_news,
         meta: {
-          auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
         }
     },
     {
@@ -245,7 +245,7 @@ const routes = [
         path: "/editPost",
         component: editPost,
         meta: {
-          auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
         }
     },
     {
@@ -253,7 +253,7 @@ const routes = [
         path: "/categorylist",
         component: categorylist,
         meta: {
-          auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
         }
     },
     {
@@ -261,7 +261,7 @@ const routes = [
         path: "/createcategory",
         component: createcategory,
         meta: {
-          auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
         }
     },
     {
@@ -269,7 +269,7 @@ const routes = [
         path: "/editcategory",
         component: editcategory,
         meta: {
-          auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
         }
     },
     // {
@@ -292,7 +292,7 @@ const routes = [
         path: "/facilitieslist",
         component: FacilitiesListComponent,
         meta: {
-          auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
         }
     },
     {
@@ -300,7 +300,7 @@ const routes = [
         path: "/createfacility",
         component: CreateFacilityComponent,
         meta: {
-          auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
         }
     },
 
@@ -309,7 +309,7 @@ const routes = [
         path: "/editfacility",
         component: EditFacilityComponent,
         meta: {
-            auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
         }
     },
     // {
@@ -322,7 +322,7 @@ const routes = [
         path: "/profile",
         component: Profile,
         meta: {
-          auth: undefined
+            auth: undefined
         }
     },
     {
@@ -330,7 +330,7 @@ const routes = [
         path: "/profiledit",
         component: ProfileEdit,
         meta: {
-            auth: {roles: 1, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+            auth: { roles: 1, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
         }
     },
     {
@@ -338,7 +338,7 @@ const routes = [
         path: "/jobofferlist",
         component: JobOfferList,
         meta: {
-          auth: {roles: 1, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+            auth: { roles: 1, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
         }
     },
     {
@@ -346,7 +346,7 @@ const routes = [
         path: "/joboffercreate",
         component: joboffercreate,
         meta: {
-            auth: {roles: 1, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+            auth: { roles: 1, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
         }
     },
     {
@@ -370,7 +370,7 @@ const routes = [
         path: "/createmedicalacceptance",
         component: createmedicalacceptance,
         meta: {
-            auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
         }
     },
 
@@ -379,7 +379,7 @@ const routes = [
         path: "/medicalacceptancelist",
         component: medicalacceptancelist,
         meta: {
-            auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
         }
     },
 
@@ -388,7 +388,7 @@ const routes = [
         path: "/editmedicalacceptance",
         component: editmedicalacceptance,
         meta: {
-            auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
         }
     },
     // {
@@ -401,7 +401,7 @@ const routes = [
         path: "/advertisement",
         component: advertisement,
         meta: {
-            auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
         }
     },
 
@@ -436,7 +436,7 @@ const routes = [
         path: "/subject",
         component: subject,
         meta: {
-            auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
         }
     },
     {
@@ -444,7 +444,7 @@ const routes = [
         path: "/subjectlist",
         component: subjectlist,
         meta: {
-            auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
         }
     },
     {
@@ -452,7 +452,7 @@ const routes = [
         path: "/ads",
         component: advertisementlist,
         meta: {
-            auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
         }
     },
     {
@@ -460,125 +460,125 @@ const routes = [
         path: "/editads",
         component: editadvertisement,
         meta: {
-            auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
         }
     },
     {
-      name: 'nursing_history',
-      path: '/nursing_history',
-      component: NursingHistory,
-      meta: {
-        auth: false
-      }
+        name: 'nursing_history',
+        path: '/nursing_history',
+        component: NursingHistory,
+        meta: {
+            auth: false
+        }
     },
     {
-      name: 'google_map',
-      path: '/google_map',
-      component: GoogleMap,
-      meta: {
-        auth: undefined
-      }
+        name: 'google_map',
+        path: '/google_map',
+        component: GoogleMap,
+        meta: {
+            auth: undefined
+        }
     },
-  // {
-  //   name: 'videoupload',
-  //   path: '/videoupload',
-  //   component: VideoUpload
-  // },
-  {
-    name: 'comment',
-    path: '/comment/:customer_id',
-    component: comment,
-    meta: {
-        auth: false
-    }
-  },
-  {
-    name: 'commentlist',
-    path: '/commentlist',
-    component: commentlist,
-    meta: {
-        auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
-    }
-  },
-  {
-    name: 'specialfeature',
-    path: '/specialfeature',
-    component: specialfeature,
-    meta: {
-        auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
-    }
-  },
-  {
-    name: 'featurelist',
-    path: '/featurelist',
-    component: featurelist,
-    meta: {
-        auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
-    }
-  },
-  {
-    name: 'nursingFavouriteMail',
-    path: '/nursingFavouriteMail',
-    component: nursingFavouriteMail,
-    meta: {
-        auth: false
-    }
-  },
-  {
-    name: 'nursingMailConfirm',
-    path: '/nursingMailConfirm',
-    component: nursingMailConfirm,
-    meta: {
-        auth: false
-    }
-  },
-  {
-    name: 'modal',
-    path: '/modal',
-    component: modal,
-    meta: {
-        auth: undefined
-    }
-  },
-  {
-    name: 'termsAndConditions',
-    path: '/termsAndConditions',
-    component: termsAndConditions,
-    meta: {
-        auth: false
-    }
-  },
+    // {
+    //   name: 'videoupload',
+    //   path: '/videoupload',
+    //   component: VideoUpload
+    // },
+    {
+        name: 'comment',
+        path: '/comment/:customer_id',
+        component: comment,
+        meta: {
+            auth: false
+        }
+    },
+    {
+        name: 'commentlist',
+        path: '/commentlist',
+        component: commentlist,
+        meta: {
+            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
+        }
+    },
+    {
+        name: 'specialfeature',
+        path: '/specialfeature',
+        component: specialfeature,
+        meta: {
+            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
+        }
+    },
+    {
+        name: 'featurelist',
+        path: '/featurelist',
+        component: featurelist,
+        meta: {
+            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
+        }
+    },
+    {
+        name: 'nursingFavouriteMail',
+        path: '/nursingFavouriteMail',
+        component: nursingFavouriteMail,
+        meta: {
+            auth: false
+        }
+    },
+    {
+        name: 'nursingMailConfirm',
+        path: '/nursingMailConfirm',
+        component: nursingMailConfirm,
+        meta: {
+            auth: false
+        }
+    },
+    {
+        name: 'modal',
+        path: '/modal',
+        component: modal,
+        meta: {
+            auth: undefined
+        }
+    },
+    {
+        name: 'termsAndConditions',
+        path: '/termsAndConditions',
+        component: termsAndConditions,
+        meta: {
+            auth: false
+        }
+    },
 
-  {
-    name: 'occupation',
-    path: '/occupation',
-    component: occupation,
-    meta: {
-        auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
-    }
-  },
+    {
+        name: 'occupation',
+        path: '/occupation',
+        component: occupation,
+        meta: {
+            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
+        }
+    },
 
-  {
-    name: 'occupationlist',
-    path: '/occupationlist',
-    component: occupationlist,
-    meta: {
-        auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
-    }
-  },
-  {
-    name:'jobapplylist',
-    path:'/jobapplylist',
-    component:jobapplylist,
-    meta: {
-        auth: {roles: 1, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
-    }
-  },
+    {
+        name: 'occupationlist',
+        path: '/occupationlist',
+        component: occupationlist,
+        meta: {
+            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
+        }
+    },
+    {
+        name: 'jobapplylist',
+        path: '/jobapplylist',
+        component: jobapplylist,
+        meta: {
+            auth: { roles: 1, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
+        }
+    },
 
 ]
 const router = new VueRouter({
-  history: true,
-  mode: 'history',
-  routes,
+    history: true,
+    mode: 'history',
+    routes,
 })
 export default router
