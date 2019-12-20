@@ -60,14 +60,6 @@
                                         <li v-if="opening_check">開設日</li>
                                     </ul>
                                 </dd>
-                                <!-- <dd v-if="tran_check" style="width: 84px;">、交通手段</dd>
-                        <dd v-if="month_check" style="width: 80px;">、月額費用</dd>
-                        <dd v-if="entry_check" style="width:100px;">、入居一時金</dd>
-                        <dd v-if="condition_check" style="width:80px;">、入居条件 </dd>
-                        <dd v-if="special_check" style="width: 51px;">、特長</dd>
-                        <dd v-if="medical_check" style="width: 135px;">、医療面の受け入れ</dd>
-                        <dd v-if="capacity_check" style="width:50px;">、定員</dd>
-                        <dd v-if="opening_check" class="da">、開設日</dd> -->
                             </dl>
                         </div>
 
@@ -120,7 +112,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-md-3">
-                                                <label class="form-check-label control control--checkbox fnt-check">
+                                                <label class="form-check-label control control--checkbox fnt-check lbl-width">
                                                     <input type="checkbox" v-model="entry_check" class="form-check-input"> 入居一時金
                                                     <div class="control__indicator"></div>
                                                 </label>
@@ -240,13 +232,26 @@
                 <!--result-->
                 <div class="col-12">
                     <div class="clearfix">
-                        <div class="float-right">
+                        <div class="float-right pc-480">
                             <label class="btn my-2 my-sm-0 all-btn secondary-bg-color btn-secondary control controlinner--checkbox" style="width:300px;">
                                 <input type="checkbox" @change="checkAll()" class="check-all-btn" />
                                 <span class="checkmark"></span>すべての資料請求にチェックを入れる
                                 <div class="controlinner__indicator" style="top:8px;left:7px;"></div>
                             </label>
                             <button type="button" class="btn btn-success all-btn float-right m-l-10" @click="addingMail()" :disabled="isdisable">資料請求する</button>
+                        </div>
+                        <div class="float-right check-resize">
+                            <label class="btn my-2 my-sm-0 all-btn secondary-bg-color btn-secondary control controlinner--checkbox pc-480" style="width:300px;">
+                                <input type="checkbox" @change="checkAll()" class="check-all-btn" />
+                                <span class="checkmark"></span>すべての資料請求にチェックを入れる
+                                <div class="controlinner__indicator" style="top:8px;left:7px;"></div>
+                            </label>
+                            <label class="btn my-sm-0 all-btn secondary-bg-color btn-secondary control controlinner--checkbox fnt-check">
+                                <input type="checkbox" @change="checkAll()" class="check-all-btn" />
+                                <span class="checkmark"></span>すべてチェック
+                                <div class="controlinner__indicator" style="top:8px;left:3px;"></div>
+                            </label>
+                            <button type="button" class="btn btn-success all-btn float-right m-l-10 fnt-check" @click="addingMail()" :disabled="isdisable">資料請求する</button>
                         </div>
                     </div>
                     <div class="m-t-20" id="fav-history-page">

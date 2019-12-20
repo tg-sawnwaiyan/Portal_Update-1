@@ -8561,6 +8561,9 @@ ul.nur-caro-card>li.list-group-item {
 .pc-paginate{
     display: inline;
 }
+.check-resize {
+    display: none;
+}
 
 /*--------------------------------------------------------------------------------responsive -----------------------------------------------------------------------*/
 
@@ -8629,6 +8632,9 @@ ul.nur-caro-card>li.list-group-item {
         height: 170px;
         cursor: pointer;
     }
+    .fav-update-btn {
+        margin: 22px auto;
+    }
 }
 
 @media screen and (max-width: 979px) and (max-width:752px) {
@@ -8669,7 +8675,19 @@ ul.nur-caro-card>li.list-group-item {
     /*end pagination*/
     /*fav nursing*/
     .lbl-size{
-        width: auto;
+        width: 355px;
+    }
+    .lbl-width {
+        width: 92px;
+    }
+    dl.favnur dt {
+        width: 22%;
+    }
+    #nursing dl dd {
+        padding-left: 0px;
+    }
+    #headerbar {
+        z-index: 999;
     }
     /*end fav nursing*/
 }
@@ -8743,13 +8761,41 @@ ul.nur-caro-card>li.list-group-item {
     /*fav nursing*/    
     .close-480 {
         display: block;
-    }
-    .btn-secondary {
         line-height: 2px;
         font-size: 20px;
         height: 30px;
         width: 35px;
         padding: 0px;
+    }
+    .check-resize {
+        display: block;
+    }
+    dl.favnur dt {
+        display: block;
+        width: auto;
+    }
+    #nursing dl dd {
+        padding-left: 0px;
+    }
+    .fav-update-wrap {
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+    .fav-update-wrap {
+        padding: 0;
+        background: #eaeef0;
+        border: 1px solid #ddd;
+        text-align: center;
+    }
+    .favnur{
+        border-right: 1px solid #ccc !important;
+    }
+    .compare-wrap {
+        max-width: 100%;
+    }
+    .fav-update-btn {
+        width: 35%;
+        line-height: 25px;
     }
     .fnt-title {
         font-size: 15px;
@@ -8770,6 +8816,10 @@ ul.nur-caro-card>li.list-group-item {
     }
     .lbl-size{
         width: auto;
+    }
+    .job_count {
+        font-size: 15px;
+        padding: 0px 5px 0px;
     }
     /*end fav nursing*/
      /*pagination*/
@@ -8942,6 +8992,9 @@ ul.nur-caro-card>li.list-group-item {
     }
     .custom-table {
         width: 550px;
+    }
+    .fav-update-btn {
+        margin: 33px auto;
     }
 }
 
