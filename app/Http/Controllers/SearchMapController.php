@@ -23,17 +23,17 @@ class SearchMapController extends Controller
         {
           $local = explode(',',$localst);
         }
-        else{
+        else{          
 
             $local = 0;
         }
 
-        $query = "SELECT '' as fav_check,'' as alphabet,n.id as nursing_id,n.id,n.latitude as lat ,n.longitude as lng, n.*,c.*,c.id as cus_id,ci.city_name,t.township_name,ty.name AS type_name
+        $query = "SELECT '' as fav_check,'' as alphabet,n.id as nursing_id,n.id,n.latitude as lat ,n.longitude as lng, n.*,c.*,c.id as cus_id,ci.city_name,t.township_name,ty.description AS type_name
                     FROM nursing_profiles AS n
                     JOIN customers AS c  ON c.id = n.customer_id
                     LEFT JOIN townships AS t  ON t.id = c.townships_id
                     LEFT JOIN cities AS ci ON t.city_id = ci.id
-                    LEFT JOIN types AS ty ON c.type_id = ty.id
+                    LEFT JOIN fac_types AS ty ON n.fac_type = ty.id
                     LEFT JOIN special_features_junctions as spej on spej.customer_id = n.customer_id  
                     LEFT JOIN special_features as spe on spe.id = spej.special_feature_id
                     LEFT JOIN acceptance_transactions as acct on acct.customer_id = n.customer_id
@@ -557,7 +557,7 @@ class SearchMapController extends Controller
             $arr[] = ( $hos_data[$i]->hos_id);
            
         }
-        if($local != 0)
+        if($local != 0 && isset($arr))
         {
             for($i = 0;$i<count($local);$i++)
             {
@@ -809,7 +809,7 @@ class SearchMapController extends Controller
             $theCity = 'Tokyo';
         }
        
-        $path = public_path().('/google-map-json/gadm36_jpn_1.json');
+        $path = base_path().('/google-map-json/gadm36_jpn_1.json');
         $json = file_get_contents($path);
         ini_set('memory_limit','-1');
         $obj = json_decode(preg_replace('/[\x00-\x1F\x80-\xFF]/', '',$json), true );
@@ -833,7 +833,7 @@ class SearchMapController extends Controller
     public function townshipJson($township_name)
     {
         $postalCode = explode(",",$township_name);
-        $path = public_path().('/google-map-json/japan-cities_5percent.json');
+        $path = base_path().('/google-map-json/japan-cities_5percent.json');
         $json = file_get_contents($path);
         ini_set('memory_limit','-1');
         $obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $json), true );

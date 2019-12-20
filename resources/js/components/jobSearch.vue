@@ -785,19 +785,19 @@
               <nav aria-label="Page navigation example">
                 <ul class="pagination">
                   <li class="page-item">
-                    <span class="spanclass" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
+                    <span class="spanclass pc-480" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
                   </li>
                   <li class="page-item">
-                    <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i> 前へ</span>
+                    <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i><span class="pc-paginate"> 前へ</span></span>
                   </li>
                   <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
                     <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
                   </li>
                   <li class="page-item">
-                    <span class="spanclass" @click="next">次へ <i class='fas fa-angle-right'></i></span>
+                    <span class="spanclass" @click="next"><span class="pc-paginate">次へ </span><i class='fas fa-angle-right'></i></span>
                   </li>
                   <li class="page-item">
-                    <span class="spanclass" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
+                    <span class="spanclass pc-480" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
                   </li>
                 </ul>
               </nav>
@@ -942,7 +942,7 @@ export default {
 
           var search_word = $('#search-free-word').val();
         }
-
+        this.$loading(true);
         this.axios.get('api/getjobsearch/'+search_word,{
 
           params:{
@@ -952,7 +952,7 @@ export default {
               empstatus:this.empstatus
           },
         }).then((response)=>{
-
+          this.$loading(false);
           this.job_data = response.data.job;
           this.cities = response.data.city
 
@@ -987,7 +987,7 @@ export default {
             else{
                 var search_word = "all";
             }
-
+             this.$loading(true);
             this.axios.get('api/getjobsearch/'+ search_word,{
                params:{
                     id: -1,
@@ -998,6 +998,7 @@ export default {
                 },
             })
             .then((response)=>{
+               this.$loading(false);
               if(response.data.job.length > 0)
               {
 
@@ -1022,13 +1023,7 @@ export default {
               else{
                   $('#job_search').css("display","none");
               }
-
-
-
             });
-
-
-
         },
 
     gotoJobdetail(jid) {
@@ -1072,6 +1067,7 @@ export default {
                 this.locast = localStorage.getItem("nursing_fav");
             }
 
+            this.$loading(true);
             this.axios.get('api/getmap',{
             params:{
               id: this.id,
@@ -1082,7 +1078,7 @@ export default {
           },
           })
           .then((response)=>{
-
+          this.$loading(false);
           $('.jobselect').removeClass('jobselect');
             this.cities = response.data.city
             this.getCity = response.data.getCity

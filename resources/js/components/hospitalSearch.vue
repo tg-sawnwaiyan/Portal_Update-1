@@ -553,305 +553,303 @@
                     </bulma-accordion>                   
         </section>
         <div id="scroll-responsive">
-          <div id="hos_search" class="col-12 hospitalselect pad-free">
-               <span v-if="norecord_msg">
-                <div class="container-fuid m-t-20">
-                    <p class="nosearch-icon">
-                        <svg x="0px" y="0px" width="30" height="30" viewBox="0 0 172 172" style=" fill:red;"><g transform=""><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><path d="M0,172v-172h172v172z" fill="none"></path><path d="M3.44,168.56v-165.12h165.12v165.12z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><path d="M0,172v-172h172v172z" fill="none"></path><path d="M3.44,168.56v-165.12h165.12v165.12z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><g fill="#666666"><path d="M74.53333,17.2c-31.59643,0 -57.33333,25.73692 -57.33333,57.33333c0,31.59641 25.7369,57.33333 57.33333,57.33333c13.73998,0 26.35834,-4.87915 36.24766,-12.97839l34.23203,34.23203c1.43802,1.49778 3.5734,2.10113 5.5826,1.57735c2.0092,-0.52378 3.57826,-2.09284 4.10204,-4.10204c0.52378,-2.0092 -0.07957,-4.14458 -1.57735,-5.5826l-34.23203,-34.23203c8.09923,-9.88932 12.97839,-22.50768 12.97839,-36.24766c0,-31.59641 -25.7369,-57.33333 -57.33333,-57.33333zM74.53333,28.66667c25.39939,0 45.86667,20.46729 45.86667,45.86667c0,25.39937 -20.46728,45.86667 -45.86667,45.86667c-25.39939,0 -45.86667,-20.46729 -45.86667,-45.86667c0,-25.39937 20.46728,-45.86667 45.86667,-45.86667zM91.67734,51.52161c-1.51229,0.03575 -2.94918,0.66766 -3.99765,1.75807l-13.14636,13.14636l-13.14636,-13.14636c-1.07942,-1.10959 -2.56162,-1.73559 -4.10963,-1.73568c-2.33303,0.00061 -4.43306,1.41473 -5.31096,3.57628c-0.8779,2.16155 -0.3586,4.6395 1.31331,6.26669l13.14636,13.14636l-13.14636,13.14636c-1.49777,1.43802 -2.10111,3.5734 -1.57733,5.58259c0.52378,2.0092 2.09283,3.57825 4.10203,4.10203c2.0092,0.52378 4.14457,-0.07956 5.58259,-1.57733l13.14636,-13.14636l13.14636,13.14636c1.43802,1.49778 3.5734,2.10113 5.5826,1.57735c2.0092,-0.52378 3.57826,-2.09284 4.10204,-4.10204c0.52378,-2.0092 -0.07957,-4.14458 -1.57735,-5.5826l-13.14636,-13.14636l13.14636,-13.14636c1.70419,-1.63875 2.22781,-4.1555 1.31865,-6.33798c-0.90916,-2.18248 -3.06468,-3.58317 -5.42829,-3.52739z"></path></g></g></g></svg>
-                    </p>
-                     <p class="nosearch-data">お探しの条件に合う施設・物件は見つかりませんでした。</p>
-                     <p class="nosearch">条件を変更してみると、該当施設が増える可能性がございますので、再度、ご検索ください。</p>
-                </div>
-            </span>
-              <div v-else>
-            <h5 class="profile_header m-t-10" style="border-left: 5px solid #63b7ff;">現在の検索条件</h5>
-
-          <table class="table table-bordered col-12">
-            <tbody>
-              <tr>
-                <th>地域</th>
-                <td>
-                  <select id="selectCity" class="col-9 form-control custom-select mt-2 mb-2" v-model="id" @change="ChangeTownship">
-                     <option value="-1">▼市区町村</option>
-                    <option v-for="city in cities" :value="city.id" :key="city.id">{{city.city_name}}</option>
-                  </select>
-                  <button @click="toggleContent" class="btn col-3 seemore-btn">
-                    <i class="fa" aria-hidden="true"></i>
-                    <!-- <em>{{city.city_name}}</em> -->
-                    <span id="close"><i class="fas fa-arrow-circle-up"></i> 市区町村エリアを閉じる</span>
-                  </button>
-                  <div class="toBeToggled" id="toBeToggled">
-
-                    <div class="form-check form-check-inline col-sm-2" v-for="township in getTownships" :key="township.id">
-                      <!-- <label class="form-check-label" > -->
-                        <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-                        <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @click="getCheck($event)">
-                        {{township.township_name}}
-                        <div class="control__indicator"></div>
-                      </label>
+            <div id="hos_search" class="col-12 hospitalselect pad-free">
+                <span v-if="norecord_msg">
+                    <div class="container-fuid m-t-20">
+                        <p class="nosearch-icon">
+                            <svg x="0px" y="0px" width="30" height="30" viewBox="0 0 172 172" style=" fill:red;"><g transform=""><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><path d="M0,172v-172h172v172z" fill="none"></path><path d="M3.44,168.56v-165.12h165.12v165.12z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><path d="M0,172v-172h172v172z" fill="none"></path><path d="M3.44,168.56v-165.12h165.12v165.12z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><g fill="#666666"><path d="M74.53333,17.2c-31.59643,0 -57.33333,25.73692 -57.33333,57.33333c0,31.59641 25.7369,57.33333 57.33333,57.33333c13.73998,0 26.35834,-4.87915 36.24766,-12.97839l34.23203,34.23203c1.43802,1.49778 3.5734,2.10113 5.5826,1.57735c2.0092,-0.52378 3.57826,-2.09284 4.10204,-4.10204c0.52378,-2.0092 -0.07957,-4.14458 -1.57735,-5.5826l-34.23203,-34.23203c8.09923,-9.88932 12.97839,-22.50768 12.97839,-36.24766c0,-31.59641 -25.7369,-57.33333 -57.33333,-57.33333zM74.53333,28.66667c25.39939,0 45.86667,20.46729 45.86667,45.86667c0,25.39937 -20.46728,45.86667 -45.86667,45.86667c-25.39939,0 -45.86667,-20.46729 -45.86667,-45.86667c0,-25.39937 20.46728,-45.86667 45.86667,-45.86667zM91.67734,51.52161c-1.51229,0.03575 -2.94918,0.66766 -3.99765,1.75807l-13.14636,13.14636l-13.14636,-13.14636c-1.07942,-1.10959 -2.56162,-1.73559 -4.10963,-1.73568c-2.33303,0.00061 -4.43306,1.41473 -5.31096,3.57628c-0.8779,2.16155 -0.3586,4.6395 1.31331,6.26669l13.14636,13.14636l-13.14636,13.14636c-1.49777,1.43802 -2.10111,3.5734 -1.57733,5.58259c0.52378,2.0092 2.09283,3.57825 4.10203,4.10203c2.0092,0.52378 4.14457,-0.07956 5.58259,-1.57733l13.14636,-13.14636l13.14636,13.14636c1.43802,1.49778 3.5734,2.10113 5.5826,1.57735c2.0092,-0.52378 3.57826,-2.09284 4.10204,-4.10204c0.52378,-2.0092 -0.07957,-4.14458 -1.57735,-5.5826l-13.14636,-13.14636l13.14636,-13.14636c1.70419,-1.63875 2.22781,-4.1555 1.31865,-6.33798c-0.90916,-2.18248 -3.06468,-3.58317 -5.42829,-3.52739z"></path></g></g></g></svg>
+                        </p>
+                        <p class="nosearch-data">お探しの条件に合う施設・物件は見つかりませんでした。</p>
+                        <p class="nosearch">条件を変更してみると、該当施設が増える可能性がございますので、再度、ご検索ください。</p>
                     </div>
+                </span>
+                <div v-else>
+                    <h5 class="profile_header m-t-10" style="border-left: 5px solid #63b7ff;">現在の検索条件</h5>
 
-                  </div>
-                </td>
-              </tr>
-              <tr class="toBeToggled1 ShowHide1">
-                <th>
-                  フリーワード
-                </th>
-                <td>
-                    <input type="text" class="form-control mt-2 mb-2" id="" placeholder="例）施設名、エリア">
-                </td>
-              </tr>
-              <tr class="toBeToggled1 ShowHide1">
-                <th>特長</th>
-                <td>
-                  <div class="form-check form-check-inline col-sm-2 " v-for="feature in special_features" :key="feature.id">
-                    <!-- <label class="form-check-label" > -->
-                     <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-                      <input  class="form-check-input" type="checkbox" :id="feature.id" v-model="specialfeatureID" :value="feature.id" @click="features($event)">
-                      {{feature.name}}
-                      <div class="control__indicator"></div>
-                    </label>
-                  </div>
-                </td>
-              </tr>
-              <tr class="toBeToggled1 ShowHide1">
-                <th>診療科目</th>
-                <td>
-                    <div class="form-check form-check-inline row align-items-start innerwrapper">
-                        <div class="test" v-for="(subject,index) in subjects.slice(0,3)" :key="index">
-                          <div class="row col-12">
-                            <strong class="table-innertitle row col-12">{{subject.name}}</strong>
-                            <div class="col-6" v-for="ch in subject.child" :key="ch.id+1">
-                                <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-                                <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
-                                {{ch.name}}
-                                <div class="control__indicator"></div>
-                                </label>
-                            </div>
-                          </div>
-                        </div>
-                    </div>
-                      <div class="form-check form-check-inline row align-items-start innerwrapper">
-                        <div class="test" v-for="(subject,index) in subjects.slice(3,6)" :key="index">
-                          <div class="row col-12">
-                            <strong class="table-innertitle row col-12">{{subject.name}}</strong>
-
-                            <div class="col-6" v-for="ch in subject.child" :key="ch.id+1">
-
-                                <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-                                <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
-                                {{ch.name}}
-                                <div class="control__indicator"></div>
-                                </label>
-                            </div>
-
-                          </div>
-
-
-                        </div>
-
-                    </div>
-                      <div class="form-check form-check-inline row align-items-start innerwrapper">
-                        <div class="test" v-for="(subject,index) in subjects.slice(6,9)" :key="index">
-                          <div class="row col-12">
-                            <strong class="table-innertitle row col-12">{{subject.name}}</strong>
-
-                            <div class="col-6" v-for="ch in subject.child" :key="ch.id+1">
-
-                                <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-                                <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
-                                {{ch.name}}
-                                <div class="control__indicator"></div>
-                                </label>
-                            </div>
-
-                          </div>
-
-
-                        </div>
-
-                    </div>
-                     <div class="form-check form-check-inline row align-items-start innerwrapper" style="width:33.98%;">
-                        <div class="test" v-for="(subject,index) in subjects.slice(9,10)" :key="index">
-                          <div class="row col-12">
-                            <strong class="table-innertitle row col-12">{{subject.name}}</strong>
-
-                            <div class="col-6" v-for="ch in subject.child" :key="ch.id+1">
-
-                                <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-                                <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
-                                {{ch.name}}
-                                <div class="control__indicator"></div>
-                                </label>
-                            </div>
-
-                          </div>
-
-
-                        </div>
-
-                    </div>
-
-                </td>
-              </tr>
-
-              <tr class="text-center">
-                <td colspan="2" style="border:none;">
-                  <button @click="ShowHide1" class="btn seemore-btn">
-                    <i class="fa" aria-hidden="true"></i>
-                    <span id="close2"><i class="fas fa-arrow-circle-down"></i> もっと見る</span>
-                  </button>
-                </td>
-              </tr>
-              <tr class="text-center">
-                <td colspan="2">
-                  <button type="button" class="main-bg-color create-btn all-btn" style="width:16%;" id="search" name="search" value="検索"  @click="search">
-                  <i class="fas fa-search"></i>&nbsp; 検索
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="col-12">
-            <div class="row">
-
-              <div id="job_detail" class="col-md-12 col-sm-12 pad-free offset" style="margin-top:20px;" v-for="(hos,index) in displayItems" :key="hos.id">
-                <div class="hos-content">
-                    <div class="job-header">
-                      <div class="row pad-free">
-                        <div class="col-8">
-                          <h5 class="hos-title">
-                            <router-link :to="{name: 'profile', params: {cusid:hos.customer_id, type: 'hospital'}}" class="pseudolink">{{hos.name}}</router-link>
-                          </h5>
-                        <div class="clearfix d-flex m-t-20">
-                          <span v-for="(sub,index) in subject" :key="index+'-'+sub.name+'-'+hos.id">
-                              <span v-if="sub.customer_id == hos.customer_id" class="job_status">
-                              {{sub.name}}
-                              </span>
-                          </span>
-                      </div>
-                        </div>
-                        <div class="col-4">
-                           <p class="text-right">
-                              <!-- <span class="btn fav-profile fav-item fav-color" :class="'view_pro_id'+hos.nursing_id" style="" @click="favAddFun('add',hos.nursing_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
-                              <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == 'check'" :class="'done_pro_id'+hos.nursing_id" style="color:#aaa;" @click="favAddFun('remove',hos.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
-                          -->
-                          <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == ''" :class="'view_pro_id'+hos.nursing_id" style="display:block;" @click="favAddFun('add',hos.hos_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
-                          <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == 'check'" :class="'done_pro_id'+hos.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',hos.hos_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
-                          </p>
-
-                        </div>
-                      </div>
-                    </div>
-
-                <div class="hos-body row clearfix">
-                  <div class="col-3 job-img">
-                    <img v-bind:src="'/upload/hospital_profile/' + hos.logo"  alt="img" class="img-fluid" @error="imgUrlAlt">
-
-                  <!-- <p class="hos_phone text-center m-t-20"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span><span class="phone-no">{{hos.phone}}</span></p> -->
-                  </div>
-                  <div class="col-4 job-box">
-                    <table  class="table table-bordered table-sm">
-                        <!-- <tr>
-                          <td style="width:30%;"><span class="job_ico"><i class="fa fa-user"></i></span>名前</td>
-                          <td>{{hos.name}}</td>
-                        </tr> -->
-                          <tr>
-                          <td style="width:30%;"><span class="job_ico"><i class="fa fa-envelope"></i></span>メールアドレス</td>
-                          <td>{{hos.email}}</td>
-                        </tr>
+                    <table class="table table-bordered col-12">
+                        <tbody>
                         <tr>
-                          <td style="width:30%;"><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>住所</td>
-                          <td>{{hos.address}}</td>
+                            <th>地域</th>
+                            <td>
+                            <select id="selectCity" class="col-9 form-control custom-select mt-2 mb-2" v-model="id" @change="ChangeTownship">
+                                <option value="-1">▼市区町村</option>
+                                <option v-for="city in cities" :value="city.id" :key="city.id">{{city.city_name}}</option>
+                            </select>
+                            <button @click="toggleContent" class="btn col-3 seemore-btn" v-if="getTownships.length > 0">
+                                <i class="fa" aria-hidden="true"></i>
+                                <!-- <em>{{city.city_name}}</em> -->
+                                <span id="close"><i class="fas fa-arrow-circle-up"></i> 市区町村エリアを閉じる</span>
+                            </button>
+                            <div class="toBeToggled" id="toBeToggled">
+
+                                <div class="form-check form-check-inline col-sm-2" v-for="township in getTownships" :key="township.id">
+                                <!-- <label class="form-check-label" > -->
+                                    <label class="form-check-label control control--checkbox" style="padding-left:5px;">
+                                    <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @click="getCheck($event)">
+                                    {{township.township_name}}
+                                    <div class="control__indicator"></div>
+                                </label>
+                                </div>
+
+                            </div>
+                            </td>
                         </tr>
-                        <!-- <tr>
-                          <td style="width:30%;"><span class="job_ico"><i class="fa fa-calendar-alt"></i></span>休業日</td>
-                          <td>{{hos.closed_day}}</td>
+                        <!-- <tr class="toBeToggled1 ShowHide1">
+                            <th>
+                            フリーワード
+                            </th>
+                            <td>
+                                <input type="text" class="form-control mt-2 mb-2" id="" placeholder="例）施設名、エリア">
+                            </td>
                         </tr> -->
+                        <tr class="toBeToggled1 ShowHide1">
+                            <th>特長</th>
+                            <td>
+                            <div class="form-check form-check-inline col-sm-2 " v-for="feature in special_features" :key="feature.id">
+                                <!-- <label class="form-check-label" > -->
+                                <label class="form-check-label control control--checkbox" style="padding-left:5px;">
+                                <input  class="form-check-input" type="checkbox" :id="feature.id" v-model="specialfeatureID" :value="feature.id" @click="features($event)">
+                                {{feature.name}}
+                                <div class="control__indicator"></div>
+                                </label>
+                            </div>
+                            </td>
+                        </tr>
+                        <tr class="toBeToggled1 ShowHide1">
+                            <th>診療科目</th>
+                            <td>
+                                <div class="form-check form-check-inline row align-items-start innerwrapper">
+                                    <div class="test" v-for="(subject,index) in subjects.slice(0,3)" :key="index">
+                                    <div class="row col-12">
+                                        <strong class="table-innertitle row col-12">{{subject.name}}</strong>
+                                        <div class="col-6" v-for="ch in subject.child" :key="ch.id+1">
+                                            <label class="form-check-label control control--checkbox" style="padding-left:5px;">
+                                            <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
+                                            {{ch.name}}
+                                            <div class="control__indicator"></div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="form-check form-check-inline row align-items-start innerwrapper">
+                                    <div class="test" v-for="(subject,index) in subjects.slice(3,6)" :key="index">
+                                    <div class="row col-12">
+                                        <strong class="table-innertitle row col-12">{{subject.name}}</strong>
+
+                                        <div class="col-6" v-for="ch in subject.child" :key="ch.id+1">
+
+                                            <label class="form-check-label control control--checkbox" style="padding-left:5px;">
+                                            <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
+                                            {{ch.name}}
+                                            <div class="control__indicator"></div>
+                                            </label>
+                                        </div>
+
+                                    </div>
+
+
+                                    </div>
+
+                                </div>
+                                <div class="form-check form-check-inline row align-items-start innerwrapper">
+                                    <div class="test" v-for="(subject,index) in subjects.slice(6,9)" :key="index">
+                                    <div class="row col-12">
+                                        <strong class="table-innertitle row col-12">{{subject.name}}</strong>
+
+                                        <div class="col-6" v-for="ch in subject.child" :key="ch.id+1">
+
+                                            <label class="form-check-label control control--checkbox" style="padding-left:5px;">
+                                            <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
+                                            {{ch.name}}
+                                            <div class="control__indicator"></div>
+                                            </label>
+                                        </div>
+
+                                    </div>
+
+
+                                    </div>
+
+                                </div>
+                                <div class="form-check form-check-inline row align-items-start innerwrapper" style="width:33.98%;">
+                                    <div class="test" v-for="(subject,index) in subjects.slice(9,10)" :key="index">
+                                    <div class="row col-12">
+                                        <strong class="table-innertitle row col-12">{{subject.name}}</strong>
+
+                                        <div class="col-6" v-for="ch in subject.child" :key="ch.id+1">
+
+                                            <label class="form-check-label control control--checkbox" style="padding-left:5px;">
+                                            <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
+                                            {{ch.name}}
+                                            <div class="control__indicator"></div>
+                                            </label>
+                                        </div>
+
+                                    </div>
+
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+                        </tr>
+
+                        <tr class="text-center">
+                            <td colspan="2" style="border:none;">
+                            <button @click="ShowHide1" class="btn seemore-btn">
+                                <i class="fa" aria-hidden="true"></i>
+                                <span id="close2"><i class="fas fa-arrow-circle-down"></i> もっと見る</span>
+                            </button>
+                            </td>
+                        </tr>
+                        <tr class="text-center">
+                            <td colspan="2">
+                            <button type="button" class="main-bg-color create-btn all-btn" style="width:16%;" id="search" name="search" value="検索"  @click="search">
+                            <i class="fas fa-search"></i>&nbsp; 検索
+                            </button>
+                            </td>
+                        </tr>
+                        </tbody>
                     </table>
-                    <!--special feature and subject-->
-                <h5 class="header m-t-10">こだわりの特長</h5>
-                  <span v-for="(spe,index) in specialfeatures" :key="index+'-'+spe.name+'-'+hos.id">
-                    <span v-if="spe.customer_id == hos.customer_id" class="feature_list">
-                      {{spe.name}}
-                    </span>
-                  </span>
-                <!--end special feature and subject-->
-                  </div>
-                  <div class="col-5">
-                    <!--schedule-->
-                 <h5 class="header">診療時間
-                    <span class="hos_phone"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span><span class="phone-no">{{hos.phone}}</span></span>
-                 </h5>
-                  <!-- <tr v-for="(time,index) in timetable" :key="index+'-'+time.id+'-'+hos.id">
-                    <td v-if="hos.customer_id == time.customer_id" >
-                      {{time.mon}} / {{time.tue}} / {{time.wed}} / {{time.thu}} / {{time.fri}} / {{time.sat}} / {{time.sun}} / {{time.part}}
-                    </td>
-                  </tr> -->
-                <table class="table table-bordered">
-                    <thead>
-                      <tr class="first-row">
-                        <th>日付</th>
-                        <th>月</th>
-                        <th>火</th>
-                        <th>水</th>
-                        <th>木</th>
-                        <th>金</th>
-                        <th>土</th>
-                        <th>日</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr v-for="(time,index) in timetable" :key="index+'-'+time.id+'-'+hos.id" class="text-center">
-                        <td class="second-hos-row" style="width:8%;" v-if="(hos.customer_id == time.customer_id && time.part == 'am' )">午前</td>
-                        <td class="second-hos-row" style="width:8%;" v-if="(hos.customer_id == time.customer_id && time.part == 'pm' )">午後</td>
-                        <td style="width:10%;" v-if="hos.customer_id == time.customer_id">{{time.mon}}</td>
-                        <td style="width:10%;" v-if="hos.customer_id == time.customer_id">{{time.tue}}</td>
-                        <td style="width:10%;" v-if="hos.customer_id == time.customer_id">{{time.wed}}</td>
-                        <td style="width:10%;" v-if="hos.customer_id == time.customer_id">{{time.thu}}</td>
-                        <td style="width:10%;" v-if="hos.customer_id == time.customer_id">{{time.fri}}</td>
-                        <td style="width:10%;" v-if="hos.customer_id == time.customer_id">{{time.sat}}</td>
-                        <td style="width:10%;" v-if="hos.customer_id == time.customer_id">{{time.sun}}</td>
-                      </tr>
-                    </tbody>
-                </table>
-               <span> <strong> 休診日：</strong>{{hos.closed_day}}</span>
-               <!-- <p><span style="color: red; font-weight: bold; font-size: 15px;">※</span>診療時間は、変更される事や、診療科によって異なる場合があるため、直接医療機関のホームページ等でご確認ください。</p> -->
-                <!--end schedule-->
-                  </div>
+                    <div class="col-12">
+                        <div class="row">
+
+                            <div id="job_detail" class="col-md-12 col-sm-12 pad-free offset" style="margin-top:20px;" v-for="(hos,index) in displayItems" :key="hos.id">
+                                <div class="hos-content">
+                                    <div class="job-header">
+                                    <div class="row pad-free">
+                                        <div class="col-8">
+                                        <h5 class="hos-title">
+                                            <router-link :to="{name: 'profile', params: {cusid:hos.customer_id, type: 'hospital'}}" class="pseudolink">{{hos.name}}</router-link>
+                                        </h5>
+                                        <div class="clearfix d-flex m-t-20">
+                                        <span v-for="(sub,index) in subject" :key="index+'-'+sub.name+'-'+hos.id">
+                                            <span v-if="sub.customer_id == hos.customer_id" class="job_status">
+                                            {{sub.name}}
+                                            </span>
+                                        </span>
+                                    </div>
+                                        </div>
+                                        <div class="col-4">
+                                        <p class="text-right">
+                                            <!-- <span class="btn fav-profile fav-item fav-color" :class="'view_pro_id'+hos.nursing_id" style="" @click="favAddFun('add',hos.nursing_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
+                                            <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == 'check'" :class="'done_pro_id'+hos.nursing_id" style="color:#aaa;" @click="favAddFun('remove',hos.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
+                                        -->
+                                        <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == ''" :class="'view_pro_id'+hos.nursing_id" style="display:block;" @click="favAddFun('add',hos.hos_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
+                                        <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == 'check'" :class="'done_pro_id'+hos.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',hos.hos_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
+                                        </p>
+
+                                        </div>
+                                    </div>
+                                    </div>
+
+                                    <div class="hos-body row clearfix">
+                                        <div class="col-3 job-img">
+                                            <img v-bind:src="'/upload/hospital_profile/' + hos.logo"  alt="img" class="img-fluid" @error="imgUrlAlt">
+
+                                            <!-- <p class="hos_phone text-center m-t-20"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span><span class="phone-no">{{hos.phone}}</span></p> -->
+                                        </div>
+                                        <div class="col-4 job-box">
+                                            <table  class="table table-bordered table-sm">
+                                                <!-- <tr>
+                                                <td style="width:30%;"><span class="job_ico"><i class="fa fa-user"></i></span>名前</td>
+                                                <td>{{hos.name}}</td>
+                                                </tr> -->
+                                                <tr>
+                                                <td style="width:30%;"><span class="job_ico"><i class="fa fa-envelope"></i></span>メールアドレス</td>
+                                                <td>{{hos.email}}</td>
+                                                </tr>
+                                                <tr>
+                                                <td style="width:30%;"><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>住所</td>
+                                                <td>{{hos.address}}</td>
+                                                </tr>
+                                                <!-- <tr>
+                                                <td style="width:30%;"><span class="job_ico"><i class="fa fa-calendar-alt"></i></span>休業日</td>
+                                                <td>{{hos.closed_day}}</td>
+                                                </tr> -->
+                                            </table>
+                                            <!--special feature and subject-->
+                                            <h5 class="header m-t-10">こだわりの特長</h5>
+                                            <span v-for="(spe,index) in specialfeatures" :key="index+'-'+spe.name+'-'+hos.id">
+                                                <span v-if="spe.customer_id == hos.customer_id" class="feature_list">
+                                                {{spe.name}}
+                                                </span>
+                                            </span>
+                                            <!--end special feature and subject-->
+                                        </div>
+                                        <div class="col-5">
+                                            <!--schedule-->
+                                            <h5 class="header">診療時間
+                                                <span class="hos_phone"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span><span class="phone-no">{{hos.phone}}</span></span>
+                                            </h5>
+                                            <!-- <tr v-for="(time,index) in timetable" :key="index+'-'+time.id+'-'+hos.id">
+                                                <td v-if="hos.customer_id == time.customer_id" >
+                                                {{time.mon}} / {{time.tue}} / {{time.wed}} / {{time.thu}} / {{time.fri}} / {{time.sat}} / {{time.sun}} / {{time.part}}
+                                                </td>
+                                            </tr> -->
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                <tr class="first-row">
+                                                    <th>日付</th>
+                                                    <th>月</th>
+                                                    <th>火</th>
+                                                    <th>水</th>
+                                                    <th>木</th>
+                                                    <th>金</th>
+                                                    <th>土</th>
+                                                    <th>日</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr v-for="(time,index) in timetable" :key="index+'-'+time.id+'-'+hos.id" class="text-center">
+                                                    <td class="second-hos-row" style="width:8%;" v-if="(hos.customer_id == time.customer_id && time.part == 'am' )">午前</td>
+                                                    <td class="second-hos-row" style="width:8%;" v-if="(hos.customer_id == time.customer_id && time.part == 'pm' )">午後</td>
+                                                    <td style="width:10%;" v-if="hos.customer_id == time.customer_id">{{time.mon}}</td>
+                                                    <td style="width:10%;" v-if="hos.customer_id == time.customer_id">{{time.tue}}</td>
+                                                    <td style="width:10%;" v-if="hos.customer_id == time.customer_id">{{time.wed}}</td>
+                                                    <td style="width:10%;" v-if="hos.customer_id == time.customer_id">{{time.thu}}</td>
+                                                    <td style="width:10%;" v-if="hos.customer_id == time.customer_id">{{time.fri}}</td>
+                                                    <td style="width:10%;" v-if="hos.customer_id == time.customer_id">{{time.sat}}</td>
+                                                    <td style="width:10%;" v-if="hos.customer_id == time.customer_id">{{time.sun}}</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <span> <strong> 休診日：</strong>{{hos.closed_day}}</span>
+                                            <!-- <p><span style="color: red; font-weight: bold; font-size: 15px;">※</span>診療時間は、変更される事や、診療科によって異なる場合があるため、直接医療機関のホームページ等でご確認ください。</p> -->
+                                            <!--end schedule-->
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 detail-btn text-center"><router-link :to="{name: 'profile', params: {cusid:hos.cus_id, type: 'hospital'}}" class="btn all-btn">詳細を見る</router-link></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="mt-4 detail-btn text-center"><router-link :to="{name: 'profile', params: {cusid:hos.cus_id, type: 'hospital'}}" class="btn all-btn">詳細を見る</router-link></div>
-              </div>
             </div>
-          </div>
-        </div>
-        </div>
-        </div>
-         <div class="offset-md-4 col-md-8" v-if="show_paginate">
-              <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                  <li class="page-item">
-                    <span class="spanclass" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
-                  </li>
-                  <li class="page-item">
-                    <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i> 前へ</span>
-                  </li>
-                  <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
-                    <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
-                  </li>
-                  <li class="page-item">
-                    <span class="spanclass" @click="next">次へ <i class='fas fa-angle-right'></i></span>
-                  </li>
-                  <li class="page-item">
-                    <span class="spanclass" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
-                  </li>
-                </ul>
-              </nav>
+            <div class="offset-md-4 col-md-8" v-if="show_paginate">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                    <li class="page-item">
+                        <span class="spanclass pc-480" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
+                    </li>
+                    <li class="page-item">
+                        <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i><span class="pc-paginate"> 前へ</span></span>
+                    </li>
+                    <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
+                        <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
+                    </li>
+                    <li class="page-item">
+                        <span class="spanclass" @click="next"><span class="pc-paginate">次へ </span><i class='fas fa-angle-right'></i></span>
+                    </li>
+                    <li class="page-item">
+                        <span class="spanclass pc-480" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
+                    </li>
+                    </ul>
+                </nav>
             </div>
-          </div>
-
-
+        </div>
       </div>
     </div>
   </div>
@@ -911,7 +909,7 @@
 
         search()
         {
-
+        this.$loading(true);
           if(this.townshipID == null || this.townshipID == '')
           {
             this.townshipID[0] = 0;
@@ -948,6 +946,8 @@
                 local:this.locast
             },
           }).then((response)=>{
+            this.$loading(false);
+            console.log(response)
             this.getTownships = response.data.township;
             this.hos_data = response.data.hospital;
             this.timetable = response.data.timetable;
@@ -1124,7 +1124,6 @@
 
            this.townshipID = [];
            if(localStorage.getItem("hospital_fav") == null){
-
                 this.locast = 0;
             }
             else{
@@ -1141,7 +1140,7 @@
           },
           })
             .then((response) => {
-
+             console.log(response)
               $('.hospitalselect').removeClass('hospitalselect');
               this.cities = response.data.city
               this.getCity = response.data.getCity
