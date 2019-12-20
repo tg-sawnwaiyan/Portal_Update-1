@@ -36,7 +36,7 @@
                     <li v-if="$auth.check(1)"><router-link to="/jobofferlist" class="nav-link"><i class="fa fa-edit" ></i>&nbsp;&nbsp; <span class="nav-txt">仕事一覧</span> </router-link></li>
 
                     <li v-if="$auth.check()">
-                        <a href="#" @click.prevent="$auth.logout()" class="nav-link" ref="myid"><i class="fa fa-sign-out-alt"></i>&nbsp;<span class="nav-txt">ログアウト</span></a>
+                        <a href="#" @click.prevent="$auth.logout()" class="nav-link" id="logoutId" ref="myid"><i class="fa fa-sign-out-alt"></i>&nbsp;<span class="nav-txt">ログアウト</span></a>
                     </li>
                 </ul>
             </div>
@@ -64,23 +64,26 @@ created() {
         if(response.data.status == "Token is Expired" && this.status == false){
 
             this.status = true
-        Swal.fire({
-            title: 'Your Login session is Expired!',
-            text: "Please Login Again.",
-            icon: 'warning',
-            showCancelButton: false,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'OK'
-        }).then((result) => {  
-            // console.log()
+        // Swal.fire({
+        //     title: 'Your Login session is Expired!',
+        //     text: "Please Login Again.",
+        //     icon: 'warning',
+        //     showCancelButton: false,
+        //     confirmButtonColor: '#3085d6',
+        //     cancelButtonColor: '#d33',
+        //     confirmButtonText: 'OK'
+        // }).then((result) => {  
+        //     // console.log()
             
-            if (result.value) {
-                this.$refs.myid.click();
-                response.data.status = "logout success"
+        //     if (result.value) {
+        //         this.$refs.myid.click();
+        //         response.data.status = "logout success"
 
-            }
-        })
+        //     }
+        // })
+        this.visit = 'true';
+        localStorage.setItem('visit',this.visit);
+        this.$router.push({name: 'Unauthorized'});
         }
         
         return response

@@ -111,27 +111,95 @@ export default {
   },
   created() {
     this.axios.get('/api/user').then(response => {
-        this.pro_id = response.data.lat_lng[0].id;
-        this.loginuser = true;
-       console.log(response.data)
-        localStorage.setItem("cusId", response.data.user.customer_id);
-        localStorage.setItem("lat_num", response.data.lat_lng[0].latitude==0?'35.6803997':response.data.lat_lng[0].latitude);
-        localStorage.setItem("lng_num", response.data.lat_lng[0].longitude==0?'139.76901739':response.data.lat_lng[0].longitude);
+        if(this.visit == 'false'){
+            this.pro_id = response.data.lat_lng[0].id;
+            this.loginuser = true;
+            console.log(response.data)
+            localStorage.setItem("cusId", response.data.user.customer_id);
+            localStorage.setItem("lat_num", response.data.lat_lng[0].latitude==0?'35.6803997':response.data.lat_lng[0].latitude);
+            localStorage.setItem("lng_num", response.data.lat_lng[0].longitude==0?'139.76901739':response.data.lat_lng[0].longitude);
 
-        // localStorage.setItem("hospital_fav", this.l_storage_hos_fav);
-        // localStorage.setItem("nursing_fav", this.l_storage_nus_fav);
-        // localStorage.setItem("nursing_history", this.l_storage_nus_history);
-        // localStorage.setItem("hospital_history", this.l_storage_hos_history);
+            // localStorage.setItem("hospital_fav", this.l_storage_hos_fav);
+            // localStorage.setItem("nursing_fav", this.l_storage_nus_fav);
+            // localStorage.setItem("nursing_history", this.l_storage_nus_history);
+            // localStorage.setItem("hospital_history", this.l_storage_hos_history);
 
-        if(response.data.user.type_id == 2){
-            localStorage.setItem("cusType", 'hospital');
-            this.type = 'hospital';
+            if(response.data.user.type_id == 2){
+                localStorage.setItem("cusType", 'hospital');
+                this.type = 'hospital';
+            }
+            else{
+                localStorage.setItem("cusType", 'nursing');
+                this.type = 'nursing';
+            }
+            this.cusid = response.data.user.customer_id;
         }
         else{
-            localStorage.setItem("cusType", 'nursing');
-            this.type = 'nursing';
+            this.loginuser = false;
+            if (this.$route.params.type) {
+            this.type = this.$route.params.type;
+            localStorage.setItem("cusType", this.type);
+            }
+            if (this.$route.params.cusid) {
+            this.cusid = this.$route.params.cusid;
+            localStorage.setItem("cusId", this.cusid);
+            }
+            this.type = localStorage.getItem("cusType");
+            this.cusid = Number(localStorage.getItem("cusId"));
+            
+            this.axios.get(`/api/profile_view/${this.cusid}/${this.type}`).then(response => {
+                console.log(response)
+                this.pro_id = response.data[0].pro_id;
+                localStorage.setItem("lat_num", response.data[0].latitude);
+                localStorage.setItem("lng_num", response.data[0].longitude);
+                
+
+                if(this.type == 'hospital'){
+                    if(localStorage.getItem("hospital_history")) {
+                        var hos_his_arr = JSON.parse("[" + localStorage.getItem("hospital_history") + "]");
+                        hos_his_arr.push(response.data[0].pro_id);
+                        hos_his_arr = [...new Set(hos_his_arr)];
+                        localStorage.setItem("hospital_history", hos_his_arr);
+                        // $("#hos-his-local").html(hos_his_arr.length);
+                        this.hosHis = hos_his_arr.length;
+                    }
+                    else{
+                        var hos_his_arr = [response.data[0].pro_id];
+                        localStorage.setItem("hospital_history", hos_his_arr);
+                        // $("#hos-his-local").html(hos_his_arr.length);
+                        this.hosHis = hos_his_arr.length;
+                        $('.his-hospital-link-box>a').css({'cursor':'pointer','pointer-events':'auto'});
+                    }
+                    if(localStorage.getItem("hospital_fav")){
+                        var nus_fav_arr = JSON.parse("[" + localStorage.getItem("hospital_fav") + "]");
+                        this.view_pro_id = nus_fav_arr.includes(response.data[0].pro_id);
+                    }                
+                }
+                else{
+                    if(localStorage.getItem("nursing_history")) {
+                        var nus_his_arr = JSON.parse("[" + localStorage.getItem("nursing_history") + "]");
+                        nus_his_arr.push(response.data[0].pro_id);
+                        nus_his_arr = [...new Set(nus_his_arr)];
+                        localStorage.setItem("nursing_history", nus_his_arr);
+                        // $("#nus-his-local").html(nus_his_arr.length);
+                        this.nusHis = nus_his_arr.length;
+                    }
+                    else{
+                        var nus_his_arr = [response.data[0].pro_id];
+                        localStorage.setItem("nursing_history", nus_his_arr);
+                        // $("#nus-his-local").html(nus_his_arr.length);
+                        this.nusHis = nus_his_arr.length;
+                        $('.his-nursing-link-box>a').css({'cursor':'pointer','pointer-events':'auto'});
+                    }
+
+                    if(localStorage.getItem("nursing_fav")){
+                        var nus_fav_arr = JSON.parse("[" + localStorage.getItem("nursing_fav") + "]");
+                        this.view_pro_id = nus_fav_arr.includes(response.data[0].pro_id);
+                    }
+                }
+            });
         }
-        this.cusid = response.data.user.customer_id;
+        
     }).catch((error) => {
 
         this.loginuser = false;
