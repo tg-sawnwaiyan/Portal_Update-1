@@ -4,9 +4,15 @@
            click
        </div>
         <div class="custom-sidebar" id="admin-side-menu">
+            <div class="admin-tit">
+                <a class="navbar-brand logo-text text-center" href="/">
+                    LOGO <span>HERE</span>
+                </a>
+            </div>
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                 <p class="admin-tit"><i class="fas fa-tachometer-alt"></i><span>管理画面</span></p>
                 <ul class="adminview-sidebar pc">
+                    <li><i class="fas fa-tachometer-alt"></i><span>管理画面</span></li>
                     <li>
                         <router-link to="/" class="nav-link"><i class="fa fa-home"></i>&nbsp;<span class="nav-txt">ホーム</span></router-link>
                     </li>

@@ -2709,7 +2709,7 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
 
 .custom-sidebar {
     position: fixed;
-    top: 65px;
+    top: 0;
     bottom: 0;
     width: 280px;
     height: 100%;
@@ -2721,6 +2721,7 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
     -webkit-transition: all .2s ease;
     -o-transition: all .2s ease;
     transition: all .2s ease;
+    z-index: 100;
 }
 
 .content-all {
@@ -8549,12 +8550,16 @@ ul.nur-caro-card>li.list-group-item {
 .create_nw_p {
     padding: 11px;
 }
-.pc-480{
+
+.pc-480 {
     display: block;
 }
-.pc-paginate{
+
+.pc-paginate {
     display: inline;
 }
+
+
 /*--------------------------------------------------------------------------------responsive -----------------------------------------------------------------------*/
 
 @media only screen and (max-width:1440px) {
@@ -8651,6 +8656,7 @@ ul.nur-caro-card>li.list-group-item {
         width: 265px;
     }
 }
+
 @media screen and (max-width: 1024px) and (min-width: 768px) {
     .pagination {
         justify-content: center;
@@ -8659,6 +8665,7 @@ ul.nur-caro-card>li.list-group-item {
         margin-right: 50%;
     }
 }
+
 @media only screen and (max-width:768px) {
     .wd-in {
         width: 256px;
@@ -8721,13 +8728,12 @@ ul.nur-caro-card>li.list-group-item {
     }
     .searchTerm {
         width: 87%;
-    } 
-   
+    }
 }
 
 @media only screen and (max-width:480px) {
-     /*pagination*/
-     /* .page-item:first-child .spanclass,
+    /*pagination*/
+    /* .page-item:first-child .spanclass,
      .page-item:last-child .spanclass,
      .page-item:nth-child(2) .spanclass,
      .page-item:nth-last-child(2) .spanclass {
@@ -8735,10 +8741,10 @@ ul.nur-caro-card>li.list-group-item {
          height: 30px;
          transition: background-color .3s;
      } */
-     .pc-480 {
-         display: none;
-     }
-     .pagination {
+    .pc-480 {
+        display: none;
+    }
+    .pagination {
         flex-wrap: wrap;
         justify-content: center;
         text-align: center;
@@ -8747,35 +8753,35 @@ ul.nur-caro-card>li.list-group-item {
     .pagination .page-item {
         padding: 1px;
     }
-     .page-item .spanclass {
-         width: 28px;
-         height: 25px;
-         background-image: none;
-     }
-     .spanclass {
-         /* width: 45px;
+    .page-item .spanclass {
+        width: 28px;
+        height: 25px;
+        background-image: none;
+    }
+    .spanclass {
+        /* width: 45px;
          height: 24px; */
-         /* background-color: #fff; */
-         /* background-image: linear-gradient(to bottom, #ffffff, #f1f1f1); */
-         float: left;
-         /* text-align: center; */
-         /* overflow: hidden; */
-         margin-top: 2px;
-         border: 1px solid #8e3c15;
-         border-radius: 3px;
-     }
-     .spanclass a {
-         position: relative;
-     }  
-     .pc-paginate{
+        /* background-color: #fff; */
+        /* background-image: linear-gradient(to bottom, #ffffff, #f1f1f1); */
+        float: left;
+        /* text-align: center; */
+        /* overflow: hidden; */
+        margin-top: 2px;
+        border: 1px solid #8e3c15;
+        border-radius: 3px;
+    }
+    .spanclass a {
+        position: relative;
+    }
+    .pc-paginate {
         display: none;
     }
 }
-.card_height
-{
-    float:left;
-    height:125px;
-    cursor:pointer;
+
+.card_height {
+    float: left;
+    height: 125px;
+    cursor: pointer;
 }
 
 @media only screen and (max-width:320px) {
@@ -9955,7 +9961,4 @@ ul.nur-caro-card>li.list-group-item {
         font-size: 11px;
     }
     /*End  Profile Publish */
-
-  
 }
-
