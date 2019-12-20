@@ -10,8 +10,7 @@
                     <asideMenu v-if="$auth.check()"></asideMenu>
                     <!-- <div id="menu-overlay" @click="menuToggle()"></div> -->
                 <!-- login ================================================================================================== -->
-                    <div v-if="$auth.check() && visit == 'false'" id="content-all" class="content-all">
-
+                    <div v-if="$auth.check() && visit == 'false'" id="content-all" class="content-all">                 
                         <div class="maintab-content" id="v-pills-tabContent">
                             <!-- <span @click="menuToggle()">Click</span> -->
                             <!--section one-->
