@@ -1071,7 +1071,7 @@
         },
 
       async mounted() {
-            this.visit = true;
+            this.visit = 'true';
             localStorage.setItem('visit', this.visit);
 
             $('#navtab').removeClass('news-tabColor hospital-tabColor nursing-tabColor job-tabColor');

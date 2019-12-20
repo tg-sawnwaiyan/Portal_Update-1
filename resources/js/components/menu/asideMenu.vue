@@ -3,7 +3,7 @@
        <div class="sidebar-menu"  @click="collapse()">
            click
        </div>
-        <div class="custom-sidebar" id="admin-side-menu">
+        <div class="custom-sidebar" id="admin-side-menu" v-if="visit == 'false'">
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                 <p class="admin-tit"><i class="fas fa-tachometer-alt"></i><span>管理画面</span></p>
                 <ul class="adminview-sidebar pc">
@@ -41,7 +41,7 @@
                 </ul>
             </div>
         </div> 
-        <!-- <div v-if="!$auth.check() || this.visit"></div>     -->
+         
     </div>
 </template>
 <script>
@@ -58,6 +58,7 @@
     },
 created() {
     console.log("aside "+this.$auth.check())
+    console.log("aside visit "+this.visit)
     axios.interceptors.response.use((response) => {
         // console.log(response.data)
         if(response.data.status == "Token is Expired" && this.status == false){
