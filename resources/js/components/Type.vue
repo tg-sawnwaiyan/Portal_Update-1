@@ -34,9 +34,7 @@
                 <br />
                 <div class="form-group">
                   <router-link class="btn btn-danger all-btn" to="/typelist">キャンセル</router-link>
-                  <!-- <router-link class="btn news-post-btn all-btn" to="/featurelist" >Create</router-link>  -->
                   <span class="btn main-bg-color white all-btn" @click="checkValidate()"> {{subtitle}}</span>
-                  <!-- <button class="btn news-post-btn all-btn">{{subtitle}}</button> -->
                 </div>
               </form>
             </div>

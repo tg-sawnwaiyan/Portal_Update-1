@@ -824,7 +824,7 @@
                                                     <div class="form-check form-check-inline col-sm-2" v-for="fac_type in fac_types" :key="fac_type.id">
                                                         <label class="form-check-label control control--checkbox" style="padding-left:5px;">
                                                         <input class="form-check-input" type="checkbox" v-model="FacTypeID" :id="fac_type.id" :value="fac_type.id">
-
+                                                        {{fac_type.description}}
                                                         <div class="control__indicator"></div>
                                                         </label>
                                                     </div>

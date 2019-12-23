@@ -200,7 +200,7 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::group(['prefix' => 'feature'], function () {
         Route::post('add', 'SpecialFeatureController@store');
         Route::get('edit/{id}', 'SpecialFeatureController@edit');
-        Route::get('featurelist', 'SpecialFeatureController@index');
+        Route::get('featurelist/{type}', 'SpecialFeatureController@index');
         Route::get('nursing-feature/{type}', 'SpecialFeatureController@getFeaturebyProfileType');
         Route::post('update/{id}', 'SpecialFeatureController@update');
         Route::delete('delete/{id}','SpecialFeatureController@destroy');
@@ -251,7 +251,7 @@ Route::post('register','registerController@store');
 // Route::get('getskill', 'JobApplyController@getSkills');
 Route::get('getjobtitle/{jobs_id}', 'JobApplyController@getJobTitle');
 Route::get('skill', 'JobController@getSkill');
-Route::get('customers','CustomerController@index');
+Route::get('customers/{type}','CustomerController@index');
 Route::get('custedit','CustomerController@edit');
 Route::get('confirm/{id}','CustomerController@confirm');
 Route::get('facilities', 'FacilityController@index');
@@ -351,7 +351,7 @@ Route::group(['prefix' => 'hospital'], function () {
 Route::group(['prefix' => 'comments'], function () {
     Route::post('add', 'CommentController@store');
     Route::get('edit/{id}', 'CommentController@edit');
-    Route::get('comment', 'CommentController@index');
+    Route::get('comment/{type}', 'CommentController@index');
     Route::get('confirm/{id}','CommentController@confirm');
     Route::post('update/{id}', 'CommentController@update');
     Route::delete('delete/{id}','CommentController@destroy');

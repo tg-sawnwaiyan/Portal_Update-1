@@ -180,8 +180,16 @@ const routes = [
         }
     },
     {
-        name: "customerlist",
-        path: "/customerlist",
+        name: "nuscustomerlist",
+        path: "/nuscustomerlist",
+        component: customerlist,
+        meta: {
+            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
+        }
+    },
+    {
+        name: "hoscustomerlist",
+        path: "/hoscustomerlist",
         component: customerlist,
         meta: {
             auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
@@ -483,8 +491,16 @@ const routes = [
     }
   },
   {
-    name: 'commentlist',
-    path: '/commentlist',
+    name: 'nuscommentlist',
+    path: '/nuscommentlist',
+    component: commentlist,
+    meta: {
+        auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+    }
+  },
+  {
+    name: 'hoscommentlist',
+    path: '/hoscommentlist',
     component: commentlist,
     meta: {
         auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
@@ -501,6 +517,22 @@ const routes = [
   {
     name: 'featurelist',
     path: '/featurelist',
+    component: featurelist,
+    meta: {
+        auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+    }
+  },
+  {
+    name: 'nusfeaturelist',
+    path: '/nusfeaturelist',
+    component: featurelist,
+    meta: {
+        auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+    }
+  },
+  {
+    name: 'hosfeaturelist',
+    path: '/hosfeaturelist',
     component: featurelist,
     meta: {
         auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
