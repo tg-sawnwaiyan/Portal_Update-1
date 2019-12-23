@@ -1,15 +1,20 @@
 <template>
    <div>
-       <div class="sidebar-menu"  @click="collapse()">
+       <!-- <div class="sidebar-menu"  @click="collapse()">
            click
-       </div>
-        <div class="custom-sidebar" id="admin-side-menu">
+       </div> -->
+        <div class="custom-sidebar" id="admin-side-menu" v-if="visit == 'false'">
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <p class="admin-tit"><i class="fas fa-tachometer-alt"></i><span>管理画面</span></p>
+                <!-- <span class="admin-tit"><i class="fas fa-tachometer-alt"></i><span>管理画面</span></p> -->
+                <div class="admin-logo">
+                    <a href="/">LOGO <span>HERE</span></a>
+                </div>
+                
                 <ul class="adminview-sidebar pc">
                     <li>
                         <!-- <span class="nav-link" @click="visitSite()"><i class="fa fa-home"></i>&nbsp;<span class="nav-txt">Visit Site</span></span> -->
-                        <router-link to="/" class="nav-link"><i class="fa fa-home"></i>&nbsp;<span class="nav-txt">ホーム</span></router-link>
+                        <!-- <router-link to="/" class="nav-link"><i class="fa fa-home"></i>&nbsp;<span class="nav-txt">ホーム</span></router-link> -->
+                        <i class="fas fa-tachometer-alt"></i><span>管理画面</span>
                     </li>
                     <li v-if="$auth.check(2)">
                         <router-link to="/news_list" class="nav-link" @click="menuToggle()"><i class="fa fa-newspaper"></i>&nbsp;<span class="nav-txt">ニュース一覧</span></router-link>
@@ -36,12 +41,12 @@
                     <li v-if="$auth.check(1)"><router-link to="/jobofferlist" class="nav-link"><i class="fa fa-edit" ></i>&nbsp;&nbsp; <span class="nav-txt">仕事一覧</span> </router-link></li>
 
                     <li v-if="$auth.check()">
-                        <a href="#" @click.prevent="$auth.logout()" class="nav-link" ref="myid"><i class="fa fa-sign-out-alt"></i>&nbsp;<span class="nav-txt">ログアウト</span></a>
+                        <a href="#" @click.prevent="$auth.logout()" class="nav-link" id="logoutId" ref="myid"><i class="fa fa-sign-out-alt"></i>&nbsp;<span class="nav-txt">ログアウト</span></a>
                     </li>
                 </ul>
             </div>
         </div> 
-        <!-- <div v-if="!$auth.check() || this.visit"></div>     -->
+         
     </div>
 </template>
 <script>
@@ -58,28 +63,32 @@
     },
 created() {
     console.log("aside "+this.$auth.check())
+    console.log("aside visit "+this.visit)
     axios.interceptors.response.use((response) => {
         // console.log(response.data)
         if(response.data.status == "Token is Expired" && this.status == false){
 
             this.status = true
-        Swal.fire({
-            title: 'Your Login session is Expired!',
-            text: "Please Login Again.",
-            icon: 'warning',
-            showCancelButton: false,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'OK'
-        }).then((result) => {  
-            // console.log()
+        // Swal.fire({
+        //     title: 'セッションの有効期限が切れています。！',
+            // text: "お手数ですがログイン画面より再度ログインしてください。",
+        //     icon: 'warning',
+        //     showCancelButton: false,
+        //     confirmButtonColor: '#3085d6',
+        //     cancelButtonColor: '#d33',
+        //     confirmButtonText: 'OK'
+        // }).then((result) => {  
+        //     // console.log()
             
-            if (result.value) {
-                this.$refs.myid.click();
-                response.data.status = "logout success"
+        //     if (result.value) {
+        //         this.$refs.myid.click();
+        //         response.data.status = "logout success"
 
-            }
-        })
+        //     }
+        // })
+        this.visit = 'true';
+        localStorage.setItem('visit',this.visit);
+        this.$router.push({name: 'Unauthorized'});
         }
         
         return response

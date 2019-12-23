@@ -79,7 +79,7 @@
           },
           success: function() {
             this.$loading(false);
-            this.visit = false;
+            this.visit = 'false';
             localStorage.setItem('visit', this.visit);
             // handle redirection
             const redirectTo = this.$auth.user().role === 2 ? 'news_list' : 'profile'
