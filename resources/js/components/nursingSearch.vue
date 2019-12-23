@@ -1491,9 +1491,8 @@
                             this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
                             this.boundariesGoogleMap(lat,lng,this.coordinate);            
                         }); 
-
-                } 
-                
+        
+                }  
                 else{
            
                     this.axios.get('/api/townshipJson/'+township_name).then(res => {

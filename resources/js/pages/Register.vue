@@ -118,7 +118,9 @@
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
                         </div>
-                        <input class="form-control" id="phone" name="phone" v-model="phone" required placeholder="電話番号を入力してください。" maxlength="14">
+                        <input class="form-control" id="phone" name="phone" v-model="phone" required  pattern="[0-9-]*" placeholder="電話番号を入力してください。"   maxlength="14">
+                        <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>
+                        
                     </div>
                     <div id="jsErrorMessage" class="error p-l-162"></div>
                     
@@ -156,11 +158,51 @@
         success: false,
         show: true,
         url: '',
+        ph_length:'',
+        ph_num:'',
+        Numbers:[]
       }
       
     },
 
     methods: {
+        // isNumberOnly: function(event) {
+        
+        //   var input_data = $('#phone').val();
+        
+          
+        //     if(input_data == '')
+        //     {
+        //         this.Numbers = [];
+        //     }
+        //     var code = 0;
+        //     code = String.fromCharCode(event.keyCode).charCodeAt();  
+       
+        //     if(event.key == "Backspace")
+        //     {
+        //        this.Numbers.splice(this.Numbers.length-1);
+        //     }
+        //     else{
+           
+        //         if(this.Numbers.length < 14 )
+        //          {
+        //             this.Numbers.push(code);
+        //          }   
+               
+        //     }
+        //  console.log(this.Numbers);
+          
+        //     if((this.phone.length >= 10 && this.phone.length <= 14) ){
+           
+        //         this.ph_num = false;
+        //         this.ph_length = false;
+        //     }else{
+            
+        //         this.ph_num = true;
+        //         this.ph_length = true;
+        //     }
+           
+        // },
       getCities() {
          this.axios.get('/api/auth/getCities')
          .then(function (response) {
@@ -192,13 +234,14 @@
           console.log(response.data.types)
         })
       },
-    isNumberOnly(event) {
-        if(!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105) 
-            && event.keyCode != 8 && event.keyCode != 46 && !(event.keyCode >= 37 && event.keyCode <= 40)) 
-        {
-            event.preventDefault();
-        }
-    },
+    // isNumberOnly(event) {
+    //     console.log('numbers');
+    //     if(!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105) 
+    //         && event.keyCode != 8 && event.keyCode != 46 && !(event.keyCode >= 37 && event.keyCode <= 40)) 
+    //     {
+    //         event.preventDefault();
+    //     }
+    // },
     password_validate() {
         var pwd = $('#pwd').val();
         var confirm_pwd = $('#confirm_pwd').val();
@@ -222,9 +265,16 @@
       this.url = URL.createObjectURL(file);
     },
       register() {
-        var app = this
-        console.log(app.images);
-        // testing
+
+        var input_data = $('#phone').val();
+     
+        if(input_data.length >= 10 && input_data.length <= 14 && input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-')
+        {
+          
+            this.ph_num = false;
+            this.ph_length = false;
+              var app = this
+       
         let fData = new FormData();
                         fData.append('img', app.images)
                         fData.append('name', app.username)
@@ -235,7 +285,7 @@
                         fData.append('township', app.township)
                         fData.append('types', app.type)
                         fData.append('phone', app.phone)
-        // end
+       
         this.$loading(true);
         this.axios.post('/api/register', fData)
                             .then(response =>
@@ -253,11 +303,20 @@
             })
             //app.success = true
             //this.$router.push({name: 'login', params: {successRegistrationRedirect: true}})
-        }).catch(error=>{
+          }).catch(error=>{
             if(error.response.status == 422){
                 app.errors = error.response.data.message
                 console.log(app.errors);
           }});
+      }
+        
+        else{
+         
+            this.ph_num = true;
+            this.ph_length = true;
+        }
+
+
       }
 
     },

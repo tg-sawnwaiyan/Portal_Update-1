@@ -630,7 +630,7 @@ export default {
         
       },
    
-    isNumberOnly: function(event) {
+    isNumberOnly: function(event) {     
         var input_data = $('#phone').val();
         var code = 0;
         code = input_data.charCodeAt();

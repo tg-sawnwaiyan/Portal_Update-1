@@ -1693,6 +1693,7 @@ export default {
                 var input_data = $('#phone').val();
                 var code = 0;
                 code = input_data.charCodeAt();
+            
                 if((48 <= code && code <= 57) && (this.customer_info.phone.length >= 10 && this.customer_info.phone.length <= 14)){
                     this.ph_num = false;
                     this.ph_length = false;
