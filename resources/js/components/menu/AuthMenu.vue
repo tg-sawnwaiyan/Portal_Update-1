@@ -1,7 +1,7 @@
 <template>
     <div>
         <!--navigation bar when login-->
-        <nav class="navbar navbar-expand-lg  main-header" :class="visit == 'true' ?  main_header: admin_header">
+        <nav class="navbar navbar-expand-lg" :class="visit == 'true' ?  main_header: admin_header">
             <div class="container nav-warp d-flex">
             <div class="d-flex align-items-center">
                 <a class="navbar-brand logo-text" href="/" v-if="visit == 'true'">
@@ -70,7 +70,7 @@
                 </div>
             </div>
             </div>
-            <div id="sp_headerbar">
+            <div id="sp_headerbar"  v-if="visit == 'true'">
             <ul class="fav_his clearfix">
                 <li v-on:click='isFav = !isFav'>
                 <p>

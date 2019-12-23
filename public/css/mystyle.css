@@ -1269,6 +1269,7 @@ body::-webkit-scrollbar-thumb {
     font-size: 12px;
     color: #000;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .main-header .nav-item {
@@ -1355,7 +1356,7 @@ body::-webkit-scrollbar-thumb {
     -ms-box-shadow: 0px 1px 2px 0px #ccc !important;
     -moz-box-shadow: 0px 1px 2px 0px #ccc !important;
     min-height: 100vh;
-    background: #F9FAFB;
+    background: #ebedef;
 }
 
 .main-wrap {
@@ -2569,14 +2570,9 @@ li.userprofile-name>a {
     background-color: #b7dad2 !important;
 }
 
-#admin-side-menu .nav-link {
-    color: rgba(255, 255, 255, .8) !important;
-    font-size: 14px;
-    font-weight: normal !important;
-}
-
 #admin-side-menu .router-link-exact-active {
-    background: #2c3b41;
+    background: #46585f;
+    border-left: 4px solid #ad3f0c;
 }
 
 .nav-link {
@@ -2736,20 +2732,24 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
     padding-left: 280px;
 }
 
-.custom-sidebar ul.adminview-sidebar li:first-child {
-    padding: 10px 10px 10px 22px;
-    background-color: #2C3B41;
+.custom-sidebar ul.adminview-sidebar .admintit-item {
+    padding: 10px 10px 10px 14px;
+    background-color: #0a181f;
     font-size: 18px;
     color: rgba(255, 255, 255, .8);
 }
 
-.custom-sidebar ul.adminview-sidebar li:first-child i {
+.custom-sidebar ul.adminview-sidebar .admintit-item i {
     color: rgba(255, 255, 255, .8);
 }
 
 .custom-sidebar ul.adminview-sidebar li a {
     border-bottom: .5px solid #485163;
     padding: 10px 5px;
+    color: rgba(255, 255, 255, .8) !important;
+    font-size: 14px;
+    font-weight: normal !important;
+    padding: 5px 15px !important;
 }
 
 .custom-sidebar ul.adminview-sidebar li a.router-link-exact-active {
@@ -2758,12 +2758,24 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
 }
 
 .custom-sidebar .nav-pills .nav-link {
-    padding: 13px 15px !important;
+    padding: 15px 15px !important;
 }
 
 .custom-sidebar ul.adminview-sidebar li i {
     padding-right: 10px;
     color: rgba(255, 255, 255, .8) !important;
+}
+
+.custom-sidebar ul.adminview-sidebar li .submenu {
+    background: #2c3b41;
+}
+
+.custom-sidebar ul.adminview-sidebar li .submenu li a {
+    padding: 10px 35px !important;
+}
+
+.sidebar-menu {
+    display: none;
 }
 
 .userview-sidebar {
@@ -2776,14 +2788,17 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
 }
 
 .admin-header {
+    position: fixed;
+    width: 100%;
     height: 50px;
-    background: #346e90 !important;
+    background: #d2571c !important;
     box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
     -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
     -ms-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
     line-height: 50px;
     vertical-align: middle;
+    z-index: 99;
 }
 
 .admin-header .nav-warp {
@@ -2836,7 +2851,7 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
     height: 50px;
     padding: 0px;
     font-size: 25px;
-    background: #2e5d79;
+    background: #ad3f0c;
     text-align: center;
     line-height: 50px;
     vertical-align: middle;
@@ -3029,9 +3044,10 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
     color: #ff9563 !important;
 }
 
-.nav-pills .nav-link {
+
+/* .nav-pills .nav-link {
     padding: 5px 15px !important;
-}
+} */
 
 .router-link-exact-active {
     /* background-color: rgba(0, 0, 0, 0.1); */
@@ -4754,10 +4770,6 @@ a:hover {
 .nav-tabs .nav-link {
     border-top-left-radius: 0px !important;
     border-top-right-radius: 0px !important;
-}
-
-#v-pills-tab li a {
-    padding: 0.7rem 20px 0.7rem 25px;
 }
 
 .text-pre {
@@ -9330,7 +9342,7 @@ ul.nur-caro-card>li.list-group-item {
     display: block;
 }
 
-@media only screen and (max-width: 1240px) {
+@media only screen and (max-width: 1300px) {
     /* common */
     .pc-1024 {
         display: none;
@@ -9374,10 +9386,18 @@ ul.nur-caro-card>li.list-group-item {
         margin: 20px 0 10px 40px;
         align-items: center;
     }
+    .custom-sidebar {
+        width: 200px;
+        z-index: 99;
+    }
+    .content-all {
+        padding-left: 200px;
+    }
+    /*
     .nav-txt {
         display: none;
     }
-    .custom-sidebar {
+     .custom-sidebar {
         width: 70px;
         z-index: 99;
     }
@@ -9408,7 +9428,7 @@ ul.nur-caro-card>li.list-group-item {
     }
     .custom-sidebar:hover ul.adminview-sidebar li a {
         padding: 5px 25px !important;
-    }
+    } */
     /* .custom-sidebar .admin-tit {
         margin: 0;
     }
@@ -9790,6 +9810,35 @@ ul.nur-caro-card>li.list-group-item {
     .pc-768 {
         display: none;
     }
+    /* Admin Sidebar */
+    .sidebar-menu {
+        display: block;
+        position: fixed;
+        top: 14px;
+        left: 65px;
+        z-index: 9999;
+        border: 1px solid red;
+    }
+    .custom-sidebar .admin-logo {
+        font-size: 18px;
+    }
+    /* .custom-sidebar .admin-logo span {
+        display: none;
+    } */
+    .custom-sidebar {
+        width: 60px;
+        text-align: center;
+    }
+    /* .nav-txt {
+        display: none;
+    } */
+    .custom-sidebar .dropdown-toggle::after {
+        display: none;
+    }
+    .content-all {
+        padding-left: 60px;
+    }
+    /*End Admin Sidebar */
     .tab {
         max-width: 100% !important;
         flex: 100% !important;

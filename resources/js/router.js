@@ -1,20 +1,15 @@
 import VueRouter from 'vue-router'
 // Pages
-// import Home from './components/home'
 import Register from './pages/Register'
 import Login from './pages/Login'
 import PasswordResetMail from './pages/Passwordreset'
 import PasswordResetForm from './pages/Passwordresetform'
-// import Dashboard from './pages/user/Dashboard'
-// import AdminDashboard from './pages/admin/Dashboard'
-
 import Newsdetails from "./components/Newsdetails.vue";
 import hospitalSearch from "./components/hospitalSearch.vue";
 import JobApply from "./components/JobApply.vue";
 import jobapplylist from "./components/jobapplylist.vue";
 import customerlist from "./components/customerlist.vue";
 import JobSearchListComponent from "./components/JobSearchListComponent.vue";
-// import JobOfferComponent from "./components/JobOfferComponent.vue";
 import job_details from "./components/job_details.vue";
 import news_list from "./components/news_list.vue";
 import create_news from "./components/create_news.vue";
@@ -71,7 +66,7 @@ import occupationlist from './components/occupationlist.vue';
 import nursingSearch from './components/nursingSearch.vue';
 import jobSearch from './components/jobSearch.vue';
 import News from './components/News.vue';
-import Unauthorized from './components/403.vue';
+import Unauthorized from './components/419.vue';
 
 // import menu from './components/menu/Menu.vue';
 
@@ -460,94 +455,89 @@ const routes = [
         path: "/editads",
         component: editadvertisement,
         meta: {
-            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
+            auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
         }
     },
     {
-        name: 'nursing_history',
-        path: '/nursing_history',
-        component: NursingHistory,
-        meta: {
-            auth: false
-        }
+      name: 'nursing_history',
+      path: '/nursing_history',
+      component: NursingHistory,
+      meta: {
+        auth: false
+      }
     },
     {
-        name: 'google_map',
-        path: '/google_map',
-        component: GoogleMap,
-        meta: {
-            auth: undefined
-        }
+      name: 'google_map',
+      path: '/google_map',
+      component: GoogleMap,
+      meta: {
+        auth: undefined
+      }
     },
-    // {
-    //   name: 'videoupload',
-    //   path: '/videoupload',
-    //   component: VideoUpload
-    // },
-    {
-        name: 'comment',
-        path: '/comment/:customer_id',
-        component: comment,
-        meta: {
-            auth: false
-        }
-    },
-    {
-        name: 'commentlist',
-        path: '/commentlist',
-        component: commentlist,
-        meta: {
-            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
-        }
-    },
-    {
-        name: 'specialfeature',
-        path: '/specialfeature',
-        component: specialfeature,
-        meta: {
-            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
-        }
-    },
-    {
-        name: 'featurelist',
-        path: '/featurelist',
-        component: featurelist,
-        meta: {
-            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
-        }
-    },
-    {
-        name: 'nursingFavouriteMail',
-        path: '/nursingFavouriteMail',
-        component: nursingFavouriteMail,
-        meta: {
-            auth: false
-        }
-    },
-    {
-        name: 'nursingMailConfirm',
-        path: '/nursingMailConfirm',
-        component: nursingMailConfirm,
-        meta: {
-            auth: false
-        }
-    },
-    {
-        name: 'modal',
-        path: '/modal',
-        component: modal,
-        meta: {
-            auth: undefined
-        }
-    },
-    {
-        name: 'termsAndConditions',
-        path: '/termsAndConditions',
-        component: termsAndConditions,
-        meta: {
-            auth: false
-        }
-    },
+  {
+    name: 'comment',
+    path: '/comment/:customer_id',
+    component: comment,
+    meta: {
+        auth: false
+    }
+  },
+  {
+    name: 'commentlist',
+    path: '/commentlist',
+    component: commentlist,
+    meta: {
+        auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+    }
+  },
+  {
+    name: 'specialfeature',
+    path: '/specialfeature',
+    component: specialfeature,
+    meta: {
+        auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+    }
+  },
+  {
+    name: 'featurelist',
+    path: '/featurelist',
+    component: featurelist,
+    meta: {
+        auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+    }
+  },
+  {
+    name: 'nursingFavouriteMail',
+    path: '/nursingFavouriteMail',
+    component: nursingFavouriteMail,
+    meta: {
+        auth: false
+    }
+  },
+  {
+    name: 'nursingMailConfirm',
+    path: '/nursingMailConfirm',
+    component: nursingMailConfirm,
+    meta: {
+        auth: false
+    }
+  },
+  {
+    name: 'modal',
+    path: '/modal',
+    component: modal,
+    meta: {
+        auth: undefined
+    }
+  },
+  {
+    name: 'termsAndConditions',
+    path: '/termsAndConditions',
+    component: termsAndConditions,
+    meta: {
+        auth: false
+    }
+  },
 
     {
         name: 'occupation',
@@ -558,23 +548,22 @@ const routes = [
         }
     },
 
-    {
-        name: 'occupationlist',
-        path: '/occupationlist',
-        component: occupationlist,
-        meta: {
-            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
-        }
-    },
-    {
-        name: 'jobapplylist',
-        path: '/jobapplylist',
-        component: jobapplylist,
-        meta: {
-            auth: { roles: 1, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
-        }
-    },
-
+  {
+    name: 'occupationlist',
+    path: '/occupationlist',
+    component: occupationlist,
+    meta: {
+        auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+    }
+  },
+  {
+    name:'jobapplylist',
+    path:'/jobapplylist',
+    component:jobapplylist,
+    meta: {
+        auth: {roles: 1, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+    }
+  },  
 ]
 const router = new VueRouter({
     history: true,
