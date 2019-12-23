@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div id="main" class="pad-free" :class="!$auth.check() ? inner : (visit == 'true'?inner:full)" v-if="this.$route.path !== '/register' && this.$route.path !== '/login' && this.$route.path !== '/reset' && this.$route.path !== '/resetpassword'">
+        <div id="main" class="pad-free" :class="!$auth.check() ? inner : (visit == 'true'?inner:full)" v-if="this.$route.path !== '/register' && this.$route.path !== '/login' && this.$route.path !== '/reset' && this.$route.path !== '/resetpassword' && this.$route.path !== '/Unauthorized'">
             <button onclick="topFunction()" id="myBtn">Top</button>
             <HeaderMenu v-if="!$auth.check()"></HeaderMenu>
             <AuthHeaderMenu v-if="$auth.check()"></AuthHeaderMenu>
@@ -10,8 +10,7 @@
                     <asideMenu v-if="$auth.check()"></asideMenu>
                     <!-- <div id="menu-overlay" @click="menuToggle()"></div> -->
                 <!-- login ================================================================================================== -->
-                    <div v-if="$auth.check() && visit == 'false'" id="content-all" class="content-all">
-
+                    <div v-if="$auth.check() && visit == 'false'" id="content-all" class="content-all">                 
                         <div class="maintab-content" id="v-pills-tabContent">
                             <!-- <span @click="menuToggle()">Click</span> -->
                             <!--section one-->

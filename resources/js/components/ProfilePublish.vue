@@ -3,7 +3,7 @@
   <div id="app">
 
     <div v-if="type == 'nursing'" id="nursingView">
-         <span class="top-mail-btn" @click="documentPost()" v-if="!loginuser"><i data-v-b65423c6="" class="far fa-envelope" style="color: #fff  !important;font-size: 15px;"></i>&nbsp;資料請求</span>
+         <span class="top-mail-btn" @click="documentPost()" v-if="!loginuser && !$auth.check()"><i data-v-b65423c6="" class="far fa-envelope" style="color: #fff  !important;font-size: 15px;"></i>&nbsp;資料請求</span>
         <!--panorama-->
         <h4 class="profile-tit"  v-if="!currentPanoImage"> {{customer_name}}</h4>
 
@@ -1937,6 +1937,8 @@ export default {
     },
     documentPost() {
         localStorage.removeItem("item");
+        console.log("docPos");
+        console.log(this.customer[0]);
         this.fav_email.push({
             'id': this.customer[0]['id'],
             'email': this.customer[0]['email'],
