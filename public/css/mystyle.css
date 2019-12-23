@@ -7214,7 +7214,7 @@ ul.test>li:before {
     padding: 5px;
     border-radius: 5px;
     background-color: #ffc;
-    /* width: 70%; */
+   
 }
 
 .seemore-btn:hover {
@@ -8743,12 +8743,13 @@ ul.nur-caro-card>li.list-group-item {
     }
     .dropdown-men.show {   
         display: inline-flex !important;        
-        transform: translate3d(-1px, 34px, 0px) !important;
+       
     }
     .dropdown-menu-form {
         padding: 5px 10px 0;
         max-height: 260px;
         overflow-y: scroll;
+        transform: translate3d(0px, 33px, 0px) !important;
     }
     .btn-sm{
       padding: 2px;
@@ -8825,6 +8826,9 @@ ul.nur-caro-card>li.list-group-item {
         display: block !important;
     }
     .pc-414 {
+        display: none !important;
+    }
+    .pc-414-table{
         display: none !important;
     }
     /*create_news*/
@@ -9271,6 +9275,9 @@ ul.nur-caro-card>li.list-group-item {
 .pc-414 {
     display: block;
 }
+.pc-414-table{
+    display: table-cell;
+}
 .sp-768{
     display: none;
 }
@@ -9465,6 +9472,9 @@ ul.nur-caro-card>li.list-group-item {
 }
 
 @media only screen and (max-width: 990px) {
+    .sp-990{
+        display: block !important;
+    }
     /* common */
     li {
         list-style: none;
