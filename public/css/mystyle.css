@@ -9805,12 +9805,21 @@ ul.nur-caro-card>li.list-group-item {
     }
     /*End  profile publish */
     /* job details */
+  
     .job_id {
         float: none;
         display: block;
         width: 185px;
         margin-top: 20px;
         text-align: center;
+        
+    }
+    .search_jobid{
+        float: right;
+        margin-top: 5px;
+    }
+    .job_status{
+        margin-top: 10px;
     }
     .form-wrap .form-left {
         padding: 10px 15px 5px 15px;
@@ -9843,6 +9852,7 @@ ul.nur-caro-card>li.list-group-item {
     .map-text-wrapper {
         display: flex;
     }
+    
     /* job apply */
     .register_box,
     .confirm_box {
@@ -9883,6 +9893,12 @@ ul.nur-caro-card>li.list-group-item {
         height: 100px;
     }
     /*End  profile publish */
+    /*job search*/
+    .job-content {
+        margin-bottom: 60px;
+        padding: 5px;
+    }
+    /*end job search*/
 }
 
 @media only screen and (max-width: 480px) {
