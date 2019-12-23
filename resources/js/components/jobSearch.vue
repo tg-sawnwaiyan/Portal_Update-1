@@ -595,29 +595,26 @@
                           </label>
                         </div>
                       </div> 
-                      </div>
-                       -->
+                      </div>                    -->
                       
-                      <!--test-->
-                      
+                      <!--test-->                     
                       <div class="dropdown">
-                          <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
-                            Dropdown
-                          </button>                           
-                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <li>
-                                  <a class="dropdown-item" v-for="township in getTownships" :key="township.id" >
-                                      <label class="form-check-label control control--checkbox" :value="township.id">
-                                      
+                          <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown">
+                          市から探す
+                          </button>   
+                                <a id="inWrap" data-value="option">
+                                  <div class="row">
+                                  <div class="col-lg-2 col-md-4 col-sm-4" v-for="township in getTownships" :key="township.id">
+                                      <label class="checkbox form-check-label control control--checkbox">
                                           <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @change="getCheck($event)">{{township.township_name}}
-                                          
                                             <div class="control__indicator"></div>
                                       </label>
-                                  </a>
-                              </li>                                        
-                          </ul>
-                    </div>                                 
-                    <!--end test-->
+                                  </div>
+                                  </div>
+                                </a>                             
+                      </div>  
+                     
+                      <!--end test-->
                       
                     </div>
                      <!-- <div class="sp-414">
@@ -798,32 +795,10 @@
 import layout from '../components/home.vue'
 import { BulmaAccordion, BulmaAccordionItem } from "vue-bulma-accordion";
 
+
+
+
 var options = [];
-
-$( '.dropdown-menu a' ).on( 'click', function( event ) {
-  console.log('clicked')
-
-   var $target = $( event.currentTarget ),
-       val = $target.attr( ' ' ),
-       $inp = $target.find( 'input' ),
-       idx;
-
-   if ( ( idx = options.indexOf( val ) ) > -1 ) {
-      options.splice( idx, 1 );
-      setTimeout( function() { $inp.prop( 'checked', false ) }, 0);
-   } else {
-      options.push( val );
-      setTimeout( function() { $inp.prop( 'checked', true ) }, 0);
-   }
-
-   $( event.target ).blur();
-      
-   console.log( options );
-   return false;
-});
-
-
-
 
 
 export default {
@@ -866,10 +841,15 @@ export default {
         company:[],
         open:false,
         norecord_msg: false,
+        window:{
+          width: 0,
+          height: 0
+        }
        
       }
     },
     created() {
+     
         this.axios.get('/api/user').then(response => {
                 this.pro_id = response.data.lat_lng[0].id;
                 this.loginuser = true;
@@ -877,6 +857,26 @@ export default {
                     this.loginuser = false;
                 });
         this.open = !this.initOpen
+
+        window.addEventListener('resize', this.handleResize);
+        this.handleResize();      
+        //var labelinput = $('li#inWrap')
+          if(this.window.width >= 768){     
+            console.log(this.window.width);
+          }
+          else{
+              console.log(this.window.width);
+               $(document).ready(function(){
+                  $('#inWrap').wrap('<ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton"><li></li></ul>');
+                  $('.dropdown-menu').on('click', function(e) {
+                      if($(this).hasClass('dropdown-menu-form')) {
+                          e.stopPropagation();
+                      }
+                  });
+                  
+              });
+          }
+
 
     },
     mounted() {
@@ -894,6 +894,11 @@ export default {
     //   	this.opened.push(id)
     //   }
     // },
+     handleResize() {
+        this.window.width = window.innerWidth;
+        this.window.height = window.innerHeight;
+        //console.log('hello');
+    },
     search()
     {
         if(this.townshipID == null || this.townshipID == '')
@@ -1408,18 +1413,17 @@ table > tbody > tr th{
   }
  
 }
-@media only screen and (max-width:750px){
- 
-.dropdown {
-  display: block;
-  position: relative;
-  font-size: 14px;
-  color: #333;
-}
-.dropdown ul.dropdown-menu li{
-   max-height: 270px;
-    overflow: auto;
+
+.dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: "";
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+    margin-left: 94px;
 }
 
-}
 </style>
