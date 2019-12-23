@@ -1071,6 +1071,7 @@
         },
 
       async mounted() {
+          console.log(this.$auth.check())
             this.visit = true;
             localStorage.setItem('visit', this.visit);
 

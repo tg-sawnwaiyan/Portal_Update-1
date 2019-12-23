@@ -2,7 +2,7 @@
     <div>
         <div id="main" class="pad-free" :class="!$auth.check() ? inner : full" v-if="this.$route.path !== '/register' && this.$route.path !== '/login' && this.$route.path !== '/reset' && this.$route.path !== '/resetpassword'">
             <button onclick="topFunction()" id="myBtn">Top</button>
-            <HeaderMenu></HeaderMenu>
+            <  ></HeaderMenu>
 
             <div class="sidebar-scroll container-fluid">
                 <div class="row">                    

@@ -57,8 +57,8 @@
       }
     },
 created() {
-    console.log("aside auth "+this.$auth.check())
-    console.log("aside v "+this.visit)
+    console.log("aside============= ")
+    console.log(this.$auth.check())
     axios.interceptors.response.use((response) => {
         // console.log(response.data)
         if(response.data.status == "Token is Expired" && this.status == false){
