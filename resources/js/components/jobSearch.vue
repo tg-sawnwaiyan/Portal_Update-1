@@ -761,7 +761,7 @@
             </div>
              <div class="col-12">
                 <div class="row pad-free">
-                   <div id="job_detail" class="col-md-6 col-sm-12" style="margin-top:20px;" v-for="(job,index) in displayItems" :key="index+'-'+job.title+'-'+job.jobid">
+                   <div id="job_detail" class="col-lg-6 col-md-12" style="margin-top:20px;" v-for="(job,index) in displayItems" :key="index+'-'+job.title+'-'+job.jobid">
                      <div class="job-content">
                       <div class="job-header">
                         <h5 class="job-tit">
