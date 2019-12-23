@@ -19,7 +19,7 @@
                             </div>
                         </div>
                         <hr />
-                        <h5 class="header">事業者一覧</h5>
+                        <h5 class="header">{{title}}</h5>
                         <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
                         <div v-else class="container-fuid">
                             <div v-for="customer in displayItems" :key="customer.id" class="card card-default m-b-20">
@@ -113,25 +113,50 @@
                     norecord: 0,
                     norecord_msg: false,
                     nosearch_msg: false,
+                    title: '',
                 };
             },
             created() {
+
                 this.$loading(true);
-                this.axios.get("/api/customers").then(response => {
-                    this.$loading(false);
-                    this.customers = response.data;
-                    this.norecord = this.customers.length;
-                    if (this.norecord > this.size) {
-                        this.pagination = true;
-                    } else {
-                        this.pagination = false;
-                    }
-                    if(this.norecord != 0){
-                        this.norecord_msg = false;
-                    }else{
-                        this.norecord_msg = true;
-                    }
-                });
+                console.log(this.$route.path)
+                if(this.$route.path == "/nuscustomerlist"){
+                    this.title = "Nursing 事業者一覧";
+                    this.axios.get("/api/customers/3").then(response => {
+                        this.$loading(false);
+                        this.customers = response.data;
+                        this.norecord = this.customers.length;
+                        if (this.norecord > this.size) {
+                            this.pagination = true;
+                        } else {
+                            this.pagination = false;
+                        }
+                        if(this.norecord != 0){
+                            this.norecord_msg = false;
+                        }else{
+                            this.norecord_msg = true;
+                        }
+                    });
+                }
+                else if(this.$route.path == "/hoscustomerlist"){
+                    this.title = "Hospital 事業者一覧";
+                    this.axios.get("/api/customers/2").then(response => {
+                        this.$loading(false);
+                        this.customers = response.data;
+                        this.norecord = this.customers.length;
+                        if (this.norecord > this.size) {
+                            this.pagination = true;
+                        } else {
+                            this.pagination = false;
+                        }
+                        if(this.norecord != 0){
+                            this.norecord_msg = false;
+                        }else{
+                            this.norecord_msg = true;
+                        }
+                    });
+                }
+                
             },
             computed: {
                 pages() {
