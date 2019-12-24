@@ -110,8 +110,8 @@
                 </label>
             </div>
             <div class="col-md-9 col-sm-12 form-right">
-                <input type="text" class="form-control box" id="postal" placeholder="郵便番号を入力してください。" v-model="jobApply.postal" maxlength="7" v-on:keyup="getPostal" />
-                <div id="jsErrorMessage" class="float-left eg-txt"></div>
+                <input type="text" class="form-control box float-left" id="postal" placeholder="郵便番号を入力してください。" v-model="jobApply.postal" maxlength="7" v-on:keyup="getPostal" />
+                <span id="jsErrorMessage" class="float-left eg-txt"></span>
                 <span class="float-left eg-txt">例）1006740 (<a href="https://www.post.japanpost.jp/zipcode/" target="_blank">郵便番号検索</a>)</span>
             </div>
         </div>
@@ -221,7 +221,7 @@
             <div class="error">※未入力の必須項目がございます</div>
         </div>
         <div class="text-center mt-2 pb-5">
-            <button type="button" :disabled="isdisable" class="btn main-bg-color white all-btn" @click="checkValidate()">確認画面へ進む</button>
+            <button type="button" :disabled="isdisable" class="btn main-bg-color white all-btn width17" @click="checkValidate()">確認画面へ進む</button>
         </div>
 </form>
 
