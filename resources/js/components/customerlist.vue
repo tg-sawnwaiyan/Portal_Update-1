@@ -173,7 +173,7 @@
                 deleteCustomer(id) {
                         this.$swal({
                             title: "確認",
-                            text: "削除よろしいでしょうか。",
+                            text: "事業者を削除してよろしいでしょうか。",
                             type: "warning",
                             width: 350,
                             height: 200,
@@ -188,12 +188,12 @@
                         }).then(response => {
                             this.axios.delete(`/api/customer/delete/${id}`).then(response => {
                                 this.$swal({
-                                    title: "削除済",
-                                    text: "事業者を削除されました。",
+                                    // title: "削除済",
+                                    text: "事業者を削除しました。",
                                     type: "success",
                                     width: 350,
                                     height: 200,
-                                    confirmButtonText: "はい",
+                                    confirmButtonText: "閉じる",
                                     confirmButtonColor: "#dc3545"
                                 });
                                 if (this.norecord > this.size) {

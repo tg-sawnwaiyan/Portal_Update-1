@@ -78,7 +78,7 @@
                 v-model="jobApply.birthday"
               /> -->
 
-                <date-picker class="box date-of-establishment" v-model="jobApply.birthday" id="datepickerbox" valueType="format" style="margin-left: 11px;"></date-picker>
+                <date-picker class="box date-of-establishment" :lang="lang" v-model="jobApply.birthday" id="datepickerbox" valueType="format" style="margin-left: 11px;"></date-picker>
 
             </div>
         </div>
@@ -398,6 +398,14 @@ export default {
   components: { DatePicker },
   data() {
     return {
+      lang:{
+        days: ['日', '月', '火', '水', '木', '金', '土'],
+        months: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+        placeholder: {
+          date: new Date().toISOString().slice(0,10),
+
+        }
+      },
       errors: {
         first_name: "",
         last_name: "",

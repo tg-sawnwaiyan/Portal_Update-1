@@ -53,7 +53,7 @@
                             <div class="col-md-3 col-sm-12 form-left"> <label>生年月日 </label></div>
                             <div class="col-md-9 col-sm-12 form-right">
                                 <!-- <input type="text" id="bdate" name="bdate" class="form-control float-left" placeholder="生年月日を入力してください。" v-model="comments.bdate" @change="aggreBtn" @focusout="focusbdate"/> -->
-                                <date-picker class="box" valueType="format" v-model="comments.bdate" style="margin-left: 11px;"></date-picker>
+                                <date-picker class="box" :lang="lang" valueType="format" v-model="comments.bdate" style="margin-left: 11px;"></date-picker>
                                 <!-- <span class="error m-l-30" v-if="bdate_focus">※入力は必須です。</span> -->
                             </div>
                         </div>
@@ -348,6 +348,14 @@ import DatePicker from 'vue2-datepicker';
         components: { DatePicker },
        data() {
             return {
+                lang:{
+                days: ['日', '月', '火', '水', '木', '金', '土'],
+                months: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                placeholder: {
+                date: new Date().toISOString().slice(0,10),
+
+                }
+            },
                 type:'register',
                 comments: {
                     name: '',

@@ -4,7 +4,7 @@
             <div class="row m-b-15" v-if="!norecord_msg">
                 <div class="col-md-12">
                     <router-link to="/advertisement" class="float-right main-bg-color create-btn all-btn" style="color: blue;">
-                        <i class="fas fa-plus-circle"></i> 広告を作成
+                        <i class="fas fa-plus-circle"></i> 広告新規作成
                     </router-link>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                         </div>
                         <hr />
                         <h5 class="header">広告一覧</h5>
-                        <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
+                        <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデタが消える。</div>
                         <div v-else class="container-fuid">
                             <div v-for="ads in displayItems" :key="ads.id" class="card card-default m-b-20">
                                 <div class="card-body news-post">
@@ -165,7 +165,7 @@
                 deleteAds(id) {
                         this.$swal({
                             title: "確認",
-                            text: "削除よろしいでしょうか。",
+                            text: "広告を削除してよろしいでしょうか。",
                             type: "warning",
                             width: 350,
                             height: 200,
@@ -195,12 +195,12 @@
                                 //   let a = this.advertisements.map(item => item.id).indexOf(id);
                                 //   this.advertisements.splice(a, 1);
                                 this.$swal({
-                                    title: "削除済",
-                                    text: "広告を削除されました。",
+                                    // title: "削除済",
+                                    text: "広告を削除しました。",
                                     type: "success",
                                     width: 350,
                                     height: 200,
-                                    confirmButtonText: "はい",
+                                    confirmButtonText: "閉じる",
                                     confirmButtonColor: "#dc3545"
                                 });
                             });

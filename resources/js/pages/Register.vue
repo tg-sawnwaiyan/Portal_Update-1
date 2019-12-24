@@ -17,7 +17,7 @@
                         </div>                        
                     </div>
                 </div>
-                <div class="error" id="radioerror" style="margin-bottom: 6px;margin-left: 210px;" v-if="errors !=''">{{errors}}</div>
+                <div class="error" id="radioerror" style="margin-bottom: 6px;margin-left: 210px;" v-if="errors !=''">入カされたデータが不正です</div>
 
                 <div class="alert alert-danger" v-if="has_error && !success">
                     <p v-if="error == 'registration_validation_error'">Validation error (s), please consult the message (s) below.</p>
@@ -29,11 +29,11 @@
                         <img v-if="url" :src="url" class="img-thumbnail img" />
                     </div> -->
                     <div class="input-group mb-3 inputfile">
-                        <label class="col-4 col-lg-3 control-label">ロゴを添付</label>
+                        <label class="col-4 col-lg-3 control-label">ロゴを選択</label>
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-image"></i></span>
                         </div>
-                        <span class="btn all-btn choose-btn" style="color: #a93f0c!important;box-shadow:none!important;" @click="choosefile()">Choose</span> <span id="imgname" style = "padding: 8px 0 0 30px;"></span>
+                        <span class="btn all-btn choose-btn" style="color: #a93f0c!important;box-shadow:none!important;" @click="choosefile()">ロゴを選択</span> <span id="imgname" style = "padding: 8px 0 0 30px;"></span>
                         <input type="file" class="inputfile" name="img" required @change="onFileChange"/>
                         <!-- <input type="file" accept="image/*" @change="showMyImage(this)" name="img" id="file" ref="file" class="form-control inputfile"> -->
                     </div>
@@ -66,7 +66,7 @@
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input type="password" class="form-control" name="comfirm_password" id="confirm_pwd" @keyup="password_validate()" v-model="password_confirmation" required placeholder="パスワードをもう一度確認してください。">
+                        <input type="password" class="form-control" name="comfirm_password" id="confirm_pwd" @keyup="password_validate()" v-model="password_confirmation" required placeholder="パスワードをもう一度入カしてください。">
                         <br>
                     </div>
                     <div class="error p-l-162" id="passworderror" style="display:none;">※パスワードが一致しません。</div>
@@ -77,9 +77,9 @@
                             <span class="input-group-text"><i class="fas fa-list"></i></span>
                         </div>
                         <select id="type" class="form-control custom-select" name="types" :value="type.id" v-model="type" required>
-                            <option value="">事業者タイプを選択してください。</option>
-                            <option value="2">病院</option>
-                            <option value="3">介護</option>
+                            <option value="">事業者のタイプを選択してください。</option>
+                            <option value="2">介護</option>
+                            <option value="3">病院</option>
                         </select>
                     </div>
 
@@ -245,7 +245,7 @@
                 position: 'top-end',
                 type: 'success',
                 // title: '作成されました',
-                title: '確認のためもうちょっとしばらくお待ちください。',
+                title: '確認のためしばらくお待ちください。',
                 showConfirmButton: false,
                 timer: 1800,
                 width: 250,
