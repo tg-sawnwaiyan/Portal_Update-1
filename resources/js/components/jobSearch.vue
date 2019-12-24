@@ -627,7 +627,23 @@
                         <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
                         職種から探す
                         </button> 
-                        <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768">
+                        
+                                <div class="form-check form-check-inline row align-items-start">
+                                    <div class="" v-for="(occupation,index) in occupations.slice(0,5)" :key="index" style="position:">
+                                
+                                        <strong class=" col-12">{{occupation.name}}</strong>
+                                        <div class="col-6" v-for="ch in occupation.child" :key="ch.id+1">
+                                            <label class="form-check-label control control--checkbox" style="padding-left:5px;">
+                                            <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="occupationID" :value="ch.id">
+                                            {{ch.name}}
+                                            <div class="control__indicator"></div>
+                                            </label>
+                                        </div>
+                                  
+                                    </div>
+                                </div>
+
+                        <!-- <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768">
                             <li>
                             <a data-value="option">
                             <div class="row">
@@ -641,8 +657,8 @@
                             </div>
                             </a>
                             </li>
-                        </ul>
-
+                        </ul> -->
+<!-- 
                         <a v-if="w_width >= 768">
                           <div class="row">
                             <div class="col-lg-2 col-md-4 col-sm-4" v-for="occupation in occupations" :key="occupation.id">
@@ -653,7 +669,7 @@
                               </label>
                             </div>
                           </div>
-                        </a>
+                        </a> -->
                      </div>
                       
                     <!--end 職種から探す-->
@@ -880,6 +896,7 @@ export default {
         subjects:[],
         occupationID:[],
         occupations:[],
+        occupation:[],
         toggleCheck: true,
         toggleCheck_1: false,
         empstatus:[],
@@ -1108,9 +1125,11 @@ export default {
             this.cities = response.data.city
             this.getCity = response.data.getCity
             this.getTownships = response.data.getTownships
+            this.occupation = response.data.occupation
             this.occupations = response.data.occupations
             this.id = id
          })
+      
 
         this.search();
         },
