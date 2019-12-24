@@ -1,7 +1,7 @@
 <template>
     <div>
         <div id="main" class="pad-free" :class="!$auth.check() ? inner : (visit == 'true'?inner:full)" v-if="this.$route.path !== '/register' && this.$route.path !== '/login' && this.$route.path !== '/reset' && this.$route.path !== '/resetpassword' && this.$route.path !== '/Unauthorized' && this.$route.path !== '/admin_login'">
-            <button onclick="topFunction()" id="myBtn">Top</button>
+            <button @click="topFunction()" id="myBtn">Top</button>
             <HeaderMenu v-if="!$auth.check()"></HeaderMenu>
             <AuthHeaderMenu v-if="$auth.check()"></AuthHeaderMenu>
 
@@ -196,7 +196,6 @@
         // this.axios.get('/api/auth/user').then(res=>{
         //     console.log(res)
         // })
-        console.log("index " + this.$auth.check())
         
         if(localStorage.getItem("visit")){
             this.visit = localStorage.getItem("visit");
@@ -258,13 +257,10 @@
             $("#menu-overlay").toggle('medium');
         },
         handleScroll(){
-            console.log("hello")
             if (document.scrollTop > 20 || document.documentElement.scrollTop > 20) {
                 this.myBtnScroll = true;
-                console.log("scroll")
             } else {
                 this.myBtnScroll = false;
-                console.log("not scroll")
             }
         },
         topFunction() {
