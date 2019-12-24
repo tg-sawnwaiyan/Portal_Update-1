@@ -21,29 +21,28 @@
                             </a>
                             <ul class="collapse submenu" id="pageSubmenu01">
                                 <li><router-link to="/news_list" class="nav-link"><i class="fa fa-list"></i>&nbsp;<span>ニュース一覧</span></router-link></li>
-                                <li><router-link to="/commcategorylistentlist" class="nav-link"><i class="fa fa-list"></i>&nbsp;<span>カテゴ一覧</span></router-link></li>
+                                <li><router-link to="/categorylist" class="nav-link"><i class="fa fa-list"></i>&nbsp;<span>カテゴ一覧</span></router-link></li>
                             </ul>
                         </li>
                         <li v-if="$auth.check(2)">
                             <a href="#pageSubmenu02" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed nav-link text-pre"><i class="fas fa-user-md"></i>&nbsp;&nbsp;<span class="nav-txt" v-show="isClick">介護施設</span>
                             </a>
                             <ul class="collapse submenu" id="pageSubmenu02">
-                                <li v-if="$auth.check(2)"><router-link to="/facilitieslist" class="nav-link" ><i class="fa fa-sun"></i>&nbsp;<span class="nav-txt">施設一覧</span></router-link></li>
-                                <li v-if="$auth.check(2)"><router-link to="/featurelist" class="nav-link" ><i class="fa fa-list"></i>&nbsp;&nbsp;<span class="nav-txt">特殊機能</span></router-link></li>
+                                <li v-if="$auth.check(2)"><router-link to="/nuscustomerlist" class="nav-link"><i class="fa fa-user"></i>&nbsp;<span>事業者</span></router-link></li>
+                                <li v-if="$auth.check(2)"><router-link to="/nusfeaturelist" class="nav-link" ><i class="fa fa-list"></i>&nbsp;&nbsp;<span class="nav-txt">特殊機能</span></router-link></li>
                                 <li v-if="$auth.check(2)"><router-link to="/occupationlist" class="nav-link"><i class="fa fa-suitcase"></i>&nbsp;&nbsp;<span class="nav-txt">職業</span></router-link></li>
-                                <li><router-link to="/customerlist" class="nav-link"><i class="fa fa-user"></i>&nbsp;<span>事業者</span></router-link></li>
-                                <li><router-link to="/commentlist" class="nav-link"><i class="fa fa-list"></i>&nbsp;<span>コメント一覧</span></router-link></li>
+                                <li v-if="$auth.check(2)"><router-link to="/nuscommentlist" class="nav-link"><i class="fa fa-list"></i>&nbsp;<span>コメント一覧</span></router-link></li>
                             </ul>
                         </li>
                         <li v-if="$auth.check(2)">
                             <a href="#pageSubmenu03" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed nav-link text-pre"><i class="fas fa-briefcase-medical"></i>&nbsp;&nbsp;<span class="nav-txt" v-show="isClick">病院</span>
                             </a>
                             <ul class="collapse submenu" id="pageSubmenu03">
+                                <li v-if="$auth.check(2)"><router-link to="hoscustomerlist" class="nav-link"><i class="fa fa-user"></i>&nbsp;<span>事業者</span></router-link></li>
                                 <li v-if="$auth.check(2)"><router-link to="/facilitieslist" class="nav-link" ><i class="fa fa-sun"></i>&nbsp;<span class="nav-txt">施設一覧</span></router-link></li>
-                                <li v-if="$auth.check(2)"><router-link to="/featurelist" class="nav-link" ><i class="fa fa-list"></i>&nbsp;&nbsp;<span class="nav-txt">特殊機能</span></router-link></li>
-                                <li><router-link to="/customerlist" class="nav-link"><i class="fa fa-user"></i>&nbsp;<span>事業者</span></router-link></li>
-                                <li><router-link to="/commentlist" class="nav-link"><i class="fa fa-list"></i>&nbsp;<span>コメント一覧</span></router-link></li>
+                                <li v-if="$auth.check(2)"><router-link to="/hosfeaturelist" class="nav-link" ><i class="fa fa-list"></i>&nbsp;&nbsp;<span class="nav-txt">特殊機能</span></router-link></li>
                                 <li v-if="$auth.check(2)"><router-link to="/subjectlist" class="nav-link"><i class="fa fa-user-md"></i>&nbsp;&nbsp;<span class="nav-txt">医学科目</span></router-link></li>
+                                <li v-if="$auth.check(2)"><router-link to="/hoscommentlist" class="nav-link"><i class="fa fa-list"></i>&nbsp;<span>コメント一覧</span></router-link></li>
                             </ul>
                         </li>
                         <!-- <li v-if="$auth.check(2)"><router-link to="/facilitieslist" class="nav-link" ><i class="fa fa-sun"></i>&nbsp;<span class="nav-txt">施設一覧</span></router-link></li>
