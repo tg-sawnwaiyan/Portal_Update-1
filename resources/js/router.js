@@ -2,7 +2,7 @@ import VueRouter from 'vue-router'
 // Pages
 import Register from './pages/Register'
 import Login from './pages/Login'
-import admin_login from './pages/adminLogin'
+import admin_login from './pages/Login'
 import PasswordResetMail from './pages/Passwordreset'
 import PasswordResetForm from './pages/Passwordresetform'
 import Newsdetails from "./components/Newsdetails.vue";
