@@ -56,7 +56,7 @@
       </transition>
     </div> -->
     <div>
-        <sidebar-menu :menu="menu" v-if="visit == 'false'" />
+        <sidebar-menu :menu="menu" v-if="visit == 'false'"  @item-click="onItemClick"/>
     </div>
 </template>
 <style  scoped>
@@ -267,24 +267,14 @@ created() {
     },
     methods: {
        
-        // testlogout(){
-        //     this.$auth.logout({
-        //         success: function() {
-        //             this.$router.push({
-        //                 name: 'News'
-        //             });
-        //         },
-        //     })
-
-        // }
-        // visitSite() {
-        //     this.visit = true;
-        //     this.$router.push({name: 'News'});
-        // },
-
         menuToggle(){
             $("#admin-side-menu").toggle('medium');
             $("#menu-overlay").toggle('medium');
+        },
+        onItemClick(event, item){
+            if(item.title == 'Logout'){
+                this.$auth.logout();
+            }
         }
     }
 
