@@ -1269,7 +1269,6 @@ body::-webkit-scrollbar-thumb {
     font-size: 12px;
     color: #000;
     font-weight: bold;
-    cursor: pointer;
 }
 
 .main-header .nav-item {
@@ -1356,7 +1355,7 @@ body::-webkit-scrollbar-thumb {
     -ms-box-shadow: 0px 1px 2px 0px #ccc !important;
     -moz-box-shadow: 0px 1px 2px 0px #ccc !important;
     min-height: 100vh;
-    background: #ebedef;
+    background: #F9FAFB;
 }
 
 .main-wrap {
@@ -2571,13 +2570,7 @@ li.userprofile-name>a {
 }
 
 #admin-side-menu .nav-link {
-    color: rgba(255, 255, 255, .8) !important;
-    font-size: 14px;
-    font-weight: normal !important;
-}
-
-#admin-side-menu .router-link-exact-active {
-    background: #2c3b41;
+    color: #444;
 }
 
 .nav-link {
@@ -2716,19 +2709,18 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
 
 .custom-sidebar {
     position: fixed;
-    top: 0;
+    top: 65px;
     bottom: 0;
     width: 280px;
     height: 100%;
-    background: #222D32;
-    /* box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
+    background: #fff;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
     -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
     -ms-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
     -webkit-transition: all .2s ease;
     -o-transition: all .2s ease;
-    transition: all .2s ease; */
-    z-index: 100;
+    transition: all .2s ease;
 }
 
 .content-all {
@@ -2737,34 +2729,21 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
     padding-left: 280px;
 }
 
-.custom-sidebar ul.adminview-sidebar li:first-child {
-    padding: 10px 10px 10px 22px;
-    background-color: #0a181f;
-    font-size: 18px;
-    color: rgba(255, 255, 255, .8);
-}
-
-.custom-sidebar ul.adminview-sidebar li:first-child i {
-    color: rgba(255, 255, 255, .8);
-}
-
 .custom-sidebar ul.adminview-sidebar li a {
-    border-bottom: .5px solid #485163;
-    padding: 10px 5px;
+    border: 1px solid #eee;
+    margin: 8px;
+    background: #f5f5f5;
+    padding: 5px;
+    border-radius: 0;
 }
 
 .custom-sidebar ul.adminview-sidebar li a.router-link-exact-active {
-    border-left: 0px;
-    color: rgba(255, 255, 255, .8) !important;
-}
-
-.custom-sidebar .nav-pills .nav-link {
-    padding: 15px 15px !important;
+    border-left: 3px solid #ff9563;
 }
 
 .custom-sidebar ul.adminview-sidebar li i {
     padding-right: 10px;
-    color: rgba(255, 255, 255, .8) !important;
+    color: #d2571c !important;
 }
 
 .userview-sidebar {
@@ -2774,41 +2753,6 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
     padding-left: 22px;
     padding-right: 7px;
     margin-top: 4px;
-}
-
-.admin-header {
-    height: 50px;
-    background: #d2571c !important;
-    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
-    -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
-    -ms-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
-    -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
-    line-height: 50px;
-    vertical-align: middle;
-}
-
-.admin-header .nav-warp {
-    margin-left: 270px;
-}
-
-.admin-header .userprofile-name {
-    margin-top: 7px;
-}
-
-.admin-header .userprofile-img {
-    width: 30px;
-    height: 30px;
-    line-height: 30px !important;
-    font-size: 17px;
-    color: #fff;
-    background: #ece1e1b3;
-    text-align: center;
-    vertical-align: middle;
-    border-radius: 50%;
-}
-
-.admin-header .userprofile-name label {
-    color: #fff !important;
 }
 
 
@@ -2833,25 +2777,6 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
     z-index: 1;
 }
 
-.custom-sidebar .admin-logo {
-    height: 50px;
-    padding: 0px;
-    font-size: 25px;
-    background: #ad3f0c;
-    text-align: center;
-    line-height: 50px;
-    vertical-align: middle;
-}
-
-.custom-sidebar .admin-logo a {
-    color: rgba(255, 255, 255, .8) !important;
-    font-weight: bold;
-}
-
-.custom-sidebar .admin-logo a:hover {
-    text-decoration: none;
-}
-
 .custom-sidebar .admin-tit {
     display: inline-block;
     margin: 20px 20px 10px 40px;
@@ -2860,14 +2785,6 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
 
 .custom-sidebar .admin-tit i {
     margin-right: 10px;
-}
-
-.admin-header .gNav li a {
-    color: #fff !important;
-}
-
-.admin-header .gNav li a:after {
-    background: #fff;
 }
 
 
@@ -7300,7 +7217,7 @@ ul.test>li:before {
     padding: 5px;
     border-radius: 5px;
     background-color: #ffc;
-   
+    /* width: 70%; */
 }
 
 .seemore-btn:hover {
@@ -8635,8 +8552,7 @@ ul.nur-caro-card>li.list-group-item {
 .create_nw_p {
     padding: 11px;
 }
-
-.pc-480 {
+.pc-480{
     display: block;
 }
 .close-480 {
@@ -8648,11 +8564,6 @@ ul.nur-caro-card>li.list-group-item {
 .check-resize {
     display: none;
 }
-
-.pc-paginate {
-    display: inline;
-}
-
 
 /*--------------------------------------------------------------------------------responsive -----------------------------------------------------------------------*/
 
@@ -8753,7 +8664,6 @@ ul.nur-caro-card>li.list-group-item {
         width: 265px;
     }
 }
-
 @media screen and (max-width: 1024px) and (min-width: 768px) {
     /*pagination*/
     .pagination {
@@ -8781,7 +8691,6 @@ ul.nur-caro-card>li.list-group-item {
     }
     /*end fav nursing*/
 }
-
 @media only screen and (max-width:768px) {
     .wd-in {
         width: 256px;
@@ -8844,39 +8753,10 @@ ul.nur-caro-card>li.list-group-item {
     }
     .searchTerm {
         width: 87%;
-    }
+    } 
+   
 }
-@media only screen and (max-width:750px){
- 
-    .dropdown {
-      display: inline-block;
-      width: 100%;
-      height: calc(1.6em + 0.75rem + 2px);
-      padding: 6px;
-      font-size: 0.9rem;
-      font-weight: 400;
-      line-height: 1.6;
-      color: #495057;
-      vertical-align: middle;
-      background-color: #f5f5f5;
-      border: 1px solid #ced4da;
-      border-radius: 0.25rem;
-      -webkit-appearance: none;
-    }
-    .dropdown-men.show {   
-        display: inline-flex !important;        
-       
-    }
-    .dropdown-menu-form {
-        padding: 5px 10px 0;
-        max-height: 260px;
-        overflow-y: scroll;
-        transform: translate3d(0px, 33px, 0px) !important;
-    }
-    .btn-sm{
-      padding: 2px;
-    }
-}
+
 @media only screen and (max-width:480px) {
     /*fav nursing*/    
     .close-480 {
@@ -8951,10 +8831,10 @@ ul.nur-caro-card>li.list-group-item {
          height: 30px;
          transition: background-color .3s;
      } */
-    .pc-480 {
-        display: none;
-    }
-    .pagination {
+     .pc-480 {
+         display: none;
+     }
+     .pagination {
         flex-wrap: wrap;
         justify-content: center;
         text-align: center;
@@ -8963,35 +8843,35 @@ ul.nur-caro-card>li.list-group-item {
     .pagination .page-item {
         padding: 1px;
     }
-    .page-item .spanclass {
-        width: 28px;
-        height: 25px;
-        background-image: none;
-    }
-    .spanclass {
-        /* width: 45px;
+     .page-item .spanclass {
+         width: 28px;
+         height: 25px;
+         background-image: none;
+     }
+     .spanclass {
+         /* width: 45px;
          height: 24px; */
-        /* background-color: #fff; */
-        /* background-image: linear-gradient(to bottom, #ffffff, #f1f1f1); */
-        float: left;
-        /* text-align: center; */
-        /* overflow: hidden; */
-        margin-top: 2px;
-        border: 1px solid #8e3c15;
-        border-radius: 3px;
-    }
-    .spanclass a {
-        position: relative;
-    }
-    .pc-paginate {
+         /* background-color: #fff; */
+         /* background-image: linear-gradient(to bottom, #ffffff, #f1f1f1); */
+         float: left;
+         /* text-align: center; */
+         /* overflow: hidden; */
+         margin-top: 2px;
+         border: 1px solid #8e3c15;
+         border-radius: 3px;
+     }
+     .spanclass a {
+         position: relative;
+     }  
+     .pc-paginate{
         display: none;
     }
 }
-
-.card_height {
-    float: left;
-    height: 125px;
-    cursor: pointer;
+.card_height
+{
+    float:left;
+    height:125px;
+    cursor:pointer;
 }
 
 @media only screen and (max-width:320px) {
@@ -9012,9 +8892,6 @@ ul.nur-caro-card>li.list-group-item {
         display: block !important;
     }
     .pc-414 {
-        display: none !important;
-    }
-    .pc-414-table{
         display: none !important;
     }
     /*create_news*/
@@ -9464,12 +9341,6 @@ ul.nur-caro-card>li.list-group-item {
 .pc-414 {
     display: block;
 }
-.pc-414-table{
-    display: table-cell;
-}
-.sp-768{
-    display: none;
-}
 
 @media only screen and (max-width: 1240px) {
     /* common */
@@ -9661,9 +9532,6 @@ ul.nur-caro-card>li.list-group-item {
 }
 
 @media only screen and (max-width: 990px) {
-    .sp-990{
-        display: block !important;
-    }
     /* common */
     li {
         list-style: none;
@@ -9930,12 +9798,9 @@ ul.nur-caro-card>li.list-group-item {
     /*End job details */
 }
 
-@media only screen and (max-width: 768px) {      
-    .pc-768{
-        display: none !important;
-    }
-    .sp-768{
-        display: block !important;
+@media only screen and (max-width: 768px) {
+    .pc-768 {
+        display: none;
     }
     .tab {
         max-width: 100% !important;
@@ -10189,4 +10054,7 @@ ul.nur-caro-card>li.list-group-item {
         font-size: 11px;
     }
     /*End  Profile Publish */
+
+  
 }
+
