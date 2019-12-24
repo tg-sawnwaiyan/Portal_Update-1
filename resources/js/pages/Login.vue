@@ -21,16 +21,16 @@
                 <div class="col-12 m-t-80">               
                 <form autocomplete="off" @submit.prevent="login" method="post">
                     <div class="input-group m-b-20">
-											<div class="input-group-append">
-												<span class="input-group-text"><i class="fas fa-user"></i></span>
-											</div>                      
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>                      
                       <input type="email" id="email" class="form-control input_user" placeholder="ユーザー名" v-model="email" required autofocus>                                            
                     </div>
                     <div class="input-group m-b-20">
-											<div class="input-group-append">
-												<span class="input-group-text"><i class="fas fa-key"></i></span>
-											</div>
-											<input type="password" class="form-control input_pass" name="password" value=""  id="password" v-model="password" placeholder="パスワード" required >
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        <input type="password" class="form-control input_pass" name="password" value=""  id="password" v-model="password" placeholder="パスワード" required >
                         
                     </div>
                     <span class="alert alert-danger" v-if="has_error">パスワードが間違っています。</span>
