@@ -39,7 +39,7 @@
                     <div class="form-group form-group-wrapper d-flex">
                             <label class="heading-lbl col-2 pad-free">電話番号<span class="error">*</span></label>
                             <div class="col-10 row">
-                            <input type="text" class="form-control customer-phone col-12" id="phone" placeholder="電話番号を入力してください。" v-model="customer_info.phone" v-on:keyup="isNumberOnly" maxlength="14">
+                            <input type="text" class="form-control customer-phone col-12" id="phone" placeholder="電話番号を入力してください。" v-model="customer_info.phone" v-on:keyup="isNumberOnly" pattern="[0-9-]*" @focusout="focusPhone" title="Please enter number only." maxlength="14">
                             <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>    
                             <span class="error" v-else></span>                        
                             </div>
@@ -832,6 +832,20 @@ export default {
         },
 
         methods: {
+            focusPhone(){
+
+              var input_data = $('#phone').val(); 
+                
+              if(input_data.length >= 10 && input_data.length <= 14 && input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-')
+              {  
+                  this.ph_num = false;
+                  this.ph_length = false;
+              }
+              else{   
+                  this.ph_num = true;
+                  this.ph_length = true;
+              }
+            },
             imgUrlAlt(event) {
                 event.target.src = "images/noimage.jpg"
             },

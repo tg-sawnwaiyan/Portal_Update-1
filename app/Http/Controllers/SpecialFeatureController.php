@@ -11,9 +11,9 @@ use DB;
 class SpecialFeatureController extends Controller
 {
 
-    public function index()
+    public function index($type)
     {
-        $feature = special_feature::all()->toArray();
+        $feature = special_feature::where('type','=',$type)->get()->toArray();
         return array_reverse($feature);
     }
 
@@ -106,7 +106,7 @@ class SpecialFeatureController extends Controller
     {
         $feature = special_feature::find($id);
         $feature->delete();
-        $features = special_feature::all()->toArray();
+        $features = special_feature::orderBy('id','DESC')->get()->toArray();
          return $features;
         // return response()->json('The Feature successfully deleted');
     }

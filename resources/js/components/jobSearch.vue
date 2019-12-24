@@ -567,13 +567,13 @@
             <table class="table table-bordered col-12 ">
               <tbody>
                 <tr>
-                  <th>地域</th>
+                  <th class="pc-414-table">地域</th>
                   <td>
                     <div class="row mt-2 mb-2">
                       <div class="col-lg-9 col-md-6 col-sm-12">
-                      <select id="selectCity" class="form-control custom-select" v-model="id" @change="changeTownship">
-                         <option value="-1">▼市区町村</option>
-                      <option v-for="city in cities" :value="city.id" :key="city.id" >{{city.city_name}}</option>
+                      <select id="selectCity" class="form-control custom-select" v-model="id" @change="changeTownship">                        
+                        <option value="-1">▼市区町村</option>
+                        <option v-for="city in cities" :value="city.id" :key="city.id" >{{city.city_name}}</option>                       
                     </select>
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-12 pc-414">
@@ -584,113 +584,161 @@
                     </button>
                     </div>
                     </div>
-                    <div class="toBeToggled4" id="toBeToggled4">   
-                      <!-- <div class="pc-768">
-                        <div class="form-check form-check-inline col-lg-2 col-md-4 col-sm-4" v-for="township in getTownships" :key="township.id">
-                        <div>
-                          <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-                          <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @change="getCheck($event)">
-                          {{township.township_name}}
-                          <div class="control__indicator"></div>
-                          </label>
-                        </div>
-                      </div> 
-                      </div>                    -->
-                      
-                      <!--test-->                     
+                    <div class="toBeToggled4" id="toBeToggled4">     
                       <div class="dropdown">
-                          <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown">
+                          <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
                           市から探す
-                          </button>   
-                                <a id="inWrap" data-value="option">
-                                  <div class="row">
-                                  <div class="col-lg-2 col-md-4 col-sm-4" v-for="township in getTownships" :key="township.id">
-                                      <label class="checkbox form-check-label control control--checkbox">
-                                          <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @change="getCheck($event)">{{township.township_name}}
-                                            <div class="control__indicator"></div>
-                                      </label>
-                                  </div>
-                                  </div>
-                                </a>                             
-                      </div>  
-                     
-                      <!--end test-->
-                      
-                    </div>
-                     <!-- <div class="sp-414">
-                        <select id="selectCity" class="form-control custom-select" v-model="townshipID" @change="getCheck($event)">
-                          <option value="-1">▼市区町村</option>
-                          <option v-for="township in getTownships" :key="township.id" :id="township.id" :value="township.id"> {{township.township_name}}</option>
-                        </select>
-                      </div> -->
-                    <!-- <div>
-                     <button @click="getStation" class="btn col-2 seemore-btn">  Station </button>
-                      <div v-for="com in company" :key="com.company_cd" class="col-4">
-                          COMPANY {{com.company_name}}
-                          <div v-for="lin in com.line" :key="lin.line_cd">
-                           LINE {{lin.line_name}}
-                            <div v-for="sta in lin.station" :key="sta.station_cd">
-                              STATION {{sta.station_name}}
+                          </button> 
+                          <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768">
+                            <li>
+                            <a data-value="option">
+                              <div class="row">
+                              <div class="col-lg-2 col-md-4 col-sm-4" v-for="township in getTownships" :key="township.id">
+                                  <label class="checkbox form-check-label control control--checkbox">
+                                      <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @change="getCheck($event)" @click.stop="stopTheEvent">{{township.township_name}}
+                                        <div class="control__indicator"></div>
+                                  </label>
+                              </div>
+                              </div>
+                            </a>
+                              </li>
+                          </ul>
+                        
+                            <a v-if="w_width >= 768">
+                              <div class="row">
+                              <div class="col-lg-2 col-md-4 col-sm-4" v-for="township in getTownships" :key="township.id">
+                                  <label class="checkbox form-check-label control control--checkbox">
+                                      <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @change="getCheck($event)">{{township.township_name}}
+                                        <div class="control__indicator"></div>
+                                  </label>
+                              </div>
+                              </div>
+                            </a>
+                              
+                      </div>                             
+                    </div>                    
+                  </td>
+                </tr>                
+                <tr class="toBeToggled1 ShowHide">
+                  <th class="pc-414-table">職種</th>
+                  <td>
+                    <!--職種から探す-->
+                     <div class="dropdown">
+                        <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
+                        職種から探す
+                        </button> 
+                        <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768">
+                            <li>
+                            <a data-value="option">
+                            <div class="row">
+                                <div class="col-lg-2 col-md-4 col-sm-4" v-for="occupation in occupations" :key="occupation.id">
+                                <label class="form-check-label control control--checkbox">
+                                <input class="form-check-input" type="checkbox" :id="occupation.id" :value="occupation.id" v-model="occupationID" @click.stop="stopTheEvent">
+                                    {{occupation.name}}
+                                <div class="control__indicator"></div>
+                                </label>
+                                </div>
+                            </div>
+                            </a>
+                            </li>
+                        </ul>
+
+                        <a v-if="w_width >= 768">
+                          <div class="row">
+                            <div class="col-lg-2 col-md-4 col-sm-4" v-for="occupation in occupations" :key="occupation.id">
+                              <label class="form-check-label control control--checkbox">
+                              <input class="form-check-input" type="checkbox" :id="occupation.id" :value="occupation.id" v-model="occupationID">
+                                {{occupation.name}}
+                              <div class="control__indicator"></div>
+                              </label>
                             </div>
                           </div>
-                      </div>
-                    </div> -->
-                  </td>
-                </tr>
-
-                <tr class="toBeToggled1 ShowHide">
-                  <th>
-                  フリーワード
-                  </th>
-                  <td>
-                      <input type="text" class="form-control mt-2 mb-2" id=""  placeholder="例）施設名、エリア">
+                        </a>
+                     </div>
+                      
+                    <!--end 職種から探す-->
                   </td>
                 </tr>
                 <tr class="toBeToggled1 ShowHide">
-                  <th>職種</th>
+                  <th style="padding:10px;" class="pc-414-table">雇用形態</th>
                   <td>
-                      <div class="form-check form-check-inline col-sm-2"  v-for="occupation in occupations" :key="occupation.id">
-                        <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-                        <input class="form-check-input" type="checkbox" :id="occupation.id" :value="occupation.id" v-model="occupationID" >
+                    <!--雇用形態から探す-->
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
+                        雇用形態から探す
+                        </button> 
+                         <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768">
+                            <li>
+                        <a>
+                          <div class="row col-12">
+                              <div class="form-check form-check-inline col-sm-2">
+                              <label class="form-check-label control control--checkbox" style="padding-left:5px;">
+                              <input class="form-check-input" value="正職員" v-model="empstatus" type="checkbox" @click.stop="stopTheEvent">
+                              正社員(正職員)
+                              <div class="control__indicator"></div>
+                              </label>
+                            </div>
+                            <div class="form-check form-check-inline col-sm-2">
+                              <label class="form-check-label control control--checkbox" style="padding-left:5px;">
+                              <input class="form-check-input" value="契約社員" v-model="empstatus" type="checkbox">
+                              契約社員(職員)
+                              <div class="control__indicator"></div>
+                              </label>
+                            </div>
+                            <div class="form-check form-check-inline col-sm-2">
+                              <label class="form-check-label control control--checkbox" style="padding-left:5px;">
+                              <input class="form-check-input" value="非常勤" v-model="empstatus" type="checkbox">
+                              非常勤。パート
+                              <div class="control__indicator"></div>
+                              </label>
+                            </div>
+                            <div class="form-check form-check-inline col-sm-2">
+                              <label class="form-check-label control control--checkbox" style="padding-left:5px;">
+                              <input class="form-check-input" value="その他" v-model="empstatus" type="checkbox">
+                              その他
+                              <div class="control__indicator"></div>
+                              </label>
+                            </div>
+                          </div>
+                        </a>
+                            </li>
+                         </ul>
 
-                        {{occupation.name}}
-                        <div class="control__indicator"></div>
-                        </label>
-                      </div>
-                  </td>
-                </tr>
-                <tr class="toBeToggled1 ShowHide">
-                  <th style="padding:10px;">雇用形態</th>
-                  <td>
-                  <div class="form-check form-check-inline col-sm-2">
-                    <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-                    <input class="form-check-input" value="正職員" v-model="empstatus" type="checkbox">
-                    正社員(正職員)
-                    <div class="control__indicator"></div>
-                    </label>
-                  </div>
-                  <div class="form-check form-check-inline col-sm-2">
-                    <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-                    <input class="form-check-input" value="契約社員" v-model="empstatus" type="checkbox">
-                    契約社員(職員)
-                    <div class="control__indicator"></div>
-                    </label>
-                  </div>
-                  <div class="form-check form-check-inline col-sm-2">
-                    <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-                    <input class="form-check-input" value="非常勤" v-model="empstatus" type="checkbox">
-                    非常勤。パート
-                    <div class="control__indicator"></div>
-                    </label>
-                  </div>
-                  <div class="form-check form-check-inline col-sm-2">
-                    <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-                    <input class="form-check-input" value="その他" v-model="empstatus" type="checkbox">
-                    その他
-                    <div class="control__indicator"></div>
-                    </label>
-                  </div>
-
+                        <a v-if="w_width >= 768">
+                          <div class="row">
+                              <div class="col-lg-2 col-sm-4">
+                              <label class="form-check-label control control--checkbox">
+                              <input class="form-check-input" value="正職員" v-model="empstatus" type="checkbox">
+                              正社員(正職員)
+                              <div class="control__indicator"></div>
+                              </label>
+                            </div>
+                            <div class="col-lg-2 col-sm-4">
+                              <label class="form-check-label control control--checkbox">
+                              <input class="form-check-input" value="契約社員" v-model="empstatus" type="checkbox">
+                              契約社員(職員)
+                              <div class="control__indicator"></div>
+                              </label>
+                            </div>
+                            <div class="col-lg-2 col-sm-4">
+                              <label class="form-check-label control control--checkbox">
+                              <input class="form-check-input" value="非常勤" v-model="empstatus" type="checkbox">
+                              非常勤。パート
+                              <div class="control__indicator"></div>
+                              </label>
+                            </div>
+                            <div class="col-lg-2 col-sm-4">
+                              <label class="form-check-label control control--checkbox">
+                              <input class="form-check-input" value="その他" v-model="empstatus" type="checkbox">
+                              その他
+                              <div class="control__indicator"></div>
+                              </label>
+                            </div>
+                          </div>
+                        </a>
+                    </div>
+                    <!--end 雇用形態から探す-->
+                  
                   </td>
                 </tr>
 
@@ -705,9 +753,7 @@
 
                 <tr class="text-center">
                   <td colspan="2" style="border:none;">
-
-                     <button class="main-bg-color create-btn all-btn" style="width:16%;" @click="search"><i class="fas fa-search"></i>&nbsp; 検索 </button>
-
+                     <button class="main-bg-color create-btn all-btn col-md-2 col-sm-2" @click="search"><i class="fas fa-search"></i>&nbsp; 検索 </button>
                   </td>
                 </tr>
               </tbody>
@@ -715,7 +761,7 @@
             </div>
              <div class="col-12">
                 <div class="row pad-free">
-                   <div id="job_detail" class="col-md-6 col-sm-12" style="margin-top:20px;" v-for="(job,index) in displayItems" :key="index+'-'+job.title+'-'+job.jobid">
+                   <div id="job_detail" class="col-lg-6 col-md-12" style="margin-top:20px;" v-for="(job,index) in displayItems" :key="index+'-'+job.title+'-'+job.jobid">
                      <div class="job-content">
                       <div class="job-header">
                         <h5 class="job-tit">
@@ -723,14 +769,14 @@
                           </h5>
                         <div class="clearfix">
                           <p class="job_status">{{job.employment_status}}</p>
-                          <p class="job_id"><span>求人番号:</span>{{job.jobnum}}</p>
+                          <p class="job_id search_jobid"><span>求人番号:</span>{{job.jobnum}}</p>
                         </div>
                       </div>
                       <div class="job-body d-flex clearfix">
                         <!-- <div class="col-4 job-img">
                           <img src="/upload/news/nursing.JPG"  alt="">
                         </div> -->
-                        <div class="col-12 job-box">
+                        <div class="col-12 job-box p0-480">
                           <table  class="table table-bordered  table-sm">
                             <tr>
                               <td><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>最寄り駅</td>
@@ -794,13 +840,21 @@
 <script>
 import layout from '../components/home.vue'
 import { BulmaAccordion, BulmaAccordionItem } from "vue-bulma-accordion";
-
-
-
-
-var options = [];
-
-
+ window.addEventListener("load", function(event) {
+    $('.dropdown-menu').on('click', function(e) {
+        if($(this).hasClass('dropdown-menu-form')) {
+            e.stopPropagation();
+        }
+    });
+  });
+//  $(document).ready(function(){                 
+//     $('.dropdown-menu').on('click', function(e) {
+//         if($(this).hasClass('dropdown-menu-form')) {
+//             e.stopPropagation();
+//         }
+//     });
+    
+// });  
 export default {
     components: {
       layout,
@@ -844,8 +898,9 @@ export default {
         window:{
           width: 0,
           height: 0
-        }
-       
+        },
+        w_width: $(window).width(),
+       testclass:''
       }
     },
     created() {
@@ -859,25 +914,7 @@ export default {
         this.open = !this.initOpen
 
         window.addEventListener('resize', this.handleResize);
-        this.handleResize();      
-        //var labelinput = $('li#inWrap')
-          if(this.window.width >= 768){     
-            console.log(this.window.width);
-          }
-          else{
-              console.log(this.window.width);
-               $(document).ready(function(){
-                  $('#inWrap').wrap('<ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton"><li></li></ul>');
-                  $('.dropdown-menu').on('click', function(e) {
-                      if($(this).hasClass('dropdown-menu-form')) {
-                          e.stopPropagation();
-                      }
-                  });
-                  
-              });
-          }
-
-
+        this.handleResize();
     },
     mounted() {
             $('#navtab').removeClass('news-tabColor hospital-tabColor nursing-tabColor job-tabColor');
@@ -886,6 +923,13 @@ export default {
             $('#upper-tab').addClass('job-borderColor');
         },
   methods:{
+    stopTheEvent:function(e){
+         $('.dropdown-menu').on('click', function(e) {
+        if($(this).hasClass('dropdown-menu-form')) {
+            e.stopPropagation();
+        }
+    });
+    },
     // toggle(id) {
     // 	const index = this.opened.indexOf(id);
     //   if (index > -1) {
@@ -1025,7 +1069,7 @@ export default {
                 $('#close6').append('<i class="fas fa-arrow-circle-down"></i> 市区町村エリアを開く');
             }
         },
-        ShowHide4() {
+       ShowHide4() {
         this.toggleCheck_1 = !this.toggleCheck_1;
             if (this.toggleCheck_1 == true) {
                 $('#close4').empty();
@@ -1071,18 +1115,13 @@ export default {
         this.search();
         },
         // getStation(){
-
         //    this.axios.get('api/getstation/'+ this.id)
         //   .then((response)=>{
         //     this.company = response.data.company;
-
-
         //  })
-
         // },
 
-      getStateClick(e){
-
+      getStateClick(e){     
           //clear all check box
             this.townshipID = [];
             this.occupationID = [];
@@ -1280,7 +1319,6 @@ span.tooltip::before {
 span:hover::before {
   display: inline-block;
 }
-
 [data-toggle="collapse"] .fa:before {
   content: "\f139";
 }
@@ -1412,6 +1450,19 @@ table > tbody > tr th{
     width:100px;
   }
  
+}
+@media only screen and (max-width: 480px){
+  table > tbody > tr th{
+    padding: 25px 5px;
+  }
+  table th, table td{
+    vertical-align: middle;
+  }
+  .dropdown-toggle::after {    
+    position: absolute;
+    right: 12px;
+    top: 15px;
+  }
 }
 
 .dropdown-toggle::after {

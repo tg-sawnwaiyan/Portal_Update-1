@@ -26,8 +26,8 @@
                                 <label> カテゴリー:<span class="error">*</span></label>
                                 <select v-model="feature.type" name="type" class="form-control">
                                         <option v-bind:value='-1'>選択してください。 </option>
-                                        <option value="病院" >病院</option>
-                                        <option value="介護">介護</option>
+                                        <option value="nursing">介護</option>
+                                        <option value="hospital" >病院</option>
                                 </select>
                                 <span v-if="errors.type" class="error">{{errors.type}}</span>
                                     <!-- <span v-if="errors.nur" class="error">{{errors.nur}}</span> -->
@@ -35,12 +35,7 @@
 
                             <div class="form-group ">
                                   <span class="btn main-bg-color white all-btn" @click="checkValidate()"> {{subtitle}}</span>
-                                <!-- <button class="btn main-bg-color white all-btn">{{subtitle}}</button> -->
-                                <router-link class="btn btn-danger all-btn" to="/featurelist" > キャンセル </router-link>
-                                <!-- <router-link class="btn news-post-btn all-btn" to="/featurelist" >Create</router-link>             -->
-                                <!-- <button class="btn news-post-btn all-btn" >{{subtitle}}</button> -->
-                              
-                                <!-- {{ this.errors.type }} -->
+                                <span class="btn btn-danger all-btn" @click="$router.go(-1)" > キャンセル </span>
                             </div>
                                 </form>
                             </div>
@@ -88,13 +83,13 @@ export default {
                     .then((response) => {
 
                     this.feature= response.data;
-                    if(this.feature.type == '病院')
-                    {
-                        this.feature.type = '病院';
-                    }
-                    else if (this.feature.type == '介護') {
-                        this.feature.type = '介護';
-                    }
+                    // if(this.feature.type == 'hospital')
+                    // {
+                    //     this.feature.type = 'hospital';
+                    // }
+                    // else if (this.feature.type == '介護') {
+                    //     this.feature.type = '介護';
+                    // }
                       this.header = ' 特徴更新';
                         this.subtitle = '更新する';
                         return this.header;
@@ -182,8 +177,10 @@ export default {
                             height: 200,
                         })
                         // alert('Successfully Created')
-                        this.$router.push({name: 'featurelist'});
+                        // this.$router.push({name: 'featurelist'});
+                        this.$router.go(-1);
                         }).catch(error=>{
+                            console.log(error)
 
                     if(error.response.status == 422){
 
@@ -235,9 +232,10 @@ export default {
                             width: 250,
                             height: 200,
                         })
-                    this.$router.push({name: 'featurelist'});
+                    // this.$router.push({name: 'featurelist'});
+                    this.$router.go(-1);
                 }).catch(error=>{
-
+                    console.log(error)
                 if(error.response.status == 422){
 
                     this.errors = error.response.data.errors

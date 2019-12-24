@@ -1,5 +1,4 @@
 <?php
-
 /*
  * This file is part of jwt-auth.
  *
@@ -8,9 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 return [
-
     /*
     |--------------------------------------------------------------------------
     | JWT Authentication Secret
@@ -24,9 +21,7 @@ return [
     | since RSA and ECDSA use a private/public key combo (See below).
     |
     */
-
     'secret' => env('JWT_SECRET'),
-
     /*
     |--------------------------------------------------------------------------
     | JWT Authentication Keys
@@ -43,9 +38,7 @@ return [
     | RS256, RS384 & RS512 / ES256, ES384 & ES512 will use the keys below.
     |
     */
-
     'keys' => [
-
         /*
         |--------------------------------------------------------------------------
         | Public Key
@@ -56,9 +49,7 @@ return [
         | E.g. 'file://path/to/public/key'
         |
         */
-
         'public' => env('JWT_PUBLIC_KEY'),
-
         /*
         |--------------------------------------------------------------------------
         | Private Key
@@ -69,9 +60,7 @@ return [
         | E.g. 'file://path/to/private/key'
         |
         */
-
         'private' => env('JWT_PRIVATE_KEY'),
-
         /*
         |--------------------------------------------------------------------------
         | Passphrase
@@ -80,11 +69,8 @@ return [
         | The passphrase for your private key. Can be null if none set.
         |
         */
-
         'passphrase' => env('JWT_PASSPHRASE'),
-
     ],
-
     /*
     |--------------------------------------------------------------------------
     | JWT time to live
@@ -100,9 +86,7 @@ return [
     | Notice: If you set this to null you should remove 'exp' element from 'required_claims' list.
     |
     */
-
     'ttl' => env('JWT_TTL', 120),
-
     /*
     |--------------------------------------------------------------------------
     | Refresh time to live
@@ -119,13 +103,7 @@ return [
     | systems in place to revoke the token if necessary.
     |
     */
-
-<<<<<<< HEAD
-    'refresh_ttl' => env('JWT_REFRESH_TTL', 1),
-=======
     'refresh_ttl' => env('JWT_REFRESH_TTL', 120),
->>>>>>> 64cc717ea7745906719e0118f69a4128bbf87a87
-
     /*
     |--------------------------------------------------------------------------
     | JWT hashing algorithm
@@ -137,9 +115,7 @@ return [
     | for possible values.
     |
     */
-
     'algo' => env('JWT_ALGO', 'HS256'),
-
     /*
     |--------------------------------------------------------------------------
     | Required Claims
@@ -150,7 +126,6 @@ return [
     | present in the payload.
     |
     */
-
     'required_claims' => [
         'iss',
         'iat',
@@ -158,7 +133,6 @@ return [
         'sub',
         'jti',
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Persistent Claims
@@ -171,12 +145,10 @@ return [
     | Note: If a claim does not exist then it will be ignored.
     |
     */
-
     'persistent_claims' => [
         // 'foo',
         // 'bar',
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Lock Subject
@@ -193,9 +165,7 @@ return [
     | a little on token size.
     |
     */
-
     'lock_subject' => true,
-
     /*
     |--------------------------------------------------------------------------
     | Leeway
@@ -210,9 +180,7 @@ return [
     | Specify in seconds - only if you know you need it.
     |
     */
-
     'leeway' => env('JWT_LEEWAY', 0),
-
     /*
     |--------------------------------------------------------------------------
     | Blacklist Enabled
@@ -222,9 +190,7 @@ return [
     | If you do not want or need this functionality, then set this to false.
     |
     */
-
     'blacklist_enabled' => env('JWT_BLACKLIST_ENABLED', true),
-
     /*
     | -------------------------------------------------------------------------
     | Blacklist Grace Period
@@ -237,9 +203,7 @@ return [
     | Set grace period in seconds to prevent parallel request failure.
     |
     */
-
     'blacklist_grace_period' => env('JWT_BLACKLIST_GRACE_PERIOD', 0),
-
     /*
     |--------------------------------------------------------------------------
     | Cookies encryption
@@ -255,9 +219,7 @@ return [
     | Set it to true if you want to decrypt cookies.
     |
     */
-
     'decrypt_cookies' => false,
-
     /*
     |--------------------------------------------------------------------------
     | Providers
@@ -266,9 +228,7 @@ return [
     | Specify the various providers used throughout the package.
     |
     */
-
     'providers' => [
-
         /*
         |--------------------------------------------------------------------------
         | JWT Provider
@@ -277,9 +237,7 @@ return [
         | Specify the provider that is used to create and decode the tokens.
         |
         */
-
         'jwt' => Tymon\JWTAuth\Providers\JWT\Lcobucci::class,
-
         /*
         |--------------------------------------------------------------------------
         | Authentication Provider
@@ -288,9 +246,7 @@ return [
         | Specify the provider that is used to authenticate users.
         |
         */
-
         'auth' => Tymon\JWTAuth\Providers\Auth\Illuminate::class,
-
         /*
         |--------------------------------------------------------------------------
         | Storage Provider
@@ -299,9 +255,6 @@ return [
         | Specify the provider that is used to store tokens in the blacklist.
         |
         */
-
         'storage' => Tymon\JWTAuth\Providers\Storage\Illuminate::class,
-
     ],
-
 ];

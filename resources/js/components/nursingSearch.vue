@@ -824,7 +824,7 @@
                                                     <div class="form-check form-check-inline col-sm-2" v-for="fac_type in fac_types" :key="fac_type.id">
                                                         <label class="form-check-label control control--checkbox" style="padding-left:5px;">
                                                         <input class="form-check-input" type="checkbox" v-model="FacTypeID" :id="fac_type.id" :value="fac_type.id">
-
+                                                        {{fac_type.description}}
                                                         <div class="control__indicator"></div>
                                                         </label>
                                                     </div>
@@ -1473,9 +1473,9 @@
                         }                    
                     }
                 }
-                var township_name = townshipName;
-              
-               
+
+               var township_name = townshipName;
+             
                if(this.ci == true && (this.townshipID[0] == "-1" || this.townshipID.length == 0))
                {
                    
@@ -1491,9 +1491,8 @@
                             this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
                             this.boundariesGoogleMap(lat,lng,this.coordinate);            
                         }); 
-
-                } 
-                
+        
+                }  
                 else{
            
                     this.axios.get('/api/townshipJson/'+township_name).then(res => {

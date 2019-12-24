@@ -24,7 +24,7 @@
 
                         </div>
                         <hr />
-                        <h5 class="header">コメント一覧</h5>
+                        <h5 class="header">{{title}}</h5>
                         <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
                         <div v-else class="container-fuid">
                         <div class="card card-default m-b-20" v-for="comment in displayItems" :key="comment.id">
@@ -115,13 +115,16 @@
                     pagination: false,
                     norecord_msg: false,
                     nosearch_msg: false,
+                    title: '',
                 }
 
             },
             created() {
                 this.$loading(true);
-                this.axios
-                    .get('/api/comments/comment'+ this.comments )
+                if(this.$route.path == "/nuscommentlist"){
+                    this.title = "特徴一覧 for Nursing";
+                    this.axios
+                    .get('/api/comments/comment/3')
                     .then(response => {
                         this.$loading(false);
                         this.comments = response.data;
@@ -137,6 +140,27 @@
                             this.norecord_msg = true;
                         }
                     });
+                }
+                else if(this.$route.path == "/hoscommentlist"){
+                    this.title = "特徴一覧 for Hospital";
+                    this.axios
+                    .get('/api/comments/comment/2')
+                    .then(response => {
+                        this.$loading(false);
+                        this.comments = response.data;
+                        this.norecord = this.comments.length;
+                        if(this.norecord > this.size){
+                            this.pagination = true;
+                        }else{
+                            this.pagination = false;
+                        }
+                        if(this.norecord != 0) {
+                            this.norecord_msg = false;
+                        }else{
+                            this.norecord_msg = true;
+                        }
+                    });
+                }         
 
 
             },
