@@ -1332,6 +1332,7 @@
             },
             // map onclick function
             getStateClick(e,lat,lng) {
+               localStorage.setItem('features', 'nursing');
                 this.ci = false;
                 this.township_id= -1;
                 this.moving_in = -1;
@@ -1358,7 +1359,8 @@
                     township_id:-1,
                     moving_in:-1,
                     per_month:-1,
-                    local:this.locast
+                    local:this.locast,
+                    feature:'nursing'
                     },
                 })
                     .then((response) => {
@@ -1407,7 +1409,8 @@
                     township_id:this.township_id,
                     moving_in:this.moving_in,
                     per_month:this.per_month,
-                    local:this.locast
+                    local:this.locast,
+                    feature:'nursing'
                     },
 
                 })
@@ -1981,7 +1984,8 @@
                         township_id:-1,
                         moving_in:-1,
                         per_month:-1,
-                        local:this.locast
+                        local:this.locast,
+                        feature:'nursing'
                     },
                 })
                 .then((response) => {

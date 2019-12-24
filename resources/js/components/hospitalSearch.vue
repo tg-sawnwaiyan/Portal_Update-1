@@ -897,6 +897,7 @@
         selected: undefined,
         localst:'',
         norecord_msg: false,
+      
       }
     },
     mounted() {
@@ -1136,7 +1137,8 @@
               township_id:-1,
               moving_in:-1,
               per_month:-1,
-              local:this.locast
+              local:this.locast,
+              feature:'hospital'
           },
           })
             .then((response) => {
@@ -1156,6 +1158,7 @@
       },
 
       getStateClick(e) {
+        localStorage.setItem('features', 'hospital');
           //clear all checkbox
           this.townshipID = [];
           this.specialfeatureID = [];
@@ -1187,7 +1190,8 @@
               township_id:-1,
               moving_in:-1,
               per_month:-1,
-              local:this.locast
+              local:this.locast,
+              feature:'hospital',
           },
           })
             .then((response) => {
