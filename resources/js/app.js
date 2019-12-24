@@ -7,11 +7,13 @@ import VueAxios from 'vue-axios'
 import VueRouter from 'vue-router'
 import Index from './Index'
 import auth from './auth'
+import VueSidebarMenu from 'vue-sidebar-menu'
 
 import router from './router'
 import Vuex from 'vuex';
 import * as VueGoogleMaps from "vue2-google-maps";
 Vue.use(Vuex);
+Vue.use(VueSidebarMenu);
 //start editor
 //start onepage
 import 'animate.css'
