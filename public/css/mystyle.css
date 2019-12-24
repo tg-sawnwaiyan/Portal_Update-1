@@ -5741,6 +5741,26 @@ body::-webkit-scrollbar-thumb {
 
 
 /*view*/
+#myBtn {
+    /* display: none; */
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: #ff6117;
+    color: transparent;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 50%;
+    background: url(../images/top-arrow.png) no-repeat left center;
+}
+
+#myBtn:hover {
+    background: url(../images/top-arrow.png) no-repeat left center;
+}
 
 .myBtn {
     -webkit-border-radius: 2px;
