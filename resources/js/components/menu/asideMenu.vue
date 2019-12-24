@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <!-- <div>
        <div class="sidebar-menu" @click='isClick = !isClick'>
            click
        </div>
@@ -54,12 +54,15 @@
                 </div>
             </div> 
       </transition>
-    </div>
-    <!-- <div>
-        <sidebar-menu :menu="menu" v-if="visit == 'false'" />
     </div> -->
+    <div>
+        <sidebar-menu :menu="menu" v-if="visit == 'false'"  @item-click="onItemClick"/>
+    </div>
 </template>
 <style  scoped>
+.v-sidebar-menu.vsm_expanded{
+    max-width: 280px !important;
+}
 .slide-enter-active {
    -moz-transition-duration: 0.3s;
    -webkit-transition-duration: 0.3s;
@@ -107,16 +110,122 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
         isClick: true,
         menu: [
                 {
-                    href: '/',
-                    title: 'Dashboard',
-                    icon: 'fa fa-user',
-                    auth: this.$auth.check(2)
+                    header: true,
+                    title: 'Admin Dashboard',
+                    hidden: this.$auth.check(1),
+                    hiddenOnCollapse: true
                 },
                 {
-                    href: '#',
-                    title: 'Charts',
-                    icon: 'fa fa-chart-area',
-                    auth: this.$auth.check(1)
+                    title: 'ニュース一',
+                    icon: 'fa fa-list-ul',
+                    hidden: this.$auth.check(1),
+                    child: [
+                        {
+                        href: '/news_list',
+                        title: 'ニュース一覧',
+                        icon: 'fa fa-file-alt'
+                        },
+                        {
+                        href: '/categorylist',
+                        title: 'カテゴ一覧',
+                        icon: 'fa fa-file-alt'
+                        }
+                    ]
+                },
+                {
+                    title: '介護施設',
+                    icon: 'fa fa-user-md',
+                    hidden: this.$auth.check(1),
+                    child: [
+                        {
+                        href: '/nuscustomerlist',
+                        title: '事業者',
+                        icon: 'fa fa-user'
+                        },
+                        {
+                        href: '/nusfeaturelist',
+                        title: '特殊機能',
+                        icon: 'fa fa-list'
+                        },                        
+                        {
+                        href: '/nuscommentlist',
+                        title: 'コメント一覧',
+                        icon: 'fa fa-list'
+                        }
+                    ]
+                },
+                {
+                    title: '病院',
+                    icon: 'fa fa-user-md',
+                    hidden: this.$auth.check(1),
+                    child: [
+                        {
+                        href: '/hoscustomerlist',
+                        title: '事業者',
+                        icon: 'fa fa-user'
+                        },
+                        {
+                        href: '/facilitieslist',
+                        title: '施設一覧',
+                        icon: 'fa fa-sun'
+                        },
+                        {
+                        href: '/hosfeaturelist',
+                        title: '特殊機能',
+                        icon: 'fa fa-list'
+                        },
+                        {
+                        href: '/subjectlist',
+                        title: '医学科目',
+                        icon: 'fa fa-list'
+                        },
+                        {
+                        href: '/hoscommentlist',
+                        title: 'コメント一覧',
+                        icon: 'fa fa-list'
+                        }
+                    ]
+                },
+                {
+                    href: '/occupationlist',
+                    title: '職業',
+                    icon: 'fa fa-suitcase',
+                    hidden: this.$auth.check(1)
+                },
+                {
+                    href: '/ads',
+                    title: '広告',
+                    icon: 'fa fa-globe',
+                    hidden: this.$auth.check(1)
+                },
+                {
+                    header: true,
+                    title: 'Customer Dashboard',
+                    hidden: this.$auth.check(2),
+                    hiddenOnCollapse: true
+                },
+                {
+                    href: '/profiledit',
+                    title: 'プロファイル編集',
+                    icon: 'fa fa-map',
+                    hidden: this.$auth.check(2)
+                },
+                {
+                    href: '/profile',
+                    title: 'マイページ',
+                    icon: 'fa fa-map',
+                    hidden: this.$auth.check(2)
+                },
+                {
+                    href: '/jobofferlist',
+                    title: '仕事一覧',
+                    icon: 'fa fa-edit',
+                    hidden: this.$auth.check(2)
+                },
+                {
+                    title: 'Logout',
+                    icon: 'fa fa-lock',
+                    // click: this.$auth.logout(),
                 },
             ]
       }
@@ -158,24 +267,14 @@ created() {
     },
     methods: {
        
-        // testlogout(){
-        //     this.$auth.logout({
-        //         success: function() {
-        //             this.$router.push({
-        //                 name: 'News'
-        //             });
-        //         },
-        //     })
-
-        // }
-        // visitSite() {
-        //     this.visit = true;
-        //     this.$router.push({name: 'News'});
-        // },
-
         menuToggle(){
             $("#admin-side-menu").toggle('medium');
             $("#menu-overlay").toggle('medium');
+        },
+        onItemClick(event, item){
+            if(item.title == 'Logout'){
+                this.$auth.logout();
+            }
         }
     }
 
