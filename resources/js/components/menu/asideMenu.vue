@@ -1,5 +1,5 @@
 <template>
-    <!-- <div>
+    <div>
        <div class="sidebar-menu" @click='isClick = !isClick'>
            click
        </div>
@@ -54,10 +54,10 @@
                 </div>
             </div> 
       </transition>
-    </div> -->
-    <div>
-        <sidebar-menu :menu="menu" v-if="visit == 'false'" />
     </div>
+    <!-- <div>
+        <sidebar-menu :menu="menu" v-if="visit == 'false'" />
+    </div> -->
 </template>
 <style  scoped>
 .slide-enter-active {

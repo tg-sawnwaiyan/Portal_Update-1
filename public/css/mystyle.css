@@ -3333,13 +3333,35 @@ ul.main-tab li:after {
     border-collapse: initial;
 }
 
-.test {
+.item-compare {
+    display: table-cell;
+    /* background-color: rgb(245, 245, 245);
+    padding: 12px;
+    width: 33.33%; */
+}
+ul.item-compare li {
+    display: inline;
+}
+
+ul.item-compare>li:before {
+    content: '\ffed';
+    margin-right: 0.5em;
+}
+
+.hospital-subject {
     display: table-cell;
     background-color: rgb(245, 245, 245);
     padding: 12px;
     width: 33.33%;
 }
+ul.hospital-subject li {
+    display: inline;
+}
 
+ul.hospital-subject>li:before {
+    content: '\ffed';
+    margin-right: 0.5em;
+}
 .table-innerwrapper {
     background-color: rgb(245, 245, 245);
     border-radius: 5px;
@@ -7038,14 +7060,7 @@ dl.favnur dd {
     background: #ccc;
 }
 
-ul.test li {
-    display: inline;
-}
 
-ul.test>li:before {
-    content: '\ffed';
-    margin-right: 0.5em;
-}
 
 
 /* fav_slider */
