@@ -162,9 +162,9 @@
                 </label>
             </div>
             <div class="col-md-9 col-sm-12 form-right">
-                <input type="text" class="form-control float-left" id="phone" v-model="jobApply.phone" placeholder="電話番号を入力してください。" @focusout="focusMail" @change="aggreBtn" v-on:keydown="isNumberOnly" maxlength="14"/>
-                <span class="error m-l-30" v-if="focus_mail">※入力は必須です。</span>
-                <span class="error m-l-30" v-else-if="ph_length || ph_error">※電話番号が正しくありません。もう一度入力してください。</span>
+                <input type="text" class="form-control float-left" id="phone" v-model="jobApply.phone" placeholder="電話番号を入力してください。" @focusout="focusPhone" @change="aggreBtn" pattern="[0-9-]*" title="Please enter number only." maxlength="14"/>
+                <!-- <span class="error m-l-30" v-if="focus_mail">※入力は必須です。</span> -->
+                <span class="error m-l-30" v-if="ph_length || ph_error">※電話番号が正しくありません。もう一度入力してください。</span>
                 <span class="float-left eg-txt">例）0312345678（半角）</span>
             </div>
         </div>
@@ -430,6 +430,7 @@ export default {
         focus_city: false,
         focus_mail: false,
         ph_error: false,
+        ph_length:false
       },
     Job: {
       title: ''
@@ -526,6 +527,8 @@ export default {
       this.jobApply.skills.push(job);
     },
     checkValidate() {
+      console.log('this.error');
+      console.log(this.errors);
   
     //   if (this.jobApply.first_name) {
     //     this.errors.first_name = "";
@@ -596,8 +599,20 @@ export default {
             this.focus_city=true;
         }
     },
+    focusPhone:function(event){
+      if( this.jobApply.phone != '' && this.jobApply.phone.length >= 10 && this.jobApply.phone.length <= 14 && this.jobApply.phone.charAt(this.jobApply.phone.length - 1) != '-' && this.jobApply.phone.charAt(0) != '-')
+      {
+        this.ph_length = false;
+        this.ph_error = false;
+      }
+      else{
+         this.ph_length = true;
+        this.ph_error = true;
+      }
+    },
     focusMail: function(event) {
-        if(this.jobApply.email != '' || this.jobApply.phone != ''){
+     
+        if(this.jobApply.email != '' ){
             this.focus_mail=false;
         }else{
             this.focus_mail=true;
@@ -630,20 +645,20 @@ export default {
         
       },
    
-    isNumberOnly: function(event) {     
-        var input_data = $('#phone').val();
-        var code = 0;
-        code = input_data.charCodeAt();
-        if(this.jobApply.phone.length >= 9 && this.jobApply.phone.length <= 14) {
-            this.ph_length = false;
-        }else{
-            this.ph_length = true;
-        }
-        if((48 <= code && code <= 57)){
-            this.ph_error = false;
-        }else{
-            this.ph_error = true;
-        }
+    // isNumberOnly: function(event) {     
+    //     var input_data = $('#phone').val();
+    //     var code = 0;
+    //     code = input_data.charCodeAt();
+    //     if(this.jobApply.phone.length >= 9 && this.jobApply.phone.length <= 14) {
+    //         this.ph_length = false;
+    //     }else{
+    //         this.ph_length = true;
+    //     }
+    //     if((48 <= code && code <= 57)){
+    //         this.ph_error = false;
+    //     }else{
+    //         this.ph_error = true;
+    //     }
 
                 // if(!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105) 
                 //     && event.keyCode != 8 && event.keyCode != 46 && !(event.keyCode >= 37 && event.keyCode <= 40)) 
@@ -655,7 +670,7 @@ export default {
                 //     this.ph_error = false;
                     
                 // }
-            }
+           // }
   }
 };
 </script>
