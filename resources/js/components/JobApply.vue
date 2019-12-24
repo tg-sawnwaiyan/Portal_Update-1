@@ -22,7 +22,7 @@
       <div class="col-md-12 register_box mt-3" v-if="type == 'register'">
         <ul class="multi-step">
            <li class="active">1.<span>必要事項のご</span>入力</li>
-          <li class="active">2.<span>内容のご</span>確認</li>
+          <li class="no-active">2.<span>内容のご</span>確認</li>
           <li>3.<span>送信</span>完了</li>
         </ul>
 <!-- test date-picker -->
@@ -373,7 +373,7 @@
         <ul class="multi-step">
           <li class="active">1.<span>必要事項のご</span>入力</li>
           <li class="active">2.<span>内容のご</span>確認</li>
-          <li>3.<span>送信</span>完了</li>
+          <li class="active">3.<span>送信</span>完了</li>
         </ul>
         <div class="text-center">
           <h3>入力内容は送信されました‼</h3>
