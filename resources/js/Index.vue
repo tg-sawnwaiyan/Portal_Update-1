@@ -258,13 +258,10 @@
             $("#menu-overlay").toggle('medium');
         },
         handleScroll(){
-            console.log("hello")
             if (document.scrollTop > 20 || document.documentElement.scrollTop > 20) {
                 this.myBtnScroll = true;
-                console.log("scroll")
             } else {
                 this.myBtnScroll = false;
-                console.log("not scroll")
             }
         },
         topFunction() {
