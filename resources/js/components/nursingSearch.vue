@@ -1473,9 +1473,9 @@
                         }                    
                     }
                 }
-                var township_name = townshipName;
-              
-               
+
+               var township_name = townshipName;
+             
                if(this.ci == true && (this.townshipID[0] == "-1" || this.townshipID.length == 0))
                {
                    
@@ -1491,9 +1491,8 @@
                             this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
                             this.boundariesGoogleMap(lat,lng,this.coordinate);            
                         }); 
-
-                } 
-                
+        
+                }  
                 else{
            
                     this.axios.get('/api/townshipJson/'+township_name).then(res => {
