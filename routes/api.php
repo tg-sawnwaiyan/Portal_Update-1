@@ -55,6 +55,7 @@ Route::prefix('auth')->group(function () {
     Route::get('township','registerController@getTownship');
     Route::get('getTypes','registerController@getTypes');
     Route::post('login', 'AuthController@login');
+    Route::post('admin_login', 'AuthController@admin_login');
     Route::get('refresh', 'AuthController@refresh');
     Route::group(['middleware' => 'auth:api'], function(){
         Route::get('user', 'AuthController@user');

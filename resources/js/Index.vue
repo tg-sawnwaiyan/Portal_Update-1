@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div id="main" class="pad-free" :class="!$auth.check() ? inner : (visit == 'true'?inner:full)" v-if="this.$route.path !== '/register' && this.$route.path !== '/login' && this.$route.path !== '/reset' && this.$route.path !== '/resetpassword' && this.$route.path !== '/Unauthorized'">
+        <div id="main" class="pad-free" :class="!$auth.check() ? inner : (visit == 'true'?inner:full)" v-if="this.$route.path !== '/register' && this.$route.path !== '/login' && this.$route.path !== '/reset' && this.$route.path !== '/resetpassword' && this.$route.path !== '/Unauthorized' && this.$route.path !== '/admin_login'">
             <button onclick="topFunction()" id="myBtn">Top</button>
             <HeaderMenu v-if="!$auth.check()"></HeaderMenu>
             <AuthHeaderMenu v-if="$auth.check()"></AuthHeaderMenu>
