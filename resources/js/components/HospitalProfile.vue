@@ -22,7 +22,8 @@
 
                 <label class="heading-lbl col-2 pad-free">電話番号<span class="error">*</span></label>
                 <div class="col-10 row">
-                <input type="text" class="form-control customer-phone col-12" id="phone" placeholder="Phone" v-model="customer_info.phone" v-on:keyup="isNumberOnly" maxlength="14">
+                <input type="text" class="form-control customer-phone col-12" id="phone" placeholder="Phone" v-model="customer_info.phone" pattern="[0-9-]*"  @focusout="focusPhone"  maxlength="14" title="Please enter number only.">
+                <!-- v-on:keyup="isNumberOnly" -->
                 <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>    
                 <span class="error" v-else></span> 
                 </div>
@@ -1693,6 +1694,7 @@ export default {
                 var input_data = $('#phone').val();
                 var code = 0;
                 code = input_data.charCodeAt();
+            
                 if((48 <= code && code <= 57) && (this.customer_info.phone.length >= 10 && this.customer_info.phone.length <= 14)){
                     this.ph_num = false;
                     this.ph_length = false;
@@ -1700,6 +1702,18 @@ export default {
                     this.ph_num = true;
                     this.ph_length = true;
                 }
+            },
+            focusPhone(){
+              var input_data = $('#phone').val(); 
+              if(input_data.length >= 10 && input_data.length <= 14 && input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-')
+              {  
+                  this.ph_num = false;
+                  this.ph_length = false;
+              }
+              else{   
+                  this.ph_num = true;
+                  this.ph_length = true;
+              }
             }
             },
             getPostal: function(event) {
@@ -1727,6 +1741,7 @@ export default {
                         });
                 }
             },
+   
             
            
         }

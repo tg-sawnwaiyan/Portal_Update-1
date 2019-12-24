@@ -30,7 +30,7 @@
                             </div>
                         </div>
                         <hr />
-                        <h5 class="header">特徴一覧</h5>
+                        <h5 class="header">{{title}}</h5>
                         <div class="col-md-12 pad-free scrolldiv p0-480">
                             <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
                             <div v-else class="container-fuid scroll_responsive">
@@ -39,7 +39,7 @@
                                         <tr>
                                             <th>特徴名</th>
                                             <th>略語</th>
-                                            <th>種類</th>
+                                            <!-- <th>種類</th> -->
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -47,7 +47,7 @@
                                         <tr v-for="feature in displayItems" :key="feature.id">
                                             <th>{{feature.name}}</th>
                                             <th>{{feature.short_name}}</th>
-                                            <th>{{feature.type}}</th>
+                                            <!-- <th>{{feature.type}}</th> -->
                                             <th class="text-right">
                                                 <!-- <button class="btn btn-sm btn-primary all-btn" v-if="getUser.status == 1">Approved</button> -->
                                                 <router-link :to="{name:'specialfeature', params:{id : feature.id}}" class="btn edit-borderbtn">編集</router-link>
@@ -101,26 +101,49 @@
                     pageRange: 5,
                     items: [],
                     pagination: false,
+                    title: '',
                 };
             },
 
             created() {
                 this.$loading(true);
-                this.axios.get("/api/feature/featurelist").then(response => {
-                    this.$loading(false);
-                    this.features = response.data;
-                    this.norecord = this.features.length;
-                    if (this.norecord > this.size) {
-                        this.pagination = true;
-                    } else {
-                        this.pagination = false;
-                    }
-                    if (this.norecord != 0){
-                        this.norecord_msg = false;
-                    }else {
-                        this.norecord_msg = true;
-                    }
-                });
+                if(this.$route.path == "/nusfeaturelist"){
+                    this.title = "Nursing 特徴一覧";
+                    this.axios.get("/api/feature/featurelist/nursing").then(response => {
+                        this.$loading(false);
+                        this.features = response.data;
+                        this.norecord = this.features.length;
+                        if (this.norecord > this.size) {
+                            this.pagination = true;
+                        } else {
+                            this.pagination = false;
+                        }
+                        if (this.norecord != 0){
+                            this.norecord_msg = false;
+                        }else {
+                            this.norecord_msg = true;
+                        }
+                    });
+                }
+                else if(this.$route.path == "/hosfeaturelist"){
+                    this.title = "Hospital 特徴一覧";
+                    this.axios.get("/api/feature/featurelist/hospital").then(response => {
+                        this.$loading(false);
+                        this.features = response.data;
+                        this.norecord = this.features.length;
+                        if (this.norecord > this.size) {
+                            this.pagination = true;
+                        } else {
+                            this.pagination = false;
+                        }
+                        if (this.norecord != 0){
+                            this.norecord_msg = false;
+                        }else {
+                            this.norecord_msg = true;
+                        }
+                    });
+                }
+                
             },
             computed: {
                 pages() {

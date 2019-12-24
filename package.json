@@ -62,6 +62,7 @@
         "vue-read-more": "^1.1.1",
         "vue-router": "^3.1.2",
         "vue-scrollactive": "^0.8.0",
+        "vue-sidebar-menu": "^4.4.4",
         "vue-slick": "^1.1.15",
         "vue-sweetalert": "^0.1.18",
         "vue-template-compiler": "^2.6.10",
