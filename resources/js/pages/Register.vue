@@ -78,8 +78,9 @@
                         </div>
                         <select id="type" class="form-control custom-select" name="types" :value="type.id" v-model="type" required>
                             <option value="">事業者タイプを選択してください。</option>
-                            <option value="2">病院</option>
                             <option value="3">介護</option>
+                            <option value="2">病院</option>
+                           
                         </select>
                     </div>
 
