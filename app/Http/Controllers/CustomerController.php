@@ -18,12 +18,11 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-
+    public function index($type)
+    {        
         // $customers = Customer::all()->toArray();
         // return array_reverse($customers);
-        $customer =Customer::orderBy('created_at', 'desc')->get();
+        $customer =Customer::where('type_id',$type)->orderBy('created_at', 'desc')->get();
         return response()->json($customer);
     }
 

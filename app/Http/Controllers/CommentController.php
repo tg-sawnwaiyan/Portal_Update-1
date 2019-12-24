@@ -13,11 +13,12 @@ use App\Mail\SendMailComment;
 class CommentController extends Controller
 {
     protected $zipcode;
-    public function index()
+    public function index($type)
     {
         // $comment =Comment::all()->toArray();
         // return array_reverse($comment);
-        $sql = "SELECT comments.*,customers.name from comments JOIN customers ON comments.customer_id= customers.id";
+        $sql = "SELECT comments.*,customers.name from comments JOIN customers ON comments.customer_id= customers.id WHERE customers.type_id=$type AND customers.status=1";        
+        
         $commentList = DB::select($sql);
         foreach ($commentList as $com) {
             $splitTimeStamp = explode(" ",$com->created_at);
