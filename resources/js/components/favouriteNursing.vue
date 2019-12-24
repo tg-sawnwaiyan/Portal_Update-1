@@ -49,7 +49,7 @@
                             <dl class="itemBox favnur" id="bd" v-else>
                                 <dt class="pr-4">比較する項目</dt>
                                 <dd>
-                                    <ul class="test">
+                                    <ul class="item-compare">
                                         <li v-if="address_check">住所</li>
                                         <li v-if="tran_check">交通手段</li>
                                         <li v-if="month_check">月額費用</li>

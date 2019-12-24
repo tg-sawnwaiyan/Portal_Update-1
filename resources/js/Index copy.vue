@@ -1,7 +1,7 @@
 <template>
     <div>
         <div id="main" class="main-content pad-free" v-if="this.$route.path !== '/register' && this.$route.path !== '/login'">
-            <button onclick="topFunction()" id="myBtn">Top</button>
+            <button @click="topFunction()" id="myBtn">Top</button>
             <HeaderMenu></HeaderMenu>
 
             <div class="sidebar-scroll container-fluid">

@@ -3235,13 +3235,35 @@ ul.main-tab li:after {
     border-collapse: initial;
 }
 
-.test {
+.item-compare {
+    display: table-cell;
+    /* background-color: rgb(245, 245, 245);
+    padding: 12px;
+    width: 33.33%; */
+}
+ul.item-compare li {
+    display: inline;
+}
+
+ul.item-compare>li:before {
+    content: '\ffed';
+    margin-right: 0.5em;
+}
+
+.hospital-subject {
     display: table-cell;
     background-color: rgb(245, 245, 245);
     padding: 12px;
     width: 33.33%;
 }
+ul.hospital-subject li {
+    display: inline;
+}
 
+ul.hospital-subject>li:before {
+    content: '\ffed';
+    margin-right: 0.5em;
+}
 .table-innerwrapper {
     background-color: rgb(245, 245, 245);
     border-radius: 5px;
@@ -5647,6 +5669,26 @@ body::-webkit-scrollbar-thumb {
 
 
 /*view*/
+#myBtn {
+    /* display: none; */
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: #ff6117;
+    color: transparent;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 50%;
+    background: url(../images/top-arrow.png) no-repeat left center;
+}
+
+#myBtn:hover {
+    background: url(../images/top-arrow.png) no-repeat left center;
+}
 
 .myBtn {
     -webkit-border-radius: 2px;
@@ -6927,14 +6969,7 @@ dl.favnur dd {
     background: #ccc;
 }
 
-ul.test li {
-    display: inline;
-}
 
-ul.test>li:before {
-    content: '\ffed';
-    margin-right: 0.5em;
-}
 
 
 /* fav_slider */
@@ -8754,6 +8789,17 @@ ul.nur-caro-card>li.list-group-item {
     .searchTerm {
         width: 87%;
     } 
+    #pc-hos-fav-local,
+    #pc-nus-fav-local,
+    #pc-hos-his-local,
+    #pc-nus-his-local {
+        color: #C40000;
+        font-weight: bold;
+        font-size: 16px;
+}
+div.div1 a.router-link-exact-active, div.div2 a.router-link-exact-active{
+    border-left: 1px solid transparent !important;
+}
    
 }
 
@@ -9774,16 +9820,25 @@ ul.nur-caro-card>li.list-group-item {
     }
     /*End  profile publish */
     /* job details */
+  
     .job_id {
         float: none;
         display: block;
         width: 185px;
         margin-top: 20px;
         text-align: center;
+        
+    }
+    .search_jobid{
+        float: right;
+        margin-top: 5px;
+    }
+    .job_status{
+        margin-top: 10px;
     }
     .form-wrap .form-left {
         padding: 10px 15px 5px 15px;
-        border-bottom: 1px solid #ced4da;
+        /* border-bottom: 1px solid #ced4da; */
     }
     .form-wrap label {
         display: block;
@@ -9809,6 +9864,7 @@ ul.nur-caro-card>li.list-group-item {
     .map-text-wrapper {
         display: flex;
     }
+    
     /* job apply */
     .register_box,
     .confirm_box {
@@ -9828,8 +9884,13 @@ ul.nur-caro-card>li.list-group-item {
         font-size: 12px;
     }
     .multi-step li::before {
-        border-width: 7px;
-        margin-top: -6px;
+        border-width: 9px;
+        margin-top: -9px;
+    }
+    .multi-step li.no-active::after {
+        border-left-color: #fff;
+        border-width: 8px;
+        margin-top: -8px;
     }
     .form-wrap .form-control,
     .form-wrap .full-wd.form-control {
@@ -9849,6 +9910,12 @@ ul.nur-caro-card>li.list-group-item {
         height: 100px;
     }
     /*End  profile publish */
+    /*job search*/
+    .job-content {
+        margin-bottom: 60px;
+        padding: 5px;
+    }
+    /*end job search*/
 }
 
 @media only screen and (max-width: 480px) {

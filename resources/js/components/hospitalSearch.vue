@@ -619,7 +619,7 @@
                             <th>診療科目</th>
                             <td>
                                 <div class="form-check form-check-inline row align-items-start innerwrapper">
-                                    <div class="test" v-for="(subject,index) in subjects.slice(0,3)" :key="index">
+                                    <div class="hospital-subject" v-for="(subject,index) in subjects.slice(0,3)" :key="index">
                                     <div class="row col-12">
                                         <strong class="table-innertitle row col-12">{{subject.name}}</strong>
                                         <div class="col-6" v-for="ch in subject.child" :key="ch.id+1">
@@ -633,7 +633,7 @@
                                     </div>
                                 </div>
                                 <div class="form-check form-check-inline row align-items-start innerwrapper">
-                                    <div class="test" v-for="(subject,index) in subjects.slice(3,6)" :key="index">
+                                    <div class="hospital-subject" v-for="(subject,index) in subjects.slice(3,6)" :key="index">
                                     <div class="row col-12">
                                         <strong class="table-innertitle row col-12">{{subject.name}}</strong>
 
@@ -653,7 +653,7 @@
 
                                 </div>
                                 <div class="form-check form-check-inline row align-items-start innerwrapper">
-                                    <div class="test" v-for="(subject,index) in subjects.slice(6,9)" :key="index">
+                                    <div class="hospital-subject" v-for="(subject,index) in subjects.slice(6,9)" :key="index">
                                     <div class="row col-12">
                                         <strong class="table-innertitle row col-12">{{subject.name}}</strong>
 
@@ -673,7 +673,7 @@
 
                                 </div>
                                 <div class="form-check form-check-inline row align-items-start innerwrapper" style="width:33.98%;">
-                                    <div class="test" v-for="(subject,index) in subjects.slice(9,10)" :key="index">
+                                    <div class="hospital-subject" v-for="(subject,index) in subjects.slice(9,10)" :key="index">
                                     <div class="row col-12">
                                         <strong class="table-innertitle row col-12">{{subject.name}}</strong>
 

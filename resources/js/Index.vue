@@ -1,7 +1,7 @@
 <template>
     <div>
         <div id="main" class="pad-free" :class="!$auth.check() ? inner : (visit == 'true'?inner:full)" v-if="this.$route.path !== '/register' && this.$route.path !== '/login' && this.$route.path !== '/reset' && this.$route.path !== '/resetpassword' && this.$route.path !== '/Unauthorized'">
-            <button onclick="topFunction()" id="myBtn">Top</button>
+            <button @click="topFunction()" v-if="myBtnScroll" id="myBtn">Top</button>
             <HeaderMenu v-if="!$auth.check()"></HeaderMenu>
             <AuthHeaderMenu v-if="$auth.check()"></AuthHeaderMenu>
 
@@ -177,6 +177,7 @@
         nursing_fav:'',     
         inner : 'main-content',
         full: 'full-content',
+        myBtnScroll: false,
       }
     },
     components: {
@@ -184,6 +185,13 @@
       AuthHeaderMenu,
       asideMenu,
     }, 
+    created() {
+        console.log("created")
+        document.addEventListener('scroll', this.handleScroll);
+    },
+    destroyed () {
+        document.removeEventListener('scroll', this.handleScroll);
+    },
     mounted(){
         // this.axios.get('/api/auth/user').then(res=>{
         //     console.log(res)
@@ -249,6 +257,20 @@
             $("#admin-side-menu").toggle('medium');
             $("#menu-overlay").toggle('medium');
         },
+        handleScroll(){
+            console.log("hello")
+            if (document.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                this.myBtnScroll = true;
+                console.log("scroll")
+            } else {
+                this.myBtnScroll = false;
+                console.log("not scroll")
+            }
+        },
+        topFunction() {
+            $("html, body").animate({ scrollTop: 0 }, "slow");
+	        return false;
+        }  
     }
 
 

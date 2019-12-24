@@ -1,12 +1,11 @@
 <template>
-   <div>
+    <div>
        <div class="sidebar-menu" @click='isClick = !isClick'>
            click
        </div>
        <transition name="slide">
             <div class="custom-sidebar" id="admin-side-menu" v-if="visit == 'false'" :style="{width: isClick ? '280px' : '60px'}">
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <!-- <span class="admin-tit"><i class="fas fa-tachometer-alt"></i><span>管理画面</span></p> -->
                     <div class="admin-logo">
                         <a href="/">LOGO <span v-show="isClick">HERE</span></a>
                     </div>
@@ -16,54 +15,38 @@
                             <i class="fas fa-tachometer-alt"></i><span class="nav-txt" v-show="isClick">管理画面</span>
                         </li>
                         <li v-if="$auth.check(2)">
-                            <!-- <router-link to="/news_list" class="nav-link" @click="menuToggle()"><i class="fa fa-newspaper"></i>&nbsp;<span class="nav-txt">ニュース一覧</span></router-link> -->
                             <a href="#pageSubmenu01" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed nav-link text-pre"><i class="fa fa-newspaper"></i>&nbsp;&nbsp;<span class="nav-txt" v-show="isClick">ニュース一</span>
                             </a>
                             <ul class="collapse submenu" id="pageSubmenu01">
                                 <li><router-link to="/news_list" class="nav-link"><i class="fa fa-list"></i>&nbsp;<span>ニュース一覧</span></router-link></li>
-                                <li><router-link to="/commcategorylistentlist" class="nav-link"><i class="fa fa-list"></i>&nbsp;<span>カテゴ一覧</span></router-link></li>
+                                <li><router-link to="/categorylist" class="nav-link"><i class="fa fa-list"></i>&nbsp;<span>カテゴ一覧</span></router-link></li>
                             </ul>
                         </li>
                         <li v-if="$auth.check(2)">
                             <a href="#pageSubmenu02" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed nav-link text-pre"><i class="fas fa-user-md"></i>&nbsp;&nbsp;<span class="nav-txt" v-show="isClick">介護施設</span>
                             </a>
                             <ul class="collapse submenu" id="pageSubmenu02">
-                                <li v-if="$auth.check(2)"><router-link to="/facilitieslist" class="nav-link" ><i class="fa fa-sun"></i>&nbsp;<span class="nav-txt">施設一覧</span></router-link></li>
-                                <li v-if="$auth.check(2)"><router-link to="/featurelist" class="nav-link" ><i class="fa fa-list"></i>&nbsp;&nbsp;<span class="nav-txt">特殊機能</span></router-link></li>
+                                <li v-if="$auth.check(2)"><router-link to="/nuscustomerlist" class="nav-link"><i class="fa fa-user"></i>&nbsp;<span>事業者</span></router-link></li>
+                                <li v-if="$auth.check(2)"><router-link to="/nusfeaturelist" class="nav-link" ><i class="fa fa-list"></i>&nbsp;&nbsp;<span class="nav-txt">特殊機能</span></router-link></li>
                                 <li v-if="$auth.check(2)"><router-link to="/occupationlist" class="nav-link"><i class="fa fa-suitcase"></i>&nbsp;&nbsp;<span class="nav-txt">職業</span></router-link></li>
-                                <li><router-link to="/customerlist" class="nav-link"><i class="fa fa-user"></i>&nbsp;<span>事業者</span></router-link></li>
-                                <li><router-link to="/commentlist" class="nav-link"><i class="fa fa-list"></i>&nbsp;<span>コメント一覧</span></router-link></li>
+                                <li v-if="$auth.check(2)"><router-link to="/nuscommentlist" class="nav-link"><i class="fa fa-list"></i>&nbsp;<span>コメント一覧</span></router-link></li>
                             </ul>
                         </li>
                         <li v-if="$auth.check(2)">
                             <a href="#pageSubmenu03" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed nav-link text-pre"><i class="fas fa-briefcase-medical"></i>&nbsp;&nbsp;<span class="nav-txt" v-show="isClick">病院</span>
                             </a>
                             <ul class="collapse submenu" id="pageSubmenu03">
+                                <li v-if="$auth.check(2)"><router-link to="hoscustomerlist" class="nav-link"><i class="fa fa-user"></i>&nbsp;<span>事業者</span></router-link></li>
                                 <li v-if="$auth.check(2)"><router-link to="/facilitieslist" class="nav-link" ><i class="fa fa-sun"></i>&nbsp;<span class="nav-txt">施設一覧</span></router-link></li>
-                                <li v-if="$auth.check(2)"><router-link to="/featurelist" class="nav-link" ><i class="fa fa-list"></i>&nbsp;&nbsp;<span class="nav-txt">特殊機能</span></router-link></li>
-                                <li><router-link to="/customerlist" class="nav-link"><i class="fa fa-user"></i>&nbsp;<span>事業者</span></router-link></li>
-                                <li><router-link to="/commentlist" class="nav-link"><i class="fa fa-list"></i>&nbsp;<span>コメント一覧</span></router-link></li>
+                                <li v-if="$auth.check(2)"><router-link to="/hosfeaturelist" class="nav-link" ><i class="fa fa-list"></i>&nbsp;&nbsp;<span class="nav-txt">特殊機能</span></router-link></li>
                                 <li v-if="$auth.check(2)"><router-link to="/subjectlist" class="nav-link"><i class="fa fa-user-md"></i>&nbsp;&nbsp;<span class="nav-txt">医学科目</span></router-link></li>
+                                <li v-if="$auth.check(2)"><router-link to="/hoscommentlist" class="nav-link"><i class="fa fa-list"></i>&nbsp;<span>コメント一覧</span></router-link></li>
                             </ul>
-                        </li>
-                        <!-- <li v-if="$auth.check(2)"><router-link to="/facilitieslist" class="nav-link" ><i class="fa fa-sun"></i>&nbsp;<span class="nav-txt">施設一覧</span></router-link></li>
-                        <li v-if="$auth.check(2)"><router-link to="/featurelist" class="nav-link" ><i class="fa fa-list"></i>&nbsp;&nbsp;<span class="nav-txt">特殊機能</span></router-link></li>
-                        <li v-if="$auth.check(2)"><router-link to="/occupationlist" class="nav-link"><i class="fa fa-suitcase"></i>&nbsp;&nbsp;<span class="nav-txt">職業</span></router-link></li>
-                        <li v-if="$auth.check(2)"><router-link to="/subjectlist" class="nav-link"><i class="fa fa-user-md"></i>&nbsp;&nbsp;<span class="nav-txt">医学科目</span></router-link></li>
-                        <li v-if="$auth.check(2)">
-                            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed nav-link text-pre"><i class="fa fa-user-lock"></i>&nbsp;管理者確認</a>
-                            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed nav-link text-pre"><i class="fa fa-user-lock"></i>&nbsp;<span class="nav-txt">管理者確認</span></a>
-                            <ul class="list-unstyled collapse" id="pageSubmenu" style="">
-                                <li><router-link to="/customerlist" class="nav-link"><i class="fa fa-user"></i>&nbsp;<span>事業者</span></router-link></li>
-                                <li><router-link to="/commentlist" class="nav-link"><i class="fa fa-list"></i>&nbsp;<span>コメント一覧</span></router-link></li>
-                            </ul>
-                        </li> -->
+                        </li>                     
                         <li  v-if="$auth.check(2)"><router-link to="/ads" class="nav-link"><i class="fa fa-globe"></i>&nbsp;&nbsp;<span class="nav-txt" v-show="isClick">広告</span></router-link></li>
-
                         <li v-if="$auth.check(1)"><router-link to="/profiledit" class="nav-link"><i class="fa fa-map" ></i>&nbsp;&nbsp;<span class="nav-txt">プロファイル編集</span></router-link></li>
                         <li v-if="$auth.check(1)"><router-link to="/profile" class="nav-link"><i class="fa fa-map"></i>&nbsp;&nbsp;<span class="nav-txt">マイページ</span></router-link></li>
                         <li v-if="$auth.check(1)"><router-link to="/jobofferlist" class="nav-link"><i class="fa fa-edit" ></i>&nbsp;&nbsp;<span class="nav-txt">仕事一覧</span> </router-link></li>
-
                         <li v-if="$auth.check()">
                             <a href="#" @click.prevent="$auth.logout()" class="nav-link" id="logoutId" ref="myid"><i class="fa fa-sign-out-alt"></i>&nbsp;&nbsp;<span class="nav-txt" v-show="isClick">ログアウト</span></a>
                         </li>
@@ -72,6 +55,9 @@
             </div> 
       </transition>
     </div>
+    <!-- <div>
+        <sidebar-menu :menu="menu" v-if="visit == 'false'" />
+    </div> -->
 </template>
 <style  scoped>
 .slide-enter-active {
@@ -111,11 +97,28 @@
 </style>
 
 <script>
+import VueSidebarMenu from 'vue-sidebar-menu'
+import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
+
   export default {
     data() {
       return {
         status:false,
         isClick: true,
+        menu: [
+                {
+                    href: '/',
+                    title: 'Dashboard',
+                    icon: 'fa fa-user',
+                    auth: this.$auth.check(2)
+                },
+                {
+                    href: '#',
+                    title: 'Charts',
+                    icon: 'fa fa-chart-area',
+                    auth: this.$auth.check(1)
+                },
+            ]
       }
     },
 created() {

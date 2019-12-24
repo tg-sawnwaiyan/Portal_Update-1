@@ -761,7 +761,7 @@
             </div>
              <div class="col-12">
                 <div class="row pad-free">
-                   <div id="job_detail" class="col-md-6 col-sm-12" style="margin-top:20px;" v-for="(job,index) in displayItems" :key="index+'-'+job.title+'-'+job.jobid">
+                   <div id="job_detail" class="col-lg-6 col-md-12" style="margin-top:20px;" v-for="(job,index) in displayItems" :key="index+'-'+job.title+'-'+job.jobid">
                      <div class="job-content">
                       <div class="job-header">
                         <h5 class="job-tit">
@@ -769,14 +769,14 @@
                           </h5>
                         <div class="clearfix">
                           <p class="job_status">{{job.employment_status}}</p>
-                          <p class="job_id"><span>求人番号:</span>{{job.jobnum}}</p>
+                          <p class="job_id search_jobid"><span>求人番号:</span>{{job.jobnum}}</p>
                         </div>
                       </div>
                       <div class="job-body d-flex clearfix">
                         <!-- <div class="col-4 job-img">
                           <img src="/upload/news/nursing.JPG"  alt="">
                         </div> -->
-                        <div class="col-12 job-box">
+                        <div class="col-12 job-box p0-480">
                           <table  class="table table-bordered  table-sm">
                             <tr>
                               <td><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>最寄り駅</td>
