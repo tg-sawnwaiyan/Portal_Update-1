@@ -19,7 +19,7 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-
+        
         // return response()->json(['status' => 'success'], 200);
         $v = Validator::make($request->all(), [
             'email' => 'required|email|unique:users',
@@ -40,15 +40,39 @@ class AuthController extends Controller
     }
     public function login(Request $request)
     {
-       
-        $credentials = $request->only('email', 'password');
-        // $session = 60;
-        // JWTAuth::factory()->setTTL($session);
-        if ($token = JWTAuth::attempt($credentials)) {
-            return response()->json(['status' => 'success'], 200)->header('Authorization', $token); 
+
+        $username  = $request->email;
+        $getRole = User::where('email',$username)->select('role')->value('role');
+        if($getRole == 1){
+            $credentials = $request->only('email', 'password');
+            if ($token = JWTAuth::attempt($credentials)) {
+                return response()->json(['status' => 'success'], 200)->header('Authorization', $token); 
+            }
+            return response()->json(['error' => 'login_error'], 401);
+        }else{
+            return response()->json(['error' => 'Please Admin, You have no authorize to login here!'], 401);
         }
-        return response()->json(['error' => 'login_error'], 401);
+       
     }
+    public function admin_login(Request $request)
+    {
+        // $email = $_GET['email'];
+
+       
+        $username  = $request->email;
+        $getRole = User::where('email',$username)->select('role')->value('role');
+        if($getRole == 2){
+            $credentials = $request->only('email', 'password');
+            if ($token = JWTAuth::attempt($credentials)) {
+                return response()->json(['status' => 'success'], 200)->header('Authorization', $token); 
+            }
+            return response()->json(['error' => 'login_error'], 401);
+        }else{
+            return response()->json(['error' => 'Please User, You have no authorize to login here!'], 401);
+        }
+       
+    }
+
     public function me()
     {
         return response()->json(auth()->user());
@@ -56,36 +80,7 @@ class AuthController extends Controller
     public function logout()
     {   
         
-        // $token = $request->header( 'Authorization' );
-
-        // try {
-        //     JWTAuth::parseToken()->invalidate( $token );
-
-        //     return response()->json( [
-        //         'error'   => false,
-        //         'message' => trans( 'auth.logged_out' )
-        //     ] );
-        // } catch ( TokenExpiredException $exception ) {
-        //     return response()->json( [
-        //         'error'   => true,
-        //         'message' => trans( 'auth.token.expired' )
-
-        //     ], 401 );
-        // } catch ( TokenInvalidException $exception ) {
-        //     return response()->json( [
-        //         'error'   => true,
-        //         'message' => trans( 'auth.token.invalid' )
-        //     ], 401 );
-
-        // } catch ( JWTException $exception ) {
-        //     return response()->json( [
-        //         'error'   => true,
-        //         'message' => trans( 'auth.token.missing' )
-        //     ], 500 );
-        // }
-        // auth('api')->logout();
-        
-        
+       
         Auth::logout();
         JWTAuth::parseToken()->invalidate();
         return response()->json([
@@ -120,7 +115,7 @@ class AuthController extends Controller
             'access_token' => $token,
             'user' => auth()->user(),
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 1,
+            'expires_in' => auth()->factory()->getTTL() * 2,
         ];
         return response()->json($responseArray);
        } catch (Exception $e) {

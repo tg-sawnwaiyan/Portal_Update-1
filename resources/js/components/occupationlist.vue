@@ -92,6 +92,7 @@
                 this.axios
                     .get('/api/occupation/type')
                     .then(response => {
+                        console.log(response)
                         this.$loading(false);
                         this.occupation = response.data;
                         this.norecord = this.occupation.length;

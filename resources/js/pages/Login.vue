@@ -1,5 +1,6 @@
 <template>
-    <div class="loginwrapper">
+
+  <div class="loginwrapper">
 		<div class="d-flex justify-content-center h-100">
         <div class="user_card">
             <div class="links" style="top:-80px;">
@@ -52,7 +53,8 @@
 
         </div>
     </div>
-    </div>
+  </div>
+ 
 </template>
 <script>
   export default {
@@ -70,9 +72,11 @@
       login() {
         // get the redirect object
         var redirect = this.$auth.redirect()
+        console.log(this)
         var _this = this
         this.$loading(true);
-        this.$auth.login({
+        if(this.$route.path == "/admin_login"){
+          this.$auth.loginAdmin({
           params: {
             email: _this.email,
             password: _this.password
@@ -82,7 +86,7 @@
             this.visit = 'false';
             localStorage.setItem('visit', this.visit);
             // handle redirection
-            const redirectTo = this.$auth.user().role === 2 ? 'news_list' : 'profile'
+            const redirectTo = this.$auth.user().role === 2 ? 'news_list' : '/'
             this.$router.push({name: redirectTo})
           },
           error: function(e) {
@@ -93,6 +97,30 @@
           rememberMe: true,
           fetchUser: true
         })
+        }else{
+          this.$auth.login({
+          params: {
+            email: _this.email,
+            password: _this.password
+          },
+          success: function() {
+            this.$loading(false);
+            this.visit = 'false';
+            localStorage.setItem('visit', this.visit);
+            // handle redirection
+            const redirectTo = this.$auth.user().role === 1 ? 'profile' : '/'
+            this.$router.push({name: redirectTo})
+          },
+          error: function(e) {
+            this.$loading(false);
+            console.log(e);
+            _this.has_error = true
+          },
+          rememberMe: true,
+          fetchUser: true
+        })
+        }
+        
       }
     }
   }
