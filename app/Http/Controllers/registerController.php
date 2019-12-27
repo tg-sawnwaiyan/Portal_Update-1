@@ -61,8 +61,10 @@ class registerController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'img' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+
+
+        $request->validate( [
+            "file('img')" => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'name' => 'required|min:3|max:50',
             'email' => 'required|email|unique:customers',
             'phone' => 'max:13',
@@ -71,7 +73,9 @@ class registerController extends Controller
             //'address' =>'required',
             'cities'=> 'required',
             'township'=> 'required',
-            ]);
+        ]);
+        
+  
             // $type = 2;
 
             // if($request->types == '3'){

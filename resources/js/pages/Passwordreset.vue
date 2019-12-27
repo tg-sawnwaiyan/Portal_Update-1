@@ -70,8 +70,7 @@
         .then(response => {
             console.log(response)
            this.$loading(false);
-            this.$swal({
-                    
+            this.$swal({       
                       text: "Check your email to change new password",
                       type: "info",
                       width: 390,

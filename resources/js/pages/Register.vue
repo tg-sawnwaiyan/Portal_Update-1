@@ -17,7 +17,7 @@
                         </div>                        
                     </div>
                 </div>
-                <div class="error" id="radioerror" style="margin-bottom: 6px;margin-left: 210px;" v-if="errors !=''">入カされたデータが不正です</div>
+                <!-- <div class="error" id="radioerror" style="margin-bottom: 6px;margin-left: 210px;" v-if="errors !=''">入カされたデータが不正です</div> -->
 
                 <div class="alert alert-danger" v-if="has_error && !success">
                     <p v-if="error == 'registration_validation_error'">Validation error (s), please consult the message (s) below.</p>
@@ -35,6 +35,7 @@
                         </div>
                         <span class="btn all-btn choose-btn" style="color: #a93f0c!important;box-shadow:none!important;" @click="choosefile()">ロゴを選択</span> <span id="imgname" style = "padding: 8px 0 0 30px;"></span>
                         <input type="file" class="inputfile" name="img" required @change="onFileChange"/>
+                         <span v-if="errors.img" class="error">{{errors.img}}</span>
                         <!-- <input type="file" accept="image/*" @change="showMyImage(this)" name="img" id="file" ref="file" class="form-control inputfile"> -->
                     </div>
                     <div class="input-group mb-3">
@@ -43,7 +44,9 @@
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
                         <input type="text" class="form-control" name="name" v-model="username" required placeholder="事業者名を入力してください。">
+                        <span v-if="errors.name" class="error p-l-162">{{errors.name}}</span>
                     </div>
+                     
                     
                     <div class="input-group mb-3">
                         <label class="col-4 col-lg-3 control-label">メールアドレス </label>
@@ -51,7 +54,9 @@
                             <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                         </div>
                         <input type="email" class="form-control" name="email" v-model="email" required placeholder="メールアドレスを入力してください。">
+                         <span v-if="errors.email" class="error p-l-162">{{errors.email}}</span>
                     </div>
+                    
 
                     <div class="input-group mb-3">
                         <label class="col-4 col-lg-3 control-label">パスワード </label>
@@ -59,7 +64,9 @@
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
                         <input type="password" class="form-control" name="password" @keyup="password_validate()" v-model="password" id="pwd" required placeholder="パスワードを入力してください。">
+                         <span v-if="errors.password" class="error p-l-162">{{errors.password}}</span>
                     </div>
+                    
 
                     <div class="input-group mb-3">
                         <label class="col-4 col-lg-3 control-label">パスワード確認</label>
@@ -67,8 +74,11 @@
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
                         <input type="password" class="form-control" name="comfirm_password" id="confirm_pwd" @keyup="password_validate()" v-model="password_confirmation" required placeholder="パスワードをもう一度入カしてください。">
-                        <br>
+                         <span v-if="errors.password" class="error p-l-162">{{errors.password}}</span>
+                       
                     </div>
+                    
+                     
                     <div class="error p-l-162" id="passworderror" style="display:none;">※パスワードが一致しません。</div>
 
                     <div class="input-group mb-3">
@@ -101,6 +111,7 @@
                             <option value="">都道府県を選択してください。</option>
                             <option v-for ="city in cities" :value='city.id' :key="city.id">{{ city.city_name }}</option>
                         </select>
+                         <span v-if="errors.cities" class="error">{{errors.cities}}</span>
                     </div>
 
                     <div class="input-group mb-3" v-if="!show">
@@ -112,6 +123,7 @@
                             <option value="">市区町村を選択してください。</option>
                             <option v-for ="township in townships" :value='township.id' :key='township.id'>{{ township.township_name }}</option>
                         </select>
+                         <span v-if="errors.township" class="error">{{errors.township}}</span>
                     </div>
 
                     <div class="input-group mb-3">
@@ -155,7 +167,15 @@
         password_confirmation: '',
         has_error: false,
         error: '',
-        errors: '',
+        errors: {
+            img:"",
+            name:"",
+            email:"",
+            password:"",
+            cities:"",
+            township:""
+        },
+     
         success: false,
         show: true,
         url: '',
@@ -267,9 +287,7 @@
     },
       register() {
 
-   
-     
-       
+
               var app = this
        
         let fData = new FormData();
@@ -304,8 +322,33 @@
                 });
           }).catch(error=>{
             if(error.response.status == 422){
-                this.$loading(false);
-                app.errors = error.response.data.message
+             this.$loading(false);
+             this.errors = error.response.data.errors;
+                if(this.errors.name)
+                {
+                    this.errors.name = "Name is required and must be greater than three.";
+                }
+                else{
+                    this.errors.name = "";
+                }
+                if(this.errors.email)
+                {
+                    this.errors.email = "This email has  been already taken.";
+                }
+                else{
+                    this.errors.email = "";
+
+                }
+                if(this.errors.password)
+                {
+                    this.errors.password = "The password must be at least 6 characters."
+                }
+                else{
+                    this.errors.password = "";
+                }
+                
+             
+                // app.errors = error.response.data.message
               
             }});
           
