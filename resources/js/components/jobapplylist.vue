@@ -50,14 +50,14 @@
 
                         </div> -->
 
-                    <!-- <h4 class="header">求人応募一覧</h4> -->
+                    <h4 class="header text-center">{{job_title}}</h4>
                     <div v-if="this.jobapplies == ''" class="card card-default m-b-20 nocard-wrap">
                         <p class="nouser-ico">
                             <!-- <i class="fa fa-user-times"></i> -->
                             <img src="/images/user-male-30.png">
                         </p>
                         <!-- <img src="/images/user-male-30.png"> -->
-                        <p class="nouser-txt01">応募者がありません。</p>
+                        <p class="nouser-txt01">この求人の応募者がいません。</p>
 
                         <div class="form-group mt-3 pb-5">
                             <router-link class="btn main-bg-color white all-btn btn_custom" to="/jobofferlist">求人採用一覧ページに進む</router-link>
@@ -65,7 +65,7 @@
 
                     </div>
                     <div class="container-fluid" v-else>
-                        <h4 class="main-color m-b-10">求人応募検索</h4>
+                        <h4 class="main-color m-b-10">求人応募者検索</h4>
                         <div class="row">
 
                             <div class="col-md-12">
@@ -85,7 +85,7 @@
                             </div>
 
                         </div>
-                        <h4 class="header">求人応募一覧</h4>
+                        <h4 class="header">求人応募者一覧</h4>
 
                         <table class="table table-hover custom-table">
 
@@ -103,9 +103,9 @@
 
                                     <th>郵便番号</th>
 
-                                    <th>街路住所</th>
+                                    <th>都道府県</th>
 
-                                    <th>自宅住所</th>
+                                    <th>市区町村</th>
 
                                     <th>電話番号</th>
 
@@ -164,6 +164,7 @@
                 return {
 
                     jobapplies: [],
+                    job_title: ''
 
                 };
 
@@ -179,6 +180,7 @@
                     });
 
                 }
+                this.job_title = this.$route.params.title;
 
             }
 

@@ -97,6 +97,7 @@
           
           <input type="hidden" name="new_lat" v-model="new_lat" id="new_lat">
           <input type="hidden" name="new_long" v-model="new_long" id="new_long">
+          <!-- <span class="btn btn-primary" @click="addressSelect(Number(new_lat),Number(new_long))">Add</span> -->
         </div>
 </template>
 <script>
@@ -195,29 +196,29 @@ export default {
       $('#new_long').val(e.latLng.lng());
     },
 
-    setPlace(place) {
-      this.currentPlace = place;
-      this.addMarker();
-    },
+    // setPlace(place) {
+    //   this.currentPlace = place;
+    //   this.addMarker();
+    // },
 
     //Auto complete Search
-    addMarker() {
-      this.markers.shift()
-      if (this.currentPlace) {
-        const marker = {
-          lat: this.currentPlace.geometry.location.lat(),
-          lng: this.currentPlace.geometry.location.lng()
-        };
-        this.markers.push({ position: marker });
-        this.places.push(this.currentPlace);
-        this.center = marker;
-        this.currentPlace = null;
+    // addMarker() {
+    //   this.markers.shift()
+    //   if (this.currentPlace) {
+    //     const marker = {
+    //       lat: this.currentPlace.geometry.location.lat(),
+    //       lng: this.currentPlace.geometry.location.lng()
+    //     };
+    //     this.markers.push({ position: marker });
+    //     this.places.push(this.currentPlace);
+    //     this.center = marker;
+    //     this.currentPlace = null;
 
-        this.new_lat = marker.lat;
-        this.new_long = marker.lng;
+    //     this.new_lat = marker.lat;
+    //     this.new_long = marker.lng;
         
-      }
-    },
+    //   }
+    // },
     geolocate: function() {
       navigator.geolocation.getCurrentPosition(position => {
         this.center = {

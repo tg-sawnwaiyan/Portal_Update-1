@@ -1,5 +1,6 @@
 <template>
   <div id="Profile-page">
+    <h4 class="header">マイページ編集</h4>
     <div v-if="type == 'nursing'">
 
       <ul class="nav nav-tabs nursing-tabColor" role="tablist" id="profilenav" v-bind:style="{width:width}" >
@@ -7,7 +8,7 @@
           <label for="hospital" class="typelabel nav-link" id="hospital-lbl">
             <i class="fa fa-plus-circle"></i>
             <input type="radio" v-model="btntype" value="create" v-on:change="changeBtnType('hospital-lbl','nursing-lbl')" name="btntype" id="hospital" />
-            作成
+            編集
           </label>
         </li>
 
@@ -15,7 +16,7 @@
           <label for="nursing" class="typelabel dim-btn nav-link active" id="nursing-lbl">
 
             <input type="radio" v-model="btntype" value="view" v-on:change="changeBtnType('nursing-lbl','hospital-lbl')" name="btntype" id="nursing" />
-            <span v-if="loginuser"><i class="fas fa-user-md" style="font-size:18px;"></i>&nbsp;マイページ</span>
+            <span v-if="loginuser"><i class="fas fa-user-md" style="font-size:18px;"></i>&nbsp;プレビュー</span>
             <span v-if="!loginuser"><i class="fas fa-user-md"></i></span>
           </label>
         </li>
@@ -44,14 +45,14 @@
           <label for="hospital" class="typelabel nav-link" id="hospital-lbl">
             <i class="fa fa-plus-circle"></i>
             <input type="radio" v-model="btntype" value="create" v-on:change="changeBtnType('hospital-lbl','nursing-lbl')" name="btntype" id="hospital" />
-            作成
+            編集
           </label>             
         </li>
 
         <li role="presentation" class="subtab2 nav-item">
           <label for="nursing" class="typelabel nav-link active" id="nursing-lbl">
             <input type="radio" v-model="btntype" value="view" v-on:change="changeBtnType('nursing-lbl','hospital-lbl')" name="btntype" id="nursing" />
-            <span v-if="loginuser"><i class="fas fa-briefcase-medical" style="font-size:18px;"></i>&nbsp;マイページ</span>
+            <span v-if="loginuser"><i class="fas fa-briefcase-medical" style="font-size:18px;"></i>&nbsp;プレビュー</span>
             <span v-if="!loginuser"><i class="fas fa-briefcase-medical"></i></span>
           </label>
         </li>

@@ -9,6 +9,7 @@ use App\Cooperate_Medical;
 use App\method_payment;
 use App\Customer;
 use App\Staff;
+use App\User;
 use App\AcceptanceTransaction;
 use App\SpecialFeaturesJunctions;
 use DB;
@@ -136,6 +137,8 @@ class NursingProfileController extends Controller
         $customer->townships_id = $request[0]['customer_info_push'][0]['township'];
 
         $customer->save();
+
+        DB::update("UPDATE users SET name='".$request[0]['customer_info_push'][0]['name']."', email='".$request[0]['customer_info_push'][0]['email']."' WHERE customer_id=$id");
         // End
 
         // Staff Info

@@ -4,7 +4,7 @@
             <div class="row m-b-10" v-if="!norecord_msg">
                 <div class="col-md-12">
                     <router-link to="/joboffercreate" class="float-right main-bg-color create-btn all-btn" style="color: blue;">
-                        <i class="fas fa-plus-circle"></i> 新しい求人票を作成
+                        <i class="fas fa-plus-circle"></i> 求人新規作成
                     </router-link>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                     </div>
 
                     <div v-else class="container-fuid">
-                        <h4 class="main-color m-b-10">求人採用検索</h4>
+                        <h4 class="main-color m-b-10">求人検索</h4>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group row">
@@ -43,7 +43,7 @@
                             </div>
                         </div>
                         <hr />
-                        <h5 class="header">求人採用一覧</h5>
+                        <h5 class="header">求人一覧</h5>
                         <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
                         <div v-else class="container-fuid">
                         <!-- <table class="table table-hover custom-table">
@@ -91,7 +91,9 @@
                                             <h5 class="joboffer-tit clearfix">
                             <router-link :to="{name: 'job_details', params:{id:job.id,loginuser:loginuser}}">{{job.title}} </router-link>
                             <!-- <span class="job_id">jobapplylistcount{{job.count}}</span> -->
+                            <span class="float-right">応募者数:
                             <span class="text-orange"><span class="job_count">{{job.count}}件</span></span>
+                            </span>
                             <!-- <label class="switch">
                                 <input type="checkbox" v-if="job.recordstatus != 1" >
                                  <input type="checkbox" v-else @click="confirm(job.id)">
@@ -102,8 +104,8 @@
                                     <input type='checkbox' v-if="job.recordstatus == 1" @click="confirm(job.id)" checked/>                                                                             
                                     <input type='checkbox' v-if="job.recordstatus==0" @click="confirm(job.id)"  />                                                                              
                                     <label for="checkbox"></label>
-                                    <div v-if="job.recordstatus == 1" class="on">オン</div>
-                                    <div v-if="job.recordstatus == 0" class="on">オフ</div> 
+                                    <div v-if="job.recordstatus == 1" class="on">公開中</div>
+                                    <div v-if="job.recordstatus == 0" class="on">非行化</div> 
                                      
                                     <!-- <span>OFF</span>  -->
 
@@ -129,7 +131,7 @@
                                                     <router-link :to="{name: 'joboffercreate', params:{id:job.id}}" class="btn edit-borderbtn">編集</router-link>
                                                 </li>
                                                 <li>
-                                                    <router-link :to="{name: 'jobapplylist', params:{id:job.id}}" class="btn confirm-borderbtn confirmed">求人応募一覧ページへ</router-link>
+                                                    <router-link :to="{name: 'jobapplylist', params:{id:job.id,title:job.title}}" class="btn confirm-borderbtn confirmed">求人応募一覧ページへ</router-link>
                                                 </li>
                                                 <!-- <li><a class="btn text-success active-borderbtn">Disabled</a></li> -->
                                                 <li><a class="btn text-danger delete-borderbtn" @click="deleteJob(job.id)">削除</a></li>
@@ -206,7 +208,7 @@
                     count: "",
                     job_id: [],
                     currentPage: 0,
-                    size: 1,
+                    size: 5,
                     pageRange: 5,
                     items: [],
                     pagination: false,

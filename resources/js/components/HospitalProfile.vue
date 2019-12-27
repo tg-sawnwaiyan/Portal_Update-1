@@ -6,9 +6,9 @@
 
         <div class="form-group form-group-wrapper">
 
-                <label class="heading-lbl">名前<span class="error">*</span></label>
+                <label class="heading-lbl">施設名称<span class="error">*</span></label>
 
-                <input type="text" class="form-control customer-name col-10 float-right" placeholder="Name" v-model="customer_info.name">
+                <input type="text" class="form-control customer-name col-10 float-right" placeholder="施設名称を入力してください。" v-model="customer_info.name">
         </div>
 
         <div class="form-group form-group-wrapper">
@@ -106,10 +106,10 @@
                 </div>
 
                 <div class="col-md-12">
-
-                  <input type="text" name="title" placeholder="タイトル" class="form-control m-b-15 title white-bg-color" v-model="img.title" />
-
-                  <textarea name="description" placeholder="コンテンツ" class="form-control m-b-15 description white-bg-color" v-model="img.description" ></textarea>
+                  <label class="m-t-10">タイトル:</label>
+                  <input type="text" name="title" placeholder="タイトルを入力してください。" class="form-control m-b-15 title white-bg-color" v-model="img.title" />
+                  <label>コンテンツ:</label>
+                  <textarea name="description" placeholder="コンテンツを入力してください。" class="form-control m-b-15 description white-bg-color" v-model="img.description" ></textarea>
 
                 </div>
                 <div class="col-md-12 text-right">
@@ -149,16 +149,16 @@
               <div class="col-md-6 gallery-area-video" v-bind:id="'video'+indx" v-for="(video,indx) in video_arr" :key="video.id" >
 
                 <div class="col-md-12">
-
-                  <input type="text" name="url" placeholder="url" class="form-control m-b-15 video-url white-bg-color" v-model="video.photo" />
+                  <label>URL:</label>
+                  <input type="text" name="url" placeholder="URLを入力してください。" class="form-control m-b-15 video-url white-bg-color" v-model="video.photo" />
 
                 </div>
 
                 <div class="col-md-12">
-
-                  <input type="text" name="title" placeholder="タイトル" class="form-control m-b-15 title white-bg-color" v-model="video.title" />
-
-                  <textarea name="description" placeholder="コンテンツ" class="form-control m-b-15 description white-bg-color" v-model="video.description" ></textarea>
+                  <label>タイトル:</label>
+                  <input type="text" name="title" placeholder="タイトルを入力してください。" class="form-control m-b-15 title white-bg-color" v-model="video.title" />
+                  <label>コンテンツ:</label>
+                  <textarea name="description" placeholder="コンテンツを入力してください。" class="form-control m-b-15 description white-bg-color" v-model="video.description" ></textarea>
 
                 </div>
                 <div class="col-md-12 text-right">
@@ -1302,7 +1302,7 @@
 
         <div style="position:fixed;width:100%;background:rgba(0,0,0,.5);left:0;right:0;bottom:0;padding:0 0 10px 0;">
             <div class="row col-2 col-offset-5 mx-auto">
-                <span class="btn secondary-bg-color col-8 offset-2 all-btn m-t-15 pad-10" @click="Create_Profile()">作成</span>
+                <span class="btn secondary-bg-color col-8 offset-2 all-btn m-t-15 pad-10" @click="Create_Profile()">更新</span>
             </div>
         </div>
 
@@ -1673,7 +1673,7 @@ export default {
                                 position: 'top-end',
                                 type: 'success',
                                 title: '更新されました',
-                                confirmButtonText: "はい",
+                                confirmButtonText: "閉じる",
                                 confirmButtonColor: "#6cb2eb",
                                 width: 250,
                                 height: 200,
