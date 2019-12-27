@@ -720,17 +720,17 @@
                     <div class="col-12">
                         <div class="row">
 
-                            <div id="job_detail" class="col-md-12 col-sm-12 pad-free offset" style="margin-top:20px;" v-for="(hos,index) in displayItems" :key="hos.id">
+                            <div id="job_detail" class="col-md-12 col-sm-12 pad-free offset" style="margin-top:20px;" v-for="(hos,index) in displayItems" :key="hos.hos_id">
                                 <div class="hos-content">
                                     <div class="job-header">
                                     <div class="row pad-free">
                                         <div class="col-8">
                                         <h5 class="hos-title">
-                                            <router-link :to="{name: 'profile', params: {cusid:hos.customer_id, type: 'hospital'}}" class="pseudolink">{{hos.name}}</router-link>
+                                            <router-link :to="{name: 'profile', params: {cusid:hos.cus_id, type: 'hospital'}}" class="pseudolink">{{hos.name}}</router-link>
                                         </h5>
                                         <div class="clearfix d-flex m-t-20">
-                                        <span v-for="(sub,index) in subject" :key="index+'-'+sub.name+'-'+hos.id">
-                                            <span v-if="sub.customer_id == hos.customer_id" class="job_status">
+                                        <span v-for="(sub,index) in subject" :key="index+'-'+sub.name+'-'+hos.hos_id">
+                                            <span v-if="sub.customer_id == hos.cus_id" class="job_status">
                                             {{sub.name}}
                                             </span>
                                         </span>
@@ -776,8 +776,8 @@
                                             </table>
                                             <!--special feature and subject-->
                                             <h5 class="header m-t-10">こだわりの特長</h5>
-                                            <span v-for="(spe,index) in specialfeatures" :key="index+'-'+spe.name+'-'+hos.id">
-                                                <span v-if="spe.customer_id == hos.customer_id" class="feature_list">
+                                            <span v-for="(spe,index) in specialfeatures" :key="index+'-'+spe.name+'-'+hos.hos_id">
+                                                <span v-if="spe.customer_id == hos.cus_id" class="feature_list">
                                                 {{spe.name}}
                                                 </span>
                                             </span>
@@ -807,16 +807,16 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr v-for="(time,index) in timetable" :key="index+'-'+time.id+'-'+hos.id" class="text-center">
-                                                    <td class="second-hos-row" style="width:8%;" v-if="(hos.customer_id == time.customer_id && time.part == 'am' )">午前</td>
-                                                    <td class="second-hos-row" style="width:8%;" v-if="(hos.customer_id == time.customer_id && time.part == 'pm' )">午後</td>
-                                                    <td style="width:10%;" v-if="hos.customer_id == time.customer_id">{{time.mon}}</td>
-                                                    <td style="width:10%;" v-if="hos.customer_id == time.customer_id">{{time.tue}}</td>
-                                                    <td style="width:10%;" v-if="hos.customer_id == time.customer_id">{{time.wed}}</td>
-                                                    <td style="width:10%;" v-if="hos.customer_id == time.customer_id">{{time.thu}}</td>
-                                                    <td style="width:10%;" v-if="hos.customer_id == time.customer_id">{{time.fri}}</td>
-                                                    <td style="width:10%;" v-if="hos.customer_id == time.customer_id">{{time.sat}}</td>
-                                                    <td style="width:10%;" v-if="hos.customer_id == time.customer_id">{{time.sun}}</td>
+                                                <tr v-for="(time,index) in timetable" :key="index+'-'+time.id+'-'+hos.hos_id" class="text-center">
+                                                    <td class="second-hos-row" style="width:8%;" v-if="(hos.cus_id == time.customer_id && time.part == 'am' )">午前</td>
+                                                    <td class="second-hos-row" style="width:8%;" v-if="(hos.cus_id == time.customer_id && time.part == 'pm' )">午後</td>
+                                                    <td style="width:10%;" v-if="hos.cus_id == time.customer_id">{{time.mon}}</td>
+                                                    <td style="width:10%;" v-if="hos.cus_id == time.customer_id">{{time.tue}}</td>
+                                                    <td style="width:10%;" v-if="hos.cus_id == time.customer_id">{{time.wed}}</td>
+                                                    <td style="width:10%;" v-if="hos.cus_id == time.customer_id">{{time.thu}}</td>
+                                                    <td style="width:10%;" v-if="hos.cus_id == time.customer_id">{{time.fri}}</td>
+                                                    <td style="width:10%;" v-if="hos.cus_id == time.customer_id">{{time.sat}}</td>
+                                                    <td style="width:10%;" v-if="hos.cus_id == time.customer_id">{{time.sun}}</td>
                                                 </tr>
                                                 </tbody>
                                             </table>
