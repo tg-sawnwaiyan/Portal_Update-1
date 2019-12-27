@@ -69,8 +69,7 @@
         this.axios.post('/api/reset',fData) 
         .then(response => {
            this.$loading(false);
-            this.$swal({
-                    
+            this.$swal({       
                       text: "Check your email to change new password",
                       type: "info",
                       width: 390,
