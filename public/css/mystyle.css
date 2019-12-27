@@ -6396,7 +6396,7 @@ button.confirmed {
     -moz-transition: all 1s ease-in-out;
     -webkit-transition: all 1s ease-in-out;
     transition: all 1s ease-in-out;
-    overflow: hidden;
+    /* overflow: hidden; */
     z-index: 4;
     left: 0;
     right: 0;
@@ -8888,6 +8888,15 @@ ul.nur-caro-card>li.list-group-item {
     .btn-sm{
       padding: 2px;
     }
+    ul.tab-menu-responsive{
+        padding-left: 5px;
+        padding-right: 5px;
+        font-size: 10px;
+        
+    }
+    ul.tab-menu-responsive li{
+        font-size: 10px;
+    }
 }
 @media only screen and (max-width:480px) {
     /*pagination*/
@@ -8965,6 +8974,9 @@ ul.nur-caro-card>li.list-group-item {
     .pc-414-table{
         display: none !important;
     }
+    .pc-414-inline{
+        display: none !important;
+    }
     /*create_news*/
     .create_nw_p {
         padding: 0px;
@@ -9025,6 +9037,12 @@ ul.nur-caro-card>li.list-group-item {
         float: left;
         height: 236px;
         cursor: pointer;
+    }
+    .pc-m-0-10{
+        margin: 0px 10px;
+    }
+    .pc-m-r-10{
+        margin-right: 10px;
     }
     .mb {
         margin-bottom: 20px;
@@ -9411,6 +9429,9 @@ ul.nur-caro-card>li.list-group-item {
 }
 .pc-414-table{
     display: table-cell;
+}
+.pc-414-inline{
+    display: inline-block;
 }
 .sp-768{
     display: none;
@@ -9984,9 +10005,15 @@ ul.nur-caro-card>li.list-group-item {
     /*job search*/
     .job-content {
         margin-bottom: 60px;
-        padding: 5px;
+        padding: 10px;
+    }
+    .form-wrap .form-right{
+        border-left: none;
     }
     /*end job search*/
+    .width17 {
+        width: 48%;
+    }
 }
 
 @media only screen and (max-width: 480px) {

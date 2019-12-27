@@ -629,7 +629,7 @@
                         </button> 
                         
                                 <div class="form-check form-check-inline row align-items-start">
-                                    <div class="" v-for="(occupation,index) in occupations.slice(0,5)" :key="index" style="position:">
+                                    <div class="" v-for="(occupation,index) in occupations" :key="index" style="position:">
                                 
                                         <strong class=" col-12">{{occupation.name}}</strong>
                                         <div class="col-6" v-for="ch in occupation.child" :key="ch.id+1">
