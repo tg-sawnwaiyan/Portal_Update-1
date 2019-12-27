@@ -12,10 +12,10 @@
                         <form @submit.prevent="add" class="mt-2 pb-5 col-md-12">
                             <div class="form-group">
                                 <label for="title">
-                                    施設種別名:
+                                    タイトル:
                                     <span class="error sp2">必須</span>
                                 </label>
-                                <input type="title" class="form-control box" id="title" name="title" v-model="joboffer.title" placeholder="施設種別名を入力してください。" />
+                                <input type="title" class="form-control box" id="title" name="title" v-model="joboffer.title" placeholder="タイトルを入力してください。" />
                                 <!-- <span v-if="errors.title" class="error">{{ errors.title }}</span> -->
                                  <span v-if="errors.title" class="error">{{errors.title}}</span>
                             </div>
@@ -389,8 +389,8 @@
     export default {
         data() {
                 return {
-                header: "求人採用作成",
-                subtitle: "作成する",
+                header: "求人作成",
+                subtitle: "作成",
                 errors: {
                   title: '',
                   description:'',
@@ -514,8 +514,8 @@
                         this.joboffer.user_id = response.data[0].user_id;
 
                         this.joboffer.recordstatus = response.data[0].recordstatus;
-                        this.header = " 求人採用更新";
-                        this.subtitle = "更新する";
+                        this.header = " 求人編集";
+                        this.subtitle = "保存";
                         return this.header;
                         return this.subtitle;
                     });

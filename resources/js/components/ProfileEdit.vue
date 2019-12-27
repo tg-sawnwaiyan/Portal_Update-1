@@ -84,7 +84,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <h4 class="page-header header">プロファイル編集</h4>
+                            <h4 class="page-header header">プロファイル設定</h4>
                             <br>
                         </div>
                         <form class="col-md-8">
@@ -105,7 +105,7 @@
                                                 </div>
                                                 <div class="">
                                                     <span class="btn main-bg-color white all-btn"  @click="profileChange()">
-                                     変化
+                                     変更
                                 </span>
                                                 </div>
                                             </div>
@@ -125,22 +125,22 @@
                                             </div>
                                             <div class="form-group">
 
-                                                <label class="old-pass">古いパスワード:</label>
-                                                <input type="password" name="old_password" class="form-control old-password">
-                                                <div class="error" id="oldpassword" style="display: none;">古いパスワードが必要です。</div>
+                                                <label class="old-pass">現在のパスワード:</label>
+                                                <input type="password" name="old_password" placeholder="現在のパスワードを入力してください。" class="form-control old-password">
+                                                <div class="error" id="oldpassword" style="display: none;">現在のパスワードが必要です。</div>
                                                 <br>
                                                 <label class="old-pass">新しいパスワード</label>
-                                                <input type="password" name="new_password" class="form-control new-password">
+                                                <input type="password" name="new_password" placeholder="新しいパスワードを入力してください。" class="form-control new-password">
                                                 <div class="error" id="newpassword" style="display: none;">新しいパスワードが必要です。</div>
                                                 <div class="error" id="newpasswordlength" style="display: none;">パスワードは少なくとも6桁でなければなりません。</div>
                                                 <br>
-                                                <label class="old-pass">パスワード認証:</label>
+                                                <label class="old-pass">新しいパスワードをもう一度入力してください</label>
                                                 <input type="password" name="comfirm_password" class="form-control confirm-password">
-                                                <div class="error" id="confirmpassword" style="display: none;">パスワードの確認が必要です。</div>
+                                                <div class="error" id="confirmpassword" style="display: none;">新しいパスワードをもう一度入力が必要です。</div>
                                                 <br>
                                                 <div class="">
                                                     <span class="btn main-bg-color white all-btn"  @click="passwordChange()">
-                                     変化
+                                     変更
                                 </span>
                                                 </div>
                                             </div>
@@ -163,7 +163,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <span class="btn main-bg-color white all-btn"  @click="emailChange()">
-                                                変化
+                                                変更
                                                 </span>
                                             </div>
                                         </div>
@@ -175,8 +175,8 @@
                                     <div class="row">
                                         <div class="col-md-12 m-t-8">
                                             <div class="header2">
-                                                <h5 class=" clearfix" >アカウントを{{accout_status}}</h5>
-                                                
+                                                <h5 class=" clearfix" v-if="accout_status == '解除'">事業者登録を{{accout_status}}します。</h5>
+                                                <h5 class=" clearfix" v-else>事業者登録を{{accout_status}}。</h5>
                                             </div>                                            
                                             <div class="form-group">
                                                 <!-- <button class="btn confirmed" v-if="customer_info.accout_status != 0" >{{accout_status}}</button>
@@ -228,9 +228,9 @@
                         this.customer_info = response.data;
                         console.log(this.customer_info);
                         if(this.customer_info.recordstatus == '1') {
-                            this.accout_status = '無効にします';
+                            this.accout_status = '解除';
                         } else {
-                            this.accout_status = '有効にします';
+                            this.accout_status = '解除しない';
                         }
                         if (this.customer_info.type_id == '2') {
                             this.logo = 'upload/hospital_profile/' + response.data.logo;
@@ -286,7 +286,7 @@
                                                 position: 'top-end',
                                                 type: 'success',
                                                 title: '更新されました。',
-                                                confirmButtonText: "はい",
+                                                confirmButtonText: "閉じる",
                                                 confirmButtonColor: "#6cb2eb",
                                                 width: 250,
                                                 height: 200,
@@ -391,7 +391,7 @@
                                             position: 'top-end',
                                             type: 'success',
                                             title: 'メールが変更されました',
-                                            confirmButtonText: "はい",
+                                            confirmButtonText: "閉じる",
                                             confirmButtonColor: "#6cb2eb",
                                             width: 250,
                                             height: 200,
@@ -407,9 +407,9 @@
                     },
                     AccountStatusChange(status) {
                         if(status == '1') {
-                            var confirm_text = '無効にしますか？';
+                            var confirm_text = '事業者登録を解除しないですか。';
                         } else {
-                            var confirm_text = 'アカウントを有効にしますか。?';
+                            var confirm_text = '事業者登録を解除しますか。';
                         }
                         let fd = new FormData();
                             fd.append('status', status)
@@ -437,15 +437,15 @@
                                                 position: 'top-end',
                                                 type: 'success',
                                                 title: '更新されました。',
-                                                confirmButtonText: "はい",
+                                                confirmButtonText: "閉じる",
                                                 confirmButtonColor: "#6cb2eb",
                                                 width: 250,
                                                 height: 200,
                                             })
                                         if(this.customer_info.recordstatus == '1') {
-                                            this.accout_status = '無効にします';
+                                            this.accout_status = '解除';
                                         } else {
-                                            this.accout_status = '有効にする';
+                                            this.accout_status = '解除しない';
                                         }
                                         if (this.customer_info.type_id == '2') {
                                             this.logo = 'upload/hospital_profile/' + response.data.logo;

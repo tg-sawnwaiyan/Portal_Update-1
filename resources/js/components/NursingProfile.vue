@@ -29,8 +29,12 @@
 
                 <button v-scroll-to="{ el: '#btn'}" id="btn_click" hidden></button>
                     <div class="form-group form-group-wrapper">
-                            <label class="heading-lbl col-2 pad-free">事業者名前<span class="error">*</span></label>
-                            <input type="text" class="form-control customer-name col-10 float-right" id="btn" placeholder="名前" v-model="customer_info.name">
+                            <label class="heading-lbl col-2 pad-free">施設名称<span class="error">*</span></label>
+                            <input type="text" class="form-control customer-name col-10 float-right" id="btn" placeholder="施設名称を入力してください。" v-model="customer_info.name">
+                    </div>
+                    <div class="form-group form-group-wrapper">
+                            <label class="heading-lbl col-2 pad-free">運営事業者<span class="error">*</span></label>
+                            <input type="text" class="form-control customer-name col-10 float-right" id="btn" placeholder="運営事業者を入力してください。">
                     </div>
                     <div class="form-group form-group-wrapper">
                             <label class="heading-lbl col-2 pad-free">メールアドレス<span class="error">*</span></label>
@@ -625,7 +629,7 @@
                 <!-- end table 7 for 公式サイト -->
                 <div style="position:fixed;width:100%;background:rgba(0,0,0,.5);left:0;right:0;bottom:0;padding:0 0 10px 0;">
                     <div class="row col-2 col-offset-5 mx-auto">
-                        <span class="btn secondary-bg-color col-8 offset-2 all-btn m-t-15 pad-10" @click="createProfile()" id="create-profile">更新する</span>
+                        <span class="btn secondary-bg-color col-8 offset-2 all-btn m-t-15 pad-10" @click="createProfile()" id="create-profile">更新</span>
                     </div>
                 </div>
             </div>
@@ -1269,7 +1273,7 @@ export default {
                                     position: 'top-end',
                                     type: 'success',
                                     title: '更新されました',
-                                    confirmButtonText: "はい",
+                                    confirmButtonText: "閉じる",
                                     confirmButtonColor: "#6cb2eb",
                                     width: 250,
                                     height: 200,
