@@ -101,7 +101,7 @@ export default {
                         this.errors.name = "";
                     } else {
                         // console.log('null');
-                        this.errors.name = "科目が必須です。";
+                        this.errors.name = "診療科目が必須です。";
                     }
                    if (
                         !this.errors.name
@@ -115,8 +115,8 @@ export default {
                  if( `${this.$route.params.id}` == "undefined")
                 {
                     this.$swal({
-                                title: "確認",
-                            text: "作成よろしいでしょうか。",
+                            title: "確認",
+                            text: "診療科目を投稿してよろしいでしょうか。",
                             type: "success",
                             width: 350,
                             height: 200,
@@ -124,7 +124,7 @@ export default {
                             confirmButtonColor: "#6cb2eb",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
-                            confirmButtonText: "作成",
+                            confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
@@ -138,8 +138,9 @@ export default {
                             this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            title: '作成されました。',
-                            confirmButtonText: "はい",
+                            title:'確認済',
+                            text: '診療科目投稿しました。',
+                            confirmButtonText: "閉じる",
                             confirmButtonColor: "#6cb2eb",
                             // showConfirmButton: false,
                             // timer: 1800,

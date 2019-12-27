@@ -4,7 +4,7 @@
             <div class="row m-b-10" v-if="!norecord_msg">
                 <div class="col-md-12">
                     <router-link to="/specialfeature" class="float-right main-bg-color create-btn all-btn">
-                        <i class="fas fa-plus-circle"></i> 特殊を作成
+                        <i class="fas fa-plus-circle"></i> 特殊新規作成
                     </router-link>
                 </div>
             </div>
@@ -23,7 +23,7 @@
                         </a>
                     </div>
                     <div v-else class="container-fuid">
-                        <h4 class="main-color m-b-10">特徴検索</h4>
+                        <h4 class="main-color m-b-10">特徴検索(介護.病院）</h4>
                         <div class="row">
                             <div class="col-md-12">
                                 <input type="text" class="form-control" placeholder="特徴検索" id="search-item" @keyup="searchFeature()" />
@@ -32,14 +32,14 @@
                         <hr />
                         <h5 class="header">{{title}}</h5>
                         <div class="col-md-12 pad-free scrolldiv p0-480">
-                            <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
+                            <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデタが消える。</div>
                             <div v-else class="container-fuid scroll_responsive">
                                 <table class="table table-hover custom-table">
                                     <thead style="background-color:rgb(183, 218, 210);">
                                         <tr>
                                             <th>特徴名</th>
                                             <th>略語</th>
-                                            <!-- <th>種類</th> -->
+                                            <th>カテゴリー</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -108,7 +108,7 @@
             created() {
                 this.$loading(true);
                 if(this.$route.path == "/nusfeaturelist"){
-                    this.title = "Nursing 特徴一覧";
+                    this.title = "特徴(介護.病院）一覧";
                     this.axios.get("/api/feature/featurelist/nursing").then(response => {
                         this.$loading(false);
                         this.features = response.data;
@@ -185,7 +185,7 @@
                 deleteFeature(id) {
                         this.$swal({
                             title: "確認",
-                            text: "削除よろしいでしょうか。",
+                            text: "特徴を削除してよろしいでしょうか。",
                             type: "warning",
                             width: 350,
                             height: 200,
@@ -217,12 +217,12 @@
                                     // let i = this.features.map(item => item.id).indexOf(id); // find index of your object
                                     // this.features.splice(i, 1);
                                     this.$swal({
-                                        title: "削除済",
-                                        text: "特徴を削除されました。",
+                                        // title: "削除済",
+                                        text: "特徴を削除しました。",
                                         type: "success",
                                         width: 350,
                                         height: 200,
-                                        confirmButtonText: "はい",
+                                        confirmButtonText: "閉じる",
                                         confirmButtonColor: "#dc3545"
                                     });
                                 })

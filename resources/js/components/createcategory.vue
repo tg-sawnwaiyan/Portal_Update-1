@@ -5,14 +5,14 @@
               <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <h4 class="page-header header">カテゴリー作成</h4>
+                            <h4 class="page-header header">ニュースカテゴリー作成</h4>
                             <br>
                         </div>
                         <div class="col-md-12">
                              <form @submit.prevent="add">
                             <div class="form-group">
-                                <label>カテゴリー名 :<span class="error">*</span></label>
-                                <input type="text" class="form-control"  v-model="category.name"  placeholder="カテゴリー名を入力してください。" >
+                                <label>ニュースカテゴリー名 :<span class="error">*</span></label>
+                                <input type="text" class="form-control"  v-model="category.name"  placeholder="ニュースカテゴリー名を入力してください。" >
                                   <span v-if="errors.name" class="error">{{errors.name}}</span>
                             </div>
 
@@ -53,9 +53,9 @@ export default {
             add() {
                  this.$swal({
                             title: "確認",
-                            text: "作成よろしいでしょうか。",
+                            text: "ニュースカテゴリを投稿してよろしいでしょうか。",
                             type: "info",
-                            width: 350,
+                            width: 390,
                             height: 200,
                             showCancelButton: true,
                             confirmButtonColor: "#6cb2eb",
@@ -74,12 +74,13 @@ export default {
                         this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            title: '作成されました。',
+                            title:'確認済',
+                            text: 'ニュースカテゴリを投稿しました。',
                             // showConfirmButton: false,
                             // timer: 1800,
-                            confirmButtonText: "はい",
+                            confirmButtonText: "閉じる",
                             confirmButtonColor: "#6cb2eb",
-                            width: 250,
+                            width: 350,
                             height: 200,
                         })
                         // alert('Successfully Created')
@@ -101,7 +102,7 @@ export default {
                         this.errors.name = "";
                     } else {
                         // console.log('null');
-                        this.errors.name = " カテゴリー名が必須です。";
+                        this.errors.name = " ニュースカテゴリー名が必須です。";
                     }
                    if (
                         !this.errors.name

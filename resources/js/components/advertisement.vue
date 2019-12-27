@@ -129,7 +129,7 @@
             add() {
                   this.$swal({
                             title: "確認",
-                            text: "作成よろしいでしょうか。",
+                            text: "広告を投稿してよろしいでしょうか。",
                             type: "success",
                             width: 350,
                             height: 200,
@@ -156,7 +156,8 @@
                         this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            title: '作成されました。',
+                            title:'確認済',
+                            text: '広告を投稿しました。',
                             confirmButtonText: "はい",
                             confirmButtonColor: "#6cb2eb",
                             width: 250,

@@ -244,7 +244,7 @@
                         add() {
                             this.$swal({
                             title: "確認",
-                            text: "作成よろしいでしょうか。",
+                            text: "ニュースを投稿してよろしいでしょうか。",
                             type: "info",
                             width: 350,
                             height: 200,
@@ -273,12 +273,13 @@
                             this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            title: '作成されました。',
-                            confirmButtonText: "はい",
+                            title: "確認済",
+                            text: 'ニュースを投稿しました。',
+                            confirmButtonText: "閉じる",
                             confirmButtonColor: "#6cb2eb",
                             // showConfirmButton: false,
                             // timer: 1800,
-                            width: 250,
+                            width: 270,
                             height: 200,
                         })
                                 this.$router.push({
