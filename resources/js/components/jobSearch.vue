@@ -646,8 +646,8 @@
 
 
                                    <div class="form-check form-check-inline row align-items-start innerwrapper" >
-                                    <div>
-                                        <div class="hospital-subject" v-for="(occupation,index) in occupations" :key="index">                                    
+                                    <div v-for="(v,i) in array_len"  :key="i">
+                                        <div class="hospital-subject" v-for="(occupation,index) in occupations.slice((i*3),((i*3)+3))" :key="index">                                    
                                             <div class="row col-12">
                                                 <strong class="table-innertitle row col-12">{{occupation.name}}</strong>
                                                 <div class="col-6" v-for="ch in occupation.child" :key="ch.id+1">
@@ -938,7 +938,8 @@ export default {
           height: 0
         },
         w_width: $(window).width(),
-       testclass:''
+       testclass:'',
+       array_len: 0
       }
     },
     created() {
@@ -1201,7 +1202,9 @@ export default {
           
           this.occupations = response.data.occupations
           //console.log("occu",this.occupations)
-          this.id = id
+          this.id = id,
+           this.array_len = ((this.occupations.length)%3)==0?((this.occupations.length)/3):Math.floor(((this.occupations.length)/3)+1);
+              console.log(this.array_len)
          })
 
         document.getElementById('search-free-word').value = '';

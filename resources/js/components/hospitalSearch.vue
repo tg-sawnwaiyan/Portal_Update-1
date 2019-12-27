@@ -569,18 +569,25 @@
                     <table class="table table-bordered col-12">
                         <tbody>
                         <tr>
-                            <th>地域</th>
+                            <th class="pc-414-table">地域</th>
                             <td>
-                            <select id="selectCity" class="col-9 form-control custom-select mt-2 mb-2" v-model="id" @change="ChangeTownship">
+                            <div class="row mt-2 mb-2">
+                            <div class="col-lg-9 col-md-6 col-sm-12">
+                            <select id="selectCity" class="form-control custom-select" v-model="id" @change="ChangeTownship">
                                 <option value="-1">▼市区町村</option>
                                 <option v-for="city in cities" :value="city.id" :key="city.id">{{city.city_name}}</option>
                             </select>
-                            <button @click="toggleContent" class="btn col-3 seemore-btn" v-if="getTownships.length > 0">
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-12 pc-414">
+                            <button @click="toggleContent" class="btn seemore-btn" v-if="getTownships.length > 0">
                                 <i class="fa" aria-hidden="true"></i>
                                 <!-- <em>{{city.city_name}}</em> -->
                                 <span id="close"><i class="fas fa-arrow-circle-up"></i> 市区町村エリアを閉じる</span>
                             </button>
+                            </div>
+                            </div>
                             <div class="toBeToggled" id="toBeToggled">
+                              
 
                                 <div class="form-check form-check-inline col-sm-2" v-for="township in getTownships" :key="township.id">
                                 <!-- <label class="form-check-label" > -->
@@ -593,17 +600,9 @@
 
                             </div>
                             </td>
-                        </tr>
-                        <!-- <tr class="toBeToggled1 ShowHide1">
-                            <th>
-                            フリーワード
-                            </th>
-                            <td>
-                                <input type="text" class="form-control mt-2 mb-2" id="" placeholder="例）施設名、エリア">
-                            </td>
-                        </tr> -->
+                        </tr>                       
                         <tr class="toBeToggled1 ShowHide1">
-                            <th>特長</th>
+                            <th class="pc-414-table">特長</th>
                             <td>
                             <div class="form-check form-check-inline col-sm-2 " v-for="feature in special_features" :key="feature.id">
                                 <!-- <label class="form-check-label" > -->
