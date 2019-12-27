@@ -90,7 +90,7 @@ export default {
                     // else if (this.feature.type == '介護') {
                     //     this.feature.type = '介護';
                     // }
-                      this.header = ' 特徴更新';
+                        this.header = ' 特徴更新';
                         this.subtitle = '更新する';
                         return this.header;
                         return this.subtitle;
