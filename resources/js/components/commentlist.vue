@@ -204,7 +204,7 @@
                 deleteComment(id) {
                         this.$swal({
                             title: "確認",
-                            text: "削除よろしいでしょうか。",
+                            text: "コメットを削除してよろしいでしょうか。",
                             type: "warning",
                             width: 350,
                             height: 200,
@@ -235,8 +235,8 @@
                                     // let i = this.categories.map(item => item.id).indexOf(id); // find index of your object
                                     // this.categories.splice(i, 1);
                                     this.$swal({
-                                        title: "削除済",
-                                        text: "コメントが削除されました。",
+                                        // title: "削除済",
+                                        text: "コメントを削除しました。",
                                         type: "success",
                                         width: 350,
                                         height: 200,

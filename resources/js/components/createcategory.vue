@@ -18,7 +18,7 @@
 
                             <div class="form-group">
                                 <!-- <button class="btn main-bg-color white all-btn">作成する</button> -->
-                                <span class="btn main-bg-color white all-btn" @click="checkValidate()"> 作成する</span>
+                                <span class="btn main-bg-color white all-btn" @click="checkValidate()"> 作成</span>
                                 <router-link class="btn btn-danger all-btn" to="/categorylist" > キャンセル </router-link>
                                 <!-- <button class="btn news-post-btn all-btn"  @click="checkValidate()>作成する</button> -->
                              
@@ -61,7 +61,7 @@ export default {
                             confirmButtonColor: "#6cb2eb",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
-                            confirmButtonText: "作成",
+                            confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
@@ -74,7 +74,7 @@ export default {
                         this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            title:'確認済',
+                            // title:'確認済',
                             text: 'ニュースカテゴリを投稿しました。',
                             // showConfirmButton: false,
                             // timer: 1800,

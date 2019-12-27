@@ -11,6 +11,7 @@
 
                 <div class="d-flex justify-content-center registerform_container">
                     <div class="brand_logo_container">
+                        <h4 style="position:relative; bottom: 60px; width:152px;">事業者新規登録</h4>
                         <img src="/images/sample_1.png" class="brand_logo" alt="Logo">
                         <div id="preview">
                           <img v-if="url" :src="url" class="brand_logo" alt="Logo">
@@ -29,7 +30,7 @@
                         <img v-if="url" :src="url" class="img-thumbnail img" />
                     </div> -->
                     <div class="input-group mb-3 inputfile">
-                        <label class="col-4 col-lg-3 control-label">ロゴを選択</label>
+                        <label class="col-4 col-lg-3 control-label">ロゴ</label>
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-image"></i></span>
                         </div>
@@ -77,7 +78,7 @@
                             <span class="input-group-text"><i class="fas fa-list"></i></span>
                         </div>
                         <select id="type" class="form-control custom-select" name="types" :value="type.id" v-model="type" required>
-                            <option value="">事業者タイプを選択してください。</option>
+                            <option value="">事業者のタイプを選択してください(介護又は病院)。</option>
                             <option value="3">介護</option>
                             <option value="2">病院</option>
                            
@@ -126,7 +127,7 @@
                     <div id="jsErrorMessage" class="error p-l-162"></div>
                     
                       <div class="form-group col-12 text-center">                          
-                              <button type="submit" class="btn register_btn login_btn" id="sub_btn">作成する</button>                          
+                              <button type="submit" class="btn register_btn login_btn" id="sub_btn">作成</button>                          
                       </div>
                    
 
