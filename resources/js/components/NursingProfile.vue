@@ -1087,7 +1087,7 @@ export default {
             },
 
             createProfile() {
-               
+               this.$loading(true);
                 // document.getElementById("create-profile").disabled=true;
                 this.customer_info_push = [];
                 this.staff_info_push = [];
@@ -1268,6 +1268,7 @@ export default {
                     this.axios
                         .post(`/api/nursing/profile/${this.cusid}`,this.profile_arr)
                         .then((response) => {
+                            this.$loading(false);
                             this.$swal({
                                     position: 'top-end',
                                     type: 'success',
@@ -1280,7 +1281,7 @@ export default {
                                     document.getElementById('nursing').click();
                                 })
                         }).catch(error=>{
-                            
+                        this.$loading(false);
                         if(error.response.status == 422){
                         this.profile_arr = 'error';
                         this.errors = error.response.data.errors
