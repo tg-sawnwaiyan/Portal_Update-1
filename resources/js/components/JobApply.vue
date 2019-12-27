@@ -359,8 +359,8 @@
             </div>
           </div>
 
-          <div class="text-center mt-4 pb-5">
-            <span class="btn btn-danger white all-btn width17" @click="editUserInfo()">入力画面へ戻る</span>
+          <div class="text-center mt-4 pb-5 form-group row pc-m-0-10">
+            <span class="btn btn-danger white all-btn width17 pc-m-r-10" @click="editUserInfo()">入力画面へ戻る</span>
             <span class="btn main-bg-color white all-btn width17" @click="apply()">応募する</span>
           </div>
           <br />

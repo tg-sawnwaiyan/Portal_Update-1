@@ -111,12 +111,12 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
         menu: [
                 {
                     header: true,
-                    title: 'Admin Dashboard',
+                    title: '管理者画面',
                     hidden: this.$auth.check(1),
                     hiddenOnCollapse: true
                 },
                 {
-                    title: 'ニュース一',
+                    title: 'ニュース',
                     icon: 'fa fa-list-ul',
                     hidden: this.$auth.check(1),
                     child: [
@@ -127,7 +127,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                         },
                         {
                         href: '/categorylist',
-                        title: 'カテゴ一覧',
+                        title: 'カテゴリー設定',
                         icon: 'fa fa-file-alt'
                         }
                     ]
@@ -188,7 +188,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                 },
                 {
                     href: '/occupationlist',
-                    title: '職業',
+                    title: '求人職種',
                     icon: 'fa fa-suitcase',
                     hidden: this.$auth.check(1)
                 },
@@ -200,25 +200,25 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                 },
                 {
                     header: true,
-                    title: 'Customer Dashboard',
+                    title: '事業者管理画面',
                     hidden: this.$auth.check(2),
                     hiddenOnCollapse: true
                 },
                 {
                     href: '/profiledit',
-                    title: 'プロファイル編集',
+                    title: 'プロファイル設定',
                     icon: 'fa fa-map',
                     hidden: this.$auth.check(2)
                 },
                 {
                     href: '/profile',
-                    title: 'マイページ',
+                    title: 'マイページ編集',
                     icon: 'fa fa-map',
                     hidden: this.$auth.check(2)
                 },
                 {
                     href: '/jobofferlist',
-                    title: '仕事一覧',
+                    title: '求人編集',
                     icon: 'fa fa-edit',
                     hidden: this.$auth.check(2)
                 },

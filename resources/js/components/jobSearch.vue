@@ -779,19 +779,19 @@
                         <div class="col-12 job-box p0-480">
                           <table  class="table table-bordered  table-sm">
                             <tr>
-                              <td><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>最寄り駅</td>
+                              <td><span class="job_ico pc-414-inline"><i class="fa fa-map-marker-alt"></i></span><span>最寄り駅</span></td>
                               <td>{{job.nearest_station}}</td>
                             </tr>
                             <tr>
-                              <td><span class="job_ico">&#xa5;</span>給料</td>
+                              <td><span class="job_ico pc-414-inline">&#xa5;</span><span>給料</span></td>
                               <td>{{job.salary_type}} : {{(Number(job.salary)).toLocaleString()}} ¥ </td>
                             </tr>
                             <tr>
-                              <td><span class="job_ico">時</span>勤務時間/日/休日の詳細</td>
+                              <td><span class="job_ico pc-414-inline">時</span><span>勤務時間/日/休日の詳細</span></td>
                               <td> {{job.working_hours}} / {{job.holidays}}  </td>
                             </tr>
                             <tr>
-                              <td><span class="job_ico"><i class="fa fa-briefcase"></i></span>特別な条件</td>
+                              <td><span class="job_ico pc-414-inline"><i class="fa fa-briefcase"></i></span><span>特別な条件</span></td>
                               <td> {{job.allowances}} </td>
                             </tr>
                           </table>

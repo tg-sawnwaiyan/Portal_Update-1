@@ -291,15 +291,17 @@
             this.$swal({
                 position: 'top-end',
                 type: 'success',
-                // title: '作成されました',
-                title: '確認のためしばらくお待ちください。',
-                showConfirmButton: false,
-                timer: 1800,
-                width: 250,
+                title: 'メールを送付しました。',
+                text: '確認のためしばらくお待ちください。',
+                width: 350,
                 height: 200,
+                confirmButtonColor: "#6cb2eb",
+                confirmButtonText: "閉じる",
+                confirmButtonClass: "all-btn",
             })
-            //app.success = true
-            //this.$router.push({name: 'login', params: {successRegistrationRedirect: true}})
+                this.$router.push({
+                    name: 'News'
+                });
           }).catch(error=>{
             if(error.response.status == 422){
                 this.$loading(false);
