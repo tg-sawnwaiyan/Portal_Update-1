@@ -133,7 +133,17 @@ class SearchMapController extends Controller
       
    
         $medical_acceptance = DB::table('medical_acceptance')->get();
-        $occupations        = DB::table('occupation')->get();
+        $occupation = "SELECT *,'' as child from occupation where parent = " . 0 ." order by id";
+        $occupations = DB::select($occupation);
+
+        foreach($occupations as $occu)
+        {
+            $id = $occu->id;
+            $db_occ = "SELECT occupation.* from occupation where parent =". $id ." order by id";
+            $occuchild = DB::select($db_occ);
+            $occu->child = $occuchild;
+        }
+        //$occupations        = DB::table('occupation')->get();
 
 
       

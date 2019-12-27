@@ -68,7 +68,7 @@ export default {
              this.axios.get('/api/subjects/subjectlist')
               .then(function (response) {
                    this.SubjectList = response.data;
-                   console.log(this.SubjectList);
+                   console.log('aa',this.SubjectList);
 
               }.bind(this));
         },

@@ -628,7 +628,8 @@
                         職種から探す
                         </button> 
                         
-                                <div class="form-check form-check-inline row align-items-start">
+                                <!-- <div class="form-check form-check-inline row align-items-start">
+                                  
                                     <div class="" v-for="(occupation,index) in occupations" :key="index" style="position:">
                                 
                                         <strong class=" col-12">{{occupation.name}}</strong>
@@ -641,6 +642,26 @@
                                         </div>
                                   
                                     </div>
+                                </div> -->
+
+
+                                   <div class="form-check form-check-inline row align-items-start innerwrapper" >
+                                    <div>
+                                        <div class="hospital-subject" v-for="(occupation,index) in occupations" :key="index">                                    
+                                            <div class="row col-12">
+                                                <strong class="table-innertitle row col-12">{{occupation.name}}</strong>
+                                                <div class="col-6" v-for="ch in occupation.child" :key="ch.id+1">
+                                                    <label class="form-check-label control control--checkbox" style="padding-left:5px;">
+                                                    <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="occupationID" :value="ch.id">
+                                                     {{ch.name}}
+                                                    <div class="control__indicator"></div>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                   
                                 </div>
 
                         <!-- <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768">
@@ -658,8 +679,8 @@
                             </a>
                             </li>
                         </ul> -->
-<!-- 
-                        <a v-if="w_width >= 768">
+
+                        <!-- <a v-if="w_width >= 768">
                           <div class="row">
                             <div class="col-lg-2 col-md-4 col-sm-4" v-for="occupation in occupations" :key="occupation.id">
                               <label class="form-check-label control control--checkbox">
@@ -669,7 +690,7 @@
                               </label>
                             </div>
                           </div>
-                        </a> -->
+                        </a>  -->
                      </div>
                       
                     <!--end 職種から探す-->
@@ -1179,6 +1200,7 @@ export default {
           this.getTownships = response.data.getTownships
           
           this.occupations = response.data.occupations
+          //console.log("occu",this.occupations)
           this.id = id
          })
 

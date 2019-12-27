@@ -14,7 +14,7 @@ use App\HospitalProfile;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-// Route::get('/user', function (Request $request) {
+// Route::Ma('/user', function (Request $request) {
 //     $user = $request->user();
 //    return $request;
 // })->middleware('auth:api');
@@ -105,7 +105,7 @@ Route::group(['middleware' => ['auth:api']], function() {
 
        // occupation
        Route::group(['prefix' => 'occupation'], function () {
-        Route::get('occupationList', 'OccupationsController@TypeList');
+        Route::get('occupationList', 'OccupationsController@typeList');
         Route::get('type', 'OccupationsController@index');
         Route::post('add', 'OccupationsController@store');
         Route::get('edit/{id}', 'OccupationsController@edit');

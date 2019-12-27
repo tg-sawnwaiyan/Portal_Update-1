@@ -1160,6 +1160,7 @@
               this.getTownships = response.data.getTownships
               this.special_features = response.data.special_features
               this.subjects = response.data.subjects;
+             
               //this.sub_child = response.data.sub_child;
               //console.log("aaa",this.subjects);
               // this.id = id;
@@ -1216,6 +1217,7 @@
               console.log(this.getTownships.length);
               this.special_features = response.data.special_features
               this.subjects = response.data.subjects
+               console.log('sub',this.subjects);
               this.company = response.data.company
             //   this.sub_child = response.data.sub_child
               this.id = id;
