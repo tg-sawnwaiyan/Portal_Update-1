@@ -1095,7 +1095,8 @@ export default {
               township_id:-1,
               moving_in:-1,
               per_month:-1,
-              local:this.locast
+              local:this.locast,
+              feature:'job',
           },
           })
           .then((response)=>{
@@ -1143,7 +1144,8 @@ export default {
               township_id:-1,
               moving_in:-1,
               per_month:-1,
-              local:this.locast
+              local:this.locast,
+              feature:'job'
           },
           })
           .then((response)=>{
