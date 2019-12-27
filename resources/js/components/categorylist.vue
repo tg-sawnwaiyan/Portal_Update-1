@@ -4,7 +4,7 @@
             <div class="row m-b-10" v-if="!norecord_msg">
                 <div class="col-md-12">
                     <router-link to="/createcategory" class="float-right main-bg-color create-btn all-btn">
-                        <i class="fas fa-plus-circle"></i> 新しいカテゴリーを作成
+                        <i class="fas fa-plus-circle"></i> カテゴリー新規作成
                     </router-link>
                 </div>
             </div>
@@ -23,18 +23,18 @@
                         </a>
                     </div>
                     <div v-else class="container-fuid">
-                        <h4 class="main-color m-b-10">カテゴリー検索</h4>
+                        <h4 class="main-color m-b-10">ニュースカテゴリー検索</h4>
                         <div class="row">
                             <div class="col-md-12">
-                                <input type="text" class="form-control" placeholder="カテゴリー検索" id="search-item" @keyup="searchCategory()" />
+                                <input type="text" class="form-control" placeholder="ニュースカテゴリー検索" id="search-item" @keyup="searchCategory()" />
                             </div>
                             <!-- <div class="col-md-2 text-right">
                     <button class="btn secondary-bg-color all-btn white" style="width:100%;"><i class="fas fa-search"></i> 検索</button>
               </div>-->
                         </div>
                         <hr />
-                        <h5 class="header">カテゴリー一覧</h5>
-                        <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
+                        <h5 class="header">ニュースカテゴリー一覧</h5>
+                        <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデータが消える。</div>
                         <div v-else class="container-fuid">
                             <div class="card card-default m-b-20" v-for="category in displayItems" :key="category.id">
                                 <div class="card-body">
@@ -151,9 +151,9 @@
                 deleteCategory(id) {
                         this.$swal({
                             title: "確認",
-                            text: "削除よろしいでしょうか。",
+                            text: "ニュースカテゴリを削除してよろしいでしょうか。",
                             type: "warning",
-                            width: 350,
+                            width: 380,
                             height: 200,
                             showCancelButton: true,
                             confirmButtonColor: "#dc3545",
@@ -182,12 +182,12 @@
                                     // let i = this.categories.map(item => item.id).indexOf(id); // find index of your object
                                     // this.categories.splice(i, 1);
                                     this.$swal({
-                                        title: "削除済",
-                                        text: "カテゴリーを削除されました。",
+                                        // title: "削除済",
+                                        text: "ニュースカテゴリーを削除しました。",
                                         type: "success",
                                         width: 350,
                                         height: 200,
-                                        confirmButtonText: "はい",
+                                        confirmButtonText: "閉じる",
                                         confirmButtonColor: "#dc3545"
                                     });
 

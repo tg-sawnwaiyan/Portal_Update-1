@@ -323,7 +323,7 @@
                                                     <td class="width15 title-bg">開設年月日</td>
 
                                                     <td >
-                                                        <date-picker class="box date-of-establishment" v-model="nursing_info.date_of_establishment" id="datepickerbox" valueType="format" style="margin-left:11px;"></date-picker>
+                                                        <date-picker class="box date-of-establishment" :lang="lang" v-model="nursing_info.date_of_establishment" id="datepickerbox" valueType="format" style="margin-left:11px;"></date-picker>
                                                         <!-- <textarea class="form-control white-bg-color date-of-establishment" :options="editorOption" v-model="nursing_info.date_of_establishment"></textarea> -->
                                                     </td>
                                                         <!-- <td> <quill-editor  class="date-of-establishment" ref="myQuilEditor" :options="editorOption" v-model="nursing_info.date_of_establishment"/></td> -->
@@ -653,6 +653,14 @@ export default {
 
        data() {
             return {
+                lang:{
+                days: ['日', '月', '火', '水', '木', '金', '土'],
+                months: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                placeholder: {
+                date: new Date().toISOString().slice(0,10),
+
+                }
+            },
                 isRotate1: false,
                 isRotate2: false,
                 isRotate3: false,

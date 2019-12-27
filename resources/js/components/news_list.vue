@@ -5,7 +5,7 @@
             <div class="row m-b-10" v-if="!norecord_msg">
                 <div class="col-md-12">
                     <router-link to="/create_news" class="float-right main-bg-color create-btn all-btn" style="color: blue;">
-                        <i class="fas fa-plus-circle"></i> 新しいニュースを作成
+                        <i class="fas fa-plus-circle"></i> ニュース新規作成
                     </router-link>
                 </div>
             </div>
@@ -44,7 +44,7 @@
                         </div>
                         <hr />
                         <h5 class="header">ニュース一覧</h5>
-                        <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
+                        <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデタが消える。</div>
                         <div v-else class="container-fuid">
                             <div v-for="newsList in displayItems" :key="newsList.id" class="card card-default m-b-20">
 
@@ -201,7 +201,7 @@
             deletePost(id) {
                     this.$swal({
                         title: "確認",
-                        text: "削除よろしいでしょうか",
+                        text: "ニュースを削除してよろしいでしょうか。",
                         type: "warning",
                         width: 350,
                         height: 200,
@@ -232,12 +232,12 @@
                                 // let i = this.news_list.map(item => item.id).indexOf(id);
                                 // this.news_list.splice(i, 1);
                                 this.$swal({
-                                    title: "削除済",
-                                    text: "ニュースを削除されました。",
+                                    // title: "削除済",
+                                    text: "ニュースを削除しました。",
                                     type: "success",
                                     width: 350,
                                     height: 200,
-                                    confirmButtonText: "はい",
+                                    confirmButtonText: "閉じる",
                                     confirmButtonColor: "#dc3545"
                                 });
                             })

@@ -83,7 +83,7 @@ class registerController extends Controller
             
             $getName = time().'.'.$image->getClientOriginalExtension();
             
-            if($request->types == 2){
+            if($request->types == 2){     
                 $image->move('upload/hospital_profile/', $getName);
             }
             else{
