@@ -4,7 +4,7 @@
             <div class="row m-b-10" v-if="!norecord_msg">
                 <div class="col-md-12">
                     <router-link to="/specialfeature" class="float-right main-bg-color create-btn all-btn">
-                        <i class="fas fa-plus-circle"></i> 特殊新規作成
+                        <i class="fas fa-plus-circle"></i> 特徴新規作成
                     </router-link>
                 </div>
             </div>
@@ -23,7 +23,7 @@
                         </a>
                     </div>
                     <div v-else class="container-fuid">
-                        <h4 class="main-color m-b-10">特徴検索(介護.病院）</h4>
+                        <h4 class="main-color m-b-10">特徴検索</h4>
                         <div class="row">
                             <div class="col-md-12">
                                 <input type="text" class="form-control" placeholder="特徴検索" id="search-item" @keyup="searchFeature()" />
@@ -108,7 +108,7 @@
             created() {
                 this.$loading(true);
                 if(this.$route.path == "/nusfeaturelist"){
-                    this.title = "特徴(介護.病院）一覧";
+                    this.title = "特徴一覧";
                     this.axios.get("/api/feature/featurelist/nursing").then(response => {
                         this.$loading(false);
                         this.features = response.data;
@@ -126,7 +126,7 @@
                     });
                 }
                 else if(this.$route.path == "/hosfeaturelist"){
-                    this.title = "Hospital 特徴一覧";
+                    this.title = "特徴一覧";
                     this.axios.get("/api/feature/featurelist/hospital").then(response => {
                         this.$loading(false);
                         this.features = response.data;
@@ -193,7 +193,7 @@
                             confirmButtonColor: "#dc3545",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
-                            confirmButtonText: "削除",
+                            confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"

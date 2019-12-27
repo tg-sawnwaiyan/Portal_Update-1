@@ -12,6 +12,7 @@
 
             <div class="d-flex justify-content-center">
               <div class="brand_logo_container">
+                <h4 style="position:relative; bottom: 60px; width:152px;">事業者ログイン</h4>
                 <img src="/images/sample_1.png" class="brand_logo" alt="logo">
               </div>
             </div>
