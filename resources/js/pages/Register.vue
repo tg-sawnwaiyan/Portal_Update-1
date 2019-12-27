@@ -77,9 +77,10 @@
                             <span class="input-group-text"><i class="fas fa-list"></i></span>
                         </div>
                         <select id="type" class="form-control custom-select" name="types" :value="type.id" v-model="type" required>
-                            <option value="">事業者のタイプを選択してください。</option>
-                            <option value="2">介護</option>
-                            <option value="3">病院</option>
+                            <option value="">事業者タイプを選択してください。</option>
+                            <option value="3">介護</option>
+                            <option value="2">病院</option>
+                           
                         </select>
                     </div>
 

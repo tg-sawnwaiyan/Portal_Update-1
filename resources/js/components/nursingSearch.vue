@@ -946,6 +946,7 @@
                                                         </tr> -->
                                                     </table>
                                                     <h5 class="header m-t-10">こだわりの特長</h5>
+                                                 
                                                     <span v-for="(spe,index) in specialfeature" :key="index+'-'+spe.name+'-'+nus.id">
                                                     <span v-if="spe.customer_id == nus.customer_id" class="feature_list">
                                                         {{spe.name}}
@@ -1332,6 +1333,7 @@
             },
             // map onclick function
             getStateClick(e,lat,lng) {
+               localStorage.setItem('features', 'nursing');
                 this.ci = false;
                 this.township_id= -1;
                 this.moving_in = -1;
@@ -1358,7 +1360,8 @@
                     township_id:-1,
                     moving_in:-1,
                     per_month:-1,
-                    local:this.locast
+                    local:this.locast,
+                    feature:'nursing'
                     },
                 })
                     .then((response) => {
@@ -1407,7 +1410,8 @@
                     township_id:this.township_id,
                     moving_in:this.moving_in,
                     per_month:this.per_month,
-                    local:this.locast
+                    local:this.locast,
+                    feature:'nursing'
                     },
 
                 })
@@ -1670,6 +1674,7 @@
                 this.cities = response.data.city
                 this.getCity = response.data.getCity
                 this.getTownships = response.data.getTownships
+                this.specialfeature = response.data.specialfeature;
                 this.special_features = response.data.special_features
                 this.fac_types = response.data.fac_types
                 this.medical_acceptance = response.data.medical_acceptance
@@ -1981,7 +1986,8 @@
                         township_id:-1,
                         moving_in:-1,
                         per_month:-1,
-                        local:this.locast
+                        local:this.locast,
+                        feature:'nursing'
                     },
                 })
                 .then((response) => {

@@ -617,23 +617,27 @@
                         </tr>
                         <tr class="toBeToggled1 ShowHide1">
                             <th>診療科目</th>
-                            <td>
-                                <div class="form-check form-check-inline row align-items-start innerwrapper">
-                                    <div class="hospital-subject" v-for="(subject,index) in subjects.slice(0,3)" :key="index">
-                                    <div class="row col-12">
-                                        <strong class="table-innertitle row col-12">{{subject.name}}</strong>
-                                        <div class="col-6" v-for="ch in subject.child" :key="ch.id+1">
-                                            <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-                                            <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
-                                            {{ch.name}}
-                                            <div class="control__indicator"></div>
-                                            </label>
+                            <td id="test-td">
+                                <div class="form-check form-check-inline row align-items-start innerwrapper" >
+                                    <div v-for="(v,i) in array_len"  :key="i">
+                                        <div class="hospital-subject" v-for="(subject,index) in subjects.slice((i*3),((i*3)+3))"  :key="index">                                    
+                                            <div class="row col-12">
+                                                <strong class="table-innertitle row col-12">{{subject.name}}</strong>
+                                                <div class="col-6" v-for="ch in subject.child" :key="ch.id+1">
+                                                    <label class="form-check-label control control--checkbox" style="padding-left:5px;">
+                                                    <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
+                                                    {{ch.name}}
+                                                    <div class="control__indicator"></div>
+                                                    </label>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    </div>
+                                    
+                                   
                                 </div>
-                                <div class="form-check form-check-inline row align-items-start innerwrapper">
-                                    <div class="hospital-subject" v-for="(subject,index) in subjects.slice(3,6)" :key="index">
+                                <!-- <div class="form-check form-check-inline row align-items-start innerwrapper">
+                                    <div class="test" v-for="(subject,index) in subjects.slice(3,6)" :key="index">
                                     <div class="row col-12">
                                         <strong class="table-innertitle row col-12">{{subject.name}}</strong>
 
@@ -671,9 +675,9 @@
 
                                     </div>
 
-                                </div>
-                                <div class="form-check form-check-inline row align-items-start innerwrapper" style="width:33.98%;">
-                                    <div class="hospital-subject" v-for="(subject,index) in subjects.slice(9,10)" :key="index">
+                                </div> -->
+                                <!-- <div class="form-check form-check-inline row align-items-start innerwrapper" style="width:33.98%;">
+                                    <div class="test" v-for="(subject,index) in subjects.slice(9,10)" :key="index">
                                     <div class="row col-12">
                                         <strong class="table-innertitle row col-12">{{subject.name}}</strong>
 
@@ -691,7 +695,7 @@
 
                                     </div>
 
-                                </div>
+                                </div> -->
 
                             </td>
                         </tr>
@@ -897,6 +901,9 @@
         selected: undefined,
         localst:'',
         norecord_msg: false,
+        int:0,
+        array_len: 0,
+
       }
     },
     mounted() {
@@ -904,6 +911,7 @@
             $('#navtab').addClass('hospital-tabColor');
             $('.tab-content').removeClass('news-borderColor job-borderColor nursing-borderColor hospital-borderColor');
             $('#upper-tab').addClass('hospital-borderColor');
+            
         },
     methods: {
 
@@ -955,6 +963,8 @@
             this.subject = response.data.subject;
             this.subjects = response.data.subjects;
             this.company = response.data.company;
+            // this.int = this.subjects.length
+            console.log(this.int)
             if(this.hos_data.length > this.size) {
                 this.show_paginate = true;
             }else{
@@ -1107,6 +1117,7 @@
         }
       },
       ShowHide1() {
+
         this.toggleCheck_1 = !this.toggleCheck_1;
         if (this.toggleCheck_1 == true) {
           $('#close2').empty();
@@ -1118,6 +1129,7 @@
           $(".ShowHide1").slideUp();
           $('#close2').append('<i class="fas fa-arrow-circle-down"></i> もっと見る');
         }
+        console.log($('#test-td').width() + "wditdh")
       },
 
       ChangeTownship(){
@@ -1136,7 +1148,8 @@
               township_id:-1,
               moving_in:-1,
               per_month:-1,
-              local:this.locast
+              local:this.locast,
+              feature:'hospital'
           },
           })
             .then((response) => {
@@ -1147,7 +1160,7 @@
               this.getTownships = response.data.getTownships
               this.special_features = response.data.special_features
               this.subjects = response.data.subjects;
-            //   this.sub_child = response.data.sub_child;
+              //this.sub_child = response.data.sub_child;
               //console.log("aaa",this.subjects);
               // this.id = id;
 
@@ -1156,6 +1169,8 @@
       },
 
       getStateClick(e) {
+          
+        localStorage.setItem('features', 'hospital');
           //clear all checkbox
           this.townshipID = [];
           this.specialfeatureID = [];
@@ -1187,7 +1202,8 @@
               township_id:-1,
               moving_in:-1,
               per_month:-1,
-              local:this.locast
+              local:this.locast,
+              feature:'hospital',
           },
           })
             .then((response) => {
@@ -1203,6 +1219,8 @@
               this.company = response.data.company
             //   this.sub_child = response.data.sub_child
               this.id = id;
+              this.array_len = ((this.subjects.length)%3)==0?((this.subjects.length)/3):Math.floor(((this.subjects.length)/3)+1);
+              console.log(this.array_len)
 
             })
 

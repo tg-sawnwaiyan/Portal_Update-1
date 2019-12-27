@@ -19,6 +19,7 @@ class SearchMapController extends Controller
         $moving_in = $_GET['moving_in'];
         $per_month = $_GET['per_month'];
         $localst = $_GET['local'];
+        $feature = $_GET['feature'];
         if($localst != 0)
         {
           $local = explode(',',$localst);
@@ -60,7 +61,7 @@ class SearchMapController extends Controller
                 $query .= " t.city_id=" . $id . " and t.id =".$township_id." and n.moving_in_to <= ".$moving_in." and n.per_month_to <= ".$per_month;
             }
             else if($id != null && $township_id != -1 && $moving_in != -1 && $per_month == -1){
-                $query .= " t.city_id=" . $id . " and t.id =".$township_id." and n.moving_in_to <= ".$moving_in;
+                $query .= " t.city_id=" . $id         . " and t.id =".$township_id." and n.moving_in_to <= ".$moving_in;
             }
             else if($id != null && $township_id != -1 && $moving_in == -1 && $per_month != -1){
                 $query .= " t.city_id=" . $id . " and t.id =".$township_id." and n.per_month_to <= ".$per_month;
@@ -109,19 +110,19 @@ class SearchMapController extends Controller
             }
         }
 
-     
-
-       
+    
 
         $city               = DB::table('cities')->get();
         $getCity            = DB::table('cities')->where('id', $id)->get();
         $getTownships       = DB::table('townships')->where('city_id', $id)->get();
-        $special_features   = DB::table('special_features')->get();
+        $special_features   = DB::table('special_features')->where('type',$feature)->get();
         $fac_types          = DB::table('fac_types')->get();
         $subs = "SELECT *,'' as child from subjects where parent = " . 0 ." order by id";
         $subjects = DB::select($subs);
 
-       
+        $spe_query = "SELECT spe.*,spej.customer_id from  special_features as spe join special_features_junctions as spej on spe.id = spej.special_feature_id";
+        $specialfeature = DB::select($spe_query);
+
         foreach($subjects as $sub)
         {
             $id = $sub->id;
@@ -146,7 +147,8 @@ class SearchMapController extends Controller
             'subjects' => $subjects,
             'occupations' => $occupations,
             'nursing' => $nursing_profile,
-            'alphabet' => $alphabet
+            'alphabet' => $alphabet,
+            'specialfeature'=>$specialfeature
         ]);
     }
 
@@ -379,7 +381,7 @@ class SearchMapController extends Controller
             $city               = DB::table('cities')->get();
             $getCity            = DB::table('cities')->where('id', $id)->get();
             $getTownships       = DB::table('townships')->where('city_id', $id)->get();
-            $special_features   = DB::table('special_features')->get();
+            $special_features   = DB::table('special_features')->where('type','nursing')->get();
             $fac_types          = DB::table('fac_types')->get();
             $subjects           = DB::table('subjects')->where('parent',0)->get();
             $sub_child          = DB::table('subjects')->get();
@@ -538,7 +540,7 @@ class SearchMapController extends Controller
 
         
         $hos_data = DB::select($query);
-        $spe_query = "SELECT spe.*,spej.customer_id from  special_features as spe join special_features_junctions as spej on spe.id = spej.special_feature_id";
+        $spe_query = "SELECT spe.*,spej.customer_id from  special_features as spe join special_features_junctions as spej on spe.id = spej.special_feature_id where spe.type = 'hospital'";
         $specialfeature = DB::select($spe_query);
         //subjects for result
         $sub_query = "SELECT sub.*,subj.customer_id from  subjects as sub join subject_junctions as subj on sub.id = subj.subject_id";
@@ -707,7 +709,7 @@ class SearchMapController extends Controller
          
         $job_data = DB::select($query);
 
-        $city = DB::table('cities')->get();
+        $city = DB::table('cities')->get(    );
 
 
         // $station = "SELECT * from"

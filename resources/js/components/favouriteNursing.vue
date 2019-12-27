@@ -60,14 +60,6 @@
                                         <li v-if="opening_check">開設日</li>
                                     </ul>
                                 </dd>
-                                <!-- <dd v-if="tran_check" style="width: 84px;">、交通手段</dd>
-                        <dd v-if="month_check" style="width: 80px;">、月額費用</dd>
-                        <dd v-if="entry_check" style="width:100px;">、入居一時金</dd>
-                        <dd v-if="condition_check" style="width:80px;">、入居条件 </dd>
-                        <dd v-if="special_check" style="width: 51px;">、特長</dd>
-                        <dd v-if="medical_check" style="width: 135px;">、医療面の受け入れ</dd>
-                        <dd v-if="capacity_check" style="width:50px;">、定員</dd>
-                        <dd v-if="opening_check" class="da">、開設日</dd> -->
                             </dl>
                         </div>
 
@@ -81,22 +73,23 @@
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLongTitle">比較する項目を選ぶ</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <button class="btn btn-secondary">閉じる&times;</button>
+                                            <button class="btn btn-secondary pc-480">閉じる&times;</button>
+                                            <button class="btn btn-secondary close-480"><span>&times;</span></button>
                                         </button>
                                     </div>
-                                    <div class="modal-body">
+                                    <div class="modal-body modal-hr">
                                         <div class="row">
                                             <div class="col-md-3">
-                                                <p>エリア</p>
+                                                <p class="fnt-title">エリア</p>
                                             </div>
                                             <div class="col-md-3">
-                                                <label class="form-check-label control control--checkbox">
+                                                <label class="form-check-label control control--checkbox fnt-check">
                                                     <input type="checkbox" value="address" v-model="address_check" class="form-check-input"> 住所
                                                     <div class="control__indicator"></div>
                                                 </label>
                                             </div>
                                             <div class="col-md-3">
-                                                <label class="form-check-label control control--checkbox">
+                                                <label class="form-check-label control control--checkbox fnt-check">
                                                     <input type="checkbox" v-model="tran_check" class="form-check-input"> 交通手段
                                                     <div class="control__indicator"></div>
                                                 </label>
@@ -105,21 +98,21 @@
                                         <hr>
                                         <div class="row">
                                             <div class="col-md-3">
-                                                <p>費用・条件</p>
+                                                <p class="fnt-title">費用・条件</p>
                                             </div>
                                             <div class="col-md-3">
-                                                <label class="form-check-label control control--checkbox">
+                                                <label class="form-check-label control control--checkbox fnt-check">
                                                     <input type="checkbox" v-model="month_check" class="form-check-input"> 月額費用
                                                     <div class="control__indicator"></div>
                                                 </label>
                                                 <br>
-                                                <label style="width:400px;"  class="form-check-label control control--checkbox">
+                                                <label  class="form-check-label control control--checkbox fnt-check lbl-size">
                                                     <input type="checkbox" v-model="condition_check" class="form-check-input"> 入居条件 （自立、要支援、要介護、認知症相談可）
                                                     <div class="control__indicator"></div>
                                                 </label>
                                             </div>
                                             <div class="col-md-3">
-                                                <label class="form-check-label control control--checkbox">
+                                                <label class="form-check-label control control--checkbox fnt-check lbl-width">
                                                     <input type="checkbox" v-model="entry_check" class="form-check-input"> 入居一時金
                                                     <div class="control__indicator"></div>
                                                 </label>
@@ -128,10 +121,10 @@
                                         <hr>
                                         <div class="row">
                                             <div class="col-md-3">
-                                                <p>サービス内容</p>
+                                                <p class="fnt-title">サービス内容</p>
                                             </div>
                                             <div class="col-md-9">
-                                                <label class="form-check-label control control--checkbox">
+                                                <label class="form-check-label control control--checkbox fnt-check">
                                                     <input type="checkbox" v-model="special_check" class="form-check-input"> 特長 （24時間看護、職員体制、食事メニューの選択など）
                                                     <div class="control__indicator"></div>
                                                 </label>
@@ -140,16 +133,16 @@
                                         <hr>
                                         <div class="row pb-4">
                                             <div class="col-md-3">
-                                                <p>施設情報</p>
+                                                <p class="fnt-title">施設情報</p>
                                             </div>
                                             <div class="col-md-3">
-                                                <label class="form-check-label control control--checkbox">
+                                                <label class="form-check-label control control--checkbox fnt-check">
                                                     <input type="checkbox" v-model="capacity_check" class="form-check-input"> 定員
                                                     <div class="control__indicator"></div>
                                                 </label>
                                             </div>
                                             <div class="col-md-3">
-                                                <label class="form-check-label control control--checkbox">
+                                                <label class="form-check-label control control--checkbox fnt-check">
                                                     <input type="checkbox" v-model="opening_check" class="form-check-input"> 開設日
                                                      <div class="control__indicator"></div>
                                                 </label>
@@ -239,13 +232,26 @@
                 <!--result-->
                 <div class="col-12">
                     <div class="clearfix">
-                        <div class="float-right">
+                        <div class="float-right pc-480">
                             <label class="btn my-2 my-sm-0 all-btn secondary-bg-color btn-secondary control controlinner--checkbox" style="width:300px;">
                                 <input type="checkbox" @change="checkAll()" class="check-all-btn" />
                                 <span class="checkmark"></span>すべての資料請求にチェックを入れる
                                 <div class="controlinner__indicator" style="top:8px;left:7px;"></div>
                             </label>
                             <button type="button" class="btn btn-success all-btn float-right m-l-10" @click="addingMail()" :disabled="isdisable">資料請求する</button>
+                        </div>
+                        <div class="float-right check-resize">
+                            <label class="btn my-2 my-sm-0 all-btn secondary-bg-color btn-secondary control controlinner--checkbox pc-480" style="width:300px;">
+                                <input type="checkbox" @change="checkAll()" class="check-all-btn" />
+                                <span class="checkmark"></span>すべての資料請求にチェックを入れる
+                                <div class="controlinner__indicator" style="top:8px;left:7px;"></div>
+                            </label>
+                            <label class="btn my-sm-0 all-btn secondary-bg-color btn-secondary control controlinner--checkbox fnt-check">
+                                <input type="checkbox" @change="checkAll()" class="check-all-btn" />
+                                <span class="checkmark"></span>すべてチェック
+                                <div class="controlinner__indicator" style="top:8px;left:3px;"></div>
+                            </label>
+                            <button type="button" class="btn btn-success all-btn float-right m-l-10 fnt-check" @click="addingMail()" :disabled="isdisable">資料請求する</button>
                         </div>
                     </div>
                     <div class="m-t-20" id="fav-history-page">
