@@ -2,7 +2,7 @@
     <div>
         <!-- <adsSlider></adsSlider> -->
         <!--menu tabs-->
-        <ul class="nav nav-tabs news-tabColor navtab" id="navtab">
+        <ul class="nav nav-tabs news-tabColor navtab tab-menu-responsive" id="navtab">
             <li role="presentation" class="subtab1 nav-item">
                 <router-link  :to="{ name: 'News' }"  class="nav-link"><i class="fas fa-newspaper"></i> ニュース</router-link>
             </li>
