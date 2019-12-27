@@ -68,6 +68,7 @@
         fData.append('email', this.email);
         this.axios.post('/api/reset',fData) 
         .then(response => {
+            console.log(response)
            this.$loading(false);
             this.$swal({
                     
@@ -83,8 +84,10 @@
                       this.$router.push({name: 'login'});
                    });
               }).catch(error=>{
+                  console.log(error)
+                  this.$loading(false);  
             if(error.response.status == 404){
-                this.$loading(false);  
+                
                 this.$swal({
                             title: "Your email does not exist",
                             text: "Check your email back",
