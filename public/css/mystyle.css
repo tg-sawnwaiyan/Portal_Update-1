@@ -8888,14 +8888,21 @@ ul.nur-caro-card>li.list-group-item {
     .btn-sm{
       padding: 2px;
     }
-    ul.tab-menu-responsive{
-        padding-left: 5px;
-        padding-right: 5px;
-        font-size: 10px;
-        
+    ul.tab-menu-responsive{        
+        font-size: 10px;        
     }
     ul.tab-menu-responsive li{
-        font-size: 10px;
+        width: 25%;
+        text-align: center;
+    }
+    ul.tab-menu-responsive li a{
+        font-size: 12px;
+        padding-left: 1px;
+        padding-right: 1px;
+
+    }
+    ul.tab-menu-responsive li a i{
+        display: block;
     }
 }
 @media only screen and (max-width:480px) {
