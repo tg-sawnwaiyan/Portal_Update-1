@@ -83,7 +83,7 @@ class registerController extends Controller
             
             $getName = time().'.'.$image->getClientOriginalExtension();
             
-            if($request->types == 2){
+            if($request->types == 2){     
                 $image->move('upload/hospital_profile/', $getName);
             }
             else{
@@ -129,7 +129,8 @@ class registerController extends Controller
                 $customer->township_name = $ad->township_name;
             }
 
-            $admin_email = 'thuzar.ts92@gmail.com';
+            // $admin_email = 'thuzar.ts92@gmail.com';
+            $admin_email = 'susan@management-partners.co.jp';
             \Mail::to($admin_email)->send(new customerCreateMail($customer));
 
             Session::flash('success reg', "Special message goes here");

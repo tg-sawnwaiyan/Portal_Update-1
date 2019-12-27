@@ -110,7 +110,7 @@ export default {
                 {
                     this.$swal({
                              title: "確認",
-                            text: "作成よろしいでしょうか。",
+                            text: "職種を投稿してよろしいでしょうか。",
                             type: "success",
                             width: 350,
                             height: 200,
@@ -132,8 +132,9 @@ export default {
                             this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            title: '作成されました。',
-                            confirmButtonText: "はい",
+                            title:'確認済',
+                            text: '職種を投稿しました。',
+                            confirmButtonText: "閉じる",
                             confirmButtonColor: "#6cb2eb",
                             // showConfirmButton: false,
                             // timer: 1800,

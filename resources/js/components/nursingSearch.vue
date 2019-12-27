@@ -946,6 +946,7 @@
                                                         </tr> -->
                                                     </table>
                                                     <h5 class="header m-t-10">こだわりの特長</h5>
+                                                 
                                                     <span v-for="(spe,index) in specialfeature" :key="index+'-'+spe.name+'-'+nus.id">
                                                     <span v-if="spe.customer_id == nus.customer_id" class="feature_list">
                                                         {{spe.name}}
@@ -1673,6 +1674,7 @@
                 this.cities = response.data.city
                 this.getCity = response.data.getCity
                 this.getTownships = response.data.getTownships
+                this.specialfeature = response.data.specialfeature;
                 this.special_features = response.data.special_features
                 this.fac_types = response.data.fac_types
                 this.medical_acceptance = response.data.medical_acceptance

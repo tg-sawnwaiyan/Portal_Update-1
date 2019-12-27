@@ -49,7 +49,7 @@ export default {
     add() {
      this.$swal({
                             title: "確認",
-                            text: "作成よろしいでしょうか。",
+                            text: "院内施設を投稿してよろしいでしょうか。",
                             type: "success",
                             width: 350,
                             height: 200,
@@ -70,10 +70,11 @@ export default {
                         this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            title: '作成されました。',
+                            title:'確認済',
+                            text: '院内施設を投稿しました。',
                             // showConfirmButton: false,
                             // timer: 1800,
-                            confirmButtonText: "はい",
+                            confirmButtonText: "閉じる",
                             confirmButtonColor: "#6cb2eb",
                             width: 250,
                             height: 200,
@@ -96,7 +97,7 @@ export default {
                         this.errors.description = "";
                     } else {
                         // console.log('null');
-                        this.errors.description = " 施設の種類が必須です。";
+                        this.errors.description = " 院内施設の種類が必須です。";
                     }
                    if (
                         !this.errors.description

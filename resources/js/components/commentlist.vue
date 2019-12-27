@@ -53,7 +53,7 @@
                                     <div class="col-lg-6 col-md-5 text-right">
                                         <!-- <button class="'btn btn all-btn main-bg-color changeLink'+payment.id" type="button" @click="commentToggle(comment.id)"><span  :id="'icon' + comment.id"  class="fa fa-angle-down"></span></button> -->
                                         <button :class="'btn btn all-btn main-bg-color changeLink'+comment.id" style="min-width: 0px;" @click="commentToggle(comment.id)">
-                                            <i :id="'icon' + comment.id" class="fa fa-angle-down"></i> 見る</button>
+                                            <i :id="'icon' + comment.id" class="fa fa-angle-down"></i> 詳細</button>
                                         <button class="btn confirmed" v-if="comment.status != 0" style ="opacity: 0.5;cursor: not-allowed;" >確認</button>
                                         <button class="btn confirm-borderbtn" v-else @click="commentConfirm(comment.id)">確認</button>
                                         <button class="btn text-danger delete-borderbtn" @click="deleteComment(comment.id)">削除</button>
