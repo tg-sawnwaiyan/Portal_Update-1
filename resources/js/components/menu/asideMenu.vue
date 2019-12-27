@@ -223,7 +223,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                     hidden: this.$auth.check(2)
                 },
                 {
-                    title: 'Logout',
+                    title: 'ログアウト',
                     icon: 'fa fa-lock',
                     // click: this.$auth.logout(),
                 },
