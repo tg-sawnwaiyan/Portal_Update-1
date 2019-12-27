@@ -8903,6 +8903,7 @@ ul.nur-caro-card>li.list-group-item {
     }
     ul.tab-menu-responsive li a i{
         display: block;
+        font-size: 15px;
     }
 }
 @media only screen and (max-width:480px) {
