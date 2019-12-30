@@ -618,6 +618,8 @@
                         this.axios
                             .post('/api/nursing_fav/' + local_storage)
                             .then(response => {
+                                console.log("fav_nursing");
+                                console.log(response.data);
                                 this.fav_nursing = response.data;
                                 for (var i = 0; i < this.fav_nursing.length; i++) {
                                     var j = this.fav_nursing[i].id;
