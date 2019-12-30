@@ -7,7 +7,7 @@
                         <li class="breadcrumb-item">
                             <router-link to="/">ホーム</router-link>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">病院の歴史</li>
+                        <li class="breadcrumb-item active" aria-current="page">最近見た施設リスト</li>
                     </ol>
                 </nav>
             </div>
@@ -160,7 +160,7 @@
                                                         </dl>
                                                     </td>
                                                 </tr>
-                                                <tr>
+                                                <!-- <tr>
                                                         <td v-for="hos_profile in hos_profiles" :key="hos_profile.id">
                                                             <dl>
                                                                 <dt class="text-left">専門医</dt>
@@ -176,7 +176,7 @@
                                                             <dd class="profile_wd text-left m-l-10">{{hos_profile.medical_department}}</dd>
                                                         </dl>
                                                     </td>
-                                                </tr>
+                                                </tr> -->
                                                 
                                             </table>
 

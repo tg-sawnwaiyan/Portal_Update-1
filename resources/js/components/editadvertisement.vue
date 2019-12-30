@@ -5,7 +5,7 @@
               <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <h4 class="page-header header">広告更新</h4>
+                            <h4 class="page-header header">広告編集</h4>
                             <br>
                         </div>
                         <div class="col-md-12">
@@ -63,7 +63,7 @@
                             </div>
                             <input type="hidden" v-model="old_photo" >
                             <div class="form-group">
-                                 <span class="btn main-bg-color white all-btn" @click="clickValidation()" >更新する</span>
+                                 <span class="btn main-bg-color white all-btn" @click="clickValidation()" >更新</span>
                                 <router-link to="/ads" class="btn btn-danger all-btn">キャンセル</router-link>
                             </div>
                                 </form>
@@ -148,7 +148,7 @@ export default {
                 if( `${this.$route.params.id}` && this.errors.length == 0){
                     this.$swal({
                         title: "確認",
-                        text: "更新よろしいでしょうか",
+                        text: "広告を更新してよろしいでしょうか",
                         type: "success",
                         width: 350,
                         height: 200,
@@ -156,7 +156,7 @@ export default {
                         confirmButtonColor: "#6cb2eb",
                         cancelButtonColor: "#b1abab",
                         cancelButtonTextColor: "#000",
-                        confirmButtonText: "更新",
+                        confirmButtonText: "はい",
                         cancelButtonText: "キャンセル",
                         confirmButtonClass: "all-btn",
                         cancelButtonClass: "all-btn"
@@ -194,10 +194,10 @@ export default {
                             this.$swal({
                                 position: 'top-end',
                                 type: 'success',
-                                title: '更新されました。',
+                                title: '広告を更新しました。',
                                 // showConfirmButton: false,
                                 // timer: 1500,
-                                confirmButtonText: "はい",
+                                confirmButtonText: "閉じる",
                                 confirmButtonColor: "#6cb2eb",
                                 width: 250,
                                 height: 200,

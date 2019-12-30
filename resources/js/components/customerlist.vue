@@ -20,7 +20,7 @@
                         </div>
                         <hr />
                         <h5 class="header">{{title}}</h5>
-                        <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
+                        <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデタが消える。</div>
                         <div v-else class="container-fuid">
                             <div v-for="customer in displayItems" :key="customer.id" class="card card-default m-b-20">
 
@@ -206,7 +206,7 @@
                             confirmButtonColor: "#dc3545",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
-                            confirmButtonText: "削除",
+                            confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
@@ -247,17 +247,17 @@
                                     type: "success",
                                     width: 350,
                                     height: 200,
-                                    confirmButtonText: "はい",
+                                    confirmButtonText: "閉じる",
                                     confirmButtonColor: "#dc3545"
                                 });
                             } else {
                                 this.$swal({
                                     title: "確認済",
-                                    text: "Customer is already confirmed!",
+                                    text: "顧客はすでに確認されています。",
                                     type: "warning",
                                     width: 350,
                                     height: 200,
-                                    confirmButtonText: "はい",
+                                    confirmButtonText: "閉じる",
                                     confirmButtonColor: "#dc3545"
                                 });
                             }

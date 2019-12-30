@@ -61,8 +61,10 @@ class registerController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'img' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+
+
+        $request->validate( [
+            "file('img')" => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'name' => 'required|min:3|max:50',
             'email' => 'required|email|unique:customers',
             'phone' => 'max:13',
@@ -71,7 +73,9 @@ class registerController extends Controller
             //'address' =>'required',
             'cities'=> 'required',
             'township'=> 'required',
-            ]);
+        ]);
+        
+  
             // $type = 2;
 
             // if($request->types == '3'){
@@ -183,9 +187,11 @@ class registerController extends Controller
     {
         // return view('auth.passwordReset');
         $getEmail = $request->email;
+       
         $checkmail = User::where('email',$getEmail)->select('*')->get();
-        if(!empty($checkmail)){
-            
+       
+        if(!$checkmail->isEmpty()){
+         
             $getTime = Carbon\Carbon::now();
             $token = md5($getEmail.$getTime);
             $data = array([
@@ -194,12 +200,15 @@ class registerController extends Controller
                 'created_at' => $getTime,
             ]);
             DB::table('password_resets')->insert($data);
-            $checkmail[0]["role"] = $token;
+            $checkmail[0]["role"] = $token;    
             \Mail::to($getEmail)->send(new sendResetPasswordMail($checkmail));
-            return back()->with('reset','Check Your email for reset password');
+            return response()->json(['success' => 'success'], 200);
+            // return back()->with('reset','Check Your email for reset password');
         }
         else{
-            return back()->with('reset','Email Not Exist.');
+          
+            return response()->json(['error' => 'error'], 404);
+            // return back()->with('reset','Email Not Exist.');
         }
     }
 

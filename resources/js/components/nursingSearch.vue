@@ -11,298 +11,298 @@
                             <div class="row map-wrap"  id="searchMap">
                                 <!-- search map and path -->
                                 <div class="col-lg-5 col-md-12 col-sm-12 float-left map-leftwrapper">
-                                <!-- <h2 class="map-header">あなたらしい<br/>暮らしができる<br/> 老人ホームが <br/>見つかります。</h2> -->
-                                <h2 class="map-header">あなたらしい暮ら<br/>しができる。そん<br/>な老人ホームが見 <br/>つかります。</h2>
-                                <!--search input-->
-                                <div class="wrap">
-                                    <div class="search">
-                                        <input type="text"  id="search-free-word" class="searchTerm" placeholder="地名、施設名などを入力（例：東京駅）">
-                                        <button class="searchButton"  @click="searchfreeword" >
-                                        <i class="fas fa-search"></i> 検索
-                                    </button>
+                                    <!-- <h2 class="map-header">あなたらしい<br/>暮らしができる<br/> 老人ホームが <br/>見つかります。</h2> -->
+                                    <h2 class="map-header">あなたらしい暮ら<br/>しができる。そん<br/>な老人ホームが見 <br/>つかります。</h2>
+                                    <!--search input-->
+                                    <div class="wrap">
+                                        <div class="search">
+                                            <input type="text"  id="search-free-word" class="searchTerm" placeholder="地名、施設名などを入力（例：東京駅）">
+                                            <button class="searchButton"  @click="searchfreeword" >
+                                            <i class="fas fa-search"></i> 検索
+                                        </button>
+                                        </div>
                                     </div>
-                                </div>
-                                <!--end search input-->
+                                    <!--end search input-->
                                 </div>
                                 <div class="col-lg-7 col-md-12 col-sm-12 float-right">
-                                <div class="divisions row" id="divisionswrap">
-                                    <img src="/images/img_map1.png" alt="map" class="img-fluid" style="margin:0 auto;">
-                                    <div class="col-sm-2 hokkaido-box">
-                                    <div class="mb-3">
-                                        <div class="division-box">
-                                        <ul class="hokkaido-wrap">
-                                            <a data-info="Hokkaido" class="path Hokkaido card-text" @click="getStateClick">
-                                                <li class="spanclass" id="1" @click="selected = 1" :class="{highlight:selected == 1}">北海道</li>
-                                            </a>
-                                        </ul>
+                                    <div class="divisions row" id="divisionswrap">
+                                        <img src="/images/img_map1.png" alt="map" class="img-fluid" style="margin:0 auto;">
+                                        <div class="col-sm-2 hokkaido-box">
+                                        <div class="mb-3">
+                                            <div class="division-box">
+                                            <ul class="hokkaido-wrap">
+                                                <a data-info="Hokkaido" class="path Hokkaido card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="1" @click="selected = 1" :class="{highlight:selected == 1}">北海道</li>
+                                                </a>
+                                            </ul>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="col-sm-2 tohoku-box">
+                                        <div class="mb-3">
+                                            <div class="division-box">
+                                            <ul class="multiple-boxa">
+                                                <a data-info="Aomori" class="path Aomori card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="2" @click="selected = 2" :class="{highlight:selected == 2}">青森</li>
+                                                </a>
+                                                <a data-info="Iwate" class="path Iwate card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="3" @click="selected = 3" :class="{highlight:selected == 3}">岩手</li>
+                                                </a>
+                                                <a data-info="Akita" class="path Akita card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="5" @click="selected = 5" :class="{highlight:selected == 5}">秋田</li>
+                                                </a>
+
+                                                <a data-info="Miyagi" class="path Miyagi card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="4" @click="selected = 4" :class="{highlight:selected == 4}">宮城</li>
+                                                </a>
+
+                                                <a  data-info="Yamagata" class="path Yamagata card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="6" @click="selected = 6" :class="{highlight:selected == 6}">山形</li>
+                                                </a>
+                                                <a data-info="Fukushima" class="path Fukushima card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="7" @click="selected = 7" :class="{highlight:selected == 7}">福島</li>
+                                                </a>
+                                            </ul>
+                                            </div>
+                                        </div>
+                                        </div>
+
+                                        <div class="col-sm-2 kanto-box">
+                                        <div class="mb-3">
+                                            <!-- <div class="card-header pad-10" style="background-color:#71d5cb">関東</div> -->
+                                            <div class="division-box">
+                                            <ul class="multiple-box">
+                                                <a data-info="Tokyo" class="path Tokyo card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="13" @click="selected = 13" :class="{highlight:selected == 13}">東京</li>
+                                                </a>
+                                                <a data-info="Kanagawa" class="path Kanagawa card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="14" @click="selected = 14" :class="{highlight:selected == 14}">神奈川</li>
+                                                </a>
+
+                                                <a data-info="Saitama" class="path Saitama card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="11" @click="selected = 11" :class="{highlight:selected == 11}" >埼玉</li>
+                                                </a>
+                                                <a data-info="Chiba" class="path Chiba card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="12" @click="selected = 12" :class="{highlight:selected == 12}">千葉</li>
+                                                </a>
+
+                                                <a data-info="Gunma" class="path Gunma card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="10" @click="selected = 10" :class="{highlight:selected == 10}">群馬</li>
+                                                </a>
+
+                                                <a data-info="Ibaraki" class="path Ibaraki card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="8"  @click="selected = 8" :class="{highlight:selected == 8}">茨城</li>
+                                                </a>
+
+                                                <a data-info="Tochigi" class="path Tochigi card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="9" @click="selected = 9" :class="{highlight:selected == 9}">栃木</li>
+                                                </a>
+
+                                                <a data-info="Yamanashi" class="path Yamanashi card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="19" @click="selected = 19" :class="{highlight:selected == 19}">山梨</li>
+                                                </a>
+                                            </ul>
+                                            </div>
+                                        </div>
+                                        </div>
+
+                                        <div class="col-sm-3 hokuriku-box">
+                                        <div class="mb-3">
+                                            <!-- <div class="card-header pad-10" style="background-color:#75b777">北陸</div> -->
+                                            <div class="division-box">
+                                            <ul class="">
+                                                <a data-info="Niigata" class="path Niigata card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="15" @click="selected = 15" :class="{highlight:selected == 15}" >新潟</li>
+                                                </a>
+                                                <a data-info="Nagano" class="path Nagano card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="20" @click="selected = 20" :class="{highlight:selected == 20}">長野</li>
+                                                </a>
+
+                                                <a data-info="Toyama" class="path Toyama card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="16" @click="selected = 16" :class="{highlight:selected == 16}">富山</li>
+                                                </a>
+
+                                                <a data-info="Ishikawa" class="path Ishikawa card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="17" @click="selected = 17" :class="{highlight:selected == 17}">石川</li>
+                                                </a>
+
+                                                <a data-info="Fukui" class="path Fukui card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="18" @click="selected = 18" :class="{highlight:selected == 18}">福井</li>
+                                                </a>
+
+                                            </ul>
+                                            </div>
+                                        </div>
+                                        </div>
+
+                                        <div class="col-sm-3 tokai-box">
+                                        <div class="mb-3">
+                                            <!-- <div class="card-header pad-10" style="background-color:#c0c743">東海甲信</div> -->
+                                            <div class="division-box">
+                                            <ul class="multiple-boxa">
+                                                <a data-info="Aichi" class="path Aichi card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="23" @click="selected = 23" :class="{highlight:selected == 23}">愛知</li>
+                                                </a>
+
+
+                                                <a data-info="Shizuoka" class="path Shizuoka card-text" @click="getStateClick" >
+                                                    <li class="spanclass" id="22" @click="selected = 22" :class="{highlight:selected == 22}">静岡</li>
+                                                </a>
+
+                                                <a id="21" data-info="Gifu" class="path Gifu card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="21" @click="selected = 21" :class="{highlight:selected == 21}">岐阜</li>
+                                                </a>
+
+                                                <a data-info="Mie" class="path Mie card-text" @click="getStateClick">
+                                                    <li class="spanclass"  id="24" @click="selected = 24" :class="{highlight:selected == 24}">三重</li>
+                                                </a>
+                                            </ul>
+                                            </div>
+                                        </div>
+                                        </div>
+
+                                        <div class="col-sm-4 kinki-box">
+                                        <div class="mb-3">
+                                            <!-- <div class="card-header pad-10" style="background:#efb838">近畿</div> -->
+                                            <div class="division-box">
+                                            <ul class="multiple-boxa">
+                                                <a data-info="Osaka" class="path Osaka card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="27" @click="selected = 27" :class="{highlight:selected == 27}">大阪</li>
+                                                </a>
+
+                                                <a data-info="Hyogo" class="path Hyogo card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="28" @click="selected = 28" :class="{highlight:selected == 28}">兵庫</li>
+                                                </a>
+
+                                                <a data-info="Kyoto" class="path Kyoto card-text" @click="getStateClick">
+                                                    <li class="spanclass"  id="26" @click="selected = 26" :class="{highlight:selected == 26}">京都</li>
+                                                </a>
+
+                                                <a data-info="Nara" class="path Nara card-text" @click="getStateClick">
+                                                    <li class="spanclass"  id="29" @click="selected = 29" :class="{highlight:selected == 29}">奈良</li>
+                                                </a>
+
+                                                <a data-info="Shiga" class="path Shiga card-text" @click="getStateClick">
+                                                    <li class="spanclass"  id="25" @click="selected = 25" :class="{highlight:selected == 25}">滋賀</li>
+                                                </a>
+
+                                                <a data-info="Wakayama" class="path Wakayama card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="30" @click="selected = 30" :class="{highlight:selected == 30}">和歌山</li>
+                                                </a>
+                                            </ul>
+                                            </div>
+                                        </div>
+                                        </div>
+
+                                        <div class="col-sm-3 chugoku-box">
+                                        <div class="mb-3">
+                                            <!-- <div class="card-header pad-10" style="background:#f58c3f;">中国</div> -->
+                                            <div class="division-box">
+                                            <ul class="">
+                                                <a data-info="Okayama" class="path Okayama card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="33" @click="selected = 33" :class="{highlight:selected == 33}">岡山</li>
+                                                </a>
+
+                                                <a data-info="Hiroshima" class="path Hiroshima card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="34" @click="selected = 34" :class="{highlight:selected == 34}">広島</li>
+                                                </a>
+
+                                                <a data-info="Yamaguchi" class="path Yamaguchi card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="35" @click="selected = 35" :class="{highlight:selected == 35}">山口</li>
+                                                </a>
+
+                                                <a data-info="Shimane" class="path Shimane card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="32" @click="selected = 32" :class="{highlight:selected == 32}">島根</li>
+                                                </a>
+
+                                                <a data-info="Tottori" class="path Tottori card-text" @click="getStateClick">
+                                                    <li class="spanclass"  id="31" @click="selected = 31" :class="{highlight:selected == 31}">鳥取</li>
+                                                </a>
+
+
+                                            </ul>
+                                            </div>
+                                        </div>
+                                        </div>
+
+                                        <div class="col-sm-3 shikoku-box">
+                                        <div class="mb-3">
+                                            <!-- <div class="card-header pad-10" style="background:#f1a296;">四国</div> -->
+                                            <div class="division-box">
+                                            <ul class="multiple-boxa">
+                                                <a data-info="Tokushima" class="path Tokushima card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="36" @click="selected = 36" :class="{highlight:selected == 36}">徳島</li>
+                                                </a>
+
+                                                <a data-info="Kagawa" class="path Kagawa card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="37" @click="selected = 37" :class="{highlight:selected == 37}">香川</li>
+                                                </a>
+
+                                                <a data-info="Kochi" class="path Kochi card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="39" @click="selected = 39" :class="{highlight:selected == 39}">高知</li>
+                                                </a>
+
+                                                <a data-info="Ehime" class="path Ehime card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="38" @click="selected = 38" :class="{highlight:selected == 38}">愛媛</li>
+                                                </a>
+
+                                            </ul>
+                                            </div>
+                                        </div>
+                                        </div>
+
+                                        <div class="col-sm-2 kyushu-box">
+                                        <div class="mb-3">
+                                            <!-- <div class="card-header pad-10" style="background-color:#e77a72;">九州・沖縄</div> -->
+                                            <div class="division-box">
+                                            <ul class="">
+                                                <a data-info="Fukuoka" class="path Fukuoka card-text" @click="getStateClick">
+                                                <li class="spanclass" id="40" @click="selected = 40" :class="{highlight:selected == 40}">福岡</li>
+                                                </a>
+
+                                                <a data-info="Saga" class="path Saga card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="41" @click="selected = 41" :class="{highlight:selected == 41}">佐賀</li>
+                                                </a>
+
+                                                <a data-info="Nagasaki" class="path Nagasaki card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="42" @click="selected = 42" :class="{highlight:selected == 42}">長崎</li>
+                                                </a>
+
+                                                <a data-info="Oita" class="path Oita card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="44" @click="selected = 44" :class="{highlight:selected == 44}">大分</li>
+                                                </a>
+
+                                            <a data-info="Kumamoto" class="path Kumamoto card-text" @click="getStateClick">
+                                                <li class="spanclass" id="43" @click="selected = 43" :class="{highlight:selected == 43}">熊本</li>
+                                                </a>
+
+
+                                                <a data-info="Miyazaki" class="path Miyazaki card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="45" @click="selected = 45" :class="{highlight:selected == 45}">宮崎</li>
+                                                </a>
+
+                                                <a data-info="Kagoshima" class="path Kagoshima card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="46" @click="selected = 46" :class="{highlight:selected == 46}">鹿児島</li>
+                                                </a>
+
+                                            </ul>
+                                            </div>
+                                        </div>
+                                        </div>
+
+                                        <div class="col-sm-2 okinawa-box">
+                                        <div class="mb-3">
+                                            <!-- <div class="card-header pad-10" style="background-color:#e77a72;">九州・沖縄</div> -->
+                                            <div class="division-box">
+                                            <ul class="">
+                                                <a data-info="Okinawa" class="path Okinawa card-text" @click="getStateClick">
+                                                    <li class="spanclass" id="47" @click="selected = 47" :class="{highlight:selected == 47}">沖縄</li>
+                                                </a>
+                                            </ul>
+                                            </div>
+                                        </div>
                                         </div>
                                     </div>
-                                    </div>
-                                    <div class="col-sm-2 tohoku-box">
-                                    <div class="mb-3">
-                                        <div class="division-box">
-                                        <ul class="multiple-boxa">
-                                            <a data-info="Aomori" class="path Aomori card-text" @click="getStateClick">
-                                                <li class="spanclass" id="2" @click="selected = 2" :class="{highlight:selected == 2}">青森</li>
-                                            </a>
-                                            <a data-info="Iwate" class="path Iwate card-text" @click="getStateClick">
-                                                <li class="spanclass" id="3" @click="selected = 3" :class="{highlight:selected == 3}">岩手</li>
-                                            </a>
-                                            <a data-info="Akita" class="path Akita card-text" @click="getStateClick">
-                                                <li class="spanclass" id="5" @click="selected = 5" :class="{highlight:selected == 5}">秋田</li>
-                                            </a>
-
-                                            <a data-info="Miyagi" class="path Miyagi card-text" @click="getStateClick">
-                                                <li class="spanclass" id="4" @click="selected = 4" :class="{highlight:selected == 4}">宮城</li>
-                                            </a>
-
-                                            <a  data-info="Yamagata" class="path Yamagata card-text" @click="getStateClick">
-                                                <li class="spanclass" id="6" @click="selected = 6" :class="{highlight:selected == 6}">山形</li>
-                                            </a>
-                                            <a data-info="Fukushima" class="path Fukushima card-text" @click="getStateClick">
-                                                <li class="spanclass" id="7" @click="selected = 7" :class="{highlight:selected == 7}">福島</li>
-                                            </a>
-                                        </ul>
-                                        </div>
-                                    </div>
-                                    </div>
-
-                                    <div class="col-sm-2 kanto-box">
-                                    <div class="mb-3">
-                                        <!-- <div class="card-header pad-10" style="background-color:#71d5cb">関東</div> -->
-                                        <div class="division-box">
-                                        <ul class="multiple-box">
-                                            <a data-info="Tokyo" class="path Tokyo card-text" @click="getStateClick">
-                                                <li class="spanclass" id="13" @click="selected = 13" :class="{highlight:selected == 13}">東京</li>
-                                            </a>
-                                            <a data-info="Kanagawa" class="path Kanagawa card-text" @click="getStateClick">
-                                                <li class="spanclass" id="14" @click="selected = 14" :class="{highlight:selected == 14}">神奈川</li>
-                                            </a>
-
-                                            <a data-info="Saitama" class="path Saitama card-text" @click="getStateClick">
-                                                <li class="spanclass" id="11" @click="selected = 11" :class="{highlight:selected == 11}" >埼玉</li>
-                                            </a>
-                                            <a data-info="Chiba" class="path Chiba card-text" @click="getStateClick">
-                                                <li class="spanclass" id="12" @click="selected = 12" :class="{highlight:selected == 12}">千葉</li>
-                                            </a>
-
-                                            <a data-info="Gunma" class="path Gunma card-text" @click="getStateClick">
-                                                <li class="spanclass" id="10" @click="selected = 10" :class="{highlight:selected == 10}">群馬</li>
-                                            </a>
-
-                                            <a data-info="Ibaraki" class="path Ibaraki card-text" @click="getStateClick">
-                                                <li class="spanclass" id="8"  @click="selected = 8" :class="{highlight:selected == 8}">茨城</li>
-                                            </a>
-
-                                            <a data-info="Tochigi" class="path Tochigi card-text" @click="getStateClick">
-                                                <li class="spanclass" id="9" @click="selected = 9" :class="{highlight:selected == 9}">栃木</li>
-                                            </a>
-
-                                            <a data-info="Yamanashi" class="path Yamanashi card-text" @click="getStateClick">
-                                                <li class="spanclass" id="19" @click="selected = 19" :class="{highlight:selected == 19}">山梨</li>
-                                            </a>
-                                        </ul>
-                                        </div>
-                                    </div>
-                                    </div>
-
-                                    <div class="col-sm-3 hokuriku-box">
-                                    <div class="mb-3">
-                                        <!-- <div class="card-header pad-10" style="background-color:#75b777">北陸</div> -->
-                                        <div class="division-box">
-                                        <ul class="">
-                                            <a data-info="Niigata" class="path Niigata card-text" @click="getStateClick">
-                                                <li class="spanclass" id="15" @click="selected = 15" :class="{highlight:selected == 15}" >新潟</li>
-                                            </a>
-                                            <a data-info="Nagano" class="path Nagano card-text" @click="getStateClick">
-                                                <li class="spanclass" id="20" @click="selected = 20" :class="{highlight:selected == 20}">長野</li>
-                                            </a>
-
-                                            <a data-info="Toyama" class="path Toyama card-text" @click="getStateClick">
-                                                <li class="spanclass" id="16" @click="selected = 16" :class="{highlight:selected == 16}">富山</li>
-                                            </a>
-
-                                            <a data-info="Ishikawa" class="path Ishikawa card-text" @click="getStateClick">
-                                                <li class="spanclass" id="17" @click="selected = 17" :class="{highlight:selected == 17}">石川</li>
-                                            </a>
-
-                                            <a data-info="Fukui" class="path Fukui card-text" @click="getStateClick">
-                                                <li class="spanclass" id="18" @click="selected = 18" :class="{highlight:selected == 18}">福井</li>
-                                            </a>
-
-                                        </ul>
-                                        </div>
-                                    </div>
-                                    </div>
-
-                                    <div class="col-sm-3 tokai-box">
-                                    <div class="mb-3">
-                                        <!-- <div class="card-header pad-10" style="background-color:#c0c743">東海甲信</div> -->
-                                        <div class="division-box">
-                                        <ul class="multiple-boxa">
-                                            <a data-info="Aichi" class="path Aichi card-text" @click="getStateClick">
-                                                <li class="spanclass" id="23" @click="selected = 23" :class="{highlight:selected == 23}">愛知</li>
-                                            </a>
-
-
-                                            <a data-info="Shizuoka" class="path Shizuoka card-text" @click="getStateClick" >
-                                                <li class="spanclass" id="22" @click="selected = 22" :class="{highlight:selected == 22}">静岡</li>
-                                            </a>
-
-                                            <a id="21" data-info="Gifu" class="path Gifu card-text" @click="getStateClick">
-                                                <li class="spanclass" id="21" @click="selected = 21" :class="{highlight:selected == 21}">岐阜</li>
-                                            </a>
-
-                                            <a data-info="Mie" class="path Mie card-text" @click="getStateClick">
-                                                <li class="spanclass"  id="24" @click="selected = 24" :class="{highlight:selected == 24}">三重</li>
-                                            </a>
-                                        </ul>
-                                        </div>
-                                    </div>
-                                    </div>
-
-                                    <div class="col-sm-4 kinki-box">
-                                    <div class="mb-3">
-                                        <!-- <div class="card-header pad-10" style="background:#efb838">近畿</div> -->
-                                        <div class="division-box">
-                                        <ul class="multiple-boxa">
-                                            <a data-info="Osaka" class="path Osaka card-text" @click="getStateClick">
-                                                <li class="spanclass" id="27" @click="selected = 27" :class="{highlight:selected == 27}">大阪</li>
-                                            </a>
-
-                                            <a data-info="Hyogo" class="path Hyogo card-text" @click="getStateClick">
-                                                <li class="spanclass" id="28" @click="selected = 28" :class="{highlight:selected == 28}">兵庫</li>
-                                            </a>
-
-                                            <a data-info="Kyoto" class="path Kyoto card-text" @click="getStateClick">
-                                                <li class="spanclass"  id="26" @click="selected = 26" :class="{highlight:selected == 26}">京都</li>
-                                            </a>
-
-                                            <a data-info="Nara" class="path Nara card-text" @click="getStateClick">
-                                                <li class="spanclass"  id="29" @click="selected = 29" :class="{highlight:selected == 29}">奈良</li>
-                                            </a>
-
-                                            <a data-info="Shiga" class="path Shiga card-text" @click="getStateClick">
-                                                <li class="spanclass"  id="25" @click="selected = 25" :class="{highlight:selected == 25}">滋賀</li>
-                                            </a>
-
-                                            <a data-info="Wakayama" class="path Wakayama card-text" @click="getStateClick">
-                                                <li class="spanclass" id="30" @click="selected = 30" :class="{highlight:selected == 30}">和歌山</li>
-                                            </a>
-                                        </ul>
-                                        </div>
-                                    </div>
-                                    </div>
-
-                                    <div class="col-sm-3 chugoku-box">
-                                    <div class="mb-3">
-                                        <!-- <div class="card-header pad-10" style="background:#f58c3f;">中国</div> -->
-                                        <div class="division-box">
-                                        <ul class="">
-                                            <a data-info="Okayama" class="path Okayama card-text" @click="getStateClick">
-                                                <li class="spanclass" id="33" @click="selected = 33" :class="{highlight:selected == 33}">岡山</li>
-                                            </a>
-
-                                            <a data-info="Hiroshima" class="path Hiroshima card-text" @click="getStateClick">
-                                                <li class="spanclass" id="34" @click="selected = 34" :class="{highlight:selected == 34}">広島</li>
-                                            </a>
-
-                                            <a data-info="Yamaguchi" class="path Yamaguchi card-text" @click="getStateClick">
-                                                <li class="spanclass" id="35" @click="selected = 35" :class="{highlight:selected == 35}">山口</li>
-                                            </a>
-
-                                            <a data-info="Shimane" class="path Shimane card-text" @click="getStateClick">
-                                                <li class="spanclass" id="32" @click="selected = 32" :class="{highlight:selected == 32}">島根</li>
-                                            </a>
-
-                                            <a data-info="Tottori" class="path Tottori card-text" @click="getStateClick">
-                                                <li class="spanclass"  id="31" @click="selected = 31" :class="{highlight:selected == 31}">鳥取</li>
-                                            </a>
-
-
-                                        </ul>
-                                        </div>
-                                    </div>
-                                    </div>
-
-                                    <div class="col-sm-3 shikoku-box">
-                                    <div class="mb-3">
-                                        <!-- <div class="card-header pad-10" style="background:#f1a296;">四国</div> -->
-                                        <div class="division-box">
-                                        <ul class="multiple-boxa">
-                                            <a data-info="Tokushima" class="path Tokushima card-text" @click="getStateClick">
-                                                <li class="spanclass" id="36" @click="selected = 36" :class="{highlight:selected == 36}">徳島</li>
-                                            </a>
-
-                                            <a data-info="Kagawa" class="path Kagawa card-text" @click="getStateClick">
-                                                <li class="spanclass" id="37" @click="selected = 37" :class="{highlight:selected == 37}">香川</li>
-                                            </a>
-
-                                            <a data-info="Kochi" class="path Kochi card-text" @click="getStateClick">
-                                                <li class="spanclass" id="39" @click="selected = 39" :class="{highlight:selected == 39}">高知</li>
-                                            </a>
-
-                                            <a data-info="Ehime" class="path Ehime card-text" @click="getStateClick">
-                                                <li class="spanclass" id="38" @click="selected = 38" :class="{highlight:selected == 38}">愛媛</li>
-                                            </a>
-
-                                        </ul>
-                                        </div>
-                                    </div>
-                                    </div>
-
-                                    <div class="col-sm-2 kyushu-box">
-                                    <div class="mb-3">
-                                        <!-- <div class="card-header pad-10" style="background-color:#e77a72;">九州・沖縄</div> -->
-                                        <div class="division-box">
-                                        <ul class="">
-                                            <a data-info="Fukuoka" class="path Fukuoka card-text" @click="getStateClick">
-                                            <li class="spanclass" id="40" @click="selected = 40" :class="{highlight:selected == 40}">福岡</li>
-                                            </a>
-
-                                            <a data-info="Saga" class="path Saga card-text" @click="getStateClick">
-                                                <li class="spanclass" id="41" @click="selected = 41" :class="{highlight:selected == 41}">佐賀</li>
-                                            </a>
-
-                                            <a data-info="Nagasaki" class="path Nagasaki card-text" @click="getStateClick">
-                                                <li class="spanclass" id="42" @click="selected = 42" :class="{highlight:selected == 42}">長崎</li>
-                                            </a>
-
-                                            <a data-info="Oita" class="path Oita card-text" @click="getStateClick">
-                                                <li class="spanclass" id="44" @click="selected = 44" :class="{highlight:selected == 44}">大分</li>
-                                            </a>
-
-                                        <a data-info="Kumamoto" class="path Kumamoto card-text" @click="getStateClick">
-                                            <li class="spanclass" id="43" @click="selected = 43" :class="{highlight:selected == 43}">熊本</li>
-                                            </a>
-
-
-                                            <a data-info="Miyazaki" class="path Miyazaki card-text" @click="getStateClick">
-                                                <li class="spanclass" id="45" @click="selected = 45" :class="{highlight:selected == 45}">宮崎</li>
-                                            </a>
-
-                                            <a data-info="Kagoshima" class="path Kagoshima card-text" @click="getStateClick">
-                                                <li class="spanclass" id="46" @click="selected = 46" :class="{highlight:selected == 46}">鹿児島</li>
-                                            </a>
-
-                                        </ul>
-                                        </div>
-                                    </div>
-                                    </div>
-
-                                    <div class="col-sm-2 okinawa-box">
-                                    <div class="mb-3">
-                                        <!-- <div class="card-header pad-10" style="background-color:#e77a72;">九州・沖縄</div> -->
-                                        <div class="division-box">
-                                        <ul class="">
-                                            <a data-info="Okinawa" class="path Okinawa card-text" @click="getStateClick">
-                                                <li class="spanclass" id="47" @click="selected = 47" :class="{highlight:selected == 47}">沖縄</li>
-                                            </a>
-                                        </ul>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
                                 </div>
 
                                 <!-- <div class="map">
@@ -310,9 +310,9 @@
 
                             </div>
                             <section id="map-responsive">
-                                <div>
+                                <!-- <div>
                                 
-                                </div>
+                                </div> -->
                                 <div class="freeword-responsive"> 
                                     <h3 class="map-resicon">
                                     <div class="map-text-wrapper">
@@ -638,10 +638,10 @@
                                                     <div>
                                                         <div></div><div></div>
                                                     </div>
-                                                    </div>
-                                                    <div class="col-12 overlay" style="z-index:9"></div>
                                                 </div>
-                                        <div id="mymap"></div>
+                                                <div class="col-12 overlay" style="z-index:9"></div>
+                                            </div>
+                                            <div id="mymap"></div>
                                         </div>
                                         <!-- <div id="mymap" class="select m-t-10 m-b-10"></div> -->
                                     </div>
@@ -880,11 +880,17 @@
                                                     <h5 class="nur-tit">
                                                         <router-link :to="{name: 'profile', params: {cusid:nus.cus_id, type: 'nursing'}}" class="pseudolink" style="font-weight:bold;">{{nus.name}}</router-link>
                                                     </h5>
-                                                    <div class="d-flex" v-for="(fac,index) in fac_types" :key="index+'-'+fac.description+'-'+nus.id">
-                                                    <span v-if="fac.id == nus.fac_type" class="fac_list">
-                                                        {{fac.description}}
-                                                    </span>
+                                                    
+                                                    <div class="d-flex" >
+                                                        
+                                                        <span v-for="(fac,index) in fac_types" :key="index+'-'+fac.description+'-'+nus.id">                                                    
+                                                            <span v-if="fac.id == nus.fac_type" class="fac_list">
+                                                                {{fac.description}}
+                                                            </span>
+                                                        </span>
+                                                        <span class="nur_date"><span style="font-weight:bold;color:green;">開設年月日 :</span> {{nus.date_of_establishment}}</span>
                                                     </div>
+                                                        
                                                     </div>
 
                                                     <div class="col-4 text-right">
@@ -894,10 +900,9 @@
                                                 </div>
                                             </div>
 
-                                            <p class="m-b-10"><span class="job_ico"><i class="fa fa-map-signs"></i></span>{{nus.city_name}} <i class="fas fa-angle-double-right" style="color:#b9b5b5;"></i> {{nus.township_name}}</p>
+                                            <p class="m-b-10"><span class="job_ico"><i class="fa fa-map-signs"></i></span>{{nus.city_name}} <i class="fas fa-angle-double-right" style="color:#b9b5b5;"></i> {{nus.township_name}} </p>
                                             <div class="col-12 pad-free m-b-10 clearfix">
                                                 <span class="num-room"> {{nus.num_rooms}} </span>
-                                                <span class="nur_date">{{nus.date_of_establishment}}</span>
                                                 <p class="hos_phone float-right" v-if="nus.phone"><span class="circle-phone" ><i class="fa fa-phone-alt"></i></span><span class="phone-no">{{nus.phone}}</span></p>
                                             </div>
                                             <div class="job-body row  clearfix">
@@ -932,13 +937,21 @@
                                                                 </font>
                                                             </td>
                                                         </tr>
-                                                        <tr>
+                                                        <!-- <tr>
                                                         <td style="width:30%;"><span class="job_ico"><i class="fa fa-envelope"></i></span>メールアドレス</td>
                                                         <td>{{nus.email}}</td>
-                                                        </tr>
+                                                        </tr> -->
                                                         <tr>
                                                         <td style="width:30%;"><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>住所</td>
                                                         <td>{{nus.address}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                        <td style="width:30%;"><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>アクセス</td>
+                                                        <td><p v-html="nus.access"></p></td>
+                                                        </tr>
+                                                        <tr>
+                                                        <td style="width:30%;"><span class="job_ico"><i class="fa fa-building"></i></span>運営事業者</td>
+                                                        <td>{{nus.operator}}</td>
                                                         </tr>
                                                         <!-- <tr>
                                                         <td style="width:30%;"><span class="job_ico">&#xa5;</span>入居時費用</td>
@@ -1333,6 +1346,12 @@
             },
             // map onclick function
             getStateClick(e,lat,lng) {
+                $('.select').removeClass('select');
+                $('#searchMap').addClass('select');
+                $('#showSearchMap').removeClass('select');
+                $('#filter').removeClass('select');
+                // this.$loading(true);
+                this.loading = true;
                localStorage.setItem('features', 'nursing');
                 this.ci = false;
                 this.township_id= -1;
@@ -1379,6 +1398,7 @@
             // map onclick function
             // map change dropdown function
             nursingSearchData(index){
+                this.loading = true;
                 this.ci = false;
                 if(index == 1) //if choose city
                 {
@@ -1481,16 +1501,11 @@
                var township_name = townshipName;
              
                if(this.ci == true && (this.townshipID[0] == "-1" || this.townshipID.length == 0))
-               {
-                   
-                    this.loading = false;
-                    
+               {                   
+                    this.loading = false;                    
                }
-               else if(this.ci == false && (this.townshipID[0] == 0 || this.townshipID[0] == "-1" || this.townshipID.length == 0)){
-             
-                    this.loading = false;
+               else if(this.ci == false && (this.townshipID[0] == 0 || this.townshipID[0] == "-1" || this.townshipID.length == 0)){             
                         this.axios.get("/api/cityJson/"+theCity).then(respon => {
-                        this.loading = false
                             var city_coordinates = respon.data
                             this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
                             this.boundariesGoogleMap(lat,lng,this.coordinate);            
@@ -1500,7 +1515,6 @@
                 else{
            
                     this.axios.get('/api/townshipJson/'+township_name).then(res => {
-                        this.loading = false
                         var city_coordinates = res.data
                         this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
                          this.boundariesGoogleMap(lat,lng,this.coordinate);       
@@ -1509,7 +1523,7 @@
             },
 
             boundariesGoogleMap(lat,lng,coor){        
-                 
+                
                 var data = coor.reduce((acc, val) => acc.concat(val), []);    
                 for (let i = 0; i < data.length; i++) {
                     this.map.data.addGeoJson(data[i]); 
@@ -1530,6 +1544,7 @@
                 fillOpacity: 0.1,
                 strokeWeight: 1
                 })
+                this.loading = false;
             },
 
             infoWindow(item, mmarker){

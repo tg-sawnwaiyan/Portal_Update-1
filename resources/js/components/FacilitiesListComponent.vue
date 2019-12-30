@@ -4,7 +4,7 @@
             <div class="row m-b-15" v-if="!norecord_msg">
                 <div class="col-md-12">
                     <router-link class="float-right main-bg-color create-btn all-btn" style="color: blue;" to="/createfacility">
-                        <i class="fas fa-plus-circle"></i> 施設新規作成
+                        <i class="fas fa-plus-circle"></i> 院内施設新規作成
                     </router-link>
                 </div>
                 <!-- <a href="/joboffer" class="float-right" style="color: blue;"></a> -->
@@ -25,14 +25,14 @@
                         </a>
                     </div>
                     <div v-else class="container-fuid">
-                        <h4 class="main-color m-b-10">院内施設(病院)検索</h4>
+                        <h4 class="main-color m-b-10">院内施設検索</h4>
                         <div class="row">
                             <div class="col-md-12">
                                 <input type="text" class="form-control" placeholder="施設検索" id="search-item" @keyup="searchFacility()" />
                             </div>
                         </div>
                         <hr />
-                        <h5 class="header">院内施設(病院)一覧</h5>
+                        <h5 class="header">院内施設一覧</h5>
                         <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデタが消える。</div>
                         <div v-else class="container-fuid">
                             <div class="card card-default m-b-20" v-for="facility in displayItems" :key="facility.id">

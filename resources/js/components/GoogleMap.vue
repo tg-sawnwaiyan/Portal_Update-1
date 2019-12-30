@@ -50,11 +50,9 @@
                     <div class="row">
                       <div class="col-md-12" v-if="status === '0'">
                         <input type="text" id="city" name="city" class="old-city form-control white-bg-color" placeholder="市区町村、番地を入力してください。" v-model="address"> 
-                                              
                       </div>
                       <div class="col-md-12" v-else>
                         <input type="text" id="city" name="city" class="city form-control white-bg-color" placeholder="市区町村、番地を入力してください。" v-model="comment.city">
-                        
                       </div>
                       <!-- <div class="col-md-2">
                         <span class="btn news-post-btn all-btn" @click="searchAddress()">番地検索</span>
@@ -62,7 +60,26 @@
                     </div>
                     <p>例）東京都千代田区丸の内1-9-1　グラントウキョウノースタワー40階</p>                                    
                   </div>
-                </div>           
+                  
+                </div>  
+                <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-5">
+                        <label>緯度<span class="error">*</span></label>
+                        <input type="text" class="form-control white-bg-color" name="new_lat" v-model="new_lat" id="new_lat">
+                      </div>
+                      <div class="col-md-5">
+                        <label>経度<span class="error">*</span></label>
+                        <input type="text" class="form-control white-bg-color" name="new_long" v-model="new_long" id="new_long">
+                      </div>
+                      <div class="col-md-2">
+                        <span style="position:absolute;bottom:0px;" class="btn news-post-btn all-btn" @click="addressSelect(Number(new_lat),Number(new_long))">番地検索</span>
+                      </div>
+                    </div>
+                  </div>
+                <!-- <input type="text" name="new_lat" v-model="new_lat" id="new_lat">
+                <input type="text" name="new_long" v-model="new_long" id="new_long">
+                <span class="btn btn-primary" @click="addressSelect(Number(new_lat),Number(new_long))">Add</span>          -->
 
                 <!-- <label>場所検索はこちら</label>
                 <gmap-autocomplete
@@ -95,8 +112,7 @@
             
           </GmapMap>
           
-          <input type="hidden" name="new_lat" v-model="new_lat" id="new_lat">
-          <input type="hidden" name="new_long" v-model="new_long" id="new_long">
+          
         </div>
 </template>
 <script>
@@ -195,29 +211,29 @@ export default {
       $('#new_long').val(e.latLng.lng());
     },
 
-    setPlace(place) {
-      this.currentPlace = place;
-      this.addMarker();
-    },
+    // setPlace(place) {
+    //   this.currentPlace = place;
+    //   this.addMarker();
+    // },
 
     //Auto complete Search
-    addMarker() {
-      this.markers.shift()
-      if (this.currentPlace) {
-        const marker = {
-          lat: this.currentPlace.geometry.location.lat(),
-          lng: this.currentPlace.geometry.location.lng()
-        };
-        this.markers.push({ position: marker });
-        this.places.push(this.currentPlace);
-        this.center = marker;
-        this.currentPlace = null;
+    // addMarker() {
+    //   this.markers.shift()
+    //   if (this.currentPlace) {
+    //     const marker = {
+    //       lat: this.currentPlace.geometry.location.lat(),
+    //       lng: this.currentPlace.geometry.location.lng()
+    //     };
+    //     this.markers.push({ position: marker });
+    //     this.places.push(this.currentPlace);
+    //     this.center = marker;
+    //     this.currentPlace = null;
 
-        this.new_lat = marker.lat;
-        this.new_long = marker.lng;
+    //     this.new_lat = marker.lat;
+    //     this.new_long = marker.lng;
         
-      }
-    },
+    //   }
+    // },
     geolocate: function() {
       navigator.geolocation.getCurrentPosition(position => {
         this.center = {

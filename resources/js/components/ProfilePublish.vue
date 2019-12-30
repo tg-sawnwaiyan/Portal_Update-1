@@ -209,6 +209,15 @@
                                             </td>
                                             <td v-else> - </td>
                                         </tr>
+                                        <tr>
+                                            <th  class="custom-bg-color">
+                                                <font>運営事業者</font>
+                                            </th>
+                                            <td v-if="cust.operator">
+                                                <font>{{cust.operator}}</font>
+                                            </td>
+                                            <td v-else> - </td>
+                                        </tr>
                                         <!-- <tr>
                                             <th  class="custom-bg-color">
                                                 <font>駅</font>
@@ -797,7 +806,7 @@
                    
                    <p class="no-data-color pb-3 no-data-size">
                        
-                       表示される口コミがありません。</p>
+                       口コミはありません。</p>
                    <div class="comment-btn-wrapper">
                         <p><span class="nocomment-phone" >お電話でのご相談 </span></p>
                          <p class="red  no-comment-title"><i class="fas fa-phone-alt phone-color"></i><a class="font-weight-bold" href="tel:0120591165">0120-59-1165</a><span class="fz12">（受付時間 平日 9：30-20：00）</span></p>
@@ -1332,7 +1341,7 @@
                    
                    <p class="no-data-color pb-3 no-data-size">
                        
-                       表示される口コミがありません。</p>
+                       口コミはありません。</p>
                    <div class="comment-btn-wrapper">
                         <p><span class="nocomment-phone" >お電話でのご相談 </span></p>
                          <p class="red  no-comment-title"><i class="fas fa-phone-alt phone-color"></i><a class="font-weight-bold" href="tel:0120591165">0120-59-1165</a><span class="fz12">（受付時間 平日 9：30-20：00）</span></p>
