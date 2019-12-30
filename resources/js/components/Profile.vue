@@ -97,7 +97,7 @@ export default {
     return {
         type: null,
         cusid: null,
-        btntype: "create",
+        btntype: "",
         width: "",
         // login_status : '0',
         loginuser: true,
@@ -112,6 +112,7 @@ export default {
   created() {
     this.axios.get('/api/user').then(response => {
         if(this.visit == 'false'){
+            this.btntype = "create";
             this.pro_id = response.data.lat_lng[0].id;
             this.loginuser = true;
             console.log(response.data)
@@ -135,6 +136,7 @@ export default {
             this.cusid = response.data.user.customer_id;
         }
         else{
+            this.btntype = "view";
             this.loginuser = false;
             if (this.$route.params.type) {
             this.type = this.$route.params.type;
@@ -201,7 +203,7 @@ export default {
         }
         
     }).catch((error) => {
-
+        this.btntype = "view";
         this.loginuser = false;
         if (this.$route.params.type) {
         this.type = this.$route.params.type;

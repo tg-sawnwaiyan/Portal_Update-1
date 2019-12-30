@@ -16,7 +16,7 @@
                                     <!--search input-->
                                     <div class="wrap">
                                         <div class="search">
-                                            <input type="text"  id="search-free-word" class="searchTerm" placeholder="地名、施設名などを入力（例：東京駅）">
+                                            <input type="text"  id="search-free-word" class="searchTerm" placeholder="地名、施設名などを入力">
                                             <button class="searchButton"  @click="searchfreeword" >
                                             <i class="fas fa-search"></i> 検索
                                         </button>
@@ -329,7 +329,7 @@
                                     
                                 <!--search input-->
                                     <div class="search">
-                                        <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、施設名などを入力（例：東京駅）">
+                                        <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、施設名などを入力">
                                         <button type="submit" class="searchButton" @click="searchfreeword">
                                         <i class="fas fa-search"></i> 検索
                                         </button>
