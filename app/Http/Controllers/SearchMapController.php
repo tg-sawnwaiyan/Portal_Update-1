@@ -328,13 +328,23 @@ class SearchMapController extends Controller
 
 
             $nus_data = DB::select($query);
-          
+        
+           
            //to bind fav_nursing
+           if($nus_data != null)
+           {
             for($i = 0;$i<count($nus_data);$i++)
-            {
-                $arr[] = ( $nus_data[$i]->nursing_id);
-               
-            }
+                {
+                    $arr[] = ( $nus_data[$i]->nursing_id);
+             
+                }
+           }
+           else{
+               $arr[] = [];
+           }
+           
+
+           
             
             if($local != 0)
             {
