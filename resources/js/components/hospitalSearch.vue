@@ -574,7 +574,7 @@
                             <div class="row mt-2 mb-2">
                             <div class="col-lg-9 col-md-6 col-sm-12">
                             <select id="selectCity" class="form-control custom-select" v-model="id" @change="ChangeTownship">
-                                <option value="-1">▼市区町村</option>
+                                <option value="" disabled>▼市区町村</option>
                                 <option v-for="city in cities" :value="city.id" :key="city.id">{{city.city_name}}</option>
                             </select>
                             </div>
@@ -587,115 +587,125 @@
                             </div>
                             </div>
                             <div class="toBeToggled" id="toBeToggled">
-                              
-
-                                <div class="form-check form-check-inline col-sm-2" v-for="township in getTownships" :key="township.id">
-                                <!-- <label class="form-check-label" > -->
-                                    <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-                                    <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @click="getCheck($event)">
-                                    {{township.township_name}}
-                                    <div class="control__indicator"></div>
-                                </label>
-                                </div>
-
+                              <div class="dropdown">
+                                  <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
+                                  市から探す
+                                  </button> 
+                                  <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768">
+                                    <li>
+                                    <a data-value="option">
+                                      <div class="row">
+                                        <div class="col-lg-2 col-md-4 col-sm-4" v-for="township in getTownships" :key="township.id">                                          
+                                          <label class="form-check-label control control--checkbox">
+                                            <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @click="getCheck($event)" @click.stop="stopTheEvent">
+                                            {{township.township_name}}
+                                            <div class="control__indicator"></div>
+                                          </label>
+                                        </div>
+                                      </div>
+                                    </a>
+                                    </li>
+                                  </ul>
+                                  <a v-if="w_width >= 768">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-4 col-sm-4" v-for="township in getTownships" :key="township.id">                                          
+                                          <label class="form-check-label control control--checkbox">
+                                            <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @click="getCheck($event)">
+                                            {{township.township_name}}
+                                            <div class="control__indicator"></div>
+                                          </label>
+                                        </div>
+                                      </div>
+                                  </a>
+                              </div>   
                             </div>
                             </td>
                         </tr>                       
                         <tr class="toBeToggled1 ShowHide1">
                             <th class="pc-414-table">特長</th>
                             <td>
-                            <div class="form-check form-check-inline col-sm-2 " v-for="feature in special_features" :key="feature.id">
-                                <!-- <label class="form-check-label" > -->
-                                <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-                                <input  class="form-check-input" type="checkbox" :id="feature.id" v-model="specialfeatureID" :value="feature.id" @click="features($event)">
-                                {{feature.name}}
-                                <div class="control__indicator"></div>
-                                </label>
-                            </div>
+                              <!--特長から探す-->
+                              <div class="dropdown">
+                                <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
+                                  特長から探す
+                                </button> 
+                                <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768">
+                                  <li>
+                                  <a data-value="option">
+                                      <div class="row">
+                                      <div class="col-lg-2 col-md-4 col-sm-4" v-for="feature in special_features" :key="feature.id">
+                                          <!-- <label class="form-check-label" > -->
+                                          <label class="form-check-label control control--checkbox">
+                                          <input  class="form-check-input" type="checkbox" :id="feature.id" v-model="specialfeatureID" :value="feature.id" @click="features($event)" @click.stop="stopTheEvent">
+                                          {{feature.name}}
+                                          <div class="control__indicator"></div>
+                                          </label>
+                                      </div>
+                                      </div>
+                                  </a>
+                                  </li>
+                                </ul>
+                                <a v-if="w_width >= 768">
+                                      <div class="row">
+                                      <div class="col-lg-2 col-md-4 col-sm-4" v-for="feature in special_features" :key="feature.id">
+                                          <!-- <label class="form-check-label" > -->
+                                          <label class="form-check-label control control--checkbox">
+                                          <input  class="form-check-input" type="checkbox" :id="feature.id" v-model="specialfeatureID" :value="feature.id" @click="features($event)">
+                                          {{feature.name}}
+                                          <div class="control__indicator"></div>
+                                          </label>
+                                      </div>
+                                      </div>
+                                  </a>
+                              </div>
+                              <!--end 特長から探す -->
+                            
                             </td>
                         </tr>
                         <tr class="toBeToggled1 ShowHide1">
-                            <th>診療科目</th>
+                            <th class="pc-414-table">診療科目</th>
                             <td id="test-td">
-                                <div class="form-check form-check-inline row align-items-start innerwrapper" >
-                                    <div v-for="(v,i) in array_len"  :key="i">
-                                        <div class="hospital-subject" v-for="(subject,index) in subjects.slice((i*3),((i*3)+3))"  :key="index">                                    
-                                            <div class="row col-12">
-                                                <strong class="table-innertitle row col-12">{{subject.name}}</strong>
-                                                <div class="col-6" v-for="ch in subject.child" :key="ch.id+1">
+                                <div class="form-check form-check-inline row align-items-start innerwrapper" v-if="w_width >= 768">
+                                    <div v-for="(v,i) in array_len"  :key="i">                                     
+                                        <div class="hospital-subject"  v-for="(subject,index) in subjects.slice((i*3),((i*3)+3))"  :key="index" v-bind:class="{ lastblock: i==array_len-1 }">    
+                                           <strong class="table-innertitle row col-12 m-b-10">{{subject.name}}</strong>                                                                      
+                                            <div class="row col-md-12">                                                                                            
+                                                <div class="col-lg-6 col-md-12 pad-free" v-for="ch in subject.child" :key="ch.id+1">
                                                     <label class="form-check-label control control--checkbox" style="padding-left:5px;">
                                                     <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
                                                     {{ch.name}}
                                                     <div class="control__indicator"></div>
                                                     </label>
-                                                </div>
+                                                </div>      
                                             </div>
                                         </div>
-                                    </div>
-                                    
-                                   
+                                    </div>    
+                                </div>   
+                                <!--test-->
+                                <div v-if="w_width <= 768">
+                                <h5 class="font-weight-bold">診療科目</h5>
+                                <div class="dropdown m-b-10" v-for="(v,i) in subjects" :key="i" >                                 
+                                <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
+                                 {{v.name}}
+                                  <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMMenuButton">
+                                  <li v-for="ch in v.child" :key="ch.id+1">                                 
+                                  <a data-value="option" >
+                                      <div class="row">
+                                      <div class="col-lg-2 col-md-4 col-sm-4" >                                       
+                                          <label class="form-check-label control control--checkbox">
+                                          <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id" @click.stop="stopTheEvent">
+                                          {{ch.name}}
+                                          <div class="control__indicator"></div>
+                                          </label>
+                                      </div>
+                                      </div>
+                                  </a>
+                                  </li>
+                                </ul>
+                                </button> 
                                 </div>
-                                <!-- <div class="form-check form-check-inline row align-items-start innerwrapper">
-                                    <div class="test" v-for="(subject,index) in subjects.slice(3,6)" :key="index">
-                                    <div class="row col-12">
-                                        <strong class="table-innertitle row col-12">{{subject.name}}</strong>
-
-                                        <div class="col-6" v-for="ch in subject.child" :key="ch.id+1">
-
-                                            <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-                                            <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
-                                            {{ch.name}}
-                                            <div class="control__indicator"></div>
-                                            </label>
-                                        </div>
-
-                                    </div>
-
-
-                                    </div>
-
                                 </div>
-                                <div class="form-check form-check-inline row align-items-start innerwrapper">
-                                    <div class="hospital-subject" v-for="(subject,index) in subjects.slice(6,9)" :key="index">
-                                    <div class="row col-12">
-                                        <strong class="table-innertitle row col-12">{{subject.name}}</strong>
-
-                                        <div class="col-6" v-for="ch in subject.child" :key="ch.id+1">
-
-                                            <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-                                            <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
-                                            {{ch.name}}
-                                            <div class="control__indicator"></div>
-                                            </label>
-                                        </div>
-
-                                    </div>
-
-
-                                    </div>
-
-                                </div> -->
-                                <!-- <div class="form-check form-check-inline row align-items-start innerwrapper" style="width:33.98%;">
-                                    <div class="test" v-for="(subject,index) in subjects.slice(9,10)" :key="index">
-                                    <div class="row col-12">
-                                        <strong class="table-innertitle row col-12">{{subject.name}}</strong>
-
-                                        <div class="col-6" v-for="ch in subject.child" :key="ch.id+1">
-
-                                            <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-                                            <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
-                                            {{ch.name}}
-                                            <div class="control__indicator"></div>
-                                            </label>
-                                        </div>
-
-                                    </div>
-
-
-                                    </div>
-
-                                </div> -->
-
+                                <!--end test-->   
                             </td>
                         </tr>
 
@@ -709,7 +719,7 @@
                         </tr>
                         <tr class="text-center">
                             <td colspan="2">
-                            <button type="button" class="main-bg-color create-btn all-btn" style="width:16%;" id="search" name="search" value="検索"  @click="search">
+                            <button type="button" class="main-bg-color create-btn all-btn col-md-2 col-sm-2" id="search" name="search" value="検索"  @click="search">
                             <i class="fas fa-search"></i>&nbsp; 検索
                             </button>
                             </td>
@@ -718,7 +728,6 @@
                     </table>
                     <div class="col-12">
                         <div class="row">
-
                             <div id="job_detail" class="col-md-12 col-sm-12 pad-free offset" style="margin-top:20px;" v-for="(hos,index) in displayItems" :key="hos.hos_id">
                                 <div class="hos-content">
                                     <div class="job-header">
@@ -736,14 +745,13 @@
                                     </div>
                                         </div>
                                         <div class="col-4">
-                                        <p class="text-right">
+                                        <p class="float-right">
                                             <!-- <span class="btn fav-profile fav-item fav-color" :class="'view_pro_id'+hos.nursing_id" style="" @click="favAddFun('add',hos.nursing_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                                             <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == 'check'" :class="'done_pro_id'+hos.nursing_id" style="color:#aaa;" @click="favAddFun('remove',hos.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                                         -->
                                         <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == ''" :class="'view_pro_id'+hos.nursing_id" style="display:block;" @click="favAddFun('add',hos.hos_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                                         <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == 'check'" :class="'done_pro_id'+hos.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',hos.hos_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                                         </p>
-
                                         </div>
                                     </div>
                                     </div>
@@ -864,6 +872,13 @@
 
 <script>
   import layout from '../components/home.vue'
+  // window.addEventListener("load", function(event) {
+  //   $('.dropdown-menu').on('click', function(e) {
+  //       if($(this).hasClass('dropdown-menu-form')) {
+  //           e.stopPropagation();
+  //       }
+  //   });
+  // });
   export default {
     components: {
       layout
@@ -902,8 +917,17 @@
         norecord_msg: false,
         int:0,
         array_len: 0,
+        window:{
+          width: 0,
+          height: 0
+        },
+        w_width: $(window).width(),
 
       }
+    },
+    created(){
+       window.addEventListener('resize', this.handleResize);
+        this.handleResize();
     },
     mounted() {
             $('#navtab').removeClass('news-tabColor hospital-tabColor nursing-tabColor job-tabColor');
@@ -913,9 +937,19 @@
             
         },
     methods: {
-
-        search()
-        {
+         stopTheEvent:function(e){
+            $('.dropdown-menu').on('click', function(e) {
+            if($(this).hasClass('dropdown-menu-form')) {
+                e.stopPropagation();
+            }
+          });
+        },
+        handleResize() {
+          this.window.width = window.innerWidth;
+          this.window.height = window.innerHeight;
+          //console.log('hello');
+        },
+        search(){
         this.$loading(true);
           if(this.townshipID == null || this.townshipID == '')
           {
@@ -1128,7 +1162,7 @@
           $(".ShowHide1").slideUp();
           $('#close2').append('<i class="fas fa-arrow-circle-down"></i> もっと見る');
         }
-        console.log($('#test-td').width() + "wditdh")
+        console.log($('#test-td').width() + "width")
       },
 
       ChangeTownship(){
@@ -1322,14 +1356,9 @@
 
 <style>
 
-.active{
-    /* background-color: #fffe00 !important;
-    background-image: none;
-    border: 1px solid #8e3c15; */
-    /* background-color: #ccff60 !important;
-    background-image: none;
-    border: 1px solid #8e3c15;
-    color: #ff6117; */
+.lastblock{
+       display: block;
+
 }
   .hospitalselect {
     display: none;
@@ -1457,4 +1486,37 @@
   top: 0;
   right: 0;
 }
+/************************responsive ****************************/
+@media only screen and (max-width:1024px) {
+  table > tbody > tr th{  
+    width:100px !important;
+  }
+ 
+}
+@media only screen and (max-width: 480px){
+  table > tbody > tr th{
+    padding: 25px 5px;
+  }
+  table th, table td{
+    vertical-align: middle;
+  }
+  .dropdown-toggle::after {    
+    position: absolute;
+    right: 12px;
+    top: 15px;
+  }
+}
+
+.dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: "";
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+    margin-left: 94px;
+}
+
 </style>

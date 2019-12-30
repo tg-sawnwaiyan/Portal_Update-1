@@ -1449,7 +1449,7 @@ table > tbody > tr th{
 /************************responsive ****************************/
 @media only screen and (max-width:1024px) {
   table > tbody > tr th{  
-    width:100px;
+    width:100px !important;
   }
  
 }
