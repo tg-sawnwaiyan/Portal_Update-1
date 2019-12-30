@@ -7396,7 +7396,6 @@ dl.favnur dd {
 }
 
 .hos-title {
-    width: 900px;
     padding-right: 10px;
     vertical-align: top;
 }
@@ -9861,6 +9860,9 @@ ul.nur-caro-card>li.list-group-item {
     .freeword-responsive p {
         text-align: center !important;
         font-size: 20px;
+    }
+    .offset{
+        width: 100% !important;
     }
 }
 

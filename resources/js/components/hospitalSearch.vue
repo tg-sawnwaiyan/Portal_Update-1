@@ -16,7 +16,7 @@
             <!--search input-->
               <div class="wrap">
                 <div class="search">
-                    <input type="text" id="search-free-word" class="searchTerm" placeholder="地名、施設名などを入力（例：東京駅）">
+                    <input type="text" id="search-free-word" class="searchTerm" placeholder="地名、施設名などを入力">
                     <button type="submit" class="searchButton" @click="searchfreeword">
                       <i class="fas fa-search"></i> 検索
                   </button>
@@ -331,12 +331,10 @@
                       <p class="text-left"> &nbsp;赤ちゃんからおとなまでみんなで通<br class="pc-768"/>える街の名医が見つかります。 </p>    
                     </div>
                   </div>
-                </h3>
-                
-                
+                </h3>              
              <!--search input-->
                 <div class="search">
-                    <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、施設名などを入力（例：東京駅）">
+                    <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、施設名などを入力">
                     <button type="submit" class="searchButton" @click="searchfreeword">
                       <i class="fas fa-search"></i> 検索
                     </button>
@@ -683,7 +681,7 @@
                                 </div>   
                                 <!--test-->
                                 <div v-if="w_width <= 768">
-                                <h5 class="font-weight-bold">診療科目</h5>
+                                <h5 class="font-weight-bold sp-414">診療科目</h5>
                                 <div class="dropdown m-b-10" v-for="(v,i) in subjects" :key="i" >                                 
                                 <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
                                  {{v.name}}
@@ -732,7 +730,7 @@
                                 <div class="hos-content">
                                     <div class="job-header">
                                     <div class="row pad-free">
-                                        <div class="col-8">
+                                        <div class="col-md-8 col-sm-12">
                                         <h5 class="hos-title">
                                             <router-link :to="{name: 'profile', params: {cusid:hos.cus_id, type: 'hospital'}}" class="pseudolink">{{hos.name}}</router-link>
                                         </h5>
@@ -744,7 +742,7 @@
                                         </span>
                                     </div>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-md-4 col-sm-12">
                                         <p class="float-right">
                                             <!-- <span class="btn fav-profile fav-item fav-color" :class="'view_pro_id'+hos.nursing_id" style="" @click="favAddFun('add',hos.nursing_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                                             <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == 'check'" :class="'done_pro_id'+hos.nursing_id" style="color:#aaa;" @click="favAddFun('remove',hos.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
@@ -757,12 +755,12 @@
                                     </div>
 
                                     <div class="hos-body row clearfix">
-                                        <div class="col-3 job-img">
+                                        <div class="col-lg-3 col-md-6 job-img">
                                             <img v-bind:src="'/upload/hospital_profile/' + hos.logo"  alt="img" class="img-fluid" @error="imgUrlAlt">
 
                                             <!-- <p class="hos_phone text-center m-t-20"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span><span class="phone-no">{{hos.phone}}</span></p> -->
                                         </div>
-                                        <div class="col-4 job-box">
+                                        <div class="col-lg-4 col-md-6 job-box">
                                             <table  class="table table-bordered table-sm">
                                                 <!-- <tr>
                                                 <td style="width:30%;"><span class="job_ico"><i class="fa fa-user"></i></span>名前</td>
@@ -790,7 +788,7 @@
                                             </span>
                                             <!--end special feature and subject-->
                                         </div>
-                                        <div class="col-5">
+                                        <div class="col-lg-5 col-md-12">
                                             <!--schedule-->
                                             <h5 class="header">診療時間
                                                 <span class="hos_phone"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span><span class="phone-no">{{hos.phone}}</span></span>
@@ -939,8 +937,9 @@
     methods: {
          stopTheEvent:function(e){
             $('.dropdown-menu').on('click', function(e) {
+               e.stopPropagation();
             if($(this).hasClass('dropdown-menu-form')) {
-                e.stopPropagation();
+               
             }
           });
         },
@@ -1422,10 +1421,6 @@
     width: 140px;
     padding: 25px;
   }
-.offset{
-  width: 500px !important;
-  margin: 20px auto;
-}
 .page-item.active_page .spanclass {
   z-index: 1;
   background-color: #ffbb99;
