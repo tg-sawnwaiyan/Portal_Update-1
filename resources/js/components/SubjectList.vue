@@ -22,7 +22,7 @@
                         </a>
                     </div>
                     <div v-else class="container-fuid">
-                        <h4 class="main-color m-b-10">診療科目(病院)検索</h4>
+                        <h4 class="main-color m-b-10">診療科目検索</h4>
                         <div class="row">
                             <div class="col-md-12">
                                 <input type="text" class="form-control" placeholder="診療科目検索" id="search-item" @keyup="searchSubject()">
@@ -32,7 +32,7 @@
                         </div> -->
                         </div>
                         <hr/>
-                        <h5 class="header">診療科目(病院)一覧</h5>
+                        <h5 class="header">診療科目一覧</h5>
                         <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデタが消える。</div>
                         <div v-else class="container-fuid">
                             <div class="card card-default m-b-20" v-for="subject in displayItems" :key="subject.id">

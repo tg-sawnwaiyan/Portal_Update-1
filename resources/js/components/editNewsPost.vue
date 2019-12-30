@@ -6,7 +6,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <h4 class="page-header header">ニュース更新</h4>
+                            <h4 class="page-header header">ニュース編集</h4>
                         </div>
                         <form @submit.prevent="updatepost" class="col-md-12">
                             <div class="form-group">
@@ -122,7 +122,7 @@
                             </div>
 
                             <div class="form-group">
-                                <span class="btn main-bg-color white all-btn" @click="checkValidate()"> 更新する</span>
+                                <span class="btn main-bg-color white all-btn" @click="checkValidate()"> 更新</span>
                                 <router-link :to="{name: 'news_list'}" class="btn btn-danger all-btn">キャンセル</router-link>
                             </div>
                         </form>
@@ -259,7 +259,7 @@
                     removeUpload(e) {
                          this.$swal({
                             title: "確認",
-                            text: "削除よろしいでしょうか",
+                            text: "削除してよろしいでしょうか",
                             type: "warning",
                             width: 350,
                             height: 200,
@@ -267,18 +267,18 @@
                             confirmButtonColor: "#dc3545",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
-                            confirmButtonText: "削除",
+                            confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
                         }).then(response => {
                                 this.$swal({
-                                        title: "削除されました",
-                                        text: "ニュース削除されました。",
+                                        // title: "削除されました",
+                                        text: "画像を削除しました。",
                                         type: "success",
                                         width: 350,
                                         height: 200,
-                                        confirmButtonText: "はい",
+                                        confirmButtonText: "閉じる",
                                         confirmButtonColor: "#dc3545"
                                     });
                            });
@@ -294,7 +294,7 @@
                     updatepost() {
                         this.$swal({
                             title:"確認",
-                            text: "更新よろしいでしょうか。",
+                            text: "ニュースを更新よろしいでしょうか。",
                             type: "info",
                             width: 350,
                             height: 200,
@@ -302,7 +302,7 @@
                             confirmButtonColor: "#6cb2eb",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
-                            confirmButtonText: "更新",
+                            confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
@@ -321,8 +321,8 @@
                                  this.$swal({
                                     position: 'top-end',
                                     type: 'success',
-                                    title: '更新されました。',
-                                    confirmButtonText: "はい",
+                                    title: 'ニュースを更新しました。',
+                                    confirmButtonText: "閉じる",
                                     confirmButtonColor: "#6cb2eb",
                                     width: 250,
                                     height: 200,
@@ -386,7 +386,7 @@
                         {
                             this.$swal({
                             title: "削除",
-                            text: "削除よろしいでしょうか。",
+                            text: "削除してよろしいでしょうか。",
                             type: "warning",
                             width: 350,
                             height: 200,
@@ -394,7 +394,7 @@
                             confirmButtonColor: "#d41010",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
-                            confirmButtonText: "削除",
+                            confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
@@ -404,12 +404,12 @@
                             document.getElementById('showimage').style.display = 'block';
                            }).then(response => {
                                 this.$swal({
-                                        title: "削除されました",
-                                        text: "ニュース削除されました。",
+                                        // title: "削除されました",
+                                        text: "画像を削除しました。",
                                         type: "success",
                                         width: 350,
                                         height: 200,
-                                        confirmButtonText: "はい",
+                                        confirmButtonText: "閉じる",
                                         confirmButtonColor: "#dc3545"
                                     });
                                     this.old_photo = old_photo;

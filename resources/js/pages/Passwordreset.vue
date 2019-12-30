@@ -20,6 +20,7 @@
                 <div class="col-12 m-t-80">               
                 <form autocomplete="off" @submit.prevent="resetPass" method="post">
                     <div class="input-group mb-3">
+                      <span>ユーザ名(メールアドレス)を入力してください。メールアドレス宛にパスワード再設定用のリンクをお送りします。</span>
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                         </div>

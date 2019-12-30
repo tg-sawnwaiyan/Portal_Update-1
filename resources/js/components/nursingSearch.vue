@@ -880,11 +880,17 @@
                                                     <h5 class="nur-tit">
                                                         <router-link :to="{name: 'profile', params: {cusid:nus.cus_id, type: 'nursing'}}" class="pseudolink" style="font-weight:bold;">{{nus.name}}</router-link>
                                                     </h5>
-                                                    <div class="d-flex" v-for="(fac,index) in fac_types" :key="index+'-'+fac.description+'-'+nus.id">
-                                                    <span v-if="fac.id == nus.fac_type" class="fac_list">
-                                                        {{fac.description}}
-                                                    </span>
+                                                    
+                                                    <div class="d-flex" >
+                                                        
+                                                        <span v-for="(fac,index) in fac_types" :key="index+'-'+fac.description+'-'+nus.id">                                                    
+                                                            <span v-if="fac.id == nus.fac_type" class="fac_list">
+                                                                {{fac.description}}
+                                                            </span>
+                                                        </span>
+                                                        <span class="nur_date"><span style="font-weight:bold;color:green;">開設年月日 :</span> {{nus.date_of_establishment}}</span>
                                                     </div>
+                                                        
                                                     </div>
 
                                                     <div class="col-4 text-right">
@@ -894,10 +900,9 @@
                                                 </div>
                                             </div>         
 
-                                            <p class="m-b-10"><span class="job_ico"><i class="fa fa-map-signs"></i></span>{{nus.city_name}} <i class="fas fa-angle-double-right" style="color:#b9b5b5;"></i> {{nus.township_name}}</p>
+                                            <p class="m-b-10"><span class="job_ico"><i class="fa fa-map-signs"></i></span>{{nus.city_name}} <i class="fas fa-angle-double-right" style="color:#b9b5b5;"></i> {{nus.township_name}} </p>
                                             <div class="col-12 pad-free m-b-10 clearfix">
                                                 <span class="num-room"> {{nus.num_rooms}} </span>
-                                                <span class="nur_date">{{nus.date_of_establishment}}</span>
                                                 <p class="hos_phone float-right" v-if="nus.phone"><span class="circle-phone" ><i class="fa fa-phone-alt"></i></span><span class="phone-no">{{nus.phone}}</span></p>
                                             </div>
                                             <div class="job-body row  clearfix">
@@ -932,13 +937,21 @@
                                                                 </font>
                                                             </td>
                                                         </tr>
-                                                        <tr>
+                                                        <!-- <tr>
                                                         <td style="width:30%;"><span class="job_ico"><i class="fa fa-envelope"></i></span>メールアドレス</td>
                                                         <td>{{nus.email}}</td>
-                                                        </tr>
+                                                        </tr> -->
                                                         <tr>
                                                         <td style="width:30%;"><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>住所</td>
                                                         <td>{{nus.address}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                        <td style="width:30%;"><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>アクセス</td>
+                                                        <td><p v-html="nus.access"></p></td>
+                                                        </tr>
+                                                        <tr>
+                                                        <td style="width:30%;"><span class="job_ico"><i class="fa fa-building"></i></span>運営事業者</td>
+                                                        <td>{{nus.operator}}</td>
                                                         </tr>
                                                         <!-- <tr>
                                                         <td style="width:30%;"><span class="job_ico">&#xa5;</span>入居時費用</td>

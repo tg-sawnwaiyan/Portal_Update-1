@@ -127,7 +127,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                         },
                         {
                         href: '/categorylist',
-                        title: 'カテゴリー設定',
+                        title: 'ニュースカテゴリー設定',
                         icon: 'fa fa-file-alt'
                         }
                     ]
@@ -144,7 +144,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                         },
                         {
                         href: '/nusfeaturelist',
-                        title: '特殊機能',
+                        title: '特徴設定',
                         icon: 'fa fa-list'
                         },                        
                         {
@@ -171,12 +171,12 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                         },
                         {
                         href: '/hosfeaturelist',
-                        title: '特殊機能',
+                        title: '特徴設定',
                         icon: 'fa fa-list'
                         },
                         {
                         href: '/subjectlist',
-                        title: '医学科目',
+                        title: '診療科目設定',
                         icon: 'fa fa-list'
                         },
                         {
@@ -223,7 +223,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                     hidden: this.$auth.check(2)
                 },
                 {
-                    title: 'Logout',
+                    title: 'ログアウト',
                     icon: 'fa fa-lock',
                     // click: this.$auth.logout(),
                 },
@@ -272,7 +272,7 @@ created() {
             $("#menu-overlay").toggle('medium');
         },
         onItemClick(event, item){
-            if(item.title == 'Logout'){
+            if(item.title == 'ログアウト'){
                 this.$auth.logout();
             }
         }

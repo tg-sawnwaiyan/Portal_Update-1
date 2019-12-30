@@ -6,7 +6,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <h4 class="page-header header">ニュースの作成</h4>
+                            <h4 class="page-header header">ニュース新規作成</h4>
                         </div>
                     <div class="row">
                         <form @submit.prevent="add" class="col-12">
@@ -127,7 +127,7 @@
 
 
                             <div class="form-group">
-                                <span class="btn main-bg-color white all-btn" @click="checkValidate()"> ニュースを投稿する</span>
+                                <span class="btn main-bg-color white all-btn" @click="checkValidate()"> 作成</span>
                                 <router-link :to="{name: 'news_list'}" class="btn btn-danger all-btn">キャンセル</router-link>
                             </div>
                         </form>
@@ -252,7 +252,7 @@
                             confirmButtonColor: "#6cb2eb",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
-                            confirmButtonText: "作成",
+                            confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
@@ -273,7 +273,7 @@
                             this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            title: "確認済",
+                            // title: "確認済",
                             text: 'ニュースを投稿しました。',
                             confirmButtonText: "閉じる",
                             confirmButtonColor: "#6cb2eb",
