@@ -55,27 +55,35 @@ class NursingMailController extends Controller
         // else{
         //     $request->arr_reserve[1] = "no result";
         // }
-        // return $request;
+        //  return $request;
         $favourite_mail = $request->fav_mail;
         $favourite_id = $request->fav_id;
         $favourite_name = $request->fav_name;
         // $fav_reserve = $request->arr_reserve;
         $fav_documentation = $request->arr_document;
+       
 
          for($i = 1; $i<count($favourite_id); $i++){
             
             $request->fav_id = $favourite_id[$i];
             $request->fav_name = $favourite_name[$i];  
-            if (isset($fav_documentation[$i])){
-                if ($fav_documentation[$i] == true) {
+            // $fav_documentation[0] = 'test';
+            if (isset($fav_documentation[$favourite_id[$i]])){
+            //   return $favourite_id;
+                if ($fav_documentation[$favourite_id[$i]] == true ) {
+                 
                     \Mail::to($favourite_mail[$i])->send(new nursingMailing($request));
                 } 
-            }           
+            } 
+
+       
         // \Mail::to('hero2012.zk@gmail.com')->send(new nursingMailing($request));
     
-    }
+    }       
+
+    // return  $fav_documentation;
         // $admin_email = 'thuzar.ts92@gmail.com';
-        $admin_email = 'susan@management-partners.co.jp';
+        $admin_email = 'mayphue17@management-partners.co.jp';
         // $admin_email = 'management.partner87@gmail.com ';
         \Mail::to($admin_email)->send(new nursingMailing($request));
 
