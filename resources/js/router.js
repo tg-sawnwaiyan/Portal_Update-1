@@ -68,6 +68,7 @@ import nursingSearch from './components/nursingSearch.vue';
 import jobSearch from './components/jobSearch.vue';
 import News from './components/News.vue';
 import Unauthorized from './components/419.vue';
+import Jobapplicantlist from './components/Jobapplicantlist.vue'
 
 // import menu from './components/menu/Menu.vue';
 
@@ -350,6 +351,14 @@ const routes = [
         name: "jobofferlist",
         path: "/jobofferlist",
         component: JobOfferList,
+        meta: {
+            auth: { roles: 1, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
+        }
+    },
+    {
+        name: "jobapplicantlist",
+        path: "/jobapplicantlist",
+        component: Jobapplicantlist,
         meta: {
             auth: { roles: 1, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
         }

@@ -376,3 +376,4 @@ Route::group(['prefix' => 'new'], function () {
 
 Route::get('cost','ProfilePublishController@getCost');
 Route::get('hospital','ProfilePublishController@hospital');
+Route::get('jobapplicantlist','JobApplyController@jobapplicantlist');
