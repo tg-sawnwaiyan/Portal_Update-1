@@ -272,7 +272,7 @@ created() {
             $("#menu-overlay").toggle('medium');
         },
         onItemClick(event, item){
-            if(item.title == 'Logout'){
+            if(item.title == 'ログアウト'){
                 this.$auth.logout();
             }
         }
