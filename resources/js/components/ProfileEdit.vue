@@ -88,6 +88,14 @@
                             <br>
                         </div>
                         <form class="col-md-8">
+                            <div class="card card-default m-b-20 col-md-11">
+                                <div class="header2">
+                                    <h5 class=" clearfix">Customer No.</h5>
+                                </div>
+                                <div class="form-group">
+                                    <label>{{user_info.id}}</label>
+                                </div>
+                            </div>
                             <!--card-->
                             <div class="card card-default m-b-20 col-md-11">
                                 <div class="card-body">
