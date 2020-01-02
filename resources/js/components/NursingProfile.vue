@@ -908,6 +908,7 @@ export default {
 
 
             DeltArr(indx,type) {
+
                 var arr_list = [];
                 var arr_count = document.getElementsByClassName('gallery-area-'+type);
                 for(var i=0; i< arr_count.length; i++) {
@@ -915,8 +916,18 @@ export default {
                 }
 
                 for(var i=0; i<= arr_count.length; i++) {
+                  
                     if(i == indx) {
+                      
                         arr_list.splice(indx,1);
+                      
+                        var ele = document.getElementById(type+indx);
+                        var parentEle = document.getElementById('gallery-'+type);
+                        parentEle.removeChild(ele);
+                    }
+                    else{
+                          arr_list.splice(indx,1);
+                      
                         var ele = document.getElementById(type+indx);
                         var parentEle = document.getElementById('gallery-'+type);
                         parentEle.removeChild(ele);
