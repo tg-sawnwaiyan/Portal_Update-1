@@ -65,8 +65,8 @@ class NursingMailController extends Controller
 
          for($i = 1; $i<count($favourite_id); $i++){
             
-            $request->fav_id = $favourite_id[$i];
-            $request->fav_name = $favourite_name[$i];  
+            $request->related_fav_id = $favourite_id[$i];
+            $request->related_fav_name = $favourite_name[$i];  
             // $fav_documentation[0] = 'test';
             if (isset($fav_documentation[$favourite_id[$i]])){
             //   return $favourite_id;
@@ -81,7 +81,6 @@ class NursingMailController extends Controller
     
     }       
 
-    // return  $fav_documentation;
         // $admin_email = 'thuzar.ts92@gmail.com';
         $admin_email = 'mayphue17@management-partners.co.jp';
         // $admin_email = 'management.partner87@gmail.com ';

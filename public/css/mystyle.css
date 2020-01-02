@@ -8547,6 +8547,9 @@ ul.nur-caro-card>li.list-group-item {
 .sp-768{
     display: none;
 }
+.sp-768-block{
+    display: table-cell;
+}
 
 @media only screen and (max-width:1440px) {
     .card_height {
@@ -9337,6 +9340,12 @@ ul.nur-caro-card>li.list-group-item {
     .pc-768 {
         display: none;
     }
+    .sp-768-block{
+        display: block;
+        width: 100% !important;
+        padding: 5px 10px !important;
+
+    }
     .tab {
         max-width: 100% !important;
         flex: 100% !important;
@@ -9869,7 +9878,7 @@ ul.nur-caro-card>li.list-group-item {
 @media only screen and (max-width: 414px) {
     .sp-414 {
         display: block !important;
-    }
+    }    
     .pc-414 {
         display: none !important;
     }
