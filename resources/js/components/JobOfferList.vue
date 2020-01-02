@@ -284,6 +284,7 @@
                     this.axios.get("/api/job/index").then(response => {
                         this.$loading(false);
                         this.jobs = response.data.profilejob;
+                        console.log(this.jobs);
                   
                         this.customer_id = response.data.user;
                         if (this.jobs.length > this.size) {

@@ -490,8 +490,8 @@ export default {
                     this.axios
                         .post('/api/hospital/postList/' + postal)
                         .then(response => {
-                            var post_data = response.data;
-                            var length = response.data.length;
+                            var post_data = response.data.postal_list;
+                            var length = response.data.postal_list.length;
                             if (length > 0) {
                                 var pref = post_data[0]['city_id'];
                                 if (post_data[0]['street'] == '') {

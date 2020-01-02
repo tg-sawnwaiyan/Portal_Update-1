@@ -148,7 +148,17 @@
                                     都道府県:
                                     <span class="error sp2">必須</span>
                                 </label>
-                                <input type="text" class="form-control box" v-model="joboffer.pref" placeholder="都道府県を入力してください。" />
+
+                        
+                                 <select v-model="joboffer.pref" class="division form-control"  @change="getTownship(2)">
+                                      <option value="0">選択してください。</option>
+                                      <option v-for="cities in city_list" :key="cities.id" v-bind:value="cities.id">
+                                          {{cities.city_name}}
+                                      </option>
+                                </select>
+                            
+                                
+                                <!-- <input type="text" class="form-control box" v-model="joboffer.pref" placeholder="都道府県を入力してください。" /> -->
                                 <!-- <span v-if="errors.pref" class="error">{{errors.pref}}</span> -->
                                 <!-- <span v-if="errors.includes('pref')" class="error">題名が必須です。(pref)</span> -->
                                  <span v-if="errors.pref" class="error">{{errors.pref}}</span>
@@ -158,7 +168,14 @@
                                     市区町村、番地（建物名):
                                     <span class="error sp2">必須</span>
                                 </label>
-                                <input type="text" class="form-control box" v-model="joboffer.str_address" placeholder="市区町村、番地を入力してください。" />
+                              
+                                <select v-model="joboffer.str_address" class="division form-control" @change="getLocation()"  >
+                                      <option value="0">市区町村を選択してください。</option>
+                                      <option v-for="tw in townships" :key="tw.id" v-bind:value="tw.id">
+                                          {{tw.township_name}}
+                                      </option>
+                                </select>
+                                <!-- <input type="text" class="form-control box" v-model="joboffer.str_address" placeholder="市区町村、番地を入力してください。" /> -->
                                 <span v-if="errors.str_address" class="error">{{errors.str_address}}</span>
                                 <!-- <span v-if="errors.includes('str_address')" class="error">題名が必須です。(str_address)</span> -->
                                    <!-- <span v-if="errors.name" class="error">{{errors.str_address}}</span> -->
@@ -450,16 +467,27 @@
 
                     ischeck: "",
 
-                    selectedValue: 0
+                    selectedValue: 0,
+                    city_list:[],
+                    townships:[]
                 };
             },
 
             created() {
+
+              this.joboffer.pref = 0;
+              this.joboffer.str_address = 0;
+             
                 this.axios.get("/api/job/occupationlist").then(
                     function(response) {
                         this.OccupationList = response.data;
                     }.bind(this)
                 );
+
+                 this.axios.get('/api/hospital/citiesList')
+                .then(response => {
+                    this.city_list = response.data;
+                });
 
                 this.joboffer.employmentstatus = "ContractEmployee";
 
@@ -469,20 +497,25 @@
                         .get(`/api/job/edit/${this.$route.params.id}`)
 
                     .then(response => {
-                        this.joboffer.title = response.data[0].title;
-                        this.joboffer.postal = '0' + response.data[0].zip7_code;
-                        this.joboffer.zipcode_id = response.data[0].zip_id;
-                        this.joboffer.str_address = response.data[0].township;
-                        this.joboffer.pref = response.data[0].cityname;
+                        this.joboffer.title = response.data.job[0].title;
+                        this.joboffer.postal = '0' + response.data.job[0].zip7_code;
+                        this.joboffer.zipcode_id = response.data.job[0].zip_id;
+                       
+                       
+                    
+                        // this.joboffer.pref = response.data[0].cityname;
+                         this.joboffer.pref = response.data.job[0].city_id;
+                          this.getTownship(1);
+                           this.joboffer.str_address = response.data.township_id[0].id;
 
-                        this.joboffer.customer_id = response.data[0].customer_id;
+                        this.joboffer.customer_id = response.data.job[0].customer_id;
 
-                        this.selectedValue = response.data[0].occupation_id;
-                        this.joboffer.occupation_id = response.data[0].occupation_id;
+                        this.selectedValue = response.data.job[0].occupation_id;
+                        this.joboffer.occupation_id = response.data.job[0].occupation_id;
 
-                        this.joboffer.description = response.data[0].description;
+                        this.joboffer.description = response.data.job[0].description;
 
-                        this.joboffer.fields.skills = response.data[0].skills;
+                        this.joboffer.fields.skills = response.data.job[0].skills;
 
                         let arr = [];
 
@@ -490,30 +523,30 @@
 
                         this.createskill(arr);
 
-                        this.joboffer.location = response.data[0].location;
+                        this.joboffer.location = response.data.job[0].street;
 
-                        this.joboffer.nearest_station = response.data[0].nearest_station;
+                        this.joboffer.nearest_station = response.data.job[0].nearest_station;
 
-                        this.joboffer.employmentstatus = response.data[0].employment_status;
+                        this.joboffer.employmentstatus = response.data.job[0].employment_status;
 
                         // this.ischeck = response.data.employment_status;
 
                         // this.createCheck(this.ischeck);
-                        this.joboffer.salary_type = response.data[0].salary_type;
-                        this.joboffer.salary = response.data[0].salary;
-                        this.joboffer.salary_remark = response.data[0].salary_remark;
+                        this.joboffer.salary_type = response.data.job[0].salary_type;
+                        this.joboffer.salary = response.data.job[0].salary;
+                        this.joboffer.salary_remark = response.data.job[0].salary_remark;
 
-                        this.joboffer.allowances = response.data[0].allowances;
+                        this.joboffer.allowances = response.data.job[0].allowances;
 
-                        this.joboffer.insurance = response.data[0].insurance;
+                        this.joboffer.insurance = response.data.job[0].insurance;
 
-                        this.joboffer.working_hours = response.data[0].working_hours;
+                        this.joboffer.working_hours = response.data.job[0].working_hours;
 
-                        this.joboffer.holidays = response.data[0].holidays;
+                        this.joboffer.holidays = response.data.job[0].holidays;
 
-                        this.joboffer.user_id = response.data[0].user_id;
+                        this.joboffer.user_id = response.data.job[0].user_id;
 
-                        this.joboffer.recordstatus = response.data[0].recordstatus;
+                        this.joboffer.recordstatus = response.data.job[0].recordstatus;
                         this.header = " 求人編集";
                         this.subtitle = "保存";
                         return this.header;
@@ -600,24 +633,35 @@
                     if (this.joboffer.postal.length > 4) {
                         var postal = this.joboffer.postal;
                         this.axios.post("/api/hospital/postList/" + postal).then(response => {
-                            var post_data = response.data;
-                            var length = response.data.length;
+                            var post_data = response.data.postal_list;
+                            var length = response.data.postal_list.length;
                             if (length > 0) {
                                 var pref = post_data[0]["city_id"];
                                 this.joboffer.zipcode_id = post_data[0]["id"];
                                 if (post_data[0]["street"] == "") {
-                                    this.joboffer.pref = post_data[0]["pref"];
-                                    this.joboffer.str_address = post_data[0]["city"];
+                              
+                                    this.joboffer.pref = post_data[0]["city_id"];
+                                     this.getTownship(1);
+
+                                    // this.joboffer.pref = post_data[0]["pref"];
+                                    this.joboffer.str_address = response.data.township_id[0]['id'];                               
+                                    // this.joboffer.str_address = post_data[0]["city"];
+
+                                    this.joboffer.location = post_data[0]["street"];
+                                  
+                                   
                                     // this.joboffer.zipcode_id = post_data[0]["id"];
                                 } else {
-                                    this.joboffer.str_address =
+                                    this.joboffer.location =
                                         post_data[0]["pref"] +
-                                        " - " +
+                                        "  " +
                                         post_data[0]["city"] +
-                                        " - " +
+                                        "  " +
                                         post_data[0]["street"];
                                 }
                             } else {
+                                this.joboffer.str_address = 0;
+                                this.joboffer.pref = 0;
                                 this.joboffer.city = "";
                                 $("#jsErrorMessage").html(
                                     '<div class="error">郵便番号の書式を確認してください。</div>'
@@ -626,6 +670,23 @@
                         });
                     }
                 },
+                    getTownship(town_id){
+                    this.joboffer.postal = '';
+                    this.axios.get('/api/auth/township',{
+                      params:{
+                        city:this.joboffer.pref
+                      },
+                    }).then((response)=>{
+                       if(town_id == 2)
+                      {
+                        this.joboffer.str_address = 0;
+                      }
+                      this.townships = response.data.townships
+                    })
+                  },
+                  getLocation(){
+                     this.joboffer.location = '';
+                  },
 
                 add() {
               
