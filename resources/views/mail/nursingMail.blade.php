@@ -5,7 +5,7 @@
                 <span style="font-size: 40px;font-weight: bold;color: #d2571c;text-shadow: 3px 4px #ccc;">LOGO <span style="font-size: 30px; color: #f57e46;">HERE</span></span>
 
 	            <h5 style="color:#3e4348;font-size: 12px;margin-bottom: 30px;font-weight: bold;text-align: left;">
-                    {{$getComment->fav_name}}「施設番号: {{$getComment->fav_id}}」&nbsp;&nbsp;様
+                    {{$getComment->related_fav_name}}「施設番号: {{$getComment->fav_id}}」&nbsp;&nbsp;様
                     <p style="margin-top:10px;">【サイト名】より資料請求がございました。</p>                    
 	            </h5>
                 <p style="text-align: left;margin: 0px;">

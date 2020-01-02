@@ -174,7 +174,7 @@
                                 <div class="col-md-3 col-sm-12 form-left"><label>お名前</label></div>
                                 <div class="col-md-9 col-sm-12 form-right">
                                     <input type="text" id="ttname" name="ttname" class="form-control float-left" placeholder="お名前を入力してください。"  v-model="comments.ttname">
-                                    <span class="eg-txt float-left">例）さがし　たろう</span>
+                                    <span class="eg-txt float-left">例）探し 太郎</span>
                                 </div>
                             </div>
                             <div class="form-group m-0 row bd">
