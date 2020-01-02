@@ -46,7 +46,7 @@
         </div>
         <div class="form-group m-0 row bd">
             <div class="col-md-3 col-sm-12 form-left">
-                <label for="last_name">
+                <label for="furigana">
                     <strong>
                   ふりがな
                   <span class="error sp1">必須</span>
@@ -54,7 +54,7 @@
                 </label>
             </div>
             <div class="col-md-9 col-sm-12 form-right">
-                <input type="text" class="form-control float-left" id="last_name" placeholder="ふりがなを入力してください。" v-model="jobApply.last_name" @keyup="ChekChar" @focusout="focusLname" @change="aggreBtn"/>
+                <input type="text" class="form-control float-left" id="furigana" placeholder="ふりがなを入力してください。" v-model="jobApply.last_name" @keyup="ChekChar" @focusout="focusLname" @change="aggreBtn"/>
                 <span class="float-left eg-txt"> 例）さがし たろう</span>
                 <span class="error m-l-30" v-if="focus_lname">※入力は必須です。</span>
                 <div v-if="errors.last_name" class="text-danger mt-2 ml-4">{{ errors.last_name }}</div> 

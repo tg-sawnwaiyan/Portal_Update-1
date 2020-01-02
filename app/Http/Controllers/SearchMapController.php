@@ -824,6 +824,8 @@ class SearchMapController extends Controller
         if($theCity == 'null'){
             $theCity = 'Tokyo';
         }
+
+        // $jsonArray = [];
        
         $path = base_path().('/google-map-json/gadm36_jpn_1.json');
         $json = file_get_contents($path);
