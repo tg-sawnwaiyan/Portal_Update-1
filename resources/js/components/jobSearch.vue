@@ -315,6 +315,7 @@
           </div>
           <!--end map right wrapper-->
         </div>
+    
         <section id="map-responsive">
             <div>
              
@@ -340,8 +341,11 @@
                       <i class="fas fa-search"></i> 検索
                     </button>
                 </div>
+
+                
               <!--end search input-->
             </div>
+          
              <bulma-accordion 
               :icon="'custom'"
               >
@@ -552,7 +556,7 @@
                     </bulma-accordion>                   
         </section>
         <div id="scroll-responsive">
-          <div  id="job_search" class="row jobselect">
+          <div id="job_search" class="row jobselect">
                <span class="col-12" v-if="norecord_msg">
                 <div class="container-fuid m-t-20">
                     <p class="nosearch-icon">
@@ -959,8 +963,11 @@ export default {
               empstatus:this.empstatus
           },
         }).then((response)=>{
-
-          this.job_data = response.data.job;
+            this.job_data = response.data.job;
+          if(this.job_data.length > 0)
+          {
+               $('#job_search').css("display","block");
+          }
           this.cities = response.data.city
 
           if(this.job_data.length > this.size) {
