@@ -34,8 +34,8 @@
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-image"></i></span>
                         </div>
-                        <span class="btn all-btn choose-btn" style="color: #a93f0c!important;box-shadow:none!important;" @click="choosefile()">ロゴを選択</span> <span id="imgname" style = "padding: 8px 0 0 30px;"></span>
-                        <input type="file" class="inputfile" name="img" required @change="onFileChange"/>
+                        <span class="btn all-btn choose-btn" style="color: #a93f0c!important;box-shadow:none!important;" @click="choosefile()">ロゴを選択</span> <span id="imgname" style = "padding: 8px 0 0 30px;">{{img_name}}</span>
+                        <input type="file" class="inputfile" name="img" @change="onFileChange"/>
                          <span v-if="errors.img" class="error">{{errors.img}}</span>
                         <!-- <input type="file" accept="image/*" @change="showMyImage(this)" name="img" id="file" ref="file" class="form-control inputfile"> -->
                     </div>
@@ -132,7 +132,7 @@
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
                         </div>
-                        <input class="form-control" id="phone" name="phone" v-model="phone" required  pattern="[0-9-]*" placeholder="電話番号を入力してください。"  @focusout="focusPhone" title="Please enter number only." maxlength="14">
+                        <input class="form-control" id="phone" name="phone" v-model="phone" required  pattern="[0-9-]*" placeholder="電話番号を入力してください。"  @keyup="focusPhone" title="Please enter number only." maxlength="14">
                         <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>
                         
                     </div>
@@ -153,6 +153,7 @@
     data() {
       return {
         images:'',
+        img_name:'',
         username: '',
         email: '',
         cities: [],
@@ -282,15 +283,25 @@
     },
       onFileChange(e) {
       const file = e.target.files[0];
-      console.log(file);
       this.images = file;
+      this.img_name = file.name;
       this.url = URL.createObjectURL(file);
     },
       register() {
 
+        var input_data = $('#phone').val();
+        if(input_data.length >= 10 && input_data.length <= 14)
+        {
+            this.ph_num = false;
+            this.ph_length = false;
+        } else {
+            this.ph_num = true;
+            this.ph_length = true;
+            return;
+        }
 
-              var app = this
-       
+
+        var app = this
         let fData = new FormData();
                         fData.append('img', app.images)
                         fData.append('name', app.username)
@@ -357,7 +368,7 @@
       },
       focusPhone(){
         var input_data = $('#phone').val();
-        if(input_data.length >= 10 && input_data.length <= 14 && input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-')
+        if(input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-')
         {
             this.ph_num = false;
             this.ph_length = false;
