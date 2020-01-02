@@ -504,9 +504,9 @@
                        
                     
                         // this.joboffer.pref = response.data[0].cityname;
-                         this.joboffer.pref = response.data.job[0].city_id;
-                          this.getTownship(1);
-                           this.joboffer.str_address = response.data.township_id[0].id;
+                        this.joboffer.pref = response.data.job[0].city_id;
+                        this.getTownship(1);
+                        this.joboffer.str_address = response.data.township_id[0].id;
 
                         this.joboffer.customer_id = response.data.job[0].customer_id;
 
@@ -671,7 +671,7 @@
                     }
                 },
                     getTownship(town_id){
-                    this.joboffer.postal = '';
+                   
                     this.axios.get('/api/auth/township',{
                       params:{
                         city:this.joboffer.pref
@@ -679,6 +679,7 @@
                     }).then((response)=>{
                        if(town_id == 2)
                       {
+                        this.joboffer.postal = '';
                         this.joboffer.str_address = 0;
                       }
                       this.townships = response.data.townships
