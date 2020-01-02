@@ -16,7 +16,7 @@
                                     <!--search input-->
                                     <div class="wrap">
                                         <div class="search">
-                                            <input type="text"  id="search-free-word" class="searchTerm" placeholder="地名、施設名などを入力（例：東京駅）">
+                                            <input type="text"  id="search-free-word" class="searchTerm" placeholder="地名、施設名などを入力">
                                             <button class="searchButton"  @click="searchfreeword" >
                                             <i class="fas fa-search"></i> 検索
                                         </button>
@@ -329,7 +329,7 @@
                                     
                                 <!--search input-->
                                     <div class="search">
-                                        <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、施設名などを入力（例：東京駅）">
+                                        <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、施設名などを入力">
                                         <button type="submit" class="searchButton" @click="searchfreeword">
                                         <i class="fas fa-search"></i> 検索
                                         </button>
@@ -898,7 +898,7 @@
                                                     <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == 'check'" :class="'done_pro_id'+nus.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',nus.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>         
 
                                             <p class="m-b-10"><span class="job_ico"><i class="fa fa-map-signs"></i></span>{{nus.city_name}} <i class="fas fa-angle-double-right" style="color:#b9b5b5;"></i> {{nus.township_name}} </p>
                                             <div class="col-12 pad-free m-b-10 clearfix">
@@ -916,7 +916,7 @@
                                                     <table  class="table table-bordered table-sm">
                                                         <!-- <tr>
                                                         <td style="width:30%;"><span class="job_ico"><i class="fa fa-user"></i></span>名前</td>
-                                                        <td>{{nus.name}}</td>
+                                                        <td>{{nus.name}}</td              >
                                                         </tr> -->
                                                         <tr>
                                                             <td style="width:30%"><span class="job_ico">&#xa5;</span>入居時費用</td>

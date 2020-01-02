@@ -31,6 +31,7 @@ class sendResetPasswordMail extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.resetMail');
+        return $this->view('mail.resetMail')
+                    ->subject("[医療介護ポータル] Reset Password Mail");
     }
 }
