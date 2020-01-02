@@ -71,7 +71,7 @@
                 </div>
           </div> -->
 
-        <div class="col-md-12">
+        <div id="changeGalleryLink" class="col-md-12">
 
 
             <div class="row" id="gallery-photo">
@@ -1490,8 +1490,6 @@ export default {
                     var c = "'"+classname+"'";
                     this.img_arr.push({classname:classname,photo:'',title:'',description:''});
                   
-                   
-      
                   
             },
              galleryToggle()
@@ -1501,20 +1499,18 @@ export default {
 
                       if(class_by_id == "fas fa-sort-down animate rotate")
                       {
+                       
                                 $('#gallery').removeClass("fas fa-sort-down animate rotate");
                                 $('.changeGalleryLink').addClass("fas fa-sort-down");
                                 $('#changeGalleryLink').show('medium');
                                 $('.galleryadd').show();
                       }
                       else {
-
-
                                 $('#gallery').removeClass("fas fa-sort-down");
                                 $('.changeGalleryLink').removeClass("fas fa-sort-down");
                                 $('#gallery').addClass("fas fa-sort-down animate rotate");
-                                $('#changeGalleryLink').hide('medium');
-                                 $('.galleryadd').show();
-                                      $('.galleryadd').hide();
+                                $('#changeGalleryLink').hide('medium'); 
+                                $('.galleryadd').hide();
                       }
                 },
                 galleryVideoToggle()
