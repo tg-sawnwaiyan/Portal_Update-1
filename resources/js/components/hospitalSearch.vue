@@ -567,8 +567,8 @@
                     <table class="table table-bordered col-12">
                         <tbody>
                         <tr>
-                            <th class="pc-414-table">地域</th>
-                            <td>
+                            <th class="pc-414-table sp-768-block">地域</th>
+                            <td class="sp-768-block">
                             <div class="row mt-2 mb-2">
                             <div class="col-lg-9 col-md-6 col-sm-12">
                             <select id="selectCity" class="form-control custom-select" v-model="id" @change="ChangeTownship">
@@ -620,8 +620,8 @@
                             </td>
                         </tr>                       
                         <tr class="toBeToggled1 ShowHide1">
-                            <th class="pc-414-table">特長</th>
-                            <td>
+                            <th class="pc-414-table sp-768-block">特長</th>
+                            <td class="sp-768-block">
                               <!--特長から探す-->
                               <div class="dropdown">
                                 <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
@@ -661,8 +661,8 @@
                             </td>
                         </tr>
                         <tr class="toBeToggled1 ShowHide1">
-                            <th class="pc-414-table">診療科目</th>
-                            <td id="test-td">
+                            <th class="pc-414-table sp-768-block">診療科目</th>
+                            <td class="sp-768-block" id="test-td">
                                 <div class="form-check form-check-inline row align-items-start innerwrapper" v-if="w_width >= 768">
                                     <div v-for="(v,i) in array_len"  :key="i">                                     
                                         <div class="hospital-subject"  v-for="(subject,index) in subjects.slice((i*3),((i*3)+3))"  :key="index" v-bind:class="{ lastblock: i==array_len-1 }">    
@@ -730,7 +730,7 @@
                                 <div class="hos-content">
                                     <div class="job-header">
                                     <div class="row pad-free">
-                                        <div class="col-md-8 col-sm-12">
+                                        <div class="col-md-10 col-sm-12">
                                         <h5 class="hos-title">
                                             <router-link :to="{name: 'profile', params: {cusid:hos.cus_id, type: 'hospital'}}" class="pseudolink">{{hos.name}}</router-link>
                                         </h5>
@@ -742,7 +742,7 @@
                                         </span>
                                     </div>
                                         </div>
-                                        <div class="col-md-4 col-sm-12">
+                                        <div class="col-md-2 col-sm-12">
                                         <p class="float-right">
                                             <!-- <span class="btn fav-profile fav-item fav-color" :class="'view_pro_id'+hos.nursing_id" style="" @click="favAddFun('add',hos.nursing_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                                             <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == 'check'" :class="'done_pro_id'+hos.nursing_id" style="color:#aaa;" @click="favAddFun('remove',hos.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
@@ -1421,6 +1421,7 @@
     width: 140px;
     padding: 25px;
   }
+  
 .page-item.active_page .spanclass {
   z-index: 1;
   background-color: #ffbb99;
