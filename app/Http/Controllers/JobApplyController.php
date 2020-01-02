@@ -31,6 +31,12 @@ class JobApplyController extends Controller
         $jobapply = DB::select($sql);
         return $jobapply;
     }
+    public function jobapplicantlist(){
+        $query = "SELECT job_applies.* FROM job_applies LEFT JOIN jobs ON job_applies.job_id = jobs.id JOIN customers ON customers.id =jobs.customer_id WHERE customers.id = ".auth()->user()->customer_id;
+        $jobapplicant = DB::select($query);
+        //return $jobapplicant; 
+        return response()->json($jobapplicant);
+    }
 
     /**
      * Show the form for creating a new resource.

@@ -223,6 +223,12 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                     hidden: this.$auth.check(2)
                 },
                 {
+                    href: '/jobapplicantlist',
+                    title: '求職者リスト',
+                    icon: 'fa fa-tasks',
+                    hidden: this.$auth.check(2)
+                },
+                {
                     title: 'ログアウト',
                     icon: 'fa fa-lock',
                     // click: this.$auth.logout(),
