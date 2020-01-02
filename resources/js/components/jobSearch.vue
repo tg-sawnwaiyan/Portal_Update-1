@@ -753,7 +753,7 @@
 
                 <tr class="text-center">
                   <td colspan="2" style="border:none;">
-                     <button class="main-bg-color create-btn all-btn col-md-2 col-sm-2" @click="search"><i class="fas fa-search"></i>&nbsp; 検索 </button>
+                     <button class="main-bg-color create-btn all-btn col-lg-2 col-md-4 col-sm-2" @click="search"><i class="fas fa-search"></i>&nbsp; 検索 </button>
                   </td>
                 </tr>
               </tbody>

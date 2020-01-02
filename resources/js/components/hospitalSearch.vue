@@ -570,13 +570,13 @@
                             <th class="pc-414-table sp-768-block">地域</th>
                             <td class="sp-768-block">
                             <div class="row mt-2 mb-2">
-                            <div class="col-lg-9 col-md-6 col-sm-12">
+                            <div class="col-lg-9 col-md-8 col-sm-12">
                             <select id="selectCity" class="form-control custom-select" v-model="id" @change="ChangeTownship">
                                 <option value="" disabled>▼市区町村</option>
                                 <option v-for="city in cities" :value="city.id" :key="city.id">{{city.city_name}}</option>
                             </select>
                             </div>
-                            <div class="col-lg-3 col-md-6 col-sm-12 pc-414">
+                            <div class="col-lg-3 col-md-4 col-sm-12 pc-414">
                             <button @click="toggleContent" class="btn seemore-btn" v-if="getTownships.length > 0">
                                 <i class="fa" aria-hidden="true"></i>
                                 <!-- <em>{{city.city_name}}</em> -->
@@ -717,7 +717,7 @@
                         </tr>
                         <tr class="text-center">
                             <td colspan="2">
-                            <button type="button" class="main-bg-color create-btn all-btn col-md-2 col-sm-2" id="search" name="search" value="検索"  @click="search">
+                            <button type="button" class="main-bg-color create-btn all-btn col-lg-2 col-md-4 col-sm-2" id="search" name="search" value="検索"  @click="search">
                             <i class="fas fa-search"></i>&nbsp; 検索
                             </button>
                             </td>
