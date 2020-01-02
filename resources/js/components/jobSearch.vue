@@ -1012,8 +1012,7 @@ export default {
                 },
             })
             .then((response)=>{
-              if(response.data.job.length > 0)
-              {
+          
 
                 $('.jobselect').removeClass('jobselect');
                 $('#job_search').css("display","block");
@@ -1029,16 +1028,11 @@ export default {
                 if(this.job_data.length != 0) {
                     this.norecord_msg = false;
                 }else{
+              
                     this.norecord_msg = true;
                 }
-
-              }
-              else{
-                  $('#job_search').css("display","none");
-              }
-
-
-
+              
+        
             });
 
 

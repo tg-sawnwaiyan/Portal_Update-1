@@ -1285,20 +1285,22 @@
                 })
                 .then((response) => {
                   
-                    if(response.data.nursing.length > 0)
-                    {
+                  
 
                         $("#mymap").css({'display' : 'block','height' : '500px','width':'100%'});
                         $("#filtertable").css("display", "block");
                         $("#nursing-search").css("display", "block");
-                        this.changeMap(response);
-                    }
-                    else{
-                        $("#mymap").css("display", "none");
-                        $("#nursing-search").css("display", "none");
-
-                    }
-                    document.getElementById('search-free-word').value = '';
+                      
+                         if(response.data.nursing.length != 0){
+                            this.norecord_msg = false;
+                            this.changeMap(response);
+                        }else{
+                            $("#mymap").css({'display' : 'none'});
+                            this.norecord_msg = true;
+                        }
+                    
+                  
+                    // document.getElementById('search-free-word').value = '';
 
                 });
 
