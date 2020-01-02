@@ -567,16 +567,16 @@
             <table class="table table-bordered col-12 ">
               <tbody>
                 <tr>
-                  <th class="pc-414-table">地域</th>
-                  <td>
+                  <th class="pc-414-table sp-768-block">地域</th>
+                  <td class="sp-768-block">
                     <div class="row mt-2 mb-2">
-                      <div class="col-lg-9 col-md-6 col-sm-12">
+                      <div class="col-lg-9 col-md-8 col-sm-12">
                       <select id="selectCity" class="form-control custom-select" v-model="id" @change="changeTownship">                        
                         <option value="-1">▼市区町村</option>
                         <option v-for="city in cities" :value="city.id" :key="city.id" >{{city.city_name}}</option>                       
                     </select>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-12 pc-414">
+                    <div class="col-lg-3 col-md-4 col-sm-12 pc-414">
                       <button @click="toggleContent4" class="btn seemore-btn">
                       <i class="fa" aria-hidden="true"></i>
                           <!-- <em>{{city.city_name}}</em> -->
@@ -620,8 +620,8 @@
                   </td>
                 </tr>                
                 <tr class="toBeToggled1 ShowHide">
-                  <th class="pc-414-table">職種</th>
-                  <td>
+                  <th class="pc-414-table sp-768-block">職種</th>
+                  <td class="sp-768-block">
                     <!--職種から探す-->
                      <div class="dropdown">
                         <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
@@ -660,8 +660,8 @@
                   </td>
                 </tr>
                 <tr class="toBeToggled1 ShowHide">
-                  <th style="padding:10px;" class="pc-414-table">雇用形態</th>
-                  <td>
+                  <th style="padding:10px;" class="pc-414-table sp-768-block">雇用形態</th>
+                  <td class="sp-768-block">
                     <!--雇用形態から探す-->
                     <div class="dropdown">
                         <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
@@ -1330,7 +1330,7 @@ span:hover::before {
 
 table > tbody > tr th{
   background-color: #eeeeee;
-  text-align:right;
+  /* text-align:right; */
   width:140px;
   padding:25px;
 }
@@ -1435,7 +1435,7 @@ table > tbody > tr th{
 /************************responsive ****************************/
 @media only screen and (max-width:1024px) {
   table > tbody > tr th{  
-    width:100px !important;
+    width:100px;
   }
  
 }
