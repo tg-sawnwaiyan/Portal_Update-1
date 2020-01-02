@@ -403,6 +403,7 @@
      
         data() {
                 return {
+                    status_all:'0',
                     errors: [],
                     fav_nursing: [],
                     local_sto: "",
@@ -650,23 +651,18 @@
                         });
                     },
                     checkAll() {
-                        this.disableBtn = false;
+                        this.disableBtn = '';
                         if ($('.check-all-btn').is(":checked")) {
-                            // $('.checkbox1').prop("checked", true);
-                            // $('.checkbox2').prop("checked", true);
+                            this.disableBtn = false;
                         } else {
-                            // $('.checkbox1').prop("checked", false);
-                            // $('.checkbox2').prop("checked", false);
-                             this.disableBtn = true;
+                            this.disableBtn = true;
                         }
                         for (var i = 0; i < this.fav_nursing.length; i++) {
                             var j = this.fav_nursing[i].id;
                             if ($('.check-all-btn').is(":checked")) {
                                 this.document_status[j] = true;
-                                // this.reserv_status[j] = true;
                             } else {
                                 this.document_status[j] = false;
-                                // this.reserv_status[j] = false;
                             }
                         }
                     },
@@ -674,7 +670,7 @@
                         if (this.document_status[nid]) {
                             this.disableBtn = false;
                         }
-                        else if(!this.document_status.includes(true)){
+                        else if(!this.document_status.includes(true)) {
                             this.disableBtn = true;
                         }
                     },
