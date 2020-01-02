@@ -63,17 +63,18 @@
                   
                 </div>  
                 <div class="form-group">
+                  <h5 class="lbl-lat-lng">緯度経度の入力または地図のマーカを移動し施設の位置を指定してください。</h5>
                     <div class="row">
-                      <div class="col-md-5">
+                      <div class="col-sm-4 col-md-5">
                         <label>緯度<span class="error">*</span></label>
                         <input type="text" class="form-control white-bg-color" name="new_lat" v-model="new_lat" id="new_lat">
                       </div>
-                      <div class="col-md-5">
+                      <div class="col-sm-4 col-md-5">
                         <label>経度<span class="error">*</span></label>
                         <input type="text" class="form-control white-bg-color" name="new_long" v-model="new_long" id="new_long">
                       </div>
-                      <div class="col-md-2">
-                        <span style="position:absolute;bottom:0px;" class="btn news-post-btn all-btn" @click="addressSelect(Number(new_lat),Number(new_long))">番地検索</span>
+                      <div class="col-sm-4 col-md-2">
+                        <span style="position:absolute;bottom:0px;" class="btn news-post-btn all-btn" @click="addressSelect(Number(new_lat),Number(new_long))">緯度経度から地図を検索</span>
                       </div>
                     </div>
                   </div>
@@ -303,3 +304,12 @@ export default {
 };
 
 </script>
+<style scoped>
+.lbl-lat-lng {
+    margin: 15px 0px;
+    font-weight: bold;
+    border-left: 5px solid #ff6117;
+    padding-left: 10px;
+}
+
+</style>

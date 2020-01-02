@@ -8352,7 +8352,7 @@ ul.nur-caro-card>li.list-group-item {
 .wrapper-0 img {
     position: absolute;
     width: 100%;
-    box-shadow: 0px 1px 5px 0px #b1b1b1 !important;
+    /* box-shadow: 0px 1px 5px 0px #b1b1b1 !important; */
     height: auto;
     max-height: 100%;
     transition: all 250ms ease-out;

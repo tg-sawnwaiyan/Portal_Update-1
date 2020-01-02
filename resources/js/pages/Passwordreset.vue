@@ -73,11 +73,11 @@
            this.$loading(false);
             this.$swal({       
                       text: "Check your email to change new password",
-                      type: "info",
+                      type: "success",
                       width: 390,
                       height: 200,                        
                       confirmButtonColor: "#6cb2eb",                         
-                      confirmButtonText: "OK",
+                      confirmButtonText: "はい",
                       confirmButtonClass: "all-btn",
                   
                   }).then(response => { 
@@ -95,7 +95,7 @@
                             width: 390,
                             height: 200,                        
                             confirmButtonColor: "#6cb2eb",                         
-                            confirmButtonText: "OK",
+                            confirmButtonText: "はい",
                             confirmButtonClass: "all-btn",
                         
                         })
