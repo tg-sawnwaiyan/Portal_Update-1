@@ -242,10 +242,10 @@ class UserController extends Controller
     public function getUserInfo() {
         $user = User::find(auth('api')->user()->id);
         if($user->type_id == '2') {
-            $user->id = '200000'.$user->id;
+            $user->id = 200000+intval($user->id);
         } 
         if($user->type_id == '3') {
-            $user->id = '500000'.$user->id;
+            $user->id = 500000+intval($user->id);
         }
         
         return response()->json($user);
