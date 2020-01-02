@@ -1046,6 +1046,8 @@ export default {
                     this.norecord_msg = true;
                 }
 
+       
+
               }
               else{
                   $('#job_search').css("display","none");
