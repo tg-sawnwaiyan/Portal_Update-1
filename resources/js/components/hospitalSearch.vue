@@ -1035,8 +1035,7 @@
                 local:this.locast
             },
             }).then((response)=>{
-                    if(response.data.hospital.length > 0)
-                    {
+                  
                         $('.hospitalselect').removeClass('hospitalselect');
                         $('#hos_search').css("display","block");
                         this.hos_data = response.data.hospital;
@@ -1056,10 +1055,8 @@
                         }else{
                           this.norecord_msg = true;
                         }
-                    }
-                    else{
-                        $('#hos_search').css("display","none");
-                    }
+                    
+                  
 
                 });
             },
