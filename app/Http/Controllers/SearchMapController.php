@@ -79,21 +79,23 @@ class SearchMapController extends Controller
             {
                 $arr[] = ( $nursing_profile[$i]->nursing_id);                
             }
-            if($local != 0)
-            {
-                for($i = 0;$i<count($local);$i++)
-                {
-                    $local_arr = (string)($local[$i]);
-                    if(isset($arr)){
-                        if(in_array($local_arr, $arr))
-                        {
-                            $nus_id = array_search($local_arr,$arr);
-                            $nursing_profile[$nus_id]->fav_check = "check";                    
-                        }
-                    }              
-                }
-            }
+           
          }    
+
+         if($local != 0 && isset($arr))
+         {
+             for($i = 0;$i<count($local);$i++)
+             {
+                 $local_arr = (string)($local[$i]);
+                 if(isset($arr)){
+                     if(in_array($local_arr, $arr))
+                     {
+                         $nus_id = array_search($local_arr,$arr);
+                         $nursing_profile[$nus_id]->fav_check = "check";                    
+                     }
+                 }              
+             }
+         }
          
         $alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 
@@ -133,7 +135,17 @@ class SearchMapController extends Controller
       
    
         $medical_acceptance = DB::table('medical_acceptance')->get();
-        $occupations        = DB::table('occupation')->get();
+        $occupation = "SELECT *,'' as child from occupation where parent = " . 0 ." order by id";
+        $occupations = DB::select($occupation);
+
+        foreach($occupations as $occu)
+        {
+            $id = $occu->id;
+            $db_occ = "SELECT occupation.* from occupation where parent =". $id ." order by id";
+            $occuchild = DB::select($db_occ);
+            $occu->child = $occuchild;
+        }
+        //$occupations        = DB::table('occupation')->get();
 
 
       
@@ -187,8 +199,9 @@ class SearchMapController extends Controller
           {
              if($searchword != 'all')
              {
-                $query .= " and (n.method like '%" . $searchword . "%' or n.business_entity like '%".$searchword."%') group by c.id";
+                // $query .= " and (n.method like '%" . $searchword . "%' or n.business_entity like '%".$searchword."%') group by c.id";
               
+                 $query .= " and (ci.city_name like '%" . $searchword . "%' or t.township_name like '%" . $searchword . "%' or c.name like '%".$searchword."%') group by c.id";
              }
              else{
                  
@@ -346,7 +359,7 @@ class SearchMapController extends Controller
 
            
             
-            if($local != 0)
+            if($local != 0 && isset($arr))
             {
                 for($i = 0;$i<count($local);$i++)
                 {
@@ -821,6 +834,8 @@ class SearchMapController extends Controller
         if($theCity == 'null'){
             $theCity = 'Tokyo';
         }
+
+        // $jsonArray = [];
        
         $path = base_path().('/google-map-json/gadm36_jpn_1.json');
         $json = file_get_contents($path);

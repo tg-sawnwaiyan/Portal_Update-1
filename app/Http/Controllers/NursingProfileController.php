@@ -48,7 +48,7 @@ class NursingProfileController extends Controller
         }        
     }
 
-    public function profileupdate($id,Request $request) {
+    public function profileupdate($id,Request $request) { 
         $request = $request->all();
 
         $nursing = NursingProfile::where('customer_id',$id)->first();

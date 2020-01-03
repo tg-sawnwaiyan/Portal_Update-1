@@ -71,7 +71,7 @@
                 </div>
           </div> -->
 
-        <div class="col-md-12">
+        <div id="changeGalleryLink" class="col-md-12">
 
 
             <div class="row" id="gallery-photo">
@@ -1478,6 +1478,12 @@ export default {
                                     var parentEle = document.getElementById('gallery-'+type);
                                     parentEle.removeChild(ele);
                             }
+                            else{
+                                    arr_list.splice(indx,1);
+                                    var ele = document.getElementById(type+indx);
+                                    var parentEle = document.getElementById('gallery-'+type);
+                                    parentEle.removeChild(ele);
+                            }
                     }
             },
             galleryAdd() {
@@ -1490,8 +1496,6 @@ export default {
                     var c = "'"+classname+"'";
                     this.img_arr.push({classname:classname,photo:'',title:'',description:''});
                   
-                   
-      
                   
             },
              galleryToggle()
@@ -1501,20 +1505,18 @@ export default {
 
                       if(class_by_id == "fas fa-sort-down animate rotate")
                       {
+                       
                                 $('#gallery').removeClass("fas fa-sort-down animate rotate");
                                 $('.changeGalleryLink').addClass("fas fa-sort-down");
                                 $('#changeGalleryLink').show('medium');
                                 $('.galleryadd').show();
                       }
                       else {
-
-
                                 $('#gallery').removeClass("fas fa-sort-down");
                                 $('.changeGalleryLink').removeClass("fas fa-sort-down");
                                 $('#gallery').addClass("fas fa-sort-down animate rotate");
-                                $('#changeGalleryLink').hide('medium');
-                                 $('.galleryadd').show();
-                                      $('.galleryadd').hide();
+                                $('#changeGalleryLink').hide('medium'); 
+                                $('.galleryadd').hide();
                       }
                 },
                 galleryVideoToggle()
@@ -1722,8 +1724,8 @@ export default {
                     this.axios
                         .post('/api/hospital/postList/' + postal)
                         .then(response => {
-                            var post_data = response.data;
-                            var length = response.data.length;
+                            var post_data = response.data.postal_list;
+                            var length = response.data.postal_list.length;
                             if (length > 0) {
                                 var pref = post_data[0]['city_id'];
                                 if (post_data[0]['street'] == '') {

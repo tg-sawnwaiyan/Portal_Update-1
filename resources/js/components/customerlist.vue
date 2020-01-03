@@ -35,7 +35,7 @@
                                         <div class="col-lg-10 col-md-9">
                                             <div class="row">
                                                 <div class="col-lg-2 col-md-4 custom_title">
-                                                    <strong>名前:</strong>
+                                                    <strong>事業者名:</strong>
                                                 </div>
                                                 <div class="col-lg-10 col-md-8">{{customer.name}}</div>
                                                 <div class="col-lg-2 col-md-4 custom_title">
@@ -121,7 +121,7 @@
                 this.$loading(true);
                 console.log(this.$route.path)
                 if(this.$route.path == "/nuscustomerlist"){
-                    this.title = "Nursing 事業者一覧";
+                    this.title = "介護施設事業者一覧";
                     this.axios.get("/api/customers/3").then(response => {
                         this.$loading(false);
                         this.customers = response.data;
@@ -139,7 +139,7 @@
                     });
                 }
                 else if(this.$route.path == "/hoscustomerlist"){
-                    this.title = "Hospital 事業者一覧";
+                    this.title = "病院事業者一覧";
                     this.axios.get("/api/customers/2").then(response => {
                         this.$loading(false);
                         this.customers = response.data;
@@ -242,8 +242,8 @@
                         this.axios.get(`/api/confirm/${id}`).then(response => {
                             if (response.data == 'success') {
                                 this.$swal({
-                                    title: "確認済",
-                                    text: "メールを送信しました",
+                                    title: "新規登録承認",
+                                    text: "事業者にメールを送信しました",
                                     type: "success",
                                     width: 350,
                                     height: 200,
@@ -252,7 +252,7 @@
                                 });
                             } else {
                                 this.$swal({
-                                    title: "確認済",
+                                    title: "新規登録承認",
                                     text: "顧客はすでに確認されています。",
                                     type: "warning",
                                     width: 350,

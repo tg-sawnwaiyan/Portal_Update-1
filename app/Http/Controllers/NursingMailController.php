@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\nursingMailing;
 use App\Mail\userNursingMail;
+use App\Mail\adminNursingMail;
 class NursingMailController extends Controller
 {
     /**
@@ -62,11 +63,11 @@ class NursingMailController extends Controller
         // $fav_reserve = $request->arr_reserve;
         $fav_documentation = $request->arr_document;
        
-
+// return $request;
          for($i = 1; $i<count($favourite_id); $i++){
             
-            $request->fav_id = $favourite_id[$i];
-            $request->fav_name = $favourite_name[$i];  
+            $request->related_fav_id = 500000+intval($favourite_id[$i]);
+            $request->related_fav_name = $favourite_name[$i];  
             // $fav_documentation[0] = 'test';
             if (isset($fav_documentation[$favourite_id[$i]])){
             //   return $favourite_id;
@@ -81,11 +82,10 @@ class NursingMailController extends Controller
     
     }       
 
-    // return  $fav_documentation;
-        // $admin_email = 'thuzar.ts92@gmail.com';
-        $admin_email = 'mayphue17@management-partners.co.jp';
+        $admin_email = 'thuzar.ts92@gmail.com';
+        // $admin_email = 'thuzar@management-partners.co.jp';
         // $admin_email = 'management.partner87@gmail.com ';
-        \Mail::to($admin_email)->send(new nursingMailing($request));
+        \Mail::to($admin_email)->send(new adminNursingMail($request));
 
         \Mail::to($request->mail)->send(new userNursingMail($request));
 

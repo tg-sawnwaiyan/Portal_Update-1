@@ -127,7 +127,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                         },
                         {
                         href: '/categorylist',
-                        title: 'ニュースカテゴリー設定',
+                        title: 'カテゴリー設定',
                         icon: 'fa fa-file-alt'
                         }
                     ]
@@ -139,7 +139,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                     child: [
                         {
                         href: '/nuscustomerlist',
-                        title: '事業者',
+                        title: '事業者一覧',
                         icon: 'fa fa-user'
                         },
                         {
@@ -161,12 +161,12 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                     child: [
                         {
                         href: '/hoscustomerlist',
-                        title: '事業者',
+                        title: '事業者一覧',
                         icon: 'fa fa-user'
                         },
                         {
                         href: '/facilitieslist',
-                        title: '施設一覧',
+                        title: '院内施設設定',
                         icon: 'fa fa-sun'
                         },
                         {
@@ -188,7 +188,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                 },
                 {
                     href: '/occupationlist',
-                    title: '求人職種',
+                    title: '職種設定',
                     icon: 'fa fa-suitcase',
                     hidden: this.$auth.check(1)
                 },

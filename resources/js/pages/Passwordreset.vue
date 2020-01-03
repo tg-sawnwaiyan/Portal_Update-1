@@ -2,7 +2,7 @@
     <div class="loginwrapper">
 		<div class="d-flex justify-content-center h-100">
         <div class="user_card">
-            <div class="links" style="top:-134px;">
+            <div class="links" style="top:-90px;">
               <!-- <router-link to="/" class="mr-auto text-white">ホーム</router-link> -->
               <router-link to="/login" class="ml-auto text" style="color: #a93f0c!important;font-weight:bold;">ログイン</router-link>
               <a href="/" class="mr-auto text-white">ホーム</a>
@@ -20,7 +20,7 @@
                 <div class="col-12 m-t-80">               
                 <form autocomplete="off" @submit.prevent="resetPass" method="post">
                     <div class="input-group mb-3">
-                      <span>ユーザ名(メールアドレス)を入力してください。メールアドレス宛にパスワード再設定用のリンクをお送りします。</span>
+                      <span style="text-align: center; font-weight: bold; margin: 0px 20px 30px">ユーザ名(メールアドレス)を入力してください。メールアドレス宛にパスワード再設定用のリンクをお送りします。</span>
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                         </div>
@@ -31,7 +31,7 @@
                     </div>
                     
                     <div class="d-flex justify-content-center mt-3">
-                      <button type="submit" name="button" id="getUser" class="btn login_btn">Submit</button>
+                      <button type="submit" name="button" id="getUser" class="btn login_btn">送信</button>
                     </div>
                 </form>
                 <!-- <div class="mt-4">
@@ -73,11 +73,11 @@
            this.$loading(false);
             this.$swal({       
                       text: "Check your email to change new password",
-                      type: "info",
+                      type: "success",
                       width: 390,
                       height: 200,                        
                       confirmButtonColor: "#6cb2eb",                         
-                      confirmButtonText: "OK",
+                      confirmButtonText: "はい",
                       confirmButtonClass: "all-btn",
                   
                   }).then(response => { 
@@ -95,7 +95,7 @@
                             width: 390,
                             height: 200,                        
                             confirmButtonColor: "#6cb2eb",                         
-                            confirmButtonText: "OK",
+                            confirmButtonText: "はい",
                             confirmButtonClass: "all-btn",
                         
                         })

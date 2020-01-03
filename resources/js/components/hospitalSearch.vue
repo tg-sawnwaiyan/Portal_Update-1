@@ -1047,8 +1047,7 @@
                 local:this.locast
             },
             }).then((response)=>{
-                    if(response.data.hospital.length > 0)
-                    {
+                  
                         $('.hospitalselect').removeClass('hospitalselect');
                         $('#hos_search').css("display","block");
                         this.hos_data = response.data.hospital;
@@ -1068,10 +1067,8 @@
                         }else{
                           this.norecord_msg = true;
                         }
-                    }
-                    else{
-                        $('#hos_search').css("display","none");
-                    }
+                    
+                  
 
                 });
             },
@@ -1198,6 +1195,7 @@
               this.getTownships = response.data.getTownships
               this.special_features = response.data.special_features
               this.subjects = response.data.subjects;
+             
               //this.sub_child = response.data.sub_child;
               //console.log("aaa",this.subjects);
               // this.id = id;
@@ -1254,6 +1252,7 @@
               console.log(this.getTownships.length);
               this.special_features = response.data.special_features
               this.subjects = response.data.subjects
+               console.log('sub',this.subjects);
               this.company = response.data.company
             //   this.sub_child = response.data.sub_child
               this.id = id;

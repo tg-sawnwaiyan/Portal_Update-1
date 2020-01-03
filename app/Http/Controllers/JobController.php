@@ -36,12 +36,12 @@ class JobController extends Controller
 
     }
 
-    public function getOccupationList()
-    {
-        $occupationlist = Occupations::select('id','name')->get()->toArray();
+    // public function getOccupationList()
+    // {
+    //     $occupationlist = Occupations::select('id','name')->get()->toArray();
 
-        return response()->json($occupationlist);
-    }
+    //     return response()->json($occupationlist);
+    // }
 
     public function getSkill()
     {
@@ -216,10 +216,14 @@ class JobController extends Controller
     {
 
         // $job = Job::find($id);
-        $sql = "SELECT jobs.*, zipcode.id as zip_id, zipcode.zip7_code, zipcode.pref as cityname, zipcode.city as township, zipcode.street from jobs inner join zipcode on jobs.zipcode_id = zipcode.id WHERE jobs.id = $id";
+        $sql = "SELECT jobs.*, zipcode.id as zip_id, zipcode.zip7_code, zipcode.pref as cityname,zipcode.city_id, zipcode.city as township, zipcode.street from jobs inner join zipcode on jobs.zipcode_id = zipcode.id WHERE jobs.id = $id";
         $job = DB::select($sql);
 
-        return response()->json($job);
+        $township = "SELECT id from townships where township_name like '" .$job[0]->township ."'";
+        $township_id = DB::select($township);
+        
+
+        return response()->json(Array("job"=>$job,"township_id"=>$township_id));
     }
 
 

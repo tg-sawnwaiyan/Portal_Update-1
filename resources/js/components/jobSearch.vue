@@ -315,6 +315,7 @@
           </div>
           <!--end map right wrapper-->
         </div>
+    
         <section id="map-responsive">
             <div>
              
@@ -340,8 +341,11 @@
                       <i class="fas fa-search"></i> 検索
                     </button>
                 </div>
+
+                
               <!--end search input-->
             </div>
+          
              <bulma-accordion 
               :icon="'custom'"
               >
@@ -552,7 +556,7 @@
                     </bulma-accordion>                   
         </section>
         <div id="scroll-responsive">
-          <div  id="job_search" class="row jobselect">
+          <div id="job_search" class="row jobselect">
                <span class="col-12" v-if="norecord_msg">
                 <div class="container-fuid m-t-20">
                     <p class="nosearch-icon">
@@ -627,7 +631,44 @@
                         <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
                         職種から探す
                         </button> 
-                        <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768" @click.stop="stopTheEvent">
+                        
+                                <!-- <div class="form-check form-check-inline row align-items-start">
+                                  
+                                    <div class="" v-for="(occupation,index) in occupations" :key="index" style="position:">
+                                
+                                        <strong class=" col-12">{{occupation.name}}</strong>
+                                        <div class="col-6" v-for="ch in occupation.child" :key="ch.id+1">
+                                            <label class="form-check-label control control--checkbox" style="padding-left:5px;">
+                                            <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="occupationID" :value="ch.id">
+                                            {{ch.name}}
+                                            <div class="control__indicator"></div>
+                                            </label>
+                                        </div>
+                                  
+                                    </div>
+                                </div> -->
+
+
+                                   <div class="form-check form-check-inline row align-items-start innerwrapper" >
+                                    <div v-for="(v,i) in array_len"  :key="i">
+                                        <div class="hospital-subject" v-for="(occupation,index) in occupations.slice((i*3),((i*3)+3))" :key="index">                                    
+                                            <div class="row col-12">
+                                                <strong class="table-innertitle row col-12">{{occupation.name}}</strong>
+                                                <div class="col-6" v-for="ch in occupation.child" :key="ch.id+1">
+                                                    <label class="form-check-label control control--checkbox" style="padding-left:5px;">
+                                                    <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="occupationID" :value="ch.id">
+                                                     {{ch.name}}
+                                                    <div class="control__indicator"></div>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                   
+                                </div>
+
+                        <!-- <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768">
                             <li>
                             <a data-value="option">
                             <div class="row">
@@ -641,9 +682,9 @@
                             </div>
                             </a>
                             </li>
-                        </ul>
+                        </ul> -->
 
-                        <a v-if="w_width >= 768">
+                        <!-- <a v-if="w_width >= 768">
                           <div class="row">
                             <div class="col-lg-2 col-md-4 col-sm-4" v-for="occupation in occupations" :key="occupation.id">
                               <label class="form-check-label control control--checkbox">
@@ -653,7 +694,7 @@
                               </label>
                             </div>
                           </div>
-                        </a>
+                        </a>  -->
                      </div>
                       
                     <!--end 職種から探す-->
@@ -779,19 +820,19 @@
                         <div class="col-12 pad-free job-boxjob-box p0-480">
                           <table  class="table table-bordered  table-sm">
                             <tr>
-                              <td><span class="job_ico pc-414-inline"><i class="fa fa-map-marker-alt"></i></span><span>最寄り駅</span></td>
+                              <td><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>最寄り駅</td>
                               <td>{{job.nearest_station}}</td>
                             </tr>
                             <tr>
-                              <td><span class="job_ico pc-414-inline">&#xa5;</span><span>給料</span></td>
+                              <td><span class="job_ico">&#xa5;</span>給料</td>
                               <td>{{job.salary_type}} : {{(Number(job.salary)).toLocaleString()}} ¥ </td>
                             </tr>
                             <tr>
-                              <td><span class="job_ico pc-414-inline">時</span><span>勤務時間/日/休日の詳細</span></td>
+                              <td><span class="job_ico">時</span>勤務時間/日/休日の詳細</td>
                               <td> {{job.working_hours}} / {{job.holidays}}  </td>
                             </tr>
                             <tr>
-                              <td><span class="job_ico pc-414-inline"><i class="fa fa-briefcase"></i></span><span>特別な条件</span></td>
+                              <td><span class="job_ico"><i class="fa fa-briefcase"></i></span>特別な条件</td>
                               <td> {{job.allowances}} </td>
                             </tr>
                           </table>
@@ -866,6 +907,7 @@ export default {
         subjects:[],
         occupationID:[],
         occupations:[],
+        occupation:[],
         toggleCheck: true,
         toggleCheck_1: false,
         empstatus:[],
@@ -886,7 +928,8 @@ export default {
           height: 0
         },
         w_width: $(window).width(),
-       testclass:''
+       testclass:'',
+       array_len: 0
       }
     },
     created() {
@@ -959,8 +1002,11 @@ export default {
               empstatus:this.empstatus
           },
         }).then((response)=>{
-
-          this.job_data = response.data.job;
+            this.job_data = response.data.job;
+          if(this.job_data.length > 0)
+          {
+               $('#job_search').css("display","block");
+          }
           this.cities = response.data.city
 
           if(this.job_data.length > this.size) {
@@ -1005,8 +1051,7 @@ export default {
                 },
             })
             .then((response)=>{
-              if(response.data.job.length > 0)
-              {
+          
 
                 $('.jobselect').removeClass('jobselect');
                 $('#job_search').css("display","block");
@@ -1022,16 +1067,11 @@ export default {
                 if(this.job_data.length != 0) {
                     this.norecord_msg = false;
                 }else{
+              
                     this.norecord_msg = true;
                 }
-
-              }
-              else{
-                  $('#job_search').css("display","none");
-              }
-
-
-
+              
+        
             });
 
 
@@ -1095,9 +1135,11 @@ export default {
             this.cities = response.data.city
             this.getCity = response.data.getCity
             this.getTownships = response.data.getTownships
+            this.occupation = response.data.occupation
             this.occupations = response.data.occupations
             this.id = id
          })
+      
 
         this.search();
         },
@@ -1146,7 +1188,10 @@ export default {
           this.getTownships = response.data.getTownships
           
           this.occupations = response.data.occupations
-          this.id = id
+          //console.log("occu",this.occupations)
+          this.id = id,
+           this.array_len = ((this.occupations.length)%3)==0?((this.occupations.length)/3):Math.floor(((this.occupations.length)/3)+1);
+              console.log(this.array_len)
          })
 
         document.getElementById('search-free-word').value = '';

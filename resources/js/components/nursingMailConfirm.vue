@@ -8,7 +8,7 @@
                 <!-- <div class="col-12 m-b-10">
             <h4 class="job-apply-color">入力内容のご確認</h4>
         </div> -->
-                <div class="col-12 pad-free m-b-20">
+                <div class="col-12 pad-free m-b-10">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
@@ -29,9 +29,7 @@
             </ol> -->
                     </nav>
                 </div>
-                <div class="col-12 m-b-10">
-                    <h4 class="nursing-info">資料請求される方について</h4>
-                </div>
+                
                 <div class="col-md-12 confirm_box" v-if="type == 'confirm'">
                     <div id="loader"></div>
                     <ul class="multi-step">
@@ -40,6 +38,7 @@
                         <li>3.送信完了</li>
                     </ul>
                     <form class="col-md-12 form-wrap" @submit.prevent="add" method="post">
+                        <h4 class="form-tit">資料請求される方について</h4>
                         <div class="mb-5">
                             <p class="require-txt">
                                 <span style="color: red; font-weight: bold; font-size: 15px;">※</span> ご入力いただいた内容に誤りがないかどうか、ご確認ください。
@@ -142,7 +141,7 @@
               </div> -->
                         </div>
                         <div class="mb-5">
-                            <h3 class="form-tit">入居対象者様について</h3>
+                            <h3 class="form-tit" v-if="type !== 'completed'">入居対象者様について</h3>
                             <div class="form-group m-0 row bd">
                                 <div class="col-md-3 col-sm-12 form-left">
                                     入居対象者様とのご関係
@@ -213,10 +212,10 @@
                         <li class="active">3.送信完了</li>
                     </ul>
                     <div class="text-center">
-                        <h3>入力内容は送信されました‼</h3>
+                        <h3>資料請求が完了いたしました。‼</h3>
                         <br />
-                        <p>この度は「探しっくす」をご利用いただきましてありがとうございました。</p>
-                        <p>ご見学の日程等の詳細、お申込みいただいた資料の送付およびお問い合わせいただいた内容につきましては、各施設よりご対応させていただきます。</p>
+                        <p>この度は「医療介護ポータル」をご利用いただきましてありがとうございました。</p>
+                        <p>お申込みいただいた資料の送付およびお問い合わせいただいた内容につきましては、各施設よりご対応させていただきます。</p>
                         <p>今後ともどうぞよろしくお願い申し上げます。</p>
                         <br />
                         <br />

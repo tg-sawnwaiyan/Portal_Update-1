@@ -167,8 +167,8 @@
                                                     <tr>
 
                                                     <td colspan="2" class="text-right" style="border:none;!important">
-                                                        <span :class="'btn btn all-btn main-bg-color changeLink'+payment.id" style="min-width: 0px;" @click="paymentToggle(payment.id)" >
-                                                            <i :id="'icon' + payment.id" class="fas fa-sort-down"></i>
+                                                        <span :class="'btn btn all-btn main-bg-color changeLink'+indx" style="min-width: 0px;" @click="paymentToggle(indx)" >
+                                                            <i :id="'icon' + indx" class="fas fa-sort-down"></i>
                                                         </span>
                                                         <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,'payment')">
                                                         <i class="fa fa-trash"></i> 削除</a>
@@ -184,7 +184,7 @@
                                                     </tr>
                                                 </table>
                                             </div>
-                                            <div class="col-md-12 " :id="'changeLink' + payment.id" >
+                                            <div class="col-md-12 " :id="'changeLink' + indx" >
                                                 <div class="col-md-12">
                                                         <h3 class="title-lbl">料金概要</h3>
                                                         <table class="table">
@@ -426,16 +426,20 @@
                                         <div class="col-md-12 m-t-30 m-b-20 gallery-area-cooperate" v-bind:id="'cooperate'+indx" v-for="(cooperate,indx) in cooperate_arr" :key="cooperate.id">
 
                                             <div class="clearfix" style="margin-bottom:30px;">
-                                                   <span :class="'float-right btn all-btn main-bg-color cooperateChangeLink'+cooperate.id" style="min-width: 0px;" @click="cooperateToggle(cooperate.id)" >
-                                                        <i :id="'cooperate' + cooperate.id" class="fas fa-sort-down"></i>
+                                                   <span :class="'float-right btn all-btn main-bg-color cooperateChangeLink'+indx" style="min-width: 0px;" @click="cooperateToggle(indx)" >
+                                                        <i :id="'cooperatetogg' + indx" class="fas fa-sort-down"></i>
                                                 </span>
+                                                 <a class="mr-auto text-danger btn delete-borderbtn float-right m-b-20" @click="DeltArr(indx,'cooperate')"> <i class="fa fa-trash"></i> 削除</a>
+                                            </div>
+                                             <div class="clearfix">
+                                               
                                             </div>
 
                                             <div class="form-group">
                                                 <label class="col-2 pad-free">名前 :</label>
                                                 <input type="text" class="form-control col-10 float-right cooperate-name white-bg-color" name="co-medical-header[]" v-model="cooperate.name">
                                             </div>
-                                              <div :id="'cooperateChangeLink' + cooperate.id">
+                                              <div :id="'cooperateChangeLink' + indx">
                                             <table class="table table-bordered">
                                             <tr>
                                                 <th class="width15 title-bg">診療科目</th>
@@ -454,9 +458,7 @@
                                                 <th><textarea class="form-control remark white-bg-color" name="remark" v-model="cooperate.remark"></textarea></th>
                                             </tr>
                                             </table>
-                                            <div class="clearfix">
-                                                <a class="mr-auto text-danger btn delete-borderbtn float-right m-b-20" @click="DeltArr(indx,'cooperate')"> <i class="fa fa-trash"></i> 削除</a>
-                                            </div>
+                                           
                                              </div>
                                         </div>
                                     </div>
@@ -908,6 +910,7 @@ export default {
 
 
             DeltArr(indx,type) {
+
                 var arr_list = [];
                 var arr_count = document.getElementsByClassName('gallery-area-'+type);
                 for(var i=0; i< arr_count.length; i++) {
@@ -915,8 +918,18 @@ export default {
                 }
 
                 for(var i=0; i<= arr_count.length; i++) {
+                  
                     if(i == indx) {
+                      
                         arr_list.splice(indx,1);
+                      
+                        var ele = document.getElementById(type+indx);
+                        var parentEle = document.getElementById('gallery-'+type);
+                        parentEle.removeChild(ele);
+                    }
+                    else{
+                          arr_list.splice(indx,1);
+                      
                         var ele = document.getElementById(type+indx);
                         var parentEle = document.getElementById('gallery-'+type);
                         parentEle.removeChild(ele);
@@ -942,6 +955,8 @@ export default {
 
             methodAdd() {
                 this.payment_arr.push({payment_name:'',expense_moving:'',monthly_fees:'',living_room_type:'', area:'',details:'',deposit:'',other_use:'',rent:'',admin_expense:'',food_expense:'', nurse_care_surcharge:'',other_monthly_cost:'',refund_system:'',depreciation_period:'', initial_deprecration:'',other_message_refund:''});
+            console.log('method');
+            console.log(this.payment_arr);
             },
 
             cooperateAdd() {
@@ -1011,6 +1026,7 @@ export default {
 
             paymentToggle(id)
             {
+                
                 var class_by_id = $('#icon'+id).attr('class');
                 if(class_by_id == "fas fa-sort-down animate rotate")
                 {
@@ -1024,6 +1040,24 @@ export default {
                     $('#icon'+id).addClass("fas fa-sort-down animate rotate");
                     $('#changeLink'+id).hide('medium');
                 }
+
+            },
+            cooperateToggle(id)
+            {
+               
+                var class_by_id = $('#cooperatetogg'+id).attr('class');
+                if(class_by_id == "fas fa-sort-down animate rotate")
+                {
+                    $('#cooperatetogg'+id).removeClass("fas fa-sort-down animate rotate");
+                    $('.cooperateChangeLink'+id).addClass("fas fa-sort-down");
+                    $('#cooperateChangeLink'+id).show('medium');
+                }
+                else {
+                    $('#cooperatetogg'+id).removeClass("fas fa-sort-down");
+                    $('.cooperateChangeLink'+id).removeClass("fas fa-sort-down");
+                    $('#cooperatetogg'+id).addClass("fas fa-sort-down animate rotate");
+                    $('#cooperateChangeLink'+id).hide('medium');
+                }       
 
             },
 
@@ -1066,25 +1100,7 @@ export default {
                     $('#changeGalleryVideoLink').hide('medium');
                     $('.galleryvideo').hide();
                 }
-            },
-
-            cooperateToggle(id)
-            {
-                var class_by_id = $('#cooperate'+id).attr('class');
-                if(class_by_id == "fas fa-sort-down animate rotate")
-                {
-                    $('#cooperate'+id).removeClass("fas fa-sort-down animate rotate");
-                    $('.cooperateChangeLink'+id).addClass("fas fa-sort-down");
-                    $('#cooperateChangeLink'+id).show('medium');
-                }
-                else {
-                    $('#cooperate'+id).removeClass("fas fa-sort-down");
-                    $('.cooperateChangeLink'+id).removeClass("fas fa-sort-down"     );
-                    $('#cooperate'+id).addClass("fas fa-sort-down animate rotate");
-                    $('#cooperateChangeLink'+id).hide('medium');
-                }       
-
-            },
+            },            
 
             createProfile() {
                this.$loading(true);

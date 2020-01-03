@@ -3,7 +3,7 @@
   <div class="loginwrapper">
 		<div class="d-flex justify-content-center h-100">
         <div class="user_card">
-            <div class="links" style="top:-80px;">
+            <div class="links" style="top:-50px;">
               <!-- <router-link to="/" class="mr-auto text-white">ホーム</router-link> -->
               <router-link to="/register" class="ml-auto text">登録</router-link>
               <a href="/" class="mr-auto text-white">ホーム</a>
@@ -12,14 +12,21 @@
 
             <div class="d-flex justify-content-center">
               <div class="brand_logo_container">
-                <h4 style="position:relative; bottom: 60px; width:152px;">事業者ログイン</h4>
+                <!-- <h4 style="position:relative; bottom: 60px; width:152px;">事業者ログイン</h4> -->
                 <img src="/images/sample_1.png" class="brand_logo" alt="logo">
               </div>
             </div>
-
+            
+            <!-- <div class="col-md-12">
+                <div class="row">
+                    
+                </div>
+            </div>
+             -->
             <div class="d-flex justify-content-center">
               <div class="row width">
-                <div class="col-12 m-t-80">               
+                <div class="col-12 m-t-80">  
+                  <div style="margin-bottom: 10px;text-align:center;margin-top: 20px;font-size: 19px;font-weight: bold;color:#d2571cf5">{{name}}</div>          
                 <form autocomplete="off" @submit.prevent="login" method="post">
                     <div class="input-group m-b-20">
                         <div class="input-group-append">
@@ -63,24 +70,37 @@
       return {
         email: null,
         password: null,
-        has_error: false
+        has_error: false,
+        name:''
       }
     },
     mounted() {
       //
     },
+    created(){
+       if(this.$route.path == "/admin_login"){  
+         this.name="管理者ログイン";
+
+       }else {
+         this.name ='事業者ログイン';
+       }
+    },
+    
     methods: {
       login() {
         // get the redirect object
+       
         var redirect = this.$auth.redirect()
         console.log(this)
         var _this = this
         this.$loading(true);
-        if(this.$route.path == "/admin_login"){
+        
+        if(this.$route.path == "/admin_login"){  
+          
           this.$auth.loginAdmin({
           params: {
             email: _this.email,
-            password: _this.password
+            password: _this.password,
           },
           success: function() {
             this.$loading(false);

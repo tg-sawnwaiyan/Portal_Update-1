@@ -238,20 +238,20 @@
                                 <span class="checkmark"></span>すべての資料請求にチェックを入れる
                                 <div class="controlinner__indicator" style="top:8px;left:7px;"></div>
                             </label>
-                            <button type="button" class="btn btn-success all-btn float-right m-l-10" @click="addingMail()" :disabled="isdisable">資料請求する</button>
+                            <!-- <button type="button" class="btn btn-success all-btn float-right m-l-10" @click="addingMail()" :disabled="isdisable">資料請求する</button> -->
                         </div>
                         <div class="float-right check-resize">
-                            <label class="btn my-2 my-sm-0 all-btn secondary-bg-color btn-secondary control controlinner--checkbox pc-480" style="width:300px;">
+                            <!-- <label class="btn my-2 my-sm-0 all-btn secondary-bg-color btn-secondary control controlinner--checkbox pc-480" style="width:300px;">
                                 <input type="checkbox" @change="checkAll()" class="check-all-btn" />
                                 <span class="checkmark"></span>すべての資料請求にチェックを入れる
                                 <div class="controlinner__indicator" style="top:8px;left:7px;"></div>
-                            </label>
+                            </label> -->
                             <label class="btn my-sm-0 all-btn secondary-bg-color btn-secondary control controlinner--checkbox fnt-check">
                                 <input type="checkbox" @change="checkAll()" class="check-all-btn" />
                                 <span class="checkmark"></span>すべてチェック
                                 <div class="controlinner__indicator" style="top:8px;left:3px;"></div>
                             </label>
-                            <button type="button" class="btn btn-success all-btn float-right m-l-10 fnt-check" @click="addingMail()" :disabled="isdisable">資料請求する</button>
+                            <!-- <button type="button" class="btn btn-success all-btn float-right m-l-10 fnt-check" @click="addingMail()" :disabled="isdisable">資料請求する</button> -->
                         </div>
                     </div>
                     <div class="m-t-20" id="fav-history-page">
@@ -385,15 +385,18 @@
                             </div>
                         </div>
                     </div>
+                    <button type="button" class="btn btn-success col-sm-4 offset-sm-4 col-md-2 offset-md-5" @click="addingMail()" :disabled="isdisable">資料請求する</button>
                 </div>
                 <!--end compare box-->
                 <!--result-->
 
                 <!--end result-->
+                
             </div>
+            
         </div>
 
-        <button type="button" class="btn btn-success mt-5 float-right" @click="addingMail()" :disabled="isdisable">資料請求する</button>
+        
     </div>
 </template>
 
@@ -403,6 +406,7 @@
      
         data() {
                 return {
+                    status_all:'0',
                     errors: [],
                     fav_nursing: [],
                     local_sto: "",
@@ -650,23 +654,18 @@
                         });
                     },
                     checkAll() {
-                        this.disableBtn = false;
+                        this.disableBtn = '';
                         if ($('.check-all-btn').is(":checked")) {
-                            // $('.checkbox1').prop("checked", true);
-                            // $('.checkbox2').prop("checked", true);
+                            this.disableBtn = false;
                         } else {
-                            // $('.checkbox1').prop("checked", false);
-                            // $('.checkbox2').prop("checked", false);
-                             this.disableBtn = true;
+                            this.disableBtn = true;
                         }
                         for (var i = 0; i < this.fav_nursing.length; i++) {
                             var j = this.fav_nursing[i].id;
                             if ($('.check-all-btn').is(":checked")) {
                                 this.document_status[j] = true;
-                                // this.reserv_status[j] = true;
                             } else {
                                 this.document_status[j] = false;
-                                // this.reserv_status[j] = false;
                             }
                         }
                     },
@@ -674,7 +673,7 @@
                         if (this.document_status[nid]) {
                             this.disableBtn = false;
                         }
-                        else if(!this.document_status.includes(true)){
+                        else if(!this.document_status.includes(true)) {
                             this.disableBtn = true;
                         }
                     },
