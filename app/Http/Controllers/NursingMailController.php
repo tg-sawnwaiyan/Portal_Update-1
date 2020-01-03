@@ -73,7 +73,7 @@ class NursingMailController extends Controller
             //   return $favourite_id;
                 if ($fav_documentation[$favourite_id[$i]] == true ) {
                  
-                    // \Mail::to($favourite_mail[$i])->send(new nursingMailing($request));
+                    \Mail::to($favourite_mail[$i])->send(new nursingMailing($request));
                 } 
             } 
 
@@ -89,7 +89,7 @@ class NursingMailController extends Controller
        
         \Mail::to($admin_email)->send(new adminNursingMail($request));
 
-        // \Mail::to($request->mail)->send(new userNursingMail($request));
+        \Mail::to($request->mail)->send(new userNursingMail($request));
 
         return response()->json(['success'=>'Done!']);
     }
