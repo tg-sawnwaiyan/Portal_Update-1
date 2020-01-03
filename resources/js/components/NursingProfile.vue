@@ -429,6 +429,10 @@
                                                    <span :class="'float-right btn all-btn main-bg-color cooperateChangeLink'+indx" style="min-width: 0px;" @click="cooperateToggle(indx)" >
                                                         <i :id="'cooperatetogg' + indx" class="fas fa-sort-down"></i>
                                                 </span>
+                                                 <a class="mr-auto text-danger btn delete-borderbtn float-right m-b-20" @click="DeltArr(indx,'cooperate')"> <i class="fa fa-trash"></i> 削除</a>
+                                            </div>
+                                             <div class="clearfix">
+                                               
                                             </div>
 
                                             <div class="form-group">
@@ -454,9 +458,7 @@
                                                 <th><textarea class="form-control remark white-bg-color" name="remark" v-model="cooperate.remark"></textarea></th>
                                             </tr>
                                             </table>
-                                            <div class="clearfix">
-                                                <a class="mr-auto text-danger btn delete-borderbtn float-right m-b-20" @click="DeltArr(indx,'cooperate')"> <i class="fa fa-trash"></i> 削除</a>
-                                            </div>
+                                           
                                              </div>
                                         </div>
                                     </div>
