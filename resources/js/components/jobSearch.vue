@@ -794,7 +794,7 @@
 
                 <tr class="text-center">
                   <td colspan="2" style="border:none;">
-                     <button class="main-bg-color create-btn all-btn col-md-2 col-sm-2" @click="search"><i class="fas fa-search"></i>&nbsp; 検索 </button>
+                     <button class="main-bg-color create-btn all-btn col-lg-2 col-md-4 col-sm-2" @click="search"><i class="fas fa-search"></i>&nbsp; 検索 </button>
                   </td>
                 </tr>
               </tbody>
@@ -817,7 +817,7 @@
                         <!-- <div class="col-4 job-img">
                           <img src="/upload/news/nursing.JPG"  alt="">
                         </div> -->
-                        <div class="col-12 job-box p0-480">
+                        <div class="col-12 pad-free job-boxjob-box p0-480">
                           <table  class="table table-bordered  table-sm">
                             <tr>
                               <td><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>最寄り駅</td>

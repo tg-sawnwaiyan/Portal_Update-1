@@ -385,7 +385,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-success col-sm-4 offset-sm-4 col-md-2 offset-md-5" @click="addingMail()" :disabled="isdisable">資料請求する</button>
+                    <button type="button" class="btn btn-success col-sm-4 offset-sm-4 col-md-2 offset-md-5 m-b-10" @click="addingMail()" :disabled="isdisable">資料請求する</button>
                 </div>
                 <!--end compare box-->
                 <!--result-->

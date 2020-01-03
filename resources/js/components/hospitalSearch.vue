@@ -568,15 +568,15 @@
                         <tbody>
                         <tr>
                             <th class="pc-414-table sp-768-block">地域</th>
-                            <td class="sp-768-block">
+                            <td class="sp-768-block sp-414-table">
                             <div class="row mt-2 mb-2">
-                            <div class="col-lg-9 col-md-6 col-sm-12">
+                            <div class="col-lg-9 col-md-8 col-sm-12">
                             <select id="selectCity" class="form-control custom-select" v-model="id" @change="ChangeTownship">
                                 <option value="" disabled>▼市区町村</option>
                                 <option v-for="city in cities" :value="city.id" :key="city.id">{{city.city_name}}</option>
                             </select>
                             </div>
-                            <div class="col-lg-3 col-md-6 col-sm-12 pc-414">
+                            <div class="col-lg-3 col-md-4 col-sm-12 pc-414">
                             <button @click="toggleContent" class="btn seemore-btn" v-if="getTownships.length > 0">
                                 <i class="fa" aria-hidden="true"></i>
                                 <!-- <em>{{city.city_name}}</em> -->
@@ -621,7 +621,7 @@
                         </tr>                       
                         <tr class="toBeToggled1 ShowHide1">
                             <th class="pc-414-table sp-768-block">特長</th>
-                            <td class="sp-768-block">
+                            <td class="sp-768-block sp-414-table">
                               <!--特長から探す-->
                               <div class="dropdown">
                                 <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
@@ -662,7 +662,7 @@
                         </tr>
                         <tr class="toBeToggled1 ShowHide1">
                             <th class="pc-414-table sp-768-block">診療科目</th>
-                            <td class="sp-768-block" id="test-td">
+                            <td class="sp-768-block sp-414-table" id="test-td">
                                 <div class="form-check form-check-inline row align-items-start innerwrapper" v-if="w_width >= 768">
                                     <div v-for="(v,i) in array_len"  :key="i">                                     
                                         <div class="hospital-subject"  v-for="(subject,index) in subjects.slice((i*3),((i*3)+3))"  :key="index" v-bind:class="{ lastblock: i==array_len-1 }">    
@@ -717,7 +717,7 @@
                         </tr>
                         <tr class="text-center">
                             <td colspan="2">
-                            <button type="button" class="main-bg-color create-btn all-btn col-md-2 col-sm-2" id="search" name="search" value="検索"  @click="search">
+                            <button type="button" class="main-bg-color create-btn all-btn col-lg-2 col-md-4 col-sm-2" id="search" name="search" value="検索"  @click="search">
                             <i class="fas fa-search"></i>&nbsp; 検索
                             </button>
                             </td>
@@ -734,16 +734,17 @@
                                         <h5 class="hos-title">
                                             <router-link :to="{name: 'profile', params: {cusid:hos.cus_id, type: 'hospital'}}" class="pseudolink">{{hos.name}}</router-link>
                                         </h5>
-                                        <div class="clearfix d-flex m-t-20">
+                                     
+                                        <div class="clearfix d-flex m-t-10">
                                         <span v-for="(sub,index) in subject" :key="index+'-'+sub.name+'-'+hos.hos_id">
                                             <span v-if="sub.customer_id == hos.cus_id" class="job_status">
-                                            {{sub.name}}
+                                              {{sub.name}}
                                             </span>
                                         </span>
                                     </div>
                                         </div>
                                         <div class="col-md-2 col-sm-12">
-                                        <p class="float-right">
+                                        <p class="float-right pc-768">
                                             <!-- <span class="btn fav-profile fav-item fav-color" :class="'view_pro_id'+hos.nursing_id" style="" @click="favAddFun('add',hos.nursing_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                                             <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == 'check'" :class="'done_pro_id'+hos.nursing_id" style="color:#aaa;" @click="favAddFun('remove',hos.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                                         -->
@@ -767,8 +768,8 @@
                                                 <td>{{hos.name}}</td>
                                                 </tr> -->
                                                 <tr>
-                                                <td style="width:30%;"><span class="job_ico"><i class="fa fa-envelope"></i></span>メールアドレス</td>
-                                                <td>{{hos.email}}</td>
+                                                <td style="width:34%;"><span class="job_ico"><i class="fa fa-envelope"></i></span>メールアドレス</td>
+                                                <td class="text-break">{{hos.email}}</td>
                                                 </tr>
                                                 <tr>
                                                 <td style="width:30%;"><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>住所</td>
@@ -788,10 +789,10 @@
                                             </span>
                                             <!--end special feature and subject-->
                                         </div>
-                                        <div class="col-lg-5 col-md-12">
+                                        <div class="col-lg-5 col-md-12 sp-414-timetable">
                                             <!--schedule-->
                                             <h5 class="header">診療時間
-                                                <span class="hos_phone"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span><span class="phone-no">{{hos.phone}}</span></span>
+                                                <span class="hos_phone pc-768"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span><span class="phone-no"><a :href="`tel:${hos.phone}`">{{hos.phone}}</a></span></span>
                                             </h5>
                                             <!-- <tr v-for="(time,index) in timetable" :key="index+'-'+time.id+'-'+hos.id">
                                                 <td v-if="hos.customer_id == time.customer_id" >
@@ -829,6 +830,17 @@
                                             <!-- <p><span style="color: red; font-weight: bold; font-size: 15px;">※</span>診療時間は、変更される事や、診療科によって異なる場合があるため、直接医療機関のホームページ等でご確認ください。</p> -->
                                             <!--end schedule-->
                                         </div>
+                                    </div>
+                                    <div class="row m-t-10">
+                                      <div class="col-6">
+                                        <span class="sp_hos_phone sp-768"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span><span class="phone-no"><a :href="`tel:${hos.phone}`">{{hos.phone}}</a></span></span>
+                                      </div>
+                                      <div class="col-6">
+                                         <p class="sp-768">                                           
+                                          <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == ''" :class="'view_pro_id'+hos.nursing_id" style="display:block;" @click="favAddFun('add',hos.hos_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
+                                          <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == 'check'" :class="'done_pro_id'+hos.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',hos.hos_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
+                                        </p>
+                                      </div>
                                     </div>
                                     <div class="mt-4 detail-btn text-center"><router-link :to="{name: 'profile', params: {cusid:hos.cus_id, type: 'hospital'}}" class="btn all-btn">詳細を見る</router-link></div>
                                 </div>
