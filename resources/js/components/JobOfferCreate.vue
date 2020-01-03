@@ -648,10 +648,17 @@
                                     // this.joboffer.str_address = post_data[0]["city"];
 
                                     this.joboffer.location = post_data[0]["street"];
+                              
                                   
                                    
                                     // this.joboffer.zipcode_id = post_data[0]["id"];
                                 } else {
+                                     this.joboffer.pref = post_data[0]["city_id"];
+                                     this.getTownship(1);
+
+                                    // this.joboffer.pref = post_data[0]["pref"];
+                                    this.joboffer.str_address = response.data.township_id[0]['id'];                               
+                                    // this.joboffer.str_address = post_data[0]["city"];
                                     this.joboffer.location =
                                         post_data[0]["pref"] +
                                         "  " +
