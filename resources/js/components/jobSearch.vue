@@ -776,7 +776,7 @@
                         <!-- <div class="col-4 job-img">
                           <img src="/upload/news/nursing.JPG"  alt="">
                         </div> -->
-                        <div class="col-12 job-box p0-480">
+                        <div class="col-12 pad-free job-boxjob-box p0-480">
                           <table  class="table table-bordered  table-sm">
                             <tr>
                               <td><span class="job_ico pc-414-inline"><i class="fa fa-map-marker-alt"></i></span><span>最寄り駅</span></td>
