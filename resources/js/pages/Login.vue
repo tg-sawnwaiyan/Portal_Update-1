@@ -2,7 +2,9 @@
 
   <div class="loginwrapper">
 		<div class="d-flex justify-content-center h-100">
+      
         <div class="user_card">
+          <!-- <h4 style="position:relative; bottom: 60px; width:152px;">事業者ログイン</h4> -->
             <div class="links" style="top:-50px;">
               <!-- <router-link to="/" class="mr-auto text-white">ホーム</router-link> -->
               <router-link to="/register" class="ml-auto text">登録</router-link>
@@ -11,8 +13,7 @@
             </div>
 
             <div class="d-flex justify-content-center">
-              <div class="brand_logo_container">
-                <!-- <h4 style="position:relative; bottom: 60px; width:152px;">事業者ログイン</h4> -->
+              <div class="brand_logo_container">                
                 <img src="/images/sample_1.png" class="brand_logo" alt="logo">
               </div>
             </div>
