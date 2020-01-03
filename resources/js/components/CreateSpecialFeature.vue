@@ -67,8 +67,8 @@ export default {
                         nurse:""
                     },
                     selectedValue:0,
-                    header: '特殊を作成',
-                    subtitle: '作成する'
+                    header: '特徴新規作成',
+                    subtitle: '作成'
             }
         },
           created() {
@@ -90,8 +90,8 @@ export default {
                     // else if (this.feature.type == '介護') {
                     //     this.feature.type = '介護';
                     // }
-                        this.header = ' 特徴更新';
-                        this.subtitle = '更新する';
+                      this.header = ' 特徴編集';
+                        this.subtitle = '更新';
                         return this.header;
                         return this.subtitle;
 
@@ -153,7 +153,7 @@ export default {
                             confirmButtonColor: "#6cb2eb",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
-                            confirmButtonText: "作成",
+                            confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
@@ -167,7 +167,7 @@ export default {
                             this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            title:'確認済',
+                            // title:'確認済',
                             text: '特徴を投稿しました。',
                             confirmButtonText: "閉じる",
                             confirmButtonColor: "#6cb2eb",
@@ -206,7 +206,7 @@ export default {
             updateFeature() {
                  this.$swal({
                             title: "確認",
-                            text: "更新よろしいでしょうか。",
+                            text: "特徴を更新してよろしいでしょうか。",
                             type: "info",
                             width: 350,
                             height: 200,
@@ -214,7 +214,7 @@ export default {
                             confirmButtonColor: "#6cb2eb",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
-                            confirmButtonText: "更新",
+                            confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
@@ -226,8 +226,8 @@ export default {
                     this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            title: '更新されました。',
-                            confirmButtonText: "はい",
+                            title: '特徴を更新しました。',
+                            confirmButtonText: "閉じる",
                             confirmButtonColor: "#6cb2eb",
                             width: 250,
                             height: 200,

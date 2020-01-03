@@ -5,7 +5,7 @@
         <div class="card-body">
           <div class="row">
             <div class="col-md-12">
-              <h4 class="page-header header">カテゴリー更新</h4>
+              <h4 class="page-header header">カテゴリー編集</h4>
             </div>
 
             <form @submit.prevent="updateCategory" class="col-md-12">
@@ -19,7 +19,7 @@
               </div>
 
               <div class="form-group">
-                <button class="btn main-bg-color white all-btn" @click="clickValidation()">更新する</button>
+                <button class="btn main-bg-color white all-btn" @click="clickValidation()">更新</button>
                 <router-link to="/categorylist" class="btn btn-danger all-btn">キャンセル</router-link>
                 <!-- <router-link to="/categorylist" class="btn news-post-btn all-btn">更新</router-link> -->
                 <!-- <a href="categorylist" class="btn btn-warning">Cancel</a> -->
@@ -67,10 +67,10 @@ export default {
                         this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            title: '作成されました。',
-                            confirmButtonText: "はい",
+                            title: 'カテゴリーを更新しました。',
+                            confirmButtonText: "閉じる",
                             confirmButtonColor: "#6cb2eb",
-                            width: 250,
+                            width: 300,
                             height: 200,
                         })
                         // alert('Successfully Created')
@@ -90,7 +90,7 @@ export default {
       if (this.category.name) {
                             this.$swal({
                             title: "確認",
-                            text: "更新よろしいでしょうか。",
+                            text: "更新してよろしいでしょうか。",
                             type: "success",
                             width: 350,
                             height: 200,
@@ -98,7 +98,7 @@ export default {
                             confirmButtonColor: "#6cb2eb",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
-                            confirmButtonText: "更新",
+                            confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"

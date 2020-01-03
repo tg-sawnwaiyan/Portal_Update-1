@@ -59,7 +59,7 @@ export default {
 
                 selectedValue:0,
                 header: '診療科目作成',
-                subtitle: '作成する'
+                subtitle: '作成'
 
             }
         },
@@ -85,7 +85,7 @@ export default {
                         this.selectedValue = response.data.parent;
                         this.SubjectList.name = response.data.name;
                         this.header = ' 診療科目更新';
-                        this.subtitle = '更新する';
+                        this.subtitle = '更新';
                         return this.header;
                         return this.subtitle;
                 });
@@ -138,7 +138,7 @@ export default {
                             this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            title:'確認済',
+                            // title:'確認済',
                             text: '診療科目投稿しました。',
                             confirmButtonText: "閉じる",
                             confirmButtonColor: "#6cb2eb",
@@ -182,7 +182,7 @@ export default {
                             confirmButtonColor: "#6cb2eb",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
-                            confirmButtonText: "更新",
+                            confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
@@ -197,7 +197,7 @@ export default {
                             title: '更新されました。',
                             // showConfirmButton: false,
                             // timer: 1800,
-                            confirmButtonText: "はい",
+                            confirmButtonText: "閉じる",
                             confirmButtonColor: "#6cb2eb",
                             width: 250,
                             height: 200,

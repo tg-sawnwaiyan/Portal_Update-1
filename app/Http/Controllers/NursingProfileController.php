@@ -48,12 +48,13 @@ class NursingProfileController extends Controller
         }        
     }
 
-    public function profileupdate($id,Request $request) {
+    public function profileupdate($id,Request $request) { 
         $request = $request->all();
 
         $nursing = NursingProfile::where('customer_id',$id)->first();
         // Nursing Profile 
         $nursing->access = $request[0]['access'];
+        $nursing->operator = $request[0]['operator'];
         $nursing->business_entity = $request[0]['business_entity'];
         $nursing->website = $request[0]['website'];
         $nursing->moving_in_from = $request[0]['moving_in_from'];

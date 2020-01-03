@@ -3,7 +3,7 @@
     <div>
         <div class="tab-content job-detail">
             <div class="row">
-                <div class="col-md-12 pad-free m-b-20">
+                <div class="col-md-12 pad-free m-b-10">
                     <nav aria-label="breadcrumb">
                         <!-- <ol class="breadcrumb">
                             <li class="breadcrumb-item"><span @click="changeRoute()" class="link-span">ホーム</span></li>
@@ -21,9 +21,9 @@
                     </nav>
                 </div>
                 <div class="col-12 m-b-10">
-                    <h4 class="nursing-info">資料請求される方について</h4>
+                    
                 </div>
-                <div class="col-md-12 register_box mt-3" v-if="type == 'register'">
+                <div class="col-md-12 register_box" v-if="type == 'register'">
                     <ul class="multi-step">
                         <li class="active">1.お客様情報のご入力</li>
                         <li class="no-active">2.入力内容のご確認</li>
@@ -31,7 +31,9 @@
                     </ul>
                     <!--inputform-->
                     <form class="col-md-12 form-wrap">
-                        <p class="require-txt"><span class="error sp1">必須</span> のついた項目は全て入力してくださいますようお願いいたします。</p>
+                        <h4 class="form-tit">資料請求される方について</h4>
+                        <!-- <h4 class="nursing-info">資料請求される方について</h4> -->
+                        <p class="require-txt"><span class="error sp1" style="margin-left:0px;">必須</span> のついた項目は全て入力してくださいますようお願いいたします。</p>
                         <div class="form-group m-0 row bd">
                             <div class="col-md-3 col-sm-12 form-left"><label>お名前 <span class="error sp1">必須</span></label></div>
                             <div class="col-md-9 col-sm-12 form-right">
@@ -174,7 +176,7 @@
                                 <div class="col-md-3 col-sm-12 form-left"><label>お名前</label></div>
                                 <div class="col-md-9 col-sm-12 form-right">
                                     <input type="text" id="ttname" name="ttname" class="form-control float-left" placeholder="お名前を入力してください。"  v-model="comments.ttname">
-                                    <span class="eg-txt float-left">例）さがし　たろう</span>
+                                    <span class="eg-txt float-left">例）探し 太郎</span>
                                 </div>
                             </div>
                             <div class="form-group m-0 row bd">
@@ -435,14 +437,14 @@ import DatePicker from 'vue2-datepicker';
                     this.axios
                         .post('/api/hospital/postList/' + postal)
                         .then(response => {
-                            var post_data = response.data;
-                            var length = response.data.length;
+                            var post_data = response.data.postal_list;
+                            var length = response.data.postal_list.length;
                             if (length > 0) {
                                 var pref = post_data[0]['city_id'];
                                 if (post_data[0]['street'] == '') {
                                     this.comments.city = post_data[0]['city'];
                                 } else {
-                                    this.comments.city = post_data[0]['city'] + ' - ' + post_data[0]['street'];
+                                    this.comments.city = post_data[0]['city'] + ' ' + post_data[0]['street'];
                                 }
                                 this.comments.selectedValue = pref;
                                 this.comments.division = pref;

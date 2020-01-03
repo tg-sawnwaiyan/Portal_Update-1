@@ -6,7 +6,7 @@
                     <div class="row">
                          
                         <div class="col-md-12">
-                            <h4 class="page-header header">施設作成</h4>
+                            <h4 class="page-header header">院内施設新規作成</h4>
                         </div>
                         <div class="col-md-12">
                              <form @submit.prevent="add">
@@ -17,7 +17,7 @@
                             </div>
                         
                             <div class="form-group">
-                                <span class="btn main-bg-color white all-btn" @click="checkValidate()"> 作成する</span>
+                                <span class="btn main-bg-color white all-btn" @click="checkValidate()"> 作成</span>
                                 <router-link to="/facilitieslist" class="btn btn-danger all-btn">キャンセル</router-link>    
                                 <!-- <button class="btn news-post-btn all-btn" > 作成する </button> -->
                                                                          
@@ -57,7 +57,7 @@ export default {
                             confirmButtonColor: "#6cb2eb",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
-                            confirmButtonText: "作成",
+                            confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
@@ -70,7 +70,7 @@ export default {
                         this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            title:'確認済',
+                            // title:'確認済',
                             text: '院内施設を投稿しました。',
                             // showConfirmButton: false,
                             // timer: 1800,

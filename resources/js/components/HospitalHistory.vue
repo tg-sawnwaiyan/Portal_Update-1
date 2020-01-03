@@ -7,7 +7,7 @@
                         <li class="breadcrumb-item">
                             <router-link to="/">ホーム</router-link>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">病院の歴史</li>
+                        <li class="breadcrumb-item active" aria-current="page">最近見た施設リスト</li>
                     </ol>
                 </nav>
             </div>

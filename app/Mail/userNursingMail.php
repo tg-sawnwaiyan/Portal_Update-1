@@ -30,6 +30,6 @@ class userNursingMail extends Mailable
     public function build()
     {
         return $this->view('mail.userNursingMail')
-                    ->subject("予約メール");;
+                    ->subject("[医療介護ポータル]資料請求が完了いたしました");
     }
 }

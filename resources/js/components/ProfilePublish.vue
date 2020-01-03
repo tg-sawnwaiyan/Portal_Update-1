@@ -209,6 +209,15 @@
                                             </td>
                                             <td v-else> - </td>
                                         </tr>
+                                        <tr>
+                                            <th  class="custom-bg-color">
+                                                <font>運営事業者</font>
+                                            </th>
+                                            <td v-if="cust.operator">
+                                                <font>{{cust.operator}}</font>
+                                            </td>
+                                            <td v-else> - </td>
+                                        </tr>
                                         <!-- <tr>
                                             <th  class="custom-bg-color">
                                                 <font>駅</font>

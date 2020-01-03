@@ -5,7 +5,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12">
-                            <h4 class="page-header header">広告作成</h4>
+                            <h4 class="page-header header">広告新規作成</h4>
                         </div>
                         <div class="col-12">
                             <form @submit.prevent="add">
@@ -53,13 +53,10 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <span class="btn main-bg-color white all-btn" @click="checkValidate()"> 作成する</span>
+                                    <span class="btn main-bg-color white all-btn" @click="checkValidate()"> 作成</span>
                                     <router-link class="btn btn-danger all-btn" to="/ads"> キャンセル </router-link>
-                                    <!-- <button class="btn news-post-btn all-btn">作成する</button> -->
-                                    
+                                    <!-- <button class="btn news-post-btn all-btn">作成する</button> -->                                    
                                 </div>
-
-                              
                             </form>
                         </div>
                     </div>
@@ -137,7 +134,7 @@
                             confirmButtonColor: "#6cb2eb",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
-                            confirmButtonText: "作成",
+                            confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
@@ -156,9 +153,9 @@
                         this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            title:'確認済',
+                            // title:'確認済',
                             text: '広告を投稿しました。',
-                            confirmButtonText: "はい",
+                            confirmButtonText: "閉じる",
                             confirmButtonColor: "#6cb2eb",
                             width: 250,
                             height: 200,

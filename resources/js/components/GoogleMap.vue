@@ -50,11 +50,9 @@
                     <div class="row">
                       <div class="col-md-12" v-if="status === '0'">
                         <input type="text" id="city" name="city" class="old-city form-control white-bg-color" placeholder="市区町村、番地を入力してください。" v-model="address"> 
-                                              
                       </div>
                       <div class="col-md-12" v-else>
                         <input type="text" id="city" name="city" class="city form-control white-bg-color" placeholder="市区町村、番地を入力してください。" v-model="comment.city">
-                        
                       </div>
                       <!-- <div class="col-md-2">
                         <span class="btn news-post-btn all-btn" @click="searchAddress()">番地検索</span>
@@ -62,7 +60,27 @@
                     </div>
                     <p>例）東京都千代田区丸の内1-9-1　グラントウキョウノースタワー40階</p>                                    
                   </div>
-                </div>           
+                  
+                </div>  
+                <div class="form-group">
+                  <h5 class="lbl-lat-lng">緯度経度の入力または地図のマーカを移動し施設の位置を指定してください。</h5>
+                    <div class="row">
+                      <div class="col-sm-4 col-md-5">
+                        <label>緯度<span class="error">*</span></label>
+                        <input type="text" class="form-control white-bg-color" name="new_lat" v-model="new_lat" id="new_lat">
+                      </div>
+                      <div class="col-sm-4 col-md-5">
+                        <label>経度<span class="error">*</span></label>
+                        <input type="text" class="form-control white-bg-color" name="new_long" v-model="new_long" id="new_long">
+                      </div>
+                      <div class="col-sm-4 col-md-2">
+                        <span style="position:absolute;bottom:0px;" class="btn news-post-btn all-btn" @click="addressSelect(Number(new_lat),Number(new_long))">緯度経度から地図を検索</span>
+                      </div>
+                    </div>
+                  </div>
+                <!-- <input type="text" name="new_lat" v-model="new_lat" id="new_lat">
+                <input type="text" name="new_long" v-model="new_long" id="new_long">
+                <span class="btn btn-primary" @click="addressSelect(Number(new_lat),Number(new_long))">Add</span>          -->
 
                 <!-- <label>場所検索はこちら</label>
                 <gmap-autocomplete
@@ -95,9 +113,7 @@
             
           </GmapMap>
           
-          <input type="hidden" name="new_lat" v-model="new_lat" id="new_lat">
-          <input type="hidden" name="new_long" v-model="new_long" id="new_long">
-          <!-- <span class="btn btn-primary" @click="addressSelect(Number(new_lat),Number(new_long))">Add</span> -->
+          
         </div>
 </template>
 <script>
@@ -239,8 +255,8 @@ export default {
                     this.axios
                         .post('/api/hospital/postList/' + postal)
                         .then(response => {
-                            var post_data = response.data;
-                            var length = response.data.length;
+                            var post_data = response.data.postal_list;
+                            var length = response.data.postal_list.length;
                             if (length > 0) {
                                 var pref = post_data[0]['city_id'];
                                 if (post_data[0]['street'] == '') {
@@ -288,3 +304,12 @@ export default {
 };
 
 </script>
+<style scoped>
+.lbl-lat-lng {
+    margin: 15px 0px;
+    font-weight: bold;
+    border-left: 5px solid #ff6117;
+    padding-left: 10px;
+}
+
+</style>

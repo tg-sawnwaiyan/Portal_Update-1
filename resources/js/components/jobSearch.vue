@@ -21,7 +21,7 @@
               <!--search input-->
                 <div class="wrap">
                   <div class="search">
-                      <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、施設名などを入力（例：東京駅）">
+                      <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、施設名などを入力">
                       <button type="submit" class="searchButton" @click="searchfreeword">
                         <i class="fas fa-search"></i> 検索
                     </button>
@@ -315,6 +315,7 @@
           </div>
           <!--end map right wrapper-->
         </div>
+    
         <section id="map-responsive">
             <div>
              
@@ -335,13 +336,16 @@
                 
              <!--search input-->
                 <div class="search">
-                    <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、施設名などを入力（例：東京駅）">
+                    <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、施設名などを入力">
                     <button type="submit" class="searchButton" @click="searchfreeword">
                       <i class="fas fa-search"></i> 検索
                     </button>
                 </div>
+
+                
               <!--end search input-->
             </div>
+          
              <bulma-accordion 
               :icon="'custom'"
               >
@@ -552,7 +556,7 @@
                     </bulma-accordion>                   
         </section>
         <div id="scroll-responsive">
-          <div  id="job_search" class="row jobselect">
+          <div id="job_search" class="row jobselect">
                <span class="col-12" v-if="norecord_msg">
                 <div class="container-fuid m-t-20">
                     <p class="nosearch-icon">
@@ -567,16 +571,16 @@
             <table class="table table-bordered col-12 ">
               <tbody>
                 <tr>
-                  <th class="pc-414-table">地域</th>
-                  <td>
+                  <th class="pc-414-table sp-768-block">地域</th>
+                  <td class="sp-768-block">
                     <div class="row mt-2 mb-2">
-                      <div class="col-lg-9 col-md-6 col-sm-12">
+                      <div class="col-lg-9 col-md-8 col-sm-12">
                       <select id="selectCity" class="form-control custom-select" v-model="id" @change="changeTownship">                        
                         <option value="-1">▼市区町村</option>
                         <option v-for="city in cities" :value="city.id" :key="city.id" >{{city.city_name}}</option>                       
                     </select>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-12 pc-414">
+                    <div class="col-lg-3 col-md-4 col-sm-12 pc-414">
                       <button @click="toggleContent4" class="btn seemore-btn">
                       <i class="fa" aria-hidden="true"></i>
                           <!-- <em>{{city.city_name}}</em> -->
@@ -589,13 +593,13 @@
                           <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
                           市から探す
                           </button> 
-                          <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768">
+                          <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768" @click.stop="stopTheEvent">
                             <li>
                             <a data-value="option">
                               <div class="row">
                               <div class="col-lg-2 col-md-4 col-sm-4" v-for="township in getTownships" :key="township.id">
                                   <label class="checkbox form-check-label control control--checkbox">
-                                      <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @change="getCheck($event)" @click.stop="stopTheEvent">{{township.township_name}}
+                                      <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @change="getCheck($event)">{{township.township_name}}
                                         <div class="control__indicator"></div>
                                   </label>
                               </div>
@@ -620,8 +624,8 @@
                   </td>
                 </tr>                
                 <tr class="toBeToggled1 ShowHide">
-                  <th class="pc-414-table">職種</th>
-                  <td>
+                  <th class="pc-414-table sp-768-block">職種</th>
+                  <td class="sp-768-block">
                     <!--職種から探す-->
                      <div class="dropdown">
                         <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
@@ -670,7 +674,7 @@
                             <div class="row">
                                 <div class="col-lg-2 col-md-4 col-sm-4" v-for="occupation in occupations" :key="occupation.id">
                                 <label class="form-check-label control control--checkbox">
-                                <input class="form-check-input" type="checkbox" :id="occupation.id" :value="occupation.id" v-model="occupationID" @click.stop="stopTheEvent">
+                                <input class="form-check-input" type="checkbox" :id="occupation.id" :value="occupation.id" v-model="occupationID">
                                     {{occupation.name}}
                                 <div class="control__indicator"></div>
                                 </label>
@@ -697,20 +701,20 @@
                   </td>
                 </tr>
                 <tr class="toBeToggled1 ShowHide">
-                  <th style="padding:10px;" class="pc-414-table">雇用形態</th>
-                  <td>
+                  <th style="padding:10px;" class="pc-414-table sp-768-block">雇用形態</th>
+                  <td class="sp-768-block">
                     <!--雇用形態から探す-->
                     <div class="dropdown">
                         <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
                         雇用形態から探す
                         </button> 
-                         <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768">
+                         <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768"  @click.stop="stopTheEvent">
                             <li>
                         <a>
                           <div class="row col-12">
                               <div class="form-check form-check-inline col-sm-2">
                               <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-                              <input class="form-check-input" value="正職員" v-model="empstatus" type="checkbox" @click.stop="stopTheEvent">
+                              <input class="form-check-input" value="正職員" v-model="empstatus" type="checkbox">
                               正社員(正職員)
                               <div class="control__indicator"></div>
                               </label>
@@ -877,21 +881,7 @@
 <script>
 import layout from '../components/home.vue'
 import { BulmaAccordion, BulmaAccordionItem } from "vue-bulma-accordion";
- window.addEventListener("load", function(event) {
-    $('.dropdown-menu').on('click', function(e) {
-        if($(this).hasClass('dropdown-menu-form')) {
-            e.stopPropagation();
-        }
-    });
-  });
-//  $(document).ready(function(){                 
-//     $('.dropdown-menu').on('click', function(e) {
-//         if($(this).hasClass('dropdown-menu-form')) {
-//             e.stopPropagation();
-//         }
-//     });
-    
-// });  
+ 
 export default {
     components: {
       layout,
@@ -1012,8 +1002,11 @@ export default {
               empstatus:this.empstatus
           },
         }).then((response)=>{
-
-          this.job_data = response.data.job;
+            this.job_data = response.data.job;
+          if(this.job_data.length > 0)
+          {
+               $('#job_search').css("display","block");
+          }
           this.cities = response.data.city
 
           if(this.job_data.length > this.size) {
@@ -1058,8 +1051,7 @@ export default {
                 },
             })
             .then((response)=>{
-              if(response.data.job.length > 0)
-              {
+          
 
                 $('.jobselect').removeClass('jobselect');
                 $('#job_search').css("display","block");
@@ -1075,16 +1067,11 @@ export default {
                 if(this.job_data.length != 0) {
                     this.norecord_msg = false;
                 }else{
+              
                     this.norecord_msg = true;
                 }
-
-              }
-              else{
-                  $('#job_search').css("display","none");
-              }
-
-
-
+              
+        
             });
 
 
@@ -1388,7 +1375,7 @@ span:hover::before {
 
 table > tbody > tr th{
   background-color: #eeeeee;
-  text-align:right;
+  /* text-align:right; */
   width:140px;
   padding:25px;
 }

@@ -139,12 +139,12 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                     child: [
                         {
                         href: '/nuscustomerlist',
-                        title: '事業者',
+                        title: '事業者一覧',
                         icon: 'fa fa-user'
                         },
                         {
                         href: '/nusfeaturelist',
-                        title: '特殊機能',
+                        title: '特徴設定',
                         icon: 'fa fa-list'
                         },                        
                         {
@@ -161,22 +161,22 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                     child: [
                         {
                         href: '/hoscustomerlist',
-                        title: '事業者',
+                        title: '事業者一覧',
                         icon: 'fa fa-user'
                         },
                         {
                         href: '/facilitieslist',
-                        title: '施設一覧',
+                        title: '院内施設設定',
                         icon: 'fa fa-sun'
                         },
                         {
                         href: '/hosfeaturelist',
-                        title: '特殊機能',
+                        title: '特徴設定',
                         icon: 'fa fa-list'
                         },
                         {
                         href: '/subjectlist',
-                        title: '医学科目',
+                        title: '診療科目設定',
                         icon: 'fa fa-list'
                         },
                         {
@@ -188,7 +188,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                 },
                 {
                     href: '/occupationlist',
-                    title: '求人職種',
+                    title: '職種設定',
                     icon: 'fa fa-suitcase',
                     hidden: this.$auth.check(1)
                 },
@@ -223,7 +223,13 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                     hidden: this.$auth.check(2)
                 },
                 {
-                    title: 'Logout',
+                    href: '/jobapplicantlist',
+                    title: '求職者リスト',
+                    icon: 'fa fa-tasks',
+                    hidden: this.$auth.check(2)
+                },
+                {
+                    title: 'ログアウト',
                     icon: 'fa fa-lock',
                     // click: this.$auth.logout(),
                 },
@@ -272,7 +278,7 @@ created() {
             $("#menu-overlay").toggle('medium');
         },
         onItemClick(event, item){
-            if(item.title == 'Logout'){
+            if(item.title == 'ログアウト'){
                 this.$auth.logout();
             }
         }

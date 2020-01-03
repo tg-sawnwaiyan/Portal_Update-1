@@ -61,17 +61,20 @@ class registerController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'img' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'name' => 'required|min:3|max:50',
+
+        $request->validate( [
+            "file('img')" => 'image|mimes:jpeg,png,jpg|max:2048',
+            'name' => 'required|min:3|max:100',
             'email' => 'required|email|unique:customers',
-            'phone' => 'max:13',
+            // 'phone' => 'max:13',
             'password' => 'min:6|required_with:comfirm_password|same:comfirm_password',
             'comfirm_password' => 'min:6',
             //'address' =>'required',
             'cities'=> 'required',
             'township'=> 'required',
-            ]);
+        ]);
+        
+  
             // $type = 2;
 
             // if($request->types == '3'){
@@ -80,14 +83,17 @@ class registerController extends Controller
 
             // $destinationPath = public_path('/images');
             $image = $request->file('img');
-            
-            $getName = time().'.'.$image->getClientOriginalExtension();
-            
-            if($request->types == 2){     
-                $image->move('upload/hospital_profile/', $getName);
-            }
-            else{
-                $image->move('upload/nursing_profile/', $getName);
+            if($image) {
+                $getName = time().'.'.$image->getClientOriginalExtension();
+                
+                if($request->types == 2){     
+                    $image->move('upload/hospital_profile/', $getName);
+                }
+                else{
+                    $image->move('upload/nursing_profile/', $getName);
+                }
+            } else {
+                $getName = 'noimage.jpg';
             }            
             // $dbPath = $destinationPath. '/'.$input['img'];
             $customer = new Customer;
@@ -130,7 +136,7 @@ class registerController extends Controller
             }
 
             // $admin_email = 'thuzar.ts92@gmail.com';
-            $admin_email = 'susan@management-partners.co.jp';
+            $admin_email = 'thuzar@management-partners.co.jp';
             \Mail::to($admin_email)->send(new customerCreateMail($customer));
 
             Session::flash('success reg', "Special message goes here");

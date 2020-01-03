@@ -122,7 +122,7 @@
             created() {
                 this.$loading(true);
                 if(this.$route.path == "/nuscommentlist"){
-                    this.title = "特徴一覧 for Nursing";
+                    this.title = "コメット一覧";
                     this.axios
                     .get('/api/comments/comment/3')
                     .then(response => {
@@ -142,7 +142,7 @@
                     });
                 }
                 else if(this.$route.path == "/hoscommentlist"){
-                    this.title = "特徴一覧 for Hospital";
+                    this.title = "コメット一覧";
                     this.axios
                     .get('/api/comments/comment/2')
                     .then(response => {
@@ -204,7 +204,7 @@
                 deleteComment(id) {
                         this.$swal({
                             title: "確認",
-                            text: "削除よろしいでしょうか。",
+                            text: "コメットを削除してよろしいでしょうか。",
                             type: "warning",
                             width: 350,
                             height: 200,
@@ -212,7 +212,7 @@
                             confirmButtonColor: "#dc3545",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
-                            confirmButtonText: "削除",
+                            confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
@@ -235,12 +235,12 @@
                                     // let i = this.categories.map(item => item.id).indexOf(id); // find index of your object
                                     // this.categories.splice(i, 1);
                                     this.$swal({
-                                        title: "削除済",
-                                        text: "コメントが削除されました。",
+                                        // title: "削除済",
+                                        text: "コメントを削除しました。",
                                         type: "success",
                                         width: 350,
                                         height: 200,
-                                        confirmButtonText: "はい",
+                                        confirmButtonText: "閉じる",
                                         confirmButtonColor: "#dc3545"
                                     });
 
@@ -254,7 +254,7 @@
                     commentConfirm(id) {
                         this.$swal({
                             title: "確認",
-                            text: "確認よろしでしょうか。",
+                            text: "口コミを投稿してよろしいでしょうか。",
                             type: "info",
                             width: 350,
                             height: 200,
@@ -262,7 +262,7 @@
                             confirmButtonColor: "#6cb2eb",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
-                            confirmButtonText: "確認",
+                            confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
@@ -274,11 +274,11 @@
                                     this.comments = response.data.comments;
                                     this.$swal({
                                             title: "確認済",
-                                            text: "コメントを確認しました。",
+                                            text: "口コミを投稿しました。",
                                             type: "success",
                                             width: 350,
                                             height: 200,
-                                            confirmButtonText: "はい",
+                                            confirmButtonText: "閉じる",
                                             confirmButtonColor: "#6cb2eb"
                                         })
                                         .catch(() => {
@@ -288,7 +288,7 @@
                                                 type: "error",
                                                 width: 350,
                                                 height: 200,
-                                                confirmButtonText: "はい",
+                                                confirmButtonText: "閉じる",
                                                 confirmButtonColor: "#dc3545"
                                             });
                                         });
