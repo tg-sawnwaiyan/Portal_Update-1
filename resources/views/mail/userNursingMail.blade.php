@@ -15,7 +15,7 @@
                 @foreach($getComment->fav_name_copy as $name)
               
                     @if($name != null)
-                      <a href="https://testikportal.management-partners.co.jp/favouriteNursing"> {{$name}}</a><br/>
+                      <label> {{$name}}</label><br/>
                     @endif
 
                 @endforeach

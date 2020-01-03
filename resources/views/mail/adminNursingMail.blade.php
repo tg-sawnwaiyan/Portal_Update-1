@@ -5,7 +5,7 @@
                 <div style="text-align:center;"><span style="font-size: 40px;font-weight: bold;color: #d2571c;text-shadow: 3px 4px #ccc;text-align:center">LOGO <span style="font-size: 30px; color: #f57e46;">HERE</span></span></div>
 
 	            <h5 style="color:#3e4348;font-size: 12px;margin-bottom: 30px;font-weight: bold;text-align: left;">
-                    Admin&nbsp;&nbsp;様
+                医療介護ポータル&nbsp;&nbsp;様
                     <p style="margin-top:10px;">【サイト名】より資料請求がございました。</p>                    
 	            </h5>
                 <p style="text-align: left;margin: 0px;">
@@ -15,7 +15,7 @@
                 @foreach($getComment->fav_name_copy as $name)
               
                     @if($name != null)
-                      <a href="https://testikportal.management-partners.co.jp/favouriteNursing"> {{$name}}</a><br/>
+                      <label> {{$name}}</label><br/>
                     @endif
 
                 @endforeach

@@ -117,10 +117,10 @@
                             <div class="form-group row pl-3">
                                     <div class="col-md-12 p-0">
                                         <label class="col-md-12">※ 電話番号またはメールアドレス必須 <span class="error sp1">必須</span></label>
-                                        <input type="text" id="phone" name="number" class="form-control float-left" placeholder="電話番号を入力してください。" v-model="comments.phone" @change="aggreBtn" pattern="[0-9-]*" @focusout="focusPhone"    maxlength="14" title="Please enter number only.">
+                                        <input type="text" id="phone" name="number" class="form-control float-left" placeholder="電話番号を入力してください。" v-model="comments.phone" @change="aggreBtn" pattern="[0-9-]*" @keyup="focusPhone" maxlength="14" title="Please enter number only.">
                                         <!-- v-on:keyup="isNumberOnly" -->
                                         <span class="error m-l-30" v-if="mail_focus">※入力は必須です。</span>
-                                        <span class="error m-l-30" v-else-if="ph_length || ph_error">※電話番号が正しくありません。もう一度入力してください。</span>
+                                        <span class="error m-l-30" v-if="ph_length || ph_error">※電話番号が正しくありません。もう一度入力してください。</span>
                                         <span class="float-left eg-txt">例）0312345678（半角）</span>
                                     </div>
                                 </div>
@@ -532,8 +532,9 @@ import DatePicker from 'vue2-datepicker';
             focusPhone(){
 
               var input_data = $('#phone').val(); 
+              console.log(input_data.length)
                 
-              if(input_data.length >= 10 && input_data.length <= 14 && input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-')
+              if(input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-' && ((input_data.length >= 10 && input_data.length <= 14) || input_data.length == 0))
               {  
                   this.ph_num = false;
                   this.ph_length = false;
