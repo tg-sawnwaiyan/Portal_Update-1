@@ -63,16 +63,17 @@ class NursingMailController extends Controller
         // $fav_reserve = $request->arr_reserve;
         $fav_documentation = $request->arr_document;
        
-// return $request;
+       
          for($i = 1; $i<count($favourite_id); $i++){
             
             $request->related_fav_id = 500000+intval($favourite_id[$i]);
             $request->related_fav_name = $favourite_name[$i];  
+            
             // $fav_documentation[0] = 'test';
-            if (isset($fav_documentation[$favourite_id[$i]])){
+            if(isset($fav_documentation[$favourite_id[$i]])){
             //   return $favourite_id;
                 if ($fav_documentation[$favourite_id[$i]] == true ) {
-                 
+                    
                     \Mail::to($favourite_mail[$i])->send(new nursingMailing($request));
                 } 
             } 
@@ -82,15 +83,23 @@ class NursingMailController extends Controller
     
     }       
 
-        $admin_email = 'thuzar.ts92@gmail.com';
+        $admin_email = 'susandiaung565@gmail.com';
         // $admin_email = 'thuzar@management-partners.co.jp';
         // $admin_email = 'management.partner87@gmail.com ';
+       
         \Mail::to($admin_email)->send(new adminNursingMail($request));
 
-        \Mail::to($request->mail)->send(new userNursingMail($request));
+        if($request->mail != null || $request->mail != '')
+        {
+        
+            \Mail::to($request->mail)->send(new userNursingMail($request));
+        }
+
+       
 
         return response()->json(['success'=>'Done!']);
     }
+
     public function store(Request $request)
     {
         //

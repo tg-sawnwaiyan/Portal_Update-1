@@ -1247,29 +1247,25 @@
         </table> -->
         <!-- End Test Station Area -->
         <table class="table table-bordered table-wrapper">
-                    <tr>
-                        <td>
-                            <label class="heading-lbl col-2 pad-free">地図</label>
-                            <span class="btn all-btn main-bg-color" style="min-width: 0px;" @click="maptogglediv()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
-                            <div class="col-md-10 float-right m-t-10 map-toggle-div toggle-div pad-free">
-                                <div class="col-md-12">
-                                    <GoogleMap :address="customer_info.address" :township="customer_info.townships_id" :lat_num='hospital_info.latitude' :lng_num='hospital_info.longitude' v-if="hospital_info.latitude != 0"></GoogleMap>
-                                    <!-- <GoogleMap :address="customer_info.address" :lat_num='35.6803997' :lng_num='139.76901739' v-if="hospital_info.latitude == 0"></GoogleMap> -->
+            <tr>
+                <td>
+                    <label class="heading-lbl col-2 pad-free">地図</label>
+                    <span class="btn all-btn main-bg-color" style="min-width: 0px;" @click="maptogglediv()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
+                    <div class="col-md-10 float-right m-t-10 map-toggle-div toggle-div pad-free">
+                        <div class="col-md-12">
+                            <GoogleMap :address="customer_info.address" :township="customer_info.townships_id" :lat_num='hospital_info.latitude' :lng_num='hospital_info.longitude' v-if="hospital_info.latitude != 0"></GoogleMap>
+                            <!-- <GoogleMap :address="customer_info.address" :lat_num='35.6803997' :lng_num='139.76901739' v-if="hospital_info.latitude == 0"></GoogleMap> -->
 
-                                    <div class="form-group">
-                                            <label>交通 / アクセス<span class="error">*</span></label>
-                                            <!-- <textarea name="address" rows="10" class="form-control"></textarea> -->
-                                            <quill-editor  ref="myQuilEditor" name="address" :options="editorOption" class="transporation-access" @change="onAccessEditorChange($event)" v-model="hospital_info.access"/>
-                                    </div>
-
-                                </div>
+                            <div class="form-group">
+                                <label>交通 / アクセス<span class="error">*</span></label>
+                                <!-- <textarea name="address" rows="10" class="form-control"></textarea> -->
+                                <quill-editor  ref="myQuilEditor" name="address" :options="editorOption" class="transporation-access" @change="onAccessEditorChange($event)" v-model="hospital_info.access"/>
                             </div>
-                        </td>
-                    </tr>
-                </table>
-
-
-
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
         <!-- Consultation -->
 
 

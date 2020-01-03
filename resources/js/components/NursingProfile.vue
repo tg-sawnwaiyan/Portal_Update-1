@@ -425,15 +425,14 @@
                                         <!-- cooperation -->
                                         <div class="col-md-12 m-t-30 m-b-20 gallery-area-cooperate" v-bind:id="'cooperate'+indx" v-for="(cooperate,indx) in cooperate_arr" :key="cooperate.id">
 
-                                            <div class="clearfix" style="margin-bottom:30px;">
-                                                   <span :class="'float-right btn all-btn main-bg-color cooperateChangeLink'+indx" style="min-width: 0px;" @click="cooperateToggle(indx)" >
+                                            <div class="clearfix" style="margin-bottom:30px;text-align:right">                                               
+                                                <span :class="'btn all-btn main-bg-color cooperateChangeLink'+indx" style="min-width: 0px;" @click="cooperateToggle(indx)" >
                                                         <i :id="'cooperatetogg' + indx" class="fas fa-sort-down"></i>
                                                 </span>
-                                                 <a class="mr-auto text-danger btn delete-borderbtn float-right m-b-20" @click="DeltArr(indx,'cooperate')"> <i class="fa fa-trash"></i> 削除</a>
+                                                 <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,'cooperate')"> 
+                                                <i class="fa fa-trash"></i> 削除</a>
                                             </div>
-                                             <div class="clearfix">
-                                               
-                                            </div>
+
 
                                             <div class="form-group">
                                                 <label class="col-2 pad-free">名前 :</label>

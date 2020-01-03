@@ -20,10 +20,9 @@ class OccupationsController extends Controller
 
     public function typelist()
     {
-
-        $occupation = Occupations::select('id','name')->get()->toArray();
-
-        return $occupation;
+        // Subject::select('id','name')->where('parent',0)->get()->toArray();
+        $occupationList = Occupations::select('id','name')->where('parent',0)->get()->toArray();
+        return $occupationList;
     }
 
     /**

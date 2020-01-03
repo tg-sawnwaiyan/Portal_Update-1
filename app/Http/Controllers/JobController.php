@@ -36,12 +36,12 @@ class JobController extends Controller
 
     }
 
-    public function getOccupationList()
-    {
-        $occupationlist = Occupations::select('id','name')->get()->toArray();
+    // public function getOccupationList()
+    // {
+    //     $occupationlist = Occupations::select('id','name')->get()->toArray();
 
-        return response()->json($occupationlist);
-    }
+    //     return response()->json($occupationlist);
+    // }
 
     public function getSkill()
     {

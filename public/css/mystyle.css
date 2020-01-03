@@ -6966,7 +6966,7 @@ dl.favnur dd {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 20px 0 40px;
+    margin: 20px 0 0px;
     color: #666a73;
 }
 
@@ -7388,7 +7388,7 @@ dl.favnur dd {
 
 .hos-content {
     position: relative;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     padding: 20px 20px 20px 20px;
     height: 100%;
     border: 1px solid #63b7ff;
@@ -7423,7 +7423,7 @@ dl.favnur dd {
     float: right;
 }
 
-.hos_phone i {
+.hos_phone i, .sp_hos_phone i {
     width: 40px;
     height: 40px;
     margin-right: 5px;
@@ -7435,7 +7435,14 @@ dl.favnur dd {
     border-radius: 50%;
     vertical-align: bottom;
 }
-
+.sp_hos_phone{
+    padding: 8px;
+    font-size: 10px;
+    text-align: center;
+    border: 2px solid #c91616;
+    border-radius: 5px;
+    width: 100%;
+}
 .phone-no {
     color: #c40000;
     font-size: 25px;
@@ -7445,7 +7452,9 @@ dl.favnur dd {
     font-weight: bold;
     vertical-align: middle;
 }
-
+.phone-no a{
+    color: #c40000;
+}
 .circle-phone {
     background: #fff;
     width: 40px;
@@ -7470,7 +7479,7 @@ dl.favnur dd {
 }
 
 .second-hos-row {
-    background-color: #eff7ec;
+    background-color: #eff7ec !important;
 }
 
 .hos-content .detail-btn .btn {
@@ -8534,7 +8543,6 @@ ul.nur-caro-card>li.list-group-item {
 .sp-414 {
     display: none;
 }
-
 .pc-414 {
     display: block;
 }
@@ -9336,9 +9344,12 @@ ul.nur-caro-card>li.list-group-item {
     }
     /*end fav nursing*/
 }
-@media only screen and (max-width:768px) {
+@media only screen and (max-width:768px) {    
     .pc-768 {
         display: none;
+    }
+    .sp-768{
+        display: block;
     }
     .sp-768-block{
         display: block;
@@ -9460,11 +9471,40 @@ ul.nur-caro-card>li.list-group-item {
         color: #C40000;
         font-weight: bold;
         font-size: 16px;
-    }   
+    }  
+    .job-content .detail-btn .btn {
+        width: 90%;
+    } 
     .hospital-subject {     
         display: table-cell;  
         /* width: 74%; */
     }
+    .hos-content .detail-btn .btn {
+        width: 100%;
+    }
+    .sp_hos_phone {
+        padding: 5px;
+    }
+    .circle-phone{
+        width: 30px;
+        height: 30px;
+    }
+    .phone-no{
+        padding: 0px;
+        font-size: 20px;
+    }
+    .hos_phone i, .sp_hos_phone i{
+        width: 30px;
+        height: 30px;   
+        line-height: 30px;   
+        font-size: 15px;
+     }
+    #job_detail .fav-profile{
+        width: 100%;
+        padding: 10px !important;
+    }
+    
+    
 }
 @media only screen and (max-width:750px){
  
@@ -9814,7 +9854,7 @@ ul.nur-caro-card>li.list-group-item {
         width: 128px;
         right: 11px;
         padding: 5px 2px !important;
-        font-size: 12px;
+        font-size: 14px;
     }
     .top-mail-btn {
         right: 135px !important;
@@ -9878,7 +9918,10 @@ ul.nur-caro-card>li.list-group-item {
 @media only screen and (max-width: 414px) {
     .sp-414 {
         display: block !important;
-    }    
+    }   
+    .sp-414-table{
+        display: table-cell !important;
+    } 
     .pc-414 {
         display: none !important;
     }
@@ -9891,6 +9934,12 @@ ul.nur-caro-card>li.list-group-item {
     /*create_news*/
     .create_nw_p {
         padding: 0px;
+    }
+    .sp-414-timetable .table th, .sp-414-timetable .table td{
+        padding: 0px !important;
+    }
+    .hos-content{
+        padding: 10px;
     }
 }
 @media only screen and (max-width: 380px) {
@@ -9928,17 +9977,17 @@ ul.nur-caro-card>li.list-group-item {
     .gallery-list .gallery-item {
         padding: 3px;
         margin-bottom: 25px;
-        font-size: 11px;
+        font-size: 12px;
     }
     .top-mail-btn {
         right: 125px !important;
         width: 98px !important;
-        font-size: 11px !important;
+        font-size: 12px !important;
     }
     .fav-profile {
         width: 116px;
         right: 11px;
-        font-size: 11px;
+        font-size: 12px;
     }
     /*End  Profile Publish */
 }
