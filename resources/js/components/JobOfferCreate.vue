@@ -136,12 +136,12 @@
                             <div class="form-group">
                                 <label for="location">
                                     郵便番号:
-                                    <span class="error sp2">必須</span>
+                                    <!-- <span class="error sp2">必須</span> -->
                                 </label>
                                 <input type="text" class="form-control box" id="postal" placeholder="165879" v-model="joboffer.postal" maxlength="7" v-on:keyup="getPostal" />
 
                                 <!-- <span v-if="errors.includes('postal')" class="error">題名が必須です。(postal)</span> -->
-                                 <span v-if="errors.postal" class="error">{{errors.postal}}</span>
+                                 <!-- <span v-if="errors.postal" class="error">{{errors.postal}}</span> -->
                             </div>
                             <div class="form-group">
                                 <label for="location">
@@ -570,11 +570,11 @@
                             this.errors.description = "";
                         }
 
-                          if (this.joboffer.postal == '') {
-                            this.errors.postal = '郵便番号が必須です。';
-                        } else {
-                            this.errors.postal = "";
-                        }
+                        // if (this.joboffer.postal == '') {
+                        //     this.errors.postal = '郵便番号が必須です。';
+                        // } else {
+                        //     this.errors.postal = "";
+                        // }
 
                         if (this.joboffer.pref == '') {
                             this.errors.pref = '都道府県が必須です。';
@@ -616,7 +616,7 @@
                         if (
                             !this.errors.title &&
                             !this.errors.description &&
-                            !this.errors.postal &&
+                            // !this.errors.postal &&
                             !this.errors.pref &&
                             !this.errors.location &&
                             !this.errors.description &&

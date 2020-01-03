@@ -73,7 +73,7 @@ class NursingMailController extends Controller
             //   return $favourite_id;
                 if ($fav_documentation[$favourite_id[$i]] == true ) {
                  
-                    \Mail::to($favourite_mail[$i])->send(new nursingMailing($request));
+                    // \Mail::to($favourite_mail[$i])->send(new nursingMailing($request));
                 } 
             } 
 
@@ -82,12 +82,14 @@ class NursingMailController extends Controller
     
     }       
 
-        $admin_email = 'thuzar.ts92@gmail.com';
+        $admin_email = 'susandiaung565@gmail.com';
         // $admin_email = 'thuzar@management-partners.co.jp';
         // $admin_email = 'management.partner87@gmail.com ';
+     
+       
         \Mail::to($admin_email)->send(new adminNursingMail($request));
 
-        \Mail::to($request->mail)->send(new userNursingMail($request));
+        // \Mail::to($request->mail)->send(new userNursingMail($request));
 
         return response()->json(['success'=>'Done!']);
     }

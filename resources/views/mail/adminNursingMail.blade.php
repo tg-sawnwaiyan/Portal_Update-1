@@ -1,8 +1,8 @@
 <div style="width:800px;">
-<div style="text-align: center;">
+<div >
 	        <div style="padding: 60px;">
 
-                <span style="font-size: 40px;font-weight: bold;color: #d2571c;text-shadow: 3px 4px #ccc;">LOGO <span style="font-size: 30px; color: #f57e46;">HERE</span></span>
+                <div style="text-align:center;"><span style="font-size: 40px;font-weight: bold;color: #d2571c;text-shadow: 3px 4px #ccc;text-align:center">LOGO <span style="font-size: 30px; color: #f57e46;">HERE</span></span></div>
 
 	            <h5 style="color:#3e4348;font-size: 12px;margin-bottom: 30px;font-weight: bold;text-align: left;">
                     Admin&nbsp;&nbsp;様
@@ -11,6 +11,14 @@
                 <p style="text-align: left;margin: 0px;">
                 ***********************************************************************************************************************************
                 </p>
+                <p style="text-align:left;margin:2px;color:#3e4348;font-size: 16px;"><span style="color:#d2571c">◎</span>【資料請求先】</p>
+                @foreach($getComment->fav_name as $name)
+              
+                    @if($name != null)
+                      <a href="https://testikportal.management-partners.co.jp/favouriteNursing"> {{$name}}</a><br/>
+                    @endif
+
+                @endforeach
                 
                 <p style="text-align: left;margin: 0px;">
                 ***********************************************************************************************************************************
