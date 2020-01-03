@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\nursingMailing;
 use App\Mail\userNursingMail;
+use App\Mail\adminNursingMail;
 class NursingMailController extends Controller
 {
     /**
@@ -82,7 +83,7 @@ class NursingMailController extends Controller
     }       
 
         $admin_email = 'thuzar.ts92@gmail.com';
-        // $admin_email = 'susan@management-partners.co.jp';
+        // $admin_email = 'thuzar@management-partners.co.jp';
         // $admin_email = 'management.partner87@gmail.com ';
         \Mail::to($admin_email)->send(new adminNursingMail($request));
 

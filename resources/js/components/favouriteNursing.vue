@@ -238,20 +238,20 @@
                                 <span class="checkmark"></span>すべての資料請求にチェックを入れる
                                 <div class="controlinner__indicator" style="top:8px;left:7px;"></div>
                             </label>
-                            <button type="button" class="btn btn-success all-btn float-right m-l-10" @click="addingMail()" :disabled="isdisable">資料請求する</button>
+                            <!-- <button type="button" class="btn btn-success all-btn float-right m-l-10" @click="addingMail()" :disabled="isdisable">資料請求する</button> -->
                         </div>
                         <div class="float-right check-resize">
-                            <label class="btn my-2 my-sm-0 all-btn secondary-bg-color btn-secondary control controlinner--checkbox pc-480" style="width:300px;">
+                            <!-- <label class="btn my-2 my-sm-0 all-btn secondary-bg-color btn-secondary control controlinner--checkbox pc-480" style="width:300px;">
                                 <input type="checkbox" @change="checkAll()" class="check-all-btn" />
                                 <span class="checkmark"></span>すべての資料請求にチェックを入れる
                                 <div class="controlinner__indicator" style="top:8px;left:7px;"></div>
-                            </label>
+                            </label> -->
                             <label class="btn my-sm-0 all-btn secondary-bg-color btn-secondary control controlinner--checkbox fnt-check">
                                 <input type="checkbox" @change="checkAll()" class="check-all-btn" />
                                 <span class="checkmark"></span>すべてチェック
                                 <div class="controlinner__indicator" style="top:8px;left:3px;"></div>
                             </label>
-                            <button type="button" class="btn btn-success all-btn float-right m-l-10 fnt-check" @click="addingMail()" :disabled="isdisable">資料請求する</button>
+                            <!-- <button type="button" class="btn btn-success all-btn float-right m-l-10 fnt-check" @click="addingMail()" :disabled="isdisable">資料請求する</button> -->
                         </div>
                     </div>
                     <div class="m-t-20" id="fav-history-page">
@@ -385,15 +385,18 @@
                             </div>
                         </div>
                     </div>
+                    <button type="button" class="btn btn-success col-sm-4 offset-sm-4 col-md-2 offset-md-5" @click="addingMail()" :disabled="isdisable">資料請求する</button>
                 </div>
                 <!--end compare box-->
                 <!--result-->
 
                 <!--end result-->
+                
             </div>
+            
         </div>
 
-        <button type="button" class="btn btn-success mt-5 float-right" @click="addingMail()" :disabled="isdisable">資料請求する</button>
+        
     </div>
 </template>
 
