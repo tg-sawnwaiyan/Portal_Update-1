@@ -132,7 +132,7 @@
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
                         </div>
-                        <input class="form-control" id="phone" name="phone" v-model="phone" required pattern="[0-9-]*" placeholder="電話番号を入力してください。" @focusout="focusPhone" title="Please enter number only." maxlength="14">
+                        <input class="form-control" id="phone" name="phone" v-model="phone" required placeholder="電話番号を入力してください。" @keyup="focusPhone" title="Please enter number only." maxlength="14">
                         <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>
                         
                     </div>
@@ -367,18 +367,19 @@
 
       },
       focusPhone(){
-          
+
         var input_data = $('#phone').val();
-        if(input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-')
+        
+        if(Number(input_data) && input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-')
         {
-            console.log(input_data);
             this.ph_num = false;
             this.ph_length = false;
-        }
+        } 
         else{
             this.ph_num = true;
             this.ph_length = true;
         }
+        
       }
 
     },
