@@ -11,7 +11,7 @@
 
                 <div class="d-flex justify-content-center registerform_container">
                     <div class="brand_logo_container">
-                        <h4 style="position:relative; bottom: 60px; width:152px;">事業者新規登録</h4>
+                        <!-- <h4 style="position:relative; bottom: 60px; width:152px;">事業者新規登録</h4> -->
                         <img src="/images/sample_1.png" class="brand_logo" alt="Logo">
                         <div id="preview">
                           <img v-if="url" :src="url" class="brand_logo" alt="Logo">
@@ -24,7 +24,7 @@
                     <p v-if="error == 'registration_validation_error'">Validation error (s), please consult the message (s) below.</p>
                     <p v-else>Error, can not register at the moment. If the problem persists, please contact an administrator.</p>
                 </div>
-
+          <div style="margin-bottom: 10px;text-align:center;font-size: 19px;font-weight: bold;color:#d2571cf5">事業者登録</div>
                 <form autocomplete="off" @submit.prevent="register" v-if="!success" method="post" class="registerformwrapper">
                     <!-- <div id="preview">
                         <img v-if="url" :src="url" class="img-thumbnail img" />
@@ -34,8 +34,8 @@
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-image"></i></span>
                         </div>
-                        <span class="btn all-btn choose-btn" style="color: #a93f0c!important;box-shadow:none!important;" @click="choosefile()">ロゴを選択</span> <span id="imgname" style = "padding: 8px 0 0 30px;"></span>
-                        <input type="file" class="inputfile" name="img" required @change="onFileChange"/>
+                        <span class="btn all-btn choose-btn" style="color: #a93f0c!important;box-shadow:none!important;" @click="choosefile()">ロゴを選択</span> <span id="imgname" style = "padding: 8px 0 0 30px;">{{img_name}}</span>
+                        <input type="file" class="inputfile" name="img" @change="onFileChange"/>
                          <span v-if="errors.img" class="error">{{errors.img}}</span>
                         <!-- <input type="file" accept="image/*" @change="showMyImage(this)" name="img" id="file" ref="file" class="form-control inputfile"> -->
                     </div>
@@ -132,7 +132,7 @@
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
                         </div>
-                        <input class="form-control" id="phone" name="phone" v-model="phone" required  pattern="[0-9-]*" placeholder="電話番号を入力してください。"  @focusout="focusPhone" title="Please enter number only." maxlength="14">
+                        <input class="form-control" id="phone" name="phone" v-model="phone" required pattern="[0-9-]*" placeholder="電話番号を入力してください。" @focusout="focusPhone" title="Please enter number only." maxlength="14">
                         <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>
                         
                     </div>
@@ -153,6 +153,7 @@
     data() {
       return {
         images:'',
+        img_name:'',
         username: '',
         email: '',
         cities: [],
@@ -282,15 +283,25 @@
     },
       onFileChange(e) {
       const file = e.target.files[0];
-      console.log(file);
       this.images = file;
+      this.img_name = file.name;
       this.url = URL.createObjectURL(file);
     },
       register() {
 
+        var input_data = $('#phone').val();
+        if(input_data.length >= 10 && input_data.length <= 14)
+        {
+            this.ph_num = false;
+            this.ph_length = false;
+        } else {
+            this.ph_num = true;
+            this.ph_length = true;
+            return;
+        }
 
-              var app = this
-       
+
+        var app = this
         let fData = new FormData();
                         fData.append('img', app.images)
                         fData.append('name', app.username)
@@ -356,9 +367,11 @@
 
       },
       focusPhone(){
+          
         var input_data = $('#phone').val();
-        if(input_data.length >= 10 && input_data.length <= 14 && input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-')
+        if(input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-')
         {
+            console.log(input_data);
             this.ph_num = false;
             this.ph_length = false;
         }
