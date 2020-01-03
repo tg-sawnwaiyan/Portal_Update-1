@@ -64,9 +64,9 @@ class registerController extends Controller
 
         $request->validate( [
             "file('img')" => 'image|mimes:jpeg,png,jpg|max:2048',
-            'name' => 'required|min:3|max:50',
+            'name' => 'required|min:3|max:100',
             'email' => 'required|email|unique:customers',
-            'phone' => 'max:13',
+            // 'phone' => 'max:13',
             'password' => 'min:6|required_with:comfirm_password|same:comfirm_password',
             'comfirm_password' => 'min:6',
             //'address' =>'required',
