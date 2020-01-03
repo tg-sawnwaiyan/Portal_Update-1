@@ -111,11 +111,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group m-0 row bd">
-                            <div class="col-md-3 col-sm-12 form-left"><label>電話番号</label><span class="error sp1">必須</span></div>
+                        <div class="form-group m-0 row bd-all">                            
+                            <div class="col-md-3 col-sm-12 form-left"><br/><label>電話番号</label></div>
                             <div class="col-md-9 col-sm-12 form-right">
                             <div class="form-group row pl-3">
                                     <div class="col-md-12 p-0">
+                                        <label class="col-md-12">※ 電話番号またはメールアドレス必須 <span class="error sp1">必須</span></label>
                                         <input type="text" id="phone" name="number" class="form-control float-left" placeholder="電話番号を入力してください。" v-model="comments.phone" @change="aggreBtn" pattern="[0-9-]*" @focusout="focusPhone"    maxlength="14" title="Please enter number only.">
                                         <!-- v-on:keyup="isNumberOnly" -->
                                         <span class="error m-l-30" v-if="mail_focus">※入力は必須です。</span>
@@ -124,9 +125,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group m-0 row bd-all">
-                            <div class="col-md-3 col-sm-12 form-left"><label>メールアドレス <span class="error sp1">必須</span></label></div>
+                        <!-- </div>
+                        <div class="form-group m-0 row bd-all"> -->
+                            <div class="col-md-3 col-sm-12 form-left"><label>メールアドレス </label></div>
                             <div class="col-md-9 col-sm-12 form-right">
                             <div class="form-group row pl-3">
                                 <div class="col-md-12 p-0">
