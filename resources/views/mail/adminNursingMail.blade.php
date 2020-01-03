@@ -12,7 +12,7 @@
                 ***********************************************************************************************************************************
                 </p>
                 <p style="text-align:left;margin:2px;color:#3e4348;font-size: 16px;"><span style="color:#d2571c">◎</span>【資料請求先】</p>
-                @foreach($getComment->fav_name as $name)
+                @foreach($getComment->fav_name_copy as $name)
               
                     @if($name != null)
                       <a href="https://testikportal.management-partners.co.jp/favouriteNursing"> {{$name}}</a><br/>

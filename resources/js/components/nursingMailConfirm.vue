@@ -259,7 +259,8 @@
                     fav_name: [{}],
                     // arr_reserve: [{}],
                     arr_document: [{}],
-                    selectedValue: 0
+                    selectedValue: 0,
+                    fav_name_copy:[]
                 },
                 errors: [],
                 fav_nursing: [],
@@ -288,6 +289,7 @@
         },
         methods: {
             add() {
+                    this.comments.fav_name_copy = [];
                     this.$loading(true);
                     this.axios
                         .post("/api/nurse/add", this.comments)
