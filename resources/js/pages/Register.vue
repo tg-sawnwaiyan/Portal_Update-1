@@ -36,7 +36,7 @@
                         </div>
                         <span class="btn all-btn choose-btn" style="color: #a93f0c!important;box-shadow:none!important;" @click="choosefile()">ロゴを選択</span> <span id="imgname" style = "padding: 8px 0 0 30px;">{{img_name}}</span>
                         <input type="file" class="inputfile" name="img" @change="onFileChange"/>
-                         <span v-if="errors.img" class="error">{{errors.img}}</span>
+                         <!-- <span v-if="errors.img" class="error">{{errors.img}}</span> -->
                         <!-- <input type="file" accept="image/*" @change="showMyImage(this)" name="img" id="file" ref="file" class="form-control inputfile"> -->
                     </div>
                     <div class="input-group mb-3">
@@ -45,7 +45,7 @@
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
                         <input type="text" class="form-control" name="name" v-model="username" required placeholder="事業者名を入力してください。">
-                        <span v-if="errors.name" class="error p-l-162">{{errors.name}}</span>
+                        <!-- <span v-if="errors.name" class="error p-l-162">{{errors.name}}</span> -->
                     </div>
                      
                     
@@ -55,7 +55,10 @@
                             <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                         </div>
                         <input type="email" class="form-control" name="email" v-model="email" required placeholder="メールアドレスを入力してください。">
-                         <span v-if="errors.email" class="error p-l-162">{{errors.email}}</span>
+                         
+                         <div class="col-md-12 pad-free">
+                            <span v-if="errors.email" class="error p-l-162">{{errors.email}}</span>
+                        </div>
                     </div>
                     
 
@@ -65,7 +68,10 @@
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
                         <input type="password" class="form-control" name="password" @keyup="password_validate()" v-model="password" id="pwd" required placeholder="パスワードを入力してください。">
-                         <span v-if="errors.password" class="error p-l-162">{{errors.password}}</span>
+                        <div class="col-md-12 pad-free">
+                            <span v-if="errors.password" class="error p-l-162">{{errors.password}}</span>
+                        </div>
+                         
                     </div>
                     
 
@@ -75,12 +81,14 @@
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
                         <input type="password" class="form-control" name="comfirm_password" id="confirm_pwd" @keyup="password_validate()" v-model="password_confirmation" required placeholder="パスワードをもう一度入カしてください。">
-                         <span v-if="errors.password" class="error p-l-162">{{errors.password}}</span>
+                         <div class="col-md-12 pad-free">
+                            <span v-if="errors.password" class="error p-l-162">{{errors.password}}</span>
+                        </div>
                        
                     </div>
                     
                      
-                    <div class="error p-l-162" id="passworderror" style="display:none;">※パスワードが一致しません。</div>
+                    <!-- <span class="error p-l-162" v-if="passerr">※パスワードが一致しません。</span> -->
 
                     <div class="input-group mb-3">
                         <label class="col-4 col-lg-3 control-label">事業者タイプ</label>
@@ -126,14 +134,20 @@
                         </select>
                          <span v-if="errors.township" class="error">{{errors.township}}</span>
                     </div>
-
+                    <span class="p-l-162" style="color:#999;">※ Only Numbers and '-' accept !</span>
                     <div class="input-group mb-3">
+                        
                         <label class="col-4 col-lg-3 control-label">電話番号</label>
+                        
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
                         </div>
-                        <input class="form-control" id="phone" name="phone" v-model="phone" required pattern="[0-9-]*" placeholder="電話番号を入力してください。" @focusout="focusPhone" title="Please enter number only." maxlength="14">
-                        <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>
+                        
+                        <input class="form-control" id="phone" name="phone" pattern="[0-9-]*" v-model="phone" required placeholder="電話番号を入力してください。" @keyup="focusPhone" title="Please enter number only." maxlength="14">
+                        
+                        <div class="col-md-12 pad-free">
+                            <span class="error p-l-162" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>
+                        </div>
                         
                     </div>
                     <div id="jsErrorMessage" class="error p-l-162"></div>
@@ -167,6 +181,7 @@
         address:'',
         password: '',
         password_confirmation: '',
+        passerr: false,
         has_error: false,
         error: '',
         errors: {
@@ -271,10 +286,14 @@
         window.pwd_same = false;
         var nursing_type_exist = false;
         if(pwd != confirm_pwd) {
-            $('#passworderror').css("display","block");
+            // this.passerr = true;
+            this.errors.password = "※パスワードが一致しません。";
+            // $('#passworderror').css("display","block");
         }
         else {
-            $('#passworderror').css("display","none");
+            // $('#passworderror').css("display","none");
+            // this.passerr = false;
+            this.errors.password = null;
             window.pwd_same = true;
         }
     },
@@ -367,18 +386,19 @@
 
       },
       focusPhone(){
-          
+
         var input_data = $('#phone').val();
-        if(input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-')
+        
+        if(input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-' && input_data.length >= 10 && input_data.length <= 14)
         {
-            console.log(input_data);
             this.ph_num = false;
             this.ph_length = false;
-        }
+        } 
         else{
             this.ph_num = true;
             this.ph_length = true;
         }
+        
       }
 
     },

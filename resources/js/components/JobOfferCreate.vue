@@ -138,8 +138,16 @@
                                     郵便番号:
                                     <!-- <span class="error sp2">必須</span> -->
                                 </label>
-                                <input type="text" class="form-control box" id="postal" placeholder="165879" v-model="joboffer.postal" maxlength="7" v-on:keyup="getPostal" />
-
+                                <div class="row col-md-12">
+                                    <div class="col-md-6 pad-free">
+                                        <input type="text" class="form-control box" id="postal" placeholder="165879" v-model="joboffer.postal" maxlength="7" v-on:keyup="getPostal" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span class="float-left eg-txt">例）1006740 (<a href="https://www.post.japanpost.jp/zipcode/" target="_blank">郵便番号検索</a>)</span>
+                                    </div>
+                                </div>
+                                
+                                
                                 <!-- <span v-if="errors.includes('postal')" class="error">題名が必須です。(postal)</span> -->
                                  <!-- <span v-if="errors.postal" class="error">{{errors.postal}}</span> -->
                             </div>
