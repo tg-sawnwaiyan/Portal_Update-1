@@ -832,10 +832,10 @@
                                         </div>
                                     </div>
                                     <div class="row m-t-10">
-                                      <div class="col-6">
+                                      <div class="col-md-6 col-sm-12">
                                         <span class="sp_hos_phone sp-768"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span><span class="phone-no"><a :href="`tel:${hos.phone}`">{{hos.phone}}</a></span></span>
                                       </div>
-                                      <div class="col-6">
+                                      <div class="col-md-6 col-sm-12 m-t-10">
                                          <p class="sp-768">                                           
                                           <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == ''" :class="'view_pro_id'+hos.nursing_id" style="display:block;" @click="favAddFun('add',hos.hos_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                                           <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == 'check'" :class="'done_pro_id'+hos.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',hos.hos_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
