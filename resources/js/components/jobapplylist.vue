@@ -74,7 +74,7 @@
 
                                     <div class="col-12">
 
-                                        <input type="text" class="form-control" placeholder="検索" id="search-item" />
+                                        <input type="text" class="form-control" placeholder="検索" id="search-item" @keyup="searchJobApplyList"/>
 
                                         <input type="hidden" class=form-contrl id="customer-id">
 
@@ -164,7 +164,10 @@
                 return {
 
                     jobapplies: [],
-                    job_title: ''
+                    job_title: '',
+                    size: 5,
+                    pagination: false,
+                    nosearch_msg: false,
 
                 };
 
@@ -182,6 +185,28 @@
                 }
                 this.job_title = this.$route.params.title;
 
+            },
+            methods: {
+                searchJobApplyList() {
+                    var search_word = $("#search-item").val();
+
+                      let fd = new FormData();
+                        fd.append("search_word", search_word);
+                        fd.append("job_id",this.$route.params.id);
+                        this.axios.post("/api/jobapplylist/search", fd).then(response => {
+                            this.jobapplies = response.data;
+                            if (this.jobapplies.length > this.size) {
+                            this.pagination = true;
+                            } else {
+                                this.pagination = false;
+                            }
+                            if(this.jobapplies.length != 0){
+                                this.nosearch_msg = false;
+                            }else{
+                                this.nosearch_msg = true;
+                            }
+                        });
+                }
             }
 
     }

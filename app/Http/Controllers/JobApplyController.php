@@ -213,6 +213,9 @@ class JobApplyController extends Controller
         $query = $query->leftjoin('jobs','job_applies.job_id','=','jobs.id');
         $query = $query->join('customers','customers.id','=','jobs.customer_id');
         $query = $query->where('customer_id', $customer_id);
+        if(array_key_exists('job_id',$request)) { 
+            $query = $query->where('job_applies.job_id', $request['job_id']);
+        }
         $query = $query->where(function($qu) use ($search_word){
                             $qu->where('job_applies.first_name', 'LIKE', "%{$search_word}%")
                                 ->orWhere('job_applies.last_name', 'LIKE', "%{$search_word}%")
