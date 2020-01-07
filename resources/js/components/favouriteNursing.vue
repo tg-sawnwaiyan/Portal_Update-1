@@ -234,7 +234,7 @@
                     <div class="clearfix">
                         <div class="float-right pc-480">
                             <label class="btn my-2 my-sm-0 all-btn secondary-bg-color btn-secondary control controlinner--checkbox" style="width:300px;">
-                                <input type="checkbox" @change="checkAll()" class="check-all-btn" />
+                                <input type="checkbox" @change="checkAll()" class="check-all-btn" v-model="checkallbtn" id="main-check-all"/>
                                 <span class="checkmark"></span>すべての資料請求にチェックを入れる
                                 <div class="controlinner__indicator" style="top:8px;left:7px;"></div>
                             </label>
@@ -399,6 +399,11 @@
         
     </div>
 </template>
+<style>
+.added-class:after {
+  content:none
+}
+</style>
 
 <script>
 
@@ -407,6 +412,7 @@
         data() {
                 return {
                     status_all:'0',
+                    chek_status:true,
                     errors: [],
                     fav_nursing: [],
                     local_sto: "",
@@ -451,6 +457,7 @@
                     paginationFactor: 261,
                     disableBtn: false,
                     check:false,
+                    checkallbtn:false,
                     window:{
                         width: 0,
                         height: 0
@@ -637,6 +644,7 @@
                             });
                     },
                     addingMail() {
+
                         for (var i = 0; i < this.fav_nursing.length; i++) {
                             this.fav_email.push({
                                 'id': this.fav_nursing[i]['id'],
@@ -644,6 +652,7 @@
                                 'name': this.fav_nursing[i]['name']
                             });
                         }
+                        
                         localStorage.setItem("document", JSON.stringify(this.document_status));
                         localStorage.removeItem("item");
                         localStorage.setItem("item", JSON.stringify(this.fav_email));
@@ -655,10 +664,13 @@
                     },
                     checkAll() {
                         this.disableBtn = '';
+
                         if ($('.check-all-btn').is(":checked")) {
                             this.disableBtn = false;
+                            
                         } else {
                             this.disableBtn = true;
+                        
                         }
                         for (var i = 0; i < this.fav_nursing.length; i++) {
                             var j = this.fav_nursing[i].id;
@@ -668,6 +680,7 @@
                                 this.document_status[j] = false;
                             }
                         }
+                        
                     },
                     checkSingle(nid) {
                         if (this.document_status[nid]) {
@@ -675,7 +688,12 @@
                         }
                         else if(!this.document_status.includes(true)) {
                             this.disableBtn = true;
+                            this.checkallbtn = false;
                         }
+                        else if(this.document_status.includes(false)){
+                            this.checkallbtn = false;
+                        }
+                       
                     },
                     itemCompare() {
                         $('.mycheck').css('display', 'block');

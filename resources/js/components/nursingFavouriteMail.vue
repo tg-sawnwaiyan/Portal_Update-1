@@ -550,7 +550,7 @@ import DatePicker from 'vue2-datepicker';
                     var code = 0;
                         
                     code = input_val.charCodeAt();
-                    
+
                     if (12352<= code && code <= 12447) {
                                     
                     } else {

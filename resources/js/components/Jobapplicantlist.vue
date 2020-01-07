@@ -7,7 +7,7 @@
                             <div class="col-md-12">
                                 <div class="form-group row">
                                     <div class="col-12">
-                                        <input type="text" class="form-control" placeholder="検索" id="search-item"  />
+                                        <input type="text" class="form-control" placeholder="検索" id="search-item"  @keyup="searchApplicantList" />
                                         <input type="hidden" class="form-contrl" />
                                     </div>
                                 </div>
@@ -15,6 +15,9 @@
                         </div>
                         <hr />
                         <h5 class="header"> 求職者リスト</h5>
+                        <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
+                        <div v-else class="container-fuid">
+                            
                         <div class="container-fuid">
                             <table class="table table-hover custom-table">
                                 <thead style="background-color:rgb(183, 218, 210);">
@@ -61,7 +64,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
+                        </div> </div>
                 </div>
          </div>
      </div>
@@ -73,6 +76,9 @@ export default {
                 return {
 
                     jobapplies: [],
+                    size: 5,
+                    pagination: false,
+                    nosearch_msg: false,
                 };
 
             },
@@ -83,6 +89,27 @@ export default {
                         this.jobapplies = response.data;
                         console.log('job', this.jobapplies);
                     });
+              },
+              methods: {
+                  searchApplicantList() {
+                      var search_word = $("#search-item").val();
+
+                      let fd = new FormData();
+                        fd.append("search_word", search_word);
+                        this.axios.post("/api/jobapplicant/search", fd).then(response => {
+                            this.jobapplies = response.data;
+                            if (this.jobapplies.length > this.size) {
+                            this.pagination = true;
+                            } else {
+                                this.pagination = false;
+                            }
+                            if(this.jobapplies.length != 0){
+                                this.nosearch_msg = false;
+                            }else{
+                                this.nosearch_msg = true;
+                            }
+                        });
+                  }
               }
 }
 </script>
