@@ -625,7 +625,7 @@
                 </tr>                
                 <tr class="toBeToggled1 ShowHide">
                   <th class="pc-414-table sp-768-block">職種</th>
-                  <td class="sp-768-block">
+                  <td class="sp-768-block sp-414-table">
                     <!--職種から探す-->
                      <div class="dropdown">
                         <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
