@@ -551,7 +551,7 @@
                     </bulma-accordion>                   
         </section>
         <div id="scroll-responsive">
-            <div id="hos_search" class="col-12 hospitalselect pad-free">
+            <div id="hos_search" class="col-12 hospitalselect pad-free m-b-10">
                 <span v-if="norecord_msg">
                     <div class="container-fuid m-t-20">
                         <p class="nosearch-icon">

@@ -549,6 +549,7 @@
                             <div id="scroll-responsive">
                                 <div class="row select" id="filter" style="justify-content:space-between">
                                     <h5 class="profile_header" style="border-left: 5px solid #ff9563;">現在の検索条件</h5>
+                                    <div class="row col-12">
                                     <div class="col-sm-5 col-md-5">
                                         <div><p class="nurs-sub-heading">地域で絞り込む</p></div>
                                         <div class="card search-border-dash">
@@ -614,6 +615,7 @@
 
                                     <div class="col-sm-2 col-md-2 align-self-center">
                                         <span class="btn seemore-btn select" style="width:100%;padding:20px 10px;" id="showSearchMap" @click="showSearchMap"><i class="fas fa-exchange-alt"></i>&nbsp;都道府県を再選択する</span>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -757,17 +759,23 @@
                                         <table class="table table-bordered col-12 box-wrap">
                                             <tbody>
                                                 <tr>
-                                                    <th>地域</th>
-                                                    <td>
-                                                        <select id="selectCity" class="col-9 form-control custom-select mt-2 mb-2" v-model="id" @change="ChangeTownship">
+                                                    <th class="pc-414-block">地域</th>
+                                                    <td class="pc-414-block">
+                                                    <div class="row mt-2 mb-2">
+                                                    <div class="col-lg-9 col-md-6 col-sm-12">
+                                                        <select id="selectCity" class="form-control custom-select" v-model="id" @change="ChangeTownship">
                                                         <option value="-1">▼市区町村</option>
                                                         <option v-for="city in cities" :value="city.id" :key="city.id">{{city.city_name}}</option>
                                                     </select>
-                                                    <button @click="toggleContent" class="btn col-3 seemore-btn">
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-6 col-sm-12 pc-414">
+                                                    <button @click="toggleContent" class="btn seemore-btn">
                                                         <i class="fa" aria-hidden="true"></i>
                                                         <!-- <em>{{city.city_name}}</em> -->
                                                         <span id="close"><i class="fas fa-arrow-circle-up"></i> 市区町村エリアを閉じる</span>
                                                     </button>
+                                                    </div>
+                                                    </div>
                                                     <div class="toBeToggled" id="toBeToggled">
                                                             <div class="form-check form-check-inline col-sm-2"   v-for="township in getTownships" :key="township.id">
                                                             <label class="form-check-label control control--checkbox" style="padding-left:5px;">
@@ -777,7 +785,6 @@
                                                             </label>
                                                         </div>
                                                     </div>
-
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -870,19 +877,18 @@
                             </div>
                             <!--end search list-->
 
-                            <div class=" col-12">
+                            <div class="m-b-10">
                                 <div class="row" v-if="loading==false">
-                                    <div id="job_detail" class="col-md-6 col-sm-12" style="margin-top:20px;" v-for="(nus,index) in displayItems" :key="nus.id">
+                                    <div class="col-md-6 col-sm-12" style="margin-top:20px;" v-for="(nus,index) in displayItems" :key="nus.id">
                                         <div class="nur-content">
                                             <div class="job-header">
                                                 <div class="row pad-free">
-                                                    <div class="col-8">
+                                                    <div class="col-lg-9">
                                                     <h5 class="nur-tit">
                                                         <router-link :to="{name: 'profile', params: {cusid:nus.cus_id, type: 'nursing'}}" class="pseudolink" style="font-weight:bold;">{{nus.name}}</router-link>
                                                     </h5>
                                                     
-                                                    <div class="d-flex" >
-                                                        
+                                                    <div class="d-flex">                                                        
                                                         <span v-for="(fac,index) in fac_types" :key="index+'-'+fac.description+'-'+nus.id">                                                    
                                                             <span v-if="fac.id == nus.fac_type" class="fac_list">
                                                                 {{fac.description}}
@@ -893,7 +899,7 @@
                                                         
                                                     </div>
 
-                                                    <div class="col-4 text-right">
+                                                    <div class="col-lg-3 text-right">
                                                     <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == ''" :class="'view_pro_id'+nus.nursing_id" style="display:block;" @click="favAddFun('add',nus.nursing_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                                                     <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == 'check'" :class="'done_pro_id'+nus.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',nus.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                                                     </div>
@@ -903,7 +909,7 @@
                                             <p class="m-b-10"><span class="job_ico"><i class="fa fa-map-signs"></i></span>{{nus.city_name}} <i class="fas fa-angle-double-right" style="color:#b9b5b5;"></i> {{nus.township_name}} </p>
                                             <div class="col-12 pad-free m-b-10 clearfix">
                                                 <span class="num-room"> {{nus.num_rooms}} </span>
-                                                <p class="hos_phone float-right" v-if="nus.phone"><span class="circle-phone" ><i class="fa fa-phone-alt"></i></span><span class="phone-no">{{nus.phone}}</span></p>
+                                                <p class="hos_phone float-right" v-if="nus.phone"><span class="circle-phone" ><i class="fa fa-phone-alt"></i></span><span class="phone-no"><a :href="`tel:${nus.phone}`">{{nus.phone}}</a></span></p>
                                             </div>
                                             <div class="job-body row  clearfix">
                                                 <div class="col-4 job-img">
@@ -2222,8 +2228,8 @@
     border-top: none !important;
   }
 
-  table>tbody>tr th {
-    background-color: #eeeeee94;
+  #nursing-search table>tbody>tr th {
+    background-color: #e8e7e7;
     width: 140px;
     padding: 25px;
   }
