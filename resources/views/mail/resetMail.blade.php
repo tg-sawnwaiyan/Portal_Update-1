@@ -1,157 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<title>Salted | A Responsive Email Template</title>
-<!--
-
-    SALTED | A RESPONSIVE EMAIL TEMPLATE
-    =====================================
-
-    Based on code used and tested by Litmus (@litmusapp)
-    Originally developed by Kevin Mandeville (@KEVINgotbounce)
-    Cleaned up by Jason Rodriguez (@rodriguezcommaj)
-    Presented by A List Apart (@alistapart)
-
-    Email is surprisingly hard. While this has been thoroughly tested, your mileage may vary.
-    It's highly recommended that you test using a service like Litmus and your own devices.
-
-    Enjoy!
-
- -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<style type="text/css">
-    /* CLIENT-SPECIFIC STYLES */
-    #outlook a{padding:0;} /* Force Outlook to provide a "view in browser" message */
-    .ReadMsgBody{width:100%;} .ExternalClass{width:100%;} /* Force Hotmail to display emails at full width */
-    .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height: 100%;} /* Force Hotmail to display normal line spacing */
-    body, table, td, a{-webkit-text-size-adjust:100%; -ms-text-size-adjust:100%;} /* Prevent WebKit and Windows mobile changing default text sizes */
-    table, td{mso-table-lspace:0pt; mso-table-rspace:0pt;} /* Remove spacing between tables in Outlook 2007 and up */
-    img{-ms-interpolation-mode:bicubic;} /* Allow smoother rendering of resized image in Internet Explorer */
-
-    /* RESET STYLES */
-    body{margin:0; padding:0;}
-    img{border:0; height:auto; line-height:100%; outline:none; text-decoration:none;}
-    table{border-collapse:collapse !important;}
-    body{height:100% !important; margin:0; padding:0; width:100% !important;}
-
-    /* iOS BLUE LINKS */
-    .appleBody a {color:#68440a; text-decoration: none;}
-    .appleFooter a {color:#999999; text-decoration: none;}
-
-    /* MOBILE STYLES */
-    @media screen and (max-width: 525px) {
-
-        /* ALLOWS FOR FLUID TABLES */
-        table[class="wrapper"]{
-          width:100% !important;
-        }
-
-        /* ADJUSTS LAYOUT OF LOGO IMAGE */
-        td[class="logo"]{
-          text-align: left;
-          padding: 20px 0 20px 0 !important;
-        }
-
-        td[class="logo"] img{
-          margin:0 auto!important;
-        }
-
-        /* USE THESE CLASSES TO HIDE CONTENT ON MOBILE */
-        td[class="mobile-hide"]{
-          display:none;}
-
-        img[class="mobile-hide"]{
-          display: none !important;
-        }
-
-        img[class="img-max"]{
-          max-width: 100% !important;
-          height:auto !important;
-        }
-
-        /* FULL-WIDTH TABLES */
-        table[class="responsive-table"]{
-          width:100%!important;
-        }
-
-        /* UTILITY CLASSES FOR ADJUSTING PADDING ON MOBILE */
-        td[class="padding"]{
-          padding: 10px 5% 15px 5% !important;
-        }
-
-        td[class="padding-copy"]{
-          padding: 10px 5% 10px 5% !important;
-          text-align: center;
-        }
-
-        td[class="padding-meta"]{
-          padding: 30px 5% 0px 5% !important;
-          text-align: center;
-        }
-
-        td[class="no-pad"]{
-          padding: 0 0 20px 0 !important;
-        }
-
-        td[class="no-padding"]{
-          padding: 0 !important;
-        }
-
-        td[class="section-padding"]{
-          padding: 50px 15px 50px 15px !important;
-        }
-
-        td[class="section-padding-bottom-image"]{
-          padding: 50px 15px 0 15px !important;
-        }
-
-        /* ADJUST BUTTONS ON MOBILE */
-        td[class="mobile-wrapper"]{
-            padding: 10px 5% 15px 5% !important;
-        }
-
-        table[class="mobile-button-container"]{
-            margin:0 auto;
-            width:100% !important;
-        }
-
-        a[class="mobile-button"]{
-            width:80% !important;
-            padding: 15px !important;
-            border: 0 !important;
-            font-size: 16px !important;
-        }
-
-    }
-</style>
+    <title>Healthcare Portal | パスワードの再設定</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
 </head>
+
 <body style="margin: 0; padding: 0;">
-<div style="width:800px;margin-left:auto;margin-right:auto">
-<div style="background-color: #fff9ec;text-align: center; margin-top: 45px;">
-		<div>
-			<br>
-			<span style="font-size: 40px;font-weight: bold;color: #d2571c;text-shadow: 3px 4px #ccc;">LOGO <span style="font-size: 30px; color: #f57e46;">HERE</span></span>
-			<h5 style="color:#3e4348;font-size: 33.8px;margin-bottom: 30px;margin-top: 30px;font-weight: bold;text-align: center;">
-			Change Your Password
-			</h5>
-			<p style="color:#000;">
-            Create New Password for your account.
-			</p>
-			<span style="background: #fbaa84;">
+    <div style="max-width:800px;margin: 50px auto 0;background-color: #fff9ec;">
+        <div style="max-width:550px;margin: 0 auto;text-align: center;">
+            <div>
+                <br>
+                <p style="font-size: 40px;font-weight: bold;color: #d2571c;text-shadow: 3px 4px #ccc;">LOGO <span style="font-size: 30px; color: #f57e46;">HERE</span></p>
+                <h5 style="margin: 10px 0 30px 0;padding: 5px 100px;color:#3e4348;font-size: 33px;font-weight: bold;text-align: center;border-bottom: 1px solid #ccc;">
+                    パスワードの再設定
+                </h5>
+                <p style="color:#000;text-align: left;margin-bottom: 50px;">
+                    パスワードの再設定がリクエストされました。<br> 以下のボタンをクリックし、パスワードの再設定手続きにお進みください。
+                </p>
+                <span style="background: #fbaa84;">
 			<a href="http://testikportal.management-partners.co.jp/resetpassword?code={{$checkmail[0]['role']}}" style="background: #fbaa84;color: #000;box-shadow: 0 2px 4px 0 rgba(27,160,5,0.2);border-radius: 4px;border: 1px solid #ff9563;box-shadow: 0 2px 4px 0 rgba(0,0,0,0.12);
 						background-size: 100%;display: inline-block;background-position: 50% 50%;font-weight: bold;line-height: 46px;font-size: 15px;
 						padding: 0px 28.3px;text-align: center;text-decoration: none;min-width: 280px;-webkit-text-size-adjust: none; mso-hide: all;">
-			<span style="font-size:13.5pt;color:#fff;border:solid #fbaa84 6.0pt;">Change My Password</span>
-			</a>
-			</span>
-			<br> 
-			<div style="font-size:12px;color:#807c7c;padding-top:15px;">If you don't want to reset、このメッセージを無視してください。</div>
-			<br>
-			<br>
-			
-		</div>
-	</div>
-</div>
+			<span style="font-size:13.5pt;color:#fff;border:solid #fbaa84 6.0pt;">パスワードを再設定する</span>
+                </a>
+                </span>
+                <br>
+                <div style="font-size: 12px;color: #807c7c;line-height: 1.5;max-width: 385px;margin: 10px auto 0;text-align: left;">
+                ※リセットしたくない場合は、このメッセージを無視してください。<br> 
+                ※パスワードは、上記から変更操作をしない限り変更されません。<br> 
+                ※再設定URLの有効期限は24時間です。
+                </div>
+                <br>
+            </div>
+            <footer>
+                <p style="padding: 10px 0 50px 0;border-top: 1px solid #ccc;text-align: left;">
+                    〒163-0713<br> 東京都新宿区西新宿2-7-1小田急第一生命ビル13階
+                    <br> TEL：03-6911-???? <br> FAX：03-6911-????
+                </p>
+
+            </footer>
+        </div>
+    </div>
 </body>
+
 </html>
