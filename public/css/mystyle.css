@@ -6727,9 +6727,9 @@ button.confirmed {
     border: 1px solid #dee2e6;
 }
 
-table.box-wrap th {
+/* table.box-wrap th {
     padding: 12px !important;
-}
+} */
 
 #holder .gm-ui-hover-effect {
     top: -3px !important;
@@ -7528,26 +7528,21 @@ dl.favnur dd {
     background: #ff6117;
     color: #fff;
 }
-
 .nur_date {
-    padding: 2px 10px;
+    /* padding: 2px 10px; */
     font-size: 15px;
 }
-
-
 /* .nur-addbtn {
     background: #fff !important;
     border: 1px solid #212529 !important;
     color: #212529!important;
 } */
-
 ul.nur-caro-card>li.list-group-item {
     padding: 5px !important;
     border: none !important;
 }
-
 .fac_list {
-    float: left;
+    /* float: left; */
     padding: 0 5px;
     margin-right: 20px;
     background: #0cc72c;
@@ -7555,10 +7550,7 @@ ul.nur-caro-card>li.list-group-item {
     color: #fff;
     border-radius: 3px;
 }
-
-
 /* .slick-slider */
-
 .slick-slider {
     position: relative;
     display: block;
@@ -8325,7 +8317,7 @@ ul.nur-caro-card>li.list-group-item {
 
 .offset {
     width: 500px !important;
-    margin: 20px auto;
+    /* margin: 20px auto; */
 }
 
 .page-item.active_page .spanclass {
@@ -9987,7 +9979,7 @@ ul.nur-caro-card>li.list-group-item {
     .fav-profile {
         width: 116px;
         right: 11px;
-        font-size: 12px;
+        font-size: 14px;
     }
     /*End  Profile Publish */
 }
