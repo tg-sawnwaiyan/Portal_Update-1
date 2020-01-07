@@ -152,7 +152,9 @@ class CustomerController extends Controller
             $hospital->delete();
         }
         
-        return response()->json('Customer successfully deleted');
+        $customers = Customer::all();
+        $data = array("status"=>"deleted", "customers"=>$customers);
+        return response()->json($data);
     }
 
     public function confirm($id)
@@ -212,7 +214,9 @@ class CustomerController extends Controller
             $cus->user_id = $lastid;
             $cus->save();
 
-            return response()->json('success');
+            $customers = Customer::all();
+            $data = array("status"=>"success", "customers"=>$customers);
+            return response()->json($data);
         }
     }
 

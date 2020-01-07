@@ -1443,6 +1443,7 @@ export default {
             },
             preview_image(img_class,indx) {
                   $("."+img_class).html("<img src='"+URL.createObjectURL(event.target.files[0])+"' class='img-fluid hospital-image'>");
+                    document.getElementById('already-photo'+indx).src= URL.createObjectURL(event.target.files[0]);
             },
             facilityCheck(check_id) {
                     $('.facility-'+check_id).attr('checked','true');
