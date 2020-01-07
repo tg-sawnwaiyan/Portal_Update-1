@@ -72,7 +72,7 @@
             console.log(response)
            this.$loading(false);
             this.$swal({       
-                      text: "Check your email to change new password",
+                      text: "メールを確認して新しいパスワードを変更してください。",
                       type: "success",
                       width: 390,
                       height: 200,                        
@@ -89,13 +89,13 @@
             if(error.response.status == 404){
                 
                 this.$swal({
-                            title: "Your email does not exist",
-                            text: "Check your email back",
+                            title: "このメールは存在しません。",
+                            text: "ご確認の上、もう一度お試しください。",
                             type: "warning",
                             width: 390,
                             height: 200,                        
                             confirmButtonColor: "#6cb2eb",                         
-                            confirmButtonText: "はい",
+                            confirmButtonText: "閉じる",
                             confirmButtonClass: "all-btn",
                         
                         })

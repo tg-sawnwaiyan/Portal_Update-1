@@ -54,7 +54,7 @@ class CustomerController extends Controller
     {
         $request->validate([
             'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'name' => 'required|min:2|max:50',
+            'name' => 'required',
             'phone' => 'required|numeric',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
@@ -63,8 +63,6 @@ class CustomerController extends Controller
 
         ],[
             'name.required' => 'Name is required',
-            'name.min' => 'Name must be at least 2 characters.',
-            'name.max' => 'Name should not be greater than 50 characters.',
         ]);
         $imageName = $request->logo->getClientOriginalName();
         $request->logo->move(public_path('images'), $imageName);
