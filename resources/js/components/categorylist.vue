@@ -192,9 +192,14 @@
                                     });
 
                                 })
-                                .catch(() => {
-                                    this.$swal("Failed", "wrong");
+                                 .catch(error=>{
+                                    if(error.response.status == 404){
+                                        this.$swal("Failed", "There are News that related this category so You cannot delete this!");
+                                    }
                                 });
+                                    // .catch(() => {
+                                //     this.$swal("Failed", "wrong");
+                                // });
                         });
                     },
 

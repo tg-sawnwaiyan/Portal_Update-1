@@ -801,7 +801,7 @@
             </table>
             </div>
              <div class="col-12">
-                <div class="row pad-free">
+                <div class="row pad-free m-b-10">
                    <div id="job_detail" class="col-lg-6 col-md-12" style="margin-top:20px;" v-for="(job,index) in displayItems" :key="index+'-'+job.title+'-'+job.jobid">
                      <div class="job-content">
                       <div class="job-header">

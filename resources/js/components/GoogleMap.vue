@@ -210,6 +210,8 @@ export default {
     updateCoordinates(e) {
       $('#new_lat').val(e.latLng.lat());
       $('#new_long').val(e.latLng.lng());
+      this.new_lat = e.latLng.lat();
+      this.new_long = e.latLng.lng();
     },
 
     // setPlace(place) {
