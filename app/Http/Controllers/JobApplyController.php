@@ -203,4 +203,24 @@ class JobApplyController extends Controller
     {
         //
     }
+
+    public function search(Request $request) {
+        $request = $request->all();
+        $search_word = $request['search_word'];
+        $customer_id = auth()->user()->customer_id;
+
+        $query = DB::table('job_applies');
+        $query = $query->leftjoin('jobs','job_applies.job_id','=','jobs.id');
+        $query = $query->join('customers','customers.id','=','jobs.customer_id');
+        $query = $query->where('customer_id', $customer_id);
+        $query = $query->where(function($qu) use ($search_word){
+                            $qu->where('job_applies.first_name', 'LIKE', "%{$search_word}%")
+                                ->orWhere('job_applies.last_name', 'LIKE', "%{$search_word}%")
+                                ->orWhere('job_applies.email', 'LIKE', "%{$search_word}%");
+                        });
+        $query = $query->orderBy('job_applies.id','DESC')
+                        ->get()
+                        ->toArray();
+        return $query;
+    }
 }
