@@ -54,11 +54,13 @@
                 </label>
             </div>
             <div class="col-md-9 col-sm-12 form-right">
-                <input type="text" class="form-control float-left" id="furigana" placeholder="ふりがなを入力してください。" v-model="jobApply.last_name" @keyup="ChekChar" @focusout="focusLname" @change="aggreBtn"/>
-                <span class="float-left eg-txt"> 例）さがし たろう</span>
-                <span class="error m-l-30" v-if="focus_lname">※入力は必須です。</span>
-                <div v-if="errors.last_name" class="text-danger mt-2 ml-4">{{ errors.last_name }}</div>
-                <span class="text-danger p-l-30 char-err"></span>
+                <div class="col-md-12 pad-free">
+                    <input type="text" class="form-control float-left" id="furigana" placeholder="ふりがなを入力してください。" v-model="jobApply.last_name" @keyup="ChekChar" @focusout="focusLname" @change="aggreBtn"/>
+                    <span class="float-left eg-txt"> 例）さがし たろう</span>
+                    <span class="error m-l-30" v-if="focus_lname">※入力は必須です。</span>
+                    <div v-if="errors.last_name" class="text-danger mt-2 ml-4">{{ errors.last_name }}</div>
+                </div>
+                <span class="float-left text-danger char-err p-l-30"></span>
             </div>
         </div>
         <div class="form-group m-0 row bd">
@@ -164,8 +166,8 @@
             <div class="col-md-9 col-sm-12 form-right">
                 <input type="text" class="form-control float-left" id="phone" v-model="jobApply.phone" placeholder="電話番号を入力してください。" @focusout="focusPhone" @change="aggreBtn" pattern="[0-9-]*" title="Please enter number only." maxlength="14"/>
                 <!-- <span class="error m-l-30" v-if="focus_mail">※入力は必須です。</span> -->
-                <span class="error m-l-30" v-if="ph_length || ph_error">※電話番号が正しくありません。もう一度入力してください。</span>
                 <span class="float-left eg-txt">例）0312345678（半角）</span>
+                 <span class="error m-l-10" v-if="ph_length || ph_error">※電話番号が正しくありません。もう一度入力してください。</span>
             </div>
         </div>
         <div class="form-group m-0 row bd">
@@ -650,7 +652,7 @@ export default {
         if ((12448<= code && code <= 12543) || (19968<= code && code <= 19893)) {
 
         } else {
-          $('.char-err').text('カタカナのみを書いてください!');
+          $('.char-err').text('ひらがなのみを書いてください!');
         }
 
       },

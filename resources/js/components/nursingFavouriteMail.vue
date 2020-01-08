@@ -21,7 +21,7 @@
                     </nav>
                 </div>
                 <div class="col-12 m-b-10">
-                    
+
                 </div>
                 <div class="col-md-12 register_box" v-if="type == 'register'">
                     <ul class="multi-step">
@@ -38,25 +38,26 @@
                             <div class="col-md-3 col-sm-12 form-left"><label>お名前 <span class="error sp1">必須</span></label></div>
                             <div class="col-md-9 col-sm-12 form-right">
                                 <input type="text" id="tbname" name="name" class="form-control float-left" placeholder="お名前を入力してください。" v-model="comments.name" @change="aggreBtn" @focusout="focusName"/>
-                                <span class="error m-l-30" v-if="comment_focus">※入力は必須です。</span>
                                 <span class="float-left eg-txt">例）探し 太郎</span>
+                                 <span class="error m-l-30" v-if="comment_focus">※入力は必須です。</span>
                             </div>
                         </div>
                         <div class="form-group m-0 row bd">
                             <div class="col-md-3 col-sm-12 form-left"> <label>ふりがな <span class="error sp1">必須</span></label></div>
                             <div class="col-md-9 col-sm-12 form-right">
-                                <div class="col-md-12 pad-free">   
+                                <div class="col-md-12 pad-free">
                                     <!-- <div class="col-md-9 pad-free"> -->
                                         <input type="text" id="furigana" name="furigana" class="form-control float-left" placeholder="ふりがなを入力してください。" v-model="comments.furigana" @keyup="ChekChar" @change="ChekChar" @focusout="focusFuri"/>
                                     <!-- </div>
                                     <div class="col-md-3"> -->
+                                         <span class="float-left eg-txt"> 例）さがし たろう</span>
                                         <span class="error m-l-30" v-if="furigana_focus">※入力は必須です。</span>
-                                        <span class="float-left eg-txt"> 例）さがし たろう</span>
+
                                     <!-- </div>                                     -->
-                                     
-                                </div> 
-                                <span class="col-md-6 text-danger char-err p-l-30"></span>                               
-                               
+
+                                </div>
+                                <span class="float-left text-danger char-err p-l-30"></span>
+
                             </div>
                         </div>
                         <div class="form-group m-0 row bd">
@@ -119,7 +120,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group m-0 row bd-all">                            
+                        <div class="form-group m-0 row bd-all">
                             <div class="col-md-3 col-sm-12 form-left"><br/><label>電話番号</label></div>
                             <div class="col-md-9 col-sm-12 form-right">
                             <div class="form-group row pl-3">
@@ -127,9 +128,9 @@
                                         <label class="col-md-12">※ 電話番号またはメールアドレス必須 <span class="error sp1">必須</span></label>
                                         <input type="text" id="phone" name="number" class="form-control float-left" placeholder="電話番号を入力してください。" v-model="comments.phone" @change="aggreBtn" pattern="[0-9-]*" @keyup="focusPhone" maxlength="14" title="Please enter number only.">
                                         <!-- v-on:keyup="isNumberOnly" -->
-                                        <span class="error m-l-30" v-if="mail_focus">※入力は必須です。</span>
-                                        <span class="error m-l-30" v-if="ph_length || ph_error">※電話番号が正しくありません。もう一度入力してください。</span>
+                                        <span class="error m-l-30" v-if="mail_focus">※入力は必須です。</span>                                        
                                         <span class="float-left eg-txt">例）0312345678（半角）</span>
+                                        <span class="error m-l-10" v-if="ph_length || ph_error">※電話番号が正しくありません。もう一度入力してください。</span>
                                     </div>
                                 </div>
                             </div>
@@ -139,9 +140,9 @@
                             <div class="col-md-9 col-sm-12 form-right">
                             <div class="form-group row pl-3">
                                 <div class="col-md-12 p-0">
-                                        <input type="text" id="mail" name="mail" class="form-control float-left" placeholder="メールアドレスを入力してください。" v-model="comments.mail" @change="aggreBtn" @focusout="focusMail">
-                                        <span class="error m-l-30" v-if="mail_focus">※入力は必須です。</span>
+                                        <input type="text" id="mail" name="mail" class="form-control float-left" placeholder="メールアドレスを入力してください。" v-model="comments.mail" @change="aggreBtn" @focusout="focusMail">                          
                                         <span class="float-left eg-txt"> 例）abc@example.jp （半角）</span>
+                                        <span class="error m-l-30" v-if="mail_focus">※入力は必須です。</span>
                                     </div>
                                 </div>
                             </div>
@@ -159,7 +160,7 @@
                         <div class="btn-list mt-2  clearfix">
                             <ul>
                                 <li> <button type="button" :disabled="isdisable" class="submit1 btn main-bg-color continue all-btn submit" @click="add()">確認ページに進む</button></li>
-                                <li class="m-r-15"><a @click="$router.go(-1)" class="btn btn-danger all-btn submit">戻る</a></li>                                
+                                <li class="m-r-15"><a @click="$router.go(-1)" class="btn btn-danger all-btn submit">戻る</a></li>
                             </ul>
                         </div>
                         <!--next_form-->
@@ -345,7 +346,7 @@
                                 <li class="m-r-15">
                                 <!-- <router-link :to="{name: 'favouriteNursing'}"  class="btn btn-danger all-btn submit">戻る</router-link> -->
                                 <a @click="$router.go(-1)" class="btn btn-danger all-btn submit">戻る</a>
-                                </li>                                
+                                </li>
                             </ul>
                         </div>
                     </form>
@@ -535,19 +536,19 @@ import DatePicker from 'vue2-datepicker';
                 // }else{
                 //     this.ph_error = true;
                 // }
-                
+
             },
             focusPhone(){
 
-              var input_data = $('#phone').val(); 
+              var input_data = $('#phone').val();
               console.log(input_data.length)
-                
+
               if(input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-' && ((input_data.length >= 10 && input_data.length <= 14) || input_data.length == 0))
-              {  
+              {
                   this.ph_num = false;
                   this.ph_length = false;
               }
-              else{   
+              else{
                   this.ph_num = true;
                   this.ph_length = true;
               }
@@ -556,18 +557,18 @@ import DatePicker from 'vue2-datepicker';
                     $('.char-err').text('');
                     var input_val = $('#furigana').val();
                     var code = 0;
-                        
+
                     code = input_val.charCodeAt();
 
                     if (12352<= code && code <= 12447) {
-                                    
+
                     } else {
                         $('.char-err').text('ひらがなのみを書いてください!');
                         return;
                     }
-                    
+
                 },
-            
+
             isNumberOnly: function(event) {
                 var input_data = $('#phone').val();
                 var code = 0;
@@ -588,7 +589,7 @@ import DatePicker from 'vue2-datepicker';
                 }
 
 
-                
+
             }
         }
     }
