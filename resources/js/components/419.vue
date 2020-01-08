@@ -20,7 +20,7 @@
         </div>
     </div>
 </template>
-<style>
+<style scoped>
     .container {
         position: relative;
         align-items: center;
