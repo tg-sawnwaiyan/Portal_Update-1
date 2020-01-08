@@ -91,7 +91,7 @@
                             <div class="card card-default m-b-20 col-md-11">
                                 <div class="card-body">
                                     <!-- <div class="header2"> -->
-                                        <h5 class=" clearfix">施設番号 : <span style="color:orange;font-weight:bold">{{user_info.id}}</span></h5>
+                                        <h5 class=" clearfix">事業者番号 : <span style="color:orange;font-weight:bold">{{user_info.id}}</span></h5>
                                     <!-- </div> -->
                                 </div>                                
                             </div>
@@ -142,7 +142,7 @@
                                                 <div class="error" id="newpasswordlength" style="display: none;">パスワードは少なくとも6桁でなければなりません。</div>
                                                 <br>
                                                 <label class="old-pass">新しいパスワードをもう一度入力してください</label>
-                                                <input type="password" name="comfirm_password" class="form-control confirm-password">
+                                                <input type="password" name="comfirm_password" class="form-control confirm-password" placeholder="新しいパスワードをもう一度入力してください">
                                                 <div class="error" id="confirmpassword" style="display: none;">新しいパスワードをもう一度入力が必要です。</div>
                                                 <br>
                                                 <div class="">
