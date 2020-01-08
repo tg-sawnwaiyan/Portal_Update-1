@@ -486,7 +486,7 @@ import DatePicker from 'vue2-datepicker';
                 });
             },
             aggreBtn: function(){
-                if(this.comments.furigana.length > 0 && this.comments.name != '' && this.comments.selectedValue != 0 && this.comments.city != '' && (this.comments.mail != '' || this.comments.phone != '')){
+                if($('#furigana').val().length > 0 && this.comments.name != '' && this.comments.selectedValue != 0 && this.comments.city != '' && (this.comments.mail != '' || this.comments.phone != '')){
                     this.btn_disable=false;
                 }else{
                     this.btn_disable=true;
@@ -554,20 +554,18 @@ import DatePicker from 'vue2-datepicker';
               }
             },
             ChekChar: function(event) {
-                    $('.char-err').text('');
-                    // var input_val = $('#furigana').val();
-                    var code = 0;
-                        
-                    code = this.comments.furigana.charCodeAt();
-
-                    if (12352<= code && code <= 12447) {
-
-                    } else {
-                        $('.char-err').text('ひらがなのみを書いてください!');
-                        return;
-                    }
-
-                },
+                $('.char-err').text('');
+                var input_val = $('#furigana').val();
+                var code = 0;
+                code = input_val.charCodeAt();
+                if (!(code > 12352 && code < 12447)) {
+                    $('.char-err').text('ひらがなで入力してください!');
+                    this.btn_disable = true;
+                }
+                else if($('#furigana').val().length > 0){
+                    this.btn_disable = false;
+                }
+            },
 
             isNumberOnly: function(event) {
                 // var input_data = $('#phone').val();
