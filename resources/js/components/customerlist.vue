@@ -65,7 +65,7 @@
                                                         <!-- <button class="btn confirm-borderbtn" v-if="customer.status == 0">確認済</button> -->
 
                                                         <button class="btn confirm-borderbtn" :id="'confirm-btn'+customer.id" v-if="customer.status == 0" @click="comfirm(customer.id)">新規登録承認</button>
-                                                        <span class="btn confirm-borderbtn" style="border-color: #ccc!important; color: #ccc!important;cursor:not-allowed;" :id="'confirm-btn'+customer.id" v-else>登録が承認されました。</span>
+                                                        <span class="btn confirm-borderbtn" style="border-color: #ccc!important; color: #ccc!important;cursor:not-allowed;" :id="'confirm-btn'+customer.id" v-else>登録承認済</span>
                     
                                                     </div>
                                             </div>

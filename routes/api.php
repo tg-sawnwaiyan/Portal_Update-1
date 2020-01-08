@@ -328,6 +328,7 @@ Route::get('relatednews/{id}', 'PostController@show_related');
 
 Route::post('jobapply','JobApplyController@store');
 Route::get('jobapplylist/{jobs_id}','JobApplyController@getJobapplies');
+Route::post('jobapplylist/search','JobApplyController@search');
 // Route::get('job_details', 'JobDetailController@index');
 Route::get('job_details/{id}', 'JobDetailController@show');
 
@@ -377,3 +378,4 @@ Route::group(['prefix' => 'new'], function () {
 Route::get('cost','ProfilePublishController@getCost');
 Route::get('hospital','ProfilePublishController@hospital');
 Route::get('jobapplicantlist','JobApplyController@jobapplicantlist');
+Route::post('jobapplicant/search','JobApplyController@search');

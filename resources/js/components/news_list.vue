@@ -136,6 +136,7 @@
             this.$loading(true);
             this.axios.get("/api/news_list").then(response => {
                 this.$loading(false);
+                console.log(response.data)
                 this.news_list = response.data;
                 this.norecord = this.news_list.length
                 if (this.norecord > this.size) {
@@ -154,6 +155,7 @@
         mounted() {
             this.axios.get("/api/category/category_list").then(
                 function(response) {
+                    console.log(response.data)
                     this.categories = response.data;
                 }.bind(this)
             );
@@ -217,6 +219,7 @@
                         this.axios
                             .delete(`/api/new/delete/${id}`)
                             .then(response => {
+                                console.log(response.data)
                                 this.news_list = response.data;
                                 this.norecord = this.news_list.length;
                                 if (this.norecord > this.size) {

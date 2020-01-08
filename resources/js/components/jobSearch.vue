@@ -645,15 +645,31 @@
                 </tr> -->
 
                  <tr class="toBeToggled1 ShowHide">
-                            <th class="pc-414-table sp-768-block">診療科目</th>
-                            <td class="sp-768-block sp-414-table" id="test-td">
+                            <th class="pc-414-table sp-768-block">職種</th>
+                            <td class="sp-768-block sp-414-table">
+                              <div class="form-check form-check-inline row align-items-start innerwrapper" v-if="w_width >= 768" >
+                                    <div v-for="(v,i) in array_len" :key="i">
+                                        <div class="hospital-subject" v-for="(occupation,index) in occupations.slice((i*3),((i*3)+3))" :key="index">                                    
+                                                <strong class="table-innertitle row col-12 m-b-10">{{occupation.name}}</strong>
+                                                <div class="row col-12">
+                                                  <div class="col-lg-6 col-md-12 pad-free" v-for="ch in occupation.child" :key="ch.id+1">
+                                                    <label class="form-check-label control control--checkbox" style="padding-left:5px;">
+                                                    <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="occupationID" :value="ch.id">
+                                                     {{ch.name}}
+                                                    <div class="control__indicator"></div>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
                               
                                 <!--test-->
                                 <div>
-                                <h5 class="font-weight-bold sp-414">gggggggg</h5>
-                                <div class="dropdown m-b-10" v-for="(v,i) in subjects" :key="i" >                                 
+                                <h5 class="font-weight-bold sp-414">職種</h5>
+                                <div class="dropdown m-b-10" v-for="(v,i) in occupations" :key="i" >                                 
                                 <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
-                                 test
+                                {{v.name}}
                                   <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMMenuButton" v-if="w_width <= 768"  @click.stop="stopTheEvent">
                                   <li v-for="ch in v.child" :key="ch.id+1">                                 
                                   <a data-value="option" >
@@ -1289,6 +1305,10 @@ $(document).click(function(e) {
 
 
 <style scoped>
+.lastblock{
+       display: block;
+
+}
 
 .jobselect {
   display: none;

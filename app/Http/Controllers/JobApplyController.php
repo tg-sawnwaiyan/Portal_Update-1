@@ -122,8 +122,8 @@ class JobApplyController extends Controller
                 $city_name = $info->city_name;
             }
 
-            $admin_email = 'susan@management-partners.co.jp';
-            // $admin_email = 'thuzar.ts92@gmail.com';
+            // $admin_email = 'susan@management-partners.co.jp';
+            $admin_email = 'thuzar.ts92@gmail.com';
             // $admin_email = 'management.partner87@gmail.com ';
              $jobapply->save();
              $jobapply->job_title = $job_title;
@@ -202,5 +202,28 @@ class JobApplyController extends Controller
     public function destroy(JobApply $jobApply)
     {
         //
+    }
+
+    public function search(Request $request) {
+        $request = $request->all();
+        $search_word = $request['search_word'];
+        $customer_id = auth()->user()->customer_id;
+
+        $query = DB::table('job_applies');
+        $query = $query->leftjoin('jobs','job_applies.job_id','=','jobs.id');
+        $query = $query->join('customers','customers.id','=','jobs.customer_id');
+        $query = $query->where('customer_id', $customer_id);
+        if(array_key_exists('job_id',$request)) { 
+            $query = $query->where('job_applies.job_id', $request['job_id']);
+        }
+        $query = $query->where(function($qu) use ($search_word){
+                            $qu->where('job_applies.first_name', 'LIKE', "%{$search_word}%")
+                                ->orWhere('job_applies.last_name', 'LIKE', "%{$search_word}%")
+                                ->orWhere('job_applies.email', 'LIKE', "%{$search_word}%");
+                        });
+        $query = $query->orderBy('job_applies.id','DESC')
+                        ->get()
+                        ->toArray();
+        return $query;
     }
 }
