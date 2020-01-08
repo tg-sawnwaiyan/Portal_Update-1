@@ -53,7 +53,7 @@ export default {
             add() {
                  this.$swal({
                             title: "確認",
-                            text: "ニュースカテゴリを投稿してよろしいでしょうか。",
+                            text: "ニュースカテゴリを作成してよろしいでしょうか。",
                             type: "info",
                             width: 390,
                             height: 200,
@@ -75,7 +75,7 @@ export default {
                             position: 'top-end',
                             type: 'success',
                             // title:'確認済',
-                            text: 'ニュースカテゴリを投稿しました。',
+                            text: 'ニュースカテゴリを作成しました。',
                             // showConfirmButton: false,
                             // timer: 1800,
                             confirmButtonText: "閉じる",

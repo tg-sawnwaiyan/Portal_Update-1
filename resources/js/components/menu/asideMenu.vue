@@ -241,7 +241,7 @@ created() {
     console.log("aside visit "+this.visit)
     axios.interceptors.response.use((response) => {
         // console.log(response.data)
-        if(response.data.status == "Token is Expired" && this.status == false){
+        if((response.data.status == "Token is Expired" || response.data.status == "Token is Invalid") && this.status == false ){
 
             this.status = true
         // Swal.fire({

@@ -363,7 +363,7 @@ class JobController extends Controller
         $customer_id = auth()->user()->customer_id;
 
         $query = Job::query();
-        $query = $query->where('customer_id', $customer_id);
+        $query = $query->where('job_id', $customer_id);
         $query = $query->where(function($qu) use ($search_word){
                             $qu->where('title', 'LIKE', "%{$search_word}%")
                                 ->orWhere('description', 'LIKE', "%{$search_word}%");

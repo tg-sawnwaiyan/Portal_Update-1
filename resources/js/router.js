@@ -69,7 +69,7 @@ import jobSearch from './components/jobSearch.vue';
 import News from './components/News.vue';
 import Unauthorized from './components/419.vue';
 import Jobapplicantlist from './components/Jobapplicantlist.vue'
-import  autocomplete from './components/autocomplete.vue'
+
 // import menu from './components/menu/Menu.vue';
 
 // Routes
@@ -155,11 +155,7 @@ const routes = [
         path: '/jobSearch',
         component: jobSearch
     },
-    {
-        name: 'autocomplete',
-        path: '/autocomplete',
-        component: autocomplete
-    },
+
     {
         name: 'nursingSearch',
         path: '/nursingSearch',

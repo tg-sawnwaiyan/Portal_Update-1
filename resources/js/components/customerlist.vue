@@ -64,7 +64,9 @@
                                                         <!-- <router-link :to="{name:'custedit',params:{id:customer.id}}" class="btn main-bg-color all-btn white">Edit</router-link> -->
                                                         <!-- <button class="btn confirm-borderbtn" v-if="customer.status == 0">確認済</button> -->
 
-                                                        <button class="btn confirm-borderbtn" :id="'confirm-btn'+customer.id" v-if="customer.status == 0" @click="comfirm(customer.id)">確認</button>
+                                                        <button class="btn confirm-borderbtn" :id="'confirm-btn'+customer.id" v-if="customer.status == 0" @click="comfirm(customer.id)">新規登録承認</button>
+                                                        <span class="btn confirm-borderbtn" style="border-color: #ccc!important; color: #ccc!important;cursor:not-allowed;" :id="'confirm-btn'+customer.id" v-else>登録承認済</span>
+                    
                                                     </div>
                                             </div>
                                         </div>
@@ -212,6 +214,7 @@
                             cancelButtonClass: "all-btn"
                         }).then(response => {
                             this.axios.delete(`/api/customer/delete/${id}`).then(response => {
+                                this.customers = response.data.customers;
                                 this.$swal({
                                     // title: "削除済",
                                     text: "事業者を削除しました。",
@@ -232,15 +235,18 @@
                                     this.norecord_msg = true;
                                 }
                                 //flash("Delete Success", "success");
-                                let a = this.customers.map(item => item.id).indexOf(id);
-                                this.customers.splice(a, 1);
+                                // let a = this.customers.map(item => item.id).indexOf(id);
+                                // this.customers.splice(a, 1);
                             });
                         });
                     },
                     comfirm(id) {
                         this.$loading(true);
                         this.axios.get(`/api/confirm/${id}`).then(response => {
-                            if (response.data == 'success') {
+                            console.log(response.data)
+                            this.customers = response.data.customers;
+                            // this.displayItems();
+                            if (response.data.status == 'success') {
                                 this.$swal({
                                     title: "新規登録承認",
                                     text: "事業者にメールを送信しました",
@@ -263,7 +269,8 @@
                             }
 
                             this.$loading(false);
-                            $('#confirm-btn' + id).css('display', 'none');
+                            
+                            // $('#confirm-btn' + id).css('display', 'none');
                         });
                     },
 
