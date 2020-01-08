@@ -68,6 +68,13 @@
 .v-sidebar-menu.vsm_expanded{
     max-width: 280px !important;   
 }
+/* .v-sidebar-menu .vsm--header {
+    font-size: 18px;
+    background: #2c3b41;
+}
+.v-sidebar-menu .vsm--link {
+    font-size: 15px;
+} */
 .slide-enter-active {
    -moz-transition-duration: 0.3s;
    -webkit-transition-duration: 0.3s;
@@ -246,7 +253,7 @@ created() {
     console.log("aside visit "+this.visit)
     axios.interceptors.response.use((response) => {
         // console.log(response.data)
-        if(response.data.status == "Token is Expired" && this.status == false){
+        if((response.data.status == "Token is Expired" || response.data.status == "Token is Invalid") && this.status == false ){
 
             this.status = true
         // Swal.fire({
