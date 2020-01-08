@@ -649,10 +649,10 @@
                             <td class="sp-768-block sp-414-table">
                               <div class="form-check form-check-inline row align-items-start innerwrapper" v-if="w_width >= 768" >
                                     <div v-for="(v,i) in array_len" :key="i">
-                                        <div class="hospital-subject" v-for="(occupation,index) in occupations.slice((i*3),((i*3)+3))" :key="index">                                    
+                                        <div class="hospital-subject" v-for="(occupation,index) in occupations.slice((i*3),((i*3)+3))" :key="index" >       <!--v-bind:class="{ lastblock: i==array_len-1 }"-->                     
                                                 <strong class="table-innertitle row col-12 m-b-10">{{occupation.name}}</strong>
                                                 <div class="row col-12">
-                                                  <div class="col-lg-6 col-md-12 pad-free" v-for="ch in occupation.child" :key="ch.id+1">
+                                                  <div class=" pad-free" v-for="ch in occupation.child" :key="ch.id+1">
                                                     <label class="form-check-label control control--checkbox" style="padding-left:5px;">
                                                     <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="occupationID" :value="ch.id">
                                                      {{ch.name}}
