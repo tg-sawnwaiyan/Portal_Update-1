@@ -485,7 +485,7 @@ import DatePicker from 'vue2-datepicker';
                 });
             },
             aggreBtn: function(){
-                if(this.comments.name != '' && this.comments.selectedValue != 0 && this.comments.city != '' && (this.comments.mail != '' || this.comments.phone != '')){
+                if(this.comments.furigana.length > 0 && this.comments.name != '' && this.comments.selectedValue != 0 && this.comments.city != '' && (this.comments.mail != '' || this.comments.phone != '')){
                     this.btn_disable=false;
                 }else{
                     this.btn_disable=true;
@@ -539,10 +539,10 @@ import DatePicker from 'vue2-datepicker';
             },
             focusPhone(){
 
-              var input_data = $('#phone').val(); 
-              console.log(input_data.length)
+            //   var input_data = $('#phone').val(); 
+            //   console.log(input_data.length)
                 
-              if(input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-' && ((input_data.length >= 10 && input_data.length <= 14) || input_data.length == 0))
+              if(this.comments.phone.charAt(this.comments.phone.length - 1) != '-' && this.comments.phone.charAt(0) != '-' && ((this.comments.phone.length >= 10 && this.comments.phone.length <= 14) || this.comments.phone.length == 0))
               {  
                   this.ph_num = false;
                   this.ph_length = false;
@@ -554,10 +554,10 @@ import DatePicker from 'vue2-datepicker';
             },
             ChekChar: function(event) {
                     $('.char-err').text('');
-                    var input_val = $('#furigana').val();
+                    // var input_val = $('#furigana').val();
                     var code = 0;
                         
-                    code = input_val.charCodeAt();
+                    code = this.comments.furigana.charCodeAt();
 
                     if (12352<= code && code <= 12447) {
                                     
@@ -569,9 +569,9 @@ import DatePicker from 'vue2-datepicker';
                 },
             
             isNumberOnly: function(event) {
-                var input_data = $('#phone').val();
+                // var input_data = $('#phone').val();
                 var code = 0;
-                code = input_data.charCodeAt();
+                code = this.comments.phone.charCodeAt();
                 if(this.comments.phone.length >= 10 && this.comments.phone.length <= 14) {
                     this.ph_length = false;
                     // console.log('a',this.comments.phone.length)
