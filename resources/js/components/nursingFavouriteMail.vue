@@ -53,8 +53,10 @@
                                         <span class="error m-l-30" v-if="furigana_focus">※入力は必須です。</span>
                                         <span class="float-left eg-txt"> 例）さがし たろう</span>
                                     <!-- </div>                                     -->
-                                </div>                                
-                                <div class="col-md-6 text-danger char-err p-l-30"></div>
+                                     
+                                </div> 
+                                <span class="col-md-6 text-danger char-err p-l-30"></span>                               
+                               
                             </div>
                         </div>
                         <div class="form-group m-0 row bd">
