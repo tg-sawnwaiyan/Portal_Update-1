@@ -1033,7 +1033,7 @@
                                                         <router-link :to="{name: 'profile', params: {cusid:nus.cus_id, type: 'nursing'}}" class="pseudolink" style="font-weight:bold;">{{nus.name}}</router-link>
                                                     </h5>
                                                     
-                                                    <div class="d-flex">                                                        
+                                                    <div class="d-flex sp-414" id="sp-414-block">                                                        
                                                         <span v-for="(fac,index) in fac_types" :key="index+'-'+fac.description+'-'+nus.id">                                                    
                                                             <span v-if="fac.id == nus.fac_type" class="fac_list">
                                                                 {{fac.description}}
@@ -1044,7 +1044,7 @@
                                                         
                                                     </div>
 
-                                                    <div class="col-lg-3 col-sm-12 text-right">
+                                                    <div class="col-lg-3 col-sm-12 text-right pc-768">
                                                     <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == ''" :class="'view_pro_id'+nus.nursing_id" style="display:block;" @click="favAddFun('add',nus.nursing_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                                                     <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == 'check'" :class="'done_pro_id'+nus.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',nus.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                                                     </div>
@@ -1054,16 +1054,16 @@
                                             <p class="m-b-10"><span class="job_ico"><i class="fa fa-map-signs"></i></span>{{nus.city_name}} <i class="fas fa-angle-double-right" style="color:#b9b5b5;"></i> {{nus.township_name}} </p>
                                             <div class="col-12 pad-free m-b-10 clearfix">
                                                 <span class="num-room"> {{nus.num_rooms}} </span>
-                                                <p class="hos_phone float-right" v-if="nus.phone"><span class="circle-phone" ><i class="fa fa-phone-alt"></i></span><span class="phone-no"><a :href="`tel:${nus.phone}`">{{nus.phone}}</a></span></p>
+                                                <p class="hos_phone float-right pc-768" v-if="nus.phone"><span class="circle-phone" ><i class="fa fa-phone-alt"></i></span><span class="phone-no"><a :href="`tel:${nus.phone}`">{{nus.phone}}</a></span></p>
                                             </div>
                                             <div class="job-body row  clearfix">
-                                                <div class="col-4 job-img">
+                                                <div class="col-md-4 col-sm-12 job-img">
                                                     <img :src="'/upload/nursing_profile/'+nus.logo" alt="image" @error="imgUrlAlt">
-                                                    <div class="mt-4 col-12 detail-btn text-center">
+                                                    <div class="mt-4 col-12 detail-btn text-center pc-768">
                                                         <router-link :to="{name: 'profile', params: {cusid:nus.cus_id, type: 'nursing'}}" class="btn all-btn" style="font-weight:bold;">詳細を見る</router-link>
                                                     </div>
                                                 </div>
-                                                <div class="col-8 job-box">
+                                                <div class="col-md-8 col-sm-12 job-box">
                                                     <table  class="table table-bordered table-sm">
                                                         <!-- <tr>
                                                         <td style="width:30%;"><span class="job_ico"><i class="fa fa-user"></i></span>名前</td>
@@ -1115,26 +1115,25 @@
                                                     <span v-if="spe.customer_id == nus.customer_id" class="feature_list">
                                                         {{spe.name}}
                                                     </span>
-                                                    </span>
-
-                                                        <!-- <h5 class="header m-t-10">医療受入</h5>
-                                                        <span v-for="(med,index) in medicalacceptance" :key="index+'-'+med.name+'-'+nus.id">
-                                                        <span v-if="med.customer_id == nus.customer_id" class="feature_list">
-                                                            {{med.name}}
-                                                        </span>
-                                                        </span> -->
-                                                </div>
-                                                <!-- <div class="col-4">
-                                                    <h5 class="header m-t-10">施設タイプ</h5>
-                                                        <span v-for="(fac,index) in factype" :key="index+'-'+fac.description+'-'+nus.id">
-                                                        <span v-if="fac.id == nus.fac_type" class="fac_list">
-                                                            {{fac.description}}
-                                                        </span>
-                                                        </span>
-                                                    <div>
-                                                    </div>
-                                                </div> -->
+                                                    </span>                                                     
+                                                </div>                                                
                                             </div>
+                                            <!--responsive add-fav and phone-->
+                                                <div class="row m-t-10" id="job_detail">
+                                                    <div class="col-md-6 col-sm-12 m-b-414">
+                                                        <p class="sp_hos_phone sp-768" v-if="nus.phone"><span class="circle-phone" ><i class="fa fa-phone-alt"></i></span><span class="phone-no"><a :href="`tel:${nus.phone}`">{{nus.phone}}</a></span></p>
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-12 m-t-10">
+                                                        <p class="sp-768">                                           
+                                                            <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == ''" :class="'view_pro_id'+nus.nursing_id" style="display:block;" @click="favAddFun('add',nus.nursing_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
+                                                            <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == 'check'" :class="'done_pro_id'+nus.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',nus.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
+                                                        </p>
+                                                    </div>
+                                                </div> 
+                                                <!--end responsive add-fav and phone-->                                              
+                                                <div class="detail-btn text-center sp-768">
+                                                    <router-link :to="{name: 'profile', params: {cusid:nus.cus_id, type: 'nursing'}}" class="btn all-btn" style="font-weight:bold;">詳細を見る</router-link>
+                                                </div>
                                         </div>
                                     </div>
                                 </div>
@@ -2666,7 +2665,11 @@ div#holder {
     /* position: absolute; */
 }
 
-
+#job_detail .fav-profile{
+  position: relative;
+  top: 0;
+  right: 0;
+}
 /************************responsive ****************************/
 @media only screen and (max-width:1024px) {
   table > tbody > tr th{  
