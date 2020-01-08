@@ -309,10 +309,7 @@
                                 </div> -->
 
                             </div>
-                            <section id="map-responsive">
-                                <!-- <div>
-                                
-                                </div> -->
+                            <section id="map-responsive">                              
                                 <div class="freeword-responsive"> 
                                     <h3 class="map-resicon">
                                     <div class="map-text-wrapper">
@@ -547,32 +544,32 @@
                             </section>
                             <!-- search city , township  -->
                             <div id="scroll-responsive">
-                                <div class="row select" id="filter" style="justify-content:space-between">
+                                <div class="select" id="filter" style="justify-content:space-between">
                                     <h5 class="profile_header" style="border-left: 5px solid #ff9563;">現在の検索条件</h5>
-                                    <div class="row col-12">
-                                    <div class="col-sm-5 col-md-5">
+                                    <div class="row">
+                                    <div class="col-lg-5 col-md-4 m-b-414">
                                         <div><p class="nurs-sub-heading">地域で絞り込む</p></div>
                                         <div class="card search-border-dash">
 
                                         <div class="card-body">
                                             <select id="selectCity" class="form-control custom-select" @change="nursingSearchData(1);" style="background-color: #fff;" v-model="id">
-                                            <option value="-1">▼市区町村</option>
+                                            <option value="-1" disabled>▼市区町村</option>
                                             <option  :value="city.id" v-for="city in cities" :key="city.id">{{city.city_name}}</option>
                                             </select>
                                             <select id="selectTownship" class="form-control mt-1 custom-select" style="background-color: #fff;" @change="nursingSearchData(2);" v-model="township_id">
-                                            <option value="-1">▼市区町村</option>
+                                            <option value="-1" disabled>▼市区町村</option>
                                             <option  :value="selectTownship.id"  v-for="selectTownship in getTownships" :key="selectTownship.id">{{selectTownship.township_name}}</option>
                                             </select>
                                         </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-5 col-md-5">
+                                    <div class="col-lg-5 col-md-4 m-b-414">
                                         <div><p class="nurs-sub-heading">料金で絞り込む</p></div>
                                         <div class="card search-border-dash">
                                         <div class="card-body">
                                             <div class="">
                                             <select name="" id="" class="form-control custom-select" style="background-color: #fff;" @change="nursingSearchData" v-model="moving_in">
-                                                <option data-price-type="" value="-1">▼入居一時金</option>
+                                                <option data-price-type="" value="-1" disabled>▼入居一時金</option>
                                                 <!-- <option data-price-type="" value="0">一時金なし</option> -->
                                                 <option data-price-type="" value="500000">50万円以下</option>
                                                 <option data-price-type="" value="1000000">100万円以下</option>
@@ -590,7 +587,7 @@
                                                 <option data-price-type="more" value="30000000">3,000万円以上</option>
                                             </select>
                                             <select name="" id="" class="form-control  mt-1 custom-select" style="background-color: #fff;" @change="nursingSearchData" v-model="per_month">
-                                                <option data-price-type="" value="-1">▼月額利用料</option>
+                                                <option data-price-type="" value="-1" disabled>▼月額利用料</option>
                                                 <option data-price-type="" value="100000">10万円以下</option>
                                                 <option data-price-type="" value="120000">12万円以下</option>
                                                 <option data-price-type="" value="140000">14万円以下</option>
@@ -613,7 +610,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-2 col-md-2 align-self-center">
+                                    <div class="col-lg-2 col-md-4 m-b-414 align-self-center">
                                         <span class="btn seemore-btn select" style="width:100%;padding:20px 10px;" id="showSearchMap" @click="showSearchMap"><i class="fas fa-exchange-alt"></i>&nbsp;都道府県を再選択する</span>
                                     </div>
                                     </div>
@@ -701,15 +698,15 @@
                                                                     <span class="type-name">{{items.type_name}}</span>
 
                                                                     <div class="row" style="margin-top:10px;">
-                                                                        <div class="col-4 col-lg-5 col-md-5" style="padding-top:3px;">
+                                                                        <div class="col-5 col-lg-5 col-sm-6" style="padding-top:3px;">
                                                                             <div class="carousel-img">
                                                                             <img :src="'/upload/nursing_profile/'+items.logo" alt="image" class="img-fluid" @error="imgUrlAlt"/>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-8 col-lg-7 col-md-7 m-b-15">
-                                                                            <ul class="nursingSearch-list m-l-10">
+                                                                        <div class="col-7 col-lg-7 col-sm-6 m-b-15 p-l-0">
+                                                                            <ul class="nursingSearch-list">
                                                                                 <li class="d-flex"><p class="text-truncate"><span>住所</span><span> {{items.township_name}} {{items.address}}</span></p></li>
-                                                                                <li class="d-flex"><span>電話 </span><span>{{items.phone}}</span></li>
+                                                                                <li class="d-flex"><span>電話 </span><span class="text-truncate">{{items.phone}}</span></li>
                                                                                 <li class="d-flex"><span>サイト</span><a :href="'http://'+ items.website" target="_blank"  class="text-truncate">{{items.website}}</a></li>
                                                                             </ul>
                                                                         </div>
@@ -759,16 +756,16 @@
                                         <table class="table table-bordered col-12 box-wrap">
                                             <tbody>
                                                 <tr>
-                                                    <th class="pc-414-block">地域</th>
-                                                    <td class="pc-414-block">
+                                                    <th class="pc-414-table sp-768-block">地域</th>
+                                                    <td class="sp-768-block sp-414-table">
                                                     <div class="row mt-2 mb-2">
-                                                    <div class="col-lg-9 col-md-6 col-sm-12">
+                                                    <div class="col-lg-9 col-md-8 col-sm-12">
                                                         <select id="selectCity" class="form-control custom-select" v-model="id" @change="ChangeTownship">
-                                                        <option value="-1">▼市区町村</option>
+                                                        <option value="-1" disabled>▼市区町村</option>
                                                         <option v-for="city in cities" :value="city.id" :key="city.id">{{city.city_name}}</option>
                                                     </select>
                                                     </div>
-                                                    <div class="col-lg-3 col-md-6 col-sm-12 pc-414">
+                                                    <div class="col-lg-3 col-md-4 col-sm-12 pc-414">
                                                     <button @click="toggleContent" class="btn seemore-btn">
                                                         <i class="fa" aria-hidden="true"></i>
                                                         <!-- <em>{{city.city_name}}</em> -->
@@ -777,76 +774,224 @@
                                                     </div>
                                                     </div>
                                                     <div class="toBeToggled" id="toBeToggled">
-                                                            <div class="form-check form-check-inline col-sm-2"   v-for="township in getTownships" :key="township.id">
-                                                            <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-                                                            <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @click="check">
-                                                                {{township.township_name}}
-                                                            <div class="control__indicator"></div>
-                                                            </label>
+                                                    <!--市から探す-->
+                                                    <div class="dropdown">
+                                                        <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
+                                                        市から探す
+                                                        </button> 
+                                                        <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768" @click.stop="stopTheEvent">
+                                                            <li>
+                                                            <a data-value="option">
+                                                            <div class="row">
+                                                                <div class="col-lg-2 col-md-4 col-sm-4" v-for="township in getTownships" :key="township.id">                                          
+                                                                <label class="form-check-label control control--checkbox">
+                                                                    <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @click="check" >
+                                                                    {{township.township_name}}
+                                                                    <div class="control__indicator"></div>
+                                                                </label>
+                                                                </div>
+                                                            </div>
+                                                            </a>
+                                                            </li>
+                                                        </ul>
+                                                        <a v-if="w_width >= 768">
+                                                            <div class="row">
+                                                                <div class="col-lg-2 col-md-4 col-sm-4" v-for="township in getTownships" :key="township.id">                                          
+                                                                <label class="form-check-label control control--checkbox">
+                                                                    <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @click="check" >
+                                                                    {{township.township_name}}
+                                                                    <div class="control__indicator"></div>
+                                                                </label>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    <!--end 市から探す-->                                                                                                       
+                                                    </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th class="pc-414-table sp-768-block" v-if="showOne" style="padding:10px;">入居時の条件</th>                                                    
+                                                    <td class="sp-768-block sp-414-table" v-if="showOne">
+                                                        <!--入居時の条件から探す-->
+                                                        <div class="dropdown">
+                                                            <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
+                                                            入居時の条件から探す
+                                                            </button> 
+                                                            <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768" @click.stop="stopTheEvent">
+                                                            <li>
+                                                            <a data-value="option">
+                                                                <div class="row">
+                                                                    <div class="col-lg-2 col-md-4" id="customCheck1">
+                                                                    <label class="form-check-label control control--checkbox">
+                                                                        <input class="form-check-input" :id="1" value="自立" v-model="MoveID" type="checkbox">
+                                                                        自立
+                                                                        <div class="control__indicator"></div>
+                                                                    </label>
+                                                                    </div>
+                                                                    <div class="col-lg-2 col-md-4" id="customCheck1">
+                                                                    <label class="form-check-label control control--checkbox">
+                                                                        <input class="form-check-input" :id="2" value="要支援" v-model="MoveID" type="checkbox">
+                                                                        要支援
+                                                                        <div class="control__indicator"></div>
+                                                                    </label>
+                                                                    </div>
+                                                                    <div class="col-lg-2 col-md-4" id="customCheck1">
+                                                                    <label class="form-check-label control control--checkbox">
+                                                                        <input class="form-check-input" :id="3" value="要介護" v-model="MoveID" type="checkbox">
+                                                                        要介護
+                                                                        <div class="control__indicator"></div>
+                                                                    </label>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                            </li>
+                                                            </ul>
+                                                            <a v-if="w_width >= 768">
+                                                                 <div class="row">
+                                                                    <div class="col-lg-2 col-md-4" id="customCheck1">
+                                                                    <label class="form-check-label control control--checkbox">
+                                                                        <input class="form-check-input" :id="1" value="自立" v-model="MoveID" type="checkbox">
+                                                                        自立
+                                                                        <div class="control__indicator"></div>
+                                                                    </label>
+                                                                    </div>
+                                                                    <div class="col-lg-2 col-md-4" id="customCheck1">
+                                                                    <label class="form-check-label control control--checkbox">
+                                                                        <input class="form-check-input" :id="2" value="要支援" v-model="MoveID" type="checkbox">
+                                                                        要支援
+                                                                        <div class="control__indicator"></div>
+                                                                    </label>
+                                                                    </div>
+                                                                    <div class="col-lg-2 col-md-4" id="customCheck1">
+                                                                    <label class="form-check-label control control--checkbox">
+                                                                        <input class="form-check-input" :id="3" value="要介護" v-model="MoveID" type="checkbox">
+                                                                        要介護
+                                                                        <div class="control__indicator"></div>
+                                                                    </label>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
                                                         </div>
-                                                    </div>
+                                                        <!--end 入居時の条件から探す -->                                                        
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th v-if="showOne" style="padding:10px;">入居時の条件</th>
-                                                    <td v-if="showOne">
-                                                            <div class="form-check form-check-inline col-sm-2" id="customCheck1">
-                                                            <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-                                                                <input class="form-check-input" :id="1" value="自立" v-model="MoveID" type="checkbox">
-                                                                自立
+                                                    <th class="pc-414-table sp-768-block" v-if="showOne">特長</th>
+                                                    <td class="sp-768-block sp-414-table" v-if="showOne">
+                                                    <!--特長から探す-->
+                                                        <div class="dropdown">
+                                                            <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
+                                                            特長から探す
+                                                            </button> 
+                                                            <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768" @click.stop="stopTheEvent">
+                                                            <li>
+                                                            <a data-value="option">
+                                                                <div class="row">
+                                                                <div class="col-lg-2 col-md-4 col-sm-4" v-for="feature in special_features" :key="feature.id">
+                                                                    <!-- <label class="form-check-label" > -->
+                                                                    <label class="form-check-label control control--checkbox">
+                                                                    <input  class="form-check-input" type="checkbox" v-model="SpecialFeatureID" :id="feature.id" :value="feature.id" @click="features($event)">
+                                                                    {{feature.name}}
+                                                                    <div class="control__indicator"></div>
+                                                                    </label>
+                                                                </div>
+                                                                </div>
+                                                            </a>
+                                                            </li>
+                                                            </ul>
+                                                            <a v-if="w_width >= 768">
+                                                                <div class="row">
+                                                                <div class="col-lg-2 col-md-4 col-sm-4" v-for="feature in special_features" :key="feature.id">
+                                                                    <!-- <label class="form-check-label" > -->
+                                                                    <label class="form-check-label control control--checkbox">
+                                                                    <input  class="form-check-input" type="checkbox" v-model="SpecialFeatureID" :id="feature.id" :value="feature.id" @click="features($event)">
+                                                                    {{feature.name}}
+                                                                    <div class="control__indicator"></div>
+                                                                    </label>
+                                                                </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    <!-- end 特長 から探す-->
+                                                    
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th class="pc-414-table sp-768-block" v-if="showOne">施設の種類</th>
+                                                    <td class="sp-768-block sp-414-table" v-if="showOne">
+                                                    
+                                                    <!--施設の種類から探す-->
+                                                    <div class="dropdown">
+                                                    <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
+                                                        施設の種類から探す
+                                                    </button> 
+                                                    <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768" @click.stop="stopTheEvent">
+                                                        <li>
+                                                        <a data-value="option">
+                                                            <div class="row">
+                                                            <div class="col-lg-2 col-md-4 col-sm-4" v-for="fac_type in fac_types" :key="fac_type.id">
+                                                                <label class="form-check-label control control--checkbox">
+                                                                <input class="form-check-input" type="checkbox" v-model="FacTypeID" :id="fac_type.id" :value="fac_type.id">
+                                                                {{fac_type.description}}
                                                                 <div class="control__indicator"></div>
-                                                            </label>
+                                                                </label>
                                                             </div>
-                                                            <div class="form-check form-check-inline col-sm-3" id="customCheck1">
-                                                            <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-                                                                <input class="form-check-input" :id="2" value="要支援" v-model="MoveID" type="checkbox">
-                                                                要支援
+                                                            </div>
+                                                        </a>
+                                                        </li>
+                                                    </ul>
+                                                    <a v-if="w_width >= 768">
+                                                            <div class="row">
+                                                            <div class="col-lg-2 col-md-4 col-sm-4" v-for="fac_type in fac_types" :key="fac_type.id">
+                                                                <label class="form-check-label control control--checkbox">
+                                                                <input class="form-check-input" type="checkbox" v-model="FacTypeID" :id="fac_type.id" :value="fac_type.id">
+                                                                {{fac_type.description}}
                                                                 <div class="control__indicator"></div>
-                                                            </label>
+                                                                </label>
                                                             </div>
-                                                            <div class="form-check form-check-inline col-sm-3" id="customCheck1">
-                                                            <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-                                                                <input class="form-check-input" :id="3" value="要介護" v-model="MoveID" type="checkbox">
-                                                                要介護
-                                                                <div class="control__indicator"></div>
-                                                            </label>
                                                             </div>
+                                                        </a>
+                                                    </div>
+                                                    <!--end から探す -->
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th v-if="showOne">特長</th>
-                                                    <td v-if="showOne">
-                                                        <div class="form-check form-check-inline col-sm-2" v-for="feature in special_features" :key="feature.id">
-                                                        <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-                                                            <input class="form-check-input" type="checkbox" v-model="SpecialFeatureID" :id="feature.id" :value="feature.id" @click="features($event)">
-                                                            {{feature.name}}
-                                                            <div class="control__indicator"></div>
-                                                        </label>
-                                                    </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th v-if="showOne">施設の種類</th>
-                                                    <td v-if="showOne">
-                                                    <div class="form-check form-check-inline col-sm-2" v-for="fac_type in fac_types" :key="fac_type.id">
-                                                        <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-                                                        <input class="form-check-input" type="checkbox" v-model="FacTypeID" :id="fac_type.id" :value="fac_type.id">
-                                                        {{fac_type.description}}
-                                                        <div class="control__indicator"></div>
-                                                        </label>
-                                                    </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th v-if="showOne">医療面・診療科目</th>
-                                                    <td v-if="showOne">
-                                                    <div class="form-check form-check-inline col-sm-2" v-for="medical in medical_acceptance" :key="medical.id">
-                                                        <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-                                                        <input class="form-check-input" type="checkbox" v-model="MedicalAcceptanceID" :id="medical.id" :value="medical.id">
-                                                        {{medical.name}}
-                                                        <div class="control__indicator"></div>
-                                                        </label>
-                                                    </div>
+                                                    <th class="pc-414-table sp-768-block" v-if="showOne">医療面・診療科目</th>
+                                                    <td class="sp-768-block sp-414-table" v-if="showOne">
+                                                        <!--医療面・診療科目から探す-->
+                                                        <div class="dropdown">
+                                                            <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
+                                                            医療面・診療科目から探す
+                                                            </button> 
+                                                            <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768" @click.stop="stopTheEvent">
+                                                            <li>
+                                                            <a data-value="option">
+                                                                 <div class="row">
+                                                                <div class="col-lg-2 col-md-4 col-sm-4" v-for="medical in medical_acceptance" :key="medical.id">
+                                                                    <label class="form-check-label control control--checkbox">
+                                                                    <input class="form-check-input" type="checkbox" v-model="MedicalAcceptanceID" :id="medical.id" :value="medical.id">
+                                                                    {{medical.name}}
+                                                                    <div class="control__indicator"></div>
+                                                                    </label>
+                                                                </div>
+                                                                </div>
+                                                            </a>
+                                                            </li>
+                                                            </ul>
+                                                            <a v-if="w_width >= 768">
+                                                                 <div class="row">
+                                                                <div class="col-lg-2 col-md-4 col-sm-4" v-for="medical in medical_acceptance" :key="medical.id">
+                                                                    <label class="form-check-label control control--checkbox">
+                                                                    <input class="form-check-input" type="checkbox" v-model="MedicalAcceptanceID" :id="medical.id" :value="medical.id">
+                                                                    {{medical.name}}
+                                                                    <div class="control__indicator"></div>
+                                                                    </label>
+                                                                </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <!--end 医療面・診療科目から探す -->    
                                                     </td>
                                                 </tr>
                                                 <tr class="text-center">
@@ -867,7 +1012,7 @@
                                                 </tr>
                                                 <tr class="text-center">
                                                     <td colspan="2" style="border:none;">
-                                                        <button class="main-bg-color create-btn all-btn" id="search" style="width:16%;" @click="search"><i class="fas fa-search"></i>&nbsp; 検索 </button>
+                                                        <button class="main-bg-color create-btn all-btn col-lg-2 col-md-4 col-sm-2" id="search" @click="search"><i class="fas fa-search"></i>&nbsp; 検索 </button>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -879,11 +1024,11 @@
 
                             <div class="m-b-10">
                                 <div class="row" v-if="loading==false">
-                                    <div class="col-md-6 col-sm-12" style="margin-top:20px;" v-for="(nus,index) in displayItems" :key="nus.id">
+                                    <div class="col-lg-6 col-md-12 col-slg-12" style="margin-top:20px;" v-for="(nus,index) in displayItems" :key="nus.id">
                                         <div class="nur-content">
                                             <div class="job-header">
                                                 <div class="row pad-free">
-                                                    <div class="col-lg-9">
+                                                    <div class="col-lg-9 col-sm-12">
                                                     <h5 class="nur-tit">
                                                         <router-link :to="{name: 'profile', params: {cusid:nus.cus_id, type: 'nursing'}}" class="pseudolink" style="font-weight:bold;">{{nus.name}}</router-link>
                                                     </h5>
@@ -899,7 +1044,7 @@
                                                         
                                                     </div>
 
-                                                    <div class="col-lg-3 text-right">
+                                                    <div class="col-lg-3 col-sm-12 text-right">
                                                     <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == ''" :class="'view_pro_id'+nus.nursing_id" style="display:block;" @click="favAddFun('add',nus.nursing_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                                                     <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == 'check'" :class="'done_pro_id'+nus.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',nus.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                                                     </div>
@@ -1099,6 +1244,12 @@
                 coordinate:[],
                 norecord_msg: false,
                 ci : false,
+                window:{
+                    width: 0,
+                    height: 0
+                },
+                w_width:$(window).width(),
+
             }
         },
 
@@ -1109,51 +1260,34 @@
             if(this.window.width >= 360 && this.window.width < 375) {
                 this.windowSize = 1;
                     this.paginationFactor=277;
-
             }
             else if(this.window.width >= 375 && this.window.width < 452) {
                 this.windowSize = 1;
                 this.paginationFactor=277;
-
-
             }
-
             else if(this.window.width >= 450 && this.window.width < 768) {
                 this.windowSize = 1;
-                    this.paginationFactor=277;
-                // this.paginationFactor=277;
-
-              
-              
-
+                    this.paginationFactor=277; 
             }
             else if(this.window.width >= 768 && this.window.width < 992) {
                 this.windowSize = 1;
                 this.paginationFactor=341;
-
             }
             else if(this.window.width >= 992 && this.window.width < 1024) {
                 this.windowSize = 2;
                 this.paginationFactor=398;
-
                 // console.log(this.window.width);
                 // console.log(this.windowSize);
             }
-
             else if (this.window.width >= 1024 && this.window.width < 1200) {
                 this.windowSize = 3;
-                this.paginationFactor=412;
-           
-
+                this.paginationFactor=412;   
             }
-
                 else if (this.window.width >= 1200 && this.window.width < 1280) {
                 this.windowSize = 2;
                 this.paginationFactor=412;
                 //  console.log(this.window.width);
-
             }
-
             else if (this.window.width >= 1280 && this.window.width < 1440) {
                 this.windowSize = 3;
                 this.paginationFactor=329;
@@ -1161,15 +1295,10 @@
                 // console.log(this.window.width);
                 // console.log(this.paginationFactor);
                 // console.log(this.windowSize);
-
-
             }
-
             else if (this.window.width >= 1440 && this.window.width < 1880) {
                 this.windowSize = 3;
                 this.paginationFactor=344;
-
-
             }
             // $(document).scroll(function() {
             //         $(".custom_group").css({"position": "fixed","top":"100px"});
@@ -1188,9 +1317,7 @@
             //             $(".custom_group").css({"position": "unset", "top": "unset"});
             //         }
             //     });
-
             // else if( this.window.width > 1700) {
-
             // }
         },
 
@@ -1276,9 +1403,6 @@
                     this.locast = localStorage.getItem("nursing_fav");
                 }
 
-
-
-
                 this.axios.get('/api/getnursingsearch/'+search_word,{
                 params:{
                 id: -1 ,
@@ -1289,10 +1413,7 @@
 
                 },
                 })
-                .then((response) => {
-                  
-                  
-
+                .then((response) => {     
                         $("#mymap").css({'display' : 'block','height' : '500px','width':'100%'});
                         $("#filtertable").css("display", "block");
                         $("#nursing-search").css("display", "block");
@@ -1303,11 +1424,9 @@
                         }else{
                             $("#mymap").css({'display' : 'none'});
                             this.norecord_msg = true;
-                        }
-                    
+                        }                   
                   
                     // document.getElementById('search-free-word').value = '';
-
                 });
 
             },
@@ -1342,6 +1461,12 @@
                 $("#nursing-search").css("display", "none");
                 $("#filtertable").css("display", "none");
                 document.getElementById('search-free-word').value = '';
+                if(this.window.width > 768){
+                    console.log('window greater than 768')
+                }
+                else{
+                    console.log('window less than 768')
+                }
             },
 
             moveCarousel(direction) {
@@ -2538,8 +2663,42 @@ div#holder {
   cursor: pointer;
 }
 .carousel-img{   
-    position: absolute;
+    /* position: absolute; */
+}
+
+
+/************************responsive ****************************/
+@media only screen and (max-width:1024px) {
+  table > tbody > tr th{  
+    /* width:100px !important; */
   }
+ 
+}
+@media only screen and (max-width: 480px){
+  table > tbody > tr th{
+    padding: 25px 5px;
+  }
+  table th, table td{
+    vertical-align: middle;
+  }
+  .dropdown-toggle::after {    
+    position: absolute;
+    right: 12px;
+    top: 15px;
+  }
+}
+
+.dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: "";
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+    margin-left: 94px;
+}
 
 @media only screen and (max-width: 360px)  {
    #nursing-search .card-carousel {
@@ -2632,35 +2791,27 @@ div#holder {
    #nursing-search .card-carousel {
         width: 342px!important;
     }
-           .wd-in {
-    width: 320px;
-}
-}
-/* Large devices (laptops/desktops, 992px and up) */
-/* @media only screen and (max-width: 1024px) and (min-width: 992px) {
-   #nursing-search .card-carousel {
-        width: 823px!important;
+    .wd-in {
+        width: 320px;
     }
-        .wd-in {
-    width: 381px;
 }
-} */
+
 
 @media only screen and (max-width: 1020px) and (min-width: 992px) {
    #nursing-search .card-carousel {
         width: 823px!important;
     }
-        .wd-in {
-    width: 377px;
-}
+    .wd-in {
+        width: 377px;
+    }
 }
 @media only screen and (max-width: 1200px) and (min-width: 1024px) {
    #nursing-search .card-carousel {
         width: 827px!important;
     }
     .wd-in {
-    width: 391px;
-}
+        width: 391px;
+    }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
@@ -2670,8 +2821,8 @@ div#holder {
         width: 988px!important;
     }
     .wd-in {
-    width: 308px;
-}
+        width: 308px;
+    }
 }
 @media only screen and (max-width: 1880px) and (min-width: 1440px) {
      #nursing-search .card-carousel {

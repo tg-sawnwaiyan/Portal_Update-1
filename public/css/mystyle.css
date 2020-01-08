@@ -9169,7 +9169,7 @@ ul.nur-caro-card>li.list-group-item {
         top: -67px !important;
     }
     .fav-profile {
-        top: -2px;
+        top: -50px !important;
     }
     .top-fixed-btn,
     .top-fixed-btn.active {
@@ -9932,6 +9932,9 @@ ul.nur-caro-card>li.list-group-item {
     }
     .hos-content{
         padding: 10px;
+    }
+    .m-b-414{
+        margin-bottom: 10px;
     }
 }
 @media only screen and (max-width: 380px) {
