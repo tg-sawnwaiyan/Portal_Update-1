@@ -69,7 +69,7 @@ import jobSearch from './components/jobSearch.vue';
 import News from './components/News.vue';
 import Unauthorized from './components/419.vue';
 import Jobapplicantlist from './components/Jobapplicantlist.vue'
-
+import  autocomplete from './components/autocomplete.vue'
 // import menu from './components/menu/Menu.vue';
 
 // Routes
@@ -105,7 +105,7 @@ const routes = [
             auth: false
         }
     },
-  
+
     {
         path: '/reset',
         name: 'reset',
@@ -154,6 +154,11 @@ const routes = [
         name: 'jobSearch',
         path: '/jobSearch',
         component: jobSearch
+    },
+    {
+        name: 'autocomplete',
+        path: '/autocomplete',
+        component: autocomplete
     },
     {
         name: 'nursingSearch',
@@ -614,7 +619,7 @@ const routes = [
     meta: {
         auth: {roles: 1, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
     }
-  },  
+  },
 ]
 const router = new VueRouter({
     history: true,
