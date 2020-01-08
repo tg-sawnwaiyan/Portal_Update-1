@@ -54,7 +54,7 @@
                                         <span class="float-left eg-txt"> 例）さがし たろう</span>
                                     <!-- </div>                                     -->
                                 </div>                                
-                                <div class="col-md-12 text-danger mt-2 ml-4 char-err"></div>
+                                <div class="col-md-6 text-danger char-err p-l-30"></div>
                             </div>
                         </div>
                         <div class="form-group m-0 row bd">
