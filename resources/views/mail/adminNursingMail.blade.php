@@ -6,7 +6,7 @@
 
 	            <h5 style="color:#3e4348;font-size: 12px;margin-bottom: 30px;font-weight: bold;text-align: left;">
                 医療介護ポータル&nbsp;&nbsp;様
-                    <p style="margin-top:10px;">【サイト名】より資料請求がございました。</p>                    
+                    <p style="margin-top:10px;">【医療介護ポータル】より資料請求がございました。</p>                    
 	            </h5>
                 <p style="text-align: left;margin: 0px;">
                 ***********************************************************************************************************************************
@@ -63,7 +63,7 @@
                 <p style="text-align: left;margin: 0px;">
                 ***********************************************************************************************************************************</p>   
                 <p style="font-size:12px;color:#807c7c;text-align:left;"> 
-                    <span style="color:#000">[サイト名] </span>
+                    <span style="color:#000">[医療介護ポータル] </span>
                     <br/>
                     〒163-0713
                     <br/>                        

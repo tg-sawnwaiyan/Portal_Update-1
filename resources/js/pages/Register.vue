@@ -134,7 +134,7 @@
                         </select>
                          <span v-if="errors.township" class="error">{{errors.township}}</span>
                     </div>
-                    <span class="p-l-162" style="color:#999;">※ Only Numbers and '-' accept !</span>
+                    <span class="p-l-162" style="color:#999;">※ 数字と'-'のみ !</span>
                     <div class="input-group mb-3">
                         
                         <label class="col-4 col-lg-3 control-label">電話番号</label>
@@ -281,11 +281,11 @@
     //     }
     // },
     password_validate() {
-        var pwd = $('#pwd').val();
-        var confirm_pwd = $('#confirm_pwd').val();
+        // var pwd = $('#pwd').val();
+        // var confirm_pwd = $('#confirm_pwd').val();
         window.pwd_same = false;
         var nursing_type_exist = false;
-        if(pwd != confirm_pwd) {
+        if(this.password != this.password_confirmation) {
             // this.passerr = true;
             this.errors.password = "※パスワードが一致しません。";
             // $('#passworderror').css("display","block");
@@ -364,7 +364,7 @@
                 }
                 if(this.errors.email)
                 {
-                    this.errors.email = "This email has  been already taken.";
+                    this.errors.email = "このメールは既に取得されています。";
                 }
                 else{
                     this.errors.email = "";
@@ -372,7 +372,7 @@
                 }
                 if(this.errors.password)
                 {
-                    this.errors.password = "The password must be at least 6 characters."
+                    this.errors.password = "パスワードは最低6文字必要です。"
                 }
                 else{
                     this.errors.password = "";

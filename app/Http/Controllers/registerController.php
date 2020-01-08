@@ -64,7 +64,7 @@ class registerController extends Controller
 
         $request->validate( [
             "file('img')" => 'image|mimes:jpeg,png,jpg|max:2048',
-            'name' => 'required|min:3|max:100',
+            'name' => 'required',
             'email' => 'required|email|unique:customers',
             // 'phone' => 'max:13',
             'password' => 'min:6|required_with:comfirm_password|same:comfirm_password',
@@ -135,8 +135,8 @@ class registerController extends Controller
                 $customer->township_name = $ad->township_name;
             }
 
-            // $admin_email = 'thuzar.ts92@gmail.com';
-            $admin_email = 'thuzar@management-partners.co.jp';
+            $admin_email = 'thuzar.ts92@gmail.com';
+            // $admin_email = 'thuzar@management-partners.co.jp';
             \Mail::to($admin_email)->send(new customerCreateMail($customer));
 
             Session::flash('success reg', "Special message goes here");
