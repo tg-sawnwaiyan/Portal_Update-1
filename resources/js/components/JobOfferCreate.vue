@@ -152,42 +152,50 @@
                                  <!-- <span v-if="errors.postal" class="error">{{errors.postal}}</span> -->
                             </div>
                             <div class="form-group">
-                                <label for="location">
-                                    都道府県:
-                                    <span class="error sp2">必須</span>
-                                </label>
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <label for="location">
+                                      都道府県:
+                                      <span class="error sp2">必須</span>
+                                  </label>
 
-                        
-                                 <select v-model="joboffer.pref" class="division form-control"  @change="getTownship(2)">
-                                      <option value="0">選択してください。</option>
-                                      <option v-for="cities in city_list" :key="cities.id" v-bind:value="cities.id">
-                                          {{cities.city_name}}
-                                      </option>
-                                </select>
-                            
-                                
-                                <!-- <input type="text" class="form-control box" v-model="joboffer.pref" placeholder="都道府県を入力してください。" /> -->
-                                <!-- <span v-if="errors.pref" class="error">{{errors.pref}}</span> -->
-                                <!-- <span v-if="errors.includes('pref')" class="error">題名が必須です。(pref)</span> -->
-                                 <span v-if="errors.pref" class="error">{{errors.pref}}</span>
-                            </div>
-                            <div class="form-group">
-                                <label for="location">
-                                    市区町村、番地（建物名):
-                                    <span class="error sp2">必須</span>
-                                </label>
+                          
+                                  <select v-model="joboffer.pref" class="division form-control"  @change="getTownship(2)">
+                                        <option value="0">選択してください。</option>
+                                        <option v-for="cities in city_list" :key="cities.id" v-bind:value="cities.id">
+                                            {{cities.city_name}}
+                                        </option>
+                                  </select>
                               
-                                <select v-model="joboffer.str_address" class="division form-control" @change="getLocation()"  >
-                                      <option value="0">市区町村を選択してください。</option>
-                                      <option v-for="tw in townships" :key="tw.id" v-bind:value="tw.id">
-                                          {{tw.township_name}}
-                                      </option>
-                                </select>
-                                <!-- <input type="text" class="form-control box" v-model="joboffer.str_address" placeholder="市区町村、番地を入力してください。" /> -->
-                                <span v-if="errors.str_address" class="error">{{errors.str_address}}</span>
-                                <!-- <span v-if="errors.includes('str_address')" class="error">題名が必須です。(str_address)</span> -->
-                                   <!-- <span v-if="errors.name" class="error">{{errors.str_address}}</span> -->
+                                  
+                                  <!-- <input type="text" class="form-control box" v-model="joboffer.pref" placeholder="都道府県を入力してください。" /> -->
+                                  <!-- <span v-if="errors.pref" class="error">{{errors.pref}}</span> -->
+                                  <!-- <span v-if="errors.includes('pref')" class="error">題名が必須です。(pref)</span> -->
+                                  <span v-if="errors.pref" class="error">{{errors.pref}}</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="location">
+                                        市区町村、番地（建物名):
+                                        <span class="error sp2">必須</span>
+                                    </label>
+                                
+                                    <select v-model="joboffer.str_address" class="division form-control" @change="getLocation()"  >
+                                        <option value="0">市区町村を選択してください。</option>
+                                        <option v-for="tw in townships" :key="tw.id" v-bind:value="tw.id">
+                                            {{tw.township_name}}
+                                        </option>
+                                    </select>
+                                    <!-- <input type="text" class="form-control box" v-model="joboffer.str_address" placeholder="市区町村、番地を入力してください。" /> -->
+                                    <span v-if="errors.str_address" class="error">{{errors.str_address}}</span>
+                                    <!-- <span v-if="errors.includes('str_address')" class="error">題名が必須です。(str_address)</span> -->
+                                    <!-- <span v-if="errors.name" class="error">{{errors.str_address}}</span> -->
+                                </div>
+                              </div>
+                                
                             </div>
+                            <!-- <div class="form-group">
+                                
+                            </div> -->
                             <div class="form-group">
                                 <label for="location">
                                     勤務地:

@@ -2,7 +2,7 @@
      <div class="row">
          <div class="col-12">
                 <div class="container-fluid">
-                     <h4 class="main-color m-b-10">求職者検索</h4>
+                     <h4 class="main-color m-b-10">求人応募者検索</h4>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group row">
@@ -14,7 +14,7 @@
                             </div>
                         </div>
                         <hr />
-                        <h5 class="header"> 求職者リスト</h5>
+                        <h5 class="header"> 求人応募者一覧</h5>
                         <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
                         <div v-else class="container-fuid">
                             
@@ -34,7 +34,7 @@
 
                                         <th>街路住所</th>
 
-                                        <th>自宅住所</th>
+                                        <!-- <th>自宅住所</th> -->
 
                                         <th>電話番号</th>
 
@@ -56,7 +56,7 @@
 
                                         <th>{{jobapply.street_address}}</th>
 
-                                        <th>{{jobapply.home_address}}</th>
+                                        <!-- <th>{{jobapply.home_address}}</th> -->
 
                                         <th>{{jobapply.phone}}</th>
 

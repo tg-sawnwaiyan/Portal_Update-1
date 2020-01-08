@@ -105,7 +105,7 @@ const routes = [
             auth: false
         }
     },
-  
+
     {
         path: '/reset',
         name: 'reset',
@@ -155,6 +155,7 @@ const routes = [
         path: '/jobSearch',
         component: jobSearch
     },
+
     {
         name: 'nursingSearch',
         path: '/nursingSearch',
@@ -614,7 +615,7 @@ const routes = [
     meta: {
         auth: {roles: 1, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
     }
-  },  
+  },
 ]
 const router = new VueRouter({
     history: true,

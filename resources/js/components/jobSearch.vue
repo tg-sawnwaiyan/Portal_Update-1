@@ -576,7 +576,7 @@
                     <div class="row mt-2 mb-2">
                       <div class="col-lg-9 col-md-8 col-sm-12">
                       <select id="selectCity" class="form-control custom-select" v-model="id" @change="changeTownship">                        
-                        <option value="-1">▼市区町村</option>
+                        <option value="-1" disabled>▼市区町村</option>
                         <option v-for="city in cities" :value="city.id" :key="city.id" >{{city.city_name}}</option>                       
                     </select>
                     </div>
@@ -622,35 +622,12 @@
                       </div>                             
                     </div>                    
                   </td>
-                </tr>                
-                <tr class="toBeToggled1 ShowHide">
+                </tr>  
+                 <!--test-->             
+                <!-- <tr class="toBeToggled1 ShowHide">
                   <th class="pc-414-table sp-768-block">職種</th>
-                  <td class="sp-768-block">
-                    <!--職種から探す-->
-                     <div class="dropdown">
-                        <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
-                        職種から探す
-                        </button> 
-                        
-                                <!-- <div class="form-check form-check-inline row align-items-start">
-                                  
-                                    <div class="" v-for="(occupation,index) in occupations" :key="index" style="position:">
-                                
-                                        <strong class=" col-12">{{occupation.name}}</strong>
-                                        <div class="col-6" v-for="ch in occupation.child" :key="ch.id+1">
-                                            <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-                                            <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="occupationID" :value="ch.id">
-                                            {{ch.name}}
-                                            <div class="control__indicator"></div>
-                                            </label>
-                                        </div>
-                                  
-                                    </div>
-                                </div> -->
-
-
-                                   <div class="form-check form-check-inline row align-items-start innerwrapper" >
-                                    <div v-for="(v,i) in array_len"  :key="i">
+                   <td class="sp-768-block sp-414-table"> 
+                                    <div v-for="(v,i) in array_len" :key="i">
                                         <div class="hospital-subject" v-for="(occupation,index) in occupations.slice((i*3),((i*3)+3))" :key="index">                                    
                                             <div class="row col-12">
                                                 <strong class="table-innertitle row col-12">{{occupation.name}}</strong>
@@ -664,42 +641,56 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                   
-                                </div>
+                      </td>
+                </tr> -->
 
-                        <!-- <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768">
-                            <li>
-                            <a data-value="option">
-                            <div class="row">
-                                <div class="col-lg-2 col-md-4 col-sm-4" v-for="occupation in occupations" :key="occupation.id">
-                                <label class="form-check-label control control--checkbox">
-                                <input class="form-check-input" type="checkbox" :id="occupation.id" :value="occupation.id" v-model="occupationID">
-                                    {{occupation.name}}
-                                <div class="control__indicator"></div>
-                                </label>
+                 <tr class="toBeToggled1 ShowHide">
+                            <th class="pc-414-table sp-768-block">職種</th>
+                            <td class="sp-768-block sp-414-table">
+                              <div class="form-check form-check-inline row align-items-start innerwrapper" v-if="w_width >= 768" >
+                                    <div v-for="(v,i) in array_len" :key="i">
+                                        <div class="hospital-subject" v-for="(occupation,index) in occupations.slice((i*3),((i*3)+3))" :key="index">                                    
+                                                <strong class="table-innertitle row col-12 m-b-10">{{occupation.name}}</strong>
+                                                <div class="row col-12">
+                                                  <div class="col-lg-6 col-md-12 pad-free" v-for="ch in occupation.child" :key="ch.id+1">
+                                                    <label class="form-check-label control control--checkbox" style="padding-left:5px;">
+                                                    <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="occupationID" :value="ch.id">
+                                                     {{ch.name}}
+                                                    <div class="control__indicator"></div>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                              
+                                <!--test-->
+                                <div>
+                                <h5 class="font-weight-bold sp-414">職種</h5>
+                                <div class="dropdown m-b-10" v-for="(v,i) in occupations" :key="i" >                                 
+                                <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
+                                {{v.name}}
+                                  <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMMenuButton" v-if="w_width <= 768"  @click.stop="stopTheEvent">
+                                  <li v-for="ch in v.child" :key="ch.id+1">                                 
+                                  <a data-value="option" >
+                                      <div class="row">
+                                      <div class="col-lg-2 col-md-4 col-sm-4" >                                       
+                                          <label class="form-check-label control control--checkbox">
+                                          <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="occupationID" :value="ch.id">
+                                          {{ch.name}}
+                                          <div class="control__indicator"></div>
+                                          </label>
+                                      </div>
+                                      </div>
+                                  </a>
+                                  </li>
+                                </ul>
+                                </button> 
                                 </div>
-                            </div>
-                            </a>
-                            </li>
-                        </ul> -->
-
-                        <!-- <a v-if="w_width >= 768">
-                          <div class="row">
-                            <div class="col-lg-2 col-md-4 col-sm-4" v-for="occupation in occupations" :key="occupation.id">
-                              <label class="form-check-label control control--checkbox">
-                              <input class="form-check-input" type="checkbox" :id="occupation.id" :value="occupation.id" v-model="occupationID">
-                                {{occupation.name}}
-                              <div class="control__indicator"></div>
-                              </label>
-                            </div>
-                          </div>
-                        </a>  -->
-                     </div>
-                      
-                    <!--end 職種から探す-->
-                  </td>
-                </tr>
+                                </div>
+ 							              </td>
+                        </tr>
+                
                 <tr class="toBeToggled1 ShowHide">
                   <th style="padding:10px;" class="pc-414-table sp-768-block">雇用形態</th>
                   <td class="sp-768-block">
@@ -1314,6 +1305,10 @@ $(document).click(function(e) {
 
 
 <style scoped>
+.lastblock{
+       display: block;
+
+}
 
 .jobselect {
   display: none;

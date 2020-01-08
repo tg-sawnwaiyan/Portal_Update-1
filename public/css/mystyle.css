@@ -7539,6 +7539,7 @@ dl.favnur dd {
     width: 100%;
     background: #ff6117;
     color: #fff;
+    padding: 10px;
 }
 
 .nur_date {
@@ -9204,7 +9205,7 @@ ul.nur-caro-card>li.list-group-item {
         top: -67px !important;
     }
     .fav-profile {
-        top: -2px;
+        top: -10px !important;
     }
     .top-fixed-btn,
     .top-fixed-btn.active {
@@ -9963,9 +9964,22 @@ ul.nur-caro-card>li.list-group-item {
     .sp-414-timetable .table th,
     .sp-414-timetable .table td {
         padding: 0px !important;
+        vertical-align: middle;
     }
     .hos-content {
         padding: 10px;
+    }
+    .m-b-414{
+        margin-bottom: 10px;
+    }
+    div#sp-414-block .nur_date {
+        display: inline-block;
+        margin-top: 10px;
+    }
+    div#sp-414-block .fac_list {
+        padding: 6px;
+        display: inline-block;
+        width: auto;
     }
 }
 
