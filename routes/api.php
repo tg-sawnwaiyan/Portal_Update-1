@@ -139,6 +139,7 @@ Route::group(['middleware' => ['auth:api']], function() {
         Route::post('update/{id}', 'JobController@update');
         Route::delete('delete/{id}', 'JobController@destroy');
         Route::post('search', 'JobController@search');
+        Route::get('customerList', 'JobController@getCustomerList');
     });
     // End Job
 
