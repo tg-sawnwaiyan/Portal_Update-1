@@ -1002,25 +1002,30 @@ export default {
             removeFile() {
                 this.image = '';
             },
-            onFeatureEditorChange({ editor, html, text }) {
+            onFeatureEditorChange({ editor, html, text }) { // nursing_info.feature
                 // console.log('editor change!', editor, html, text)
-                this.feature_val = html
+                // this.feature_val = html
+                this.nursing_info['feature'] = html
             },
-            onNursingEditorChange({ editor, html, text }) {
+            onNursingEditorChange({ editor, html, text }) { // staff_info.remarks
                 // console.log('editor change!', editor, html, text)
-                this.nursing_remarks_val = html
+                // this.nursing_remarks_val = html
+                this.staff_info['remarks'] = html
             },
-            onAcceptanceEditorChange({ editor, html, text }) {
+            onAcceptanceEditorChange({ editor, html, text }) { // nursing_info.acceptance_remark
                 // console.log('editor change!', editor, html, text)
-                this.acceptance_remark_val = html
+                // this.acceptance_remark_val = html
+                this.nursing_info['acceptance_remark'] = html
             },
-            onResidenceEditorChange({ editor, html, text }) {
+            onResidenceEditorChange({ editor, html, text }) { // nursing_info.residence_form
                 // console.log('editor change!', editor, html, text)
-                this.residence_form_val = html
+                // this.residence_form_val = html
+                this.nursing_info['residence_form'] = html
             },
-            onAccessEditorChange({ editor, html, text }) {
+            onAccessEditorChange({ editor, html, text }) { // nursing_info.access
                 // console.log('editor change!', editor, html, text)
-                this.access_val = html
+                // this.access_val = html
+                this.nursing_info['access'] = html
             },
 
             paymentToggle(id)
@@ -1102,6 +1107,7 @@ export default {
             },            
 
             createProfile() {
+                // console.log(this.staff_info);return;
                this.$loading(true);
                 // document.getElementById("create-profile").disabled=true;
                 this.customer_info_push = [];
@@ -1110,44 +1116,47 @@ export default {
 
                 this.cooperate_list = [];
                 this.payment_list = [];
+                
+                // Customer Info
+                // var customer_name = $('.customer-name').val();
+                // var customer_email = $('.customer-email').text(); 
+                // var customer_phone = $('.customer-phone').val();
+                // var customer_address = $('#city').val();
+                // var customer_township = $('#township').val();
 
-                var customer_name = $('.customer-name').val();
-                var customer_email = $('.customer-email').text(); 
-                var customer_phone = $('.customer-phone').val();
-                var customer_address = $('#city').val();
-                var customer_township = $('#township').val();
+                // Nursing Info
+                // var moving_in_from = $('.nursing-moving-in-f').val();
+                // var moving_in_to = $('.nursing-moving-in-t').val();
+                // var per_month_from = $('.nursing-per-month-f').val();
+                // var per_month_to = $('.nursing-per-month-t').val();
+                // var method = $('.nursing-payment-method').val();
+                // var business_entity = $('.business-entity').val();
+                // var date_of_establishment = $('.date-of-establishment input').val();
+                // var land_right_form = $('.land-right-form').val();
+                // var building_right_form = $('.building-right-form').val();
+                // var site_area = $('.site-area').val();
+                // var floor_area = $('.floor-area').val();
+                // var construction = $('.construction').val();
+                // var capacity = $('.capacity').val();
+                // var num_rooms = $('.num-rooms').val();
+                // var fac_type = $('.fac-type').val();
+                // var occupancy_condition = $('.occupancy-condition').val();
+                // var room_floor = $('.room-floor').val();
+                // var living_room_facilities = $('.living-room-facilities').val();
+                // var equipment = $('.equipment').val();
+                // var latitude = $('#new_lat').val();
+                // var longitude = $('#new_long').val();
+                // var website = $('.website').val();
 
-                var moving_in_from = $('.nursing-moving-in-f').val();
-                var moving_in_to = $('.nursing-moving-in-t').val();
-                var per_month_from = $('.nursing-per-month-f').val();
-                var per_month_to = $('.nursing-per-month-t').val();
-                var method = $('.nursing-payment-method').val();
-                var business_entity = $('.business-entity').val();
-                var date_of_establishment = $('.date-of-establishment input').val();
-                var land_right_form = $('.land-right-form').val();
-                var building_right_form = $('.building-right-form').val();
-                var site_area = $('.site-area').val();
-                var floor_area = $('.floor-area').val();
-                var construction = $('.construction').val();
-                var capacity = $('.capacity').val();
-                var num_rooms = $('.num-rooms').val();
-                var fac_type = $('.fac-type').val();
-                var occupancy_condition = $('.occupancy-condition').val();
-                var room_floor = $('.room-floor').val();
-                var living_room_facilities = $('.living-room-facilities').val();
-                var equipment = $('.equipment').val();
-                var latitude = $('#new_lat').val();
-                var longitude = $('#new_long').val();
-                var website = $('.website').val();
-
-                var staff = $('.staff').val();
-                var nursing_staff = $('.nursing-staff').val();
-                var min_num_staff = $('.min-num-staff').val();
-                var num_staff = $('.num-staff').val();
+                // Staff Info
+                // var staff = $('.staff').val();
+                // var nursing_staff = $('.nursing-staff').val();
+                // var min_num_staff = $('.min-num-staff').val();
+                // var num_staff = $('.num-staff').val();
             
-                this.customer_info_push.push({ name:customer_name,email:customer_email,phone:customer_phone,address:customer_address,township:customer_township});
+                // this.customer_info_push.push({ name:customer_name,email:customer_email,phone:customer_phone,address:customer_address,township:customer_township});
 
-                this.staff_info_push.push({staff:staff,nursing_staff:nursing_staff,min_num_staff:min_num_staff,num_staff:num_staff,nursing_remarks:this.nursing_remarks_val});
+                // this.staff_info_push.push({staff:staff,nursing_staff:nursing_staff,min_num_staff:min_num_staff,num_staff:num_staff,nursing_remarks:this.nursing_remarks_val});
 
                 var img = document.getElementsByClassName('gallery-area-photo');
                 let pt = new FormData();
@@ -1267,7 +1276,16 @@ export default {
                 fData.append("video",this.video_list);
                 fData.append("panorama",this.panorama_list);               
 
-                this.profile_arr.push({operator:this.nursing_info.operator,feature:this.feature_val,website:website,access:this.access_val,moving_in_from:moving_in_from,moving_in_to:moving_in_to,per_month_from:per_month_from,per_month_to:per_month_to,method:method,business_entity:business_entity, date_of_establishment:date_of_establishment,land_right_form:land_right_form,building_right_form:building_right_form, site_area:site_area,floor_area:floor_area,construction:construction,capacity:capacity,num_rooms:num_rooms,residence_form:this.residence_form_val,fac_type:fac_type, occupancy_condition:occupancy_condition,room_floor:room_floor,living_room_facilities:living_room_facilities,equipment:equipment,acceptance_remark:this.acceptance_remark_val,latitude:latitude,longitude:longitude, cooperate_list:this.cooperate_list, payment_list:this.payment_list, customer_info_push:this.customer_info_push, staff_info_push:this.staff_info_push, acceptance:acceptance, chek_feature:this.chek_feature, video:this.video_list, image: this.img_list, panorama: this.panorama_list
+                this.profile_arr.push({nursing_profile:this.nursing_info,
+                                        customer_info:this.customer_info,
+                                        staff_info:this.staff_info, 
+                                        cooperate_list:this.cooperate_list,
+                                        payment_list:this.payment_list, 
+                                        video:this.video_list, 
+                                        image: this.img_list, 
+                                        panorama: this.panorama_list,
+                                        acceptance:acceptance,
+                                        chek_feature:this.chek_feature
                 });
                 
                 if(this.profile_arr.length > 0) {
