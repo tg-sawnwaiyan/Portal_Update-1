@@ -57,8 +57,8 @@
                 <input type="text" class="form-control float-left" id="furigana" placeholder="ふりがなを入力してください。" v-model="jobApply.last_name" @keyup="ChekChar" @focusout="focusLname" @change="aggreBtn"/>
                 <span class="float-left eg-txt"> 例）さがし たろう</span>
                 <span class="error m-l-30" v-if="focus_lname">※入力は必須です。</span>
-                <div v-if="errors.last_name" class="text-danger mt-2 ml-4">{{ errors.last_name }}</div> 
-                <div class="text-danger mt-2 ml-4 char-err"></div>
+                <div v-if="errors.last_name" class="text-danger mt-2 ml-4">{{ errors.last_name }}</div>
+                <span class="text-danger p-l-30 char-err"></span>
             </div>
         </div>
         <div class="form-group m-0 row bd">
@@ -98,7 +98,7 @@
                 <label class="control control--radio">
                     <input type="radio" v-model="jobApply.gender" value="Male" /> 女性
                     <div class="control__indicator"></div>
-                </label>                
+                </label>
             </div>
         </div>
         <div class="form-group m-0 row bd">
@@ -510,7 +510,7 @@ export default {
                 });
         }
     },
-    
+
     apply() {
 
     // this.$loading(true);
@@ -539,7 +539,7 @@ export default {
     checkValidate() {
       console.log('this.error');
       console.log(this.errors);
-  
+
     //   if (this.jobApply.first_name) {
     //     this.errors.first_name = "";
     //   } else {
@@ -621,7 +621,7 @@ export default {
       }
     },
     focusMail: function(event) {
-     
+
         if(this.jobApply.email != '' ){
             this.focus_mail=false;
         }else{
@@ -645,17 +645,17 @@ export default {
         $('.char-err').text('');
         var input_val = $('#furigana').val();
         var code = 0;
-               
+
         code = input_val.charCodeAt();
         if ((12448<= code && code <= 12543) || (19968<= code && code <= 19893)) {
-                        
+
         } else {
           $('.char-err').text('カタカナのみを書いてください!');
         }
-        
+
       },
-   
-    // isNumberOnly: function(event) {     
+
+    // isNumberOnly: function(event) {
     //     var input_data = $('#phone').val();
     //     var code = 0;
     //     code = input_data.charCodeAt();
@@ -670,15 +670,15 @@ export default {
     //         this.ph_error = true;
     //     }
 
-                // if(!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105) 
-                //     && event.keyCode != 8 && event.keyCode != 46 && !(event.keyCode >= 37 && event.keyCode <= 40)) 
+                // if(!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105)
+                //     && event.keyCode != 8 && event.keyCode != 46 && !(event.keyCode >= 37 && event.keyCode <= 40))
                 // {
-                //     // event.preventDefault();                    
+                //     // event.preventDefault();
                 //     this.ph_error = true;
                 // }
                 // else{
                 //     this.ph_error = false;
-                    
+
                 // }
            // }
   }
