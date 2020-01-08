@@ -485,51 +485,53 @@ export default {
   },
   methods: {
     getPostal: function(event) {
-                if (this.jobApply.postal.length > 4) {
-                    var postal = this.jobApply.postal;
-                    this.axios
-                        .post('/api/hospital/postList/' + postal)
-                        .then(response => {
-                            var post_data = response.data.postal_list;
-                            var length = response.data.postal_list.length;
-                            if (length > 0) {
-                                var pref = post_data[0]['city_id'];
-                                if (post_data[0]['street'] == '') {
-                                    this.jobApply.str_address = post_data[0]['city'];
-                                } else {
-                                    this.jobApply.str_address = post_data[0]['city'] + ' - ' + post_data[0]['street'];
-                                }
-                                this.jobApply.selectedValue = pref;
-                                this.jobApply.division = pref;
-                                 $('#jsErrorMessage').html('<div class="error"></div>');
-                            } else {
-                                this.jobApply.str_address = '';
-                                this.jobApply.selectedValue = 0;
-                                $('#jsErrorMessage').html('<div class="error">郵便番号の書式を確認してください。</div>');
-                            }
-                        });
-                }
-            },
+        if (this.jobApply.postal.length > 4) {
+            var postal = this.jobApply.postal;
+            this.axios
+                .post('/api/hospital/postList/' + postal)
+                .then(response => {
+                    var post_data = response.data.postal_list;
+                    var length = response.data.postal_list.length;
+                    if (length > 0) {
+                        var pref = post_data[0]['city_id'];
+                        if (post_data[0]['street'] == '') {
+                            this.jobApply.str_address = post_data[0]['city'];
+                        } else {
+                            this.jobApply.str_address = post_data[0]['city'] + ' - ' + post_data[0]['street'];
+                        }
+                        this.jobApply.selectedValue = pref;
+                        this.jobApply.division = pref;
+                            $('#jsErrorMessage').html('<div class="error"></div>');
+                    } else {
+                        this.jobApply.str_address = '';
+                        this.jobApply.selectedValue = 0;
+                        $('#jsErrorMessage').html('<div class="error">郵便番号の書式を確認してください。</div>');
+                    }
+                });
+        }
+    },
+    
     apply() {
 
-    this.$loading(true);
+    // this.$loading(true);
 
       // $("#loader").css("display", "block");
-      this.axios
-        .post("/api/jobapply", this.jobApply)
-        .then(response => {
-          // alert("Successful Apply");
-          this.$loading(false);
-          // $("#loader").css("display", "none");
-          this.jobApply = response.data;
-          this.errors.email = this.jobApply;
-          this.type = "completed";
-        })
-        .catch(error => {
-          if (error.response.status == 422) {
-            this.errors = error.response.data.errors;
-          }
-        });
+      console.log(this.jobApply)
+      // this.axios
+      //   .post("/api/jobapply", this.jobApply)
+      //   .then(response => {
+      //     // alert("Successful Apply");
+      //     this.$loading(false);
+      //     // $("#loader").css("display", "none");
+      //     this.jobApply = response.data;
+      //     this.errors.email = this.jobApply;
+      //     this.type = "completed";
+      //   })
+      //   .catch(error => {
+      //     if (error.response.status == 422) {
+      //       this.errors = error.response.data.errors;
+      //     }
+      //   });
     },
     getcheckbox(job) {
       this.jobApply.skills.push(job);
