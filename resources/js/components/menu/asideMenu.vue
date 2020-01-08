@@ -55,13 +55,18 @@
             </div> 
       </transition>
     </div> -->
-    <div>
-        <sidebar-menu :menu="menu" v-if="visit == 'false'"  @item-click="onItemClick"/>
-    </div>
+    <sidebar-menu :menu="menu" v-if="visit == 'false'"  @item-click="onItemClick"/>
+    
 </template>
 <style  scoped>
+.v-sidebar-menu {
+    top: 50px;
+    bottom: 0;
+    height: auto !important; 
+    background-color: #222d32;
+}
 .v-sidebar-menu.vsm_expanded{
-    max-width: 280px !important;
+    max-width: 280px !important;   
 }
 .slide-enter-active {
    -moz-transition-duration: 0.3s;
