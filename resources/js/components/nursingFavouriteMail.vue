@@ -126,7 +126,7 @@
                             <div class="form-group row pl-3">
                                     <div class="col-md-12 p-0">
                                         <label class="col-md-12">※ 電話番号またはメールアドレス必須 <span class="error sp1">必須</span></label>
-                                        <input type="text" id="phone" name="number" class="form-control float-left" placeholder="電話番号を入力してください。" v-model="comments.phone" @change="aggreBtn" pattern="[0-9-]*" @keyup="focusPhone" maxlength="14" title="Please enter number only.">
+                                        <input type="text" id="phone" name="number" class="form-control float-left" placeholder="電話番号を入力してください。" v-model="comments.phone" pattern="[0-9-]*" @keyup="focusPhone" @change="aggreBtn" maxlength="14" title="Please enter number only.">
                                         <!-- v-on:keyup="isNumberOnly" -->
                                         <span class="error m-l-30" v-if="mail_focus">※入力は必須です。</span>                                        
                                         <span class="float-left eg-txt">例）0312345678（半角）</span>
@@ -140,7 +140,7 @@
                             <div class="col-md-9 col-sm-12 form-right">
                             <div class="form-group row pl-3">
                                 <div class="col-md-12 p-0">
-                                        <input type="text" id="mail" name="mail" class="form-control float-left" placeholder="メールアドレスを入力してください。" v-model="comments.mail" @change="aggreBtn" @focusout="focusMail">                          
+                                        <input type="email" id="mail" name="mail" class="form-control float-left" placeholder="メールアドレスを入力してください。" v-model="comments.mail" @change="aggreBtn" @focusout="focusMail">                          
                                         <span class="float-left eg-txt"> 例）abc@example.jp （半角）</span>
                                         <span class="error m-l-30" v-if="mail_focus">※入力は必須です。</span>
                                     </div>
@@ -486,7 +486,8 @@ import DatePicker from 'vue2-datepicker';
                 });
             },
             aggreBtn: function(){
-                if(this.comments.furigana.length > 0 && this.comments.name != '' && this.comments.selectedValue != 0 && this.comments.city != '' && (this.comments.mail != '' || this.comments.phone != '')){
+                console.log((this.ph_length && this.ph_num))
+                if($('#furigana').val().length > 0 && this.comments.name != '' && this.comments.selectedValue != 0 && this.comments.city != '' && (this.comments.mail != '' || (this.ph_length && this.ph_num))){
                     this.btn_disable=false;
                 }else{
                     this.btn_disable=true;
@@ -546,28 +547,25 @@ import DatePicker from 'vue2-datepicker';
               if(this.comments.phone.charAt(this.comments.phone.length - 1) != '-' && this.comments.phone.charAt(0) != '-' && ((this.comments.phone.length >= 10 && this.comments.phone.length <= 14) || this.comments.phone.length == 0))
               {  
                   this.ph_num = false;
-                  this.ph_length = false;
+                  this.ph_length = false;     
               }
               else{
                   this.ph_num = true;
                   this.ph_length = true;
+                  this.btn_disable = true;
               }
+              this.aggreBtn();      
             },
             ChekChar: function(event) {
-                    $('.char-err').text('');
-                    // var input_val = $('#furigana').val();
-                    var code = 0;
-                        
-                    code = this.comments.furigana.charCodeAt();
-
-                    if (12352<= code && code <= 12447) {
-
-                    } else {
-                        $('.char-err').text('ひらがなのみを書いてください!');
-                        return;
-                    }
-
-                },
+                $('.char-err').text('');
+                var input_val = $('#furigana').val();
+                var code = 0;
+                code = input_val.charCodeAt();
+                if (!(code > 12352 && code < 12447)) {
+                    $('.char-err').text('ひらがなで入力してください!');
+                    this.btn_disable = true;
+                }               
+            },
 
             isNumberOnly: function(event) {
                 // var input_data = $('#phone').val();

@@ -164,7 +164,7 @@
                 </label>
             </div>
             <div class="col-md-9 col-sm-12 form-right">
-                <input type="text" class="form-control float-left" id="phone" v-model="jobApply.phone" placeholder="電話番号を入力してください。" @focusout="focusPhone" @change="aggreBtn" pattern="[0-9-]*" title="Please enter number only." maxlength="14"/>
+                <input type="text" class="form-control float-left" id="phone" v-model="jobApply.phone" placeholder="電話番号を入力してください。" @keyup="focusPhone" @change="aggreBtn" pattern="[0-9-]*" title="Please enter number only." maxlength="14"/>
                 <!-- <span class="error m-l-30" v-if="focus_mail">※入力は必須です。</span> -->
                 <span class="float-left eg-txt">例）0312345678（半角）</span>
                  <span class="error m-l-10" v-if="ph_length || ph_error">※電話番号が正しくありません。もう一度入力してください。</span>
@@ -518,25 +518,25 @@ export default {
 
     apply() {
 
-        // this.$loading(true);
+        this.$loading(true);
 
       // $("#loader").css("display", "block");
       console.log(this.jobApply)
-      // this.axios
-      //   .post("/api/jobapply", this.jobApply)
-      //   .then(response => {
-      //     // alert("Successful Apply");
-      //     this.$loading(false);
-      //     // $("#loader").css("display", "none");
-      //     this.jobApply = response.data;
-      //     this.errors.email = this.jobApply;
-      //     this.type = "completed";
-      //   })
-      //   .catch(error => {
-      //     if (error.response.status == 422) {
-      //       this.errors = error.response.data.errors;
-      //     }
-      //   });
+      this.axios
+        .post("/api/jobapply", this.jobApply)
+        .then(response => {
+          // alert("Successful Apply");
+          this.$loading(false);
+          // $("#loader").css("display", "none");
+          this.jobApply = response.data;
+          this.errors.email = this.jobApply;
+          this.type = "completed";
+        })
+        .catch(error => {
+          if (error.response.status == 422) {
+            this.errors = error.response.data.errors;
+          }
+        });
     },
     getcheckbox(job) {
       this.jobApply.skills.push(job);
@@ -639,8 +639,7 @@ export default {
         // }
     },
     aggreBtn: function(){
-        console.log('job',this.jobApply)
-        if(this.jobApply.first_name != '' && this.jobApply.last_name != '' && this.jobApply.selectedValue != 0 && this.jobApply.str_address != '' && this.jobApply.terms == true && (this.jobApply.email != '' || this.jobApply.phone)){
+        if($('#furigana').val().length > 0 && this.jobApply.first_name != '' && this.jobApply.last_name != '' && this.jobApply.selectedValue != 0 && this.jobApply.str_address != '' && this.jobApply.terms == true && (this.jobApply.email != '' || this.jobApply.phone)){
             this.btn_disable=false;
         }else{
             this.btn_disable=true;
@@ -650,15 +649,19 @@ export default {
         $('.char-err').text('');
         var input_val = $('#furigana').val();
         var code = 0;
-
         code = input_val.charCodeAt();
-        if ((12448<= code && code <= 12543) || (19968<= code && code <= 19893)) {
-
-        } else {
-          $('.char-err').text('ひらがなのみを書いてください!');
+        // (12448<= code && code <= 12543) || (19968<= code && code <= 19893)
+        // 12540
+        if (!(code > 12352 && code < 12447)) {
+            $('.char-err').text('ひらがなで入力してください!');
+            this.btn_disable = true;
+        }
+        else if($('#furigana').val().length > 0){
+            this.btn_disable = false;
         }
 
       },
+
 
     // isNumberOnly: function(event) {
     //     var input_data = $('#phone').val();
