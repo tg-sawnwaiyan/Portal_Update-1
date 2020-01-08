@@ -832,7 +832,7 @@
                                         </div>
                                     </div>
                                     <div class="row m-t-10">
-                                      <div class="col-md-6 col-sm-12">
+                                      <div class="col-md-6 col-sm-12 m-b-414">
                                         <span class="sp_hos_phone sp-768"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span><span class="phone-no"><a :href="`tel:${hos.phone}`">{{hos.phone}}</a></span></span>
                                       </div>
                                       <div class="col-md-6 col-sm-12 m-t-10">
