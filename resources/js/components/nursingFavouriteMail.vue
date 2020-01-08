@@ -140,7 +140,7 @@
                             <div class="col-md-9 col-sm-12 form-right">
                             <div class="form-group row pl-3">
                                 <div class="col-md-12 p-0">
-                                        <input type="email" id="mail" name="mail" class="form-control float-left" placeholder="メールアドレスを入力してください。" v-model="comments.mail" @change="aggreBtn" @focusout="focusMail">                          
+                                        <input type="email" id="mail" name="mail" class="form-control float-left" placeholder="メールアドレスを入力してください。" v-model="comments.mail" @keyup="aggreBtn" @focusout="focusMail">                          
                                         <span class="float-left eg-txt"> 例）abc@example.jp （半角）</span>
                                         <span class="error m-l-30" v-if="mail_focus">※入力は必須です。</span>
                                     </div>
@@ -486,8 +486,9 @@ import DatePicker from 'vue2-datepicker';
                 });
             },
             aggreBtn: function(){
-                console.log((this.ph_length && this.ph_num))
-                if($('#furigana').val().length > 0 && this.comments.name != '' && this.comments.selectedValue != 0 && this.comments.city != '' && (this.comments.mail != '' || (this.ph_length && this.ph_num))){
+                console.log((!this.ph_length && !this.ph_num))
+                console.log(this.comments.mail != '' || (!this.ph_length && !this.ph_num))
+                if($('#furigana').val().length > 0 && this.comments.name != '' && this.comments.selectedValue != 0 && this.comments.city != '' && (this.comments.mail != '' || (!this.ph_length && !this.ph_num && this.comments.phone.length > 0))){
                     this.btn_disable=false;
                 }else{
                     this.btn_disable=true;
