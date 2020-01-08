@@ -55,8 +55,7 @@
             </div> 
       </transition>
     </div> -->
-    <sidebar-menu :menu="menu" v-if="visit == 'false'"  @item-click="onItemClick"/>
-    
+    <sidebar-menu :menu="menu" v-if="visit == 'false'"  @item-click="onItemClick"/>    
 </template>
 <style  scoped>
 .v-sidebar-menu {
