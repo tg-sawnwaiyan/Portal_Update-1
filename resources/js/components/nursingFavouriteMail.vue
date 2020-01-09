@@ -560,12 +560,17 @@ import DatePicker from 'vue2-datepicker';
             ChekChar: function(event) {
                 $('.char-err').text('');
                 var input_val = $('#furigana').val();
+                var each_val = input_val.split('');
+            
                 var code = 0;
-                code = input_val.charCodeAt();
-                if (!(code > 12352 && code < 12447)) {
-                    $('.char-err').text('ひらがなで入力してください!');
-                    this.btn_disable = true;
-                }               
+                $.each(each_val, function (key, value) {
+                    code = value.charCodeAt();
+                    alert(code);
+                    if (!(code > 12352 && code < 12447) && !(12449 <= code && code <= 12538)) {
+                        $('.char-err').text('ふりがなで入力してください!');
+                        this.btn_disable = true;
+                    }  
+                });          
             },
 
             isNumberOnly: function(event) {
