@@ -490,7 +490,7 @@ export default {
   },
   methods: {
     getPostal: function(event) {
-        if (this.jobApply.postal.length > 4) {
+        if (this.jobApply.postal.length > 5) {
             var postal = this.jobApply.postal;
             this.axios
                 .post('/api/hospital/postList/' + postal)

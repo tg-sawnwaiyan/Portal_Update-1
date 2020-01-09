@@ -10,6 +10,22 @@
                             <br />
                         </div>
                         <form @submit.prevent="add" class="mt-2 pb-5 col-md-12">
+                          <div class="form-group" v-if="this.$auth.check(2)">
+                            <div class="form-group" v-if="check">
+                              <label>Customer Name:</label>
+                              <label>{{cusName}}</label>
+                            </div>
+                            <div v-else>
+                            <label>Customer Name:</label>
+                            <autocomplete 
+                            placeholder="事業者名を検索" 
+                            input-class="form-control" 
+                            :source=customerList 
+                            :results-display="formattedDisplay"
+                            @selected="getSelected($event)">
+                            </autocomplete>
+                            </div>
+                          </div>
                             <div class="form-group">
                                 <label for="title">
                                     タイトル:
@@ -419,7 +435,11 @@
 </template>
 
 <script>
+import Autocomplete from 'vuejs-auto-complete'
     export default {
+      components: {
+        Autocomplete,
+      },
         data() {
                 return {
                 header: "求人作成",
@@ -485,12 +505,17 @@
 
                     selectedValue: 0,
                     city_list:[],
-                    townships:[]
+                    townships:[],
+                    customerList: {
+                    id: "",
+                    name: ""
+                    },
+                    check: false,
+                    cusName: ''
                 };
             },
 
             created() {
-
               this.joboffer.pref = 0;
               this.joboffer.str_address = 0;
              
@@ -504,25 +529,36 @@
                 .then(response => {
                     this.city_list = response.data;
                 });
-
+                this.axios.get('/api/job/customerList')
+                .then(response=> {
+                  this.customerList = response.data;
+                  this.formattedDisplay(this.customerList);
+                });
                 this.joboffer.employmentstatus = "ContractEmployee";
 
                 if (this.$route.params.id) {
+                    this.check = true;
                     this.axios
 
                         .get(`/api/job/edit/${this.$route.params.id}`)
 
                     .then(response => {
+                      console.log(response.data)
                         this.joboffer.title = response.data.job[0].title;
-                        this.joboffer.postal = '0' + response.data.job[0].zip7_code;
-                        this.joboffer.zipcode_id = response.data.job[0].zip_id;
-                       
-                       
+                        if(response.data.job[0].zip7_code == null){
+                          this.joboffer.postal = "";
+                          this.joboffer.zipcode_id = null;
+                        }
+                        else{
+                          this.joboffer.postal = '0' + response.data.job[0].zip7_code;
+                          this.joboffer.zipcode_id = response.data.job[0].zip_id;
+                        }            
+                                         
                     
                         // this.joboffer.pref = response.data[0].cityname;
                         this.joboffer.pref = response.data.job[0].city_id;
                         this.getTownship(1);
-                        this.joboffer.str_address = response.data.township_id[0].id;
+                        this.joboffer.str_address = response.data.job[0].township_id;
 
                         this.joboffer.customer_id = response.data.job[0].customer_id;
 
@@ -539,7 +575,7 @@
 
                         this.createskill(arr);
 
-                        this.joboffer.location = response.data.job[0].street;
+                        this.joboffer.location = response.data.job[0].location;
 
                         this.joboffer.nearest_station = response.data.job[0].nearest_station;
 
@@ -565,9 +601,22 @@
                         this.joboffer.recordstatus = response.data.job[0].recordstatus;
                         this.header = " 求人編集";
                         this.subtitle = "保存";
+                        this.axios.get('/api/job/customerList')
+                        .then(response=> {
+                          var cus_list = response.data;
+                          for(var i=0; i<cus_list.length; i++){
+                            if(this.joboffer.customer_id == response.data[i].id){
+                              this.cusName = response.data[i].name + '「 ' +response.data[i].email+ ' 」';
+                            }
+                          }
+                          
+                          this.customerList = response.data;
+                        });
                         return this.header;
                         return this.subtitle;
                     });
+                }else{
+                  this.check = false;
                 }
             },
 
@@ -646,7 +695,7 @@
                         }
                   },
                 getPostal: function(event) {
-                    if (this.joboffer.postal.length > 4) {
+                    if (this.joboffer.postal.length > 5) {
                         var postal = this.joboffer.postal;
                         this.axios.post("/api/hospital/postList/" + postal).then(response => {
                             var post_data = response.data.postal_list;
@@ -703,6 +752,7 @@
                        if(town_id == 2)
                       {
                         this.joboffer.postal = '';
+                        this.joboffer.zipcode_id = null;
                         this.joboffer.str_address = 0;
                       }
                       this.townships = response.data.townships
@@ -717,7 +767,7 @@
                     if (this.$route.params.id) {
                         this.updateJob();
                     } else {
-                      
+                      console.log('vvvvv',this.joboffer)
                         this.$swal({
                             title: "確認",
                             text: "作成よろしいでしょうか。",
@@ -911,7 +961,7 @@
                 // },
 
                 updateJob() {
-                  // console.log('bbb');
+                  console.log('bbb',this.joboffer);
                     
                       if (this.$route.params.id){
                         this.$swal({
@@ -933,6 +983,8 @@
                         this.axios.post(`/api/job/update/${this.$route.params.id}`, this.joboffer)
 
                         .then(response => {
+                            console.log(response.data)
+                            this.joboffer = response.data.job;
                            this.$loading(false);
                         
                                 this.$swal({
@@ -956,11 +1008,13 @@
                             });
                         });
                     }
-
-                      }
-
-                  //console.log("update");
-
+                  },
+                  formattedDisplay(result) {
+                    return result.name + '「' + result.email + '」';
+                  },
+                  getSelected(event){
+                    this.joboffer.customer_id = event.value;
+                  }
                 }
             };
 

@@ -442,7 +442,7 @@ import DatePicker from 'vue2-datepicker';
         },
         methods: {
             getPostal: function(event) {
-                if (this.comments.postal.length > 4) {
+                if (this.comments.postal.length > 5) {
                     var postal = this.comments.postal;
                     this.axios
                         .post('/api/hospital/postList/' + postal)

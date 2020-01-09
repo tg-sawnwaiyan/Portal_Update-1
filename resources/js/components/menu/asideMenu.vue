@@ -55,7 +55,59 @@
             </div> 
       </transition>
     </div> -->
-    <sidebar-menu :menu="menu" v-if="visit == 'false'"  @item-click="onItemClick"/>
+     <div v-if="$auth.check() && visit == 'false'" id="content-all" class="content-all"  :class="[{'collapsed' : collapsed}]"> 
+                        <sidebar-menu :menu="menu"  :collapsed="collapsed" @toggle-collapse="onCollapse"  @item-click="onItemClick"/>           <transition name="fade">
+                            <div class="maintab-content" id="v-pills-tabContent">
+                                <!-- <span @click="menuToggle()">Click</span> -->
+                                <!--section one-->
+                                <section>
+                                    <div class="container-fluid main-wrapper">
+                                        <!--slider for ads-->
+                                        <div class="col-md-auto pad-free">
+
+                                        </div>
+                                            <!--end slider for ads-->
+                                        <div class="row justify-content-md-center">
+                                            <div class="col-12 col-lg-12 col-md-10 tab p0-480">
+                                            <!-- vue component -->
+                                                <router-view :key="$route.fullPath"></router-view>
+                                            </div>
+                                            <div class="col-12 col-lg-2 col-md-4" style="display:none">
+                                                <!--related news-->
+                                                <div class="m-b-10 ads-card">
+                                                    <!--ads slider-->
+                                                    <div style="display: block; overflow: hidden;border-radius:0.25rem;">
+                                                        <div id="slider2_container" style="position: relative; float: left; top: 0px; left: 0px; width:167px; height:100%; overflow: hidden;">
+                                                        <!-- Slides Container -->
+                                                            <div data-u="slides" style="position: absolute; left: 0px; top: 0px; width: 167px; height: 100%; overflow: hidden;" class="side-ad-slider"> </div>
+                                                        <!-- Trigger -->
+                                                        </div>
+                                                    </div>
+                                                    <!--end ads slider-->
+                                                </div>
+                                                <div class="card m-b-10 ads-card">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title text-center">二つ目の広告</h5>
+                                                        <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+                                                        <img src="/images/logo_japanese_horizontal.png" alt="" class="img-responsivie" style="width:100%">
+                                                    </div>
+                                                </div>
+                                                <div class="card m-b-10 ads-card2">
+                                                    <div class="card-body today">
+                                                        <ul id="menu" class="list-group list-group-flush"> </ul>
+                                                    </div>
+                                                </div>
+                                                <!-- end related news-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container-fluid footer footer-div">
+                                            <span>Copyright©Management Partners Corp.All Rights Reserved. </span>
+                                    </div>
+                                </section>
+                            </div>
+                        </transition>  
+                    </div>
     
 </template>
 <style  scoped>
@@ -120,6 +172,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
       return {
         status:false,
         isClick: true,
+        collapsed: false,
         menu: [
                 {
                     header: true,
@@ -232,13 +285,13 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                     href: '/jobofferlist',
                     title: '求人編集',
                     icon: 'fa fa-edit',
-                    hidden: this.$auth.check(2)
+                    // hidden: this.$auth.check(2)
                 },
                 {
                     href: '/jobapplicantlist',
                     title: '求人応募者一覧',
                     icon: 'fa fa-tasks',
-                    hidden: this.$auth.check(2)
+                    // hidden: this.$auth.check(2)
                 },
                 {
                     title: 'ログアウト',
@@ -275,7 +328,7 @@ created() {
         // })
         this.visit = 'true';
         localStorage.setItem('visit',this.visit);
-        this.$router.push({name: 'Unauthorized'});
+        this.$router.push({name: 'Unauthorized',params: {reload:"reload"}});
         }
         
         return response
@@ -293,7 +346,11 @@ created() {
             if(item.title == 'ログアウト'){
                 this.$auth.logout();
             }
-        }
+        },
+        onCollapse (collapsed) {
+      console.log(collapsed)
+      this.collapsed = collapsed
+    }
     }
 
   }
