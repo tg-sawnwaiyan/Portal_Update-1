@@ -1107,56 +1107,14 @@ export default {
             },            
 
             createProfile() {
-                // console.log(this.staff_info);return;
-               this.$loading(true);
-                // document.getElementById("create-profile").disabled=true;
+
+                this.$loading(true);
                 this.customer_info_push = [];
                 this.staff_info_push = [];
                 this.gallery_list = [];
 
                 this.cooperate_list = [];
                 this.payment_list = [];
-                
-                // Customer Info
-                // var customer_name = $('.customer-name').val();
-                // var customer_email = $('.customer-email').text(); 
-                // var customer_phone = $('.customer-phone').val();
-                // var customer_address = $('#city').val();
-                // var customer_township = $('#township').val();
-
-                // Nursing Info
-                // var moving_in_from = $('.nursing-moving-in-f').val();
-                // var moving_in_to = $('.nursing-moving-in-t').val();
-                // var per_month_from = $('.nursing-per-month-f').val();
-                // var per_month_to = $('.nursing-per-month-t').val();
-                // var method = $('.nursing-payment-method').val();
-                // var business_entity = $('.business-entity').val();
-                // var date_of_establishment = $('.date-of-establishment input').val();
-                // var land_right_form = $('.land-right-form').val();
-                // var building_right_form = $('.building-right-form').val();
-                // var site_area = $('.site-area').val();
-                // var floor_area = $('.floor-area').val();
-                // var construction = $('.construction').val();
-                // var capacity = $('.capacity').val();
-                // var num_rooms = $('.num-rooms').val();
-                // var fac_type = $('.fac-type').val();
-                // var occupancy_condition = $('.occupancy-condition').val();
-                // var room_floor = $('.room-floor').val();
-                // var living_room_facilities = $('.living-room-facilities').val();
-                // var equipment = $('.equipment').val();
-                // var latitude = $('#new_lat').val();
-                // var longitude = $('#new_long').val();
-                // var website = $('.website').val();
-
-                // Staff Info
-                // var staff = $('.staff').val();
-                // var nursing_staff = $('.nursing-staff').val();
-                // var min_num_staff = $('.min-num-staff').val();
-                // var num_staff = $('.num-staff').val();
-            
-                // this.customer_info_push.push({ name:customer_name,email:customer_email,phone:customer_phone,address:customer_address,township:customer_township});
-
-                // this.staff_info_push.push({staff:staff,nursing_staff:nursing_staff,min_num_staff:min_num_staff,num_staff:num_staff,nursing_remarks:this.nursing_remarks_val});
 
                 var img = document.getElementsByClassName('gallery-area-photo');
                 let pt = new FormData();
@@ -1197,36 +1155,32 @@ export default {
 
                 var payment = document.getElementsByClassName('gallery-area-payment');
                 for(var i = 0; i< payment.length; i++) {
-                    this.payment_list.push({payment_name:payment[i].getElementsByClassName('payment-name')[0].value,
-                    expense_moving:payment[i].getElementsByClassName('expense-moving')[0].value,
-                    monthly_fees:payment[i].getElementsByClassName('monthly-fees')[0].value,
-                    living_room_type:payment[i].getElementsByClassName('living-room-type')[0].value,
-                    area:payment[i].getElementsByClassName('area')[0].value,
-                    deposit:payment[i].getElementsByClassName('deposit')[0].value,
-                    other_use:payment[i].getElementsByClassName('other-use')[0].value,
-                    rent:payment[i].getElementsByClassName('rent')[0].value,
-                    admin_expense:payment[i].getElementsByClassName('admin-expense')[0].value,
-                    food_expense:payment[i].getElementsByClassName('food-expense')[0].value,
-                    nurse_care_surcharge:payment[i].getElementsByClassName('nurse-care-surcharge')[0].value,
-                    other_monthly_cost:payment[i].getElementsByClassName('other-monthly-cost')[0].value,
-                    refund_system:payment[i].getElementsByClassName('refund-system')[0].value,
-                    depreciation_period:payment[i].getElementsByClassName('depreciation-period')[0].value,
-                    initial_deprecration:payment[i].getElementsByClassName('initial-deprecration')[0].value,
-                    other_message_refund:payment[i].getElementsByClassName('other-message-refund')[0].value});
+                    if(payment[i].getElementsByClassName('payment-name')[0].value) {
+                        this.payment_list.push({payment_name:payment[i].getElementsByClassName('payment-name')[0].value,
+                                            expense_moving:payment[i].getElementsByClassName('expense-moving')[0].value,
+                                            monthly_fees:payment[i].getElementsByClassName('monthly-fees')[0].value,
+                                            living_room_type:payment[i].getElementsByClassName('living-room-type')[0].value,
+                                            area:payment[i].getElementsByClassName('area')[0].value,
+                                            deposit:payment[i].getElementsByClassName('deposit')[0].value,
+                                            other_use:payment[i].getElementsByClassName('other-use')[0].value,
+                                            rent:payment[i].getElementsByClassName('rent')[0].value,
+                                            admin_expense:payment[i].getElementsByClassName('admin-expense')[0].value,
+                                            food_expense:payment[i].getElementsByClassName('food-expense')[0].value,
+                                            nurse_care_surcharge:payment[i].getElementsByClassName('nurse-care-surcharge')[0].value,
+                                            other_monthly_cost:payment[i].getElementsByClassName('other-monthly-cost')[0].value,
+                                            refund_system:payment[i].getElementsByClassName('refund-system')[0].value,
+                                            depreciation_period:payment[i].getElementsByClassName('depreciation-period')[0].value,
+                                            initial_deprecration:payment[i].getElementsByClassName('initial-deprecration')[0].value,
+                                            other_message_refund:payment[i].getElementsByClassName('other-message-refund')[0].value});
+                    }
                 }
 
 
                var s_features =[];
-                        $.each($("input[name='special-features']:checked"), function(){
+                    $.each($("input[name='special-features']:checked"), function(){
                             s_features.push($(this).val());
-                        });
-                        this.chek_feature.push({special_feature_id:s_features});
-
-                // var chek_station=[];
-                // $.each($("input[name='station']:checked"), function(){
-                //         chek_station.push($(this).val());
-                // });
-                // this.stations.push({station_id:chek_station});
+                    });
+                this.chek_feature.push({special_feature_id:s_features});
 
 
                 var acceptance=[];
@@ -1251,7 +1205,6 @@ export default {
                 else{
                     this.panorama_list = [];
                 }
-                //  this.$loading(true);
                
                 if(new_panorama.length > 0){
                     let fd = new FormData();
@@ -1276,16 +1229,9 @@ export default {
                 fData.append("video",this.video_list);
                 fData.append("panorama",this.panorama_list);               
 
-                this.profile_arr.push({nursing_profile:this.nursing_info,
-                                        customer_info:this.customer_info,
-                                        staff_info:this.staff_info, 
-                                        cooperate_list:this.cooperate_list,
-                                        payment_list:this.payment_list, 
-                                        video:this.video_list, 
-                                        image: this.img_list, 
-                                        panorama: this.panorama_list,
-                                        acceptance:acceptance,
-                                        chek_feature:this.chek_feature
+                this.profile_arr.push({nursing_profile:this.nursing_info,customer_info:this.customer_info,staff_info:this.staff_info, cooperate_list:this.cooperate_list,
+                                        payment_list:this.payment_list, video:this.video_list, image: this.img_list, panorama: this.panorama_list,
+                                        acceptance:acceptance,chek_feature:this.chek_feature
                 });
                 
                 if(this.profile_arr.length > 0) {
