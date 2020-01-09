@@ -55,14 +55,26 @@
             </div> 
       </transition>
     </div> -->
-    <div>
-        <sidebar-menu :menu="menu" v-if="visit == 'false'"  @item-click="onItemClick"/>
-    </div>
+    <sidebar-menu :menu="menu" v-if="visit == 'false'"  @item-click="onItemClick"/>
+    
 </template>
 <style  scoped>
-.v-sidebar-menu.vsm_expanded{
-    max-width: 280px !important;
+.v-sidebar-menu {
+    top: 50px;
+    bottom: 0;
+    height: auto !important; 
+    background-color: #222d32;
 }
+.v-sidebar-menu.vsm_expanded{
+    max-width: 280px !important;   
+}
+/* .v-sidebar-menu .vsm--header {
+    font-size: 18px;
+    background: #2c3b41;
+}
+.v-sidebar-menu .vsm--link {
+    font-size: 15px;
+} */
 .slide-enter-active {
    -moz-transition-duration: 0.3s;
    -webkit-transition-duration: 0.3s;
@@ -224,7 +236,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                 },
                 {
                     href: '/jobapplicantlist',
-                    title: '求職者リスト',
+                    title: '求人応募者一覧',
                     icon: 'fa fa-tasks',
                     hidden: this.$auth.check(2)
                 },

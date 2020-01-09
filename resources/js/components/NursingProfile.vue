@@ -1267,16 +1267,7 @@ export default {
                 fData.append("video",this.video_list);
                 fData.append("panorama",this.panorama_list);               
 
-                this.profile_arr.push({operator:this.nursing_info.operator,feature:this.feature_val,website:website,access:this.access_val,moving_in_from:moving_in_from,moving_in_to:moving_in_to,per_month_from:per_month_from,per_month_to:per_month_to,method:method,business_entity:business_entity, date_of_establishment:date_of_establishment,land_right_form:land_right_form,building_right_form:building_right_form, site_area:site_area,floor_area:floor_area,construction:construction,capacity:capacity,num_rooms:num_rooms,residence_form:this.residence_form_val,fac_type:fac_type, occupancy_condition:occupancy_condition,room_floor:room_floor,living_room_facilities:living_room_facilities,equipment:equipment,acceptance_remark:this.acceptance_remark_val,latitude:latitude,longitude:longitude,
-                                  cooperate_list:this.cooperate_list,
-                                  payment_list:this.payment_list,
-                                  customer_info_push:this.customer_info_push,
-                                  staff_info_push:this.staff_info_push,
-                                  acceptance:acceptance,
-                                  chek_feature:this.chek_feature,
-                                  video:this.video_list,
-                                  image: this.img_list,
-                                  panorama: this.panorama_list
+                this.profile_arr.push({operator:this.nursing_info.operator,feature:this.feature_val,website:website,access:this.access_val,moving_in_from:moving_in_from,moving_in_to:moving_in_to,per_month_from:per_month_from,per_month_to:per_month_to,method:method,business_entity:business_entity, date_of_establishment:date_of_establishment,land_right_form:land_right_form,building_right_form:building_right_form, site_area:site_area,floor_area:floor_area,construction:construction,capacity:capacity,num_rooms:num_rooms,residence_form:this.residence_form_val,fac_type:fac_type, occupancy_condition:occupancy_condition,room_floor:room_floor,living_room_facilities:living_room_facilities,equipment:equipment,acceptance_remark:this.acceptance_remark_val,latitude:latitude,longitude:longitude, cooperate_list:this.cooperate_list, payment_list:this.payment_list, customer_info_push:this.customer_info_push, staff_info_push:this.staff_info_push, acceptance:acceptance, chek_feature:this.chek_feature, video:this.video_list, image: this.img_list, panorama: this.panorama_list
                 });
                 
                 if(this.profile_arr.length > 0) {

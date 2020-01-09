@@ -1486,6 +1486,7 @@ export default {
                     }
             },
             galleryAdd() {
+              console.log('galleryadd');
             
                     var date = new Date;
                     var s = date.getMilliseconds();
@@ -1561,8 +1562,10 @@ export default {
                 this.isRotate4 = !this.isRotate4;
             },
             Create_Profile () {
-            
-         
+            this.gallery_list= [];
+            this.img_list = [];
+            this.video_list = [];
+                     
                 this.$loading(true);
                     // this.customer_info = [];
                     // var name = $('.customer-name').val();
@@ -1618,7 +1621,7 @@ export default {
                           this.img_list.push({type:"photo",photo:file_name,title:img[i].getElementsByClassName('title')[0].value, description:img[i].getElementsByClassName('description')[0].value});
                     }
 
-                    
+                   
                     // 1
                     this.axios.post('/api/hospital/movephoto', pt)
                         .then(response => {
@@ -1706,11 +1709,27 @@ export default {
                         this.axios
                         .post(`/api/hospital/profile/${this.cusid}`,this.save_hospital_info)
                         .then((response) => {
-                             this.customer_info = response.data.customer_info;
-                             this.hospital_info = response.data.hospital_info;
-                             this.schedule_list = response.data.schedule_list;
-                             this.chek_feature = response.data.chek_feature;
-                             this.subjects = response.data.subjects;
+
+                            //  this.customer_info = [];
+                            //  this.hospital_info = [];
+                            //  this.schedule_list = [];
+                            //  this.subjects = [];
+                            //  this.facilities = [];
+                            //  this.chek_feature = [];
+                             this.img_arr = [];
+                             this.video_arr = [];
+                             this.gallery_list = [];
+                            //  this.customer_info = response.data.customer_info;
+                            //  this.hospital_info = response.data.hospital_info;
+                            //  this.schedule_list = response.data.schedule_list;
+                            //  this.chek_feature = response.data.chek_feature;
+                            //  this.subjects = response.data.subjects;
+                            //  this.facilities = response.data.hospital_info['facilities'];
+                             this.img_arr = response.data.photo_list;
+                             this.video_arr = response.data.video_list;
+                             this.gallery_list = response.data.gallery_list;
+                     
+                            
   
                             this.$swal({
                                 position: 'top-end',
@@ -1721,9 +1740,7 @@ export default {
                                 width: 250,
                                 height: 200,
                             }).then(response => {
-
-                               
-                         
+                            
                                 // document.getElementById('nursing').click();
 
                             })

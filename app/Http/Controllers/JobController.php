@@ -233,7 +233,7 @@ class JobController extends Controller
         // $request->validate([
         //     'title' => 'required',
         //     'description' =>'required',
-        //     'location' => 'required',
+        //     'location' => 'requi   red',
         //     'salary' => 'required',
         //     'working_hours' => 'required',
         // ]);

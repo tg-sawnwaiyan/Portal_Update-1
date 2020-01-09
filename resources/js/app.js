@@ -22,7 +22,7 @@ import 'animate.css'
 
 
 let globalData = new Vue({
-    data: { 
+    data: {
         nusFav:0,
         hosFav:0,
         nusHis:0,
@@ -67,7 +67,7 @@ import VuePannellum from '../js/components/vue-pannellum.vue'
 Vue.use(VuePannellum);
 Vue.component('VPannellumn', VuePannellum)
 
-//vue Panorama 
+//vue Panorama
 // import Panorama from 'vuejs-panorama';
 // Vue.use(Panorama);
 
@@ -86,7 +86,9 @@ Vue.use(Lightbox)
 
 Vue.use(require('vue-moment'));
 
+ //autocomplete
 
+ //end autocomplete
 //vuejs loading
 import VueLoading from 'vuejs-loading-plugin'
 import { Button } from 'iview'

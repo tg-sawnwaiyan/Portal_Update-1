@@ -19,14 +19,14 @@ use App\HospitalProfile;
 //    return $request;
 // })->middleware('auth:api');
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {  
+Route::middleware('auth:api')->get('/user', function (Request $request) {
     if($request->user()->type_id == 2){
         $lat_lng = HospitalProfile::select('id','latitude','longitude')->where('customer_id', $request->user()->customer_id)->get();
     }
     else {
         $lat_lng = NursingProfile::select('id','latitude','longitude')->where('customer_id', $request->user()->customer_id)->get();
-    }    
-    
+    }
+
     return response()->json(array("user"=>$request->user(), "lat_lng"=>$lat_lng));
 });
 
@@ -44,7 +44,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('townshipJson/{township_name}','SearchMapController@townshipJson');
     Route::get('cityJson/{theCity}','SearchMapController@cityJson');
     // Route::get('getstation/{id}','SearchMapController@getJobStation');
-    
+
 
 // public route api end
 
@@ -167,7 +167,7 @@ Route::group(['middleware' => ['auth:api']], function() {
     // News
     Route::post('news_list/search', 'PostController@search');
     Route::get('news_list', 'PostController@index');
-    Route::group(['prefix' => 'new'], function () {        
+    Route::group(['prefix' => 'new'], function () {
         Route::post('add', 'PostController@add');
         Route::get('editPost/{id}', 'PostController@edit');
         Route::post('update/{id}', 'PostController@update');

@@ -293,6 +293,7 @@ class HospitalProfileController extends Controller
         // Photo And Video 
         $gallery = Gallery::where('customer_id', $id)
                         ->delete();
+    
                            
         for($i=0; $i<count($request[0]['gallery_list']); $i++) {
             $data = array(
@@ -308,12 +309,28 @@ class HospitalProfileController extends Controller
             DB::table('galleries')->insert($data);
             
         }
-        return response()->json('success'); 
+    
+
         // End
+
        
+            $photo_list = Gallery::where("customer_id",$id)
+                                ->where('type','=', 'photo')
+                                ->get()
+                                ->toArray();
+          
+        
+    
+     
+            $video_list = Gallery::where("customer_id",$id)
+                                ->where('type','=', 'video')
+                                ->get()
+                                ->toArray();
+   
       
         return response()->json(Array('customer_info'=>$request[0]['customer_info'],'hospital_info'=>$request[0]['hospital_info'],'schedule_list'=>$request[0]['schedule_list'],
-                                     'chek_feature'=>$request[0]['chek_feature'],"subjects"=>$request[0]['subjects']));
+                                     'chek_feature'=>$request[0]['chek_feature'],"subjects"=>$request[0]['subjects'],'photo_list'=>$photo_list,'video_list'=>$video_list
+                                    ,'gallery_list'=>$request[0]['gallery_list']));
     }
 
 }
