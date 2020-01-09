@@ -723,12 +723,7 @@ import Autocomplete from 'vuejs-auto-complete'
                                     // this.joboffer.pref = post_data[0]["pref"];
                                     this.joboffer.str_address = response.data.township_id[0]['id'];                               
                                     // this.joboffer.str_address = post_data[0]["city"];
-                                    this.joboffer.location =
-                                        post_data[0]["pref"] +
-                                        "  " +
-                                        post_data[0]["city"] +
-                                        "  " +
-                                        post_data[0]["street"];
+                                    this.joboffer.location = post_data[0]["pref"] + post_data[0]["city"] + post_data[0]["street"];
                                 }
                             } else {
                                 this.joboffer.str_address = 0;

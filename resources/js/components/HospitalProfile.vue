@@ -6,21 +6,21 @@
 
         <div class="form-group form-group-wrapper">
 
-                <label class="heading-lbl">施設名称<span class="error">*</span></label>
+                <label class="heading-lbl">施設名称 <span class="error">*</span></label>
 
                 <input type="text" class="form-control customer-name col-10 float-right" placeholder="施設名称を入力してください。" v-model="customer_info.name">
         </div>
 
         <div class="form-group form-group-wrapper">
 
-                <label class="heading-lbl">メールアドレス<span class="error">*</span></label>
-                <label class=" col-10 float-right customer-email"> {{customer_info.email}} </label>
+                <label class="heading-lbl">メールアドレス <span class="error">*</span></label>
+                <label class="col-10 float-right customer-email"> {{customer_info.email}} </label>
 
                 <!-- <input type="text" class="form-control customer-email col-10 float-right"  placeholder="Email" v-model="customer_info.email"> -->
         </div>
         <div class="form-group form-group-wrapper d-flex">
 
-                <label class="heading-lbl col-2 pad-free">電話番号<span class="error">*</span></label>
+                <label class="heading-lbl col-2 pad-free">電話番号 <span class="error">*</span></label>
                 <div class="col-10 row">
                 <input type="text" class="form-control customer-phone col-12" id="phone" placeholder="Phone" v-model="customer_info.phone" pattern="[0-9-]*"  @focusout="focusPhone"  maxlength="14" title="Please enter number only.">
                 <!-- v-on:keyup="isNumberOnly" -->
@@ -194,7 +194,7 @@
             <tr>
                 <td>
                     <div class="form-group">
-                        <label  class="heading-lbl col-2 pad-free">診療科目</label>
+                        <label  class="heading-lbl col-2 pad-free">診療科目 </label>
                         <span class="btn all-btn main-bg-color" style="min-width: 0px;" @click="clinicalSubject()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate1}"></i></span>
                         <div class="col-md-10 float-right clinical-subject-toggle-div toggle-div m-t-10">
                             <div class="row"> <div v-for="subj in clinical_subj" :key="subj.id" class="form-check form-check-inline col-sm-3">
@@ -218,7 +218,7 @@
 
           <label class="heading-lbl col-2 pad-free">
 
-            専門医
+            専門医 hospital_info
 
             <span class="error">*</span>
 
@@ -237,7 +237,7 @@
         </div>
         <table class="table table-bordered table-wrapper">
           <tr>
-                  <td class="width17" style="border:none;"> <label class="heading-lbl pad-free"> 医院からのお知らせ<span class="error">*</span></label></td>
+                  <td class="width17" style="border:none;"> <label class="heading-lbl pad-free"> 医院からのお知らせ <span class="error">*</span></label></td>
                   <td style="border:none;">
                           <!-- <textarea name="feature" id="" cols="30" rows="10" ></textarea> -->
                           <quill-editor  ref="myQuilEditor" name="detailsinfo" class="details-info" @change="onDetailInfoEditorChange($event)" v-model="hospital_info.details_info" :options="editorOption"/>
@@ -255,7 +255,7 @@
 
             <td>
 
-              <label class="heading-lbl col-2 pad-free">診療時間</label>
+              <label class="heading-lbl col-2 pad-free">診療時間 </label>
 
               <span
 
@@ -909,7 +909,7 @@
 
         <div class="form-group form-group-wrapper row ml-0 mr-0">
 
-          <label class="heading-lbl col-2 pad-free">休診日</label>
+          <label class="heading-lbl col-2 pad-free">休診日 </label>
 
           <textarea
 
@@ -933,7 +933,7 @@
 
               <div class="form-group">
 
-                <label class="heading-lbl col-2 pad-free">施設情報</label>
+                <label class="heading-lbl col-2 pad-free">施設情報 </label>
 
                 <span
 
@@ -991,7 +991,7 @@
 
                 <label class="heading-lbl col-2 pad-free">
 
-                  こだわりの特長
+                  こだわりの特長 
 
                   <span class="error">*</span>
 
@@ -1339,6 +1339,7 @@ export default {
                 hospital_info:[],  save_hospital_info:[],
                 chek_feature : [],
                 subjects:[],
+                facilities:[],
                 city: '',
                 postal: '',clinical_subj:[],
                 isRotate1: false,
@@ -1359,6 +1360,7 @@ export default {
             }
         },
         created(){
+
 
                 if(this.type != undefined && this.cusid!= undefined){
                         localStorage.setItem('cusType',this.type);
@@ -1484,6 +1486,7 @@ export default {
                     }
             },
             galleryAdd() {
+              console.log('galleryadd');
             
                     var date = new Date;
                     var s = date.getMilliseconds();
@@ -1538,11 +1541,13 @@ export default {
                 },
             onAccessEditorChange({ editor, html, text }) {
                 // console.log('editor change!', editor, html, text)
-                this.access_val = html
+                // this.access_val = html
+                this.hospital_info.access = html;
             },
             onDetailInfoEditorChange({ editor, html, text }) {
                 // console.log('editor change!', editor, html, text)
-                this.detail_info = jQuery(html).text();
+                // this.detail_info = jQuery(html).text();
+                this.hospital_info.details_info = jQuery(html).text();
             },
             galleryVideoAdd() {
                    this.video_arr.push({title:'',description:'',url:''});
@@ -1557,30 +1562,24 @@ export default {
                 this.isRotate4 = !this.isRotate4;
             },
             Create_Profile () {
+            this.gallery_list= [];
+            this.img_list = [];
+            this.video_list = [];
+                     
                 this.$loading(true);
-                    this.customer_info = [];
-                    var name = $('.customer-name').val();
-                    var email = $('.customer-email').text();
-                    var phone = $('.customer-phone').val();
-                    var address = $('#city').val();
-                    var township = $('#township').val();
-                    if(this.detail_info === undefined) {
-                        var detail_info = "";
-                    } else {
-                        var detail_info = this.detail_info;
-                    }
-                    //test
-                    // this.customer_info_push.push({name:name,email:email,phone:phone,address:address});
+       
 
-                    // var access = $('.access').val();
-                    var subject = $('.subject').val();
-                    var specialist = $('.specialist').val();
-                    // var details_info = $('.details-info').text();
-                    var close_day = $('.close-day').val();
-                    var website = $('.website').val();
-                    var congestion = $('.congestion').val();
-                    var latitude = $('#new_lat').val();
-                    var longitude = $('#new_long').val();
+                    if(this.hospital_info.details_info === undefined)
+                    {     
+                      this.hospital_info.details_info = "";
+                    }
+                  
+    
+                     var latitude = $('#new_lat').val();
+                     var longitude = $('#new_long').val();
+                    this.hospital_info.latitude = latitude;
+                    this.hospital_info.longitude = longitude;
+
                     localStorage.setItem('lat_num',latitude);
                     localStorage.setItem('lng_num',longitude);
 
@@ -1592,16 +1591,14 @@ export default {
                                 var file_name = file.name;
                                 pt.append(i ,file )
 
-                                        // let fd = new FormData();
-                                        // fd.append('file' ,file )
-                                        // fd.append('photo' ,file_name )
-                                        // fd.append('type', 'photo')
+                                     
                           } else {
                                   var file_name = img[i].getElementsByClassName('already-photo')[0].value;
                           }
                           this.img_list.push({type:"photo",photo:file_name,title:img[i].getElementsByClassName('title')[0].value, description:img[i].getElementsByClassName('description')[0].value});
                     }
-                    
+
+                   
                     // 1
                     this.axios.post('/api/hospital/movephoto', pt)
                         .then(response => {
@@ -1618,20 +1615,21 @@ export default {
                         }
                     this.gallery_list = this.img_list.concat(this.video_list);
 
-
-                    var s_features =[];
+                    this.chek_feature = [];
+                    var s_features =[];  
                         $.each($("input[name='special-features']:checked"), function(){
                             s_features.push($(this).val());
                         });
                         this.chek_feature.push({special_feature_id:s_features});
 
-                     var chek_facility = [];
-                     var facilities ;
+                      var chek_facility = [];
+                     //  var facilities ;
                         $.each($("input[name='facility']:checked"), function(){
                                chek_facility.push($(this).val());
                         });
-                        facilities = chek_facility.join(',');
-
+                        this.facilities = chek_facility.join(',');
+                    
+                    this.subjects = [];
                     var chek_subj = [];
                         $.each($("input[name='subject']:checked"), function(){
                                chek_subj.push($(this).val());
@@ -1646,6 +1644,7 @@ export default {
                     // this.stations.push({station_id:chek_station});
 
                      // Consultation
+                     this.schedule_list = [];
                     for(var j = 0; j< 2; j++) {
                         for(var i = 0; i< 7; i++) {
                                 if(j == 0) { this.shedule_am[i] = $('.form-control.am-from'+i+'').val() + '-' + $('.form-control.am-to'+i+'').val(); }
@@ -1654,20 +1653,43 @@ export default {
                         if(j == 0) { this.schedule_list.push(this.shedule_am); }
                         if(j == 1) { this.schedule_list.push(this.shedule_pm); }
                     }
+                   
 
-                    this.save_hospital_info.push({name:name,email:email,phone:phone,address:address,township:township,
-                        latitude:latitude,longitude:longitude,access:this.access_val,specialist:specialist,detail_info:detail_info,close_day:close_day,website:website,
-                        congestion:congestion,facilities:facilities,
-                        schedule_list:this.schedule_list,
-                        chek_feature:this.chek_feature,
-                        subjects:this.subjects,
-                        gallery_list:this.gallery_list
+            
+
+                    // this.save_hospital_info.push({name:name,email:email,phone:phone,address:address,township:township,
+                    //     latitude:latitude,longitude:longitude,access:this.access_val,specialist:specialist,detail_info:detail_info,close_day:close_day,website:website,congestion:congestion,
+                    //     facilities:facilities,
+                    //     schedule_list:this.schedule_list,
+                    //     chek_feature:this.chek_feature,
+                    //     subjects:this.subjects,
+                    //     gallery_list:this.gallery_list
+                    // });
+
+                  
+
+                    this.save_hospital_info = [];
+
+                        this.save_hospital_info.push({ customer_info:this.customer_info,hospital_info:this.hospital_info,facilities:this.facilities,
+                        schedule_list:this.schedule_list,chek_feature:this.chek_feature, subjects:this.subjects, gallery_list:this.gallery_list
                     });
-                      
+
+              
+                        
                     if(this.save_hospital_info.length > 0) {
                         this.axios
                         .post(`/api/hospital/profile/${this.cusid}`,this.save_hospital_info)
-                        .then((reponse) => {
+                        .then((response) => {
+
+                             this.img_arr = [];
+                             this.video_arr = [];
+                             this.gallery_list = [];
+                             this.img_arr = response.data.photo_list;
+                             this.video_arr = response.data.video_list;
+                             this.gallery_list = response.data.gallery_list;
+                     
+                            
+  
                             this.$swal({
                                 position: 'top-end',
                                 type: 'success',
@@ -1677,10 +1699,12 @@ export default {
                                 width: 250,
                                 height: 200,
                             }).then(response => {
-                                document.getElementById('nursing').click();
+                            
+                            
                             })
                             this.$loading(false);
                         }).catch(error=>{
+                        
                             this.$loading(false);
                             if(error.response.status == 422){
                                 this.save_hospital_info = 'error';
@@ -1728,7 +1752,7 @@ export default {
                                 if (post_data[0]['street'] == '') {
                                     this.city = post_data[0]['city'];
                                 } else {
-                                    this.city = post_data[0]['city'] + ' - ' + post_data[0]['street'];
+                                    this.city = post_data[0]['city']  + post_data[0]['street'];
                                 }
                                 // this.comments.selectedValue = pref;
                                 // this.comments.division = pref;

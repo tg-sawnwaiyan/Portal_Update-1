@@ -179,6 +179,7 @@ class HospitalProfileController extends Controller
     }
 
     public function movePhoto(Request $request) {
+     
         $request = $request->all();
         foreach ($request as $file){
             $destination = 'upload/hospital_profile/'.$file->getClientOriginalName();
@@ -187,36 +188,38 @@ class HospitalProfileController extends Controller
     }
     
     public function profileupdate($id,Request $request) {
+
+
+
         $request = $request->all();
         
-        print_r($request);
+    
         // Customer Profile
         $customer = Customer::find($id);
 
-        $customer->name = $request[0]['name'];
-        $customer->email = $request[0]['email'];
-        $customer->phone = $request[0]['phone'];
-        $customer->address = $request[0]['address'];
-        $customer->townships_id = $request[0]['township']; 
+        $customer->name = $request[0]['customer_info']['name'];
+        $customer->email = $request[0]['customer_info']['email'];
+        $customer->phone = $request[0]['customer_info']['phone']; 
+        $customer->address = $request[0]['customer_info']['address'];  
+        $customer->townships_id = $request[0]['customer_info']['townships_id'];
         $customer->save();
         // End 
 
         // Hospital Profile
-        $hospital = HospitalProfile::where('customer_id',$id);
-        $uploadData = array(
-            'access' => $request[0]['access'],
-            'specialist' =>  $request[0]['specialist'],
-            'details_info'=>  $request[0]['detail_info'],
-            'closed_day' =>  $request[0]['close_day'],
-            'facilities' =>  $request[0]['facilities'],
-            'website' =>  $request[0]['website'],
-            'congestion' =>  $request[0]['congestion'],
-            'latitude' =>  $request[0]['latitude'],
-            'longitude' =>  $request[0]['longitude']
-       );
-       $hospital->update($uploadData);
-       // End 
+         $hospital = HospitalProfile::where('customer_id',$id)->first();
 
+        $hospital->access = $request[0]['hospital_info']['access'];
+        $hospital->specialist =  $request[0]['hospital_info']['specialist'];
+        $hospital->details_info=  $request[0]['hospital_info']['details_info'];
+        $hospital->closed_day =  $request[0]['hospital_info']['closed_day'];
+        $hospital->facilities =  $request[0]['facilities'];
+        $hospital->website =  $request[0]['hospital_info']['website'];
+        $hospital->congestion =  $request[0]['hospital_info']['congestion'];
+        $hospital->latitude =  $request[0]['hospital_info']['latitude'];
+        $hospital->longitude =  $request[0]['hospital_info']['longitude'];   
+        $hospital->save();
+       // End 
+        
         // Schedule 
         $schedule = Schedule::where('customer_id', $id)
                     ->delete();
@@ -239,7 +242,7 @@ class HospitalProfileController extends Controller
             DB::table('schedule')->insert($data);
         // End
         }
-
+        
         // Special Feature
         $feature = SpecialFeaturesJunctions::where('customer_id', $id)
                     ->delete();
@@ -263,11 +266,12 @@ class HospitalProfileController extends Controller
             $new_subject->save();
         }
         // End
-
+        
         // Photo And Video 
         $gallery = Gallery::where('customer_id', $id)
                         ->delete();
-
+    
+                           
         for($i=0; $i<count($request[0]['gallery_list']); $i++) {
             $data = array(
                 'customer_id' => $id,
@@ -278,9 +282,32 @@ class HospitalProfileController extends Controller
                 'created_at' => date('Y/m/d H:i:s'),
                 'updated_at' => date('Y/m/d H:i:s')
             );
+            
             DB::table('galleries')->insert($data);
+            
         }
         // End
+
+       
+        //gallery
+        $photo_list = Gallery::where("customer_id",$id)
+                            ->where('type','=', 'photo')
+                            ->get()
+                            ->toArray();
+        
+    
+
+    
+        $video_list = Gallery::where("customer_id",$id)
+                            ->where('type','=', 'video')
+                            ->get()
+                            ->toArray();
+        //end
+   
+      
+        return response()->json(Array('customer_info'=>$request[0]['customer_info'],'hospital_info'=>$request[0]['hospital_info'],'schedule_list'=>$request[0]['schedule_list'],
+                                     'chek_feature'=>$request[0]['chek_feature'],"subjects"=>$request[0]['subjects'],'photo_list'=>$photo_list,'video_list'=>$video_list
+                                    ,'gallery_list'=>$request[0]['gallery_list']));
     }
 
 }

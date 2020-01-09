@@ -1171,6 +1171,7 @@ body::-webkit-scrollbar-thumb {
     position: fixed;
     width: 100%;
     height: 50px;
+    padding: 0;
     background: #d2571c !important;
     box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
     -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
@@ -1182,7 +1183,10 @@ body::-webkit-scrollbar-thumb {
 }
 
 .admin-header .nav-warp {
-    margin-left: 270px;
+    width: 100%;
+    max-width: 97%;
+    align-items: center;
+    /* margin-left: 270px; */
 }
 
 .admin-header .userprofile-name {
@@ -2700,7 +2704,7 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
 .content-all {
     width: 100%;
     min-height: 100vh;
-    padding-left: 280px;
+    padding-left: 230px;
 }
 
 .custom-sidebar ul.adminview-sidebar li a {
@@ -8777,9 +8781,9 @@ ul.nur-caro-card>li.list-group-item {
     .custom-sidebar:hover {
         width: 280px !important;
     }
-    .content-all {
+    /* .content-all {
         padding-left: 70px;
-    }
+    } */
     .custom-sidebar:hover .admin-tit span {
         display: block;
     }
@@ -9969,7 +9973,7 @@ ul.nur-caro-card>li.list-group-item {
     .hos-content {
         padding: 10px;
     }
-    .m-b-414{
+    .m-b-414 {
         margin-bottom: 10px;
     }
     div#sp-414-block .nur_date {

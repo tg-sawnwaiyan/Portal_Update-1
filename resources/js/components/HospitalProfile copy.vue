@@ -1715,7 +1715,7 @@ export default {
                                 if (post_data[0]['street'] == '') {
                                     this.city = post_data[0]['city'];
                                 } else {
-                                    this.city = post_data[0]['city'] + ' - ' + post_data[0]['street'];
+                                    this.city = post_data[0]['city']  + post_data[0]['street'];
                                 }
                                 // this.comments.selectedValue = pref;
                                 // this.comments.division = pref;
