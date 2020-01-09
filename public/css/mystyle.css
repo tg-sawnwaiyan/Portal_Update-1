@@ -781,8 +781,11 @@ body::-webkit-scrollbar-thumb {
 .login_btn {
     width: 100%;
     background: #d2571c !important;
-    color: white !important;
+    color: #f5f5f5!important;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12) !important;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 10px;
 }
 
 .login_btn:hover {

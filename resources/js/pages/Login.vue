@@ -169,6 +169,13 @@
 .admin_user_card .links a{
   color: #fff !important;
 }
+.admin_user_card .input-group-text{
+  background: #787a7b !important;
+  color: #f5f5f5 !important;
+}
+.admin_user_card .brand_logo_container{
+  border:10px solid #787a7b;
+}
 .customer_user_card{
   background-color: #fbfbfb !important;
 }
