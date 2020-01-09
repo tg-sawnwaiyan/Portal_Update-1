@@ -768,7 +768,7 @@ import Autocomplete from 'vuejs-auto-complete'
                     } else {
                         this.$swal({
                             title: "確認",
-                            text: "作成よろしいでしょうか。",
+                            text: "求人を作成してよろしいでしょうか。",
                             type: "info",
                             width: 350,
                             height: 200,
@@ -776,7 +776,7 @@ import Autocomplete from 'vuejs-auto-complete'
                             confirmButtonColor: "#6cb2eb",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
-                            confirmButtonText: "作成",
+                            confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
@@ -792,12 +792,12 @@ import Autocomplete from 'vuejs-auto-complete'
                                     this.$swal({
                                         position: "top-end",
                                         type: "success",
-                                        title: "作成されました。",
+                                        title: "求人を作成しました。",
                                         // text: "ファイルが作成されました。",
                                         // type: "success",
                                         width: 350,
                                         height: 200,
-                                        confirmButtonText: "はい",
+                                        confirmButtonText: "閉じる",
                                         confirmButtonColor: "#6cb2eb",
                                     });
 
@@ -962,7 +962,7 @@ import Autocomplete from 'vuejs-auto-complete'
                       if (this.$route.params.id){
                         this.$swal({
                         title: "確認",
-                        text: "更新よろしいでしょうか。",
+                        text: "求人を更新してよろしいでしょうか。",
                         type: "info",
                         width: 350,
                         height: 200,
@@ -970,7 +970,7 @@ import Autocomplete from 'vuejs-auto-complete'
                         confirmButtonColor: "#6cb2eb",
                         cancelButtonColor: "#b1abab",
                         cancelButtonTextColor: "#000",
-                        confirmButtonText: "更新",
+                        confirmButtonText: "はい",
                         cancelButtonText: "キャンセル",
                         confirmButtonClass:  "all-btn",
                         cancelButtonClass: "all-btn"
@@ -983,12 +983,12 @@ import Autocomplete from 'vuejs-auto-complete'
                            this.$loading(false);
                         
                                 this.$swal({
-                                    title: "更新されました。",
+                                    title: "求人を更新しました。",
                                     // text: "ファイルが更新されました。",
                                     type: "success",
                                     width: 350,
                                     height: 200,
-                                    confirmButtonText: "はい",
+                                    confirmButtonText: "閉じる",
                                     confirmButtonColor: "#6cb2eb"
                                 });
 
