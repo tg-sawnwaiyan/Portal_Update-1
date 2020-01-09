@@ -54,11 +54,13 @@
                 </label>
             </div>
             <div class="col-md-9 col-sm-12 form-right">
-                <input type="text" class="form-control float-left" id="furigana" placeholder="ふりがなを入力してください。" v-model="jobApply.last_name" @keyup="ChekChar" @focusout="focusLname" @change="aggreBtn"/>
-                <span class="float-left eg-txt"> 例）さがし たろう</span>
-                <span class="error m-l-30" v-if="focus_lname">※入力は必須です。</span>
-                <div v-if="errors.last_name" class="text-danger mt-2 ml-4">{{ errors.last_name }}</div> 
-                <div class="text-danger mt-2 ml-4 char-err"></div>
+                <div class="col-md-12 pad-free">
+                    <input type="text" class="form-control float-left" id="furigana" placeholder="ふりがなを入力してください。" v-model="jobApply.last_name" @keyup="ChekChar" @focusout="focusLname" @change="aggreBtn"/>
+                    <span class="float-left eg-txt"> 例）さがし たろう</span>
+                    <span class="error m-l-30" v-if="focus_lname">※入力は必須です。</span>
+                    <div v-if="errors.last_name" class="text-danger mt-2 ml-4">{{ errors.last_name }}</div>
+                </div>
+                <span class="float-left text-danger char-err p-l-30"></span>
             </div>
         </div>
         <div class="form-group m-0 row bd">
@@ -98,7 +100,7 @@
                 <label class="control control--radio">
                     <input type="radio" v-model="jobApply.gender" value="Male" /> 女性
                     <div class="control__indicator"></div>
-                </label>                
+                </label>
             </div>
         </div>
         <div class="form-group m-0 row bd">
@@ -162,10 +164,10 @@
                 </label>
             </div>
             <div class="col-md-9 col-sm-12 form-right">
-                <input type="text" class="form-control float-left" id="phone" v-model="jobApply.phone" placeholder="電話番号を入力してください。" @focusout="focusPhone" @change="aggreBtn" pattern="[0-9-]*" title="Please enter number only." maxlength="14"/>
+                <input type="text" class="form-control float-left" id="phone" v-model="jobApply.phone" placeholder="電話番号を入力してください。" @keyup="focusPhone" @change="aggreBtn" pattern="[0-9-]*" title="Please enter number only." maxlength="14"/>
                 <!-- <span class="error m-l-30" v-if="focus_mail">※入力は必須です。</span> -->
-                <span class="error m-l-30" v-if="ph_length || ph_error">※電話番号が正しくありません。もう一度入力してください。</span>
                 <span class="float-left eg-txt">例）0312345678（半角）</span>
+                 <span class="error m-l-10" v-if="ph_length || ph_error">※電話番号が正しくありません。もう一度入力してください。</span>
             </div>
         </div>
         <div class="form-group m-0 row bd">
@@ -466,10 +468,13 @@ export default {
     // this.axios.get("/api/getskill").then(response => {
     //   this.Job.fields = response.data;
     // });
+    console.log(this.$route.params.job_id)
     this.axios.get("/api/getjobtitle/" + this.jobApply.job_id).then(response => {
+        console.log(response.data)
       this.Job.title = response.data[0].title;
     });
     this.axios.get("/api/hospital/citiesList").then(response => {
+        console.log(response.data)
       this.city_list = response.data;
     });
     if(this.jobApply.first_name != '' && this.jobApply.last_name != '' && this.jobApply.selectedValue != 0 && this.jobApply.str_address != '' && this.jobApply.email != '' && this.jobApply.terms == true){
@@ -485,36 +490,38 @@ export default {
   },
   methods: {
     getPostal: function(event) {
-                if (this.jobApply.postal.length > 4) {
-                    var postal = this.jobApply.postal;
-                    this.axios
-                        .post('/api/hospital/postList/' + postal)
-                        .then(response => {
-                            var post_data = response.data.postal_list;
-                            var length = response.data.postal_list.length;
-                            if (length > 0) {
-                                var pref = post_data[0]['city_id'];
-                                if (post_data[0]['street'] == '') {
-                                    this.jobApply.str_address = post_data[0]['city'];
-                                } else {
-                                    this.jobApply.str_address = post_data[0]['city'] + ' - ' + post_data[0]['street'];
-                                }
-                                this.jobApply.selectedValue = pref;
-                                this.jobApply.division = pref;
-                                 $('#jsErrorMessage').html('<div class="error"></div>');
-                            } else {
-                                this.jobApply.str_address = '';
-                                this.jobApply.selectedValue = 0;
-                                $('#jsErrorMessage').html('<div class="error">郵便番号の書式を確認してください。</div>');
-                            }
-                        });
-                }
-            },
+        if (this.jobApply.postal.length > 4) {
+            var postal = this.jobApply.postal;
+            this.axios
+                .post('/api/hospital/postList/' + postal)
+                .then(response => {
+                    var post_data = response.data.postal_list;
+                    var length = response.data.postal_list.length;
+                    if (length > 0) {
+                        var pref = post_data[0]['city_id'];
+                        if (post_data[0]['street'] == '') {
+                            this.jobApply.str_address = post_data[0]['city'];
+                        } else {
+                            this.jobApply.str_address = post_data[0]['city'] + ' - ' + post_data[0]['street'];
+                        }
+                        this.jobApply.selectedValue = pref;
+                        this.jobApply.division = pref;
+                            $('#jsErrorMessage').html('<div class="error"></div>');
+                    } else {
+                        this.jobApply.str_address = '';
+                        this.jobApply.selectedValue = 0;
+                        $('#jsErrorMessage').html('<div class="error">郵便番号の書式を確認してください。</div>');
+                    }
+                });
+        }
+    },
+
     apply() {
 
-    this.$loading(true);
+        this.$loading(true);
 
       // $("#loader").css("display", "block");
+      console.log(this.jobApply)
       this.axios
         .post("/api/jobapply", this.jobApply)
         .then(response => {
@@ -537,7 +544,7 @@ export default {
     checkValidate() {
       console.log('this.error');
       console.log(this.errors);
-  
+
     //   if (this.jobApply.first_name) {
     //     this.errors.first_name = "";
     //   } else {
@@ -619,7 +626,7 @@ export default {
       }
     },
     focusMail: function(event) {
-     
+
         if(this.jobApply.email != '' ){
             this.focus_mail=false;
         }else{
@@ -632,8 +639,7 @@ export default {
         // }
     },
     aggreBtn: function(){
-        console.log('job',this.jobApply)
-        if(this.jobApply.first_name != '' && this.jobApply.last_name != '' && this.jobApply.selectedValue != 0 && this.jobApply.str_address != '' && this.jobApply.terms == true && (this.jobApply.email != '' || this.jobApply.phone)){
+        if($('#furigana').val().length > 0 && this.jobApply.first_name != '' && this.jobApply.last_name != '' && this.jobApply.selectedValue != 0 && this.jobApply.str_address != '' && this.jobApply.terms == true && (this.jobApply.email != '' || this.jobApply.phone)){
             this.btn_disable=false;
         }else{
             this.btn_disable=true;
@@ -643,17 +649,21 @@ export default {
         $('.char-err').text('');
         var input_val = $('#furigana').val();
         var code = 0;
-               
         code = input_val.charCodeAt();
-        if ((12448<= code && code <= 12543) || (19968<= code && code <= 19893)) {
-                        
-        } else {
-          $('.char-err').text('カタカナのみを書いてください!');
+        // (12448<= code && code <= 12543) || (19968<= code && code <= 19893)
+        // 12540
+        if (!(code > 12352 && code < 12447)) {
+            $('.char-err').text('ひらがなで入力してください!');
+            this.btn_disable = true;
         }
-        
+        else if($('#furigana').val().length > 0){
+            this.btn_disable = false;
+        }
+
       },
-   
-    // isNumberOnly: function(event) {     
+
+
+    // isNumberOnly: function(event) {
     //     var input_data = $('#phone').val();
     //     var code = 0;
     //     code = input_data.charCodeAt();
@@ -668,15 +678,15 @@ export default {
     //         this.ph_error = true;
     //     }
 
-                // if(!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105) 
-                //     && event.keyCode != 8 && event.keyCode != 46 && !(event.keyCode >= 37 && event.keyCode <= 40)) 
+                // if(!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105)
+                //     && event.keyCode != 8 && event.keyCode != 46 && !(event.keyCode >= 37 && event.keyCode <= 40))
                 // {
-                //     // event.preventDefault();                    
+                //     // event.preventDefault();
                 //     this.ph_error = true;
                 // }
                 // else{
                 //     this.ph_error = false;
-                    
+
                 // }
            // }
   }

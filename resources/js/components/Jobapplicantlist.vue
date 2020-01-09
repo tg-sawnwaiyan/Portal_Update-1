@@ -34,7 +34,7 @@
 
                                         <th>街路住所</th>
 
-                                        <th>自宅住所</th>
+                                        <!-- <th>自宅住所</th> -->
 
                                         <th>電話番号</th>
 
@@ -56,7 +56,7 @@
 
                                         <th>{{jobapply.street_address}}</th>
 
-                                        <th>{{jobapply.home_address}}</th>
+                                        <!-- <th>{{jobapply.home_address}}</th> -->
 
                                         <th>{{jobapply.phone}}</th>
 
