@@ -203,6 +203,7 @@ class JobController extends Controller
         $job->user_id = 1;
         $job->recordstatus = 1;
         $job->zipcode_id = $request->input('zipcode_id');
+        $job->township_id = $request->input('str_address');
 
         // $query = "SELECT townships.id FROM `townships` INNER JOIN zipcode on townships.township_name = zipcode.city
         //     WHERE zipcode.id = " . $request->input('zipcode_id');
@@ -213,12 +214,12 @@ class JobController extends Controller
         // ->select('jobs.*','customers.email')
         // ->where('jobs.id', '=', $jobapply->job_id)
         // ->get();
-        $tid = DB::table('townships')
-             ->join('zipcode','zipcode.city','=','townships.township_name')
-             ->select('townships.id')
-              ->where('zipcode.id','=',$request->input('zipcode_id'))
-              ->value('townships.id');
-        $job->township_id = $tid;
+        // $tid = DB::table('townships')
+        //      ->join('zipcode','zipcode.city','=','townships.township_name')
+        //      ->select('townships.id')
+        //       ->where('zipcode.id','=',$request->input('zipcode_id'))
+        //       ->value('townships.id');
+        // $job->township_id = $tid;
        
         $job->save();
         return $job;
@@ -235,14 +236,20 @@ class JobController extends Controller
     {
 
         // $job = Job::find($id);
+        // $sql = "SELECT jobs.*, zipcode.id as zip_id, zipcode.zip7_code, zipcode.pref as cityname,zipcode.city_id, zipcode.city as township, zipcode.street from jobs inner join zipcode on jobs.zipcode_id = zipcode.id WHERE jobs.id = $id";
         $sql = "SELECT jobs.*, zipcode.id as zip_id, zipcode.zip7_code, zipcode.pref as cityname,zipcode.city_id, zipcode.city as township, zipcode.street from jobs inner join zipcode on jobs.zipcode_id = zipcode.id WHERE jobs.id = $id";
         $job = DB::select($sql);
 
-        $township = "SELECT id from townships where township_name like '" .$job[0]->township ."'";
-        $township_id = DB::select($township);
+        // if($job[0]->township != null){
+        //     $township = "SELECT id from townships where township_name like '" .$job[0]->township ."'";
+        //     $township_id = DB::select($township);
+        // }
+        // else{
+        //     $township_id = null;
+        // }
         
 
-        return response()->json(Array("job"=>$job,"township_id"=>$township_id));
+        return response()->json(Array("job"=>$job));
     }
 
 
@@ -299,6 +306,7 @@ class JobController extends Controller
             $job->user_id = 1;
             $job->recordstatus = 1;
             $job->zipcode_id = $request->input('zipcode_id');
+            $job->township_id = $request->input('str_address');
 
             // $query = "SELECT townships.id FROM `townships` INNER JOIN zipcode on townships.township_name = zipcode.city
             //     WHERE zipcode.id = " . $request->input('zipcode_id');
@@ -309,12 +317,12 @@ class JobController extends Controller
             // ->select('jobs.*','customers.email')
             // ->where('jobs.id', '=', $jobapply->job_id)
             // ->get();
-            $tid = DB::table('townships')
-                ->join('zipcode','zipcode.city','=','townships.township_name')
-                ->select('townships.id')
-                ->where('zipcode.id','=',$request->input('zipcode_id'))
-                ->value('townships.id');
-            $job->township_id = $tid;
+            // $tid = DB::table('townships')
+            //     ->join('zipcode','zipcode.city','=','townships.township_name')
+            //     ->select('townships.id')
+            //     ->where('zipcode.id','=',$request->input('zipcode_id'))
+            //     ->value('townships.id');
+            // $job->township_id = $tid;
         
             $job->save();
 
