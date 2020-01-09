@@ -253,7 +253,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                 },
                 {
                     href: '/occupationlist',
-                    title: '職種設定',
+                    title: '求人職種設定',
                     icon: 'fa fa-suitcase',
                     hidden: this.$auth.check(1)
                 },
