@@ -252,7 +252,7 @@ export default {
     }, 
     getPostal: function(event) {
                 this.status = 1;
-                if (this.comment.postal.length > 4) {
+                if (this.comment.postal.length > 5) {
                     var postal = this.comment.postal;
                     this.axios
                         .post('/api/hospital/postList/' + postal)

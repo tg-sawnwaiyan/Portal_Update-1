@@ -291,7 +291,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                     href: '/jobapplicantlist',
                     title: '求人応募者一覧',
                     icon: 'fa fa-tasks',
-                    hidden: this.$auth.check(2)
+                    // hidden: this.$auth.check(2)
                 },
                 {
                     title: 'ログアウト',
@@ -328,7 +328,7 @@ created() {
         // })
         this.visit = 'true';
         localStorage.setItem('visit',this.visit);
-        this.$router.push({name: 'Unauthorized'});
+        this.$router.push({name: 'Unauthorized',params: {reload:"reload"}});
         }
         
         return response

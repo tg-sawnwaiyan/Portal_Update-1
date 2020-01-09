@@ -1716,7 +1716,7 @@ export default {
             }
             },
             getPostal: function(event) {
-                if (this.postal.length > 4) {
+                if (this.postal.length > 5) {
                     var postal = this.postal;
                     this.axios
                         .post('/api/hospital/postList/' + postal)
