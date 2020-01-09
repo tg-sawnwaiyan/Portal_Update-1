@@ -1250,7 +1250,6 @@ export default {
                                     width: 250,
                                     height: 200,
                                 }).then(response => {
-                                    // document.getElementById('nursing').click();
                                     this.initialCall();
                                     
                                 })
