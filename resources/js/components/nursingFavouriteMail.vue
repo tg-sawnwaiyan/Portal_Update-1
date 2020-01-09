@@ -456,7 +456,7 @@ import DatePicker from 'vue2-datepicker';
                                 if (post_data[0]['street'] == '') {
                                     this.comments.city = post_data[0]['city'];
                                 } else {
-                                    this.comments.city = post_data[0]['city'] + ' ' + post_data[0]['street'];
+                                    this.comments.city = post_data[0]['city'] + post_data[0]['street'];
                                 }
                                 this.comments.selectedValue = pref;
                                 this.comments.division = pref;
