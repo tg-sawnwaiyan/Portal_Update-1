@@ -4,11 +4,15 @@
 		<div>
 			<br>
 			<span style="font-size: 40px;font-weight: bold;color: #d2571c;text-shadow: 3px 4px #ccc;">LOGO <span style="font-size: 30px; color: #f57e46;">HERE</span></span>
+			<br>
+			<h5 style="color:#3e4348;font-size: 12px;margin-bottom: 30px;font-weight: bold;text-align: left;">
+			{{$getCustomer->name}} 様
+			</h5>
 			<h5 style="color:#3e4348;font-size: 29px;margin-bottom: 30px;margin-top: 30px;font-weight: bold;text-align: center;">
-			医療介護ポータルの事業者新規の確認メールです。
+			医療介護ポータルの事業者新規登録確認メールです。
 			</h5>
 			<p style="color:#000;">
-			こちらのメールアドレスが登録を行うメールアドレスとなります。 {{ $getCustomer->email }}
+			こちらのメールアドレスで登録を行いました。 {{ $getCustomer->email }}
 			
 			</p>
 			<span style="background: #fbaa84;">

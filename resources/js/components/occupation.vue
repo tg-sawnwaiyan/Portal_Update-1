@@ -79,7 +79,7 @@ export default {
                         this.selectedValue = response.data.parent;
                         this.occupationList.name = response.data.name;
                         this.header = ' 求人職種編集';
-                        this.subtitle = '更新';
+                        this.subtitle = '保存';
                         return this.header;
                         return this.subtitle;
                     }

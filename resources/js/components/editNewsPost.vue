@@ -122,7 +122,7 @@
                             </div>
 
                             <div class="form-group">
-                                <span class="btn main-bg-color white all-btn" @click="checkValidate()"> 更新</span>
+                                <span class="btn main-bg-color white all-btn" @click="checkValidate()"> 保存</span>
                                 <router-link :to="{name: 'news_list'}" class="btn btn-danger all-btn">キャンセル</router-link>
                             </div>
                         </form>
