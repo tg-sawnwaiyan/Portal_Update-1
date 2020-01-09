@@ -14,7 +14,7 @@
         <div class="form-group form-group-wrapper">
 
                 <label class="heading-lbl">メールアドレス customer_info<span class="error">*</span></label>
-                <label class=" col-10 float-right customer-email"> {{customer_info.email}} </label>
+                <label class="col-10 float-right customer-email"> {{customer_info.email}} </label>
 
                 <!-- <input type="text" class="form-control customer-email col-10 float-right"  placeholder="Email" v-model="customer_info.email"> -->
         </div>
@@ -1567,39 +1567,19 @@ export default {
             this.video_list = [];
                      
                 this.$loading(true);
-                    // this.customer_info = [];
-                    // var name = $('.customer-name').val();
-                    // var email = $('.customer-email').text();
-                    // var phone = $('.customer-phone').val();
-                    // var address = $('#city').val();
-                    // var township = $('#township').val();
-                    // if(this.detail_info === undefined) {
-                    //     var detail_info = "";
-                    // } else {
-                    //     var detail_info = this.detail_info;
-                    // }
+       
 
                     if(this.hospital_info.details_info === undefined)
-                    {
+                    {     
                       this.hospital_info.details_info = "";
                     }
                   
-                    ///////////////////////////// customer_info
-
-                    // var subject = $('.subject').val();
-                    // var specialist = $('.specialist').val();
-                
-                    // var close_day = $('.close-day').val();
-                    // var website = $('.website').val();
-                    // var congestion = $('.congestion').val();
+    
                      var latitude = $('#new_lat').val();
                      var longitude = $('#new_long').val();
                     this.hospital_info.latitude = latitude;
                     this.hospital_info.longitude = longitude;
 
-                  
-
-                    ////////////////////hospital_info
                     localStorage.setItem('lat_num',latitude);
                     localStorage.setItem('lng_num',longitude);
 
@@ -1611,10 +1591,7 @@ export default {
                                 var file_name = file.name;
                                 pt.append(i ,file )
 
-                                        // let fd = new FormData();
-                                        // fd.append('file' ,file )
-                                        // fd.append('photo' ,file_name )
-                                        // fd.append('type', 'photo')
+                                     
                           } else {
                                   var file_name = img[i].getElementsByClassName('already-photo')[0].value;
                           }
@@ -1691,16 +1668,10 @@ export default {
 
                   
 
-                      this.save_hospital_info = [];
+                    this.save_hospital_info = [];
 
-                      this.save_hospital_info.push({
-                        customer_info:this.customer_info,
-                        hospital_info:this.hospital_info,
-                        facilities:this.facilities,
-                        schedule_list:this.schedule_list,
-                        chek_feature:this.chek_feature,
-                        subjects:this.subjects,
-                        gallery_list:this.gallery_list
+                        this.save_hospital_info.push({ customer_info:this.customer_info,hospital_info:this.hospital_info,facilities:this.facilities,
+                        schedule_list:this.schedule_list,chek_feature:this.chek_feature, subjects:this.subjects, gallery_list:this.gallery_list
                     });
 
               
@@ -1710,21 +1681,9 @@ export default {
                         .post(`/api/hospital/profile/${this.cusid}`,this.save_hospital_info)
                         .then((response) => {
 
-                            //  this.customer_info = [];
-                            //  this.hospital_info = [];
-                            //  this.schedule_list = [];
-                            //  this.subjects = [];
-                            //  this.facilities = [];
-                            //  this.chek_feature = [];
                              this.img_arr = [];
                              this.video_arr = [];
                              this.gallery_list = [];
-                            //  this.customer_info = response.data.customer_info;
-                            //  this.hospital_info = response.data.hospital_info;
-                            //  this.schedule_list = response.data.schedule_list;
-                            //  this.chek_feature = response.data.chek_feature;
-                            //  this.subjects = response.data.subjects;
-                            //  this.facilities = response.data.hospital_info['facilities'];
                              this.img_arr = response.data.photo_list;
                              this.video_arr = response.data.video_list;
                              this.gallery_list = response.data.gallery_list;
@@ -1741,8 +1700,7 @@ export default {
                                 height: 200,
                             }).then(response => {
                             
-                                // document.getElementById('nursing').click();
-
+                            
                             })
                             this.$loading(false);
                         }).catch(error=>{

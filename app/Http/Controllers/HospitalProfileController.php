@@ -197,12 +197,6 @@ class HospitalProfileController extends Controller
         // Customer Profile
         $customer = Customer::find($id);
 
-        // $customer->name = $request[0]['name'];
-        // $customer->email = $request[0]['email'];
-        // $customer->phone = $request[0]['phone'];
-        // $customer->address = $request[0]['address'];
-        // $customer->townships_id = $request[0]['township']; 
-
         $customer->name = $request[0]['customer_info']['name'];
         $customer->email = $request[0]['customer_info']['email'];
         $customer->phone = $request[0]['customer_info']['phone']; 
@@ -213,8 +207,7 @@ class HospitalProfileController extends Controller
 
         // Hospital Profile
          $hospital = HospitalProfile::where('customer_id',$id)->first();
-        // $hospital = new HospitalProfile;
-     
+
         $hospital->access = $request[0]['hospital_info']['access'];
         $hospital->specialist =  $request[0]['hospital_info']['specialist'];
         $hospital->details_info=  $request[0]['hospital_info']['details_info'];
@@ -223,24 +216,8 @@ class HospitalProfileController extends Controller
         $hospital->website =  $request[0]['hospital_info']['website'];
         $hospital->congestion =  $request[0]['hospital_info']['congestion'];
         $hospital->latitude =  $request[0]['hospital_info']['latitude'];
-        $hospital->longitude =  $request[0]['hospital_info']['longitude'];
-        
+        $hospital->longitude =  $request[0]['hospital_info']['longitude'];   
         $hospital->save();
-    
-    //     $uploadData = array(
-    //         'access' => $request[0]['hospital_info']['access'],
-    //         'specialist' =>  $request[0]['hospital_info']['specialist'],
-    //         'details_info'=>  $request[0]['hospital_info']['details_info'],
-    //         'closed_day' =>  $request[0]['hospital_info']['closed_day'],
-    //         'facilities' =>  $request[0]['facilities'],
-    //         'website' =>  $request[0]['hospital_info']['website'],
-    //         'congestion' =>  $request[0]['hospital_info']['congestion'],
-    //         'latitude' =>  $request[0]['hospital_info']['latitude'],
-    //         'longitude' =>  $request[0]['hospital_info']['longitude']
-    //    );
-    //    $hospital->update($uploadData);
-      
-    
        // End 
         
         // Schedule 
@@ -309,23 +286,23 @@ class HospitalProfileController extends Controller
             DB::table('galleries')->insert($data);
             
         }
-    
-
         // End
 
        
-            $photo_list = Gallery::where("customer_id",$id)
-                                ->where('type','=', 'photo')
-                                ->get()
-                                ->toArray();
-          
+        //gallery
+        $photo_list = Gallery::where("customer_id",$id)
+                            ->where('type','=', 'photo')
+                            ->get()
+                            ->toArray();
         
     
-     
-            $video_list = Gallery::where("customer_id",$id)
-                                ->where('type','=', 'video')
-                                ->get()
-                                ->toArray();
+
+    
+        $video_list = Gallery::where("customer_id",$id)
+                            ->where('type','=', 'video')
+                            ->get()
+                            ->toArray();
+        //end
    
       
         return response()->json(Array('customer_info'=>$request[0]['customer_info'],'hospital_info'=>$request[0]['hospital_info'],'schedule_list'=>$request[0]['schedule_list'],
