@@ -656,9 +656,6 @@ export default {
             $('.char-err').text('ひらがなで入力してください!');
             this.btn_disable = true;
         }
-        else if($('#furigana').val().length > 0){
-            this.btn_disable = false;
-        }
 
       },
 

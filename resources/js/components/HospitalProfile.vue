@@ -6,21 +6,21 @@
 
         <div class="form-group form-group-wrapper">
 
-                <label class="heading-lbl">施設名称 customer_info<span class="error">*</span></label>
+                <label class="heading-lbl">施設名称 <span class="error">*</span></label>
 
                 <input type="text" class="form-control customer-name col-10 float-right" placeholder="施設名称を入力してください。" v-model="customer_info.name">
         </div>
 
         <div class="form-group form-group-wrapper">
 
-                <label class="heading-lbl">メールアドレス customer_info<span class="error">*</span></label>
+                <label class="heading-lbl">メールアドレス <span class="error">*</span></label>
                 <label class="col-10 float-right customer-email"> {{customer_info.email}} </label>
 
                 <!-- <input type="text" class="form-control customer-email col-10 float-right"  placeholder="Email" v-model="customer_info.email"> -->
         </div>
         <div class="form-group form-group-wrapper d-flex">
 
-                <label class="heading-lbl col-2 pad-free">電話番号 customer_info<span class="error">*</span></label>
+                <label class="heading-lbl col-2 pad-free">電話番号 <span class="error">*</span></label>
                 <div class="col-10 row">
                 <input type="text" class="form-control customer-phone col-12" id="phone" placeholder="Phone" v-model="customer_info.phone" pattern="[0-9-]*"  @focusout="focusPhone"  maxlength="14" title="Please enter number only.">
                 <!-- v-on:keyup="isNumberOnly" -->
@@ -194,7 +194,7 @@
             <tr>
                 <td>
                     <div class="form-group">
-                        <label  class="heading-lbl col-2 pad-free">診療科目 Subjects</label>
+                        <label  class="heading-lbl col-2 pad-free">診療科目 </label>
                         <span class="btn all-btn main-bg-color" style="min-width: 0px;" @click="clinicalSubject()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate1}"></i></span>
                         <div class="col-md-10 float-right clinical-subject-toggle-div toggle-div m-t-10">
                             <div class="row"> <div v-for="subj in clinical_subj" :key="subj.id" class="form-check form-check-inline col-sm-3">
@@ -237,7 +237,7 @@
         </div>
         <table class="table table-bordered table-wrapper">
           <tr>
-                  <td class="width17" style="border:none;"> <label class="heading-lbl pad-free"> 医院からのお知らせ hospital_info<span class="error">*</span></label></td>
+                  <td class="width17" style="border:none;"> <label class="heading-lbl pad-free"> 医院からのお知らせ <span class="error">*</span></label></td>
                   <td style="border:none;">
                           <!-- <textarea name="feature" id="" cols="30" rows="10" ></textarea> -->
                           <quill-editor  ref="myQuilEditor" name="detailsinfo" class="details-info" @change="onDetailInfoEditorChange($event)" v-model="hospital_info.details_info" :options="editorOption"/>
@@ -255,7 +255,7 @@
 
             <td>
 
-              <label class="heading-lbl col-2 pad-free">診療時間 schedule_arr</label>
+              <label class="heading-lbl col-2 pad-free">診療時間 </label>
 
               <span
 
@@ -909,7 +909,7 @@
 
         <div class="form-group form-group-wrapper row ml-0 mr-0">
 
-          <label class="heading-lbl col-2 pad-free">休診日 hospital_info</label>
+          <label class="heading-lbl col-2 pad-free">休診日 </label>
 
           <textarea
 
@@ -933,7 +933,7 @@
 
               <div class="form-group">
 
-                <label class="heading-lbl col-2 pad-free">施設情報 facilities</label>
+                <label class="heading-lbl col-2 pad-free">施設情報 </label>
 
                 <span
 
@@ -991,7 +991,7 @@
 
                 <label class="heading-lbl col-2 pad-free">
 
-                  こだわりの特長 chek_feature
+                  こだわりの特長 
 
                   <span class="error">*</span>
 

@@ -547,7 +547,7 @@
                                 <div class="select" id="filter" style="justify-content:space-between">
                                     <h5 class="profile_header" style="border-left: 5px solid #ff9563;">現在の検索条件</h5>
                                     <div class="row">
-                                    <div class="col-lg-5 col-md-4 m-b-414">
+                                    <div class="col-lg-5 col-md-6 m-b-414">
                                         <div><p class="nurs-sub-heading">地域で絞り込む</p></div>
                                         <div class="card search-border-dash">
 
@@ -563,7 +563,7 @@
                                         </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-5 col-md-4 m-b-414">
+                                    <div class="col-lg-5 col-md-6 m-b-414">
                                         <div><p class="nurs-sub-heading">料金で絞り込む</p></div>
                                         <div class="card search-border-dash">
                                         <div class="card-body">
@@ -610,7 +610,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-2 col-md-4 m-b-414 align-self-center">
+                                    <div class="col-lg-2 col-md-4 m-b-414 pc-768 align-self-center">
                                         <span class="btn seemore-btn select" style="width:100%;padding:20px 10px;" id="showSearchMap" @click="showSearchMap"><i class="fas fa-exchange-alt"></i>&nbsp;都道府県を再選択する</span>
                                     </div>
                                     </div>

@@ -184,6 +184,7 @@ export default {
 
                     },
                     selectedValue:0,
+                     mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
             }
 
         },
@@ -211,7 +212,7 @@ export default {
                         // console.log('null');
                         this.errors.title = "口コミタイトルが必須です。";
                     }
-                    if (this.comments.email) {
+                    if (this.comments.email && this.mail_reg.test(this.comments.email ) ){
                         this.errors.email = "";
                     } else {
                         this.errors.email = "メールアドレスが必須です。";
