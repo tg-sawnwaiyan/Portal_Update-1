@@ -8,59 +8,13 @@
             <div class="sidebar-scroll container-fluid">
                 <div class="row"> 
                     <asideMenu v-if="$auth.check()"></asideMenu>
+                    <!-- <div v-if="$auth.check()">
+                            <sidebar-menu :menu="menu" v-if="visit == 'false'" :collapsed="collapsed" @toggle-collapse="onCollapse"  @item-click="onItemClick"/>
+                        </div>  -->
                     <!-- <div id="menu-overlay" @click="menuToggle()"></div> -->
                 <!-- login ================================================================================================== -->
-                    <div v-if="$auth.check() && visit == 'false'" id="content-all" class="content-all">                 
-                        <div class="maintab-content" id="v-pills-tabContent">
-                            <!-- <span @click="menuToggle()">Click</span> -->
-                            <!--section one-->
-                            <section>
-                                <div class="container-fluid main-wrapper">
-                                    <!--slider for ads-->
-                                    <div class="col-md-auto pad-free">
-
-                                    </div>
-                                        <!--end slider for ads-->
-                                    <div class="row justify-content-md-center">
-                                        <div class="col-12 col-lg-12 col-md-10 tab p0-480">
-                                        <!-- vue component -->
-                                            <router-view :key="$route.fullPath"></router-view>
-                                        </div>
-                                        <div class="col-12 col-lg-2 col-md-4" style="display:none">
-                                            <!--related news-->
-                                            <div class="m-b-10 ads-card">
-                                                <!--ads slider-->
-                                                <div style="display: block; overflow: hidden;border-radius:0.25rem;">
-                                                    <div id="slider2_container" style="position: relative; float: left; top: 0px; left: 0px; width:167px; height:100%; overflow: hidden;">
-                                                    <!-- Slides Container -->
-                                                        <div data-u="slides" style="position: absolute; left: 0px; top: 0px; width: 167px; height: 100%; overflow: hidden;" class="side-ad-slider"> </div>
-                                                    <!-- Trigger -->
-                                                    </div>
-                                                </div>
-                                                <!--end ads slider-->
-                                            </div>
-                                            <div class="card m-b-10 ads-card">
-                                                <div class="card-body">
-                                                    <h5 class="card-title text-center">二つ目の広告</h5>
-                                                    <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
-                                                    <img src="/images/logo_japanese_horizontal.png" alt="" class="img-responsivie" style="width:100%">
-                                                </div>
-                                            </div>
-                                            <div class="card m-b-10 ads-card2">
-                                                <div class="card-body today">
-                                                    <ul id="menu" class="list-group list-group-flush"> </ul>
-                                                </div>
-                                            </div>
-                                            <!-- end related news-->
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="container-fluid footer footer-div">
-                                        <span>Copyright©Management Partners Corp.All Rights Reserved. </span>
-                                </div>
-                            </section>
-                        </div>
-                    </div>
+                
+                   
 
                 <!-- not login================================================================================================================ -->
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad-free"  v-if="!$auth.check() || visit == 'true'" id="content-all">
@@ -167,6 +121,79 @@
         </div>
     </div>
 </template>
+<style>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s ease-in;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+.slide-enter-active {
+   -moz-transition-duration: 0.3s;
+   -webkit-transition-duration: 0.3s;
+   -o-transition-duration: 0.3s;
+   transition-duration: 0.3s;
+   -moz-transition-timing-function: ease-in;
+   -webkit-transition-timing-function: ease-in;
+   -o-transition-timing-function: ease-in;
+   transition-timing-function: ease-in;
+   transition: transform 0.5s ease;
+}
+
+.slide-leave-active {
+   -moz-transition-duration: 0.3s;
+   -webkit-transition-duration: 0.3s;
+   -o-transition-duration: 0.3s;
+   transition-duration: 0.3s;
+   -moz-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+   -webkit-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+   -o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+
+.slide-enter-to, .slide-leave {
+   max-height: 100vh;
+   overflow: hidden;
+}
+
+.slide-enter, .slide-leave-to {
+   overflow: hidden;
+   max-height: 100vh;
+  transform: translateX(-100%);
+  transition: all 0.5s ease-in 0s;
+}
+.v-sidebar-menu {
+    top: 50px;
+    bottom: 0;
+    height: auto !important; 
+    background-color: #222d32;
+}
+.v-sidebar-menu.vsm_expanded{
+    max-width: 280px !important;   
+}
+.v-sidebar-menu .vsm--header {
+    font-size: 18px;
+    background: #2c3b41;
+}
+.v-sidebar-menu .vsm--link {
+    font-size: 15px;
+}
+/* .sidebar-scroll {
+    padding-left: 280px;
+} */
+.content-all.collapsed {
+    padding-left: 50px;
+}
+/* .v-sidebar-menu .vsm--link {
+    border-bottom: 1px solid #485163;
+}
+.v-sidebar-menu .vsm--link.vsm--link_hover {
+    border-bottom: 0px solid #485163;
+} */
+</style>
 <script>
   import HeaderMenu from './components/menu/Menu.vue'
   import AuthHeaderMenu from './components/menu/AuthMenu.vue'
@@ -178,6 +205,9 @@
         inner : 'main-content',
         full: 'full-content',
         myBtnScroll: false,
+        status:false,
+        
+        
       }
     },
     components: {
@@ -188,6 +218,39 @@
     created() {
         console.log("created")
         document.addEventListener('scroll', this.handleScroll);
+
+        console.log("aside "+this.$auth.check())
+    console.log("aside visit "+this.visit)
+    axios.interceptors.response.use((response) => {
+        // console.log(response.data)
+        if((response.data.status == "Token is Expired" || response.data.status == "Token is Invalid") && this.status == false ){
+
+            this.status = true
+        // Swal.fire({
+        //     title: 'セッションの有効期限が切れています。！',
+            // text: "お手数ですがログイン画面より再度ログインしてください。",
+        //     icon: 'warning',
+        //     showCancelButton: false,
+        //     confirmButtonColor: '#3085d6',
+        //     cancelButtonColor: '#d33',
+        //     confirmButtonText: 'OK'
+        // }).then((result) => {  
+        //     // console.log()
+            
+        //     if (result.value) {
+        //         this.$refs.myid.click();
+        //         response.data.status = "logout success"
+
+        //     }
+        // })
+        this.visit = 'true';
+        localStorage.setItem('visit',this.visit);
+        this.$router.push({name: 'Unauthorized'});
+        }
+        
+        return response
+
+        })
     },
     destroyed () {
         document.removeEventListener('scroll', this.handleScroll);
@@ -266,7 +329,16 @@
         topFunction() {
             $("html, body").animate({ scrollTop: 0 }, "slow");
 	        return false;
-        }  
+        },
+        onItemClick(event, item){
+            if(item.title == 'ログアウト'){
+                this.$auth.logout();
+            }
+        },
+        onCollapse (collapsed) {
+      console.log(collapsed)
+      this.collapsed = collapsed
+    }
     }
 
 

@@ -12,23 +12,39 @@ class JobController extends Controller
 
     public function index()
     {
-      
-        $query = "SELECT jobs.* ,customers.type_id,      
-        (CASE customers.type_id WHEN '2' THEN CONCAT((500000+customers.id),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((200000+customers.id),'-',LPAD(jobs.id, 4, '0')) END) as jobid
-        FROM `jobs`
-        JOIN customers ON jobs.customer_id = customers.id
-        LEFT JOIN job_applies ON jobs.id = job_applies.job_id
-        WHERE customers.recordstatus=1 and jobs.customer_id = ".auth()->user()->customer_id." GROUP BY jobs.id ORDER BY jobs.id DESC";
-        $profilejob = DB::select($query);
+        if( auth()->user()->role == 2){
+            $query = "SELECT jobs.* ,customers.type_id,      
+            (CASE customers.type_id WHEN '2' THEN CONCAT((500000+customers.id),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((200000+customers.id),'-',LPAD(jobs.id, 4, '0')) END) as jobid
+            FROM `jobs`
+            JOIN customers ON jobs.customer_id = customers.id
+            LEFT JOIN job_applies ON jobs.id = job_applies.job_id
+            WHERE customers.recordstatus=1 GROUP BY jobs.id ORDER BY jobs.id DESC";
+            $profilejob = DB::select($query);
 
-        foreach($profilejob as $jobs){
-            $job_id = $jobs->id;
-            $jobapplies =  DB::table('job_applies')->join('jobs','job_applies.job_id','=','jobs.id')
-                           ->where('job_applies.job_id','=',$job_id)->count();
-            $jobs->count = $jobapplies;
+            foreach($profilejob as $jobs){
+                $job_id = $jobs->id;
+                $jobapplies =  DB::table('job_applies')->join('jobs','job_applies.job_id','=','jobs.id')
+                            ->where('job_applies.job_id','=',$job_id)->count();
+                $jobs->count = $jobapplies;
+            }
+            return response()->json(array('profilejob'=>$profilejob));
+        }else{
+            $query = "SELECT jobs.* ,customers.type_id,      
+            (CASE customers.type_id WHEN '2' THEN CONCAT((500000+customers.id),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((200000+customers.id),'-',LPAD(jobs.id, 4, '0')) END) as jobid
+            FROM `jobs`
+            JOIN customers ON jobs.customer_id = customers.id
+            LEFT JOIN job_applies ON jobs.id = job_applies.job_id
+            WHERE customers.recordstatus=1 and jobs.customer_id = ".auth()->user()->customer_id." GROUP BY jobs.id ORDER BY jobs.id DESC";
+            $profilejob = DB::select($query);
+
+            foreach($profilejob as $jobs){
+                $job_id = $jobs->id;
+                $jobapplies =  DB::table('job_applies')->join('jobs','job_applies.job_id','=','jobs.id')
+                            ->where('job_applies.job_id','=',$job_id)->count();
+                $jobs->count = $jobapplies;
+            }
+            return response()->json(array('profilejob'=>$profilejob));
         }
-        return response()->json(array('profilejob'=>$profilejob));
-
     }
 
     public function create()
@@ -36,12 +52,12 @@ class JobController extends Controller
 
     }
 
-    // public function getOccupationList()
-    // {
-    //     $occupationlist = Occupations::select('id','name')->get()->toArray();
-
-    //     return response()->json($occupationlist);
-    // }
+    public function getOccupationList()
+    {
+        // $occupationlist = Occupations::select('id','name')->get()->toArray();
+        $occupationList = Occupations::select('id','name')->where('parent','!=',0)->get()->toArray();
+        return response()->json($occupationList);
+    }
 
     public function getSkill()
     {
@@ -165,8 +181,11 @@ class JobController extends Controller
         // }
         $job->occupation_id = $request->occupation_id;
         $job->title =$request->input('title');
-        $job->customer_id= auth()->user()->customer_id;
-
+        if(isset($request->customer_id)){
+            $job->customer_id= $request->customer_id;
+        }else{
+            $job->customer_id= auth()->user()->customer_id;
+        }
         $job->description = $request->input('description');
         $job->skills = $string;
         // $job->city_id = $request->input('city_id');
@@ -390,5 +409,11 @@ class JobController extends Controller
            $data = array("jobs"=> $jobs, "success", "Comment successfully confirmed");
            return response()->json($data);
 
+   }
+   public function getCustomerList(){
+       $query = "SELECT customers.id, customers.name, customers.email FROM jobs
+                LEFT JOIN customers ON customers.id = jobs.customer_id WHERE customers.recordstatus = 1 GROUP BY jobs.customer_id";
+        $cus_list = DB::select($query);
+        return $cus_list;
    }
 }
