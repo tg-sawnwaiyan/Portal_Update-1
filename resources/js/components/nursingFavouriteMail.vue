@@ -387,7 +387,6 @@ import DatePicker from 'vue2-datepicker';
 
                 }
             },
-            
                 type:'register',
                 comments: {
                     name: '',
@@ -438,7 +437,6 @@ import DatePicker from 'vue2-datepicker';
                 mail_focus: false,
                 ph_length: false,
                 ph_error: false,
-                mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
             }
         },
         computed: {
@@ -609,12 +607,16 @@ import DatePicker from 'vue2-datepicker';
             ChekChar: function(event) {
                 $('.char-err').text('');
                 var input_val = $('#furigana').val();
+                var each_val = input_val.split('');
+            
                 var code = 0;
-                code = input_val.charCodeAt();
-                if (!(code > 12352 && code < 12447)) {
-                    $('.char-err').text('ひらがなで入力してください!');
-                    this.btn_disable = true;
-                }               
+                $.each(each_val, function (key, value) {
+                    code = value.charCodeAt();
+                    if (!(code > 12352 && code < 12447)) {
+                        $('.char-err').text('ひらがなで入力してください!');
+                        this.btn_disable = true;
+                    }  
+                });          
             },
 
             isNumberOnly: function(event) {

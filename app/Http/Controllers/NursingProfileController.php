@@ -53,33 +53,34 @@ class NursingProfileController extends Controller
 
         $nursing = NursingProfile::where('customer_id',$id)->first();
         // Nursing Profile 
-        $nursing->access = $request[0]['access'];
-        $nursing->operator = $request[0]['operator'];
-        $nursing->business_entity = $request[0]['business_entity'];
-        $nursing->website = $request[0]['website'];
-        $nursing->moving_in_from = $request[0]['moving_in_from'];
-        $nursing->moving_in_to = $request[0]['moving_in_to'];
-        $nursing->per_month_from = $request[0]['per_month_from'];
-        $nursing->per_month_to = $request[0]['per_month_to'];
-        $nursing->feature = $request[0]['feature'];
-        $nursing->method = $request[0]['method'];
-        $nursing->date_of_establishment = $request[0]['date_of_establishment'];
-        $nursing->land_right_form = $request[0]['land_right_form'];
-        $nursing->building_right_form = $request[0]['building_right_form'];
-        $nursing->site_area = $request[0]['site_area'];
-        $nursing->floor_area = $request[0]['floor_area'];
-        $nursing->construction = $request[0]['construction'];
-        $nursing->capacity = $request[0]['capacity'];
-        $nursing->num_rooms = $request[0]['num_rooms'];
-        $nursing->residence_form = $request[0]['residence_form'];
-        $nursing->fac_type = $request[0]['fac_type'];
-        $nursing->occupancy_condition = $request[0]['occupancy_condition'];
-        $nursing->room_floor = $request[0]['room_floor'];
-        $nursing->living_room_facilities = $request[0]['living_room_facilities'];
-        $nursing->equipment = $request[0]['equipment'];
-        $nursing->acceptance_remark = $request[0]['acceptance_remark'];
-        $nursing->latitude = $request[0]['latitude'];
-        $nursing->longitude = $request[0]['longitude'];
+        // print_r($request);exit;
+        $nursing->access = $request[0]['nursing_profile']['access'];
+        $nursing->operator = $request[0]['nursing_profile']['operator'];
+        $nursing->business_entity = $request[0]['nursing_profile']['business_entity'];
+        $nursing->website = $request[0]['nursing_profile']['website'];
+        $nursing->moving_in_from = $request[0]['nursing_profile']['moving_in_from'];
+        $nursing->moving_in_to = $request[0]['nursing_profile']['moving_in_to'];
+        $nursing->per_month_from = $request[0]['nursing_profile']['per_month_from'];
+        $nursing->per_month_to = $request[0]['nursing_profile']['per_month_to'];
+        $nursing->feature = $request[0]['nursing_profile']['feature'];
+        $nursing->method = $request[0]['nursing_profile']['method'];
+        $nursing->date_of_establishment = $request[0]['nursing_profile']['date_of_establishment'];
+        $nursing->land_right_form = $request[0]['nursing_profile']['land_right_form'];
+        $nursing->building_right_form = $request[0]['nursing_profile']['building_right_form'];
+        $nursing->site_area = $request[0]['nursing_profile']['site_area'];
+        $nursing->floor_area = $request[0]['nursing_profile']['floor_area'];
+        $nursing->construction = $request[0]['nursing_profile']['construction'];
+        $nursing->capacity = $request[0]['nursing_profile']['capacity'];
+        $nursing->num_rooms = $request[0]['nursing_profile']['num_rooms'];
+        $nursing->residence_form = $request[0]['nursing_profile']['residence_form'];
+        $nursing->fac_type = $request[0]['nursing_profile']['fac_type'];
+        $nursing->occupancy_condition = $request[0]['nursing_profile']['occupancy_condition'];
+        $nursing->room_floor = $request[0]['nursing_profile']['room_floor'];
+        $nursing->living_room_facilities = $request[0]['nursing_profile']['living_room_facilities'];
+        $nursing->equipment = $request[0]['nursing_profile']['equipment'];
+        $nursing->acceptance_remark = $request[0]['nursing_profile']['acceptance_remark'];
+        $nursing->latitude = $request[0]['nursing_profile']['latitude'];
+        $nursing->longitude = $request[0]['nursing_profile']['longitude'];
         $nursing->save();
         // End
 
@@ -131,15 +132,15 @@ class NursingProfileController extends Controller
         // Customer Info List
         $customer = Customer::find($id);
 
-        $customer->name = $request[0]['customer_info_push'][0]['name'];
-        $customer->email = $request[0]['customer_info_push'][0]['email'];
-        $customer->phone = $request[0]['customer_info_push'][0]['phone'];
-        $customer->address = $request[0]['customer_info_push'][0]['address'];
-        $customer->townships_id = $request[0]['customer_info_push'][0]['township'];
+        $customer->name = $request[0]['customer_info']['name'];
+        $customer->email = $request[0]['customer_info']['email'];
+        $customer->phone = $request[0]['customer_info']['phone'];
+        $customer->address = $request[0]['customer_info']['address'];
+        $customer->townships_id = $request[0]['customer_info']['townships_id'];
 
         $customer->save();
 
-        DB::update("UPDATE users SET name='".$request[0]['customer_info_push'][0]['name']."', email='".$request[0]['customer_info_push'][0]['email']."' WHERE customer_id=$id");
+        DB::update("UPDATE users SET name='".$request[0]['customer_info']['name']."', email='".$request[0]['customer_info']['email']."' WHERE customer_id=$id");
         // End
 
         // Staff Info
@@ -147,20 +148,20 @@ class NursingProfileController extends Controller
     
         if($staff) {
             $staff->customer_id = $id;
-            $staff->staff = $request[0]['staff_info_push'][0]['staff'];
-            $staff->nursing_staff = $request[0]['staff_info_push'][0]['nursing_staff'];
-            $staff->min_num_staff = $request[0]['staff_info_push'][0]['min_num_staff'];
-            $staff->num_staff = $request[0]['staff_info_push'][0]['num_staff'];
-            $staff->remarks = $request[0]['staff_info_push'][0]['nursing_remarks'];
+            $staff->staff = $request[0]['staff_info']['staff'];
+            $staff->nursing_staff = $request[0]['staff_info']['nursing_staff'];
+            $staff->min_num_staff = $request[0]['staff_info']['min_num_staff'];
+            $staff->num_staff = $request[0]['staff_info']['num_staff'];
+            $staff->remarks = $request[0]['staff_info']['remarks'];
             $staff->save();
         } else {
             $new_staff = new Staff;
             $new_staff->customer_id = $id;
-            $new_staff->staff = $request[0]['staff_info_push'][0]['staff'];
-            $new_staff->nursing_staff = $request[0]['staff_info_push'][0]['nursing_staff'];
-            $new_staff->min_num_staff = $request[0]['staff_info_push'][0]['min_num_staff'];
-            $new_staff->num_staff = $request[0]['staff_info_push'][0]['num_staff'];
-            $new_staff->remarks = $request[0]['staff_info_push'][0]['nursing_remarks'];
+            $new_staff->staff = $request[0]['staff_info']['staff'];
+            $new_staff->nursing_staff = $request[0]['staff_info']['nursing_staff'];
+            $new_staff->min_num_staff = $request[0]['staff_info']['min_num_staff'];
+            $new_staff->num_staff = $request[0]['staff_info']['num_staff'];
+            $new_staff->remarks = $request[0]['staff_info']['remarks'];
             $new_staff->save();
         }
         // End
