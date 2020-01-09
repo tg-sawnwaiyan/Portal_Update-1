@@ -543,7 +543,6 @@ import Autocomplete from 'vuejs-auto-complete'
                         .get(`/api/job/edit/${this.$route.params.id}`)
 
                     .then(response => {
-                      console.log(response.data)
                         this.joboffer.title = response.data.job[0].title;
                         if(response.data.job[0].zip7_code == null){
                           this.joboffer.postal = "";
@@ -767,7 +766,6 @@ import Autocomplete from 'vuejs-auto-complete'
                     if (this.$route.params.id) {
                         this.updateJob();
                     } else {
-                      console.log('vvvvv',this.joboffer)
                         this.$swal({
                             title: "確認",
                             text: "作成よろしいでしょうか。",
@@ -961,8 +959,6 @@ import Autocomplete from 'vuejs-auto-complete'
                 // },
 
                 updateJob() {
-                  console.log('bbb',this.joboffer);
-                    
                       if (this.$route.params.id){
                         this.$swal({
                         title: "確認",
@@ -983,7 +979,6 @@ import Autocomplete from 'vuejs-auto-complete'
                         this.axios.post(`/api/job/update/${this.$route.params.id}`, this.joboffer)
 
                         .then(response => {
-                            console.log(response.data)
                             this.joboffer = response.data.job;
                            this.$loading(false);
                         
