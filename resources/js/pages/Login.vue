@@ -1,9 +1,8 @@
 <template>
 
   <div class="loginwrapper">
-		<div class="d-flex justify-content-center h-100">
-      
-        <div class="user_card">
+		<div class="d-flex justify-content-center h-100">      
+        <div class="user_card" id="altrole">
           <!-- <h4 style="position:relative; bottom: 60px; width:152px;">事業者ログイン</h4> -->
             <div class="links" style="top:-50px;">
               <!-- <router-link to="/" class="mr-auto text-white">ホーム</router-link> -->
@@ -16,18 +15,16 @@
               <div class="brand_logo_container">                
                 <img src="/images/sample_1.png" class="brand_logo" alt="logo">
               </div>
-            </div>
-            
+            </div>            
             <!-- <div class="col-md-12">
-                <div class="row">
-                    
+                <div class="row">                    
                 </div>
             </div>
              -->
             <div class="d-flex justify-content-center">
               <div class="row width">
                 <div class="col-12 m-t-80">  
-                  <div style="margin-bottom: 10px;text-align:center;margin-top: 20px;font-size: 19px;font-weight: bold;color:#d2571cf5">{{name}}</div>          
+                  <div class="user_name">{{name}}</div>          
                 <form autocomplete="off" @submit.prevent="login" method="post">
                     <div class="input-group m-b-20">
                         <div class="input-group-append">
@@ -58,8 +55,6 @@
                 </div>
               </div>
             </div>
-
-
         </div>
     </div>
   </div>
@@ -76,11 +71,19 @@
       }
     },
     mounted() {
-      //
+     if(this.$route.path == "/admin_login"){                 
+        $('#altrole').addClass('admin_user_card');  
+
+       }
+      else {
+         $('#altrole').addClass('customer_user_card');
+       }
     },
     created(){
        if(this.$route.path == "/admin_login"){  
-         this.name="管理者ログイン";
+         this.name="管理者ログイン";        
+        $('#altrole').addClass('admin_user_card');
+         console.log('ADMIN LOGIN');
 
        }else {
          this.name ='事業者ログイン';
@@ -147,3 +150,25 @@
     }
   }
 </script>
+<style>
+.admin_user_card{
+  background-color: #222d32 !important;
+  color: #fff;
+}
+.admin_user_card .user_name{
+  color: #fff !important;
+}
+.admin_user_card .links a{
+  color: #fff !important;
+}
+.admin_user_card .input-group-text{
+  background: #787a7b !important;
+  color: #f5f5f5 !important;
+}
+.admin_user_card .brand_logo_container{
+  border:10px solid #787a7b;
+}
+.customer_user_card{
+  background-color: #fbfbfb !important;
+}
+</style>

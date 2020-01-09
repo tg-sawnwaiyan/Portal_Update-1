@@ -16,7 +16,7 @@
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fas fa-key"></i></span>
                                     </div>
-                                    <input type="password" class="form-control input_user" id="password" @keyup="password_validate()" name="password" value="" v-model="password" required autofocus placeholder="New パスワード ">
+                                    <input type="password" class="form-control input_user" id="password" @keyup="password_validate()" name="password" value="" v-model="password" required autofocus placeholder="新しいパスワード">
                                     <span class="invalid-feedback" role="alert">
                                         <strong></strong>
                                     </span>
@@ -25,14 +25,14 @@
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fas fa-key"></i></span>
                                     </div>
-                                    <input type="password" class="form-control input_user" id="confirm_pass" @keyup="password_validate()" name="confirm_pass" value="" v-model="confirm_pass" required autofocus placeholder="パスワード確認">
+                                    <input type="password" class="form-control input_user" id="confirm_pass" @keyup="password_validate()" name="confirm_pass" value="" v-model="confirm_pass" required autofocus placeholder="もう一度入力してください。">
                                     <span class="invalid-feedback" role="alert">
                                         <strong></strong>
                                     </span>
                                 </div>
                                 
                                 <div class="d-flex justify-content-center mt-3">
-                                    <button type="submit" name="button" id="changePass" class="btn login_btn" :disabled="is_disabled">Change</button>
+                                    <button type="submit" name="button" id="changePass" class="btn login_btn" :disabled="is_disabled">変更</button>
                                 </div>
 
                                 <div class="d-flex justify-content-center mt-3" v-if="has_error">
