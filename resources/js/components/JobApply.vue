@@ -490,7 +490,7 @@ export default {
   },
   methods: {
     getPostal: function(event) {
-        if (this.jobApply.postal.length > 4) {
+        if (this.jobApply.postal.length > 5) {
             var postal = this.jobApply.postal;
             this.axios
                 .post('/api/hospital/postList/' + postal)
@@ -655,9 +655,6 @@ export default {
         if (!(code > 12352 && code < 12447)) {
             $('.char-err').text('ひらがなで入力してください!');
             this.btn_disable = true;
-        }
-        else if($('#furigana').val().length > 0){
-            this.btn_disable = false;
         }
 
       },
