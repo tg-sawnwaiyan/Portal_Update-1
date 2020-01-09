@@ -504,7 +504,7 @@ export default {
                         if (post_data[0]['street'] == '') {
                             this.jobApply.str_address = post_data[0]['city'];
                         } else {
-                            this.jobApply.str_address = post_data[0]['city'] + ' - ' + post_data[0]['street'];
+                            this.jobApply.str_address = post_data[0]['city'] + post_data[0]['street'];
                         }
                         this.jobApply.selectedValue = pref;
                         this.jobApply.division = pref;
