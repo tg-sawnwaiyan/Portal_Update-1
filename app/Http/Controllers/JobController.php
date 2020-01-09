@@ -52,12 +52,12 @@ class JobController extends Controller
 
     }
 
-    // public function getOccupationList()
-    // {
-    //     $occupationlist = Occupations::select('id','name')->get()->toArray();
-
-    //     return response()->json($occupationlist);
-    // }
+    public function getOccupationList()
+    {
+        // $occupationlist = Occupations::select('id','name')->get()->toArray();
+        $occupationList = Occupations::select('id','name')->where('parent','!=',0)->get()->toArray();
+        return response()->json($occupationList);
+    }
 
     public function getSkill()
     {
@@ -237,17 +237,16 @@ class JobController extends Controller
 
         // $job = Job::find($id);
         // $sql = "SELECT jobs.*, zipcode.id as zip_id, zipcode.zip7_code, zipcode.pref as cityname,zipcode.city_id, zipcode.city as township, zipcode.street from jobs inner join zipcode on jobs.zipcode_id = zipcode.id WHERE jobs.id = $id";
-        $sql = "SELECT jobs.*, zipcode.id as zip_id, zipcode.zip7_code, zipcode.pref as cityname,zipcode.city_id, zipcode.city as township, zipcode.street from jobs inner join zipcode on jobs.zipcode_id = zipcode.id WHERE jobs.id = $id";
-        $job = DB::select($sql);
+        $sql1 = "SELECT * FROM jobs WHERE jobs.id = $id";
+        $job1 = DB::select($sql1);
 
-        // if($job[0]->township != null){
-        //     $township = "SELECT id from townships where township_name like '" .$job[0]->township ."'";
-        //     $township_id = DB::select($township);
-        // }
-        // else{
-        //     $township_id = null;
-        // }
-        
+        if($job1[0]->zipcode_id != null){
+            $sql = "SELECT jobs.*, zipcode.id as zip_id, zipcode.zip7_code, zipcode.pref as cityname,zipcode.city_id, zipcode.city as township, zipcode.street from jobs inner join zipcode on jobs.zipcode_id = zipcode.id WHERE jobs.id = $id";
+        }
+        else{
+            $sql = "SELECT jobs.*, townships.city_id, townships.id as township_id from jobs inner join townships on jobs.township_id = townships.id WHERE jobs.id = $id";
+        }
+        $job = DB::select($sql);
 
         return response()->json(Array("job"=>$job));
     }
@@ -287,7 +286,11 @@ class JobController extends Controller
                 $job->occupation_id = 0;
             }
             $job->title =$request->input('title');
-            $job->customer_id= auth()->user()->customer_id;
+            if(isset($request->customer_id)){
+                $job->customer_id= $request->customer_id;
+            }else{
+                $job->customer_id= auth()->user()->customer_id;
+            }
 
             $job->description = $request->input('description');
             $job->skills = $string;
@@ -374,7 +377,7 @@ class JobController extends Controller
 
         }
 
-        return response()->json('The Job successfully updated');
+        return response()->json("Success");
     }
 
 
