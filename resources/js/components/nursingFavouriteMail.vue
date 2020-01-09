@@ -130,7 +130,7 @@
                                         <!-- v-on:keyup="isNumberOnly" -->
                                                                                
                                         <span class="float-left eg-txt">例）0312345678（半角）</span>
-                                        <span class="error m-l-30" v-if="mail_focus">※入力は必須です。</span>                                       
+                                        <!-- <span class="error m-l-30" v-if="mail_focus">※入力は必須です。</span>                                        -->
                                     </div>
                                      <span class="error m-l-30" v-if="ph_length || ph_error">※電話番号が正しくありません。もう一度入力してください。</span>
                                 </div>
@@ -143,7 +143,7 @@
                                 <div class="col-md-12 p-0">
                                         <input type="email" id="mail" name="mail" class="form-control float-left" placeholder="メールアドレスを入力してください。" v-model="comments.mail" @keyup="aggreBtn" @focusout="focusMail">                          
                                         <span class="float-left eg-txt"> 例）abc@example.jp （半角）</span>
-                                        <span class="error m-l-30" v-if="mail_focus">※入力は必須です。</span>
+                                        <!-- <span class="error m-l-30" v-if="mail_focus">※入力は必須です。</span> -->
                                     </div>
                                 </div>
                             </div>
@@ -525,7 +525,7 @@ import DatePicker from 'vue2-datepicker';
                 }
             },
             focusMail: function(event) {
-                if(this.comments.mail != '' && this.mail_reg.test(this.comments.mail)  || this.comments.phone != ''){
+                if((this.comments.mail != '' && this.mail_reg.test(this.comments.mail))  || (!this.ph_num && !this.ph_length)){
                     this.mail_focus=false;
                 }else{
                     this.mail_focus=true;
