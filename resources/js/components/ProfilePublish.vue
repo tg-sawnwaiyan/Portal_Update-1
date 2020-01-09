@@ -743,7 +743,7 @@
 
                             <GmapMap id="googlemap" ref="map" :center="center" :zoom="10" >
 
-                            <GmapMarker v-for="(m, index) in markers" :key="index" :position="m.position" :clickable="true" :draggable="true" @click="center=m.position" />
+                            <GmapMarker v-for="(m, index) in markers" :key="index" :position="m.position" :clickable="true" :draggable="false" @click="center=m.position" />
 
                            </GmapMap>
 
@@ -1275,7 +1275,7 @@
 
                     <GmapMap id="googlemap" ref="map" :center="center" :zoom="10" >
 
-                    <GmapMarker v-for="(m, index) in markers" :key="index" :position="m.position" :clickable="true" :draggable="true" @click="center=m.position" />
+                    <GmapMarker v-for="(m, index) in markers" :key="index" :position="m.position" :clickable="true" :draggable="false" @click="center=m.position" />
 
                     </GmapMap>
 
@@ -1604,7 +1604,8 @@ export default {
                 this.axios.get('/api/profile/nursing/'+this.cusid) .then(response => {
                     this.nursing_profiles = response.data.feature;
                     console.log('This is JSON value');
-                    console.log(this.nursing_profiles);
+                    console.log(response.data);
+                    console.log(response.data);
 
                     this.nus_method= response.data.method;
 
@@ -1690,6 +1691,9 @@ export default {
                     this.customer_name = response.data[0].name;
                 });
                 this.axios.get('/api/profile/hospital/'+this.cusid).then(response => {
+                    console.log('This is JSON value');
+                    console.log(response.data);
+                    console.log(response.data);
                     this.google = response.data.hoslatlong;
 
                     this.hospitals = response.data.hospital;

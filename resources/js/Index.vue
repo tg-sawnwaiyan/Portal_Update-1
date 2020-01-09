@@ -165,21 +165,53 @@
   transform: translateX(-100%);
   transition: all 0.5s ease-in 0s;
 }
-.v-sidebar-menu {
-    top: 50px;
-    bottom: 0;
-    height: auto !important; 
-    background-color: #222d32;
-}
-.v-sidebar-menu.vsm_expanded{
-    max-width: 280px !important;   
-}
 .v-sidebar-menu .vsm--header {
+    padding-left: 50px;
     font-size: 18px;
     background: #2c3b41;
 }
 .v-sidebar-menu .vsm--link {
     font-size: 15px;
+}
+.v-sidebar-menu .vsm--toggle-btn {
+    font-size: 25px;
+    outline: none;
+}
+.v-sidebar-menu .vsm--link_level-1.vsm--link_exact-active, .v-sidebar-menu .vsm--link_level-1.vsm--link_active {
+    -webkit-box-shadow: 0px 0px 0px 0px red inset; 
+    box-shadow: 0px 0px 0px 0px red inset;
+}
+.v-sidebar-menu.vsm_expanded .vsm--item_open .vsm--link_level-1 {
+    background: #1E282C;
+    border-left: 3px solid #d2571c; 
+}
+.v-sidebar-menu.vsm_expanded .vsm--item_open .vsm--link_level-1 .vsm--icon {
+    background-color: #1e1e21;
+}
+.router-link-exact-active {
+    border-left: 0;
+}
+.v-sidebar-menu .vsm--dropdown .vsm--list {
+    background: #2C3B41;
+}
+.v-sidebar-menu .vsm--dropdown .vsm--title {
+    color: rgba(255,255,255,0.6);
+}
+.v-sidebar-menu .vsm--dropdown .router-link-exact-active .vsm--title {
+    color: #ff9563 ;
+}
+.v-sidebar-menu .vsm--dropdown .vsm--link {
+    padding: 5px 10px;
+}
+.v-sidebar-menu.vsm_collapsed .vsm--link_level-1.vsm--link_hover .vsm--icon, .v-sidebar-menu.vsm_collapsed .vsm--link_level-1:hover .vsm--icon {
+    color: #fff;
+    background-color: transparent;
+}
+.v-sidebar-menu .vsm-mobile-bg {
+     background-color: red !important;
+}
+.vsm--mobile-item {
+    max-width: 230px !important;
 }
 /* .sidebar-scroll {
     padding-left: 280px;
@@ -193,6 +225,9 @@
 .v-sidebar-menu .vsm--link.vsm--link_hover {
     border-bottom: 0px solid #485163;
 } */
+.router-link-exact-active>i.fa, .router-link-exact-active>i.fas {
+    color: #fff !important;
+}
 </style>
 <script>
   import HeaderMenu from './components/menu/Menu.vue'
