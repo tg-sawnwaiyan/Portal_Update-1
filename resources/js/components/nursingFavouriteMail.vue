@@ -130,7 +130,7 @@
                                         <!-- v-on:keyup="isNumberOnly" -->
                                         <span class="error m-l-30" v-if="mail_focus">※入力は必須です。</span>                                        
                                         <span class="float-left eg-txt">例）0312345678（半角）</span>
-                                        <span class="error m-l-10" v-if="ph_length || ph_error">※電話番号が正しくありません。もう一度入力してください。</span>
+                                        <span class="error m-l-30" v-if="ph_length || ph_error">※電話番号が正しくありません。もう一度入力してください。</span>
                                     </div>
                                 </div>
                             </div>
@@ -369,6 +369,7 @@ import DatePicker from 'vue2-datepicker';
 
                 }
             },
+            
                 type:'register',
                 comments: {
                     name: '',
@@ -415,6 +416,7 @@ import DatePicker from 'vue2-datepicker';
                 mail_focus: false,
                 ph_length: false,
                 ph_error: false,
+                mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
             }
         },
         computed: {
@@ -486,9 +488,7 @@ import DatePicker from 'vue2-datepicker';
                 });
             },
             aggreBtn: function(){
-                console.log((!this.ph_length && !this.ph_num))
-                console.log(this.comments.mail != '' || (!this.ph_length && !this.ph_num))
-                if($('#furigana').val().length > 0 && this.comments.name != '' && this.comments.selectedValue != 0 && this.comments.city != '' && (this.comments.mail != '' || (!this.ph_length && !this.ph_num && this.comments.phone.length > 0))){
+                if($('#furigana').val().length > 0 && this.comments.name != '' && this.comments.selectedValue != 0 && this.comments.city != '' && (this.mail_reg.test(this.comments.mail) || (!this.ph_length && !this.ph_num && this.comments.phone.length > 0 ) ) ){
                     this.btn_disable=false;
                 }else{
                     this.btn_disable=true;
@@ -524,7 +524,7 @@ import DatePicker from 'vue2-datepicker';
                 }
             },
             focusMail: function(event) {
-                if(this.comments.mail != '' || this.comments.phone != ''){
+                if(this.comments.mail != '' && this.mail_reg.test(this.comments.mail)  || this.comments.phone != ''){
                     this.mail_focus=false;
                 }else{
                     this.mail_focus=true;
