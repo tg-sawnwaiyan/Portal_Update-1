@@ -328,7 +328,7 @@ created() {
         // })
         this.visit = 'true';
         localStorage.setItem('visit',this.visit);
-        this.$router.push({name: 'Unauthorized'});
+        this.$router.push({name: 'Unauthorized',params: {reload:"reload"}});
         }
         
         return response
