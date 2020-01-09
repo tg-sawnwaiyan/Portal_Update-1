@@ -56,7 +56,7 @@ class ProfilePublishController extends Controller
         for($i=0;$i<count($videos);$i++) {
             $first_arr = explode('v=',$videos[$i]['photo']);
             if(count($first_arr)>1) {
-                $second_arr = explode('&list',$first_arr[1]);
+                $second_arr = explode('&',$first_arr[1]);
                 $videos[$i]['photo'] = $second_arr[0];
             } else {
                 $videos[$i]['photo'] = $videos[$i]['photo'];
@@ -106,7 +106,7 @@ class ProfilePublishController extends Controller
         for($i=0;$i<count($videos);$i++) {
             $first_arr = explode('v=',$videos[$i]['photo']);
             if(count($first_arr)>1) {
-                $second_arr = explode('&list',$first_arr[1]);
+                $second_arr = explode('&',$first_arr[1]);
                 $videos[$i]['photo'] = $second_arr[0];
             } else {
                 $videos[$i]['photo'] = $videos[$i]['photo'];
