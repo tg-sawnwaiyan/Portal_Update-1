@@ -164,10 +164,12 @@
                 </label>
             </div>
             <div class="col-md-9 col-sm-12 form-right">
+               <div class="form-group row pl-3">
                 <input type="text" class="form-control float-left" id="phone" v-model="jobApply.phone" placeholder="電話番号を入力してください。" @keyup="focusPhone" @change="aggreBtn" pattern="[0-9-]*" title="Please enter number only." maxlength="14"/>
                 <!-- <span class="error m-l-30" v-if="focus_mail">※入力は必須です。</span> -->
-                <span class="float-left eg-txt">例）0312345678（半角）</span>
-                 <span class="error m-l-10" v-if="ph_length || ph_error">※電話番号が正しくありません。もう一度入力してください。</span>
+                <span class="float-left eg-txt">例）0312345678（半角）</span>                
+            </div>
+            <span class="error m-l-30" v-if="ph_length || ph_error">※電話番号が正しくありません。もう一度入力してください。</span>
             </div>
         </div>
         <div class="form-group m-0 row bd">
@@ -460,8 +462,8 @@ export default {
     btn_disable: false,
     ph_length: false,
     ph_error: false,
-
-    };
+    mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
+    }
   },
   created() {
     this.jobApply.job_id = this.$route.params.job_id;
@@ -627,7 +629,7 @@ export default {
     },
     focusMail: function(event) {
 
-        if(this.jobApply.email != '' ){
+        if(this.jobApply.email != '' && this.mail_reg.test(this.jobApply.email) ){
             this.focus_mail=false;
         }else{
             this.focus_mail=true;
@@ -639,7 +641,7 @@ export default {
         // }
     },
     aggreBtn: function(){
-        if($('#furigana').val().length > 0 && this.jobApply.first_name != '' && this.jobApply.last_name != '' && this.jobApply.selectedValue != 0 && this.jobApply.str_address != '' && this.jobApply.terms == true && (this.jobApply.email != '' || this.jobApply.phone)){
+        if($('#furigana').val().length > 0 && this.jobApply.first_name != '' && this.jobApply.last_name != '' && this.jobApply.selectedValue != 0 && this.jobApply.str_address != '' && this.jobApply.terms == true && (this.mail_reg.test(this.jobApply.email) && this.jobApply.phone)){
             this.btn_disable=false;
         }else{
             this.btn_disable=true;
