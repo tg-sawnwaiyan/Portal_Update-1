@@ -151,14 +151,6 @@
   }
 </script>
 <style>
-.user_name{
-  margin-bottom: 10px;
-  text-align:center;
-  margin-top: 20px;
-  font-size: 19px;
-  font-weight: bold;
-  color:#d2571cf5
-}
 .admin_user_card{
   background-color: #222d32 !important;
   color: #fff;

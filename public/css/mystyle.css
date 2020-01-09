@@ -908,7 +908,14 @@ body::-webkit-scrollbar-thumb {
 :focus {
     outline: -webkit-focus-ring-color auto 0px;
 }
-
+.user_name{
+    margin-bottom: 10px;
+    text-align:center;
+    margin-top: 20px;
+    font-size: 19px;
+    font-weight: bold;
+    color:#d2571cf5
+  }
 
 /********************************** End Login And Register **********************************/
 
