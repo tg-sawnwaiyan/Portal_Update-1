@@ -76,7 +76,11 @@
 </template>
 
 
-
+<style scoped>
+#Profile-page {
+  overflow: hidden;
+}
+</style>
 <script>
 import hospitalProfile from "./HospitalProfile.vue";
 

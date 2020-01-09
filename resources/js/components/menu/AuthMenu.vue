@@ -4,7 +4,10 @@
         <nav class="navbar navbar-expand-lg" :class="visit == 'true' ?  main_header: admin_header">
             <div class="nav-warp d-flex"  :class="visit == 'true' ?  container: ''">
                 <div class="d-flex align-items-center">
-                    <a class="navbar-brand logo-text" href="/">
+                    <a class="navbar-brand logo-text" href="/" v-if="visit == 'true'">
+                    LOGO <span>HERE</span>
+                    </a>
+                    <a class="" style="color:#fff;font-size:20px;width:230px;text-align:center;background: #b74a15;" href="/"  v-if="visit != 'true'">
                     LOGO <span>HERE</span>
                     </a>
                     <div class="h-tel" v-if="visit == 'true'"><a class="tel" href="tel:03-1234-5678"><i class="fas fa-phone-alt"></i><span>03-1234-5678</span></a><br class="pc-1024"><a href="mailto:mpm_secretary@management-partners.co.jp"><p class="sp-1024"><i class="fas fa-envelope"></i></p><span>mpm_secretary@management-partners.co.jp</span></a></div>

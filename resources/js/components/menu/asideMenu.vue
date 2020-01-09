@@ -56,7 +56,7 @@
       </transition>
     </div> -->
      <div v-if="$auth.check() && visit == 'false'" id="content-all" class="content-all"  :class="[{'collapsed' : collapsed}]"> 
-        <sidebar-menu :menu="menu"  :collapsed="collapsed" @toggle-collapse="onCollapse"  @item-click="onItemClick"/>           
+        <sidebar-menu :menu="menu"  :collapsed="collapsed" :show-one-child="true" @toggle-collapse="onCollapse"  @item-click="onItemClick"/>           
         <transition name="fade">
             <div class="maintab-content" id="v-pills-tabContent">
                 <!-- <span @click="menuToggle()">Click</span> -->
@@ -119,7 +119,7 @@
     background-color: #222d32;
 }
 .v-sidebar-menu.vsm_expanded{
-    max-width: 280px !important;   
+    max-width: 230px !important;   
 }
 
 /* .v-sidebar-menu .vsm--header {
@@ -163,6 +163,7 @@
   transform: translateX(-100%);
   transition: all 0.5s ease-in 0s;
 }
+
 </style>
 
 <script>
@@ -287,7 +288,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                     href: '/jobofferlist',
                     title: '求人編集',
                     icon: 'fa fa-edit',
-                    hidden: this.$auth.check(2)
+                    // hidden: this.$auth.check(2)
                 },
                 {
                     href: '/jobapplicantlist',

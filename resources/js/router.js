@@ -353,7 +353,7 @@ const routes = [
         path: "/jobofferlist",
         component: JobOfferList,
         meta: {
-            auth: { roles: 1, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
+            auth: true
         }
     },
     {
@@ -369,7 +369,8 @@ const routes = [
         path: "/joboffercreate",
         component: joboffercreate,
         meta: {
-            auth: { roles: 1, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
+            // auth: { roles: 1, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
+            auth: true
         }
     },
     {
@@ -605,7 +606,8 @@ const routes = [
     path: '/occupationlist',
     component: occupationlist,
     meta: {
-        auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+        // auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+        auth: true
     }
   },
   {

@@ -10,6 +10,22 @@
                             <br />
                         </div>
                         <form @submit.prevent="add" class="mt-2 pb-5 col-md-12">
+                          <div class="form-group" v-if="this.$auth.check(2)">
+                            <div class="form-group" v-if="check">
+                              <label>Customer Name:</label>
+                              <label>{{cusName}}</label>
+                            </div>
+                            <div v-else>
+                            <label>Customer Name:</label>
+                            <autocomplete 
+                            placeholder="事業者名を検索" 
+                            input-class="form-control" 
+                            :source=customerList 
+                            :results-display="formattedDisplay"
+                            @selected="getSelected($event)">
+                            </autocomplete>
+                            </div>
+                          </div>
                             <div class="form-group">
                                 <label for="title">
                                     タイトル:
@@ -419,7 +435,11 @@
 </template>
 
 <script>
+import Autocomplete from 'vuejs-auto-complete'
     export default {
+      components: {
+        Autocomplete,
+      },
         data() {
                 return {
                 header: "求人作成",
@@ -485,12 +505,17 @@
 
                     selectedValue: 0,
                     city_list:[],
-                    townships:[]
+                    townships:[],
+                    customerList: {
+                    id: "",
+                    name: ""
+                    },
+                    check: false,
+                    cusName: ''
                 };
             },
 
             created() {
-
               this.joboffer.pref = 0;
               this.joboffer.str_address = 0;
              
@@ -504,10 +529,15 @@
                 .then(response => {
                     this.city_list = response.data;
                 });
-
+                this.axios.get('/api/job/customerList')
+                .then(response=> {
+                  this.customerList = response.data;
+                  this.formattedDisplay(this.customerList);
+                });
                 this.joboffer.employmentstatus = "ContractEmployee";
 
                 if (this.$route.params.id) {
+                    this.check = true;
                     this.axios
 
                         .get(`/api/job/edit/${this.$route.params.id}`)
@@ -539,7 +569,7 @@
 
                         this.createskill(arr);
 
-                        this.joboffer.location = response.data.job[0].street;
+                        this.joboffer.location = response.data.job[0].location;
 
                         this.joboffer.nearest_station = response.data.job[0].nearest_station;
 
@@ -565,9 +595,22 @@
                         this.joboffer.recordstatus = response.data.job[0].recordstatus;
                         this.header = " 求人編集";
                         this.subtitle = "保存";
+                        this.axios.get('/api/job/customerList')
+                        .then(response=> {
+                          var cus_list = response.data;
+                          for(var i=0; i<cus_list.length; i++){
+                            if(this.joboffer.customer_id == response.data[i].id){
+                              this.cusName = response.data[i].name + '「 ' +response.data[i].email+ ' 」';
+                            }
+                          }
+                          
+                          this.customerList = response.data;
+                        });
                         return this.header;
                         return this.subtitle;
                     });
+                }else{
+                  this.check = false;
                 }
             },
 
@@ -717,7 +760,7 @@
                     if (this.$route.params.id) {
                         this.updateJob();
                     } else {
-                      
+                      console.log('vvvvv',this.joboffer)
                         this.$swal({
                             title: "確認",
                             text: "作成よろしいでしょうか。",
@@ -911,7 +954,7 @@
                 // },
 
                 updateJob() {
-                  // console.log('bbb');
+                  console.log('bbb',this.joboffer);
                     
                       if (this.$route.params.id){
                         this.$swal({
@@ -956,11 +999,13 @@
                             });
                         });
                     }
-
-                      }
-
-                  //console.log("update");
-
+                  },
+                  formattedDisplay(result) {
+                    return result.name + '「' + result.email + '」';
+                  },
+                  getSelected(event){
+                    this.joboffer.customer_id = event.value;
+                  }
                 }
             };
 
