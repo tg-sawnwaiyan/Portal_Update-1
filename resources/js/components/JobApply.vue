@@ -55,9 +55,10 @@
             </div>
             <div class="col-md-9 col-sm-12 form-right">
                 <div class="col-md-12 pad-free">
-                    <input type="text" class="form-control float-left" id="furigana" placeholder="ふりがなを入力してください。" v-model="jobApply.last_name" @keyup="ChekChar" @focusout="focusLname" @change="aggreBtn"/>
+                    <input type="text" class="form-control float-left" id="furigana" placeholder="ふりがなを入力してください。" v-model="jobApply.last_name" @keyup="ChekChar" @focusout="focusFuri" @change="aggreBtn"/>
                     <span class="float-left eg-txt"> 例）さがし たろう</span>
-                    <span class="error m-l-30" v-if="focus_lname">※入力は必須です。</span>
+                    <!-- <span class="error m-l-30" v-if="focus_lname">※入力は必須です。</span> -->
+                    <span class="error m-l-30" v-if="furigana_focus">※入力は必須です。</span>
                     <div v-if="errors.last_name" class="text-danger mt-2 ml-4">{{ errors.last_name }}</div>
                 </div>
                 <span class="float-left text-danger char-err p-l-30"></span>
@@ -419,6 +420,7 @@ export default {
       },
 
       jobApply: {
+        furigana_focus: false,
         job_id: "",
         first_name: "",
         last_name: "",
@@ -650,15 +652,32 @@ export default {
     ChekChar: function(event) {
         $('.char-err').text('');
         var input_val = $('#furigana').val();
+        var each_val = input_val.split('');
+            
         var code = 0;
-        code = input_val.charCodeAt();
+        $.each(each_val, function (key, value) {
+          code = value.charCodeAt();
+          if (!(code > 12352 && code < 12447) && !(12449 <= code && code <= 12538)) {
+              $('.char-err').text('ふりがなで入力してください!');
+              this.btn_disable = true;
+            }  
+        });          
+        // code = input_val.charCodeAt();
         // (12448<= code && code <= 12543) || (19968<= code && code <= 19893)
         // 12540
-        if (!(code > 12352 && code < 12447)) {
-            $('.char-err').text('ひらがなで入力してください!');
-            this.btn_disable = true;
-        }
+        // if (!(code > 12352 && code < 12447)) {
+        //     $('.char-err').text('ひらがなで入力してください!');
+        //     this.btn_disable = true;
+        // }
 
+      },
+
+      focusFuri: function(event) {
+        if(this.jobApply.last_name != ''){
+            this.furigana_focus=false;
+        }else{
+            this.furigana_focus=true;　
+        }
       },
 
 

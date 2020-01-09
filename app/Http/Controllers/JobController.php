@@ -14,7 +14,7 @@ class JobController extends Controller
     {
         if( auth()->user()->role == 2){
             $query = "SELECT jobs.* ,customers.type_id,      
-            (CASE customers.type_id WHEN '2' THEN CONCAT((500000+customers.id),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((200000+customers.id),'-',LPAD(jobs.id, 4, '0')) END) as jobid
+            (CASE customers.type_id WHEN '2' THEN CONCAT((200000+customers.id),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(jobs.id, 4, '0')) END) as jobid
             FROM `jobs`
             JOIN customers ON jobs.customer_id = customers.id
             LEFT JOIN job_applies ON jobs.id = job_applies.job_id
@@ -30,7 +30,7 @@ class JobController extends Controller
             return response()->json(array('profilejob'=>$profilejob));
         }else{
             $query = "SELECT jobs.* ,customers.type_id,      
-            (CASE customers.type_id WHEN '2' THEN CONCAT((500000+customers.id),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((200000+customers.id),'-',LPAD(jobs.id, 4, '0')) END) as jobid
+            (CASE customers.type_id WHEN '2' THEN CONCAT((200000+customers.id),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(jobs.id, 4, '0')) END) as jobid
             FROM `jobs`
             JOIN customers ON jobs.customer_id = customers.id
             LEFT JOIN job_applies ON jobs.id = job_applies.job_id
