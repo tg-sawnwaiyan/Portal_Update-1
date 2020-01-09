@@ -107,6 +107,13 @@ class HospitalProfileController extends Controller
         $city_list = DB::select($query);
         return $city_list;
     }
+
+    public function getTownshipName()
+    {
+        $query = "SELECT id,township_name from townships";
+        $township_list = DB::select ($query);
+        return $township_list;
+    }
     
     /**
      * Show the form for creating a new resource.

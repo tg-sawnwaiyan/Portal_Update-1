@@ -37,6 +37,8 @@
                 <br>
                 都道府県：{{$getComment->division}}
                 <br>
+                Township：{{$getComment->townshipname}}
+                <br>
                 市区町村、番地（建物名)：{{$getComment->city}}
                 <br>
                 電話番号：{{$getComment->phone}}

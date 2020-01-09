@@ -751,6 +751,7 @@ import Autocomplete from 'vuejs-auto-complete'
                     }).then((response)=>{
                        if(town_id == 2)
                       {
+                        this.joboffer.location = ''
                         this.joboffer.postal = '';
                         this.joboffer.zipcode_id = null;
                         this.joboffer.str_address = 0;

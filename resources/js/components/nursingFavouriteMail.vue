@@ -100,9 +100,10 @@
                                     </div>
                                 </div>
                                 <div class="form-group row pl-3">
+                                  
                                     <div class="col-md-12 "><label>  都道府県<span class="error sp1">必須</span></label></div>
                                     <div class="col-md-12 p-0">
-                                        <select v-model="comments.selectedValue" class="division form-control" id="division" @change="aggreBtn">
+                                        <select v-model="comments.selectedValue" class="division form-control" id="division" @change="getTownship(2)">
                                             <option value="0">選択してください。</option>
                                             <option v-for="cities in city_list" :key="cities.id" v-bind:value="cities.id">
                                                 {{cities.city_name}}
@@ -110,6 +111,22 @@
                                         </select>
                                         <span v-if="errors.division" class="error">{{errors.division[0]}}</span>
                                     </div>
+                                </div>
+
+                                 <div class="form-group row pl-3">
+                             
+                                    <div class="col-md-12 "><label>  Township <span class="error sp1">必須</span></label></div>
+                                    <div class="col-md-12 p-0">
+                                        <select v-model="comments.township" class="division form-control" id="division" @change="aggreBtn">
+                                            <option value="0">選択してください。</option>
+                                           
+                                            <option v-for="town in townships" :key="town.id" v-bind:value="town.id">
+                                                {{town.township_name}}
+                                            </option>
+                                        </select>
+                                        <!-- <span v-if="errors.division" class="error">{{errors.division[0]}}</span> -->
+                                    </div>
+  
                                 </div>
                                 <div class="form-group row pl-3">
                                     <div class="col-md-12 "><label>市区町村、番地（建物名)<span class="error sp1">必須</span></label></div>
@@ -377,6 +394,7 @@ import DatePicker from 'vue2-datepicker';
                     bdate: '',
                     postal: '',
                     division: 0,
+                    townshipname:0,
                     city: '',
                     phone: '',
                     mail: '',
@@ -396,7 +414,10 @@ import DatePicker from 'vue2-datepicker';
                     // arr_reserve: [{}],
                     arr_document: [{}],
                     selectedValue: 0,
+                    township:0,
+                 
                 },
+                townships:[],
                 errors: [],
                 fav_nursing: [],
                 local_sto: '',
@@ -431,11 +452,11 @@ import DatePicker from 'vue2-datepicker';
                 this.comments = this.bk_data;
                 this.selectedValue = this.bk_postal;
             }
-            this.axios.get('/api/hospital/citiesList')
+            this.axios.get('/api/hospital/citiesList')        
                 .then(response => {
                     this.city_list = response.data;
                 });
-            if(this.comments.name != '' && this.comments.fav_mail != '' && this.comments.postal != '' && this.comments.selectedValue != 0 && this.comments.city != '' && this.comments.phone != '' && this.comments.mail != ''){
+            if(this.comments.name != '' && this.comments.fav_mail != '' && this.comments.postal != '' && this.comments.selectedValue != 0 && this.comments.township != 0 && this.comments.city != '' && this.comments.phone != '' && this.comments.mail != ''){
                     this.btn_disable=false;
                     //  $('#error-msg').html('<div class="error"></div>');
                 }else{
@@ -443,7 +464,7 @@ import DatePicker from 'vue2-datepicker';
                 }
         },
         methods: {
-            getPostal: function(event) {
+            getPostal: function(event) {    
                 if (this.comments.postal.length > 5) {
                     var postal = this.comments.postal;
                     this.axios
@@ -453,22 +474,49 @@ import DatePicker from 'vue2-datepicker';
                             var length = response.data.postal_list.length;
                             if (length > 0) {
                                 var pref = post_data[0]['city_id'];
-                                if (post_data[0]['street'] == '') {
-                                    this.comments.city = post_data[0]['city'];
-                                } else {
-                                    this.comments.city = post_data[0]['city'] + ' ' + post_data[0]['street'];
-                                }
                                 this.comments.selectedValue = pref;
+                                this.getTownship(1);
+                                this.comments.township = response.data.township_id[0]['id'];  
+                               if (post_data[0]["street"] == "") 
+                                {
+                                    this.comments.city = post_data[0]["street"];
+                                } 
+                                else{
+                                      this.comments.city = post_data[0]["pref"] +  post_data[0]["city"] +   post_data[0]["street"];;
+                                }
+                               
                                 this.comments.division = pref;
+                              
                                  $('#jsErrorMessage').html('<div class="error"></div>');
                             } else {
-                                this.comments.city = '';
+
                                 this.comments.selectedValue = 0;
+                                this.comments.township = 0;
+                                this.comments.city = '';
                                 $('#jsErrorMessage').html('<div class="error">郵便番号の書式を確認してください。</div>');
                             }
                         });
                 }
             },
+            getTownship(town_id){
+                   
+                    this.axios.get('/api/auth/township',{
+                      params:{
+                        city:this.comments.selectedValue
+                      },
+                    }).then((response)=>{
+                       if(town_id == 2)
+                      {
+                        this.comments.city = ''
+                        this.comments.postal = '';
+                         this.comments.township = 0;
+                      }
+                      this.townships = response.data.townships
+                    })
+                  },
+                  getLocation(){
+                     this.joboffer.location = '';
+                  },
             add() {
                 this.all_mail = JSON.parse(localStorage.getItem("item"));
                 // this.reservation = JSON.parse(localStorage.getItem("reserve"));
@@ -488,7 +536,7 @@ import DatePicker from 'vue2-datepicker';
                 });
             },
             aggreBtn: function(){
-                if($('#furigana').val().length > 0 && this.comments.name != '' && this.comments.selectedValue != 0 && this.comments.city != '' && (this.mail_reg.test(this.comments.mail) || (!this.ph_length && !this.ph_num && this.comments.phone.length > 0 ) ) ){
+                if($('#furigana').val().length > 0 && this.comments.name != '' && this.comments.selectedValue != 0 && this.comments.township != 0 && this.comments.city != '' && (this.mail_reg.test(this.comments.mail) || (!this.ph_length && !this.ph_num && this.comments.phone.length > 0 ) ) ){
                     this.btn_disable=false;
                 }else{
                     this.btn_disable=true;
