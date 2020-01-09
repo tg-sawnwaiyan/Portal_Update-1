@@ -165,15 +165,6 @@
   transform: translateX(-100%);
   transition: all 0.5s ease-in 0s;
 }
-.v-sidebar-menu {
-    top: 50px;
-    bottom: 0;
-    height: auto !important; 
-    background-color: #222d32;
-}
-.v-sidebar-menu.vsm_expanded{
-    max-width: 280px !important;   
-}
 .v-sidebar-menu .vsm--header {
     font-size: 18px;
     background: #2c3b41;
