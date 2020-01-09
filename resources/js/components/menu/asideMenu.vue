@@ -231,7 +231,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                     href: '/jobofferlist',
                     title: '求人編集',
                     icon: 'fa fa-edit',
-                    hidden: this.$auth.check(2)
+                    // hidden: this.$auth.check(2)
                 },
                 {
                     href: '/jobapplicantlist',
