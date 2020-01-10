@@ -1101,7 +1101,7 @@ body::-webkit-scrollbar-thumb {
 }
 #profilenav .fav-profile {
     position: absolute;
-    top: 60px;
+    top: 70px;
 }
 
 .fav-profile {
@@ -1144,13 +1144,21 @@ body::-webkit-scrollbar-thumb {
 #nursingView .header {
     color: #ec7338;
 }
-.public-header{
+.public-nurheader{
     border-bottom: 3px solid #d2571c;
     padding-bottom: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
-.public-header .fa-user-md{
+.public-nurheader .fa-user-md{
     color: #d2571c;
+}
+.public-hosheader{
+    border-bottom: 3px solid #2981cc;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+.public-hosheader .fa-briefcase-medical{
+    color: #2981cc;
 }
 .header {
     font-weight: bold;
