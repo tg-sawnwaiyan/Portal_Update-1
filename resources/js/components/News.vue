@@ -399,6 +399,7 @@
                     </div>
 
                     <div class="col-md-12 m-lr-0 p-0" v-if="status == '0'">
+                        <!-- two show -->
                         <div class="row col-md-12 pad-free m-0" v-if="(w_width > 1279) || (w_width < 768 && w_width > 479)">
                             <div class="col-md-3 m-b-8 p-l-0" v-for="item in latest_post_all_cats.slice(6, 14)"  :key="item.id">
 
@@ -455,6 +456,7 @@
                             </div>
                         </div>
                         
+                        <!-- one show -->
                         <div class="row col-md-12 pad-free m-0" v-if="(w_width < 1280 && w_width > 767) || (w_width < 480)">
                             <div class="col-md-3 m-b-8 p-l-0" v-for="item in latest_post_all_cats.slice(3, 11)"  :key="item.id">
 

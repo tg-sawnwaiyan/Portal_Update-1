@@ -1,6 +1,7 @@
 <template>
   <div id="Profile-page">
-    <h4 class="header" style="background:transparent;">マイページ編集</h4>
+    <h4 v-if="loginuser" class="header" style="background:transparent;">マイページ編集</h4>
+    <h4 v-if="!loginuser" class="public-header" style="background:transparent;"><i class="fas fa-user-md"></i> マイページ</h4>
     <div v-if="type == 'nursing'">
 
       <ul class="nav nav-tabs nursing-tabColor" role="tablist" id="profilenav" v-bind:style="{width:width}" >
@@ -12,11 +13,11 @@
           </label>
         </li>
 
-        <li role="presentation" class="subtab2 nav-item">
+        <li role="presentation" class="subtab2 nav-item" v-if="loginuser" >
           <label for="nursing" class="typelabel dim-btn nav-link" id="nursing-lbl">
             <input type="radio" v-model="btntype" value="view" v-on:change="changeBtnType('nursing-lbl','hospital-lbl')" name="btntype" id="nursing" />
-            <span v-if="loginuser"><i class="fas fa-search" style="font-size:18px;"></i>&nbsp;プレビュー</span>
-            <span v-if="!loginuser"><i class="fas fa-user-md"></i>&nbsp;マイページ</span>
+            <span ><i class="fas fa-search" style="font-size:18px;"></i>&nbsp;プレビュー</span>
+            <!-- <span v-if="!loginuser"></span> -->
           </label>
         </li>
  
@@ -76,7 +77,11 @@
 </template>
 
 
-
+<style scoped>
+#Profile-page {
+  overflow: hidden;
+}
+</style>
 <script>
 import hospitalProfile from "./HospitalProfile.vue";
 

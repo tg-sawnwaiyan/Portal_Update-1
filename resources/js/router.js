@@ -345,7 +345,7 @@ const routes = [
         path: "/profiledit",
         component: ProfileEdit,
         meta: {
-            auth: { roles: 1, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
+            auth: true,
         }
     },
     {

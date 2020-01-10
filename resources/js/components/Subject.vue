@@ -84,8 +84,8 @@ export default {
                         this.Subject.parent = response.data.parent;
                         this.selectedValue = response.data.parent;
                         this.SubjectList.name = response.data.name;
-                        this.header = ' 診療科目更新';
-                        this.subtitle = '更新';
+                        this.header = ' 診療科目編集';
+                        this.subtitle = '保存';
                         return this.header;
                         return this.subtitle;
                 });
@@ -174,7 +174,7 @@ export default {
 
                 this.$swal({
                           title: "確認",
-                            text: "更新よろしいでしょうか。",
+                            text: "診療科目を更新してよろしいでしょうか。",
                             type: "info",
                             width: 350,
                             height: 200,
@@ -194,7 +194,7 @@ export default {
                         this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            title: '更新されました。',
+                            title: '診療科目を更新しました。',
                             // showConfirmButton: false,
                             // timer: 1800,
                             confirmButtonText: "閉じる",
