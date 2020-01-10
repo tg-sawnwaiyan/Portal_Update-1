@@ -1,6 +1,11 @@
 <template>
   <div id="Profile-page">
-    <h4 class="header" style="background:transparent;">マイページ編集</h4>
+    <h4 v-if="loginuser" class="header" style="background:transparent;">マイページ編集</h4>
+    <span v-if="!loginuser">
+      <h4 v-if="type == 'nursing'" class="public-nurheader" style="background:transparent;"><i class="fas fa-user-md"></i> マイページ</h4>
+      <h4 v-if="type == 'hospital'" class="public-hosheader" style="background:transparent;"><i class="fas fa-briefcase-medical"></i> マイページ</h4>
+    </span>
+    
     <div v-if="type == 'nursing'">
 
       <ul class="nav nav-tabs nursing-tabColor" role="tablist" id="profilenav" v-bind:style="{width:width}" >
@@ -12,11 +17,11 @@
           </label>
         </li>
 
-        <li role="presentation" class="subtab2 nav-item">
+        <li role="presentation" class="subtab2 nav-item" v-if="loginuser" >
           <label for="nursing" class="typelabel dim-btn nav-link" id="nursing-lbl">
             <input type="radio" v-model="btntype" value="view" v-on:change="changeBtnType('nursing-lbl','hospital-lbl')" name="btntype" id="nursing" />
-            <span v-if="loginuser"><i class="fas fa-search" style="font-size:18px;"></i>&nbsp;プレビュー</span>
-            <span v-if="!loginuser"><i class="fas fa-user-md"></i></span>
+            <span ><i class="fas fa-search" style="font-size:18px;"></i>&nbsp;プレビュー</span>
+            <!-- <span v-if="!loginuser"></span> -->
           </label>
         </li>
  
@@ -48,11 +53,11 @@
           </label>             
         </li>
 
-        <li role="presentation" class="subtab2 nav-item">
+        <li role="presentation" class="subtab2 nav-item" v-if="loginuser">
           <label for="nursing" class="typelabel nav-link" id="nursing-lbl">
             <input type="radio" v-model="btntype" value="view" v-on:change="changeBtnType('nursing-lbl','hospital-lbl')" name="btntype" id="nursing" />
-            <span v-if="loginuser"><i class="fas fa-search" style="font-size:18px;"></i>&nbsp;プレビュー</span>
-            <span v-if="!loginuser"><i class="fas fa-briefcase-medical"></i></span>
+            <span><i class="fas fa-search" style="font-size:18px;"></i>&nbsp;プレビュー</span>
+            <!-- <span v-if="!loginuser"><i class="fas fa-briefcase-medical"></i></span> -->
           </label>
         </li>
 

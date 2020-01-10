@@ -2,7 +2,7 @@
     <div class="loginwrapper">
 		<div class="d-flex justify-content-center h-100">
         <div class="user_card">
-            <div class="links" style="top:-60px;">
+            <div class="links" style="top:-65px;">
               <!-- <router-link to="/" class="mr-auto text-white">ホーム</router-link> -->
               <router-link to="/login" class="ml-auto text" style="color: #a93f0c!important;font-weight:bold;">ログイン</router-link>
               <a href="/" class="mr-auto text-white">ホーム</a>
@@ -16,8 +16,8 @@
             </div>            
             <div class="d-flex justify-content-center">
               <div class="row width">
-                <div class="col-12 m-t-80">   
-                  <div class="user_name">パスワードのリセット</div>                      
+                <div class="col-12 m-t-50">   
+                  <!-- <div class="user_name">パスワードのリセット</div>                       -->
                 <form autocomplete="off" @submit.prevent="resetPass" method="post">
                     <div class="input-group mb-3">
                         <div class="input-group-append">

@@ -99,8 +99,7 @@
                                         <span class="float-left eg-txt">例）1006740 (<a href="https://www.post.japanpost.jp/zipcode/" target="_blank">郵便番号検索</a>)</span>
                                     </div>
                                 </div>
-                                <div class="form-group row pl-3">
-                                  
+                                <div class="form-group row pl-3">                                  
                                     <div class="col-md-12 "><label>  都道府県<span class="error sp1">必須</span></label></div>
                                     <div class="col-md-12 p-0">
                                         <select v-model="comments.selectedValue" class="division form-control" id="division" @change="getTownship(2)">
@@ -113,11 +112,10 @@
                                     </div>
                                 </div>
 
-                                 <div class="form-group row pl-3">
-                             
-                                    <div class="col-md-12 "><label>  Township <span class="error sp1">必須</span></label></div>
+                                 <div class="form-group row pl-3">                             
+                                    <div class="col-md-12 "><label>  市区町村 <span class="error sp1">必須</span></label></div>
                                     <div class="col-md-12 p-0">
-                                        <select v-model="comments.township" class="division form-control" id="division" @change="aggreBtn">
+                                        <select v-model="comments.township" class="division form-control" id="division" @change="getLocation()">
                                             <option value="0">選択してください。</option>
                                            
                                             <option v-for="town in townships" :key="town.id" v-bind:value="town.id">
@@ -125,8 +123,7 @@
                                             </option>
                                         </select>
                                         <!-- <span v-if="errors.division" class="error">{{errors.division[0]}}</span> -->
-                                    </div>
-  
+                                    </div>  
                                 </div>
                                 <div class="form-group row pl-3">
                                     <div class="col-md-12 "><label>市区町村、番地（建物名)<span class="error sp1">必須</span></label></div>
@@ -152,8 +149,8 @@
                                      <span class="error m-l-30" v-if="ph_length || ph_error">※電話番号が正しくありません。もう一度入力してください。</span>
                                 </div>
                             </div>
-                        <!-- </div>
-                        <div class="form-group m-0 row bd-all"> -->
+                            <!-- </div>
+                            <div class="form-group m-0 row bd-all"> -->
                             <div class="col-md-3 col-sm-12 form-left"><label>メールアドレス </label></div>
                             <div class="col-md-9 col-sm-12 form-right">
                             <div class="form-group row pl-3">
@@ -514,7 +511,9 @@ import DatePicker from 'vue2-datepicker';
                     })
                   },
                   getLocation(){
-                     this.joboffer.location = '';
+
+                     this.comments.postal = '';
+                     this.comments.city = '';
                   },
             add() {
                 this.all_mail = JSON.parse(localStorage.getItem("item"));
