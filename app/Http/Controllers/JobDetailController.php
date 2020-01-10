@@ -48,7 +48,7 @@ class JobDetailController extends Controller
     public function show($id)
     {
         $query = "SELECT jobs.* ,customers.type_id, 
-        (CASE customers.type_id WHEN '2' THEN CONCAT((500000+customers.id),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((200000+customers.id),'-',LPAD(jobs.id, 4, '0')) END) as jobid
+        (CASE customers.type_id WHEN '2' THEN CONCAT((200000+customers.id),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(jobs.id, 4, '0')) END) as jobid
         FROM `jobs`
         JOIN customers ON jobs.customer_id = customers.id
         WHERE customers.recordstatus=1 and jobs.id = $id";

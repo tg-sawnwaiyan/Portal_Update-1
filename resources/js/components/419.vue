@@ -13,14 +13,14 @@
             ページの有効期限が切れています。
 
                 <br><br>
-                <a href="#" @click.prevent="$auth.logout()" class="gohome" style="">
+                <a href="#" @click.prevent="logout()" class="gohome" style="">
                 ホームページに戻る
                 </a>
             </div>
         </div>
     </div>
 </template>
-<style>
+<style scoped>
     .container {
         position: relative;
         align-items: center;
@@ -52,3 +52,20 @@
         color: #fff; 
     }
 </style>
+<script>
+export default {
+    methods:{
+        created(){
+            console.log("created")
+            if(this.$route.params.reload){
+                // location.reload();
+                console.log("hi")
+            }
+        },
+        logout(){              
+            
+            this.$auth.logout();
+        }
+    }
+}
+</script>

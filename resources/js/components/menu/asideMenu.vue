@@ -259,7 +259,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                 },
                 {
                     href: '/occupationlist',
-                    title: '職種設定',
+                    title: '求人職種設定',
                     icon: 'fa fa-suitcase',
                     hidden: this.$auth.check(1)
                 },
@@ -297,7 +297,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                     href: '/jobapplicantlist',
                     title: '求人応募者一覧',
                     icon: 'fa fa-tasks',
-                    hidden: this.$auth.check(2)
+                    // hidden: this.$auth.check(2)
                 },
                 {
                     title: 'ログアウト',
@@ -334,7 +334,7 @@ created() {
         // })
         this.visit = 'true';
         localStorage.setItem('visit',this.visit);
-        this.$router.push({name: 'Unauthorized'});
+        this.$router.push({name: 'Unauthorized',params: {reload:"reload"}});
         }
         
         return response

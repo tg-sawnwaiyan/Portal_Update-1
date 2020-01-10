@@ -91,7 +91,7 @@ export default {
                     //     this.feature.type = '介護';
                     // }
                       this.header = ' 特徴編集';
-                        this.subtitle = '更新';
+                        this.subtitle = '保存';
                         return this.header;
                         return this.subtitle;
 

@@ -63,7 +63,7 @@
                             </div>
                             <input type="hidden" v-model="old_photo" >
                             <div class="form-group">
-                                 <span class="btn main-bg-color white all-btn" @click="clickValidation()" >更新</span>
+                                 <span class="btn main-bg-color white all-btn" @click="clickValidation()" >保存</span>
                                 <router-link to="/ads" class="btn btn-danger all-btn">キャンセル</router-link>
                             </div>
                                 </form>

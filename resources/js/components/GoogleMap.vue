@@ -252,7 +252,7 @@ export default {
     }, 
     getPostal: function(event) {
                 this.status = 1;
-                if (this.comment.postal.length > 4) {
+                if (this.comment.postal.length > 5) {
                     var postal = this.comment.postal;
                     this.axios
                         .post('/api/hospital/postList/' + postal)
@@ -262,9 +262,9 @@ export default {
                             if (length > 0) {
                                 var pref = post_data[0]['city_id'];
                                 if (post_data[0]['street'] == '') {
-                                    this.comment.city = post_data[0]['pref'] + ' - ' +  post_data[0]['city'];
+                                    this.comment.city = post_data[0]['pref'] +  post_data[0]['city'];
                                 } else {
-                                    this.comment.city = post_data[0]['pref'] + ' - ' + post_data[0]['city'] + ' - ' + post_data[0]['street'];
+                                    this.comment.city = post_data[0]['pref']  + post_data[0]['city']  + post_data[0]['street'];
                                 }
                                 $('#jsErrorMessage').html('<div></div>');
                             }else {

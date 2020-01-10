@@ -544,15 +544,20 @@ import Autocomplete from 'vuejs-auto-complete'
 
                     .then(response => {
                         this.joboffer.title = response.data.job[0].title;
-                        this.joboffer.postal = '0' + response.data.job[0].zip7_code;
-                        this.joboffer.zipcode_id = response.data.job[0].zip_id;
-                       
-                       
+                        if(response.data.job[0].zip7_code == null){
+                          this.joboffer.postal = "";
+                          this.joboffer.zipcode_id = null;
+                        }
+                        else{
+                          this.joboffer.postal = '0' + response.data.job[0].zip7_code;
+                          this.joboffer.zipcode_id = response.data.job[0].zip_id;
+                        }            
+                                         
                     
                         // this.joboffer.pref = response.data[0].cityname;
                         this.joboffer.pref = response.data.job[0].city_id;
                         this.getTownship(1);
-                        this.joboffer.str_address = response.data.township_id[0].id;
+                        this.joboffer.str_address = response.data.job[0].township_id;
 
                         this.joboffer.customer_id = response.data.job[0].customer_id;
 
@@ -689,7 +694,7 @@ import Autocomplete from 'vuejs-auto-complete'
                         }
                   },
                 getPostal: function(event) {
-                    if (this.joboffer.postal.length > 4) {
+                    if (this.joboffer.postal.length > 5) {
                         var postal = this.joboffer.postal;
                         this.axios.post("/api/hospital/postList/" + postal).then(response => {
                             var post_data = response.data.postal_list;
@@ -718,12 +723,7 @@ import Autocomplete from 'vuejs-auto-complete'
                                     // this.joboffer.pref = post_data[0]["pref"];
                                     this.joboffer.str_address = response.data.township_id[0]['id'];                               
                                     // this.joboffer.str_address = post_data[0]["city"];
-                                    this.joboffer.location =
-                                        post_data[0]["pref"] +
-                                        "  " +
-                                        post_data[0]["city"] +
-                                        "  " +
-                                        post_data[0]["street"];
+                                    this.joboffer.location = post_data[0]["pref"] + post_data[0]["city"] + post_data[0]["street"];
                                 }
                             } else {
                                 this.joboffer.str_address = 0;
@@ -745,7 +745,9 @@ import Autocomplete from 'vuejs-auto-complete'
                     }).then((response)=>{
                        if(town_id == 2)
                       {
+                        this.joboffer.location = ''
                         this.joboffer.postal = '';
+                        this.joboffer.zipcode_id = null;
                         this.joboffer.str_address = 0;
                       }
                       this.townships = response.data.townships
@@ -760,10 +762,9 @@ import Autocomplete from 'vuejs-auto-complete'
                     if (this.$route.params.id) {
                         this.updateJob();
                     } else {
-                      console.log('vvvvv',this.joboffer)
                         this.$swal({
                             title: "確認",
-                            text: "作成よろしいでしょうか。",
+                            text: "求人を作成してよろしいでしょうか。",
                             type: "info",
                             width: 350,
                             height: 200,
@@ -771,7 +772,7 @@ import Autocomplete from 'vuejs-auto-complete'
                             confirmButtonColor: "#6cb2eb",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
-                            confirmButtonText: "作成",
+                            confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
@@ -787,12 +788,12 @@ import Autocomplete from 'vuejs-auto-complete'
                                     this.$swal({
                                         position: "top-end",
                                         type: "success",
-                                        title: "作成されました。",
+                                        title: "求人を作成しました。",
                                         // text: "ファイルが作成されました。",
                                         // type: "success",
                                         width: 350,
                                         height: 200,
-                                        confirmButtonText: "はい",
+                                        confirmButtonText: "閉じる",
                                         confirmButtonColor: "#6cb2eb",
                                     });
 
@@ -954,12 +955,10 @@ import Autocomplete from 'vuejs-auto-complete'
                 // },
 
                 updateJob() {
-                  console.log('bbb',this.joboffer);
-                    
                       if (this.$route.params.id){
                         this.$swal({
                         title: "確認",
-                        text: "更新よろしいでしょうか。",
+                        text: "求人を更新してよろしいでしょうか。",
                         type: "info",
                         width: 350,
                         height: 200,
@@ -967,7 +966,7 @@ import Autocomplete from 'vuejs-auto-complete'
                         confirmButtonColor: "#6cb2eb",
                         cancelButtonColor: "#b1abab",
                         cancelButtonTextColor: "#000",
-                        confirmButtonText: "更新",
+                        confirmButtonText: "はい",
                         cancelButtonText: "キャンセル",
                         confirmButtonClass:  "all-btn",
                         cancelButtonClass: "all-btn"
@@ -976,15 +975,16 @@ import Autocomplete from 'vuejs-auto-complete'
                         this.axios.post(`/api/job/update/${this.$route.params.id}`, this.joboffer)
 
                         .then(response => {
+                            this.joboffer = response.data.job;
                            this.$loading(false);
                         
                                 this.$swal({
-                                    title: "更新されました。",
+                                    title: "求人を更新しました。",
                                     // text: "ファイルが更新されました。",
                                     type: "success",
                                     width: 350,
                                     height: 200,
-                                    confirmButtonText: "はい",
+                                    confirmButtonText: "閉じる",
                                     confirmButtonColor: "#6cb2eb"
                                 });
 

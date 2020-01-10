@@ -2,7 +2,7 @@
     <div class="loginwrapper">
 		<div class="d-flex justify-content-center h-100">
         <div class="user_card">
-            <div class="links" style="top:-90px;">
+            <div class="links" style="top:-60px;">
               <!-- <router-link to="/" class="mr-auto text-white">ホーム</router-link> -->
               <router-link to="/login" class="ml-auto text" style="color: #a93f0c!important;font-weight:bold;">ログイン</router-link>
               <a href="/" class="mr-auto text-white">ホーム</a>
@@ -13,14 +13,13 @@
               <div class="brand_logo_container">
                 <img src="/images/sample_1.png" class="brand_logo" alt="logo">
               </div>
-            </div>
-
+            </div>            
             <div class="d-flex justify-content-center">
               <div class="row width">
-                <div class="col-12 m-t-80">               
+                <div class="col-12 m-t-80">   
+                  <div class="user_name">パスワードのリセット</div>                      
                 <form autocomplete="off" @submit.prevent="resetPass" method="post">
                     <div class="input-group mb-3">
-                      <span style="text-align: center; font-weight: bold; margin: 0px 20px 30px">ユーザ名(メールアドレス)を入力してください。メールアドレス宛にパスワード再設定用のリンクをお送りします。</span>
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                         </div>
@@ -34,18 +33,13 @@
                       <button type="submit" name="button" id="getUser" class="btn login_btn">送信</button>
                     </div>
                 </form>
-                <!-- <div class="mt-4">
-					<div class="d-flex justify-content-center links d-margin">
-						<span class="text-center">
-                            <a href="/">家に帰る</a>
-                        </span>                        
-					</div>                   
-				</div>                  -->
                 </div>
               </div>
             </div>
-
-
+            <div style="text-align: justify;" class="m-t-20 d-flex">
+                ※ ユーザ名(メールアドレス)を入力してください。<br/>
+                ※ メールアドレス宛にパスワード再設定用のリンクをお送りします。
+            </div>
         </div>
     </div>
     </div>

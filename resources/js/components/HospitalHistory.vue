@@ -7,7 +7,7 @@
                         <li class="breadcrumb-item">
                             <router-link to="/">ホーム</router-link>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">最近見た施設リスト</li>
+                        <li class="breadcrumb-item active" aria-current="page">最近見た病院リスト</li>
                     </ol>
                 </nav>
             </div>
@@ -21,7 +21,7 @@
                             </g>
                         </g>
                     </svg>
-                    &nbsp;<span class="font-weight-bold"> 最近見た施設リスト</span>
+                    &nbsp;<span class="font-weight-bold"> 最近見た病院リスト</span>
                     &nbsp; <span class="job_count">{{his_hos}} 件</span>
                 </div>
             </div>
@@ -56,7 +56,7 @@
                                                 <tr>
                                                     <td v-for="hos_profile in hos_profiles" :key="hos_profile.id">
                                                         <div class="profile_wd">
-                                                            <span class="btn btn-danger all-btn hos-btn m-t-8 m-b-3" @click="deleteLocalSto(hos_profile.id)">最近見た施設リストから削除</span>
+                                                            <span class="btn btn-danger all-btn hos-btn m-t-8 m-b-3" @click="deleteLocalSto(hos_profile.id)">最近見た病院リストから削除</span>
                                                         </div>
                                                     </td>
                                                 </tr>

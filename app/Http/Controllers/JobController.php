@@ -14,7 +14,7 @@ class JobController extends Controller
     {
         if( auth()->user()->role == 2){
             $query = "SELECT jobs.* ,customers.type_id,      
-            (CASE customers.type_id WHEN '2' THEN CONCAT((500000+customers.id),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((200000+customers.id),'-',LPAD(jobs.id, 4, '0')) END) as jobid
+            (CASE customers.type_id WHEN '2' THEN CONCAT((200000+customers.id),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(jobs.id, 4, '0')) END) as jobid
             FROM `jobs`
             JOIN customers ON jobs.customer_id = customers.id
             LEFT JOIN job_applies ON jobs.id = job_applies.job_id
@@ -30,7 +30,7 @@ class JobController extends Controller
             return response()->json(array('profilejob'=>$profilejob));
         }else{
             $query = "SELECT jobs.* ,customers.type_id,      
-            (CASE customers.type_id WHEN '2' THEN CONCAT((500000+customers.id),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((200000+customers.id),'-',LPAD(jobs.id, 4, '0')) END) as jobid
+            (CASE customers.type_id WHEN '2' THEN CONCAT((200000+customers.id),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(jobs.id, 4, '0')) END) as jobid
             FROM `jobs`
             JOIN customers ON jobs.customer_id = customers.id
             LEFT JOIN job_applies ON jobs.id = job_applies.job_id
@@ -203,6 +203,7 @@ class JobController extends Controller
         $job->user_id = 1;
         $job->recordstatus = 1;
         $job->zipcode_id = $request->input('zipcode_id');
+        $job->township_id = $request->input('str_address');
 
         // $query = "SELECT townships.id FROM `townships` INNER JOIN zipcode on townships.township_name = zipcode.city
         //     WHERE zipcode.id = " . $request->input('zipcode_id');
@@ -213,12 +214,12 @@ class JobController extends Controller
         // ->select('jobs.*','customers.email')
         // ->where('jobs.id', '=', $jobapply->job_id)
         // ->get();
-        $tid = DB::table('townships')
-             ->join('zipcode','zipcode.city','=','townships.township_name')
-             ->select('townships.id')
-              ->where('zipcode.id','=',$request->input('zipcode_id'))
-              ->value('townships.id');
-        $job->township_id = $tid;
+        // $tid = DB::table('townships')
+        //      ->join('zipcode','zipcode.city','=','townships.township_name')
+        //      ->select('townships.id')
+        //       ->where('zipcode.id','=',$request->input('zipcode_id'))
+        //       ->value('townships.id');
+        // $job->township_id = $tid;
        
         $job->save();
         return $job;
@@ -235,14 +236,19 @@ class JobController extends Controller
     {
 
         // $job = Job::find($id);
-        $sql = "SELECT jobs.*, zipcode.id as zip_id, zipcode.zip7_code, zipcode.pref as cityname,zipcode.city_id, zipcode.city as township, zipcode.street from jobs inner join zipcode on jobs.zipcode_id = zipcode.id WHERE jobs.id = $id";
+        // $sql = "SELECT jobs.*, zipcode.id as zip_id, zipcode.zip7_code, zipcode.pref as cityname,zipcode.city_id, zipcode.city as township, zipcode.street from jobs inner join zipcode on jobs.zipcode_id = zipcode.id WHERE jobs.id = $id";
+        $sql1 = "SELECT * FROM jobs WHERE jobs.id = $id";
+        $job1 = DB::select($sql1);
+
+        if($job1[0]->zipcode_id != null){
+            $sql = "SELECT jobs.*, zipcode.id as zip_id, zipcode.zip7_code, zipcode.pref as cityname,zipcode.city_id, zipcode.city as township, zipcode.street from jobs inner join zipcode on jobs.zipcode_id = zipcode.id WHERE jobs.id = $id";
+        }
+        else{
+            $sql = "SELECT jobs.*, townships.city_id, townships.id as township_id from jobs inner join townships on jobs.township_id = townships.id WHERE jobs.id = $id";
+        }
         $job = DB::select($sql);
 
-        $township = "SELECT id from townships where township_name like '" .$job[0]->township ."'";
-        $township_id = DB::select($township);
-        
-
-        return response()->json(Array("job"=>$job,"township_id"=>$township_id));
+        return response()->json(Array("job"=>$job));
     }
 
 
@@ -280,7 +286,11 @@ class JobController extends Controller
                 $job->occupation_id = 0;
             }
             $job->title =$request->input('title');
-            $job->customer_id= auth()->user()->customer_id;
+            if(isset($request->customer_id)){
+                $job->customer_id= $request->customer_id;
+            }else{
+                $job->customer_id= auth()->user()->customer_id;
+            }
 
             $job->description = $request->input('description');
             $job->skills = $string;
@@ -299,6 +309,7 @@ class JobController extends Controller
             $job->user_id = 1;
             $job->recordstatus = 1;
             $job->zipcode_id = $request->input('zipcode_id');
+            $job->township_id = $request->input('str_address');
 
             // $query = "SELECT townships.id FROM `townships` INNER JOIN zipcode on townships.township_name = zipcode.city
             //     WHERE zipcode.id = " . $request->input('zipcode_id');
@@ -309,12 +320,12 @@ class JobController extends Controller
             // ->select('jobs.*','customers.email')
             // ->where('jobs.id', '=', $jobapply->job_id)
             // ->get();
-            $tid = DB::table('townships')
-                ->join('zipcode','zipcode.city','=','townships.township_name')
-                ->select('townships.id')
-                ->where('zipcode.id','=',$request->input('zipcode_id'))
-                ->value('townships.id');
-            $job->township_id = $tid;
+            // $tid = DB::table('townships')
+            //     ->join('zipcode','zipcode.city','=','townships.township_name')
+            //     ->select('townships.id')
+            //     ->where('zipcode.id','=',$request->input('zipcode_id'))
+            //     ->value('townships.id');
+            // $job->township_id = $tid;
         
             $job->save();
 
@@ -366,7 +377,7 @@ class JobController extends Controller
 
         }
 
-        return response()->json('The Job successfully updated');
+        return response()->json("Success");
     }
 
 

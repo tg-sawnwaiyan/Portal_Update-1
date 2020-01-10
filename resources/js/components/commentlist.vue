@@ -122,7 +122,7 @@
             created() {
                 this.$loading(true);
                 if(this.$route.path == "/nuscommentlist"){
-                    this.title = "コメット一覧";
+                    this.title = "コメント一覧";
                     this.axios
                     .get('/api/comments/comment/3')
                     .then(response => {
@@ -142,7 +142,7 @@
                     });
                 }
                 else if(this.$route.path == "/hoscommentlist"){
-                    this.title = "コメット一覧";
+                    this.title = "コメント一覧";
                     this.axios
                     .get('/api/comments/comment/2')
                     .then(response => {
@@ -204,7 +204,7 @@
                 deleteComment(id) {
                         this.$swal({
                             title: "確認",
-                            text: "コメットを削除してよろしいでしょうか。",
+                            text: "コメントを削除してよろしいでしょうか。",
                             type: "warning",
                             width: 350,
                             height: 200,

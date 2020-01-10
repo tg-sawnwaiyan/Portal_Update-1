@@ -282,7 +282,7 @@ Route::post('hospital/movephoto','HospitalProfileController@movePhoto');
 Route::post('user/movephoto','UserController@movePhoto');
 Route::post('user/password-change','UserController@changePassword');
 Route::post('user/email-change','UserController@changeEmail');
-Route::get('user/userinfo','UserController@getUserInfo');
+// Route::get('user/userinfo','UserController@getUserInfo');
 
 Route::get('nursing-cooperate/{id}','CooperateMedicalController@getCooperateByCustomerId');
 Route::get('nursing-payment/{id}','PaymentMethodController@getPaymentByCustomerId');
@@ -347,6 +347,7 @@ Route::post('nursing_fav/{local_sto}', 'HospitalProfileController@getFavouriteNu
 Route::group(['prefix' => 'hospital'], function () {
     Route::post('postList/{postal}', 'HospitalProfileController@getPostalList');
     Route::get('citiesList', 'HospitalProfileController@getCitiesName');
+    Route::get('townshipList', 'HospitalProfileController@getTownshipName');
     Route::get('favourite_list', 'HospitalProfileController@index');
     Route::delete('delete/{id}', 'HospitalProfileController@destroy');
 });

@@ -1703,7 +1703,7 @@ export default {
             }
             },
             getPostal: function(event) {
-                if (this.postal.length > 4) {
+                if (this.postal.length > 5) {
                     var postal = this.postal;
                     this.axios
                         .post('/api/hospital/postList/' + postal)
@@ -1715,7 +1715,7 @@ export default {
                                 if (post_data[0]['street'] == '') {
                                     this.city = post_data[0]['city'];
                                 } else {
-                                    this.city = post_data[0]['city'] + ' - ' + post_data[0]['street'];
+                                    this.city = post_data[0]['city']  + post_data[0]['street'];
                                 }
                                 // this.comments.selectedValue = pref;
                                 // this.comments.division = pref;
