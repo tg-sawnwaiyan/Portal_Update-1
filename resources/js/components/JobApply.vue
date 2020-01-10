@@ -128,10 +128,30 @@
                 </label>
             </div>
             <div class="col-md-9 col-sm-12 form-right">
-                <select v-model="jobApply.selectedValue" class="division form-control" id="division" @change="aggreBtn">
+                <select v-model="jobApply.selectedValue" class="division form-control" id="division"  @change="getTownship(2)">
                     <option value="0">選択してください。</option>
                     <option v-for="cities in city_list" :key="cities.id" v-bind:value="cities.id">
                     {{cities.city_name}}
+                    </option>
+                </select>
+                <span v-if="errors.division" class="error">{{errors.division[0]}}</span>
+                <!-- <input type="text" class="form-control box" v-model="jobApply.pref" /> -->
+            </div>
+        </div>
+        <div class="form-group m-0 row bd">
+            <div class="col-md-3 col-sm-12 form-left">
+                <label for="str_address">
+                    <strong>
+                  Township
+                </strong>
+                <span class="error sp1">必須</span>
+                </label>
+            </div>
+            <div class="col-md-9 col-sm-12 form-right">
+                <select v-model="jobApply.township" class="division form-control" id="division" @change="aggreBtn">
+                    <option value="0">選択してください。</option>
+                    <option v-for="town in town_list" :key="town.id" v-bind:value="town.id">
+                    {{town.township_name}}
                     </option>
                 </select>
                 <span v-if="errors.division" class="error">{{errors.division[0]}}</span>
@@ -437,6 +457,8 @@ export default {
         remark: "",
         terms: false,
         selectedValue: 0,
+        township:0,
+        townshipname:'',
         division: 0,
         focus_name: false,
         focus_lname: false,
@@ -456,6 +478,7 @@ export default {
       },
     type: "register",
     city_list: [],
+    town_list:[],
     focus_name: false,
     focus_lname: false,
     focus_pref: false,
@@ -502,23 +525,51 @@ export default {
                     var post_data = response.data.postal_list;
                     var length = response.data.postal_list.length;
                     if (length > 0) {
-                        var pref = post_data[0]['city_id'];
-                        if (post_data[0]['street'] == '') {
-                            this.jobApply.str_address = post_data[0]['city'];
-                        } else {
-                            this.jobApply.str_address = post_data[0]['city'] + post_data[0]['street'];
-                        }
+                        var pref = post_data[0]['city_id']; 
+                        this.jobApply.city_id = pref;
                         this.jobApply.selectedValue = pref;
+                        this.getTownship(1);
+                        this.jobApply.township = response.data.township_id[0]['id'];
+                     
+                         if (post_data[0]["street"] == "") 
+                          {
+                              this.jobApply.str_address = post_data[0]["street"];
+                          } 
+                          else{
+                                this.jobApply.str_address = post_data[0]["pref"] +  post_data[0]["city"] +   post_data[0]["street"];;
+                          }
                         this.jobApply.division = pref;
                             $('#jsErrorMessage').html('<div class="error"></div>');
                     } else {
                         this.jobApply.str_address = '';
                         this.jobApply.selectedValue = 0;
+                        this.jobApply.township = 0;
                         $('#jsErrorMessage').html('<div class="error">郵便番号の書式を確認してください。</div>');
                     }
                 });
         }
     },
+      getTownship(town_id){
+                   
+                    this.axios.get('/api/auth/township',{
+                      params:{
+                        city:this.jobApply.selectedValue
+                      },
+                    }).then((response)=>{
+                       if(town_id == 2)
+                      {
+                        this.jobApply.str_address = ''
+                        this.jobApply.postal = '';
+                        this.jobApply.township = 0;
+                      }
+                      this.town_list = response.data.townships
+               })
+      },
+      getLocation(){
+
+          this.comments.postal = '';
+          this.comments.city = '';
+      },
 
     apply() {
 
@@ -592,7 +643,14 @@ export default {
             this.jobApply.selectedValue = this.city_list[i].city_name;
         }
          }
+
+         for (var i = 0; i < this.town_list.length; i++) {
+        if (this.jobApply.township == this.town_list[i].id) {
+            this.jobApply.townshipname = this.town_list[i].township_name;
+        }
+         }
       }
+      
     },
     editUserInfo() {
       this.type = "register";
