@@ -14,7 +14,7 @@
 
                             <div class="row col-md-12 m-0 p-r-0">
 
-                                <div class="col-md-6">
+                                <div class="col-sm-12 col-md-3 col-lg-6">
 
                                     <div class="col-md-2 float-right">
 
@@ -24,9 +24,19 @@
 
                                 </div>
 
-                                <div class="col-md-6 p-l-0 m-b-15">
+                                <div class="col-sm-12 col-md-9 col-lg-6 p-l-0 m-b-15">
 
-                                    <div class="row ">
+                                     <!--search input-->
+                                    <div class="search-input">
+                                        <span class="btn btn my-2 col-md-12 my-sm-0 danger-bg-color btn-danger cross-btn" v-if="status == 1" @click="clearSearch()">X</span>
+                                        <input type="text" class="searchNews" placeholder="ニュース検索" id="search-free-word" v-bind:value="search_word">
+                                        <button type="submit" class="searchButtonNews" @click="searchCategory()">
+                                            <i class="fas fa-search"></i> 検索
+                                        </button>
+                                    </div>
+                                    <!--end search input-->
+
+                                    <!-- <div class="row ">
 
                                         <div class="col-md-9">
 
@@ -42,7 +52,7 @@
 
                                         </div>
 
-                                    </div>
+                                    </div> -->
 
                                 </div>
 
@@ -1319,9 +1329,9 @@
 
             getPostByCatID: function(catId = 1) {
 
-                if ($('#search-word').val() != null) {
+                if ($('#search-free-word').val() != null) {
 
-                    var search_word = $('#search-word').val();
+                    var search_word = $('#search-free-word').val();
 
                 } else {
 
@@ -1381,9 +1391,9 @@
 
             getLatestPostByCatID: function(catId) {
 
-                if ($('#search-word').val()) {
+                if ($('#search-free-word').val()) {
 
-                    var search_word = $('#search-word').val();
+                    var search_word = $('#search-free-word').val();
                 } else {
 
                     var search_word = null;
@@ -1439,7 +1449,7 @@
 
             searchCategory() {
 
-                if ($('#search-word').val() == null || $('#search-word').val() == '' || $('#search-word').val() == 'null') {
+                if ($('#search-free-word').val() == null || $('#search-free-word').val() == '' || $('#search-free-word').val() == 'null') {
 
 
             console.log("statusBar",this.search_word);
@@ -1451,7 +1461,7 @@
 
                     this.status = 1;
 
-                    this.search_word = $('#search-word').val();
+                    this.search_word = $('#search-free-word').val();
                     //console.log("word",this.search_word);
                     this.getLatestPostsByCatID();                 
 
