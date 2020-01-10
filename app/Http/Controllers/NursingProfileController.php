@@ -51,6 +51,17 @@ class NursingProfileController extends Controller
     public function profileupdate($id,Request $request) { 
         $request = $request->all();
 
+        // Customer Info List
+        $customer = Customer::find($id);
+
+        $customer->name = $request[0]['customer_info']['name'];
+        $customer->email = $request[0]['customer_info']['email'];
+        $customer->phone = $request[0]['customer_info']['phone'];
+        $customer->address = $request[0]['customer_info']['address'];
+        $customer->townships_id = $request[0]['customer_info']['townships_id'];
+
+        $customer->save();
+
         $nursing = NursingProfile::where('customer_id',$id)->first();
         // Nursing Profile 
         // print_r($request);exit;
@@ -129,16 +140,7 @@ class NursingProfileController extends Controller
         }
         // End
 
-        // Customer Info List
-        $customer = Customer::find($id);
-
-        $customer->name = $request[0]['customer_info']['name'];
-        $customer->email = $request[0]['customer_info']['email'];
-        $customer->phone = $request[0]['customer_info']['phone'];
-        $customer->address = $request[0]['customer_info']['address'];
-        $customer->townships_id = $request[0]['customer_info']['townships_id'];
-
-        $customer->save();
+        
 
         DB::update("UPDATE users SET name='".$request[0]['customer_info']['name']."', email='".$request[0]['customer_info']['email']."' WHERE customer_id=$id");
         // End

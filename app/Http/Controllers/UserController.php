@@ -215,8 +215,13 @@ class UserController extends Controller
 
     public function changePassword(Request $request) {
         $request = $request->all();
-        $user = User::find(auth('api')->user()->id);
-    
+        $cusId = $request['cus_id'];
+        if(auth()->user()->role == 2) {
+            $customer = Customer::find($cusId);
+            $user = User::find($customer['user_id']);
+        }else{
+            $user = User::find(auth('api')->user()->id);
+        }    
         if (Hash::check($request['old_pass'], $user['password'])) {
             $user->password = Hash::make($request['new_pass']);
             $user->save();
@@ -228,8 +233,14 @@ class UserController extends Controller
 
     public function changeEmail(Request $request) {
         $request = $request->all();
-
-        $user = User::find(auth('api')->user()->id);
+        $cusId = $request['cus_id'];
+        if(auth()->user()->role == 2) {
+            $customer = Customer::find($cusId);
+            $user = User::find($customer['user_id']);
+        }else{
+            $user = User::find(auth('api')->user()->id);
+        } 
+        // $user = User::find(auth('api')->user()->id);
         $user->email = $request['email'];
         $user->save();
 

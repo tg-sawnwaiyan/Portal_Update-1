@@ -6,37 +6,23 @@
                     <div class="col-md-12 row p-0 m-0">
                         <div class="col-md-6 pad-free">
                             <div class="col-md-12 p-l-0 m-t-10"><label>  都道府県<span class="error">*</span></label></div>
-                            <div class="col-md-12 p-l-0" v-if="test ==0 ">
-                                <select :value="city" class="division form-control" id="division" @change="cityChange($event)">
+                            <div class="col-md-12 p-l-0">
+                                <select v-model="city" class="division form-control" id="division" @change="cityChange($event)">
                                     <option v-for="cities in city_list" :key="cities.id" v-bind:value="cities.id">
                                         {{cities.city_name}}
                                     </option>
                                 </select>
-                            </div>
-                            <div class="col-md-12 p-l-0" v-else>
-                                <select :value="city" class="division form-control" id="division" @change="cityChange($event)">
-                                    <option v-for="cities in city_list" :key="cities.id" v-bind:value="cities.id" :selected="cities.id == selected_city_id">
-                                        {{cities.city_name}}
-                                    </option>
-                                </select>
-                            </div>
+                            </div>                           
                         </div>
                         <div class="col-md-6 pad-free">
                             <div class="col-md-12 p-r-0 m-t-10"><label>  市区町村<span class="error">*</span></label></div>
-                            <div class="col-md-12 p-r-0" v-if="test == 0">
-                                <select :value="township" class="division form-control" id="township">
+                            <div class="col-md-12 p-r-0">
+                                <select v-model="township" class="division form-control" id="gmaptownship">
                                     <option v-for="townships in township_list" :key="townships.id" v-bind:value="townships.id">
                                         {{townships.township_name}}
                                     </option>
                                 </select>
-                            </div>
-                            <div class="col-md-12 p-r-0" v-else>
-                                <select :value="new_township" class="division form-control" id="township">
-                                    <option v-for="townships in new_townshiplist" :key="townships.id" v-bind:value="townships.id">
-                                        {{townships.township_name}}
-                                    </option>
-                                </select>
-                            </div>
+                            </div>                            
                         </div>
                     </div>            
                     
@@ -127,9 +113,6 @@ export default {
         },
   data () {
     return {
-        test:'0',
-        new_townshiplist:[],
-        new_township:'',
       status:'0',
       markers: [],
       addresses: [],
@@ -145,7 +128,6 @@ export default {
       },
       address_btn: false,
       city_list: [],
-      selected_city_id:'0',
     //   selected_city:this.city,      
     }
   },
@@ -289,16 +271,14 @@ export default {
               
             },
             cityChange(event){
-                this.test = 1;
-                this.selected_city_id = event.target.value;
                 this.axios
                 .get('/api/townshiplist/'+event.target.value)
                 .then(response=>{
-                    this.new_townshiplist = response.data.townships; 
-                    this.new_township = this.township_list[0].id;
+                    this.township_list = response.data.townships; 
+                    this.township = this.township_list[0].id;
                     var move_lat = response.data.coordinate[0].latitude;
                     var move_lon = response.data.coordinate[0].longitude;
-                    this.addressSelect(move_lat,move_lon)
+                    this.addressSelect(move_lat,move_lon);
                 });
             },
             
