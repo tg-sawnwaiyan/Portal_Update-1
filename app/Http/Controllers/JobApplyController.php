@@ -90,7 +90,7 @@ class JobApplyController extends Controller
             $jobapply->street_address = $request->str_address;
             //$jobapply->home_address = $request->home_address;
             $jobapply->phone = $request->phone;
-            $jobapply->email = $request->email;
+            $jobapply->email = $request->email;       
             $jobapply->skill = $string;
             $jobapply->remark = $request->remark;
           
@@ -119,7 +119,7 @@ class JobApplyController extends Controller
                 $job_location = $info->location;
                 $job_nearest_station = $info->nearest_station;
                 $job_employment_status = $info->employment_status;
-                $job_salary = $info->salary;
+                $job_salary = $info->salary3062 ;
                 $job_working_hours = $info->working_hours;
                 $customer_mail = $info->email;
                 $customer_name = $info->cus_name;

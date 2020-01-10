@@ -117,7 +117,7 @@
                              
                                     <div class="col-md-12 "><label>  Township <span class="error sp1">必須</span></label></div>
                                     <div class="col-md-12 p-0">
-                                        <select v-model="comments.township" class="division form-control" id="division" @change="aggreBtn">
+                                        <select v-model="comments.township" class="division form-control" id="division" @change="getLocation()">
                                             <option value="0">選択してください。</option>
                                            
                                             <option v-for="town in townships" :key="town.id" v-bind:value="town.id">
@@ -514,7 +514,9 @@ import DatePicker from 'vue2-datepicker';
                     })
                   },
                   getLocation(){
-                     this.joboffer.location = '';
+
+                     this.comments.postal = '';
+                     this.comments.city = '';
                   },
             add() {
                 this.all_mail = JSON.parse(localStorage.getItem("item"));
