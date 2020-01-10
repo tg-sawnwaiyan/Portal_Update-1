@@ -121,7 +121,10 @@
 .v-sidebar-menu.vsm_expanded{
     max-width: 230px !important;   
 }
-
+.v-sidebar-menu .vsm--link_level-1.vsm--link_exact-active, .v-sidebar-menu .vsm--link_level-1.vsm--link_active {
+    -webkit-box-shadow: 0px 0px 0px 0px red inset; 
+    box-shadow: 0px 0px 0px 0px red inset;
+}
 /* .v-sidebar-menu .vsm--header {
     font-size: 18px;
     background: #2c3b41;

@@ -9394,6 +9394,14 @@ ul.nur-caro-card>li.list-group-item {
         max-width: 100% !important;
         flex: 100% !important;
     }
+    /* header & menu */
+    .v-sidebar-menu {
+        display: none !important;
+    }
+    .content-all {
+        padding-left: 0;
+    }
+    /*End header & menu */
     .map-text-wrapper {
         display: flex;
     }
