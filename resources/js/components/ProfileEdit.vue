@@ -328,7 +328,7 @@
                             let arr = new FormData();
                             arr.append('old_pass', old_pass)
                             arr.append('new_pass', new_pass)
-
+                            arr.append('cus_id', this.cusid)
                             this.axios
                                 .post(`/api/user/password-change`, arr)
                                 .then((response) => {
@@ -367,6 +367,7 @@
 
                         let arr = new FormData();
                         arr.append('email', email)
+                        arr.append('cus_id', this.cusid)
 
                         this.$swal({
                             title: "確認",
