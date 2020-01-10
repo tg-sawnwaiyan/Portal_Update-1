@@ -38,7 +38,7 @@
                 </label>
             </div>
             <div class="col-md-9 col-sm-12 form-right">
-                <input type="text" class="form-control float-left" id="first_name" placeholder="お名前を入力してください。" v-model="jobApply.first_name" @focusout="focusName" @change="aggreBtn"/>
+                <input type="text" class="form-control float-left" id="first_name" placeholder="お名前を入力してください。" v-model="jobApply.first_name" @keyup="focusName" @change="aggreBtn"/>
                 <span class="float-left eg-txt">例）探し 太郎</span>
                 <span class="error m-l-30" v-if="focus_name">※入力は必須です。</span>
                 <!-- <div v-if="errors.first_name" class="text-danger mt-2 ml-4">{{ errors.first_name }}</div> -->
@@ -55,11 +55,11 @@
             </div>
             <div class="col-md-9 col-sm-12 form-right">
                 <div class="col-md-12 pad-free">
-                    <input type="text" class="form-control float-left" id="furigana" placeholder="ふりがなを入力してください。" v-model="jobApply.last_name" @keyup="ChekChar" @focusout="focusFuri" @change="aggreBtn"/>
+                    <input type="text" class="form-control float-left" id="furigana" placeholder="ふりがなを入力してください。" v-model="jobApply.last_name" @keyup="ChekChar"  @change="aggreBtn"/>
                     <span class="float-left eg-txt"> 例）さがし たろう</span>
                     <!-- <span class="error m-l-30" v-if="focus_lname">※入力は必須です。</span> -->
-                    <span class="error m-l-30" v-if="furigana_focus">※入力は必須です。</span>
-                    <div v-if="errors.last_name" class="text-danger mt-2 ml-4">{{ errors.last_name }}</div>
+                    <span class="error m-l-30" v-if="jobApply.furigana_focus   ">※入力は必須です。</span>
+                    <!-- <div v-if="errors.last_name" class="text-danger mt-2 ml-4">{{ errors.last_name }}</div> -->
                 </div>
                 <span class="float-left text-danger p-l-30" v-if="charErr">ひらがなで入力してください!</span>
             </div>
@@ -145,7 +145,7 @@
                 <div class="form-group row pl-3">
                     <div class="col-md-12 "><label>市区町村、番地（建物名)<span class="error sp1">必須</span></label></div>
                     <div class="col-md-12 p-0">
-                        <input type="text" class="city form-control float-left" id="str_address" v-model="jobApply.str_address" placeholder="市区町村、番地を入力してください。" @focusout="focusCity" @change="aggreBtn"/>
+                        <input type="text" class="city form-control float-left" id="str_address" v-model="jobApply.str_address" placeholder="市区町村、番地を入力してください。" @keyup="focusCity" @change="aggreBtn"/>
                         <span class="float-left eg-txt">例）東京都千代田区丸の内1-9-1 グラントウキョウノースタワー40階</span>
                         <br>
                         <span class="error m-l-30" v-if="focus_city">※入力は必須です。</span>
@@ -175,9 +175,9 @@
             <div class="col-md-9 col-sm-12 form-right">
             <div class="form-group row pl-3">
                 <div class="col-md-12 p-0">
-                        <input type="text" class="form-control float-left" id="email" placeholder="メールアドレスを入力してください。" v-model="jobApply.email" @focusout="focusMail"  @change="aggreBtn"/>
+                        <input type="text" class="form-control float-left" id="email" placeholder="メールアドレスを入力してください。" v-model="jobApply.email" @keyup="focusMail"  @change="aggreBtn"/>
                         <span class="float-left eg-txt"> 例）abc@example.jp （半角）</span>
-                        <span class="error m-l-30" v-if="focus_mail">※入力は必須です。</span>
+                        <span class="error m-l-30" v-if="focus_mail && this.jobApply.email !=''">※メールアドレスが正しくありません。もう一度入力してください。</span>
                     </div>
                 </div>
             </div>
@@ -522,29 +522,31 @@ export default {
                         this.jobApply.township = 0;
                         $('#jsErrorMessage').html('<div class="error">郵便番号の書式を確認してください。</div>');
                     }
+                    this.aggreBtn();    
                 });
         }
     },
       getTownship(town_id){
                    
-                    this.axios.get('/api/auth/township',{
-                      params:{
-                        city:this.jobApply.selectedValue
-                      },
-                    }).then((response)=>{
-                       if(town_id == 2)
-                      {
-                        this.jobApply.str_address = ''
-                        this.jobApply.postal = '';
-                        this.jobApply.township = 0;
-                      }
-                      this.town_list = response.data.townships
-               })
+            this.axios.get('/api/auth/township',{
+                params:{
+                city:this.jobApply.selectedValue
+                },
+            }).then((response)=>{
+                if(town_id == 2)
+                {
+                this.jobApply.str_address = ''
+                this.jobApply.postal = '';
+                this.jobApply.township = 0;
+                }
+                this.town_list = response.data.townships
+                this.aggreBtn();    
+        })
       },
       getLocation(){
-
           this.comments.postal = '';
           this.comments.city = '';
+          this.aggreBtn();    
       },
 
     apply() {
@@ -634,8 +636,10 @@ export default {
     focusName: function(event) {
         if(this.jobApply.first_name != ''){
             this.focus_name=false;
+            this.aggreBtn();
         }else{
             this.focus_name=true;
+            this.btn_disable = true;
         }
     },
     focusLname: function(event) {
@@ -643,13 +647,16 @@ export default {
             this.focus_lname=false;
         }else{
             this.focus_lname=true;
+            this.btn_disable = true;
         }
     },
     focusCity: function(event) {
         if(this.jobApply.str_address != ''){
             this.focus_city=false;
+            this.aggreBtn();
         }else{
             this.focus_city=true;
+            this.btn_disable = true;
         }
     },
     focusPhone(){
@@ -660,22 +667,24 @@ export default {
         if(this.jobApply.phone.charAt(this.jobApply.phone.length - 1) != '-' && this.jobApply.phone.charAt(0) != '-' && ((this.jobApply.phone.length >= 10 && this.jobApply.phone.length <= 14) || this.jobApply.phone.length == 0))
         {  
             this.ph_num = false;
-            this.ph_length = false;     
+            this.ph_length = false; 
+             this.aggreBtn();    
         }
         else{
             this.ph_num = true;
             this.ph_length = true;
             this.btn_disable = true;
         }
-        this.aggreBtn();      
+             
     },
     focusMail: function(event) {
 
-        if(this.jobApply.email != '' && this.mail_reg.test(this.jobApply.email) ){
+        if((this.jobApply.email != '' && this.mail_reg.test(this.jobApply.email))){
             this.focus_mail=false;
         }else{
             this.focus_mail=true;
         }
+        this.aggreBtn();
         // if(this.jobApply.phone.length >= 10 && this.jobApply.phone.length <= 14) {
         //     this.ph_length = false;
         // }else{
@@ -683,7 +692,7 @@ export default {
         // }
     },
     aggreBtn: function(){
-        if($('#furigana').val().length > 0 && this.jobApply.first_name != '' && this.jobApply.last_name != '' && this.jobApply.selectedValue != 0 && this.jobApply.str_address != '' && this.jobApply.terms == true && (this.mail_reg.test(this.jobApply.email) && this.jobApply.phone)){
+        if(($('#furigana').val().length > 0 && !this.charErr) && this.jobApply.first_name != '' && this.jobApply.last_name != '' && this.jobApply.selectedValue != 0 && this.jobApply.str_address != '' && this.jobApply.terms == true && (this.mail_reg.test(this.jobApply.email) || (!this.ph_length && !this.ph_num && this.jobApply.phone.length > 0 ))){
             this.btn_disable=false;
         }else{
             this.btn_disable=true;
@@ -694,26 +703,43 @@ export default {
         // $('.char-err').text('');
         var input_val = $('#furigana').val();
         var each_val = input_val.split('');
-        _this.btn_disable = false;
-    
+        //_this.btn_disable = false;
+        _this.charErr =false;
         var code = 0;
         $.each(each_val, function (key, value) {
             code = value.charCodeAt();
+            console.log(code)
             if (!(code > 12352 && code < 12447)) {
-                // $('.char-err').text('ひらがなで入力してください!');
                 _this.charErr = true;
                 _this.btn_disable = true;
-            }  
-        });          
+            } 
+            
+        });    
+        if(input_val == ''){
+            if(this.jobApply.last_name != ''){
+            //_this.charErr =false;
+            this.jobApply.furigana_focus=false;
+            
+        }else{
+            this.jobApply.furigana_focus=true;　
+            _this.btn_disable = true;
+             //_this.charErr = true;
+        }
+        }else{            
+            this.jobApply.furigana_focus=false;　
+        }  
+        this.aggreBtn();    
     },
 
-    focusFuri: function(event) {
-        if(this.jobApply.last_name != ''){
-            this.furigana_focus=false;
-        }else{
-            this.furigana_focus=true;　
-        }
-    },
+    // focusFuri: function(event) {
+    //     if(this.jobApply.last_name != ''){
+    //         this.jobApply.furigana_focus=false;
+    //         this.aggreBtn();
+    //     }else{
+    //         this.jobApply.furigana_focus=true;　
+    //         this.btn_disable = true;
+    //     }
+    // },
 
 
     // isNumberOnly: function(event) {
