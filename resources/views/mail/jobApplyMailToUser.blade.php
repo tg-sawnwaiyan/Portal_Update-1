@@ -24,9 +24,11 @@
                     <br>
                     郵便番号：{{$getComment->postal}}
                     <br>
-                    都道府県：{{$getComment->city_name}}
-                    <br>
-                    市区町村、番地（建物名)：{{$getComment->home_address}}
+                    都道府県：{{$getComment->cityname}}
+                    <br>  
+                    Township ：{{$getComment->townshipname}}
+                    <br>  
+                    Street Address ：{{$getComment->street_address}}
                     <br>
                     電話番号：{{$getComment->phone}}
                     <br>
