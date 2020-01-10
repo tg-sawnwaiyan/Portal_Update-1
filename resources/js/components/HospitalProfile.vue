@@ -1376,6 +1376,11 @@ export default {
                 //       this.station_list = response.data;
                 // });
 
+                this.initialCall();
+                // quill.editor.disable()
+        },
+        methods: {
+            initialCall(){
                 this.axios
                 .get('/api/clinical-subject/'+this.cusid)
                 .then(response=>{
@@ -1390,6 +1395,7 @@ export default {
                 .get('/api/customerinfo/'+this.cusid)
                 .then(response=>{
                         this.customer_info = response.data;
+                        console.log(response.data)
                 });
                 this.axios
                 .get('/api/hospitalinfo/'+this.cusid)
@@ -1425,9 +1431,7 @@ export default {
                 .then(response=>{
                         this.fac_list = response.data;
                 });
-                // quill.editor.disable()
-        },
-        methods: {
+            },
              imgUrlAlt(event) {
                 event.target.src = "images/noimage.jpg"
             },
@@ -1565,6 +1569,7 @@ export default {
             this.gallery_list= [];
             this.img_list = [];
             this.video_list = [];
+            this.save_hospital_info = [];
                      
                 this.$loading(true);
        
@@ -1574,14 +1579,13 @@ export default {
                       this.hospital_info.details_info = "";
                     }
                   
-    
-                     var latitude = $('#new_lat').val();
-                     var longitude = $('#new_long').val();
-                    this.hospital_info.latitude = latitude;
-                    this.hospital_info.longitude = longitude;
-
-                    localStorage.setItem('lat_num',latitude);
-                    localStorage.setItem('lng_num',longitude);
+                    this.hospital_info.latitude = $('#new_lat').val();
+                    this.hospital_info.longitude = $('#new_long').val();
+                    console.log($('#gmaptownship').val());
+                    this.customer_info.townships_id = Number($('#gmaptownship').val());
+                    localStorage.setItem('lat_num',this.hospital_info.latitude);
+                    localStorage.setItem('lng_num',this.hospital_info.longitude);
+                    console.log(this.customer_info);
 
                     var img = document.getElementsByClassName('gallery-area-photo');
                     let pt = new FormData();
@@ -1668,7 +1672,7 @@ export default {
 
                   
 
-                    this.save_hospital_info = [];
+                    
 
                         this.save_hospital_info.push({ customer_info:this.customer_info,hospital_info:this.hospital_info,facilities:this.facilities,
                         schedule_list:this.schedule_list,chek_feature:this.chek_feature, subjects:this.subjects, gallery_list:this.gallery_list
@@ -1681,14 +1685,7 @@ export default {
                         .post(`/api/hospital/profile/${this.cusid}`,this.save_hospital_info)
                         .then((response) => {
 
-                             this.img_arr = [];
-                             this.video_arr = [];
-                             this.gallery_list = [];
-                             this.img_arr = response.data.photo_list;
-                             this.video_arr = response.data.video_list;
-                             this.gallery_list = response.data.gallery_list;
-                     
-                            
+                            this.initialCall();                           
   
                             this.$swal({
                                 position: 'top-end',
@@ -1698,9 +1695,6 @@ export default {
                                 confirmButtonColor: "#6cb2eb",
                                 width: 250,
                                 height: 200,
-                            }).then(response => {
-                            
-                            
                             })
                             this.$loading(false);
                         }).catch(error=>{

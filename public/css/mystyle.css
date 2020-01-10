@@ -459,7 +459,7 @@ body::-webkit-scrollbar-thumb {
     padding: 0px;
     font-size: 90%;
     position: absolute;
-    top: 210px;
+    top: 280px;
     color: #ea0f0f;
     font-weight: bold;
     background-color: #ffebeb;
@@ -1099,6 +1099,10 @@ body::-webkit-scrollbar-thumb {
 #nursingView .profile_subtit:after {
     background: #ff9563;
 }
+#profilenav .fav-profile {
+    position: absolute;
+    top: 70px;
+}
 
 .fav-profile {
     position: absolute;
@@ -1140,7 +1144,22 @@ body::-webkit-scrollbar-thumb {
 #nursingView .header {
     color: #ec7338;
 }
-
+.public-nurheader{
+    border-bottom: 3px solid #d2571c;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+.public-nurheader .fa-user-md{
+    color: #d2571c;
+}
+.public-hosheader{
+    border-bottom: 3px solid #2981cc;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+.public-hosheader .fa-briefcase-medical{
+    color: #2981cc;
+}
 .header {
     font-weight: bold;
     display: inline-block;
@@ -2458,6 +2477,14 @@ ul.sub-ul li {
 .confirm-borderbtn {
     border: 1px solid #6cb2eb !important;
     color: #6cb2eb;
+    background: #fff;
+    box-shadow: none !important;
+    min-width: 60px;
+}
+
+.confirm-orangebtn {
+    border: 1px solid #ff9563 !important;
+    color: #ff9563;
     background: #fff;
     box-shadow: none !important;
     min-width: 60px;
@@ -4492,6 +4519,14 @@ margin-right: 2% !important;
 .confirm-borderbtn {
     border: 1px solid #6cb2eb !important;
     color: #6cb2eb;
+    background: #fff;
+    box-shadow: none !important;
+    min-width: 60px;
+}
+
+.confirm-orangebtn {
+    border: 1px solid #ff9563 !important;
+    color: #ff9563;
     background: #fff;
     box-shadow: none !important;
     min-width: 60px;

@@ -337,7 +337,7 @@ const routes = [
         path: "/profile",
         component: Profile,
         meta: {
-            auth: undefined
+            auth: true,
         }
     },
     {
@@ -378,7 +378,7 @@ const routes = [
         path: "/profilepublish",
         component: ProfilePublish,
         meta: {
-            auth: undefined
+            auth: true,
         }
     },
     {
