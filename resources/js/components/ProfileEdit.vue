@@ -62,7 +62,7 @@
                         <div class="row">
                             <div class="col-4">
                                 <label class="email-address">Email-Address:</label>
-                                <input type="text" class="form-control email" v-model="user_info.email">
+                                <input type="text" class="form-control email" v-model="customer_info.email">
                             </div>
                         </div>
                         <div class="row">
@@ -91,7 +91,7 @@
                             <div class="card card-default m-b-20 col-md-11">
                                 <div class="card-body">
                                     <!-- <div class="header2"> -->
-                                        <h5 class=" clearfix">事業者番号 : <span style="color:orange;font-weight:bold">{{user_info.id}}</span></h5>
+                                        <h5 class=" clearfix">事業者番号 : <span style="color:orange;font-weight:bold">{{customer_info.cusnum}}</span></h5>
                                     <!-- </div> -->
                                 </div>                                
                             </div>
@@ -166,7 +166,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="email-address">メールアドレス:</label>
-                                                <input type="text" class="form-control email" v-model="user_info.email">
+                                                <input type="text" class="form-control email" v-model="customer_info.email">
                                             </div>
                                             <div class="form-group">
                                                 <span class="btn main-bg-color white all-btn"  @click="emailChange()">
@@ -218,17 +218,15 @@
         data() {
                 return {
                     customer_info: [],
-                    user_info: [],
                     type: 'nursing',
                     logo: '',
-                    cusid: '0',
+                    cusid: this.$auth.check(1)?Number(localStorage.getItem('cusId')):this.$route.params.cusid,
                     upload_img: null,
                     image: '',
                     accout_status:''
                 }
             },
             created() {
-
                 this.axios
                     .get('/api/customerinfo/' + this.cusid)
                     .then(response => {
@@ -244,11 +242,6 @@
                         } else {
                             this.logo = 'upload/nursing_profile/' + response.data.logo;
                         }
-                    });
-                this.axios
-                    .get('/api/user/userinfo/')
-                    .then(response => {
-                        this.user_info = response.data;
                     });
             },
             methods: {

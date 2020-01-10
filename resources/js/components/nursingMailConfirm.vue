@@ -266,7 +266,8 @@
                 fav_nursing: [],
                 local_sto: "",
                 post_list: [],
-                city_list: []
+                city_list: [],
+                town_list:[]
             };
         },
         created() {
@@ -279,13 +280,27 @@
             // }
             this.axios.get("/api/hospital/citiesList").then(response => {
                 this.city_list = response.data;
-                console.log("testing", this.comments.division);
+             
                 for (var i = 0; i < this.city_list.length; i++) {
                     if (this.comments.division == this.city_list[i].id) {
                         this.comments.division = this.city_list[i].city_name;
                     }
                 }
             });
+
+             this.axios.get("/api/hospital/townshipList").then(response => {
+                this.town_list = response.data;
+              
+                for (var i = 0; i < this.town_list.length; i++) {
+                    if (this.comments.township == this.town_list[i].id) {
+                        this.comments.townshipname = this.town_list[i].township_name;
+                    }
+                }
+            });
+
+
+
+           
         },
         methods: {
             add() {

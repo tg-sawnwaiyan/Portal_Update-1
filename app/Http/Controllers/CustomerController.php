@@ -102,15 +102,10 @@ class CustomerController extends Controller
 
     public function edit($id)
     {
-        if($id == 0) {
-            $u_id = auth('api')->user()->id;
-            $id = User::where('id',$u_id)->select('customer_id')->value('customer_id');
-            $type = User::where('id',$u_id)->select('type_id')->value('type_id');
-        }
-        $customer = Customer::find($id);
-        $customer['type_id'] = isset($type)? $type: '';
+        $sql = "SELECT *, (CASE c.type_id WHEN '2' THEN CONCAT((200000+c.id)) ELSE CONCAT((500000+c.id)) END) as cusnum FROM customers as c WHERE c.id = ".$id;
+        $customer = DB::select($sql);
 
-        return response()->json($customer);
+        return response()->json($customer[0]);
     }
 
     public function getCustomerInfo($id) {

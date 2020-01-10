@@ -37,6 +37,7 @@ class NursingMailController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function mail(Request $request){
+      
         // $favourite_name = $request->fav_name;
         // return $favourite_name[1];
       
