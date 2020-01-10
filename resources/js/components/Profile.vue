@@ -16,7 +16,7 @@
           <label for="nursing" class="typelabel dim-btn nav-link" id="nursing-lbl">
             <input type="radio" v-model="btntype" value="view" v-on:change="changeBtnType('nursing-lbl','hospital-lbl')" name="btntype" id="nursing" />
             <span v-if="loginuser"><i class="fas fa-search" style="font-size:18px;"></i>&nbsp;プレビュー</span>
-            <span v-if="!loginuser"><i class="fas fa-user-md"></i></span>
+            <span v-if="!loginuser"><i class="fas fa-user-md"></i>&nbsp;マイページ</span>
           </label>
         </li>
  
