@@ -133,22 +133,23 @@
                                             <div class="form-group">
 
                                                 <label class="old-pass">現在のパスワード:</label>
-                                                <input type="password" name="old_password" placeholder="現在のパスワードを入力してください。" class="form-control old-password">
+                                                <input type="password" name="old_password" v-model="old_password" placeholder="現在のパスワードを入力してください。" class="form-control old-password">
                                                 <div class="error" id="oldpassword" style="display: none;">現在のパスワードが必要です。</div>
                                                 <br>
                                                 <label class="old-pass">新しいパスワード</label>
-                                                <input type="password" name="new_password" placeholder="新しいパスワードを入力してください。" class="form-control new-password">
+                                                <input type="password" name="new_password" placeholder="新しいパスワードを入力してください。" class="form-control new-password" v-model="password">
                                                 <div class="error" id="newpassword" style="display: none;">新しいパスワードが必要です。</div>
                                                 <div class="error" id="newpasswordlength" style="display: none;">パスワードは少なくとも6桁でなければなりません。</div>
                                                 <br>
                                                 <label class="old-pass">新しいパスワードをもう一度入力してください</label>
-                                                <input type="password" name="comfirm_password" class="form-control confirm-password" placeholder="新しいパスワードをもう一度入力してください">
+                                                <input type="password" name="comfirm_password" class="form-control confirm-password" placeholder="新しいパスワードをもう一度入力してください" v-model="password_confirmation" @keyup="password_validate()">
                                                 <div class="error" id="confirmpassword" style="display: none;">新しいパスワードをもう一度入力が必要です。</div>
+                                                <div class="col-md-12 pad-free">
+                                                    <span v-if="errors.password" class="error">{{errors.password}}</span>
+                                                </div>
                                                 <br>
-                                                <div class="">
-                                                    <span class="btn main-bg-color white all-btn"  @click="passwordChange()">
-                                     変更
-                                </span>
+                                                <div>
+                                                    <span class="btn main-bg-color white all-btn"  @click="passwordChange()">変更</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -223,7 +224,13 @@
                     cusid: this.$auth.check(1)?Number(localStorage.getItem('cusId')):this.$route.params.cusid,
                     upload_img: null,
                     image: '',
-                    accout_status:''
+                    accout_status:'',
+                    password: '',
+                    password_confirmation: '',
+                    old_password: '',
+                    errors: {
+                        password: ""
+                    }
                 }
             },
             created() {
@@ -304,37 +311,55 @@
 
                     },
                     passwordChange() {
-                        var old_pass = $('.old-password').val();
-                        var new_pass = $('.new-password').val();
-                        var confirm_pass = $('.confirm-password').val();
-                        if (old_pass == '') {
+                        if (this.old_password == '') {
                             $('#oldpassword').css('display', 'block');
                             return;
                         }
-                        if (new_pass == '') {
+                        if (this.password == '') {
                             $('#newpassword').css('display', 'block');
                             return;
                         }
-                        if (new_pass.length < 6) {
+                        if (this.password.length < 6) {
                             $('#newpasswordlength').css('display', 'block');
                             return;
                         }
-                        if (confirm_pass == '') {
+                        if (this.password_confirmation == '') {
                             $('#confirmpassword').css('display', 'block');
                             return;
                         }
-
-                        if ("'" + new_pass + "'" === "'" + confirm_pass + "'") {
+                        if ("'" + this.password + "'" === "'" + this.password_confirmation + "'") {
                             let arr = new FormData();
-                            arr.append('old_pass', old_pass)
-                            arr.append('new_pass', new_pass)
-
+                            arr.append('old_pass', this.old_password)
+                            arr.append('new_pass', this.password)
+                            arr.append('cus_id', this.cusid)
                             this.axios
                                 .post(`/api/user/password-change`, arr)
                                 .then((response) => {
                                     if (response.data == 'oldpasswordwrong') {
-                                        alert('Please Enter Correct Old Password!');
+                                        this.$swal({
+                                            position: 'top-end',
+                                            type: 'error',
+                                            title: '現在のパスワードが一致しません。',
+                                            confirmButtonText: "閉じる",
+                                            confirmButtonColor: "#6cb2eb",
+                                            width: 250,
+                                            height: 200,
+                                        })
+                                        // alert('Please Enter Correct Old Password!');
                                         return;
+                                    }else{
+                                        this.$swal({
+                                            position: 'top-end',
+                                            type: 'success',
+                                            title: 'パスワードを変更しました',
+                                            confirmButtonText: "閉じる",
+                                            confirmButtonColor: "#6cb2eb",
+                                            width: 250,
+                                            height: 200,
+                                        })
+                                        this.password = null;
+                                        this.password_confirmation = null;
+                                        this.old_password = null;
                                     }
                                     // alert('Password is Successfully Changed!');
                                 }).catch(error => {
@@ -354,10 +379,10 @@
                                     confirmButtonColor: "#6cb2eb",
                                     cancelButtonColor: "#b1abab",
                                     cancelButtonTextColor: "#000",
-                                    confirmButtonText: "作成",
-                                    cancelButtonText: "キャンセル",
+                                    confirmButtonText: "閉じる",
+                                    // cancelButtonText: "キャンセル",
                                     confirmButtonClass: "all-btn",
-                                    cancelButtonClass: "all-btn"
+                                    // cancelButtonClass: "all-btn"
                                 })
                                 // alert('New-Password And Confirm-Password must be same!')
                         }
@@ -367,6 +392,7 @@
 
                         let arr = new FormData();
                         arr.append('email', email)
+                        arr.append('cus_id', this.cusid)
 
                         this.$swal({
                             title: "確認",
@@ -413,6 +439,8 @@
                         }
                         let fd = new FormData();
                             fd.append('status', status)
+                            fd.append('cus_id',this.cusid)
+                            // console.log('fd',cusid)
                         this.$swal({
                                 title: "確認",
                                 text: confirm_text,
@@ -460,6 +488,17 @@
                                         }
                                     });
                             });
+                    },
+                    password_validate() {
+                        window.pwd_same = false;
+                        var nursing_type_exist = false;
+                        if(this.password != this.password_confirmation) {
+                            this.errors.password = "※パスワードが一致しません。";
+                        }
+                        else {
+                            this.errors.password = null;
+                            window.pwd_same = true;
+                        }
                     },
             }
     }

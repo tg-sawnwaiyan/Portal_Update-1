@@ -2482,6 +2482,14 @@ ul.sub-ul li {
     min-width: 60px;
 }
 
+.confirm-orangebtn {
+    border: 1px solid #ff9563 !important;
+    color: #ff9563;
+    background: #fff;
+    box-shadow: none !important;
+    min-width: 60px;
+}
+
 .border-style {
     border: 1px solid #eee;
 }
@@ -4543,6 +4551,14 @@ margin-right: 2% !important;
 .confirm-borderbtn {
     border: 1px solid #6cb2eb !important;
     color: #6cb2eb;
+    background: #fff;
+    box-shadow: none !important;
+    min-width: 60px;
+}
+
+.confirm-orangebtn {
+    border: 1px solid #ff9563 !important;
+    color: #ff9563;
     background: #fff;
     box-shadow: none !important;
     min-width: 60px;

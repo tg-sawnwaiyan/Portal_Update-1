@@ -685,7 +685,6 @@ export default {
                 img_arr:[],img_list:[],
                 video_arr:[],video_list:[],
                 panorama_arr:[],panorama_list:[], tmp_list:[],test:[],
-                gallery_list:[],
                 cooperate_arr:[], cooperate_list:[],
                 payment_arr:[],payment_list:[],
                 profile_type:'nursing',
@@ -753,6 +752,7 @@ export default {
                 this.axios
                 .get('/api/customerinfo/'+this.cusid)
                 .then(response=>{
+                    console.log(response.data)
                     this.customer_info = response.data; 
                     this.axios
                     .get('/api/nurscities/'+this.customer_info.townships_id)
@@ -1100,13 +1100,19 @@ export default {
             createProfile() {
 
                 this.$loading(true);
-                this.gallery_list = [];
                 this.img_list = [];
                 this.video_list = [];
-
                 this.cooperate_list = [];
                 this.payment_list = [];
+                this.profile_arr = [];
 
+                this.nursing_info.latitude = $('#new_lat').val();
+                this.nursing_info.longitude = $('#new_long').val();
+                console.log($('#gmaptownship').val());
+                this.customer_info.townships_id = Number($('#gmaptownship').val());
+                localStorage.setItem('lat_num',this.nursing_info.latitude);
+                localStorage.setItem('lng_num',this.nursing_info.longitude);
+                console.log(this.customer_info);
                 // Photo 
                 var img = document.getElementsByClassName('gallery-area-photo');
                 let pt = new FormData();
@@ -1237,10 +1243,13 @@ export default {
                 });
                 
                 if(this.profile_arr.length > 0) {
+                    console.log("this.cusid")
+                    console.log(this.cusid)
+                    console.log(this.profile_arr)
                     this.axios
                         .post(`/api/nursing/profile/${this.cusid}`,this.profile_arr)
                         .then((response) => {
-                            
+                            this.initialCall();
                             this.$swal({
                                     position: 'top-end',
                                     type: 'success',
@@ -1249,9 +1258,6 @@ export default {
                                     confirmButtonColor: "#6cb2eb",
                                     width: 250,
                                     height: 200,
-                                }).then(response => {
-                                    this.initialCall();
-                                    
                                 })
                         }).catch(error=>{
                         this.$loading(false);

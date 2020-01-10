@@ -37,7 +37,7 @@
                         <div class="form-group m-0 row bd">
                             <div class="col-md-3 col-sm-12 form-left"><label>お名前 <span class="error sp1">必須</span></label></div>
                             <div class="col-md-9 col-sm-12 form-right">
-                                <input type="text" id="tbname" name="name" class="form-control float-left" placeholder="お名前を入力してください。" v-model="comments.name" @change="aggreBtn" @focusout="focusName"/>
+                                <input type="text" id="tbname" name="name" class="form-control float-left" placeholder="お名前を入力してください。" v-model="comments.name" @change="aggreBtn" @keyup="focusName"/>
                                 <span class="float-left eg-txt">例）探し 太郎</span>
                                  <span class="error m-l-30" v-if="comment_focus">※入力は必須です。</span>
                             </div>
@@ -47,16 +47,16 @@
                             <div class="col-md-9 col-sm-12 form-right">
                                 <div class="col-md-12 pad-free">
                                     <!-- <div class="col-md-9 pad-free"> -->
-                                        <input type="text" id="furigana" name="furigana" class="form-control float-left" placeholder="ふりがなを入力してください。" v-model="comments.furigana" @keyup="ChekChar" @change="aggreBtn" @focusout="focusFuri"/>
+                                        <input type="text" id="furigana" name="furigana" class="form-control float-left" placeholder="ふりがなを入力してください。" v-model="comments.furigana" @keyup="ChekChar"    @change="aggreBtn"/>
                                     <!-- </div>
                                     <div class="col-md-3"> -->
                                          <span class="float-left eg-txt"> 例）さがし たろう</span>
-                                        <span class="error m-l-30" v-if="furigana_focus">※入力は必須です。</span>
+                                        <span class="error m-l-30" v-if="furigana_focus " >※入力は必須です。</span>
 
-                                    <!-- </div>                                     -->
+                                    <!-- </div> -->
 
                                 </div>
-                                <span class="float-left text-danger char-err p-l-30"></span>
+                                 <span class="float-left text-danger p-l-30" v-if="charErr">※ひらがなで入力してください!</span>
 
                             </div>
                         </div>
@@ -99,8 +99,7 @@
                                         <span class="float-left eg-txt">例）1006740 (<a href="https://www.post.japanpost.jp/zipcode/" target="_blank">郵便番号検索</a>)</span>
                                     </div>
                                 </div>
-                                <div class="form-group row pl-3">
-                                  
+                                <div class="form-group row pl-3">                                  
                                     <div class="col-md-12 "><label>  都道府県<span class="error sp1">必須</span></label></div>
                                     <div class="col-md-12 p-0">
                                         <select v-model="comments.selectedValue" class="division form-control" id="division" @change="getTownship(2)">
@@ -113,9 +112,8 @@
                                     </div>
                                 </div>
 
-                                 <div class="form-group row pl-3">
-                             
-                                    <div class="col-md-12 "><label>  Township <span class="error sp1">必須</span></label></div>
+                                 <div class="form-group row pl-3">                             
+                                    <div class="col-md-12 "><label>  市区町村 <span class="error sp1">必須</span></label></div>
                                     <div class="col-md-12 p-0">
                                         <select v-model="comments.township" class="division form-control" id="division" @change="getLocation()">
                                             <option value="0">選択してください。</option>
@@ -125,13 +123,12 @@
                                             </option>
                                         </select>
                                         <!-- <span v-if="errors.division" class="error">{{errors.division[0]}}</span> -->
-                                    </div>
-  
+                                    </div>  
                                 </div>
                                 <div class="form-group row pl-3">
                                     <div class="col-md-12 "><label>市区町村、番地（建物名)<span class="error sp1">必須</span></label></div>
                                     <div class="col-md-12 p-0">
-                                         <input type="text" id="city" name="city" class="city form-control float-left" placeholder="市区町村、番地を入力してください。" v-model="comments.city" @change="aggreBtn" @focusout="focusCity">
+                                         <input type="text" id="city" name="city" class="city form-control float-left" placeholder="市区町村、番地を入力してください。" v-model="comments.city" @change="aggreBtn" @keyup="focusCity">
                                         <span class="float-left eg-txt">例）東京都千代田区丸の内1-9-1 グラントウキョウノースタワー40階</span>
                                     </div>
                                 </div>
@@ -152,16 +149,17 @@
                                      <span class="error m-l-30" v-if="ph_length || ph_error">※電話番号が正しくありません。もう一度入力してください。</span>
                                 </div>
                             </div>
-                        <!-- </div>
-                        <div class="form-group m-0 row bd-all"> -->
+                            <!-- </div>
+                            <div class="form-group m-0 row bd-all"> -->
                             <div class="col-md-3 col-sm-12 form-left"><label>メールアドレス </label></div>
                             <div class="col-md-9 col-sm-12 form-right">
                             <div class="form-group row pl-3">
                                 <div class="col-md-12 p-0">
-                                        <input type="email" id="mail" name="mail" class="form-control float-left" placeholder="メールアドレスを入力してください。" v-model="comments.mail" @keyup="aggreBtn" @focusout="focusMail">                          
+                                        <input type="email" id="mail" name="mail" class="form-control float-left" placeholder="メールアドレスを入力してください。" v-model="comments.mail" @change="aggreBtn" @keyup="focusMail">                          
                                         <span class="float-left eg-txt"> 例）abc@example.jp （半角）</span>
-                                        <!-- <span class="error m-l-30" v-if="mail_focus">※入力は必須です。</span> -->
+                                       
                                     </div>
+                                     <span class="error m-l-30" v-if="mail_focus && this.comments.mail !=''">※メールアドレスが正しくありません。もう一度入力してください。</span>
                                 </div>
                             </div>
                         </div>
@@ -437,6 +435,8 @@ import DatePicker from 'vue2-datepicker';
                 mail_focus: false,
                 ph_length: false,
                 ph_error: false,
+                charErr:false,
+                mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
             }
         },
         computed: {
@@ -494,30 +494,34 @@ import DatePicker from 'vue2-datepicker';
                                 this.comments.city = '';
                                 $('#jsErrorMessage').html('<div class="error">郵便番号の書式を確認してください。</div>');
                             }
+                            this.aggreBtn();    
                         });
                 }
             },
             getTownship(town_id){
-                   
-                    this.axios.get('/api/auth/township',{
-                      params:{
-                        city:this.comments.selectedValue
-                      },
-                    }).then((response)=>{
-                       if(town_id == 2)
-                      {
-                        this.comments.city = ''
-                        this.comments.postal = '';
-                         this.comments.township = 0;
-                      }
-                      this.townships = response.data.townships
-                    })
-                  },
-                  getLocation(){
+            
+            this.axios.get('/api/auth/township',{
+                params:{
+                city:this.comments.selectedValue
+                },
+            }).then((response)=>{
+                if(town_id == 2)
+                {
+                this.comments.city = ''
+                this.comments.postal = '';
+                    this.comments.township = 0;
+                }
+                this.townships = response.data.townships
+                this.aggreBtn();
+            })
+            
+            },
+            getLocation(){
 
-                     this.comments.postal = '';
-                     this.comments.city = '';
-                  },
+                this.comments.postal = '';
+                this.comments.city = '';
+                this.aggreBtn();
+            },
             add() {
                 this.all_mail = JSON.parse(localStorage.getItem("item"));
                 // this.reservation = JSON.parse(localStorage.getItem("reserve"));
@@ -537,7 +541,7 @@ import DatePicker from 'vue2-datepicker';
                 });
             },
             aggreBtn: function(){
-                if($('#furigana').val().length > 0 && this.comments.name != '' && this.comments.selectedValue != 0 && this.comments.township != 0 && this.comments.city != '' && (this.mail_reg.test(this.comments.mail) || (!this.ph_length && !this.ph_num && this.comments.phone.length > 0 ) ) ){
+                if(($('#furigana').val().length > 0 && !this.charErr) && this.comments.name != '' && this.comments.selectedValue != 0 && this.comments.township != 0 && this.comments.city != '' && (this.mail_reg.test(this.comments.mail) || (!this.ph_length && !this.ph_num && this.comments.phone.length > 0 ) ) ){
                     this.btn_disable=false;
                 }else{
                     this.btn_disable=true;
@@ -546,18 +550,21 @@ import DatePicker from 'vue2-datepicker';
             focusName: function(event) {
                 if(this.comments.name != ''){
                     this.comment_focus=false;
+                    this.aggreBtn();
                 }else{
                     this.comment_focus=true;
+                     this.btn_disable = true;
                     document.getElementById('tbname').style.backgroundColor = black;
                 }
             },
-            focusFuri: function(event) {
-                if(this.comments.furigana != ''){
-                    this.furigana_focus=false;
-                }else{
-                    this.furigana_focus=true;
-                }
-            },
+            // focusFuri: function(event) {
+            //     if(this.comments.furigana != ''){
+            //         this.furigana_focus=false;
+            //         this.aggreBtn();
+            //     }else{
+            //         this.furigana_focus=true;
+            //     }
+            // },
             // focusbdate: function(event) {
             //     if(this.comments.bdate != ''){
             //         this.bdate_focus = false;
@@ -566,19 +573,22 @@ import DatePicker from 'vue2-datepicker';
             //     }
             // },
             focusCity: function(event) {
-                if(this.comments.city != ''){
+                if(this.comments.city != 0){
                     this.city_focus=false;
+                    this.aggreBtn();
                 }else{
                     this.city_focus=true;
+                     this.btn_disable = true;
                 }
             },
             focusMail: function(event) {
-                if((this.comments.mail != '' && this.mail_reg.test(this.comments.mail))  || (!this.ph_num && !this.ph_length)){
+                if((this.comments.mail != '' && this.mail_reg.test(this.comments.mail))){
                     this.mail_focus=false;
                 }else{
                     this.mail_focus=true;
                     // this.ph_length = false;
                 }
+                this.aggreBtn();
                 // var input_data = $('#phone').val();
                 // var code = 0;
                 // code = input_data.charCodeAt();
@@ -597,28 +607,43 @@ import DatePicker from 'vue2-datepicker';
               if(this.comments.phone.charAt(this.comments.phone.length - 1) != '-' && this.comments.phone.charAt(0) != '-' && ((this.comments.phone.length >= 10 && this.comments.phone.length <= 14) || this.comments.phone.length == 0))
               {  
                   this.ph_num = false;
-                  this.ph_length = false;     
+                  this.ph_length = false; 
+                  this.aggreBtn();    
               }
               else{
                   this.ph_num = true;
                   this.ph_length = true;
                   this.btn_disable = true;
               }
-              this.aggreBtn();      
+                    
             },
             ChekChar: function(event) {
-                $('.char-err').text('');
+                var _this = this;
+               // $('.char-err').text('');
                 var input_val = $('#furigana').val();
                 var each_val = input_val.split('');
-            
+                _this.charErr= false;
                 var code = 0;
                 $.each(each_val, function (key, value) {
                     code = value.charCodeAt();
                     if (!(code > 12352 && code < 12447)) {
-                        $('.char-err').text('ひらがなで入力してください!');
-                        this.btn_disable = true;
+                        //$('.char-err').text('ひらがなで入力してください!');
+                        _this.btn_disable = true;
+                        _this.charErr = true;
+                    
                     }  
-                });          
+                });    
+                 if(input_val == ''){
+                    if(this.comments.furigana != ''){
+                    this.furigana_focus=false;                    
+                    }else{
+                        this.furigana_focus=true;
+                    }
+                }else{            
+                    this.furigana_focus=false;　
+                } 
+                this.aggreBtn(); 
+
             },
 
             isNumberOnly: function(event) {
