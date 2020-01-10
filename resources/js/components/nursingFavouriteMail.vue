@@ -47,16 +47,16 @@
                             <div class="col-md-9 col-sm-12 form-right">
                                 <div class="col-md-12 pad-free">
                                     <!-- <div class="col-md-9 pad-free"> -->
-                                        <input type="text" id="furigana" name="furigana" class="form-control float-left" placeholder="ふりがなを入力してください。" v-model="comments.furigana" @keyup="ChekChar" @change="aggreBtn" @focusout="focusFuri"/>
+                                        <input type="text" id="furigana" name="furigana" class="form-control float-left" placeholder="ふりがなを入力してください。" v-model="comments.furigana" @keyup="ChekChar"    @change="aggreBtn"/>
                                     <!-- </div>
                                     <div class="col-md-3"> -->
                                          <span class="float-left eg-txt"> 例）さがし たろう</span>
-                                        <span class="error m-l-30" v-if="furigana_focus">※入力は必須です。</span>
+                                        <span class="error m-l-30" v-if="furigana_focus " >※入力は必須です。</span>
 
-                                    <!-- </div>                                     -->
+                                    <!-- </div> -->
 
                                 </div>
-                                 <span class="float-left text-danger p-l-30" v-if="charErr">ひらがなで入力してください!</span>
+                                 <span class="float-left text-danger p-l-30" v-if="charErr">※ひらがなで入力してください!</span>
 
                             </div>
                         </div>
@@ -494,30 +494,34 @@ import DatePicker from 'vue2-datepicker';
                                 this.comments.city = '';
                                 $('#jsErrorMessage').html('<div class="error">郵便番号の書式を確認してください。</div>');
                             }
+                            this.aggreBtn();    
                         });
                 }
             },
             getTownship(town_id){
-                   
-                    this.axios.get('/api/auth/township',{
-                      params:{
-                        city:this.comments.selectedValue
-                      },
-                    }).then((response)=>{
-                       if(town_id == 2)
-                      {
-                        this.comments.city = ''
-                        this.comments.postal = '';
-                         this.comments.township = 0;
-                      }
-                      this.townships = response.data.townships
-                    })
-                  },
-                  getLocation(){
+            
+            this.axios.get('/api/auth/township',{
+                params:{
+                city:this.comments.selectedValue
+                },
+            }).then((response)=>{
+                if(town_id == 2)
+                {
+                this.comments.city = ''
+                this.comments.postal = '';
+                    this.comments.township = 0;
+                }
+                this.townships = response.data.townships
+                this.aggreBtn();
+            })
+            
+            },
+            getLocation(){
 
-                     this.comments.postal = '';
-                     this.comments.city = '';
-                  },
+                this.comments.postal = '';
+                this.comments.city = '';
+                this.aggreBtn();
+            },
             add() {
                 this.all_mail = JSON.parse(localStorage.getItem("item"));
                 // this.reservation = JSON.parse(localStorage.getItem("reserve"));
@@ -546,18 +550,21 @@ import DatePicker from 'vue2-datepicker';
             focusName: function(event) {
                 if(this.comments.name != ''){
                     this.comment_focus=false;
+                    this.aggreBtn();
                 }else{
                     this.comment_focus=true;
+                     this.btn_disable = true;
                     document.getElementById('tbname').style.backgroundColor = black;
                 }
             },
-            focusFuri: function(event) {
-                if(this.comments.furigana != ''){
-                    this.furigana_focus=false;
-                }else{
-                    this.furigana_focus=true;
-                }
-            },
+            // focusFuri: function(event) {
+            //     if(this.comments.furigana != ''){
+            //         this.furigana_focus=false;
+            //         this.aggreBtn();
+            //     }else{
+            //         this.furigana_focus=true;
+            //     }
+            // },
             // focusbdate: function(event) {
             //     if(this.comments.bdate != ''){
             //         this.bdate_focus = false;
@@ -566,10 +573,12 @@ import DatePicker from 'vue2-datepicker';
             //     }
             // },
             focusCity: function(event) {
-                if(this.comments.city != ''){
+                if(this.comments.city != 0){
                     this.city_focus=false;
+                    this.aggreBtn();
                 }else{
                     this.city_focus=true;
+                     this.btn_disable = true;
                 }
             },
             focusMail: function(event) {
@@ -623,7 +632,18 @@ import DatePicker from 'vue2-datepicker';
                         _this.charErr = true;
                     
                     }  
-                });          
+                });    
+                 if(input_val == ''){
+                    if(this.comments.furigana != ''){
+                    this.furigana_focus=false;                    
+                    }else{
+                        this.furigana_focus=true;
+                    }
+                }else{            
+                    this.furigana_focus=false;　
+                } 
+                this.aggreBtn(); 
+
             },
 
             isNumberOnly: function(event) {
