@@ -195,11 +195,7 @@ class HospitalProfileController extends Controller
     }
     
     public function profileupdate($id,Request $request) {
-
-
-
-        $request = $request->all();
-        
+        $request = $request->all();       
     
         // Customer Profile
         $customer = Customer::find($id);
