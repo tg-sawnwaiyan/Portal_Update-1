@@ -1376,6 +1376,11 @@ export default {
                 //       this.station_list = response.data;
                 // });
 
+                this.initialCall();
+                // quill.editor.disable()
+        },
+        methods: {
+            initialCall(){
                 this.axios
                 .get('/api/clinical-subject/'+this.cusid)
                 .then(response=>{
@@ -1425,9 +1430,7 @@ export default {
                 .then(response=>{
                         this.fac_list = response.data;
                 });
-                // quill.editor.disable()
-        },
-        methods: {
+            },
              imgUrlAlt(event) {
                 event.target.src = "images/noimage.jpg"
             },
@@ -1681,14 +1684,7 @@ export default {
                         .post(`/api/hospital/profile/${this.cusid}`,this.save_hospital_info)
                         .then((response) => {
 
-                             this.img_arr = [];
-                             this.video_arr = [];
-                             this.gallery_list = [];
-                             this.img_arr = response.data.photo_list;
-                             this.video_arr = response.data.video_list;
-                             this.gallery_list = response.data.gallery_list;
-                     
-                            
+                            this.initialCall();                           
   
                             this.$swal({
                                 position: 'top-end',
@@ -1698,9 +1694,6 @@ export default {
                                 confirmButtonColor: "#6cb2eb",
                                 width: 250,
                                 height: 200,
-                            }).then(response => {
-                            
-                            
                             })
                             this.$loading(false);
                         }).catch(error=>{
