@@ -231,10 +231,16 @@ class CustomerController extends Controller
 
     public function accountStatusUpdate(Request $request)
    {
-       $request = $request->all();
-      
-       $user = User::find(auth('api')->user()->id);
-       
+       $request = $request->all();      
+    //    $user = User::find(auth('api')->user()->id);       
+       $cusId = $request['cus_id'];
+       if(auth()->user()->role == 2) {
+           $customer = Customer::find($cusId);
+           $user = User::find($customer['user_id']);
+       }else{
+           $user = User::find(auth('api')->user()->id);
+       } 
+
        $customer = Customer::find($user['customer_id']);
       
         if($request['status'] == '1') { 
