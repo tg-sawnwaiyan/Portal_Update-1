@@ -133,7 +133,7 @@
                                             <div class="form-group">
 
                                                 <label class="old-pass">現在のパスワード:</label>
-                                                <input type="password" name="old_password" placeholder="現在のパスワードを入力してください。" class="form-control old-password">
+                                                <input type="password" name="old_password" v-model="old_password" placeholder="現在のパスワードを入力してください。" class="form-control old-password">
                                                 <div class="error" id="oldpassword" style="display: none;">現在のパスワードが必要です。</div>
                                                 <br>
                                                 <label class="old-pass">新しいパスワード</label>
@@ -227,6 +227,7 @@
                     accout_status:'',
                     password: '',
                     password_confirmation: '',
+                    old_password: '',
                     errors: {
                         password: ""
                     }
@@ -310,29 +311,26 @@
 
                     },
                     passwordChange() {
-                        var old_pass = $('.old-password').val();
-                        var new_pass = $('.new-password').val();
-                        var confirm_pass = $('.confirm-password').val();
-                        if (old_pass == '') {
+                        if (this.old_password == '') {
                             $('#oldpassword').css('display', 'block');
                             return;
                         }
-                        if (new_pass == '') {
+                        if (this.password == '') {
                             $('#newpassword').css('display', 'block');
                             return;
                         }
-                        if (new_pass.length < 6) {
+                        if (this.password.length < 6) {
                             $('#newpasswordlength').css('display', 'block');
                             return;
                         }
-                        if (confirm_pass == '') {
+                        if (this.password_confirmation == '') {
                             $('#confirmpassword').css('display', 'block');
                             return;
                         }
-                        if ("'" + new_pass + "'" === "'" + confirm_pass + "'") {
+                        if ("'" + this.password + "'" === "'" + this.password_confirmation + "'") {
                             let arr = new FormData();
-                            arr.append('old_pass', old_pass)
-                            arr.append('new_pass', new_pass)
+                            arr.append('old_pass', this.old_password)
+                            arr.append('new_pass', this.password)
                             arr.append('cus_id', this.cusid)
                             this.axios
                                 .post(`/api/user/password-change`, arr)
@@ -359,6 +357,9 @@
                                             width: 250,
                                             height: 200,
                                         })
+                                        this.password = null;
+                                        this.password_confirmation = null;
+                                        this.old_password = null;
                                     }
                                     // alert('Password is Successfully Changed!');
                                 }).catch(error => {
