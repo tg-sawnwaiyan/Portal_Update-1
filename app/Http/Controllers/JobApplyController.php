@@ -64,6 +64,7 @@ class JobApplyController extends Controller
      */
     public function store(Request $request)
     {
+      
             $string = '';
             $count = count($request->skills);
 
@@ -86,7 +87,8 @@ class JobApplyController extends Controller
             $jobapply->birthday = $request->birthday;
             $jobapply->gender = $request->gender;
             $jobapply->postal = $request->postal;
-            $jobapply->city_id = $request->city_id;
+            // $jobapply->city_id = $request->city_id;
+            $jobapply->township_id = $request->township;
             $jobapply->street_address = $request->str_address;
             //$jobapply->home_address = $request->home_address;
             $jobapply->phone = $request->phone;
@@ -112,14 +114,16 @@ class JobApplyController extends Controller
                         where c.recordstatus=1 and j.id = " . $jobapply->job_id;
 
             $infos = DB::select($query);  
-        
+
+          
+       
             foreach($infos as $info) {
                 $job_title = $info->title;
                 $job_description = $info->description;
                 $job_location = $info->location;
                 $job_nearest_station = $info->nearest_station;
                 $job_employment_status = $info->employment_status;
-                $job_salary = $info->salary3062 ;
+                $job_salary = $info->salary;
                 $job_working_hours = $info->working_hours;
                 $customer_mail = $info->email;
                 $customer_name = $info->cus_name;
@@ -142,7 +146,12 @@ class JobApplyController extends Controller
              $jobapply->cus_name = $customer_name;
              $jobapply->jobnum = $jobnum;
              $jobapply->cusnum = $cusnum;
-             $jobapply->city_name = $city_name;
+             $jobapply->cityname = $request->selectedValue;
+             $jobapply->townshipname = $request->townshipname;
+           
+          
+            //  $jobapply->city_name = $city_name;
+       
              \Mail::to($customer_mail)->send(new jobApplyMailToCustomer($jobapply));
              \Mail::to($jobapply->email)->send(new jobApplyMailToUser($jobapply));
              \Mail::to($admin_email)->send(new jobApplyMailToAdmin($jobapply));
