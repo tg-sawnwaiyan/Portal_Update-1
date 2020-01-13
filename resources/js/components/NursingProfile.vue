@@ -1119,7 +1119,6 @@ export default {
                        
                     } else {
                         var file_name = img[i].getElementsByClassName('already-photo')[0].value;
-                        alert(file_name);
                         if(!file_name) {
                             this.img_arr.splice(i, 1);
                         }
