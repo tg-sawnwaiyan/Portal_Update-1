@@ -10,7 +10,7 @@
         <div class="col-12 detail_profile_left pad-free"  v-if="currentPanoImage">
             <h4 class="profile-tit">{{customer_name}}</h4>
 
-            <div class="thumbnail-img" style="padding:0px;border:none;">
+            <div class="thumbnail-img pc-414" style="padding:0px;border:none;">
                 <div class="card-carousel" style="background:#fff;">
                 <div class="card-img">                   
                     <Pannellum :src="'/upload/nursing_profile/Imagepanorama/' + currentPanoImage" class="pannellum" :auto-load="true" :show-zoom="true" :show-fullscreen="true" :auto-rotate="isAutoRotationOn" :orientation="isOrientationOn" :compass="true" :hfov= "120" :draggable="true"></Pannellum>
@@ -54,8 +54,28 @@
                     </div>
             </div>
             </div>
+            <!--responsive pano-->  
+            <div class="sp-414 res-pano"  v-if="panoimages.length > 0">
+                <slick :options="slickOptions" ref="slickSetting1">
+                    <div><h2><img :src="'/upload/nursing_profile/Imagepanorama/' + currentPanoImage" class="img-fluid" @error="imgUrlAlt"/></h2></div>				
+                </slick>
+                <slick :options="slickOptions2" ref="slickSetting2" id="res-pano">
+                        <div v-for="(image,index) in  panoimages" :key="image.id" :class="[(activePanoImage == index) ? 'active' : '']" @click="activatePanoImage(index)">
+                        <h3>                                   
+                            <span>
+                                <img  :src ="'/upload/nursing_profile/Imagepanorama/' + image.photo" @error="imgUrlAlt" class="img-fluid">  
+                            </span>                    
+                        </h3>
+                    </div>                
+                </slick>
+                <div class="see-pano">
+                    <span>360°画像をパノラマで見る</span>
+                </div>
+            </div>
+            <!--end responsive pano-->
         </div>
         <!--end panorama-->
+        
 
             <div class="tab typelabel nav-link fixed-nav" v-bind:style="{width:width}">
             <!-- <div class="row col-12 m-t-10">
@@ -98,7 +118,7 @@
                            <div class="col-12 pad-free sp-1024">
                                 <h5 class="profile_header">介護情報</h5>
                             </div>
-                           <div class="thumbnail-img">
+                           <div class="thumbnail-img pc-414">
 
                              <div class="card-carousel">
 
@@ -1404,19 +1424,21 @@
 
 <script>
 
-
+import Slick from 'vue-slick'
 import Pannellum from '../../js/components/vue-pannellum.vue'
 import Lightbox from 'vue-my-photos'
 export default {
 
     components:{
         Pannellum,
-        Lightbox
+        Lightbox,
+        Slick
     },
     data() {
 
             var that = this;
             return {
+                ads_list: [],
                 customer_id: "",
                 url: 'upload/nursing_profile/Imagepanorama/',
                 isAutoRotationOn: true,
@@ -1495,7 +1517,7 @@ export default {
                 window: {
                     width: 0,
                     height: 0
-                }
+                },                
             };
         },
 
@@ -1506,6 +1528,11 @@ export default {
         },
 
         created(){
+            //
+            this.axios.get("/api/advertisement/ads").then(response => {
+                this.ads_list = response.data;
+            });
+            //end 
            
              
                 window.addEventListener('resize', this.handleResize);
@@ -1797,82 +1824,109 @@ export default {
           },
 
           computed: {
-                    atEndOfList() {
-                        return this.panocurrentOffset <= (this.paginationFactor * -1) * (this.panoimages.length - this.windowSize);
-                    },
-                    atHeadOfList() {
-                        return this.panocurrentOffset === 0;
-                    },
-              currentPanoImage() {
-
+            atEndOfList() {
+                return this.panocurrentOffset <= (this.paginationFactor * -1) * (this.panoimages.length - this.windowSize);
+            },
+            atHeadOfList() {
+                return this.panocurrentOffset === 0;
+            },
+            currentPanoImage() {
                 if(this.panoimages.length > 0) {
                     return this.panoimages[this.activePanoImage].photo;
-
                 }
-
             },
-
             currentImage() {
                 if(this.images) {
                     if(this.images.length > 0) {
-
                         this.activeImageTitle = this.images[this.activeImage].title;
-
                         this.activeImageDescription = this.images[this.activeImage].description;
-
                         return this.images[this.activeImage].photo;
-
                     }
                     else{
-
                         return 'no-image-big.jpg';
-
                     }
                 }
-
                 else{
-
                     return 'no-image-big.jpg';
-
                 }
-
             },
             pages() {
                     return Math.ceil(this.comments.length / this.size);
                 },
-                displayPageRange() {
-                    const half = Math.ceil(this.pageRange / 2);
-                    const isEven = this.pageRange / 2 == 0;
-                    const offset = isEven ? 1 : 2;
-                    let start, end;
-                    if (this.pages < this.pageRange) {
-                        start = 1;
-                        end = this.pages;
-                    } else if (this.currentPage < half) {
-                        start = 1;
-                        end = start + this.pageRange - 1;
-                    } else if (this.pages - half < this.currentPage) {
-                        end = this.pages;
-                        start = end - this.pageRange + 1;
-                    } else {
-                        start = this.currentPage - half + offset;
-                        end = this.currentPage + half;
-                    }
-                    let indexes = [];
-                    for (let i = start; i <= end; i++) {
-                        indexes.push(i);
-                    }
-                    return indexes;
-                },
-                displayItems() {
-                    const head = this.currentPage * this.size;
-                    return this.comments.slice(head, head + this.size);
-                },
-                isSelected(page) {
-                    return page - 1 == this.currentPage;
+            displayPageRange() {
+                const half = Math.ceil(this.pageRange / 2);
+                const isEven = this.pageRange / 2 == 0;
+                const offset = isEven ? 1 : 2;
+                let start, end;
+                if (this.pages < this.pageRange) {
+                    start = 1;
+                    end = this.pages;
+                } else if (this.currentPage < half) {
+                    start = 1;
+                    end = start + this.pageRange - 1;
+                } else if (this.pages - half < this.currentPage) {
+                    end = this.pages;
+                    start = end - this.pageRange + 1;
+                } else {
+                    start = this.currentPage - half + offset;
+                    end = this.currentPage + half;
                 }
+                let indexes = [];
+                for (let i = start; i <= end; i++) {
+                    indexes.push(i);
+                }
+                return indexes;
+            },
+            displayItems() {
+                const head = this.currentPage * this.size;
+                return this.comments.slice(head, head + this.size);
+            },
+            isSelected(page) {
+                return page - 1 == this.currentPage;
+            },
+            slickOptions() {               
+                return {         
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: true,
+                fade: false,
+                adaptiveHeight: true,   
+                }
+            },
+            slickOptions2() {
+                return {                   
+                slidesToShow: 7,
+                slidesToScroll: 1,
+                dots: false,               
+                responsive: [{
+                    breakpoint: 411,
+                        settings: {
+                            slidesToShow: 8.5,
+                            slidesToScroll: 1,
+                        }
+                    }, {
+                    breakpoint: 360,
+                        settings: {
+                            slidesToShow: 8,
+                            slidesToScroll: 1,
+                        }
+                    }]
+                }
+            }
         },
         methods: {
+            next() {
+                this.$refs.slick.next();
+            },
+            prev() {
+                this.$refs.slick.prev();
+            },
+            reInit() {
+                // Helpful if you have to deal with v-for to update dynamic lists
+                this.$nextTick(() => {
+                    this.$refs.slick.reSlick();
+                });
+            },
             handleResize() {
                 this.window.width = window.innerWidth;
                 this.window.height = window.innerHeight;
@@ -2002,12 +2056,37 @@ export default {
   }
 
  }
-
+ 
 
 </script>
 
 <style scoped>
+h2{
+    background: #f0f0f0;    
+    padding: 0px;
+}
+h3 {
+	background: #f0f0f0;
+    color: #3498db;
+    font-size: 2.25rem;
+    margin: .1rem;
+    position: relative;
+    text-align: left;
+    max-height: 230px;
+    overflow: hidden;
+    margin-bottom: 0px;
+}
+.res-pano{
+    background: #eee;
+}
+.see-pano{
+    background-color: rgb(238, 238, 238);
+    border-top: none;
+    border-top: 1px dashed #907b7b;
+    padding: 20px;
+}
 
+/*end test*/
 /*slider*/
     #pano-slider-page .card-carousel {
     display: flex;

@@ -62,6 +62,7 @@ Vue.component(VueCarousel.name, VueCarousel);
 import Slick from 'vue-slick';
 Vue.use(Slick);
 
+
 //vue-pannellum
 import VuePannellum from '../js/components/vue-pannellum.vue'
 Vue.use(VuePannellum);
