@@ -91,7 +91,7 @@ class JobApplyController extends Controller
             $jobapply->township_id = $request->township;
             $jobapply->street_address = $request->str_address;
             //$jobapply->home_address = $request->home_address;
-            $jobapply->phone = $request->phone;
+            $jobapply->phone = $request->phone; 
             $jobapply->email = $request->email;       
             $jobapply->skill = $string;
             $jobapply->remark = $request->remark;
