@@ -69,8 +69,10 @@ class SearchMapController extends Controller
 
             $query .= " group by c.id order BY n.id ASC LIMIT 26";
     
-
+        
           $nursing_profile = DB::select($query);
+
+          
 
 
          //to bind fav_nursing

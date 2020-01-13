@@ -209,9 +209,23 @@ export default {
                     }
                 }
             });
-        }
-        
+        }        
     }).catch((error) => {
+        this.publicView();
+    })
+
+    this.scrollTop();
+
+    var new_width = $("#content-all").width();
+    var fixed_width = new_width - 49.5;
+    this.width = fixed_width + "px";
+
+  },
+  methods: {
+    customerLogin(){
+        console.log("cus Login")
+    },
+    publicView(){
         this.btntype = "view";
         this.loginuser = false;
         if (this.$route.params.type) {
@@ -276,16 +290,7 @@ export default {
                 }
             }
         });
-    })
-
-    this.scrollTop();
-
-    var new_width = $("#content-all").width();
-    var fixed_width = new_width - 49.5;
-    this.width = fixed_width + "px";
-
-  },
-  methods: {
+    },
     changeBtnType(a,b) {
       this.scrollTop();
         document.getElementById(a).classList.add("active");
