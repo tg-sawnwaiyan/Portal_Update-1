@@ -3381,11 +3381,43 @@ ul.hospital-subject>li:before {
     color: #000;
 }
 
+.search-input {
+    width: 77%;
+    position: relative;
+    display: flex;
+    float: right;
+}
+
+.searchNews {
+    width: 100%;
+    border: 3px solid #75b777;
+    border-right: none;
+    padding: 5px;
+    height: 46px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: #495057;
+}
+
+.searchNews:focus {
+    color: #000;
+}
+
 .searchButton {
     width: 85px;
     height: 46px;
     border: 1px solid #f7834b;
     background: #f7834b;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+}
+
+.searchButtonNews {
+    width: 85px;
+    height: 46px;
+    border: 1px solid #75b777;
+    background: #75b777;
     text-align: center;
     color: #fff;
     border-radius: 0 5px 5px 0;
@@ -6104,8 +6136,8 @@ button.confirmed {
     position: absolute;
     width: 20px;
     height: 20px;
-    right: 25px;
-    top: 8px;
+    right: 83px;
+    top: 12px;
     padding: 0px;
     z-index: 99;
     font-size: 13px;
