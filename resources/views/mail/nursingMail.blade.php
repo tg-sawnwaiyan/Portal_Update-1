@@ -5,8 +5,8 @@
                 <span style="font-size: 40px;font-weight: bold;color: #d2571c;text-shadow: 3px 4px #ccc;">LOGO <span style="font-size: 30px; color: #f57e46;">HERE</span></span>
 
 	            <h5 style="color:#3e4348;font-size: 12px;margin-bottom: 30px;font-weight: bold;text-align: left;">
-                    {{$getComment->related_fav_name}}「事業者番号: {{$getComment->related_fav_id}}」&nbsp;&nbsp;様
-                    <p style="margin-top:10px;">【医療介護ポータル】より資料請求がございました。</p>                    
+                    {{$getComment->related_fav_name}}({{$getComment->related_fav_id}})&nbsp;&nbsp;様
+                    <p style="margin-top:10px;">医療介護ポータルより資料請求がありました。</p>                    
 	            </h5>
                 <p style="text-align: left;margin: 0px;">
                 ***********************************************************************************************************************************</p>
