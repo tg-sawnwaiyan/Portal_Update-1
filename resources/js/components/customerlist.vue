@@ -124,42 +124,7 @@
             created() {
 
                 this.$loading(true);
-                if(this.$route.path == "/nuscustomerlist"){
-                    this.title = "介護施設事業者一覧";
-                    this.axios.get("/api/customers/3").then(response => {
-                        this.$loading(false);
-                        this.customers = response.data;
-                        this.norecord = this.customers.length;
-                        if (this.norecord > this.size) {
-                            this.pagination = true;
-                        } else {
-                            this.pagination = false;
-                        }
-                        if(this.norecord != 0){
-                            this.norecord_msg = false;
-                        }else{
-                            this.norecord_msg = true;
-                        }
-                    });
-                }
-                else if(this.$route.path == "/hoscustomerlist"){
-                    this.title = "病院事業者一覧";
-                    this.axios.get("/api/customers/2").then(response => {
-                        this.$loading(false);
-                        this.customers = response.data;
-                        this.norecord = this.customers.length;
-                        if (this.norecord > this.size) {
-                            this.pagination = true;
-                        } else {
-                            this.pagination = false;
-                        }
-                        if(this.norecord != 0){
-                            this.norecord_msg = false;
-                        }else{
-                            this.norecord_msg = true;
-                        }
-                    });
-                }
+                this.initialCall();
                 
             },
             computed: {
@@ -199,6 +164,44 @@
                     }
             },
             methods: {
+                initialCall(){
+                    if(this.$route.path == "/nuscustomerlist"){
+                        this.title = "介護施設事業者一覧";
+                        this.axios.get("/api/customers/3").then(response => {
+                            this.$loading(false);
+                            this.customers = response.data;
+                            this.norecord = this.customers.length;
+                            if (this.norecord > this.size) {
+                                this.pagination = true;
+                            } else {
+                                this.pagination = false;
+                            }
+                            if(this.norecord != 0){
+                                this.norecord_msg = false;
+                            }else{
+                                this.norecord_msg = true;
+                            }
+                        });
+                    }
+                    else if(this.$route.path == "/hoscustomerlist"){
+                        this.title = "病院事業者一覧";
+                        this.axios.get("/api/customers/2").then(response => {
+                            this.$loading(false);
+                            this.customers = response.data;
+                            this.norecord = this.customers.length;
+                            if (this.norecord > this.size) {
+                                this.pagination = true;
+                            } else {
+                                this.pagination = false;
+                            }
+                            if(this.norecord != 0){
+                                this.norecord_msg = false;
+                            }else{
+                                this.norecord_msg = true;
+                            }
+                        });
+                    }
+                },
                 deleteCustomer(id) {
                         this.$swal({
                             title: "確認",
@@ -216,7 +219,8 @@
                             cancelButtonClass: "all-btn"
                         }).then(response => {
                             this.axios.delete(`/api/customer/delete/${id}`).then(response => {
-                                this.customers = response.data.customers;
+                                // this.customers = response.data.customers;
+                                this.initialCall();
                                 this.$swal({
                                     // title: "削除済",
                                     text: "事業者を削除しました。",
@@ -239,6 +243,7 @@
                                 //flash("Delete Success", "success");
                                 // let a = this.customers.map(item => item.id).indexOf(id);
                                 // this.customers.splice(a, 1);
+                                
                             });
                         });
                     },
@@ -246,7 +251,8 @@
                         this.$loading(true);
                         this.axios.get(`/api/confirm/${id}`).then(response => {
                             console.log(response.data)
-                            this.customers = response.data.customers;
+                            // this.customers = response.data.customers;
+                            this.initialCall();
                             // this.displayItems();
                             if (response.data.status == 'success') {
                                 this.$swal({

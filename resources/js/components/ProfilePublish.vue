@@ -448,7 +448,7 @@
             <div class="row ele m-lr-0" id="element4">
 
                 <!-- <div class="row"> -->
-                    <h5 class="profile_header col-md-12"> 施設の概要</h5>
+                    <h5 class="profile_header col-md-12"> 施設概要</h5>
                     <div v-for="nus in nusfacilities" :key="nus.id" class="col-md-12" >
 
                         <table border="1" class="table table-bordered cost_table facility_tbl">
@@ -787,8 +787,13 @@
                                 <div>{{comment.customer}}</div>
                         </div>
                     </div>
+                    <div class="m-b-20 text-right">
+                        <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
+                        <span>口コミを追加する</span>
+                        </router-link>
+                    </div>
                   
-                    <div class="comment-btn-wrapper">
+                    <!-- <div class="comment-btn-wrapper">
                         <p><span class="nocomment-phone" >お電話でのご相談 </span></p>
                         <p class="red  no-comment-title"><i class="fas fa-phone-alt phone-color"></i><a class="font-weight-bold" href="tel:0120591165">0120-59-1165</a><span class="fz12">（受付時間 平日 9：30-20：00）</span></p>
                         <hr class="dotted">
@@ -797,14 +802,17 @@
                              <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
                               <span>口コミを追加する</span></router-link>
                          </div>
-                    </div>
+                    </div> -->
                </div>
                <div v-else class="col-md-12">
                    
-                   <p class="no-data-color pb-3 no-data-size">
-                       
-                       口コミはありません。</p>
-                   <div class="comment-btn-wrapper">
+                   <p class="no-data-color pb-3 no-data-size">口コミはありません。</p>
+                   <div class="m-b-20 text-center">
+                        <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
+                        <span>口コミを追加する</span>
+                        </router-link>
+                    </div>
+                   <!-- <div class="comment-btn-wrapper">
                         <p><span class="nocomment-phone" >お電話でのご相談 </span></p>
                          <p class="red  no-comment-title"><i class="fas fa-phone-alt phone-color"></i><a class="font-weight-bold" href="tel:0120591165">0120-59-1165</a><span class="fz12">（受付時間 平日 9：30-20：00）</span></p>
                         <hr class="dotted">
@@ -813,7 +821,7 @@
                              <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
                               <span>口コミを追加する</span></router-link>
                          </div>
-                    </div>
+                    </div> -->
                 </div>
                 <!-- </div> -->
                <div class="offset-md-4 col-md-8 mt-3" v-if="pagination">
@@ -1322,8 +1330,13 @@
                                 <div>{{comment.customer}}</div>
                         </div>
                     </div>
+                    <div class="m-b-20 text-right">
+                        <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
+                        <span>口コミを追加する</span>
+                        </router-link>
+                    </div>
 
-                    <div class="comment-btn-wrapper">
+                    <!-- <div class="comment-btn-wrapper">
                         <p><span class="nocomment-phone" >お電話でのご相談 </span></p>
                         <p class="red  no-comment-title"><i class="fas fa-phone-alt phone-color"></i><a class="font-weight-bold" href="tel:0120591165">0120-59-1165</a><span class="fz12">（受付時間 平日 9：30-20：00）</span></p>
                         <hr class="dotted">
@@ -1332,14 +1345,18 @@
                              <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
                               <span>口コミを追加する</span></router-link>
                          </div>
-                    </div>
+                    </div> -->
                </div>
                 <div v-else class="col-md-12">
                    
-                   <p class="no-data-color pb-3 no-data-size">
-                       
+                   <p class="no-data-color pb-3 no-data-size">                       
                        口コミはありません。</p>
-                   <div class="comment-btn-wrapper">
+                    <div class="m-b-20 text-center">
+                        <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
+                        <span>口コミを追加する</span>
+                        </router-link>
+                    </div>
+                   <!-- <div class="comment-btn-wrapper">
                         <p><span class="nocomment-phone" >お電話でのご相談 </span></p>
                          <p class="red  no-comment-title"><i class="fas fa-phone-alt phone-color"></i><a class="font-weight-bold" href="tel:0120591165">0120-59-1165</a><span class="fz12">（受付時間 平日 9：30-20：00）</span></p>
                         <hr class="dotted">
@@ -1348,7 +1365,7 @@
                              <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
                               <span>口コミを追加する</span></router-link>
                          </div>
-                    </div>
+                    </div> -->
                 </div>
             <!-- </div> -->
                 
