@@ -337,7 +337,7 @@ const routes = [
         path: "/profile",
         component: Profile,
         meta: {
-            auth: true,
+            auth: undefined,
         }
     },
     {
