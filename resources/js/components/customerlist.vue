@@ -68,7 +68,7 @@
                                                         <span class="btn confirm-borderbtn" style="border-color: #ccc!important; color: #ccc!important;cursor:not-allowed;" :id="'confirm-btn'+customer.id" v-else>登録承認済</span>
                                                         <router-link :to="{name: 'profiledit', params:{cusid: customer.id}}" class="btn confirm-orangebtn">プロフィール設定</router-link>
                                                         <!-- <button class="btn confirm-orangebtn">プロフィール設定</button> -->
-                                                        <!-- <router-link :to="{name: 'profile'}" class="btn confirm-orangebtn">ページ編集</router-link> -->
+                                                        <router-link :to="{name: 'profile', params:{cusid: customer.id}}" class="btn confirm-orangebtn">ページ編集</router-link>
                     
                                                     </div>
                                             </div>
