@@ -705,7 +705,8 @@
                                                                         </div>
                                                                         <div class="col-7 col-lg-7 col-sm-6 m-b-15 p-l-0">
                                                                             <ul class="nursingSearch-list">
-                                                                                <li class="d-flex"><p class="text-truncate"><span>住所</span><span> {{items.township_name}} {{items.address}}</span></p></li>
+                                                                                <!-- <li class="d-flex"><p class="text-truncate"><span>住所</span><span> {{items.township_name}} {{items.address}}</span></p></li> -->
+                                                                                 <li class="d-flex"><p class="text-truncate"><span>Operator</span><span> {{items.operator}}</span></p></li>
                                                                                 <li class="d-flex"><span>電話 </span><span class="text-truncate">{{items.phone}}</span></li>
                                                                                 <li class="d-flex"><span>サイト</span><a :href="'http://'+ items.website" target="_blank"  class="text-truncate">{{items.website}}</a></li>
                                                                             </ul>
@@ -1826,6 +1827,7 @@
                 this.fac_types = response.data.fac_types
                 this.medical_acceptance = response.data.medical_acceptance
                 this.nus_data = response.data.nursing
+                console.log('a',this.nus_data);
                 if(this.nus_data.length != 0){
                     this.norecord_msg = false;
                 }else{
