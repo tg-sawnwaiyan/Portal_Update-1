@@ -14,10 +14,14 @@ class GalleryController extends Controller
     }
     
     public function getPhotobyCustomerId($customer_id) {
-        $photo_list = Gallery::where("customer_id",$customer_id)
-                            ->where('type','=', 'photo')
-                            ->get()
-                            ->toArray();
+        // $photo_list = Gallery::where("customer_id",$customer_id)
+        //                     ->where('type','=', 'photo')
+        //                     ->get()
+        //                     ->toArray();
+        $photo_list = Gallery::select('id','photo','title','description','type')->where("customer_id",$customer_id)
+                             ->where('type','=', 'photo')
+                             ->get()
+                             ->toArray();
         return $photo_list;
     }
 

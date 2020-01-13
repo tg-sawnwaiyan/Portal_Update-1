@@ -67,7 +67,7 @@
                                                             <input type="file" name="" class="nursing-photo m-b-10" v-bind:class="img.classname" id="upload_img" @change="preview_image(img.classname,indx)">
                                                             <div class="col-md-12 m-b-10" v-bind:class="img.classname">
                                                                     <input type="hidden" class="already-photo" v-model="img.photo">
-                                                                    <img :src="'/upload/nursing_profile/'+ img.photo" class="img-fluid" alt="profile"  v-bind:id="'already-photo'+indx" @error="imgUrlAlt">
+                                                                    <img :src="'/upload/nursing_profile/'+ img.photo" class="img-fluid" alt="profile" v-if="img.photo != ''"  v-bind:id="'already-photo'+indx" @error="imgUrlAlt">
                                                             </div>
                                                     </div>
                                                     <div class="col-md-12">
@@ -810,6 +810,7 @@ export default {
                 .get('/api/nursing-pgallery/'+this.cusid)
                 .then(response=>{
                     this.img_arr = response.data;
+                    console.log(response.data)
                 });
 
                 this.axios
@@ -887,8 +888,7 @@ export default {
                 $('.station-'+check_id).attr('checked','true'); 
             },
             preview_image(img_class,indx) {
-                // $("."+img_class).html("<img src='"+URL.createObjectURL(event.target.files[0])+"' class='img-fluid hospital-image'>");
-               document.getElementById('already-photo'+indx).src= URL.createObjectURL(event.target.files[0]);
+                this.img_arr[indx]['photo'] = event.target.files[0].name;
             },
 
             preview_panorama() {
@@ -941,14 +941,7 @@ export default {
             },
 
             galleryAdd() {
-                var date = new Date;
-                var s = date.getMilliseconds();
-                var m = date.getMinutes();
-                var h = date.getHours();
-                var classname = "class"+h+m+s;
-                var c = "'"+classname+"'";
-
-                this.img_arr.push({classname:classname,photo:'',title:'',description:''});
+                this.img_arr.push({id:'',photo:'',title:'',description:''});
             },
 
             galleryVideoAdd() {
@@ -1101,7 +1094,7 @@ export default {
 
                 this.$loading(true);
              
-                this.img_arr = [];
+                // this.img_arr = [];
                 this.video_list = [];
                 this.cooperate_list = [];
                 this.payment_list = [];
@@ -1117,20 +1110,18 @@ export default {
                 // Photo 
                 var img = document.getElementsByClassName('gallery-area-photo');
                 let pt = new FormData();
-                if(img.length)
-                for(var i = 0; i< img.length; i++) {
+               
+                for(var i = 0; i< this.img_arr.length; i++) {
                     if(img[i].getElementsByClassName('nursing-photo')[0].files[0]) {
                         var file = img[i].getElementsByClassName('nursing-photo')[0].files[0];
                         var file_name = file.name;                        
                         pt.append(i ,file )
-                        this.img_arr.push({type:"photo",photo:file_name,title:img[i].getElementsByClassName('title')[0].value, 
-                            description:img[i].getElementsByClassName('description')[0].value});
                        
                     } else {
                         var file_name = img[i].getElementsByClassName('already-photo')[0].value;
-                        if(file_name) {
-                            this.img_arr.push({type:"photo",photo:file_name,title:img[i].getElementsByClassName('title')[0].value, 
-                            description:img[i].getElementsByClassName('description')[0].value});
+                        alert(file_name);
+                        if(!file_name) {
+                            this.img_arr.splice(i, 1);
                         }
                     }
                 } 

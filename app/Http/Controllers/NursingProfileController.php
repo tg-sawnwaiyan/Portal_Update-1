@@ -215,7 +215,7 @@ class NursingProfileController extends Controller
             for($i=0; $i<count($request[0]["image"]); $i++) {
                 $gallery = new Gallery;
                 $gallery->customer_id = $id;
-                $gallery->type = $request[0]["image"][$i]['type'];
+                $gallery->type = 'photo';
                 $gallery->photo = $request[0]["image"][$i]['photo'];
                 $gallery->title = $request[0]["image"][$i]['title'];
                 $gallery->description = $request[0]["image"][$i]['description'];
