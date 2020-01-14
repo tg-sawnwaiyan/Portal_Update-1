@@ -908,14 +908,16 @@ body::-webkit-scrollbar-thumb {
 :focus {
     outline: -webkit-focus-ring-color auto 0px;
 }
-.user_name{
+
+.user_name {
     margin-bottom: 10px;
-    text-align:center;
+    text-align: center;
     margin-top: 20px;
     font-size: 19px;
     font-weight: bold;
-    color:#d2571cf5
-  }
+    color: #d2571cf5
+}
+
 
 /********************************** End Login And Register **********************************/
 
@@ -1099,6 +1101,7 @@ body::-webkit-scrollbar-thumb {
 #nursingView .profile_subtit:after {
     background: #ff9563;
 }
+
 #profilenav .fav-profile {
     position: absolute;
     top: 70px;
@@ -1144,22 +1147,27 @@ body::-webkit-scrollbar-thumb {
 #nursingView .header {
     color: #ec7338;
 }
-.public-nurheader{
+
+.public-nurheader {
     border-bottom: 3px solid #d2571c;
     padding-bottom: 10px;
     margin-bottom: 20px;
 }
-.public-nurheader .fa-user-md{
+
+.public-nurheader .fa-user-md {
     color: #d2571c;
 }
-.public-hosheader{
+
+.public-hosheader {
     border-bottom: 3px solid #2981cc;
     padding-bottom: 10px;
     margin-bottom: 20px;
 }
-.public-hosheader .fa-briefcase-medical{
+
+.public-hosheader .fa-briefcase-medical {
     color: #2981cc;
 }
+
 .header {
     font-weight: bold;
     display: inline-block;
@@ -6021,7 +6029,7 @@ button.confirmed {
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.0125), 0 1px 1px rgba(0, 0, 0, 0.05);
     border-bottom-width: 4.2px;
     position: relative;
-    top: 23px;
+    /* top: 23px; */
 }
 
 .comment-btn:link,
@@ -6373,12 +6381,19 @@ button.confirmed {
     background: #85c7ff;
     border: 1px solid #5c95c5;
 }
+#hospitalView .top-fixed-btn:hover{
+    background:#cbf3ff;
+    color: #000;
+}
 
 #nursingView .top-fixed-btn {
     background: #fbaa84;
     border: 1px solid #ff9563;
 }
-
+#nursingView .top-fixed-btn:hover{
+    background:#fff9cb;
+    color: #000;
+}
 .top-fixed-btn {
     color: #000;
     width: 145px;
@@ -6394,10 +6409,18 @@ button.confirmed {
     background: #2981cc;
     border: 1px solid #5f97d0;
 }
+#hospitalView .top-fixed-btn.active:hover{
+    background:#cbf3ff;
+    color: #000;
+}
 
 #nursingView .top-fixed-btn.active {
     background: #d2571c;
     border: 1px solid #ff9563;
+}
+#nursingView .top-fixed-btn.active:hover{
+    background:#fff9cb;
+    color: #000;
 }
 
 .top-fixed-btn.active {
@@ -7700,9 +7723,11 @@ ul.nur-caro-card>li.list-group-item {
     top: 0;
     left: 0;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    /* margin-left: auto;
+    margin-right: auto; */
+    margin: 0;
 }
+
 
 .slick-track:before,
 .slick-track:after {
@@ -7731,6 +7756,7 @@ ul.nur-caro-card>li.list-group-item {
 
 .slick-slide img {
     display: block;
+    margin: 0 auto;
 }
 
 .slick-slide.slick-loading img {
@@ -8621,6 +8647,9 @@ ul.nur-caro-card>li.list-group-item {
 .sp_nav {
     display: none;
 }
+.sp_panonav{
+    display: none;
+}
 
 .pc-1024 {
     display: block;
@@ -8664,6 +8693,14 @@ ul.nur-caro-card>li.list-group-item {
 
 .sp-768-block {
     display: table-cell;
+}
+
+#sp_adminheader {
+    display: none;
+}
+
+#sp_adminheader ul.menu li.first-submenu {
+    display: none;
 }
 
 @media only screen and (max-width:1440px) {
@@ -9152,6 +9189,7 @@ ul.nur-caro-card>li.list-group-item {
         position: absolute;
         right: 10px;
         top: 75px;
+        z-index: 99;
     }
     .sp_nav {
         display: block;
@@ -9165,6 +9203,18 @@ ul.nur-caro-card>li.list-group-item {
         opacity: 0.9;
         overflow-y: auto;
         z-index: 1;
+    }
+    .sp_panonav{
+        display: block;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        padding-bottom: 150px;
+        background: #fff;        
+        z-index: 99999999;
+        overflow-y:hidden;
     }
     ul.menu_list {
         width: 90%;
@@ -9472,6 +9522,127 @@ ul.nur-caro-card>li.list-group-item {
         max-width: 100% !important;
         flex: 100% !important;
     }
+    /* header & menu */
+    .v-sidebar-menu {
+        display: none !important;
+    }
+    .content-all {
+        padding-left: 0;
+    }
+    /* sp_adminNav */
+    .admin_head {
+        font-size: 18px;
+        background: #2c3b41;
+        color: #fff;
+    }
+    .admin_head01 {
+        padding-left: 35px;
+    }
+    .admin_head02 {
+        padding-left: 50px;
+    }
+    #sp_adminheader {
+        display: block;
+    }
+    #sp_adminheader .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background: #000015;
+        opacity: 0.5;
+    }
+    .sp_adminNav {
+        display: block;
+        position: fixed;
+        top: 50px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+    .sidebar_brand {
+        position: fixed;
+        width: 230px;
+        height: 100%;
+        padding: 0 0 150px 0;
+        background: #222D32;
+        overflow-y: auto;
+    }
+    #sp_adminheader .admin_menu {
+        position: absolute;
+        display: block;
+        top: 0;
+        right: 10px;
+        color: #fff;
+        z-index: 99;
+        cursor: pointer;
+    }
+    .sp_adminNav ul li {
+        position: relative;
+    }
+    .sp_adminNav ul li span {
+        display: block;
+        width: 100%;
+        height: 100%;
+        color: #fff;
+        cursor: pointer;
+    }
+    .sp_adminNav ul li span.active {
+        background: #1E282C;
+        border-left: 3px solid #d2571c;
+    }
+    .sp_adminNav ul li i:first-child {
+        margin-left: 10px;
+        height: 30px;
+        line-height: 30px;
+        width: 30px;
+        text-align: center;
+        border-radius: 3px;
+        color: #fff;
+        background-color: #1e1e21;
+    }
+    .sp_adminNav ul li i:nth-child(2) {
+        position: absolute;
+        right: 15%;
+        top: 20px;
+    }
+    .sp_adminNav ul li a {
+        display: block;
+        width: 100%;
+        padding-left: 5px;
+        color: #fff;
+        transition: 0.3s all;
+    }
+    .sp_adminNav ul li a:hover {
+        background-color: rgba(30, 30, 33, 0.5);
+        text-decoration: none;
+    }
+    .sp_adminNav .sub_menu {
+        padding: 8px;
+        background: #2C3B41;
+    }
+    .sp_adminNav .sub_menu a {
+        line-height: 40px;
+    }
+    .sp_adminNav ul.sub_menu li i:first-child {
+        margin-left: 0;
+    }
+    .down {
+        -ms-transform: rotate(90deg);
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg);
+        transform-origin: center;
+        -moz-transition: all .3s linear;
+        -webkit-transition: all .3s linear;
+        transition: all .3s linear;
+        transform-origin: center;
+    }
+    /*end sp_adminNav */
+    /*End header & menu */
     .map-text-wrapper {
         display: flex;
     }

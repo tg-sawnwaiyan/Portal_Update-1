@@ -1733,34 +1733,7 @@ export default {
               }
             }
             },
-            getPostal: function(event) {
-                if (this.postal.length > 5) {
-                    var postal = this.postal;
-                    this.axios
-                        .post('/api/hospital/postList/' + postal)
-                        .then(response => {
-                            var post_data = response.data.postal_list;
-                            var length = response.data.postal_list.length;
-                            if (length > 0) {
-                                var pref = post_data[0]['city_id'];
-                                if (post_data[0]['street'] == '') {
-                                    this.city = post_data[0]['city'];
-                                } else {
-                                    this.city = post_data[0]['city']  + post_data[0]['street'];
-                                }
-                                // this.comments.selectedValue = pref;
-                                // this.comments.division = pref;
-                            } else {
-                                this.city = '';
-                                // this.comments.selectedValue = 0;
-                                $('#jsErrorMessage').html('<div class="error">郵便番号の書式を確認してください。</div>');
-                            }
-                        });
-                }
-            },
-   
             
-           
         }
 
 </script>

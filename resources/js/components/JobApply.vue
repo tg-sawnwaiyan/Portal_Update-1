@@ -95,11 +95,11 @@
             </div>
             <div class="col-md-9 col-sm-12 form-right pl-4">
               <label class="control control--radio">
-                    <input type="radio" v-model="jobApply.gender" value="Female" /> 男性
+                    <input type="radio" v-model="jobApply.gender" value="男性" /> 男性
                     <div class="control__indicator"></div>
                 </label>
                 <label class="control control--radio">
-                    <input type="radio" v-model="jobApply.gender" value="Male" /> 女性
+                    <input type="radio" v-model="jobApply.gender" value="女性" /> 女性
                     <div class="control__indicator"></div>
                 </label>
             </div>
@@ -143,9 +143,9 @@
                 </div>
 
                 <div class="form-group row pl-3">
-                    <div class="col-md-12 "><label>市区町村、番地（建物名)<span class="error sp1">必須</span></label></div>
+                    <div class="col-md-12 "><label>番地（建物名)<span class="error sp1">必須</span></label></div>
                     <div class="col-md-12 p-0">
-                        <input type="text" class="city form-control float-left" id="str_address" v-model="jobApply.str_address" placeholder="市区町村、番地を入力してください。" @keyup="focusCity" @change="aggreBtn"/>
+                        <input type="text" class="city form-control float-left" id="str_address" v-model="jobApply.str_address" placeholder="番地を入力してください。" @keyup="focusCity" @change="aggreBtn"/>
                         <span class="float-left eg-txt">例）東京都千代田区丸の内1-9-1 グラントウキョウノースタワー40階</span>
                         <br>
                         <span class="error m-l-30" v-if="focus_city">※入力は必須です。</span>
@@ -274,8 +274,8 @@
               </label>
             </div>
             <div class="col-md-9 col-sm-12 form-right">
-              <span v-if="jobApply.gender == 'Male'" class="pl-4">女性</span>
-              <span v-if="jobApply.gender == 'Female'" class="pl-4">男性</span>
+              <span v-if="jobApply.gender == '女性'" class="pl-4">女性</span>
+              <span v-if="jobApply.gender == '男性'" class="pl-4">男性</span>
             </div>
           </div>
           <div class="form-group m-0 row bd">
@@ -301,7 +301,7 @@
           <div class="form-group m-0 row bd">
             <div class="col-sm-3 form-left">
               <label for="str_address">
-                <strong>市区町村、番地（建物名)</strong>
+                <strong>番地（建物名)</strong>
               </label>
             </div>
             <div class="col-md-9 col-sm-12 form-right">
@@ -507,13 +507,7 @@ export default {
                         this.getTownship(1);
                         this.jobApply.township = response.data.township_id[0]['id'];
                      
-                         if (post_data[0]["street"] == "") 
-                          {
-                              this.jobApply.str_address = post_data[0]["street"];
-                          } 
-                          else{
-                                this.jobApply.str_address = post_data[0]["pref"] +  post_data[0]["city"] +   post_data[0]["street"];;
-                          }
+                        this.jobApply.str_address = post_data[0]["street"];
                         this.jobApply.division = pref;
                             $('#jsErrorMessage').html('<div class="error"></div>');
                     } else {
