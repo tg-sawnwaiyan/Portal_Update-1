@@ -149,7 +149,7 @@
                                     <router-link :to="{ name: 'ads' }"><i class="fa fa-globe"></i>  広告</router-link>
                                 </li>
                             <li>
-                                <router-link :to="{name: 'logout'}"><i class="fa fa-lock"></i> ログアウト</router-link>
+                                <a href="#" @click.prevent="$auth.logout()"><i class="fa fa-lock"></i> ログアウト</a>
                             </li>      
                         </ul>  
                         <ul class="sidebar-brand" v-if="visit == 'true'">
@@ -169,7 +169,7 @@
                                 <a  @click="gotoDash()"><i class="fas fa-tachometer-alt"></i> 管理画面へ</a>
                             </li>
                             <li>
-                                <router-link :to="{name: 'logout'}"><i class="fa fa-lock"></i> ログアウト</router-link>
+                                <a href="#" @click.prevent="$auth.logout()"><i class="fa fa-lock"></i> ログアウト</a>
                             </li>
                             <li v-if="!$auth.check()">
                                 <router-link :to="{name: 'login'}" class="nav-link pad-free"><i class="fa fa-sign-in-alt"></i> 事業者 ログイン</router-link>
@@ -322,13 +322,19 @@
          toggle() {
             this.isNav = !this.isNav;
         },
-         subMenu: function (n) {  
-            for(var i = 0; i < 3; i++) { 
-                this.isSubmenu[i].show = false;              
+         subMenu: function (n) { 
+            if(this.isSubmenu[n].show){
+                this.isSubmenu[n].show = false;  
             }
-            this.isSubmenu[n].show = true;         
-            this.isActive = n;
-            this.isRotate = n;
+            else{
+                for(var i = 0; i < 3; i++) { 
+                    this.isSubmenu[i].show = false;              
+                }
+                this.isSubmenu[n].show = true;         
+                this.isActive = n;
+                this.isRotate = n;
+            }
+            
         }
     }
 }
