@@ -54,8 +54,8 @@
                 <div class="row" id ="gallery-photo">   
                         <div class="col-md-6 gallery-area-photo" v-bind:id="'photo'+indx" v-for="(img,indx) in img_arr" :key="img.id">
                                 <div class="col-md-12">
-                                        <input type="file" name="" class="hospital-photo m-b-10" v-bind:class="img.classname" id="upload_img" @change="preview_image(img.classname,indx)">
-                                        <div class="col-md-12 m-b-10" v-bind:class="img.classname">
+                                        <input type="file" name="" class="hospital-photo m-b-10" v-bind:class="img.id" id="upload_img" @change="preview_image(img.id,indx)">
+                                        <div class="col-md-12 m-b-10" v-bind:class="img.id">
                                                 <input type="hidden" class="already-photo" v-model="img.photo">
                                                 <img :src="'/upload/hospital_profile/'+ img.photo" class="img-fluid" alt="profile" v-if="img.photo" v-bind:id="'already-photo'+indx" @error="imgUrlAlt">
                                         </div>
@@ -89,18 +89,19 @@
                 :key="img.id"
 
               >
-            
 
                 <div class="col-md-12">
 
-                  <input type="file" name class="hospital-photo m-b-15" v-bind:class="img.classname" id="upload_img" @change="preview_image(img.classname,indx)" />
+                  <input type="file" name class="hospital-photo m-b-15"  v-bind:class="'classname'+indx" id="upload_img" @change="preview_image($event,indx)" />
 
-                  <div class="col-md-12" v-bind:class="img.classname">
+                  <div class="col-md-12" v-bind:class="img.id">
 
                     <input type="hidden" class="already-photo" v-model="img.photo" />
-
-                    <img :src="'/upload/hospital_profile/'+ img.photo" class="img-fluid hospital-image" alt="profile" v-if="img.photo" v-bind:id="'already-photo'+indx" @error="imgUrlAlt"/>
-
+                  
+                    <img v-bind:src="'/upload/hospital_profile/'+ img.photo" class="img-fluid hospital-image" alt="profile"  v-if="img.id != null"   @error="imgUrlAlt"/>
+                    <!-- <img v-bind:src="img_path" class="img-fluid hospital-image" alt="profile"  v-else v-bind:id="'already-photo'+indx"  @error="imgUrlAlt"/> -->
+                    <div v-bind:id="'already-photo'+indx" v-else> </div>
+                 
                   </div>
 
                 </div>
@@ -1317,6 +1318,7 @@ import 'quill/dist/quill.snow.css'
 import {quillEditor} from 'vue-quill-editor'
 import {Button, Input,Select} from 'iview'
 import GoogleMap from './GoogleMap.vue'
+import { timeout } from 'q'
 export default {
          components: {
                 GoogleMap,
@@ -1328,8 +1330,8 @@ export default {
        data() {
             return {
                 fac_list: [],
-                img_arr:[],img_list:[],
-                video_arr:[], video_list:[],gallery_list:[],
+                img_arr:[],
+                video_arr:[],
                 feature_list:[],
                 profile_type:'hospital',
                 schedule_arr:[],shedule_am:[],shedule_pm:[],
@@ -1353,10 +1355,13 @@ export default {
                 readonly:true,
                 theme:'snow',
                 access_val: '',
-                detail_info: '', stations:[], station_list:[],                        
+                detail_info: '', stations:[], station_list:[],  
+                file:'',
+                                      
             },
             ph_length: false,
             ph_num: false,
+            img_path: null,
             }
         },
         created(){
@@ -1415,6 +1420,7 @@ export default {
                 .get('/api/hospital-pgallery/'+this.cusid)
                 .then(response=>{
                         this.img_arr = response.data;
+                       
                 });
                 this.axios
                 .get('/api/hospital-vgallery/'+this.cusid)
@@ -1447,9 +1453,14 @@ export default {
                     $(".hos-fac-toggle-div").toggle('medium');
                     this.isRotate3 = !this.isRotate3;
             },
-            preview_image(img_class,indx) {
-                  $("."+img_class).html("<img src='"+URL.createObjectURL(event.target.files[0])+"' class='img-fluid hospital-image'>");
-                    document.getElementById('already-photo'+indx).src= URL.createObjectURL(event.target.files[0]);
+            preview_image(event,indx) {
+                     $('#already-photo'+indx).html("<img src='"+URL.createObjectURL(event.target.files[0])+"' class='img-fluid hospital-image'>");
+                  
+                    //  document.getElementById('already-photo'+indx).src= URL.createObjectURL(event.target.files[0]);
+                    // this.img_path = URL.createObjectURL(event.target.files[0]);
+                    this.img_arr[indx]['photo'] = event.target.files[0].name;            
+                    // this.file = event.target.files[0];   
+                     
             },
             facilityCheck(check_id) {
                     $('.facility-'+check_id).attr('checked','true');
@@ -1469,36 +1480,65 @@ export default {
 
             },
             DeltArr(indx,type) {
-                    var arr_list = [];
-                    var arr_count = document.getElementsByClassName('gallery-area-'+type);
-                    for(var i=0; i< arr_count.length; i++) {
-                            arr_list[i] = document.getElementsByClassName('gallery-area-'+type);
-                    }
-                    for(var i=0; i<= arr_count.length; i++) {
-                            if(i == indx) {
-                                    arr_list.splice(indx,1);
-                                    var ele = document.getElementById(type+indx);
-                                    var parentEle = document.getElementById('gallery-'+type);
-                                    parentEle.removeChild(ele);
+              
+
+              this.$swal({
+                        title: "確認",
+                        text: "職種を削除してよろしいでしょうか。",
+                        type: "warning",
+                        width: 350,
+                        height: 200,
+                        showCancelButton: true,
+                        confirmButtonColor: "#dc3545",
+                        cancelButtonColor: "#b1abab",
+                        cancelButtonTextColor: "#000",
+                        confirmButtonText: "削除",
+                        cancelButtonText: "キャンセル",
+                        confirmButtonClass: "all-btn",
+                        cancelButtonClass: "all-btn"
+                    }).then(response => { 
+
+                        if(type == 'video')
+                        {
+                            var id = this.video_arr[indx]['id'];
+                            this.video_arr.splice(indx, 1);   
+                        }
+                        else{
+                            var id = this.img_arr[indx]['id'];
+                            var photo = this.img_arr[indx]['photo'];
+                            this.img_arr.splice(indx, 1);  
+                        }
+
+                        this.axios.get(`/api/gallery/`+ id+`/` + photo)
+                        .then(response => {
+
+                            this.$swal({  
+                                text: "職種を削除しました。",
+                                type: "success",
+                                width: 350,
+                                height: 200,
+                                confirmButtonText: "閉じる",
+                                confirmButtonColor: "#dc3545"
+                            });
+                            
+                        }).catch(error=>{
+                            
+                            if(error.response.status == 422){
+                                this.errors = error.response.data.errors
                             }
-                            else{
-                                    arr_list.splice(indx,1);
-                                    var ele = document.getElementById(type+indx);
-                                    var parentEle = document.getElementById('gallery-'+type);
-                                    parentEle.removeChild(ele);
-                            }
-                    }
+                        })
+                 });
+                 
             },
             galleryAdd() {
-              console.log('galleryadd');
             
                     var date = new Date;
                     var s = date.getMilliseconds();
                     var m = date.getMinutes();
                     var h = date.getHours();
-                    var classname = "class"+h+m+s;
-                    var c = "'"+classname+"'";
-                    this.img_arr.push({classname:classname,photo:'',title:'',description:''});
+                    // var classname = "class"+h+m+s;
+                    // var c = "'"+classname+"'";
+                    this.img_arr.push({id:null,photo:'',title:'',description:''});
                   
                   
             },
@@ -1566,159 +1606,137 @@ export default {
                 this.isRotate4 = !this.isRotate4;
             },
             Create_Profile () {
-            this.gallery_list= [];
-            this.img_list = [];
-            this.video_list = [];
-            this.save_hospital_info = [];
-                     
+
+                this.save_hospital_info = [];           
                 this.$loading(true);
        
-
-                    if(this.hospital_info.details_info === undefined)
-                    {     
-                      this.hospital_info.details_info = "";
-                    }
-                  
-                    this.hospital_info.latitude = $('#new_lat').val();
-                    this.hospital_info.longitude = $('#new_long').val();
-                    console.log($('#gmaptownship').val());
-                    this.customer_info.townships_id = Number($('#gmaptownship').val());
-                    localStorage.setItem('lat_num',this.hospital_info.latitude);
-                    localStorage.setItem('lng_num',this.hospital_info.longitude);
-                    console.log(this.customer_info);
-
-                    var img = document.getElementsByClassName('gallery-area-photo');
-                    let pt = new FormData();
-                    for(var i = 0; i< img.length; i++) {
-                          var file = img[i].getElementsByClassName('hospital-photo')[0].files[0];
-                          if(file) {                   
-                                var file_name = file.name;
-                                pt.append(i ,file )
-
-                                     
-                          } else {
-                                  var file_name = img[i].getElementsByClassName('already-photo')[0].value;
-                          }
-                          this.img_list.push({type:"photo",photo:file_name,title:img[i].getElementsByClassName('title')[0].value, description:img[i].getElementsByClassName('description')[0].value});
-                    }
-
-                   
-                    // 1
-                    this.axios.post('/api/hospital/movephoto', pt)
-                        .then(response => {
-                            }).catch(error=>{
-                                console.log(error);
-                                if(error.response.status == 422){
-                                    this.errors = error.response.data.errors
-                                }
-                        })
-
-                    var video = document.getElementsByClassName('gallery-area-video');
-                        for(var i = 0; i< video.length; i++) {
-                           this.video_list.push({type:"video",photo:video[i].getElementsByClassName('video-url')[0].value,title:video[i].getElementsByClassName('title')[0].value, description:video[i].getElementsByClassName('description')[0].value});
-                        }
-                    this.gallery_list = this.img_list.concat(this.video_list);
-
-                    this.chek_feature = [];
-                    var s_features =[];  
-                        $.each($("input[name='special-features']:checked"), function(){
-                            s_features.push($(this).val());
-                        });
-                        this.chek_feature.push({special_feature_id:s_features});
-
-                      var chek_facility = [];
-                     //  var facilities ;
-                        $.each($("input[name='facility']:checked"), function(){
-                               chek_facility.push($(this).val());
-                        });
-                        this.facilities = chek_facility.join(',');
-                    
-                    this.subjects = [];
-                    var chek_subj = [];
-                        $.each($("input[name='subject']:checked"), function(){
-                               chek_subj.push($(this).val());
-                        });
-                        this.subjects.push({subject_id:chek_subj});
-
-                    // var chek_station=[];
-                    // $.each($("input[name='station']:checked"), function(){
-                    //   alert($(this).val());
-                    //     chek_station.push($(this).val());
-                    // });
-                    // this.stations.push({station_id:chek_station});
-
-                     // Consultation
-                     this.schedule_list = [];
-                    for(var j = 0; j< 2; j++) {
-                        for(var i = 0; i< 7; i++) {
-                                if(j == 0) { this.shedule_am[i] = $('.form-control.am-from'+i+'').val() + '-' + $('.form-control.am-to'+i+'').val(); }
-                                if(j == 1) { this.shedule_pm[i] = $('.form-control.pm-from'+i+'').val() + '-' + $('.form-control.pm-to'+i+'').val(); }
-                        }
-                        if(j == 0) { this.schedule_list.push(this.shedule_am); }
-                        if(j == 1) { this.schedule_list.push(this.shedule_pm); }
-                    }
-                   
-
-            
-
-                    // this.save_hospital_info.push({name:name,email:email,phone:phone,address:address,township:township,
-                    //     latitude:latitude,longitude:longitude,access:this.access_val,specialist:specialist,detail_info:detail_info,close_day:close_day,website:website,congestion:congestion,
-                    //     facilities:facilities,
-                    //     schedule_list:this.schedule_list,
-                    //     chek_feature:this.chek_feature,
-                    //     subjects:this.subjects,
-                    //     gallery_list:this.gallery_list
-                    // });
-
-                  
-
-                    
-
-                        this.save_hospital_info.push({ customer_info:this.customer_info,hospital_info:this.hospital_info,facilities:this.facilities,
-                        schedule_list:this.schedule_list,chek_feature:this.chek_feature, subjects:this.subjects, gallery_list:this.gallery_list
-                    });
-
+                if(this.hospital_info.details_info === undefined)
+                {     
+                  this.hospital_info.details_info = "";
+                }
               
+                this.hospital_info.latitude = $('#new_lat').val();
+                this.hospital_info.longitude = $('#new_long').val();
+            
+                this.customer_info.townships_id = Number($('#gmaptownship').val());
+                localStorage.setItem('lat_num',this.hospital_info.latitude);
+                localStorage.setItem('lng_num',this.hospital_info.longitude);
+                let pt = new FormData();
+                for(var i =this.img_arr.length-1;i>=0;i--)
+                {
+                this.img_arr[i]['type'] = 'photo';
+                if(this.img_arr[i]['photo'] == null || this.img_arr[i]['photo'] == '')
+                {
+                    this.img_arr.splice(i,1);
+                }
+            
+                var img = document.getElementsByClassName('gallery-area-photo');
+                var file = img[i].getElementsByClassName('hospital-photo')[0].files[0];
+                if(file) {                             
+                        pt.append(i ,file )  
                         
-                    if(this.save_hospital_info.length > 0) {
-                        this.axios
-                        .post(`/api/hospital/profile/${this.cusid}`,this.save_hospital_info)
-                        .then((response) => {
+                }      
+                }      
+                  
+                for(var i =this.video_arr.length-1;i>=0;i--)
+                {
+                this.video_arr[i]['type'] = 'video';
+                if(this.video_arr[i].photo == null || this.video_arr[i].photo == '' )
+                {
+                    this.video_arr.splice(i,1);
+                }     
+                            
+                }       
 
-                            this.initialCall();                           
-  
-                            this.$swal({
-                                position: 'top-end',
-                                type: 'success',
-                                title: '更新されました',
-                                confirmButtonText: "閉じる",
-                                confirmButtonColor: "#6cb2eb",
-                                width: 250,
-                                height: 200,
-                            })
-                            this.$loading(false);
+                this.axios.post('/api/hospital/movephoto', pt)
+                    .then(response => {
                         }).catch(error=>{
-                        
-                            this.$loading(false);
+                          
                             if(error.response.status == 422){
-                                this.save_hospital_info = 'error';
                                 this.errors = error.response.data.errors
                             }
-                        }) ;
-                    }
-                },
-                isNumberOnly: function(event) {
-                var input_data = $('#phone').val();
-                var code = 0;
-                code = input_data.charCodeAt();
+                    })
+
+                this.chek_feature = [];
+                var s_features =[];  
+                    $.each($("input[name='special-features']:checked"), function(){
+                        s_features.push($(this).val());
+                    });
+                    this.chek_feature.push({special_feature_id:s_features});
+
+                  var chek_facility = [];
+              
+                    $.each($("input[name='facility']:checked"), function(){
+                            chek_facility.push($(this).val());
+                    });
+                    this.facilities = chek_facility.join(',');
+                
+                this.subjects = [];
+                var chek_subj = [];
+                    $.each($("input[name='subject']:checked"), function(){
+                            chek_subj.push($(this).val());
+                    });
+                    this.subjects.push({subject_id:chek_subj});
+
             
-                if((48 <= code && code <= 57) && (this.customer_info.phone.length >= 10 && this.customer_info.phone.length <= 14)){
-                    this.ph_num = false;
-                    this.ph_length = false;
-                }else{
-                    this.ph_num = true;
-                    this.ph_length = true;
+
+                // Consultation
+                this.schedule_list = [];
+                for(var j = 0; j< 2; j++) {
+                    for(var i = 0; i< 7; i++) {
+                            if(j == 0) { this.shedule_am[i] = $('.form-control.am-from'+i+'').val() + '-' + $('.form-control.am-to'+i+'').val(); }
+                            if(j == 1) { this.shedule_pm[i] = $('.form-control.pm-from'+i+'').val() + '-' + $('.form-control.pm-to'+i+'').val(); }
+                    }
+                    if(j == 0) { this.schedule_list.push(this.shedule_am); }
+                    if(j == 1) { this.schedule_list.push(this.shedule_pm); }
                 }
+                    
+                
+                    this.save_hospital_info.push({ customer_info:this.customer_info,hospital_info:this.hospital_info,facilities:this.facilities,
+                    schedule_list:this.schedule_list,chek_feature:this.chek_feature, subjects:this.subjects, image:this.img_arr,video:this.video_arr
+                });
+
+          
+                    
+                if(this.save_hospital_info.length > 0) {
+                    this.axios
+                    .post(`/api/hospital/profile/${this.cusid}`,this.save_hospital_info)
+                    .then((response) => {
+
+                        this.initialCall();                           
+
+                        this.$swal({
+                            position: 'top-end',
+                            type: 'success',
+                            title: '更新されました',
+                            confirmButtonText: "閉じる",
+                            confirmButtonColor: "#6cb2eb",
+                            width: 250,
+                            height: 200,
+                        })
+                        this.$loading(false);
+                    }).catch(error=>{
+                    
+                        this.$loading(false);
+                        if(error.response.status == 422){
+                            this.save_hospital_info = 'error';
+                            this.errors = error.response.data.errors
+                        }
+                    }) ;
+                }
+            },
+              isNumberOnly: function(event) {
+              var input_data = $('#phone').val();
+              var code = 0;
+              code = input_data.charCodeAt();
+          
+              if((48 <= code && code <= 57) && (this.customer_info.phone.length >= 10 && this.customer_info.phone.length <= 14)){
+                  this.ph_num = false;
+                  this.ph_length = false;
+              }else{
+                  this.ph_num = true;
+                  this.ph_length = true;
+              }
             },
             focusPhone(){
               var input_data = $('#phone').val(); 
