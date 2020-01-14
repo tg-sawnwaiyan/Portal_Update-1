@@ -487,7 +487,7 @@
             <div class="row ele m-lr-0" id="element4">
 
                 <!-- <div class="row"> -->
-                    <h5 class="profile_header col-md-12"> 施設概要</h5>
+                    <h5 class="profile_header col-md-12"> 施設の概要</h5>
                     <div v-for="nus in nusfacilities" :key="nus.id" class="col-md-12" >
 
                         <table border="1" class="table table-bordered cost_table facility_tbl">
