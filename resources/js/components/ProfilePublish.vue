@@ -304,6 +304,7 @@
                         </table>
 
                     </div>
+                    
                     <div v-if="method_payment.length > 0" class="col-md-12">
                         <div class="cost_tb">
                             <div class="row" >
@@ -443,6 +444,15 @@
                             </div>
                         </div>
                     </div>
+
+                    <!--Table responsive-->
+                    <div class="card col-md-12">
+                        <div class="card-body">
+                            <label>test</label>
+                        </div>
+                    </div>
+                    <!--End table responsive-->
+
             </div>
 
             <div class="row ele m-lr-0" id="element4">
