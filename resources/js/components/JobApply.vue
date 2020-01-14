@@ -95,11 +95,11 @@
             </div>
             <div class="col-md-9 col-sm-12 form-right pl-4">
               <label class="control control--radio">
-                    <input type="radio" v-model="jobApply.gender" value="Male" /> 男性
+                    <input type="radio" v-model="jobApply.gender" value="男性" /> 男性
                     <div class="control__indicator"></div>
                 </label>
                 <label class="control control--radio">
-                    <input type="radio" v-model="jobApply.gender" value="Female" /> 女性
+                    <input type="radio" v-model="jobApply.gender" value="女性" /> 女性
                     <div class="control__indicator"></div>
                 </label>
             </div>
@@ -274,8 +274,8 @@
               </label>
             </div>
             <div class="col-md-9 col-sm-12 form-right">
-              <span v-if="jobApply.gender == 'Female'" class="pl-4">女性</span>
-              <span v-if="jobApply.gender == 'Male'" class="pl-4">男性</span>
+              <span v-if="jobApply.gender == '女性'" class="pl-4">女性</span>
+              <span v-if="jobApply.gender == '男性'" class="pl-4">男性</span>
             </div>
           </div>
           <div class="form-group m-0 row bd">
