@@ -191,7 +191,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="location">
-                                        市区町村、番地（建物名):
+                                        番地（建物名):
                                         <span class="error sp2">必須</span>
                                     </label>
                                 
@@ -702,29 +702,10 @@ import Autocomplete from 'vuejs-auto-complete'
                             if (length > 0) {
                                 var pref = post_data[0]["city_id"];
                                 this.joboffer.zipcode_id = post_data[0]["id"];
-                                if (post_data[0]["street"] == "") {
-                              
-                                    this.joboffer.pref = post_data[0]["city_id"];
-                                     this.getTownship(1);
-
-                                    // this.joboffer.pref = post_data[0]["pref"];
-                                    this.joboffer.str_address = response.data.township_id[0]['id'];                               
-                                    // this.joboffer.str_address = post_data[0]["city"];
-
-                                    this.joboffer.location = post_data[0]["street"];
-                              
-                                  
-                                   
-                                    // this.joboffer.zipcode_id = post_data[0]["id"];
-                                } else {
-                                     this.joboffer.pref = post_data[0]["city_id"];
-                                     this.getTownship(1);
-
-                                    // this.joboffer.pref = post_data[0]["pref"];
-                                    this.joboffer.str_address = response.data.township_id[0]['id'];                               
-                                    // this.joboffer.str_address = post_data[0]["city"];
-                                    this.joboffer.location = post_data[0]["pref"] + post_data[0]["city"] + post_data[0]["street"];
-                                }
+                                this.joboffer.pref = post_data[0]["city_id"];
+                                this.getTownship(1);
+                                this.joboffer.str_address = response.data.township_id[0]['id'];                               
+                                this.joboffer.location = post_data[0]["street"];
                             } else {
                                 this.joboffer.str_address = 0;
                                 this.joboffer.pref = 0;

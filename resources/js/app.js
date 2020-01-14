@@ -8,7 +8,6 @@ import VueRouter from 'vue-router'
 import Index from './Index'
 import auth from './auth'
 import VueSidebarMenu from 'vue-sidebar-menu'
-
 import router from './router'
 import Vuex from 'vuex';
 import * as VueGoogleMaps from "vue2-google-maps";
@@ -23,37 +22,37 @@ import 'animate.css'
 
 let globalData = new Vue({
     data: {
-        nusFav:0,
-        hosFav:0,
-        nusHis:0,
-        hosHis:0,
-        visit:'true'
+        nusFav: 0,
+        hosFav: 0,
+        nusHis: 0,
+        hosHis: 0,
+        visit: 'true'
     }
-  });
-  Vue.mixin({
+});
+Vue.mixin({
     computed: {
-      nusFav: {
-        get: function () { return globalData.$data.nusFav },
-        set: function (newVal) { globalData.$data.nusFav = newVal; }
-      },
-      hosFav: {
-        get: function () { return globalData.$data.hosFav },
-        set: function (newVal) { globalData.$data.hosFav = newVal; }
-      },
-      nusHis: {
-        get: function () { return globalData.$data.nusHis },
-        set: function (newVal) { globalData.$data.nusHis = newVal; }
-      },
-      hosHis: {
-        get: function () { return globalData.$data.hosHis },
-        set: function (newVal) { globalData.$data.hosHis = newVal; }
-      },
-      visit: {
-        get: function () { return globalData.$data.visit },
-        set: function (newVal) { globalData.$data.visit = newVal; }
-      },
+        nusFav: {
+            get: function() { return globalData.$data.nusFav },
+            set: function(newVal) { globalData.$data.nusFav = newVal; }
+        },
+        hosFav: {
+            get: function() { return globalData.$data.hosFav },
+            set: function(newVal) { globalData.$data.hosFav = newVal; }
+        },
+        nusHis: {
+            get: function() { return globalData.$data.nusHis },
+            set: function(newVal) { globalData.$data.nusHis = newVal; }
+        },
+        hosHis: {
+            get: function() { return globalData.$data.hosHis },
+            set: function(newVal) { globalData.$data.hosHis = newVal; }
+        },
+        visit: {
+            get: function() { return globalData.$data.visit },
+            set: function(newVal) { globalData.$data.visit = newVal; }
+        },
     }
-  })
+})
 
 import VueCarousel from '@chenfengyuan/vue-carousel';
 Vue.component(VueCarousel.name, VueCarousel);
@@ -61,6 +60,7 @@ Vue.component(VueCarousel.name, VueCarousel);
 //vue slick
 import Slick from 'vue-slick';
 Vue.use(Slick);
+
 
 //vue-pannellum
 import VuePannellum from '../js/components/vue-pannellum.vue'
@@ -86,9 +86,9 @@ Vue.use(Lightbox)
 
 Vue.use(require('vue-moment'));
 
- //autocomplete
+//autocomplete
 
- //end autocomplete
+//end autocomplete
 //vuejs loading
 import VueLoading from 'vuejs-loading-plugin'
 import { Button } from 'iview'
@@ -144,5 +144,3 @@ const app = new Vue({
     },
 
 });
-
-
