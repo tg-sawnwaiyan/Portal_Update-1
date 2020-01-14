@@ -24,7 +24,7 @@
                     </div>
                     <div v-else class="container-fuid">
                         <h4 class="main-color m-b-10">ニュース検索</h4>
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <div class="col-6 float-left">
@@ -40,6 +40,22 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div> -->
+                        <div class="row">
+                            <div class="col-12 col-sm-6 mb-3">           
+                                <input type="text" class="form-control w-75 w-sm-100" placeholder="ニュース検索" id="search-item" @keyup="searchbyCategory()" />
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <div class=" d-flex  justify-content-md-end align-items-center">
+                                <label for="selectBox" class="w-sm-25">カテゴリー
+                                    
+                                </label>
+                                <select  id="selectBox" class="form-control w-65 w-sm-75 ml-2" @change="searchbyCategory()">
+                                        <option selected="selected" value>全体</option>
+                                        <option v-for="category in categories" :key="category.id" v-bind:value="category.id">{{category.name}}</option>
+                                    </select>
+                                </div>  
                             </div>
                         </div>
                         <hr />

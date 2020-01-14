@@ -21,8 +21,22 @@
                 </button> -->
                 
                 <ul class="gNav">
-                    <li>
-                        <router-link :to="{ name: 'News' }"> サイトに訪れる</router-link>
+                    <li v-if="visit != 'true'">
+                        <router-link :to="{ name: 'News' }"> サイトを表示</router-link>
+                    </li>
+
+                    <li v-if="visit == 'true'">
+                        <router-link :to="{ name: 'News' }"> ニュース（ホーム）</router-link>
+                    </li>
+
+                    <li v-if="visit == 'true'">
+                        <router-link :to="{ name: 'nursingSearch' }">介護施設検索</router-link>
+                    </li>
+                    <li v-if="visit == 'true'">
+                        <router-link :to="{ name: 'hospital_search' }"> 病院検索</router-link>
+                    </li>
+                    <li v-if="visit == 'true'">
+                        <router-link :to="{ name: 'jobSearch' }">求人検索</router-link>
                     </li>
                 </ul>
 
@@ -325,7 +339,7 @@
          subMenu: function (n) { 
             if(this.isSubmenu[n].show){
                 this.isSubmenu[n].show = false;  
-                 this.isRotate = null;
+                this.isRotate = null;
             }
             else{
                 for(var i = 0; i < 3; i++) { 
