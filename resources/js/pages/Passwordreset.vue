@@ -66,12 +66,12 @@
             console.log(response)
            this.$loading(false);
             this.$swal({       
-                      text: "メールを確認して新しいパスワードを変更してください。",
+                      text: "ご登録のメールアドレスにパスワード変更用のURLを送付しました。",
                       type: "success",
                       width: 390,
                       height: 200,                        
                       confirmButtonColor: "#6cb2eb",                         
-                      confirmButtonText: "はい",
+                      confirmButtonText: "閉じる",
                       confirmButtonClass: "all-btn",
                   
                   }).then(response => { 
@@ -83,7 +83,7 @@
             if(error.response.status == 404){
                 
                 this.$swal({
-                            title: "このメールは存在しません。",
+                            title: "このメールアドレスは存在しません。",
                             text: "ご確認の上、もう一度お試しください。",
                             type: "warning",
                             width: 390,
