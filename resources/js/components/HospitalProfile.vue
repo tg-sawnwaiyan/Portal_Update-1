@@ -99,7 +99,6 @@
                     <input type="hidden" class="already-photo" v-model="img.photo" />
                   
                     <img v-bind:src="'/upload/hospital_profile/'+ img.photo" class="img-fluid hospital-image" alt="profile"  v-if="img.id != null"   @error="imgUrlAlt"/>
-                    <!-- <img v-bind:src="img_path" class="img-fluid hospital-image" alt="profile"  v-else v-bind:id="'already-photo'+indx"  @error="imgUrlAlt"/> -->
                     <div v-bind:id="'already-photo'+indx" v-else> </div>
                  
                   </div>
@@ -1254,7 +1253,7 @@
                     <span class="btn all-btn main-bg-color" style="min-width: 0px;" @click="maptogglediv()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
                     <div class="col-md-10 float-right m-t-10 map-toggle-div toggle-div pad-free">
                         <div class="col-md-12">
-                            <GoogleMap :address="customer_info.address" :township="customer_info.townships_id" :lat_num='hospital_info.latitude' :lng_num='hospital_info.longitude' v-if="hospital_info.latitude != 0"></GoogleMap>
+                            <GoogleMap :address="customer_info.address" :township="customer_info.townships_id" :lat_num='hospital_info.latitude' :lng_num='hospital_info.longitude' :city="city_id" :township_list="township_list"></GoogleMap>
                             <!-- <GoogleMap :address="customer_info.address" :lat_num='35.6803997' :lng_num='139.76901739' v-if="hospital_info.latitude == 0"></GoogleMap> -->
 
                             <div class="form-group">
@@ -1356,12 +1355,11 @@ export default {
                 theme:'snow',
                 access_val: '',
                 detail_info: '', stations:[], station_list:[],  
-                file:'',
-                                      
             },
             ph_length: false,
             ph_num: false,
-            img_path: null,
+            city_id: 0,
+            township_list: []
             }
         },
         created(){
@@ -1389,18 +1387,23 @@ export default {
                 this.axios
                 .get('/api/clinical-subject/'+this.cusid)
                 .then(response=>{
-                        this.clinical_subj = response.data;
+                    this.clinical_subj = response.data;
                 });
                  this.axios
                 .get('/api/schedule/'+this.cusid)
                 .then(response=>{
-                        this.schedule_arr = response.data;
+                    this.schedule_arr = response.data;
                 });
                 this.axios
                 .get('/api/customerinfo/'+this.cusid)
                 .then(response=>{
-                        this.customer_info = response.data;
-                        console.log(response.data)
+                    this.customer_info = response.data;
+                    this.axios
+                    .get('/api/nurscities/'+this.customer_info.townships_id)
+                    .then(response=>{
+                        this.city_id = Number(response.data[0].city_id); 
+                        this.township_list = response.data[0].township_list;
+                    });
                 });
                 this.axios
                 .get('/api/hospitalinfo/'+this.cusid)
@@ -1457,7 +1460,6 @@ export default {
                      $('#already-photo'+indx).html("<img src='"+URL.createObjectURL(event.target.files[0])+"' class='img-fluid hospital-image'>");
                   
                     //  document.getElementById('already-photo'+indx).src= URL.createObjectURL(event.target.files[0]);
-                    // this.img_path = URL.createObjectURL(event.target.files[0]);
                     this.img_arr[indx]['photo'] = event.target.files[0].name;            
                     // this.file = event.target.files[0];   
                      
@@ -1699,6 +1701,7 @@ export default {
           
                     
                 if(this.save_hospital_info.length > 0) {
+                    console.log(this.save_hospital_info)
                     this.axios
                     .post(`/api/hospital/profile/${this.cusid}`,this.save_hospital_info)
                     .then((response) => {
