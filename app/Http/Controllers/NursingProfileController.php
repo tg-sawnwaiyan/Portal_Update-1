@@ -209,7 +209,7 @@ class NursingProfileController extends Controller
                 $gallery->save();
             }
         }
-
+        print_r($request[0]["image"]);
         $del_gallery = Gallery::where(['customer_id'=> $id,'type'=>'photo'])->delete(); 
         if(count($request[0]["image"]) > 0){
             for($i=0; $i<count($request[0]["image"]); $i++) {

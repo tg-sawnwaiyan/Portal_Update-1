@@ -13,7 +13,7 @@
                         <!-- <div > -->
                             <div class="col-sm-3 col-md-3 mt-2 gallery-area-panorama" v-bind:id="'x-panorama'+indx" v-for="(img,indx) in panorama_arr" :key="img.id">
                                 <input type="hidden" class="already-panorama" v-model="img.photo">
-                                <span class='img-close-btn' v-on:click="closeBtnMethod(indx)">X</span>
+                                <span class='img-close-btn' v-on:click="closeBtnMethod(indx,img.id,img.photo)">X</span>
                                 <img :src="'/upload/nursing_profile/Imagepanorama/'+ img.photo" class="img-fluid panorama-old-img" alt="profile" v-if="img.id!=null"  id="already-panorama">
                                 <img :src="img.path" class="img-fluid panorama-new-img" alt="profile" v-if="img.id==null" id="already-panorama">
                             </div>
@@ -77,7 +77,7 @@
                                                         <textarea name="description" placeholder="コンテンツ" class="form-control m-b-15 description white-bg-color" v-model="img.description"></textarea>
                                                     </div>
                                                     <div class="col-md-12 text-right">
-                                                            <a class="mr-auto text-danger btn delete-borderbtn" @click="DeleteArr(indx,'photo')"> <i class="fa fa-trash"></i> 削除</a>
+                                                            <a class="mr-auto text-danger btn delete-borderbtn" @click="DeleteArr(indx,'photo',img.id,img.photo)"> <i class="fa fa-trash"></i> 削除</a>
                                                     </div>
                                             </div>
                                     </div>
@@ -897,10 +897,25 @@ export default {
                 }              
             },
 
-            closeBtnMethod: function(indx) {
+            closeBtnMethod: function(indx,id,photo) {
                 if(confirm("Are you sure you want to delete?"))
                 {
-                    this.panorama_arr.splice(indx, 1);
+                    if(id) {
+                        this.panorama_arr.splice(indx, 1);
+                        let fd = new FormData();
+                            fd.append('id',id);
+                            fd.append('type','panorama');
+                            fd.append('photo',photo);
+                            fd.append('customer_id',this.cusid)
+
+                            this.axios
+                            .post('/api/delete-pgallery',fd)
+                            .then(response=>{
+                                // this.panorama_arr = response.data;
+                            });
+                    } else {
+                        this.panorama_arr.splice(indx, 1);
+                    }
                 }
             },
 
@@ -935,13 +950,35 @@ export default {
                 
 
             },
-            DeleteArr(indx,type) {
-                if(type == 'photo') {
-                    this.img_arr.splice(indx,1);
-                }
-                if(type == 'video') {
-                    this.video_arr.splice(indx,1);
-                }
+            DeleteArr(indx,type,id,photo) {
+                
+                if(confirm("Are you sure you want to delete?"))
+                {
+                    if(type == 'photo') {
+                        if(id){
+                            this.img_arr.splice(indx,1);
+                             
+                            let fd = new FormData();
+                            fd.append('id',id);
+                            fd.append('type',type);
+                            fd.append('photo',photo);
+                            fd.append('customer_id',this.cusid)
+
+                            this.axios
+                            .post('/api/delete-pgallery',fd)
+                            .then(response=>{
+                               
+                            });
+                        } else {
+                            this.img_arr.splice(indx,1);
+                        }
+                    }
+
+                    if(type == 'video') {
+                        this.video_arr.splice(indx,1);
+                    }
+                    
+                    }
             },
 
             galleryAdd() {
