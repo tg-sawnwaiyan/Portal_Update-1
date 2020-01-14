@@ -67,7 +67,7 @@ export default {
                         this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            title: 'カテゴリーを更新しました。',
+                            text: 'カテゴリーを更新しました。',
                             confirmButtonText: "閉じる",
                             confirmButtonColor: "#6cb2eb",
                             width: 300,
@@ -90,7 +90,7 @@ export default {
       if (this.category.name) {
                             this.$swal({
                             title: "確認",
-                            text: "更新してよろしいでしょうか。",
+                            text: "カテゴリーを更新してよろしいでしょうか。",
                             type: "success",
                             width: 350,
                             height: 200,

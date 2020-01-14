@@ -196,6 +196,7 @@
                                                 <span class="btn btn-success" v-if="customer_info.recordstatus ==0" @click="AccountStatusChange(customer_info.recordstatus)">
                                                     {{accout_status}}
                                                 </span>
+                                                <a @click="$router.go(-1)" class="btn btn-danger all-btn submit">戻る</a>
                                             </div>
                                         </div>
                                     </div>

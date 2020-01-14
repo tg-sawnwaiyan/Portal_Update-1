@@ -11,7 +11,7 @@
                             <form @submit.prevent="add">
                                 <div class="form-group">
 
-                                    <label>広告題名 : <span class="error">*</span></label>
+                                    <label>広告タイトル : <span class="error">*</span></label>
                                     <input type="title" class="form-control box" id="title" name="title" v-model="ads.title" placeholder="広告タイトルを入力してください。">
                                     <span v-if="errors.title" class="error">{{errors.title}}</span>
 
