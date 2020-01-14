@@ -126,9 +126,9 @@
                                     </div>  
                                 </div>
                                 <div class="form-group row pl-3">
-                                    <div class="col-md-12 "><label>市区町村、番地（建物名)<span class="error sp1">必須</span></label></div>
+                                    <div class="col-md-12 "><label>番地（建物名)<span class="error sp1">必須</span></label></div>
                                     <div class="col-md-12 p-0">
-                                         <input type="text" id="city" name="city" class="city form-control float-left" placeholder="市区町村、番地を入力してください。" v-model="comments.city" @change="aggreBtn" @keyup="focusCity">
+                                         <input type="text" id="city" name="city" class="city form-control float-left" placeholder="番地を入力してください。" v-model="comments.city" @change="aggreBtn" @keyup="focusCity">
                                         <span class="float-left eg-txt">例）東京都千代田区丸の内1-9-1 グラントウキョウノースタワー40階</span>
                                     </div>
                                 </div>
@@ -476,14 +476,7 @@ import DatePicker from 'vue2-datepicker';
                                 this.comments.selectedValue = pref;
                                 this.getTownship(1);
                                 this.comments.township = response.data.township_id[0]['id'];  
-                               if (post_data[0]["street"] == "") 
-                                {
-                                    this.comments.city = post_data[0]["street"];
-                                } 
-                                else{
-                                      this.comments.city = post_data[0]["pref"] +  post_data[0]["city"] +   post_data[0]["street"];;
-                                }
-                               
+                                this.comments.city = post_data[0]["street"];                               
                                 this.comments.division = pref;
                               
                                  $('#jsErrorMessage').html('<div class="error"></div>');
