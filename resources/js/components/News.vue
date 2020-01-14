@@ -34,25 +34,7 @@
                                             <i class="fas fa-search"></i> 検索
                                         </button>
                                     </div>
-                                    <!--end search input-->
-
-                                    <!-- <div class="row ">
-
-                                        <div class="col-md-9">
-
-                                            <span class="btn btn my-2 col-md-12 my-sm-0 danger-bg-color btn-danger cross-btn" v-if="status == 1" @click="clearSearch()">X</span>
-
-                                            <input type="text" placeholder="ニュース検索" aria-label="ニュース検索" class="form-control col-lg mr-sm-3 d-flex p-2 form-control" id="search-word" v-bind:value="search_word">
-
-                                        </div>
-
-                                        <div class="col-md-3 p-r-20">
-
-                                            <span class="btn btn my-2 col-md-12 my-sm-0 all-btn secondary-bg-color btn-secondary" @click="searchCategory()"><i class="fas fa-search"></i> 検索</span>
-
-                                        </div>
-
-                                    </div> -->
+                                    <!--end search input-->                                   
 
                                 </div>
 
@@ -62,9 +44,9 @@
 
                         <!-- </form> -->
 
-                        <div class="row" v-if="status == '0'">
-
-                            <div class="card col-md-6 d-none d-sm-block p-l-0" style="border:0px!important;">
+                        <div class="row" v-if="status == '0'" id="view-1024">
+                            <!-- category box -->
+                            <div class="card col-md-12 col-lg-6 d-none d-sm-block p-l-0 first-child" style="border:0px!important;">
 
                                 <div class="card-header tab-card-header clearfix cat-nav">
                                     <span id="left-button" class="left-arr-btn arr-btn" @click="swipeLeft" v-if="is_cat_slided" ><i class="fas fa-angle-left"></i></span>
@@ -163,11 +145,13 @@
                                 </div>
 
                             </div>
+                            <!-- end category box -->
 
-                            <div class="col-sm-6 pad-free">
+                            <!-- category right side -->
+                            <div class="col-md-12 col-lg-6 pad-free last-child">
                                 <div class="col-sm-12 m-lr-0 pad-free" v-if="status =='0'">
-                                    <!-- two show -->
-                                    <div v-if="(w_width > 1279) || (w_width < 768 && w_width > 479)" class="row col-sm-12 p-l-0 m-0">
+                                    <!-- two show () -->
+                                    <div v-if="(w_width >= 1280) || (w_width <= 768 && w_width >= 480)" class="row col-sm-12 p-l-0 m-0">
                                         <div class="col-sm-6 m-b-8 p-l-0" v-for="latest_post_all_cat in latest_post_all_cats.slice(0, 2)" :key="latest_post_all_cat.id">
 
                                             <div class="col-md-12 row m-0 pad-free">
@@ -228,7 +212,7 @@
                                     </div>
 
                                     <!-- one show -->
-                                    <div v-if="(w_width < 1280 && w_width > 767) || (w_width < 480)" class="row col-sm-12 p-l-0 m-0">
+                                    <div v-if="(w_width < 1280 && w_width > 768) || (w_width < 480)" class="row col-sm-12 p-l-0 m-0">
                                         <div class="col-sm-12 m-b-8 p-l-0" v-for="latest_post_all_cat in latest_post_all_cats.slice(0, 1)" :key="latest_post_all_cat.id">
                                             <div class="col-md-12 row m-0 pad-free">
 
@@ -287,7 +271,7 @@
                                     </div>
 
                                     <!-- two show -->
-                                    <div class="row col-sm-12 p-l-0 m-0" v-if="(w_width > 1279) || (w_width < 768 && w_width > 479)">
+                                    <div class="row col-sm-12 p-l-0 m-0" v-if="(w_width >= 1280) || (w_width <= 768 && w_width >= 480)">
                                         <div class="col-sm-6 m-b-8 p-l-0" v-for="item in latest_post_all_cats.slice(2, 6)"  :key="item.id">
 
                                             <div class="col-md-12 row adslist-card news-3-card m-0">
@@ -346,7 +330,7 @@
                                     </div>
 
                                     <!-- one show -->
-                                    <div class="row col-sm-12 p-l-0 m-0" v-if="(w_width < 1280 && w_width > 767) || (w_width < 480)">
+                                    <div class="row col-sm-12 p-l-0 m-0" v-if="(w_width < 1280 && w_width > 768) || (w_width < 480)">
                                         <div class="col-sm-12 m-b-8 p-l-0" v-for="item in latest_post_all_cats.slice(1, 3)"  :key="item.id">
 
                                             <div class="col-md-12 row adslist-card news-3-card m-0">
@@ -405,13 +389,15 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- end category right side -->
                         </div>
                     </div>
 
+                    <!-- category bottom -->
                     <div class="col-md-12 m-lr-0 p-0" v-if="status == '0'">
                         <!-- two show -->
-                        <div class="row col-md-12 pad-free m-0" v-if="(w_width > 1279) || (w_width < 768 && w_width > 479)">
-                            <div class="col-md-3 m-b-8 p-l-0" v-for="item in latest_post_all_cats.slice(6, 14)"  :key="item.id">
+                        <div class="row col-md-12 pad-free m-0" v-if="(w_width >= 1280) || (w_width <= 768 && w_width >= 480)">
+                            <div class="col-md-6 col-lg-3 m-b-8 p-l-0" v-for="item in latest_post_all_cats.slice(6, 14)"  :key="item.id">
 
                                 <div class="col-md-12 row adslist-card news-3-card m-0">
 
@@ -467,8 +453,8 @@
                         </div>
                         
                         <!-- one show -->
-                        <div class="row col-md-12 pad-free m-0" v-if="(w_width < 1280 && w_width > 767) || (w_width < 480)">
-                            <div class="col-md-3 m-b-8 p-l-0" v-for="item in latest_post_all_cats.slice(3, 11)"  :key="item.id">
+                        <div class="row col-md-12 pad-free m-0" v-if="(w_width < 1280 && w_width > 768) || (w_width < 480)">
+                            <div class="col-md-4 m-b-8 p-l-0" v-for="item in latest_post_all_cats.slice(3, 11)"  :key="item.id">
 
                                 <div class="col-md-12 row adslist-card news-3-card m-0">
 
@@ -523,7 +509,7 @@
                             </div>
                         </div>
                     </div>
-
+                    <!-- end category bottom -->
                 </div>
 
             </div>
@@ -546,13 +532,13 @@
                 </div>
             </span>
             <span v-else>
-             <div class="col-md-12 category_box" :class="'bordertop-color'+(5-(Math.floor(index%5)))" v-for="(group,name,index) in post_groups" :key="index">
+             <div class="col-md-12 category_box" id="view-1024-pattern" :class="'bordertop-color'+(5-(Math.floor(index%5)))" v-for="(group,name,index) in post_groups" :key="index">
 
                 <h4 class="category_news_title" :class="'h-color'+(5-(Math.floor(index%5)))"><span>{{name}}</span> <label style="float: right; color: #999; font-size: 14px;">新着ニュース一覧</label></h4>
 
                 <div class="row m-lr-0" v-if="group[0].pattern == 1">
 
-                    <div class="col-md-3 p-lr-0">
+                    <div class="col-md-6 col-lg-3 p-lr-0 pattern-child">
 
                         <router-link :to="'/newsdetails/'+group[0].pid">
 
@@ -590,7 +576,7 @@
 
                     </div>
 
-                    <div class="col-md-3 p-r-0">
+                    <div class="col-md-6 col-lg-3 p-r-0 pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(1, 4)" :key="index" :to="'/newsdetails/'+item.pid">
 
@@ -640,7 +626,7 @@
 
                     </div>
 
-                    <div class="col-md-3 p-r-0">
+                    <div class="col-md-6 col-lg-3 p-r-0 pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(4,12)" :key="index" :to="'/newsdetails/'+item.pid" style="color:#333;">
 
@@ -654,7 +640,7 @@
 
                     </div>
 
-                    <div class="col-md-3 p-r-0">
+                    <div class="col-md-6 col-lg-3 p-r-0 pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(12, 15)" :key="index" :to="'/newsdetails/'+item.pid">
 
@@ -706,7 +692,7 @@
 
                 <div class="row m-lr-0" v-if="group[0].pattern == 2">
 
-                    <div class="col-md-3 p-lr-0">
+                    <div class="col-md-6 col-lg-3 p-lr-0 pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(0, 3)" :key="index" :to="'/newsdetails/'+item.pid">
 
@@ -754,7 +740,7 @@
 
                     </div>
 
-                    <div class="col-md-3 p-r-0">
+                    <div class="col-md-6 col-lg-3 p-r-0 pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(3, 11)" :key="index" :to="'/newsdetails/'+item.pid" style="color:#333;">
 
@@ -768,7 +754,7 @@
 
                     </div>
 
-                    <div class="col-md-3 p-r-0">
+                    <div class="col-md-6 col-lg-3 p-r-0 pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(11, 14)" :key="index" :to="'/newsdetails/'+item.pid">
 
@@ -816,7 +802,7 @@
 
                     </div>
 
-                    <div class="col-md-3 p-r-0">
+                    <div class="col-md-6 col-lg-3 p-r-0 pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(14, 22)" :key="index" :to="'/newsdetails/'+item.pid" style="color:#333;">
 
@@ -834,7 +820,7 @@
 
                 <div class="row m-lr-0" v-if="group[0].pattern == 3">
 
-                    <div class="col-md-3 p-lr-0">
+                    <div class="col-md-6 col-lg-3 p-lr-0 pattern-child">
 
                         <router-link :to="'/newsdetails/'+group[0].pid">
 
@@ -872,7 +858,7 @@
 
                     </div>
 
-                    <div class="col-md-3 p-r-0">
+                    <div class="col-md-6 col-lg-3 p-r-0 pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(1, 4)" :key="index" :to="'/newsdetails/'+item.pid">
 
@@ -920,7 +906,7 @@
 
                     </div>
 
-                    <div class="col-md-3 p-r-0">
+                    <div class="col-md-6 col-lg-3 p-r-0 pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(4, 7)" :key="index" :to="'/newsdetails/'+item.pid">
 
@@ -968,7 +954,7 @@
 
                     </div>
 
-                    <div class="col-md-3 p-r-0">
+                    <div class="col-md-6 col-lg-3 p-r-0 pattern-child">
 
                         <router-link :to="'/newsdetails/'+group[7].pid" v-if="group[7]">
 
@@ -1008,62 +994,9 @@
 
                 </div>
 
-
-
-                <!-- Old design -->
-
-                    <!-- <div class="col-md-3 p-l-0" v-for="(item,i) in group" :key="i">
-
-                            <div class="col-md-12 row m-b-10 adslist-card m-lr-0" style="background-color: #eee;box-shadow: 0 0 2px #bfb9b9;">
-
-                                <div class="col-md-4 img-box">
-
-                                    <router-link :to="'/newsdetails/'+item.pid">
-
-                                        <img v-bind:src="'/upload/news/' + item.photo" class="fit-image" style="height:5rem;width:6rem" @error="imgUrlAlt">
-
-                                    </router-link>
-
-                                </div>
-
-
-
-                                <div class="col-md-8 txt-box">
-
-                                    <router-link :to="'/newsdetails/'+item.pid">
-
-                                        <p> {{item.main_point}} </p>
-
-                                    </router-link>
-
-                                </div>
-
-                            </div>
-
-                    </div>-->
-
-                <!-- Old design end -->
-
             </div>
             </span>
-
         </div>
-
-
-        <!-- </div>
-
-        </div>
-
-    </div>
-
-    </div> -->
-
-    <!-- <div v-else>
-
-    <NewsSearchListComponent></NewsSearchListComponent>
-
-    </div> -->
-
     </layout>
 
 </template>

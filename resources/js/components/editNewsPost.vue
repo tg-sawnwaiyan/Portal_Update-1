@@ -321,7 +321,7 @@
                                  this.$swal({
                                     position: 'top-end',
                                     type: 'success',
-                                    title: 'ニュースを更新しました。',
+                                    text: 'ニュースを更新しました。',
                                     confirmButtonText: "閉じる",
                                     confirmButtonColor: "#6cb2eb",
                                     width: 250,
@@ -386,7 +386,7 @@
                         {
                             this.$swal({
                             title: "削除",
-                            text: "削除してよろしいでしょうか。",
+                            text: "画像を削除してよろしいでしょうか。",
                             type: "warning",
                             width: 350,
                             height: 200,

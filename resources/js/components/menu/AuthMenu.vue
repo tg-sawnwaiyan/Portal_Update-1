@@ -19,18 +19,10 @@
                 <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button> -->
+                
                 <ul class="gNav">
                     <li>
-                    <router-link :to="{ name: 'News' }"> ニュース（ホーム）</router-link>
-                    </li>
-                    <li>
-                    <router-link :to="{ name: 'nursingSearch' }">介護施設検索</router-link>
-                    </li>
-                    <li>
-                    <router-link :to="{ name: 'hospital_search' }"> 病院検索</router-link>
-                    </li>
-                    <li>
-                    <router-link :to="{ name: 'jobSearch' }">求人検索</router-link>
+                        <router-link :to="{ name: 'News' }"> サイトに訪れる</router-link>
                     </li>
                 </ul>
 
