@@ -7707,7 +7707,10 @@ ul.nur-caro-card>li.list-group-item {
 #sp_panonav > .slick-list{
     height: 100% !important;
 }
-
+.backwrapper{
+    padding: 10px;
+    background: #f7f0ed;
+}
 .slick-list:focus {
     outline: none;
 }
@@ -10275,11 +10278,7 @@ ul.nur-caro-card>li.list-group-item {
     }
     .first-submenu span {
         display: none;
-    }
-    .backwrapper{
-        padding: 10px;
-        background: #f7f0ed;
-    }
+    }    
     .d-none-380 {
         display: none !important;
     }
