@@ -29,6 +29,7 @@ class customerCreateMail extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.customerCreateMail');
+        return $this->view('mail.customerCreateMail')
+                    ->subject("医療介護ポータルより資料請求がございました");
     }
 }

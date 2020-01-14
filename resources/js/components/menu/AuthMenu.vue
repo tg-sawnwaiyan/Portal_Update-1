@@ -22,7 +22,7 @@
                 
                 <ul class="gNav">
                     <li>
-                        <router-link :to="{ name: 'News' }"> サイトに訪れる</router-link>
+                        <router-link :to="{ name: 'News' }"> サイトを表示</router-link>
                     </li>
                 </ul>
 
