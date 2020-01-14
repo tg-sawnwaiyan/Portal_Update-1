@@ -61,7 +61,7 @@ export default {
           this.$swal({
                       position: 'top-end',
                       type: 'success',
-                      title: '施設を更新しました。',
+                      text: '施設を更新しました。',
                       // showConfirmButton: false,
                       // timer: 1500,
                       confirmButtonText: "閉じる",

@@ -189,7 +189,7 @@ export default {
                         this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            title: '求人職種を更新しました。',
+                            text: '求人職種を更新しました。',
                             confirmButtonText: "閉じる",
                             confirmButtonColor: "#6cb2eb",
                             width: 250,

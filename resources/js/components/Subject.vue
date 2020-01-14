@@ -194,7 +194,7 @@ export default {
                         this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            title: '診療科目を更新しました。',
+                            text: '診療科目を更新しました。',
                             // showConfirmButton: false,
                             // timer: 1800,
                             confirmButtonText: "閉じる",

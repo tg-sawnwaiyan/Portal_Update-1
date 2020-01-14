@@ -108,7 +108,7 @@ export default {
         cusid: null,
         btntype: "",
         width: "",
-        // login_status : '0',
+        login_person : null,
         loginuser: true,
         l_storage_hos_history: [],
         l_storage_nus_history: [],
@@ -119,30 +119,69 @@ export default {
     };
   },
   created() {
-    this.axios.get('/api/user').then(response => {
+    
+    if(this.$auth.check()){
+        if(this.$auth.user().role === 1){
+            this.login_person = 'customer';
+            this.axios.get('/api/user').then(response => {                
+                this.loginView(response);       
+            })
+        }
+        else if(this.$auth.user().role === 2) {
+            if(this.$route.params.type){
+                localStorage.setItem("cusType", this.$route.params.type);
+                this.type = this.$route.params.type;
+            }
+            else{                
+                this.type = localStorage.getItem("cusType");
+            }
+            if(this.$route.params.cusid){
+                localStorage.setItem("cusId", this.$route.params.cusid);
+                this.cusid = Number(this.$route.params.cusid);
+            }
+            else{
+                this.cusid = Number(localStorage.getItem("cusId"));
+            }          
+            
+            this.login_person = 'admin';            
+            this.axios.get(`/api/admin/${this.cusid}/${this.type}`).then(response => {
+                this.loginView(response);       
+            })
+        }
+    }
+    else{
+        this.publicView();
+    }    
+
+    this.scrollTop();
+
+    var new_width = $("#content-all").width();
+    var fixed_width = new_width - 49.5;
+    this.width = fixed_width + "px";
+
+  },
+  methods: {
+    loginView(response){
         if(this.visit == 'false'){
             this.btntype = "create";
-            this.pro_id = response.data.lat_lng[0].id;
             this.loginuser = true;
-            console.log(response.data)
-            localStorage.setItem("cusId", response.data.user.customer_id);
+            this.pro_id = response.data.lat_lng[0].id;            
             localStorage.setItem("lat_num", response.data.lat_lng[0].latitude==0?'35.6803997':response.data.lat_lng[0].latitude);
             localStorage.setItem("lng_num", response.data.lat_lng[0].longitude==0?'139.76901739':response.data.lat_lng[0].longitude);
 
-            // localStorage.setItem("hospital_fav", this.l_storage_hos_fav);
-            // localStorage.setItem("nursing_fav", this.l_storage_nus_fav);
-            // localStorage.setItem("nursing_history", this.l_storage_nus_history);
-            // localStorage.setItem("hospital_history", this.l_storage_hos_history);
+            if(this.login_person == 'customer') {
+                localStorage.setItem("cusId", response.data.user.customer_id);
+                this.cusid = response.data.user.customer_id;               
 
-            if(response.data.user.type_id == 2){
-                localStorage.setItem("cusType", 'hospital');
-                this.type = 'hospital';
+                if(response.data.user.type_id == 2){
+                    localStorage.setItem("cusType", 'hospital');
+                    this.type = 'hospital';
+                }
+                else{
+                    localStorage.setItem("cusType", 'nursing');
+                    this.type = 'nursing';
+                }
             }
-            else{
-                localStorage.setItem("cusType", 'nursing');
-                this.type = 'nursing';
-            }
-            this.cusid = response.data.user.customer_id;
         }
         else{
             this.btntype = "view";
@@ -159,11 +198,9 @@ export default {
             this.cusid = Number(localStorage.getItem("cusId"));
             
             this.axios.get(`/api/profile_view/${this.cusid}/${this.type}`).then(response => {
-                console.log(response)
                 this.pro_id = response.data[0].pro_id;
                 localStorage.setItem("lat_num", response.data[0].latitude);
                 localStorage.setItem("lng_num", response.data[0].longitude);
-                
 
                 if(this.type == 'hospital'){
                     if(localStorage.getItem("hospital_history")) {
@@ -209,9 +246,9 @@ export default {
                     }
                 }
             });
-        }
-        
-    }).catch((error) => {
+        } 
+    },
+    publicView(){
         this.btntype = "view";
         this.loginuser = false;
         if (this.$route.params.type) {
@@ -276,16 +313,7 @@ export default {
                 }
             }
         });
-    })
-
-    this.scrollTop();
-
-    var new_width = $("#content-all").width();
-    var fixed_width = new_width - 49.5;
-    this.width = fixed_width + "px";
-
-  },
-  methods: {
+    },
     changeBtnType(a,b) {
       this.scrollTop();
         document.getElementById(a).classList.add("active");

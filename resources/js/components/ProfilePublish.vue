@@ -71,14 +71,20 @@
                 <div class="see-pano">
                     <span @click='isPano = !isPano'>
                         <li class="first-submenu">
-                            <span>360</span>&nbsp;<i :class="!isPano ? open : close" style="width:15px;" ></i>     
+                            <span>360</span>   
                         </li>
                     </span>
                     <transition name="slide">
-                        <div class="sp_panonav" v-if="isPano">
-                            <a href="">back</a>
+                        <div class="sp_panonav" v-if="isPano">   
                             <div>
-                                <h1>360 wrapper</h1>
+                                <span @click='isPano = !isPano'>
+                                    <li class="first-submenu">
+                                        <i class="fa fa-arrow-left" aria-hidden="true"></i> back
+                                    </li>
+                                </span>
+                                <!--pano show res-->
+                                ee
+                                <!--end pano show res-->
                             </div>
                         </div>
                     </transition>
@@ -766,13 +772,9 @@
             </div>
 
             <div class="row ele m-lr-0" id="element5">
-
                 <h5 class="profile_header col-md-12"> 地図</h5>
-
                         <div class="col-lg-12 col-md-12 col-sm-12">
-
                             <GmapMap id="googlemap" ref="map" :center="center" :zoom="10" >
-
                             <GmapMarker v-for="(m, index) in markers" :key="index" :position="m.position" :clickable="true" :draggable="false" @click="center=m.position" />
 
                            </GmapMap>
@@ -795,9 +797,7 @@
                                     </tbody>
                                 </table>
                             </div>
-
                       </div>
-
                  </div>
 
 
