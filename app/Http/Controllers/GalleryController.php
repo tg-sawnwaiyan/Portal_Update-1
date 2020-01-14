@@ -39,13 +39,13 @@ class GalleryController extends Controller
         return $panorama_list;
     }
 
-    public function deltGallery($id)
+    public function deltGallery($id,$file)
     {
        $sql = "DELETE from galleries where id = " .$id;
-       $file = 
-       $filename = '.upload/hospital_profile/'.$file;
-       \File::delete($filename);
        $delgallery = DB::select($sql);
+       $filename = './upload/hospital_profile/'.$file;
+    
+       \File::delete($filename);
        return response()->json('success');
     }
 }

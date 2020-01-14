@@ -89,18 +89,19 @@
                 :key="img.id"
 
               >
-            
 
                 <div class="col-md-12">
 
-                  <input type="file" name class="hospital-photo m-b-15"  v-bind:class="img.id" id="upload_img" @change="preview_image($event,indx)" />
+                  <input type="file" name class="hospital-photo m-b-15"  v-bind:class="'classname'+indx" id="upload_img" @change="preview_image($event,indx)" />
 
                   <div class="col-md-12" v-bind:class="img.id">
 
                     <input type="hidden" class="already-photo" v-model="img.photo" />
-
-                    <img :src="'/upload/hospital_profile/'+ img.photo" class="img-fluid hospital-image cvcv" alt="profile"  v-if="img.photo != ''"  id="already-photo"  @error="imgUrlAlt"/>
-
+                  
+                    <img v-bind:src="'/upload/hospital_profile/'+ img.photo" class="img-fluid hospital-image" alt="profile"  v-if="img.id != null"   @error="imgUrlAlt"/>
+                    <!-- <img v-bind:src="img_path" class="img-fluid hospital-image" alt="profile"  v-else v-bind:id="'already-photo'+indx"  @error="imgUrlAlt"/> -->
+                    <div v-bind:id="'already-photo'+indx" v-else> </div>
+                 
                   </div>
 
                 </div>
@@ -1355,10 +1356,12 @@ export default {
                 theme:'snow',
                 access_val: '',
                 detail_info: '', stations:[], station_list:[],  
-                file:''                      
+                file:'',
+                                      
             },
             ph_length: false,
             ph_num: false,
+            img_path: null,
             }
         },
         created(){
@@ -1451,10 +1454,13 @@ export default {
                     this.isRotate3 = !this.isRotate3;
             },
             preview_image(event,indx) {
-                  // $("."+img_class).html("<img src='"+URL.createObjectURL(event.target.files[0])+"' class='img-fluid hospital-image'>");
-                    // document.getElementById('already-photo'+indx).src= URL.createObjectURL(event.target.files[0]);
+                     $('#already-photo'+indx).html("<img src='"+URL.createObjectURL(event.target.files[0])+"' class='img-fluid hospital-image'>");
+                  
+                    //  document.getElementById('already-photo'+indx).src= URL.createObjectURL(event.target.files[0]);
+                    // this.img_path = URL.createObjectURL(event.target.files[0]);
                     this.img_arr[indx]['photo'] = event.target.files[0].name;            
-                     this.file = event.target.files[0];     
+                    // this.file = event.target.files[0];   
+                     
             },
             facilityCheck(check_id) {
                     $('.facility-'+check_id).attr('checked','true');
@@ -1499,10 +1505,11 @@ export default {
                         }
                         else{
                             var id = this.img_arr[indx]['id'];
+                            var photo = this.img_arr[indx]['photo'];
                             this.img_arr.splice(indx, 1);  
                         }
 
-                        this.axios.get(`/api/gallery/`+ id)
+                        this.axios.get(`/api/gallery/`+ id+`/` + photo)
                         .then(response => {
 
                             this.$swal({  
@@ -1615,29 +1622,31 @@ export default {
                 localStorage.setItem('lat_num',this.hospital_info.latitude);
                 localStorage.setItem('lng_num',this.hospital_info.longitude);
                 let pt = new FormData();
-                  for(var i =this.img_arr.length-1;i>=0;i--)
-                  {
-                    this.img_arr[i]['type'] = 'photo';
-                    if(this.img_arr[i]['photo'] == null || this.img_arr[i]['photo'] == '')
-                    {
-                        this.img_arr.splice(i,1);
-                    }
-                
-                    if(this.file) {                             
-                            pt.append(i ,this.file )  
-                          
-                    }      
-                  }      
+                for(var i =this.img_arr.length-1;i>=0;i--)
+                {
+                this.img_arr[i]['type'] = 'photo';
+                if(this.img_arr[i]['photo'] == null || this.img_arr[i]['photo'] == '')
+                {
+                    this.img_arr.splice(i,1);
+                }
+            
+                var img = document.getElementsByClassName('gallery-area-photo');
+                var file = img[i].getElementsByClassName('hospital-photo')[0].files[0];
+                if(file) {                             
+                        pt.append(i ,file )  
+                        
+                }      
+                }      
                   
-                  for(var i =this.video_arr.length-1;i>=0;i--)
-                  {
-                    this.video_arr[i]['type'] = 'video';
-                    if(this.video_arr[i].photo == null || this.video_arr[i].photo == '' )
-                    {
-                      this.video_arr.splice(i,1);
-                    }     
-                              
-                  }       
+                for(var i =this.video_arr.length-1;i>=0;i--)
+                {
+                this.video_arr[i]['type'] = 'video';
+                if(this.video_arr[i].photo == null || this.video_arr[i].photo == '' )
+                {
+                    this.video_arr.splice(i,1);
+                }     
+                            
+                }       
 
                 this.axios.post('/api/hospital/movephoto', pt)
                     .then(response => {
@@ -1671,8 +1680,8 @@ export default {
 
             
 
-                  // Consultation
-                  this.schedule_list = [];
+                // Consultation
+                this.schedule_list = [];
                 for(var j = 0; j< 2; j++) {
                     for(var i = 0; i< 7; i++) {
                             if(j == 0) { this.shedule_am[i] = $('.form-control.am-from'+i+'').val() + '-' + $('.form-control.am-to'+i+'').val(); }

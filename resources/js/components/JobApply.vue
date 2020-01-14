@@ -359,10 +359,19 @@
             </div>
           </div>
 
-          <div class="text-center mt-4 pb-5 form-group row pc-m-0-10">
+          <div class="ml-auto mt-4 pb-5 form-group row pc-m-0-10">
+            <div class="col-sm-2 col-md-2"></div>
+            <div class="col-sm-8 col-md-8 text-center">
+                <span class="btn btn-danger white all-btn width17 pc-m-r-10" @click="editUserInfo()">入力画面へ戻る</span> 
+                <span class="btn main-bg-color white all-btn width17" @click="apply()">応募する</span>
+            </div>
+            <div class="col-sm-2 col-md-2"></div>
+          </div>
+
+          <!-- <div class="text-center mt-4 pb-5 form-group row pc-m-0-10">
             <span class="btn btn-danger white all-btn width17 pc-m-r-10" @click="editUserInfo()">入力画面へ戻る</span>
             <span class="btn main-bg-color white all-btn width17" @click="apply()">応募する</span>
-          </div>
+          </div> -->
           <br />
           <!-- <div v-if="success" class="alert alert-success mt-3">Apply sent!</div> -->
 
