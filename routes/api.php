@@ -23,8 +23,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     if($request->user()->type_id == 2){
         $lat_lng = HospitalProfile::select('id','latitude','longitude')->where('customer_id', $request->user()->customer_id)->get();
     }
-    else {
+    else if($request->user()->type_id > 2) {
         $lat_lng = NursingProfile::select('id','latitude','longitude')->where('customer_id', $request->user()->customer_id)->get();
+    }
+
+    return response()->json(array("user"=>$request->user(), "lat_lng"=>$lat_lng));
+});
+
+Route::middleware('auth:api')->get('/admin/{cusid}/{type}', function ($cusid, $type, Request $request) {
+    if($type == 'hospital'){
+        $lat_lng = HospitalProfile::select('id','latitude','longitude')->where('customer_id', $cusid)->get();
+    }
+    else if($type == 'nursing') {
+        $lat_lng = NursingProfile::select('id','latitude','longitude')->where('customer_id', $cusid)->get();
     }
 
     return response()->json(array("user"=>$request->user(), "lat_lng"=>$lat_lng));

@@ -134,7 +134,7 @@
                         </select>
                          <span v-if="errors.township" class="error">{{errors.township}}</span>
                     </div>
-                    <span class="p-l-162" style="color:#999;">※ 数字と'-'のみ !</span>
+                    <span class="p-l-162" style="color:#999;">※ 数字と'-'のみ </span>
                     <div class="input-group mb-3">
                         
                         <label class="col-4 col-lg-3 control-label">電話番号</label>
@@ -364,7 +364,7 @@
                 }
                 if(this.errors.email)
                 {
-                    this.errors.email = "このメールは既に取得されています。";
+                    this.errors.email = "このメールアドレスは既に存在します。";
                 }
                 else{
                     this.errors.email = "";
@@ -372,7 +372,7 @@
                 }
                 if(this.errors.password)
                 {
-                    this.errors.password = "パスワードは最低6文字必要です。"
+                    this.errors.password = "パスワードは6桁以上必要です。"
                 }
                 else{
                     this.errors.password = "";

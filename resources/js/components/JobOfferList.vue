@@ -331,7 +331,7 @@
                 deleteJob(id) {
                         this.$swal({
                             title: "確認",
-                            text: "削除よろしいでしょうか",
+                            text: "求人を削除してよろしいでしょうか。",
                             type: "warning",
                             width: 350,
                             height: 200,
@@ -339,7 +339,7 @@
                             confirmButtonColor: "#dc3545",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
-                            confirmButtonText: "削除",
+                            confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
@@ -350,12 +350,11 @@
                                     let i = this.jobs.map(item => item.id).indexOf(id); // find index of your object
                                     this.jobs.splice(i, 1);
                                     this.$swal({
-                                        title: "削除済",
-                                        text: "仕事を削除されました。",
+                                        text: "求人を削除しました。",
                                         type: "success",
                                         width: 350,
                                         height: 200,
-                                        confirmButtonText: "はい",
+                                        confirmButtonText: "閉じる",
                                         confirmButtonColor: "#dc3545"
                                     });
                                 })
