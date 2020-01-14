@@ -69,7 +69,20 @@
                     </div>                
                 </slick>
                 <div class="see-pano">
-                    <span>360°画像をパノラマで見る</span>
+                    <span @click='isPano = !isPano'>
+                        <li class="first-submenu">
+                            <span>360</span>&nbsp;<i :class="!isPano ? open : close" style="width:15px;" ></i>     
+                        </li>
+                    </span>
+                    <transition name="slide">
+                        <div class="sp_panonav" v-if="isPano">
+                            <a href="">back</a>
+                            <div>
+                                <h1>360 wrapper</h1>
+                            </div>
+                        </div>
+                    </transition>
+                   
                 </div>
             </div>
             <!--end responsive pano-->
@@ -1517,7 +1530,8 @@ export default {
                 window: {
                     width: 0,
                     height: 0
-                },                
+                },              
+                isPano: false  
             };
         },
 
