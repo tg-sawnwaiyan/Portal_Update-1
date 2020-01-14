@@ -71,19 +71,35 @@
                 <div class="see-pano">
                     <span @click='isPano = !isPano'>
                         <li class="first-submenu">
-                            <span>360</span>   
+                            <p>360</p>
                         </li>
                     </span>
                     <transition name="slide">
-                        <div class="sp_panonav" v-if="isPano">   
+                        <div class="sp_panonav" id="sp_panonav" v-if="isPano">   
                             <div>
                                 <span @click='isPano = !isPano'>
-                                    <li class="first-submenu">
-                                        <i class="fa fa-arrow-left" aria-hidden="true"></i> back
+                                    <li class="first-submenu backwrapper">
+                                        <i class="fa fa-arrow-left" aria-hidden="true"></i> 戻る
                                     </li>
                                 </span>
                                 <!--pano show res-->
-                                ee
+                                <slick :options="slickOptions" ref="slickSetting1">
+                                    <div>
+                                        <h2>
+                                            <!-- <img :src="'/upload/nursing_profile/Imagepanorama/' + currentPanoImage" class="img-fluid" @error="imgUrlAlt"/> -->
+                                            <Pannellum :src="'/upload/nursing_profile/Imagepanorama/' + currentPanoImage" class="pannellum" :auto-load="true" :show-zoom="true" :show-fullscreen="true" :auto-rotate="isAutoRotationOn" :orientation="isOrientationOn" :compass="true" :hfov= "120" :draggable="true"></Pannellum>
+                                        </h2>
+                                    </div>				
+                                </slick>
+                                <slick :options="slickOptions2" ref="slickSetting2" id="res-pano">
+                                        <div v-for="(image,index) in  panoimages" :key="image.id" :class="[(activePanoImage == index) ? 'active' : '']" @click="activatePanoImage(index)">
+                                        <h3>                                   
+                                            <span>
+                                                <img  :src ="'/upload/nursing_profile/Imagepanorama/' + image.photo" @error="imgUrlAlt" class="img-fluid">  
+                                            </span>                    
+                                        </h3>
+                                    </div>                
+                                </slick>
                                 <!--end pano show res-->
                             </div>
                         </div>
@@ -2221,10 +2237,9 @@ h3 {
     background: #eee;
 }
 .see-pano{
-    background-color: rgb(238, 238, 238);
-    border-top: none;
     border-top: 1px dashed #907b7b;
     padding: 20px;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.12);
 }
 
 /*end test*/

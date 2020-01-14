@@ -187,6 +187,7 @@ class HospitalProfileController extends Controller
 
     public function movePhoto(Request $request) {
      
+        
         $request = $request->all();
         foreach ($request as $file){
             $destination = 'upload/hospital_profile/'.$file->getClientOriginalName();
@@ -195,6 +196,7 @@ class HospitalProfileController extends Controller
     }
     
     public function profileupdate($id,Request $request) {
+      
         $request = $request->all();       
     
         // Customer Profile
@@ -269,48 +271,36 @@ class HospitalProfileController extends Controller
             $new_subject->save();
         }
         // End
-        
-        // Photo And Video 
-        $gallery = Gallery::where('customer_id', $id)
-                        ->delete();
+
+         // Gallary 
+         if(count($request[0]["video"]) > 0){
+            $del_gallery = Gallery::where(['customer_id'=> $id,'type'=>'video'])->delete(); 
+            for($i=0; $i<count($request[0]["video"]); $i++) {
+                $gallery = new Gallery;
+                $gallery->customer_id = $id;
+                $gallery->type = $request[0]["video"][$i]['type'];
+                $gallery->photo = $request[0]["video"][$i]['photo'];
+                $gallery->title = $request[0]["video"][$i]['title'];
+                $gallery->description = $request[0]["video"][$i]['description'];
     
-                           
-        for($i=0; $i<count($request[0]['gallery_list']); $i++) {
-            $data = array(
-                'customer_id' => $id,
-                'type' => $request[0]['gallery_list'][$i]['type'],
-                'photo'=> $request[0]['gallery_list'][$i]['photo'],
-                'title'=> $request[0]['gallery_list'][$i]['title'],
-                'description'=> $request[0]['gallery_list'][$i]['description'],
-                'created_at' => date('Y/m/d H:i:s'),
-                'updated_at' => date('Y/m/d H:i:s')
-            );
-            
-            DB::table('galleries')->insert($data);
-            
+                $gallery->save();
+            }
         }
-        // End
-
-       
-        //gallery
-        // $photo_list = Gallery::where("customer_id",$id)
-        //                     ->where('type','=', 'photo')
-        //                     ->get()
-        //                     ->toArray();
-        
+        if(count($request[0]["image"]) > 0){
+            $del_gallery = Gallery::where(['customer_id'=> $id,'type'=>'photo'])->delete(); 
+            for($i=0; $i<count($request[0]["image"]); $i++) {
+                $gallery = new Gallery;
+                $gallery->customer_id = $id;
+                $gallery->type = $request[0]["image"][$i]['type'];
+                $gallery->photo = $request[0]["image"][$i]['photo'];
+                $gallery->title = $request[0]["image"][$i]['title'];
+                $gallery->description = $request[0]["image"][$i]['description'];
     
-
-    
-        // $video_list = Gallery::where("customer_id",$id)
-        //                     ->where('type','=', 'video')
-        //                     ->get()
-        //                     ->toArray();
-        // //end
+                $gallery->save();
+            }
+        }
    
-      
-        // return response()->json(Array('customer_info'=>$request[0]['customer_info'],'hospital_info'=>$request[0]['hospital_info'],'schedule_list'=>$request[0]['schedule_list'],
-        //                              'chek_feature'=>$request[0]['chek_feature'],"subjects"=>$request[0]['subjects'],'photo_list'=>$photo_list,'video_list'=>$video_list
-        //                             ,'gallery_list'=>$request[0]['gallery_list']));
+        return response()->json('success');
     }
 
 }

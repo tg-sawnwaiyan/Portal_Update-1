@@ -72,11 +72,17 @@
             </div>
             <div class="col-md-10 col-sm-12 form-right">{{jobDetail.working_hours}}</div>
           </div>
-          <div class="form-group m-0 row bd-all">
+          <div class="form-group m-0 row bd">
             <div class="col-md-2 col-sm-12 form-left">
               <label><span class="job_ico">休</span>休日休暇</label>
             </div>
             <div class="col-md-10 col-sm-12 form-right">{{jobDetail.holidays}}</div>
+          </div>
+          <div class="form-group m-0 row bd-all">
+            <div class="col-md-2 col-sm-12 form-left">
+              <label><span class="job_ico"><i class="fa fa-user"></i></span>事業者名</label>
+            </div>
+            <div class="col-md-10 col-sm-12 form-right">{{jobDetail.cusname}}</div>
           </div>
           <!-- <h4 style="padding:3px;"></h4> -->
           <div class="row mt-4">
