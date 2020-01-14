@@ -73,14 +73,20 @@
                     </div>
                 </div>
             </div>
-            <div id="sp_headerbar">      
-                <ul class="menu">
-                <li class="first-submenu"    @click="toggle">
+            <div id="sp_adminheader">     
+                <div class="admin_menu"  @click="toggle">
                     <span>メニュー</span>&nbsp;<i :class="!isNav ? open : close" style="width:15px;" ></i>     
-                </li>
+                </div>
                 <transition name="slide">  
                     <div class="sp_adminNav"  v-if="isNav">
-                        <ul class="sidebar-brand" v-if="visit != 'true'">
+                        <div class="overlay" ></div> 
+                        <ul class="sidebar_brand" v-if="visit != 'true'">
+                             <li v-if="$auth.check(1)" class="admin_head admin_head01">
+                               事業者管理画面
+                            </li>
+                            <li v-if="$auth.check(2)" class="admin_head admin_head02">
+                               管理者画面 
+                            </li>
                             <li v-if="$auth.check(1)" @click="toggle">
                                 <router-link :to="{ name: 'profiledit' }"><i class="fa fa-map"></i>  プロファイル設定</router-link>
                             </li>
@@ -94,7 +100,7 @@
                                 <router-link :to="{ name: 'jobapplicantlist' }"><i class="fa fa-list-ul"></i>  求人応募者一覧</router-link>
                             </li> 
                             <li v-if="$auth.check(2)">
-                                <span @click="subMenu(0)"><i class="fa fa-list-ul"></i>  ニュース</span>
+                                <span @click="subMenu(0)" :class="{ active : isActive == 0 }"><i class="fa fa-list-ul"></i>  ニュース <i class="fas fa-angle-right" :class="{ down : isRotate == 0 }"></i></span>
                                 <transition name="slideup">
                                     <ul class="sub_menu" v-show="isSubmenu[0].show">
                                         <li  @click="toggle">
@@ -107,11 +113,11 @@
                                 </transition>
                             </li>
                             <li v-if="$auth.check(2)">
-                                    <span @click="subMenu(1)"><i class="fa fa-user-md"></i>  介護施設</span>
+                                    <span @click="subMenu(1)" :class="{ active : isActive == 1 }"><i class="fa fa-user-md"></i>  介護施設 <i class="fas fa-angle-right" :class="{ down : isRotate == 1 }"></i></span>
                                     <transition name="slideup">
                                         <ul class="sub_menu" v-show="isSubmenu[1].show">
                                             <li @click="toggle">
-                                                <router-link :to="{ name: 'nuscustomerlist' }"><i class="fa fa-usre"></i>  事業者一覧</router-link>
+                                                <router-link :to="{ name: 'nuscustomerlist' }"><i class="fa fa-user"></i>  事業者一覧</router-link>
                                             </li>
                                             <li @click="toggle">
                                                 <router-link :to="{ name: 'nusfeaturelist' }"><i class="fa fa-file-alt"></i>  特徴設定</router-link>
@@ -123,7 +129,7 @@
                                     </transition>
                                 </li> 
                                 <li v-if="$auth.check(2)">
-                                    <span @click="subMenu(2)"><i class="fa fa-user-md"></i>  病院</span>
+                                    <span @click="subMenu(2)" :class="{ active : isActive == 2 }"><i class="fa fa-user-md"></i>  病院 <i class="fas fa-angle-right" :class="{ down : isRotate == 2 }"></i></span>
                                     <transition name="slideup">
                                         <ul class="sub_menu" v-show="isSubmenu[2].show">
                                             <li @click="toggle">
@@ -156,28 +162,28 @@
                         </ul>  
                         <ul class="sidebar-brand" v-if="visit == 'true'">
                             <li>
-                            <router-link :to="{ name: 'News' }"><i class="fas fa-newspaper"></i>  ニュース（ホーム）</router-link>
+                                <router-link :to="{ name: 'News' }"><i class="fas fa-newspaper"></i>  ニュース（ホーム）</router-link>
                             </li>
                             <li>
-                            <router-link :to="{ name: 'nursingSearch' }"><i class="fas fa-user-md"></i> 介護施設検索</router-link>
+                                <router-link :to="{ name: 'nursingSearch' }"><i class="fas fa-user-md"></i> 介護施設検索</router-link>
                             </li>
                             <li>
-                            <router-link :to="{ name: 'hospital_search' }"> <i class="fas fa-briefcase-medical"></i> 病院検索</router-link>
+                                <router-link :to="{ name: 'hospital_search' }"> <i class="fas fa-briefcase-medical"></i> 病院検索</router-link>
                             </li>
                             <li>
-                            <router-link :to="{ name: 'jobSearch' }"><i class="fas fa-users"></i> 求人検索</router-link>
+                                <router-link :to="{ name: 'jobSearch' }"><i class="fas fa-users"></i> 求人検索</router-link>
                             </li>
                             <li  v-if="visit == 'true'">
                                 <a  @click="gotoDash()"><i class="fas fa-tachometer-alt"></i> 管理画面へ</a>
                             </li>
                             <li>
-                            <router-link :to="{name: 'logout'}"><i class="fa fa-lock"></i> ログアウト</router-link>
+                                <router-link :to="{name: 'logout'}"><i class="fa fa-lock"></i> ログアウト</router-link>
                             </li>
                             <li v-if="!$auth.check()">
-                            <router-link :to="{name: 'login'}" class="nav-link pad-free"><i class="fa fa-sign-in-alt"></i> 事業者 ログイン</router-link>
+                                <router-link :to="{name: 'login'}" class="nav-link pad-free"><i class="fa fa-sign-in-alt"></i> 事業者 ログイン</router-link>
                             </li>
                             <li v-if="!$auth.check()" style="border-bottom:1px solid #8c9090;">
-                            <router-link :to="{name: 'register'}" class="nav-link pad-free"><i class="fa fa-user-plus"></i> 事業者 登録</router-link>
+                                <router-link :to="{name: 'register'}" class="nav-link pad-free"><i class="fa fa-user-plus"></i> 事業者 登録</router-link>
                             </li>
                             <li>
                             
@@ -193,7 +199,6 @@
                         </ul>
                     </div>
                 </transition>
-                </ul>
             </div>
             
         </nav>
@@ -213,7 +218,7 @@
    -webkit-transition-timing-function: ease-in;
    -o-transition-timing-function: ease-in;
    transition-timing-function: ease-in;
-   transition: transform 0.5s ease;
+   transition: transform 0.3s ease;
 }
 
 .slide-leave-active {
@@ -236,7 +241,7 @@
    overflow: hidden;
    max-height: 100vh;
   transform: translateX(-100%);
-  transition: all 0.5s ease-in 0s;
+  transition: all 0.3s ease-in 0s;
 }
 
 
@@ -265,7 +270,7 @@
 }
 
 .slideup-enter-to, .slideup-leave {
-   max-height: 1500px;
+   max-height: 600px;
    overflow: hidden;
 }
 
@@ -273,6 +278,7 @@
    overflow: hidden;
    max-height: 0;
 }
+
 </style>
 <script>
 
@@ -291,7 +297,9 @@
         main_header : 'main-header',
         admin_header :'admin-header',
         container : 'container',
-        isSubmenu : [{show:false},{show:false},{show:false}],
+        isSubmenu : [{show:true},{show:false},{show:false}],
+        isActive: 0,
+        isRotate : 0,
       }
     },
    
@@ -324,9 +332,11 @@
         },
          subMenu: function (n) {  
             for(var i = 0; i < 3; i++) { 
-                this.isSubmenu[i].show = false;
+                this.isSubmenu[i].show = false;              
             }
-            this.isSubmenu[n].show = true;
+            this.isSubmenu[n].show = true;         
+            this.isActive = n;
+            this.isRotate = n;
         }
     }
 }
