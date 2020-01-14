@@ -26,10 +26,14 @@ class GalleryController extends Controller
     }
 
     public function getVideobyCustomerId($customer_id) {
-        $video_list = Gallery::where("customer_id",$customer_id)
-                            ->where('type','=', 'video')
-                            ->get()
-                            ->toArray();
+        // $video_list = Gallery::where("customer_id",$customer_id)
+        //                     ->where('type','=', 'video')
+        //                     ->get()
+        //                     ->toArray();
+        $video_list = Gallery::select('id','photo','title','description','type')->where("customer_id",$customer_id)
+                             ->where('type','=', 'video')
+                             ->get()
+                             ->toArray();
         return $video_list;
     }
 
