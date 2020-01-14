@@ -325,6 +325,7 @@
          subMenu: function (n) { 
             if(this.isSubmenu[n].show){
                 this.isSubmenu[n].show = false;  
+                 this.isRotate = null;
             }
             else{
                 for(var i = 0; i < 3; i++) { 
@@ -334,7 +335,6 @@
                 this.isActive = n;
                 this.isRotate = n;
             }
-            
         }
     }
 }
