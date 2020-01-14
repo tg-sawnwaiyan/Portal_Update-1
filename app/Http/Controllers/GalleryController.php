@@ -15,7 +15,7 @@ class GalleryController extends Controller
     
     public function getPhotobyCustomerId($customer_id) {
         $photo_list = Gallery::where("customer_id",$customer_id)
-                            ->where('type','=', 'photo')
+                            ->where('type','=', 'photo')->select('id','title','photo','description')
                             ->get()
                             ->toArray();
         return $photo_list;
@@ -23,7 +23,7 @@ class GalleryController extends Controller
 
     public function getVideobyCustomerId($customer_id) {
         $video_list = Gallery::where("customer_id",$customer_id)
-                            ->where('type','=', 'video')
+                            ->where('type','=', 'video')->select('id','title','photo','description')
                             ->get()
                             ->toArray();
         return $video_list;
@@ -37,5 +37,15 @@ class GalleryController extends Controller
         //                     ->get()
         //                     ->toArray();
         return $panorama_list;
+    }
+
+    public function deltGallery($id)
+    {
+       $sql = "DELETE from galleries where id = " .$id;
+       $file = 
+       $filename = '.upload/hospital_profile/'.$file;
+       \File::delete($filename);
+       $delgallery = DB::select($sql);
+       return response()->json('success');
     }
 }
