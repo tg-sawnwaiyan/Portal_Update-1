@@ -9351,9 +9351,13 @@ ul.nur-caro-card>li.list-group-item {
     }
     .top-fixed-btn,
     .top-fixed-btn.active {
-        width: auto;
-        padding: 5px 15px;
+        /* width: auto; */
+        padding: 5px;
         margin-bottom: 10px;
+    }
+    .top-fixed-btn{
+        text-align: center;
+        font-size: 12px;
     }
     .top-mail-btn-res{
         background: #0cc72c;
@@ -9888,6 +9892,11 @@ ul.nur-caro-card>li.list-group-item {
     .width17 {
         width: 48%;
     }
+    .fixed-nav{
+        display: flex !important;
+        width: 100%;
+    }
+    
 }
 
 @media only screen and (max-width:480px) {

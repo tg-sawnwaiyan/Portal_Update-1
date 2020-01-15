@@ -1,7 +1,5 @@
 <template>
-
   <div id="app">
-
     <div v-if="type == 'nursing'" id="nursingView">
          <span class="top-mail-btn pc-414" @click="documentPost()" v-if="!loginuser && !$auth.check()"><i data-v-b65423c6="" class="far fa-envelope" style="color: #fff  !important;font-size: 15px;"></i>&nbsp;資料請求</span>
         <!--panorama-->
@@ -114,8 +112,7 @@
             </div> -->
             <!--end responsive pano-->
         </div>
-        <!--end panorama-->
-        
+        <!--end panorama-->        
 
             <div class="tab typelabel nav-link fixed-nav" v-bind:style="{width:width}">
             <!-- <div class="row col-12 m-t-10">
@@ -1149,9 +1146,6 @@
                 <!-- <div class="row col-12 m-t-10">
                      <h5 style="color:#000" class="h_4 header font15rem font-weight-bold">ひだまりこころクリニック　サンシャインサカエ院</h5>
                 </div> -->
-
-
-
                 <button v-scroll-to="{ el: '#element1'}" class="top-fixed-btn" @click="activate(1)" :class="{ active : active_el == 1 }">
                     病院情報
                 </button>
