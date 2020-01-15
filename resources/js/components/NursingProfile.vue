@@ -885,9 +885,16 @@ export default {
             },
             stationCheck(check_id) {
                 $('.station-'+check_id).attr('checked','true'); 
-            },
+            },                
             preview_image(img_class,indx) {
+<<<<<<< HEAD
                 this.img_arr[indx]['photo'] = event.target.files[0].name;
+=======
+                $("."+img_class).html("<img src='"+URL.createObjectURL(event.target.files[0])+"' class='img-fluid hospital-image'>");
+                  console.log(document.getElementsByClassName(img_class));
+                document.getElementById('already-photo'+indx).src= URL.createObjectURL(event.target.files[0]);
+               
+>>>>>>> fcbae13c698ccae7bcb93f61d60745fef095413c
             },
 
             preview_panorama() {

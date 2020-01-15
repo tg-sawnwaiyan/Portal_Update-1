@@ -1706,5 +1706,23 @@ display: inline-block;
     flex-wrap: nowrap;
 
 }
+@media only screen and (min-width: 1024px) and (max-width: 1200px){
+    #view-1024 .first-child {
+        max-width: 65.66%;
+        flex: 0 0 65.66%;
+    }
+    #view-1024 .last-child {
+        max-width: 33.33%;
+        flex: 0 0 33.33%;
+    }
+    #view-1024-pattern .col-lg-3 {
+        max-width: 33.33%;
+        flex: 0 0 33.33%;
+        /* overflow: hidden; */
+    }
+    #view-1024-pattern .col-lg-3:last-child {
+        display: none;
+    }
+}
 
 </style>

@@ -7699,6 +7699,14 @@ ul.nur-caro-card>li.list-group-item {
     margin: 0;
     padding: 0;
 }
+.slick-list{
+    height: 100% !important;
+    /* max-height: 184px !important; */
+    overflow: hidden;
+}
+#sp_panonav > .slick-list{
+    height: 100% !important;
+}
 
 .slick-list:focus {
     outline: none;
@@ -9211,7 +9219,6 @@ ul.nur-caro-card>li.list-group-item {
         right: 0;
         width: 100%;
         height: 100%;
-        padding-bottom: 150px;
         background: #fff;        
         z-index: 99999999;
         overflow-y:hidden;
@@ -9504,6 +9511,20 @@ ul.nur-caro-card>li.list-group-item {
         z-index: 999;
     }
     /*end fav nursing*/
+    /*news_start*/
+    .t_card {
+        max-width: none;
+    }
+    .t_card2 {
+        margin-left: 40px;
+    }
+    .t_card4 {
+        margin-left: 40px;
+    }
+    .create_nw_p {
+        padding: 0px;
+    }
+    /*news_end*/
 }
 
 @media only screen and (max-width:768px) {
@@ -10030,6 +10051,9 @@ ul.nur-caro-card>li.list-group-item {
     .mb {
         margin-bottom: 20px;
     }
+    .mb-10 {
+        margin-bottom: 10px;
+    }
     /*category*/
     .t-r {
         margin-right: -8px;
@@ -10254,6 +10278,10 @@ ul.nur-caro-card>li.list-group-item {
     }
     .first-submenu span {
         display: none;
+    }
+    .backwrapper{
+        padding: 10px;
+        background: #f7f0ed;
     }
     .d-none-380 {
         display: none !important;
