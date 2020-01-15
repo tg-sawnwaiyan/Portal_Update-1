@@ -103,9 +103,9 @@ class NursingProfileController extends Controller
             $cop_medical = new Cooperate_Medical;
             $cop_medical->customer_id = $id;
             $cop_medical->name = $request[0]['cooperate_list'][$i]['name'];
-            $cop_medical->clinical_subject = $request[0]['cooperate_list'][$i]['subject'];
+            $cop_medical->clinical_subject = $request[0]['cooperate_list'][$i]['clinical_subject'];
             $cop_medical->details = $request[0]['cooperate_list'][$i]['details'];
-            $cop_medical->medical_expense = $request[0]['cooperate_list'][$i]['expense'];
+            $cop_medical->medical_expense = $request[0]['cooperate_list'][$i]['medical_expense'];
             $cop_medical->remark = $request[0]['cooperate_list'][$i]['remark'];
 
             $cop_medical->save();
