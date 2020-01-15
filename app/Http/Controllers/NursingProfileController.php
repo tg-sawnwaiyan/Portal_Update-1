@@ -196,12 +196,12 @@ class NursingProfileController extends Controller
         // End
 
         // Gallary 
+        $del_gallery = Gallery::where(['customer_id'=> $id,'type'=>'video'])->delete(); 
         if(count($request[0]["video"]) > 0){
-            $del_gallery = Gallery::where(['customer_id'=> $id,'type'=>'video'])->delete(); 
             for($i=0; $i<count($request[0]["video"]); $i++) {
                 $gallery = new Gallery;
                 $gallery->customer_id = $id;
-                $gallery->type = $request[0]["video"][$i]['type'];
+                $gallery->type = 'video';
                 $gallery->photo = $request[0]["video"][$i]['photo'];
                 $gallery->title = $request[0]["video"][$i]['title'];
                 $gallery->description = $request[0]["video"][$i]['description'];
@@ -209,12 +209,13 @@ class NursingProfileController extends Controller
                 $gallery->save();
             }
         }
+        print_r($request[0]["image"]);
+        $del_gallery = Gallery::where(['customer_id'=> $id,'type'=>'photo'])->delete(); 
         if(count($request[0]["image"]) > 0){
-            $del_gallery = Gallery::where(['customer_id'=> $id,'type'=>'photo'])->delete(); 
             for($i=0; $i<count($request[0]["image"]); $i++) {
                 $gallery = new Gallery;
                 $gallery->customer_id = $id;
-                $gallery->type = $request[0]["image"][$i]['type'];
+                $gallery->type = 'photo';
                 $gallery->photo = $request[0]["image"][$i]['photo'];
                 $gallery->title = $request[0]["image"][$i]['title'];
                 $gallery->description = $request[0]["image"][$i]['description'];
@@ -222,12 +223,13 @@ class NursingProfileController extends Controller
                 $gallery->save();
             }
         }
+
+        $del_gallery = Gallery::where(['customer_id'=> $id,'type'=>'panorama'])->delete(); 
         if(count($request[0]["panorama"]) > 0){
-            $del_gallery = Gallery::where(['customer_id'=> $id,'type'=>'panorama'])->delete(); 
             for($i=0; $i<count($request[0]["panorama"]); $i++) {
                 $gallery = new Gallery;
                 $gallery->customer_id = $id;
-                $gallery->type = $request[0]["panorama"][$i]['type'];
+                $gallery->type = 'panorama';
                 $gallery->photo = $request[0]["panorama"][$i]['photo'];
                 $gallery->title = $request[0]["panorama"][$i]['title'];
                 $gallery->description = $request[0]["panorama"][$i]['description'];
