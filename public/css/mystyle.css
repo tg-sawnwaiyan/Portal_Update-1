@@ -6424,9 +6424,10 @@ button.confirmed {
     border: 1px solid #ff9563;
    
 }
+
 #nursingView .top-fixed-btn2.active
 {
-    /* background: red; */
+    background: #d2571c;
     border: 1px solid #ff9563;
     color: white;
 }
@@ -6446,6 +6447,8 @@ button.confirmed {
     background:#fff9cb;
     color: #000;
 }
+/*  */
+
 
 .top-fixed-btn.active {
     color: #fff;
@@ -9060,9 +9063,20 @@ ul.nur-caro-card>li.list-group-item {
         padding-left: 10px;
         margin-top: -7px;
     }
-    .t_card {
-        max-width: none;
-    }
+   /*news_start*/
+.t_card {
+    max-width: none;
+}
+.t_card2 {
+    margin-left: 40px;
+}
+.t_card4 {
+    margin-left: 40px;
+}
+.create_nw_p {
+    padding: 0px;
+}
+/*news_end*/
     /*category*/
     .t-r {
         margin-right: 45px;
@@ -9501,6 +9515,21 @@ ul.nur-caro-card>li.list-group-item {
         z-index: 999;
     }
     /*end fav nursing*/
+    /*news_start*/
+    .t_card {
+        max-width: none;
+    }
+    .t_card2 {
+        margin-left: 40px;
+    }
+    .t_card4 {
+        margin-left: 40px;
+    }
+    .create_nw_p {
+        padding: 0px;
+    }
+    /*news_end*/
+    
 }
 
 @media only screen and (max-width:768px) {
@@ -9580,6 +9609,7 @@ ul.nur-caro-card>li.list-group-item {
     .t_card4 {
         margin-left: 40px;
     }
+    /*news_end*/
     .card_height {
         float: left;
         height: 190px;

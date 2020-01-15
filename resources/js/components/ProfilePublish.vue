@@ -774,7 +774,7 @@
                 <!-- <div style="min-height:300px;"> -->
                <div class="col-lg-12 col-md-12 col-sm-12"  v-if="displayItems.length>0">
                     <div class="card mb-4" v-for="comment in displayItems" :key="comment.id">
-                        <div class="card-body" style="">
+                        <div class="card-body">
                             <div class="comment-title">
                                 <i class="fas fa-comment"></i>{{comment.title}}
                             </div>
@@ -1596,7 +1596,13 @@ export default {
                     var cur_pos = $(this).scrollTop();
 
                     $('.ele').each(function(active_el){
-                        if($(this).position().top <= (cur_pos+71)){
+                        // var topPos =$(this).offset().top;
+                        // if((topPos -cur_pos) <=200)
+                        // {
+                        //     $('.top-fixed-btn.active').removeClass('top-fixed-btn.active');
+                        //     $('.top-fixed-btn').eq(active_el).addClass('top-fixed-btn.active');
+                        // }
+                          if($(this).position().top <= (cur_pos+500)){
                             $('.top-fixed-btn.active').removeClass('active');
                             $('.top-fixed-btn').eq(active_el).addClass('active');
                         }
@@ -1607,7 +1613,7 @@ export default {
                     } else {
                         $(".fixed-nav").css({"position": "unset", "top": "unset"});
                     }
-                });
+                }).scroll;
             }
             if(this.type == "nursing")
             {
@@ -1946,30 +1952,36 @@ export default {
 
 
 
-            //  activate:function(el){
-            //     //  console.log(el)
-            //      this.active_el = el;
-            //     console.log(this.active_el)
-            //     if(el == 6){
-            //         // console.log('element6')
+             activate:function(el){
+                //  console.log(el)
+                //  this.active_el = el;
+                // console.log(this.active_el)
+                // if(el == 6){
+
+                //     $(".nav-item").on("click", function(e){
+                //     $("li.nav-item").removeClass("active");
+                //     $(this).addClass("active");
+                //                         });
+                     
+                    // console.log('element6')
                        
-            //             //  $('.top-fixed-btn2.active').removeClass('active');
-            //              $('.top-fixed-btn2.active').css({'background':'#d2571c'});
-                      
-                       
+                        // $('.top-fixed-btn.active').removeClass('active');
+                        //  $('.top-fixed-btn.active');
+     
                    
-            //         //    $('.top-fixed-btn2.active').css({'background':'red'});
-            //         //    $('.top-fixed-btn2').eq(active_el).addClass('active');
-            //         //    $('#top-fixed-btn2').css({'background':'green'});
-            //     }
-            //     else
-            //     {
-                      
+                    //    $('.top-fixed-btn2.active').css({'background':'red'});
+                    //    $('.top-fixed-btn2').eq(active_el).addClass('active');
+                    //    $('#top-fixed-btn2').css({'background':'green'});
+                //}
+                // else
+                // {
+                
+                //     //   $('.top-fixed-btn').css({'color': '#000','width':'145px','cursor':' pointer','padding': '5px','border-radius': '5px','text-decoration': 'none','position': 'relative','box-shadow': '3px 5px 3px #ccc!important','background': '#fbaa84','border': '1px solid #ff9563;'});
+                //       $('.top-fixed-btn').eq(active_el).addClass('active');
+                // }
 
-            //     }
 
-
-            // },
+            },
 
 
 
