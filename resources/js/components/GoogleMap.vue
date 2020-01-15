@@ -7,7 +7,7 @@
                         <div class="col-md-6 pad-free">
                             <div class="col-md-12 p-l-0 m-t-10"><label>  都道府県<span class="error">*</span></label></div>
                             <div class="col-md-12 p-l-0">
-                                <select v-model="city" class="division form-control" id="division" @change="cityChange($event)">
+                                <select v-model="city" class="division form-control" id="division" @change="cityChange()">
                                     <option v-for="cities in city_list" :key="cities.id" v-bind:value="cities.id">
                                         {{cities.city_name}}
                                     </option>
@@ -35,10 +35,10 @@
                     <label>番地（建物名）<span class="error">*</span></label>
                     <div class="row">
                       <div class="col-md-12" v-if="status === '0'">
-                        <input type="text" id="city" name="city" class="old-city form-control white-bg-color" placeholder="番地を入力してください。" v-model="address"> 
+                        <input type="text" id="address_val" name="city" class="old-city form-control white-bg-color" placeholder="番地を入力してください。" v-model="address"> 
                       </div>
                       <div class="col-md-12" v-else>
-                        <input type="text" id="city" name="city" class="city form-control white-bg-color" placeholder="番地を入力してください。" v-model="comment.city">
+                        <input type="text" id="address_val" name="city" class="city form-control white-bg-color" placeholder="番地を入力してください。" v-model="comment.city">
                       </div>
                       <!-- <div class="col-md-2">
                         <span class="btn news-post-btn all-btn" @click="searchAddress()">番地検索</span>
@@ -240,10 +240,13 @@ export default {
                         .post('/api/hospital/postList/' + postal)
                         .then(response => {
                             var post_data = response.data.postal_list;
+                            console.log(response.data.postal_list)
                             var length = response.data.postal_list.length;
                             if (length > 0) {
                                 var pref = post_data[0]['city_id'];
-                                this.comment.city = post_data[0]['street'];
+                                this.comment.city = post_data[0]['pref']+post_data[0]['city']+post_data[0]['street'];
+                                this.city = post_data[0]['city_id'];
+                                this.cityChange();
                                 $('#jsErrorMessage').html('<div></div>');
                             }else {
                                 this.comment.city = '';
@@ -266,9 +269,9 @@ export default {
               }
               
             },
-            cityChange(event){
+            cityChange(){
                 this.axios
-                .get('/api/townshiplist/'+event.target.value)
+                .get('/api/townshiplist/'+this.city)
                 .then(response=>{
                     this.township_list = response.data.townships; 
                     this.township = this.township_list[0].id;
