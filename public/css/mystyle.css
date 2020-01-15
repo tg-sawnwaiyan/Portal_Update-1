@@ -8599,9 +8599,9 @@ ul.nur-caro-card>li.list-group-item {
     align-items: flex-end;
 }
 
-.news_catsearch label {
+/* .news_catsearch label {
     width: 20%
-}
+} */
 
 
 /* end for news_catsearch  admin page */
@@ -9212,7 +9212,7 @@ ul.nur-caro-card>li.list-group-item {
         width: 100%;
         height: 100%;
         padding-bottom: 150px;
-        background: #fff;        
+        background: #fff;
         z-index: 99999999;
         overflow-y:hidden;
     }
