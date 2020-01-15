@@ -24,7 +24,7 @@
                                 <div class="container-fluid main-wrapper">
                                     <!--slider for ads-->
                                     <div class="col-md-auto pad-free">
-                                        <ads_slider></ads_slider>
+                                        <adsslider></adsslider>
                                     </div>
                                         <!--end slider for ads-->
                                     <div class="row justify-content-md-center">
@@ -186,6 +186,7 @@
   import HeaderMenu from './components/menu/Menu.vue'
   import AuthHeaderMenu from './components/menu/AuthMenu.vue'
   import asideMenu from './components/menu/asideMenu.vue'
+  import adsslider from './components/adsslider'
   export default {
     data: function() {        
       return {
@@ -193,15 +194,14 @@
         inner : 'main-content',
         full: 'full-content',
         myBtnScroll: false,
-        status:false,
-        
-        
+        status:false,      
       }
     },
     components: {
       HeaderMenu,
       AuthHeaderMenu,
       asideMenu,
+      adsslider
     }, 
     created() {
         console.log("created")
