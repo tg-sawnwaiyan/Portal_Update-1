@@ -10051,6 +10051,9 @@ ul.nur-caro-card>li.list-group-item {
     .mb {
         margin-bottom: 20px;
     }
+    .mb-10 {
+        margin-bottom: 10px;
+    }
     /*category*/
     .t-r {
         margin-right: -8px;

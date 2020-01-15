@@ -14,27 +14,27 @@
                     ***********************************************************************************************************************************</p>
                     <p style="text-align:left;margin:2px;color:#3e4348;font-size: 16px;">◎【ご応募された方の情報】</p> 
                     <p style="text-align:left;margin:2px;color:#3e4348;font-size: 12px;">
-                    仕事内容：{{$getComment->job_description}}
+                    <strong> 仕事内容 </strong> ：{{$getComment->job_description}}
                     <br>
-                    経験・スキル：{{$getComment->skill}}
+                    <strong> 経験・スキル </strong> ：{{$getComment->skill}}
                     <br>
-                    勤務地：{{$getComment->job_location}}
+                    <strong> 勤務地 </strong> ：{{$getComment->job_location}}
                     <br>
-                    最寄り駅：{{$getComment->job_nearest_station}}
+                    <strong> 最寄り駅 </strong> ：{{$getComment->job_nearest_station}}
                     <br>
-                    雇用形態：{{$getComment->job_employment_status}}
+                    <strong> 雇用形態 </strong> ：{{$getComment->job_employment_status}}
                     <br>
-                    給料：
+                    <strong> 給料 </strong> ： {{$getComment->salary}}
                     <br>
-                    特別な条件：{{$getComment->allowances}}
+                    <strong> 特別な条件 </strong> ：{{$getComment->allowances}}
                     <br>
-                    各種保険：{{$getComment->insurance}}
+                    <strong> 各種保険 </strong> ：{{$getComment->insurance}}
                     <br>
-                    就業時間：{{$getComment->job_working_hours}}
+                    <strong> 就業時間 </strong> ：{{$getComment->job_working_hours}}
                     <br>
-                    休日休暇：{{$getComment->holidays}}
+                    <strong> 休日休暇 </strong> ：{{$getComment->holidays}}
                     <br>
-                    事業者名：{{$getComment->cus_name}}
+                    <strong> 事業者名 </strong> ：{{$getComment->cus_name}}
                     <br>
                     ご希望等：
                     </p> 
