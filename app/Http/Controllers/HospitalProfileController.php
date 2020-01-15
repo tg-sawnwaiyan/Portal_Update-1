@@ -61,7 +61,7 @@ class HospitalProfileController extends Controller
 
     function getFavouriteNursing($local_sto) {
         $query = "SELECT nursing_profiles.* , group_concat(special_features_junctions.special_feature_id) AS special,'' AS payment_method, customers.name, customers.email, customers.address, customers.logo, townships.township_name, townships.city_id, cities.city_name FROM `nursing_profiles`
-                    LEFT JOIN customers ON nursing_profiles.customer_id = customers.id
+                    LEFT JOIN customers ON nursing_profiles.customer_i d = customers.id
                     LEFT JOIN townships ON townships.id = customers.townships_id
                     LEFT JOIN cities ON townships.city_id = cities.id
                     LEFT JOIN special_features_junctions ON special_features_junctions.customer_id = customers.id
@@ -211,8 +211,7 @@ class HospitalProfileController extends Controller
         // End 
 
         // Hospital Profile
-         $hospital = HospitalProfile::where('customer_id',$id)->first();
-
+        $hospital = HospitalProfile::where('customer_id',$id)->first();
         $hospital->access = $request[0]['hospital_info']['access'];
         $hospital->specialist =  $request[0]['hospital_info']['specialist'];
         $hospital->details_info=  $request[0]['hospital_info']['details_info'];

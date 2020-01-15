@@ -14,21 +14,27 @@
                     ***********************************************************************************************************************************</p>
                     <p style="text-align:left;margin:2px;color:#3e4348;font-size: 16px;">◎【ご応募された方の情報】</p> 
                     <p style="text-align:left;margin:2px;color:#3e4348;font-size: 12px;">
-                    お名前：{{$getComment->first_name}}
+                    仕事内容：{{$getComment->job_description}}
                     <br>
-                    ふりがな：{{$getComment->last_name}}
+                    経験・スキル：{{$getComment->skill}}
                     <br>
-                    生年月日：{{$getComment->birthday}}
+                    勤務地：{{$getComment->job_location}}
                     <br>
-                    性別：{{$getComment->gender}}
+                    最寄り駅：{{$getComment->job_nearest_station}}
                     <br>
-                    郵便番号：{{$getComment->postal}}
+                    雇用形態：{{$getComment->job_employment_status}}
                     <br>
-                    住所：{{$getComment->cityname}}{{$getComment->townshipname}}{{$getComment->street_address}}
+                    給料：
                     <br>
-                    電話番号：{{$getComment->phone}}
+                    特別な条件：{{$getComment->allowances}}
                     <br>
-                    メールアドレス：{{$getComment->email}}
+                    各種保険：{{$getComment->insurance}}
+                    <br>
+                    就業時間：{{$getComment->job_working_hours}}
+                    <br>
+                    休日休暇：{{$getComment->holidays}}
+                    <br>
+                    事業者名：{{$getComment->cus_name}}
                     <br>
                     ご希望等：
                     </p> 

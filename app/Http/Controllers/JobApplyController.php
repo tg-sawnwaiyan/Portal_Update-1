@@ -87,27 +87,13 @@ class JobApplyController extends Controller
             $jobapply->birthday = $request->birthday;
             $jobapply->gender = $request->gender;
             $jobapply->postal = $request->postal;
-            // $jobapply->city_id = $request->city_id;
             $jobapply->township_id = $request->township;
             $jobapply->street_address = $request->str_address;
-            //$jobapply->home_address = $request->home_address;
             $jobapply->phone = $request->phone; 
             $jobapply->email = $request->email;       
             $jobapply->skill = $string;
             $jobapply->remark = $request->remark;
           
-           
-           
-            //  return $jobapply;
-            // $infos = DB::table('jobs')
-            //                 ->join('customers', 'customers.id', '=', 'jobs.customer_id')
-            //                 ->join('townships','townships.customer_id','=','customers.id')
-            //                 ->join('cities','cities.id','=','townships.city_id')
-            //                 ->select('jobs.*','customers.email', 'customer.id')
-            //                 ->where('jobs.id', '=', $jobapply->job_id)
-            //                 ->get();
-
-
              $query = "SELECT j.*,c.email,c.name as cus_name,ci.city_name as city_name,(CASE c.type_id WHEN '2' THEN CONCAT((200000+c.id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT((500000+c.id),'-',LPAD(j.id, 4, '0')) END) as jobnum,
                        (CASE c.type_id WHEN '2' THEN CONCAT(200000+c.id) ELSE CONCAT(500000+c.id) END) as cusnum
                         from customers as c join jobs as j on c.id = j.customer_id join townships as t on t.id = j.township_id join cities as ci on ci.id = t.city_id 
@@ -130,6 +116,9 @@ class JobApplyController extends Controller
                 $jobnum = $info->jobnum;
                 $cusnum = $info->cusnum;
                 $city_name = $info->city_name;
+                $allowances = $info->allowances;
+                $insurance = $info->insurance;
+                $holidays = $info->holidays;
             }
 
             $admin_email = 'thuzar@management-partners.co.jp';
@@ -146,11 +135,12 @@ class JobApplyController extends Controller
              $jobapply->cus_name = $customer_name;
              $jobapply->jobnum = $jobnum;
              $jobapply->cusnum = $cusnum;
+             $jobapply->allowances = $allowances;
+             $jobapply->insurance = $insurance;
+             $jobapply->holidays = $holidays;
              $jobapply->cityname = $request->selectedValue;
              $jobapply->townshipname = $request->townshipname;
-           
-          
-            //  $jobapply->city_name = $city_name;
+            
        
              \Mail::to($customer_mail)->send(new jobApplyMailToCustomer($jobapply));
              \Mail::to($jobapply->email)->send(new jobApplyMailToUser($jobapply));
