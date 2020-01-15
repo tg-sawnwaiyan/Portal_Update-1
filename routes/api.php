@@ -283,11 +283,7 @@ Route::get('station/{id}','StationController@getStationbyCustomerId');
 
 Route::get('hospital-pgallery/{id}','GalleryController@getPhotobyCustomerId');
 Route::get('hospital-vgallery/{id}','GalleryController@getVideobyCustomerId');
-<<<<<<< HEAD
 Route::post('delete-pgallery','GalleryController@deleteGallery');
-=======
-Route::get('gallery/{id}/{photo}','GalleryController@deltGallery');
->>>>>>> fcbae13c698ccae7bcb93f61d60745fef095413c
 
 Route::get('nursing-pgallery/{id}','GalleryController@getPhotobyCustomerId');
 Route::get('nursing-vgallery/{id}','GalleryController@getVideobyCustomerId');
