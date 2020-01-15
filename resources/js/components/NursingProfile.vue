@@ -1225,7 +1225,7 @@ export default {
 
                 // Cooperate
                  for(var i =this.cooperate_arr.length-1;i>=0;i--){
-                    if(this.cooperate_arr[i].name == nul )
+                    if(this.cooperate_arr[i].name == null || this.cooperate_arr[i].name == '')
                     {
                         this.cooperate_arr.splice(i,1);
                     }   
