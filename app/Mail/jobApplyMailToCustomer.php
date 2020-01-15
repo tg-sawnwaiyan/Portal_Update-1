@@ -30,6 +30,6 @@ class jobApplyMailToCustomer extends Mailable
     public function build()
     {
         return $this->view('mail.jobApplyMailToCustomer')
-                    ->subject("[医療介護ポータル] Job Apply Mail");
+                    ->subject("[医療介護ポータル] 求人への応募がありました");
     }
 }
