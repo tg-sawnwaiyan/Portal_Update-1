@@ -1662,8 +1662,9 @@ export default {
                     width: 0,
                     height: 0
                 },
-                show : true,
-                isPano: false               
+                show : false,
+                isPano: false, 
+                show_arr: []            
             };
         },
 
@@ -2163,15 +2164,7 @@ export default {
         $('#changeLink'+id).show('medium');
     },
     costConfirmMini(id){
-        if(this.show){
-            $('.changeLink'+id).text("選択中");
-            $('#changeLinkMini'+id).show('medium');
-            this.show = false;
-        }else{
-            $('.changeLink'+id).text("詳しくはこちら");
-            $('#changeLinkMini'+id).hide('medium');
-            this.show = true;
-        }        
+        $('#changeLinkMini'+id).toggle('medium');        
     },
     documentPost() {
         localStorage.removeItem("item");
