@@ -115,7 +115,7 @@ class NursingProfileController extends Controller
         // Payment List
         $payment = method_payment::where('customer_id', $id)
                         ->delete();
-
+        
         for($i=0; $i<count($request[0]['payment_list']); $i++) {
             $m_payment = new method_payment;
             $m_payment->customer_id = $id;

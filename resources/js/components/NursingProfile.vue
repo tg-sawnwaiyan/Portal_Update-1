@@ -928,6 +928,10 @@ export default {
                     this.cooperate_arr.splice(indx,1);
                 }
 
+                if(type == 'payment') {
+                    this.payment_arr.splice(indx,1);
+                }
+
                 // var arr_list = [];
                 // var arr_count = document.getElementsByClassName('gallery-area-'+type);
                
@@ -1033,7 +1037,9 @@ export default {
             },
 
             methodAdd() {
-                this.payment_arr.push({payment_name:'',expense_moving:'',monthly_fees:'',living_room_type:'', area:'',details:'',deposit:'',other_use:'',rent:'',admin_expense:'',food_expense:'', nurse_care_surcharge:'',other_monthly_cost:'',refund_system:'',depreciation_period:'', initial_deprecration:'',other_message_refund:''});
+                this.payment_arr.push({id:null,payment_name:'',expense_moving:'',monthly_fees:'',living_room_type:'', area:'',details:'',deposit:'',other_use:'',rent:'',
+                admin_expense:'',food_expense:'', nurse_care_surcharge:'',other_monthly_cost:'',refund_system:'',depreciation_period:'', initial_deprecration:'',
+                other_message_refund:''});
             },
 
             cooperateAdd() {
@@ -1178,8 +1184,6 @@ export default {
 
                 this.$loading(true);
                 
-                this.cooperate_list = [];
-                this.payment_list = [];
                 this.profile_arr = [];
 
                 this.nursing_info.latitude = $('#new_lat').val();
@@ -1224,7 +1228,7 @@ export default {
                 }
 
                 // Cooperate
-                 for(var i =this.cooperate_arr.length-1;i>=0;i--){
+                for(var i =this.cooperate_arr.length-1;i>=0;i--){
                     if(this.cooperate_arr[i].name == null || this.cooperate_arr[i].name == '')
                     {
                         this.cooperate_arr.splice(i,1);
@@ -1232,28 +1236,12 @@ export default {
                 }
 
                 // Payment Method
-                var payment = document.getElementsByClassName('gallery-area-payment');
-                for(var i = payment.length-1; i>= 0; i--) {
-                    if(payment[i].getElementsByClassName('payment-name')[0].value) {
-                        this.payment_list.push({payment_name:payment[i].getElementsByClassName('payment-name')[0].value,
-                        expense_moving:payment[i].getElementsByClassName('expense-moving')[0].value,
-                        monthly_fees:payment[i].getElementsByClassName('monthly-fees')[0].value,
-                        living_room_type:payment[i].getElementsByClassName('living-room-type')[0].value,
-                        area:payment[i].getElementsByClassName('area')[0].value,
-                        deposit:payment[i].getElementsByClassName('deposit')[0].value,
-                        other_use:payment[i].getElementsByClassName('other-use')[0].value,
-                        rent:payment[i].getElementsByClassName('rent')[0].value,
-                        admin_expense:payment[i].getElementsByClassName('admin-expense')[0].value,
-                        food_expense:payment[i].getElementsByClassName('food-expense')[0].value,
-                        nurse_care_surcharge:payment[i].getElementsByClassName('nurse-care-surcharge')[0].value,
-                        other_monthly_cost:payment[i].getElementsByClassName('other-monthly-cost')[0].value,
-                        refund_system:payment[i].getElementsByClassName('refund-system')[0].value,
-                        depreciation_period:payment[i].getElementsByClassName('depreciation-period')[0].value,
-                        initial_deprecration:payment[i].getElementsByClassName('initial-deprecration')[0].value,
-                        other_message_refund:payment[i].getElementsByClassName('other-message-refund')[0].value});
-                    }
+                for(var i =this.payment_arr.length-1;i>=0;i--){
+                    if(this.payment_arr[i].payment_name == null || this.payment_arr[i].payment_name == '')
+                    {
+                        this.payment_arr.splice(i,1);
+                    }   
                 }
-
 
                var s_features =[];
                     $.each($("input[name='special-features']:checked"), function(){
@@ -1291,7 +1279,7 @@ export default {
                     })
 
                 this.profile_arr.push({nursing_profile:this.nursing_info,customer_info:this.customer_info,staff_info:this.staff_info, cooperate_list:this.cooperate_arr,
-                                        payment_list:this.payment_list, video:this.video_arr, image: this.img_arr, panorama: this.panorama_arr,
+                                        payment_list:this.payment_arr, video:this.video_arr, image: this.img_arr, panorama: this.panorama_arr,
                                         acceptance:acceptance,chek_feature:this.chek_feature
                 });
                 
