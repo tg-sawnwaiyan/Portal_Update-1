@@ -95,11 +95,11 @@
             </div>
             <div class="col-md-9 col-sm-12 form-right pl-4">
               <label class="control control--radio">
-                    <input type="radio" v-model="jobApply.gender" value="Male" /> 男性
+                    <input type="radio" v-model="jobApply.gender" value="男性" /> 男性
                     <div class="control__indicator"></div>
                 </label>
                 <label class="control control--radio">
-                    <input type="radio" v-model="jobApply.gender" value="Female" /> 女性
+                    <input type="radio" v-model="jobApply.gender" value="女性" /> 女性
                     <div class="control__indicator"></div>
                 </label>
             </div>
@@ -274,8 +274,8 @@
               </label>
             </div>
             <div class="col-md-9 col-sm-12 form-right">
-              <span v-if="jobApply.gender == 'Female'" class="pl-4">女性</span>
-              <span v-if="jobApply.gender == 'Male'" class="pl-4">男性</span>
+              <span v-if="jobApply.gender == '女性'" class="pl-4">女性</span>
+              <span v-if="jobApply.gender == '男性'" class="pl-4">男性</span>
             </div>
           </div>
           <div class="form-group m-0 row bd">
@@ -359,10 +359,19 @@
             </div>
           </div>
 
-          <div class="text-center mt-4 pb-5 form-group row pc-m-0-10">
+          <div class="ml-auto mt-4 pb-5 form-group row pc-m-0-10">
+            <div class="col-sm-2 col-md-2"></div>
+            <div class="col-sm-8 col-md-8 text-center">
+                <span class="btn btn-danger white all-btn width17 pc-m-r-10" @click="editUserInfo()">入力画面へ戻る</span> 
+                <span class="btn main-bg-color white all-btn width17" @click="apply()">応募する</span>
+            </div>
+            <div class="col-sm-2 col-md-2"></div>
+          </div>
+
+          <!-- <div class="text-center mt-4 pb-5 form-group row pc-m-0-10">
             <span class="btn btn-danger white all-btn width17 pc-m-r-10" @click="editUserInfo()">入力画面へ戻る</span>
             <span class="btn main-bg-color white all-btn width17" @click="apply()">応募する</span>
-          </div>
+          </div> -->
           <br />
           <!-- <div v-if="success" class="alert alert-success mt-3">Apply sent!</div> -->
 
