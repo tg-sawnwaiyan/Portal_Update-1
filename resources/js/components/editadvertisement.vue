@@ -11,7 +11,7 @@
                         <div class="col-md-12">
                              <form @submit.prevent="updateAds">
                             <div class="form-group">
-                                                <label>広告題名 : <span class="error">*</span></label>
+                                                <label>広告タイトル : <span class="error">*</span></label>
                                                 <input type="title" class="form-control box" id="title"  name="title" v-model="advertisement.title" placeholder="広告タイトルを入力してください。">
                                                 <span v-if="errors.includes('title')" class="error">題名が必須です。</span>
                                     </div>
@@ -48,7 +48,7 @@
                             <div class="image_show" v-if="update_img && upload_img">
                                 <div class='col-md-2'>
                                     <!-- <span class='img-close-btn' v-on:click="removeUpload()">X</span> -->
-                                    <img :src="upload_img" class='show-img'>
+                                    <img :src="upload_img" class='show-img' @error="imgUrlAlt">
                                 </div>
 
                             </div>
@@ -57,7 +57,7 @@
                                 <div class="col-md-12" >
                                     <div id='x-image' class='col-md-2'>
                                         <span class='img-close-btn' v-on:click='closeBtnMethod(advertisement.photo)'>X</span>
-                                        <img :src="'/upload/advertisement/'+ advertisement.photo" class='show-img' alt="ads">
+                                        <img :src="'/upload/advertisement/'+ advertisement.photo" class='show-img' alt="ads" @error="imgUrlAlt">
                                     </div>
                                 </div>
                             </div>
@@ -108,6 +108,9 @@ export default {
                 });
         },
          methods: {
+            imgUrlAlt(event) {
+                event.target.src = "images/noimage.jpg"
+            },
             fileSelected(){
                 this.advertisement.photo = event.target.files[0];
                 this.upload_img = URL.createObjectURL(event.target.files[0]);
