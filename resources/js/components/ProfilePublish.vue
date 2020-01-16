@@ -1782,17 +1782,14 @@ export default {
             if(this.loginuser == true) {
                 $(document).scroll(function() {
 
-                    $(".fixed-nav").css({"position": "fixed","top":"70px"});
+                    // $(".fixed-nav").css({"position": "fixed","top":"70px"});
                     // var cur_pos = $(this).scrollTop();
-
-                //     $('.ele').each(function(active_el){
-
-                //        if($(this).position().top <= cur_pos){
-
-                //             $('.top-fixed-btn').removeClass('active');
-                //             $('.top-fixed-btn').eq(active_el+1).addClass('active');
-                //        }
-                //    });
+                    //     $('.ele').each(function(active_el){
+                    //        if($(this).position().top <= cur_pos){
+                    //             $('.top-fixed-btn').removeClass('active');
+                    //             $('.top-fixed-btn').eq(active_el+1).addClass('active');
+                    //        }
+                    //    });
 
                     var cur_pos = $(this).scrollTop();
 
@@ -1812,6 +1809,7 @@ export default {
 
             } else {
                 $(document).scroll(function() {
+                   
                     $(".fixed-nav").css({"position": "fixed","top":"100px"});
                     var cur_pos = $(this).scrollTop();
 
@@ -1823,9 +1821,9 @@ export default {
                     });                    
 
                     if (cur_pos >= 100) {
-                        $(".fixed-nav").css({"position": "fixed","top":"100px"});
+                        $(".fixed-nav").css({"position": "fixed","top":"110px","display": "flex"});
                     } else {
-                        $(".fixed-nav").css({"position": "unset", "top": "unset"});
+                        $(".fixed-nav").css({"position": "unset", "top": "unset", "display": "none"});
                     }
                 });
             }

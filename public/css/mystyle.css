@@ -9100,6 +9100,16 @@ ul.nur-caro-card>li.list-group-item {
     .map-wrap {
         padding: 20px 10px;
     }
+    .top-fixed-btn,
+    .top-fixed-btn.active {
+        width: auto;
+        padding: 10px 37px;
+        margin-bottom: 10px;
+    }
+    .top-fixed-btn{
+        text-align: center;
+        font-size: 12px;
+    }
 }
 
 @media only screen and (max-width: 990px) {
@@ -9346,18 +9356,27 @@ ul.nur-caro-card>li.list-group-item {
     .top-mail-btn {
         top: -67px !important;
     }
-    .fav-profile {
+    /* .fav-profile {
         top: -10px !important;
+    } */
+    .fixed-nav{
+        width: 100%;
     }
     .top-fixed-btn,
     .top-fixed-btn.active {
-        /* width: auto; */
-        padding: 5px;
-        margin-bottom: 10px;
+        width: auto;
+        padding: 10px 37px;
+        margin-bottom: 10px !important;
+        border-radius: 0px;
     }
     .top-fixed-btn{
         text-align: center;
         font-size: 12px;
+        border-radius: 0px;
+        
+    }
+    .ele {
+        margin-top: 0px;
     }
     .top-mail-btn-res{
         background: #0cc72c;
@@ -9820,7 +9839,7 @@ ul.nur-caro-card>li.list-group-item {
     #job_detail .fav-profile {
         width: 100%;
         padding: 10px !important;
-    }
+    }    
 }
 
 @media only screen and (max-width:750px) {
@@ -9893,7 +9912,7 @@ ul.nur-caro-card>li.list-group-item {
         width: 48%;
     }
     .fixed-nav{
-        display: flex !important;
+        display: flex;
         width: 100%;
     }
     
@@ -10186,7 +10205,7 @@ ul.nur-caro-card>li.list-group-item {
     }
     .top-fixed-btn,
     .top-fixed-btn.active {
-        padding: 5px 9px;
+        padding: 5px 13px;
     }
     /*End  profile publish */
     /* Job Detail */
@@ -10323,9 +10342,10 @@ ul.nur-caro-card>li.list-group-item {
         font-size: 12px !important;
     }
     .fav-profile {
-        width: 116px;
-        right: 11px;
-        font-size: 14px;
+        /* width: 116px; */
+        right: 0px;
+        font-size: 12px;
+        top:0px !important;
     }
     /*End  Profile Publish */
 }
