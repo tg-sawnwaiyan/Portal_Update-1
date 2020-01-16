@@ -274,8 +274,8 @@ class HospitalProfileController extends Controller
         // End
 
          // Gallary 
-         $del_gallery = Gallery::where(['customer_id'=> $id,'type'=>'video'])->delete(); 
-         if(count($request[0]["video"]) > 0){            
+         if(count($request[0]["video"]) > 0){
+            $del_gallery = Gallery::where(['customer_id'=> $id,'type'=>'video'])->delete(); 
             for($i=0; $i<count($request[0]["video"]); $i++) {
                 $gallery = new Gallery;
                 $gallery->customer_id = $id;
@@ -287,8 +287,8 @@ class HospitalProfileController extends Controller
                 $gallery->save();
             }
         }
-        $del_gallery = Gallery::where(['customer_id'=> $id,'type'=>'photo'])->delete(); 
         if(count($request[0]["image"]) > 0){
+            $del_gallery = Gallery::where(['customer_id'=> $id,'type'=>'photo'])->delete(); 
             for($i=0; $i<count($request[0]["image"]); $i++) {
                 $gallery = new Gallery;
                 $gallery->customer_id = $id;

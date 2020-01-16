@@ -29,6 +29,6 @@ class SendMailable extends Mailable
     public function build()
     {
         return $this->view('mail.mail')
-                    ->subject('[医療介護ポータル]事業者新規登録確認');
+                    ->subject('[T-IS ティーズ]事業者新規登録確認');
     }
 }
