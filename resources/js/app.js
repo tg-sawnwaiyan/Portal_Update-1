@@ -61,6 +61,9 @@ Vue.component(VueCarousel.name, VueCarousel);
 import Slick from 'vue-slick';
 Vue.use(Slick);
 
+var VueScrollactive = require('vue-scrollactive');
+Vue.use(VueScrollactive);
+
 
 //vue-pannellum
 import VuePannellum from '../js/components/vue-pannellum.vue'

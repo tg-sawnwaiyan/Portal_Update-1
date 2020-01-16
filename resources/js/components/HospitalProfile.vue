@@ -1705,7 +1705,7 @@ export default {
           
                     
                 if(this.save_hospital_info.length > 0) {
-                    console.log(this.save_hospital_info)
+                  
                     this.axios
                     .post(`/api/hospital/profile/${this.cusid}`,this.save_hospital_info)
                     .then((response) => {

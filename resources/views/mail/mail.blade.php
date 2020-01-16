@@ -9,7 +9,7 @@
 			{{$getCustomer->name}} 様
 			</h5>
 			<h5 style="color:#3e4348;font-size: 29px;margin-bottom: 30px;margin-top: 30px;font-weight: bold;text-align: center;">
-			医療介護ポータルの事業者新規登録確認メールです。
+			T-IS ティーズの事業者新規登録確認メールです。
 			</h5>
 			<p style="color:#000;">
 			こちらのメールアドレスで登録を行いました。 {{ $getCustomer->email }}
