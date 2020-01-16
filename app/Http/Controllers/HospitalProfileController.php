@@ -93,12 +93,14 @@ class HospitalProfileController extends Controller
         $postal = (int)$postal;
         $query = "SELECT * FROM zipcode WHERE zip7_code LIKE '".$postal."'";
         $postal_list = DB::select($query);
-    
-        $township = "SELECT id from townships where township_name LIKE '". $postal_list[0]->city ."'";
-        $township_id = DB::select($township);
-
+        if(count($postal_list)>0){
+            $township = "SELECT id from townships where township_name LIKE '". $postal_list[0]->city ."'";
+            $township_id = DB::select($township);
+        }   
+        else{
+            $township_id = null;
+        }
         return response()->json(Array('postal_list'=>$postal_list,'township_id'=>$township_id));
-  
       
     }
 

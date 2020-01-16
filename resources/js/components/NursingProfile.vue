@@ -1180,6 +1180,7 @@ export default {
 
                 this.nursing_info.latitude = $('#new_lat').val();
                 this.nursing_info.longitude = $('#new_long').val();
+                this.customer_info.address = $('#address_val').val();
                 
                 this.customer_info.townships_id = Number($('#gmaptownship').val());
                 localStorage.setItem('lat_num',this.nursing_info.latitude);
