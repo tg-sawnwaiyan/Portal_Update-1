@@ -1722,298 +1722,330 @@ export default {
         },
 
         created(){
-            //
-            this.axios.get("/api/advertisement/ads").then(response => {
-                this.ads_list = response.data;
-            });
-            //end 
-           
-             
+                //
+                this.axios.get("/api/advertisement/ads").then(response => {
+                    this.ads_list = response.data;
+                });
+                //end   
                 window.addEventListener('resize', this.handleResize);
                 this.handleResize();
                 console.log(this.window.width); 
                 if(this.window.width >= 320 && this.window.width < 450) {
-                    this.windowSize = 1;
-                
+                    this.windowSize = 1;                
                 } 
                 
                 else if(this.window.width >= 450 && this.window.width < 768) {
-                    this.windowSize = 2;
-                
+                    this.windowSize = 2;                
                 } 
                 else if(this.window.width >= 768 && this.window.width < 992) {
-                    this.windowSize = 4;
-                    console.log('tttt');
-                 console.log('768');
+                    this.windowSize = 4;                    
                 }
                 else if(this.window.width >= 992 && this.window.width < 1024) {
                     this.windowSize = 7;
                 }
                 else if (this.window.width >= 1024 && this.window.width < 1280) {
                     this.windowSize = 8;
-                    // console.log('1024');
-                    
+                    // console.log('1024');                    
                 }
                 else if (this.window.width >= 1280 && this.window.width < 1440) {
-                    this.windowSize = 9;
-                    
+                    this.windowSize = 9;                   
                 
                 }
                 else if (this.window.width >= 1440 && this.window.width < 1880) {
                     this.windowSize = 9;              
                     // console.log(this.paginationFactor);/
                 }
-            // else if( this.window.width > 1700) {
-
-            // }
-
+                // else if( this.window.width > 1700) {
+                // }
            
-            this.customer_id = this.cusid;
-            this.activePanoImage = 0;
+                this.customer_id = this.cusid;
+                this.activePanoImage = 0;
 
-            if(this.type != undefined && this.cusid!= undefined){
-                localStorage.setItem('cusType',this.type);
-                localStorage.setItem('cusId',this.cusid);
-            }
+                if(this.type != undefined && this.cusid!= undefined){
+                    localStorage.setItem('cusType',this.type);
+                    localStorage.setItem('cusId',this.cusid);
+                }
 
-            this.type = localStorage.getItem('cusType');
-            this.cusid = Number(localStorage.getItem('cusId'));
+                this.type = localStorage.getItem('cusType');
+                this.cusid = Number(localStorage.getItem('cusId'));
+                //for responsive
+                    if(this.window.width >= 768) {
+                        //greater than 768
+                        if(this.loginuser == true) {
+                            $(document).scroll(function() {
+                                 $(".fixed-nav").css({"position": "fixed","top":"70px"});
+                                var cur_pos = $(this).scrollTop();
+                                $('.ele').each(function(active_el){
+                                    if($(this).position().top <= (cur_pos+71)){
+                                        $('.top-fixed-btn.active').removeClass('active');
+                                        $('.top-fixed-btn').eq(active_el).addClass('active');                            
+                                    }
+                                });
+                                if (cur_pos >= 100) {
+                                    $(".fixed-nav").css({"position": "fixed","top":"70px"});
+                                } else {
+                                    $(".fixed-nav").css({"position": "unset", "top": "unset"});
+                                }
+                                //  $(".fixed-nav").css({"position": "unset","top":"unset"});
+                            });
+                        } else {
+                            $(document).scroll(function() {
+                            
+                                $(".fixed-nav").css({"position": "fixed","top":"100px"});
+                                var cur_pos = $(this).scrollTop();
+                                console.log("cur",cur_pos)
 
-            if(this.loginuser == true) {
-                $(document).scroll(function() {
+                                $('.ele').each(function(active_el){
+                                    if($(this).position().top <= (cur_pos+71)){
+                                        $('.top-fixed-btn.active').removeClass('active');
+                                        $('.top-fixed-btn').eq(active_el).addClass('active');
+                                    }
+                                });                    
+                                
+                                if (cur_pos >= 100) {
+                                    $(".fixed-nav").css({"position": "fixed","top":"65px"});
+                                } else {
+                                    $(".fixed-nav").css({"position": "unset", "top": "unset"});
+                                }
+                            });
+                        }
+                        //greater than 768
+                    } 
+                    
+                    else {
+                       //less than 768
+                        if(this.loginuser == true) {
+                        $(document).scroll(function() {
+                             $(".fixed-nav").css({"position": "fixed","top":"70px"});
+                            var cur_pos = $(this).scrollTop();
+                            $('.ele').each(function(active_el){
+                                if($(this).position().top <= (cur_pos+71)){
+                                    $('.top-fixed-btn.active').removeClass('active');
+                                    $('.top-fixed-btn').eq(active_el).addClass('active');                            
+                                }
+                            });
+                            if (cur_pos >= 100) {
+                                $(".fixed-nav").css({"position": "fixed","top":"70px"});
+                            } else {
+                                $(".fixed-nav").css({"position": "unset", "top": "unset"});
+                            }
+                            //  $(".fixed-nav").css({"position": "unset","top":"unset"});
+                        });
 
-                    // $(".fixed-nav").css({"position": "fixed","top":"70px"});
-                    // var cur_pos = $(this).scrollTop();
-                    //     $('.ele').each(function(active_el){
-                    //        if($(this).position().top <= cur_pos){
-                    //             $('.top-fixed-btn').removeClass('active');
-                    //             $('.top-fixed-btn').eq(active_el+1).addClass('active');
-                    //        }
-                    //    });
+                        } else {
+                            $(document).scroll(function() {
+                            
+                                $(".fixed-nav").css({"position": "fixed","top":"100px"});
+                                var cur_pos = $(this).scrollTop();
+                                console.log("cur",cur_pos)
 
-                    var cur_pos = $(this).scrollTop();
+                                $('.ele').each(function(active_el){
+                                    if($(this).position().top <= (cur_pos+71)){
+                                        $('.top-fixed-btn.active').removeClass('active');
+                                        $('.top-fixed-btn').eq(active_el).addClass('active');
+                                    }
+                                });                    
+                                
+                                if (cur_pos >= 100) {
+                                    $(".fixed-nav").css({"position": "fixed","top":"110px","display": "flex"});
+                                } else {
+                                    $(".fixed-nav").css({"position": "unset", "top": "unset", "display": "none"});
+                                }
+                            });
+                        }
+                       //end less than 768           
+                    } 
+                   
+                    //for end responsive
 
-                     $('.ele').each(function(active_el){
-                        if($(this).position().top <= (cur_pos+71)){
-                            $('.top-fixed-btn.active').removeClass('active');
-                            $('.top-fixed-btn').eq(active_el).addClass('active');                            
+                
+                if(this.type == "nursing")
+                {
+                    this.axios.get('/api/profile/customer/'+this.cusid+'/'+this.type) .then(response => {
+                        this.customer = response.data;
+                        this.customer_name = response.data[0].name;
+                    });
+
+                    this.axios.get('/api/profile/nursing/'+this.cusid) .then(response => {
+                        this.nursing_profiles = response.data.feature;
+                        console.log('This is JSON value');
+                        console.log(response.data);
+                        console.log(response.data);
+
+                        this.nus_method= response.data.method;
+
+                        this.method_payment = response.data.cost;
+
+                        this.nusfacilities = response.data.facility;
+
+                        this.cooperate_medical = response.data.comedical;
+
+                        this.medical_acceptance = response.data.medicalacceptance;
+
+                        this.medical = response.data.medical;
+
+                        this.staff = response.data.staff;
+
+                        this.google = response.data.nurselatlong;
+
+                        this.markers[0]['position']['lat']  = response.data.nurselatlong[0]['latitude'];
+
+                        this.markers[0]['position']['lng']  = response.data.nurselatlong[0]['longitude'];
+
+                        this.center['lat'] = response.data.nurselatlong[0]['latitude'];
+
+                        this.center['lng'] = response.data.nurselatlong[0]['longitude'];
+
+                        this.images = response.data.images;
+
+                        for(var i=0; i<this.images.length; i++){
+                            this.light_images.push({
+                                'name': this.images[i]['photo'],
+                                'description': this.images[i]['description'],
+                                'id': this.images[i]['id'],
+                                'title': this.images[i]['title']
+                            })
+                        }
+
+                        this.panoimages = response.data.panoimages;
+
+                        this.videos = response.data.videos;
+                        // console.log(this.panoimages);return;
+
+                        if(response.data.nurselatlong[0]['latitude'] == 0 && response.data.nurselatlong[0]['longitude'] == 0)
+                        {
+                            this.center['lat'] = 35.6803997;
+
+                            this.center['lng'] = 139.76901739;
+
+                            this.markers[0]['position']['lat']  = 35.6803997;
+
+                            this.markers[0]['position']['lng']  = 139.76901739;
+
                         }
                     });
-                    if (cur_pos >= 100) {
-                        $(".fixed-nav").css({"position": "fixed","top":"70px"});
-                    } else {
-                        $(".fixed-nav").css({"position": "unset", "top": "unset"});
-                    }
-                    //  $(".fixed-nav").css({"position": "unset","top":"unset"});
-                });
 
-            } else {
-                $(document).scroll(function() {
-                   
-                    $(".fixed-nav").css({"position": "fixed","top":"100px"});
-                    var cur_pos = $(this).scrollTop();
 
-                    $('.ele').each(function(active_el){
-                        if($(this).position().top <= (cur_pos+71)){
-                            $('.top-fixed-btn.active').removeClass('active');
-                            $('.top-fixed-btn').eq(active_el).addClass('active');
+
+                    this.axios.get(`/api/profile/specialfeature/${this.type}/${this.cusid}`) .then(response => {
+                        this.specialfeature = response.data;
+
+                    });
+
+                    this.axios.get('/api/profile/comment/'+this.cusid) .then(response => {
+
+                        this.comments = response.data;
+                        if(this.comments.length > this.size){
+                            this.pagination = true;
+                        }else{
+                            this.pagination = false;
                         }
-                    });                    
+                        // for ( var index=0; index<response.data.length; index++ ) {
 
-                    if (cur_pos >= 100) {
-                        $(".fixed-nav").css({"position": "fixed","top":"110px","display": "flex"});
-                    } else {
-                        $(".fixed-nav").css({"position": "unset", "top": "unset", "display": "none"});
-                    }
-                });
-            }
-            if(this.type == "nursing")
-            {
-                this.axios.get('/api/profile/customer/'+this.cusid+'/'+this.type) .then(response => {
-                      this.customer = response.data;
-                      this.customer_name = response.data[0].name;
-                });
+                        //     data = { "created_date": "1", "created_time": "Valid" };
+                        //     this.comments.push(data);
+                        //         // tempData.push( data );
+                        // }
+                    });
 
-                this.axios.get('/api/profile/nursing/'+this.cusid) .then(response => {
-                    this.nursing_profiles = response.data.feature;
-                    console.log('This is JSON value');
-                    console.log(response.data);
-                    console.log(response.data);
+                }
 
-                    this.nus_method= response.data.method;
+                else{
+                    this.axios.get('/api/profile/customer/'+this.cusid+'/'+this.type).then(response => {
+                        this.customer = response.data;
+                        this.customer_name = response.data[0].name;
+                    });
+                    this.axios.get('/api/profile/hospital/'+this.cusid).then(response => {
+                        console.log('This is JSON value');
+                        console.log(response.data);
+                        console.log(response.data);
+                        this.google = response.data.hoslatlong;
 
-                    this.method_payment = response.data.cost;
+                        this.hospitals = response.data.hospital;
 
-                    this.nusfacilities = response.data.facility;
+                        this.hosfacilities=response.data.facility_list;
 
-                    this.cooperate_medical = response.data.comedical;
+                        this.fac_list = response.data.facility;
 
-                    this.medical_acceptance = response.data.medicalacceptance;
+                        this.markers[0]['position']['lat']  = response.data.hoslatlong[0]['latitude'];
 
-                    this.medical = response.data.medical;
+                        this.markers[0]['position']['lng']  = response.data.hoslatlong[0]['longitude'];
 
-                    this.staff = response.data.staff;
+                        this.center['lat'] = response.data.hoslatlong[0]['latitude'];
 
-                    this.google = response.data.nurselatlong;
+                        this.center['lng'] = response.data.hoslatlong[0]['longitude'];
 
-                    this.markers[0]['position']['lat']  = response.data.nurselatlong[0]['latitude'];
+                        this.images = response.data.images;
 
-                    this.markers[0]['position']['lng']  = response.data.nurselatlong[0]['longitude'];
+                        for(var i=0; i<this.images.length; i++){
+                            this.light_images.push({
+                                'name': this.images[i]['photo'],
+                                'description': this.images[i]['description'],
+                                'id': this.images[i]['id'],
+                                'title': this.images[i]['title']
+                            })
+                        }
 
-                    this.center['lat'] = response.data.nurselatlong[0]['latitude'];
+                        this.videos = response.data.videos;
 
-                    this.center['lng'] = response.data.nurselatlong[0]['longitude'];
+                        // this.panoimages = response.data.panoimages;
 
-                    this.images = response.data.images;
+                        if(response.data.hoslatlong[0]['latitude'] == 0 && response.data.hoslatlong[0]['longitude'] == 0)
 
-                    for(var i=0; i<this.images.length; i++){
-                        this.light_images.push({
-                            'name': this.images[i]['photo'],
-                            'description': this.images[i]['description'],
-                            'id': this.images[i]['id'],
-                            'title': this.images[i]['title']
-                        })
-                    }
+                        {
 
-                    this.panoimages = response.data.panoimages;
+                            this.center['lat'] = 35.6803997;
 
-                    this.videos = response.data.videos;
-                    // console.log(this.panoimages);return;
+                            this.center['lng'] = 139.76901739;
 
-                    if(response.data.nurselatlong[0]['latitude'] == 0 && response.data.nurselatlong[0]['longitude'] == 0)
-                    {
-                         this.center['lat'] = 35.6803997;
+                            this.markers[0]['position']['lat']  = 35.6803997;
 
-                         this.center['lng'] = 139.76901739;
+                            this.markers[0]['position']['lng']  = 139.76901739;
 
-                         this.markers[0]['position']['lat']  = 35.6803997;
+                        }
 
-                         this.markers[0]['position']['lng']  = 139.76901739;
+                    });
 
-                    }
-                });
+                    this.axios.get(`/api/profile/specialfeature/${this.type}/${this.cusid}`).then(response => {
 
+                        this.specialfeature = response.data;
 
+                    });
 
-                this.axios.get(`/api/profile/specialfeature/${this.type}/${this.cusid}`) .then(response => {
-                    this.specialfeature = response.data;
+                    this.axios.get('/api/profile/comment/'+this.cusid).then(response => {
 
-                });
+                        this.comments = response.data;
+                        if(this.comments.length > this.size){
+                            this.pagination = true;
+                        }else{
+                            this.pagination = false;
+                        }
 
-                  this.axios.get('/api/profile/comment/'+this.cusid) .then(response => {
+                    });
 
-                      this.comments = response.data;
-                      if(this.comments.length > this.size){
-                          this.pagination = true;
-                      }else{
-                          this.pagination = false;
-                      }
-                    // for ( var index=0; index<response.data.length; index++ ) {
+                    this.axios.get('/api/profile/subject/'+this.cusid).then(response => {
+                            this.subjects = response.data;
+                        for(var i=0; i< response.data.length; i++) {
+                            this.subject += response.data[i]['name'] + " , ";
+                        }
 
-                    //     data = { "created_date": "1", "created_time": "Valid" };
-                    //     this.comments.push(data);
-                    //         // tempData.push( data );
-                    // }
-                });
+                    });
 
-            }
+                    this.axios.get('/api/profile/schedule/'+this.cusid) .then(response => {
 
-            else{
-                this.axios.get('/api/profile/customer/'+this.cusid+'/'+this.type).then(response => {
-                    this.customer = response.data;
-                    this.customer_name = response.data[0].name;
-                });
-                this.axios.get('/api/profile/hospital/'+this.cusid).then(response => {
-                    console.log('This is JSON value');
-                    console.log(response.data);
-                    console.log(response.data);
-                    this.google = response.data.hoslatlong;
+                            this.am_arr = response.data.am;
+                            this.pm_arr = response.data.pm;
 
-                    this.hospitals = response.data.hospital;
+                    });
+                }
 
-                    this.hosfacilities=response.data.facility_list;
+                var new_width = $("#content-all").width();
 
-                    this.fac_list = response.data.facility;
+                var fixed_width = new_width - 80;
 
-                    this.markers[0]['position']['lat']  = response.data.hoslatlong[0]['latitude'];
+                this.width = fixed_width + "px";
 
-                    this.markers[0]['position']['lng']  = response.data.hoslatlong[0]['longitude'];
-
-                    this.center['lat'] = response.data.hoslatlong[0]['latitude'];
-
-                    this.center['lng'] = response.data.hoslatlong[0]['longitude'];
-
-                    this.images = response.data.images;
-
-                    for(var i=0; i<this.images.length; i++){
-                        this.light_images.push({
-                            'name': this.images[i]['photo'],
-                            'description': this.images[i]['description'],
-                            'id': this.images[i]['id'],
-                            'title': this.images[i]['title']
-                        })
-                    }
-
-                    this.videos = response.data.videos;
-
-                    // this.panoimages = response.data.panoimages;
-
-                    if(response.data.hoslatlong[0]['latitude'] == 0 && response.data.hoslatlong[0]['longitude'] == 0)
-
-                    {
-
-                         this.center['lat'] = 35.6803997;
-
-                         this.center['lng'] = 139.76901739;
-
-                         this.markers[0]['position']['lat']  = 35.6803997;
-
-                         this.markers[0]['position']['lng']  = 139.76901739;
-
-                    }
-
-                });
-
-                this.axios.get(`/api/profile/specialfeature/${this.type}/${this.cusid}`).then(response => {
-
-                    this.specialfeature = response.data;
-
-                });
-
-                 this.axios.get('/api/profile/comment/'+this.cusid).then(response => {
-
-                      this.comments = response.data;
-                      if(this.comments.length > this.size){
-                          this.pagination = true;
-                      }else{
-                          this.pagination = false;
-                      }
-
-                });
-
-                this.axios.get('/api/profile/subject/'+this.cusid).then(response => {
-                        this.subjects = response.data;
-                      for(var i=0; i< response.data.length; i++) {
-                          this.subject += response.data[i]['name'] + " , ";
-                      }
-
-                });
-
-                 this.axios.get('/api/profile/schedule/'+this.cusid) .then(response => {
-
-                        this.am_arr = response.data.am;
-                        this.pm_arr = response.data.pm;
-
-                });
-            }
-
-            var new_width = $("#content-all").width();
-
-            var fixed_width = new_width - 80;
-
-            this.width = fixed_width + "px";
-
-          },
+            },
 
           computed: {
             atEndOfList() {
