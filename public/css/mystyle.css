@@ -3567,18 +3567,7 @@ ul.hokkaido-wrap {
 
 @media print,
 screen and (min-width: 750px) {
-    .spanclass {
-        letter-spacing: normal;
-        /* width: 50%; */
-        display: inline-block;
-        /* margin-bottom: 5px; */
-        font-weight: bold;
-        text-align: center;
-        padding: 5px;
-        font-size: 12px;
-        margin-top: 1px;
-        margin-left: 3px;
-    }
+
     .spanclass a {
         position: relative;
     }
@@ -5339,8 +5328,8 @@ padding-bottom: 15px; */
     padding: 10px;
     width: 100%;
 }
-/* testing .pagination */
-.page-item:first-child .spanclass,
+/* listadmin .pagination */
+    .page-item:first-child .spanclass,
     .page-item:last-child .spanclass,
     .page-item:nth-child(2) .spanclass,
     .page-item:nth-last-child(2) .spanclass {
@@ -5348,10 +5337,25 @@ padding-bottom: 15px; */
         height: 30px;
         transition: background-color .3s;
     }
+    .pagination{
+        justify-content: center;
+    }
     .page-item .spanclass {
         width: 30px;
         height: 30px;
         background-image: none;
+    }
+    .spanclass {
+        letter-spacing: normal;
+        /* width: 50%; */
+        display: inline-block;
+        /* margin-bottom: 5px; */
+        font-weight: bold;
+        text-align: center;
+        padding: 5px;
+        font-size: 12px;
+        margin-top: 1px;
+        margin-left: 3px;
     }
     .spanclass {
         width: 60px;
@@ -5361,7 +5365,6 @@ padding-bottom: 15px; */
         float: left;
         text-align: center;
         overflow: hidden;
-        /* margin-top: 1px; */
         border: 1px solid #8e3c15;
         border-radius: 2px;
     }
@@ -5369,7 +5372,8 @@ padding-bottom: 15px; */
         position: relative;
     }
 
-/* end testing .pagination */
+
+/* end listadmin .pagination */
 /* Hospital Search */
 
 @media print,
@@ -9568,14 +9572,14 @@ ul.nur-caro-card>li.list-group-item {
         justify-content: center;
         text-align: center;
         margin-bottom: 10px;
-        margin-right: 50%;
+        /* margin-right: 50%; */
     }
     .pagination .page-item {
         padding: 1px;
     }
     .page-item .spanclass {
-        width: 28px;
-        height: 25px;
+        width: 30px;
+        height: 30px;
         background-image: none;
     }
     .spanclass {
@@ -9587,9 +9591,9 @@ ul.nur-caro-card>li.list-group-item {
     .spanclass a {
         position: relative;
     }
-    .pc-paginate {
+    /* .pc-paginate {
         display: none;
-    }
+    } */
     /* end pagination */
     .sp-768 {
         display: block;
@@ -9923,6 +9927,29 @@ ul.nur-caro-card>li.list-group-item {
 }
 
 @media only screen and (max-width: 620px) {
+    .pagination {
+        justify-content: center;
+        text-align: center;
+        margin-bottom: 10px;
+        /* margin-right: 50%; */
+    }
+    .pagination .page-item {
+        padding: 1px;
+    }
+    .page-item .spanclass {
+        width: 30px;
+        height: 30px;
+        background-image: none;
+    }
+    .spanclass {
+        float: left;
+        margin-top: 2px;
+        border: 1px solid #8e3c15;
+        border-radius: 3px;
+    }
+    .spanclass a {
+        position: relative;
+    }
     /* profile publish */
     .gallery-list .gallery-item {
         height: 100px;
@@ -10019,29 +10046,31 @@ ul.nur-caro-card>li.list-group-item {
     .pc-480 {
         display: none;
     }
+    .page-item:first-child .spanclass,
+    .page-item:last-child .spanclass,
+    .page-item:nth-child(2) .spanclass,
+    .page-item:nth-last-child(2) .spanclass {
+        width: 30px;
+        height: 30px;
+        transition: background-color .3s;
+    }
     .pagination {
-        flex-wrap: wrap;
+        /* flex-wrap: wrap; */
         justify-content: center;
         text-align: center;
         margin-bottom: 10px;
-        margin-right: 20%;
+        /* margin-right: 20%; */
     }
     .pagination .page-item {
         padding: 1px;
     }
-    .page-item .spanclass {
+    /* .page-item .spanclass {
         width: 28px;
         height: 25px;
         background-image: none;
-    }
+    } */
     .spanclass {
-        /* width: 45px;
-         height: 24px; */
-        /* background-color: #fff; */
-        /* background-image: linear-gradient(to bottom, #ffffff, #f1f1f1); */
         float: left;
-        /* text-align: center; */
-        /* overflow: hidden; */
         margin-top: 2px;
         border: 1px solid #8e3c15;
         border-radius: 3px;
@@ -10342,7 +10371,7 @@ ul.nur-caro-card>li.list-group-item {
     }
     .first-submenu span {
         display: none;
-    }    
+    }
     .d-none-380 {
         display: none !important;
     }

@@ -54,7 +54,7 @@
                             <div class="form-group">
                                 <label>内容:<span class="error">*</span></label>
                                 <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="10" placeholder="内容を入力してください。" v-model="news.body"></textarea>
-                                <span v-if="errors.body" class="error">{{errors.body}}</span> 
+                                <span v-if="errors.body" class="error">{{errors.body}}</span>
                             </div>
                             <div class="form-group">
                                 <label>関連ニュース:</label>
@@ -94,7 +94,7 @@
                                                     <div class="control__indicator"></div>
                                                 </label>
                                             </div>
-                                            <div class="offset-md-4 col-md-8 mt-3" v-if="pagination">
+                                            <div class="col-12" v-if="pagination">
                                                         <nav aria-label="Page navigation example">
                                                             <ul class="pagination">
                                                                 <li class="page-item">
@@ -232,12 +232,12 @@
                 },
                 displayItems() {
                     // if(this.check_head == true){
-                    //     const head = 0;                    
+                    //     const head = 0;
                     //     return this.related_news.slice(head,head + this.size);
                     // }else{
-                        const head = this.currentPage * this.size;                    
+                        const head = this.currentPage * this.size;
                         return this.related_news.slice(head,head + this.size);
-                    // }                    
+                    // }
                 },
                 isSelected(page) {
                     return page - 1 == this.currentPage;
@@ -327,7 +327,7 @@
                                     width: 250,
                                     height: 200,
                                 })
-                                
+
                                 //alert('Successfully Updated!')
                                 this.$router.push({
                                     name: 'news_list'
@@ -339,7 +339,7 @@
                             }
                             });
                         });
-                    
+
                     },
                     getstates: function() {
                         this.news.category_id = this.selectedValue;

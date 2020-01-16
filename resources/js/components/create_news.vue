@@ -49,7 +49,7 @@
                                 <input type="text" class="form-control" placeholder="画像の説明を入力してください。" v-model="news.main_point">
                                 <span v-if="errors.main_point" class="error">{{errors.main_point}}</span>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label>内容:<span class="error">*</span></label>
                                     <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="10" placeholder="内容を入力してください。" v-model="news.body"></textarea>
@@ -57,10 +57,10 @@
                             </div>
 
                             <div class="form-group">
-                                <label>関連ニュース:</label>     
+                                <label>関連ニュース:</label>
                                 <div class="related-card">
                                     <div class="card-body">
-                                        
+
                                         <div class="row">
                                             <label> カテゴリー:</label>
                                             <div class="col-md-5">
@@ -76,7 +76,7 @@
                                             </div>
                                         </div>
                                         <br/>
-                                        
+
                                         <div class="row">
                                             <div class="col-md-4 t_card t2_card" v-for="news in displayItems" :key="news.id" style="max-width:none;">
                                                 <label class="form-check-label control control--checkbox">
@@ -98,7 +98,7 @@
                                                     <div class="control__indicator"></div>
                                                 </label>
                                             </div>
-                                            <div class="offset-md-4 col-md-8 mt-3" v-if="pagination">
+                                            <div class="col-12" v-if="pagination">
                                                 <nav aria-label="Page navigation example">
                                                     <ul class="pagination">
                                                         <li class="page-item">
