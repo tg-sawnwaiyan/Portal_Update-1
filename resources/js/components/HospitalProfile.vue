@@ -93,14 +93,10 @@
                 <div class="col-md-12">
 
                   <input type="file" name class="hospital-photo m-b-15"  v-bind:class="'classname'+indx" id="upload_img" @change="preview_image($event,indx)" />
-
                   <div class="col-md-12" v-bind:class="img.id">
-
-                    <input type="hidden" class="already-photo" v-model="img.photo" />
-                  
-                    <img v-bind:src="'/upload/hospital_profile/'+ img.photo" class="img-fluid hospital-image" alt="profile"  v-if="img.id != null"   @error="imgUrlAlt"/>
-                    <div v-bind:id="'already-photo'+indx" v-else> </div>
-                 
+                    <input type="hidden" class="already-photo" v-model="img.photo" />                  
+                    <img v-bind:src="'/upload/hospital_profile/'+ img.photo" class="img-fluid hospital-image" alt="profile" v-if="img.id != null" @error="imgUrlAlt"/>
+                    <div v-bind:id="'already-photo'+indx" v-else> </div>                 
                   </div>
 
                 </div>
@@ -113,7 +109,7 @@
 
                 </div>
                 <div class="col-md-12 text-right">
-                  <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,'photo')">
+                  <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,img.id,'photo')">
                     <i class="fa fa-trash"></i> 削除
                   </a>
                  </div>
@@ -162,7 +158,7 @@
 
                 </div>
                 <div class="col-md-12 text-right">
-                  <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,'video')">
+                  <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,video.id,'video')">
 
                   <i class="fa fa-trash"></i> 削除
 
@@ -1481,7 +1477,7 @@ export default {
                      this.isRotate1 = !this.isRotate1;
 
             },
-            DeltArr(indx,type) {
+            DeltArr(indx,id,type) {
               
 
               this.$swal({
@@ -1499,36 +1495,44 @@ export default {
                         confirmButtonClass: "all-btn",
                         cancelButtonClass: "all-btn"
                     }).then(response => { 
+                        console.log(type+"/"+id)
+                        if(type == 'photo') {
+                            if(id){                              
+                                
+                                let fd = new FormData();
+                                fd.append('id',id);
+                                fd.append('photo',this.img_arr[indx]['photo']);
+                                fd.append('customer_id',this.cusid)
+                                fd.append('custype','hospital')
+                                this.img_arr.splice(indx,1);
 
-                        if(type == 'video')
-                        {
-                            var id = this.video_arr[indx]['id'];
-                            this.video_arr.splice(indx, 1);   
-                        }
-                        else{
-                            var id = this.img_arr[indx]['id'];
-                            var photo = this.img_arr[indx]['photo'];
-                            this.img_arr.splice(indx, 1);  
-                        }
-
-                        this.axios.get(`/api/gallery/`+ id+`/` + photo)
-                        .then(response => {
-
-                            this.$swal({  
-                                text: "職種を削除しました。",
-                                type: "success",
-                                width: 350,
-                                height: 200,
-                                confirmButtonText: "閉じる",
-                                confirmButtonColor: "#dc3545"
-                            });
-                            
-                        }).catch(error=>{
-                            
-                            if(error.response.status == 422){
-                                this.errors = error.response.data.errors
+                                this.axios
+                                .post('/api/delete-pgallery',fd)
+                                .then(response=>{
+                                    
+                                    this.$swal({  
+                                        text: "職種を削除しました。",
+                                        type: "success",
+                                        width: 350,
+                                        height: 200,
+                                        confirmButtonText: "閉じる",
+                                        confirmButtonColor: "#dc3545"
+                                    });
+                                })
+                                .catch(error=>{   
+                                    console.log(error)                         
+                                    if(error.response.status == 422){
+                                        this.errors = error.response.data.errors
+                                    }
+                                })
+                            } else {
+                                this.img_arr.splice(indx,1);
                             }
-                        })
+                        }
+
+                        if(type == 'video') {
+                            this.video_arr.splice(indx,1);
+                        }                       
                  });
                  
             },
@@ -1619,6 +1623,7 @@ export default {
               
                 this.hospital_info.latitude = $('#new_lat').val();
                 this.hospital_info.longitude = $('#new_long').val();
+                this.customer_info.address = $('#address_val').val();
             
                 this.customer_info.townships_id = Number($('#gmaptownship').val());
                 localStorage.setItem('lat_num',this.hospital_info.latitude);
@@ -1626,27 +1631,26 @@ export default {
                 let pt = new FormData();
                 for(var i =this.img_arr.length-1;i>=0;i--)
                 {
-                this.img_arr[i]['type'] = 'photo';
-                if(this.img_arr[i]['photo'] == null || this.img_arr[i]['photo'] == '')
-                {
-                    this.img_arr.splice(i,1);
-                }
-            
-                var img = document.getElementsByClassName('gallery-area-photo');
-                var file = img[i].getElementsByClassName('hospital-photo')[0].files[0];
-                if(file) {                             
+                    this.img_arr[i]['type'] = 'photo';
+                    if(this.img_arr[i]['photo'] == null || this.img_arr[i]['photo'] == '')
+                    {
+                        this.img_arr.splice(i,1);
+                    }
+                
+                    var img = document.getElementsByClassName('gallery-area-photo');
+                    var file = img[i].getElementsByClassName('hospital-photo')[0].files[0];
+                    if(file) {                             
                         pt.append(i ,file )  
-                        
-                }      
+                    }      
                 }      
                   
                 for(var i =this.video_arr.length-1;i>=0;i--)
                 {
-                this.video_arr[i]['type'] = 'video';
-                if(this.video_arr[i].photo == null || this.video_arr[i].photo == '' )
-                {
-                    this.video_arr.splice(i,1);
-                }     
+                    this.video_arr[i]['type'] = 'video';
+                    if(this.video_arr[i].photo == null || this.video_arr[i].photo == '' )
+                    {
+                        this.video_arr.splice(i,1);
+                    }     
                             
                 }       
 
