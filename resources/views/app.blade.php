@@ -107,7 +107,10 @@
 <!-- <script src="{{ asset('js/map-api.js') }}"></script> -->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2U_IRuSrajQavHadFp8FlXNi61MA3nw"></script>
 <!-- <script src="http://maps.google.com/maps/api/js"></script> -->
-<script src="{{ asset('js/vue2-5-13.js') }}"></script>
+<!-- <script src="{{ asset('js/vue2-5-13.js') }}"></script>
+<script src="{{ asset('js/vue-scrollto.js') }}"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue-scrollto"></script> -->
 <script src="{{ asset('js/vue-scrollto.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/pannellum.js') }}"></script>
 <!-- Include after Vue (before closing body) -->
