@@ -103,9 +103,9 @@ class NursingProfileController extends Controller
             $cop_medical = new Cooperate_Medical;
             $cop_medical->customer_id = $id;
             $cop_medical->name = $request[0]['cooperate_list'][$i]['name'];
-            $cop_medical->clinical_subject = $request[0]['cooperate_list'][$i]['subject'];
+            $cop_medical->clinical_subject = $request[0]['cooperate_list'][$i]['clinical_subject'];
             $cop_medical->details = $request[0]['cooperate_list'][$i]['details'];
-            $cop_medical->medical_expense = $request[0]['cooperate_list'][$i]['expense'];
+            $cop_medical->medical_expense = $request[0]['cooperate_list'][$i]['medical_expense'];
             $cop_medical->remark = $request[0]['cooperate_list'][$i]['remark'];
 
             $cop_medical->save();
@@ -115,7 +115,7 @@ class NursingProfileController extends Controller
         // Payment List
         $payment = method_payment::where('customer_id', $id)
                         ->delete();
-
+        
         for($i=0; $i<count($request[0]['payment_list']); $i++) {
             $m_payment = new method_payment;
             $m_payment->customer_id = $id;
@@ -184,8 +184,7 @@ class NursingProfileController extends Controller
         // End
 
         // Feature
-        $feature = SpecialFeaturesJunctions::where('customer_id', $id)
-                    ->delete();
+        $feature = SpecialFeaturesJunctions::where('customer_id', $id) ->delete();
 
         for($indx=0; $indx<count($request[0]['chek_feature'][0]['special_feature_id']); $indx++) {
             $new_feature = new SpecialFeaturesJunctions();
