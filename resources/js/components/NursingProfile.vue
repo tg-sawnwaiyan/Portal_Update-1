@@ -567,7 +567,7 @@
                                     <div class="row">
                                         <div v-for="feat in feature_list" :key="feat.id" class="form-check form-check-inline col-sm-3">
                                             <label  class="form-check-label control control--checkbox" style="padding-left:5px;">
-                                                <input type="checkbox" class="form-check-input"  name="special-features" v-bind:value="feat.id" @click="stationCheck(feat.id)" v-model="feat.checked">
+                                                <input type="checkbox" class="form-check-input"  name="special-features" v-bind:value="feat.id"  v-model="feat.checked">
                                                 {{feat.name}}
                                                  <div class="control__indicator"></div>
                                             </label>
@@ -879,14 +879,7 @@ export default {
             staffToggleDiv() {
                 $(".staff-toggle-div").toggle('medium');
                 this.isRotate3 = !this.isRotate3;
-            },
-
-            featureCheck(check_id) {
-                $('.feature-'+check_id).attr('checked','true');
-            },
-            stationCheck(check_id) {
-                $('.station-'+check_id).attr('checked','true'); 
-            },                
+            },              
             preview_image(event,indx) {
                 $('#already-photo'+indx).html("<img src='"+URL.createObjectURL(event.target.files[0])+"' class='img-fluid nursing-image'>");
                 this.img_arr[indx]['photo'] = event.target.files[0].name;
@@ -1188,6 +1181,7 @@ export default {
 
                 this.nursing_info.latitude = $('#new_lat').val();
                 this.nursing_info.longitude = $('#new_long').val();
+                this.customer_info.address = $('#address_val').val();
                 
                 this.customer_info.townships_id = Number($('#gmaptownship').val());
                 localStorage.setItem('lat_num',this.nursing_info.latitude);
@@ -1244,10 +1238,12 @@ export default {
                 }
 
                var s_features =[];
+               this.chek_feature = [];
                     $.each($("input[name='special-features']:checked"), function(){
                             s_features.push($(this).val());
                     });
                 this.chek_feature.push({special_feature_id:s_features});
+                console.log(this.chek_feature)
 
 
                 var acceptance=[];

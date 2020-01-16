@@ -59,17 +59,18 @@
                                                 <div class="col-lg-10 col-md-8">{{customer.address}}</div>
                                                 </div>
                                                 <div class="row mt-3">
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-12">
                                                         <button class="btn delete-borderbtn" @click="deleteCustomer(customer.id)">削除</button>
                                                         <!-- <router-link :to="{name:'custedit',params:{id:customer.id}}" class="btn main-bg-color all-btn white">Edit</router-link> -->
                                                         <!-- <button class="btn confirm-borderbtn" v-if="customer.status == 0">確認済</button> -->
 
                                                         <button class="btn confirm-borderbtn" :id="'confirm-btn'+customer.id" v-if="customer.status == 0" @click="comfirm(customer.id)">新規登録承認</button>
                                                         <span class="btn confirm-borderbtn" style="border-color: #ccc!important; color: #ccc!important;cursor:not-allowed;" :id="'confirm-btn'+customer.id" v-else>登録承認済</span>
-                                                        <router-link :to="{name: 'profiledit', params:{cusid: customer.id}}" class="btn confirm-orangebtn">プロフィール設定</router-link>
+                                                        <span class="float-right">
+                                                        <router-link :to="{name: 'profiledit', params:{cusid: customer.id}}" v-if="customer.status == 1" class="btn confirm-orangebtn">プロフィール設定</router-link>
                                                         <!-- <button class="btn confirm-orangebtn">プロフィール設定</button> -->
-                                                        <router-link :to="{name: 'profile', params:{cusid: customer.id, type: customer.type_id == 2? 'hospital':'nursing'}}" class="btn confirm-orangebtn">ページ編集</router-link>
-                    
+                                                        <router-link :to="{name: 'profile', params:{cusid: customer.id, type: customer.type_id == 2? 'hospital':'nursing'}}" v-if="customer.status == 1" class="btn confirm-orangebtn">ページ編集</router-link>
+                                                        </span>
                                                     </div>
                                             </div>
                                         </div>
@@ -305,25 +306,52 @@
                     imgUrlAlt(event) {
                         event.target.src = "images/noimage.jpg"
                     },
-                    first() {
-                        this.currentPage = 0;
-                    },
-                    last() {
-                        this.currentPage = this.pages - 1;
-                    },
-                    prev() {
-                        if (0 < this.currentPage) {
-                            this.currentPage--;
-                        }
-                    },
-                    next() {
-                        if (this.currentPage < this.pages - 1) {
-                            this.currentPage++;
-                        }
-                    },
-                    pageSelect(index) {
-                        this.currentPage = index - 1;
-                    },
+                    // first() {
+                    //     this.currentPage = 0;
+                    // },
+                    // last() {
+                    //     this.currentPage = this.pages - 1;
+                    // },
+                    // prev() {
+                    //     if (0 < this.currentPage) {
+                    //         this.currentPage--;
+                    //     }
+                    // },
+                    // next() {
+                    //     if (this.currentPage < this.pages - 1) {
+                    //         this.currentPage++;
+                    //     }
+                    // },
+                    // pageSelect(index) {
+                    //     this.currentPage = index - 1;
+                    // },
+
+                      first() {
+                    this.currentPage = 0;
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                },
+                last() {
+                    this.currentPage = this.pages - 1;
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                },
+                prev() {
+                    if (0 < this.currentPage) {
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
+                        this.currentPage--;
+                    }
+                },
+                next() {
+                    if (this.currentPage < this.pages - 1) {
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
+                        this.currentPage++;
+                    }
+                },
+                pageSelect(index) {
+                    this.currentPage = index - 1;
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                    // window.scrollTo(0,0);
+                },
+                    
             }
     };
 </script>

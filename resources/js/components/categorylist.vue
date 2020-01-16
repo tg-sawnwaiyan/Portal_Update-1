@@ -197,7 +197,7 @@
                                         // this.$swal("このカテゴリに関連するニュースがあるため、削除できません。");
                                         this.$swal({
                                             title: "削除に失敗しました",
-                                            text: "このカテゴリのニュースが保存するため削除できません。",
+                                            text: "削除に失敗しました このカテゴリのニュースが存在するため削除できません。 ",
                                             type: "error",
                                             width: 350,
                                             height: 200,
@@ -232,25 +232,52 @@
                             }
                         });
                     },
-                    first() {
-                        this.currentPage = 0;
-                    },
-                    last() {
-                        this.currentPage = this.pages - 1;
-                    },
-                    prev() {
-                        if (0 < this.currentPage) {
-                            this.currentPage--;
-                        }
-                    },
-                    next() {
-                        if (this.currentPage < this.pages - 1) {
-                            this.currentPage++;
-                        }
-                    },
-                    pageSelect(index) {
-                        this.currentPage = index - 1;
-                    },
+                    
+                    // first() {
+                    //     this.currentPage = 0;
+                    // },
+                    // last() {
+                    //     this.currentPage = this.pages - 1;
+                    // },
+                    // prev() {
+                    //     if (0 < this.currentPage) {
+                    //         this.currentPage--;
+                    //     }
+                    // },
+                    // next() {
+                    //     if (this.currentPage < this.pages - 1) {
+                    //         this.currentPage++;
+                    //     }
+                    // },
+                    // pageSelect(index) {
+                    //     this.currentPage = index - 1;
+                    // },
+
+                      first() {
+                    this.currentPage = 0;
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                },
+                last() {
+                    this.currentPage = this.pages - 1;
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                },
+                prev() {
+                    if (0 < this.currentPage) {
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
+                        this.currentPage--;
+                    }
+                },
+                next() {
+                    if (this.currentPage < this.pages - 1) {
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
+                        this.currentPage++;
+                    }
+                },
+                pageSelect(index) {
+                    this.currentPage = index - 1;
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                    // window.scrollTo(0,0);
+                },
             }
     };
 </script>
