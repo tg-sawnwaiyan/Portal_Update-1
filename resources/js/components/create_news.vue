@@ -131,7 +131,7 @@
                         <router-link :to="{name: 'news_list'}" class="btn btn-danger all-btn">キャンセル</router-link>
                     </div>
                 </form>
-                </div>
+            </div>
             <!-- {{ related_news }} -->
         </div>
     </div>

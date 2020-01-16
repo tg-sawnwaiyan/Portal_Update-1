@@ -1597,6 +1597,38 @@ label {
     left: 15px;
 }
 
+.newsList_wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.newsList_photo {
+    max-width: 200px;
+    margin-right: 20px;
+}
+
+.newsList_photo img {
+    width: 100%;
+}
+
+.newsList_txt {
+    width: 30%;
+}
+
+.newsList_txt h5 a {
+    display: block;
+}
+
+.newsList_txt h5 a,
+.newsList_txt p {
+    width: 90%;
+}
+
 .related-card {
     margin-bottom: 20px;
     background: #f5f5f5;
