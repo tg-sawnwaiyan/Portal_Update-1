@@ -100,7 +100,7 @@
                                     </div>
                                     <div class="form-group row pl-4 mb-0">
                                         <div class="col-md-3 font-weight-bold">
-                                            市区町村、番地（建物名）
+                                            番地（建物名）
                                         </div>
                                         <div class="col-md-9 p-0">
                                             <input type="text" name="outputcity" id="outputcity" class="mailbox" disabled v-model="comments.city" />
