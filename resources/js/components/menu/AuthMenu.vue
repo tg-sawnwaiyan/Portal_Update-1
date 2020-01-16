@@ -21,7 +21,7 @@
                 </button> -->
                 
                 <ul class="gNav">
-                    <li v-if="visit != 'true'">
+                    <li v-if="visit == 'false'">
                         <router-link :to="{ name: 'News' }"> サイトを表示</router-link>
                     </li>
 
@@ -48,14 +48,14 @@
                         </li>
                         <li class="nav-item  m-l-10" v-if="!$auth.check()">
                             <router-link :to="{name: 'register'}" class="nav-link pad-free"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;<span>事業者 登録</span></router-link>
-                        </li> 
+                        </li>
                         <li class="nav-item m-r-10" v-if="visit == 'true'">
                             <a class="nav-link pad-free" @click="gotoDash()"><i class="fas fa-tachometer-alt"></i> 管理画面へ</a>
                         </li>
                         <li class="social-link" v-if="!$auth.check()"><a href="http://localhost:8000/registerForm"><i class="fab fa-twitter"></i></a></li>
                         <li class="social-link" v-if="!$auth.check()"><a href="http://localhost:8000/registerForm"><i class="fab fa-facebook-f"></i></a></li>
-                
-                        
+
+
                         <li class="userprofile-name pc" v-if="$auth.check()">
                                 <span v-if="user.data.type_id == 1">
                                     <i class="fa fa-user userprofile-img" aria-hidden="true"></i>
@@ -79,9 +79,11 @@
                     </div>
                 </div>
             </div>
-            <div id="sp_adminheader">     
+            <div id="sp_adminheader">
+
                 <div class="admin_menu"  @click="toggle">
-                    <span>メニュー</span>&nbsp;<i :class="!isNav ? open : close" style="width:15px;" ></i>     
+                    <span>メニュー</span>&nbsp;<i :class="!isNav? open : close" style="width:15px;" ></i>
+                    <!-- <div class="overlay" :class="!isNav? overlay : overlay01"></div> -->
                 </div>
                 <div class="sp_adminNav"  v-if="isNav">
                     <div class="overlay"></div> 
@@ -93,7 +95,7 @@
                                事業者管理画面
                             </li>
                             <li v-if="$auth.check(2)" class="admin_head admin_head02">
-                               管理者画面 
+                               管理者画面
                             </li>
                             <li v-if="$auth.check(1)" @click="toggle">
                                 <router-link :to="{ name: 'profiledit' }"><i class="fa fa-map"></i>  プロファイル設定</router-link>
@@ -106,7 +108,7 @@
                             </li>
                             <li v-if="$auth.check(1)" @click="toggle">
                                 <router-link :to="{ name: 'jobapplicantlist' }"><i class="fa fa-list-ul"></i>  求人応募者一覧</router-link>
-                            </li> 
+                            </li>
                             <li v-if="$auth.check(2)">
                                 <span @click="subMenu(0)" :class="{ active : isActive == 0 }"><i class="fa fa-list-ul"></i>  ニュース <i class="fas fa-angle-right" :class="{ down : isRotate == 0 }"></i></span>
                                 <transition name="slideup">
@@ -135,7 +137,7 @@
                                             </li>
                                         </ul>
                                     </transition>
-                                </li> 
+                                </li>
                                 <li v-if="$auth.check(2)">
                                     <span @click="subMenu(2)" :class="{ active : isActive == 2 }"><i class="fa fa-user-md"></i>  病院 <i class="fas fa-angle-right" :class="{ down : isRotate == 2 }"></i></span>
                                     <transition name="slideup">
@@ -157,7 +159,7 @@
                                             </li>
                                         </ul>
                                     </transition>
-                                </li> 
+                                </li>
                                 <li v-if="$auth.check(2)"  @click="toggle">
                                     <router-link :to="{ name: 'occupationlist' }"><i class="fa fa-suitcase"></i>  職種設定</router-link>
                                 </li>
@@ -166,9 +168,9 @@
                                 </li>
                             <li>
                                 <a href="#" @click.prevent="$auth.logout()"><i class="fa fa-lock"></i> ログアウト</a>
-                            </li>      
-                        </ul>  
-                        <ul class="sidebar-brand" v-if="visit == 'true'">
+                            </li>
+                        </ul>
+                        <ul class="sidebar_brand" v-if="visit == 'true'">
                             <li>
                                 <router-link :to="{ name: 'News' }"><i class="fas fa-newspaper"></i>  ニュース（ホーム）</router-link>
                             </li>
@@ -194,24 +196,24 @@
                                 <router-link :to="{name: 'register'}" class="nav-link pad-free"><i class="fa fa-user-plus"></i> 事業者 登録</router-link>
                             </li>
                             <li>
-                            
+
                             <ul class="contact_list"  v-if="visit == 'true'">
-                                <li><a href="tel::03-1234-5678"><i class="fas fa-phone-alt"></i><span>03-1234-5678</span></a></li>   
-                                <li><a href="mailto:mpm_secretary@management-partners.co.jp"><i class="fas fa-envelope"></i>mpm_secretary@management-partners.co.jp</a></li>     
+                                <li><a href="tel::03-1234-5678"><i class="fas fa-phone-alt"></i><span>03-1234-5678</span></a></li>
+                                <li><a href="mailto:mpm_secretary@management-partners.co.jp"><i class="fas fa-envelope"></i>mpm_secretary@management-partners.co.jp</a></li>
                             </ul>
                             <ul class="sp_social d-none-768">
                             <li class="social-link" v-if="!$auth.check()"><a href="https://twitter.com/login?lang=en"><i class="fab fa-twitter"></i></a></li>
                             <li class="social-link" v-if="!$auth.check()"><a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a></li>
-                            </ul> 
-                            </li>          
+                            </ul>
+                            </li>
                         </ul>
                     </div>
                 </transition>
             </div>
-            
+
         </nav>
         <!--end navigation bar-->
-      
+
     </div>
 </template>
 <style>
@@ -300,7 +302,7 @@
         isHistory: false,
         isNav: false,
         isMenu: false,
-        open : 'fa fa-bars' , 
+        open : 'fa fa-bars' ,
         close : 'fa fa-times',
         main_header : 'main-header',
         admin_header :'admin-header',
@@ -310,7 +312,7 @@
         isRotate : 0,
       }
     },
-   
+
     mounted() {
         console.log("auth menu "+this.$auth.check())
         console.log("auth visit "+this.visit)
@@ -337,6 +339,7 @@
         },
          toggle() {
             this.isNav = !this.isNav;
+            // $(".content-all").css ({"opacity": "0.9","background":"#000015"});
         },
          subMenu: function (n) {   
                  if(this.isSubmenu[n].show){

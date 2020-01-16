@@ -69,7 +69,7 @@
                                                         <router-link :to="{name: 'profiledit', params:{cusid: customer.id}}" class="btn confirm-orangebtn">プロフィール設定</router-link>
                                                         <!-- <button class="btn confirm-orangebtn">プロフィール設定</button> -->
                                                         <router-link :to="{name: 'profile', params:{cusid: customer.id, type: customer.type_id == 2? 'hospital':'nursing'}}" class="btn confirm-orangebtn">ページ編集</router-link>
-                    
+
                                                     </div>
                                             </div>
                                         </div>
@@ -77,7 +77,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="offset-md-4 col-md-8 mt-3" v-if="pagination">
+                        <div class="col-12" v-if="pagination">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination">
                                     <li class="page-item">
@@ -125,7 +125,7 @@
 
                 this.$loading(true);
                 this.initialCall();
-                
+
             },
             computed: {
                 pages() {
@@ -243,7 +243,7 @@
                                 //flash("Delete Success", "success");
                                 // let a = this.customers.map(item => item.id).indexOf(id);
                                 // this.customers.splice(a, 1);
-                                
+
                             });
                         });
                     },
@@ -277,7 +277,7 @@
                             }
 
                             this.$loading(false);
-                            
+
                             // $('#confirm-btn' + id).css('display', 'none');
                         });
                     },

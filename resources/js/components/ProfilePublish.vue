@@ -3,7 +3,7 @@
   <div id="app">
 
     <div v-if="type == 'nursing'" id="nursingView">
-         <span class="top-mail-btn" @click="documentPost()" v-if="!loginuser && !$auth.check()"><i data-v-b65423c6="" class="far fa-envelope" style="color: #fff  !important;font-size: 15px;"></i>&nbsp;資料請求</span>
+         <span class="top-mail-btn pc-414" @click="documentPost()" v-if="!loginuser && !$auth.check()"><i data-v-b65423c6="" class="far fa-envelope" style="color: #fff  !important;font-size: 15px;"></i>&nbsp;資料請求</span>
         <!--panorama-->
         <h4 class="profile-tit"  v-if="!currentPanoImage"> {{customer_name}}</h4>
 
@@ -12,7 +12,7 @@
 
             <div class="thumbnail-img pc-414" style="padding:0px;border:none;">
                 <div class="card-carousel" style="background:#fff;">
-                <div class="card-img">                   
+                <div class="card-img">
                     <Pannellum :src="'/upload/nursing_profile/Imagepanorama/' + currentPanoImage" class="pannellum" :auto-load="true" :show-zoom="true" :show-fullscreen="true" :auto-rotate="isAutoRotationOn" :orientation="isOrientationOn" :compass="true" :hfov= "120" :draggable="true"></Pannellum>
                 </div>
                 <div class="col-12" id="pano-slider-page">
@@ -54,63 +54,68 @@
                     </div>
             </div>
             </div>
-            <!--responsive pano-->  
-            <div class="sp-414 res-pano"  v-if="panoimages.length > 0">
+            <!--responsive pano-->
+            <!-- <div class="sp-414 res-pano"  v-if="panoimages.length > 0">
                 <slick :options="slickOptions" ref="slickSetting1">
-                    <div><h2><img :src="'/upload/nursing_profile/Imagepanorama/' + currentPanoImage" class="img-fluid" @error="imgUrlAlt"/></h2></div>				
+                    <div><h2><img :src="'/upload/nursing_profile/Imagepanorama/' + currentPanoImage" class="img-fluid" @error="imgUrlAlt"/></h2></div>
                 </slick>
                 <slick :options="slickOptions2" ref="slickSetting2" id="res-pano">
                         <div v-for="(image,index) in  panoimages" :key="image.id" :class="[(activePanoImage == index) ? 'active' : '']" @click="activatePanoImage(index)">
-                        <h3>                                   
+                        <h3>
                             <span>
-                                <img  :src ="'/upload/nursing_profile/Imagepanorama/' + image.photo" @error="imgUrlAlt" class="img-fluid">  
-                            </span>                    
+                                <img  :src ="'/upload/nursing_profile/Imagepanorama/' + image.photo" @error="imgUrlAlt" class="img-fluid">
+                            </span>
                         </h3>
-                    </div>                
+                    </div>
                 </slick>
                 <div class="see-pano">
                     <span @click='isPano = !isPano'>
                         <li class="first-submenu">
-                            <p>360</p>
+                            <p><svg x="0px" y="0px"
+                                width="48" height="48"
+                                viewBox="0 0 172 172"
+                                style=" fill:#000000;">
+                                <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g><path d="M150.5,25.08333c-5.93758,0 -10.75,4.81242 -10.75,10.75c0,5.93758 4.81242,10.75 10.75,10.75c5.93758,0 10.75,-4.81242 10.75,-10.75c0,-5.93758 -4.81242,-10.75 -10.75,-10.75zM150.5,39.41667c-1.978,0 -3.58333,-1.60533 -3.58333,-3.58333c0,-1.978 1.60533,-3.58333 3.58333,-3.58333c1.978,0 3.58333,1.60533 3.58333,3.58333c0,1.978 -1.60533,3.58333 -3.58333,3.58333z" fill="#333333"></path><path d="M86,154.08333c-48.2245,0 -86,-19.50408 -86,-44.40467c0,-9.28442 5.28542,-18.11017 15.27933,-25.52408c1.59458,-1.17892 3.83417,-0.84208 5.01308,0.74533c1.17892,1.58742 0.84567,3.83417 -0.74533,5.0095c-5.64733,4.1925 -12.38042,11.02233 -12.38042,19.76925c0,20.1885 36.10208,37.238 78.83333,37.238c42.73125,0 78.83333,-17.05308 78.83333,-37.24158c0,-8.18792 -6.11675,-16.35075 -17.2215,-22.97633c-1.6985,-1.01408 -2.25392,-3.21425 -1.23983,-4.91633c1.0105,-1.70208 3.21067,-2.25392 4.91275,-1.23983c13.35867,7.97292 20.71167,18.318 20.71167,29.1325c0.00358,24.90417 -37.77192,44.40825 -85.99642,44.40825z" fill="#ff9800"></path><path d="M42.12567,65.91542h4.83392c1.83467,0 3.182,-0.64142 4.03842,-1.92067c0.86,-1.28283 1.28642,-2.99208 1.28642,-5.13133c0,-2.04608 -0.44075,-3.63708 -1.32225,-4.78017c-0.8815,-1.1395 -2.064,-1.70925 -3.54392,-1.70925c-1.38675,0 -2.52267,0.54108 -3.40417,1.62325c-0.8815,1.08217 -1.32225,2.44742 -1.32225,4.09217h-9.98317c0,-2.68033 0.61633,-5.08475 1.85258,-7.21325c1.23625,-2.1285 2.96342,-3.79117 5.18508,-4.99158c2.22167,-1.19683 4.68342,-1.79883 7.38883,-1.79883c4.72642,0 8.43158,1.30433 11.11192,3.91658c2.68033,2.61225 4.0205,6.18483 4.0205,10.72133c0,2.32917 -0.60558,4.48633 -1.81675,6.4715c-1.21117,1.98517 -2.80575,3.51167 -4.78017,4.56875c2.42233,1.03558 4.22833,2.58717 5.41442,4.65475c1.18608,2.07117 1.78092,4.515 1.78092,7.33867c0,4.56158 -1.45125,8.22017 -4.35733,10.96858c-2.90608,2.752 -6.71875,4.128 -11.44517,4.128c-4.39675,0 -7.96933,-1.35808 -10.707,-4.07425c-2.73767,-2.71617 -4.1065,-6.28517 -4.1065,-10.707h9.98317c0,1.83467 0.48017,3.3755 1.44767,4.61892c0.96392,1.247 2.18583,1.8705 3.66933,1.8705c1.71642,0 3.0745,-0.63425 4.07425,-1.90275c0.99975,-1.2685 1.50142,-2.96342 1.50142,-5.07758c0,-5.05608 -1.96367,-7.59667 -5.891,-7.61817h-4.902v-8.04817z" fill="#333333"></path><path d="M93.5895,44.25775v8.46742h-0.559c-3.73742,0.0215 -6.71158,1.14667 -8.90817,3.36833c-2.20017,2.22167 -3.53317,5.332 -4.00617,9.331c2.14283,-2.44742 4.82317,-3.66933 8.04458,-3.66933c3.71592,0 6.67933,1.58742 8.90458,4.76225c2.22525,3.17483 3.33608,7.40675 3.33608,12.69575c0,3.36475 -0.63425,6.39625 -1.90275,9.10167c-1.27567,2.70183 -3.05658,4.80167 -5.34633,6.29592c-2.29692,1.49425 -4.88767,2.23958 -7.77942,2.23958c-4.65475,0 -8.38858,-1.8705 -11.19792,-5.60792c-2.80933,-3.73742 -4.21758,-8.772 -4.21758,-15.09658v-3.70517c0,-5.66883 0.88867,-10.63175 2.666,-14.88517c1.77375,-4.257 4.33942,-7.53217 7.68983,-9.82192c3.35042,-2.29333 7.25983,-3.45075 11.72825,-3.47583zM85.01817,69.97175c-1.27208,0 -2.33633,0.39775 -3.19275,1.20042c-0.86,0.80267 -1.49783,1.79167 -1.92067,2.97058v3.60483c0,3.62992 0.48017,6.33892 1.44408,8.127c0.96392,1.79167 2.23242,2.68392 3.80908,2.68392c1.59817,0 2.881,-0.86358 3.84492,-2.59792c0.96392,-1.73075 1.44408,-3.95242 1.44408,-6.66142c0,-2.75558 -0.50167,-5.00233 -1.49783,-6.73308c-0.99617,-1.72717 -2.30767,-2.59433 -3.93092,-2.59433z" fill="#333333"></path><path d="M136.16667,74.90958c0,7.10217 -1.29,12.5345 -3.86283,16.297c-2.57283,3.7625 -6.24933,5.64375 -11.02233,5.64375c-4.72642,0 -8.38142,-1.8275 -10.95425,-5.48608c-2.57283,-3.655 -3.90942,-8.89742 -4.00258,-15.7165v-9.70008c0,-7.07708 1.27925,-12.49508 3.84492,-16.24325c2.56208,-3.75175 6.24217,-5.62583 11.04025,-5.62583c4.79808,0 8.47458,1.85975 11.04025,5.57208c2.56208,3.71592 3.86642,9.01925 3.91658,15.91zM126.14767,64.50358c0,-4.042 -0.39775,-7.07708 -1.19683,-9.10167c-0.79908,-2.021 -2.04608,-3.03508 -3.73742,-3.03508c-3.17483,0 -4.82317,3.70517 -4.94142,11.11192v12.80325c0,4.13875 0.4085,7.22042 1.21833,9.24142c0.80983,2.02458 2.07475,3.0315 3.79117,3.0315c1.62325,0 2.82725,-0.946 3.61558,-2.838c0.78475,-1.892 1.20758,-4.79092 1.25058,-8.69317z" fill="#333333"></path></g></g></svg>
+                                360°画像をパノラマで見る</p>
                         </li>
                     </span>
                     <transition name="slide">
-                        <div class="sp_panonav" id="sp_panonav" v-if="isPano">   
+                        <div class="sp_panonav" id="sp_panonav" v-if="isPano">
                             <div>
                                 <span @click='isPano = !isPano'>
                                     <li class="first-submenu backwrapper">
                                         <i class="fa fa-arrow-left" aria-hidden="true"></i> 戻る
                                     </li>
                                 </span>
-                                <!--pano show res-->
+
                                 <slick :options="slickOptions" ref="slickSetting1">
                                     <div>
                                         <h2>
-                                            <!-- <img :src="'/upload/nursing_profile/Imagepanorama/' + currentPanoImage" class="img-fluid" @error="imgUrlAlt"/> -->
+
                                             <Pannellum :src="'/upload/nursing_profile/Imagepanorama/' + currentPanoImage" class="pannellum" :auto-load="true" :show-zoom="true" :show-fullscreen="true" :auto-rotate="isAutoRotationOn" :orientation="isOrientationOn" :compass="true" :hfov= "120" :draggable="true"></Pannellum>
                                         </h2>
-                                    </div>				
+                                    </div>
                                 </slick>
                                 <slick :options="slickOptions2" ref="slickSetting2" id="res-pano">
                                         <div v-for="(image,index) in  panoimages" :key="image.id" :class="[(activePanoImage == index) ? 'active' : '']" @click="activatePanoImage(index)">
-                                        <h3>                                   
+                                        <h3>
                                             <span>
-                                                <img  :src ="'/upload/nursing_profile/Imagepanorama/' + image.photo" @error="imgUrlAlt" class="img-fluid">  
-                                            </span>                    
+                                                <img  :src ="'/upload/nursing_profile/Imagepanorama/' + image.photo" @error="imgUrlAlt" class="img-fluid">
+                                            </span>
                                         </h3>
-                                    </div>                
+                                    </div>
                                 </slick>
-                                <!--end pano show res-->
+
                             </div>
                         </div>
                     </transition>
-                   
+
                 </div>
-            </div>
+            </div> -->
             <!--end responsive pano-->
         </div>
         <!--end panorama-->
-        
+
 
             <div class="tab typelabel nav-link fixed-nav" v-bind:style="{width:width}">
             <!-- <div class="row col-12 m-t-10">
@@ -154,39 +159,24 @@
                                 <h5 class="profile_header">介護情報</h5>
                             </div>
                            <div class="thumbnail-img pc-414">
-
                              <div class="card-carousel">
-
                                     <div class="card-img photocard-carousel-wrapper">
-
                                         <img :src="'/upload/nursing_profile/' +currentImage" alt="" @error="imgUrlAlt">
-
                                         <div class="actions">
-
                                             <span @click="prevImage" class="prev">
-
                                                 <i class="fas fa-chevron-left"></i>
-
                                             </span>
-
                                             <span @click="nextImage" class="next">
-
                                                 <i class="fas fa-chevron-right"></i>
-
                                             </span>
-
                                         </div>
-
                                     </div>
-
                                     <div class="row col-12 photocard-title">
                                         <h5><strong class="img_2">  {{activeImageTitle}} </strong></h5>
                                         <div class="row col-12 m-b-10">
                                             <p class="text-left">{{activeImageDescription}}</p>
                                         </div>
                                     </div>
-
-
                                 <ul class="thumbnails">
                                     <li v-for="(image,index) in  images" :key="image.id" :class="['thumbnail-image', (activeImage == index) ? 'active' : '']" @click="activateImage(index)" >
                                         <img  :src ="'/upload/nursing_profile/' + image.photo" @error="imgUrlAlt">
@@ -194,15 +184,78 @@
                                 </ul>
                             </div>
                         </div>
+                        <!--responsive with gallery and panorama -->
+                        <div class="sp-414 res-pano m-b-10"  v-if="images.length > 0">
+                            <slick :options="slickOptions" ref="slickSetting1">
+                                <div><h2><img :src="'/upload/nursing_profile/' +currentImage" alt="" @error="imgUrlAlt" class="img-fluid"></h2></div>
+                            </slick>
+                            <slick>
+                                <p><strong>  {{activeImageTitle}} </strong></p>
+                            </slick>
+                            <slick>
+                                <p>{{activeImageDescription}}</p>
+                            </slick>
+                            <slick :options="slickOptions2" ref="slickSetting2" id="res-pano">
+                                    <div v-for="(image,index) in  images" :key="image.id" :class="[(activeImage == index) ? 'active' : '']" @click="activateImage(index)">
+                                    <h3>
+                                        <span>
+                                            <img  :src ="'/upload/nursing_profile/' + image.photo" @error="imgUrlAlt" class="img-fluid">
+                                        </span>
+                                    </h3>
+                                </div>
+                            </slick>
+                            <div class="see-pano" v-if="panoimages.length > 0">
+                                <span @click='isPano = !isPano'>
+                                    <li class="first-submenu">
+                                        <p><svg x="0px" y="0px"
+                                            width="48" height="48"
+                                            viewBox="0 0 172 172"
+                                            style=" fill:#000000;">
+                                            <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g><path d="M150.5,25.08333c-5.93758,0 -10.75,4.81242 -10.75,10.75c0,5.93758 4.81242,10.75 10.75,10.75c5.93758,0 10.75,-4.81242 10.75,-10.75c0,-5.93758 -4.81242,-10.75 -10.75,-10.75zM150.5,39.41667c-1.978,0 -3.58333,-1.60533 -3.58333,-3.58333c0,-1.978 1.60533,-3.58333 3.58333,-3.58333c1.978,0 3.58333,1.60533 3.58333,3.58333c0,1.978 -1.60533,3.58333 -3.58333,3.58333z" fill="#333333"></path><path d="M86,154.08333c-48.2245,0 -86,-19.50408 -86,-44.40467c0,-9.28442 5.28542,-18.11017 15.27933,-25.52408c1.59458,-1.17892 3.83417,-0.84208 5.01308,0.74533c1.17892,1.58742 0.84567,3.83417 -0.74533,5.0095c-5.64733,4.1925 -12.38042,11.02233 -12.38042,19.76925c0,20.1885 36.10208,37.238 78.83333,37.238c42.73125,0 78.83333,-17.05308 78.83333,-37.24158c0,-8.18792 -6.11675,-16.35075 -17.2215,-22.97633c-1.6985,-1.01408 -2.25392,-3.21425 -1.23983,-4.91633c1.0105,-1.70208 3.21067,-2.25392 4.91275,-1.23983c13.35867,7.97292 20.71167,18.318 20.71167,29.1325c0.00358,24.90417 -37.77192,44.40825 -85.99642,44.40825z" fill="#ff9800"></path><path d="M42.12567,65.91542h4.83392c1.83467,0 3.182,-0.64142 4.03842,-1.92067c0.86,-1.28283 1.28642,-2.99208 1.28642,-5.13133c0,-2.04608 -0.44075,-3.63708 -1.32225,-4.78017c-0.8815,-1.1395 -2.064,-1.70925 -3.54392,-1.70925c-1.38675,0 -2.52267,0.54108 -3.40417,1.62325c-0.8815,1.08217 -1.32225,2.44742 -1.32225,4.09217h-9.98317c0,-2.68033 0.61633,-5.08475 1.85258,-7.21325c1.23625,-2.1285 2.96342,-3.79117 5.18508,-4.99158c2.22167,-1.19683 4.68342,-1.79883 7.38883,-1.79883c4.72642,0 8.43158,1.30433 11.11192,3.91658c2.68033,2.61225 4.0205,6.18483 4.0205,10.72133c0,2.32917 -0.60558,4.48633 -1.81675,6.4715c-1.21117,1.98517 -2.80575,3.51167 -4.78017,4.56875c2.42233,1.03558 4.22833,2.58717 5.41442,4.65475c1.18608,2.07117 1.78092,4.515 1.78092,7.33867c0,4.56158 -1.45125,8.22017 -4.35733,10.96858c-2.90608,2.752 -6.71875,4.128 -11.44517,4.128c-4.39675,0 -7.96933,-1.35808 -10.707,-4.07425c-2.73767,-2.71617 -4.1065,-6.28517 -4.1065,-10.707h9.98317c0,1.83467 0.48017,3.3755 1.44767,4.61892c0.96392,1.247 2.18583,1.8705 3.66933,1.8705c1.71642,0 3.0745,-0.63425 4.07425,-1.90275c0.99975,-1.2685 1.50142,-2.96342 1.50142,-5.07758c0,-5.05608 -1.96367,-7.59667 -5.891,-7.61817h-4.902v-8.04817z" fill="#333333"></path><path d="M93.5895,44.25775v8.46742h-0.559c-3.73742,0.0215 -6.71158,1.14667 -8.90817,3.36833c-2.20017,2.22167 -3.53317,5.332 -4.00617,9.331c2.14283,-2.44742 4.82317,-3.66933 8.04458,-3.66933c3.71592,0 6.67933,1.58742 8.90458,4.76225c2.22525,3.17483 3.33608,7.40675 3.33608,12.69575c0,3.36475 -0.63425,6.39625 -1.90275,9.10167c-1.27567,2.70183 -3.05658,4.80167 -5.34633,6.29592c-2.29692,1.49425 -4.88767,2.23958 -7.77942,2.23958c-4.65475,0 -8.38858,-1.8705 -11.19792,-5.60792c-2.80933,-3.73742 -4.21758,-8.772 -4.21758,-15.09658v-3.70517c0,-5.66883 0.88867,-10.63175 2.666,-14.88517c1.77375,-4.257 4.33942,-7.53217 7.68983,-9.82192c3.35042,-2.29333 7.25983,-3.45075 11.72825,-3.47583zM85.01817,69.97175c-1.27208,0 -2.33633,0.39775 -3.19275,1.20042c-0.86,0.80267 -1.49783,1.79167 -1.92067,2.97058v3.60483c0,3.62992 0.48017,6.33892 1.44408,8.127c0.96392,1.79167 2.23242,2.68392 3.80908,2.68392c1.59817,0 2.881,-0.86358 3.84492,-2.59792c0.96392,-1.73075 1.44408,-3.95242 1.44408,-6.66142c0,-2.75558 -0.50167,-5.00233 -1.49783,-6.73308c-0.99617,-1.72717 -2.30767,-2.59433 -3.93092,-2.59433z" fill="#333333"></path><path d="M136.16667,74.90958c0,7.10217 -1.29,12.5345 -3.86283,16.297c-2.57283,3.7625 -6.24933,5.64375 -11.02233,5.64375c-4.72642,0 -8.38142,-1.8275 -10.95425,-5.48608c-2.57283,-3.655 -3.90942,-8.89742 -4.00258,-15.7165v-9.70008c0,-7.07708 1.27925,-12.49508 3.84492,-16.24325c2.56208,-3.75175 6.24217,-5.62583 11.04025,-5.62583c4.79808,0 8.47458,1.85975 11.04025,5.57208c2.56208,3.71592 3.86642,9.01925 3.91658,15.91zM126.14767,64.50358c0,-4.042 -0.39775,-7.07708 -1.19683,-9.10167c-0.79908,-2.021 -2.04608,-3.03508 -3.73742,-3.03508c-3.17483,0 -4.82317,3.70517 -4.94142,11.11192v12.80325c0,4.13875 0.4085,7.22042 1.21833,9.24142c0.80983,2.02458 2.07475,3.0315 3.79117,3.0315c1.62325,0 2.82725,-0.946 3.61558,-2.838c0.78475,-1.892 1.20758,-4.79092 1.25058,-8.69317z" fill="#333333"></path></g></g></svg>
+                                            360°画像をパノラマで見る</p>
+                                    </li>
+                                </span>
+                                <transition name="slide">
+                                    <div class="sp_panonav" id="sp_panonav" v-if="isPano">
+                                        <div>
+                                            <span @click='isPano = !isPano'>
+                                                <li class="first-submenu backwrapper">
+                                                    <i class="fa fa-arrow-left" aria-hidden="true"></i> 戻る
+                                                </li>
+                                            </span>
+                                            <!--pano show res-->
+                                            <slick :options="slickOptions" ref="slickSetting1">
+                                                <div>
+                                                    <h2>
+                                                        <!-- <img :src="'/upload/nursing_profile/Imagepanorama/' + currentPanoImage" class="img-fluid" @error="imgUrlAlt"/> -->
+                                                        <Pannellum :src="'/upload/nursing_profile/Imagepanorama/' + currentPanoImage" class="pannellum" :auto-load="true" :show-zoom="true" :show-fullscreen="true" :auto-rotate="isAutoRotationOn" :orientation="isOrientationOn" :compass="true" :hfov= "120" :draggable="true"></Pannellum>
+                                                    </h2>
+                                                </div>
+                                            </slick>
+                                            <slick :options="slickOptions2" ref="slickSetting2" id="res-pano">
+                                                    <div v-for="(image,index) in  panoimages" :key="image.id" :class="[(activePanoImage == index) ? 'active' : '']" @click="activatePanoImage(index)">
+                                                    <h3>
+                                                        <span>
+                                                            <img  :src ="'/upload/nursing_profile/Imagepanorama/' + image.photo" @error="imgUrlAlt" class="img-fluid">
+                                                        </span>
+                                                    </h3>
+                                                </div>
+                                            </slick>
+                                            <!--end pano show res-->
+                                        </div>
+                                    </div>
+                                </transition>
 
-                        <!-- <div  v-for="image in  images"  :key="image.id">
-
-                        </div> -->
+                            </div>
+                        </div>
+                        <!--end responsive with gallery and panorama -->
+                        <!-- <div  v-for="image in  images"  :key="image.id"></div> -->
                     </div>
 
                     <!--end for slide image-->
                     <!--for address-->
                      <div class="col-md-7 detail_profile_right col-slg-12">
+                         <span class="top-mail-btn-res btn sp-414" @click="documentPost()" v-if="!loginuser && !$auth.check()"><i data-v-b65423c6="" class="far fa-envelope" style="color: #fff  !important;font-size: 15px;"></i>&nbsp;資料請求</span>
                         <div class="row m-lr-0 pro-heading">
                              <div class="col-12 pad-free pc-1024">
                                 <h5 class="profile_header">介護情報</h5>
@@ -359,7 +412,7 @@
                         </table>
 
                     </div>
-                    
+
                     <div v-if="method_payment.length > 0" class="col-md-12 pc-414">
                         <div class="cost_tb">
                             <div class="row" >
@@ -956,7 +1009,7 @@
                         <span>口コミを追加する</span>
                         </router-link>
                     </div>
-                  
+
                     <!-- <div class="comment-btn-wrapper">
                         <p><span class="nocomment-phone" >お電話でのご相談 </span></p>
                         <p class="red  no-comment-title"><i class="fas fa-phone-alt phone-color"></i><a class="font-weight-bold" href="tel:0120591165">0120-59-1165</a><span class="fz12">（受付時間 平日 9：30-20：00）</span></p>
@@ -969,7 +1022,7 @@
                     </div> -->
                </div>
                <div v-else class="col-md-12">
-                   
+
                    <p class="no-data-color pb-3 no-data-size">口コミはありません。</p>
                    <div class="m-b-20 text-center">
                         <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
@@ -988,7 +1041,7 @@
                     </div> -->
                 </div>
                 <!-- </div> -->
-               <div class="offset-md-4 col-md-8 mt-3" v-if="pagination">
+               <div class="col-12" v-if="pagination">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination">
                                     <li class="page-item">
@@ -1252,7 +1305,7 @@
                                         </th>
                                         <td v-if="subject">
                                             <label >
-                                                {{subject}} 
+                                                {{subject}}
                                             </label>
                                             <!-- <font>{{cust.subject}}</font> -->
                                         </td>
@@ -1339,7 +1392,7 @@
                                             <td v-for="(amval,index) in am_arr[0]" :key="index" class="text-center">
                                                 <span v-if="amval"> {{amval}} </span>
                                                 <span v-else> - </span>
-                                            </td> 
+                                            </td>
                                     </tr>
                                     <tr class="last" v-else>
                                         <th class="second-row text-center">午前</th>
@@ -1414,7 +1467,7 @@
                         <span style="color:orange;font-weight:bold;">{{image.title}}</span><br>
 
                         <!-- <span>{{image.photo}}</span> -->
-                    </div> 
+                    </div>
                     <lightbox id="mylightbox" ref="lightbox" :images="light_images" :directory="thumbnailDir+'hospital_profile/'" :timeoutDuration="5000" />
                 </div>
             </div>
@@ -1512,8 +1565,8 @@
                     </div> -->
                </div>
                 <div v-else class="col-md-12">
-                   
-                   <p class="no-data-color pb-3 no-data-size">                       
+
+                   <p class="no-data-color pb-3 no-data-size">
                        口コミはありません。</p>
                     <div class="m-b-20 text-center">
                         <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
@@ -1532,9 +1585,9 @@
                     </div> -->
                 </div>
             <!-- </div> -->
-                
-               
-              
+
+
+
                <div class="offset-md-4 col-md-8 mt-3" v-if="pagination">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination">
@@ -1662,8 +1715,9 @@ export default {
                     width: 0,
                     height: 0
                 },
-                show : true,
-                isPano: false               
+                show : false,
+                isPano: false,
+                show_arr: []
             };
         },
 
@@ -1678,21 +1732,21 @@ export default {
             this.axios.get("/api/advertisement/ads").then(response => {
                 this.ads_list = response.data;
             });
-            //end 
-           
-             
+            //end
+
+
                 window.addEventListener('resize', this.handleResize);
                 this.handleResize();
-                console.log(this.window.width); 
+                console.log(this.window.width);
                 if(this.window.width >= 320 && this.window.width < 450) {
                     this.windowSize = 1;
-                
-                } 
-                
+
+                }
+
                 else if(this.window.width >= 450 && this.window.width < 768) {
                     this.windowSize = 2;
-                
-                } 
+
+                }
                 else if(this.window.width >= 768 && this.window.width < 992) {
                     this.windowSize = 4;
                     console.log('tttt');
@@ -1704,22 +1758,22 @@ export default {
                 else if (this.window.width >= 1024 && this.window.width < 1280) {
                     this.windowSize = 8;
                     // console.log('1024');
-                    
+
                 }
                 else if (this.window.width >= 1280 && this.window.width < 1440) {
                     this.windowSize = 9;
-                    
-                
+
+
                 }
                 else if (this.window.width >= 1440 && this.window.width < 1880) {
-                    this.windowSize = 9;              
+                    this.windowSize = 9;
                     // console.log(this.paginationFactor);/
                 }
             // else if( this.window.width > 1700) {
 
             // }
 
-           
+
             this.customer_id = this.cusid;
             this.activePanoImage = 0;
 
@@ -2030,31 +2084,34 @@ export default {
             isSelected(page) {
                 return page - 1 == this.currentPage;
             },
-            slickOptions() {               
-                return {         
+            slickOptions() {
+                return {
                 slidesToShow: 1,
                 slidesToScroll: 1,
                 arrows: true,
                 fade: false,
-                adaptiveHeight: true,   
+                adaptiveHeight: true,
                 }
             },
             slickOptions2() {
-                return {                   
+                return {
                 slidesToShow: 7,
                 slidesToScroll: 1,
-                dots: false,               
+                dots: false,
+                focusOnSelect: true,
                 responsive: [{
                     breakpoint: 411,
                         settings: {
                             slidesToShow: 8.5,
                             slidesToScroll: 1,
+                             focusOnSelect: true,
                         }
                     }, {
                     breakpoint: 360,
                         settings: {
                             slidesToShow: 8,
                             slidesToScroll: 1,
+                            focusOnSelect: true,
                         }
                     }]
                 }
@@ -2163,15 +2220,7 @@ export default {
         $('#changeLink'+id).show('medium');
     },
     costConfirmMini(id){
-        if(this.show){
-            $('.changeLink'+id).text("選択中");
-            $('#changeLinkMini'+id).show('medium');
-            this.show = false;
-        }else{
-            $('.changeLink'+id).text("詳しくはこちら");
-            $('#changeLinkMini'+id).hide('medium');
-            this.show = true;
-        }        
+        $('#changeLinkMini'+id).toggle('medium');
     },
     documentPost() {
         localStorage.removeItem("item");
@@ -2213,13 +2262,16 @@ export default {
   }
 
  }
- 
+
 
 </script>
 
 <style scoped>
+.active > h3{
+	border: 2px solid #d2571c;
+}
 h2{
-    background: #f0f0f0;    
+    background: #f0f0f0;
     padding: 0px;
 }
 h3 {
@@ -2238,7 +2290,7 @@ h3 {
 }
 .see-pano{
     border-top: 1px dashed #907b7b;
-    padding: 20px;
+    padding: 0px 10px;
     box-shadow: 0 4px 5px rgba(0, 0, 0, 0.12);
 }
 
@@ -2247,7 +2299,7 @@ h3 {
     #pano-slider-page .card-carousel {
     display: flex;
     justify-content: left;
-    width: 1033px !important;   
+    width: 1033px !important;
     /* width: 1336px; */
     overflow: hidden;
 }
@@ -2817,9 +2869,9 @@ h3 {
     }
     .nav-content
     {
-       margin-right: 16px; 
+       margin-right: 16px;
     }
-    
+
 }
 
 
@@ -2836,14 +2888,14 @@ h3 {
     }
     .nav-content
     {
-       margin-right: -35px; 
+       margin-right: -35px;
     }
- 
-   
+
+
 }
 
 @media only screen and (max-width: 768px) and (min-width: 451px) {
-  #pano-slider-page .card-carousel {       
+  #pano-slider-page .card-carousel {
         width: 415px!important;
     }
      /* .thumbnails-pano
@@ -2855,16 +2907,16 @@ h3 {
     }
     .nav-content
     {
-       margin-right: 48px; 
+       margin-right: 48px;
     } */
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 /* @media only screen and (max-width: 1023px) and (min-width: 769px) {
-  #pano-slider-page .card-carousel {        
+  #pano-slider-page .card-carousel {
         width: 415px!important;
     }
-    
+
 } */
 
 @media only screen and (max-width: 992px) and (min-width: 769px) {
@@ -2880,7 +2932,7 @@ h3 {
     }
     .nav-content
     {
-       margin-right: 30px; 
+       margin-right: 30px;
     }
 }
 /* Large devices (laptops/desktops, 992px and up) */
@@ -2897,9 +2949,9 @@ h3 {
     }
     .nav-content
     {
-       margin-right: -8px; 
+       margin-right: -8px;
     } */
-    
+
 }
 @media only screen and (max-width: 1200px) and (min-width: 1025px) {
   #pano-slider-page .card-carousel {
@@ -2915,7 +2967,7 @@ h3 {
     }
      .nav-content
     {
-       margin-right: -31px; 
+       margin-right: -31px;
     } */
 }
 
@@ -2933,7 +2985,7 @@ h3 {
     }
     .nav-content
     {
-       margin-right: 41px; 
+       margin-right: 41px;
     } */
 }
 @media only screen and (max-width: 1880px) and (min-width: 1440px) {
@@ -2947,7 +2999,7 @@ h3 {
     #pano-slider-page{
         margin-left: 15px;
     }
-   
+
 }
 
 
@@ -2957,5 +3009,5 @@ h3 {
 }
 @media only screen and (max-width: 767px) {
 }
- 
+
 </style>

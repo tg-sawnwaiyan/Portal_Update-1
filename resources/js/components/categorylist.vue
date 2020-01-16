@@ -45,7 +45,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="offset-md-4 col-md-8 mt-3" v-if="pagination">
+                        <div class="col-12" v-if="pagination">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination">
                                     <li class="page-item">

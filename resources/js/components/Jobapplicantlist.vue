@@ -17,7 +17,7 @@
                         <h5 class="header"> 求人応募者一覧</h5>
                         <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
                         <div v-else class="container-fuid">
-                            
+
                         <div class="container-fuid">
                             <table class="table table-hover custom-table">
                                 <thead style="background-color:rgb(183, 218, 210);">
@@ -64,7 +64,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <div class="offset-md-4 col-md-8 mt-3" v-if="pagination">
+                            <div class="col-12" v-if="pagination">
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination">
                                             <li class="page-item">
@@ -85,7 +85,7 @@
                                         </ul>
                                     </nav>
                                 </div>
-                            </div> 
+                            </div>
                         </div>
                 </div>
          </div>
