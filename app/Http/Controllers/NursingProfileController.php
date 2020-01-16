@@ -184,8 +184,7 @@ class NursingProfileController extends Controller
         // End
 
         // Feature
-        $feature = SpecialFeaturesJunctions::where('customer_id', $id)
-                    ->delete();
+        $feature = SpecialFeaturesJunctions::where('customer_id', $id) ->delete();
 
         for($indx=0; $indx<count($request[0]['chek_feature'][0]['special_feature_id']); $indx++) {
             $new_feature = new SpecialFeaturesJunctions();

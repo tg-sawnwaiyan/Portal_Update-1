@@ -1245,10 +1245,12 @@ export default {
                 }
 
                var s_features =[];
+               this.chek_feature = [];
                     $.each($("input[name='special-features']:checked"), function(){
                             s_features.push($(this).val());
                     });
                 this.chek_feature.push({special_feature_id:s_features});
+                console.log(this.chek_feature)
 
 
                 var acceptance=[];
