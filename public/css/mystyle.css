@@ -7819,14 +7819,8 @@ ul.nur-caro-card>li.list-group-item {
     margin: 0;
     padding: 0;
 }
-<<<<<<< HEAD
-
-.slick-list {
-    height: 100% !important;
-=======
 .slick-list{
     /* height: 100% !important; */
->>>>>>> dfd5d7d31cdbd11ba3bdb15f9dd257e60bb532cc
     /* max-height: 184px !important; */
     overflow: hidden;
 }
@@ -10497,13 +10491,6 @@ ul.nur-caro-card>li.list-group-item {
     .first-submenu span {
         display: none;
     }
-<<<<<<< HEAD
-    .backwrapper {
-        padding: 10px;
-        background: #f7f0ed;
-    }
-=======
->>>>>>> dfd5d7d31cdbd11ba3bdb15f9dd257e60bb532cc
     .d-none-380 {
         display: none !important;
     }
