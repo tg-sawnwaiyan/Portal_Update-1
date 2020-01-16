@@ -24,7 +24,7 @@
                                 <div class="container-fluid main-wrapper">
                                     <!--slider for ads-->
                                     <div class="col-md-auto pad-free">
-                                        <ads_slider></ads_slider>
+                                        <adsslider></adsslider>
                                     </div>
                                         <!--end slider for ads-->
                                     <div class="row justify-content-md-center">

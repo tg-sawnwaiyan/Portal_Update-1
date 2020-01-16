@@ -1,36 +1,24 @@
 <template>
- <div class="row t-r3">
-      <div class="col-12 t-l">
-          <div class="card">
-              <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h4 class="page-header header">ニュースカテゴリー作成</h4>
-                            <br>
-                        </div>
-                        <div class="col-md-12">
-                             <form @submit.prevent="add">
-                            <div class="form-group">
-                                <label>ニュースカテゴリー名 :<span class="error">*</span></label>
-                                <input type="text" class="form-control"  v-model="category.name"  placeholder="ニュースカテゴリー名を入力してください。" >
-                                  <span v-if="errors.name" class="error">{{errors.name}}</span>
-                            </div>
-
-                            <div class="form-group">
-                                <!-- <button class="btn main-bg-color white all-btn">作成する</button> -->
-                                <span class="btn main-bg-color white all-btn" @click="checkValidate()"> 作成</span>
-                                <router-link class="btn btn-danger all-btn" to="/categorylist" > キャンセル </router-link>
-                                <!-- <button class="btn news-post-btn all-btn"  @click="checkValidate()>作成する</button> -->
-                             
-                            </div>
-                                </form>
-                            </div>
-                         </div>
-                    </div>
-            </div>
-          </div>
-      </div>
-
+    <div class="card">
+        <div class="card-body">
+            <h4 class="page-header header">ニュースカテゴリー作成</h4>
+            <br>
+            <form @submit.prevent="add">
+                <div class="form-group">
+                    <label>ニュースカテゴリー名 :<span class="error">*</span></label>
+                    <input type="text" class="form-control"  v-model="category.name"  placeholder="ニュースカテゴリー名を入力してください。" >
+                        <span v-if="errors.name" class="error">{{errors.name}}</span>
+                </div>
+                <div class="form-group">
+                    <!-- <button class="btn main-bg-color white all-btn">作成する</button> -->
+                    <span class="btn main-bg-color white all-btn" @click="checkValidate()"> 作成</span>
+                    <router-link class="btn btn-danger all-btn" to="/categorylist" > キャンセル </router-link>
+                    <!-- <button class="btn news-post-btn all-btn"  @click="checkValidate()>作成する</button> -->
+                    
+                </div>
+            </form>  
+        </div>
+    </div>      
 </template>
 <script>
 export default {

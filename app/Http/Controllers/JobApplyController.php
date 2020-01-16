@@ -132,7 +132,7 @@ class JobApplyController extends Controller
                 $city_name = $info->city_name;
             }
 
-            $admin_email = 'susan@management-partners.co.jp';
+            $admin_email = 'thuzar@management-partners.co.jp';
             // $admin_email = 'thuzar.ts92@gmail.com';
             // $admin_email = 'management.partner87@gmail.com ';
              $jobapply->save();

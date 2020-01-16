@@ -101,7 +101,7 @@ window.flash = function(message) {
     window.events.$emit('flash', message);
 }
 Vue.component('flash', require('../js/components/Flash.vue'));
-Vue.component('ads_slider', require('../js/components/ads_slider.vue'));
+Vue.component('adsslider', require('../js/components/adsslider.vue'));
 
 
 Vue.use(VueClazyLoad)

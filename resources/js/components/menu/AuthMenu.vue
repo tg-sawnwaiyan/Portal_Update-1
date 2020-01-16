@@ -83,9 +83,11 @@
                 <div class="admin_menu"  @click="toggle">
                     <span>メニュー</span>&nbsp;<i :class="!isNav ? open : close" style="width:15px;" ></i>     
                 </div>
+                <div class="sp_adminNav"  v-if="isNav">
+                    <div class="overlay"></div> 
+                </div>
                 <transition name="slide">  
                     <div class="sp_adminNav"  v-if="isNav">
-                        <div class="overlay" ></div> 
                         <ul class="sidebar_brand" v-if="visit != 'true'">
                              <li v-if="$auth.check(1)" class="admin_head admin_head01">
                                事業者管理画面
@@ -336,19 +338,18 @@
          toggle() {
             this.isNav = !this.isNav;
         },
-         subMenu: function (n) { 
-            if(this.isSubmenu[n].show){
-                this.isSubmenu[n].show = false;  
-                this.isRotate = null;
-            }
-            else{
-                for(var i = 0; i < 3; i++) { 
-                    this.isSubmenu[i].show = false;              
+         subMenu: function (n) {   
+                 if(this.isSubmenu[n].show){
+                     this.isSubmenu[n].show = false;  
+                     this.isRotate = null;
+                 }else{
+                     for(var i = 0; i < 3; i++) { 
+                        this.isSubmenu[i].show = false;              
+                    }
+                    this.isSubmenu[n].show = true; 
+                    this.isRotate = n;
                 }
-                this.isSubmenu[n].show = true;         
                 this.isActive = n;
-                this.isRotate = n;
-            }
         }
     }
 }

@@ -204,6 +204,14 @@ body::-webkit-scrollbar-thumb {
     border: 1px solid #a7a3a3;
 }
 
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    margin-bottom: 0.2rem;
+}
+
 
 /********************************** End Common **********************************/
 
@@ -1604,6 +1612,44 @@ body::-webkit-scrollbar-thumb {
 
 .mg {
     margin-bottom: -0.2rem;
+}
+
+.related-card .cat_box {
+    width: 50%;
+    margin-bottom: 10px;
+}
+
+.related-card .cat_lbl {
+    margin-right: 10px;
+}
+
+.related-card .cat_select {
+    width: 60%;
+}
+
+.related-card .search_box {
+    width: 30%;
+    margin-left: auto;
+}
+
+.related-card .form_search {
+    width: 100%;
+}
+
+.related_post_box {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 32.3%;
+    flex: 0 0 32.3%;
+    max-width: 32.3%;
+    margin: .5%;
+}
+
+.related_post_box .create_news img {
+    max-width: 120px;
+}
+
+.related_post_box .control {
+    margin-left: 0;
 }
 
 
@@ -7709,6 +7755,16 @@ ul.nur-caro-card>li.list-group-item {
     padding: 0;
 }
 
+.slick-list {
+    height: 100% !important;
+    /* max-height: 184px !important; */
+    overflow: hidden;
+}
+
+#sp_panonav>.slick-list {
+    height: 100% !important;
+}
+
 .slick-list:focus {
     outline: none;
 }
@@ -8617,9 +8673,10 @@ ul.nur-caro-card>li.list-group-item {
 
 /*create_news*/
 
-.create_nw_p {
+
+/* .create_nw_p {
     padding: 11px;
-}
+} */
 
 .pc-480 {
     display: block;
@@ -8979,6 +9036,13 @@ ul.nur-caro-card>li.list-group-item {
         display: block;
     }
     /*End common */
+    /* create news */
+    .related_post_box {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 49%;
+        flex: 0 0 49%;
+        max-width: 49%;
+    }
     /*job search*/
     ul.hokkaido-wrap {
         left: 65px;
@@ -9052,16 +9116,6 @@ ul.nur-caro-card>li.list-group-item {
     .divisions {
         width: 550px;
         height: 425px;
-    }
-    #create_news {
-        width: 283px;
-        margin-left: 12px;
-    }
-    #create_news .title {
-        padding: 2px;
-        font-size: 11px;
-        padding-left: 10px;
-        margin-top: -7px;
     }
     .t_card {
         max-width: none;
@@ -9223,7 +9277,6 @@ ul.nur-caro-card>li.list-group-item {
         right: 0;
         width: 100%;
         height: 100%;
-        padding-bottom: 150px;
         background: #fff;
         z-index: 99999999;
         overflow-y: hidden;
@@ -9463,15 +9516,14 @@ ul.nur-caro-card>li.list-group-item {
 }
 
 @media screen and (max-width: 979px) and (max-width:752px) {
-    /* .map-box-reponsive {
-        display: block;
-    } */
-    #create_news .title {
-        padding: 2px;
-        font-size: 13px;
-        padding-left: 10px;
-        margin-top: -7px;
+    /* create new */
+    .related_post_box .create_news img {
+        max-width: 100px;
     }
+    .related_post_box .card-body {
+        padding: 1rem 0.8rem;
+    }
+    /*end create new */
     #news.t_card2 {
         margin-left: 40px;
     }
@@ -9516,6 +9568,17 @@ ul.nur-caro-card>li.list-group-item {
         z-index: 999;
     }
     /*end fav nursing*/
+    /*news_start*/
+    .t_card {
+        max-width: none;
+    }
+    .t_card2 {
+        margin-left: 40px;
+    }
+    .t_card4 {
+        margin-left: 40px;
+    }
+    /*news_end*/
 }
 
 @media only screen and (max-width:768px) {
@@ -9634,7 +9697,7 @@ ul.nur-caro-card>li.list-group-item {
         text-decoration: none;
     }
     .sp_adminNav .sub_menu {
-        padding: 8px;
+        padding: 0 8px;
         background: #2C3B41;
     }
     .sp_adminNav .sub_menu a {
@@ -9642,6 +9705,12 @@ ul.nur-caro-card>li.list-group-item {
     }
     .sp_adminNav ul.sub_menu li i:first-child {
         margin-left: 0;
+    }
+    .sp_adminNav ul.sub_menu li:first-child {
+        padding-top: 8px;
+    }
+    .sp_adminNav ul.sub_menu li:last-child {
+        padding-bottom: 8px;
     }
     .down {
         -ms-transform: rotate(90deg);
@@ -9655,6 +9724,14 @@ ul.nur-caro-card>li.list-group-item {
     }
     /*end sp_adminNav */
     /*End header & menu */
+    /* create new */
+    .related_post_box .create_news img {
+        max-width: 100px;
+    }
+    .related_post_box .card-body {
+        padding: 1rem 0.8rem;
+    }
+    /*end create new */
     .map-text-wrapper {
         display: flex;
     }
@@ -9697,15 +9774,6 @@ ul.nur-caro-card>li.list-group-item {
     /*End job apply */
     .wd-in {
         width: 256px;
-    }
-    #create_news {
-        width: 231px;
-    }
-    #create_news .title {
-        padding: 2px;
-        font-size: 12px;
-        padding-left: 10px;
-        margin-top: -7px;
     }
     .t_card {
         max-width: none;
@@ -9886,6 +9954,22 @@ ul.nur-caro-card>li.list-group-item {
     .sp-576 {
         display: block;
     }
+    /* create news */
+    .related-card .cat_box {
+        width: 100%;
+    }
+    .related-card .cat_select {
+        width: 71%;
+    }
+    .related-card .search_box {
+        width: 100%;
+    }
+    .related_post_box .create_news img {
+        float: none !important;
+        margin-bottom: 10px;
+        max-width: 100%;
+    }
+    /*end create news */
 }
 
 @media only screen and (max-width:480px) {
@@ -9998,9 +10082,6 @@ ul.nur-caro-card>li.list-group-item {
         display: none;
     }
     /*create_news*/
-    .create_nw_p {
-        padding: 0px;
-    }
     .news_catsearch {
         padding: 15px;
     }
@@ -10057,9 +10138,13 @@ ul.nur-caro-card>li.list-group-item {
     .pc-m-r-10 {
         margin-right: 10px;
     }
-    .mb {
-        margin-bottom: 20px;
+    .mb-10 {
+        margin-bottom: 10px;
     }
+    .related-card .cat_wrap {
+        width: 100%;
+    }
+    /* end create news */
     /*category*/
     .t-r {
         margin-right: -8px;
@@ -10241,9 +10326,6 @@ ul.nur-caro-card>li.list-group-item {
         display: none !important;
     }
     /*create_news*/
-    .create_nw_p {
-        padding: 0px;
-    }
     .sp-414-timetable .table th,
     .sp-414-timetable .table td {
         padding: 0px !important;
@@ -10285,6 +10367,10 @@ ul.nur-caro-card>li.list-group-item {
     .first-submenu span {
         display: none;
     }
+    .backwrapper {
+        padding: 10px;
+        background: #f7f0ed;
+    }
     .d-none-380 {
         display: none !important;
     }
@@ -10297,6 +10383,15 @@ ul.nur-caro-card>li.list-group-item {
         display: inline-block;
     }
     /*end header */
+    /* create news */
+    .related_post_box {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+        flex: 0 0 96%;
+        max-width: 100%;
+        margin: 2%;
+    }
+    /*End create news */
     /* Profile Publish */
     .gallery-list .gallery-item {
         padding: 3px;
@@ -10314,13 +10409,17 @@ ul.nur-caro-card>li.list-group-item {
         font-size: 14px;
     }
     /*End  Profile Publish */
+    .related-card .cat_lbl {
+        font-size: 12px;
+    }
+    .related-card .cat_select {
+        width: 66%;
+        margin-left: auto;
+    }
 }
 
 @media only screen and (max-width:320px) {
     /*create_news*/
-    .create_nw_p {
-        padding: 0px;
-    }
     .searchButton {
         width: 35% !important;
     }
