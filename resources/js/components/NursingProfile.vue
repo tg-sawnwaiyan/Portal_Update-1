@@ -13,7 +13,7 @@
                         <!-- <div > -->
                             <div class="col-sm-3 col-md-3 mt-2 gallery-area-panorama" v-bind:id="'x-panorama'+indx" v-for="(img,indx) in panorama_arr" :key="img.id">
                                 <input type="hidden" class="already-panorama" v-model="img.photo">
-                                <span class='img-close-btn' v-on:click="closeBtnMethod(indx)">X</span>
+                                <span class='img-close-btn' v-on:click="DeleteArr(indx,'panorama',img.id,img.photo)">X</span>
                                 <img :src="'/upload/nursing_profile/Imagepanorama/'+ img.photo" class="img-fluid panorama-old-img" alt="profile" v-if="img.id!=null"  id="already-panorama">
                                 <img :src="img.path" class="img-fluid panorama-new-img" alt="profile" v-if="img.id==null" id="already-panorama">
                             </div>
@@ -64,10 +64,11 @@
                                     <div class="row" id ="gallery-photo"> 
                                             <div class="col-md-6 gallery-area-photo" v-bind:id="'photo'+indx" v-for="(img,indx) in img_arr" :key="img.id">
                                                     <div class="col-md-12">
-                                                            <input type="file" name="" class="nursing-photo m-b-10" v-bind:class="img.classname" id="upload_img" @change="preview_image(img.classname,indx)">
-                                                            <div class="col-md-12 m-b-10" v-bind:class="img.classname">
+                                                            <input type="file" name="" class="nursing-photo m-b-10" v-bind:class="img.classname" id="upload_img" @change="preview_image($event,indx)">
+                                                            <div class="col-md-12 m-b-10" v-bind:class="img.id">
                                                                     <input type="hidden" class="already-photo" v-model="img.photo">
-                                                                    <img :src="'/upload/nursing_profile/'+ img.photo" class="img-fluid" alt="profile" v-if="img.photo" v-bind:id="'already-photo'+indx" @error="imgUrlAlt">
+                                                                    <img v-bind:src="'/upload/nursing_profile/'+ img.photo" class="img-fluid nursing-image" alt="profile" v-if="img.id != null" @error="imgUrlAlt">
+                                                                    <div v-bind:id="'already-photo'+indx" v-else> </div>
                                                             </div>
                                                     </div>
                                                     <div class="col-md-12">
@@ -77,7 +78,7 @@
                                                         <textarea name="description" placeholder="コンテンツ" class="form-control m-b-15 description white-bg-color" v-model="img.description"></textarea>
                                                     </div>
                                                     <div class="col-md-12 text-right">
-                                                            <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,'photo')"> <i class="fa fa-trash"></i> 削除</a>
+                                                            <a class="mr-auto text-danger btn delete-borderbtn" @click="DeleteArr(indx,'photo',img.id,img.photo)"> <i class="fa fa-trash"></i> 削除</a>
                                                     </div>
                                             </div>
                                     </div>
@@ -104,7 +105,7 @@
                                                     <textarea name="description" placeholder="コンテンツ" class="form-control m-b-15 description white-bg-color" v-model="video.description"></textarea>
                                                 </div>
                                                 <div class="col-md-12 text-right">
-                                                <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,'video')"> <i class="fa fa-trash"></i> 削除</a>
+                                                <a class="mr-auto text-danger btn delete-borderbtn" @click="DeleteArr(indx,'video',video.id,video.photo)"> <i class="fa fa-trash"></i> 削除</a>
                                                 </div>
                                             </div>
                                     </div>
@@ -682,9 +683,9 @@ export default {
                 customer_info:[],customer_info_push:[], nursing_info:[], staff_info:[], staff_info_push:[],
                 acceptance: [],
 
-                img_arr:[],img_list:[],
-                video_arr:[],video_list:[],
-                panorama_arr:[],panorama_list:[], tmp_list:[],test:[],
+                img_arr:[],
+                video_arr:[],
+                panorama_arr:[], tmp_list:[],test:[],
                 cooperate_arr:[], cooperate_list:[],
                 payment_arr:[],payment_list:[],
                 profile_type:'nursing',
@@ -752,7 +753,6 @@ export default {
                 this.axios
                 .get('/api/customerinfo/'+this.cusid)
                 .then(response=>{
-                    console.log(response.data)
                     this.customer_info = response.data; 
                     this.axios
                     .get('/api/nurscities/'+this.customer_info.townships_id)
@@ -805,8 +805,6 @@ export default {
                 .get('/api/feature/'+this.profile_type+'/'+this.cusid)
                 .then(response=>{
                     this.feature_list = response.data;
-                    console.log('Feature is');
-                    console.log(response.data);
                 });
 
                 this.axios
@@ -889,11 +887,9 @@ export default {
             stationCheck(check_id) {
                 $('.station-'+check_id).attr('checked','true'); 
             },                
-            preview_image(img_class,indx) {
-                $("."+img_class).html("<img src='"+URL.createObjectURL(event.target.files[0])+"' class='img-fluid hospital-image'>");
-                  console.log(document.getElementsByClassName(img_class));
-                document.getElementById('already-photo'+indx).src= URL.createObjectURL(event.target.files[0]);
-               
+            preview_image(event,indx) {
+                $('#already-photo'+indx).html("<img src='"+URL.createObjectURL(event.target.files[0])+"' class='img-fluid nursing-image'>");
+                this.img_arr[indx]['photo'] = event.target.files[0].name;
             },
 
             preview_panorama() {
@@ -903,66 +899,151 @@ export default {
                 }              
             },
 
-            closeBtnMethod: function(indx) {
+            closeBtnMethod: function(indx,id,photo) {
                 if(confirm("Are you sure you want to delete?"))
                 {
-                    this.panorama_arr.splice(indx, 1);
+                    if(id) {
+                        this.panorama_arr.splice(indx, 1);
+                        let fd = new FormData();
+                            fd.append('id',id);
+                            fd.append('type','panorama');
+                            fd.append('photo',photo);
+                            fd.append('customer_id',this.cusid)
+
+                            this.axios
+                            .post('/api/delete-pgallery',fd)
+                            .then(response=>{
+                                // this.panorama_arr = response.data;
+                            });
+                    } else {
+                        this.panorama_arr.splice(indx, 1);
+                    }
                 }
             },
 
 
             DeltArr(indx,type) {
 
-                var arr_list = [];
-                var arr_count = document.getElementsByClassName('gallery-area-'+type);
-                for(var i=0; i< arr_count.length; i++) {
-                    arr_list[i] = document.getElementsByClassName('gallery-area-'+type);
+                if(type == 'cooperate') {
+                    this.cooperate_arr.splice(indx,1);
                 }
 
-                for(var i=0; i<= arr_count.length; i++) {
-                  
-                    if(i == indx) {
-                      
-                        arr_list.splice(indx,1);
-                      
-                        var ele = document.getElementById(type+indx);
-                        var parentEle = document.getElementById('gallery-'+type);
-                        parentEle.removeChild(ele);
-                    }
-                    else{
-                          arr_list.splice(indx,1);
-                      
-                        var ele = document.getElementById(type+indx);
-                        var parentEle = document.getElementById('gallery-'+type);
-                        parentEle.removeChild(ele);
-                    }
+                if(type == 'payment') {
+                    this.payment_arr.splice(indx,1);
                 }
 
+                // var arr_list = [];
+                // var arr_count = document.getElementsByClassName('gallery-area-'+type);
+               
+                //     for(var i=0; i< arr_count.length; i++) {
+                //         arr_list[i] = document.getElementsByClassName('gallery-area-'+type);
+                //     }
+
+                //     for(var i=0; i<= arr_count.length; i++) {
+                    
+                //         if(i == indx) {
+                        
+                //             arr_list.splice(indx,1);
+                        
+                //             var ele = document.getElementById(type+indx);
+                //             var parentEle = document.getElementById('gallery-'+type);
+                //             parentEle.removeChild(ele);
+                //         }
+                //         else{
+                //             arr_list.splice(indx,1);
+                        
+                //             var ele = document.getElementById(type+indx);
+                //             var parentEle = document.getElementById('gallery-'+type);
+                //             parentEle.removeChild(ele);
+                //         }
+                //     }
+                
+
+            },
+            DeleteArr(indx,type,id,photo) {
+                
+                this.$swal({
+                        title: "確認",
+                        text: "職種を削除してよろしいでしょうか。",
+                        type: "warning",
+                        width: 350,
+                        height: 200,
+                        showCancelButton: true,
+                        confirmButtonColor: "#dc3545",
+                        cancelButtonColor: "#b1abab",
+                        cancelButtonTextColor: "#000",
+                        confirmButtonText: "削除",
+                        cancelButtonText: "キャンセル",
+                        confirmButtonClass: "all-btn",
+                        cancelButtonClass: "all-btn"
+                    }).then(response => { 
+
+                    if(type == 'photo' || type == 'panorama') {
+                        if(id){                             
+                            let fd = new FormData();
+                            fd.append('id',id);
+                            fd.append('type',type);
+                            fd.append('photo',photo);
+                            fd.append('customer_id',this.cusid)
+                            fd.append('custype','nursing')
+                            
+                            if(type == 'photo'){
+                                this.img_arr.splice(indx,1);
+                            }
+                            else{
+                                this.panorama_arr.splice(indx, 1);
+                            }
+
+                            this.axios
+                            .post('/api/delete-pgallery',fd)
+                            .then(response=>{
+                                this.$swal({  
+                                    text: "職種を削除しました。",
+                                    type: "success",
+                                    width: 350,
+                                    height: 200,
+                                    confirmButtonText: "閉じる",
+                                    confirmButtonColor: "#dc3545"
+                                });
+                            })
+                            .catch(error=>{                            
+                                if(error.response.status == 422){
+                                    this.errors = error.response.data.errors
+                                }
+                            })
+                        } else {
+                            if(type == 'photo'){
+                                this.img_arr.splice(indx,1);
+                            }
+                            else{
+                                this.panorama_arr.splice(indx, 1);
+                            }
+                        }
+                    }
+
+                    else if(type == 'video') {
+                        this.video_arr.splice(indx,1);
+                    }
+                    
+                    })
             },
 
             galleryAdd() {
-                var date = new Date;
-                var s = date.getMilliseconds();
-                var m = date.getMinutes();
-                var h = date.getHours();
-                var classname = "class"+h+m+s;
-                var c = "'"+classname+"'";
-
-                this.img_arr.push({classname:classname,photo:'',title:'',description:''});
+                this.img_arr.push({id:null,photo:'',title:'',description:''});
             },
 
             galleryVideoAdd() {
-                this.video_arr.push({title:'',description:'',url:''});
+                this.video_arr.push({id:null,photo:'',title:'',description:''});
             },
 
             methodAdd() {
-                this.payment_arr.push({payment_name:'',expense_moving:'',monthly_fees:'',living_room_type:'', area:'',details:'',deposit:'',other_use:'',rent:'',admin_expense:'',food_expense:'', nurse_care_surcharge:'',other_monthly_cost:'',refund_system:'',depreciation_period:'', initial_deprecration:'',other_message_refund:''});
-            console.log('method');
-            console.log(this.payment_arr);
+                this.payment_arr.push({id:null,payment_name:'',expense_moving:'',monthly_fees:'',living_room_type:'', area:'',details:'',deposit:'',other_use:'',rent:'',
+                admin_expense:'',food_expense:'', nurse_care_surcharge:'',other_monthly_cost:'',refund_system:'',depreciation_period:'', initial_deprecration:'',
+                other_message_refund:''});
             },
 
             cooperateAdd() {
-                this.cooperate_arr.push({name:'',clinical_subject:'',details:'',medical_expense:'',remark:''});
+                this.cooperate_arr.push({id:null,name:'',clinical_subject:'',details:'',medical_expense:'',remark:''});
             },
 
             acceptanceList() {
@@ -1102,35 +1183,33 @@ export default {
             createProfile() {
 
                 this.$loading(true);
-                this.img_list = [];
-                this.video_list = [];
-                this.cooperate_list = [];
-                this.payment_list = [];
+                
                 this.profile_arr = [];
 
                 this.nursing_info.latitude = $('#new_lat').val();
                 this.nursing_info.longitude = $('#new_long').val();
-                console.log($('#gmaptownship').val());
+                
                 this.customer_info.townships_id = Number($('#gmaptownship').val());
                 localStorage.setItem('lat_num',this.nursing_info.latitude);
                 localStorage.setItem('lng_num',this.nursing_info.longitude);
-                console.log(this.customer_info);
+
                 // Photo 
-                var img = document.getElementsByClassName('gallery-area-photo');
-                let pt = new FormData();
-                for(var i = 0; i< img.length; i++) {
-                    if(img[i].getElementsByClassName('nursing-photo')[0].files[0]) {
-                        var file = img[i].getElementsByClassName('nursing-photo')[0].files[0];
-                        if(file) {
-                            var file_name = file.name;                        
-                            pt.append(i ,file )
-                        } else {
-                            var file_name = img[i].getElementsByClassName('already-photo')[0].value;
-                        }
-                        this.img_list.push({type:"photo",photo:file_name,title:img[i].getElementsByClassName('title')[0].value, description:img[i].getElementsByClassName('description')[0].value});
+                let pt = new FormData();               
+                for(var i =this.img_arr.length-1;i>=0;i--)
+                {
+                    this.img_arr[i]['type'] = 'photo';
+                    if(this.img_arr[i]['photo'] == null || this.img_arr[i]['photo'] == '')
+                    {
+                        this.img_arr.splice(i,1);
                     }
-                }
                 
+                    var img = document.getElementsByClassName('gallery-area-photo');
+                    var file = img[i].getElementsByClassName('nursing-photo')[0].files[0];
+                    if(file) {                             
+                        pt.append(i ,file )  
+                    }      
+                }
+
                 this.axios.post('/api/nursing/movephoto', pt)
                     .then(response => {
                     }).catch(error=>{
@@ -1141,50 +1220,28 @@ export default {
                 })
 
                 // Video
-                var video = document.getElementsByClassName('gallery-area-video');
-                for(var i = 0; i< video.length; i++) {
-                    if(video[i].getElementsByClassName('video-url')[0].value) {
-                        this.video_list.push({type:"video",photo:video[i].getElementsByClassName('video-url')[0].value,
-                        title:video[i].getElementsByClassName('title')[0].value, 
-                        description:video[i].getElementsByClassName('description')[0].value});
-                    }
+                for(var i =this.video_arr.length-1;i>=0;i--){
+                    if(this.video_arr[i].photo == null || this.video_arr[i].photo == '' )
+                    {
+                        this.video_arr.splice(i,1);
+                    }   
                 }
 
                 // Cooperate
-                var cooperate = document.getElementsByClassName('gallery-area-cooperate');
-                for(var i = 0; i< cooperate.length; i++) {
-                    if(cooperate[i].getElementsByClassName('clinical-sub')[0].value) {
-                        this.cooperate_list.push({subject:cooperate[i].getElementsByClassName('clinical-sub')[0].value,
-                        name:cooperate[i].getElementsByClassName('cooperate-name')[0].value,
-                        details:cooperate[i].getElementsByClassName('details')[0].value,
-                        expense:cooperate[i].getElementsByClassName('expense')[0].value,
-                        remark:cooperate[i].getElementsByClassName('remark')[0].value});
-                    }
+                for(var i =this.cooperate_arr.length-1;i>=0;i--){
+                    if(this.cooperate_arr[i].name == null || this.cooperate_arr[i].name == '')
+                    {
+                        this.cooperate_arr.splice(i,1);
+                    }   
                 }
 
                 // Payment Method
-                var payment = document.getElementsByClassName('gallery-area-payment');
-                for(var i = 0; i< payment.length; i++) {
-                    if(payment[i].getElementsByClassName('payment-name')[0].value) {
-                        this.payment_list.push({payment_name:payment[i].getElementsByClassName('payment-name')[0].value,
-                        expense_moving:payment[i].getElementsByClassName('expense-moving')[0].value,
-                        monthly_fees:payment[i].getElementsByClassName('monthly-fees')[0].value,
-                        living_room_type:payment[i].getElementsByClassName('living-room-type')[0].value,
-                        area:payment[i].getElementsByClassName('area')[0].value,
-                        deposit:payment[i].getElementsByClassName('deposit')[0].value,
-                        other_use:payment[i].getElementsByClassName('other-use')[0].value,
-                        rent:payment[i].getElementsByClassName('rent')[0].value,
-                        admin_expense:payment[i].getElementsByClassName('admin-expense')[0].value,
-                        food_expense:payment[i].getElementsByClassName('food-expense')[0].value,
-                        nurse_care_surcharge:payment[i].getElementsByClassName('nurse-care-surcharge')[0].value,
-                        other_monthly_cost:payment[i].getElementsByClassName('other-monthly-cost')[0].value,
-                        refund_system:payment[i].getElementsByClassName('refund-system')[0].value,
-                        depreciation_period:payment[i].getElementsByClassName('depreciation-period')[0].value,
-                        initial_deprecration:payment[i].getElementsByClassName('initial-deprecration')[0].value,
-                        other_message_refund:payment[i].getElementsByClassName('other-message-refund')[0].value});
-                    }
+                for(var i =this.payment_arr.length-1;i>=0;i--){
+                    if(this.payment_arr[i].payment_name == null || this.payment_arr[i].payment_name == '')
+                    {
+                        this.payment_arr.splice(i,1);
+                    }   
                 }
-
 
                var s_features =[];
                     $.each($("input[name='special-features']:checked"), function(){
@@ -1203,51 +1260,30 @@ export default {
                         var acceptance_id = tmp_arr[1];
                         acceptance.push({id:id,type:type});
                 });
-
-                var old_panorama = document.getElementsByClassName('panorama-old-img');
-                var new_panorama = document.getElementsByClassName('panorama-new-img');
-
-                if((this.panorama_length != old_panorama.length && old_panorama.length >0) || new_panorama.length > 0){
-                    for(var i = 0; i< this.panorama_arr.length; i++) {
-                        this.panorama_list.push({type:"panorama",photo:this.panorama_arr[i].photo,title:'',description:''});
-                    }                
+                
+                // Panorama
+                let fd = new FormData();
+                for(var i = 0; i< this.panorama_arr.length; i++) {
+                    if(this.panorama_arr[i]['path']!=''){ 
+                        fd.append(i ,this.panorama_arr[i]["file"] )
+                    }                   
                 }
-                else{
-                    this.panorama_list = [];
-                }
-               
-                if(new_panorama.length > 0){
-                    let fd = new FormData();
-                    for(var i = 0; i< this.panorama_arr.length; i++) {
-                        if(this.panorama_arr[i]['path']!=''){ 
-                            fd.append(i ,this.panorama_arr[i]["file"] )
-                        }                   
-                    }
                     
-                    this.axios.post('/api/nursing/movepanorama', fd)
-                        .then(response => {
-                        }).catch(error=>{
-                                console.log(error);
+                this.axios.post('/api/nursing/movepanorama', fd)
+                    .then(response => {
+                    }).catch(error=>{
+                        console.log(error);
                         if(error.response.status == 422){
-                                this.errors = error.response.data.errors
+                            this.errors = error.response.data.errors
                         }
                     })
-                }
 
-                var fData = new FormData();
-                fData.append("image",this.img_list);
-                fData.append("video",this.video_list);
-                fData.append("panorama",this.panorama_list);               
-
-                this.profile_arr.push({nursing_profile:this.nursing_info,customer_info:this.customer_info,staff_info:this.staff_info, cooperate_list:this.cooperate_list,
-                                        payment_list:this.payment_list, video:this.video_list, image: this.img_list, panorama: this.panorama_list,
+                this.profile_arr.push({nursing_profile:this.nursing_info,customer_info:this.customer_info,staff_info:this.staff_info, cooperate_list:this.cooperate_arr,
+                                        payment_list:this.payment_arr, video:this.video_arr, image: this.img_arr, panorama: this.panorama_arr,
                                         acceptance:acceptance,chek_feature:this.chek_feature
                 });
                 
                 if(this.profile_arr.length > 0) {
-                    console.log("this.cusid")
-                    console.log(this.cusid)
-                    console.log(this.profile_arr)
                     this.axios
                         .post(`/api/nursing/profile/${this.cusid}`,this.profile_arr)
                         .then((response) => {

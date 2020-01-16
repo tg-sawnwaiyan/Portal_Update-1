@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Gallery;
 use DB;
+use File;
 
 class GalleryController extends Controller
 {
@@ -32,20 +33,25 @@ class GalleryController extends Controller
     public function getPanoramabyCustomerId($customer_id) {
         $sql = "SELECT id,photo,title,description,type,'' as path, '' as file FROM galleries WHERE type='panorama' and customer_id=$customer_id";
         $panorama_list = DB::select($sql);
-        // $panorama_list = Gallery::select('id','photo','title','description','type')->where("customer_id",$customer_id)
-        //                     ->where('type','=', 'panorama')
-        //                     ->get()
-        //                     ->toArray();
         return $panorama_list;
     }
 
-    public function deltGallery($id,$file)
-    {
-       $sql = "DELETE from galleries where id = " .$id;
-       $delgallery = DB::select($sql);
-       $filename = './upload/hospital_profile/'.$file;
-    
-       \File::delete($filename);
-       return response()->json('success');
+    public function deleteGallery(Request $request) {
+        $request = $request->all();
+        if($request['custype'] == 'nursing') {
+            if($request['type'] == 'photo') {
+                $file = 'upload/nursing_profile/'.$request['photo'];
+            } 
+            if($request['type'] == 'panorama') {
+                $file = 'upload/nursing_profile/Imagepanorama/'.$request['photo'];
+            } 
+        }
+        else{
+            $file = 'upload/hospital_profile/'.$request['photo'];
+        }
+        
+        File::delete($file);
+        Gallery::where(['id'=> $request['id']])->delete(); 
     }
+
 }
