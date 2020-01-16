@@ -100,7 +100,7 @@
                                     </div>
                                     <div class="form-group row pl-4 mb-0">
                                         <div class="col-md-3 font-weight-bold">
-                                            市区町村、番地（建物名）
+                                            番地（建物名）
                                         </div>
                                         <div class="col-md-9 p-0">
                                             <input type="text" name="outputcity" id="outputcity" class="mailbox" disabled v-model="comments.city" />
@@ -214,7 +214,7 @@
                     <div class="text-center">
                         <h3>資料請求が完了いたしました。‼</h3>
                         <br />
-                        <p>この度は「医療介護ポータル」をご利用いただきましてありがとうございました。</p>
+                        <p>この度は「T-IS ティーズ」をご利用いただきましてありがとうございました。</p>
                         <p>お申込みいただいた資料の送付およびお問い合わせいただいた内容につきましては、各施設よりご対応させていただきます。</p>
                         <p>今後ともどうぞよろしくお願い申し上げます。</p>
                         <br />

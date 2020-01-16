@@ -30,6 +30,6 @@ class jobApplyMailToAdmin extends Mailable
     public function build()
     {
         return $this->view('mail.jobApplyMailToAdmin')
-                    ->subject("[医療介護ポータル] 求人への応募がありました");
+                    ->subject("[T-IS ティーズ] 求人への応募がありました");
     }
 }

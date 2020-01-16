@@ -30,6 +30,6 @@ class SendMailComment extends Mailable
     public function build()
     {
         return $this->view('mail.comment')
-                    ->subject("[医療介護ポータル] Comment Request Mail");
+                    ->subject("[T-IS ティーズ] Comment Request Mail");
     }
 }
