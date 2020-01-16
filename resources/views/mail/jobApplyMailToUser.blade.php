@@ -14,21 +14,27 @@
                     ***********************************************************************************************************************************</p>
                     <p style="text-align:left;margin:2px;color:#3e4348;font-size: 16px;">◎【ご応募された方の情報】</p> 
                     <p style="text-align:left;margin:2px;color:#3e4348;font-size: 12px;">
-                    お名前：{{$getComment->first_name}}
+                    <strong> 仕事内容 </strong> ：{{$getComment->job_description}}
                     <br>
-                    ふりがな：{{$getComment->last_name}}
+                    <strong> 経験・スキル </strong> ：{{$getComment->skill}}
                     <br>
-                    生年月日：{{$getComment->birthday}}
+                    <strong> 勤務地 </strong> ：{{$getComment->job_location}}
                     <br>
-                    性別：{{$getComment->gender}}
+                    <strong> 最寄り駅 </strong> ：{{$getComment->job_nearest_station}}
                     <br>
-                    郵便番号：{{$getComment->postal}}
+                    <strong> 雇用形態 </strong> ：{{$getComment->job_employment_status}}
                     <br>
-                    住所：{{$getComment->cityname}}{{$getComment->townshipname}}{{$getComment->street_address}}
+                    <strong> 給料 </strong> ： {{$getComment->salary}}
                     <br>
-                    電話番号：{{$getComment->phone}}
+                    <strong> 特別な条件 </strong> ：{{$getComment->allowances}}
                     <br>
-                    メールアドレス：{{$getComment->email}}
+                    <strong> 各種保険 </strong> ：{{$getComment->insurance}}
+                    <br>
+                    <strong> 就業時間 </strong> ：{{$getComment->job_working_hours}}
+                    <br>
+                    <strong> 休日休暇 </strong> ：{{$getComment->holidays}}
+                    <br>
+                    <strong> 事業者名 </strong> ：{{$getComment->cus_name}}
                     <br>
                     ご希望等：
                     </p> 

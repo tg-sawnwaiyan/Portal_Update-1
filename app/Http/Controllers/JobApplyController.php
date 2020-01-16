@@ -87,27 +87,13 @@ class JobApplyController extends Controller
             $jobapply->birthday = $request->birthday;
             $jobapply->gender = $request->gender;
             $jobapply->postal = $request->postal;
-            // $jobapply->city_id = $request->city_id;
             $jobapply->township_id = $request->township;
             $jobapply->street_address = $request->str_address;
-            //$jobapply->home_address = $request->home_address;
             $jobapply->phone = $request->phone; 
             $jobapply->email = $request->email;       
             $jobapply->skill = $string;
             $jobapply->remark = $request->remark;
           
-           
-           
-            //  return $jobapply;
-            // $infos = DB::table('jobs')
-            //                 ->join('customers', 'customers.id', '=', 'jobs.customer_id')
-            //                 ->join('townships','townships.customer_id','=','customers.id')
-            //                 ->join('cities','cities.id','=','townships.city_id')
-            //                 ->select('jobs.*','customers.email', 'customer.id')
-            //                 ->where('jobs.id', '=', $jobapply->job_id)
-            //                 ->get();
-
-
              $query = "SELECT j.*,c.email,c.name as cus_name,ci.city_name as city_name,(CASE c.type_id WHEN '2' THEN CONCAT((200000+c.id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT((500000+c.id),'-',LPAD(j.id, 4, '0')) END) as jobnum,
                        (CASE c.type_id WHEN '2' THEN CONCAT(200000+c.id) ELSE CONCAT(500000+c.id) END) as cusnum
                         from customers as c join jobs as j on c.id = j.customer_id join townships as t on t.id = j.township_id join cities as ci on ci.id = t.city_id 
@@ -123,34 +109,44 @@ class JobApplyController extends Controller
                 $job_location = $info->location;
                 $job_nearest_station = $info->nearest_station;
                 $job_employment_status = $info->employment_status;
-                $job_salary = $info->salary;
+                $salary_type = $info->salary_type;
+                $salary_remark = $info->salary_remark;
+                $salary = $info->salary;
                 $job_working_hours = $info->working_hours;
                 $customer_mail = $info->email;
                 $customer_name = $info->cus_name;
                 $jobnum = $info->jobnum;
                 $cusnum = $info->cusnum;
                 $city_name = $info->city_name;
+                $allowances = $info->allowances;
+                $insurance = $info->insurance;
+                $holidays = $info->holidays;
             }
 
             $admin_email = 'thuzar@management-partners.co.jp';
-            // $admin_email = 'thuzar.ts92@gmail.com';
-            // $admin_email = 'management.partner87@gmail.com ';
              $jobapply->save();
              $jobapply->job_title = $job_title;
              $jobapply->job_description = $job_description;
              $jobapply->job_location = $job_location;
              $jobapply->job_nearest_station = $job_nearest_station;
              $jobapply->job_employment_status = $job_employment_status;
-             $jobapply->job_salary = $job_salary;
              $jobapply->job_working_hours = $job_working_hours;
              $jobapply->cus_name = $customer_name;
              $jobapply->jobnum = $jobnum;
              $jobapply->cusnum = $cusnum;
+             $jobapply->allowances = $allowances;
+             $jobapply->insurance = $insurance;
+             $jobapply->holidays = $holidays;
              $jobapply->cityname = $request->selectedValue;
              $jobapply->townshipname = $request->townshipname;
-           
-          
-            //  $jobapply->city_name = $city_name;
+             if($salary_remark != null || $salary_remark != '')
+             {
+                $jobapply->salary = $salary_type . " : " . number_format((int)($salary)) . "(" + $salary_remark + ")";
+             }
+             else{
+                $jobapply->salary = $salary_type . " : " . number_format((int)($salary));
+             }
+            
        
              \Mail::to($customer_mail)->send(new jobApplyMailToCustomer($jobapply));
              \Mail::to($jobapply->email)->send(new jobApplyMailToUser($jobapply));

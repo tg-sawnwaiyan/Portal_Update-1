@@ -213,8 +213,7 @@ class HospitalProfileController extends Controller
         // End 
 
         // Hospital Profile
-         $hospital = HospitalProfile::where('customer_id',$id)->first();
-
+        $hospital = HospitalProfile::where('customer_id',$id)->first();
         $hospital->access = $request[0]['hospital_info']['access'];
         $hospital->specialist =  $request[0]['hospital_info']['specialist'];
         $hospital->details_info=  $request[0]['hospital_info']['details_info'];

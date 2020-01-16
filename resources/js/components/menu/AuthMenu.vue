@@ -20,7 +20,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button> -->
                 
-                <ul class="gNav">
+                <ul class="gNav" v-if="visit == 'false'">
                     <li>
                         <router-link :to="{ name: 'News' }"> サイトを表示</router-link>
                     </li>

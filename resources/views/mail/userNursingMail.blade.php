@@ -22,44 +22,7 @@
                 
                 <p style="text-align: left;margin: 0px;">
                 ***********************************************************************************************************************************
-                </p>
-                <p style="text-align:left;margin:2px;color:#3e4348;font-size: 16px;"><span style="color:#d2571c">◎</span>【資料請求された方について】</p>
-                <p style="text-align:left;margin:2px;color:#3e4348;font-size: 12px;">
-                お名前：{{$getComment->name}}
-                <br>
-                ふりがな：{{$getComment->furigana}}
-                <br>
-                生年月日：{{$getComment->bdate}}
-                <br>
-                性別：{{$getComment->sex1}}
-                <br>
-                郵便番号：{{$getComment->postal}}
-                <br>
-                都道府県、市区町村、番地（建物名)：{{$getComment->division}}{{$getComment->townshipname}}{{$getComment->city}}
-                <br>
-                電話番号：{{$getComment->phone}}
-                <br>
-                メールアドレス：{{$getComment->mail}}
-                </p> 
-                <br>
-                <p style="text-align:left;margin:2px;color:#3e4348;font-size: 16px;"><span style="color:#d2571c">◎</span>【入居対象者様について】</p>
-                <p style="text-align:left;margin:2px;color:#3e4348;font-size: 12px;">
-                入居対象者様とのご関係：{{$getComment->relation}}
-                <br>
-                お名前：{{$getComment->ttname}}
-                <br>
-                性別：{{$getComment->sex}}
-                <br>
-                年齢：{{$getComment->years}}
-                <br>
-                介護度：{{$getComment->nursing}}
-                <br>
-                認知症：{{$getComment->fect}}
-                <br>
-                ご要望や、お困りごと、その他お問い合わせ：{{$getComment->hope}}                    
-                </p>
-                <p style="text-align: left;margin: 0px;">
-                ***********************************************************************************************************************************</p>   
+                </p>                
                 <p style="font-size:12px;color:#807c7c;text-align:left;"> 
                     <span style="color:#000">[医療介護ポータル] </span>
                     <br/>
