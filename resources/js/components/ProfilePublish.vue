@@ -10,7 +10,7 @@
         <div class="col-12 detail_profile_left pad-free"  v-if="currentPanoImage">
             <h4 class="profile-tit">{{customer_name}}</h4>
 
-            <div class="thumbnail-img" style="padding:0px;border:none;">
+            <div class="thumbnail-img pc-414" style="padding:0px;border:none;">
                 <div class="card-carousel" style="background:#fff;">
                 <div class="card-img">                   
                     <Pannellum :src="'/upload/nursing_profile/Imagepanorama/' + currentPanoImage" class="pannellum" :auto-load="true" :show-zoom="true" :show-fullscreen="true" :auto-rotate="isAutoRotationOn" :orientation="isOrientationOn" :compass="true" :hfov= "120" :draggable="true"></Pannellum>
@@ -54,8 +54,63 @@
                     </div>
             </div>
             </div>
+            <!--responsive pano-->  
+            <div class="sp-414 res-pano"  v-if="panoimages.length > 0">
+                <slick :options="slickOptions" ref="slickSetting1">
+                    <div><h2><img :src="'/upload/nursing_profile/Imagepanorama/' + currentPanoImage" class="img-fluid" @error="imgUrlAlt"/></h2></div>				
+                </slick>
+                <slick :options="slickOptions2" ref="slickSetting2" id="res-pano">
+                        <div v-for="(image,index) in  panoimages" :key="image.id" :class="[(activePanoImage == index) ? 'active' : '']" @click="activatePanoImage(index)">
+                        <h3>                                   
+                            <span>
+                                <img  :src ="'/upload/nursing_profile/Imagepanorama/' + image.photo" @error="imgUrlAlt" class="img-fluid">  
+                            </span>                    
+                        </h3>
+                    </div>                
+                </slick>
+                <div class="see-pano">
+                    <span @click='isPano = !isPano'>
+                        <li class="first-submenu">
+                            <p>360</p>
+                        </li>
+                    </span>
+                    <transition name="slide">
+                        <div class="sp_panonav" id="sp_panonav" v-if="isPano">   
+                            <div>
+                                <span @click='isPano = !isPano'>
+                                    <li class="first-submenu backwrapper">
+                                        <i class="fa fa-arrow-left" aria-hidden="true"></i> 戻る
+                                    </li>
+                                </span>
+                                <!--pano show res-->
+                                <slick :options="slickOptions" ref="slickSetting1">
+                                    <div>
+                                        <h2>
+                                            <!-- <img :src="'/upload/nursing_profile/Imagepanorama/' + currentPanoImage" class="img-fluid" @error="imgUrlAlt"/> -->
+                                            <Pannellum :src="'/upload/nursing_profile/Imagepanorama/' + currentPanoImage" class="pannellum" :auto-load="true" :show-zoom="true" :show-fullscreen="true" :auto-rotate="isAutoRotationOn" :orientation="isOrientationOn" :compass="true" :hfov= "120" :draggable="true"></Pannellum>
+                                        </h2>
+                                    </div>				
+                                </slick>
+                                <slick :options="slickOptions2" ref="slickSetting2" id="res-pano">
+                                        <div v-for="(image,index) in  panoimages" :key="image.id" :class="[(activePanoImage == index) ? 'active' : '']" @click="activatePanoImage(index)">
+                                        <h3>                                   
+                                            <span>
+                                                <img  :src ="'/upload/nursing_profile/Imagepanorama/' + image.photo" @error="imgUrlAlt" class="img-fluid">  
+                                            </span>                    
+                                        </h3>
+                                    </div>                
+                                </slick>
+                                <!--end pano show res-->
+                            </div>
+                        </div>
+                    </transition>
+                   
+                </div>
+            </div>
+            <!--end responsive pano-->
         </div>
         <!--end panorama-->
+        
 
             <div class="tab typelabel nav-link fixed-nav" v-bind:style="{width:width}">
             <!-- <div class="row col-12 m-t-10">
@@ -98,7 +153,7 @@
                            <div class="col-12 pad-free sp-1024">
                                 <h5 class="profile_header">介護情報</h5>
                             </div>
-                           <div class="thumbnail-img">
+                           <div class="thumbnail-img pc-414">
 
                              <div class="card-carousel">
 
@@ -304,7 +359,8 @@
                         </table>
 
                     </div>
-                    <div v-if="method_payment.length > 0" class="col-md-12">
+                    
+                    <div v-if="method_payment.length > 0" class="col-md-12 pc-414">
                         <div class="cost_tb">
                             <div class="row" >
                                 <div class="col-md-12  main-cost-wrap">
@@ -443,12 +499,126 @@
                             </div>
                         </div>
                     </div>
+
+                    <!--Table responsive-->
+                    <div class="card col-md-12 mb-10 sp-414" v-for="(cost) in method_payment" :key="cost.id">
+                        <div class="card-body">
+                            <div class="row mb-10">
+                            <div class="col-7">
+                                <h6 class="font-weight-bold">プラン名 / 居室詳細</h6>
+                                <label class="method-name-respon">{{cost.payment_name}}</label>
+                                <span class="room-type"> {{cost.living_room_type}} </span>
+                                {{cost.area}}
+                            </div>
+                            <div class="col-5">
+                                <h5 class="method-name-respon">入居時費用</h5>
+                                <span class="cash-lbl-respon">{{cost.expense_moving}}</span>
+                                <h5 class="method-name-respon">月額費用</h5>
+                                <span class="cash-lbl-respon">{{cost.monthly_fees}}</span>
+                            </div>
+                            </div>
+                            <span class="detail-btn mb-10" :class="'changeLink changeLink'+cost.id" @click="costConfirmMini(cost.id)" >詳しくはこちら</span>
+                            <div class="col-md-12 collapse miniChangeLink" :id="'changeLinkMini' + cost.id">
+                                    <label class="cost_heading_lbl_respon m-b-15">{{cost.payment_name}}</label>
+                                    <div class="col-md-12">
+                                        <label class="cost_heading_lbl_mini_res"><i class="fas fa-yen-sign"></i> 入居にかかる費用</label>
+                                        <table id="costDetails" class="table table-condensed cost_table moving-in_tbl">
+                                            <tbody>
+                                                <tr>
+                                                    <th class="method-name-respon">入居一時金または</th>
+                                                    <td><span class="cash-lbl-respon">{{cost.deposit}}</span></td>
+                                                    <th class="method-name-respon">その他（使途）</th>
+                                                    <td>{{cost.other_use}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <label class="cost_heading_lbl_mini_res"><i class="fas fa-yen-sign"></i> 月額費用</label>
+                                        <table class="table table-condensed cost_table">
+                                            <tbody>
+
+                                                <tr>
+                                                    <th class="method-name-respon">賃料</th>
+                                                    <td><span class="cash-lbl-respon">{{cost.rent}}</span></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th class="method-name-respon">管理費</th>
+                                                    <td><span class="cash-lbl-respon">{{cost.admin_expense}}</span></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th class="method-name-respon">食費 </th>
+                                                    <td><span class="cash-lbl-respon">{{cost.food_expense}}</span></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th class="method-name-respon">介護上乗せ金（生活サービス費</th>
+                                                    <td><span class="cash-lbl-respon">{{cost.nurse_care_surcharge}}</span></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th class="method-name-respon">その他 </th>
+                                                    <td>{{cost.other_monthly_cost}}</td>
+                                                </tr>
+
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <label class="cost_heading_lbl_mini_res"><i class="fas fa-yen-sign"></i> 返還金について</label>
+                                        <table class="table table-condensed cost_table">
+                                            <tbody>
+
+                                                <tr>
+
+                                                    <th class="method-name-respon">返還制度</th>
+
+                                                    <td>{{cost.refund_system}}</td>
+
+                                                </tr>
+
+                                                <tr>
+
+                                                    <th class="method-name-respon">償却期間</th>
+
+                                                    <td>{{cost.depreciation_period}}</td>
+
+                                                </tr>
+
+                                                <tr>
+
+                                                    <th class="method-name-respon">初期償却</th>
+
+                                                    <td>{{cost.initial_deprecration}}</td>
+
+                                                </tr>
+
+                                                <tr>
+
+                                                    <th class="method-name-respon">その他メッセージ</th>
+
+                                                    <td>{{cost.other_message_refund}}</td>
+
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    <!--End table responsive-->
             </div>
 
             <div class="row ele m-lr-0" id="element4">
 
                 <!-- <div class="row"> -->
-                    <h5 class="profile_header col-md-12"> 施設概要</h5>
+                    <h5 class="profile_header col-md-12"> 施設の概要</h5>
                     <div v-for="nus in nusfacilities" :key="nus.id" class="col-md-12" >
 
                         <table border="1" class="table table-bordered cost_table facility_tbl">
@@ -733,13 +903,9 @@
             </div>
 
             <div class="row ele m-lr-0" id="element5">
-
                 <h5 class="profile_header col-md-12"> 地図</h5>
-
                         <div class="col-lg-12 col-md-12 col-sm-12">
-
                             <GmapMap id="googlemap" ref="map" :center="center" :zoom="10" >
-
                             <GmapMarker v-for="(m, index) in markers" :key="index" :position="m.position" :clickable="true" :draggable="false" @click="center=m.position" />
 
                            </GmapMap>
@@ -762,9 +928,7 @@
                                     </tbody>
                                 </table>
                             </div>
-
                       </div>
-
                  </div>
 
 
@@ -1404,19 +1568,21 @@
 
 <script>
 
-
+import Slick from 'vue-slick'
 import Pannellum from '../../js/components/vue-pannellum.vue'
 import Lightbox from 'vue-my-photos'
 export default {
 
     components:{
         Pannellum,
-        Lightbox
+        Lightbox,
+        Slick
     },
     data() {
 
             var that = this;
             return {
+                ads_list: [],
                 customer_id: "",
                 url: 'upload/nursing_profile/Imagepanorama/',
                 isAutoRotationOn: true,
@@ -1495,7 +1661,9 @@ export default {
                 window: {
                     width: 0,
                     height: 0
-                }
+                },
+                show : true,
+                isPano: false               
             };
         },
 
@@ -1506,6 +1674,11 @@ export default {
         },
 
         created(){
+            //
+            this.axios.get("/api/advertisement/ads").then(response => {
+                this.ads_list = response.data;
+            });
+            //end 
            
              
                 window.addEventListener('resize', this.handleResize);
@@ -1602,7 +1775,7 @@ export default {
                         //     $('.top-fixed-btn.active').removeClass('top-fixed-btn.active');
                         //     $('.top-fixed-btn').eq(active_el).addClass('top-fixed-btn.active');
                         // }
-                          if($(this).position().top <= (cur_pos+500)){
+                          if($(this).position().top <= (cur_pos+71)){
                             $('.top-fixed-btn.active').removeClass('active');
                             $('.top-fixed-btn').eq(active_el).addClass('active');
                         }
@@ -1804,82 +1977,109 @@ export default {
           },
 
           computed: {
-                    atEndOfList() {
-                        return this.panocurrentOffset <= (this.paginationFactor * -1) * (this.panoimages.length - this.windowSize);
-                    },
-                    atHeadOfList() {
-                        return this.panocurrentOffset === 0;
-                    },
-              currentPanoImage() {
-
+            atEndOfList() {
+                return this.panocurrentOffset <= (this.paginationFactor * -1) * (this.panoimages.length - this.windowSize);
+            },
+            atHeadOfList() {
+                return this.panocurrentOffset === 0;
+            },
+            currentPanoImage() {
                 if(this.panoimages.length > 0) {
                     return this.panoimages[this.activePanoImage].photo;
-
                 }
-
             },
-
             currentImage() {
                 if(this.images) {
                     if(this.images.length > 0) {
-
                         this.activeImageTitle = this.images[this.activeImage].title;
-
                         this.activeImageDescription = this.images[this.activeImage].description;
-
                         return this.images[this.activeImage].photo;
-
                     }
                     else{
-
                         return 'no-image-big.jpg';
-
                     }
                 }
-
                 else{
-
                     return 'no-image-big.jpg';
-
                 }
-
             },
             pages() {
                     return Math.ceil(this.comments.length / this.size);
                 },
-                displayPageRange() {
-                    const half = Math.ceil(this.pageRange / 2);
-                    const isEven = this.pageRange / 2 == 0;
-                    const offset = isEven ? 1 : 2;
-                    let start, end;
-                    if (this.pages < this.pageRange) {
-                        start = 1;
-                        end = this.pages;
-                    } else if (this.currentPage < half) {
-                        start = 1;
-                        end = start + this.pageRange - 1;
-                    } else if (this.pages - half < this.currentPage) {
-                        end = this.pages;
-                        start = end - this.pageRange + 1;
-                    } else {
-                        start = this.currentPage - half + offset;
-                        end = this.currentPage + half;
-                    }
-                    let indexes = [];
-                    for (let i = start; i <= end; i++) {
-                        indexes.push(i);
-                    }
-                    return indexes;
-                },
-                displayItems() {
-                    const head = this.currentPage * this.size;
-                    return this.comments.slice(head, head + this.size);
-                },
-                isSelected(page) {
-                    return page - 1 == this.currentPage;
+            displayPageRange() {
+                const half = Math.ceil(this.pageRange / 2);
+                const isEven = this.pageRange / 2 == 0;
+                const offset = isEven ? 1 : 2;
+                let start, end;
+                if (this.pages < this.pageRange) {
+                    start = 1;
+                    end = this.pages;
+                } else if (this.currentPage < half) {
+                    start = 1;
+                    end = start + this.pageRange - 1;
+                } else if (this.pages - half < this.currentPage) {
+                    end = this.pages;
+                    start = end - this.pageRange + 1;
+                } else {
+                    start = this.currentPage - half + offset;
+                    end = this.currentPage + half;
                 }
+                let indexes = [];
+                for (let i = start; i <= end; i++) {
+                    indexes.push(i);
+                }
+                return indexes;
+            },
+            displayItems() {
+                const head = this.currentPage * this.size;
+                return this.comments.slice(head, head + this.size);
+            },
+            isSelected(page) {
+                return page - 1 == this.currentPage;
+            },
+            slickOptions() {               
+                return {         
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: true,
+                fade: false,
+                adaptiveHeight: true,   
+                }
+            },
+            slickOptions2() {
+                return {                   
+                slidesToShow: 7,
+                slidesToScroll: 1,
+                dots: false,               
+                responsive: [{
+                    breakpoint: 411,
+                        settings: {
+                            slidesToShow: 8.5,
+                            slidesToScroll: 1,
+                        }
+                    }, {
+                    breakpoint: 360,
+                        settings: {
+                            slidesToShow: 8,
+                            slidesToScroll: 1,
+                        }
+                    }]
+                }
+            }
         },
         methods: {
+            next() {
+                this.$refs.slick.next();
+            },
+            prev() {
+                this.$refs.slick.prev();
+            },
+            reInit() {
+                // Helpful if you have to deal with v-for to update dynamic lists
+                this.$nextTick(() => {
+                    this.$refs.slick.reSlick();
+                });
+            },
             handleResize() {
                 this.window.width = window.innerWidth;
                 this.window.height = window.innerHeight;
@@ -1994,6 +2194,17 @@ export default {
         $('.closeChangeLink').hide('medium');
         $('#changeLink'+id).show('medium');
     },
+    costConfirmMini(id){
+        if(this.show){
+            $('.changeLink'+id).text("選択中");
+            $('#changeLinkMini'+id).show('medium');
+            this.show = false;
+        }else{
+            $('.changeLink'+id).text("詳しくはこちら");
+            $('#changeLinkMini'+id).hide('medium');
+            this.show = true;
+        }        
+    },
     documentPost() {
         localStorage.removeItem("item");
         console.log("docPos");
@@ -2028,18 +2239,49 @@ export default {
         }
     },
     pageSelect(index) {
-        this.currentPage = index - 1;
-        window.scrollTo(0,0);
+        // this.currentPage = index - 1;
+        // window.scrollTo(0,0);
+        if(0 < this.currentPage)
+        {
+            this.currentPage = index - 1;
+        }
+        else{
+            this.currentPage++;
+        }
     },
   }
 
  }
-
+ 
 
 </script>
 
 <style scoped>
+h2{
+    background: #f0f0f0;    
+    padding: 0px;
+}
+h3 {
+	background: #f0f0f0;
+    color: #3498db;
+    font-size: 2.25rem;
+    margin: .1rem;
+    position: relative;
+    text-align: left;
+    max-height: 230px;
+    overflow: hidden;
+    margin-bottom: 0px;
+}
+.res-pano{
+    background: #eee;
+}
+.see-pano{
+    border-top: 1px dashed #907b7b;
+    padding: 20px;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.12);
+}
 
+/*end test*/
 /*slider*/
     #pano-slider-page .card-carousel {
     display: flex;
@@ -2225,11 +2467,23 @@ export default {
     font-weight: bold;
     font-size: 1.14em;
 }
+.cost_heading_lbl_respon{
+    border-left: 5px solid rgb(249, 121, 60);
+    padding: 0 5px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
 .cost_heading_lbl_mini{
     /* border-left: 5px solid rgb(249, 121, 60); */
     line-height: 1;
     font-weight: bold;
     font-size: 1.2em;
+}
+.cost_heading_lbl_mini_res{
+    /* border-left: 5px solid rgb(249, 121, 60); */
+    line-height: 1;
+    font-weight: bold;
+    font-size: 0.8rem;
 }
 
 .cost_heading_lbl_mini i{
@@ -2480,6 +2734,9 @@ export default {
     pointer-events: none;
     background: none !important;
 }
+.miniChangeLink {
+    padding: 0px;
+}
 
 .room-type {
     /* background: #fdd6c3; */
@@ -2496,11 +2753,25 @@ export default {
     font-size: 1em;
     margin-bottom: 10px;
 }
+.method-name-respon {
+    font-weight: bold;
+    font-size: 0.8em;
+    /* margin-bottom: 10px; */
+}
 
 .cash-lbl-mini {
     font-size: 1.4em !important;
     color: #ff6117;
     font-weight: bold;
+}
+.cash-lbl-respon {
+    font-size: 1.1em !important;
+    color: #ff6117;
+    font-weight: bold;
+}
+.detail-btn {
+    display: flex;
+    justify-content: center;
 }
 
 .cash-unit {

@@ -87,10 +87,10 @@ class CommentController extends Controller
 
         if($getComment[0]->gender == 0 )
         {
-            $getComment[0]->gender = "Male";
+            $getComment[0]->gender = "男性";
         }
         else{
-            $getComment[0]->gender = "Female";
+            $getComment[0]->gender = "女性";
         }
         // \Mail::to('mayphue17@management-part')->send(new SendMailComment($getComment));
         \Mail::to($getComment[0]->email)->send(new SendMailComment($getComment));
