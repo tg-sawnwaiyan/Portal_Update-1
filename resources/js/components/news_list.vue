@@ -216,10 +216,11 @@
                         confirmButtonClass: "all-btn",
                         cancelButtonClass: "all-btn"
                     }).then(response => {
+                        this.$loading(true);
                         this.axios
                             .delete(`/api/new/delete/${id}`)
                             .then(response => {
-                                console.log(response.data)
+                                this.$loading(false);
                                 this.news_list = response.data;
                                 this.norecord = this.news_list.length;
                                 if (this.norecord > this.size) {

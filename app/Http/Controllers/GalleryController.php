@@ -15,10 +15,8 @@ class GalleryController extends Controller
     }
     
     public function getPhotobyCustomerId($customer_id) {
-        $photo_list = Gallery::where("customer_id",$customer_id)
-                            ->where('type','=', 'photo')->select('id','title','photo','description')
-                            ->get()
-                            ->toArray();
+        $photo_list = DB::select("SELECT g.id,g.title,g.photo,g.description, (CASE c.type_id WHEN '2' THEN CONCAT('/upload/hospital_profile/',g.photo) ELSE CONCAT('/upload/nursing_profile/',g.photo) END) as src 
+        FROM galleries as g INNER JOIN customers as c ON g.customer_id = c.id WHERE g.type='photo' AND g.customer_id = ".$customer_id);
         return $photo_list;
     }
 
