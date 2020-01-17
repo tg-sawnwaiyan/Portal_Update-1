@@ -57,35 +57,33 @@
                     <h5 class="header">ニュース一覧</h5>
                     <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデタが消える。</div>
                     <div v-else class="container-fuid">
-                        <div v-for="newsList in displayItems" :key="newsList.id" class="card card-default m-b-20">
-                            <div class="card-body news-post">
-                                <div class="newsList_wrap">
-                                    <div class="newsList_photo" v-if="newsList.photo !=null" >
-                                        <img :src="'/upload/news/'+ newsList.photo" alt  @error="imgUrlAlt" />
+                        <table class="table List_tbl">
+                            <tr v-for="newsList in displayItems" :key="newsList.id">
+                                <td>
+                                    <div v-if="newsList.photo !=null">
+                                        <img :src="'/upload/news/'+ newsList.photo"   @error="imgUrlAlt" />
                                     </div>
-                                    <div class="newsList_photo" v-else> <img src="images/noimage.jpg" alt /></div>
-                                    <div class="newsList_txt">
-                                        <!-- <div class="row col-12 mb-2"> -->
-                                            <h5>
-                                                <router-link
-                                                    :to="{name: 'newdetails', params:{id:newsList.id}}"
-                                                >{{newsList.title}}</router-link>
-                                                <!-- <router-link :to="{name: 'joh4_details', params:{id:news_list.id}}" class="mr-auto">{{news_list.title}}<router-link> -->
-                                                <!-- <a hrဖef="../news/news_details.html" class="mr-auto">{{newsList.title}} </a> -->
-                                            </h5>
-                                        <!-- </div> -->
-
-                                        <p>{{newsList.main_point}}</p>
-                                        <div class="d-flex">
-                                            <router-link :to="{name: 'editPost', params: {id: newsList.id}}" class="btn edit-borderbtn">編集</router-link>&nbsp;
-                                            <!-- <a class="mr-auto text-danger btn delete-borderbtn" @click="deletePost(newsList.id)">削除</a> -->
-                                            <button class="mr-auto text-danger btn delete-borderbtn" @click="deletePost(newsList.id)">削除</button>
-                                        </div>
+                                    <div  v-else> <img src="images/noimage.jpg" alt  /></div>
+                                </td>
+                                <td>
+                                    <h5>
+                                        <router-link
+                                            :to="{name: 'newdetails', params:{id:newsList.id}}"
+                                        >{{newsList.title}}</router-link>
+                                        <!-- <router-link :to="{name: 'joh4_details', params:{id:news_list.id}}" class="mr-auto">{{news_list.title}}<router-link> -->
+                                        <!-- <a hrဖef="../news/news_details.html" class="mr-auto">{{newsList.title}} </a> -->
+                                    </h5>
+                                    <p class="mt-2">{{newsList.main_point}}</p>
+                                    <div class="d-flex mt-4">
+                                        <router-link :to="{name: 'editPost', params: {id: newsList.id}}" class="btn edit-borderbtn">編集</router-link>&nbsp;
+                                        <!-- <a class="mr-auto text-danger btn delete-borderbtn" @click="deletePost(newsList.id)">削除</a> -->
+                                        <button class="mr-auto text-danger btn delete-borderbtn" @click="deletePost(newsList.id)">削除</button>
                                     </div>
-                                </div>
-                            </div>
+                                </td>
+                            </tr>
+                        </table>
 
-                        </div>
+
                         <div class="col-12" v-if="pagination">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination">
