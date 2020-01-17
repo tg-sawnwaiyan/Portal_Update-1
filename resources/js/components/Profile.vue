@@ -1,7 +1,7 @@
 <template>
   <div id="Profile-page">
     <h4 v-if="loginuser" class="header" style="background:transparent;">マイページ編集</h4> 
-    <button @click="$router.go(-1)" class="btn btn-danger all-btn submit" style="float:right">戻る</button>
+    <button @click="$router.go(-1)" v-if="login_person == 'admin'" class="btn btn-danger all-btn submit" style="float:right">戻る</button>
 
      
     <span v-if="!loginuser">

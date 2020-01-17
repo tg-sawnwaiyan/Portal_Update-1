@@ -615,7 +615,7 @@ const routes = [
     path:'/jobapplylist',
     component:jobapplylist,
     meta: {
-        auth: {roles: 1, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+        auth: true,
     }
   },
 ]
