@@ -170,16 +170,13 @@
 <style>
 .fade-enter-active,
 .fade-leave-active {
-    
-  transition: opacity 1s ease-in;
+    transition: opacity .2s ease ;  
 }
 
 .fade-enter,
-.fade-leave-to {
-   
+.fade-leave-to {   
   opacity: 0;
 }
-
 
 .slide-enter-active {
    -moz-transition-duration: 0.3s;

@@ -46,8 +46,7 @@
                         <h5 class="header">ニュース一覧</h5>
                         <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデタが消える。</div>
                         <div v-else class="container-fuid">
-                            <div v-for="newsList in displayItems" :key="newsList.id" class="card card-default m-b-20">
-
+                              <div v-for="newsList in displayItems" :key="newsList.id" class="card card-default m-b-20">
                                 <div class="card-body news-post">
                                     <div class="row">
                                         <div class="col-md-2" v-if="newsList.photo !=null" >
@@ -195,6 +194,7 @@
             // toggleModal() {
             //     this.$emit('toggleModal');
             // },
+     
             deletePost(id) {
                     this.$swal({
                         title: "確認",
@@ -273,27 +273,32 @@
                 },
                 first() {
                     this.currentPage = 0;
-                    window.scrollTo(0,0);
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                    // window.scrollTo(0,0);
                 },
                 last() {
                     this.currentPage = this.pages - 1;
-                    window.scrollTo(0,0);
+                     $("html, body").animate({ scrollTop: 0 }, "slow");
+                    // window.scrollTo(0,0);
                 },
                 prev() {
                     if (0 < this.currentPage) {
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
                         this.currentPage--;
                     }
-                    window.scrollTo(0,0);
+                    // window.scrollTo(0,0);
                 },
                 next() {
                     if (this.currentPage < this.pages - 1) {
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
                         this.currentPage++;
                     }
-                    window.scrollTo(0,0);
+                    // window.scrollTo(0,0);
                 },
                 pageSelect(index) {
                     this.currentPage = index - 1;
-                    window.scrollTo(0,0);
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                    // window.scrollTo(0,0); 
                 },
         }
     };
