@@ -84,7 +84,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <h4 class="page-header header">プロファイル設定</h4>
+                            <h4 class="page-header header">プロファイル設定 <a v-if="$auth.check(2)" @click="$router.go(-1)" class="btn btn-danger all-btn submit float-right">戻る</a></h4>
                             <br>
                         </div>
                         <form class="col-md-8">
@@ -105,7 +105,7 @@
                                             </div>
                                             <div class="form-group mg">
                                                 <div>
-                                                    <img :src="logo" id="thumbnil" class="profile_logo m-b-8" alt="Logo" width="200px" >
+                                                    <img :src="logo" id="thumbnil" class="profile_logo m-b-8" alt="Logo"  @error="imgUrlAlt" width="200px" >
                                                     <br>
                                                     <input type="file" name="" class="customer-logo m-b-10" id="customer-logo" @change="preview_image(this)">
 
@@ -195,8 +195,7 @@
                                                 
                                                 <span class="btn btn-success" v-if="customer_info.recordstatus ==0" @click="AccountStatusChange(customer_info.recordstatus)">
                                                     {{accout_status}}
-                                                </span>
-                                                <a @click="$router.go(-1)" class="btn btn-danger all-btn submit">戻る</a>
+                                                </span>                                                
                                             </div>
                                         </div>
                                     </div>
@@ -253,6 +252,9 @@
                     });
             },
             methods: {
+                imgUrlAlt(event) {
+                    event.target.src = "images/noimage.jpg"
+                },
                 preview_image(fileInput) {
                         this.logo = URL.createObjectURL(event.target.files[0]);
                     },
