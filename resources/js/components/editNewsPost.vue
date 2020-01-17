@@ -61,9 +61,9 @@
                                 <div class="col-md-12 card related-card">
                                     <div class="card-body">
                                         <input type="hidden" v-model="old_photo" >
-                                        <div class="row">
+                                        <div class="row" >
                                             <label> カテゴリー:</label>
-                                            <div class="col-md-5">
+                                            <div class="col-md-5 ">
                                                 <select v-model="category_id_1" id="categories" class="form-control" @change='getPostsByCatId()'>
                                                     <option v-for="category in categories" :key="category.id" v-bind:value="category.id">
                                                         {{category.name}}

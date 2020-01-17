@@ -8550,7 +8550,7 @@ ul.nur-caro-card>li.list-group-item {
 
 .fade-enter,
 .fade-leave-to {
-    opacity: 0;
+    opacity: 0.5;
     transform: scale(.8);
 }
 
@@ -9058,9 +9058,20 @@ ul.nur-caro-card>li.list-group-item {
         padding-left: 10px;
         margin-top: -7px;
     }
-    .t_card {
-        max-width: none;
-    }
+   /*news_start*/
+.t_card {
+    max-width: none;
+}
+.t_card2 {
+    margin-left: 40px;
+}
+.t_card4 {
+    margin-left: 40px;
+}
+.create_nw_p {
+    padding: 0px;
+}
+/*news_end*/
     /*category*/
     .t-r {
         margin-right: 45px;
@@ -9557,6 +9568,7 @@ ul.nur-caro-card>li.list-group-item {
         padding: 0px;
     }
     /*news_end*/
+    
 }
 
 @media only screen and (max-width:768px) {
@@ -9757,6 +9769,7 @@ ul.nur-caro-card>li.list-group-item {
     .t_card4 {
         margin-left: 40px;
     }
+    /*news_end*/
     .card_height {
         float: left;
         height: 190px;

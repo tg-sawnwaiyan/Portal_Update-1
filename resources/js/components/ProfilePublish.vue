@@ -143,7 +143,7 @@
                 地図
             </button>
 
-            <button v-scroll-to="{ el: '#element6' }" class="top-fixed-btn"  @click="activate(6)" :class="{ active : active_el == 6 }">
+            <button v-scroll-to="{ el: '#element6' }" class="top-fixed-btn" @click="activate(6)" :class="{ active : active_el == 6 }">
                 ロコミ
             </button>
             </div>
@@ -2231,10 +2231,35 @@ export default {
 
              activate:function(el){
                 //  console.log(el)
-                 this.active_el = el;
+                //  this.active_el = el;
                 // console.log(this.active_el)
+                // if(el == 6){
+
+                //     $(".nav-item").on("click", function(e){
+                //     $("li.nav-item").removeClass("active");
+                //     $(this).addClass("active");
+                //                         });
+                     
+                    // console.log('element6')
+                       
+                        // $('.top-fixed-btn.active').removeClass('active');
+                        //  $('.top-fixed-btn.active');
+     
+                   
+                    //    $('.top-fixed-btn2.active').css({'background':'red'});
+                    //    $('.top-fixed-btn2').eq(active_el).addClass('active');
+                    //    $('#top-fixed-btn2').css({'background':'green'});
+                //}
+                // else
+                // {
+                
+                //     //   $('.top-fixed-btn').css({'color': '#000','width':'145px','cursor':' pointer','padding': '5px','border-radius': '5px','text-decoration': 'none','position': 'relative','box-shadow': '3px 5px 3px #ccc!important','background': '#fbaa84','border': '1px solid #ff9563;'});
+                //       $('.top-fixed-btn').eq(active_el).addClass('active');
+                // }
+
 
             },
+
 
 
     costConfirm(id){
@@ -2283,8 +2308,15 @@ export default {
         }
     },
     pageSelect(index) {
-        this.currentPage = index - 1;
-        window.scrollTo(0,0);
+        // this.currentPage = index - 1;
+        // window.scrollTo(0,0);
+        if(0 < this.currentPage)
+        {
+            this.currentPage = index - 1;
+        }
+        else{
+            this.currentPage++;
+        }
     },
   }
 
