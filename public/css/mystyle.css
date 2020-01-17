@@ -366,7 +366,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .lightbox-image {
-    background-size: unset !important;
+    /* background-size: unset !important; */
 }
 
 .lightbox-main {
@@ -415,7 +415,7 @@ body::-webkit-scrollbar-thumb {
 
 /*End lightbox */
 
-
+   
 /********************************** End Profile & Profile publish**********************************/
 
 
@@ -3567,6 +3567,10 @@ ul.hokkaido-wrap {
 
 @media print,
 screen and (min-width: 750px) {
+    #nursingView .top-fixed-btn:hover{
+        background:#fff9cb;
+        color: #000;
+    }
     .spanclass {
         letter-spacing: normal;
         /* width: 50%; */
@@ -5514,6 +5518,7 @@ screen and (min-width: 750px) {
         padding: 2px;
         height: 120px;
     }
+    
     /* .top-ad-slider .ads-img {
 
             font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
@@ -6390,10 +6395,7 @@ button.confirmed {
     background: #fbaa84;
     border: 1px solid #ff9563;
 }
-#nursingView .top-fixed-btn:hover{
-    background:#fff9cb;
-    color: #000;
-}
+
 .top-fixed-btn {
     color: #000;
     width: 145px;
@@ -6418,11 +6420,6 @@ button.confirmed {
     background: #d2571c;
     border: 1px solid #ff9563;
 }
-#nursingView .top-fixed-btn.active:hover{
-    background:#fff9cb;
-    color: #000;
-}
-
 .top-fixed-btn.active {
     color: #fff;
     /* background: #ff9563; */
@@ -9110,6 +9107,7 @@ ul.nur-caro-card>li.list-group-item {
         text-align: center;
         font-size: 12px;
     }
+   
 }
 
 @media only screen and (max-width: 990px) {
@@ -9576,7 +9574,7 @@ ul.nur-caro-card>li.list-group-item {
     .tab {
         max-width: 100% !important;
         flex: 100% !important;
-    }
+    }    
     /* header & menu */
     .v-sidebar-menu {
         display: none !important;
@@ -9890,6 +9888,14 @@ ul.nur-caro-card>li.list-group-item {
     div.div1 a.router-link-exact-active,
     div.div2 a.router-link-exact-active {
         border-left: 1px solid transparent !important;
+    }
+    .btn-group{
+        display: flex;
+        flex-direction: row;
+    }
+    .pad-free-750{
+        padding-left: 0px;
+        padding-right: 0px;
     }
 }
 

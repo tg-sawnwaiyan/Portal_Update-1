@@ -112,9 +112,10 @@
             </div> -->
             <!--end responsive pano-->
         </div>
-        <!--end panorama-->        
-
-            <div class="tab typelabel nav-link fixed-nav" v-bind:style="{width:width}">
+        <!--end panorama-->    
+        <div class="row">    
+        <div class="col-12">
+            <div class="tab typelabel nav-link fixed-nav btn-group" v-bind:style="{width:width}">
             <!-- <div class="row col-12 m-t-10">
                 <h5 style="color:#000" class="h_4 header font15rem font-weight-bold">ひだまりこころクリニック　サンシャインサカエ院</h5>
             </div> -->
@@ -146,12 +147,14 @@
                 ロコミ
             </button>
             </div>
+        </div>
+        </div>
 
 
             <div class="row m-lr-0 ele pt-2"   id="element1">
                  <div class="row col-12 list-wrap m-lr-0 white-bg-color" v-for="cust in customer" :key="cust.id">
                     <!--for slideimage-->
-                    <div class="col-md-5 detail_profile_left col-slg-12">
+                    <div class="col-md-5 detail_profile_left col-slg-12 pad-free-750">
                            <div class="col-12 pad-free sp-1024">
                                 <h5 class="profile_header">介護情報</h5>
                             </div>
@@ -251,7 +254,7 @@
 
                     <!--end for slide image-->
                     <!--for address-->
-                     <div class="col-md-7 detail_profile_right col-slg-12">
+                     <div class="col-md-7 detail_profile_right col-slg-12 pad-free-750">
                          <span class="top-mail-btn-res btn sp-414" @click="documentPost()" v-if="!loginuser && !$auth.check()"><i data-v-b65423c6="" class="far fa-envelope" style="color: #fff  !important;font-size: 15px;"></i>&nbsp;資料請求</span>
                         <div class="row m-lr-0 pro-heading">
                              <div class="col-12 pad-free pc-1024">
@@ -1769,7 +1772,7 @@ export default {
                 this.type = localStorage.getItem('cusType');
                 this.cusid = Number(localStorage.getItem('cusId'));
                 //for responsive
-                    if(this.window.width >= 768) {
+                    if(this.window.width > 768) {
                         //greater than 768
                         if(this.loginuser == true) {
                             $(document).scroll(function() {
