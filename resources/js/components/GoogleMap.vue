@@ -4,7 +4,7 @@
               <div class="col-md-12 pad-free">
                 <div class="col-md-12 pad-free postal-search">
                     <div class="form-group">
-                    <div class="col-md-12 "><label> 郵便番号 <strong style="font-size:18px;">(〒)</strong></label></div>
+                    <div class="col-md-12 "><label> 郵便番号 (〒)</label></div>
                     <div class="col-md-12 p-0">
                     <input type="text" v-model="comment.postal" name="postal" class="postal form-control white-bg-color" id="postal" v-on:keyup="getPostal" placeholder="郵便番号を入力してください。" maxlength="7"/>
                     <div id="jsErrorMessage"></div>

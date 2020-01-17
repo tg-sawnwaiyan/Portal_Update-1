@@ -30,7 +30,7 @@
 
                                         <th>性別</th>
 
-                                        <th>郵便番号 <strong style="font-size:18px;">(〒)</strong></th>
+                                        <th>郵便番号 (〒)</th>
 
                                         <th>街路住所</th>
 

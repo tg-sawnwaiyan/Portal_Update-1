@@ -32,7 +32,7 @@
                 <br>
                 性別：{{$getComment->sex1}}
                 <br>
-                郵便番号：<strong style="font-size:18px;">〒</strong>{{$getComment->postal}}
+                郵便番号：〒{{$getComment->postal}}
                 <br>
                 都道府県、市区町村、番地（建物名)：{{$getComment->division}}{{$getComment->townshipname}}{{$getComment->city}}
                 <br>

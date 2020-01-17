@@ -151,7 +151,7 @@
               <div id="newlink"></div>-->
                             <div class="form-group">
                                 <label for="location">
-                                    郵便番号 <strong style="font-size:18px;">(〒)</strong>:
+                                    郵便番号 (〒):
                                     <!-- <span class="error sp2">必須</span> -->
                                 </label>
                                 <div class="row col-md-12">
