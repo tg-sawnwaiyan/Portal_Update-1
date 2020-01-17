@@ -1,50 +1,41 @@
 <template>
- <div class="row t-r m-r-5">
-      <div class="col-12 t-l">
-          <div class="card">
-              <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <!-- <h4 class="page-header header" id="myspan">特殊機能作成</h4> -->
-                            <h4 class="page-header header">{{ header }}</h4>
-                        </div>
-                        <div class="col-md-12">
-                             <form @submit.prevent="add">
-                            <div class="form-group">
-                                <label>特徴 :<span class="error">*</span></label>
-                                <input type="text" class="form-control"  v-model="feature.name"  placeholder="特徴を入力してください。" >
-                                <!-- <span v-if="errors.name" class="error">{{errors.name[0]}}</span> -->
-                                  <span v-if="errors.name" class="error">{{errors.name}}</span>
-                            </div>
-                            <div class="form-group">
-                                <label>特徴の略語 :<span class="error">*</span></label>
-                                <input type="text" class="form-control" v-model="feature.short_name"  placeholder="特徴の略語を入力してください。" >
-                                 <!-- <span v-if="errors.short_name" class="error">{{errors.short_name[0]}}</span> -->
-                                   <span v-if="errors.short_name" class="error">{{errors.short_name}}</span>
-                            </div>
-                            <div class="form_group">
-                                <label> カテゴリー:<span class="error">*</span></label>
-                                <select v-model="feature.type" name="type" class="form-control">
-                                        <option v-bind:value='-1'>選択してください。 </option>
-                                        <option value="nursing">介護</option>
-                                        <option value="hospital" >病院</option>
-                                </select>
-                                <span v-if="errors.type" class="error">{{errors.type}}</span>
-                                    <!-- <span v-if="errors.nur" class="error">{{errors.nur}}</span> -->
-                            </div> <br/>
+ <div id="feature">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="page-header header">{{ header }}</h4>
+            <br>
+            <form @submit.prevent="add">
+                <div class="form-group">
+                    <label>特徴 :<span class="error">*</span></label>
+                    <input type="text" class="form-control"  v-model="feature.name"  placeholder="特徴を入力してください。" >
+                    <!-- <span v-if="errors.name" class="error">{{errors.name[0]}}</span> -->
+                        <span v-if="errors.name" class="error">{{errors.name}}</span>
+                </div>
+                <div class="form-group">
+                    <label>特徴の略語 :<span class="error">*</span></label>
+                    <input type="text" class="form-control" v-model="feature.short_name"  placeholder="特徴の略語を入力してください。" >
+                        <!-- <span v-if="errors.short_name" class="error">{{errors.short_name[0]}}</span> -->
+                        <span v-if="errors.short_name" class="error">{{errors.short_name}}</span>
+                </div>
+                <div class="form_group">
+                    <label> カテゴリー:<span class="error">*</span></label>
+                    <select v-model="feature.type" name="type" class="form-control">
+                            <option v-bind:value='-1'>選択してください。 </option>
+                            <option value="nursing">介護</option>
+                            <option value="hospital" >病院</option>
+                    </select>
+                    <span v-if="errors.type" class="error">{{errors.type}}</span>
+                        <!-- <span v-if="errors.nur" class="error">{{errors.nur}}</span> -->
+                </div> <br/>
 
-                            <div class="form-group ">
-                                  <span class="btn main-bg-color white all-btn" @click="checkValidate()"> {{subtitle}}</span>
-                                <span class="btn btn-danger all-btn" @click="$router.go(-1)" > キャンセル </span>
-                            </div>
-                                </form>
-                            </div>
-                         </div>
-                    </div>
-            </div>
-          </div>
-      </div>
-
+                <div class="form-group ">
+                        <span class="btn main-bg-color white all-btn" @click="checkValidate()"> {{subtitle}}</span>
+                    <span class="btn btn-danger all-btn" @click="$router.go(-1)" > キャンセル </span>
+                </div>
+            </form>
+        </div>
+     </div>
+</div>
 </template>
 <script>
 export default {

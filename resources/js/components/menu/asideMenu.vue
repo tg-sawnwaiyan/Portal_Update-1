@@ -69,11 +69,11 @@
                         </div>
                             <!--end slider for ads-->
                         <div class="row justify-content-md-center">
-                            <div class="col-12 col-lg-12  tab p0-480">
+                            <div class="col-12 p0-480">
                             <!-- vue component -->
                                 <router-view :key="$route.fullPath"></router-view>
                             </div>
-                            <div class="col-12 col-lg-2 col-md-4" style="display:none">
+                            <div class="col-12 col-md-4" style="display:none">
                                 <!--related news-->
                                 <div class="m-b-10 ads-card">
                                     <!--ads slider-->
