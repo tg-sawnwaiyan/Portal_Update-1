@@ -162,6 +162,15 @@ export default {
     var fixed_width = new_width - 49.5;
     this.width = fixed_width + "px";
 
+    $(document).scroll(function() {
+        var cur_pos = $(this).scrollTop();
+        if (cur_pos >= 100) {
+            $('#headerbar li').css('display','block');
+        } else {
+            $('#headerbar li').css('display','inline-block');
+        }
+    });
+
   },
   methods: {
     loginView(response){
