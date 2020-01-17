@@ -837,7 +837,7 @@
                         <div class="row m-0" v-if="videos == ''">
                             <div class="col-12"> <p class="no-data-color">表示されるデータがありません。</p> </div>
                         </div>
-                        <div class="row m-0" v-else>
+                        <div class="row m-0 col-12" v-else>
                             <div v-for="(video) in  videos" :key="video.id" class="col-sm-4 col-md-4 col-lg-3">
                                 <iframe :src="'https://www.youtube.com/embed/'+video.photo" controls></iframe>
                                 <span style="color:orange;font-weight:bold;">{{video.title}}</span><br>
@@ -890,7 +890,7 @@
                     <div class="col-12">
                         <h5 class="profile_subtit"> 医療面の受入れ</h5>
                         <div class="row col-12" style="margin: 0 auto;">
-                            <div v-for="maccept in medical_acceptance" :key="maccept.id" class="col-md-4 col-sm-6 p-0" >
+                            <div v-for="maccept in medical_acceptance" :key="maccept.id" class="col-md-4 col-sm-6" >
                                 <div class="accept-box">
                                     <div class="float-left" v-for="(ma,index) in medical" :key="index" style="padding-right:10px;">
                                         <i v-if="ma.name === maccept.name && ma.accept_type === 'accept'" class="fas fa-check green"></i>
@@ -1850,7 +1850,7 @@ export default {
                                 });                    
                                 
                                 if (cur_pos >= 100) {
-                                    $(".fixed-nav").css({"position": "fixed","top":"110px","display": "flex"});
+                                    $(".fixed-nav").css({"position": "fixed","top":"110px","display": "inline-flex"});
                                 } else {
                                     $(".fixed-nav").css({"position": "unset", "top": "unset", "display": "none"});
                                 }

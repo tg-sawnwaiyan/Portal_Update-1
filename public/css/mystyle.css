@@ -2997,7 +2997,7 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
     position: fixed;
     top: 237px;
     right: 10px;
-    z-index: 99999;
+    z-index: 9999;
 }
 
 #headerbar .router-link-exact-active {
@@ -6379,9 +6379,9 @@ button.confirmed {
     margin: 0 auto;
     padding: 0 !important;
     background: transparent;
-    -moz-transition: all 1s ease-in-out;
-    -webkit-transition: all 1s ease-in-out;
-    transition: all 1s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
     /* overflow: hidden; */
     z-index: 4;
     left: 0;
@@ -8693,7 +8693,12 @@ ul.nur-caro-card>li.list-group-item {
 .pc-414 {
     display: block;
 }
-
+.pc-750{
+    display: block;
+}
+.sp-750{
+    display: none;
+}
 .pc-414-table {
     display: table-cell;
 }
@@ -9065,20 +9070,20 @@ ul.nur-caro-card>li.list-group-item {
         padding-left: 10px;
         margin-top: -7px;
     }
-   /*news_start*/
-.t_card {
-    max-width: none;
-}
-.t_card2 {
-    margin-left: 40px;
-}
-.t_card4 {
-    margin-left: 40px;
-}
-.create_nw_p {
-    padding: 0px;
-}
-/*news_end*/
+    /*news_start*/
+    .t_card {
+        max-width: none;
+    }
+    .t_card2 {
+        margin-left: 40px;
+    }
+    .t_card4 {
+        margin-left: 40px;
+    }
+    .create_nw_p {
+        padding: 0px;
+    }
+    /*news_end*/
     /*category*/
     .t-r {
         margin-right: 45px;
@@ -9117,13 +9122,16 @@ ul.nur-caro-card>li.list-group-item {
     }
     .top-fixed-btn,
     .top-fixed-btn.active {
-        width: auto;
-        padding: 10px 37px;
+        /* width: auto;
+        padding: 10px 37px; */
         margin-bottom: 10px;
     }
     .top-fixed-btn{
         text-align: center;
         font-size: 12px;
+    }
+    .fixed-nav{
+        width: 100%;
     }
    
 }
@@ -9369,9 +9377,9 @@ ul.nur-caro-card>li.list-group-item {
     .gallery-list .gallery-item {
         width: 33%;
     }
-    .top-mail-btn {
+    /* .top-mail-btn {
         top: -67px !important;
-    }
+    } */
     /* .fav-profile {
         top: -10px !important;
     } */
@@ -9380,8 +9388,8 @@ ul.nur-caro-card>li.list-group-item {
     }
     .top-fixed-btn,
     .top-fixed-btn.active {
-        width: auto;
-        padding: 10px 46px;
+        /* width: auto;
+        padding: 10px 46px; */
         margin-bottom: 10px !important;
         border-radius: 0px;
     }
@@ -9861,6 +9869,12 @@ ul.nur-caro-card>li.list-group-item {
 }
 
 @media only screen and (max-width:750px) {
+    .pc-750{
+        display: none;
+    }
+    .sp-750{
+        display: block;
+    }
     .dropdown {
         display: inline-block;
         width: 100%;
@@ -9917,6 +9931,10 @@ ul.nur-caro-card>li.list-group-item {
         padding-left: 0px;
         padding-right: 0px;
     }
+    .facility_tbl th, .cost_table th, .map_tbl th {
+        width: 120px;
+    }
+
 }
 
 @media only screen and (max-width: 620px) {
@@ -10231,7 +10249,7 @@ ul.nur-caro-card>li.list-group-item {
     }
     .top-fixed-btn,
     .top-fixed-btn.active {
-        padding: 3.29999%;
+        /* padding: 3.29999%; */
     }
     /*End  profile publish */
     /* Job Detail */

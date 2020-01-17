@@ -20,10 +20,15 @@
                     パスワードの再設定がリクエストされました。<br> 以下のボタンをクリックし、パスワードの再設定手続きにお進みください。
                 </p>
                 <span style="background: #fbaa84;">
-			<a href="http://testikportal.management-partners.co.jp/resetpassword?code={{$checkmail[0]['role']}}" style="background: #fbaa84;color: #000;box-shadow: 0 2px 4px 0 rgba(27,160,5,0.2);border-radius: 4px;border: 1px solid #ff9563;box-shadow: 0 2px 4px 0 rgba(0,0,0,0.12);
+                <!--test-->
+                <a href="http://testikportal.management-partners.co.jp/resetpassword?code={{$checkmail[0]['role']}}" style="background: #fbaa84; border: 1px solid #ff9563; font-weight: 900; letter-spacing: 2px; font-size: 16px; mso-height-rule: exactly; line-height: 60px; text-align: center; text-decoration: none; display: block; border-radius: 4px; font-weight: 900; text-transform: uppercase;height:150px;">
+                &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#ffffff">パスワードを再設定する</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            </a>
+                <!--end test-->
+			<!-- <a href="http://testikportal.management-partners.co.jp/resetpassword?code={{$checkmail[0]['role']}}" style="background: #fbaa84;color: #000;box-shadow: 0 2px 4px 0 rgba(27,160,5,0.2);border-radius: 4px;border: 1px solid #ff9563;box-shadow: 0 2px 4px 0 rgba(0,0,0,0.12);
 						background-size: 100%;display: inline-block;background-position: 50% 50%;font-weight: bold;line-height: 46px;font-size: 15px;
 						padding: 0px 28.3px;text-align: center;text-decoration: none;min-width: 280px;-webkit-text-size-adjust: none; mso-hide: all;">
-			<span style="font-size:13.5pt;color:#fff;border:solid #fbaa84 6.0pt;">パスワードを再設定する</span>
+			<span style="font-size:13.5pt;color:#fff;border:solid #fbaa84 6.0pt;">パスワードを再設定する</span> -->
                 </a>
                 </span>
                 <br>
