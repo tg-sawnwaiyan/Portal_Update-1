@@ -88,7 +88,7 @@
                                         </div>
                                         <div class="col-md-9 p-0">
                                           <!-- <input type="text" name="outputpostal" id="outputpostal" class="mailbox m-b-10" disabled v-model="comments.postal" /> -->
-                                          <label>〒{{comments.postal}}</label>
+                                          <label>{{comments.postal}}</label>
                                         </div>
                                     </div>
                                     <div class="form-group row pl-4 mb-0">
