@@ -21,7 +21,7 @@
                     <br>
                     性別：{{$getComment->gender}}
                     <br>
-                    郵便番号：{{$getComment->postal}}
+                    郵便番号：<strong style="font-size:18px;">〒</strong>{{$getComment->postal}}
                     <br>
                     住所：{{$getComment->cityname}}{{$getComment->townshipname}}{{$getComment->street_address}}
                     <br>

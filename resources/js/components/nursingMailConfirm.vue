@@ -84,10 +84,11 @@
                                 <div class="col-md-9 col-sm-12 form-right">
                                     <div class="form-group row pl-4 mb-0">
                                         <div class="col-md-3 font-weight-bold">
-                                            郵便番号
+                                            郵便番号 
                                         </div>
                                         <div class="col-md-9 p-0">
-                                            <input type="text" name="outputpostal" id="outputpostal" class="mailbox m-b-10" disabled v-model="comments.postal" />
+                                          <!-- <input type="text" name="outputpostal" id="outputpostal" class="mailbox m-b-10" disabled v-model="comments.postal" /> -->
+                                          <label> <strong style="font-size:18px;">〒</strong>{{comments.postal}}</label>
                                         </div>
                                     </div>
                                     <div class="form-group row pl-4 mb-0">
@@ -95,7 +96,8 @@
                                             都道府県
                                         </div>
                                         <div class="col-md-9 p-0">
-                                            <input type="text" name="outputdivision" id="outputdivision" class="mailbox m-b-15" disabled v-model="comments.division" />
+                                            <!-- <input type="text" name="outputdivision" id="outputdivision" class="mailbox m-b-15" disabled v-model="comments.division" /> -->
+                                            <label>{{comments.division}}</label>
                                         </div>
                                     </div>
                                     <div class="form-group row pl-4 mb-0">
@@ -103,7 +105,8 @@
                                             番地（建物名）
                                         </div>
                                         <div class="col-md-9 p-0">
-                                            <input type="text" name="outputcity" id="outputcity" class="mailbox" disabled v-model="comments.city" />
+                                            <!-- <input type="text" name="outputcity" id="outputcity" class="mailbox" disabled v-model="comments.city" /> -->
+                                            <label>{{comments.city}}</label>
                                         </div>
                                     </div>
                                 </div>
@@ -272,7 +275,8 @@
         },
         created() {
             this.comments = JSON.parse(localStorage.getItem("inputValue"));
-            console.log("confirm", this.comments);
+          
+            console.log(this.comments);
             // if (this.comments.present) {
             //   this.comments.present = "する";
             // } else {
