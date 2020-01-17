@@ -133,13 +133,14 @@
             };
         },
         created() {
+         
             this.$loading(true);
             this.axios.get("/api/news_list").then(response => {
-                this.$loading(false);
-                console.log(response.data)
-                this.news_list = response.data;
+               
+                this.news_list = response.data.news;
+                this.categories = response.data.category;
                 this.norecord = this.news_list.length
-                if (this.norecord > this.size) {
+                if(this.norecord > this.size) {
                     this.pagination = true;
                 } else {
                     this.pagination = false;
@@ -149,16 +150,10 @@
                 }else{
                     this.norecord_msg = true;
                 }
+                 this.$loading(false);
+                
             });
 
-        },
-        mounted() {
-            this.axios.get("/api/category/category_list").then(
-                function(response) {
-                    console.log(response.data)
-                    this.categories = response.data;
-                }.bind(this)
-            );
         },
         computed: {
             pages() {
@@ -216,10 +211,10 @@
                         confirmButtonClass: "all-btn",
                         cancelButtonClass: "all-btn"
                     }).then(response => {
+                       this.$loading(true);
                         this.axios
                             .delete(`/api/new/delete/${id}`)
                             .then(response => {
-                                console.log(response.data)
                                 this.news_list = response.data;
                                 this.norecord = this.news_list.length;
                                 if (this.norecord > this.size) {
@@ -232,8 +227,8 @@
                                 }else{
                                     this.norecord_msg = true;
                                 }
-                                // let i = this.news_list.map(item => item.id).indexOf(id);
-                                // this.news_list.splice(i, 1);
+                                 this.$loading(false);
+                           
                                 this.$swal({
                                     // title: "削除済",
                                     text: "ニュースを削除しました。",
