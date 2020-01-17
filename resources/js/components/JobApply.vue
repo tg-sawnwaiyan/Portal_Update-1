@@ -712,7 +712,8 @@ export default {
         $.each(each_val, function (key, value) {
             code = value.charCodeAt();
             console.log(code)
-            if (!(code > 12352 && code < 12447)) {
+            // if (!(code > 12352 && code < 12447)) {
+            if (!(code > 12448 && code < 12543)) {
                 _this.charErr = true;
                 _this.btn_disable = true;
             } 

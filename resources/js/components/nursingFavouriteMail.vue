@@ -619,7 +619,8 @@ import DatePicker from 'vue2-datepicker';
                 var code = 0;
                 $.each(each_val, function (key, value) {
                     code = value.charCodeAt();
-                    if (!(code > 12352 && code < 12447)) {
+                    // if (!(code > 12352 && code < 12447)) {
+                    if (!(code > 12448 && code < 12543)) {
                         //$('.char-err').text('ひらがなで入力してください!');
                         _this.btn_disable = true;
                         _this.charErr = true;
