@@ -1828,7 +1828,7 @@ export default {
                                 }
                             });
                             if (cur_pos >= 100) {
-                                $(".fixed-nav").css({"position": "fixed","top":"70px"});
+                                $(".fixed-nav").css({"position": "fixed","top":"100px"});
                             } else {
                                 $(".fixed-nav").css({"position": "unset", "top": "unset"});
                             }
