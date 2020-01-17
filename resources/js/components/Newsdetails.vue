@@ -8,7 +8,7 @@
     <div class="tab-content1 tabs">
       <div role="tabpanel" class="tab-pane active" id="tab1">
         <div class="col-sm-12 pad-free">
-          <nav aria-label="breadcrumb">
+          <nav aria-label="breadcrumb" v-if="othersDetails">
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
                 <router-link to="/">ホーム</router-link>
@@ -16,6 +16,12 @@
               <li class="breadcrumb-item active" aria-current="page">ニュース詳細</li>
             </ol>
           </nav>
+          <!-- <span v-else>Back</span> -->
+          <div v-else>
+              <router-link to="/news_list" class="btn btn-danger all-btn submit">戻る</router-link>
+              <router-link :to="{name: 'editPost', params: {id: newdetails[0].id}}" class="btn edit-borderbtn">編集</router-link>&nbsp;
+          </div>
+          
         </div>
         <div class="justify-content-md-center scrolldiv2">
           <div class="col-md-12">
@@ -166,11 +172,18 @@ export default {
     return {
       newdetails: [],
       latest_post_all_cats: [],
-      latest_news: []
+      latest_news: [],
+      othersDetails: true,
     };
   },
   created() {
     //this.getLatestPostFromAllCat();
+    if(this.$route.path.includes("/newsdetails") && this.$auth.check(2) && this.visit == 'false'){
+        this.othersDetails = false;
+    }
+    else{
+        this.othersDetails = true;
+    }
 
     this.axios
       .get(`/api/newdetails/${this.$route.params.id}`)

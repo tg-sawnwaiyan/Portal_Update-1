@@ -116,7 +116,7 @@
 
                     <div class="form-group">
                         <span class="btn main-bg-color white all-btn" @click="checkValidate()"> 保存</span>
-                        <router-link :to="{name: 'news_list'}" class="btn btn-danger all-btn">キャンセル</router-link>
+                        <span@click="$router.go(-1)" :to="{name: 'news_list'}" class="btn btn-danger all-btn">キャンセル</span>
                     </div>
                 </form>              
             </div>
@@ -320,9 +320,7 @@
                                 })
 
                                 //alert('Successfully Updated!')
-                                this.$router.push({
-                                    name: 'news_list'
-                                })
+                                this.$router.go(-1);
                             })
                             .catch(error=>{
                             if(error.response.status == 422){
