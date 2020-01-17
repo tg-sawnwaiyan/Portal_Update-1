@@ -11,9 +11,9 @@
                     LOGO <span>HERE</span>
                     </a>
                     <div class="h-tel" v-if="visit == 'true'"><a class="tel" href="tel:03-1234-5678"><i class="fas fa-phone-alt"></i><span>03-1234-5678</span></a><br class="pc-1024"><a href="mailto:mpm_secretary@management-partners.co.jp"><p class="sp-1024"><i class="fas fa-envelope"></i></p><span>mpm_secretary@management-partners.co.jp</span></a></div>
-                    <ul class="sp_social d-none-380">
-                    <li class="social-link" v-if="!$auth.check()"><a href="http://localhost:8000/registerForm"><i class="fab fa-twitter"></i></a></li>
-                    <li class="social-link" v-if="!$auth.check()"><a href="http://localhost:8000/registerForm"><i class="fab fa-facebook-f"></i></a></li>
+                    <ul class="sp_social d-none-380"  v-if="visit == 'true'">
+                        <li class="social-link"><a href="http://localhost:8000/registerForm"><i class="fab fa-twitter"></i></a></li>
+                        <li class="social-link"><a href="http://localhost:8000/registerForm"><i class="fab fa-facebook-f"></i></a></li>
                     </ul>
                 </div>
                 <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,8 +79,7 @@
                     </div>
                 </div>
             </div>
-            <div id="sp_adminheader">
-
+            <div id="sp_adminheader" v-if="visit == 'false'">
                 <div class="admin_menu"  @click="toggle">
                     <span>メニュー</span>&nbsp;<i :class="!isNav? open : close" style="width:15px;" ></i>
                     <!-- <div class="overlay" :class="!isNav? overlay : overlay01"></div> -->
@@ -202,13 +201,61 @@
                                 <li><a href="mailto:mpm_secretary@management-partners.co.jp"><i class="fas fa-envelope"></i>mpm_secretary@management-partners.co.jp</a></li>
                             </ul>
                             <ul class="sp_social d-none-768">
-                            <li class="social-link" v-if="!$auth.check()"><a href="https://twitter.com/login?lang=en"><i class="fab fa-twitter"></i></a></li>
-                            <li class="social-link" v-if="!$auth.check()"><a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a></li>
+                            <li class="social-link"><a href="https://twitter.com/login?lang=en"><i class="fab fa-twitter"></i></a></li>
+                            <li class="social-link"><a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a></li>
                             </ul>
                             </li>
                         </ul>
                     </div>
                 </transition>
+            </div>
+            <div id="sp_headerbar" class="login_nav" v-if="visit == 'true'">              
+                <ul class="menu" @click='isNav = !isNav'>
+                    <li class="first-submenu">
+                        <span>メニュー</span>&nbsp;<i :class="!isNav ? open : close" style="width:15px;" ></i>     
+                    </li>
+                    <transition name="slide">  
+                        <div class="sp_nav"  v-if="isNav">    
+                        <ul class="menu_list child">
+                            <li>
+                                <router-link :to="{ name: 'News' }"><i class="fas fa-newspaper"></i>  ニュース（ホーム）</router-link>
+                            </li>
+                            <li>
+                                <router-link :to="{ name: 'nursingSearch' }"><i class="fas fa-user-md"></i> 介護施設検索</router-link>
+                            </li>
+                            <li>
+                                <router-link :to="{ name: 'hospital_search' }"> <i class="fas fa-briefcase-medical"></i> 病院検索</router-link>
+                            </li>
+                            <li>
+                                <router-link :to="{ name: 'jobSearch' }"><i class="fas fa-users"></i> 求人検索</router-link>
+                            </li>
+                            <li  v-if="visit == 'true'">
+                                <a  @click="gotoDash()"><i class="fas fa-tachometer-alt"></i> 管理画面へ</a>
+                            </li>
+                            <li>
+                                <a href="#" @click.prevent="$auth.logout()"><i class="fa fa-lock"></i> ログアウト</a>
+                            </li>
+                            <li v-if="!$auth.check()">
+                                <router-link :to="{name: 'login'}" class="nav-link pad-free"><i class="fa fa-sign-in-alt"></i> 事業者 ログイン</router-link>
+                            </li>
+                            <li v-if="!$auth.check()" style="border-bottom:1px solid #8c9090;">
+                                <router-link :to="{name: 'register'}" class="nav-link pad-free"><i class="fa fa-user-plus"></i> 事業者 登録</router-link>
+                            </li>
+                            <li>
+
+                            <ul class="contact_list"  v-if="visit == 'true'">
+                                <li><a href="tel::03-1234-5678"><i class="fas fa-phone-alt"></i><span>03-1234-5678</span></a></li>
+                                <li><a href="mailto:mpm_secretary@management-partners.co.jp"><i class="fas fa-envelope"></i>mpm_secretary@management-partners.co.jp</a></li>
+                            </ul>
+                            <ul class="sp_social d-none-768">
+                            <li class="social-link"><a href="https://twitter.com/login?lang=en"><i class="fab fa-twitter"></i></a></li>
+                            <li class="social-link"><a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a></li>
+                            </ul>
+                            </li>         
+                        </ul>
+                        </div>
+                    </transition>
+                </ul>
             </div>
 
         </nav>

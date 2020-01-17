@@ -22,8 +22,6 @@
                     <br>
                     生まれた年：{{$getComment[0]->year}} 
                     <br>
-                    性別 ：{{$getComment[0]->gender}}
-                    <br>
                     郵便番号：〒{{$getComment[0]->zipcode}} 
                     <br>
                     口コミタイトル：{{$getComment[0]->title}} 
