@@ -553,11 +553,11 @@
 
                                         <div class="card-body">
                                             <select id="selectCity" class="form-control custom-select" @change="nursingSearchData(1);" style="background-color: #fff;" v-model="id">
-                                            <option value="-1" disabled>▼市区町村</option>
+                                            <option value="-1" >▼市区町村</option>
                                             <option  :value="city.id" v-for="city in cities" :key="city.id">{{city.city_name}}</option>
                                             </select>
                                             <select id="selectTownship" class="form-control mt-1 custom-select" style="background-color: #fff;" @change="nursingSearchData(2);" v-model="township_id">
-                                            <option value="-1" disabled>▼市区町村</option>
+                                            <option value="-1" >▼市区町村</option>
                                             <option  :value="selectTownship.id"  v-for="selectTownship in getTownships" :key="selectTownship.id">{{selectTownship.township_name}}</option>
                                             </select>
                                         </div>
@@ -569,7 +569,7 @@
                                         <div class="card-body">
                                             <div class="">
                                             <select name="" id="" class="form-control custom-select" style="background-color: #fff;" @change="nursingSearchData" v-model="moving_in">
-                                                <option data-price-type="" value="-1" disabled>▼入居一時金</option>
+                                                <option data-price-type="" value="-1" >▼入居一時金</option>
                                                 <!-- <option data-price-type="" value="0">一時金なし</option> -->
                                                 <option data-price-type="" value="500000">50万円以下</option>
                                                 <option data-price-type="" value="1000000">100万円以下</option>
@@ -587,7 +587,7 @@
                                                 <option data-price-type="more" value="30000000">3,000万円以上</option>
                                             </select>
                                             <select name="" id="" class="form-control  mt-1 custom-select" style="background-color: #fff;" @change="nursingSearchData" v-model="per_month">
-                                                <option data-price-type="" value="-1" disabled>▼月額利用料</option>
+                                                <option data-price-type="" value="-1" >▼月額利用料</option>
                                                 <option data-price-type="" value="100000">10万円以下</option>
                                                 <option data-price-type="" value="120000">12万円以下</option>
                                                 <option data-price-type="" value="140000">14万円以下</option>
