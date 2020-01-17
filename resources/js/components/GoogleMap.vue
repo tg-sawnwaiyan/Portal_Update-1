@@ -3,11 +3,19 @@
           
               <div class="col-md-12 pad-free">
                 <div class="col-md-12 pad-free postal-search">
+                    <div class="form-group">
+                    <div class="col-md-12 "><label> 郵便番号</label></div>
+                    <div class="col-md-12 p-0">
+                    <input type="text" v-model="comment.postal" name="postal" class="postal form-control white-bg-color" id="postal" v-on:keyup="getPostal" placeholder="郵便番号を入力してください。" maxlength="7"/>
+                    <div id="jsErrorMessage"></div>
+                    <span class="float-left eg-txt">例）1006740 (<a href="https://www.post.japanpost.jp/zipcode/" target="_blank">郵便番号検索</a>)</span>
+                    </div>
+                  </div>
                     <div class="col-md-12 row p-0 m-0">
                         <div class="col-md-6 pad-free">
-                            <div class="col-md-12 p-l-0 m-t-10"><label>  都道府県<span class="error">*</span></label></div>
+                            <div class="col-md-12 p-l-0"><label>  都道府県</label></div>
                             <div class="col-md-12 p-l-0">
-                                <select v-model="city" class="division form-control" id="division" @change="cityChange()">
+                                <select v-model="city" class="division form-control" id="division" @change="cityChange('city',$event)">
                                     <option v-for="cities in city_list" :key="cities.id" v-bind:value="cities.id">
                                         {{cities.city_name}}
                                     </option>
@@ -15,9 +23,9 @@
                             </div>                           
                         </div>
                         <div class="col-md-6 pad-free">
-                            <div class="col-md-12 p-r-0 m-t-10"><label>  市区町村<span class="error">*</span></label></div>
+                            <div class="col-md-12 p-r-0"><label>  市区町村</label></div>
                             <div class="col-md-12 p-r-0">
-                                <select v-model="township" class="division form-control" id="gmaptownship">
+                                <select v-model="township" class="division form-control" id="gmaptownship" @change="townshipChange($event)">
                                     <option v-for="townships in township_list" :key="townships.id" v-bind:value="townships.id">
                                         {{townships.township_name}}
                                     </option>
@@ -25,20 +33,14 @@
                             </div>                            
                         </div>
                     </div>            
-                    
                   <div class="form-group m-t-10">
-                    <label>郵便番号<span class="error">*</span></label>
-                    <input type="text" v-model="comment.postal" name="postal" class="postal form-control white-bg-color" id="postal" v-on:keyup="getPostal" placeholder="郵便番号を入力してください。" maxlength="7"/>
-                    <div id="jsErrorMessage"></div>
-                  </div>
-                  <div class="form-group">
-                    <label>番地（建物名）<span class="error">*</span></label>
+                    <label>番地（建物名）</label>
                     <div class="row">
-                      <div class="col-md-12" v-if="status === '0'">
+                      <!-- <div class="col-md-12" v-if="status === '0'">
                         <input type="text" id="address_val" name="city" class="old-city form-control white-bg-color" placeholder="番地を入力してください。" v-model="address"> 
-                      </div>
-                      <div class="col-md-12" v-else>
-                        <input type="text" id="address_val" name="city" class="city form-control white-bg-color" placeholder="番地を入力してください。" v-model="comment.city">
+                      </div> -->
+                      <div class="col-md-12">
+                        <input type="text" id="address_val" name="city" class="city form-control white-bg-color" placeholder="番地を入力してください。" v-model="address">
                       </div>
                       <!-- <div class="col-md-2">
                         <span class="btn news-post-btn all-btn" @click="searchAddress()">番地検索</span>
@@ -228,7 +230,7 @@ export default {
       });
     },
     searchplace(){
-      this.comment.gmap_city = this.comment.city;
+      this.comment.gmap_city = this.address;
       $('#gmap-search').focus();
       
     }, 
@@ -244,12 +246,13 @@ export default {
                             var length = response.data.postal_list.length;
                             if (length > 0) {
                                 var pref = post_data[0]['city_id'];
-                                this.comment.city = post_data[0]['pref']+post_data[0]['city']+post_data[0]['street'];
+                                
+                                this.address = post_data[0]['pref']+post_data[0]['city']+post_data[0]['street'];
                                 this.city = post_data[0]['city_id'];
-                                this.cityChange();
+                                this.cityChange('postal','');
                                 $('#jsErrorMessage').html('<div></div>');
                             }else {
-                                this.comment.city = '';
+                                this.address = '';
                                 $('#jsErrorMessage').html('<div class="error">郵便番号の書式を確認してください。</div>');
                             }
                         });
@@ -269,7 +272,13 @@ export default {
               }
               
             },
-            cityChange(){
+            cityChange(status,event){
+                if(status != 'postal'){
+                    this.comment.postal = '';
+                    this.comment.city = this.city_list[event.target.options.selectedIndex].city_name;
+                    this.address = this.comment.city;
+                }
+                
                 this.axios
                 .get('/api/townshiplist/'+this.city)
                 .then(response=>{
@@ -279,6 +288,9 @@ export default {
                     var move_lon = response.data.coordinate[0].longitude;
                     this.addressSelect(move_lat,move_lon);
                 });
+            },
+            townshipChange(event) {
+                this.address = this.comment.city+this.township_list[event.target.options.selectedIndex].township_name;
             },
             
   }

@@ -93,12 +93,14 @@ class HospitalProfileController extends Controller
         $postal = (int)$postal;
         $query = "SELECT * FROM zipcode WHERE zip7_code LIKE '".$postal."'";
         $postal_list = DB::select($query);
-    
-        $township = "SELECT id from townships where township_name LIKE '". $postal_list[0]->city ."'";
-        $township_id = DB::select($township);
-
+        if(count($postal_list)>0){
+            $township = "SELECT id from townships where township_name LIKE '". $postal_list[0]->city ."'";
+            $township_id = DB::select($township);
+        }   
+        else{
+            $township_id = null;
+        }
         return response()->json(Array('postal_list'=>$postal_list,'township_id'=>$township_id));
-  
       
     }
 
@@ -272,8 +274,8 @@ class HospitalProfileController extends Controller
         // End
 
          // Gallary 
-         $del_gallery = Gallery::where(['customer_id'=> $id,'type'=>'video'])->delete(); 
-         if(count($request[0]["video"]) > 0){            
+         if(count($request[0]["video"]) > 0){
+            $del_gallery = Gallery::where(['customer_id'=> $id,'type'=>'video'])->delete(); 
             for($i=0; $i<count($request[0]["video"]); $i++) {
                 $gallery = new Gallery;
                 $gallery->customer_id = $id;
@@ -285,8 +287,8 @@ class HospitalProfileController extends Controller
                 $gallery->save();
             }
         }
-        $del_gallery = Gallery::where(['customer_id'=> $id,'type'=>'photo'])->delete(); 
         if(count($request[0]["image"]) > 0){
+            $del_gallery = Gallery::where(['customer_id'=> $id,'type'=>'photo'])->delete(); 
             for($i=0; $i<count($request[0]["image"]); $i++) {
                 $gallery = new Gallery;
                 $gallery->customer_id = $id;

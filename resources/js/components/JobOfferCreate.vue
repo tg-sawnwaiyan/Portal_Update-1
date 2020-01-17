@@ -735,6 +735,8 @@ import Autocomplete from 'vuejs-auto-complete'
                     })
                   },
                   getLocation(){
+    
+                     this.joboffer.postal = '';
                      this.joboffer.location = '';
                   },
 
