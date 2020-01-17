@@ -309,6 +309,11 @@ width: 100px; */
     border: 1px dashed #b7dad2;
 }
 
+.gallery-area-photo img {
+    width: auto;
+    height: 200px;
+}
+
 .accept-box {
     border: 1px solid #ccc;
     padding: 10px;
@@ -374,7 +379,7 @@ border: 1px solid #eee; */
 }
 
 .lightbox-image {
-    background-size: unset !important;
+    /* background-size: unset !important; */
 }
 
 .lightbox-main {
@@ -902,6 +907,11 @@ margin-left: -108px; */
     background-color: #ddd;
     cursor: pointer;
 }
+
+
+/* ::-webkit-file-upload-button:after{
+    content: "Testing";
+} */
 
 .register_btn {
     color: white !important;
@@ -3644,6 +3654,22 @@ ul.hokkaido-wrap {
 
 @media print,
 screen and (min-width: 750px) {
+    #nursingView .top-fixed-btn:hover {
+        background: #fff9cb;
+        color: #000;
+    }
+    .spanclass {
+        letter-spacing: normal;
+        /* width: 50%; */
+        display: inline-block;
+        /* margin-bottom: 5px; */
+        font-weight: bold;
+        text-align: center;
+        padding: 5px;
+        font-size: 12px;
+        margin-top: 1px;
+        margin-left: 3px;
+    }
     .spanclass a {
         position: relative;
     }
@@ -6512,11 +6538,6 @@ color: green;
     border: 1px solid #ff9563;
 }
 
-#nursingView .top-fixed-btn:hover {
-    background: #fff9cb;
-    color: #000;
-}
-
 .top-fixed-btn {
     color: #000;
     width: 145px;
@@ -6541,11 +6562,6 @@ color: green;
 #nursingView .top-fixed-btn.active {
     background: #d2571c;
     border: 1px solid #ff9563;
-}
-
-#nursingView .top-fixed-btn.active:hover {
-    background: #fff9cb;
-    color: #000;
 }
 
 .top-fixed-btn.active {
@@ -8679,7 +8695,7 @@ background-color: #f57e46;
 
 .fade-enter,
 .fade-leave-to {
-    opacity: 0;
+    opacity: 0.5;
     transform: scale(.8);
 }
 
@@ -9191,9 +9207,30 @@ padding: 0;
         width: 550px;
         height: 425px;
     }
+    #create_news {
+        width: 283px;
+        margin-left: 12px;
+    }
+    #create_news .title {
+        padding: 2px;
+        font-size: 11px;
+        padding-left: 10px;
+        margin-top: -7px;
+    }
+    /*news_start*/
     .t_card {
         max-width: none;
     }
+    .t_card2 {
+        margin-left: 40px;
+    }
+    .t_card4 {
+        margin-left: 40px;
+    }
+    .create_nw_p {
+        padding: 0px;
+    }
+    /*news_end*/
     /*category*/
     .t-r {
         margin-right: 45px;
@@ -9229,6 +9266,16 @@ padding: 0;
     }
     .map-wrap {
         padding: 20px 10px;
+    }
+    .top-fixed-btn,
+    .top-fixed-btn.active {
+        width: auto;
+        padding: 10px 37px;
+        margin-bottom: 10px;
+    }
+    .top-fixed-btn {
+        text-align: center;
+        font-size: 12px;
     }
 }
 
@@ -9475,14 +9522,26 @@ padding: 0;
     .top-mail-btn {
         top: -67px !important;
     }
-    .fav-profile {
+    /* .fav-profile {
         top: -10px !important;
+    } */
+    .fixed-nav {
+        width: 100%;
     }
     .top-fixed-btn,
     .top-fixed-btn.active {
         width: auto;
-        padding: 5px 15px;
-        margin-bottom: 10px;
+        padding: 10px 46px;
+        margin-bottom: 10px !important;
+        border-radius: 0px;
+    }
+    .top-fixed-btn {
+        text-align: center;
+        font-size: 12px;
+        border-radius: 0px;
+    }
+    .ele {
+        margin-top: 0px;
     }
     .top-mail-btn-res {
         background: #0cc72c;
@@ -9887,6 +9946,7 @@ display: none;
     .t_card4 {
         margin-left: 40px;
     }
+    /*news_end*/
     .card_height {
         float: left;
         height: 190px;
@@ -10019,6 +10079,14 @@ display: none;
     div.div2 a.router-link-exact-active {
         border-left: 1px solid transparent !important;
     }
+    .btn-group {
+        display: flex;
+        flex-direction: row;
+    }
+    .pad-free-750 {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
 }
 
 @media only screen and (max-width: 620px) {
@@ -10061,6 +10129,10 @@ display: none;
     /*end job search*/
     .width17 {
         width: 48%;
+    }
+    .fixed-nav {
+        display: flex;
+        width: 100%;
     }
 }
 
@@ -10404,7 +10476,7 @@ background-image: none;
     }
     .top-fixed-btn,
     .top-fixed-btn.active {
-        padding: 5px 9px;
+        padding: 3.29999%;
     }
     /*End  profile publish */
     /* Job Detail */
@@ -10548,9 +10620,10 @@ background-image: none;
         font-size: 12px !important;
     }
     .fav-profile {
-        width: 116px;
-        right: 11px;
-        font-size: 14px;
+        /* width: 116px; */
+        right: 0px;
+        font-size: 12px;
+        top: 0px !important;
     }
     /*End  Profile Publish */
     .related-card .cat_lbl {

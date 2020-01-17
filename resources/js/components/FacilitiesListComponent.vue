@@ -219,25 +219,51 @@
                     }
                     });
                 },
-                first() {
+                // first() {
+                //     this.currentPage = 0;
+                // },
+                // last() {
+                //     this.currentPage = this.pages - 1;
+                // },
+                // prev() {
+                //     if (0 < this.currentPage) {
+                //         this.currentPage--;
+                //     }
+                // },
+                // next() {
+                //     if (this.currentPage < this.pages - 1) {
+                //         this.currentPage++;
+                //     }
+                // },
+                // pageSelect(index) {
+                //     this.currentPage = index - 1;
+                //     window.scrollTo(0,0);
+                // },
+
+                  first() {
                     this.currentPage = 0;
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
                 },
                 last() {
                     this.currentPage = this.pages - 1;
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
                 },
                 prev() {
                     if (0 < this.currentPage) {
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
                         this.currentPage--;
                     }
                 },
                 next() {
                     if (this.currentPage < this.pages - 1) {
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
                         this.currentPage++;
                     }
                 },
                 pageSelect(index) {
                     this.currentPage = index - 1;
-                    window.scrollTo(0,0);
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                    // window.scrollTo(0,0);
                 },
             }
     };
