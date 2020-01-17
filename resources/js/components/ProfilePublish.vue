@@ -144,7 +144,7 @@
             </button>
 
             <button v-scroll-to="{ el: '#element6' }" class="top-fixed-btn" @click="activate(6)" :class="{ active : active_el == 6 }">
-                ロコミ
+                口コミ
             </button>
             </div>
         </div>
