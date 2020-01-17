@@ -66,9 +66,8 @@
                                                     <div class="col-md-12">
                                                             <input type="file" name="" class="nursing-photo m-b-10" v-bind:class="img.classname" id="upload_img" @change="preview_image($event,indx)">
                                                             <div class="col-md-12 m-b-10" v-bind:class="img.id">
-                                                                    <input type="hidden" class="already-photo" v-model="img.photo">
-                                                                    <img v-bind:src="'/upload/nursing_profile/'+ img.photo" class="img-fluid nursing-image" alt="profile" v-if="img.id != null" @error="imgUrlAlt">
-                                                                    <div v-bind:id="'already-photo'+indx" v-else> </div>
+                                                                <input type="hidden" class="already-photo" v-model="img.photo">
+                                                                <img v-bind:src="img.src" class="img-fluid nursing-image" alt="profile" v-if="img.src!=null" @error="imgUrlAlt">
                                                             </div>
                                                     </div>
                                                     <div class="col-md-12">
@@ -726,7 +725,8 @@ export default {
                 ph_length: false,
                 ph_num: false,
                 city_id: 0,
-                township_list: []
+                township_list: [],
+                
             }
         },
 
@@ -810,6 +810,7 @@ export default {
                 this.axios
                 .get('/api/nursing-pgallery/'+this.cusid)
                 .then(response=>{
+                    console.log(response)
                     this.img_arr = response.data;
                 });
 
@@ -881,8 +882,9 @@ export default {
                 this.isRotate3 = !this.isRotate3;
             },              
             preview_image(event,indx) {
-                $('#already-photo'+indx).html("<img src='"+URL.createObjectURL(event.target.files[0])+"' class='img-fluid nursing-image'>");
                 this.img_arr[indx]['photo'] = event.target.files[0].name;
+                this.img_arr[indx]['src'] = URL.createObjectURL(event.target.files[0]);
+                // $('#already-photo1').html("<img src='"+URL.createObjectURL(event.target.files[0])+"' class='img-fluid nursing-image'>");
             },
 
             preview_panorama() {
@@ -924,33 +926,6 @@ export default {
                 if(type == 'payment') {
                     this.payment_arr.splice(indx,1);
                 }
-
-                // var arr_list = [];
-                // var arr_count = document.getElementsByClassName('gallery-area-'+type);
-               
-                //     for(var i=0; i< arr_count.length; i++) {
-                //         arr_list[i] = document.getElementsByClassName('gallery-area-'+type);
-                //     }
-
-                //     for(var i=0; i<= arr_count.length; i++) {
-                    
-                //         if(i == indx) {
-                        
-                //             arr_list.splice(indx,1);
-                        
-                //             var ele = document.getElementById(type+indx);
-                //             var parentEle = document.getElementById('gallery-'+type);
-                //             parentEle.removeChild(ele);
-                //         }
-                //         else{
-                //             arr_list.splice(indx,1);
-                        
-                //             var ele = document.getElementById(type+indx);
-                //             var parentEle = document.getElementById('gallery-'+type);
-                //             parentEle.removeChild(ele);
-                //         }
-                //     }
-                
 
             },
             DeleteArr(indx,type,id,photo) {
@@ -1022,7 +997,7 @@ export default {
             },
 
             galleryAdd() {
-                this.img_arr.push({id:null,photo:'',title:'',description:''});
+                this.img_arr.push({id:null,photo:'',title:'',description:'', src:null});
             },
 
             galleryVideoAdd() {
@@ -1176,6 +1151,7 @@ export default {
             createProfile() {
 
                 this.$loading(true);
+                console.log(this.img_arr)
                 
                 this.profile_arr = [];
 
@@ -1188,17 +1164,20 @@ export default {
                 localStorage.setItem('lng_num',this.nursing_info.longitude);
 
                 // Photo 
-                let pt = new FormData();               
+                let pt = new FormData(); 
+                var img = document.getElementsByClassName('gallery-area-photo'); 
+                console.log("img")             
+                console.log(img)             
                 for(var i =this.img_arr.length-1;i>=0;i--)
                 {
                     this.img_arr[i]['type'] = 'photo';
                     if(this.img_arr[i]['photo'] == null || this.img_arr[i]['photo'] == '')
                     {
                         this.img_arr.splice(i,1);
-                    }
-                
-                    var img = document.getElementsByClassName('gallery-area-photo');
+                    }            
+                    
                     var file = img[i].getElementsByClassName('nursing-photo')[0].files[0];
+                    console.log(img[i].getElementsByClassName('nursing-photo')[0].files)
                     if(file) {                             
                         pt.append(i ,file )  
                     }      

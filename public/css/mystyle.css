@@ -301,6 +301,11 @@ body::-webkit-scrollbar-thumb {
     border: 1px dashed #b7dad2;
 }
 
+.gallery-area-photo img {
+    width: auto;
+    height: 200px;
+}
+
 .accept-box {
     border: 1px solid #ccc;
     padding: 10px;
@@ -892,9 +897,11 @@ body::-webkit-scrollbar-thumb {
     border: 1px dashed #bbb;
     text-align: center;
     background-color: #ddd;
-    cursor: pointer;
+    cursor: pointer; 
 }
-
+/* ::-webkit-file-upload-button:after{
+    content: "Testing";
+} */
 .register_btn {
     color: white !important;
     width: 30%;
