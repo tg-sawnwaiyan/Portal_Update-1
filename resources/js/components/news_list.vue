@@ -40,7 +40,7 @@
                         </div>
                     </div> -->
                     <div class="row">
-                        <div class="col-12 col-sm-6 mb-3">           
+                        <div class="col-12 col-sm-6 mb-3">
                             <input type="text" class="form-control w-75 w-sm-100" placeholder="ニュース検索" id="search-item" @keyup="searchbyCategory()" />
                         </div>
                         <div class="col-12 col-sm-6">
@@ -50,7 +50,7 @@
                                     <option selected="selected" value>全体</option>
                                     <option v-for="category in categories" :key="category.id" v-bind:value="category.id">{{category.name}}</option>
                                 </select>
-                            </div>  
+                            </div>
                         </div>
                     </div>
                     <hr />
@@ -208,6 +208,7 @@
             // toggleModal() {
             //     this.$emit('toggleModal');
             // },
+
             deletePost(id) {
                     this.$swal({
                         title: "確認",
@@ -224,10 +225,11 @@
                         confirmButtonClass: "all-btn",
                         cancelButtonClass: "all-btn"
                     }).then(response => {
+                        this.$loading(true);
                         this.axios
                             .delete(`/api/new/delete/${id}`)
                             .then(response => {
-                                console.log(response.data)
+                                this.$loading(false);
                                 this.news_list = response.data;
                                 this.norecord = this.news_list.length;
                                 if (this.norecord > this.size) {
@@ -286,27 +288,32 @@
                 },
                 first() {
                     this.currentPage = 0;
-                    window.scrollTo(0,0);
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                    // window.scrollTo(0,0);
                 },
                 last() {
                     this.currentPage = this.pages - 1;
-                    window.scrollTo(0,0);
+                     $("html, body").animate({ scrollTop: 0 }, "slow");
+                    // window.scrollTo(0,0);
                 },
                 prev() {
                     if (0 < this.currentPage) {
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
                         this.currentPage--;
                     }
-                    window.scrollTo(0,0);
+                    // window.scrollTo(0,0);
                 },
                 next() {
                     if (this.currentPage < this.pages - 1) {
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
                         this.currentPage++;
                     }
-                    window.scrollTo(0,0);
+                    // window.scrollTo(0,0);
                 },
                 pageSelect(index) {
                     this.currentPage = index - 1;
-                    window.scrollTo(0,0);
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                    // window.scrollTo(0,0);
                 },
         }
     };

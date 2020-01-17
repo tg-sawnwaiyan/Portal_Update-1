@@ -2,7 +2,7 @@
     <!-- Page Content  -->
     <div id="content">
         <div class="card">
-            <div class="card-body">          
+            <div class="card-body">
                 <h4 class="page-header header">ニュース編集</h4>
                 <br>
                 <form @submit.prevent="updatepost">
@@ -51,14 +51,14 @@
                     <div class="form-group">
                         <label>内容:<span class="error">*</span></label>
                         <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="10" placeholder="内容を入力してください。" v-model="news.body"></textarea>
-                        <span v-if="errors.body" class="error">{{errors.body}}</span> 
+                        <span v-if="errors.body" class="error">{{errors.body}}</span>
                     </div>
                     <div class="form-group">
                         <label>関連ニュース:</label>
                         <div class="card related-card">
                             <div class="card-body">
                                 <input type="hidden" v-model="old_photo" >
-                                <div class="d-sm-flex">                                   
+                                <div class="d-sm-flex">
                                     <div class="d-flex align-items-center cat_box">
                                          <label class="cat_lbl"> カテゴリー:</label>
                                         <select v-model="category_id_1" id="categories" class="form-control cat_select" @change='getPostsByCatId()'>
@@ -81,7 +81,7 @@
                                                     <p>
                                                          <img :src="'/upload/news/'+ news.photo" class="float-left m-r-10" alt="news" @error="imgUrlAlt">
                                                          {{news.title}}
-                                                    </p> 
+                                                    </p>
                                                 </div>
                                                 <div class="control__indicator"></div>
                                             </label>
@@ -118,7 +118,7 @@
                         <span class="btn main-bg-color white all-btn" @click="checkValidate()"> 保存</span>
                         <router-link :to="{name: 'news_list'}" class="btn btn-danger all-btn">キャンセル</router-link>
                     </div>
-                </form>              
+                </form>
             </div>
         </div>
     </div>

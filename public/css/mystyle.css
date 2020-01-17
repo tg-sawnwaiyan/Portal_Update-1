@@ -309,6 +309,11 @@ label {
     border: 1px dashed #b7dad2;
 }
 
+.gallery-area-photo img {
+    width: auto;
+    height: 200px;
+}
+
 .accept-box {
     border: 1px solid #ccc;
     padding: 10px;
@@ -374,7 +379,7 @@ label {
 }
 
 .lightbox-image {
-    background-size: unset !important;
+    /* background-size: unset !important; */
 }
 
 .lightbox-main {
@@ -902,7 +907,9 @@ label {
     background-color: #ddd;
     cursor: pointer;
 }
-
+/* ::-webkit-file-upload-button:after{
+    content: "Testing";
+} */
 .register_btn {
     color: white !important;
     width: 30%;
@@ -3649,7 +3656,22 @@ ul.hokkaido-wrap {
 
 @media print,
 screen and (min-width: 750px) {
-
+    #nursingView .top-fixed-btn:hover{
+        background:#fff9cb;
+        color: #000;
+    }
+    .spanclass {
+        letter-spacing: normal;
+        /* width: 50%; */
+        display: inline-block;
+        /* margin-bottom: 5px; */
+        font-weight: bold;
+        text-align: center;
+        padding: 5px;
+        font-size: 12px;
+        margin-top: 1px;
+        margin-left: 3px;
+    }
     .spanclass a {
         position: relative;
     }
@@ -5629,6 +5651,7 @@ screen and (min-width: 750px) {
         padding: 2px;
         height: 120px;
     }
+
     /* .top-ad-slider .ads-img {
 
             font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
@@ -6507,11 +6530,6 @@ button.confirmed {
     border: 1px solid #ff9563;
 }
 
-#nursingView .top-fixed-btn:hover {
-    background: #fff9cb;
-    color: #000;
-}
-
 .top-fixed-btn {
     color: #000;
     width: 145px;
@@ -6537,12 +6555,6 @@ button.confirmed {
     background: #d2571c;
     border: 1px solid #ff9563;
 }
-
-#nursingView .top-fixed-btn.active:hover {
-    background: #fff9cb;
-    color: #000;
-}
-
 .top-fixed-btn.active {
     color: #fff;
     /* background: #ff9563; */
@@ -8673,7 +8685,7 @@ ul.nur-caro-card>li.list-group-item {
 
 .fade-enter,
 .fade-leave-to {
-    opacity: 0;
+    opacity: 0.5;
     transform: scale(.8);
 }
 
@@ -9184,9 +9196,30 @@ ul.nur-caro-card>li.list-group-item {
         width: 550px;
         height: 425px;
     }
-    .t_card {
-        max-width: none;
+    #create_news {
+        width: 283px;
+        margin-left: 12px;
     }
+    #create_news .title {
+        padding: 2px;
+        font-size: 11px;
+        padding-left: 10px;
+        margin-top: -7px;
+    }
+   /*news_start*/
+.t_card {
+    max-width: none;
+}
+.t_card2 {
+    margin-left: 40px;
+}
+.t_card4 {
+    margin-left: 40px;
+}
+.create_nw_p {
+    padding: 0px;
+}
+/*news_end*/
     /*category*/
     .t-r {
         margin-right: 45px;
@@ -9223,6 +9256,17 @@ ul.nur-caro-card>li.list-group-item {
     .map-wrap {
         padding: 20px 10px;
     }
+    .top-fixed-btn,
+    .top-fixed-btn.active {
+        width: auto;
+        padding: 10px 37px;
+        margin-bottom: 10px;
+    }
+    .top-fixed-btn{
+        text-align: center;
+        font-size: 12px;
+    }
+
 }
 
 @media only screen and (max-width: 990px) {
@@ -9468,14 +9512,27 @@ ul.nur-caro-card>li.list-group-item {
     .top-mail-btn {
         top: -67px !important;
     }
-    .fav-profile {
+    /* .fav-profile {
         top: -10px !important;
+    } */
+    .fixed-nav{
+        width: 100%;
     }
     .top-fixed-btn,
     .top-fixed-btn.active {
         width: auto;
-        padding: 5px 15px;
-        margin-bottom: 10px;
+        padding: 10px 46px;
+        margin-bottom: 10px !important;
+        border-radius: 0px;
+    }
+    .top-fixed-btn{
+        text-align: center;
+        font-size: 12px;
+        border-radius: 0px;
+
+    }
+    .ele {
+        margin-top: 0px;
     }
     .top-mail-btn-res{
         background: #0cc72c;
@@ -9646,6 +9703,7 @@ ul.nur-caro-card>li.list-group-item {
         margin-left: 40px;
     }
     /*news_end*/
+
 }
 
 @media only screen and (max-width:768px) {
@@ -9882,6 +9940,7 @@ ul.nur-caro-card>li.list-group-item {
     .t_card4 {
         margin-left: 40px;
     }
+    /*news_end*/
     .card_height {
         float: left;
         height: 190px;
@@ -10014,6 +10073,14 @@ ul.nur-caro-card>li.list-group-item {
     div.div2 a.router-link-exact-active {
         border-left: 1px solid transparent !important;
     }
+    .btn-group{
+        display: flex;
+        flex-direction: row;
+    }
+    .pad-free-750{
+        padding-left: 0px;
+        padding-right: 0px;
+    }
 }
 
 @media only screen and (max-width: 620px) {
@@ -10057,6 +10124,11 @@ ul.nur-caro-card>li.list-group-item {
     .width17 {
         width: 48%;
     }
+    .fixed-nav{
+        display: flex;
+        width: 100%;
+    }
+
 }
 
 @media only screen and (max-width:576px) {
@@ -10381,7 +10453,7 @@ ul.nur-caro-card>li.list-group-item {
     }
     .top-fixed-btn,
     .top-fixed-btn.active {
-        padding: 5px 9px;
+        padding: 3.29999%;
     }
     /*End  profile publish */
     /* Job Detail */
@@ -10524,9 +10596,10 @@ ul.nur-caro-card>li.list-group-item {
         font-size: 12px !important;
     }
     .fav-profile {
-        width: 116px;
-        right: 11px;
-        font-size: 14px;
+        /* width: 116px; */
+        right: 0px;
+        font-size: 12px;
+        top:0px !important;
     }
     /*End  Profile Publish */
     .related-card .cat_lbl {
