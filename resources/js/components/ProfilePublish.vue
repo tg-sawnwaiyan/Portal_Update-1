@@ -255,7 +255,7 @@
                     <!--end for slide image-->
                     <!--for address-->
                      <div class="col-md-7 detail_profile_right col-slg-12 pad-free-750">
-                         <span class="top-mail-btn-res btn sp-414" @click="documentPost()" v-if="!loginuser && !$auth.check()"><i data-v-b65423c6="" class="far fa-envelope" style="color: #fff  !important;font-size: 15px;"></i>&nbsp;資料請求</span>
+                         <span class="top-mail-btn-res btn sp-414" @click="documentPost()" v-if="!loginuser && !$auth.check()"><i data-v-b65423c6="" class="far fa-envelope" style="color: rgb(196, 0, 0)!important;font-size: 15px;font-weight: bold;;"></i>&nbsp;資料請求</span>
                         <div class="row m-lr-0 pro-heading">
                              <div class="col-12 pad-free pc-1024">
                                 <h5 class="profile_header">介護情報</h5>
@@ -815,9 +815,9 @@
                     <div class="col-md-12  m-b-15">
                         <h5 class="profile_subtit">動画</h5>
                         <div class="row m-0" v-if="videos == ''">
-                            <div class="col-12"> <p class="no-data-color">表示されるデータがありません。</p> </div>
+                            <div class="col-12 pad-free-750"> <p class="no-data-color">表示されるデータがありません。</p> </div>
                         </div>
-                        <div class="row col-12" v-else>
+                        <div class="row col-12 pad-free-750" v-else>
                             <div v-for="(video) in  videos" :key="video.id" class="col-sm-4 col-md-4 col-lg-3">
                                 <iframe :src="'https://www.youtube.com/embed/'+video.photo" controls class="pad-free col-12"></iframe>
                                 <span style="color:orange;font-weight:bold;">{{video.title}}</span><br>
@@ -827,21 +827,21 @@
 
                     <div class="col-12">
                         <h5 class="profile_subtit">協力医療機関</h5>
-                        <div v-if="cooperate_medical.length>0" class="col-md-12">
-                                <div v-for="comedical in cooperate_medical" :key="comedical.id" class="col-md-12" >
+                        <div v-if="cooperate_medical.length>0" class="col-md-12 pad-free-750">
+                                <div v-for="comedical in cooperate_medical" :key="comedical.id" class="col-md-12 pad-free-750" >
                                     <label class="cost_heading_lbl_mini"><i class="fas fa-university"></i> {{comedical.name}}</label>
-                                    <table border="1" class="table table-bordered cost_table">
+                                    <table border="1" class="table table-bordered cost_table facility_tbl">
                                         <tbody>
                                             <tr>
-                                                <td class="custom-bg-color" > 診療科目</td>
+                                                <th class="custom-bg-color" > 診療科目</th>
                                                 <td>{{comedical.clinical_subject}}</td>
                                             </tr>
                                             <tr>
-                                                <td class="custom-bg-color">協力内容</td>
+                                                <th class="custom-bg-color">協力内容</th>
                                                 <td >{{comedical.details}}</td>
                                             </tr>
                                             <tr>
-                                                <td class="custom-bg-color">診療費用</td>
+                                                <th class="custom-bg-color">診療費用</th>
                                                 <td >{{comedical.medical_expense}}</td>
                                             </tr>
 
@@ -856,8 +856,8 @@
 
                     <div class="col-12">
                         <h5 class="profile_subtit"> 医療面の受入れ</h5>
-                        <div class="row col-12" style="margin: 0 auto;">
-                            <div v-for="maccept in medical_acceptance" :key="maccept.id" class="col-md-4 col-sm-6" >
+                        <div class="row col-12 pad-free-750" style="margin: 0 auto;">
+                            <div v-for="maccept in medical_acceptance" :key="maccept.id" class="col-md-4 col-sm-6 pad-free-750" >
                                 <div class="accept-box">
                                     <div class="float-left" v-for="(ma,index) in medical" :key="index" style="padding-right:10px;">
                                         <i v-if="ma.name === maccept.name && ma.accept_type === 'accept'" class="fas fa-check green"></i>
@@ -868,7 +868,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row col-md-12 float: right" style="display: flex; justify-content: flex-end" >
+                        <div class="row col-md-12 float: right pad-free-750" style="display: flex; justify-content: flex-end" >
                             <label for="" class="m-r-15"><i class="fas fa-check green"></i> 受入れ可</label>
                             <label for="" class="m-r-15"><i class="fas fa-times red"></i> 受入れ不可</label>
                             <label for="" class="m-r-15"><i class="fas fa-adjust blue"></i> 応相談</label>
@@ -879,7 +879,7 @@
                         <h5  class="profile_subtit"> 職員体制</h5>
                         <div v-if="staff.length>0">
 
-                            <div v-for="st in staff" :key="st.id" class="col-md-12" >
+                            <div v-for="st in staff" :key="st.id" class="col-md-12 pad-free-750">
 
                                 <table border="1" class="table table-bordered staff_tbl">
 
@@ -962,7 +962,7 @@
                             <div class="comment-title">
                                 <i class="fas fa-comment"></i>{{comment.title}}
                             </div>
-                            <div class="d-flex">
+                            <div class="d-flex d-block">
                                 <p class="card-title font-weight-bold">{{comment.email}}</p>
                                 <p class="comment-age">{{ new Date().getFullYear() - comment.year}}年代</p>
                                 <p class="comment-date"><i class="fa fa-calendar" aria-hidden="true"></i> {{comment.created_date | moment("YYYY年MM月DD日") }}投稿 <span class="ml-2"><i class="fa fa-clock" aria-hidden="true"></i> {{comment.created_time}}</span></p>
@@ -1467,25 +1467,25 @@
 
                 </div>
                 <div  class="col-12 m-t-20" v-for="m in google" :key="m.id" >
-                             <table border="1" class="table table-bordered">
+                             <table border="1" class="table table-bordered map_tbl" >
                                     <tbody>
                                     <tr>
-                                        <td class="custom-bg-color"> 公式サイト</td>
+                                        <th class="custom-bg-color"> 公式サイト</th>
                                         <td v-if="m.website">{{m.website}}</td>
                                         <td v-else> - </td>
                                     </tr>
                                     <tr>
-                                        <td class="custom-bg-color"> アクセス</td>
+                                        <th class="custom-bg-color"> アクセス</th>
                                         <td v-if="m.access"><p v-html="m.access"></p></td>
                                         <td v-else> - </td>
                                     </tr>
                                     <tr>
-                                        <td class="custom-bg-color"> 混雑状況</td>
+                                        <th class="custom-bg-color"> 混雑状況</th>
                                         <td v-if="m.congestion">{{m.congestion}}</td>
                                         <td v-else> - </td>
                                     </tr>
                                     <tr>
-                                        <td class="custom-bg-color">住所 </td>
+                                        <th class="custom-bg-color">住所 </th>
                                         <td v-if="m.address">{{m.address}}</td>
                                         <td v-else> - </td>
                                     </tr>
@@ -1816,7 +1816,7 @@ export default {
                                 });                    
                                 
                                 if (cur_pos >= 100) {
-                                    $(".fixed-nav").css({"position": "fixed","top":"110px","display": "inline-flex"});
+                                    $(".fixed-nav").css({"position": "fixed","top":"110px","display": "inline-flex","width": "100%"});
                                 } else {
                                     $(".fixed-nav").css({"position": "unset", "top": "unset", "display": "none"});
                                 }
@@ -2896,10 +2896,12 @@ h3 {
     {
        margin-right: 16px;
     }
-
 }
-
-
+@media only screen and (max-width:750px) {
+    .comment-age {
+        margin: 0px;    
+    }
+}
 @media only screen and (max-width: 450px) and (min-width: 376px) {
   #pano-slider-page .card-carousel {
         width: 207px !important;
@@ -2915,34 +2917,13 @@ h3 {
     {
        margin-right: -35px;
     }
-
-
 }
 
 @media only screen and (max-width: 768px) and (min-width: 451px) {
   #pano-slider-page .card-carousel {
         width: 415px!important;
-    }
-     /* .thumbnails-pano
-    {
-    width: 200px;
-    }
-    #pano-slider-page{
-        margin-left: 28px;
-    }
-    .nav-content
-    {
-       margin-right: 48px;
-    } */
+    }   
 }
-
-/* Medium devices (landscape tablets, 768px and up) */
-/* @media only screen and (max-width: 1023px) and (min-width: 769px) {
-  #pano-slider-page .card-carousel {
-        width: 415px!important;
-    }
-
-} */
 
 @media only screen and (max-width: 992px) and (min-width: 769px) {
   #pano-slider-page .card-carousel {
@@ -2964,36 +2945,12 @@ h3 {
 @media only screen and (max-width: 1024px) and (min-width: 993px) {
   #pano-slider-page .card-carousel {
         width: 823px!important;
-    }
-    /* .thumbnails-pano
-    {
-    width: 827px;
-    }
-    #pano-slider-page{
-        margin-left: -7pxs;
-    }
-    .nav-content
-    {
-       margin-right: -8px;
-    } */
-
+    }  
 }
 @media only screen and (max-width: 1200px) and (min-width: 1025px) {
   #pano-slider-page .card-carousel {
         width: 930px!important;
-    }
-    /* .thumbnails-pano
-    {
-    width: 1000px;
-    }
-     */
-    /* #pano-slider-page{
-        margin-left: -18px;
-    }
-     .nav-content
-    {
-       margin-right: -31px;
-    } */
+    }  
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
@@ -3004,14 +2961,7 @@ h3 {
     .thumbnails-pano
     {
     width: 1000px;
-    }
-    /* #pano-slider-page{
-        margin-left: 15px;
-    }
-    .nav-content
-    {
-       margin-right: 41px;
-    } */
+    }   
 }
 @media only screen and (max-width: 1880px) and (min-width: 1440px) {
     #pano-slider-page .card-carousel {
@@ -3024,15 +2974,7 @@ h3 {
     #pano-slider-page{
         margin-left: 15px;
     }
-
 }
 
-
-@media only screen and (max-width: 1300px) {
-}
-@media only screen and (max-width: 1024px) {
-}
-@media only screen and (max-width: 767px) {
-}
 
 </style>
