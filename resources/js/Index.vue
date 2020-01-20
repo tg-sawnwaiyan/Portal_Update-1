@@ -255,7 +255,7 @@
         // this.axios.get('/api/auth/user').then(res=>{
         //     console.log(res)
         // })
-
+       
         
         if(localStorage.getItem("visit")){
             this.visit = localStorage.getItem("visit");
