@@ -1,95 +1,93 @@
 <template>
-     <div class="row">
-         <div class="col-12">
-                <div class="container-fluid">
-                     <h4 class="main-color m-b-10">求人応募者検索</h4>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group row">
-                                    <div class="col-12">
-                                        <input type="text" class="form-control" placeholder="検索" id="search-item"  @keyup="searchApplicantList" />
-                                        <input type="hidden" class="form-contrl" />
-                                    </div>
-                                </div>
+    <div id="job_apply">
+        <div class="container-fluid">
+                <h4 class="main-color m-b-10">求人応募者検索</h4>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <input type="text" class="form-control" placeholder="検索" id="search-item"  @keyup="searchApplicantList" />
+                                <input type="hidden" class="form-contrl" />
                             </div>
                         </div>
-                        <hr />
-                        <h5 class="header"> 求人応募者一覧</h5>
-                        <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
-                        <div v-else class="container-fuid">
-
-                        <div class="container-fuid">
-                            <table class="table table-hover custom-table">
-                                <thead style="background-color:rgb(183, 218, 210);">
-                                    <tr>
-                                         <th>姓</th>
-
-                                        <th>名</th>
-
-                                        <th>生年月日</th>
-
-                                        <th>性別</th>
-
-                                        <th>郵便番号 (〒)</th>
-
-                                        <th>街路住所</th>
-
-                                        <!-- <th>自宅住所</th> -->
-
-                                        <th>電話番号</th>
-
-                                        <th>メールアドレス</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr  v-for="jobapply in displayItems" :key="jobapply.id">
-
-                                         <th>{{jobapply.first_name}}</th>
-
-                                        <th>{{jobapply.last_name}}</th>
-
-                                        <th>{{jobapply.birthday}}</th>
-
-                                        <th>{{jobapply.gender}}</th>
-
-                                        <th>{{jobapply.postal}}</th>
-
-                                        <th>{{jobapply.street_address}}</th>
-
-                                        <!-- <th>{{jobapply.home_address}}</th> -->
-
-                                        <th>{{jobapply.phone}}</th>
-
-                                        <th>{{jobapply.email}}</th>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <div class="col-12" v-if="pagination">
-                                    <nav aria-label="Page navigation example">
-                                        <ul class="pagination">
-                                            <li class="page-item">
-                                                <span class="spanclass pc-480" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
-                                            </li>
-                                            <li class="page-item">
-                                                <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i> <span class="pc-paginate">前へ</span></span>
-                                            </li>
-                                            <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
-                                                <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
-                                            </li>
-                                            <li class="page-item">
-                                                <span class="spanclass" @click="next"><span class="pc-paginate">次へ</span> <i class='fas fa-angle-right'></i></span>
-                                            </li>
-                                            <li class="page-item">
-                                                <span class="spanclass pc-480" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
-                        </div>
+                    </div>
                 </div>
-         </div>
-     </div>
+                <hr />
+                <h5 class="header"> 求人応募者一覧</h5>
+                <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
+                <div v-else class="container-fuid">
+
+                <div class="container-fuid scroll_responsive">
+                    <table class="table table-hover custom-table">
+                        <thead>
+                            <tr>
+                                <th>姓</th>
+
+                                <th>名</th>
+
+                                <th>生年月日</th>
+
+                                <th>性別</th>
+
+                                <th>郵便番号 (〒)</th>
+
+                                <th>街路住所</th>
+
+                                <!-- <th>自宅住所</th> -->
+
+                                <th>電話番号</th>
+
+                                <th>メールアドレス</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr  v-for="jobapply in displayItems" :key="jobapply.id">
+
+                                <td>{{jobapply.first_name}}</td>
+
+                                <td>{{jobapply.last_name}}</td>
+
+                                <td>{{jobapply.birtdday}}</td>
+
+                                <td>{{jobapply.gender}}</td>
+
+                                <td>{{jobapply.postal}}</td>
+
+                                <td>{{jobapply.street_address}}</td>
+
+                                <!-- <td>{{jobapply.home_address}}</td> -->
+
+                                <td>{{jobapply.phone}}</td>
+
+                                <td>{{jobapply.email}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                 <div class="col-12 mt-4" v-if="pagination">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <span class="spanclass pc-480" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
+                                </li>
+                                <li class="page-item">
+                                    <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i> <span class="pc-paginate">前へ</span></span>
+                                </li>
+                                <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
+                                    <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
+                                </li>
+                                <li class="page-item">
+                                    <span class="spanclass" @click="next"><span class="pc-paginate">次へ</span> <i class='fas fa-angle-right'></i></span>
+                                </li>
+                                <li class="page-item">
+                                    <span class="spanclass pc-480" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+        </div>
+    </div>
 </template>
 <script>
 export default {

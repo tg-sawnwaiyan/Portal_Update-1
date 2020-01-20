@@ -32,30 +32,37 @@
                                     </td>
                                     <td>
                                         <div class="row">
-                                                <div class="col-lg-2 col-md-4 custom_title">
-                                                    <strong>事業者名:</strong>
-                                                </div>
-                                                <div class="col-lg-10 col-md-8">{{customer.name}}</div>
-                                                <div class="col-lg-2 col-md-4 custom_title">
-                                                    <strong >状態:</strong>
-                                                </div>
-                                                <div class="col-lg-10 col-md-8" v-if="customer.recordstatus == '1'">Activate</div>
-                                                <div class="col-lg-10 col-md-8" v-else>Deactivate</div>
-
-                                                <div class="col-lg-2 col-md-4 custom_title">
-                                                    <strong>メールアドレス:</strong>
-                                                </div>
-                                                <div class="col-lg-10 col-md-8">{{customer.email}}</div>
+                                            <div class="col-lg-2 col-md-4 custom_title">
+                                                <strong>事業者名:</strong>
+                                            </div>
+                                            <div class="col-lg-10 col-md-8">{{customer.name}}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-2 col-md-4 custom_title">
+                                                <strong >状態:</strong>
+                                            </div>
+                                            <div class="col-lg-10 col-md-8" v-if="customer.recordstatus == '1'">Activate</div>
+                                            <div class="col-lg-10 col-md-8" v-else>Deactivate</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-2 col-md-4 custom_title">
+                                                <strong>メールアドレス:</strong>
+                                            </div>
+                                            <div class="col-lg-10 col-md-8">{{customer.email}}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-2 col-md-4 custom_title">
+                                                <strong>電話番号:</strong>
+                                            </div>
+                                            <div class="col-lg-10 col-md-8">{{customer.phone}}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-2 col-md-4 custom_title">
+                                                <strong>住所:</strong>
+                                            </div>
+                                            <div class="col-lg-10 col-md-8">{{customer.address}}</div>
+                                        </div>
                                                 <!-- <div class="col-md-2 max-width13"><strong>Logo:</strong></div><div class="col-md-10">{{customer.logo}}</div> -->
-                                                <div class="col-lg-2 col-md-4 custom_title">
-                                                    <strong>電話番号:</strong>
-                                                </div>
-                                                <div class="col-lg-10 col-md-8">{{customer.phone}}</div>
-                                                <div class="col-lg-2 col-md-4 custom_title">
-                                                    <strong>住所:</strong>
-                                                </div>
-                                                <div class="col-lg-10 col-md-8">{{customer.address}}</div>
-                                                </div>
                                                 <div class="row mt-3">
                                                     <div class="col-md-12">
                                                         <button class="btn delete-borderbtn" @click="deleteCustomer(customer.id)">削除</button>
