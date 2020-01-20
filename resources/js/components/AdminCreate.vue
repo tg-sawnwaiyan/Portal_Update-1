@@ -82,6 +82,7 @@
                     new_password: '',
                     confirm_password: '',
                     admin_id: this.$route.params.id,
+                    mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
                 }
             },
             created() {
@@ -110,7 +111,12 @@
                             this.errors.name = "管理者名が必須です。";
                         }
                         if (this.adminData.email) {
-                            this.errors.email = "";
+                            if(this.mail_reg.test(this.adminData.email )){
+                                this.errors.email = "";
+                            }else{
+                                this.errors.email = "※メールアドレスが正しくありません。もう一度入力してください。"
+                            }
+                            
                         } else {
                             this.errors.email = "メールアドレスが必須です。";
                         }
