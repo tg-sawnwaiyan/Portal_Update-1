@@ -101,6 +101,8 @@
                                     <div class="card-carousel-cards" :style="{ transform: 'translateX' + '(' + currentOffset + 'px' + ')'}">
                                         <div class="card-carousel--card">
                                             <div class="card-carousel--card--footer">
+                                                <div class="msg"> 
+                                                </div> 
                                                 <table class="table table-bordered">
                                                     <tr>
                                                         <td v-for="nur_profile in nur_profiles" :key="nur_profile.id">
@@ -432,11 +434,36 @@ export default {
 
     getAllCustomer: function(local_storage) {
       this.axios
-
         .post("/api/nursing_history/" + local_storage)
-
         .then(response => {
-          this.nur_profiles = response.data;
+            if(response.data.length>0) {
+                this.nur_profiles = response.data;
+                if(response.data.length<this.his_nus) {
+                    this.his_nus = response.data.length;
+                    $('.msg').html('<span>Some Nursing Accounts are Deactivated!</span>');
+                }
+            } else {
+                this.his_nus = 0;
+                this.$swal({
+                    title: "確認",
+                    text: "Sorry!Nursing Accounts are already deactived.",
+                    type: "warning",
+                    width: 350,
+                    height: 200,
+                    showCancelButton: true,
+                    confirmButtonColor: "#dc3545",
+                    cancelButtonColor: "#b1abab",
+                    cancelButtonTextColor: "#000",
+                    confirmButtonText: "削除",
+                    cancelButtonText: "キャンセル",
+                    confirmButtonClass: "all-btn",
+                    cancelButtonClass: "all-btn"
+                }).then(response => {
+                    this.$router.push({
+                        name: 'nursingSearch',
+                    });
+                });
+            }
         });
     },
 
