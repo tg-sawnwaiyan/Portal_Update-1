@@ -42,6 +42,9 @@
             <form class="col-md-12 pad-free" id="fav-hospital-page">
                 <div class="col-12"  id="fav-history-page">
                     <div class="row justify-content-lg-center">
+                        <div>
+                            <label> asasdf{{message}} </label>
+                        </div>
                         <div class="card-carousel-wrapper">
 
                             <div class="nav-box"  @click="moveCarousel(-1)" :disabled="atHeadOfList">
@@ -236,7 +239,8 @@
                     window:{
                         width:0,
                         height:0
-                    }
+                    },
+                    message:''
                 };
             },
             computed: {
@@ -381,12 +385,41 @@
                       
                     },
                     getAllFavourite: function(local_storage) {
+                       
                         this.axios
                             .post('/api/favHospital/' + local_storage)
                             .then(response => {
-                                console.log(response.data);
+                               
                                 this.fav_hospital = response.data;
+                            
+                                if(this.fav_hospital.length < this.fav_hos)
+                                {
+                                  this.message = "Other History Delete !"
+                                }
+                                if(this.fav_hospital.length == 0)
+                                {
+                                    this.$swal({
+                                    position: 'top-end',
+                                    type: 'success',
+                                    // title: '作成されました',
+                                    title: 'There is no history !',
+                                    showConfirmButton: true,
+                                    width: 250,
+                                    height: 200,
+                                    }).then(response => {
+                                         localStorage.setItem('hospital_fav','');
+                                         this.hosFav = 0;
+                                          $('.fav-hospital-link-box>a').css({'cursor':'not-allowed','pointer-events':'none'});
+                                          $( '.fav-hospital-link-box>a').parent('div').css({'cursor':'not-allowed'});
+                                         this.$router.push({name: 'hospitalSearch'});   
+
+                                    });
+                                }
+
+                               
                             });
+                           
+                            
                     },
                      imgUrlAlt(event) {
                 event.target.src = "images/noimage.jpg"

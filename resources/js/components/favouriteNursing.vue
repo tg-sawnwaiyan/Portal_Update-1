@@ -482,6 +482,7 @@
             },
 
             created() {
+               
                 //for cardcarousel responsive
                 window.addEventListener('resize', this.handleResize)
                 this.handleResize(); 
@@ -639,6 +640,26 @@
                                 if(this.fav_nursing.length < this.fav_nus )
                                 {
                                      this.message = "Other History delete ! ";
+                                    //    localStorage.setItem('nursing_fav',null);
+                                }
+                                if(this.fav_nursing.length == 0)
+                                {
+                                    this.$swal({   
+                                    position: 'top-end',
+                                    type: 'success',
+                                    // title: '作成されました',
+                                    title: 'There is no history !',
+                                    showConfirmButton: true,
+                                    width: 250,
+                                    height: 200,
+                                    }).then(response => {
+                                         localStorage.setItem('nursing_fav','');
+                                         this.nusFav = 0;
+                                          $('.fav-nursing-link-box>a').css({'cursor':'not-allowed','pointer-events':'none'});
+                                          $( '.fav-nursing-link-box>a').parent('div').css({'cursor':'not-allowed'});
+                                         this.$router.push({name: 'nursingSearch'});    
+                                    });
+                                    
                                 }
                                 for (var i = 0; i < this.fav_nursing.length; i++) {
                                     var j = this.fav_nursing[i].id;
