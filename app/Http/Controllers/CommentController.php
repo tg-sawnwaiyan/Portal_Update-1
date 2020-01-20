@@ -88,13 +88,13 @@ class CommentController extends Controller
          where co.customer_id =" . $comment->customer_id . " and co.id =" .$comment->id;
         $getComment = DB::select($query);
 
-        if($getComment[0]->gender == 0 )
-        {
-            $getComment[0]->gender = "男性";
-        }
-        else{
-            $getComment[0]->gender = "女性";
-        }
+        // if($getComment[0]->gender == 0 )
+        // {
+        //     $getComment[0]->gender = "男性";
+        // }
+        // else{
+        //     $getComment[0]->gender = "女性";
+        // }
         $admin_email = 'thuzar@management-partners.co.jp';
         // $admin_email = 'thuzar.ts92@gmail.com';
         // \Mail::to('mayphue17@management-part')->send(new SendMailComment($getComment));
