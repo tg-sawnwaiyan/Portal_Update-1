@@ -30,33 +30,35 @@
                         <div class="card card-default m-b-20" v-for="comment in displayItems" :key="comment.id">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-lg-6 col-md-7 p0-480">
+                                    <div class="col-9 p0-480">
                                         <!-- <strong>タイトル :</strong> {{comment.title}}  <br/>
                                         <strong>顧客名 :</strong> {{comment.name}}  <br/>
                                         <strong>メールアドレス:</strong>{{comment.email}} -->
                                        <table>
                                            <tr>
-                                               <td>タイトル :</td>
+                                               <td class="align-top">タイトル :</td>
                                                <td> {{comment.title}}</td>
                                            </tr>
-                                            <tr>
+                                            <tr class="align-top">
                                                <td>顧客名 :</td>
                                                <td> {{comment.name}} </td>
                                            </tr>
                                              <tr>
-                                               <td>メールアドレス: </td>
+                                               <td class="align-top">メールアドレス: </td>
                                                <td> {{comment.email}} </td>
                                            </tr>
                                        </table>
+                                       <div class="d-inline-block mt-3">
+                                           <button class="btn confirmed" v-if="comment.status != 0" >確認</button>
+                                            <button class="btn confirm-borderbtn" v-else @click="commentConfirm(comment.id)">確認</button>
+                                            <button class="btn text-danger delete-borderbtn" @click="deleteComment(comment.id)">削除</button>
+                                       </div>
                                     </div>
 
-                                    <div class="col-lg-6 col-md-5 text-right">
+                                    <div class="col-3 text-right">
                                         <!-- <button class="'btn btn all-btn main-bg-color changeLink'+payment.id" type="button" @click="commentToggle(comment.id)"><span  :id="'icon' + comment.id"  class="fa fa-angle-down"></span></button> -->
                                         <button :class="'btn btn all-btn main-bg-color changeLink'+comment.id" style="min-width: 0px;" @click="commentToggle(comment.id)">
                                             <i :id="'icon' + comment.id" class="fa fa-angle-down"></i> 詳細</button>
-                                        <button class="btn confirmed" v-if="comment.status != 0" style ="opacity: 0.5;cursor: not-allowed;" >確認</button>
-                                        <button class="btn confirm-borderbtn" v-else @click="commentConfirm(comment.id)">確認</button>
-                                        <button class="btn text-danger delete-borderbtn" @click="deleteComment(comment.id)">削除</button>
                                     </div>
                                 </div>
                             </div>
@@ -73,7 +75,7 @@
                             </div>
                         </div>
                     </div>
-                        <div class="offset-md-4 col-md-8 mt-3" v-if="pagination">
+                        <div class="col-12" v-if="pagination">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination">
                                     <li class="page-item">
@@ -160,7 +162,7 @@
                             this.norecord_msg = true;
                         }
                     });
-                }         
+                }
 
 
             },
@@ -337,23 +339,28 @@
                     },
                 first() {
                     this.currentPage = 0;
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
                 },
                 last() {
                     this.currentPage = this.pages - 1;
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
                 },
                 prev() {
                     if (0 < this.currentPage) {
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
                         this.currentPage--;
                     }
                 },
                 next() {
                     if (this.currentPage < this.pages - 1) {
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
                         this.currentPage++;
                     }
                 },
                 pageSelect(index) {
                     this.currentPage = index - 1;
-                    window.scrollTo(0,0);
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                    // window.scrollTo(0,0);
                 },
             }
     }

@@ -17,7 +17,7 @@
                         <h5 class="header"> 求人応募者一覧</h5>
                         <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
                         <div v-else class="container-fuid">
-                            
+
                         <div class="container-fuid">
                             <table class="table table-hover custom-table">
                                 <thead style="background-color:rgb(183, 218, 210);">
@@ -30,7 +30,7 @@
 
                                         <th>性別</th>
 
-                                        <th>郵便番号</th>
+                                        <th>郵便番号 </th>
 
                                         <th>街路住所</th>
 
@@ -64,7 +64,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <div class="offset-md-4 col-md-8 mt-3" v-if="pagination">
+                            <div class="col-12" v-if="pagination">
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination">
                                             <li class="page-item">
@@ -85,7 +85,7 @@
                                         </ul>
                                     </nav>
                                 </div>
-                            </div> 
+                            </div>
                         </div>
                 </div>
          </div>
@@ -177,25 +177,50 @@ export default {
                             }
                         });
                   },
+                //   first() {
+                //     this.currentPage = 0;
+                // },
+                // last() {
+                //     this.currentPage = this.pages - 1;
+                // },
+                // prev() {
+                //     if (0 < this.currentPage) {
+                //         this.currentPage--;
+                //     }
+                // },
+                // next() {
+                //     if (this.currentPage < this.pages - 1) {
+                //         this.currentPage++;
+                //     }
+                // },
+                // pageSelect(index) {
+                //     this.currentPage = index - 1;
+                //     window.scrollTo(0,0);
+                // },
                   first() {
                     this.currentPage = 0;
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
                 },
                 last() {
                     this.currentPage = this.pages - 1;
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
                 },
                 prev() {
                     if (0 < this.currentPage) {
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
                         this.currentPage--;
                     }
                 },
                 next() {
                     if (this.currentPage < this.pages - 1) {
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
                         this.currentPage++;
                     }
                 },
                 pageSelect(index) {
                     this.currentPage = index - 1;
-                    window.scrollTo(0,0);
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                    // window.scrollTo(0,0);
                 },
               }
 }

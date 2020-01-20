@@ -101,17 +101,17 @@
                             </label> -->
                            <div class="model-7">
                                <div class="checkbox">
-                                    <input type='checkbox' v-if="job.recordstatus == 1" @click="confirm(job.id)" checked/>                                                                             
-                                    <input type='checkbox' v-if="job.recordstatus==0" @click="confirm(job.id)"  />                                                                              
+                                    <input type='checkbox' v-if="job.recordstatus == 1" @click="confirm(job.id)" checked/>
+                                    <input type='checkbox' v-if="job.recordstatus==0" @click="confirm(job.id)"  />
                                     <label for="checkbox"></label>
                                     <div v-if="job.recordstatus == 1" class="on">公開中</div>
-                                    <div v-if="job.recordstatus == 0" class="on">非行化</div> 
-                                     
+                                    <div v-if="job.recordstatus == 0" class="on">非行化</div>
+
                                     <!-- <span>OFF</span>  -->
 
                              </div>
                            </div>
-                           
+
                         <!-- <div>
                             <button class="btn confirmed" v-if="job.recordstatus == 1" @click="confirm(job.id)">OFF</button>
 
@@ -167,7 +167,7 @@
                             </div>
                         </div>
                     </div>
-                        <div class="offset-md-4 col-md-8 mt-3" v-if="pagination">
+                        <div class="col-12" v-if="pagination">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination">
                                     <li class="page-item">
@@ -216,7 +216,7 @@
                     norecord_msg: false,
                     nosearch_msg: false,
                     subtitle: 'OFF'
-                   
+
                 };
             },
 
@@ -285,7 +285,7 @@
                         this.$loading(false);
                         this.jobs = response.data.profilejob;
                         console.log(this.jobs);
-                  
+
                         this.customer_id = response.data.user;
                         if (this.jobs.length > this.size) {
                         this.pagination = true;
@@ -314,14 +314,14 @@
                 //                     location.reload();
                 //                 });
 
-                    
+
                 //     },
                 confirm(id) {
-                  
+
                     this.axios.get(`/api/job/confirm/${id}`)
                         .then(response => {
 
-                                
+
                             // this.jobs = response.data.jobs;
                             this.getAllJobs();
                         });
@@ -382,24 +382,49 @@
                             }
                         });
                     },
-                first() {
+                // first() {
+                //     this.currentPage = 0;
+                // },
+                // last() {
+                //     this.currentPage = this.pages - 1;
+                // },
+                // prev() {
+                //     if (0 < this.currentPage) {
+                //         this.currentPage--;
+                //     }
+                // },
+                // next() {
+                //     if (this.currentPage < this.pages - 1) {
+                //         this.currentPage++;
+                //     }
+                // },
+                // pageSelect(index) {
+                //     this.currentPage = index - 1;
+                // },
+                  first() {
                     this.currentPage = 0;
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
                 },
                 last() {
                     this.currentPage = this.pages - 1;
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
                 },
                 prev() {
                     if (0 < this.currentPage) {
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
                         this.currentPage--;
                     }
                 },
                 next() {
                     if (this.currentPage < this.pages - 1) {
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
                         this.currentPage++;
                     }
                 },
                 pageSelect(index) {
                     this.currentPage = index - 1;
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                    // window.scrollTo(0,0);
                 },
             }
     };
@@ -472,7 +497,7 @@
     border: 2px solid #555;
     height: 22px;
     width: 50px;
-  
+
 }
 .model-7 .checkbox label:after {
   background: #555;

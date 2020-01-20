@@ -1,16 +1,13 @@
 <template>
-    <div class="row">
-        <div class="col-12">
-            <div class="row m-b-10" v-if="!norecord_msg">
-                <div class="col-md-12">
-                    <router-link to="/createcategory" class="float-right main-bg-color create-btn all-btn">
-                        <i class="fas fa-plus-circle"></i> カテゴリー新規作成
-                    </router-link>
-                </div>
+        <div>
+            <div class="d-flex justify-content-end m-b-10" v-if="!norecord_msg">               
+                <router-link to="/createcategory" class="main-bg-color create-btn all-btn">
+                    <i class="fas fa-plus-circle"></i> カテゴリー新規作成
+                </router-link>           
             </div>
             <!--card-->
-            <div class="col-md-12 col-md-12 tab-content tab-content1 tabs pad-free border-style">
-                <div class="col-md-12 scrolldiv">
+            <div class="col-md-12  tab-content tab-content1 tabs pad-free">
+                <div class="scrolldiv">
                     <div v-if="norecord_msg" class="card card-default card-wrap">
                         <p class="record-ico">
                             <i class="fa fa-exclamation"></i>
@@ -29,8 +26,8 @@
                                 <input type="text" class="form-control" placeholder="ニュースカテゴリー検索" id="search-item" @keyup="searchCategory()" />
                             </div>
                             <!-- <div class="col-md-2 text-right">
-                    <button class="btn secondary-bg-color all-btn white" style="width:100%;"><i class="fas fa-search"></i> 検索</button>
-              </div>-->
+                                    <button class="btn secondary-bg-color all-btn white" style="width:100%;"><i class="fas fa-search"></i> 検索</button>
+                            </div>-->
                         </div>
                         <hr />
                         <h5 class="header">ニュースカテゴリー一覧</h5>
@@ -48,7 +45,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="offset-md-4 col-md-8 mt-3" v-if="pagination">
+                        <div class="col-12" v-if="pagination">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination">
                                     <li class="page-item">
@@ -74,7 +71,7 @@
             </div>
             <!--end card-->
         </div>
-    </div>
+
 </template>
 
 <script>
@@ -232,25 +229,52 @@
                             }
                         });
                     },
-                    first() {
-                        this.currentPage = 0;
-                    },
-                    last() {
-                        this.currentPage = this.pages - 1;
-                    },
-                    prev() {
-                        if (0 < this.currentPage) {
-                            this.currentPage--;
-                        }
-                    },
-                    next() {
-                        if (this.currentPage < this.pages - 1) {
-                            this.currentPage++;
-                        }
-                    },
-                    pageSelect(index) {
-                        this.currentPage = index - 1;
-                    },
+                    
+                    // first() {
+                    //     this.currentPage = 0;
+                    // },
+                    // last() {
+                    //     this.currentPage = this.pages - 1;
+                    // },
+                    // prev() {
+                    //     if (0 < this.currentPage) {
+                    //         this.currentPage--;
+                    //     }
+                    // },
+                    // next() {
+                    //     if (this.currentPage < this.pages - 1) {
+                    //         this.currentPage++;
+                    //     }
+                    // },
+                    // pageSelect(index) {
+                    //     this.currentPage = index - 1;
+                    // },
+
+                      first() {
+                    this.currentPage = 0;
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                },
+                last() {
+                    this.currentPage = this.pages - 1;
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                },
+                prev() {
+                    if (0 < this.currentPage) {
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
+                        this.currentPage--;
+                    }
+                },
+                next() {
+                    if (this.currentPage < this.pages - 1) {
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
+                        this.currentPage++;
+                    }
+                },
+                pageSelect(index) {
+                    this.currentPage = index - 1;
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                    // window.scrollTo(0,0);
+                },
             }
     };
 </script>

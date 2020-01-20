@@ -92,8 +92,10 @@ class CommentController extends Controller
         else{
             $getComment[0]->gender = "女性";
         }
+        $admin_email = 'thuzar@management-partners.co.jp';
+        // $admin_email = 'thuzar.ts92@gmail.com';
         // \Mail::to('mayphue17@management-part')->send(new SendMailComment($getComment));
-        \Mail::to($getComment[0]->email)->send(new SendMailComment($getComment));
+        \Mail::to($admin_email)->send(new SendMailComment($getComment));
 
         // return response()->json(['success'=>'Done!']);
 

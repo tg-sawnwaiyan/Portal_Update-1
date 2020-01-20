@@ -395,10 +395,10 @@ Route::get('hospital','ProfilePublishController@hospital');
 Route::get('jobapplicantlist','JobApplyController@jobapplicantlist');
 Route::post('jobapplicant/search','JobApplyController@search');
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'main_admin'], function () {
     Route::get('admin_list','UserController@getAdminList');
     Route::post('add','UserController@storeAdmin');
     Route::get('edit/{id}','UserController@editAdmin');
-    Route::post('update/{id}','UserController@updateAdmin');
+    Route::post('update','UserController@updateAdmin');
     Route::delete('delete/{id}','UserController@deleteAdmin');
 });

@@ -625,7 +625,7 @@ const routes = [
     path:'/admin/t_is_admin_register',
     component:adminlist,
     meta: {
-        auth: false,
+        auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
     }
   },
   {
@@ -633,7 +633,7 @@ const routes = [
     path:'/admin/create',
     component:admincreate,
     meta: {
-        auth: false,
+        auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'},
     }
   },
 ]

@@ -315,25 +315,25 @@
           </div>
           <!--end map right wrapper-->
         </div>
-    
+
         <section id="map-responsive">
             <div>
-             
+
             </div>
-            <div class="freeword-responsive"> 
+            <div class="freeword-responsive">
                 <h3 class="map-resicon">
                   <div class="map-text-wrapper">
                     <div>
                       <!-- <img src="/images/map-responsive1.png" alt="" class="img-responsive"> -->
                       <i class="fa icon map-fa-icon"></i>
-                    </div>             
+                    </div>
                     <div>
-                      <p class="text-left"> &nbsp;あなたのやさしい 手を求めてる老人<br class="pc-768"/>ホーム・病院が見つかります。</p>  
+                      <p class="text-left"> &nbsp;あなたのやさしい 手を求めてる老人<br class="pc-768"/>ホーム・病院が見つかります。</p>
                     </div>
                   </div>
                 </h3>
-                
-                
+
+
              <!--search input-->
                 <div class="search">
                     <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、施設名などを入力">
@@ -342,11 +342,11 @@
                     </button>
                 </div>
 
-                
+
               <!--end search input-->
             </div>
-          
-             <bulma-accordion 
+
+             <bulma-accordion
               :icon="'custom'"
               >
                         <!--Start hokkaido-box and  tohoku-box -->
@@ -369,7 +369,7 @@
                                 </a>
                                 <a data-info="Miyagi" @click="getStateClick" >
                                     <li id="4" v-scroll-to="'#scroll-responsive'" @click="selected = 4" :class="{resHighlight:selected == 4}">宮城 <i class="fas fa-angle-double-right arrow_icon"></i></li>
-                                </a>                                
+                                </a>
                                 <a data-info="Yamagata" @click="getStateClick" >
                                     <li id="6" v-scroll-to="'#scroll-responsive'" @click="selected = 6" :class="{resHighlight:selected == 6}"> 山形 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                 </a>
@@ -432,10 +432,10 @@
                                 </a>
                                 <a data-info="Fukui" @click="getStateClick">
                                     <li id="18" v-scroll-to="'#scroll-responsive'" @click="selected = 18" :class="{resHighlight:selected == 18}"> 福井 <i class="fas fa-angle-double-right arrow_icon"></i></li>
-                                </a>                               
+                                </a>
                             </p>
                         </bulma-accordion-item>
-                    <!-- End hokuriku-box-->                    
+                    <!-- End hokuriku-box-->
                         <!--Start tokai-box -->
                         <bulma-accordion-item>
                             <p slot="title" class="title is-4 has-text-weight-normal">東海</p>
@@ -553,7 +553,7 @@
                             </p>
                         </bulma-accordion-item>
                         <!--End kyushu-box and   okinawa-box-->
-                    </bulma-accordion>                   
+                    </bulma-accordion>
         </section>
         <div id="scroll-responsive">
           <div id="job_search" class="row jobselect">
@@ -575,9 +575,9 @@
                   <td class="sp-768-block">
                     <div class="row mt-2 mb-2">
                       <div class="col-lg-9 col-md-8 col-sm-12">
-                      <select id="selectCity" class="form-control custom-select" v-model="id" @change="changeTownship">                        
+                      <select id="selectCity" class="form-control custom-select" v-model="id" @change="changeTownship">
                         <option value="-1" disabled>▼市区町村</option>
-                        <option v-for="city in cities" :value="city.id" :key="city.id" >{{city.city_name}}</option>                       
+                        <option v-for="city in cities" :value="city.id" :key="city.id" >{{city.city_name}}</option>
                     </select>
                     </div>
                     <div class="col-lg-3 col-md-4 col-sm-12 pc-414">
@@ -588,11 +588,11 @@
                     </button>
                     </div>
                     </div>
-                    <div class="toBeToggled4" id="toBeToggled4">     
+                    <div class="toBeToggled4" id="toBeToggled4">
                       <div class="dropdown">
                           <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
                           市から探す
-                          </button> 
+                          </button>
                           <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768" @click.stop="stopTheEvent">
                             <li>
                             <a data-value="option">
@@ -607,7 +607,7 @@
                             </a>
                               </li>
                           </ul>
-                        
+
                             <a v-if="w_width >= 768">
                               <div class="row">
                               <div class="col-lg-2 col-md-4 col-sm-4" v-for="township in getTownships" :key="township.id">
@@ -618,17 +618,17 @@
                               </div>
                               </div>
                             </a>
-                              
-                      </div>                             
-                    </div>                    
+
+                      </div>
+                    </div>
                   </td>
-                </tr>  
-                 <!--test-->             
+                </tr>
+                 <!--test-->
                 <!-- <tr class="toBeToggled1 ShowHide">
                   <th class="pc-414-table sp-768-block">職種</th>
-                   <td class="sp-768-block sp-414-table"> 
+                   <td class="sp-768-block sp-414-table">
                                     <div v-for="(v,i) in array_len" :key="i">
-                                        <div class="hospital-subject" v-for="(occupation,index) in occupations.slice((i*3),((i*3)+3))" :key="index">                                    
+                                        <div class="hospital-subject" v-for="(occupation,index) in occupations.slice((i*3),((i*3)+3))" :key="index">
                                             <div class="row col-12">
                                                 <strong class="table-innertitle row col-12">{{occupation.name}}</strong>
                                                 <div class="col-6" v-for="ch in occupation.child" :key="ch.id+1">
@@ -649,7 +649,7 @@
                             <td class="sp-768-block sp-414-table">
                               <div class="form-check form-check-inline row align-items-start innerwrapper" v-if="w_width >= 768" >
                                     <div v-for="(v,i) in array_len" :key="i">
-                                        <div class="hospital-subject" v-for="(occupation,index) in occupations.slice((i*3),((i*3)+3))" :key="index" >       <!--v-bind:class="{ lastblock: i==array_len-1 }"-->                     
+                                        <div class="hospital-subject" v-for="(occupation,index) in occupations.slice((i*3),((i*3)+3))" :key="index" >       <!--v-bind:class="{ lastblock: i==array_len-1 }"-->
                                                 <strong class="table-innertitle row col-12 m-b-10">{{occupation.name}}</strong>
                                                 <div class="row col-12">
                                                   <div class=" pad-free" v-for="ch in occupation.child" :key="ch.id+1">
@@ -662,19 +662,19 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div> 
-                              
+                                </div>
+
                                 <!--test-->
                                 <div>
                                 <h5 class="font-weight-bold sp-414">職種</h5>
-                                <div class="dropdown m-b-10" v-for="(v,i) in occupations" :key="i" >                                 
+                                <div class="dropdown m-b-10" v-for="(v,i) in occupations" :key="i" >
                                 <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
                                 {{v.name}}
                                   <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMMenuButton" v-if="w_width <= 768"  @click.stop="stopTheEvent">
-                                  <li v-for="ch in v.child" :key="ch.id+1">                                 
+                                  <li v-for="ch in v.child" :key="ch.id+1">
                                   <a data-value="option" >
                                       <div class="row">
-                                      <div class="col-lg-2 col-md-4 col-sm-4" >                                       
+                                      <div class="col-lg-2 col-md-4 col-sm-4" >
                                           <label class="form-check-label control control--checkbox">
                                           <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="occupationID" :value="ch.id">
                                           {{ch.name}}
@@ -685,12 +685,12 @@
                                   </a>
                                   </li>
                                 </ul>
-                                </button> 
+                                </button>
                                 </div>
                                 </div>
  							              </td>
                         </tr>
-                
+
                 <tr class="toBeToggled1 ShowHide">
                   <th style="padding:10px;" class="pc-414-table sp-768-block">雇用形態</th>
                   <td class="sp-768-block">
@@ -698,7 +698,7 @@
                     <div class="dropdown">
                         <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
                         雇用形態から探す
-                        </button> 
+                        </button>
                          <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768"  @click.stop="stopTheEvent">
                             <li>
                         <a>
@@ -770,7 +770,7 @@
                         </a>
                     </div>
                     <!--end 雇用形態から探す-->
-                  
+
                   </td>
                 </tr>
 
@@ -837,7 +837,8 @@
                   </div>
                 </div>
               </div>
-            <div class="offset-md-4 col-md-8 mt-3" v-if="show_paginate">
+            <!-- <div class="offset-md-4 col-md-8 mt-3" v-if="show_paginate"> -->
+            <div class="col-12" v-if="show_paginate">
               <nav aria-label="Page navigation example">
                 <ul class="pagination">
                   <li class="page-item">
@@ -872,7 +873,7 @@
 <script>
 import layout from '../components/home.vue'
 import { BulmaAccordion, BulmaAccordionItem } from "vue-bulma-accordion";
- 
+
 export default {
     components: {
       layout,
@@ -924,7 +925,7 @@ export default {
       }
     },
     created() {
-     
+
         this.axios.get('/api/user').then(response => {
                 this.pro_id = response.data.lat_lng[0].id;
                 this.loginuser = true;
@@ -1042,14 +1043,14 @@ export default {
                 },
             })
             .then((response)=>{
-          
+
 
                 $('.jobselect').removeClass('jobselect');
                 $('#job_search').css("display","block");
                 this.job_data = response.data.job;
                 this.cities = response.data.city
                 this.getTownships = [];
-              
+
                 if(this.job_data.length > this.size) {
                     this.show_paginate = true;
                 }else{
@@ -1058,11 +1059,11 @@ export default {
                 if(this.job_data.length != 0) {
                     this.norecord_msg = false;
                 }else{
-              
+
                     this.norecord_msg = true;
                 }
-              
-        
+
+
             });
 
 
@@ -1130,7 +1131,7 @@ export default {
             this.occupations = response.data.occupations
             this.id = id
          })
-      
+
 
         this.search();
         },
@@ -1141,7 +1142,7 @@ export default {
         //  })
         // },
 
-      getStateClick(e){     
+      getStateClick(e){
           //clear all check box
             this.townshipID = [];
             this.occupationID = [];
@@ -1177,7 +1178,7 @@ export default {
           this.cities = response.data.city
           this.getCity = response.data.getCity
           this.getTownships = response.data.getTownships
-          
+
           this.occupations = response.data.occupations
           //console.log("occu",this.occupations)
           this.id = id,
@@ -1295,7 +1296,7 @@ export default {
   }
 }
 
-                      
+
 $(document).click(function(e) {
   if(e.target.nodeName == 'BODY')
     $('#checkboxes').hide();
@@ -1474,10 +1475,10 @@ table > tbody > tr th{
 } */
 /************************responsive ****************************/
 @media only screen and (max-width:1024px) {
-  table > tbody > tr th{  
+  table > tbody > tr th{
     width:100px;
   }
- 
+
 }
 @media only screen and (max-width: 480px){
   table > tbody > tr th{
@@ -1486,7 +1487,7 @@ table > tbody > tr th{
   table th, table td{
     vertical-align: middle;
   }
-  .dropdown-toggle::after {    
+  .dropdown-toggle::after {
     position: absolute;
     right: 12px;
     top: 15px;
