@@ -292,7 +292,6 @@
                                 }else{
                                     this.norecord_msg = true;
                                 }
-                                //flash("Delete Success", "success");
                                 // let a = this.customers.map(item => item.id).indexOf(id);
                                 // this.customers.splice(a, 1);
 

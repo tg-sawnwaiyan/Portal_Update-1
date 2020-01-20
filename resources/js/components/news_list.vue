@@ -114,10 +114,8 @@
 </template>
 
 <script>
-    import modal from "./modal.vue";
     export default {
         components: {
-            modal
         },
 
         data() {

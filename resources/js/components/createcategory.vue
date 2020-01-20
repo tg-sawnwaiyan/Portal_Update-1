@@ -10,11 +10,8 @@
                         <span v-if="errors.name" class="error">{{errors.name}}</span>
                 </div>
                 <div class="form-group">
-                    <!-- <button class="btn main-bg-color white all-btn">作成する</button> -->
                     <span class="btn main-bg-color white all-btn" @click="checkValidate()"> 作成</span>
                     <router-link class="btn btn-danger all-btn" to="/categorylist" > キャンセル </router-link>
-                    <!-- <button class="btn news-post-btn all-btn"  @click="checkValidate()>作成する</button> -->
-                    
                 </div>
             </form>  
         </div>
@@ -86,10 +83,8 @@ export default {
             },
             checkValidate() {
                      if (this.category.name) {
-                        // console.log('exist');
                         this.errors.name = "";
                     } else {
-                        // console.log('null');
                         this.errors.name = " ニュースカテゴリー名が必須です。";
                     }
                    if (
