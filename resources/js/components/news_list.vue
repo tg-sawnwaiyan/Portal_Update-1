@@ -40,7 +40,7 @@
                         </div>
                     </div> -->
                     <div class="row">
-                        <div class="col-12 col-sm-6 mb-3">           
+                        <div class="col-12 col-sm-6 mb-3">
                             <input type="text" class="form-control w-75 w-sm-100" placeholder="ニュース検索" id="search-item" @keyup="searchbyCategory()" />
                         </div>
                         <div class="col-12 col-sm-6">
@@ -50,12 +50,12 @@
                                     <option selected="selected" value>全体</option>
                                     <option v-for="category in categories" :key="category.id" v-bind:value="category.id">{{category.name}}</option>
                                 </select>
-                            </div>  
+                            </div>
                         </div>
                     </div>
                     <hr />
                     <h5 class="header">ニュース一覧</h5>
-                    <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデタが消える。</div>                 
+                    <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデタが消える。</div>
                     <div v-else class="container-fuid">
                         <table class="table List_tbl">
                             <tr v-for="newsList in displayItems" :key="newsList.id">
@@ -73,7 +73,7 @@
                                         <!-- <router-link :to="{name: 'joh4_details', params:{id:news_list.id}}" class="mr-auto">{{news_list.title}}<router-link> -->
                                         <!-- <a hrဖef="../news/news_details.html" class="mr-auto">{{newsList.title}} </a> -->
                                     </h5>
-                                    <p class="mt-2">{{newsList.main_point}}</p> 
+                                    <p class="mt-2">{{newsList.main_point}}</p>
                                     <div class="d-flex mt-4">
                                         <router-link :to="{name: 'editPost', params: {id: newsList.id}}" class="btn edit-borderbtn">編集</router-link>
                                         <!-- <a class="mr-auto text-danger btn delete-borderbtn" @click="deletePost(newsList.id)">削除</a> -->
@@ -82,8 +82,8 @@
                                 </td>
                             </tr>
                         </table>
-                         
-                        
+
+
                         <div class="col-12" v-if="pagination">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination">
@@ -199,7 +199,7 @@
             // toggleModal() {
             //     this.$emit('toggleModal');
             // },
-     
+
             deletePost(id) {
                     this.$swal({
                         title: "確認",
@@ -303,7 +303,7 @@
                 pageSelect(index) {
                     this.currentPage = index - 1;
                     $("html, body").animate({ scrollTop: 0 }, "slow");
-                    // window.scrollTo(0,0); 
+                    // window.scrollTo(0,0);
                 },
         }
     };

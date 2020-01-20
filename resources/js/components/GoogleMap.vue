@@ -1,6 +1,6 @@
 <template>
         <div class="col-md-12 pad-free m-b-10">
-          
+
               <div class="col-md-12 pad-free">
                 <div class="col-md-12 pad-free postal-search">
                     <div class="form-group">
@@ -20,7 +20,7 @@
                                         {{cities.city_name}}
                                     </option>
                                 </select>
-                            </div>                           
+                            </div>
                         </div>
                         <div class="col-md-6 pad-free">
                             <div class="col-md-12 p-r-0"><label>  市区町村</label></div>
@@ -30,14 +30,14 @@
                                         {{townships.township_name}}
                                     </option>
                                 </select>
-                            </div>                            
+                            </div>
                         </div>
-                    </div>            
+                    </div>
                   <div class="form-group m-t-10">
                     <label>番地（建物名）</label>
                     <div class="row">
                       <!-- <div class="col-md-12" v-if="status === '0'">
-                        <input type="text" id="address_val" name="city" class="old-city form-control white-bg-color" placeholder="番地を入力してください。" v-model="address"> 
+                        <input type="text" id="address_val" name="city" class="old-city form-control white-bg-color" placeholder="番地を入力してください。" v-model="address">
                       </div> -->
                       <div class="col-md-12">
                         <input type="text" id="address_val" name="city" class="city form-control white-bg-color" placeholder="番地を入力してください。" v-model="address">
@@ -46,23 +46,23 @@
                         <span class="btn news-post-btn all-btn" @click="searchAddress()">番地検索</span>
                       </div> -->
                     </div>
-                    <p>例）東京都千代田区丸の内1-9-1　グラントウキョウノースタワー40階</p>                                    
+                    <p>例）東京都千代田区丸の内1-9-1　グラントウキョウノースタワー40階</p>
                   </div>
-                  
-                </div>  
+
+                </div>
                 <div class="form-group">
                   <h5 class="lbl-lat-lng">緯度経度の入力または地図のマーカを移動し施設の位置を指定してください。</h5>
                     <div class="row">
-                      <div class="col-sm-4 col-md-5">
+                      <div class="col-lg-4 col-md-12">
                         <label>緯度<span class="error">*</span></label>
                         <input type="text" class="form-control white-bg-color" name="new_lat" v-model="new_lat" id="new_lat">
                       </div>
-                      <div class="col-sm-4 col-md-5">
+                      <div class="col-lg-4 col-md-12">
                         <label>経度<span class="error">*</span></label>
                         <input type="text" class="form-control white-bg-color" name="new_long" v-model="new_long" id="new_long">
                       </div>
-                      <div class="col-sm-4 col-md-2">
-                        <span style="position:absolute;bottom:0px;" class="btn news-post-btn all-btn" @click="addressSelect(Number(new_lat),Number(new_long))">緯度経度から地図を検索</span>
+                      <div class="nursing_map col-lg-4 col-md-12">
+                        <span class="btn news-post-btn all-btn" @click="addressSelect(Number(new_lat),Number(new_long))">緯度経度から地図を検索</span>
                       </div>
                     </div>
                   </div>
@@ -78,7 +78,7 @@
                   @place_changed="setPlace" class="form-control m-b-10 white-bg-color" id="gmap-search2" placeholder="場所を入力してください">
                 </gmap-autocomplete> -->
                 <!-- <span @click="addMarker">Add</span> -->
-              </div>              
+              </div>
               <!-- <div class="col-md-12 pad-free" v-if="address_btn">
                 <label>住所:</label>
                 {{comment.gmap_city}}
@@ -98,10 +98,10 @@
               @click="center=m.position"
               @dragend="updateCoordinates"
             />
-            
+
           </GmapMap>
-          
-          
+
+
         </div>
 </template>
 <script>
@@ -130,7 +130,7 @@ export default {
       },
       address_btn: false,
       city_list: [],
-    //   selected_city:this.city,      
+    //   selected_city:this.city,
     }
   },
 //   computed:{
@@ -142,7 +142,7 @@ export default {
 //           set: function(newValue){
 //               this.city = newValue;
 //           }
-          
+
 //       }
 //   },
   created() {
@@ -156,14 +156,14 @@ export default {
     this.new_long = Number(localStorage.getItem('lng_num'));
 
     this.center = { lat: Number(localStorage.getItem('lat_num')), lng: Number(localStorage.getItem('lng_num')) }
-    
+
     $('#gmap-search').css({'display':'none'});
     this.axios.get('/api/hospital/citiesList')
         .then(response => {
             this.city_list = response.data;
         });
   },
-  methods: {    
+  methods: {
     // receives a place object via the autocomplete component
     addressSelect: function (lat_add,lng_add) {
       // Add a new marker
@@ -179,9 +179,9 @@ export default {
     //       lat: this.addresses[e.target.options.selectedIndex].latitude
     //     }
     //   });
-     
+
       // Remove the previous marker
-      this.markers.shift()   
+      this.markers.shift()
       // Scroll the map to the new position
       this.$refs.map.$mapPromise.then((map) => {
         map.panTo({
@@ -218,7 +218,7 @@ export default {
 
     //     this.new_lat = marker.lat;
     //     this.new_long = marker.lng;
-        
+
     //   }
     // },
     geolocate: function() {
@@ -232,8 +232,8 @@ export default {
     searchplace(){
       this.comment.gmap_city = this.address;
       $('#gmap-search').focus();
-      
-    }, 
+
+    },
     getPostal: function(event) {
                 this.status = 1;
                 if (this.comment.postal.length > 5) {
@@ -246,7 +246,7 @@ export default {
                             var length = response.data.postal_list.length;
                             if (length > 0) {
                                 var pref = post_data[0]['city_id'];
-                                
+
                                 this.address = post_data[0]['pref']+post_data[0]['city']+post_data[0]['street'];
                                 this.city = post_data[0]['city_id'];
                                 this.cityChange('postal','');
@@ -266,11 +266,11 @@ export default {
                 $('#gmap-search').css({'display':'block'});
                 $('#gmap-search2').css({'display':'none'});
                 $('#gmap-search').focus();
-                
+
               }else{
                 this.comment.gmap_city = '';
               }
-              
+
             },
             cityChange(status,event){
                 if(status != 'postal'){
@@ -278,11 +278,11 @@ export default {
                     this.comment.city = this.city_list[event.target.options.selectedIndex].city_name;
                     this.address = this.comment.city;
                 }
-                
+
                 this.axios
                 .get('/api/townshiplist/'+this.city)
                 .then(response=>{
-                    this.township_list = response.data.townships; 
+                    this.township_list = response.data.townships;
                     this.township = this.township_list[0].id;
                     var move_lat = response.data.coordinate[0].latitude;
                     var move_lon = response.data.coordinate[0].longitude;
@@ -292,7 +292,7 @@ export default {
             townshipChange(event) {
                 this.address = this.comment.city+this.township_list[event.target.options.selectedIndex].township_name;
             },
-            
+
   }
 };
 

@@ -28,40 +28,41 @@
                 </div>
 
                 <button v-scroll-to="{ el: '#btn'}" id="btn_click" hidden></button>
-                    <div class="form-group form-group-wrapper">
+
+                    <div class="form-group form-group-wrapper d-flex">
                             <label class="heading-lbl col-2 pad-free">施設名称<span class="error">*</span></label>
-                            <input type="text" class="form-control customer-name col-10 float-right" id="btn" placeholder="施設名称を入力してください。" v-model="customer_info.name">
+                            <input type="text" class="form-control customer-name col-10" id="btn" placeholder="施設名称を入力してください。" v-model="customer_info.name">
                     </div>
-                    <div class="form-group form-group-wrapper">
+                    <div class="form-group form-group-wrapper d-flex">
                             <label class="heading-lbl col-2 pad-free">運営事業者</label>
-                            <input type="text" class="form-control customer-name col-10 float-right" id="btn" v-model="nursing_info.operator" placeholder="運営事業者を入力してください。">
+                            <input type="text" class="form-control customer-name col-10 " id="btn" v-model="nursing_info.operator" placeholder="運営事業者を入力してください。">
                     </div>
-                    <div class="form-group form-group-wrapper">
-                            <label class="heading-lbl col-2 pad-free">メールアドレス<span class="error">*</span></label>
-                            <label class=" col-10 float-right customer-email"> {{customer_info.email}} </label>
+                    <div class="form-group form-group-wrapper d-flex">
+                            <label class="heading-lbl1 col-2 pad-free">メールアドレス<span class="error">*</span></label>
+                            <label class=" col-10 customer-email"> {{customer_info.email}} </label>
                     </div>
                     <div class="form-group form-group-wrapper d-flex">
                             <label class="heading-lbl col-2 pad-free">電話番号<span class="error">*</span></label>
                             <div class="col-10 row">
                             <input type="text" class="form-control customer-phone col-12" id="phone" placeholder="電話番号を入力してください。" v-model="customer_info.phone" v-on:keyup="isNumberOnly" pattern="[0-9-]*" @focusout="focusPhone" title="Please enter number only." maxlength="14">
-                            <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>    
-                            <span class="error" v-else></span>                        
+                            <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>
+                            <span class="error" v-else></span>
                             </div>
                     </div>
-                    <div class="form-group form-group-wrapper">
+                    <div class="form-group form-group-wrapper d-flex">
                             <label class="heading-lbl col-2 pad-free">公式サイト</label>
                             <input type="text" name="official-website" class="form-control website col-10 float-right" v-model="nursing_info.website">
                     </div>
                     <div class="form-group form-group-wrapper">
                             <label class="heading-lbl col-2 pad-free">フォトアルバム</label>
-                            
+
                                     <span class="galleryadd btn all-btn main-bg-color float-right" style="min-width: 0px;" @click="galleryAdd()">
                                     <i class="fas fa-plus-circle"></i> 追加</span>
-                                    <span class='changeGalleryLink btn btn all-btn main-bg-color ' style="min-width: 0px;" @click="galleryToggle" >
+                                    <span class='changeGalleryLink btn btn all-btn main-bg-color nursing_toggle_responsive' style="min-width: 0px;" @click="galleryToggle" >
                                         <i id="gallery" class="fas fa-sort-down"></i>
                                    </span>
                             <div id="changeGalleryLink"  class="col-md-12">
-                                    <div class="row" id ="gallery-photo"> 
+                                    <div class="row" id ="gallery-photo">
                                             <div class="col-md-6 gallery-area-photo" v-bind:id="'photo'+indx" v-for="(img,indx) in img_arr" :key="img.id">
                                                     <div class="col-md-12">
                                                             <input type="file" name="" class="nursing-photo m-b-10" v-bind:class="img.classname" id="upload_img" @change="preview_image($event,indx)">
@@ -87,7 +88,7 @@
                     <div class="form-group form-group-wrapper">
                             <label class="heading-lbl col-2 pad-free">動画</label> <span class="galleryvideo btn all-btn main-bg-color float-right" style="min-width: 0px;" @click="galleryVideoAdd()">
                                     <i class="fas fa-plus-circle"></i> 追加</span>
-                                    <span class='changeGalleryVideoLink  btn btn all-btn main-bg-color ' style="min-width: 0px;" @click="galleryVideoToggle" >
+                                    <span class='changeGalleryVideoLink  btn btn all-btn main-bg-color nursing_toggle_responsive ' style="min-width: 0px;" @click="galleryVideoToggle" >
                                         <i id="video" class="fas fa-sort-down"></i>
                                    </span>
                             <div id="changeGalleryVideoLink" class="col-md-12">
@@ -130,39 +131,39 @@
                                 <label class="heading-lbl" style="border-left: 5px solid #f9793c;padding-left: 5px;">費用</label>
                             </div>
                             <div class="form-group">
-                                <label class="heading-lbl col-2 pad-free">入居時費用 <span class="error">*</span></label>
-                                <div class="col-10 float-right pad-free">
+                                <label class="heading-lbl col-lg-2 col-md-3 pad-free">入居時費用 <span class="error">*</span></label>
+                                <div class="col-lg-10 col-md-12 float-right pad-free ">
                                     <div class="row">
-                                        <div class="col-md-6" style="font-weight:bold;font-size:1.5em;">
+                                        <div class="col-md-6 nursing_cost" style="font-weight:bold;font-size:1.5em;margin-bottom:7px;">
                                             <input type="text"  class="form-control col-10 nursing-moving-in-f float-left white-bg-color m-r-10" v-model="nursing_info.moving_in_from"> 円
                                         </div>
 
-                                        <div class="col-md-6" style="font-weight:bold;font-size:1.5em;">
+                                        <div class="col-md-6" style="font-weight:bold;font-size:1.5em;margin-bottom:7px;">
                                             <input type="text"  class="form-control col-10 nursing-moving-in-t float-left white-bg-color m-r-10" v-model="nursing_info.moving_in_to"> 円
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="heading-lbl col-2 pad-free">月額費用 <span class="error">*</span></label>
-                                <div class="col-10 float-right pad-free">
+                                <label class="heading-lbl col-lg-2 col-md-3 pad-free">月額費用 <span class="error">*</span></label>
+                                <div class="col-lg-10 col-md-12 float-right pad-free">
                                     <div class="row">
-                                        <div class="col-md-6" style="font-weight:bold;font-size:1.5em;">
+                                        <div class="col-md-6" style="font-weight:bold;font-size:1.5em;margin-bottom:7px;">
                                             <input type="text"  class="form-control col-10 nursing-per-month-f float-left white-bg-color m-r-10" v-model="nursing_info.per_month_from"> 円
                                         </div>
 
-                                        <div class="col-md-6" style="font-weight:bold;font-size:1.5em;">
+                                        <div class="col-md-6" style="font-weight:bold;font-size:1.5em; margin-bottom:7px;">
                                             <input type="text"  class="form-control col-10 nursing-per-month-t float-left white-bg-color m-r-10" v-model="nursing_info.per_month_to"> 円
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="heading-lbl col-2 pad-free">支払い方法 <span class="error">*</span></label>
-                                <div class="col-10 float-right pad-free">
-                                    <input type="text"  class="form-control col-10 nursing-payment-method float-left white-bg-color" v-model="nursing_info.method">
-                                    <div class="col-2 float-right">
-                                        <span class="btn all-btn main-bg-color" style="min-width: 0px;" @click="methodAdd()"><i class="fas fa-plus-circle"></i> 追加</span>
+                                <label class="heading-lbl col-lg-2 col-md-3 pad-free">支払い方法 <span class="error">*</span></label>
+                                <div class="col-lg-10 col-md-12 float-right pad-free">
+                                    <input type="text"  class="form-control col-9 nursing-payment-method float-left white-bg-color" v-model="nursing_info.method">
+                                    <div class="col-3 float-right">
+                                        <span class="nusing_btn1 btn all-btn main-bg-color" style="min-width: 0px;" @click="methodAdd()"><i class="fas fa-plus-circle"></i>追加</span>
                                     </div>
                                     <div class="col-md-12 pad-free m-t-50" id="gallery-payment">
                                         <!-- test -->
@@ -318,7 +319,7 @@
                     <tr>
                         <td style="border:none;">
                             <label class="heading-lbl col-2 pad-free">施設の概要</label>
-                            <span class="btn all-btn main-bg-color"  style="min-width: 0px;" @click="nurseFacToggleDiv()"><i class="fas fa-sort-down animate"  :class="{'rotate': isRotate1}"></i></span>
+                            <span class="btn all-btn main-bg-color nursing_toggle_responsive"  style="min-width: 0px;" @click="nurseFacToggleDiv()"><i class="fas fa-sort-down animate"  :class="{'rotate': isRotate1}"></i></span>
                             <!-- testtest -->
                             <div class="col-10 pad-free float-right nurse-fac-toggle-div toggle-div m-t-10">
                                     <table class="table table-striped table-bordered">
@@ -421,8 +422,8 @@
                     <tr>
                         <td style="border:none;">
                             <div class="form-group">
-                                <label class="heading-lbl col-2 pad-free">協力医療機関 <span class="error">*</span></label>
-                                <div class="col-10 pad-free float-right ">
+                                <label class="heading-lbl col-lg-2 col-md-3 pad-free">協力医療機関 <span class="error">*</span></label>
+                                <div class="nursing_btn col-lg-10 col-md-9 pad-free float-right ">
                                     <span class="btn all-btn main-bg-color" style="min-width: 0px;" @click="cooperateAdd()">
                                             <i class="fas fa-plus-circle"></i> 追加</span>
 
@@ -430,11 +431,11 @@
                                         <!-- cooperation -->
                                         <div class="col-md-12 m-t-30 m-b-20 gallery-area-cooperate" v-bind:id="'cooperate'+indx" v-for="(cooperate,indx) in cooperate_arr" :key="cooperate.id">
 
-                                            <div class="clearfix" style="margin-bottom:30px;text-align:right">                                               
+                                            <div class="clearfix" style="margin-bottom:30px;text-align:right">
                                                 <span :class="'btn all-btn main-bg-color cooperateChangeLink'+indx" style="min-width: 0px;" @click="cooperateToggle(indx)" >
                                                         <i :id="'cooperatetogg' + indx" class="fas fa-sort-down"></i>
                                                 </span>
-                                                 <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,'cooperate')"> 
+                                                 <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,'cooperate')">
                                                 <i class="fa fa-trash"></i> 削除</a>
                                             </div>
 
@@ -462,7 +463,7 @@
                                                 <th><textarea class="form-control remark white-bg-color" name="remark" v-model="cooperate.remark"></textarea></th>
                                             </tr>
                                             </table>
-                                           
+
                                              </div>
                                         </div>
                                     </div>
@@ -478,8 +479,8 @@
                     <tr>
                         <td>
                             <div class="form-group">
-                                <label class="heading-lbl col-2 pad-free">医療面の受入れ</label>
-                                <span class="btn all-btn main-bg-color" style="min-width: 0px;" @click="acceptanceList()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate2}"></i></span>
+                                <label class="heading-lbl col-lg-2 col-md-3 pad-free">医療面の受入れ</label>
+                                <span class="btn all-btn main-bg-color nursing_toggle_responsive" style="min-width: 0px;" @click="acceptanceList()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate2}"></i></span>
                                 <div class="col-md-10 float-right m-t-10 accept-toggle-div toggle-div pad-free">
                                     <label for="" class="m-r-15"><i class="fas fa-check green"></i> 受入れ可</label>
                                     <label for="" class="m-r-15"><i class="fas fa-times red"></i> 受入れ不可</label>
@@ -488,7 +489,7 @@
                                         <div class="col-md-6" v-for="medical in medical_acceptance" :key="medical.id">
                                             <div class="col-md-12 accept-box">
                                                 {{medical.name}} {{medical.id}}
-                                                <div class="float-right">
+                                                <div class="nursing_radiobtn">
                                                     <label ><input type="radio"  class="medical-acceptance custom-radio" :name="'medical'+medical.id" :checked="medical.accept_checked" v-bind:value="'accept-'+medical.id"> <i class="fas fa-check green"></i></label>
                                                     <label ><input type="radio" class="medical-acceptance custom-radio " :name="'medical'+medical.id" :checked="medical.unaccept_checked" v-bind:value="'unaccept-'+medical.id"> <i class="fas fa-times red"></i></label>
                                                     <label ><input type="radio" class="medical-acceptance custom-radio" :name="'medical'+medical.id" :checked="medical.negotiate_checked" v-bind:value="'negotiate-'+medical.id"> <i class="fas fa-adjust blue"></i></label>
@@ -515,7 +516,7 @@
                     <tr>
                         <td>
                             <label class="heading-lbl col-2 pad-free">職員体制</label>
-                            <span class="btn all-btn main-bg-color" style="min-width: 0px;" @click="staffToggleDiv()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate3}"></i></span>
+                            <span class="btn all-btn main-bg-color nursing_toggle_responsive " style="min-width: 0px;" @click="staffToggleDiv()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate3}"></i></span>
 
                             <div class="col-10 pad-free float-right staff-toggle-div toggle-div m-t-10">
                                 <table class="table table-striped table-bordered">
@@ -559,8 +560,8 @@
                     <tr>
                         <td>
                             <div class="form-group">
-                                <label  class="heading-lbl col-2 pad-free">こだわりの特長</label>
-                                <span class="btn all-btn main-bg-color" style="min-width: 0px;" @click="specialFeAdd()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate4}"></i></span>
+                                <label  class="heading-lbl col-lg-2 col-md-3 pad-free">こだわりの特長</label>
+                                <span class="btn all-btn main-bg-color nursing_toggle_responsive" style="min-width: 0px;" @click="specialFeAdd()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate4}"></i></span>
 
                                 <div class="col-md-10 float-right special-feature-toggle-div toggle-div m-t-10">
                                     <div class="row">
@@ -585,13 +586,13 @@
                     <tr>
                         <td>
                             <label class="heading-lbl col-2 pad-free">地図</label>
-                            <span class="btn all-btn main-bg-color" style="min-width: 0px;" @click="maptogglediv()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
+                            <span class="btn all-btn main-bg-color nursing_toggle_responsive" style="min-width: 0px;" @click="maptogglediv()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
                             <div class="col-md-10 float-right m-t-10 map-toggle-div toggle-div pad-free">
                                 <div class="col-md-12">
                                     <div class="col-md-12 pad-free" id="mapbox">
                                         <GoogleMap :address="customer_info.address" :township="customer_info.townships_id" :city="city_id" :township_list="township_list" :lat_num='nursing_info.latitude' :lng_num='nursing_info.longitude'></GoogleMap>
                                     </div>
-                                    
+
                                     <!-- <GoogleMap :address="customer_info.address" :lat_num='35.6803997' :lng_num='139.76901739' v-if="nursing_info.latitude == 0"></GoogleMap> -->
                                     <!-- <div class="form-group">
                                             <label>住所<span class="error">*</span></label>
@@ -711,7 +712,7 @@ export default {
                         placeholder:'Type your post...',
                         readonly:true,
                         theme:'snow',
-                }, 
+                },
 
                 feature_val: '',
                 acceptance_remark_val: '',
@@ -726,7 +727,7 @@ export default {
                 ph_num: false,
                 city_id: 0,
                 township_list: [],
-                
+
             }
         },
 
@@ -753,14 +754,14 @@ export default {
                 this.axios
                 .get('/api/customerinfo/'+this.cusid)
                 .then(response=>{
-                    this.customer_info = response.data; 
+                    this.customer_info = response.data;
                     this.axios
                     .get('/api/nurscities/'+this.customer_info.townships_id)
                     .then(response=>{
-                        this.city_id = Number(response.data[0].city_id); 
+                        this.city_id = Number(response.data[0].city_id);
                         this.township_list = response.data[0].township_list;
                     });
-                });            
+                });
                 this.axios
                 .get('/api/nursinginfo/'+this.cusid)
                 .then(response=>{
@@ -842,14 +843,14 @@ export default {
             },
             focusPhone(){
 
-              var input_data = $('#phone').val(); 
-                
+              var input_data = $('#phone').val();
+
               if(input_data.length >= 10 && input_data.length <= 14 && input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-')
-              {  
+              {
                   this.ph_num = false;
                   this.ph_length = false;
               }
-              else{   
+              else{
                   this.ph_num = true;
                   this.ph_length = true;
               }
@@ -859,11 +860,11 @@ export default {
             },
 
             onEditorBlur(quill) {
-            
+
             },
 
             onEditorFocus(quill) {
-            
+
             },
 
             maptogglediv() {
@@ -880,7 +881,7 @@ export default {
             staffToggleDiv() {
                 $(".staff-toggle-div").toggle('medium');
                 this.isRotate3 = !this.isRotate3;
-            },              
+            },
             preview_image(event,indx) {
                 this.img_arr[indx]['photo'] = event.target.files[0].name;
                 this.img_arr[indx]['src'] = URL.createObjectURL(event.target.files[0]);
@@ -891,7 +892,7 @@ export default {
                 for(var i=0; i< event.target.files.length; i++) {
                     var pathreal = URL.createObjectURL(event.target.files[i]);
                     this.panorama_arr.push({id:null,type:"panorama",photo:event.target.files[i].name,title:'',description:'', path:pathreal, file:event.target.files[i]});
-                }              
+                }
             },
 
             closeBtnMethod: function(indx,id,photo) {
@@ -929,7 +930,7 @@ export default {
 
             },
             DeleteArr(indx,type,id,photo) {
-                
+
                 this.$swal({
                         title: "確認",
                         text: "職種を削除してよろしいでしょうか。",
@@ -944,17 +945,17 @@ export default {
                         cancelButtonText: "キャンセル",
                         confirmButtonClass: "all-btn",
                         cancelButtonClass: "all-btn"
-                    }).then(response => { 
+                    }).then(response => {
 
                     if(type == 'photo' || type == 'panorama') {
-                        if(id){                             
+                        if(id){
                             let fd = new FormData();
                             fd.append('id',id);
                             fd.append('type',type);
                             fd.append('photo',photo);
                             fd.append('customer_id',this.cusid)
                             fd.append('custype','nursing')
-                            
+
                             if(type == 'photo'){
                                 this.img_arr.splice(indx,1);
                             }
@@ -965,7 +966,7 @@ export default {
                             this.axios
                             .post('/api/delete-pgallery',fd)
                             .then(response=>{
-                                this.$swal({  
+                                this.$swal({
                                     text: "職種を削除しました。",
                                     type: "success",
                                     width: 350,
@@ -974,7 +975,7 @@ export default {
                                     confirmButtonColor: "#dc3545"
                                 });
                             })
-                            .catch(error=>{                            
+                            .catch(error=>{
                                 if(error.response.status == 422){
                                     this.errors = error.response.data.errors
                                 }
@@ -992,7 +993,7 @@ export default {
                     else if(type == 'video') {
                         this.video_arr.splice(indx,1);
                     }
-                    
+
                     })
             },
 
@@ -1054,7 +1055,7 @@ export default {
             removeFile() {
                 this.image = '';
             },
-            onFeatureEditorChange({ editor, html, text }) { 
+            onFeatureEditorChange({ editor, html, text }) {
                 this.nursing_info['feature'] = html
             },
             onNursingEditorChange({ editor, html, text }) {
@@ -1066,13 +1067,13 @@ export default {
             onResidenceEditorChange({ editor, html, text }) {
                 this.nursing_info['residence_form'] = html
             },
-            onAccessEditorChange({ editor, html, text }) { 
+            onAccessEditorChange({ editor, html, text }) {
                 this.nursing_info['access'] = html
             },
 
             paymentToggle(id)
             {
-                
+
                 var class_by_id = $('#icon'+id).attr('class');
                 if(class_by_id == "fas fa-sort-down animate rotate")
                 {
@@ -1090,7 +1091,7 @@ export default {
             },
             cooperateToggle(id)
             {
-               
+
                 var class_by_id = $('#cooperatetogg'+id).attr('class');
                 if(class_by_id == "fas fa-sort-down animate rotate")
                 {
@@ -1103,7 +1104,7 @@ export default {
                     $('.cooperateChangeLink'+id).removeClass("fas fa-sort-down");
                     $('#cooperatetogg'+id).addClass("fas fa-sort-down animate rotate");
                     $('#cooperateChangeLink'+id).hide('medium');
-                }       
+                }
 
             },
 
@@ -1146,41 +1147,41 @@ export default {
                     $('#changeGalleryVideoLink').hide('medium');
                     $('.galleryvideo').hide();
                 }
-            },            
+            },
 
             createProfile() {
 
                 this.$loading(true);
                 console.log(this.img_arr)
-                
+
                 this.profile_arr = [];
 
                 this.nursing_info.latitude = $('#new_lat').val();
                 this.nursing_info.longitude = $('#new_long').val();
                 this.customer_info.address = $('#address_val').val();
-                
+
                 this.customer_info.townships_id = Number($('#gmaptownship').val());
                 localStorage.setItem('lat_num',this.nursing_info.latitude);
                 localStorage.setItem('lng_num',this.nursing_info.longitude);
 
-                // Photo 
-                let pt = new FormData(); 
-                var img = document.getElementsByClassName('gallery-area-photo'); 
-                console.log("img")             
-                console.log(img)             
+                // Photo
+                let pt = new FormData();
+                var img = document.getElementsByClassName('gallery-area-photo');
+                console.log("img")
+                console.log(img)
                 for(var i =this.img_arr.length-1;i>=0;i--)
                 {
                     this.img_arr[i]['type'] = 'photo';
                     if(this.img_arr[i]['photo'] == null || this.img_arr[i]['photo'] == '')
                     {
                         this.img_arr.splice(i,1);
-                    }            
-                    
+                    }
+
                     var file = img[i].getElementsByClassName('nursing-photo')[0].files[0];
                     console.log(img[i].getElementsByClassName('nursing-photo')[0].files)
-                    if(file) {                             
-                        pt.append(i ,file )  
-                    }      
+                    if(file) {
+                        pt.append(i ,file )
+                    }
                 }
 
                 this.axios.post('/api/nursing/movephoto', pt)
@@ -1197,7 +1198,7 @@ export default {
                     if(this.video_arr[i].photo == null || this.video_arr[i].photo == '' )
                     {
                         this.video_arr.splice(i,1);
-                    }   
+                    }
                 }
 
                 // Cooperate
@@ -1205,7 +1206,7 @@ export default {
                     if(this.cooperate_arr[i].name == null || this.cooperate_arr[i].name == '')
                     {
                         this.cooperate_arr.splice(i,1);
-                    }   
+                    }
                 }
 
                 // Payment Method
@@ -1213,7 +1214,7 @@ export default {
                     if(this.payment_arr[i].payment_name == null || this.payment_arr[i].payment_name == '')
                     {
                         this.payment_arr.splice(i,1);
-                    }   
+                    }
                 }
 
                var s_features =[];
@@ -1235,15 +1236,15 @@ export default {
                         var acceptance_id = tmp_arr[1];
                         acceptance.push({id:id,type:type});
                 });
-                
+
                 // Panorama
                 let fd = new FormData();
                 for(var i = 0; i< this.panorama_arr.length; i++) {
-                    if(this.panorama_arr[i]['path']!=''){ 
+                    if(this.panorama_arr[i]['path']!=''){
                         fd.append(i ,this.panorama_arr[i]["file"] )
-                    }                   
+                    }
                 }
-                    
+
                 this.axios.post('/api/nursing/movepanorama', fd)
                     .then(response => {
                     }).catch(error=>{
@@ -1257,7 +1258,7 @@ export default {
                                         payment_list:this.payment_arr, video:this.video_arr, image: this.img_arr, panorama: this.panorama_arr,
                                         acceptance:acceptance,chek_feature:this.chek_feature
                 });
-                
+
                 if(this.profile_arr.length > 0) {
                     this.axios
                         .post(`/api/nursing/profile/${this.cusid}`,this.profile_arr)
@@ -1280,7 +1281,7 @@ export default {
 
                         }
                     }) ;
-                } 
+                }
             },
             isNumberOnly: function(event) {
                 var input_data = $('#phone').val();
