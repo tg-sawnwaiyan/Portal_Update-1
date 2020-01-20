@@ -384,53 +384,35 @@
             </div>
 
             <div class="row ele m-lr-0" id="element3">
-
                 <h5 class="profile_header col-md-12">費用</h5>
-
-                    <div class="col-12">
-
+                    <div class="col-12 pad-free-750">
                         <table class="table table-striped table-bordered payment-tbl" v-for="nusmethod in nus_method" :key="nusmethod.id">
-
                             <tr>
-
                                 <th class="custom-bg-color">
-
                                     <font>支払方法</font>
-
                                 </th>
-
                                 <td v-if="nusmethod.method">
-
                                     <font>{{nusmethod.method}}</font>
-
                                 </td>
                                 <td v-else> -
                                 </td>
-
                             </tr>
-
                         </table>
-
                     </div>
 
                     <div v-if="method_payment.length > 0" class="col-md-12 pc-414">
                         <div class="cost_tb">
                             <div class="row" >
-                                <div class="col-md-12  main-cost-wrap">
-
+                                <div class="col-md-12  main-cost-wrap pad-free-750">
                                     <table class="table table-bordered cost_table main-cost-table">
-
                                         <thead>
-
                                             <tr>
                                                 <th>プラン名 / 居室詳細</th>
                                                 <th>入居時費用</th>
                                                 <th>月額費用</th>
                                                 <th></th>
                                             </tr>
-
                                         </thead>
-
                                         <tbody>
                                         <tr v-for="(cost,index) in method_payment" :key="cost.id" @click="changeBg(cost.id,index)" :class="'cost'+index">
                                             <td>
@@ -445,9 +427,7 @@
                                             </td>
                                         </tr>
                                         </tbody>
-
                                     </table>
-
                                 </div>
 
                                 <!-- <div class="cost_btnwrapper col-md-1 pad-free">
@@ -555,7 +535,7 @@
 
                     <!--Table responsive-->
                     <div class="card col-md-12 mb-10 sp-414" v-for="(cost) in method_payment" :key="cost.id">
-                        <div class="card-body">
+                        <div class="card-body pad-t-10">
                             <div class="row mb-10">
                             <div class="col-7">
                                 <h6 class="font-weight-bold">プラン名 / 居室詳細</h6>
@@ -672,7 +652,7 @@
 
                 <!-- <div class="row"> -->
                     <h5 class="profile_header col-md-12"> 施設の概要</h5>
-                    <div v-for="nus in nusfacilities" :key="nus.id" class="col-md-12" >
+                    <div v-for="nus in nusfacilities" :key="nus.id" class="col-md-12 pad-free-750" >
 
                         <table border="1" class="table table-bordered cost_table facility_tbl">
 
@@ -838,8 +818,8 @@
                             <div class="col-12"> <p class="no-data-color">表示されるデータがありません。</p> </div>
                         </div>
                         <div class="row col-12" v-else>
-                            <div v-for="(video) in  videos" :key="video.id" class="col-sm-4 col-md-4 col-lg-3 overflow-hidden">
-                                <iframe :src="'https://www.youtube.com/embed/'+video.photo" controls></iframe>
+                            <div v-for="(video) in  videos" :key="video.id" class="col-sm-4 col-md-4 col-lg-3">
+                                <iframe :src="'https://www.youtube.com/embed/'+video.photo" controls class="pad-free col-12"></iframe>
                                 <span style="color:orange;font-weight:bold;">{{video.title}}</span><br>
                             </div>
                         </div>
@@ -850,32 +830,19 @@
                         <div v-if="cooperate_medical.length>0" class="col-md-12">
                                 <div v-for="comedical in cooperate_medical" :key="comedical.id" class="col-md-12" >
                                     <label class="cost_heading_lbl_mini"><i class="fas fa-university"></i> {{comedical.name}}</label>
-                                    <table border="1" class="table table-bordered">
-
+                                    <table border="1" class="table table-bordered cost_table">
                                         <tbody>
-
                                             <tr>
-
-                                                <td width="250" class="custom-bg-color" > 診療科目</td>
-
+                                                <td class="custom-bg-color" > 診療科目</td>
                                                 <td>{{comedical.clinical_subject}}</td>
-
                                             </tr>
-
                                             <tr>
-
-                                                <td width="250" class="custom-bg-color">協力内容</td>
-
+                                                <td class="custom-bg-color">協力内容</td>
                                                 <td >{{comedical.details}}</td>
-
                                             </tr>
-
                                             <tr>
-
-                                                <td width="250" class="custom-bg-color">診療費用</td>
-
+                                                <td class="custom-bg-color">診療費用</td>
                                                 <td >{{comedical.medical_expense}}</td>
-
                                             </tr>
 
                                         </tbody>
@@ -957,7 +924,7 @@
 
             <div class="row ele m-lr-0" id="element5">
                 <h5 class="profile_header col-md-12"> 地図</h5>
-                        <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="col-lg-12 col-md-12 col-sm-12 pad-0-res">
                             <GmapMap id="googlemap" ref="map" :center="center" :zoom="10" >
                             <GmapMarker v-for="(m, index) in markers" :key="index" :position="m.position" :clickable="true" :draggable="false" @click="center=m.position" />
 
@@ -989,7 +956,7 @@
             <div class="row ele m-lr-0" id="element6">
                 <h5 class="profile_header col-12">口コミ</h5>
                 <!-- <div style="min-height:300px;"> -->
-               <div class="col-lg-12 col-md-12 col-sm-12"  v-if="displayItems.length>0">
+               <div class="col-lg-12 col-md-12 col-sm-12 pad-0-res"  v-if="displayItems.length>0">
                     <div class="card mb-4" v-for="comment in displayItems" :key="comment.id">
                         <div class="card-body">
                             <div class="comment-title">

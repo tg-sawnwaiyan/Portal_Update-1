@@ -10073,6 +10073,12 @@ display: none;
     .sp-750{
         display: block;
     }
+    .pad-t-10{
+        padding: 10px 0px 0px 0px;
+    }
+    .pad-0-res{
+        padding: 0px;
+    }
     .dropdown {
         display: inline-block;
         width: 100%;
