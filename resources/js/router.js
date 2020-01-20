@@ -10,7 +10,7 @@ import hospitalSearch from "./components/hospitalSearch.vue";
 import JobApply from "./components/JobApply.vue";
 import jobapplylist from "./components/jobapplylist.vue";
 import customerlist from "./components/customerlist.vue";
-import JobSearchListComponent from "./components/JobSearchListComponent.vue";
+// import JobSearchListComponent from "./components/JobSearchListComponent.vue";
 import job_details from "./components/job_details.vue";
 import news_list from "./components/news_list.vue";
 import create_news from "./components/create_news.vue";
@@ -24,7 +24,6 @@ import CreateFacilityComponent from "./components/CreateFacilityComponent.vue";
 // import custedit from "./components/custedit.vue";
 // import CustomerSearchListComponent from "./components/CustomerSearchListComponent.vue";
 // import NewsSearchListComponent from "./components/NewsSearchListComponent.vue";
-// import map from "./components/map.vue";
 import EditFacilityComponent from "./components/EditFacilityComponent.vue";
 import editcategory from "./components/editcategory.vue";
 // import createcustomer from "./components/CreateCustomer.vue";
@@ -56,11 +55,9 @@ import comment from "./components/Comment.vue";
 import commentlist from "./components/commentlist.vue";
 import featurelist from "./components/FeatureList.vue";
 import favouriteNursing from "./components/favouriteNursing.vue";
-import passport from "./components/passport.vue";
 import specialfeature from "./components/CreateSpecialFeature.vue";
 import nursingFavouriteMail from "./components/nursingFavouriteMail.vue";
 import nursingMailConfirm from "./components/nursingMailConfirm.vue";
-import modal from './components/modal.vue';
 import termsAndConditions from './components/termsAndConditions.vue';
 import occupation from './components/occupation.vue';
 import occupationlist from './components/occupationlist.vue';
@@ -163,11 +160,11 @@ const routes = [
         path: '/nursingSearch',
         component: nursingSearch
     },
-    {
-        name: "passport",
-        path: "/passport",
-        component: passport
-    },
+    // {
+    //     name: "passport",
+    //     path: "/passport",
+    //     component: passport
+    // },
 
     {
         name: "newdetails",
@@ -224,14 +221,14 @@ const routes = [
     //     path: "/custsedit",
     //     component: custedit
     // },
-    {
-        name: "jobsearchlist",
-        path: "/jobsearchlist",
-        component: JobSearchListComponent,
-        meta: {
-            auth: undefined
-        }
-    },
+    // {
+    //     name: "jobsearchlist",
+    //     path: "/jobsearchlist",
+    //     component: JobSearchListComponent,
+    //     meta: {
+    //         auth: undefined
+    //     }
+    // },
 
     {
         name: "job_details",
@@ -577,14 +574,14 @@ const routes = [
         auth: false
     }
   },
-  {
-    name: 'modal',
-    path: '/modal',
-    component: modal,
-    meta: {
-        auth: undefined
-    }
-  },
+//   {
+//     name: 'modal',
+//     path: '/modal',
+//     component: modal,
+//     meta: {
+//         auth: undefined
+//     }
+//   },
   {
     name: 'termsAndConditions',
     path: '/termsAndConditions',

@@ -204,6 +204,14 @@
       adsslider
     }, 
     created() {
+        $(document).scroll(function() {
+            var cur_pos = $(this).scrollTop();
+            if (cur_pos >= 100) {
+                $('#headerbar li').css('display','block');
+            } else {
+                $('#headerbar li').css('display','inline-block');
+            }
+        });
         console.log("created")
         document.addEventListener('scroll', this.handleScroll);
 
@@ -247,6 +255,7 @@
         // this.axios.get('/api/auth/user').then(res=>{
         //     console.log(res)
         // })
+
         
         if(localStorage.getItem("visit")){
             this.visit = localStorage.getItem("visit");
@@ -290,7 +299,9 @@
         }
         if(localStorage.getItem("nursing_fav")){
             // $("#nus-fav-local").html(localStorage.getItem("nursing_fav").split(",").length);
-            this.nusFav = localStorage.getItem("nursing_fav").split(",").length;
+             this.nusFav = localStorage.getItem("nursing_fav").split(",").length;
+       
+        
             $('.fav-nursing-link-box>a').css({'cursor':'pointer','pointer-events':'auto'});
         }
         else{

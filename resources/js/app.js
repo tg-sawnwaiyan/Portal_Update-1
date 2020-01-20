@@ -100,11 +100,6 @@ Vue.use(VueLoading, {
 })
 
 window.events = new Vue();
-window.flash = function(message) {
-    window.events.$emit('flash', message);
-}
-Vue.component('flash', require('../js/components/Flash.vue'));
-
 Vue.use(VueClazyLoad)
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);

@@ -1639,6 +1639,10 @@ border-top: 5px solid #e66527; */
     border: 1px solid #dee2e6;
 }
 
+.List_tbl tr td {
+    vertical-align: top;
+}
+
 .List_tbl tr td:first-child {
     width: 200px;
 }
@@ -8214,6 +8218,13 @@ margin-right: auto; */
     letter-spacing: 1px;
 }
 
+#job_apply .custom-table thead th,
+#job_apply .table td {
+    width: 100px;
+    word-break: break-all;
+    vertical-align: middle;
+}
+
 
 /* start nursing information */
 
@@ -9037,6 +9048,17 @@ padding: 11px;
         left: 24%;
     }
     /*end job search*/
+    /* job apply list */
+    #job_apply .scroll_responsive {
+        overflow: auto;
+    }
+    #job_apply .custom-table {
+        width: 1100px;
+    }
+    #job_apply .scroll_responsive .table {
+        margin-bottom: 0 !important;
+    }
+    /*End job apply list */
 }
 
 @media only screen and (max-width: 1240px) {
@@ -9320,10 +9342,6 @@ padding: 0;
     /* common */
     li {
         list-style: none;
-    }
-    .maintab-content {
-        padding: 7px;
-        margin: 110px 0 0 0;
     }
     /*end common */
     /* header */

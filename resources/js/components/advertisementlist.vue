@@ -1,87 +1,98 @@
 <template>
-    <div class="row">
-        <div class="col-12">
-            <div class="row m-b-15" v-if="!norecord_msg">
-                <div class="col-md-12">
-                    <router-link to="/advertisement" class="float-right main-bg-color create-btn all-btn" style="color: blue;">
-                        <i class="fas fa-plus-circle"></i> 広告新規作成
-                    </router-link>
+    <div id="ads_list">
+        <div class="d-flex justify-content-end m-b-10" v-if="!norecord_msg">
+            <router-link to="/advertisement" class="main-bg-color create-btn all-btn">
+                <i class="fas fa-plus-circle"></i> 広告新規作成
+            </router-link>
+        </div>
+        <div class="col-md-12  tab-content tab-content1 tabs pad-free">
+            <div class="scrolldiv">
+                <div v-if="norecord_msg" class="card card-default card-wrap">
+                    <p class="record-ico">
+                        <i class="fa fa-exclamation"></i>
+                    </p>
+                    <p>OOPS!!</p>
+                    <p class="record-txt01">表示するデータありません</p>
+                    <p>表示するデータありません‼新しいデータを作成してください。</p>
+                    <a href="/advertisement" class="main-bg-color create-btn all-btn">
+                        <i class="fas fa-plus-circle"></i> 新しいデータ作成
+                    </a>
                 </div>
-            </div>
-
-            <div class="col-md-12 col-md-12 tab-content tab-content1 tabs pad-free border-style">
-                <div class="scrolldiv col-12">
-                    <div v-if="norecord_msg" class="card card-default card-wrap">
-                        <p class="record-ico">
-                            <i class="fa fa-exclamation"></i>
-                        </p>
-                        <p>OOPS!!</p>
-                        <p class="record-txt01">表示するデータありません</p>
-                        <p>表示するデータありません‼新しいデータを作成してください。</p>
-                        <a href="/advertisement" class="main-bg-color create-btn all-btn">
-                            <i class="fas fa-plus-circle"></i> 新しいデータ作成
-                        </a>
-                    </div>
-                    <div v-else class="container-fuid">
-                        <h4 class="main-color m-b-10">広告検索</h4>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <input type="text" class="form-control" placeholder="広告検索" id="search-item" @keyup="searchAdvertisment()" />
-                            </div>
+                <div v-else class="container-fuid">
+                    <h4 class="main-color m-b-10">広告検索</h4>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" placeholder="広告検索" id="search-item" @keyup="searchAdvertisment()" />
                         </div>
-                        <hr />
-                        <h5 class="header">広告一覧</h5>
-                        <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデタが消える。</div>
-                        <div v-else class="container-fuid">
-                            <div v-for="ads in displayItems" :key="ads.id" class="card card-default m-b-20">
-                                <div class="card-body news-post">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <img :src="'/upload/advertisement/'+ ads.photo" class="img-fluid" alt="ads" @error="imgUrlAlt" />
-                                        </div>
-                                    <div class="col-md-9">
-                                        <div class="row">
-                                            <div class=" col-md-3 custom_title">
-                                                <strong>タイトル :</strong>
-                                            </div>
-                                            <div class="col-md-9">{{ads.title}}</div>
-                                            <!-- <div class="col-md-2 max-width16"><strong>描写  :</strong></div><div class="col-md-10">{{ads.description}}</div> -->
-                                        </div>
-                                            <div class="row mt-3">
-                                                <div class="col-md-6">
-                                                    <router-link :to="{name: 'editadvertisement', params: { id: ads.id }}" class="btn edit-borderbtn">編集</router-link>
-                                                    <button class="btn delete-borderbtn" @click="deleteAds(ads.id)">削除</button>
-                                                    <!-- <button class="btn delete-borderbtn" @click="toggleModal">削除</button>                                 -->
-                                                </div>
-
-                                        </div>
+                    </div>
+                    <hr />
+                    <h5 class="header">広告一覧</h5>
+                    <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデタが消える。</div>
+                    <div v-else class="container-fuid">
+                        <table  class="table List_tbl">
+                            <tr  v-for="ads in displayItems" :key="ads.id">
+                                <td>
+                                    <div>
+                                        <img :src="'/upload/advertisement/'+ ads.photo" class="img-fluid" alt="ads" @error="imgUrlAlt" />
                                     </div>
+                                </td>
+                                <td>
+                                    <h5  class="mb-2"><strong>タイトル</strong></h5>
+                                    <p>{{ads.title}}</p>
+                                    <!-- <div class="col-md-2 max-width16"><strong>描写  :</strong></div><div class="col-md-10">{{ads.description}}</div> -->
+                                    <div class="d-flex mt-4">
+                                        <router-link :to="{name: 'editadvertisement', params: { id: ads.id }}" class="btn edit-borderbtn">編集</router-link>
+                                        <button class="btn delete-borderbtn ml-2" @click="deleteAds(ads.id)">削除</button>
+                                        <!-- <button class="btn delete-borderbtn" @click="toggleModal">削除</button>                                 -->
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <!-- <div v-for="ads in displayItems" :key="ads.id" class="card card-default m-b-20">
+                            <div class="card-body news-post">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <img :src="'/upload/advertisement/'+ ads.photo" class="img-fluid" alt="ads" @error="imgUrlAlt" />
+                                    </div>
+                                <div class="col-md-9">
+                                    <div class="row">
+                                        <div class=" col-md-3 custom_title">
+                                            <strong>タイトル :</strong>
+                                        </div>
+                                        <div class="col-md-9">{{ads.title}}</div>
+                                    </div>
+                                        <div class="row mt-3">
+                                            <div class="col-md-6">
+                                                <router-link :to="{name: 'editadvertisement', params: { id: ads.id }}" class="btn edit-borderbtn">編集</router-link>
+                                                <button class="btn delete-borderbtn" @click="deleteAds(ads.id)">削除</button>
+                                            </div>
                                     </div>
                                 </div>
+                                </div>
                             </div>
-                        </div>
+                        </div> -->
+                    </div>
 
-                        <div class="col-12" v-if="pagination">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination">
-                                    <li class="page-item">
-                                        <span class="spanclass pc-480" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
-                                    </li>
-                                    <li class="page-item">
-                                        <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i><span class="pc-paginate"> 前へ</span></span>
-                                    </li>
-                                    <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
-                                        <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
-                                    </li>
-                                    <li class="page-item">
-                                        <span class="spanclass" @click="next"><span class="pc-paginate">次へ </span><i class='fas fa-angle-right'></i></span>
-                                    </li>
-                                    <li class="page-item">
-                                        <span class="spanclass pc-480" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
+                    <div class="col-12" v-if="pagination">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <span class="spanclass pc-480" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
+                                </li>
+                                <li class="page-item">
+                                    <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i><span class="pc-paginate"> 前へ</span></span>
+                                </li>
+                                <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
+                                    <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
+                                </li>
+                                <li class="page-item">
+                                    <span class="spanclass" @click="next"><span class="pc-paginate">次へ </span><i class='fas fa-angle-right'></i></span>
+                                </li>
+                                <li class="page-item">
+                                    <span class="spanclass pc-480" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>

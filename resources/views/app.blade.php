@@ -121,7 +121,7 @@
 <!-- end script for editor -->
 <script src="{{ asset('js/jquery.scrolling-tabs.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/custom.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/adsslider.js') }}" type="text/javascript"></script>     
+<!-- <script src="{{ asset('js/adsslider.js') }}" type="text/javascript"></script>      -->
 
 <script type="text/javascript">
  $(document).ready(function() {   
