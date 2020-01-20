@@ -169,15 +169,14 @@
 </template>
 <style>
 .fade-enter-active,
-.fade-leave-active {    
-  transition: opacity .2s ease ;
+.fade-leave-active {
+    transition: opacity .2s ease ;  
 }
 
 .fade-enter,
 .fade-leave-to {   
-  opacity: 0.1;
+  opacity: 0;
 }
-
 
 .slide-enter-active {
    -moz-transition-duration: 0.3s;

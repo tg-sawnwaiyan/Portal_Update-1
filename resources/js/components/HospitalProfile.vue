@@ -95,8 +95,7 @@
                   <input type="file" name class="hospital-photo m-b-15"  v-bind:class="'classname'+indx" id="upload_img" @change="preview_image($event,indx)" />
                   <div class="col-md-12" v-bind:class="img.id">
                     <input type="hidden" class="already-photo" v-model="img.photo" />                  
-                    <img v-bind:src="'/upload/hospital_profile/'+ img.photo" class="img-fluid hospital-image" alt="profile" v-if="img.id != null" @error="imgUrlAlt"/>
-                    <div v-bind:id="'already-photo'+indx" v-else> </div>                 
+                    <img v-bind:src="img.src" class="img-fluid hospital-image" alt="profile" v-if="img.src != null" @error="imgUrlAlt"/>
                   </div>
 
                 </div>
@@ -1453,12 +1452,8 @@ export default {
                     this.isRotate3 = !this.isRotate3;
             },
             preview_image(event,indx) {
-                     $('#already-photo'+indx).html("<img src='"+URL.createObjectURL(event.target.files[0])+"' class='img-fluid hospital-image'>");
-                  
-                    //  document.getElementById('already-photo'+indx).src= URL.createObjectURL(event.target.files[0]);
-                    this.img_arr[indx]['photo'] = event.target.files[0].name;            
-                    // this.file = event.target.files[0];   
-                     
+                this.img_arr[indx]['photo'] = event.target.files[0].name;            
+                this.img_arr[indx]['src'] = URL.createObjectURL(event.target.files[0]);            
             },
             facilityCheck(check_id) {
                     $('.facility-'+check_id).attr('checked','true');
@@ -1544,7 +1539,7 @@ export default {
                     var h = date.getHours();
                     // var classname = "class"+h+m+s;
                     // var c = "'"+classname+"'";
-                    this.img_arr.push({id:null,photo:'',title:'',description:''});
+                    this.img_arr.push({id:null,photo:'',title:'',description:'', src:null});
                   
                   
             },
@@ -1629,6 +1624,7 @@ export default {
                 localStorage.setItem('lat_num',this.hospital_info.latitude);
                 localStorage.setItem('lng_num',this.hospital_info.longitude);
                 let pt = new FormData();
+                var img = document.getElementsByClassName('gallery-area-photo');
                 for(var i =this.img_arr.length-1;i>=0;i--)
                 {
                     this.img_arr[i]['type'] = 'photo';
@@ -1637,8 +1633,9 @@ export default {
                         this.img_arr.splice(i,1);
                     }
                 
-                    var img = document.getElementsByClassName('gallery-area-photo');
+                    
                     var file = img[i].getElementsByClassName('hospital-photo')[0].files[0];
+                    console.log(img[i].getElementsByClassName('hospital-photo')[0].files)
                     if(file) {                             
                         pt.append(i ,file )  
                     }      
