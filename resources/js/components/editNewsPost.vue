@@ -87,27 +87,48 @@
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="offset-md-4 col-md-8 mt-3" v-if="pagination">
-                                                <nav aria-label="Page navigation example">
-                                                    <ul class="pagination">
-                                                        <li class="page-item">
-                                                            <span class="spanclass" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
-                                                        </li>
-                                                        <li class="page-item">
-                                                            <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i> 前へ</span>
-                                                        </li>
-                                                        <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
-                                                            <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
-                                                        </li>
-                                                        <li class="page-item">
-                                                            <span class="spanclass" @click="next">次へ <i class='fas fa-angle-right'></i></span>
-                                                        </li>
-                                                        <li class="page-item">
-                                                            <span class="spanclass" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
-                                                        </li>
-                                                    </ul>
-                                                </nav>
-                                            </div>
+                                    <!-- <div class="offset-md-4 col-md-8 mt-3" v-if="pagination">
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination">
+                                                <li class="page-item">
+                                                    <span class="spanclass" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
+                                                </li>
+                                                <li class="page-item">
+                                                    <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i> 前へ</span>
+                                                </li>
+                                                <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
+                                                    <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
+                                                </li>
+                                                <li class="page-item">
+                                                    <span class="spanclass" @click="next">次へ <i class='fas fa-angle-right'></i></span>
+                                                </li>
+                                                <li class="page-item">
+                                                    <span class="spanclass" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div> -->
+                                    <div class="col-12 mt-3" v-if="pagination">
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination">
+                                                <li class="page-item">
+                                                    <span class="spanclass pc-480" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
+                                                </li>
+                                                <li class="page-item">
+                                                    <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i><span class="pc-paginate"> 前へ</span></span>
+                                                </li>
+                                                <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
+                                                    <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
+                                                </li>
+                                                <li class="page-item">
+                                                    <span class="spanclass" @click="next"><span class="pc-480">次へ </span><i class='fas fa-angle-right'></i></span>
+                                                </li>
+                                                <li class="page-item">
+                                                    <span class="spanclass pc-480" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
                                 </div>
                                 <input type="hidden" v-model="checkedNews" >
                             </div>

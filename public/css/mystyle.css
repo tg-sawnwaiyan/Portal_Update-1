@@ -2664,11 +2664,11 @@ li.userprofile-name>a {
 }
 
 .tab-content {
-    /* padding: 15px !important; */
     padding: 13px !important;
     /*for no scroll*/
     background: white;
     border: 1px solid #eee;
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1);
 }
 
 .tab-content1 {
@@ -4777,15 +4777,6 @@ li.userprofile-name>a {
     margin: 75px 0 0 0;
 }
 
-.tab-content {
-    /* padding: 15px !important; */
-    padding: 13px !important;
-    /*for no scroll*/
-    background: white;
-    border: 1px solid #ccc;
-    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1);
-}
-
 .upper-tab {
     border: 1px solid #75b777;
 }
@@ -5691,6 +5682,21 @@ font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "�
 .related-area span {
     color: rgb(255, 72, 0);
     font-size: 14px;
+}
+
+.news_detail_tit {
+    text-align: center;
+    letter-spacing: 3px;
+    line-height: 1.5;
+}
+
+.seemore_tit {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 10px;
+    font-size: 22px;
+    font-weight: bold;
+    border-bottom: 1px dashed #25ac8a;
 }
 
 
@@ -9238,10 +9244,10 @@ padding: 0;
         width: 550px;
         height: 425px;
     }
-    #create_news {
+    /* #create_news {
         width: 283px;
         margin-left: 12px;
-    }
+    } */
     #create_news .title {
         padding: 2px;
         font-size: 11px;
@@ -9627,6 +9633,11 @@ padding: 0;
         margin-top: 10px;
     }
     /*End job details */
+    /* comment list */
+    .commentWrap .d-flex {
+        flex-wrap: wrap;
+    }
+    /*END comment list */
 }
 
 
@@ -10354,7 +10365,7 @@ background-image: none;
         display: inline-block;
         width: 25px;
         height: 3px;
-        left: 15px;
+        left: 0;
         border-radius: 2px;
         background: #d2571c;
     }
@@ -10543,7 +10554,7 @@ background-image: none;
     /*End job apply */
     /* common */
     .p0-480 {
-        padding: 0;
+        padding: 0 !important;
     }
     .breadcrumb {
         padding: 0 !important;
@@ -10571,6 +10582,15 @@ background-image: none;
     .offset {
         width: 100% !important;
     }
+    /* comment list */
+    .commentlist_tbl td {
+        display: block;
+        width: 100%;
+    }
+    .commentlist_tbl td:nth-child(2) {
+        padding-left: 5px;
+    }
+    /*END comment list */
 }
 
 @media only screen and (max-width: 414px) {

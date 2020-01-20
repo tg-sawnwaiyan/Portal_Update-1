@@ -1,155 +1,153 @@
 <template>
-    <div class="col-md-12 pad-free">
-        <div class="col-md-12 col-md-12 tab-content tab-content1 tabs pad-free border-style">
-            <div class="col-md-12 scrolldiv p-0">
-                <div class="scrolldiv col-12 p0-480">
-                    <div v-if="norecord_msg" class="card card-default card-wrap">
-                        <p class="record-ico">
-                            <i class="fa fa-exclamation"></i>
-                        </p>
-                        <p>OOPS!!</p>
-                        <p class="record-txt01">表示するデータありません</p>
-                        <p>表示するデータありません‼新しいデータを作成してください。</p>
-                    </div>
-                    <div v-else class="container-fuid">
-                        <h4 class="main-color m-b-10">事業者検索</h4>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <input type="text" class="form-control" placeholder="事業者検索" id="search-word" @keyup="searchCustomer()" />
-                            </div>
+    <div>
+        <div class="col-md-12  tab-content">
+            <div class="p-2 p0-480">
+                <div v-if="norecord_msg" class="card card-default card-wrap">
+                    <p class="record-ico">
+                        <i class="fa fa-exclamation"></i>
+                    </p>
+                    <p>OOPS!!</p>
+                    <p class="record-txt01">表示するデータありません</p>
+                    <p>表示するデータありません‼新しいデータを作成してください。</p>
+                </div>
+                <div v-else class="container-fuid">
+                    <h4 class="main-color m-b-10">事業者検索</h4>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" placeholder="事業者検索" id="search-word" @keyup="searchCustomer()" />
                         </div>
-                        <hr />
-                        <h5 class="header">{{title}}</h5>
-                        <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデタが消える。</div>
-                        <div v-else class="container-fuid">
-                            <table class="table List_tbl">
-                                <tr v-for="customer in displayItems" :key="customer.id">
-                                    <td>
-                                        <div>
-                                            <img :src="'/upload/hospital_profile/'+ customer.logo" class="img-fluid" alt="cust" v-if="customer.type_id == 2" @error="imgUrlAlt" />
-                                            <img :src="'/upload/nursing_profile/'+ customer.logo" class="img-fluid" alt="cust" v-if="customer.type_id != 2" @error="imgUrlAlt" />
+                    </div>
+                    <hr />
+                    <h5 class="header">{{title}}</h5>
+                    <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデタが消える。</div>
+                    <div v-else class="container-fuid">
+                        <table class="table List_tbl">
+                            <tr v-for="customer in displayItems" :key="customer.id">
+                                <td>
+                                    <div>
+                                        <img :src="'/upload/hospital_profile/'+ customer.logo" class="img-fluid" alt="cust" v-if="customer.type_id == 2" @error="imgUrlAlt" />
+                                        <img :src="'/upload/nursing_profile/'+ customer.logo" class="img-fluid" alt="cust" v-if="customer.type_id != 2" @error="imgUrlAlt" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-4 custom_title">
+                                            <strong>事業者名:</strong>
                                         </div>
-                                    </td>
-                                    <td>
+                                        <div class="col-lg-10 col-md-8">{{customer.name}}</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-4 custom_title">
+                                            <strong >状態:</strong>
+                                        </div>
+                                        <div class="col-lg-10 col-md-8" v-if="customer.recordstatus == '1'">Activate</div>
+                                        <div class="col-lg-10 col-md-8" v-else>Deactivate</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-4 custom_title">
+                                            <strong>メールアドレス:</strong>
+                                        </div>
+                                        <div class="col-lg-10 col-md-8">{{customer.email}}</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-4 custom_title">
+                                            <strong>電話番号:</strong>
+                                        </div>
+                                        <div class="col-lg-10 col-md-8">{{customer.phone}}</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-4 custom_title">
+                                            <strong>住所:</strong>
+                                        </div>
+                                        <div class="col-lg-10 col-md-8">{{customer.address}}</div>
+                                    </div>
+                                            <!-- <div class="col-md-2 max-width13"><strong>Logo:</strong></div><div class="col-md-10">{{customer.logo}}</div> -->
+                                            <div class="row mt-3">
+                                                <div class="col-md-12">
+                                                    <button class="btn delete-borderbtn" @click="deleteCustomer(customer.id)">削除</button>
+                                                    <!-- <router-link :to="{name:'custedit',params:{id:customer.id}}" class="btn main-bg-color all-btn white">Edit</router-link> -->
+                                                    <!-- <button class="btn confirm-borderbtn" v-if="customer.status == 0">確認済</button> -->
+
+                                                    <button class="btn confirm-borderbtn" :id="'confirm-btn'+customer.id" v-if="customer.status == 0" @click="comfirm(customer.id)">新規登録承認</button>
+                                                    <span class="btn confirm-borderbtn" style="border-color: #ccc!important; color: #ccc!important;cursor:not-allowed;" :id="'confirm-btn'+customer.id" v-else>登録承認済</span>
+                                                    <span class="float-right">
+                                                    <router-link :to="{name: 'profiledit', params:{cusid: customer.id}}" v-if="customer.status == 1" class="btn confirm-orangebtn">プロフィール設定</router-link>
+                                                    <!-- <button class="btn confirm-orangebtn">プロフィール設定</button> -->
+                                                    <router-link :to="{name: 'profile', params:{cusid: customer.id, type: customer.type_id == 2? 'hospital':'nursing'}}" v-if="customer.status == 1" class="btn confirm-orangebtn">ページ編集</router-link>
+                                                    </span>
+                                                </div>
+                                        </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <!-- <div v-for="customer in displayItems" :key="customer.id" class="card card-default m-b-20">
+                            <div class="card-body news-post">
+                                <div class="row">
+                                    <div class="col-lg-2 col-md-3">
+                                        <img :src="'/upload/hospital_profile/'+ customer.logo" class="img-fluid" alt="cust" v-if="customer.type_id == 2" @error="imgUrlAlt" />
+                                        <img :src="'/upload/nursing_profile/'+ customer.logo" class="img-fluid" alt="cust" v-if="customer.type_id != 2" @error="imgUrlAlt" />
+                                    </div>
+                                    <div class="col-lg-10 col-md-9">
                                         <div class="row">
                                             <div class="col-lg-2 col-md-4 custom_title">
                                                 <strong>事業者名:</strong>
                                             </div>
                                             <div class="col-lg-10 col-md-8">{{customer.name}}</div>
-                                        </div>
-                                        <div class="row">
                                             <div class="col-lg-2 col-md-4 custom_title">
                                                 <strong >状態:</strong>
                                             </div>
                                             <div class="col-lg-10 col-md-8" v-if="customer.recordstatus == '1'">Activate</div>
                                             <div class="col-lg-10 col-md-8" v-else>Deactivate</div>
-                                        </div>
-                                        <div class="row">
+
                                             <div class="col-lg-2 col-md-4 custom_title">
                                                 <strong>メールアドレス:</strong>
                                             </div>
                                             <div class="col-lg-10 col-md-8">{{customer.email}}</div>
-                                        </div>
-                                        <div class="row">
                                             <div class="col-lg-2 col-md-4 custom_title">
                                                 <strong>電話番号:</strong>
                                             </div>
                                             <div class="col-lg-10 col-md-8">{{customer.phone}}</div>
-                                        </div>
-                                        <div class="row">
                                             <div class="col-lg-2 col-md-4 custom_title">
                                                 <strong>住所:</strong>
                                             </div>
                                             <div class="col-lg-10 col-md-8">{{customer.address}}</div>
-                                        </div>
-                                                <!-- <div class="col-md-2 max-width13"><strong>Logo:</strong></div><div class="col-md-10">{{customer.logo}}</div> -->
-                                                <div class="row mt-3">
-                                                    <div class="col-md-12">
-                                                        <button class="btn delete-borderbtn" @click="deleteCustomer(customer.id)">削除</button>
-                                                        <!-- <router-link :to="{name:'custedit',params:{id:customer.id}}" class="btn main-bg-color all-btn white">Edit</router-link> -->
-                                                        <!-- <button class="btn confirm-borderbtn" v-if="customer.status == 0">確認済</button> -->
-
-                                                        <button class="btn confirm-borderbtn" :id="'confirm-btn'+customer.id" v-if="customer.status == 0" @click="comfirm(customer.id)">新規登録承認</button>
-                                                        <span class="btn confirm-borderbtn" style="border-color: #ccc!important; color: #ccc!important;cursor:not-allowed;" :id="'confirm-btn'+customer.id" v-else>登録承認済</span>
-                                                        <span class="float-right">
-                                                        <router-link :to="{name: 'profiledit', params:{cusid: customer.id}}" v-if="customer.status == 1" class="btn confirm-orangebtn">プロフィール設定</router-link>
-                                                        <!-- <button class="btn confirm-orangebtn">プロフィール設定</button> -->
-                                                        <router-link :to="{name: 'profile', params:{cusid: customer.id, type: customer.type_id == 2? 'hospital':'nursing'}}" v-if="customer.status == 1" class="btn confirm-orangebtn">ページ編集</router-link>
-                                                        </span>
-                                                    </div>
                                             </div>
-                                    </td>
-                                </tr>
-                            </table>
-                            <!-- <div v-for="customer in displayItems" :key="customer.id" class="card card-default m-b-20">
-                                <div class="card-body news-post">
-                                    <div class="row">
-                                        <div class="col-lg-2 col-md-3">
-                                            <img :src="'/upload/hospital_profile/'+ customer.logo" class="img-fluid" alt="cust" v-if="customer.type_id == 2" @error="imgUrlAlt" />
-                                            <img :src="'/upload/nursing_profile/'+ customer.logo" class="img-fluid" alt="cust" v-if="customer.type_id != 2" @error="imgUrlAlt" />
+                                            <div class="row mt-3">
+                                                <div class="col-md-12">
+                                                    <button class="btn delete-borderbtn" @click="deleteCustomer(customer.id)">削除</button>
+                                                    <button class="btn confirm-borderbtn" :id="'confirm-btn'+customer.id" v-if="customer.status == 0" @click="comfirm(customer.id)">新規登録承認</button>
+                                                    <span class="btn confirm-borderbtn" style="border-color: #ccc!important; color: #ccc!important;cursor:not-allowed;" :id="'confirm-btn'+customer.id" v-else>登録承認済</span>
+                                                    <span class="float-right">
+                                                    <router-link :to="{name: 'profiledit', params:{cusid: customer.id}}" v-if="customer.status == 1" class="btn confirm-orangebtn">プロフィール設定</router-link>
+                                                    <router-link :to="{name: 'profile', params:{cusid: customer.id, type: customer.type_id == 2? 'hospital':'nursing'}}" v-if="customer.status == 1" class="btn confirm-orangebtn">ページ編集</router-link>
+                                                    </span>
+                                                </div>
                                         </div>
-                                        <div class="col-lg-10 col-md-9">
-                                            <div class="row">
-                                                <div class="col-lg-2 col-md-4 custom_title">
-                                                    <strong>事業者名:</strong>
-                                                </div>
-                                                <div class="col-lg-10 col-md-8">{{customer.name}}</div>
-                                                <div class="col-lg-2 col-md-4 custom_title">
-                                                    <strong >状態:</strong>
-                                                </div>
-                                                <div class="col-lg-10 col-md-8" v-if="customer.recordstatus == '1'">Activate</div>
-                                                <div class="col-lg-10 col-md-8" v-else>Deactivate</div>
-
-                                                <div class="col-lg-2 col-md-4 custom_title">
-                                                    <strong>メールアドレス:</strong>
-                                                </div>
-                                                <div class="col-lg-10 col-md-8">{{customer.email}}</div>
-                                                <div class="col-lg-2 col-md-4 custom_title">
-                                                    <strong>電話番号:</strong>
-                                                </div>
-                                                <div class="col-lg-10 col-md-8">{{customer.phone}}</div>
-                                                <div class="col-lg-2 col-md-4 custom_title">
-                                                    <strong>住所:</strong>
-                                                </div>
-                                                <div class="col-lg-10 col-md-8">{{customer.address}}</div>
-                                                </div>
-                                                <div class="row mt-3">
-                                                    <div class="col-md-12">
-                                                        <button class="btn delete-borderbtn" @click="deleteCustomer(customer.id)">削除</button>
-                                                        <button class="btn confirm-borderbtn" :id="'confirm-btn'+customer.id" v-if="customer.status == 0" @click="comfirm(customer.id)">新規登録承認</button>
-                                                        <span class="btn confirm-borderbtn" style="border-color: #ccc!important; color: #ccc!important;cursor:not-allowed;" :id="'confirm-btn'+customer.id" v-else>登録承認済</span>
-                                                        <span class="float-right">
-                                                        <router-link :to="{name: 'profiledit', params:{cusid: customer.id}}" v-if="customer.status == 1" class="btn confirm-orangebtn">プロフィール設定</router-link>
-                                                        <router-link :to="{name: 'profile', params:{cusid: customer.id, type: customer.type_id == 2? 'hospital':'nursing'}}" v-if="customer.status == 1" class="btn confirm-orangebtn">ページ編集</router-link>
-                                                        </span>
-                                                    </div>
-                                            </div>
-                                        </div>
-                                        </div>
-                                </div>
-                            </div> -->
-                        </div>
-                        <div class="col-12" v-if="pagination">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination">
-                                    <li class="page-item">
-                                        <span class="spanclass pc-480" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
-                                    </li>
-                                    <li class="page-item">
-                                        <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i><span class="pc-paginate"> 前へ</span></span>
-                                    </li>
-                                    <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
-                                        <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
-                                    </li>
-                                    <li class="page-item">
-                                        <span class="spanclass" @click="next"><span class="pc-paginate">次へ </span><i class='fas fa-angle-right'></i></span>
-                                    </li>
-                                    <li class="page-item">
-                                        <span class="spanclass pc-480" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
+                                    </div>
+                                    </div>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="col-12" v-if="pagination">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <span class="spanclass pc-480" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
+                                </li>
+                                <li class="page-item">
+                                    <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i><span class="pc-paginate"> 前へ</span></span>
+                                </li>
+                                <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
+                                    <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
+                                </li>
+                                <li class="page-item">
+                                    <span class="spanclass" @click="next"><span class="pc-paginate">次へ </span><i class='fas fa-angle-right'></i></span>
+                                </li>
+                                <li class="page-item">
+                                    <span class="spanclass pc-480" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>

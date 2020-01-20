@@ -17,15 +17,15 @@
             </ol>
           </nav>
           <!-- <span v-else>Back</span> -->
-          <div v-else>
-              <router-link to="/news_list" class="btn btn-danger all-btn submit">戻る</router-link>
+          <div v-else class="d-flex justify-content-end mb-4">
+              <router-link to="/news_list" class="btn mr-2 all-btn submit" style="background:#ffc107;"><i class="fas fa-arrow-left"></i> 戻る</router-link>
               <router-link :to="{name: 'editPost', params: {id: newdetails[0].id}}" class="btn edit-borderbtn">編集</router-link>&nbsp;
           </div>
           
         </div>
         <div class="justify-content-md-center scrolldiv2">
           <div class="col-md-12">
-            <div class="row m-lr-0 mb-3">
+            <div class="row m-lr-0 mb-3" v-for="news in newdetails" :key="news.id">
               <!-- <div class="col-md-12">
                 <h4 class="h_4 header">{{newdetails.title}}</h4>
                 <p class="set-date">
@@ -64,9 +64,9 @@
              
                
              
-              <div class="row" v-for="news in newdetails" :key="news.id">
+            
                 <div class="col-md-12" >
-                  <h4 class="h_4 header">{{news.title}}</h4>   
+                  <h4 class="header news_detail_tit">{{news.title}}</h4>   
                   <div class="set-date">
                     <p :class="'title'+ news.cat_id ">
                      <span class="font-weight-bold"> {{news.cat_name}}</span>
@@ -97,10 +97,9 @@
                   </div>
                 </div>
                 <div class="col-md-12 mt-2 related-area">
-                  <p
-                    class="img_2 header"
-                    style="font-size:22px;width:20%;line-height:1;margin-bottom:10px;"
-                  >記事をもっと見る</p>
+                  <h5
+                    class="seemore_tit"
+                  >記事をもっと見る</h5>
                   <br />
                   <!-- 関連ニュース -->
                   <div
@@ -113,9 +112,9 @@
                       <span>{{ latest_new.main_point }} |</span>
                     </router-link>
                   </div>
-                </div>
-              </div>
-              <div
+                </div>             
+            </div>
+            <div
                 class="row col-md-12 m-lr-0 m-t-15 pad-free"
                 style="border-top: 2px dashed #eee;"
               >
@@ -123,7 +122,7 @@
                   <h4 class="h_4 next-title" style="border-left: 5px solid orange;">関連ニュース</h4>
                 </div>
                 <div
-                  class="col-sm-3 col-md-3 m-t-15 mt-2"
+                  class="col-md-3 col-sm-4  m-t-15"
                   v-for="latest_post_all_cat in latest_post_all_cats"
                   :key="latest_post_all_cat.id"
                 >
@@ -149,7 +148,6 @@
                   </router-link>
                 </div>
               </div>
-            </div>
           </div>
         </div>
       </div>
