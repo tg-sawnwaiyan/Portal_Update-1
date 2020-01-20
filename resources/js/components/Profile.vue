@@ -1,12 +1,12 @@
 <template>
   <div id="Profile-page">
-    <h4 v-if="loginuser" class="header" style="background:transparent;">マイページ編集</h4> 
-    <button @click="$router.go(-1)" v-if="login_person == 'admin'" class="btn btn-danger all-btn submit" style="float:right">戻る</button>
+    <h4 v-if="login_person == 'customer' && visit == 'false'" class="header" style="background:transparent;">マイページ編集</h4> 
+    <button @click="$router.go(-1)" v-if="login_person == 'admin' && visit == 'false'" class="btn btn-danger all-btn submit" style="float:right">戻る</button>
 
      
-    <span v-if="!loginuser">
-      <h4 v-if="type == 'nursing'" class="public-nurheader" style="background:transparent;"><i class="fas fa-user-md"></i> マイページ</h4>
-      <h4 v-if="type == 'hospital'" class="public-hosheader" style="background:transparent;"><i class="fas fa-briefcase-medical"></i> マイページ</h4>
+    <span v-if="!loginuser || visit == 'true'">
+      <h4 v-if="type == 'nursing'" class="public-nurheader" style="background:transparent;"><i class="fas fa-user-md"></i> ページ</h4>
+      <h4 v-if="type == 'hospital'" class="public-hosheader" style="background:transparent;"><i class="fas fa-briefcase-medical"></i> ページ</h4>
     </span>
     
     <div v-if="type == 'nursing'">
