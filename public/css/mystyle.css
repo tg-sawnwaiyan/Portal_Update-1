@@ -217,12 +217,22 @@ label {
 
 
 /********************************** Profile & Profile publish**********************************/
-
+/* Nursing & Hospital Profile */
 .heading-lbl {
     font-weight: bold;
     font-size: 1.15em;
 }
-
+.heading-lbl1 {
+    flex: 0 0 16.66666667%;
+    max-width: 16%;
+    font-weight: bold;
+    font-size: 1.15em;
+}
+.nursing_map{
+    margin-top: 25px;
+    padding-left: 220px;
+}
+/* End Nursing & Hospital Profile */
 .typelabel {
     /* background: #118063;
 padding: 8px 15px;
@@ -8863,6 +8873,9 @@ padding: 11px;
 }
 
 @media only screen and (max-width:1440px) {
+    .nursing_map{
+        padding-left: 70px;
+    }
     .card_height {
         float: left;
         height: 170px;
@@ -8946,6 +8959,9 @@ padding: 11px;
 }
 
 @media only screen and (max-width:1280px) {
+    .nursing_map{
+        padding-left: 40px;
+    }
     .card_height {
         float: left;
         height: 170px;
@@ -9111,6 +9127,23 @@ padding: 0;
 }
 
 @media only screen and (max-width:1024px) {
+    .heading-lbl{
+        font-size: 1.05em;
+    }
+    /* nursing profile */
+    .heading-lbl1{
+        font-size: 1.05em;
+        flex: 0 0 20%;
+        max-width: 20%;
+    }
+    .news-post-btn {
+        font-size: 13px;
+    }
+    .nursing_map{
+        padding-left: 0px;
+    }
+
+    /* end nursing profile */
     /* common */
     .col-slg-12 {
         -webkit-box-flex: 0;
