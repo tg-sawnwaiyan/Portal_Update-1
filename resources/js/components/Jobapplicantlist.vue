@@ -29,7 +29,7 @@
 
                                 <th>性別</th>
 
-                                <th>郵便番号 (〒)</th>
+                                <th>郵便番号 </th>
 
                                 <th>街路住所</th>
 
@@ -37,7 +37,7 @@
 
                                 <th>電話番号</th>
 
-                                <th>メールアドレス</th>
+                                <th style="width:115px;">メールアドレス</th>
                             </tr>
                         </thead>
                         <tbody>

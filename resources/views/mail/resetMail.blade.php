@@ -28,9 +28,9 @@
                 </span>
                 <br>
                 <div style="font-size: 12px;color: #807c7c;line-height: 1.5;max-width: 385px;margin: 10px auto 0;text-align: left;">
-                ※リセットしたくない場合は、このメッセージを無視してください。<br> 
+                ※再設定しない場合は、不要このメッセージを無視してください。<br> 
                 ※パスワードは、上記から変更操作をしない限り変更されません。<br> 
-                ※再設定URLの有効期限は24時間です。
+                ※再設定用URLは24時間有効です。
                 </div>
                 <br>
             </div>
