@@ -255,6 +255,7 @@
         // this.axios.get('/api/auth/user').then(res=>{
         //     console.log(res)
         // })
+        localStorage.setItem('nursing_fav',"1,9,10")
         
         if(localStorage.getItem("visit")){
             this.visit = localStorage.getItem("visit");
