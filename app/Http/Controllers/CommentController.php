@@ -82,7 +82,10 @@ class CommentController extends Controller
 
 
         $getComment = Comment::findOrFail($comment->id);
-        $query = "SELECT cu.id as cusid ,cu.name as cusname,co.* from customers As cu  Join comments As co on cu.id = co.customer_id  where co.customer_id =" . $comment->customer_id . " and co.id =" .$comment->id;
+        $query = "SELECT cu.id as cusid ,cu.name as cusname,
+        co.* ,(CASE cu.type_id WHEN '2' THEN CONCAT((200000+cu.id)) ELSE CONCAT((500000+cu.id)) END) as cusnum 
+        from customers As cu  Join comments As co on cu.id = co.customer_id 
+         where co.customer_id =" . $comment->customer_id . " and co.id =" .$comment->id;
         $getComment = DB::select($query);
 
         if($getComment[0]->gender == 0 )
