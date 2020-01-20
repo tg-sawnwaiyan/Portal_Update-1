@@ -30,19 +30,19 @@
                 <button v-scroll-to="{ el: '#btn'}" id="btn_click" hidden></button>
 
                     <div class="form-group form-group-wrapper d-flex">
-                            <label class="heading-lbl col-lg-2 col-md-3 pad-free">施設名称<span class="error">*</span></label>
-                            <input type="text" class="form-control customer-name col-lg-10 cd-md-9 float-right" id="btn" placeholder="施設名称を入力してください。" v-model="customer_info.name">
+                            <label class="heading-lbl col-2 pad-free">施設名称<span class="error">*</span></label>
+                            <input type="text" class="form-control customer-name col-10" id="btn" placeholder="施設名称を入力してください。" v-model="customer_info.name">
                     </div>
                     <div class="form-group form-group-wrapper d-flex">
-                            <label class="heading-lbl col-lg-2 col-md-3 pad-free">運営事業者</label>
-                            <input type="text" class="form-control customer-name col-lg-10 col-md-9 float-right" id="btn" v-model="nursing_info.operator" placeholder="運営事業者を入力してください。">
+                            <label class="heading-lbl col-2 pad-free">運営事業者</label>
+                            <input type="text" class="form-control customer-name col-10 " id="btn" v-model="nursing_info.operator" placeholder="運営事業者を入力してください。">
                     </div>
                     <div class="form-group form-group-wrapper d-flex">
-                            <label class="heading-lbl1 col-lg-2 col-md-3 pad-free">メールアドレス<span class="error">*</span></label>
-                            <label class=" col-lg-10 col-md-9 float-right customer-email"> {{customer_info.email}} </label>
+                            <label class="heading-lbl1 col-2 pad-free">メールアドレス<span class="error">*</span></label>
+                            <label class=" col-10 customer-email"> {{customer_info.email}} </label>
                     </div>
                     <div class="form-group form-group-wrapper d-flex">
-                            <label class="heading-lbl col-lg-2 col-md-3 pad-free">電話番号<span class="error">*</span></label>
+                            <label class="heading-lbl col-2 pad-free">電話番号<span class="error">*</span></label>
                             <div class="col-10 row">
                             <input type="text" class="form-control customer-phone col-12" id="phone" placeholder="電話番号を入力してください。" v-model="customer_info.phone" v-on:keyup="isNumberOnly" pattern="[0-9-]*" @focusout="focusPhone" title="Please enter number only." maxlength="14">
                             <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>
@@ -50,7 +50,7 @@
                             </div>
                     </div>
                     <div class="form-group form-group-wrapper d-flex">
-                            <label class="heading-lbl col-lg-2 col-md-3 pad-free">公式サイト</label>
+                            <label class="heading-lbl col-2 pad-free">公式サイト</label>
                             <input type="text" name="official-website" class="form-control website col-10 float-right" v-model="nursing_info.website">
                     </div>
                     <div class="form-group form-group-wrapper">
@@ -58,7 +58,7 @@
 
                                     <span class="galleryadd btn all-btn main-bg-color float-right" style="min-width: 0px;" @click="galleryAdd()">
                                     <i class="fas fa-plus-circle"></i> 追加</span>
-                                    <span class='changeGalleryLink btn btn all-btn main-bg-color ' style="min-width: 0px;" @click="galleryToggle" >
+                                    <span class='changeGalleryLink btn btn all-btn main-bg-color nursing_toggle_responsive' style="min-width: 0px;" @click="galleryToggle" >
                                         <i id="gallery" class="fas fa-sort-down"></i>
                                    </span>
                             <div id="changeGalleryLink"  class="col-md-12">
@@ -88,7 +88,7 @@
                     <div class="form-group form-group-wrapper">
                             <label class="heading-lbl col-2 pad-free">動画</label> <span class="galleryvideo btn all-btn main-bg-color float-right" style="min-width: 0px;" @click="galleryVideoAdd()">
                                     <i class="fas fa-plus-circle"></i> 追加</span>
-                                    <span class='changeGalleryVideoLink  btn btn all-btn main-bg-color ' style="min-width: 0px;" @click="galleryVideoToggle" >
+                                    <span class='changeGalleryVideoLink  btn btn all-btn main-bg-color nursing_toggle_responsive ' style="min-width: 0px;" @click="galleryVideoToggle" >
                                         <i id="video" class="fas fa-sort-down"></i>
                                    </span>
                             <div id="changeGalleryVideoLink" class="col-md-12">
@@ -131,39 +131,39 @@
                                 <label class="heading-lbl" style="border-left: 5px solid #f9793c;padding-left: 5px;">費用</label>
                             </div>
                             <div class="form-group">
-                                <label class="heading-lbl col-2 pad-free">入居時費用 <span class="error">*</span></label>
-                                <div class="col-10 float-right pad-free">
+                                <label class="heading-lbl col-lg-2 col-md-3 pad-free">入居時費用 <span class="error">*</span></label>
+                                <div class="col-lg-10 col-md-12 float-right pad-free ">
                                     <div class="row">
-                                        <div class="col-md-6" style="font-weight:bold;font-size:1.5em;">
+                                        <div class="col-md-6 nursing_cost" style="font-weight:bold;font-size:1.5em;margin-bottom:7px;">
                                             <input type="text"  class="form-control col-10 nursing-moving-in-f float-left white-bg-color m-r-10" v-model="nursing_info.moving_in_from"> 円
                                         </div>
 
-                                        <div class="col-md-6" style="font-weight:bold;font-size:1.5em;">
+                                        <div class="col-md-6" style="font-weight:bold;font-size:1.5em;margin-bottom:7px;">
                                             <input type="text"  class="form-control col-10 nursing-moving-in-t float-left white-bg-color m-r-10" v-model="nursing_info.moving_in_to"> 円
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="heading-lbl col-2 pad-free">月額費用 <span class="error">*</span></label>
-                                <div class="col-10 float-right pad-free">
+                                <label class="heading-lbl col-lg-2 col-md-3 pad-free">月額費用 <span class="error">*</span></label>
+                                <div class="col-lg-10 col-md-12 float-right pad-free">
                                     <div class="row">
-                                        <div class="col-md-6" style="font-weight:bold;font-size:1.5em;">
+                                        <div class="col-md-6" style="font-weight:bold;font-size:1.5em;margin-bottom:7px;">
                                             <input type="text"  class="form-control col-10 nursing-per-month-f float-left white-bg-color m-r-10" v-model="nursing_info.per_month_from"> 円
                                         </div>
 
-                                        <div class="col-md-6" style="font-weight:bold;font-size:1.5em;">
+                                        <div class="col-md-6" style="font-weight:bold;font-size:1.5em; margin-bottom:7px;">
                                             <input type="text"  class="form-control col-10 nursing-per-month-t float-left white-bg-color m-r-10" v-model="nursing_info.per_month_to"> 円
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="heading-lbl col-2 pad-free">支払い方法 <span class="error">*</span></label>
-                                <div class="col-10 float-right pad-free">
+                                <label class="heading-lbl col-lg-2 col-md-3 pad-free">支払い方法 <span class="error">*</span></label>
+                                <div class="col-lg-10 col-md-12 float-right pad-free">
                                     <input type="text"  class="form-control col-9 nursing-payment-method float-left white-bg-color" v-model="nursing_info.method">
                                     <div class="col-3 float-right">
-                                        <span class="btn all-btn main-bg-color" style="min-width: 0px;" @click="methodAdd()"><i class="fas fa-plus-circle"></i>追加</span>
+                                        <span class="nusing_btn1 btn all-btn main-bg-color" style="min-width: 0px;" @click="methodAdd()"><i class="fas fa-plus-circle"></i>追加</span>
                                     </div>
                                     <div class="col-md-12 pad-free m-t-50" id="gallery-payment">
                                         <!-- test -->
@@ -319,7 +319,7 @@
                     <tr>
                         <td style="border:none;">
                             <label class="heading-lbl col-2 pad-free">施設の概要</label>
-                            <span class="btn all-btn main-bg-color"  style="min-width: 0px;" @click="nurseFacToggleDiv()"><i class="fas fa-sort-down animate"  :class="{'rotate': isRotate1}"></i></span>
+                            <span class="btn all-btn main-bg-color nursing_toggle_responsive"  style="min-width: 0px;" @click="nurseFacToggleDiv()"><i class="fas fa-sort-down animate"  :class="{'rotate': isRotate1}"></i></span>
                             <!-- testtest -->
                             <div class="col-10 pad-free float-right nurse-fac-toggle-div toggle-div m-t-10">
                                     <table class="table table-striped table-bordered">
@@ -422,8 +422,8 @@
                     <tr>
                         <td style="border:none;">
                             <div class="form-group">
-                                <label class="heading-lbl col-2 pad-free">協力医療機関 <span class="error">*</span></label>
-                                <div class="col-10 pad-free float-right ">
+                                <label class="heading-lbl col-lg-2 col-md-3 pad-free">協力医療機関 <span class="error">*</span></label>
+                                <div class="nursing_btn col-lg-10 col-md-9 pad-free float-right ">
                                     <span class="btn all-btn main-bg-color" style="min-width: 0px;" @click="cooperateAdd()">
                                             <i class="fas fa-plus-circle"></i> 追加</span>
 
@@ -479,8 +479,8 @@
                     <tr>
                         <td>
                             <div class="form-group">
-                                <label class="heading-lbl col-2 pad-free">医療面の受入れ</label>
-                                <span class="btn all-btn main-bg-color" style="min-width: 0px;" @click="acceptanceList()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate2}"></i></span>
+                                <label class="heading-lbl col-lg-2 col-md-3 pad-free">医療面の受入れ</label>
+                                <span class="btn all-btn main-bg-color nursing_toggle_responsive" style="min-width: 0px;" @click="acceptanceList()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate2}"></i></span>
                                 <div class="col-md-10 float-right m-t-10 accept-toggle-div toggle-div pad-free">
                                     <label for="" class="m-r-15"><i class="fas fa-check green"></i> 受入れ可</label>
                                     <label for="" class="m-r-15"><i class="fas fa-times red"></i> 受入れ不可</label>
@@ -489,7 +489,7 @@
                                         <div class="col-md-6" v-for="medical in medical_acceptance" :key="medical.id">
                                             <div class="col-md-12 accept-box">
                                                 {{medical.name}} {{medical.id}}
-                                                <div class="float-right">
+                                                <div class="nursing_radiobtn">
                                                     <label ><input type="radio"  class="medical-acceptance custom-radio" :name="'medical'+medical.id" :checked="medical.accept_checked" v-bind:value="'accept-'+medical.id"> <i class="fas fa-check green"></i></label>
                                                     <label ><input type="radio" class="medical-acceptance custom-radio " :name="'medical'+medical.id" :checked="medical.unaccept_checked" v-bind:value="'unaccept-'+medical.id"> <i class="fas fa-times red"></i></label>
                                                     <label ><input type="radio" class="medical-acceptance custom-radio" :name="'medical'+medical.id" :checked="medical.negotiate_checked" v-bind:value="'negotiate-'+medical.id"> <i class="fas fa-adjust blue"></i></label>
@@ -516,7 +516,7 @@
                     <tr>
                         <td>
                             <label class="heading-lbl col-2 pad-free">職員体制</label>
-                            <span class="btn all-btn main-bg-color" style="min-width: 0px;" @click="staffToggleDiv()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate3}"></i></span>
+                            <span class="btn all-btn main-bg-color nursing_toggle_responsive " style="min-width: 0px;" @click="staffToggleDiv()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate3}"></i></span>
 
                             <div class="col-10 pad-free float-right staff-toggle-div toggle-div m-t-10">
                                 <table class="table table-striped table-bordered">
@@ -560,8 +560,8 @@
                     <tr>
                         <td>
                             <div class="form-group">
-                                <label  class="heading-lbl col-2 pad-free">こだわりの特長</label>
-                                <span class="btn all-btn main-bg-color" style="min-width: 0px;" @click="specialFeAdd()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate4}"></i></span>
+                                <label  class="heading-lbl col-lg-2 col-md-3 pad-free">こだわりの特長</label>
+                                <span class="btn all-btn main-bg-color nursing_toggle_responsive" style="min-width: 0px;" @click="specialFeAdd()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate4}"></i></span>
 
                                 <div class="col-md-10 float-right special-feature-toggle-div toggle-div m-t-10">
                                     <div class="row">
@@ -586,7 +586,7 @@
                     <tr>
                         <td>
                             <label class="heading-lbl col-2 pad-free">地図</label>
-                            <span class="btn all-btn main-bg-color" style="min-width: 0px;" @click="maptogglediv()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
+                            <span class="btn all-btn main-bg-color nursing_toggle_responsive" style="min-width: 0px;" @click="maptogglediv()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
                             <div class="col-md-10 float-right m-t-10 map-toggle-div toggle-div pad-free">
                                 <div class="col-md-12">
                                     <div class="col-md-12 pad-free" id="mapbox">

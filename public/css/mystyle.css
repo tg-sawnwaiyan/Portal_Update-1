@@ -232,6 +232,9 @@ label {
     margin-top: 25px;
     padding-left: 220px;
 }
+.nursing_radiobtn{
+    float: right !important;
+}
 /* End Nursing & Hospital Profile */
 .typelabel {
     /* background: #118063;
@@ -9136,20 +9139,26 @@ padding: 0;
 }
 
 @media only screen and (max-width:1024px) {
+
+    /* nursing profile */
     .heading-lbl{
         font-size: 1.05em;
     }
-    /* nursing profile */
     .heading-lbl1{
         font-size: 1.05em;
-        flex: 0 0 20%;
-        max-width: 20%;
+        flex: 0 0 27%;
+        max-width: 150px;
     }
     .news-post-btn {
         font-size: 13px;
     }
     .nursing_map{
         padding-left: 0px;
+    }
+    .nursing_radiobtn{
+        float: none !important;
+        flex: 0 0 100%;
+        max-width: 100%;
     }
 
     /* end nursing profile */
@@ -9774,6 +9783,7 @@ width: 18rem;
 }
 
 @media only screen and (max-width:768px) {
+
     .pc-768 {
         display: none;
     }
@@ -9805,6 +9815,21 @@ width: 18rem;
 display: none;
 } */
     /* end pagination */
+     /* nursing profile */
+     .heading-lbl{
+        font-size: 1.05em;
+        flex: 0 0 16%;
+        max-width: 125px;
+    }
+    .heading-lbl1{
+        font-size: 1.05em;
+        flex: 0 0 20%;
+        max-width: 150px;
+    }
+    .nursing_btn{
+        margin-top: 0px;
+    }
+      /* end nursing profile */
     .sp-768 {
         display: block;
     }
@@ -10624,6 +10649,34 @@ background-image: none;
         display: inline-block;
         width: auto;
     }
+     /* nursing profile */
+    .d-flex{
+        flex-wrap: wrap !important;
+     }
+     .heading-lbl{
+        font-size: 1.05em;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .heading-lbl1{
+        font-size: 1.05em;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .nursing_btn {
+        margin-top:0px;
+    }
+    .nusing_btn1{
+        background-color: #0cc72c !important;
+        width: 68px;
+    }
+    .nursing_toggle_responsive{
+        margin-top: -45px;
+        margin-left: 127px;
+    }
+      /* end nursing profile */
+
+
 }
 
 @media only screen and (max-width: 380px) {
@@ -10710,6 +10763,10 @@ background-image: none;
     }
     .news_catsearch label {
         width: 55%;
+    }
+    .nursing_toggle_responsive{
+        /* margin-top: -45px; */
+        margin-left: 115px;
     }
 }
 
