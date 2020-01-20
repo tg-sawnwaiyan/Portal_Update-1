@@ -10,7 +10,7 @@
 
             <div class="thumbnail-img pc-414" style="padding:0px;border:none;">
                 <div class="card-carousel" style="background:#fff;">
-                <div class="card-img">                   
+                <div class="card-img">
                     <Pannellum :src="'/upload/nursing_profile/Imagepanorama/' + currentPanoImage" class="pannellum" :auto-load="true" :show-zoom="true" :show-fullscreen="true" :auto-rotate="isAutoRotationOn" :orientation="isOrientationOn" :compass="true" :hfov= "120" :draggable="true"></Pannellum>
                 </div>
                 <div class="col-12" id="pano-slider-page">
@@ -52,19 +52,19 @@
                     </div>
             </div>
             </div>
-            <!--responsive pano-->  
+            <!--responsive pano-->
             <!-- <div class="sp-414 res-pano"  v-if="panoimages.length > 0">
                 <slick :options="slickOptions" ref="slickSetting1">
-                    <div><h2><img :src="'/upload/nursing_profile/Imagepanorama/' + currentPanoImage" class="img-fluid" @error="imgUrlAlt"/></h2></div>				
+                    <div><h2><img :src="'/upload/nursing_profile/Imagepanorama/' + currentPanoImage" class="img-fluid" @error="imgUrlAlt"/></h2></div>
                 </slick>
                 <slick :options="slickOptions2" ref="slickSetting2" id="res-pano">
                         <div v-for="(image,index) in  panoimages" :key="image.id" :class="[(activePanoImage == index) ? 'active' : '']" @click="activatePanoImage(index)">
-                        <h3>                                   
+                        <h3>
                             <span>
-                                <img  :src ="'/upload/nursing_profile/Imagepanorama/' + image.photo" @error="imgUrlAlt" class="img-fluid">  
-                            </span>                    
+                                <img  :src ="'/upload/nursing_profile/Imagepanorama/' + image.photo" @error="imgUrlAlt" class="img-fluid">
+                            </span>
                         </h3>
-                    </div>                
+                    </div>
                 </slick>
                 <div class="see-pano">
                     <span @click='isPano = !isPano'>
@@ -78,36 +78,36 @@
                         </li>
                     </span>
                     <transition name="slide">
-                        <div class="sp_panonav" id="sp_panonav" v-if="isPano">   
+                        <div class="sp_panonav" id="sp_panonav" v-if="isPano">
                             <div>
                                 <span @click='isPano = !isPano'>
                                     <li class="first-submenu backwrapper">
                                         <i class="fa fa-arrow-left" aria-hidden="true"></i> 戻る
                                     </li>
                                 </span>
-                                
+
                                 <slick :options="slickOptions" ref="slickSetting1">
                                     <div>
                                         <h2>
-                                           
+
                                             <Pannellum :src="'/upload/nursing_profile/Imagepanorama/' + currentPanoImage" class="pannellum" :auto-load="true" :show-zoom="true" :show-fullscreen="true" :auto-rotate="isAutoRotationOn" :orientation="isOrientationOn" :compass="true" :hfov= "120" :draggable="true"></Pannellum>
                                         </h2>
-                                    </div>				
+                                    </div>
                                 </slick>
                                 <slick :options="slickOptions2" ref="slickSetting2" id="res-pano">
                                         <div v-for="(image,index) in  panoimages" :key="image.id" :class="[(activePanoImage == index) ? 'active' : '']" @click="activatePanoImage(index)">
-                                        <h3>                                   
+                                        <h3>
                                             <span>
-                                                <img  :src ="'/upload/nursing_profile/Imagepanorama/' + image.photo" @error="imgUrlAlt" class="img-fluid">  
-                                            </span>                    
+                                                <img  :src ="'/upload/nursing_profile/Imagepanorama/' + image.photo" @error="imgUrlAlt" class="img-fluid">
+                                            </span>
                                         </h3>
-                                    </div>                
+                                    </div>
                                 </slick>
-                               
+
                             </div>
                         </div>
                     </transition>
-                   
+
                 </div>
             </div> -->
             <!--end responsive pano-->
@@ -144,7 +144,7 @@
             </button>
 
             <button v-scroll-to="{ el: '#element6' }" class="top-fixed-btn" @click="activate(6)" :class="{ active : active_el == 6 }">
-                ロコミ
+                口コミ
             </button>
             </div>
         </div>
@@ -187,22 +187,22 @@
                         <!--responsive with gallery and panorama -->
                         <div class="sp-414 res-pano m-b-10"  v-if="images.length > 0">
                             <slick :options="slickOptions" ref="slickSetting1">
-                                <div><h2><img :src="'/upload/nursing_profile/' +currentImage" alt="" @error="imgUrlAlt" class="img-fluid"></h2></div>				
+                                <div><h2><img :src="'/upload/nursing_profile/' +currentImage" alt="" @error="imgUrlAlt" class="img-fluid"></h2></div>
                             </slick>
                             <slick>
-                                <p><strong>  {{activeImageTitle}} </strong></p>     
+                                <p><strong>  {{activeImageTitle}} </strong></p>
                             </slick>
                             <slick>
-                                <p>{{activeImageDescription}}</p> 
+                                <p>{{activeImageDescription}}</p>
                             </slick>
-                            <slick :options="slickOptions2" ref="slickSetting2" id="res-pano">                                                                     
+                            <slick :options="slickOptions2" ref="slickSetting2" id="res-pano">
                                     <div v-for="(image,index) in  images" :key="image.id" :class="[(activeImage == index) ? 'active' : '']" @click="activateImage(index)">
-                                    <h3>                                   
-                                        <span>                                                                                   
+                                    <h3>
+                                        <span>
                                             <img  :src ="'/upload/nursing_profile/' + image.photo" @error="imgUrlAlt" class="img-fluid">
-                                        </span>                    
+                                        </span>
                                     </h3>
-                                </div>                
+                                </div>
                             </slick>
                             <div class="see-pano" v-if="panoimages.length > 0">
                                 <span @click='isPano = !isPano'>
@@ -216,7 +216,7 @@
                                     </li>
                                 </span>
                                 <transition name="slide">
-                                    <div class="sp_panonav" id="sp_panonav" v-if="isPano">   
+                                    <div class="sp_panonav" id="sp_panonav" v-if="isPano">
                                         <div>
                                             <span @click='isPano = !isPano'>
                                                 <li class="first-submenu backwrapper">
@@ -230,22 +230,22 @@
                                                         <!-- <img :src="'/upload/nursing_profile/Imagepanorama/' + currentPanoImage" class="img-fluid" @error="imgUrlAlt"/> -->
                                                         <Pannellum :src="'/upload/nursing_profile/Imagepanorama/' + currentPanoImage" class="pannellum" :auto-load="true" :show-zoom="true" :show-fullscreen="true" :auto-rotate="isAutoRotationOn" :orientation="isOrientationOn" :compass="true" :hfov= "120" :draggable="true"></Pannellum>
                                                     </h2>
-                                                </div>				
+                                                </div>
                                             </slick>
                                             <slick :options="slickOptions2" ref="slickSetting2" id="res-pano">
                                                     <div v-for="(image,index) in  panoimages" :key="image.id" :class="[(activePanoImage == index) ? 'active' : '']" @click="activatePanoImage(index)">
-                                                    <h3>                                   
+                                                    <h3>
                                                         <span>
-                                                            <img  :src ="'/upload/nursing_profile/Imagepanorama/' + image.photo" @error="imgUrlAlt" class="img-fluid">  
-                                                        </span>                    
+                                                            <img  :src ="'/upload/nursing_profile/Imagepanorama/' + image.photo" @error="imgUrlAlt" class="img-fluid">
+                                                        </span>
                                                     </h3>
-                                                </div>                
+                                                </div>
                                             </slick>
                                             <!--end pano show res-->
                                         </div>
                                     </div>
                                 </transition>
-                            
+
                             </div>
                         </div>
                         <!--end responsive with gallery and panorama -->
@@ -412,7 +412,7 @@
                         </table>
 
                     </div>
-                    
+
                     <div v-if="method_payment.length > 0" class="col-md-12 pc-414">
                         <div class="cost_tb">
                             <div class="row" >
@@ -837,8 +837,8 @@
                         <div class="row m-0" v-if="videos == ''">
                             <div class="col-12"> <p class="no-data-color">表示されるデータがありません。</p> </div>
                         </div>
-                        <div class="row m-0 col-12" v-else>
-                            <div v-for="(video) in  videos" :key="video.id" class="col-sm-4 col-md-4 col-lg-3">
+                        <div class="row col-12" v-else>
+                            <div v-for="(video) in  videos" :key="video.id" class="col-sm-4 col-md-4 col-lg-3 overflow-hidden">
                                 <iframe :src="'https://www.youtube.com/embed/'+video.photo" controls></iframe>
                                 <span style="color:orange;font-weight:bold;">{{video.title}}</span><br>
                             </div>
@@ -1009,7 +1009,7 @@
                         <span>口コミを追加する</span>
                         </router-link>
                     </div>
-                  
+
                     <!-- <div class="comment-btn-wrapper">
                         <p><span class="nocomment-phone" >お電話でのご相談 </span></p>
                         <p class="red  no-comment-title"><i class="fas fa-phone-alt phone-color"></i><a class="font-weight-bold" href="tel:0120591165">0120-59-1165</a><span class="fz12">（受付時間 平日 9：30-20：00）</span></p>
@@ -1022,7 +1022,7 @@
                     </div> -->
                </div>
                <div v-else class="col-md-12">
-                   
+
                    <p class="no-data-color pb-3 no-data-size">口コミはありません。</p>
                    <div class="m-b-20 text-center">
                         <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
@@ -1041,7 +1041,7 @@
                     </div> -->
                 </div>
                 <!-- </div> -->
-               <div class="offset-md-4 col-md-8 mt-3" v-if="pagination">
+               <div class="col-12" v-if="pagination">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination">
                                     <li class="page-item">
@@ -1302,7 +1302,7 @@
                                         </th>
                                         <td v-if="subject">
                                             <label >
-                                                {{subject}} 
+                                                {{subject}}
                                             </label>
                                             <!-- <font>{{cust.subject}}</font> -->
                                         </td>
@@ -1389,7 +1389,7 @@
                                             <td v-for="(amval,index) in am_arr[0]" :key="index" class="text-center">
                                                 <span v-if="amval"> {{amval}} </span>
                                                 <span v-else> - </span>
-                                            </td> 
+                                            </td>
                                     </tr>
                                     <tr class="last" v-else>
                                         <th class="second-row text-center">午前</th>
@@ -1464,7 +1464,7 @@
                         <span style="color:orange;font-weight:bold;">{{image.title}}</span><br>
 
                         <!-- <span>{{image.photo}}</span> -->
-                    </div> 
+                    </div>
                     <lightbox id="mylightbox" ref="lightbox" :images="light_images" :directory="thumbnailDir+'hospital_profile/'" :timeoutDuration="5000" />
                 </div>
             </div>
@@ -1562,8 +1562,8 @@
                     </div> -->
                </div>
                 <div v-else class="col-md-12">
-                   
-                   <p class="no-data-color pb-3 no-data-size">                       
+
+                   <p class="no-data-color pb-3 no-data-size">
                        口コミはありません。</p>
                     <div class="m-b-20 text-center">
                         <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
@@ -1582,9 +1582,9 @@
                     </div> -->
                 </div>
             <!-- </div> -->
-                
-               
-              
+
+
+
                <div class="offset-md-4 col-md-8 mt-3" v-if="pagination">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination">
@@ -1713,8 +1713,8 @@ export default {
                     height: 0
                 },
                 show : false,
-                isPano: false, 
-                show_arr: []            
+                isPano: false,
+                show_arr: []
             };
         },
 
@@ -1732,7 +1732,7 @@ export default {
                 //end   
                 window.addEventListener('resize', this.handleResize);
                 this.handleResize();
-                console.log(this.window.width); 
+                console.log(this.window.width);
                 if(this.window.width >= 320 && this.window.width < 450) {
                     this.windowSize = 1;                
                 } 
@@ -1755,7 +1755,7 @@ export default {
                 
                 }
                 else if (this.window.width >= 1440 && this.window.width < 1880) {
-                    this.windowSize = 9;              
+                    this.windowSize = 9;
                     // console.log(this.paginationFactor);/
                 }
                 // else if( this.window.width > 1700) {
@@ -2111,34 +2111,34 @@ export default {
             isSelected(page) {
                 return page - 1 == this.currentPage;
             },
-            slickOptions() {               
-                return {         
+            slickOptions() {
+                return {
                 slidesToShow: 1,
                 slidesToScroll: 1,
                 arrows: true,
                 fade: false,
-                adaptiveHeight: true,   
+                adaptiveHeight: true,
                 }
             },
             slickOptions2() {
-                return {                   
+                return {
                 slidesToShow: 7,
                 slidesToScroll: 1,
-                dots: false, 
-                focusOnSelect: true,             
+                dots: false,
+                focusOnSelect: true,
                 responsive: [{
                     breakpoint: 411,
                         settings: {
                             slidesToShow: 8.5,
                             slidesToScroll: 1,
-                             focusOnSelect: true,   
+                             focusOnSelect: true,
                         }
                     }, {
                     breakpoint: 360,
                         settings: {
                             slidesToShow: 8,
                             slidesToScroll: 1,
-                            focusOnSelect: true,   
+                            focusOnSelect: true,
                         }
                     }]
                 }
@@ -2272,7 +2272,7 @@ export default {
         $('#changeLink'+id).show('medium');
     },
     costConfirmMini(id){
-        $('#changeLinkMini'+id).toggle('medium');        
+        $('#changeLinkMini'+id).toggle('medium');
     },
     documentPost() {
         localStorage.removeItem("item");
@@ -2321,7 +2321,7 @@ export default {
   }
 
  }
- 
+
 
 </script>
 
@@ -2330,7 +2330,7 @@ export default {
 	border: 2px solid #d2571c;
 }
 h2{
-    background: #f0f0f0;    
+    background: #f0f0f0;
     padding: 0px;
 }
 h3 {
@@ -2358,7 +2358,7 @@ h3 {
     #pano-slider-page .card-carousel {
     display: flex;
     justify-content: left;
-    width: 1033px !important;   
+    width: 1033px !important;
     /* width: 1336px; */
     overflow: hidden;
 }
@@ -2928,9 +2928,9 @@ h3 {
     }
     .nav-content
     {
-       margin-right: 16px; 
+       margin-right: 16px;
     }
-    
+
 }
 
 
@@ -2947,14 +2947,14 @@ h3 {
     }
     .nav-content
     {
-       margin-right: -35px; 
+       margin-right: -35px;
     }
- 
-   
+
+
 }
 
 @media only screen and (max-width: 768px) and (min-width: 451px) {
-  #pano-slider-page .card-carousel {       
+  #pano-slider-page .card-carousel {
         width: 415px!important;
     }
      /* .thumbnails-pano
@@ -2966,16 +2966,16 @@ h3 {
     }
     .nav-content
     {
-       margin-right: 48px; 
+       margin-right: 48px;
     } */
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 /* @media only screen and (max-width: 1023px) and (min-width: 769px) {
-  #pano-slider-page .card-carousel {        
+  #pano-slider-page .card-carousel {
         width: 415px!important;
     }
-    
+
 } */
 
 @media only screen and (max-width: 992px) and (min-width: 769px) {
@@ -2991,7 +2991,7 @@ h3 {
     }
     .nav-content
     {
-       margin-right: 30px; 
+       margin-right: 30px;
     }
 }
 /* Large devices (laptops/desktops, 992px and up) */
@@ -3008,9 +3008,9 @@ h3 {
     }
     .nav-content
     {
-       margin-right: -8px; 
+       margin-right: -8px;
     } */
-    
+
 }
 @media only screen and (max-width: 1200px) and (min-width: 1025px) {
   #pano-slider-page .card-carousel {
@@ -3026,7 +3026,7 @@ h3 {
     }
      .nav-content
     {
-       margin-right: -31px; 
+       margin-right: -31px;
     } */
 }
 
@@ -3044,7 +3044,7 @@ h3 {
     }
     .nav-content
     {
-       margin-right: 41px; 
+       margin-right: 41px;
     } */
 }
 @media only screen and (max-width: 1880px) and (min-width: 1440px) {
@@ -3058,7 +3058,7 @@ h3 {
     #pano-slider-page{
         margin-left: 15px;
     }
-   
+
 }
 
 
@@ -3068,5 +3068,5 @@ h3 {
 }
 @media only screen and (max-width: 767px) {
 }
- 
+
 </style>

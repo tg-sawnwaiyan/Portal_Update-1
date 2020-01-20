@@ -2,7 +2,7 @@
     <div>
         <!-- <adsSlider></adsSlider> -->
         <!--menu tabs-->
-        <ul class="nav nav-tabs news-tabColor navtab tab-menu-responsive" id="navtab">
+        <ul class="nav nav-tabs news-tabColor navtab tab-menu-responsive" id="navtab" v-if="othersDetails">
             <li role="presentation" class="subtab1 nav-item">
                 <router-link  :to="{ name: 'News' }"  class="nav-link"><i class="fas fa-newspaper"></i> ニュース</router-link>
             </li>
@@ -28,6 +28,24 @@
     </div>
     <!-- {{ l_storage_hos_history }} -->
 </template>
+
+<script>
+export default {
+    data(){
+        return {
+            othersDetails: true,
+        }
+    },
+    created() {
+        if(this.$route.path.includes("/newsdetails") && this.$auth.check(2) && this.visit == 'false'){
+            this.othersDetails = false;
+        }
+        else{
+            this.othersDetails = true;
+        }
+    }
+}
+</script>
 
 <style>
     .hospital-tabColor .nav-link {

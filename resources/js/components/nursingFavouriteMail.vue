@@ -92,7 +92,7 @@
                             <div class="col-md-3 col-sm-12 form-left"><label>ご住所:</label></div>
                             <div class="col-md-9 col-sm-12 form-right">
                                 <div class="form-group row pl-3">
-                                    <div class="col-md-12 "><label> 郵便番号</label></div>
+                                    <div class="col-md-12 "><label> 郵便番号 </label></div>
                                     <div class="col-md-12 p-0">
                                         <input type="text" v-model="comments.postal" name="postal" class="postal form-control float-left" id="postal" v-on:keyup="getPostal" placeholder="郵便番号を入力してください。" maxlength="7"/>
                                         <div id="jsErrorMessage" class="float-left eg-txt"></div>
@@ -619,7 +619,8 @@ import DatePicker from 'vue2-datepicker';
                 var code = 0;
                 $.each(each_val, function (key, value) {
                     code = value.charCodeAt();
-                    if (!(code > 12352 && code < 12447)) {
+                    // if (!(code > 12352 && code < 12447)) {
+                    if (!(code > 12448 && code < 12543)) {
                         //$('.char-err').text('ひらがなで入力してください!');
                         _this.btn_disable = true;
                         _this.charErr = true;
