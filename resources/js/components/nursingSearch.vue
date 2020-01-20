@@ -1712,18 +1712,20 @@
                }
                else if(this.ci == false && (this.townshipID[0] == 0 || this.townshipID[0] == "-1" || this.townshipID.length == 0)){             
                         this.axios.get("/api/cityJson/"+theCity).then(respon => {
-                            var city_coordinates = respon.data
-                            this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
-                            this.boundariesGoogleMap(lat,lng,this.coordinate);            
+                            console.log(respon.data)
+                            // var city_coordinates = respon.data
+                            // this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
+                            // this.coordinate = city_coordinates;
+                            this.boundariesGoogleMap(lat,lng,respon.data);            
                         }); 
         
                 }  
                 else{
            
                     this.axios.get('/api/townshipJson/'+township_name).then(res => {
-                        var city_coordinates = res.data
-                        this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
-                         this.boundariesGoogleMap(lat,lng,this.coordinate);       
+                        // var city_coordinates = res.data
+                        // this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
+                         this.boundariesGoogleMap(lat,lng,res.data);       
                     })
                 }
             },
@@ -1731,6 +1733,7 @@
             boundariesGoogleMap(lat,lng,coor){        
                 
                 var data = coor.reduce((acc, val) => acc.concat(val), []);    
+                // var data = coor;    
                 for (let i = 0; i < data.length; i++) {
                     this.map.data.addGeoJson(data[i]); 
                 }

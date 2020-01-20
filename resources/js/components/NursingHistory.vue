@@ -436,10 +436,11 @@ export default {
       this.axios
         .post("/api/nursing_history/" + local_storage)
         .then(response => {
+            console.log(response.data)
             if(response.data.length>0) {
                 this.nur_profiles = response.data;
                 if(response.data.length<this.his_nus) {
-                    this.his_nus = response.data.length;
+                    this.nusHis = response.data.length;
                     $('.msg').html('<span>Some Nursing Accounts are Deactivated!</span>');
                 }
             } else {
@@ -459,6 +460,7 @@ export default {
                     confirmButtonClass: "all-btn",
                     cancelButtonClass: "all-btn"
                 }).then(response => {
+                    this.nusHis = null;
                     this.$router.push({
                         name: 'nursingSearch',
                     });

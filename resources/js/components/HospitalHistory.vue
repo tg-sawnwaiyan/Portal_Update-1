@@ -303,26 +303,19 @@
                     //     this.$router.push({name:'home', params: {page:'subtab2'}});
                     // },
                     getAllCustomer: function(local_storage) {
-                        // this.axios
-                        //     .post("/api/hospital_history/" + local_storage)
-                        //     .then(response => {
-                        //         console.log(response);
-                        //         this.hos_profiles = response.data;
-                        //     });
                         this.axios
                             .post("/api/hospital_history/" + local_storage)
                             .then(response => {
-                                if(response.data.length>0) {
-                                    this.nur_profiles = response.data;
-                                    if(response.data.length<this.his_hos) {
-                                        this.his_hos = response.data.length;
-                                        $('.msg').html('<span>Some Nursing Accounts are Deactivated!</span>');
-                                    }
-                                } else {
+                                console.log(response.data)
+                                if(response.data.length<this.his_hos && response.data.length > 0) {
+                                    this.hos_profiles = response.data;
+                                    this.hosHis = response.data.length;
+                                    $('.msg').html('<span>Some Hospital Accounts are Deactivated!</span>');
+                                } else if(response.data.length == 0){
                                     this.his_hos = 0;
                                     this.$swal({
                                         title: "確認",
-                                        text: "Sorry!Nursing Accounts are already deactived.",
+                                        text: "Sorry!Hospital Accounts are already deactived.",
                                         type: "warning",
                                         width: 350,
                                         height: 200,
@@ -335,8 +328,9 @@
                                         confirmButtonClass: "all-btn",
                                         cancelButtonClass: "all-btn"
                                     }).then(response => {
+                                        this.hosHis = null;
                                         this.$router.push({
-                                            name: 'nursingSearch',
+                                            name: 'hospital_search',
                                         });
                                     });
                                 }

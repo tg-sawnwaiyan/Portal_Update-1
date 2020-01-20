@@ -42,6 +42,9 @@
             <form class="col-md-12 pad-free" id="fav-hospital-page">
                 <div class="col-12"  id="fav-history-page">
                     <div class="row justify-content-lg-center">
+                        <div>
+                            <label> {{message}} </label>
+                        </div>
                         <div class="card-carousel-wrapper">
 
                             <div class="nav-box"  @click="moveCarousel(-1)" :disabled="atHeadOfList">
@@ -236,7 +239,8 @@
                     window:{
                         width:0,
                         height:0
-                    }
+                    },
+                    message:''
                 };
             },
             computed: {
@@ -381,12 +385,56 @@
                       
                     },
                     getAllFavourite: function(local_storage) {
+                       
                         this.axios
                             .post('/api/favHospital/' + local_storage)
                             .then(response => {
-                                console.log(response.data);
+                               
                                 this.fav_hospital = response.data;
+                              
+                            
+                                if(this.fav_hospital.length < this.fav_hos && this.fav_hospital.length > 0)
+                                {
+                                  var hos_id = '';
+                                  this.message = "Some of your listed-hospital sites are deactivated !"
+                                   for(var i= 0;i<this.fav_hospital.length;i++)
+                                     {
+                                         if(i== this.fav_hospital.length-1)
+                                         {
+                                            hos_id += this.fav_hospital[i]['id'];
+                                         }
+                                         else{
+                                            hos_id += this.fav_hospital[i]['id'] + ",";
+                                         }
+                                       
+                                     }
+                                     localStorage.setItem('hospital_fav',hos_id);
+                                     this.hosFav = this.fav_hospital.length;
+                                }
+                                if(this.fav_hospital.length == 0)
+                                {
+                                    this.$swal({
+                                    position: 'top-end',
+                                    type: 'info',
+                                    // title: '作成されました',
+                                    text: 'Your listed-hospital sites are deactivated ! Go Back.',
+                                    showConfirmButton: true,
+                                    width: 250,
+                                    height: 200,
+                                    }).then(response => {
+                                         localStorage.setItem('hospital_fav','');
+                                         this.hosFav = 0;
+                                          $('.fav-hospital-link-box>a').css({'cursor':'not-allowed','pointer-events':'none'});
+                                          $( '.fav-hospital-link-box>a').parent('div').css({'cursor':'not-allowed'});
+                                         this.$router.push({name: 'hospital_search'});   
+
+                                    });
+                                }
+
+                               
                             });
+                           
+                            
                     },
                      imgUrlAlt(event) {
                 event.target.src = "images/noimage.jpg"
