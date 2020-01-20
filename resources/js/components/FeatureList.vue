@@ -32,7 +32,7 @@
                         <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデタが消える。</div>
                         <div v-else class="container-fuid scroll_responsive">
                             <table class="table table-hover custom-table">
-                                <thead style="background-color:rgb(183, 218, 210);">
+                                <thead>
                                     <tr>
                                         <th>特徴名</th>
                                         <th>略語</th>

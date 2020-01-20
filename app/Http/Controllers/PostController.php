@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Category;
 use App\PostView;
 use Illuminate\Http\Request;
 use DB;
@@ -26,7 +27,8 @@ class PostController extends Controller
     {
 
        $news_list = Post::orderBy('id','DESC')->get()->toArray();
-       return response()->json($news_list);
+       $category_list = Category::select('id','name')->get()->toArray();
+       return response()->json(Array("news"=>$news_list,"category"=>$category_list));
 
     }
     // add news
