@@ -274,8 +274,9 @@
               </label>
             </div>
             <div class="col-md-9 col-sm-12 form-right">
-              <span v-if="jobApply.gender == '女性'" class="pl-4">女性</span>
               <span v-if="jobApply.gender == '男性'" class="pl-4">男性</span>
+              <span v-if="jobApply.gender == '女性'" class="pl-4">女性</span>
+              <span v-if="jobApply.gender == '夫婦'" class="pl-4">夫婦</span>
             </div>
           </div>
           <div class="form-group m-0 row bd">

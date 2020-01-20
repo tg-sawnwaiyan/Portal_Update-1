@@ -1763,7 +1763,6 @@ export default {
                             
                                 $(".fixed-nav").css({"position": "fixed","top":"100px"});
                                 var cur_pos = $(this).scrollTop();
-                                console.log("cur",cur_pos)
 
                                 $('.ele').each(function(active_el){
                                     if($(this).position().top <= (cur_pos+71)){

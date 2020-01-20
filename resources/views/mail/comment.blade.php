@@ -12,7 +12,7 @@
                     <p style="text-align: left;margin: 0px;">
                     ***********************************************************************************************************************************</p>                    
                     <p style="text-align:left;margin:2px;color:#3e4348;font-size: 12px;">
-                    事業所番号：{{$getComment[0]->cusid}} 
+                    事業所番号：{{$getComment[0]->cusnum}} 
                     <br>
                     事業所名：{{$getComment[0]->cusname}}
                     <br>

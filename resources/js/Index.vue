@@ -204,6 +204,14 @@
       adsslider
     }, 
     created() {
+        $(document).scroll(function() {
+            var cur_pos = $(this).scrollTop();
+            if (cur_pos >= 100) {
+                $('#headerbar li').css('display','block');
+            } else {
+                $('#headerbar li').css('display','inline-block');
+            }
+        });
         console.log("created")
         document.addEventListener('scroll', this.handleScroll);
 
