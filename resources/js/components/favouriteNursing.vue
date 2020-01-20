@@ -232,7 +232,11 @@
                 <!--result-->
                 <div class="col-12">
                     <div class="clearfix">
+                        <div>
+                            <label><strong> {{message}} </strong></label>
+                        </div>
                         <div class="float-right pc-480">
+                            
                             <label class="btn my-2 my-sm-0 all-btn secondary-bg-color btn-secondary control controlinner--checkbox" style="width:300px;">
                                 <input type="checkbox" @change="checkAll()" class="check-all-btn" v-model="checkallbtn" id="main-check-all"/>
                                 <span class="checkmark"></span>すべての資料請求にチェックを入れる
@@ -461,7 +465,8 @@
                     window:{
                         width: 0,
                         height: 0
-                    }
+                    },
+                    message:''
                 };
             },
             computed: {
@@ -629,9 +634,12 @@
                         this.axios
                             .post('/api/nursing_fav/' + local_storage)
                             .then(response => {
-                                console.log("fav_nursing");
-                                console.log(response.data);
                                 this.fav_nursing = response.data;
+                            
+                                if(this.fav_nursing.length < this.fav_nus )
+                                {
+                                     this.message = "Other History delete ! ";
+                                }
                                 for (var i = 0; i < this.fav_nursing.length; i++) {
                                     var j = this.fav_nursing[i].id;
                                     if (this.document_status[j] == true) {
