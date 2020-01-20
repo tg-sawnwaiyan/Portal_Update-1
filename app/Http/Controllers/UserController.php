@@ -249,5 +249,35 @@ class UserController extends Controller
         $customer->save();
       
     }
+    public function getAdminList(Request $request) {
+        $admin_list = User::where('role',2)->get();
+        return $admin_list;
+    }
+    public function deleteAdmin($id) {
+        $admin_list = User::find($id)->delete();
+        $admin_list = User::where('role',2)->get()->toArray();
+        return array_reverse($admin_list);
+    }
+    public function storeAdmin(Request $request) {
+        $this->validate($request, [
+            'email' => 'unique:users',
+            'password' => 'min:6'
+        ]);
+        $input = $request->all();
+        $input['password'] = Hash::make($input['password']);
+
+        $admin = new User();
+        $admin->name = $input['name'];
+        $admin->email = $input['email'];
+        $admin->password = Hash::make($request->input('password'));
+        $admin->role = 2;
+        $admin->type_id = 1;
+        $admin->save();
+        return response()->json('The Admin successfully added');
+    }
+    public function editAdmin($id) {
+        $admin = User::find($id);
+        return response()->json($admin);
+    }
 
 }

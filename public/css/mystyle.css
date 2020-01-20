@@ -744,6 +744,27 @@ body::-webkit-scrollbar-thumb {
     transform: translateY(-50%);
 }
 
+.admin_card {
+    /* height: 400px; */
+    /* width: 350px; */
+    /* margin-top: auto; */
+    /* margin-bottom: auto; */
+    /* background: #d2571c; */
+    background: #fbfbfb;
+    /* position: relative; */
+    /* display: flex; */
+    /* justify-content: center; */
+    /* flex-direction: column; */
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+    font-size: 14px;
+    margin-top: 37vh;
+    transform: translateY(-50%);
+}
+
 .brand_logo_container {
     position: absolute;
     height: 170px;
@@ -861,6 +882,11 @@ body::-webkit-scrollbar-thumb {
 
 .user_registercard {
     width: 700px;
+    height: auto;
+}
+
+.admin_registercard {
+    width: 930px;
     height: auto;
 }
 
