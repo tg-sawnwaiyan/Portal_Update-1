@@ -1039,79 +1039,8 @@
 
 
 
-    <div v-if="type == 'hospital'" id="hospitalView">
-       <!--panorama-->
-            <h5 class="profile-tit"> {{customer_name}}</h5>
-            <div class="col-12 detail_profile_left pad-free"  v-if="currentPanoImage">
-                    <div class="thumbnail-img" style="padding:0px;border:none;">
-                        <div class="card-carousel">
-                        <div class="card-img">
-                            <!-- <div id="panorama"></div>           -->
-
-                            <Pannellum  :src="'/upload/hospital_profile/Imagepanorama/' + currentPanoImage"
-                                class="pannellum"
-                                :auto-load="true"
-                                :show-zoom="true"
-                                :show-fullscreen="true"
-                                :auto-rotate="isAutoRotationOn"
-                                :orientation="isOrientationOn"
-                                :compass="true"
-                                :hfov= "120"
-
-                                ></Pannellum>
-
-                        </div>
-                            <div class="col-12" id="pano-slider-page">
-                <div class="card-carousel-wrapper">
-
-                        <div class="nav-box" @click="moveCarousel(-1)" :disabled="atHeadOfList">
-                            <div class="nav-content mr-2">
-                                <div class="card-carousel--nav__left"></div>
-                            </div>
-                        </div>
-                        <div class="card-carousel">
-                            <div class="card-carousel--overflow-container">
-                                <div class="card-carousel-cards" :style="{ transform: 'translateX' + '(' + panocurrentOffset + 'px' + ')'}">
-                                    <div class="card-carousel--card">
-                                        <!-- <div class="card-carousel--card--footer"> -->
-
-                                        <div class="thumbnails-pano" id="test">
-                                            <div v-for="(image,index) in  panoimages" :key="image.id" :class="['thumbnail-image-panorama', (activePanoImage == index) ? 'active' : '']" @click="activatePanoImage(index)" >
-                                                <img  :src ="'/upload/nursing_profile/Imagepanorama/' + image" @error="imgUrlAlt">
-                                            </div>
-                                        </div>
-                                    <!-- </div> -->
-                                </div>
-                            </div>
-                        </div>
-
-                        </div>
-
-                        <div class="nav-box"  @click="moveCarousel(1)" :disabled="atEndOfList">
-                            <div class="nav-content ml-2">
-                                <div class="card-carousel--nav__right"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                        <!-- <div  class="thumbnails">
-                                <div
-
-                                    v-for="(image,index) in  panoimages"
-
-                                    :key="image.id"
-
-                                    :class="['thumbnail-image', (activePanoImage == index) ? 'active' : '']"
-
-                                    @click="activatePanoImage(index)" >
-                                    <img  :src ="'upload/nursing_profile/Imagepanorama/' + image.photo">
-                                </div>
-                        </div> -->
-                    </div>
-                </div>
-            </div>
-            <!--end panorama-->
+    <div v-if="type == 'hospital'" id="hospitalView">      
+            <h5 class="profile-tit"> {{customer_name}}</h5>           
            <div class="tab typelabel nav-link fixed-nav" v-bind:style="{width:width}">
                 <!-- <div class="row col-12 m-t-10">
                      <h5 style="color:#000" class="h_4 header font15rem font-weight-bold">ひだまりこころクリニック　サンシャインサカエ院</h5>
@@ -1131,97 +1060,85 @@
                 <!-- <button v-scroll-to="{ el: '#element4' }" class="top-fixed-btn" @click="activate(4)" :class="{ active : active_el == 4 }">
                     求人応募
                 </button> -->
-
             </div>
 
             <div class="row ele m-lr-0 pt-2" id="element1">
-
                 <!-- ee-->
                  <div class="row col-12 list-wrap m-lr-0 white-bg-color" v-for="cust in customer" :key="cust.id">
                     <!--for slideimage-->
-                    <div class="col-md-5 col-slg-12 col-sm-12 detail_profile_left">
-
-                           <div class="thumbnail-img">
-
+                    <div class="col-md-5 col-slg-12 col-sm-12 detail_profile_left pad-free-750">
+                            <div class="col-12 pad-free sp-1024">
+                                <h5 class="profile_header">病院情報</h5>
+                            </div>
+                           <div class="thumbnail-img pc-414">
                              <div class="card-carousel">
-
                                 <div class="card-img photocard-carousel-wrapper">
-
                                     <img :src="'/upload/hospital_profile/' +currentImage" alt="" @error="imgUrlAlt">
-
                                     <div class="actions">
-
                                         <span @click="prevImage" class="prev">
-
                                             <i class="fas fa-chevron-left"></i>
-
                                         </span>
 
                                         <span @click="nextImage" class="next">
-
                                             <i class="fas fa-chevron-right"></i>
-
                                         </span>
-
                                     </div>
-
                                 </div>
 
                                 <div class="row col-12 photocard-title">
-
                                     <h5><strong class="img_2">  {{activeImageTitle}} </strong></h5>
-
                                     <div class="row col-12 m-b-10">
-
                                          <p class="text-left">{{activeImageDescription}}</p>
-
                                     </div>
-
                                 </div>
 
                                 <div class="thumbnails">
-
                                     <div
-
                                         v-for="(image,index) in  images"
-
                                         :key="image.id"
-
                                         :class="['thumbnail-image', (activeImage == index) ? 'active' : '']"
-
                                         @click="activateImage(index)" >
-
                                         <img  :src ="'/upload/hospital_profile/' + image.photo" @error="imgUrlAlt">
-
                                     </div>
-
                                 </div>
-
                             </div>
+                        </div> 
+                        <!--responsive with gallery-->
+                        <div class="sp-414 res-pano m-b-10"  v-if="images.length > 0">
+                            <slick :options="slickOptions" ref="slickSetting1">
+                                <div><h2><img :src="'/upload/hospital_profile/' +currentImage" alt="" @error="imgUrlAlt" class="img-fluid"></h2></div>
+                            </slick>
+                            <slick>
+                                <p><strong>  {{activeImageTitle}} </strong></p>
+                            </slick>
+                            <slick>
+                                <p>{{activeImageDescription}}</p>
+                            </slick>
+                            <slick :options="slickOptions2" ref="slickSetting2" id="res-pano">
+                                    <div v-for="(image,index) in  images" :key="image.id" :class="[(activeImage == index) ? 'active' : '']" @click="activateImage(index)">
+                                    <h3>
+                                        <span>
+                                            <img  :src ="'/upload/hospital_profile/' + image.photo" @error="imgUrlAlt" class="img-fluid">
+                                        </span>
+                                    </h3>
+                                </div>
+                            </slick>
+                            
                         </div>
-
-
-                        <!-- <div  v-for="image in  images"  :key="image.id">
-
-                        </div> -->
-
+                        <!--end responsive with gallery -->
                     </div>
-
-                    <!--end for slide image-->
+                    <!--end for slide image-->                   
 
                     <!--for address-->
-
-
-                     <div class="col-md-7 col-sm-12 detail_profile_right col-slg-12">
-
+                     <div class="col-md-7 col-sm-12 detail_profile_right col-slg-12 pad-free-750">
                         <div class="row m-lr-0">
                             <div class="col-12 pro-heading pad-free">
-                                <div class="col-12 pad-free">
+                                <div class="col-12 pad-free pc-1024">
                                     <h5 class="profile_header">病院情報 </h5>
                                 </div>
-                                <table class="table table-bordered">
+                                <table class="table table-bordered info_tbl">
                                     <tr>
-                                        <th width="250" class="custom-bg-color">
+                                        <th class="custom-bg-color">
                                             <font>住所</font>
                                         </th>
                                         <td v-if="cust.address">
@@ -1230,7 +1147,7 @@
                                         <td v-else> - </td>
                                     </tr>
                                     <tr>
-                                        <th width="250" class="custom-bg-color">
+                                        <th class="custom-bg-color">
                                             <font>電話番号</font>
                                         </th>
                                         <td v-if="cust.phone">
@@ -1239,32 +1156,16 @@
                                         <td v-else> - </td>
                                     </tr>
                                      <tr>
-                                        <th width="250" class="custom-bg-color">
+                                        <th class="custom-bg-color">
                                             <font>アクセス</font>
                                         </th>
                                         <td v-if="cust.access">
                                             <p v-html="cust.access"></p>
                                         </td>
                                         <td v-else> - </td>
-                                    </tr>
-                                     <!-- <tr>
-                                        <th width="250" class="custom-bg-color">
-                                            <font>駅 </font>
-                                        </th>
-                                        <td>
-                                            <font>Nearest Station</font>
-                                        </td>
-                                    </tr> -->
-                                     <!-- <tr>
-                                        <th width="250" class="custom-bg-color">
-                                            <font>費用 </font>
-                                        </th>
-                                        <td>
-                                            <font>Cost</font>
-                                        </td>
-                                    </tr> -->
+                                    </tr>                                    
                                      <tr>
-                                        <th width="250" class="custom-bg-color">
+                                        <th class="custom-bg-color">
                                             <font>件名 </font>
                                         </th>
                                         <td v-if="subject">
@@ -1291,13 +1192,9 @@
                          <h5 class="header m-t-10">こだわりの特長</h5>
 
                         <div class="row m-lr-0" v-if="specialfeature">
-
                             <ul class="hos_fac_container" v-for="special in specialfeature" :key="special.id">
-
                                 <li>{{special.short_name}}</li>
-
                             </ul>
-
                         </div>
                         <div class="row m-lr-0" v-else> <p class="no-data-color">表示されるデータがありません。</p> </div>
 
@@ -1314,44 +1211,32 @@
                 </div>
             <!--end ee-->
 
-                <div class="col-12 m-b-20">
+                <div class="col-12 m-b-20 pad-free-750">
                     <h5 class="profile_subtit">医院からのお知らせ </h5>
 
                     <p v-for="hospital in hospitals" :key="hospital.id" class="col-12">
                         <span v-if="hospital.details_info">{{ hospital.details_info }}</span>
                         <span v-else><p class="no-data-color">表示されるデータがありません。</p></span>
-
                     </p>
                 </div>
-                <div class="col-12 m-b-20">
+                <div class="col-12 m-b-20 pad-free-750">
                     <h5 class="profile_subtit">診療時間 </h5>
                     <div class="row m-0">
-                        <div class="col-9">
-                            <table class="table table-bordered">
+                        <div class="col-md-9 col-sm-12 pad-free-750">
+                            <table class="table table-bordered timeTable">
                                 <tbody>
-
                                     <tr class="first-row">
-
                                         <th> 日付 </th>
-
                                         <th> 月 </th>
-
                                         <th> 火 </th>
-
                                         <th> 水 </th>
-
                                         <th> 木 </th>
-
                                         <th> 金 </th>
-
                                         <th> 土 </th>
-
                                         <th> 日 </th>
-
                                     </tr>
 
                                     <tr class="last" v-if="am_arr[0]">
-
                                         <th class="second-row text-center">午前</th>
                                             <td v-for="(amval,index) in am_arr[0]" :key="index" class="text-center">
                                                 <span v-if="amval"> {{amval}} </span>
@@ -1379,7 +1264,7 @@
                             </table>
                         </div>
 
-                        <div class="col-3">
+                        <div class="col-md-3 col-sm-12 pad-free-750">
 
                             <div v-for="hospital in hospitals" :key="hospital.id">
 
@@ -1401,7 +1286,7 @@
 
                 </div>
 
-                <div class="col-12">
+                <div class="col-12 pad-free-750">
                     <h5 class="profile_subtit">施設情報 </h5>
                     <div class="row col-md-12 m-0">
                         <div class="col-md-2 fac-name-box" v-for="hosfacility in hosfacilities " :key="hosfacility.id">
@@ -1423,10 +1308,10 @@
 
             </div>
 
-            <div class="col-md-12">
+            <div class="col-md-12 pad-free-750">
                 <h5 class="profile_subtit">フォトアルバム</h5>
                 <div class="row m-0 gallery-list">
-                    <div v-for="(image,index) in  light_images" :key="index" class="col-sm-12 col-md-4 col-lg-3 m-b-10 gallery-item">
+                    <div v-for="(image,index) in  light_images" :key="index" class="col-md-4 col-lg-3 m-b-10 gallery-item">
                         <img  :src ="'/upload/hospital_profile/' + image.name"  class="img-fluid" @click="showLightbox(image.name)" @error="imgUrlAlt" >
                         <span style="color:orange;font-weight:bold;">{{image.title}}</span><br>
 
@@ -1437,7 +1322,7 @@
             </div>
 
             <!-- Hospital Video -->
-                <div class="col-md-12">
+                <div class="col-md-12 pad-free-750">
                     <h5 class="profile_subtit">動画</h5>
                     <div class="row m-0" v-if="videos.length>0">
                         <div v-for="(video) in  videos" :key="video.id" class="col-sm-4 col-md-4 col-lg-3">
@@ -1457,7 +1342,7 @@
 
                  <h5 class="profile_header col-md-12"> 地図 </h5>
 
-                <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="col-lg-12 col-md-12 col-sm-12 pad-free-750">
 
                     <GmapMap id="googlemap" ref="map" :center="center" :zoom="10" >
 
@@ -1466,7 +1351,7 @@
                     </GmapMap>
 
                 </div>
-                <div  class="col-12 m-t-20" v-for="m in google" :key="m.id" >
+                <div  class="col-12 m-t-20 pad-free-750" v-for="m in google" :key="m.id" >
                              <table border="1" class="table table-bordered map_tbl" >
                                     <tbody>
                                     <tr>
@@ -1496,7 +1381,7 @@
             </div>
             <div class="row ele m-lr-0" id="element3">
                 <h5 class="profile_header col-12 m-t-20">口コミ</h5>
-                   <div class="col-lg-12 col-md-12 col-sm-12"  v-if="displayItems.length>0">
+                   <div class="col-lg-12 col-md-12 col-sm-12 pad-free-750"  v-if="displayItems.length>0">
                     <div class="card mb-4" v-for="comment in displayItems" :key="comment.id">
                         <div class="card-body">
                             <div class="comment-title">

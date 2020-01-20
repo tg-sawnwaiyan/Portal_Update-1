@@ -33,20 +33,15 @@
                 </a>
                 </span>
                 <br>
-                <div style="font-size: 12px;color: #807c7c;line-height: 1.5;max-width: 385px;text-align: left;">
+                <p style="font-size: 12px;color: #807c7c;line-height: 1.5;max-width: 385px;text-align: left;">
                 ※再設定しない場合は、不要このメッセージを無視してください。<br> 
                 ※パスワードは、上記から変更操作をしない限り変更されません。<br> 
                 ※再設定用URLは24時間有効です。
-                </div>
-                <br>
-            
-            <footer>
-                <p style="padding: 10px 0 50px 0;border-top: 1px solid #ccc;text-align: left;">
+                </p>       
+                <p style="border-top: 1px solid #ccc;text-align: left;">
                     〒163-0713<br> 東京都新宿区西新宿2-7-1小田急第一生命ビル13階
                     <br> TEL：03-6911-???? <br> FAX：03-6911-????
-                </p>
-
-            </footer>
+                </p>                    
         </div>
     </div>
 </body>

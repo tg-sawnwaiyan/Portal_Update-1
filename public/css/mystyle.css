@@ -3658,6 +3658,14 @@ screen and (min-width: 750px) {
         background: #fff9cb;
         color: #000;
     }
+    #hospitalView .top-fixed-btn.active:hover {
+        background: #cbf3ff;
+        color: #000;
+    }
+    #hospitalView .top-fixed-btn:hover {
+        background: #cbf3ff;
+        color: #000;
+    }    
     .spanclass {
         letter-spacing: normal;
         /* width: 50%; */
@@ -6526,12 +6534,6 @@ color: green;
     background: #85c7ff;
     border: 1px solid #5c95c5;
 }
-
-#hospitalView .top-fixed-btn:hover {
-    background: #cbf3ff;
-    color: #000;
-}
-
 #nursingView .top-fixed-btn {
     background: #fbaa84;
     border: 1px solid #ff9563;
@@ -6551,11 +6553,6 @@ color: green;
 #hospitalView .top-fixed-btn.active {
     background: #2981cc;
     border: 1px solid #5f97d0;
-}
-
-#hospitalView .top-fixed-btn.active:hover {
-    background: #cbf3ff;
-    color: #000;
 }
 
 #nursingView .top-fixed-btn.active {
@@ -10082,6 +10079,18 @@ display: none;
     .d-block{
         display:  block !important;
     }
+    .profile-tit{
+        padding: 0px;
+        margin: 0px;
+    }
+    table.timeTable th, table.timeTable td{
+        vertical-align: middle !important;
+        width: 50px !important;
+        padding: 5px !important;
+    }
+    .public-nurheader{
+        margin-bottom: 10px;
+    }
     .dropdown {
         display: inline-block;
         width: 100%;
@@ -10671,7 +10680,7 @@ background-image: none;
     /*End create news */
     /* Profile Publish */
     .gallery-list .gallery-item {
-        padding: 3px;
+        /* padding: 3px; */
         margin-bottom: 25px;
         font-size: 12px;
     }
