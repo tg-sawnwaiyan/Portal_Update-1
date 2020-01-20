@@ -303,12 +303,44 @@
                     //     this.$router.push({name:'home', params: {page:'subtab2'}});
                     // },
                     getAllCustomer: function(local_storage) {
+                        // this.axios
+                        //     .post("/api/hospital_history/" + local_storage)
+                        //     .then(response => {
+                        //         console.log(response);
+                        //         this.hos_profiles = response.data;
+                        //     });
                         this.axios
                             .post("/api/hospital_history/" + local_storage)
                             .then(response => {
-                                console.log(response);
-                                this.hos_profiles = response.data;
-                            });
+                                if(response.data.length>0) {
+                                    this.nur_profiles = response.data;
+                                    if(response.data.length<this.his_hos) {
+                                        this.his_hos = response.data.length;
+                                        $('.msg').html('<span>Some Nursing Accounts are Deactivated!</span>');
+                                    }
+                                } else {
+                                    this.his_hos = 0;
+                                    this.$swal({
+                                        title: "確認",
+                                        text: "Sorry!Nursing Accounts are already deactived.",
+                                        type: "warning",
+                                        width: 350,
+                                        height: 200,
+                                        showCancelButton: true,
+                                        confirmButtonColor: "#dc3545",
+                                        cancelButtonColor: "#b1abab",
+                                        cancelButtonTextColor: "#000",
+                                        confirmButtonText: "削除",
+                                        cancelButtonText: "キャンセル",
+                                        confirmButtonClass: "all-btn",
+                                        cancelButtonClass: "all-btn"
+                                    }).then(response => {
+                                        this.$router.push({
+                                            name: 'nursingSearch',
+                                        });
+                                    });
+                                }
+                        });
                     },
                     deleteLocalSto: function(id) {
 
