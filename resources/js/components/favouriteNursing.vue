@@ -482,7 +482,8 @@
             },
 
             created() {
-               
+             
+            
                 //for cardcarousel responsive
                 window.addEventListener('resize', this.handleResize)
                 this.handleResize(); 
@@ -632,23 +633,40 @@
                         }
                     },
                     getAllFavourite: function(local_storage) {
+                       
                         this.axios
                             .post('/api/nursing_fav/' + local_storage)
                             .then(response => {
                                 this.fav_nursing = response.data;
-                            
-                                if(this.fav_nursing.length < this.fav_nus )
-                                {
-                                     this.message = "Other History delete ! ";
-                                    //    localStorage.setItem('nursing_fav',null);
+                              
+                                if(this.fav_nursing.length < this.fav_nus && this.fav_nursing.length > 0)
+                                {      
+                                     var nus_id = '';
+                                     this.message = "Some of your listed-nursing sites are deactivated !";
+                                     for(var i= 0;i<this.fav_nursing.length;i++)
+                                     {
+                                         if(i== this.fav_nursing.length-1)
+                                         {
+                                             nus_id += this.fav_nursing[i]['id'];
+                                         }
+                                         else{
+                                            nus_id += this.fav_nursing[i]['id'] + ",";
+                                         }
+                                       
+                                     }      
+                                
+                                     localStorage.setItem('nursing_fav',nus_id);
+                                     this.nusFav = this.fav_nursing.length;
+                                  
                                 }
                                 if(this.fav_nursing.length == 0)
-                                {
+                                { 
+                                  
                                     this.$swal({   
                                     position: 'top-end',
-                                    type: 'success',
+                                    type: 'info',
                                     // title: '作成されました',
-                                    title: 'There is no history !',
+                                    text: 'Your listed-nursing sites are deactivated ! Go Back.',
                                     showConfirmButton: true,
                                     width: 250,
                                     height: 200,

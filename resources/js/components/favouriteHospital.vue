@@ -43,7 +43,7 @@
                 <div class="col-12"  id="fav-history-page">
                     <div class="row justify-content-lg-center">
                         <div>
-                            <label> asasdf{{message}} </label>
+                            <label> {{message}} </label>
                         </div>
                         <div class="card-carousel-wrapper">
 
@@ -391,18 +391,33 @@
                             .then(response => {
                                
                                 this.fav_hospital = response.data;
+                              
                             
-                                if(this.fav_hospital.length < this.fav_hos)
+                                if(this.fav_hospital.length < this.fav_hos && this.fav_hospital.length > 0)
                                 {
-                                  this.message = "Other History Delete !"
+                                  var hos_id = '';
+                                  this.message = "Some of your listed-hospital sites are deactivated !"
+                                   for(var i= 0;i<this.fav_hospital.length;i++)
+                                     {
+                                         if(i== this.fav_hospital.length-1)
+                                         {
+                                            hos_id += this.fav_hospital[i]['id'];
+                                         }
+                                         else{
+                                            hos_id += this.fav_hospital[i]['id'] + ",";
+                                         }
+                                       
+                                     }
+                                     localStorage.setItem('hospital_fav',hos_id);
+                                     this.hosFav = this.fav_hospital.length;
                                 }
                                 if(this.fav_hospital.length == 0)
                                 {
                                     this.$swal({
                                     position: 'top-end',
-                                    type: 'success',
+                                    type: 'info',
                                     // title: '作成されました',
-                                    title: 'There is no history !',
+                                    text: 'Your listed-hospital sites are deactivated ! Go Back.',
                                     showConfirmButton: true,
                                     width: 250,
                                     height: 200,
@@ -411,7 +426,7 @@
                                          this.hosFav = 0;
                                           $('.fav-hospital-link-box>a').css({'cursor':'not-allowed','pointer-events':'none'});
                                           $( '.fav-hospital-link-box>a').parent('div').css({'cursor':'not-allowed'});
-                                         this.$router.push({name: 'hospitalSearch'});   
+                                         this.$router.push({name: 'hospital_search'});   
 
                                     });
                                 }
