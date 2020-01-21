@@ -108,7 +108,7 @@
             <div class="col-md-3 col-sm-12 form-left"><strong>ご住所:</strong></div>
             <div class="col-md-9 col-sm-12 form-right">
                 <div class="form-group row pl-3">
-                    <div class="col-md-12 "><label> 郵便番号</label></div>
+                    <div class="col-md-12 "><label> 郵便番号 </label> </div>
                     <div class="col-md-12 p-0">
                         <input type="text" class="form-control box float-left" id="postal" placeholder="郵便番号を入力してください。" v-model="jobApply.postal" maxlength="7" v-on:keyup="getPostal" />
                         <span id="jsErrorMessage" class="float-left eg-txt"></span>
@@ -712,7 +712,8 @@ export default {
         $.each(each_val, function (key, value) {
             code = value.charCodeAt();
             console.log(code)
-            if (!(code > 12352 && code < 12447)) {
+            // if (!(code > 12352 && code < 12447)) {
+            if (!(code > 12448 && code < 12543)) {
                 _this.charErr = true;
                 _this.btn_disable = true;
             } 

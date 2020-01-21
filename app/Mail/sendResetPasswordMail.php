@@ -32,6 +32,6 @@ class sendResetPasswordMail extends Mailable
     public function build()
     {
         return $this->view('mail.resetMail')
-                    ->subject("[T-IS ティーズ] Reset Password Mail");
+                    ->subject("[T-IS ティーズ] パスワード再設定用のＵＲＬのお知らせ");
     }
 }

@@ -1,14 +1,9 @@
 <template>
-  <div id="content" class="row">
-    <div class="col-md-12">
-      <div class="card text-dark">
+    <div class="card text-dark">
         <div class="card-body">
-          <div class="row">
-            <div class="col-md-12">
-              <h4 class="page-header header">カテゴリー編集</h4>
-            </div>
-
-            <form @submit.prevent="updateCategory" class="col-md-12">
+            <h4 class="page-header header">カテゴリー編集</h4>
+            <br>
+            <form @submit.prevent="updateCategory">
               <div class="form-group">
                 <label>
                   カテゴリー名:
@@ -25,11 +20,8 @@
                 <!-- <a href="categorylist" class="btn btn-warning">Cancel</a> -->
               </div>
             </form>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </template>
 
 <script>

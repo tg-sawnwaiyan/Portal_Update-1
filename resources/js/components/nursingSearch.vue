@@ -309,21 +309,21 @@
                                 </div> -->
 
                             </div>
-                            <section id="map-responsive">                              
-                                <div class="freeword-responsive"> 
+                            <section id="map-responsive">
+                                <div class="freeword-responsive">
                                     <h3 class="map-resicon">
                                     <div class="map-text-wrapper">
                                         <div>
                                         <!-- <img src="/images/map-responsive1.png" alt="" class="img-responsive"> -->
                                         <i class="fa icon map-fa-icon"></i>
-                                        </div>             
+                                        </div>
                                         <div>
-                                        <p class="text-left"> &nbsp;あなたらしい暮らしができる。そん<br class="pc-768"/>な老人ホームが見つかります。</p>    
+                                        <p class="text-left"> &nbsp;あなたらしい暮らしができる。そん<br class="pc-768"/>な老人ホームが見つかります。</p>
                                         </div>
                                     </div>
                                     </h3>
-                                    
-                                    
+
+
                                 <!--search input-->
                                     <div class="search">
                                         <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、施設名などを入力">
@@ -333,7 +333,7 @@
                                     </div>
                                 <!--end search input-->
                                 </div>
-                                <bulma-accordion 
+                                <bulma-accordion
                                 :icon="'custom'"
                                 >
                                             <!--Start hokkaido-box and  tohoku-box -->
@@ -356,7 +356,7 @@
                                                     </a>
                                                     <a data-info="Miyagi" @click="getStateClick" >
                                                         <li id="4" v-scroll-to="'#scroll-responsive'" @click="selected = 4" :class="{resHighlight:selected == 4}">宮城 <i class="fas fa-angle-double-right arrow_icon"></i></li>
-                                                    </a>                                
+                                                    </a>
                                                     <a data-info="Yamagata" @click="getStateClick" >
                                                         <li id="6" v-scroll-to="'#scroll-responsive'" @click="selected = 6" :class="{resHighlight:selected == 6}"> 山形 <i class="fas fa-angle-double-right arrow_icon"></i></li>
                                                     </a>
@@ -419,10 +419,10 @@
                                                     </a>
                                                     <a data-info="Fukui" @click="getStateClick">
                                                         <li id="18" v-scroll-to="'#scroll-responsive'" @click="selected = 18" :class="{resHighlight:selected == 18}"> 福井 <i class="fas fa-angle-double-right arrow_icon"></i></li>
-                                                    </a>                               
+                                                    </a>
                                                 </p>
                                             </bulma-accordion-item>
-                                        <!-- End hokuriku-box-->                    
+                                        <!-- End hokuriku-box-->
                                             <!--Start tokai-box -->
                                             <bulma-accordion-item>
                                                 <p slot="title" class="title is-4 has-text-weight-normal">東海</p>
@@ -540,7 +540,7 @@
                                                 </p>
                                             </bulma-accordion-item>
                                             <!--End kyushu-box and   okinawa-box-->
-                                        </bulma-accordion>                   
+                                        </bulma-accordion>
                             </section>
                             <!-- search city , township  -->
                             <div id="scroll-responsive">
@@ -553,11 +553,11 @@
 
                                         <div class="card-body">
                                             <select id="selectCity" class="form-control custom-select" @change="nursingSearchData(1);" style="background-color: #fff;" v-model="id">
-                                            <option value="-1" disabled>▼市区町村</option>
+                                            <option value="-1" >▼市区町村</option>
                                             <option  :value="city.id" v-for="city in cities" :key="city.id">{{city.city_name}}</option>
                                             </select>
                                             <select id="selectTownship" class="form-control mt-1 custom-select" style="background-color: #fff;" @change="nursingSearchData(2);" v-model="township_id">
-                                            <option value="-1" disabled>▼市区町村</option>
+                                            <option value="-1" >▼市区町村</option>
                                             <option  :value="selectTownship.id"  v-for="selectTownship in getTownships" :key="selectTownship.id">{{selectTownship.township_name}}</option>
                                             </select>
                                         </div>
@@ -569,7 +569,7 @@
                                         <div class="card-body">
                                             <div class="">
                                             <select name="" id="" class="form-control custom-select" style="background-color: #fff;" @change="nursingSearchData" v-model="moving_in">
-                                                <option data-price-type="" value="-1" disabled>▼入居一時金</option>
+                                                <option data-price-type="" value="-1" >▼入居一時金</option>
                                                 <!-- <option data-price-type="" value="0">一時金なし</option> -->
                                                 <option data-price-type="" value="500000">50万円以下</option>
                                                 <option data-price-type="" value="1000000">100万円以下</option>
@@ -587,11 +587,11 @@
                                                 <option data-price-type="more" value="30000000">3,000万円以上</option>
                                             </select>
                                             <select name="" id="" class="form-control  mt-1 custom-select" style="background-color: #fff;" @change="nursingSearchData" v-model="per_month">
-                                                <option data-price-type="" value="-1" disabled>▼月額利用料</option>
+                                                <option data-price-type="" value="-1" >▼月額利用料</option>
                                                 <option data-price-type="" value="100000">10万円以下</option>
                                                 <option data-price-type="" value="120000">12万円以下</option>
                                                 <option data-price-type="" value="140000">14万円以下</option>
-                                                <option data-price-type="" value="160000">16万円以下</option>     
+                                                <option data-price-type="" value="160000">16万円以下</option>
                                                 <option data-price-type="" value="180000">18万円以下</option>
                                                 <option data-price-type="" value="200000">20万円以下</option>
                                                 <option data-price-type="" value="220000">22万円以下</option>
@@ -779,12 +779,12 @@
                                                     <div class="dropdown">
                                                         <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
                                                         市から探す
-                                                        </button> 
+                                                        </button>
                                                         <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768" @click.stop="stopTheEvent">
                                                             <li>
                                                             <a data-value="option">
                                                             <div class="row">
-                                                                <div class="col-lg-2 col-md-4 col-sm-4" v-for="township in getTownships" :key="township.id">                                          
+                                                                <div class="col-lg-2 col-md-4 col-sm-4" v-for="township in getTownships" :key="township.id">
                                                                 <label class="form-check-label control control--checkbox">
                                                                     <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @click="check" >
                                                                     {{township.township_name}}
@@ -797,7 +797,7 @@
                                                         </ul>
                                                         <a v-if="w_width >= 768">
                                                             <div class="row">
-                                                                <div class="col-lg-2 col-md-4 col-sm-4" v-for="township in getTownships" :key="township.id">                                          
+                                                                <div class="col-lg-2 col-md-4 col-sm-4" v-for="township in getTownships" :key="township.id">
                                                                 <label class="form-check-label control control--checkbox">
                                                                     <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @click="check" >
                                                                     {{township.township_name}}
@@ -807,18 +807,18 @@
                                                             </div>
                                                         </a>
                                                     </div>
-                                                    <!--end 市から探す-->                                                                                                       
+                                                    <!--end 市から探す-->
                                                     </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="pc-414-table sp-768-block" v-if="showOne" style="padding:10px;">入居時の条件</th>                                                    
+                                                    <th class="pc-414-table sp-768-block" v-if="showOne" style="padding:10px;">入居時の条件</th>
                                                     <td class="sp-768-block sp-414-table" v-if="showOne">
                                                         <!--入居時の条件から探す-->
                                                         <div class="dropdown">
                                                             <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
                                                             入居時の条件から探す
-                                                            </button> 
+                                                            </button>
                                                             <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768" @click.stop="stopTheEvent">
                                                             <li>
                                                             <a data-value="option">
@@ -874,7 +874,7 @@
                                                                 </div>
                                                             </a>
                                                         </div>
-                                                        <!--end 入居時の条件から探す -->                                                        
+                                                        <!--end 入居時の条件から探す -->
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -884,7 +884,7 @@
                                                         <div class="dropdown">
                                                             <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
                                                             特長から探す
-                                                            </button> 
+                                                            </button>
                                                             <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768" @click.stop="stopTheEvent">
                                                             <li>
                                                             <a data-value="option">
@@ -915,18 +915,18 @@
                                                             </a>
                                                         </div>
                                                     <!-- end 特長 から探す-->
-                                                    
+
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th class="pc-414-table sp-768-block" v-if="showOne">施設の種類</th>
                                                     <td class="sp-768-block sp-414-table" v-if="showOne">
-                                                    
+
                                                     <!--施設の種類から探す-->
                                                     <div class="dropdown">
                                                     <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
                                                         施設の種類から探す
-                                                    </button> 
+                                                    </button>
                                                     <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768" @click.stop="stopTheEvent">
                                                         <li>
                                                         <a data-value="option">
@@ -964,7 +964,7 @@
                                                         <div class="dropdown">
                                                             <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
                                                             医療面・診療科目から探す
-                                                            </button> 
+                                                            </button>
                                                             <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768" @click.stop="stopTheEvent">
                                                             <li>
                                                             <a data-value="option">
@@ -992,7 +992,7 @@
                                                                 </div>
                                                             </a>
                                                         </div>
-                                                        <!--end 医療面・診療科目から探す -->    
+                                                        <!--end 医療面・診療科目から探す -->
                                                     </td>
                                                 </tr>
                                                 <tr class="text-center">
@@ -1033,16 +1033,16 @@
                                                     <h5 class="nur-tit">
                                                         <router-link :to="{name: 'profile', params: {cusid:nus.cus_id, type: 'nursing'}}" class="pseudolink" style="font-weight:bold;">{{nus.name}}</router-link>
                                                     </h5>
-                                                    
-                                                    <div class="d-flex sp-414" id="sp-414-block">                                                        
-                                                        <span v-for="(fac,index) in fac_types" :key="index+'-'+fac.description+'-'+nus.id">                                                    
+
+                                                    <div class="d-flex sp-414" id="sp-414-block">
+                                                        <span v-for="(fac,index) in fac_types" :key="index+'-'+fac.description+'-'+nus.id">
                                                             <span v-if="fac.id == nus.fac_type" class="fac_list">
                                                                 {{fac.description}}
                                                             </span>
                                                         </span>
                                                         <span class="nur_date"><span style="font-weight:bold;color:green;">開設年月日 :</span> {{nus.date_of_establishment}}</span>
                                                     </div>
-                                                        
+
                                                     </div>
 
                                                     <div class="col-lg-3 col-sm-12 text-right pc-768">
@@ -1050,7 +1050,7 @@
                                                     <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == 'check'" :class="'done_pro_id'+nus.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',nus.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                                                     </div>
                                                 </div>
-                                            </div>         
+                                            </div>
 
                                             <p class="m-b-10"><span class="job_ico"><i class="fa fa-map-signs"></i></span>{{nus.city_name}} <i class="fas fa-angle-double-right" style="color:#b9b5b5;"></i> {{nus.township_name}} </p>
                                             <div class="col-12 pad-free m-b-10 clearfix">
@@ -1111,13 +1111,13 @@
                                                         </tr> -->
                                                     </table>
                                                     <h5 class="header m-t-10">こだわりの特長</h5>
-                                                 
+
                                                     <span v-for="(spe,index) in specialfeature" :key="index+'-'+spe.name+'-'+nus.id">
                                                     <span v-if="spe.customer_id == nus.customer_id" class="feature_list">
                                                         {{spe.name}}
                                                     </span>
-                                                    </span>                                                     
-                                                </div>                                                
+                                                    </span>
+                                                </div>
                                             </div>
                                             <!--responsive add-fav and phone-->
                                                 <div class="row m-t-10" id="job_detail">
@@ -1125,20 +1125,20 @@
                                                         <p class="sp_hos_phone sp-768" v-if="nus.phone"><span class="circle-phone" ><i class="fa fa-phone-alt"></i></span><span class="phone-no"><a :href="`tel:${nus.phone}`">{{nus.phone}}</a></span></p>
                                                     </div>
                                                     <div class="col-md-6 col-sm-12 m-t-10">
-                                                        <p class="sp-768">                                           
+                                                        <p class="sp-768">
                                                             <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == ''" :class="'view_pro_id'+nus.nursing_id" style="display:block;" @click="favAddFun('add',nus.nursing_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                                                             <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == 'check'" :class="'done_pro_id'+nus.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',nus.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                                                         </p>
                                                     </div>
-                                                </div> 
-                                                <!--end responsive add-fav and phone-->                                              
+                                                </div>
+                                                <!--end responsive add-fav and phone-->
                                                 <div class="detail-btn text-center sp-768">
                                                     <router-link :to="{name: 'profile', params: {cusid:nus.cus_id, type: 'nursing'}}" class="btn all-btn" style="font-weight:bold;">詳細を見る</router-link>
                                                 </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="offset-md-4 col-md-8 mt-3" v-if="show_paginate">
+                                <div class="col-12" v-if="show_paginate">
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination">
                                         <li class="page-item">/
@@ -1267,7 +1267,7 @@
             }
             else if(this.window.width >= 450 && this.window.width < 768) {
                 this.windowSize = 1;
-                    this.paginationFactor=277; 
+                    this.paginationFactor=277;
             }
             else if(this.window.width >= 768 && this.window.width < 992) {
                 this.windowSize = 1;
@@ -1281,7 +1281,7 @@
             }
             else if (this.window.width >= 1024 && this.window.width < 1200) {
                 this.windowSize = 3;
-                this.paginationFactor=412;   
+                this.paginationFactor=412;
             }
                 else if (this.window.width >= 1200 && this.window.width < 1280) {
                 this.windowSize = 2;
@@ -1413,19 +1413,19 @@
 
                 },
                 })
-                .then((response) => {     
+                .then((response) => {
                         $("#mymap").css({'display' : 'block','height' : '440px','width':'100%'});
                         $("#filtertable").css("display", "block");
                         $("#nursing-search").css("display", "block");
-                      
+
                          if(response.data.nursing.length != 0){
                             this.norecord_msg = false;
                             this.changeMap(response);
                         }else{
                             $("#mymap").css({'display' : 'none'});
                             this.norecord_msg = true;
-                        }                   
-                  
+                        }
+
                     // document.getElementById('search-free-word').value = '';
                 });
 
@@ -1477,7 +1477,13 @@
                 this.currentOffset += this.paginationFactor;
                 }
             },
-            // map onclick function
+          
+
+
+//  google map  function start========================================
+
+
+
             getStateClick(e,lat,lng) {
                 $('.select').removeClass('select');
                 $('#searchMap').addClass('select');
@@ -1506,6 +1512,7 @@
                     this.locast = localStorage.getItem("nursing_fav");
                 }
                 // this.$loading(true);
+                
                 this.axios.get('/api/getmap',{
                     params:{
                     id: this.id,
@@ -1518,20 +1525,86 @@
                 })
                     .then((response) => {
                     //   this.$loading(false);
-                    this.loading = false;
-                    $("#mymap").css({'display' : 'block','height' : '440px','width':'100%'});
+                    $("#mymap").css({'display' : 'block','height' : '500px','width':'100%'});
                     // $("#mymap").css('display', 'block');
                     $("#nursing-search").css("display", "block");
                     $("#filtertable").css("display", "block");
                     
-                    this.changeMap(response)
+                    this.changeMap(response,2)
                     })
 
                 //  this.changeSearch();
             },
+
             // map onclick function
-            // map change dropdown function
-            nursingSearchData(index){
+
+            // make infowindow, marker , google map
+            changeMap(response,freewordornot){
+                $('.select').removeClass('select');
+                $('#searchMap').addClass('select');
+                $('#showSearchMap').removeClass('select');
+                $('#filter').removeClass('select');
+                this.cities = response.data.city
+                this.getCity = response.data.getCity
+                this.getTownships = response.data.getTownships
+                this.specialfeature = response.data.specialfeature;
+                this.special_features = response.data.special_features
+                this.fac_types = response.data.fac_types
+                this.medical_acceptance = response.data.medical_acceptance
+                this.nus_data = response.data.nursing
+                this.markers = response.data.nursing;
+                if(this.nus_data.length != 0){
+                    this.norecord_msg = false;
+                }else{
+                    this.norecord_msg = true;
+                }
+                if(this.nus_data.length > this.size) {
+                  this.show_paginate = true;
+                }else{
+                  this.show_paginate = false;  
+                }
+
+                    var mmarker = new Array();
+                    var item = [];
+                    for (var i = 0; i < this.markers.length; i++) {
+                        mmarker.push([this.markers[i]['alphabet'], this.markers[i]['lat'], this.markers[i]['lng']])
+                        item.push(this.markers[i])
+                    }
+
+                if(this.getCity.length > 0)
+                {
+                      var theCity = response.data.getCity[0]['city_eng']
+                      var lat = response.data.getCity[0]['latitude']
+                      var lng = response.data.getCity[0]['longitude']
+                }
+                else{
+                    var lat = 38.2682;
+                    var lng = 140.8694;
+                }
+                if(this.map == null){
+            
+                        this.createMap(theCity,lat,lng)
+                        if(freewordornot == 1)
+                        {
+                            this.infoWindow(item, mmarker,response);
+                        }
+                        else{
+                            this.coordinates(theCity,lat,lng);
+                            this.infoWindow(item, mmarker,response);
+                        }
+                       
+                }else{
+
+                    var map = this.map
+                    var callback = function(feature) {
+                            map.data.remove(feature);
+                    };
+                    map.data.forEach(callback);
+                    this.coordinates(theCity,lat,lng);
+                    this.infoWindow(item, mmarker,response); 
+                }
+            },
+            nursingSearchData(index,theCity,lat,lng,item, mmarker){
                 this.loading = true;
                 this.ci = false;
                 if(index == 1) //if choose city
@@ -1570,19 +1643,12 @@
 
                 })
                 .then((response) => {
-                    this.loading = false;
-                    this.changeMap(response)
-
+                    this.changeMap(response,2)
                 })
-
-                //  this.changeSearch();
-
             },
-            // map change dropdown function
-            // make infowindow, marker , google map
-            coordinates(theCity, lat, lng){
-             
-                
+
+            createMap(theCity,lat,lng){
+
                 if(this.township_id == -1){
                     var mapProp = {
                         center: new google.maps.LatLng(lat, lng),
@@ -1607,7 +1673,12 @@
                     };
                 }
                 this.map = new google.maps.Map(document.getElementById("mymap"), mapProp);
-                // this.loading = true
+                
+            },
+            coordinates(theCity,lat,lng){
+              
+                
+                this.loading = false
                 let  coor =[];
                 var townshipName = [];
                 var town = [];
@@ -1633,7 +1704,8 @@
                 }
 
                var township_name = townshipName;
-             
+               this.coordinate = []
+
                if(this.ci == true && (this.townshipID[0] == "-1" || this.townshipID.length == 0))
                {                   
                     this.loading = false;                    
@@ -1678,12 +1750,13 @@
                 fillOpacity: 0.1,
                 strokeWeight: 1
                 })
-                // this.loading = false;
+                this.loading = false;
             },
 
-            infoWindow(item, mmarker){
+            infoWindow(item, mmarker,response){           
                 var infoWindowContent = new Array();
-                if(item != null && mmarker != null)
+               
+                if(item.length  && mmarker.length)
                 {
                     for (var i = 0; i < item.length; i++) {
                         infoWindowContent.push([
@@ -1737,35 +1810,54 @@
                     this.markerHover = [];
                     var infoWindow = new google.maps.InfoWindow(),marker, i;
                 }
-
-                for (let i = 0; i < this.markers.length; i++) {
+              
+                if(this.marker.length)
+                {
+                   
+                   for (let index = 0; index < this.marker.length; index++) {
+                       this.marker[index].setMap(null);
+                   }
+                }
+            
+                var marker = [];
+                var markers = [];
+                markers = mmarker;
+                var bounds = new google.maps.LatLngBounds();
+                this.markerHover = [];
+                var infoWindow = [];
+                infoWindow = new google.maps.InfoWindow();
+               
+                   var i = [];
+                   for (let i = 0; i < this.markers.length; i++) {
                     var beach = this.markers[i]
                     var lats = this.markers[i]['lat']
                     var lngs = this.markers[i]['lng']
                     var img = this.markers[i]['alphabet']
                     var myLatLng = new google.maps.LatLng(lats, lngs);
-                    var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
-                    marker = new google.maps.Marker({
-                        position: position,
-                        map: this.map,
-                        zoom:7,
-                        icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' + img + '|ff9563|000000',
-                        title: this.markers[i]['name'],
-                        options: {
-                        gestureHandling: 'greedy'
-                    }
+                    var  position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+                    // var trafficLayer = new google.maps.TrafficLayer();
+                    // trafficLayer.setMap(this.map);
+            
+                    this.marker[i] = new google.maps.Marker({
+                            position: position,
+                            map: this.map,
+                            animation: google.maps.Animation.DROP,
+                            zoom:7,
+                            icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' + img + '|ff9563|000000',
+                            title: this.markers[i]['name'],
+                            options: {
+                            gestureHandling: 'greedy'
+                        }
                     });
+                    marker = this.marker[i]
+                    // this.googleMarker = marker;
                     bounds.extend(position);
-
-
-
                     google.maps.event.addListener(marker, 'click', (function(marker, i) {
                     return function() {
                         infoWindow.setContent(infoWindowContent[i][0]);
                         infoWindow.open(this.map, marker);
                     }
                     })(marker, i));
-
                     this.markerHover.push(marker)
                     var boundsListener = google.maps.event.addListener((this.map), 'bounds_changed', function(event) {
                     google.maps.event.removeListener(boundsListener);
@@ -1773,9 +1865,7 @@
 
                 }
                 this.map.fitBounds(bounds);
-                // this.map.panToBounds(bounds);
             },
-
             // make infowindow, marker , google map
             clearmap(citylatlng)
             {
@@ -1813,62 +1903,6 @@
                     strokeWeight: 1
                 })
             },
-            
-            // make infowindow, marker , google map
-            changeMap(response){
-                $('.select').removeClass('select');
-                $('#searchMap').addClass('select');
-                $('#showSearchMap').removeClass('select');
-                $('#filter').removeClass('select');
-                this.cities = response.data.city
-                this.getCity = response.data.getCity
-                this.getTownships = response.data.getTownships
-                this.specialfeature = response.data.specialfeature;
-                this.special_features = response.data.special_features
-                this.fac_types = response.data.fac_types
-                this.medical_acceptance = response.data.medical_acceptance
-                this.nus_data = response.data.nursing
-                console.log('a',this.nus_data);
-                if(this.nus_data.length != 0){
-                    this.norecord_msg = false;
-                }else{
-                    this.norecord_msg = true;
-                }
-                if(this.nus_data.length > this.size) {
-                  this.show_paginate = true;
-                }else{
-                  this.show_paginate = false;
-                }
-                this.markers = response.data.nursing;
-
-                var mmarker = new Array();
-                var item = [];
-                for (var i = 0; i < this.markers.length; i++) {
-                    mmarker.push([this.markers[i]['alphabet'], this.markers[i]['lat'], this.markers[i]['lng']])
-                    item.push(this.markers[i])
-                }
-
-                if(this.getCity.length > 0) //if city  choose
-                {
-                    const theCity = response.data.getCity[0]['city_eng']
-                    const lat = response.data.getCity[0]['latitude']
-                    const lng = response.data.getCity[0]['longitude']
-
-                    if(this.markers.length > 0 )
-                    {
-                        this.coordinates(theCity,lat,lng);
-                        this.infoWindow(item, mmarker);
-                    }
-                    else{
-                        this.coordinates(theCity,lat,lng);
-                    }
-                }
-                else{ //if city not choose
-                    this.coordinates(null,'38.25759','140.8667');
-                    this.infoWindow(item, mmarker);
-                }               
-            },
-
 
             search(){
 
@@ -1894,7 +1928,6 @@
                 }
                 if(this.onchangeid == 1)
                 {
-
                     if(this.township_id == -1)
                     {
                         this.townshipID[0] = 0;
@@ -1915,7 +1948,6 @@
                 if ($('#search-free-word').val() != '')
                 {
                     this.id = -1;
-  
                     var search_word = $('#search-free-word').val();
                 }
 
@@ -1943,8 +1975,6 @@
 
                 },
                 }).then((response)=>{
-                   
-
                 this.nus_data = response.data.nursing;
                 this.specialfeature = response.data.specialfeature;
                 this.medicalacceptance = response.data.medicalacceptance;
@@ -1954,9 +1984,14 @@
                 this.markers = response.data.nursing;
                 var mmarker = new Array()
                 var item = []
+                if(this.map != null){
+                    var map = this.map
+                    var callback = function(feature) {
+                            map.data.remove(feature);
+                    };
+                    map.data.forEach(callback);
+                }
                 if(this.nus_data.length > 0){
-                   
-
                     for (var i = 0; i < this.searchmarkers.length; i++) {
                         mmarker.push([this.searchmarkers[i]['alphabet'], this.searchmarkers[i]['lat'], this.searchmarkers[i]['lng']])
                         item.push(this.searchmarkers[i])
@@ -1966,27 +2001,21 @@
                     const lng = this.searchmarkers[0]['lng']
 
                     // google map
-                 
                     this.coordinates(theCity,lat,lng)
-
                     this.infoWindow(item, mmarker);
                     this.norecord_msg = false;
                 }
                 else{
-                   
                     //if choose city
                     if(this.citylatlng.length > 0)
                     {
-                       
                         const theCity = this.citylatlng[0]['city_eng']
                         const lat = this.citylatlng[0]['latitude']
                         const lng = this.citylatlng[0]['longitude']
-
                         this.coordinates(theCity,lat,lng);
+                        this.infoWindow(item, mmarker);
                     }
                     else{
-                        console.log('dd');
-                   
                         var mapProp = {
                         center: new google.maps.LatLng(35.6804, 139.7690),
                         zoom: 5,
@@ -2003,6 +2032,7 @@
               }
                 });
             },
+
 
             // hover animate function
             mouseover(index) {
@@ -2023,6 +2053,9 @@
                 }
             },
 
+
+//  google map  function end========================================
+
             features(e) {
                 if (e.target.checked) {
 
@@ -2038,8 +2071,8 @@
             imgUrlAlt(event) {
                 event.target.src = "images/noimage.jpg"
             },
-            
-            favAddFun(status,index,ind){    
+
+            favAddFun(status,index,ind){
                 if(status == 'add'){
                     this.nus_data[ind].fav_check = 'check';
 
@@ -2057,7 +2090,7 @@
                         // $("#nus-fav-local").html(fav_arr.length);
                         this.nusFav = fav_arr.length;
                     }
-                    
+
                     $(".fav-nursing-link-box>a").css({'cursor':'pointer','pointer-events':'auto'});
                 }
                 else{
@@ -2664,7 +2697,7 @@ div#holder {
 .page-item .spanclass{
   cursor: pointer;
 }
-.carousel-img{   
+.carousel-img{
     /* position: absolute; */
 }
 
@@ -2675,10 +2708,10 @@ div#holder {
 }
 /************************responsive ****************************/
 @media only screen and (max-width:1024px) {
-  table > tbody > tr th{  
+  table > tbody > tr th{
     /* width:100px !important; */
   }
- 
+
 }
 @media only screen and (max-width: 480px){
   table > tbody > tr th{
@@ -2687,7 +2720,7 @@ div#holder {
   table th, table td{
     vertical-align: middle;
   }
-  .dropdown-toggle::after {    
+  .dropdown-toggle::after {
     position: absolute;
     right: 12px;
     top: 15px;
@@ -2715,7 +2748,7 @@ div#holder {
     }
     .nav-content
     {
-     
+
       border: none;
       width: 0px;
     }
@@ -2723,7 +2756,7 @@ div#holder {
     border:none;
     background: #fff;
 }
-    
+
 }
 
 @media only screen and (max-width: 375px) {
@@ -2735,7 +2768,7 @@ div#holder {
     }
     .nav-content
     {
-     
+
       border: none;
       width: 0px;
     }
@@ -2761,7 +2794,7 @@ div#holder {
     }
     .nav-content
     {
-     
+
       border: none;
       width: 0px;
     }
@@ -2775,7 +2808,7 @@ div#holder {
     margin-left:-7px;
   }
   .carousel-img{
-    width: 100px;   
+    width: 100px;
   }
 }
 
@@ -2785,7 +2818,7 @@ div#holder {
         width: 415px!important;
     }
     .carousel-img{
-      width: 140px;     
+      width: 140px;
     }
 }
 @media only screen and (max-width: 768px) and (min-width: 449px) {
