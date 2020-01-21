@@ -312,7 +312,7 @@
                                 console.log(response.data)
                                 if(response.data.length<this.his_hos && response.data.length > 0) {
                                     this.hos_profiles = response.data;
-                                    if(response.data.length<this.his_nus) { 
+                                    if(response.data.length<this.hosHis) { 
                                         var hos_id = '';
                                         this.message = "Some Hospital Accounts are Deactivated!";
                                         for(var i= 0;i<this.hos_profiles.length;i++) {
@@ -325,6 +325,7 @@
                                         }
                                         localStorage.setItem('hospital_history',hos_id);
                                         this.hosHis = this.hos_profiles.length;
+
                                     } else if(response.data.length == 0){
                                         this.his_hos = 0;
                                         this.$swal({
