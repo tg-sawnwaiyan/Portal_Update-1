@@ -242,6 +242,10 @@ label {
     float: right !important;
 }
 
+.nursing_table {
+    width: 17%;
+}
+
 
 /* End Nursing & Hospital Profile */
 
@@ -9950,6 +9954,9 @@ display: none;
     .nursing_btn {
         margin-top: 0px;
     }
+    .nursing_input {
+        flex: 0 0 85%;
+    }
     /* end nursing profile */
     .sp-768 {
         display: block;
@@ -10800,6 +10807,11 @@ background-image: none;
     .d-flex {
         flex-wrap: wrap !important;
     }
+    .nursing_input {
+        flex: 0 0 100%;
+        padding: 0;
+        margin: 0;
+    }
     .heading-lbl {
         font-size: 1.05em;
         flex: 0 0 100%;
@@ -10820,6 +10832,28 @@ background-image: none;
     .nursing_toggle_responsive {
         margin-top: -45px;
         margin-left: 127px;
+    }
+    .nursing_add_responsive {
+        margin-top: -12px;
+    }
+    .nursing_table {
+        display: block;
+        width: 100%;
+    }
+    .nursing_table1 {
+        display: block;
+    }
+    .nursing_cost {
+        padding: 0px;
+        margin-left: 16px;
+    }
+    .nursing_title_lbl {
+        display: block;
+        margin-bottom: -20px;
+    }
+    #gallery-payment table tr>th:first-child {
+        /* width: 35%; */
+        width: 100%;
     }
     /* end nursing profile */
 }
