@@ -235,6 +235,9 @@ label {
 .nursing_radiobtn{
     float: right !important;
 }
+.nursing_table {
+    width:17%;
+}
 /* End Nursing & Hospital Profile */
 .typelabel {
     /* background: #118063;
@@ -10750,6 +10753,25 @@ background-image: none;
     }
     .nursing_add_responsive{
         margin-top:-12px;
+    }
+    .nursing_table{
+        display: block;
+        width:100%;
+    }
+    .nursing_table1 {
+        display: block;
+    }
+    .nursing_cost{
+        padding: 0px;
+        margin-left: 16px;
+    }
+    .nursing_title_lbl{
+        display:block;
+        margin-bottom: -20px;
+    }
+    #gallery-payment table tr>th:first-child {
+        /* width: 35%; */
+        width: 100%;
     }
       /* end nursing profile */
 
