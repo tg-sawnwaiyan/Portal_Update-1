@@ -311,11 +311,7 @@
                             .then(response => {
                                 console.log(response.data)
                                 if(response.data.length<this.his_hos && response.data.length > 0) {
-                                    // this.hos_profiles = response.data;
-                                    // this.hosHis = response.data.length;
-                                    // $('.msg').html('<span>Some Hospital Accounts are Deactivated!</span>');
-
-                                     this.hos_profiles = response.data;
+                                    this.hos_profiles = response.data;
                                     if(response.data.length<this.his_nus) { 
                                         var hos_id = '';
                                         this.message = "Some Hospital Accounts are Deactivated!";
@@ -345,13 +341,14 @@
                                             cancelButtonText: "キャンセル",
                                             confirmButtonClass: "all-btn",
                                             cancelButtonClass: "all-btn"
-                                    }).then(response => {
-                                        localStorage.setItem('hospital_history','');
-                                        this.hosHis = 0;
-                                        this.$router.push({
-                                            name: 'hospital_search',
+                                        }).then(response => {
+                                            localStorage.setItem('hospital_history','');
+                                            this.hosHis = 0;
+                                            this.$router.push({
+                                                name: 'hospital_search',
+                                            });
                                         });
-                                    });
+                                    }
                                 }
                         });
                     },
