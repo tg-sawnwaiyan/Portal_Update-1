@@ -1,7 +1,7 @@
 <template>
   
 <layout>
-  <div>
+  <div id="news_details">
     <!-- news details-->
 
     <!-- Tab panes -->
@@ -114,15 +114,38 @@
                   </div>
                 </div>             
             </div>
+            <div class="related_wrap">
+                <h4 class="next-title" style="border-left: 5px solid orange;">関連ニュース</h4>
+                <div class="related_content">
+                  <div class="related_box clearfix" v-for="latest_post_all_cat in latest_post_all_cats"
+                    :key="latest_post_all_cat.id">
+                      <router-link :to="'/newsdetails/'+ latest_post_all_cat.id">
+                      <div class="hovereffect" style="cursor:pointer;">
+                        <img class="fit-image"
+                          v-bind:src="'/upload/news/' + latest_post_all_cat.photo"
+                          alt="img"
+                          @error="imgUrlAlt"
+                        />
+                        <div class="overlay">
+                          <span class="btn btn-sm all-btn secondary-bg-color m-t-20">詳細</span>
+                        </div>
+                        <div class="info">
+                            <p>{{ latest_post_all_cat.main_point }}</p>
+                        </div>              
+                      </div>
+                    </router-link>
+                  </div>
+                </div>
+            </div>
             <div
                 class="row col-md-12 m-lr-0 m-t-15 pad-free"
                 style="border-top: 2px dashed #eee;"
               >
                 <div class="row col-md-12 text-center m-lr-0 pad-free">
-                  <h4 class="h_4 next-title" style="border-left: 5px solid orange;">関連ニュース</h4>
+                  <h4 class="h4 next-title" style="border-left: 5px solid orange;">関連ニュース</h4>
                 </div>
                 <div
-                  class="col-md-3 col-sm-4  m-t-15"
+                  class="col-sm-3 col-md-3 m-t-15 mt-2"
                   v-for="latest_post_all_cat in latest_post_all_cats"
                   :key="latest_post_all_cat.id"
                 >
