@@ -36,8 +36,7 @@ export default {
             }
         },
           created() {
-              if(this.$route.params.id)
-              {
+              if(this.$route.name == "editcategory"){
                     this.title = "カテゴリー編集";
                     this.label = "カテゴリー名:";
                     this.placeholder = "カテゴリー名を入力してください。";
