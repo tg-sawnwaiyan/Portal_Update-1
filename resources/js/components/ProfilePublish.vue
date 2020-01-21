@@ -255,7 +255,7 @@
                     <!--end for slide image-->
                     <!--for address-->
                      <div class="col-md-7 detail_profile_right col-slg-12 pad-free-750">
-                         <span class="top-mail-btn-res btn sp-414" @click="documentPost()" v-if="!loginuser && !$auth.check()"><i data-v-b65423c6="" class="far fa-envelope" style="color: #fff  !important;font-size: 15px;"></i>&nbsp;資料請求</span>
+                         <span class="top-mail-btn-res btn sp-414" @click="documentPost()" v-if="!loginuser && !$auth.check()"><i data-v-b65423c6="" class="far fa-envelope" style="color: rgb(196, 0, 0)!important;font-size: 15px;font-weight: bold;;"></i>&nbsp;資料請求</span>
                         <div class="row m-lr-0 pro-heading">
                              <div class="col-12 pad-free pc-1024">
                                 <h5 class="profile_header">介護情報</h5>
@@ -384,53 +384,35 @@
             </div>
 
             <div class="row ele m-lr-0" id="element3">
-
                 <h5 class="profile_header col-md-12">費用</h5>
-
-                    <div class="col-12">
-
+                    <div class="col-12 pad-free-750">
                         <table class="table table-striped table-bordered payment-tbl" v-for="nusmethod in nus_method" :key="nusmethod.id">
-
                             <tr>
-
                                 <th class="custom-bg-color">
-
                                     <font>支払方法</font>
-
                                 </th>
-
                                 <td v-if="nusmethod.method">
-
                                     <font>{{nusmethod.method}}</font>
-
                                 </td>
                                 <td v-else> -
                                 </td>
-
                             </tr>
-
                         </table>
-
                     </div>
 
                     <div v-if="method_payment.length > 0" class="col-md-12 pc-414">
                         <div class="cost_tb">
                             <div class="row" >
-                                <div class="col-md-12  main-cost-wrap">
-
+                                <div class="col-md-12  main-cost-wrap pad-free-750">
                                     <table class="table table-bordered cost_table main-cost-table">
-
                                         <thead>
-
                                             <tr>
                                                 <th>プラン名 / 居室詳細</th>
                                                 <th>入居時費用</th>
                                                 <th>月額費用</th>
                                                 <th></th>
                                             </tr>
-
                                         </thead>
-
                                         <tbody>
                                         <tr v-for="(cost,index) in method_payment" :key="cost.id" @click="changeBg(cost.id,index)" :class="'cost'+index">
                                             <td>
@@ -445,9 +427,7 @@
                                             </td>
                                         </tr>
                                         </tbody>
-
                                     </table>
-
                                 </div>
 
                                 <!-- <div class="cost_btnwrapper col-md-1 pad-free">
@@ -555,7 +535,7 @@
 
                     <!--Table responsive-->
                     <div class="card col-md-12 mb-10 sp-414" v-for="(cost) in method_payment" :key="cost.id">
-                        <div class="card-body">
+                        <div class="card-body pad-t-10">
                             <div class="row mb-10">
                             <div class="col-7">
                                 <h6 class="font-weight-bold">プラン名 / 居室詳細</h6>
@@ -672,7 +652,7 @@
 
                 <!-- <div class="row"> -->
                     <h5 class="profile_header col-md-12"> 施設の概要</h5>
-                    <div v-for="nus in nusfacilities" :key="nus.id" class="col-md-12" >
+                    <div v-for="nus in nusfacilities" :key="nus.id" class="col-md-12 pad-free-750" >
 
                         <table border="1" class="table table-bordered cost_table facility_tbl">
 
@@ -835,11 +815,11 @@
                     <div class="col-md-12  m-b-15">
                         <h5 class="profile_subtit">動画</h5>
                         <div class="row m-0" v-if="videos == ''">
-                            <div class="col-12"> <p class="no-data-color">表示されるデータがありません。</p> </div>
+                            <div class="col-12 pad-free-750"> <p class="no-data-color">表示されるデータがありません。</p> </div>
                         </div>
-                        <div class="row m-0" v-else>
+                        <div class="row col-12 pad-free-750" v-else>
                             <div v-for="(video) in  videos" :key="video.id" class="col-sm-4 col-md-4 col-lg-3">
-                                <iframe :src="'https://www.youtube.com/embed/'+video.photo" controls></iframe>
+                                <iframe :src="'https://www.youtube.com/embed/'+video.photo" controls class="pad-free col-12"></iframe>
                                 <span style="color:orange;font-weight:bold;">{{video.title}}</span><br>
                             </div>
                         </div>
@@ -847,35 +827,22 @@
 
                     <div class="col-12">
                         <h5 class="profile_subtit">協力医療機関</h5>
-                        <div v-if="cooperate_medical.length>0" class="col-md-12">
-                                <div v-for="comedical in cooperate_medical" :key="comedical.id" class="col-md-12" >
+                        <div v-if="cooperate_medical.length>0" class="col-md-12 pad-free-750">
+                                <div v-for="comedical in cooperate_medical" :key="comedical.id" class="col-md-12 pad-free-750" >
                                     <label class="cost_heading_lbl_mini"><i class="fas fa-university"></i> {{comedical.name}}</label>
-                                    <table border="1" class="table table-bordered">
-
+                                    <table border="1" class="table table-bordered cost_table facility_tbl">
                                         <tbody>
-
                                             <tr>
-
-                                                <td width="250" class="custom-bg-color" > 診療科目</td>
-
+                                                <th class="custom-bg-color" > 診療科目</th>
                                                 <td>{{comedical.clinical_subject}}</td>
-
                                             </tr>
-
                                             <tr>
-
-                                                <td width="250" class="custom-bg-color">協力内容</td>
-
+                                                <th class="custom-bg-color">協力内容</th>
                                                 <td >{{comedical.details}}</td>
-
                                             </tr>
-
                                             <tr>
-
-                                                <td width="250" class="custom-bg-color">診療費用</td>
-
+                                                <th class="custom-bg-color">診療費用</th>
                                                 <td >{{comedical.medical_expense}}</td>
-
                                             </tr>
 
                                         </tbody>
@@ -889,8 +856,8 @@
 
                     <div class="col-12">
                         <h5 class="profile_subtit"> 医療面の受入れ</h5>
-                        <div class="row col-12" style="margin: 0 auto;">
-                            <div v-for="maccept in medical_acceptance" :key="maccept.id" class="col-md-4 col-sm-6 p-0" >
+                        <div class="row col-12 pad-free-750" style="margin: 0 auto;">
+                            <div v-for="maccept in medical_acceptance" :key="maccept.id" class="col-md-4 col-sm-6 pad-free-750" >
                                 <div class="accept-box">
                                     <div class="float-left" v-for="(ma,index) in medical" :key="index" style="padding-right:10px;">
                                         <i v-if="ma.name === maccept.name && ma.accept_type === 'accept'" class="fas fa-check green"></i>
@@ -901,7 +868,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row col-md-12 float: right" style="display: flex; justify-content: flex-end" >
+                        <div class="row col-md-12 float: right pad-free-750" style="display: flex; justify-content: flex-end" >
                             <label for="" class="m-r-15"><i class="fas fa-check green"></i> 受入れ可</label>
                             <label for="" class="m-r-15"><i class="fas fa-times red"></i> 受入れ不可</label>
                             <label for="" class="m-r-15"><i class="fas fa-adjust blue"></i> 応相談</label>
@@ -912,7 +879,7 @@
                         <h5  class="profile_subtit"> 職員体制</h5>
                         <div v-if="staff.length>0">
 
-                            <div v-for="st in staff" :key="st.id" class="col-md-12" >
+                            <div v-for="st in staff" :key="st.id" class="col-md-12 pad-free-750">
 
                                 <table border="1" class="table table-bordered staff_tbl">
 
@@ -957,7 +924,7 @@
 
             <div class="row ele m-lr-0" id="element5">
                 <h5 class="profile_header col-md-12"> 地図</h5>
-                        <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="col-lg-12 col-md-12 col-sm-12 pad-0-res">
                             <GmapMap id="googlemap" ref="map" :center="center" :zoom="10" >
                             <GmapMarker v-for="(m, index) in markers" :key="index" :position="m.position" :clickable="true" :draggable="false" @click="center=m.position" />
 
@@ -989,13 +956,13 @@
             <div class="row ele m-lr-0" id="element6">
                 <h5 class="profile_header col-12">口コミ</h5>
                 <!-- <div style="min-height:300px;"> -->
-               <div class="col-lg-12 col-md-12 col-sm-12"  v-if="displayItems.length>0">
+               <div class="col-lg-12 col-md-12 col-sm-12 pad-0-res"  v-if="displayItems.length>0">
                     <div class="card mb-4" v-for="comment in displayItems" :key="comment.id">
                         <div class="card-body">
                             <div class="comment-title">
                                 <i class="fas fa-comment"></i>{{comment.title}}
                             </div>
-                            <div class="d-flex">
+                            <div class="d-flex d-block">
                                 <p class="card-title font-weight-bold">{{comment.email}}</p>
                                 <p class="comment-age">{{ new Date().getFullYear() - comment.year}}年代</p>
                                 <p class="comment-date"><i class="fa fa-calendar" aria-hidden="true"></i> {{comment.created_date | moment("YYYY年MM月DD日") }}投稿 <span class="ml-2"><i class="fa fa-clock" aria-hidden="true"></i> {{comment.created_time}}</span></p>
@@ -1072,79 +1039,8 @@
 
 
 
-    <div v-if="type == 'hospital'" id="hospitalView">
-       <!--panorama-->
-            <h5 class="profile-tit"> {{customer_name}}</h5>
-            <div class="col-12 detail_profile_left pad-free"  v-if="currentPanoImage">
-                    <div class="thumbnail-img" style="padding:0px;border:none;">
-                        <div class="card-carousel">
-                        <div class="card-img">
-                            <!-- <div id="panorama"></div>           -->
-
-                            <Pannellum  :src="'/upload/hospital_profile/Imagepanorama/' + currentPanoImage"
-                                class="pannellum"
-                                :auto-load="true"
-                                :show-zoom="true"
-                                :show-fullscreen="true"
-                                :auto-rotate="isAutoRotationOn"
-                                :orientation="isOrientationOn"
-                                :compass="true"
-                                :hfov= "120"
-
-                                ></Pannellum>
-
-                        </div>
-                            <div class="col-12" id="pano-slider-page">
-                <div class="card-carousel-wrapper">
-
-                        <div class="nav-box" @click="moveCarousel(-1)" :disabled="atHeadOfList">
-                            <div class="nav-content mr-2">
-                                <div class="card-carousel--nav__left"></div>
-                            </div>
-                        </div>
-                        <div class="card-carousel">
-                            <div class="card-carousel--overflow-container">
-                                <div class="card-carousel-cards" :style="{ transform: 'translateX' + '(' + panocurrentOffset + 'px' + ')'}">
-                                    <div class="card-carousel--card">
-                                        <!-- <div class="card-carousel--card--footer"> -->
-
-                                        <div class="thumbnails-pano" id="test">
-                                            <div v-for="(image,index) in  panoimages" :key="image.id" :class="['thumbnail-image-panorama', (activePanoImage == index) ? 'active' : '']" @click="activatePanoImage(index)" >
-                                                <img  :src ="'/upload/nursing_profile/Imagepanorama/' + image" @error="imgUrlAlt">
-                                            </div>
-                                        </div>
-                                    <!-- </div> -->
-                                </div>
-                            </div>
-                        </div>
-
-                        </div>
-
-                        <div class="nav-box"  @click="moveCarousel(1)" :disabled="atEndOfList">
-                            <div class="nav-content ml-2">
-                                <div class="card-carousel--nav__right"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                        <!-- <div  class="thumbnails">
-                                <div
-
-                                    v-for="(image,index) in  panoimages"
-
-                                    :key="image.id"
-
-                                    :class="['thumbnail-image', (activePanoImage == index) ? 'active' : '']"
-
-                                    @click="activatePanoImage(index)" >
-                                    <img  :src ="'upload/nursing_profile/Imagepanorama/' + image.photo">
-                                </div>
-                        </div> -->
-                    </div>
-                </div>
-            </div>
-            <!--end panorama-->
+    <div v-if="type == 'hospital'" id="hospitalView">      
+            <h5 class="profile-tit"> {{customer_name}}</h5>           
            <div class="tab typelabel nav-link fixed-nav" v-bind:style="{width:width}">
                 <!-- <div class="row col-12 m-t-10">
                      <h5 style="color:#000" class="h_4 header font15rem font-weight-bold">ひだまりこころクリニック　サンシャインサカエ院</h5>
@@ -1164,97 +1060,85 @@
                 <!-- <button v-scroll-to="{ el: '#element4' }" class="top-fixed-btn" @click="activate(4)" :class="{ active : active_el == 4 }">
                     求人応募
                 </button> -->
-
             </div>
 
             <div class="row ele m-lr-0 pt-2" id="element1">
-
                 <!-- ee-->
                  <div class="row col-12 list-wrap m-lr-0 white-bg-color" v-for="cust in customer" :key="cust.id">
                     <!--for slideimage-->
-                    <div class="col-md-5 col-slg-12 col-sm-12 detail_profile_left">
-
-                           <div class="thumbnail-img">
-
+                    <div class="col-md-5 col-slg-12 col-sm-12 detail_profile_left pad-free-750">
+                            <div class="col-12 pad-free sp-1024">
+                                <h5 class="profile_header">病院情報</h5>
+                            </div>
+                           <div class="thumbnail-img pc-414">
                              <div class="card-carousel">
-
                                 <div class="card-img photocard-carousel-wrapper">
-
                                     <img :src="'/upload/hospital_profile/' +currentImage" alt="" @error="imgUrlAlt">
-
                                     <div class="actions">
-
                                         <span @click="prevImage" class="prev">
-
                                             <i class="fas fa-chevron-left"></i>
-
                                         </span>
 
                                         <span @click="nextImage" class="next">
-
                                             <i class="fas fa-chevron-right"></i>
-
                                         </span>
-
                                     </div>
-
                                 </div>
 
                                 <div class="row col-12 photocard-title">
-
                                     <h5><strong class="img_2">  {{activeImageTitle}} </strong></h5>
-
                                     <div class="row col-12 m-b-10">
-
                                          <p class="text-left">{{activeImageDescription}}</p>
-
                                     </div>
-
                                 </div>
 
                                 <div class="thumbnails">
-
                                     <div
-
                                         v-for="(image,index) in  images"
-
                                         :key="image.id"
-
                                         :class="['thumbnail-image', (activeImage == index) ? 'active' : '']"
-
                                         @click="activateImage(index)" >
-
                                         <img  :src ="'/upload/hospital_profile/' + image.photo" @error="imgUrlAlt">
-
                                     </div>
-
                                 </div>
-
                             </div>
+                        </div> 
+                        <!--responsive with gallery-->
+                        <div class="sp-414 res-pano m-b-10"  v-if="images.length > 0">
+                            <slick :options="slickOptions" ref="slickSetting1">
+                                <div><h2><img :src="'/upload/hospital_profile/' +currentImage" alt="" @error="imgUrlAlt" class="img-fluid"></h2></div>
+                            </slick>
+                            <slick>
+                                <p><strong>  {{activeImageTitle}} </strong></p>
+                            </slick>
+                            <slick>
+                                <p>{{activeImageDescription}}</p>
+                            </slick>
+                            <slick :options="slickOptions2" ref="slickSetting2" id="res-pano">
+                                    <div v-for="(image,index) in  images" :key="image.id" :class="[(activeImage == index) ? 'active' : '']" @click="activateImage(index)">
+                                    <h3>
+                                        <span>
+                                            <img  :src ="'/upload/hospital_profile/' + image.photo" @error="imgUrlAlt" class="img-fluid">
+                                        </span>
+                                    </h3>
+                                </div>
+                            </slick>
+                            
                         </div>
-
-
-                        <!-- <div  v-for="image in  images"  :key="image.id">
-
-                        </div> -->
-
+                        <!--end responsive with gallery -->
                     </div>
-
-                    <!--end for slide image-->
+                    <!--end for slide image-->                   
 
                     <!--for address-->
-
-
-                     <div class="col-md-7 col-sm-12 detail_profile_right col-slg-12">
-
+                     <div class="col-md-7 col-sm-12 detail_profile_right col-slg-12 pad-free-750">
                         <div class="row m-lr-0">
                             <div class="col-12 pro-heading pad-free">
-                                <div class="col-12 pad-free">
+                                <div class="col-12 pad-free pc-1024">
                                     <h5 class="profile_header">病院情報 </h5>
                                 </div>
-                                <table class="table table-bordered">
+                                <table class="table table-bordered info_tbl">
                                     <tr>
-                                        <th width="250" class="custom-bg-color">
+                                        <th class="custom-bg-color">
                                             <font>住所</font>
                                         </th>
                                         <td v-if="cust.address">
@@ -1263,7 +1147,7 @@
                                         <td v-else> - </td>
                                     </tr>
                                     <tr>
-                                        <th width="250" class="custom-bg-color">
+                                        <th class="custom-bg-color">
                                             <font>電話番号</font>
                                         </th>
                                         <td v-if="cust.phone">
@@ -1272,32 +1156,16 @@
                                         <td v-else> - </td>
                                     </tr>
                                      <tr>
-                                        <th width="250" class="custom-bg-color">
+                                        <th class="custom-bg-color">
                                             <font>アクセス</font>
                                         </th>
                                         <td v-if="cust.access">
                                             <p v-html="cust.access"></p>
                                         </td>
                                         <td v-else> - </td>
-                                    </tr>
-                                     <!-- <tr>
-                                        <th width="250" class="custom-bg-color">
-                                            <font>駅 </font>
-                                        </th>
-                                        <td>
-                                            <font>Nearest Station</font>
-                                        </td>
-                                    </tr> -->
-                                     <!-- <tr>
-                                        <th width="250" class="custom-bg-color">
-                                            <font>費用 </font>
-                                        </th>
-                                        <td>
-                                            <font>Cost</font>
-                                        </td>
-                                    </tr> -->
+                                    </tr>                                    
                                      <tr>
-                                        <th width="250" class="custom-bg-color">
+                                        <th class="custom-bg-color">
                                             <font>件名 </font>
                                         </th>
                                         <td v-if="subject">
@@ -1324,13 +1192,9 @@
                          <h5 class="header m-t-10">こだわりの特長</h5>
 
                         <div class="row m-lr-0" v-if="specialfeature">
-
                             <ul class="hos_fac_container" v-for="special in specialfeature" :key="special.id">
-
                                 <li>{{special.short_name}}</li>
-
                             </ul>
-
                         </div>
                         <div class="row m-lr-0" v-else> <p class="no-data-color">表示されるデータがありません。</p> </div>
 
@@ -1347,44 +1211,32 @@
                 </div>
             <!--end ee-->
 
-                <div class="col-12 m-b-20">
+                <div class="col-12 m-b-20 pad-free-750">
                     <h5 class="profile_subtit">医院からのお知らせ </h5>
 
                     <p v-for="hospital in hospitals" :key="hospital.id" class="col-12">
                         <span v-if="hospital.details_info">{{ hospital.details_info }}</span>
                         <span v-else><p class="no-data-color">表示されるデータがありません。</p></span>
-
                     </p>
                 </div>
-                <div class="col-12 m-b-20">
+                <div class="col-12 m-b-20 pad-free-750">
                     <h5 class="profile_subtit">診療時間 </h5>
                     <div class="row m-0">
-                        <div class="col-9">
-                            <table class="table table-bordered">
+                        <div class="col-md-9 col-sm-12 pad-free-750">
+                            <table class="table table-bordered timeTable">
                                 <tbody>
-
                                     <tr class="first-row">
-
                                         <th> 日付 </th>
-
                                         <th> 月 </th>
-
                                         <th> 火 </th>
-
                                         <th> 水 </th>
-
                                         <th> 木 </th>
-
                                         <th> 金 </th>
-
                                         <th> 土 </th>
-
                                         <th> 日 </th>
-
                                     </tr>
 
                                     <tr class="last" v-if="am_arr[0]">
-
                                         <th class="second-row text-center">午前</th>
                                             <td v-for="(amval,index) in am_arr[0]" :key="index" class="text-center">
                                                 <span v-if="amval"> {{amval}} </span>
@@ -1412,7 +1264,7 @@
                             </table>
                         </div>
 
-                        <div class="col-3">
+                        <div class="col-md-3 col-sm-12 pad-free-750">
 
                             <div v-for="hospital in hospitals" :key="hospital.id">
 
@@ -1434,7 +1286,7 @@
 
                 </div>
 
-                <div class="col-12">
+                <div class="col-12 pad-free-750">
                     <h5 class="profile_subtit">施設情報 </h5>
                     <div class="row col-md-12 m-0">
                         <div class="col-md-2 fac-name-box" v-for="hosfacility in hosfacilities " :key="hosfacility.id">
@@ -1456,10 +1308,10 @@
 
             </div>
 
-            <div class="col-md-12">
+            <div class="col-md-12 pad-free-750">
                 <h5 class="profile_subtit">フォトアルバム</h5>
                 <div class="row m-0 gallery-list">
-                    <div v-for="(image,index) in  light_images" :key="index" class="col-sm-12 col-md-4 col-lg-3 m-b-10 gallery-item">
+                    <div v-for="(image,index) in  light_images" :key="index" class="col-md-4 col-lg-3 m-b-10 gallery-item">
                         <img  :src ="'/upload/hospital_profile/' + image.name"  class="img-fluid" @click="showLightbox(image.name)" @error="imgUrlAlt" >
                         <span style="color:orange;font-weight:bold;">{{image.title}}</span><br>
 
@@ -1470,7 +1322,7 @@
             </div>
 
             <!-- Hospital Video -->
-                <div class="col-md-12">
+                <div class="col-md-12 pad-free-750">
                     <h5 class="profile_subtit">動画</h5>
                     <div class="row m-0" v-if="videos.length>0">
                         <div v-for="(video) in  videos" :key="video.id" class="col-sm-4 col-md-4 col-lg-3">
@@ -1490,7 +1342,7 @@
 
                  <h5 class="profile_header col-md-12"> 地図 </h5>
 
-                <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="col-lg-12 col-md-12 col-sm-12 pad-free-750">
 
                     <GmapMap id="googlemap" ref="map" :center="center" :zoom="10" >
 
@@ -1499,26 +1351,26 @@
                     </GmapMap>
 
                 </div>
-                <div  class="col-12 m-t-20" v-for="m in google" :key="m.id" >
-                             <table border="1" class="table table-bordered">
+                <div  class="col-12 m-t-20 pad-free-750" v-for="m in google" :key="m.id" >
+                             <table border="1" class="table table-bordered map_tbl" >
                                     <tbody>
                                     <tr>
-                                        <td class="custom-bg-color"> 公式サイト</td>
+                                        <th class="custom-bg-color"> 公式サイト</th>
                                         <td v-if="m.website">{{m.website}}</td>
                                         <td v-else> - </td>
                                     </tr>
                                     <tr>
-                                        <td class="custom-bg-color"> アクセス</td>
+                                        <th class="custom-bg-color"> アクセス</th>
                                         <td v-if="m.access"><p v-html="m.access"></p></td>
                                         <td v-else> - </td>
                                     </tr>
                                     <tr>
-                                        <td class="custom-bg-color"> 混雑状況</td>
+                                        <th class="custom-bg-color"> 混雑状況</th>
                                         <td v-if="m.congestion">{{m.congestion}}</td>
                                         <td v-else> - </td>
                                     </tr>
                                     <tr>
-                                        <td class="custom-bg-color">住所 </td>
+                                        <th class="custom-bg-color">住所 </th>
                                         <td v-if="m.address">{{m.address}}</td>
                                         <td v-else> - </td>
                                     </tr>
@@ -1529,7 +1381,7 @@
             </div>
             <div class="row ele m-lr-0" id="element3">
                 <h5 class="profile_header col-12 m-t-20">口コミ</h5>
-                   <div class="col-lg-12 col-md-12 col-sm-12"  v-if="displayItems.length>0">
+                   <div class="col-lg-12 col-md-12 col-sm-12 pad-free-750"  v-if="displayItems.length>0">
                     <div class="card mb-4" v-for="comment in displayItems" :key="comment.id">
                         <div class="card-body">
                             <div class="comment-title">
@@ -1849,7 +1701,7 @@ export default {
                                 });                    
                                 
                                 if (cur_pos >= 100) {
-                                    $(".fixed-nav").css({"position": "fixed","top":"110px","display": "flex"});
+                                    $(".fixed-nav").css({"position": "fixed","top":"110px","display": "inline-flex","width": "100%"});
                                 } else {
                                     $(".fixed-nav").css({"position": "unset", "top": "unset", "display": "none"});
                                 }
@@ -2929,10 +2781,12 @@ h3 {
     {
        margin-right: 16px;
     }
-
 }
-
-
+@media only screen and (max-width:750px) {
+    .comment-age {
+        margin: 0px;    
+    }
+}
 @media only screen and (max-width: 450px) and (min-width: 376px) {
   #pano-slider-page .card-carousel {
         width: 207px !important;
@@ -2948,34 +2802,13 @@ h3 {
     {
        margin-right: -35px;
     }
-
-
 }
 
 @media only screen and (max-width: 768px) and (min-width: 451px) {
   #pano-slider-page .card-carousel {
         width: 415px!important;
-    }
-     /* .thumbnails-pano
-    {
-    width: 200px;
-    }
-    #pano-slider-page{
-        margin-left: 28px;
-    }
-    .nav-content
-    {
-       margin-right: 48px;
-    } */
+    }   
 }
-
-/* Medium devices (landscape tablets, 768px and up) */
-/* @media only screen and (max-width: 1023px) and (min-width: 769px) {
-  #pano-slider-page .card-carousel {
-        width: 415px!important;
-    }
-
-} */
 
 @media only screen and (max-width: 992px) and (min-width: 769px) {
   #pano-slider-page .card-carousel {
@@ -2997,36 +2830,12 @@ h3 {
 @media only screen and (max-width: 1024px) and (min-width: 993px) {
   #pano-slider-page .card-carousel {
         width: 823px!important;
-    }
-    /* .thumbnails-pano
-    {
-    width: 827px;
-    }
-    #pano-slider-page{
-        margin-left: -7pxs;
-    }
-    .nav-content
-    {
-       margin-right: -8px;
-    } */
-
+    }  
 }
 @media only screen and (max-width: 1200px) and (min-width: 1025px) {
   #pano-slider-page .card-carousel {
         width: 930px!important;
-    }
-    /* .thumbnails-pano
-    {
-    width: 1000px;
-    }
-     */
-    /* #pano-slider-page{
-        margin-left: -18px;
-    }
-     .nav-content
-    {
-       margin-right: -31px;
-    } */
+    }  
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
@@ -3037,14 +2846,7 @@ h3 {
     .thumbnails-pano
     {
     width: 1000px;
-    }
-    /* #pano-slider-page{
-        margin-left: 15px;
-    }
-    .nav-content
-    {
-       margin-right: 41px;
-    } */
+    }   
 }
 @media only screen and (max-width: 1880px) and (min-width: 1440px) {
     #pano-slider-page .card-carousel {
@@ -3057,15 +2859,7 @@ h3 {
     #pano-slider-page{
         margin-left: 15px;
     }
-
 }
 
-
-@media only screen and (max-width: 1300px) {
-}
-@media only screen and (max-width: 1024px) {
-}
-@media only screen and (max-width: 767px) {
-}
 
 </style>

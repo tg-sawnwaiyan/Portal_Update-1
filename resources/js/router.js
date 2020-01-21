@@ -23,9 +23,9 @@ import Profile from "./components/Profile";
 import JobOfferList from "./components/JobOfferList";
 import ProfileEdit from "./components/ProfileEdit";
 import ProfilePublish from "./components/ProfilePublish";
-import medicalacceptancelist from "./components/medicalacceptancelist";
-import createmedicalacceptance from "./components/createmedicalacceptance";
-import editmedicalacceptance from "./components/editmedicalacceptance";
+// import medicalacceptancelist from "./components/medicalacceptancelist";
+// import createmedicalacceptance from "./components/createmedicalacceptance";
+// import editmedicalacceptance from "./components/editmedicalacceptance";
 import HospitalHistory from "./components/HospitalHistory";
 import favouriteHospital from "./components/favouriteHospital";
 import NursingHistory from "./components/NursingHistory";
@@ -357,32 +357,32 @@ const routes = [
             auth: false
         }
     },
-    {
-        name: "createmedicalacceptance",
-        path: "/createmedicalacceptance",
-        component: createmedicalacceptance,
-        meta: {
-            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
-        }
-    },
+    // {
+    //     name: "createmedicalacceptance",
+    //     path: "/createmedicalacceptance",
+    //     component: createmedicalacceptance,
+    //     meta: {
+    //         auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
+    //     }
+    // },
 
-    {
-        name: "medicalacceptancelist",
-        path: "/medicalacceptancelist",
-        component: medicalacceptancelist,
-        meta: {
-            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
-        }
-    },
+    // {
+    //     name: "medicalacceptancelist",
+    //     path: "/medicalacceptancelist",
+    //     component: medicalacceptancelist,
+    //     meta: {
+    //         auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
+    //     }
+    // },
 
-    {
-        name: "editmedicalacceptance",
-        path: "/editmedicalacceptance",
-        component: editmedicalacceptance,
-        meta: {
-            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
-        }
-    },
+    // {
+    //     name: "editmedicalacceptance",
+    //     path: "/editmedicalacceptance",
+    //     component: editmedicalacceptance,
+    //     meta: {
+    //         auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
+    //     }
+    // },
     // {
     //     name: "userPasswordResetList",
     //     path: "/userPasswordResetList",
