@@ -66,6 +66,8 @@ import jobSearch from './components/jobSearch.vue';
 import News from './components/News.vue';
 import Unauthorized from './components/419.vue';
 import Jobapplicantlist from './components/Jobapplicantlist.vue'
+import adminlist from './components/AdminList.vue'
+import admincreate from './components/AdminCreate.vue'
 
 // import menu from './components/menu/Menu.vue';
 
@@ -613,6 +615,22 @@ const routes = [
     component:jobapplylist,
     meta: {
         auth: true,
+    }
+  },
+  {
+    name:'adminlist',
+    path:'/admin/t_is_admin_register',
+    component:adminlist,
+    meta: {
+        auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+    }
+  },
+  {
+    name:'admincreate',
+    path:'/admin/create',
+    component:admincreate,
+    meta: {
+        auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'},
     }
   },
 ]
