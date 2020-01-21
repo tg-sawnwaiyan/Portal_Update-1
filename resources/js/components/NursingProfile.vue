@@ -30,33 +30,33 @@
                 <button v-scroll-to="{ el: '#btn'}" id="btn_click" hidden></button>
 
                     <div class="form-group form-group-wrapper d-flex">
-                            <label class="heading-lbl col-2 pad-free">施設名称<span class="error">*</span></label>
-                            <input type="text" class="form-control customer-name col-10" id="btn" placeholder="施設名称を入力してください。" v-model="customer_info.name">
+                            <label class="heading-lbl col-md-2 col-12 pad-free">施設名称<span class="error">*</span></label>
+                            <input type="text" class="form-control customer-name col-md-10 col-12 nursing_input" id="btn" placeholder="施設名称を入力してください。" v-model="customer_info.name">
                     </div>
                     <div class="form-group form-group-wrapper d-flex">
-                            <label class="heading-lbl col-2 pad-free">運営事業者</label>
-                            <input type="text" class="form-control customer-name col-10 " id="btn" v-model="nursing_info.operator" placeholder="運営事業者を入力してください。">
+                            <label class="heading-lbl col-md-2 col-12 pad-free">運営事業者</label>
+                            <input type="text" class="form-control customer-name col-md-10 col-12 nursing_input" id="btn" v-model="nursing_info.operator" placeholder="運営事業者を入力してください。">
                     </div>
                     <div class="form-group form-group-wrapper d-flex">
-                            <label class="heading-lbl1 col-2 pad-free">メールアドレス<span class="error">*</span></label>
-                            <label class=" col-10 customer-email"> {{customer_info.email}} </label>
+                            <label class="heading-lbl1 col-md-2 col-12 pad-free">メールアドレス<span class="error">*</span></label>
+                            <label class=" col-md-10 col-12 customer-email"> {{customer_info.email}} </label>
                     </div>
                     <div class="form-group form-group-wrapper d-flex">
-                            <label class="heading-lbl col-2 pad-free">電話番号<span class="error">*</span></label>
-                            <div class="col-10 row">
-                            <input type="text" class="form-control customer-phone col-12" id="phone" placeholder="電話番号を入力してください。" v-model="customer_info.phone" v-on:keyup="isNumberOnly" pattern="[0-9-]*" @focusout="focusPhone" title="Please enter number only." maxlength="14">
+                            <label class="heading-lbl col-md-2 col-12 pad-free">電話番号<span class="error">*</span></label>
+                            <div class="col-md-10 col-12 row">
+                            <input type="text" class="form-control customer-phone col-md-10 col-12 nursing_input" id="phone" placeholder="電話番号を入力してください。" v-model="customer_info.phone" v-on:keyup="isNumberOnly" pattern="[0-9-]*" @focusout="focusPhone" title="Please enter number only." maxlength="14">
                             <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>
                             <span class="error" v-else></span>
                             </div>
                     </div>
                     <div class="form-group form-group-wrapper d-flex">
-                            <label class="heading-lbl col-2 pad-free">公式サイト</label>
-                            <input type="text" name="official-website" class="form-control website col-10 float-right" v-model="nursing_info.website">
+                            <label class="heading-lbl col-md-2 col-12 pad-free">公式サイト</label>
+                            <input type="text" name="official-website" class="form-control website col-md-10 col-12 nursing_input" v-model="nursing_info.website">
                     </div>
                     <div class="form-group form-group-wrapper">
-                            <label class="heading-lbl col-2 pad-free">フォトアルバム</label>
+                            <label class="heading-lbl col-md-2 col-12 pad-free">フォトアルバム</label>
 
-                                    <span class="galleryadd btn all-btn main-bg-color float-right" style="min-width: 0px;" @click="galleryAdd()">
+                                    <span class="galleryadd btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px" @click="galleryAdd()">
                                     <i class="fas fa-plus-circle"></i> 追加</span>
                                     <span class='changeGalleryLink btn btn all-btn main-bg-color nursing_toggle_responsive' style="min-width: 0px;" @click="galleryToggle" >
                                         <i id="gallery" class="fas fa-sort-down"></i>
@@ -86,7 +86,7 @@
                     </div>
 
                     <div class="form-group form-group-wrapper">
-                            <label class="heading-lbl col-2 pad-free">動画</label> <span class="galleryvideo btn all-btn main-bg-color float-right" style="min-width: 0px;" @click="galleryVideoAdd()">
+                            <label class="heading-lbl col-2 pad-free">動画</label> <span class="galleryvideo btn all-btn main-bg-color float-right nursing_add_responsive " style="min-width: 0px;" @click="galleryVideoAdd()">
                                     <i class="fas fa-plus-circle"></i> 追加</span>
                                     <span class='changeGalleryVideoLink  btn btn all-btn main-bg-color nursing_toggle_responsive ' style="min-width: 0px;" @click="galleryVideoToggle" >
                                         <i id="video" class="fas fa-sort-down"></i>
@@ -193,11 +193,11 @@
                                             <div class="col-md-12 " :id="'changeLink' + indx" >
                                                 <div class="col-md-12">
                                                         <h3 class="title-lbl">料金概要</h3>
-                                                        <table class="table">
+                                                        <table class="table row ">
                                                         <tr>
                                                         <th>入居時にかかる費用</th>
                                                         <th>
-                                                                <input type="text" name="exp[]" class="form-control expense-moving white-bg-color" v-model="payment.expense_moving">
+                                                                <input type="text" name="exp[]" class="form-control col-mdexpense-moving white-bg-color" v-model="payment.expense_moving">
                                                         </th>
                                                         </tr>
                                                         <tr>
