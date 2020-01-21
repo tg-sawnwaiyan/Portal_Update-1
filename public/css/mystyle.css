@@ -9954,6 +9954,10 @@ display: none;
     .nursing_btn {
         margin-top: 0px;
     }
+    .nursing_btn span {
+        margin-left: 121px;
+        margin-top: -45px;
+    }
     .nursing_input {
         flex: 0 0 85%;
     }
@@ -10811,6 +10815,7 @@ background-image: none;
         flex: 0 0 100%;
         padding: 0;
         margin: 0;
+        padding: 0 7px;
     }
     .heading-lbl {
         font-size: 1.05em;
@@ -10834,7 +10839,7 @@ background-image: none;
         margin-left: 127px;
     }
     .nursing_add_responsive {
-        margin-top: -12px;
+        margin-top: -27px;
     }
     .nursing_table {
         display: block;
@@ -10854,6 +10859,19 @@ background-image: none;
     #gallery-payment table tr>th:first-child {
         /* width: 35%; */
         width: 100%;
+    }
+    .nursing_table_title th,.nursing_table_title td{
+        display: block;
+        width:100%;
+    }
+    .nursing_p-r-2{
+        padding-right: 2px !important;
+    }
+    .nursing_p-l-2{
+        padding-left: 2px !important;
+    }
+    .nursing-m-b-15{
+        margin-bottom: 10px !important;
     }
     /* end nursing profile */
 }
@@ -10946,6 +10964,10 @@ background-image: none;
     .nursing_toggle_responsive {
         /* margin-top: -45px; */
         margin-left: 115px;
+    }
+    .nursing_btn span {
+        margin-left: 0;
+        margin-top: 0;
     }
 }
 

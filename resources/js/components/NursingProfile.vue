@@ -63,10 +63,10 @@
                                    </span>
                             <div id="changeGalleryLink"  class="col-md-12">
                                     <div class="row" id ="gallery-photo">
-                                            <div class="col-md-6 gallery-area-photo" v-bind:id="'photo'+indx" v-for="(img,indx) in img_arr" :key="img.id">
+                                            <div class="col-md-6 gallery-area-photo p0-480" v-bind:id="'photo'+indx" v-for="(img,indx) in img_arr" :key="img.id">
                                                     <div class="col-md-12">
                                                             <input type="file" name="" class="nursing-photo m-b-10" v-bind:class="img.classname" id="upload_img" @change="preview_image($event,indx)">
-                                                            <div class="col-md-12 m-b-10" v-bind:class="img.id">
+                                                            <div class="col-md-12 m-b-10 p0-480" v-bind:class="img.id">
                                                                 <input type="hidden" class="already-photo" v-model="img.photo">
                                                                 <img v-bind:src="img.src" class="img-fluid nursing-image" alt="profile" v-if="img.src!=null" @error="imgUrlAlt">
                                                             </div>
@@ -132,7 +132,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="heading-lbl col-lg-2 col-md-3 pad-free">入居時費用 <span class="error">*</span></label>
-                                <div class="col-lg-10 col-md-12 float-right pad-free ">
+                                <div class="col-lg-10 col-md-12 float-right pad-free nursing-m-b-15 ">
                                     <div class="row">
                                         <div class="col-md-6 nursing_cost" style="font-weight:bold;font-size:1.5em;margin-bottom:7px;">
                                             <input type="text"  class="form-control col-10 nursing-moving-in-f float-left white-bg-color m-r-10" v-model="nursing_info.moving_in_from"> 円
@@ -146,7 +146,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="heading-lbl col-lg-2 col-md-3 pad-free">月額費用 <span class="error">*</span></label>
-                                <div class="col-lg-10 col-md-12 float-right pad-free">
+                                <div class="col-lg-10 col-md-12 float-right pad-free nursing-m-b-15">
                                     <div class="row">
                                         <div class="col-md-6 nursing_cost" style="font-weight:bold;font-size:1.5em;margin-bottom:7px;">
                                             <input type="text"  class="form-control col-10 nursing-per-month-f float-left white-bg-color m-r-10" v-model="nursing_info.per_month_from"> 円
@@ -160,7 +160,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="heading-lbl col-lg-2 col-md-3 pad-free">支払い方法 <span class="error">*</span></label>
-                                <div class="col-lg-10 col-md-12 float-right pad-free">
+                                <div class="col-lg-10 col-md-12 float-right pad-free nursing-m-b-15">
                                     <input type="text"  class="form-control col-9 nursing-payment-method float-left white-bg-color" v-model="nursing_info.method">
                                     <div class="col-3 float-right">
                                         <span class="nusing_btn1 btn all-btn main-bg-color" style="min-width: 0px;" @click="methodAdd()"><i class="fas fa-plus-circle"></i>追加</span>
@@ -321,7 +321,7 @@
                             <span class="btn all-btn main-bg-color nursing_toggle_responsive"  style="min-width: 0px;" @click="nurseFacToggleDiv()"><i class="fas fa-sort-down animate"  :class="{'rotate': isRotate1}"></i></span>
                             <!-- testtest -->
                             <div class="col-md-10 col-12 pad-free float-right nurse-fac-toggle-div toggle-div m-t-10">
-                                    <table class="table table-striped table-bordered">
+                                    <table class="table table-striped table-bordered nursing_table_title">
                                             <tr>
                                                     <td class="width15 title-bg">事業主体</td>
                                                     <td ><textarea class="form-control white-bg-color business-entity" :options="editorOption" v-model="nursing_info.business_entity"></textarea></td>
@@ -444,7 +444,7 @@
                                                 <input type="text" class="form-control col-10 float-right cooperate-name white-bg-color" name="co-medical-header[]" v-model="cooperate.name">
                                             </div>
                                               <div :id="'cooperateChangeLink' + indx">
-                                            <table class="table table-bordered">
+                                            <table class="table table-bordered nursing_table_title">
                                             <tr>
                                                 <th class="width15 title-bg">診療科目</th>
                                                 <th ><textarea class="form-control clinical-sub white-bg-color" name="clinical-sub" v-model="cooperate.clinical_subject"></textarea></th>
@@ -518,7 +518,7 @@
                             <span class="btn all-btn main-bg-color nursing_toggle_responsive " style="min-width: 0px;" @click="staffToggleDiv()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate3}"></i></span>
 
                             <div class="col-md-10 col-12 pad-free float-right staff-toggle-div toggle-div m-t-10">
-                                <table class="table table-striped table-bordered">
+                                <table class="table table-striped table-bordered nursing_table_title">
                                     <tr>
                                         <td class="width15 title-bg">介護に関わる職員体制（入居者：職員）</td>
                                         <td><textarea class="form-control staff white-bg-color" :options="editorOption" v-model="staff_info.staff"></textarea></td>
