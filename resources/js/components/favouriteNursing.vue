@@ -656,6 +656,7 @@
                                      }      
                                 
                                      localStorage.setItem('nursing_fav',nus_id);
+                                     this.local_sto = localStorage.getItem("nursing_fav");
                                      this.nusFav = this.fav_nursing.length;
                                   
                                 }
@@ -672,6 +673,7 @@
                                     height: 200,
                                     }).then(response => {
                                          localStorage.setItem('nursing_fav','');
+                                         this.local_sto = localStorage.getItem("nursing_fav");
                                          this.nusFav = 0;
                                           $('.fav-nursing-link-box>a').css({'cursor':'not-allowed','pointer-events':'none'});
                                           $( '.fav-nursing-link-box>a').parent('div').css({'cursor':'not-allowed'});

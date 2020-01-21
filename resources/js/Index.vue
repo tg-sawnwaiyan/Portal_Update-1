@@ -204,8 +204,8 @@
       adsslider
     }, 
     created() {
-        localStorage.setItem('hospital_history','1,2,3,4')
-        localStorage.setItem('nursing_history','1,2,3,4')
+        // localStorage.setItem('hospital_history','1,3')
+        // localStorage.setItem('nursing_history','1,2,3,4')
         $(document).scroll(function() {
             var cur_pos = $(this).scrollTop();
             if (cur_pos >= 100) {

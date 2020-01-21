@@ -409,6 +409,7 @@
                                        
                                      }
                                      localStorage.setItem('hospital_fav',hos_id);
+                                     this.local_sto = localStorage.getItem("hospital_fav");
                                      this.hosFav = this.fav_hospital.length;
                                 }
                                 if(this.fav_hospital.length == 0)
@@ -423,6 +424,7 @@
                                     height: 200,
                                     }).then(response => {
                                          localStorage.setItem('hospital_fav','');
+                                         this.local_sto = localStorage.getItem("hospital_fav");
                                          this.hosFav = 0;
                                           $('.fav-hospital-link-box>a').css({'cursor':'not-allowed','pointer-events':'none'});
                                           $( '.fav-hospital-link-box>a').parent('div').css({'cursor':'not-allowed'});

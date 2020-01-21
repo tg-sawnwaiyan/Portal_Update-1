@@ -454,6 +454,7 @@ export default {
                         }
                     }
                     localStorage.setItem('nursing_history',nus_id);
+                    this.local_sto = localStorage.getItem("nursing_history");
                     this.nusHis = this.nur_profiles.length;
                 }
             } else {
@@ -474,6 +475,7 @@ export default {
                     cancelButtonClass: "all-btn"
                 }).then(response => {
                     localStorage.setItem('nursing_history','');
+                    this.local_sto = localStorage.getItem("nursing_history");
                     this.nusHis = 0;
                     this.$router.push({
                         name: 'nursingSearch',

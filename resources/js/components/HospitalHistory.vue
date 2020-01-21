@@ -310,9 +310,9 @@
                             .post("/api/hospital_history/" + local_storage)
                             .then(response => {
                                 console.log(response.data)
-                                if(response.data.length<this.his_hos && response.data.length > 0) {
+                                // if(response.data.length<this.his_hos && response.data.length > 0) {
                                     this.hos_profiles = response.data;
-                                    if(response.data.length<this.hosHis) { 
+                                    if(response.data.length<this.his_hos && response.data.length > 0) { 
                                         var hos_id = '';
                                         this.message = "Some Hospital Accounts are Deactivated!";
                                         for(var i= 0;i<this.hos_profiles.length;i++) {
@@ -324,6 +324,7 @@
                                             }
                                         }
                                         localStorage.setItem('hospital_history',hos_id);
+                                        this.local_sto = localStorage.getItem("hospital_history");
                                         this.hosHis = this.hos_profiles.length;
 
                                     } else if(response.data.length == 0){
@@ -344,13 +345,14 @@
                                             cancelButtonClass: "all-btn"
                                         }).then(response => {
                                             localStorage.setItem('hospital_history','');
+                                            this.local_sto = localStorage.getItem("hospital_history");
                                             this.hosHis = 0;
                                             this.$router.push({
                                                 name: 'hospital_search',
                                             });
                                         });
                                     }
-                                }
+                                // }
                         });
                     },
                     deleteLocalSto: function(id) {
