@@ -38,7 +38,7 @@
                                     <div class="row">
                                         <div class="col-md-6 col-sm-8 m-t-8">{{category.name}}</div>
                                         <div class="col-md-6 col-sm-4 text-right admin_page_edit">
-                                            <router-link :to="{name:'editcategory', params:{id : category.id}}" class="btn edit-borderbtn">編集</router-link>
+                                            <router-link :to="{name:'createcategory', params:{id : category.id}}" class="btn edit-borderbtn">編集</router-link>
                                             <button class="btn text-danger delete-borderbtn" @click="deleteCategory(category.id)" >削除</button>
                                         </div>
                                     </div>

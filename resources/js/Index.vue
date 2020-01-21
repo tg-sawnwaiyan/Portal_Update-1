@@ -248,7 +248,7 @@
 
         })
     },
-    destroyed () {
+    destroyed() {
         document.removeEventListener('scroll', this.handleScroll);
     },
     mounted(){
@@ -256,14 +256,12 @@
         //     console.log(res)
         // })
        
-        
         if(localStorage.getItem("visit")){
-            this.visit = localStorage.getItem("visit");
+            this.visit = localStorage.getItem("visit");       
         }
         else{
             localStorage.setItem('visit', this.visit);
-        }
-        
+        }  
         if(localStorage.getItem("hospital_history")){
             // $("#hos-his-local").html(localStorage.getItem("hospital_history").split(",").length);
             this.hosHis = localStorage.getItem("hospital_history").split(",").length;
@@ -273,7 +271,7 @@
             // $("#hos-his-local").html(0);
             this.hosHis = 0;
             $('.his-hospital-link-box>a').css({'cursor':'not-allowed','pointer-events':'none'});
-            $( '.his-hospital-link-box>a ').parent('div').css({'cursor':'not-allowed'});
+            $('.his-hospital-link-box>a ').parent('div').css({'cursor':'not-allowed'});
         }
         if(localStorage.getItem("nursing_history")){
             // $("#nus-his-local").html(localStorage.getItem("nursing_history").split(",").length);
