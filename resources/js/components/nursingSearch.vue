@@ -1704,21 +1704,25 @@
                 }
 
                var township_name = townshipName;
-               this.coordinate = []
+               this.coordinate = [
+                   {"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"MultiPolygon"}}]}
+               ]
 
                if(this.ci == true && (this.townshipID[0] == "-1" || this.townshipID.length == 0))
                {                   
                     this.loading = false;                    
                }
                else if(this.ci == false && (this.townshipID[0] == 0 || this.townshipID[0] == "-1" || this.townshipID.length == 0)){             
-                        this.axios.get("/api/cityJson/"+theCity).then(respon => {
-                            console.log(respon.data)
-                            // var city_coordinates = respon.data
-                            // this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
-                            // this.coordinate = city_coordinates;
+                        this.axios.get("https://testikportal.management-partners.co.jp/hokkido.json").then(respon => {
                             this.boundariesGoogleMap(lat,lng,respon.data);            
                         }); 
-        
+                        // this.axios.get("/api/cityJson/"+theCity).then(respon => {
+                        //     // var city_coordinates = respon.data
+                        //     // this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
+                        //     // this.coordinate = city_coordinates;
+                        //     this.coordinate[0].features[0].geometry["coordinates"] = respon.data;
+                        //     this.boundariesGoogleMap(lat,lng,this.coordinate);            
+                        // }); 
                 }  
                 else{
            
@@ -1733,7 +1737,6 @@
             boundariesGoogleMap(lat,lng,coor){        
                 
                 var data = coor.reduce((acc, val) => acc.concat(val), []);    
-                // var data = coor;    
                 for (let i = 0; i < data.length; i++) {
                     this.map.data.addGeoJson(data[i]); 
                 }
