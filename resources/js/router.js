@@ -10,24 +10,14 @@ import hospitalSearch from "./components/hospitalSearch.vue";
 import JobApply from "./components/JobApply.vue";
 import jobapplylist from "./components/jobapplylist.vue";
 import customerlist from "./components/customerlist.vue";
-import JobSearchListComponent from "./components/JobSearchListComponent.vue";
 import job_details from "./components/job_details.vue";
 import news_list from "./components/news_list.vue";
 import create_news from "./components/create_news.vue";
 import categorylist from "./components/categorylist.vue";
 import createcategory from "./components/createcategory.vue";
-// import stationlist from "./components/stationlist.vue";
-// import createstation from "./components/createstation.vue";
-// import editstation from "./components/editstation.vue";
 import FacilitiesListComponent from "./components/FacilitiesListComponent.vue";
 import CreateFacilityComponent from "./components/CreateFacilityComponent.vue";
-// import custedit from "./components/custedit.vue";
-// import CustomerSearchListComponent from "./components/CustomerSearchListComponent.vue";
-// import NewsSearchListComponent from "./components/NewsSearchListComponent.vue";
-// import map from "./components/map.vue";
 import EditFacilityComponent from "./components/EditFacilityComponent.vue";
-import editcategory from "./components/editcategory.vue";
-// import createcustomer from "./components/CreateCustomer.vue";
 import joboffercreate from "./components/JobOfferCreate.vue";
 import editPost from "./components/editNewsPost.vue";
 import Profile from "./components/Profile.vue";
@@ -38,16 +28,10 @@ import advertisement from "./components/advertisement.vue";
 import createmedicalacceptance from "./components/createmedicalacceptance.vue";
 import medicalacceptancelist from "./components/medicalacceptancelist.vue";
 import editmedicalacceptance from "./components/editmedicalacceptance.vue";
-// import userPasswordResetList from "./components/userPasswordResetList.vue";
 import HospitalHistory from "./components/HospitalHistory.vue";
 import favouriteHospital from "./components/favouriteHospital.vue";
 import NursingHistory from "./components/NursingHistory.vue";
-// import HospitalProfile from "./components/HospitalProfile.vue";
-// import NursingProfile from "./components/NursingProfile.vue";
-// import VideoUpload from "./components/VideoUpload.vue";
 import GoogleMap from "./components/GoogleMap.vue";
-// import type from "./components/Type.vue";
-// import typelist from "./components/TypeList.vue";
 import subject from "./components/Subject.vue";
 import subjectlist from "./components/SubjectList.vue";
 import advertisementlist from "./components/advertisementlist.vue";
@@ -56,11 +40,9 @@ import comment from "./components/Comment.vue";
 import commentlist from "./components/commentlist.vue";
 import featurelist from "./components/FeatureList.vue";
 import favouriteNursing from "./components/favouriteNursing.vue";
-import passport from "./components/passport.vue";
 import specialfeature from "./components/CreateSpecialFeature.vue";
 import nursingFavouriteMail from "./components/nursingFavouriteMail.vue";
 import nursingMailConfirm from "./components/nursingMailConfirm.vue";
-import modal from './components/modal.vue';
 import termsAndConditions from './components/termsAndConditions.vue';
 import occupation from './components/occupation.vue';
 import occupationlist from './components/occupationlist.vue';
@@ -69,6 +51,8 @@ import jobSearch from './components/jobSearch.vue';
 import News from './components/News.vue';
 import Unauthorized from './components/419.vue';
 import Jobapplicantlist from './components/Jobapplicantlist.vue'
+import adminlist from './components/AdminList.vue'
+import admincreate from './components/AdminCreate.vue'
 
 // import menu from './components/menu/Menu.vue';
 
@@ -161,11 +145,11 @@ const routes = [
         path: '/nursingSearch',
         component: nursingSearch
     },
-    {
-        name: "passport",
-        path: "/passport",
-        component: passport
-    },
+    // {
+    //     name: "passport",
+    //     path: "/passport",
+    //     component: passport
+    // },
 
     {
         name: "newdetails",
@@ -222,14 +206,14 @@ const routes = [
     //     path: "/custsedit",
     //     component: custedit
     // },
-    {
-        name: "jobsearchlist",
-        path: "/jobsearchlist",
-        component: JobSearchListComponent,
-        meta: {
-            auth: undefined
-        }
-    },
+    // {
+    //     name: "jobsearchlist",
+    //     path: "/jobsearchlist",
+    //     component: JobSearchListComponent,
+    //     meta: {
+    //         auth: undefined
+    //     }
+    // },
 
     {
         name: "job_details",
@@ -282,26 +266,11 @@ const routes = [
     {
         name: "editcategory",
         path: "/editcategory",
-        component: editcategory,
+        component: createcategory,
         meta: {
             auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
         }
     },
-    // {
-    //     name: "stationlist",
-    //     path: "/stationlist",
-    //     component: stationlist
-    // },
-    // {
-    //     name: "createstation",
-    //     path: "/createstation",
-    //     component: createstation
-    // },
-    // {
-    //     name: "editstation",
-    //     path: "/editstation",
-    //     component: editstation
-    // },
     {
         name: "facilitieslist",
         path: "/facilitieslist",
@@ -575,14 +544,14 @@ const routes = [
         auth: false
     }
   },
-  {
-    name: 'modal',
-    path: '/modal',
-    component: modal,
-    meta: {
-        auth: undefined
-    }
-  },
+//   {
+//     name: 'modal',
+//     path: '/modal',
+//     component: modal,
+//     meta: {
+//         auth: undefined
+//     }
+//   },
   {
     name: 'termsAndConditions',
     path: '/termsAndConditions',
@@ -616,6 +585,22 @@ const routes = [
     component:jobapplylist,
     meta: {
         auth: true,
+    }
+  },
+  {
+    name:'adminlist',
+    path:'/admin/t_is_admin_register',
+    component:adminlist,
+    meta: {
+        auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
+    }
+  },
+  {
+    name:'admincreate',
+    path:'/admin/create',
+    component:admincreate,
+    meta: {
+        auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'},
     }
   },
 ]

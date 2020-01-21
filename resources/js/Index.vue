@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div id="main" class="pad-free" :class="!$auth.check() ? inner : (visit == 'true'?inner:full)" v-if="this.$route.path !== '/register' && this.$route.path !== '/login' && this.$route.path !== '/reset' && this.$route.path !== '/resetpassword' && this.$route.path !== '/Unauthorized' && this.$route.path !== '/admin_login'">
+        <div id="main" class="pad-free" :class="!$auth.check() ? inner : (visit == 'true'?inner:full)" v-if="this.$route.path !== '/register' && this.$route.path !== '/login' && this.$route.path !== '/reset' && this.$route.path !== '/resetpassword' && this.$route.path !== '/Unauthorized' && this.$route.path !== '/admin_login' && this.$route.path !== '/admin/t_is_admin_register' && this.$route.path !== '/admin/create'" >
             <button @click="topFunction()" id="myBtn">Top</button>
             <HeaderMenu v-if="!$auth.check()"></HeaderMenu>
             <AuthHeaderMenu v-if="$auth.check()"></AuthHeaderMenu>
@@ -248,21 +248,20 @@
 
         })
     },
-    destroyed () {
+    destroyed() {
         document.removeEventListener('scroll', this.handleScroll);
     },
     mounted(){
         // this.axios.get('/api/auth/user').then(res=>{
         //     console.log(res)
         // })
-        
+       
         if(localStorage.getItem("visit")){
-            this.visit = localStorage.getItem("visit");
+            this.visit = localStorage.getItem("visit");       
         }
         else{
             localStorage.setItem('visit', this.visit);
-        }
-        
+        }  
         if(localStorage.getItem("hospital_history")){
             // $("#hos-his-local").html(localStorage.getItem("hospital_history").split(",").length);
             this.hosHis = localStorage.getItem("hospital_history").split(",").length;
@@ -272,7 +271,7 @@
             // $("#hos-his-local").html(0);
             this.hosHis = 0;
             $('.his-hospital-link-box>a').css({'cursor':'not-allowed','pointer-events':'none'});
-            $( '.his-hospital-link-box>a ').parent('div').css({'cursor':'not-allowed'});
+            $('.his-hospital-link-box>a ').parent('div').css({'cursor':'not-allowed'});
         }
         if(localStorage.getItem("nursing_history")){
             // $("#nus-his-local").html(localStorage.getItem("nursing_history").split(",").length);
@@ -298,7 +297,9 @@
         }
         if(localStorage.getItem("nursing_fav")){
             // $("#nus-fav-local").html(localStorage.getItem("nursing_fav").split(",").length);
-            this.nusFav = localStorage.getItem("nursing_fav").split(",").length;
+             this.nusFav = localStorage.getItem("nursing_fav").split(",").length;
+       
+        
             $('.fav-nursing-link-box>a').css({'cursor':'pointer','pointer-events':'auto'});
         }
         else{

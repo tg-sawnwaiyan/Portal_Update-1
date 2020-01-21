@@ -249,5 +249,73 @@ class UserController extends Controller
         $customer->save();
       
     }
+    public function getAdminList(Request $request) {
+        $admin_list = User::where('role',2)->get();
+        return $admin_list;
+    }
+    public function deleteAdmin($id) {
+        $admin_list = User::find($id)->delete();
+        $admin_list = User::where('role',2)->get()->toArray();
+        return array_reverse($admin_list);
+    }
+    public function storeAdmin(Request $request) {
+      
+        $this->validate($request, [
+            'email' => 'unique:users',
+            'password' => 'min:6'
+        ]);
+        $input = $request->all();
+          
+        $admin = new User();
+        $admin->name = $input['name'];
+        $admin->email = $input['email'];
+        $admin->password = Hash::make($input['password']);
+        $admin->role = 2;
+        $admin->type_id = 1;
+        $admin->save();
+        return response()->json('The Admin successfully added');
+    }
+    public function editAdmin($id) {
+        $admin = User::find($id);
+        return response()->json($admin);
+    }
+    public function updateAdmin(Request $request) {
+        $input = $request->all();
+        $adminId = $input['admin_id'];
+        $admin = User::find($adminId);
+      
+        if(Hash::check($input['old_pass'] , $admin['password'])){
+        $admin->name = $input['name'];
+        $admin->email = $input['email'];
+        $admin->password = Hash::make($request->input('new_pass'));
+        $admin->role = 2;
+        $admin->type_id = 1;
+        $admin->save();
+        return response()->json('The Admin successfully updated');
+    }else{
+        return response()->json('oldpasswordwrong');
+    }
+
+    }
+
+
+
+    // public function changePassword(Request $request) {
+    //     $request = $request->all();
+    //     $cusId = $request['cus_id'];
+    //     if(auth()->user()->role == 2) {
+    //         $customer = Customer::find($cusId);
+    //         $user = User::find($customer['user_id']);
+    //     }else{
+    //         $user = User::find(auth('api')->user()->id);
+    //     }    
+    //     if (Hash::check($request['old_pass'], $user['password'])) {
+    //         $user->password = Hash::make($request['new_pass']);
+    //         $user->save();
+    //     } 
+    //     else {
+    //         return response()->json('oldpasswordwrong');
+    //     }
+    // }
 
 }

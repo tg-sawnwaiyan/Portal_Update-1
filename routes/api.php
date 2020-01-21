@@ -54,7 +54,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('getCity','SearchMapController@getCity');
     Route::get('profile_view/{cusid}/{type}','ProfilePublishController@getCustomerLatLng');
     Route::get('townshipJson/{township_name}','SearchMapController@townshipJson');
-    Route::get('cityJson/{theCity}','SearchMapController@cityJson');
+    // Route::get('cityJson/{theCity}','SearchMapController@cityJson');
     // Route::get('getstation/{id}','SearchMapController@getJobStation');
 
 
@@ -394,3 +394,11 @@ Route::get('cost','ProfilePublishController@getCost');
 Route::get('hospital','ProfilePublishController@hospital');
 Route::get('jobapplicantlist','JobApplyController@jobapplicantlist');
 Route::post('jobapplicant/search','JobApplyController@search');
+
+Route::group(['prefix' => 'main_admin'], function () {
+    Route::get('admin_list','UserController@getAdminList');
+    Route::post('add','UserController@storeAdmin');
+    Route::get('edit/{id}','UserController@editAdmin');
+    Route::post('update','UserController@updateAdmin');
+    Route::delete('delete/{id}','UserController@deleteAdmin');
+});

@@ -831,34 +831,96 @@ class SearchMapController extends Controller
         return true;
     }
 
-    public function cityJson($theCity)
-    {
-        if($theCity == 'null'){
-            $theCity = 'Tokyo';
-        }
-
-        // $jsonArray = [];
+    // public function cityJson($theCity)
+    // {
+    //     ini_set('memory_limit','-1');
        
-        $path = base_path().('/google-map-json/gadm36_jpn_1.json');
-        $json = file_get_contents($path);
-        ini_set('memory_limit','-1');
-        $obj = json_decode(preg_replace('/[\x00-\x1F\x80-\xFF]/', '',$json), true );
-        //return count($json);
-        $forLoop = $obj['features'];
+       
+    //     if($theCity == 'null'){
+    //         $theCity = 'Tokyo';
+    //     }
+    //     if($theCity == 'Hokkaido'){
+    //         $test = config('constant.hokkido');
+    //         return $test;
+    //         // $Json = new coordinateArray();
+    //         // $getCityJsonOne =$Json->cityArray();
+    //         // $path = base_path().('/google-map-json/hokkido.json');
+    //         // $json = file_get_contents($path);
+    //         // return $json;
+            
+    //         // $obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $json), true );
+            
+    //         //$obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $json), true );
+    //         //$forLoop = $obj['features'];
+    //         // return $forLoop;
+    //         //foreach ($forLoop as $key => $value) {
+    //           //  $jsonArray[] = $value;
+    //             // if($value['properties']['NAME_1'] == $theCity){
+    //             //     $jsonArray[] = $value;
         
-        for ($i=0; $i <count($forLoop) ; $i++) { 
-
-        if($forLoop[$i]['properties']['NAME_1'] == $theCity){
-
-            $jsonArray[] = $forLoop[$i];
-
-            }
- 
-        }
-
-          return response()->json($jsonArray);
+    //             // }
+    //        // }
+    //     //     for ($i=0; $i <count($forLoop) ; $i++) { 
+    //     //        $jsonArray[] = $forLoop[$i];
+    //     //     if($forLoop[$i]['properties']['NAME_1'] == $theCity){
+   
+    //     //        $jsonArray[] = $forLoop[$i];
+   
+    //     //        }
+   
+    //     //    }
+    //          //return response()->json($jsonArray);
+    //     }
+    //     // else{
+    //     //     return '1';
+    //     //  $Json = new coordinateArray();
+    //     //  $getCityJsonTwo =$Json->otherCity();
+      
+            
+    //     //  $obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $getCityJsonTwo), true );
+    //     //  $forLoop = $obj['features'];
+    //     //  for ($i=0; $i <count($forLoop) ; $i++) { 
+    //     //  if($forLoop[$i]['properties']['NAME_1'] == $theCity){
+    //     //     $jsonArray[] = $forLoop[$i];
+    //     //     }
+    //     //  }
+    //     //   return response()->json($jsonArray);
+    //     // }
+         
        
-    }
+    // }
+
+    // public function cityJson($theCity)
+    // {
+    //     // $test = config('constant.hokkido');
+    //     // return $test;
+    //     if($theCity == 'null'){
+    //         $theCity = 'Tokyo';
+    //     }
+
+    //     // $jsonArray = [];
+       
+    //     $path = base_path().('/google-map-json/gadm36_jpn_1.json');
+    //     $json = file_get_contents($path);
+    //     ini_set('memory_limit','-1');
+    //     $obj = json_decode(preg_replace('/[\x00-\x1F\x80-\xFF]/', '',$json), true );
+    //     //return count($json);
+    //     $forLoop = $obj['features'];
+        
+    //     for ($i=0; $i <count($forLoop) ; $i++) { 
+
+    //     if($forLoop[$i]['properties']['NAME_1'] == $theCity){
+
+    //         $jsonArray[] = $forLoop[$i];
+
+    //         }
+ 
+    //     }
+
+    //     //   return response()->json($obj);
+    //       return response()->json($jsonArray);
+       
+    // }
 
     public function townshipJson($township_name)
     {
