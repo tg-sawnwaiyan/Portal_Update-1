@@ -40,7 +40,9 @@
                                 <div class="card-carousel-cards col-3 pad-free" :style="{ transform: 'translateX' + '(' + currentOffset + 'px' + ')'}">
                                     <div class="card-carousel--card">
                                         <div class="card-carousel--card--footer">
-
+                                            <div class="msg"> 
+                                                    <label><strong> {{message}} </strong></label>
+                                            </div>
                                             <table class="table table-bordered">
                                                 <tr>
                                                     <td v-for="hos_profile in hos_profiles" :key="hos_profile.id">
@@ -204,6 +206,7 @@
         data() {
                 return {
                     his_hos:'',
+                    message:'',
                     hos_profiles: [],
                     specialfeature: [],
                     local_sto: "",
@@ -308,27 +311,43 @@
                             .then(response => {
                                 console.log(response.data)
                                 if(response.data.length<this.his_hos && response.data.length > 0) {
-                                    this.hos_profiles = response.data;
-                                    this.hosHis = response.data.length;
-                                    $('.msg').html('<span>Some Hospital Accounts are Deactivated!</span>');
-                                } else if(response.data.length == 0){
-                                    this.his_hos = 0;
-                                    this.$swal({
-                                        title: "確認",
-                                        text: "Sorry!Hospital Accounts are already deactived.",
-                                        type: "warning",
-                                        width: 350,
-                                        height: 200,
-                                        showCancelButton: true,
-                                        confirmButtonColor: "#dc3545",
-                                        cancelButtonColor: "#b1abab",
-                                        cancelButtonTextColor: "#000",
-                                        confirmButtonText: "削除",
-                                        cancelButtonText: "キャンセル",
-                                        confirmButtonClass: "all-btn",
-                                        cancelButtonClass: "all-btn"
+                                    // this.hos_profiles = response.data;
+                                    // this.hosHis = response.data.length;
+                                    // $('.msg').html('<span>Some Hospital Accounts are Deactivated!</span>');
+
+                                     this.hos_profiles = response.data;
+                                    if(response.data.length<this.his_nus) { 
+                                        var hos_id = '';
+                                        this.message = "Some Hospital Accounts are Deactivated!";
+                                        for(var i= 0;i<this.hos_profiles.length;i++) {
+                                            if(i== this.hos_profiles.length-1) {
+                                                hos_id += this.hos_profiles[i]['id'];
+                                            }
+                                            else {
+                                                hos_id += this.hos_profiles[i]['id'] + ",";
+                                            }
+                                        }
+                                        localStorage.setItem('hospital_history',hos_id);
+                                        this.hosHis = this.hos_profiles.length;
+                                    } else if(response.data.length == 0){
+                                        this.his_hos = 0;
+                                        this.$swal({
+                                            title: "確認",
+                                            text: "Sorry!Hospital Accounts are already deactived.",
+                                            type: "warning",
+                                            width: 350,
+                                            height: 200,
+                                            showCancelButton: true,
+                                            confirmButtonColor: "#dc3545",
+                                            cancelButtonColor: "#b1abab",
+                                            cancelButtonTextColor: "#000",
+                                            confirmButtonText: "削除",
+                                            cancelButtonText: "キャンセル",
+                                            confirmButtonClass: "all-btn",
+                                            cancelButtonClass: "all-btn"
                                     }).then(response => {
-                                        this.hosHis = null;
+                                        localStorage.setItem('hospital_history','');
+                                        this.hosHis = 0;
                                         this.$router.push({
                                             name: 'hospital_search',
                                         });

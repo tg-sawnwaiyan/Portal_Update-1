@@ -102,6 +102,7 @@
                                         <div class="card-carousel--card">
                                             <div class="card-carousel--card--footer">
                                                 <div class="msg"> 
+                                                    <label><strong> {{message}} </strong></label>
                                                 </div> 
                                                 <table class="table table-bordered">
                                                     <tr>
@@ -247,6 +248,7 @@ export default {
       modal_btn: false,
 
       local_sto: "",
+      message:"",
 
       type: "nursing",
 
@@ -440,8 +442,19 @@ export default {
             if(response.data.length>0) {
                 this.nur_profiles = response.data;
                 if(response.data.length<this.his_nus) {
-                    this.nusHis = response.data.length;
-                    $('.msg').html('<span>Some Nursing Accounts are Deactivated!</span>');
+                    // $('.msg').html('<span>Some Nursing Accounts are Deactivated!</span>');
+                    var nus_id = '';
+                    this.message = "Some Nursing Accounts are Deactivated!";
+                    for(var i= 0;i<this.nur_profiles.length;i++) {
+                        if(i== this.nur_profiles.length-1) {
+                            nus_id += this.nur_profiles[i]['id'];
+                        }
+                        else {
+                            nus_id += this.nur_profiles[i]['id'] + ",";
+                        }
+                    }
+                    localStorage.setItem('nursing_history',nus_id);
+                    this.nusHis = this.nur_profiles.length;
                 }
             } else {
                 this.his_nus = 0;
@@ -460,7 +473,8 @@ export default {
                     confirmButtonClass: "all-btn",
                     cancelButtonClass: "all-btn"
                 }).then(response => {
-                    this.nusHis = null;
+                    localStorage.setItem('nursing_history','');
+                    this.nusHis = 0;
                     this.$router.push({
                         name: 'nursingSearch',
                     });
