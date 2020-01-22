@@ -17,7 +17,7 @@ import categorylist from "./components/categorylist.vue";
 import createcategory from "./components/createcategory.vue";
 import FacilitiesListComponent from "./components/FacilitiesListComponent.vue";
 import CreateFacilityComponent from "./components/CreateFacilityComponent.vue";
-import EditFacilityComponent from "./components/EditFacilityComponent.vue";
+//import EditFacilityComponent from "./components/EditFacilityComponent.vue";
 import joboffercreate from "./components/JobOfferCreate.vue";
 import editPost from "./components/editNewsPost.vue";
 import Profile from "./components/Profile.vue";
@@ -25,9 +25,9 @@ import JobOfferList from "./components/JobOfferList.vue";
 import ProfileEdit from "./components/ProfileEdit.vue";
 import ProfilePublish from "./components/ProfilePublish.vue";
 import advertisement from "./components/advertisement.vue";
-import createmedicalacceptance from "./components/createmedicalacceptance.vue";
-import medicalacceptancelist from "./components/medicalacceptancelist.vue";
-import editmedicalacceptance from "./components/editmedicalacceptance.vue";
+// import createmedicalacceptance from "./components/createmedicalacceptance.vue";
+// import medicalacceptancelist from "./components/medicalacceptancelist.vue";
+// import editmedicalacceptance from "./components/editmedicalacceptance.vue";
 import HospitalHistory from "./components/HospitalHistory.vue";
 import favouriteHospital from "./components/favouriteHospital.vue";
 import NursingHistory from "./components/NursingHistory.vue";
@@ -45,7 +45,7 @@ import nursingFavouriteMail from "./components/nursingFavouriteMail.vue";
 import nursingMailConfirm from "./components/nursingMailConfirm.vue";
 import termsAndConditions from './components/termsAndConditions.vue';
 import occupation from './components/occupation.vue';
-import occupationlist from './components/occupationlist.vue';
+import occupationlist from './components/occupationlist.vue'; 
 import nursingSearch from './components/nursingSearch.vue';
 import jobSearch from './components/jobSearch.vue';
 import News from './components/News.vue';
@@ -291,7 +291,7 @@ const routes = [
     {
         name: "editfacility",
         path: "/editfacility",
-        component: EditFacilityComponent,
+        component: CreateFacilityComponent,
         meta: {
             auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
         }
@@ -379,7 +379,7 @@ const routes = [
     {
         name: "editmedicalacceptance",
         path: "/editmedicalacceptance",
-        component: editmedicalacceptance,
+        component: createmedicalacceptance,
         meta: {
             auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
         }
