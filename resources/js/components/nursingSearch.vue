@@ -1254,6 +1254,11 @@
         },
 
         created(){
+            this.$loading(true);
+            this.axios.get("./json/japan_cities.json").then(respon => {
+                console.log(respon.data);
+                this.$loading(false);
+            });
             window.addEventListener('resize', this.handleResize)
             this.handleResize();
 

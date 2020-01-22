@@ -1,70 +1,66 @@
 <template>
-    <div class="row">
-        <div class="col-12">
-            <div class="row m-b-10" v-if="!norecord_msg">
-                <div class="col-md-12">
-                    <router-link to="/occupation" class="float-right main-bg-color create-btn all-btn">
-                        <i class="fas fa-plus-circle"></i> 職種新規作成
-                    </router-link>
+    <div>
+        <div class="d-flex justify-content-end m-b-10" v-if="!norecord_msg">
+            <router-link to="/occupation" class="main-bg-color create-btn all-btn">
+                <i class="fas fa-plus-circle"></i> 職種新規作成
+            </router-link>
+        </div>
+        <div class="col-12 tab-content">
+            <div class="p-2 p0-480">
+                <div v-if="norecord_msg" class="card card-default card-wrap">
+                    <p class="record-ico">
+                        <i class="fa fa-exclamation"></i>
+                    </p>
+                    <p>OOPS!!</p>
+                    <p class="record-txt01">表示するデータありません</p>
+                    <p>表示するデータありません‼新しいデータを作成してください。</p>
+                    <a href="/occupation" class="main-bg-color create-btn all-btn">
+                        <i class="fas fa-plus-circle"></i> 新しく作る
+                    </a>
                 </div>
-            </div>
-            <div class="col-md-12 col-md-12 tab-content tab-content1 tabs pad-free border-style">
-                <div class="col-md-12 scrolldiv">
-                    <div v-if="norecord_msg" class="card card-default card-wrap">
-                        <p class="record-ico">
-                            <i class="fa fa-exclamation"></i>
-                        </p>
-                        <p>OOPS!!</p>
-                        <p class="record-txt01">表示するデータありません</p>
-                        <p>表示するデータありません‼新しいデータを作成してください。</p>
-                        <a href="/occupation" class="main-bg-color create-btn all-btn">
-                            <i class="fas fa-plus-circle"></i> 新しく作る
-                        </a>
-                    </div>
-                    <div v-else class="container-fuid">
-                        <h4 class="main-color m-b-10">求人職種検索</h4>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <input type="text" class="form-control" placeholder="職種検索" id="search-item" @keyup="searchOccupation()">
-                            </div>
+                <div v-else class="container-fuid">
+                    <h4 class="main-color m-b-10">求人職種検索</h4>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" placeholder="職種検索" id="search-item" @keyup="searchOccupation()">
                         </div>
-                        <hr/>
-                        <h5 class="header">求人職種一覧</h5>
-                        <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデタが消える。</div>
-                        <div v-else class="container-fuid">
-                            <div class="card card-default m-b-20" v-for="occupations in displayItems" :key="occupations.id">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-6 col-sm-8 m-t-8">{{occupations.name}}</div>
-                                            <div class="col-md-6 col-sm-4 text-right admin_page_edit">
-                                                <router-link :to="{name:'occupation', params:{id : occupations.id}}" class="btn edit-borderbtn">編集</router-link>
-                                                <button class="btn text-danger delete-borderbtn" @click="deleteType(occupations.id)">削除</button>
-                                            </div>
+                    </div>
+                    <hr/>
+                    <h5 class="header">求人職種一覧</h5>
+                    <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデタが消える。</div>
+                    <div v-else class="container-fuid">
+                        <div class="card card-default m-b-20" v-for="occupations in displayItems" :key="occupations.id">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-8 m-t-8">{{occupations.name}}</div>
+                                        <div class="col-md-6 col-sm-4 text-right admin_page_edit">
+                                            <router-link :to="{name:'occupation', params:{id : occupations.id}}" class="btn edit-borderbtn">編集</router-link>
+                                            <button class="btn text-danger delete-borderbtn" @click="deleteType(occupations.id)">削除</button>
                                         </div>
                                     </div>
-                            </div>
+                                </div>
                         </div>
-                        <div class="col-12" v-if="pagination">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination">
-                                    <li class="page-item">
-                                        <span class="spanclass pc-480" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
-                                    </li>
-                                    <li class="page-item">
-                                        <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i><span class="pc-paginate"> 前へ</span></span>
-                                    </li>
-                                    <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
-                                        <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
-                                    </li>
-                                    <li class="page-item">
-                                        <span class="spanclass" @click="next"><span class="pc-paginate">次へ </span><i class='fas fa-angle-right'></i></span>
-                                    </li>
-                                    <li class="page-item">
-                                        <span class="spanclass pc-480" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
+                    </div>
+                    <div class="col-12" v-if="pagination">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <span class="spanclass pc-480" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
+                                </li>
+                                <li class="page-item">
+                                    <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i><span class="pc-paginate"> 前へ</span></span>
+                                </li>
+                                <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
+                                    <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
+                                </li>
+                                <li class="page-item">
+                                    <span class="spanclass" @click="next"><span class="pc-paginate">次へ </span><i class='fas fa-angle-right'></i></span>
+                                </li>
+                                <li class="page-item">
+                                    <span class="spanclass pc-480" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>

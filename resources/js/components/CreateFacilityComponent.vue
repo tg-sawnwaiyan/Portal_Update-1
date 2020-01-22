@@ -6,18 +6,18 @@
                     <div class="row">
                          
                         <div class="col-md-12">
-                            <h4 class="page-header header">院内施設新規作成</h4>
+                            <h4 class="page-header header">{{title}}</h4>
                         </div>
                         <div class="col-md-12">
-                             <form @submit.prevent="add">
+                             <form>
                             <div class="form-group">
                                 <label>施設の種類:<span class="error">*</span></label>
-                                <input type="text" class="form-control"  v-model="facility.description"  placeholder="施設の種類を入力してください。" >
+                                <input type="text" class="form-control"  v-model="facility.description"  :placeholder='[[placeholder]]' >
                                       <span v-if="errors.description" class="error">{{errors.description}}</span>
                             </div>
                         
                             <div class="form-group">
-                                <span class="btn main-bg-color white all-btn" @click="checkValidate()"> 作成</span>
+                                <span class="btn main-bg-color white all-btn" @click="checkValidate()"> {{buttontext}}</span>
                                 <router-link to="/facilitieslist" class="btn btn-danger all-btn">キャンセル</router-link>    
                                 <!-- <button class="btn news-post-btn all-btn" > 作成する </button> -->
                                                                          
@@ -41,9 +41,33 @@ export default {
       },
       facility: {
         description: ""
-      }
+      },
+      title:'',
+      label:'',
+      placeholder:'',
+      buttontext:''
     };
   },
+    created() {
+        if(this.$route.name == "editfacility"){
+            this.title = "施設編集";
+            this.label = "施設の種類:";
+            this.placeholder = "施設の種類を入力してください。";
+            this.buttontext = "保存";
+            this.axios
+              .get(`/api/facility/edit/${this.$route.params.id}`)
+              .then(response => {
+                this.facility = response.data;
+              });
+          }
+          else{
+            this.title = "院内施設新規作成";
+            this.label = "施設の種類:";
+            this.placeholder = "施設の種類を入力してください。";
+            this.buttontext = "作成";
+          }
+        },
+  
 
   methods: {
     add() {
@@ -91,19 +115,51 @@ export default {
                 });
             });
     },
+     updateFacility() {
+       
+          this.$loading(true);
+            this.axios.post(`/api/facility/update/${this.$route.params.id}`, this.facility).then(response => {
+              this.$loading(false);
+            this.description = "";
+            this.$swal({
+                        position: 'top-end',
+                        type: 'success',
+                        text: '施設を更新しました。',
+                        // showConfirmButton: false,
+                        // timer: 1500,
+                        confirmButtonText: "閉じる",
+                        confirmButtonColor: "#6cb2eb",
+                        width: 250,
+                        height: 200,
+
+                      })
+            // alert("Successfully Updated!");
+            this.$router.push({ name: "facilitieslist" });
+          }).catch(error => {
+            if (error.response.status == 422) {
+              this.errors = error.response.data.errors;
+            }
+          });
+        
+        
+      },
      checkValidate() {
-                     if (this.facility.description) {
+                   if (this.facility.description) {
                         // console.log('exist');
                         this.errors.description = "";
-                    } else {
+                    } 
+                   if(!this.facility.description && !this.$route.params.id){
                         // console.log('null');
                         this.errors.description = " 院内施設の種類が必須です。";
                     }
-                   if (
-                        !this.errors.description
-                        
-                    ) {
+                    else if(!this.facility.description && this.$route.params.id){
+                       this.errors.description = " 施設の種類が必須です。";
+                    }
+                   if ( !this.errors.description && !this.$route.params.id ) {
                         this.add();
+                    }
+                    else if(!this.errors.description && this.$route.params.id){
+                      this.updateFacility();
                     }
                 },
   }
