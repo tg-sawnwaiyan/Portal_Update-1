@@ -5357,6 +5357,7 @@ a:hover {
 .facility_tbl th {
     width: 250px;
 }
+
 .staff_tbl th {
     width: 350px;
     font-weight: normal;
@@ -6650,6 +6651,7 @@ color: green;
     background: #85c7ff;
     border: 1px solid #5c95c5;
 }
+
 #nursingView .top-fixed-btn {
     background: #fbaa84;
     border: 1px solid #ff9563;
@@ -8966,12 +8968,15 @@ padding: 11px;
 .pc-414 {
     display: block;
 }
-.pc-750{
+
+.pc-750 {
     display: block;
 }
-.sp-750{
+
+.sp-750 {
     display: none;
 }
+
 .pc-414-table {
     display: table-cell;
 }
@@ -9444,10 +9449,18 @@ padding: 0;
         padding-left: 10px;
         margin-top: -7px;
     }
-    .fixed-nav{
+    .related_box {
+        width: 33.33%;
+    }
+    .related_box:nth-child(4n) {
+        padding-right: 10px;
+    }
+    .related_box:nth-child(3n) {
+        padding-right: 0;
+    }
+    .fixed-nav {
         width: 100%;
     }
-
 }
 
 @media only screen and (max-width: 990px) {
@@ -9773,6 +9786,12 @@ padding: 0;
         flex-wrap: wrap;
     }
     /*END comment list */
+    /* customer list */
+    #customer_list .table.List_tbl td {
+        display: block;
+        width: 100%;
+    }
+    /*End customer list */
 }
 
 
@@ -10244,31 +10263,32 @@ display: none;
 }
 
 @media only screen and (max-width:750px) {
-    .pc-750{
+    .pc-750 {
         display: none;
     }
-    .sp-750{
+    .sp-750 {
         display: block;
     }
-    .pad-t-10{
+    .pad-t-10 {
         padding: 10px 0px 0px 0px;
     }
-    .pad-0-res{
+    .pad-0-res {
         padding: 0px;
     }
-    .d-block{
-        display:  block !important;
+    .d-block {
+        display: block !important;
     }
-    .profile-tit{
+    .profile-tit {
         padding: 0px;
         margin: 0px;
     }
-    table.timeTable th, table.timeTable td{
+    table.timeTable th,
+    table.timeTable td {
         vertical-align: middle !important;
         width: 50px !important;
         padding: 5px !important;
     }
-    .public-nurheader{
+    .public-nurheader {
         margin-bottom: 10px;
     }
     .dropdown {
@@ -10327,10 +10347,11 @@ display: none;
         padding-left: 0px;
         padding-right: 0px;
     }
-    .facility_tbl th, .cost_table th, .map_tbl th {
+    .facility_tbl th,
+    .cost_table th,
+    .map_tbl th {
         width: 120px;
     }
-
 }
 
 @media only screen and (max-width: 620px) {
@@ -10568,6 +10589,9 @@ background-image: none;
         border-radius: 2px;
         background: #d2571c;
     }
+    #customer_list .custom_title:after {
+        left: 15px;
+    }
     .scroll_responsive {
         overflow-x: auto;
     }
@@ -10617,6 +10641,10 @@ background-image: none;
     }
     .table.List_tbl td:nth-child(2) {
         border: none;
+    }
+    #customer_list .table.List_tbl td:last-child {
+        border: none;
+        text-align: left !important;
     }
     /*end news list */
     /* new details */

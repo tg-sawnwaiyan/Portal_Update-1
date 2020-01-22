@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="customer_list">
         <div class="col-md-12  tab-content">
             <div class="p-2 p0-480">
                 <div v-if="norecord_msg" class="card card-default card-wrap">
@@ -30,37 +30,39 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="row">
-                                        <div class="col-lg-2 col-md-4 custom_title">
-                                            <strong>事業者名:</strong>
-                                        </div>
-                                        <div class="col-lg-10 col-md-8">{{customer.name}}</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-2 col-md-4 custom_title">
-                                            <strong >状態:</strong>
-                                        </div>
-                                        <div class="col-lg-10 col-md-8" v-if="customer.recordstatus == '1'">Activate</div>
-                                        <div class="col-lg-10 col-md-8" v-else>Deactivate</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-2 col-md-4 custom_title">
-                                            <strong>メールアドレス:</strong>
-                                        </div>
-                                        <div class="col-lg-10 col-md-8">{{customer.email}}</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-2 col-md-4 custom_title">
-                                            <strong>電話番号:</strong>
-                                        </div>
-                                        <div class="col-lg-10 col-md-8">{{customer.phone}}</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-2 col-md-4 custom_title">
-                                            <strong>住所:</strong>
-                                        </div>
-                                        <div class="col-lg-10 col-md-8">{{customer.address}}</div>
-                                    </div>
+                                    <div class="row m-0">
+                                        <div class="col-sm-8 p-0">
+                                            <div class="row">
+                                                <div class="col-lg-2 col-md-4 custom_title">
+                                                    <strong>事業者名:</strong>
+                                                </div>
+                                                <div class="col-lg-10 col-md-8">{{customer.name}}</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-2 col-md-4 custom_title">
+                                                    <strong >状態:</strong>
+                                                </div>
+                                                <div class="col-lg-10 col-md-8" v-if="customer.recordstatus == '1'">Activate</div>
+                                                <div class="col-lg-10 col-md-8" v-else>Deactivate</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-2 col-md-4 custom_title">
+                                                    <strong>メールアドレス:</strong>
+                                                </div>
+                                                <div class="col-lg-10 col-md-8">{{customer.email}}</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-2 col-md-4 custom_title">
+                                                    <strong>電話番号:</strong>
+                                                </div>
+                                                <div class="col-lg-10 col-md-8">{{customer.phone}}</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-2 col-md-4 custom_title">
+                                                    <strong>住所:</strong>
+                                                </div>
+                                                <div class="col-lg-10 col-md-8">{{customer.address}}</div>
+                                            </div>
                                             <!-- <div class="col-md-2 max-width13"><strong>Logo:</strong></div><div class="col-md-10">{{customer.logo}}</div> -->
                                             <div class="row mt-3">
                                                 <div class="col-md-12">
@@ -70,14 +72,22 @@
 
                                                     <button class="btn confirm-borderbtn" :id="'confirm-btn'+customer.id" v-if="customer.status == 0" @click="comfirm(customer.id)">新規登録承認</button>
                                                     <span class="btn confirm-borderbtn" style="border-color: #ccc!important; color: #ccc!important;cursor:not-allowed;" :id="'confirm-btn'+customer.id" v-else>登録承認済</span>
-                                                    <span class="float-right">
-                                                    <router-link :to="{name: 'profiledit', params:{cusid: customer.id}}" v-if="customer.status == 1" class="btn confirm-orangebtn">プロフィール設定</router-link>
-                                                    <!-- <button class="btn confirm-orangebtn">プロフィール設定</button> -->
-                                                    <router-link :to="{name: 'profile', params:{cusid: customer.id, type: customer.type_id == 2? 'hospital':'nursing'}}" v-if="customer.status == 1" class="btn confirm-orangebtn">ページ編集</router-link>
-                                                    </span>
+                                                    
                                                 </div>
+                                            </div>
                                         </div>
+                                        <div class="col-sm-4">
+                                            <p class="text-right mt-2">
+                                            <router-link :to="{name: 'profiledit', params:{cusid: customer.id}}" v-if="customer.status == 1" class="btn confirm-orangebtn mb-2"><i class="fa fa-map"></i> プロフィール設定</router-link><br>
+                                            <!-- <button class="btn confirm-orangebtn">プロフィール設定</button> -->
+                                            <router-link :to="{name: 'profile', params:{cusid: customer.id, type: customer.type_id == 2? 'hospital':'nursing'}}" v-if="customer.status == 1" class="btn confirm-orangebtn"><i class="fa fa-edit"></i> ページ編集</router-link>
+                                            </p>
+                                        </div>
+                                    </div>
                                 </td>
+                                <!-- <td class="text-right  mr-4 mb-3 mt-2">
+                                    
+                                </td> -->
                             </tr>
                         </table>
                         <!-- <div v-for="customer in displayItems" :key="customer.id" class="card card-default m-b-20">
