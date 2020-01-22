@@ -1712,8 +1712,25 @@
                {                   
                     this.loading = false;                    
                }
-               else if(this.ci == false && (this.townshipID[0] == 0 || this.townshipID[0] == "-1" || this.townshipID.length == 0)){             
-                        this.axios.get("https://testikportal.management-partners.co.jp/hokkido.json").then(respon => {
+               else if(this.ci == false && (this.townshipID[0] == 0 || this.townshipID[0] == "-1" || this.townshipID.length == 0)){ 
+                //    this.axios.get("https://testikportal.management-partners.co.jp/gadm36_jpn_1.json").then(respon => {
+                //         var city_coordinates = [];
+                //         city_coordinates = respon.data.features
+                //         var result = [];
+                //         for (let i = 0; i < city_coordinates.length; i++) {
+                            
+                //             if(city_coordinates[i]['properties']['NAME_1'] == theCity){
+                //             result.push(city_coordinates[i])
+                //             }
+                            
+                //         }
+                //         this.coordinate = result.reduce((acc, val) => acc.concat(val), []);
+                //         this.boundariesGoogleMap(lat,lng,this.coordinate);            
+                //     });            
+                var jsonfile = theCity+".json";
+                        this.axios.get("https://testikportal.management-partners.co.jp/json/"+jsonfile).then(respon => {
+                            console.log(respon.data)
+                            // this.coordinate[0].features[0].geometry["coordinates"] = respon.data.coordinate;
                             this.boundariesGoogleMap(lat,lng,respon.data);            
                         }); 
                         // this.axios.get("/api/cityJson/"+theCity).then(respon => {
@@ -1736,7 +1753,8 @@
 
             boundariesGoogleMap(lat,lng,coor){        
                 
-                var data = coor.reduce((acc, val) => acc.concat(val), []);    
+                var data = coor.reduce((acc, val) => acc.concat(val), []);   
+                // var data = coor; 
                 for (let i = 0; i < data.length; i++) {
                     this.map.data.addGeoJson(data[i]); 
                 }

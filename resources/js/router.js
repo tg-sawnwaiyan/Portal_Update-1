@@ -2,7 +2,6 @@ import VueRouter from 'vue-router'
 // Pages
 import Register from './pages/Register'
 import Login from './pages/Login'
-import admin_login from './pages/Login'
 import PasswordResetMail from './pages/Passwordreset'
 import PasswordResetForm from './pages/Passwordresetform'
 import Newsdetails from "./components/Newsdetails.vue";
@@ -54,7 +53,7 @@ import Jobapplicantlist from './components/Jobapplicantlist.vue'
 import adminlist from './components/AdminList.vue'
 import admincreate from './components/AdminCreate.vue'
 
-// import menu from './components/menu/Menu.vue';
+// import menu from './components/menu/Menu';
 
 // Routes
 const routes = [
@@ -84,7 +83,7 @@ const routes = [
     {
         path: '/admin_login',
         name: 'admin_login',
-        component: admin_login,
+        component: Login,
         meta: {
             auth: false
         }
@@ -358,23 +357,23 @@ const routes = [
             auth: false
         }
     },
-    {
-        name: "createmedicalacceptance",
-        path: "/createmedicalacceptance",
-        component: createmedicalacceptance,
-        meta: {
-            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
-        }
-    },
+    // {
+    //     name: "createmedicalacceptance",
+    //     path: "/createmedicalacceptance",
+    //     component: createmedicalacceptance,
+    //     meta: {
+    //         auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
+    //     }
+    // },
 
-    {
-        name: "medicalacceptancelist",
-        path: "/medicalacceptancelist",
-        component: medicalacceptancelist,
-        meta: {
-            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
-        }
-    },
+    // {
+    //     name: "medicalacceptancelist",
+    //     path: "/medicalacceptancelist",
+    //     component: medicalacceptancelist,
+    //     meta: {
+    //         auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
+    //     }
+    // },
 
     {
         name: "editmedicalacceptance",
