@@ -4,11 +4,11 @@
     <form class="col-md-12 form-class">
      <div class="col-md-12 pad-free">
 
-        <div class="form-group form-group-wrapper">
+        <div class="form-group form-group-wrapper d-flex">
 
-                <label class="heading-lbl">施設名称 <span class="error">*</span></label>
+                <label class="heading-lbl col-md-2 col-12 pad-free">施設名称 <span class="error">*</span></label>
 
-                <input type="text" class="form-control customer-name col-10 float-right" placeholder="施設名称を入力してください。" v-model="customer_info.name">
+                <input type="text" class="form-control customer-name col-md-10 col-12 nursing_input" placeholder="施設名称を入力してください。" v-model="customer_info.name">
         </div>
 
         <div class="form-group form-group-wrapper">
@@ -24,8 +24,8 @@
                 <div class="col-10 row">
                 <input type="text" class="form-control customer-phone col-12" id="phone" placeholder="Phone" v-model="customer_info.phone" pattern="[0-9-]*"  @focusout="focusPhone"  maxlength="14" title="Please enter number only.">
                 <!-- v-on:keyup="isNumberOnly" -->
-                <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>    
-                <span class="error" v-else></span> 
+                <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>
+                <span class="error" v-else></span>
                 </div>
         </div>
 
@@ -42,7 +42,7 @@
           <label class="heading-lbl col-2 pad-free">フォトアルバム</label>
 
           <span class="galleryadd btn all-btn main-bg-color float-right" style="min-width: 0px;" @click="galleryAdd()">
-         
+
             <i class="fas fa-plus-circle"></i> 追加
 
           </span>
@@ -51,7 +51,7 @@
             </span>
 
           <!-- <div id="changeGalleryLink" class="col-md-12">
-                <div class="row" id ="gallery-photo">   
+                <div class="row" id ="gallery-photo">
                         <div class="col-md-6 gallery-area-photo" v-bind:id="'photo'+indx" v-for="(img,indx) in img_arr" :key="img.id">
                                 <div class="col-md-12">
                                         <input type="file" name="" class="hospital-photo m-b-10" v-bind:class="img.id" id="upload_img" @change="preview_image(img.id,indx)">
@@ -76,7 +76,7 @@
 
             <div class="row" id="gallery-photo">
 
-           
+
 
               <div
 
@@ -94,7 +94,7 @@
 
                   <input type="file" name class="hospital-photo m-b-15"  v-bind:class="'classname'+indx" id="upload_img" @change="preview_image($event,indx)" />
                   <div class="col-md-12" v-bind:class="img.id">
-                    <input type="hidden" class="already-photo" v-model="img.photo" />                  
+                    <input type="hidden" class="already-photo" v-model="img.photo" />
                     <img v-bind:src="img.src" class="img-fluid hospital-image" alt="profile" v-if="img.src != null" @error="imgUrlAlt"/>
                   </div>
 
@@ -986,7 +986,7 @@
 
                 <label class="heading-lbl col-2 pad-free">
 
-                  こだわりの特長 
+                  こだわりの特長
 
                   <span class="error">*</span>
 
@@ -1349,7 +1349,7 @@ export default {
                 readonly:true,
                 theme:'snow',
                 access_val: '',
-                detail_info: '', stations:[], station_list:[],  
+                detail_info: '', stations:[], station_list:[],
             },
             ph_length: false,
             ph_num: false,
@@ -1396,7 +1396,7 @@ export default {
                     this.axios
                     .get('/api/nurscities/'+this.customer_info.townships_id)
                     .then(response=>{
-                        this.city_id = Number(response.data[0].city_id); 
+                        this.city_id = Number(response.data[0].city_id);
                         this.township_list = response.data[0].township_list;
                     });
                 });
@@ -1404,7 +1404,7 @@ export default {
                 .get('/api/hospitalinfo/'+this.cusid)
                 .then(response=>{
                     this.hospital_info = response.data;
-                    
+
                     if(this.hospital_info.latitude == 0){
                         localStorage.setItem('lat_num',35.6803997);
                         localStorage.setItem('lng_num',139.76901739);
@@ -1418,7 +1418,7 @@ export default {
                 .get('/api/hospital-pgallery/'+this.cusid)
                 .then(response=>{
                         this.img_arr = response.data;
-                       
+
                 });
                 this.axios
                 .get('/api/hospital-vgallery/'+this.cusid)
@@ -1452,8 +1452,8 @@ export default {
                     this.isRotate3 = !this.isRotate3;
             },
             preview_image(event,indx) {
-                this.img_arr[indx]['photo'] = event.target.files[0].name;            
-                this.img_arr[indx]['src'] = URL.createObjectURL(event.target.files[0]);            
+                this.img_arr[indx]['photo'] = event.target.files[0].name;
+                this.img_arr[indx]['src'] = URL.createObjectURL(event.target.files[0]);
             },
             facilityCheck(check_id) {
                     $('.facility-'+check_id).attr('checked','true');
@@ -1462,7 +1462,7 @@ export default {
                     $('.feature-'+check_id).attr('checked','true');
             },
             stationCheck(check_id) {
-                $('.station-'+check_id).attr('checked','true'); 
+                $('.station-'+check_id).attr('checked','true');
             },
             subjectCheck(check_id) {
                     $('.subject-'+check_id).attr('checked','true');
@@ -1473,7 +1473,7 @@ export default {
 
             },
             DeltArr(indx,id,type) {
-              
+
 
               this.$swal({
                         title: "確認",
@@ -1489,11 +1489,11 @@ export default {
                         cancelButtonText: "キャンセル",
                         confirmButtonClass: "all-btn",
                         cancelButtonClass: "all-btn"
-                    }).then(response => { 
+                    }).then(response => {
                         console.log(type+"/"+id)
                         if(type == 'photo') {
-                            if(id){                              
-                                
+                            if(id){
+
                                 let fd = new FormData();
                                 fd.append('id',id);
                                 fd.append('photo',this.img_arr[indx]['photo']);
@@ -1504,8 +1504,8 @@ export default {
                                 this.axios
                                 .post('/api/delete-pgallery',fd)
                                 .then(response=>{
-                                    
-                                    this.$swal({  
+
+                                    this.$swal({
                                         text: "職種を削除しました。",
                                         type: "success",
                                         width: 350,
@@ -1514,8 +1514,8 @@ export default {
                                         confirmButtonColor: "#dc3545"
                                     });
                                 })
-                                .catch(error=>{   
-                                    console.log(error)                         
+                                .catch(error=>{
+                                    console.log(error)
                                     if(error.response.status == 422){
                                         this.errors = error.response.data.errors
                                     }
@@ -1527,12 +1527,12 @@ export default {
 
                         if(type == 'video') {
                             this.video_arr.splice(indx,1);
-                        }                       
+                        }
                  });
-                 
+
             },
             galleryAdd() {
-            
+
                     var date = new Date;
                     var s = date.getMilliseconds();
                     var m = date.getMinutes();
@@ -1540,8 +1540,8 @@ export default {
                     // var classname = "class"+h+m+s;
                     // var c = "'"+classname+"'";
                     this.img_arr.push({id:null,photo:'',title:'',description:'', src:null});
-                  
-                  
+
+
             },
              galleryToggle()
                 {
@@ -1550,7 +1550,7 @@ export default {
 
                       if(class_by_id == "fas fa-sort-down animate rotate")
                       {
-                       
+
                                 $('#gallery').removeClass("fas fa-sort-down animate rotate");
                                 $('.changeGalleryLink').addClass("fas fa-sort-down");
                                 $('#changeGalleryLink').show('medium');
@@ -1560,7 +1560,7 @@ export default {
                                 $('#gallery').removeClass("fas fa-sort-down");
                                 $('.changeGalleryLink').removeClass("fas fa-sort-down");
                                 $('#gallery').addClass("fas fa-sort-down animate rotate");
-                                $('#changeGalleryLink').hide('medium'); 
+                                $('#changeGalleryLink').hide('medium');
                                 $('.galleryadd').hide();
                       }
                 },
@@ -1596,11 +1596,11 @@ export default {
             },
             galleryVideoAdd() {
                    this.video_arr.push({title:'',description:'',url:''});
-                 
+
             },
             specialFeAdd() {
                      $(".special-feature-toggle-div").toggle('medium');
-                     this.isRotate4 = !this.isRotate4;  
+                     this.isRotate4 = !this.isRotate4;
             },
             StationAdd() {
                 $(".station-toggle-div").toggle('medium');
@@ -1608,18 +1608,18 @@ export default {
             },
             Create_Profile () {
 
-                this.save_hospital_info = [];           
+                this.save_hospital_info = [];
                 this.$loading(true);
-       
+
                 if(this.hospital_info.details_info === undefined)
-                {     
+                {
                   this.hospital_info.details_info = "";
                 }
-              
+
                 this.hospital_info.latitude = $('#new_lat').val();
                 this.hospital_info.longitude = $('#new_long').val();
                 this.customer_info.address = $('#address_val').val();
-            
+
                 this.customer_info.townships_id = Number($('#gmaptownship').val());
                 localStorage.setItem('lat_num',this.hospital_info.latitude);
                 localStorage.setItem('lng_num',this.hospital_info.longitude);
@@ -1632,48 +1632,48 @@ export default {
                     {
                         this.img_arr.splice(i,1);
                     }
-                
-                    
+
+
                     var file = img[i].getElementsByClassName('hospital-photo')[0].files[0];
                     console.log(img[i].getElementsByClassName('hospital-photo')[0].files)
-                    if(file) {                             
-                        pt.append(i ,file )  
-                    }      
-                }      
-                  
+                    if(file) {
+                        pt.append(i ,file )
+                    }
+                }
+
                 for(var i =this.video_arr.length-1;i>=0;i--)
                 {
                     this.video_arr[i]['type'] = 'video';
                     if(this.video_arr[i].photo == null || this.video_arr[i].photo == '' )
                     {
                         this.video_arr.splice(i,1);
-                    }     
-                            
-                }       
+                    }
+
+                }
 
                 this.axios.post('/api/hospital/movephoto', pt)
                     .then(response => {
                         }).catch(error=>{
-                          
+
                             if(error.response.status == 422){
                                 this.errors = error.response.data.errors
                             }
                     })
 
                 this.chek_feature = [];
-                var s_features =[];  
+                var s_features =[];
                     $.each($("input[name='special-features']:checked"), function(){
                         s_features.push($(this).val());
                     });
                     this.chek_feature.push({special_feature_id:s_features});
 
                   var chek_facility = [];
-              
+
                     $.each($("input[name='facility']:checked"), function(){
                             chek_facility.push($(this).val());
                     });
                     this.facilities = chek_facility.join(',');
-                
+
                 this.subjects = [];
                 var chek_subj = [];
                     $.each($("input[name='subject']:checked"), function(){
@@ -1681,7 +1681,7 @@ export default {
                     });
                     this.subjects.push({subject_id:chek_subj});
 
-            
+
 
                 // Consultation
                 this.schedule_list = [];
@@ -1693,21 +1693,21 @@ export default {
                     if(j == 0) { this.schedule_list.push(this.shedule_am); }
                     if(j == 1) { this.schedule_list.push(this.shedule_pm); }
                 }
-                    
-                
+
+
                     this.save_hospital_info.push({ customer_info:this.customer_info,hospital_info:this.hospital_info,facilities:this.facilities,
                     schedule_list:this.schedule_list,chek_feature:this.chek_feature, subjects:this.subjects, image:this.img_arr,video:this.video_arr
                 });
 
-          
-                    
+
+
                 if(this.save_hospital_info.length > 0) {
-                  
+
                     this.axios
                     .post(`/api/hospital/profile/${this.cusid}`,this.save_hospital_info)
                     .then((response) => {
 
-                        this.initialCall();                           
+                        this.initialCall();
 
                         this.$swal({
                             position: 'top-end',
@@ -1720,7 +1720,7 @@ export default {
                         })
                         this.$loading(false);
                     }).catch(error=>{
-                    
+
                         this.$loading(false);
                         if(error.response.status == 422){
                             this.save_hospital_info = 'error';
@@ -1733,7 +1733,7 @@ export default {
               var input_data = $('#phone').val();
               var code = 0;
               code = input_data.charCodeAt();
-          
+
               if((48 <= code && code <= 57) && (this.customer_info.phone.length >= 10 && this.customer_info.phone.length <= 14)){
                   this.ph_num = false;
                   this.ph_length = false;
@@ -1743,19 +1743,19 @@ export default {
               }
             },
             focusPhone(){
-              var input_data = $('#phone').val(); 
+              var input_data = $('#phone').val();
               if(input_data.length >= 10 && input_data.length <= 14 && input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-')
-              {  
+              {
                   this.ph_num = false;
                   this.ph_length = false;
               }
-              else{   
+              else{
                   this.ph_num = true;
                   this.ph_length = true;
               }
             }
             },
-            
+
         }
 
 </script>
