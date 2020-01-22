@@ -27,7 +27,6 @@ import NursingHistory from "./components/NursingHistory";
 import subject from "./components/Subject";
 import subjectlist from "./components/SubjectList";
 import advertisementlist from "./components/advertisementlist";
-import advertisement from "./components/advertisement";
 import editadvertisement from "./components/editadvertisement";
 import comment from "./components/Comment";
 import commentlist from "./components/commentlist";
@@ -298,14 +297,7 @@ const routes = [
     //     path: "/userPasswordResetList",
     //     component: userPasswordResetList
     // },
-    {
-        name: "advertisement",
-        path: "/advertisement",
-        component: advertisement,
-        meta: {
-            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
-        }
-    },
+  
 
     {
         name: "favouriteHospital",
@@ -343,6 +335,14 @@ const routes = [
         name: "ads",
         path: "/ads",
         component: advertisementlist,
+        meta: {
+            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
+        }
+    },
+    {
+        name: "advertisement",
+        path: "/advertisement",
+        component: editadvertisement,
         meta: {
             auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
         }
