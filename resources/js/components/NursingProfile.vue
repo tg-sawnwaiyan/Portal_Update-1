@@ -161,11 +161,11 @@
                             <div class="form-group">
                                 <label class="heading-lbl col-lg-2 col-md-3 pad-free">支払い方法 <span class="error">*</span></label>
                                 <div class="col-lg-10 col-md-12 float-right pad-free nursing-m-b-15">
-                                    <input type="text"  class="form-control col-9 nursing-payment-method float-left white-bg-color" v-model="nursing_info.method">
-                                    <div class="col-3 float-right">
+                                    <input type="text"  class="form-control col-md-9 col-12 nursing-payment-method float-left white-bg-color" v-model="nursing_info.method">
+                                    <div class="col-md-3 col-12 float-right nursing-addbtn">
                                         <span class="nusing_btn1 btn all-btn main-bg-color" style="min-width: 0px;" @click="methodAdd()"><i class="fas fa-plus-circle"></i>追加</span>
                                     </div>
-                                    <div class="col-md-12 pad-free m-t-50" id="gallery-payment">
+                                    <div class="col-md-12 pad-free m-t-50 nursing-gallery" id="gallery-payment">
                                         <!-- test -->
                                         <div class="pad-free col-md-12 gallery-area-payment" v-bind:id="'payment'+indx" v-for="(payment,indx) in payment_arr" :key="payment.id">
                                             <div class="col-md-12">
