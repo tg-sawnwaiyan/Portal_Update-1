@@ -3,7 +3,12 @@
     <div id="content">
         <div class="card">
             <div class="card-body">
-                <h4 class="page-header header">ニュース編集</h4>
+                <div v-if='status == 1'>
+                    <h4 class="page-header header">ニュース編集</h4>
+                </div>
+                <div v-else>
+                    <h4 class="page-header header">News Adding</h4>
+                </div>
                 <br>
                 <form @submit.prevent="updatepost">
                     <div class="form-group">
