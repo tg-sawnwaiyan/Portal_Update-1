@@ -23,7 +23,7 @@
                                 <label>広告リンク : <span class="error"></span></label>
                                 <input type="link" class="form-control box" id="link"  name="link" v-model="advertisement.link" placeholder="広告リンクを入力してください。">
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                      <label>表示するロケーション : <span class="error">*</span></label><br/>
                                 <div class="col-sm-9" v-for="advertisements in advertisement.location" :key="advertisements.id">
                                     <label class="form-check-label control control--checkbox">
@@ -36,15 +36,14 @@
                                     </label>
                                 
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="form-group" id="showimage">
                                 <label>写真 : <span class="error">*</span></label><br/>
                                 <div class="custom-file">
                                     <input type="file" v-if="!showhide" ref="file" accept="image/*" id="upd_img" @change ="fileSelected">
-                                    <input type="file" v-if="showhide" id="upload" accept="image/*" @change="uploadImage">
-                                    <span v-if="errors.photo" class="error">{{errors.photo}}</span>
-                                   
+                                    <input type="file" v-if="showhide" id="upload" accept="image/*" @change="uploadImage"> 
                                 </div>
+                                <span v-if="errors.photo" class="error">{{errors.photo}}</span>
                                  <div class="col-md-12" id="par">
                                         <div class="row image_preview"></div>
                                     </div>
@@ -92,10 +91,11 @@ export default {
                     title: '',
                     description:'',
                     link:'',
-                    location : [{
-                        topbars: false,
-                        sidebars:false
-                    }],
+                    // location : [{
+                    //     topbars: false,
+                    //     sidebars:false
+                    // }],
+                    location:'',
                     photo:'',
                 },
                 ischeck:'',
@@ -114,8 +114,9 @@ export default {
                     this.advertisement.title = response.data.title;
                     this.advertisement.description = response.data.description;
                     this.advertisement.link = response.data.link;
-                    this.ischeck = response.data.location;
-                    this.updateCheck(this.ischeck);
+                    this.advertisement.location = "topbar";
+                    // this.ischeck = response.data.location;
+                    // this.updateCheck(this.ischeck);
                     this.advertisement.photo=response.data.photo;
                 });
             }
@@ -134,7 +135,7 @@ export default {
                 event.target.src = "images/noimage.jpg"
             },
             fileSelected(){
-                console.log('file');
+            
                 this.advertisement.photo = event.target.files[0];
                 this.upload_img = URL.createObjectURL(event.target.files[0]);
                 this.update_img = true;
@@ -149,27 +150,27 @@ export default {
                 }
                 this.advertisement.photo = '';
             },
-            updateCheck: function (check){
-                this.advertisement.location.shift()
-               if(check == "topbar"){
-                 this.advertisement.location.push({
-                    topbars: 1,
-                    sidebars:0
-                });
-               }
-               else if(check == "sidebar"){
-                    this.advertisement.location.push({
-                        topbars: 0,
-                        sidebars:1
-                    });
-               }
-               else{
-                    this.advertisement.location.push({
-                        topbars: 1,
-                        sidebars:1
-                    });
-                }
-            },
+            // updateCheck: function (check){
+            //     this.advertisement.location.shift()
+            //    if(check == "topbar"){
+            //      this.advertisement.location.push({
+            //         topbars: 1,
+            //         sidebars:0
+            //     });
+            //    }
+            //    else if(check == "sidebar"){
+            //         this.advertisement.location.push({
+            //             topbars: 0,
+            //             sidebars:1
+            //         });
+            //    }
+            //    else{
+            //         this.advertisement.location.push({
+            //             topbars: 1,
+            //             sidebars:1
+            //         });
+            //     }
+            // },
             uploadImage() {
                 
                 $('.image_preview').html("<div class='col-md-2'><img src='" + URL.createObjectURL(event.target.files[0]) + "' class='show-img'></div>");
@@ -197,23 +198,23 @@ export default {
                     }).then(response => {
                         this.errors = [];
                         let adsData = new FormData();
-                        var arr = this.advertisement.location;
-                        for(var i=0;i<arr.length;i++)
-                        {
-                            if(arr[i]['topbars'] == 1 && arr[i]['sidebars'] == 0)
-                            {
-                                adsData.append('location', 'topbar');
-                            }
-                            else if(arr[i]['sidebars'] == 1 && arr[i]['topbars'] == 0)
-                            {
-                                adsData.append('location', 'sidebar');
-                            }
-                            else if(arr[i]['sidebars'] == 1 && arr[i]['topbars'] == 1)
-                            {
-                                adsData.append('location', 'sidebar,topbar');
-                            }
-                        }
-                   
+                        this.advertisement.location = "topbar";
+                        // for(var i=0;i<arr.length;i++)
+                        // {
+                        //     if(arr[i]['topbars'] == 1 && arr[i]['sidebars'] == 0)
+                        //     {
+                        //         adsData.append('location', 'topbar');
+                        //     }
+                        //     else if(arr[i]['sidebars'] == 1 && arr[i]['topbars'] == 0)
+                        //     {
+                        //         adsData.append('location', 'sidebar');
+                        //     }
+                        //     else if(arr[i]['sidebars'] == 1 && arr[i]['topbars'] == 1)
+                        //     {
+                        //         adsData.append('location', 'sidebar,topbar');
+                        //     }
+                        // }
+                        adsData.append('location',this.advertisement.location)
                         adsData.append('title',this.advertisement.title)
                         adsData.append('description',this.advertisement.description)
                         adsData.append('link',this.advertisement.link)
@@ -246,6 +247,7 @@ export default {
 
             },
               add() {
+                  this.advertisement.location = "topbar";
                   this.$swal({
                             title: "確認",
                             text: "広告を投稿してよろしいでしょうか。",
