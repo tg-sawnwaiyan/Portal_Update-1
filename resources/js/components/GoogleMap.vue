@@ -48,14 +48,14 @@
                         <span class="btn news-post-btn all-btn" @click="searchAddress()">番地検索</span>
                       </div> -->
                     </div>
-                    <p>例）丸の内1-9-1　グラントウキョウノースタワー40階</p>                                    
+                    <p>例）丸の内1-9-1　グラントウキョウノースタワー40階</p>
                   </div>
 
                 </div>
                 <div class="form-group">
                   <h5 class="lbl-lat-lng">緯度経度の入力または地図のマーカを移動し施設の位置を指定してください。</h5>
                     <div class="row">
-                      <div class="col-lg-4 col-md-12">
+                      <div class="col-lg-4 col-md-12 hos_map_lbl">
                         <label>緯度<span class="error">*</span></label>
                         <input type="text" class="form-control white-bg-color" name="new_lat" v-model="new_lat" id="new_lat">
                       </div>
@@ -133,7 +133,7 @@ export default {
       address_btn: false,
       city_list: [],
       address_val: ''
-    //   selected_city:this.city,      
+    //   selected_city:this.city,
     }
   },
 //   computed:{
@@ -249,7 +249,7 @@ export default {
                             var length = response.data.postal_list.length;
                             if (length > 0) {
                                 var pref = post_data[0]['city_id'];
-                                
+
                                 this.address = post_data[0]['street'];
                                 this.address_val = post_data[0]['pref']+post_data[0]['city']+post_data[0]['street'];
                                 this.city = post_data[0]['city_id'];

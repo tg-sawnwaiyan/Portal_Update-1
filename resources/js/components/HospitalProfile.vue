@@ -11,18 +11,18 @@
                 <input type="text" class="form-control customer-name col-md-10 col-12 nursing_input" placeholder="施設名称を入力してください。" v-model="customer_info.name">
         </div>
 
-        <div class="form-group form-group-wrapper">
+        <div class="form-group form-group-wrapper d-flex">
 
-                <label class="heading-lbl">メールアドレス <span class="error">*</span></label>
-                <label class="col-10 float-right customer-email"> {{customer_info.email}} </label>
+                <label class="heading-lbl1 col-md-2 col-12 pad-free">メールアドレス <span class="error">*</span></label>
+                <label class="col-md-10 col-12 customer-email"> {{customer_info.email}} </label>
 
                 <!-- <input type="text" class="form-control customer-email col-10 float-right"  placeholder="Email" v-model="customer_info.email"> -->
         </div>
         <div class="form-group form-group-wrapper d-flex">
 
-                <label class="heading-lbl col-2 pad-free">電話番号 <span class="error">*</span></label>
-                <div class="col-10 row">
-                <input type="text" class="form-control customer-phone col-12" id="phone" placeholder="Phone" v-model="customer_info.phone" pattern="[0-9-]*"  @focusout="focusPhone"  maxlength="14" title="Please enter number only.">
+                <label class="heading-lbl col-md-2 col-12 pad-free">電話番号 <span class="error">*</span></label>
+                <div class="col-md-10 col-12 row">
+                <input type="text" class="form-control customer-phone col-md-10 col-12 nursing_input" id="phone" placeholder="Phone" v-model="customer_info.phone" pattern="[0-9-]*"  @focusout="focusPhone"  maxlength="14" title="Please enter number only.">
                 <!-- v-on:keyup="isNumberOnly" -->
                 <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>
                 <span class="error" v-else></span>
@@ -39,7 +39,7 @@
 
         <div class="form-group form-group-wrapper">
 
-          <label class="heading-lbl col-2 pad-free">フォトアルバム</label>
+          <label class="heading-lbl col-md-2 col-12 pad-free">フォトアルバム</label>
 
           <span class="galleryadd btn all-btn main-bg-color float-right" style="min-width: 0px;" @click="galleryAdd()">
 
@@ -80,7 +80,7 @@
 
               <div
 
-                class="col-md-6 gallery-area-photo"
+                class="col-md-6 gallery-area-photo p0-480"
 
                 v-bind:id="'photo'+indx"
 
@@ -90,9 +90,9 @@
 
               >
 
-                <div class="col-md-12">
+                <div class="col-md-12 p0-480">
 
-                  <input type="file" name class="hospital-photo m-b-15"  v-bind:class="'classname'+indx" id="upload_img" @change="preview_image($event,indx)" />
+                  <input type="file" name class="hospital-photo m-b-15 p-t-10"  v-bind:class="'classname'+indx" id="upload_img" @change="preview_image($event,indx)" />
                   <div class="col-md-12" v-bind:class="img.id">
                     <input type="hidden" class="already-photo" v-model="img.photo" />
                     <img v-bind:src="img.src" class="img-fluid hospital-image" alt="profile" v-if="img.src != null" @error="imgUrlAlt"/>
@@ -213,7 +213,7 @@
 
           <label class="heading-lbl col-2 pad-free">
 
-            専門医 hospital_info
+            専門医
 
             <span class="error">*</span>
 
@@ -228,11 +228,10 @@
             v-model="hospital_info.specialist"
 
           ></textarea>
-
         </div>
         <table class="table table-bordered table-wrapper">
           <tr>
-                  <td class="width17" style="border:none;"> <label class="heading-lbl pad-free"> 医院からのお知らせ <span class="error">*</span></label></td>
+                  <td class="width17" style="border:none;"> <label class="heading-lbl hos_lbl pad-free">医院からのお知らせ <span class="error">*</span></label></td>
                   <td style="border:none;">
                           <!-- <textarea name="feature" id="" cols="30" rows="10" ></textarea> -->
                           <quill-editor  ref="myQuilEditor" name="detailsinfo" class="details-info" @change="onDetailInfoEditorChange($event)" v-model="hospital_info.details_info" :options="editorOption"/>
@@ -266,7 +265,7 @@
 
               </span>
 
-              <div class="col-md-10 float-right m-t-10 schedule-toggle-div toggle-div pad-free">
+              <div class="col-md-10 hos_toggle float-right m-t-10 schedule-toggle-div toggle-div pad-free">
 
                 <div class="col-12">
 
@@ -984,7 +983,7 @@
 
               <div class="form-group">
 
-                <label class="heading-lbl col-2 pad-free">
+                <label class="heading-lbl hos_lbl1 col-2 pad-free">
 
                   こだわりの特長
 
@@ -1246,7 +1245,7 @@
                 <td>
                     <label class="heading-lbl col-2 pad-free">地図</label>
                     <span class="btn all-btn main-bg-color" style="min-width: 0px;" @click="maptogglediv()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
-                    <div class="col-md-10 float-right m-t-10 map-toggle-div toggle-div pad-free">
+                    <div class="col-md-10 hos_toggle float-right m-t-10 map-toggle-div toggle-div pad-free">
                         <div class="col-md-12">
                             <GoogleMap :address="address_show" :township="customer_info.townships_id" :lat_num='hospital_info.latitude' :lng_num='hospital_info.longitude' :city="city_id" :township_list="township_list"></GoogleMap>
                             <!-- <GoogleMap :address="customer_info.address" :lat_num='35.6803997' :lng_num='139.76901739' v-if="hospital_info.latitude == 0"></GoogleMap> -->
