@@ -212,8 +212,12 @@ export default {
                         // console.log('null');
                         this.errors.title = "口コミタイトルが必須です。";
                     }
-                    if (this.comments.email && this.mail_reg.test(this.comments.email ) ){
-                        this.errors.email = "";
+                    if (this.comments.email){
+                        if(this.mail_reg.test(this.comments.email )){
+                            this.errors.email = "";
+                        }else{
+                            this.errors.email = "※メールアドレスが正しくありません。もう一度入力してください。"
+                        }
                     } else {
                         this.errors.email = "メールアドレスが必須です。";
                     }
