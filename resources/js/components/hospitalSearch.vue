@@ -1499,7 +1499,9 @@
     padding: 25px 5px;
   }
   table th, table td{
-    vertical-align: middle;
+    vertical-align: middle !important;
+    width: 50px !important;
+    padding: 5px !important;
   }
   .dropdown-toggle::after {    
     position: absolute;

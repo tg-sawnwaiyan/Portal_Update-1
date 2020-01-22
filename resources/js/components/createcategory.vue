@@ -1,21 +1,21 @@
 <template>
     <div class="card">
         <div class="card-body">
-            <h4 class="page-header header">ニュースカテゴリー作成</h4>
+            <h4 class="page-header header">{{title}}</h4>
             <br>
-            <form @submit.prevent="add">
+            <form>
                 <div class="form-group">
-                    <label>ニュースカテゴリー名 :<span class="error">*</span></label>
-                    <input type="text" class="form-control"  v-model="category.name"  placeholder="ニュースカテゴリー名を入力してください。" >
+                    <label>{{label}}<span class="error">*</span></label>
+                    <input type="text" class="form-control"  v-model="category.name"  :placeholder='[[placeholder]]'>
                         <span v-if="errors.name" class="error">{{errors.name}}</span>
                 </div>
-                <div class="form-group">
-                    <span class="btn main-bg-color white all-btn" @click="checkValidate()"> 作成</span>
+                <div class="form-group"> 
+                    <span class="btn main-bg-color white all-btn" @click="checkValidate()"> {{buttontext}}</span>
                     <router-link class="btn btn-danger all-btn" to="/categorylist" > キャンセル </router-link>
                 </div>
             </form>  
         </div>
-    </div>      
+    </div>             
 </template>
 <script>
 export default {
@@ -24,15 +24,37 @@ export default {
                 errors: {
                         name: "",
                 },
-                
-    
                 category: {
                         name: '',
                         user_id:'',
                         recordstatus: ''
-                    }
+                    },
+                title:'',
+                label:'',
+                placeholder:'',
+                buttontext:'',
             }
         },
+          created() {
+              if(this.$route.name == "editcategory"){
+                    this.title = "カテゴリー編集";
+                    this.label = "カテゴリー名:";
+                    this.placeholder = "カテゴリー名を入力してください。";
+                    this.buttontext = "保存";
+                    this.axios
+                        .get(`/api/category/edit/${this.$route.params.id}`)
+                        .then(response => {
+                            this.category = response.data;
+                        });
+                }
+                else{
+                   this.title = "ニュースカテゴリー作成";
+                   this.label = "ニュースカテゴリー名 :";
+                   this.placeholder = "ニュースカテゴリー名を入力してください。";
+                   this.buttontext = "作成";
+                }
+              },
+            
 
          methods: {
             add() {
@@ -78,20 +100,53 @@ export default {
 
                     }
                 });
-            });
+             });     
+            },
+             updateCategory() { 
+               
+                    this.$loading(true);
+                    this.axios.post(`/api/category/update/${this.$route.params.id}`, this.category)
+                    .then((response) => {
+                        this.$loading(false);
+                        this.name = ''
+                        this.$swal({
+                            position: 'top-end',
+                            type: 'success',
+                            text: 'カテゴリーを更新しました。',
+                            confirmButtonText: "閉じる",
+                            confirmButtonColor: "#6cb2eb",
+                            width: 300,
+                            height: 200,
+                        })
+                        this.$router.push({name: 'categorylist'});
+                    }).catch(error=>{
+
+                    if(error.response.status == 422){
+                        this.errors = error.response.data.errors
+                    }
+                    });                       
                 
             },
             checkValidate() {
-                     if (this.category.name) {
-                        this.errors.name = "";
-                    } else {
+            
+                    if(!this.category.name && !this.$route.params.id){
+                      
                         this.errors.name = " ニュースカテゴリー名が必須です。";
                     }
-                   if (
-                        !this.errors.name
-                        
-                    ) {
+                    else if(!this.category.name && this.$route.params.id){
+                     
+                        this.errors.name = "カテゴリー名が必須です。";
+                    }
+                    else if(this.category.name ) {
+                       
+                        this.errors.name = "";
+                    }
+                    if (!this.errors.name && !this.$route.params.id ) 
+                    {
                         this.add();
+                    }
+                    else if(!this.errors.name && this.$route.params.id){
+                        this.updateCategory();
                     }
                 },
 
