@@ -41,12 +41,12 @@
 
           <label class="heading-lbl col-md-2 col-12 pad-free">フォトアルバム</label>
 
-          <span class="galleryadd btn all-btn main-bg-color float-right" style="min-width: 0px;" @click="galleryAdd()">
+          <span class="galleryadd btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px;" @click="galleryAdd()">
 
             <i class="fas fa-plus-circle"></i> 追加
 
           </span>
-           <span class='changeGalleryLink btn btn all-btn main-bg-color ' style="min-width: 0px;" @click="galleryToggle" >
+           <span class='changeGalleryLink btn btn all-btn main-bg-color nursing_toggle_responsive' style="min-width: 0px;" @click="galleryToggle" >
                   <i id="gallery" class="fas fa-sort-down"></i>
             </span>
 
@@ -107,7 +107,7 @@
                   <textarea name="description" placeholder="コンテンツを入力してください。" class="form-control m-b-15 description white-bg-color" v-model="img.description" ></textarea>
 
                 </div>
-                <div class="col-md-12 text-right">
+                <div class="col-md-12 text-right hos-del">
                   <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,img.id,'photo')">
                     <i class="fa fa-trash"></i> 削除
                   </a>
@@ -125,13 +125,13 @@
 
           <label class="heading-lbl col-2 pad-free">動画</label>
 
-          <span class="galleryvideo btn all-btn main-bg-color float-right" style="min-width: 0px;" @click="galleryVideoAdd()" >
+          <span class="galleryvideo btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px;" @click="galleryVideoAdd()" >
 
             <i class="fas fa-plus-circle"></i> 追加
 
           </span>
 
-           <span class='changeGalleryVideoLink  btn btn all-btn main-bg-color ' style="min-width: 0px;" @click="galleryVideoToggle" >
+           <span class='changeGalleryVideoLink  btn btn all-btn main-bg-color nursing_toggle_responsive ' style="min-width: 0px;" @click="galleryVideoToggle" >
                                         <i id="video" class="fas fa-sort-down"></i>
            </span>
 
@@ -141,7 +141,7 @@
 
               <!-- Add by + Button -->
 
-              <div class="col-md-6 gallery-area-video" v-bind:id="'video'+indx" v-for="(video,indx) in video_arr" :key="video.id" >
+              <div class="col-md-6 gallery-area-video p0-480" v-bind:id="'video'+indx" v-for="(video,indx) in video_arr" :key="video.id" >
 
                 <div class="col-md-12">
                   <label>URL:</label>
@@ -156,7 +156,7 @@
                   <textarea name="description" placeholder="コンテンツを入力してください。" class="form-control m-b-15 description white-bg-color" v-model="video.description" ></textarea>
 
                 </div>
-                <div class="col-md-12 text-right">
+                <div class="col-md-12 text-right hos-del">
                   <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,video.id,'video')">
 
                   <i class="fa fa-trash"></i> 削除
@@ -190,7 +190,7 @@
                 <td>
                     <div class="form-group">
                         <label  class="heading-lbl col-2 pad-free">診療科目 </label>
-                        <span class="btn all-btn main-bg-color" style="min-width: 0px;" @click="clinicalSubject()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate1}"></i></span>
+                        <span class="btn all-btn main-bg-color nursing_toggle_responsive" style="min-width: 0px;" @click="clinicalSubject()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate1}"></i></span>
                         <div class="col-md-10 float-right clinical-subject-toggle-div toggle-div m-t-10">
                             <div class="row"> <div v-for="subj in clinical_subj" :key="subj.id" class="form-check form-check-inline col-sm-3">
                                     <label class="form-check-label control control--checkbox" style="padding-left:5px;">
@@ -223,7 +223,7 @@
 
             name="specialist"
 
-            class="form-control col-10 specialist white-bg-color"
+            class="form-control col-md-10 col-12 specialist white-bg-color"
 
             v-model="hospital_info.specialist"
 
@@ -231,8 +231,8 @@
         </div>
         <table class="table table-bordered table-wrapper">
           <tr>
-                  <td class="width17" style="border:none;"> <label class="heading-lbl hos_lbl pad-free">医院からのお知らせ <span class="error">*</span></label></td>
-                  <td style="border:none;">
+                  <th class="nursing_table" style="border:none;"> <label class="heading-lbl hos_lbl pad-free">医院からのお知らせ <span class="error">*</span></label></th>
+                  <td class="nursing_table1" style="border:none;">
                           <!-- <textarea name="feature" id="" cols="30" rows="10" ></textarea> -->
                           <quill-editor  ref="myQuilEditor" name="detailsinfo" class="details-info" @change="onDetailInfoEditorChange($event)" v-model="hospital_info.details_info" :options="editorOption"/>
                   </td>
@@ -253,7 +253,7 @@
 
               <span
 
-                class="btn all-btn main-bg-color"
+                class="btn all-btn main-bg-color nursing_toggle_responsive"
 
                 style="min-width: 0px;"
 
@@ -285,7 +285,7 @@
 
                       <tr>
 
-                        <td>月</td>
+                        <td >月</td>
 
                         <td>
 
@@ -903,13 +903,13 @@
 
         <div class="form-group form-group-wrapper row ml-0 mr-0">
 
-          <label class="heading-lbl col-2 pad-free">休診日 </label>
+          <label class="heading-lbl col-md-2 col-12 pad-free">休診日 </label>
 
           <textarea
 
             name="close-day"
 
-            class="form-control white-bg-color close-day col-10"
+            class="form-control white-bg-color close-day col-md-10 col-12"
 
             v-model="hospital_info.closed_day"
 
@@ -931,7 +931,7 @@
 
                 <span
 
-                  class="btn all-btn main-bg-color"
+                  class="btn all-btn main-bg-color nursing_toggle_responsive"
 
                   style="min-width: 0px;"
 
@@ -983,7 +983,7 @@
 
               <div class="form-group">
 
-                <label class="heading-lbl hos_lbl1 col-2 pad-free">
+                <label class="heading-lbl hos_lbl1 col-2 pad-free ">
 
                   こだわりの特長
 
@@ -993,7 +993,7 @@
 
                 <span
 
-                  class="btn all-btn main-bg-color"
+                  class="btn all-btn main-bg-color nursing_toggle_responsive"
 
                   style="min-width: 0px;"
 
@@ -1040,7 +1040,7 @@
 
         <div class="form-group form-group-wrapper row ml-0 mr-0">
 
-          <label class="heading-lbl col-2 pad-free">公式サイト</label>
+          <label class="heading-lbl col-md-2 col-12 pad-free">公式サイト</label>
 
           <input
 
@@ -1048,7 +1048,7 @@
 
             name="official-website"
 
-            class="form-control col-10 website white-bg-color"
+            class="form-control col-md-10 col-12 website white-bg-color"
 
             v-model="hospital_info.website"
 
@@ -1060,13 +1060,13 @@
 
         <div class="form-group form-group-wrapper row mr-0 ml-0">
 
-          <label class="heading-lbl col-2 pad-free">混雑状況</label>
+          <label class="heading-lbl col-md-2 col-12 pad-free">混雑状況</label>
 
           <textarea
 
             name="congestion"
 
-            class="form-control col-10 congestion white-bg-color"
+            class="form-control col-md-10 col-12 congestion white-bg-color"
 
             v-model="hospital_info.congestion"
 
@@ -1244,7 +1244,7 @@
             <tr>
                 <td>
                     <label class="heading-lbl col-2 pad-free">地図</label>
-                    <span class="btn all-btn main-bg-color" style="min-width: 0px;" @click="maptogglediv()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
+                    <span class="btn all-btn main-bg-color nursing_toggle_responsive" style="min-width: 0px;" @click="maptogglediv()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
                     <div class="col-md-10 hos_toggle float-right m-t-10 map-toggle-div toggle-div pad-free">
                         <div class="col-md-12">
                             <GoogleMap :address="address_show" :township="customer_info.townships_id" :lat_num='hospital_info.latitude' :lng_num='hospital_info.longitude' :city="city_id" :township_list="township_list"></GoogleMap>

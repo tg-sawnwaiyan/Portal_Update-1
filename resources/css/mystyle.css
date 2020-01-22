@@ -9009,6 +9009,9 @@ padding: 11px;
 }
 
 @media only screen and (max-width:1440px) {
+    .hos_lbl {
+        width: 165px;
+    }
     .nursing_map {
         padding-left: 70px;
     }
@@ -9309,7 +9312,8 @@ padding: 0;
         max-width: 100%;
     }
     .m-l-20 {
-        margin-left: 100px !important;
+        margin-left: 15px !important;
+
     }
     /* end nursing profile */
     /* common */
@@ -10008,8 +10012,11 @@ display: none;
         padding-bottom: 10px;
     }
     .m-l-20 {
-        margin-left: 100px !important;
+        margin-left: 65px !important;
     }
+    /* .postal {
+        width: 100%;
+    } */
     /* end nursing profile */
     .sp-768 {
         display: block;
@@ -10964,6 +10971,17 @@ background-image: none;
     }
     .p-t-10{
         padding-top:10px !important;
+        margin-left: 13px;
+    }
+    .hos-del{
+        padding-bottom:10px;
+    }
+    .m-l-20 {
+        margin-left: 5px !important;
+        margin-top: 5px;
+    }
+    .postal {
+        width: 100%;
     }
     /* end nursing profile */
 }
@@ -11060,6 +11078,9 @@ background-image: none;
     .nursing_btn span {
         margin-left: 0;
         margin-top: 0;
+    }
+    .postal {
+        width: 100%;
     }
 }
 
