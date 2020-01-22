@@ -1,106 +1,104 @@
 <template>
-    <div class="row">
-        <div class="col-12">
-            <!--card-->
-            <div class="col-md-12 col-md-12 tab-content tab-content1 tabs pad-free border-style">
-                <div class="col-md-12 scrolldiv">
-                    <div v-if="norecord_msg" class="card card-default card-wrap">
-                        <p class="record-ico">
-                            <i class="fa fa-exclamation"></i>
-                        </p>
-                        <p>OOPS!!</p>
-                        <p class="record-txt01">表示するデータありません</p>
-                        <p>表示するデータありません‼新しいデータを作成してください。</p>
-                        <a href="/comment" class="main-bg-color create-btn all-btn">
-                            <i class="fas fa-plus-circle"></i> 新しいデータ作成
-                        </a>
+    <div id="commentList">
+        <!--card-->
+        <div class="col-12 tab-content">
+            <div class="p-2 p0-480">
+                <div v-if="norecord_msg" class="card card-default card-wrap">
+                    <p class="record-ico">
+                    <i class="fa fa-exclamation"></i>
+                    </p>
+                    <p>OOPS!!</p>
+                    <p class="record-txt01">表示するデータありません</p>
+                    <p>表示するデータありません‼新しいデータを作成してください。</p>
+                    <a href="/comment" class="main-bg-color create-btn all-btn">
+                        <i class="fas fa-plus-circle"></i> 新しいデータ作成
+                    </a>
+                </div>
+                <div v-else class="container-fuid">
+                    <h4 class="main-color m-b-10">コメント 検索</h4>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" placeholder="検索" id="search-item" @keyup="searchcomment()" />
+                        </div>
+
                     </div>
+                    <hr />
+                    <h5 class="header">{{title}}</h5>
+                    <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
                     <div v-else class="container-fuid">
-                        <h4 class="main-color m-b-10">コメント 検索</h4>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <input type="text" class="form-control" placeholder="検索" id="search-item" @keyup="searchcomment()" />
-                            </div>
-
-                        </div>
-                        <hr />
-                        <h5 class="header">{{title}}</h5>
-                        <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
-                        <div v-else class="container-fuid">
-                        <div class="card card-default m-b-20" v-for="comment in displayItems" :key="comment.id">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-9 p0-480">
-                                        <!-- <strong>タイトル :</strong> {{comment.title}}  <br/>
-                                        <strong>顧客名 :</strong> {{comment.name}}  <br/>
-                                        <strong>メールアドレス:</strong>{{comment.email}} -->
-                                       <table>
-                                           <tr>
-                                               <td class="align-top">タイトル :</td>
-                                               <td> {{comment.title}}</td>
-                                           </tr>
-                                            <tr class="align-top">
-                                               <td>顧客名 :</td>
-                                               <td> {{comment.name}} </td>
-                                           </tr>
-                                             <tr>
-                                               <td class="align-top">メールアドレス: </td>
-                                               <td> {{comment.email}} </td>
-                                           </tr>
-                                       </table>
-                                       <div class="d-inline-block mt-3">
-                                           <button class="btn confirmed" v-if="comment.status != 0" >確認</button>
-                                            <button class="btn confirm-borderbtn" v-else @click="commentConfirm(comment.id)">確認</button>
-                                            <button class="btn text-danger delete-borderbtn" @click="deleteComment(comment.id)">削除</button>
-                                       </div>
-                                    </div>
-
-                                    <div class="col-3 text-right">
-                                        <!-- <button class="'btn btn all-btn main-bg-color changeLink'+payment.id" type="button" @click="commentToggle(comment.id)"><span  :id="'icon' + comment.id"  class="fa fa-angle-down"></span></button> -->
-                                        <button :class="'btn btn all-btn main-bg-color changeLink'+comment.id" style="min-width: 0px;" @click="commentToggle(comment.id)">
-                                            <i :id="'icon' + comment.id" class="fa fa-angle-down"></i> 詳細</button>
+                    <div class="card card-default m-b-20" v-for="comment in displayItems" :key="comment.id">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-9">
+                                    <!-- <strong>タイトル :</strong> {{comment.title}}  <br/>
+                                    <strong>顧客名 :</strong> {{comment.name}}  <br/>
+                                    <strong>メールアドレス:</strong>{{comment.email}} -->
+                                    <table class="commentlist_tbl">
+                                        <tr>
+                                            <td class="align-top custom_title">タイトル :</td>
+                                            <td> {{comment.title}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="align-top custom_title">顧客名 :</td>
+                                            <td> {{comment.name}} </td>
+                                        </tr>
+                                            <tr>
+                                            <td class="align-top custom_title">メールアドレス: </td>
+                                            <td> {{comment.email}} </td>
+                                        </tr>
+                                    </table>
+                                    <div class="d-inline-block mt-3">
+                                        <button class="btn confirmed" v-if="comment.status != 0" >確認</button>
+                                        <button class="btn confirm-borderbtn" v-else @click="commentConfirm(comment.id)">確認</button>
+                                        <button class="btn text-danger delete-borderbtn" @click="deleteComment(comment.id)">削除</button>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="collapse card-body" :id="'changeLink' + comment.id">
-                                <div class="commentWrap">
 
-                                    <div class="d-flex ">
-                                     <p class="comment-underline comment-title p-b-0">{{comment.title}} <span style="font-size:12px;color:#a7a2a2ee;">(コメント)</span>   <p class="comment-date"><i class="fa fa-calendar" aria-hidden="true"></i> {{comment.created_date | moment("YYYY年MM月DD日") }}投稿 <span class="ml-2"><i class="fa fa-clock" aria-hidden="true"></i> {{comment.created_time}}</span></p>
-
-                                    </div>
-                                    <!-- <h5 style="background:linear-gradient(45deg, #ffbe9f, transparent);padding:8px;">{{comment.title}} <span style="font-size:14px;">(コメント)</span></h5> -->
+                                <div class="col-3 text-right">
+                                    <!-- <button class="'btn btn all-btn main-bg-color changeLink'+payment.id" type="button" @click="commentToggle(comment.id)"><span  :id="'icon' + comment.id"  class="fa fa-angle-down"></span></button> -->
+                                    <button :class="'btn btn all-btn main-bg-color changeLink'+comment.id" style="min-width: 65px;font-size:13px;" @click="commentToggle(comment.id)">
+                                        <i :id="'icon' + comment.id" class="fa fa-angle-down"></i> 詳細</button>
                                 </div>
-                                 <div name="exp[]" class="col-md-12 m-t-20"><p style="color:#736e6e;">{{comment.comment}}</p></div>
                             </div>
                         </div>
-                    </div>
-                        <div class="col-12" v-if="pagination">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination">
-                                    <li class="page-item">
-                                        <span class="spanclass pc-480" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
-                                    </li>
-                                    <li class="page-item">
-                                        <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i><span class="pc-paginate"> 前へ</span></span>
-                                    </li>
-                                    <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
-                                        <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
-                                    </li>
-                                    <li class="page-item">
-                                        <span class="spanclass" @click="next"><span class="pc-paginate">次へ </span><i class='fas fa-angle-right'></i></span>
-                                    </li>
-                                    <li class="page-item">
-                                        <span class="spanclass pc-480" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
-                                    </li>
-                                </ul>
-                            </nav>
+                        <div class="collapse card-body" :id="'changeLink' + comment.id">
+                            <div class="commentWrap">
+
+                                <div class="d-flex ">
+                                    <p class="comment-underline comment-title p-b-0">{{comment.title}} <span style="font-size:12px;color:#a7a2a2ee;">(コメント)</span>   <p class="comment-date"><i class="fa fa-calendar" aria-hidden="true"></i> {{comment.created_date | moment("YYYY年MM月DD日") }}投稿 <span class="ml-2"><i class="fa fa-clock" aria-hidden="true"></i> {{comment.created_time}}</span></p>
+
+                                </div>
+                                <!-- <h5 style="background:linear-gradient(45deg, #ffbe9f, transparent);padding:8px;">{{comment.title}} <span style="font-size:14px;">(コメント)</span></h5> -->
+                            </div>
+                                <div name="exp[]" class="col-md-12 m-t-20"><p style="color:#736e6e;">{{comment.comment}}</p></div>
                         </div>
                     </div>
                 </div>
+                    <div class="col-12" v-if="pagination">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <span class="spanclass pc-480" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
+                                </li>
+                                <li class="page-item">
+                                    <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i><span class="pc-paginate"> 前へ</span></span>
+                                </li>
+                                <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
+                                    <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
+                                </li>
+                                <li class="page-item">
+                                    <span class="spanclass" @click="next"><span class="pc-paginate">次へ </span><i class='fas fa-angle-right'></i></span>
+                                </li>
+                                <li class="page-item">
+                                    <span class="spanclass pc-480" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
             </div>
-            <!--end card-->
         </div>
+        <!--end card-->
     </div>
 </template>
 
