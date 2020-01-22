@@ -94,9 +94,10 @@
                                 <div class="form-group row pl-3">
                                     <div class="col-md-12 "><label> 郵便番号 </label></div>
                                     <div class="col-md-12 p-0">
-                                        <input type="text" v-model="comments.postal" name="postal" class="postal form-control float-left" id="postal" v-on:keyup="getPostal" placeholder="郵便番号を入力してください。" maxlength="7"/>
+                                        <input type="text" v-model="comments.postal" name="postal" class="postal form-control float-left" id="postal" placeholder="郵便番号を入力してください。" maxlength="7"/>
                                         <div id="jsErrorMessage" class="float-left eg-txt"></div>
-                                        <span class="float-left eg-txt">例）1006740 (<a href="https://www.post.japanpost.jp/zipcode/" target="_blank">郵便番号検索</a>)</span>
+                                        <span class="float-left submit1 btn main-bg-color continue all-btn submit m-l-20" @click="getPostal">検索</span>
+                                        <span class="float-left m-l-20">例）1006740 (<a href="https://www.post.japanpost.jp/zipcode/" target="_blank">郵便番号検索</a>)</span>
                                     </div>
                                 </div>
                                 <div class="form-group row pl-3">                                  
@@ -129,7 +130,7 @@
                                     <div class="col-md-12 "><label>番地（建物名)<span class="error sp1">必須</span></label></div>
                                     <div class="col-md-12 p-0">
                                          <input type="text" id="city" name="city" class="city form-control float-left" placeholder="番地を入力してください。" v-model="comments.city" @change="aggreBtn" @keyup="focusCity">
-                                        <span class="float-left eg-txt">例）東京都千代田区丸の内1-9-1 グラントウキョウノースタワー40階</span>
+                                        <span class="float-left eg-txt">例）区丸の内1-9-1 グラントウキョウノースタワー40階</span>
                                     </div>
                                 </div>
                             </div>
@@ -470,6 +471,7 @@ import DatePicker from 'vue2-datepicker';
                         .post('/api/hospital/postList/' + postal)
                         .then(response => {
                             var post_data = response.data.postal_list;
+                            console.log('before',post_data)
                             var length = response.data.postal_list.length;
                             if (length > 0) {
                                 var pref = post_data[0]['city_id'];
@@ -478,6 +480,7 @@ import DatePicker from 'vue2-datepicker';
                                 this.comments.township = response.data.township_id[0]['id'];  
                                 this.comments.city = post_data[0]["street"];                               
                                 this.comments.division = pref;
+                                console.log('after',post_data)
                               
                                  $('#jsErrorMessage').html('<div class="error"></div>');
                             } else {
@@ -501,7 +504,7 @@ import DatePicker from 'vue2-datepicker';
                 if(town_id == 2)
                 {
                 this.comments.city = ''
-                this.comments.postal = '';
+                // this.comments.postal = '';
                     this.comments.township = 0;
                 }
                 this.townships = response.data.townships
@@ -511,7 +514,7 @@ import DatePicker from 'vue2-datepicker';
             },
             getLocation(){
 
-                this.comments.postal = '';
+                // this.comments.postal = '';
                 this.comments.city = '';
                 this.aggreBtn();
             },

@@ -3,12 +3,13 @@
           
               <div class="col-md-12 pad-free">
                 <div class="col-md-12 pad-free postal-search">
-                    <div class="form-group">
+                    <div class="form-group row pl-3">
                     <div class="col-md-12 "><label> 郵便番号 </label></div>
                     <div class="col-md-12 p-0">
-                    <input type="text" v-model="comment.postal" name="postal" class="postal form-control white-bg-color" id="postal" v-on:keyup="getPostal" placeholder="郵便番号を入力してください。" maxlength="7"/>
+                    <input type="text" v-model="comment.postal" name="postal" class="form-control white-bg-color float-left postal" id="postal" placeholder="郵便番号を入力してください。" maxlength="7"/>
                     <div id="jsErrorMessage"></div>
-                    <span class="float-left eg-txt">例）1006740 (<a href="https://www.post.japanpost.jp/zipcode/" target="_blank">郵便番号検索</a>)</span>
+                    <span class="float-left submit1 btn main-bg-color continue all-btn submit m-l-20" @click="getPostal">検索</span>
+                    <span class="float-left m-l-20">例）1006740 (<a href="https://www.post.japanpost.jp/zipcode/" target="_blank">郵便番号検索</a>)</span>
                     </div>
                   </div>
                     <div class="col-md-12 row p-0 m-0">
@@ -40,13 +41,14 @@
                         <input type="text" id="address_val" name="city" class="old-city form-control white-bg-color" placeholder="番地を入力してください。" v-model="address"> 
                       </div> -->
                       <div class="col-md-12">
-                        <input type="text" id="address_val" name="city" class="city form-control white-bg-color" placeholder="番地を入力してください。" v-model="address">
+                        <input type="text" id="address_show" name="city" class="city form-control white-bg-color" placeholder="番地を入力してください。" v-model="address">
+                        <input type="text" id="address_val" class="hide form-control white-bg-color" v-model="address_val">
                       </div>
                       <!-- <div class="col-md-2">
                         <span class="btn news-post-btn all-btn" @click="searchAddress()">番地検索</span>
                       </div> -->
                     </div>
-                    <p>例）東京都千代田区丸の内1-9-1　グラントウキョウノースタワー40階</p>                                    
+                    <p>例）丸の内1-9-1　グラントウキョウノースタワー40階</p>                                    
                   </div>
                   
                 </div>  
@@ -130,6 +132,7 @@ export default {
       },
       address_btn: false,
       city_list: [],
+      address_val: ''
     //   selected_city:this.city,      
     }
   },
@@ -247,7 +250,8 @@ export default {
                             if (length > 0) {
                                 var pref = post_data[0]['city_id'];
                                 
-                                this.address = post_data[0]['pref']+post_data[0]['city']+post_data[0]['street'];
+                                this.address = post_data[0]['street'];
+                                this.address_val = post_data[0]['pref']+post_data[0]['city']+post_data[0]['street'];
                                 this.city = post_data[0]['city_id'];
                                 this.cityChange('postal','');
                                 $('#jsErrorMessage').html('<div></div>');
@@ -274,7 +278,7 @@ export default {
             },
             cityChange(status,event){
                 if(status != 'postal'){
-                    this.comment.postal = '';
+                    // this.comment.postal = '';
                     this.comment.city = this.city_list[event.target.options.selectedIndex].city_name;
                     this.address = this.comment.city;
                 }
@@ -303,6 +307,9 @@ export default {
     font-weight: bold;
     border-left: 5px solid #ff6117;
     padding-left: 10px;
+}
+.hide{
+  display: none;
 }
 
 </style>
