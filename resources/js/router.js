@@ -186,11 +186,7 @@ const routes = [
             auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
         }
     },
-    // {
-    //     name: "customersearchlist",
-    //     path: "/customersearchlist",
-    //     component: CustomerSearchListComponent
-    // },
+    
     // {
     //     name: "newssearchlist",
     //     path: "/newssearchlist",
