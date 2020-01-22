@@ -9776,6 +9776,12 @@ padding: 0;
         flex-wrap: wrap;
     }
     /*END comment list */
+    /* customer list */
+    #customer_list .table.List_tbl td {
+        display: block;
+        width: 100%;
+    }
+    /*End customer list */
 }
 
 
@@ -10536,6 +10542,9 @@ background-image: none;
         border-radius: 2px;
         background: #d2571c;
     }
+    #customer_list .custom_title:after {
+        left: 15px;
+    }
     .scroll_responsive {
         overflow-x: auto;
     }
@@ -10585,6 +10594,10 @@ background-image: none;
     }
     .table.List_tbl td:nth-child(2) {
         border: none;
+    }
+    #customer_list .table.List_tbl td:last-child {
+        border: none;
+        text-align: left !important;
     }
     /*end news list */
     /* new details */
