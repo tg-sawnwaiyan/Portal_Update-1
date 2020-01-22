@@ -1248,7 +1248,7 @@
                     <span class="btn all-btn main-bg-color" style="min-width: 0px;" @click="maptogglediv()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
                     <div class="col-md-10 float-right m-t-10 map-toggle-div toggle-div pad-free">
                         <div class="col-md-12">
-                            <GoogleMap :address="customer_info.address" :township="customer_info.townships_id" :lat_num='hospital_info.latitude' :lng_num='hospital_info.longitude' :city="city_id" :township_list="township_list"></GoogleMap>
+                            <GoogleMap :address="address_show" :township="customer_info.townships_id" :lat_num='hospital_info.latitude' :lng_num='hospital_info.longitude' :city="city_id" :township_list="township_list"></GoogleMap>
                             <!-- <GoogleMap :address="customer_info.address" :lat_num='35.6803997' :lng_num='139.76901739' v-if="hospital_info.latitude == 0"></GoogleMap> -->
 
                             <div class="form-group">
@@ -1354,7 +1354,8 @@ export default {
             ph_length: false,
             ph_num: false,
             city_id: 0,
-            township_list: []
+            township_list: [],
+            address_show:''
             }
         },
         created(){
@@ -1379,6 +1380,7 @@ export default {
         },
         methods: {
             initialCall(){
+              this.address_show = $('#address_show').val();
                 this.axios
                 .get('/api/clinical-subject/'+this.cusid)
                 .then(response=>{
@@ -1619,6 +1621,7 @@ export default {
                 this.hospital_info.latitude = $('#new_lat').val();
                 this.hospital_info.longitude = $('#new_long').val();
                 this.customer_info.address = $('#address_val').val();
+                this.address_show = $('#address_show').val();
 
                 this.customer_info.townships_id = Number($('#gmaptownship').val());
                 localStorage.setItem('lat_num',this.hospital_info.latitude);

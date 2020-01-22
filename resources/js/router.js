@@ -17,15 +17,11 @@ import categorylist from "./components/categorylist";
 import createcategory from "./components/createcategory";
 import FacilitiesListComponent from "./components/FacilitiesListComponent";
 import CreateFacilityComponent from "./components/CreateFacilityComponent";
-import EditFacilityComponent from "./components/EditFacilityComponent";
 import joboffercreate from "./components/JobOfferCreate";
 import Profile from "./components/Profile";
 import JobOfferList from "./components/JobOfferList";
 import ProfileEdit from "./components/ProfileEdit";
 import ProfilePublish from "./components/ProfilePublish";
-// import medicalacceptancelist from "./components/medicalacceptancelist";
-// import createmedicalacceptance from "./components/createmedicalacceptance";
-// import editmedicalacceptance from "./components/editmedicalacceptance";
 import HospitalHistory from "./components/HospitalHistory";
 import favouriteHospital from "./components/favouriteHospital";
 import NursingHistory from "./components/NursingHistory";
@@ -190,11 +186,7 @@ const routes = [
             auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
         }
     },
-    // {
-    //     name: "customersearchlist",
-    //     path: "/customersearchlist",
-    //     component: CustomerSearchListComponent
-    // },
+    
     // {
     //     name: "newssearchlist",
     //     path: "/newssearchlist",
@@ -290,7 +282,7 @@ const routes = [
     {
         name: "editfacility",
         path: "/editfacility",
-        component: EditFacilityComponent,
+        component: CreateFacilityComponent,
         meta: {
             auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
         }

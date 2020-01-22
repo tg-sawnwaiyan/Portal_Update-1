@@ -101,6 +101,9 @@
                                     <div class="card-carousel-cards" :style="{ transform: 'translateX' + '(' + currentOffset + 'px' + ')'}">
                                         <div class="card-carousel--card">
                                             <div class="card-carousel--card--footer">
+                                                <div class="msg"> 
+                                                    <label><strong> {{message}} </strong></label>
+                                                </div> 
                                                 <table class="table table-bordered">
                                                     <tr>
                                                         <td v-for="nur_profile in nur_profiles" :key="nur_profile.id">
@@ -245,6 +248,7 @@ export default {
       modal_btn: false,
 
       local_sto: "",
+      message:"",
 
       type: "nursing",
 
@@ -432,11 +436,52 @@ export default {
 
     getAllCustomer: function(local_storage) {
       this.axios
-
         .post("/api/nursing_history/" + local_storage)
-
         .then(response => {
-          this.nur_profiles = response.data;
+            console.log(response.data)
+            if(response.data.length>0) {
+                this.nur_profiles = response.data;
+                if(response.data.length<this.his_nus) {
+                    // $('.msg').html('<span>Some Nursing Accounts are Deactivated!</span>');
+                    var nus_id = '';
+                    this.message = "Some Nursing Accounts are Deactivated!";
+                    for(var i= 0;i<this.nur_profiles.length;i++) {
+                        if(i== this.nur_profiles.length-1) {
+                            nus_id += this.nur_profiles[i]['id'];
+                        }
+                        else {
+                            nus_id += this.nur_profiles[i]['id'] + ",";
+                        }
+                    }
+                    localStorage.setItem('nursing_history',nus_id);
+                    this.local_sto = localStorage.getItem("nursing_history");
+                    this.nusHis = this.nur_profiles.length;
+                }
+            } else {
+                this.his_nus = 0;
+                this.$swal({
+                    title: "確認",
+                    text: "Sorry!Nursing Accounts are already deactived.",
+                    type: "warning",
+                    width: 350,
+                    height: 200,
+                    showCancelButton: true,
+                    confirmButtonColor: "#dc3545",
+                    cancelButtonColor: "#b1abab",
+                    cancelButtonTextColor: "#000",
+                    confirmButtonText: "削除",
+                    cancelButtonText: "キャンセル",
+                    confirmButtonClass: "all-btn",
+                    cancelButtonClass: "all-btn"
+                }).then(response => {
+                    localStorage.setItem('nursing_history','');
+                    this.local_sto = localStorage.getItem("nursing_history");
+                    this.nusHis = 0;
+                    this.$router.push({
+                        name: 'nursingSearch',
+                    });
+                });
+            }
         });
     },
 
