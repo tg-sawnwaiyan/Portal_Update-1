@@ -1,5 +1,5 @@
 <template>
-    <div id="job_apply">
+    <div id="job_apply" class="col-12  tab-content">
         <div class="container-fluid">
                 <h4 class="main-color m-b-10">求人応募者検索</h4>
                 <div class="row">

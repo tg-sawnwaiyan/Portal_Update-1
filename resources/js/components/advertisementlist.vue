@@ -5,8 +5,8 @@
                 <i class="fas fa-plus-circle"></i> 広告新規作成
             </router-link>
         </div>
-        <div class="col-md-12  tab-content tab-content1 tabs pad-free">
-            <div class="scrolldiv">
+        <div class="col-md-12  tab-content">
+            <div class="p-2 p0-480">
                 <div v-if="norecord_msg" class="card card-default card-wrap">
                     <p class="record-ico">
                         <i class="fa fa-exclamation"></i>

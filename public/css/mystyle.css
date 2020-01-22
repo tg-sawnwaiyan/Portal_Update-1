@@ -218,10 +218,36 @@ label {
 
 /********************************** Profile & Profile publish**********************************/
 
+
+/* Nursing & Hospital Profile */
+
 .heading-lbl {
     font-weight: bold;
     font-size: 1.15em;
 }
+
+.heading-lbl1 {
+    flex: 0 0 16.66666667%;
+    max-width: 16%;
+    font-weight: bold;
+    font-size: 1.15em;
+}
+
+.nursing_map {
+    margin-top: 25px;
+    padding-left: 220px;
+}
+
+.nursing_radiobtn {
+    float: right !important;
+}
+
+.nursing_table {
+    width: 17%;
+}
+
+
+/* End Nursing & Hospital Profile */
 
 .typelabel {
     /* background: #118063;
@@ -1656,7 +1682,7 @@ border-top: 5px solid #e66527; */
 }
 
 
-/* 
+/*
 .newsList_txt h5 a {
     display: block;
 }
@@ -2347,6 +2373,10 @@ ul.sub-ul li {
     margin-left: 17px;
 }
 
+.m-l-20 {
+    margin-left: 20px !important;
+}
+
 .m-l-30 {
     margin-left: 30px;
 }
@@ -2692,11 +2722,11 @@ li.userprofile-name>a {
 }
 
 .tab-content {
-    /* padding: 15px !important; */
     padding: 13px !important;
     /*for no scroll*/
     background: white;
     border: 1px solid #eee;
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1);
 }
 
 .tab-content1 {
@@ -3333,6 +3363,58 @@ background: #ff9b53;  /
 }
 
 
+/* #news_details .related_wrap .next-title {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#news_details .related_wrap {
+    width: 100%;
+    border-top: 2px dashed #eee;
+}
+
+#news_details .related_wrap .next-title {
+    display: inline-block;
+    border-left: 5px solid #ffa500;
+    letter-spacing: 3px;
+}
+
+#news_details .related_content {
+    margin: 0 auto;
+}
+
+#news_details .related_box {
+    display: inline-block;
+    width: 250px;
+    margin: 0 10px 15px 0;
+}
+
+#news_details .related_box a {
+    display: block;
+    width: 100%;
+} */
+
+.related_box {
+    float: left;
+    width: 25%;
+    padding-right: 10px;
+}
+
+.related_box:nth-child(4n) {
+    padding-right: 0;
+}
+
+
+/* #news_details .hovereffect img {
+    width: 250px;
+} */
+
+#news_details .info p {
+    max-width: 250px;
+    color: #fff;
+}
+
+
 /*footer*/
 
 .footer {
@@ -3697,7 +3779,7 @@ screen and (min-width: 750px) {
     #hospitalView .top-fixed-btn:hover {
         background: #cbf3ff;
         color: #000;
-    }    
+    }
     .spanclass {
         letter-spacing: normal;
         /* width: 50%; */
@@ -4813,15 +4895,6 @@ li.userprofile-name>a {
     margin: 75px 0 0 0;
 }
 
-.tab-content {
-    /* padding: 15px !important; */
-    padding: 13px !important;
-    /*for no scroll*/
-    background: white;
-    border: 1px solid #ccc;
-    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1);
-}
-
 .upper-tab {
     border: 1px solid #75b777;
 }
@@ -5288,6 +5361,7 @@ a:hover {
 .facility_tbl th {
     width: 250px;
 }
+
 .staff_tbl th {
     width: 350px;
     font-weight: normal;
@@ -5726,6 +5800,21 @@ font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "�
 .related-area span {
     color: rgb(255, 72, 0);
     font-size: 14px;
+}
+
+.news_detail_tit {
+    text-align: center;
+    letter-spacing: 3px;
+    line-height: 1.5;
+}
+
+.seemore_tit {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 10px;
+    font-size: 22px;
+    font-weight: bold;
+    border-bottom: 1px dashed #25ac8a;
 }
 
 
@@ -6566,6 +6655,7 @@ color: green;
     background: #85c7ff;
     border: 1px solid #5c95c5;
 }
+
 #nursingView .top-fixed-btn {
     background: #fbaa84;
     border: 1px solid #ff9563;
@@ -6622,6 +6712,9 @@ color: green;
     border: 1px solid #eee;
     margin-bottom: 15px;
     border-radius: 3px;
+}
+.postal{
+    width: 50%;
 }
 
 
@@ -8882,12 +8975,15 @@ padding: 11px;
 .pc-414 {
     display: block;
 }
-.pc-750{
+
+.pc-750 {
     display: block;
 }
-.sp-750{
+
+.sp-750 {
     display: none;
 }
+
 .pc-414-table {
     display: table-cell;
 }
@@ -8913,6 +9009,9 @@ padding: 11px;
 }
 
 @media only screen and (max-width:1440px) {
+    .nursing_map {
+        padding-left: 70px;
+    }
     .card_height {
         float: left;
         height: 170px;
@@ -8996,6 +9095,9 @@ padding: 11px;
 }
 
 @media only screen and (max-width:1280px) {
+    .nursing_map {
+        padding-left: 40px;
+    }
     .card_height {
         float: left;
         height: 170px;
@@ -9172,6 +9274,27 @@ padding: 0;
 }
 
 @media only screen and (max-width:1024px) {
+    /* nursing profile */
+    .heading-lbl {
+        font-size: 1.05em;
+    }
+    .heading-lbl1 {
+        font-size: 1.05em;
+        flex: 0 0 27%;
+        max-width: 150px;
+    }
+    .news-post-btn {
+        font-size: 13px;
+    }
+    .nursing_map {
+        padding-left: 0px;
+    }
+    .nursing_radiobtn {
+        float: none !important;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    /* end nursing profile */
     /* common */
     .col-slg-12 {
         -webkit-box-flex: 0;
@@ -9267,16 +9390,6 @@ padding: 0;
         width: 550px;
         height: 425px;
     }
-    #create_news {
-        width: 283px;
-        margin-left: 12px;
-    }
-    #create_news .title {
-        padding: 2px;
-        font-size: 11px;
-        padding-left: 10px;
-        margin-top: -7px;
-    }
     /*news_start*/
     .t_card {
         max-width: none;
@@ -9337,10 +9450,24 @@ padding: 0;
         text-align: center;
         font-size: 12px;
     }
-    .fixed-nav{
+    #create_news .title {
+        padding: 2px;
+        font-size: 11px;
+        padding-left: 10px;
+        margin-top: -7px;
+    }
+    .related_box {
+        width: 33.33%;
+    }
+    .related_box:nth-child(4n) {
+        padding-right: 10px;
+    }
+    .related_box:nth-child(3n) {
+        padding-right: 0;
+    }
+    .fixed-nav {
         width: 100%;
     }
-   
 }
 
 @media only screen and (max-width: 990px) {
@@ -9661,6 +9788,17 @@ padding: 0;
         margin-top: 10px;
     }
     /*End job details */
+    /* comment list */
+    .commentWrap .d-flex {
+        flex-wrap: wrap;
+    }
+    /*END comment list */
+    /* customer list */
+    #customer_list .table.List_tbl td {
+        display: block;
+        width: 100%;
+    }
+    /*End customer list */
 }
 
 
@@ -9825,6 +9963,28 @@ width: 18rem;
 display: none;
 } */
     /* end pagination */
+    /* nursing profile */
+    .heading-lbl {
+        font-size: 1.05em;
+        flex: 0 0 16%;
+        max-width: 125px;
+    }
+    .heading-lbl1 {
+        font-size: 1.05em;
+        flex: 0 0 20%;
+        max-width: 150px;
+    }
+    .nursing_btn {
+        margin-top: 0px;
+    }
+    .nursing_btn span {
+        margin-left: 121px;
+        margin-top: -45px;
+    }
+    .nursing_input {
+        flex: 0 0 85%;
+    }
+    /* end nursing profile */
     .sp-768 {
         display: block;
     }
@@ -10110,31 +10270,32 @@ display: none;
 }
 
 @media only screen and (max-width:750px) {
-    .pc-750{
+    .pc-750 {
         display: none;
     }
-    .sp-750{
+    .sp-750 {
         display: block;
     }
-    .pad-t-10{
+    .pad-t-10 {
         padding: 10px 0px 0px 0px;
     }
-    .pad-0-res{
+    .pad-0-res {
         padding: 0px;
     }
-    .d-block{
-        display:  block !important;
+    .d-block {
+        display: block !important;
     }
-    .profile-tit{
+    .profile-tit {
         padding: 0px;
         margin: 0px;
     }
-    table.timeTable th, table.timeTable td{
+    table.timeTable th,
+    table.timeTable td {
         vertical-align: middle !important;
         width: 50px !important;
         padding: 5px !important;
     }
-    .public-nurheader{
+    .public-nurheader {
         margin-bottom: 10px;
     }
     .dropdown {
@@ -10193,10 +10354,11 @@ display: none;
         padding-left: 0px;
         padding-right: 0px;
     }
-    .facility_tbl th, .cost_table th, .map_tbl th {
+    .facility_tbl th,
+    .cost_table th,
+    .map_tbl th {
         width: 120px;
     }
-
 }
 
 @media only screen and (max-width: 620px) {
@@ -10244,6 +10406,17 @@ display: none;
         display: flex;
         width: 100%;
     }
+    /* new details */
+    .related_box {
+        width: 50%;
+    }
+    .related_box:nth-child(3n) {
+        padding-right: 10px;
+    }
+    .related_box:nth-child(2n) {
+        padding-right: 0;
+    }
+    /*End new details */
 }
 
 @media only screen and (max-width:576px) {
@@ -10419,9 +10592,12 @@ background-image: none;
         display: inline-block;
         width: 25px;
         height: 3px;
-        left: 15px;
+        left: 0;
         border-radius: 2px;
         background: #d2571c;
+    }
+    #customer_list .custom_title:after {
+        left: 15px;
     }
     .scroll_responsive {
         overflow-x: auto;
@@ -10473,7 +10649,17 @@ background-image: none;
     .table.List_tbl td:nth-child(2) {
         border: none;
     }
+    #customer_list .table.List_tbl td:last-child {
+        border: none;
+        text-align: left !important;
+    }
     /*end news list */
+    /* new details */
+    .related_box {
+        width: 100%;
+        padding: 0 !important;
+    }
+    /*End new details */
     /*category*/
     .t-r {
         margin-right: -8px;
@@ -10608,7 +10794,7 @@ background-image: none;
     /*End job apply */
     /* common */
     .p0-480 {
-        padding: 0;
+        padding: 0 !important;
     }
     .breadcrumb {
         padding: 0 !important;
@@ -10636,6 +10822,15 @@ background-image: none;
     .offset {
         width: 100% !important;
     }
+    /* comment list */
+    .commentlist_tbl td {
+        display: block;
+        width: 100%;
+    }
+    .commentlist_tbl td:nth-child(2) {
+        padding-left: 5px;
+    }
+    /*END comment list */
 }
 
 @media only screen and (max-width: 414px) {
@@ -10675,6 +10870,73 @@ background-image: none;
         display: inline-block;
         width: auto;
     }
+    /* nursing profile */
+    .d-flex {
+        flex-wrap: wrap !important;
+    }
+    .nursing_input {
+        flex: 0 0 100%;
+        padding: 0;
+        margin: 0;
+        padding: 0 7px;
+    }
+    .heading-lbl {
+        font-size: 1.05em;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .heading-lbl1 {
+        font-size: 1.05em;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .nursing_btn {
+        margin-top: 0px;
+    }
+    .nusing_btn1 {
+        background-color: #0cc72c !important;
+        width: 68px;
+    }
+    .nursing_toggle_responsive {
+        margin-top: -45px;
+        margin-left: 127px;
+    }
+    .nursing_add_responsive {
+        margin-top: -27px;
+    }
+    .nursing_table {
+        display: block;
+        width: 100%;
+    }
+    .nursing_table1 {
+        display: block;
+    }
+    .nursing_cost {
+        padding: 0px;
+        margin-left: 16px;
+    }
+    .nursing_title_lbl {
+        display: block;
+        margin-bottom: -20px;
+    }
+    #gallery-payment table tr>th:first-child {
+        /* width: 35%; */
+        width: 100%;
+    }
+    .nursing_table_title th,.nursing_table_title td{
+        display: block;
+        width:100%;
+    }
+    .nursing_p-r-2{
+        padding-right: 2px !important;
+    }
+    .nursing_p-l-2{
+        padding-left: 2px !important;
+    }
+    .nursing-m-b-15{
+        margin-bottom: 10px !important;
+    }
+    /* end nursing profile */
 }
 
 @media only screen and (max-width: 380px) {
@@ -10698,6 +10960,9 @@ background-image: none;
     }
     .first-submenu span {
         display: none;
+    }
+    .d-none-380 {
+        display: none !important;
     }
     .backwrapper {
         padding: 10px;
@@ -10758,6 +11023,14 @@ background-image: none;
     }
     .news_catsearch label {
         width: 55%;
+    }
+    .nursing_toggle_responsive {
+        /* margin-top: -45px; */
+        margin-left: 115px;
+    }
+    .nursing_btn span {
+        margin-left: 0;
+        margin-top: 0;
     }
 }
 

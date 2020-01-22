@@ -300,12 +300,6 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                     // hidden: this.$auth.check(2)
                 },
                 {
-                    href: '/medicalacceptancelist',
-                    title: 'Medical Acceptance',
-                    icon: 'fa fa-list',
-                    // hidden: this.$auth.check(2)
-                },
-                {
                     title: 'ログアウト',
                     icon: 'fa fa-lock',
                     // click: this.$auth.logout(),
