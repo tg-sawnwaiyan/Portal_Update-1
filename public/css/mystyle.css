@@ -3113,7 +3113,7 @@ overflow-y: auto;
     position: fixed;
     top: 237px;
     right: 10px;
-    z-index: 99999;
+    z-index: 9999;
 }
 
 #headerbar .router-link-exact-active {
@@ -3694,6 +3694,14 @@ screen and (min-width: 750px) {
         background: #fff9cb;
         color: #000;
     }
+    #hospitalView .top-fixed-btn.active:hover {
+        background: #cbf3ff;
+        color: #000;
+    }
+    #hospitalView .top-fixed-btn:hover {
+        background: #cbf3ff;
+        color: #000;
+    }    
     .spanclass {
         letter-spacing: normal;
         /* width: 50%; */
@@ -5284,7 +5292,6 @@ a:hover {
 .facility_tbl th {
     width: 250px;
 }
-
 .staff_tbl th {
     width: 350px;
     font-weight: normal;
@@ -6549,9 +6556,9 @@ color: green;
     margin: 0 auto;
     padding: 0 !important;
     background: transparent;
-    -moz-transition: all 1s ease-in-out;
-    -webkit-transition: all 1s ease-in-out;
-    transition: all 1s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
     /* overflow: hidden; */
     z-index: 4;
     left: 0;
@@ -6563,12 +6570,6 @@ color: green;
     background: #85c7ff;
     border: 1px solid #5c95c5;
 }
-
-#hospitalView .top-fixed-btn:hover {
-    background: #cbf3ff;
-    color: #000;
-}
-
 #nursingView .top-fixed-btn {
     background: #fbaa84;
     border: 1px solid #ff9563;
@@ -6588,11 +6589,6 @@ color: green;
 #hospitalView .top-fixed-btn.active {
     background: #2981cc;
     border: 1px solid #5f97d0;
-}
-
-#hospitalView .top-fixed-btn.active:hover {
-    background: #cbf3ff;
-    color: #000;
 }
 
 #nursingView .top-fixed-btn.active {
@@ -8893,7 +8889,12 @@ padding: 11px;
 .pc-414 {
     display: block;
 }
-
+.pc-750{
+    display: block;
+}
+.sp-750{
+    display: none;
+}
 .pc-414-table {
     display: table-cell;
 }
@@ -9335,14 +9336,18 @@ padding: 0;
     }
     .top-fixed-btn,
     .top-fixed-btn.active {
-        width: auto;
-        padding: 10px 37px;
+        /* width: auto;
+        padding: 10px 37px; */
         margin-bottom: 10px;
     }
     .top-fixed-btn {
         text-align: center;
         font-size: 12px;
     }
+    .fixed-nav{
+        width: 100%;
+    }
+   
 }
 
 @media only screen and (max-width: 990px) {
@@ -9599,9 +9604,9 @@ padding: 0;
     .gallery-list .gallery-item {
         width: 33%;
     }
-    .top-mail-btn {
+    /* .top-mail-btn {
         top: -67px !important;
-    }
+    } */
     /* .fav-profile {
         top: -10px !important;
     } */
@@ -9610,8 +9615,8 @@ padding: 0;
     }
     .top-fixed-btn,
     .top-fixed-btn.active {
-        width: auto;
-        padding: 10px 46px;
+        /* width: auto;
+        padding: 10px 46px; */
         margin-bottom: 10px !important;
         border-radius: 0px;
     }
@@ -9624,12 +9629,13 @@ padding: 0;
         margin-top: 0px;
     }
     .top-mail-btn-res {
-        background: #0cc72c;
+        background: #ffffff;
         margin-bottom: 10px;
-        color: #fff;
+        color: #000;
         box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12) !important;
         font-weight: bold;
-        width: 50%;
+        width: 100%;
+        border: 1px solid;
     }
     /*End  profile publish */
     /* job details */
@@ -10111,6 +10117,33 @@ display: none;
 }
 
 @media only screen and (max-width:750px) {
+    .pc-750{
+        display: none;
+    }
+    .sp-750{
+        display: block;
+    }
+    .pad-t-10{
+        padding: 10px 0px 0px 0px;
+    }
+    .pad-0-res{
+        padding: 0px;
+    }
+    .d-block{
+        display:  block !important;
+    }
+    .profile-tit{
+        padding: 0px;
+        margin: 0px;
+    }
+    table.timeTable th, table.timeTable td{
+        vertical-align: middle !important;
+        width: 50px !important;
+        padding: 5px !important;
+    }
+    .public-nurheader{
+        margin-bottom: 10px;
+    }
     .dropdown {
         display: inline-block;
         width: 100%;
@@ -10167,6 +10200,10 @@ display: none;
         padding-left: 0px;
         padding-right: 0px;
     }
+    .facility_tbl th, .cost_table th, .map_tbl th {
+        width: 120px;
+    }
+
 }
 
 @media only screen and (max-width: 620px) {
@@ -10556,7 +10593,7 @@ background-image: none;
     }
     .top-fixed-btn,
     .top-fixed-btn.active {
-        padding: 3.29999%;
+        /* padding: 3.29999%; */
     }
     /*End  profile publish */
     /* Job Detail */
@@ -10696,7 +10733,7 @@ background-image: none;
     /*End create news */
     /* Profile Publish */
     .gallery-list .gallery-item {
-        padding: 3px;
+        /* padding: 3px; */
         margin-bottom: 25px;
         font-size: 12px;
     }
