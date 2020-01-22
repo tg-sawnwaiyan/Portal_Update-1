@@ -444,7 +444,7 @@ export default {
                 if(response.data.length<this.his_nus) {
                     // $('.msg').html('<span>Some Nursing Accounts are Deactivated!</span>');
                     var nus_id = '';
-                    this.message = "Some Nursing Accounts are Deactivated!";
+                    this.message = "申し訳ございません。最近見た施設のリストは表示されません。全部のアカウントが解除になっていますので。";
                     for(var i= 0;i<this.nur_profiles.length;i++) {
                         if(i== this.nur_profiles.length-1) {
                             nus_id += this.nur_profiles[i]['id'];
@@ -461,18 +461,18 @@ export default {
                 this.his_nus = 0;
                 this.$swal({
                     title: "確認",
-                    text: "Sorry!Nursing Accounts are already deactived.",
-                    type: "warning",
+                    text: "申し訳ございません。最近見た施設のリストは表示されません。全部のアカウントが解除になっていますので。",
+                    type: 'info',
                     width: 350,
                     height: 200,
-                    showCancelButton: true,
-                    confirmButtonColor: "#dc3545",
-                    cancelButtonColor: "#b1abab",
-                    cancelButtonTextColor: "#000",
-                    confirmButtonText: "削除",
-                    cancelButtonText: "キャンセル",
+                    showConfirmButton: true,
+                    // confirmButtonColor: "#dc3545",
+                    // cancelButtonColor: "#b1abab",
+                    // cancelButtonTextColor: "#000",
+                    confirmButtonText: "閉じる",
+                    // cancelButtonText: "キャンセル",
                     confirmButtonClass: "all-btn",
-                    cancelButtonClass: "all-btn"
+                    // cancelButtonClass: "all-btn"
                 }).then(response => {
                     localStorage.setItem('nursing_history','');
                     this.local_sto = localStorage.getItem("nursing_history");
