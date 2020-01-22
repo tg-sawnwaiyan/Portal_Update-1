@@ -32,7 +32,7 @@
         <span class="btn fav-profile fav-item fav-color" style="color:#aaa;" v-if="view_pro_id && !loginuser" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
       </ul>
 
-      <div class="tab-content nursing-borderColor tab-content1 tabs p0-480">
+      <div class="tab-content nursing-borderColor tab-content1 tabs">
         <form class="col-md-12 pad-free">
           <div class="col-md-12 pad-free tab-pane" v-if="btntype == 'create'">
             <nursingProfile :cusid="cusid" :type="type"></nursingProfile>
