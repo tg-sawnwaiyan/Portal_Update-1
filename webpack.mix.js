@@ -14,6 +14,12 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css');
 mix.copy('resources/css/mystyle.css', 'public/css'); //V
+mix.copy('resources/css/all.css', 'public/css'); //V
+mix.copy('resources/css/carousel.css', 'public/css'); //V
+mix.copy('resources/css/fullpage.min.css', 'public/css'); //V
+mix.copy('resources/css/jquery.scrolling-tabs.min.css', 'public/css'); //V
+mix.copy('resources/css/nprogress.css', 'public/css'); //V
+mix.copy('resources/css/pannellum.css', 'public/css'); //V
 // mix.sass('resources/sass/style.scss', 'public/css');
 mix.copy('resources/js/jquery.min.js', 'public/js');
 mix.copy('resources/js/jquery-3.4.1.min.js', 'public/js');
