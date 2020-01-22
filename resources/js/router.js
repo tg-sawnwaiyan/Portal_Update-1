@@ -21,11 +21,9 @@ import joboffercreate from "./components/JobOfferCreate";
 import Profile from "./components/Profile";
 import JobOfferList from "./components/JobOfferList";
 import ProfileEdit from "./components/ProfileEdit";
-import ProfilePublish from "./components/ProfilePublish";
 import HospitalHistory from "./components/HospitalHistory";
 import favouriteHospital from "./components/favouriteHospital";
 import NursingHistory from "./components/NursingHistory";
-import GoogleMap from "./components/GoogleMap";
 import subject from "./components/Subject";
 import subjectlist from "./components/SubjectList";
 import advertisementlist from "./components/advertisementlist";
@@ -101,25 +99,7 @@ const routes = [
             auth: false
         }
     },
-    // USER ROUTES
-    // {
-    //   path: '/dashboard',
-    //   name: 'dashboard',
-    //   component: Dashboard,
-    //   meta: {
-    //     auth: true
-    //   }
-    // },
-    // // ADMIN ROUTES
-    // {
-    //   path: '/admin',
-    //   name: 'admin.dashboard',
-    //   component: AdminDashboard,
-    //   meta: {
-    //     auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
-    //   }
-    // },
-
+    
     {
         name: 'News',
         path: '/',
@@ -140,12 +120,6 @@ const routes = [
         path: '/nursingSearch',
         component: nursingSearch
     },
-    // {
-    //     name: "passport",
-    //     path: "/passport",
-    //     component: passport
-    // },
-
     {
         name: "newdetails",
         path: "/newsdetails/:id",
@@ -186,26 +160,7 @@ const routes = [
             auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
         }
     },
-    
-    // {
-    //     name: "newssearchlist",
-    //     path: "/newssearchlist",
-    //     component: NewsSearchListComponent,
-    // },
-    // {
-    //     name: "custedit",
-    //     path: "/custsedit",
-    //     component: custedit
-    // },
-    // {
-    //     name: "jobsearchlist",
-    //     path: "/jobsearchlist",
-    //     component: JobSearchListComponent,
-    //     meta: {
-    //         auth: undefined
-    //     }
-    // },
-
+   
     {
         name: "job_details",
         path: "/job_details/:id",
@@ -287,11 +242,6 @@ const routes = [
             auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
         }
     },
-    // {
-    //     name: "createcustomer",
-    //     path: "/createcustomer",
-    //     component: createcustomer
-    // },
     {
         name: "profile",
         path: "/profile",
@@ -333,14 +283,7 @@ const routes = [
             auth: true
         }
     },
-    {
-        name: "profilepublish",
-        path: "/profilepublish",
-        component: ProfilePublish,
-        meta: {
-            auth: true,
-        }
-    },
+   
     {
         name: "hospital_history",
         path: "/hospital_history",
@@ -349,32 +292,7 @@ const routes = [
             auth: false
         }
     },
-    // {
-    //     name: "createmedicalacceptance",
-    //     path: "/createmedicalacceptance",
-    //     component: createmedicalacceptance,
-    //     meta: {
-    //         auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
-    //     }
-    // },
-
-    // {
-    //     name: "medicalacceptancelist",
-    //     path: "/medicalacceptancelist",
-    //     component: medicalacceptancelist,
-    //     meta: {
-    //         auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
-    //     }
-    // },
-
-    // {
-    //     name: "editmedicalacceptance",
-    //     path: "/editmedicalacceptance",
-    //     component: editmedicalacceptance,
-    //     meta: {
-    //         auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
-    //     }
-    // },
+   
     // {
     //     name: "userPasswordResetList",
     //     path: "/userPasswordResetList",
@@ -405,16 +323,6 @@ const routes = [
             auth: false
         }
     },
-    // {
-    //     name: "type",
-    //     path: "/type",
-    //     component: type
-    // },
-    // {
-    //     name: "typelist",
-    //     path: "/typelist",
-    //     component: typelist
-    // },
     {
         name: "subject",
         path: "/subject",
@@ -455,14 +363,7 @@ const routes = [
         auth: false
       }
     },
-    {
-      name: 'google_map',
-      path: '/google_map',
-      component: GoogleMap,
-      meta: {
-        auth: undefined
-      }
-    },
+    
   {
     name: 'comment',
     path: '/comment/:customer_id',
@@ -535,14 +436,6 @@ const routes = [
         auth: false
     }
   },
-//   {
-//     name: 'modal',
-//     path: '/modal',
-//     component: modal,
-//     meta: {
-//         auth: undefined
-//     }
-//   },
   {
     name: 'termsAndConditions',
     path: '/termsAndConditions',
