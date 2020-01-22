@@ -11,7 +11,7 @@
                         <div class="col-md-2">
                             <button class="btn secondary-bg-color all-btn white">検索</button>
                         </div>
-                    </div>
+                    </div>    
                 </div>  
             </div>
                 <div class="row m-b-15">
