@@ -16,10 +16,6 @@ Vue.use(VueSidebarMenu);
 //start editor
 //start onepage
 import 'animate.css'
-
-
-
-
 let globalData = new Vue({
     data: {
         nusFav: 0,

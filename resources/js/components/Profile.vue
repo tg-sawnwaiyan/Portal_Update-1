@@ -1,14 +1,14 @@
 <template>
   <div id="Profile-page">
-    <h4 v-if="login_person == 'customer' && visit == 'false'" class="header" style="background:transparent;">マイページ編集</h4> 
+    <h4 v-if="login_person == 'customer' && visit == 'false'" class="header" style="background:transparent;">マイページ編集</h4>
     <button @click="$router.go(-1)" v-if="login_person == 'admin' && visit == 'false'" class="btn btn-danger all-btn submit" style="float:right">戻る</button>
 
-     
+
     <span v-if="!loginuser || visit == 'true'">
       <h4 v-if="type == 'nursing'" class="public-nurheader" style="background:transparent;"><i class="fas fa-user-md"></i> ページ</h4>
       <h4 v-if="type == 'hospital'" class="public-hosheader" style="background:transparent;"><i class="fas fa-briefcase-medical"></i> ページ</h4>
     </span>
-    
+
     <div v-if="type == 'nursing'">
 
       <ul class="nav nav-tabs nursing-tabColor" role="tablist" id="profilenav" v-bind:style="{width:width}" >
@@ -27,7 +27,7 @@
             <!-- <span v-if="!loginuser"></span> -->
           </label>
         </li>
- 
+
         <span class="btn fav-profile fav-item fav-color" v-if="!view_pro_id && !loginuser" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
         <span class="btn fav-profile fav-item fav-color" style="color:#aaa;" v-if="view_pro_id && !loginuser" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
       </ul>
@@ -53,7 +53,7 @@
             <i class="fa fa-edit"></i>
             <input type="radio" v-model="btntype" value="create" v-on:change="changeBtnType('hospital-lbl','nursing-lbl')" name="btntype" id="hospital" />
             編集
-          </label>             
+          </label>
         </li>
 
         <li role="presentation" class="subtab2 nav-item" v-if="loginuser">
@@ -71,7 +71,7 @@
       <div class="tab-content hospital-borderColor tab-content1 tabs">
         <form class="col-md-12 pad-free">
           <div class="col-md-12 pad-free tab-pane" v-if="btntype == 'create'">
-            <hospitalProfile></hospitalProfile>      
+            <hospitalProfile></hospitalProfile>
           </div>
 
           <div class="col-md-12 pad-free" v-if="btntype == 'view'">
@@ -122,12 +122,12 @@ export default {
     };
   },
   created() {
-    
+
     if(this.$auth.check()){
         if(this.$auth.user().role === 1){
             this.login_person = 'customer';
-            this.axios.get('/api/user').then(response => {                
-                this.loginView(response);       
+            this.axios.get('/api/user').then(response => {
+                this.loginView(response);
             })
         }
         else if(this.$auth.user().role === 2) {
@@ -135,7 +135,7 @@ export default {
                 localStorage.setItem("cusType", this.$route.params.type);
                 this.type = this.$route.params.type;
             }
-            else{                
+            else{
                 this.type = localStorage.getItem("cusType");
             }
             if(this.$route.params.cusid){
@@ -144,23 +144,23 @@ export default {
             }
             else{
                 this.cusid = Number(localStorage.getItem("cusId"));
-            }          
-            
-            this.login_person = 'admin';            
+            }
+
+            this.login_person = 'admin';
             this.axios.get(`/api/admin/${this.cusid}/${this.type}`).then(response => {
-                this.loginView(response);       
+                this.loginView(response);
             })
         }
     }
     else{
         this.publicView();
-    }    
+    }
 
     this.scrollTop();
 
     var new_width = $("#content-all").width();
     var fixed_width = new_width - 49.5;
-    this.width = fixed_width + "px";    
+    this.width = fixed_width + "px";
 
   },
   methods: {
@@ -169,13 +169,13 @@ export default {
         if(this.visit == 'false'){
             this.btntype = "create";
             this.loginuser = true;
-            this.pro_id = response.data.lat_lng[0].id;            
+            this.pro_id = response.data.lat_lng[0].id;
             localStorage.setItem("lat_num", response.data.lat_lng[0].latitude==0?'35.6803997':response.data.lat_lng[0].latitude);
             localStorage.setItem("lng_num", response.data.lat_lng[0].longitude==0?'139.76901739':response.data.lat_lng[0].longitude);
 
             if(this.login_person == 'customer') {
                 localStorage.setItem("cusId", response.data.user.customer_id);
-                this.cusid = response.data.user.customer_id;               
+                this.cusid = response.data.user.customer_id;
 
                 if(response.data.user.type_id == 2){
                     localStorage.setItem("cusType", 'hospital');
@@ -200,7 +200,7 @@ export default {
             }
             this.type = localStorage.getItem("cusType");
             this.cusid = Number(localStorage.getItem("cusId"));
-            
+
             this.axios.get(`/api/profile_view/${this.cusid}/${this.type}`).then(response => {
                 this.pro_id = response.data[0].pro_id;
                 localStorage.setItem("lat_num", response.data[0].latitude);
@@ -225,7 +225,7 @@ export default {
                     if(localStorage.getItem("hospital_fav")){
                         var nus_fav_arr = JSON.parse("[" + localStorage.getItem("hospital_fav") + "]");
                         this.view_pro_id = nus_fav_arr.includes(response.data[0].pro_id);
-                    }                
+                    }
                 }
                 else{
                     if(localStorage.getItem("nursing_history")) {
@@ -250,7 +250,7 @@ export default {
                     }
                 }
             });
-        } 
+        }
     },
     publicView(){
         this.btntype = "view";
@@ -265,13 +265,13 @@ export default {
         }
         this.type = localStorage.getItem("cusType");
         this.cusid = Number(localStorage.getItem("cusId"));
-        
+
         this.axios.get(`/api/profile_view/${this.cusid}/${this.type}`).then(response => {
             console.log(response)
             this.pro_id = response.data[0].pro_id;
             localStorage.setItem("lat_num", response.data[0].latitude);
             localStorage.setItem("lng_num", response.data[0].longitude);
-            
+
 
             if(this.type == 'hospital'){
                 if(localStorage.getItem("hospital_history")) {
@@ -292,7 +292,7 @@ export default {
                 if(localStorage.getItem("hospital_fav")){
                     var nus_fav_arr = JSON.parse("[" + localStorage.getItem("hospital_fav") + "]");
                     this.view_pro_id = nus_fav_arr.includes(response.data[0].pro_id);
-                }                
+                }
             }
             else{
                 if(localStorage.getItem("nursing_history")) {
@@ -356,7 +356,7 @@ export default {
                 }
                 else{
                     this.hosFav = fav_arr.length;
-                }                
+                }
             }
             else{
                 var fav_arr = [this.pro_id];

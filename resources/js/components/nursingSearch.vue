@@ -1249,11 +1249,20 @@
                     height: 0
                 },
                 w_width:$(window).width(),
-
+                cityArray: [],
             }
         },
 
         created(){
+            this.$loading(true);
+            this.axios.get("./json/gadm36_jpn_1.json").then(respon => {
+                console.log(respon.data);
+                console.log(respon.data[0].features)
+                this.cityArray = respon.data[0].features;
+                // console.log(respon.data[0].features)
+                // console.log(respon.data[0].features.indexOf(respon.data[0].features.includes("geometrytest")))
+                this.$loading(false);
+            });
             window.addEventListener('resize', this.handleResize)
             this.handleResize();
 
@@ -1727,12 +1736,20 @@
                 //         this.coordinate = result.reduce((acc, val) => acc.concat(val), []);
                 //         this.boundariesGoogleMap(lat,lng,this.coordinate);            
                 //     });            
-                var jsonfile = theCity+".json";
-                        this.axios.get("https://testikportal.management-partners.co.jp/json/"+jsonfile).then(respon => {
-                            console.log(respon.data)
-                            // this.coordinate[0].features[0].geometry["coordinates"] = respon.data.coordinate;
-                            this.boundariesGoogleMap(lat,lng,respon.data);            
-                        }); 
+                // var jsonfile = theCity+".json";
+                for (var i=0; i <this.cityArray.length ; i++) { 
+                    if(this.cityArray[i]['properties']['NAME_1'] == theCity){
+                        console.log(this.cityArray[i])
+                        this.coordinate = this.cityArray[i].reduce((acc, val) => acc.concat(val), []);
+                        this.boundariesGoogleMap(lat,lng,this.cityArray[i]);
+                        break;
+                    }
+                }
+                        // this.axios.get("https://testikportal.management-partners.co.jp/json/"+jsonfile).then(respon => {
+                        //     console.log(respon.data)
+                        //     // this.coordinate[0].features[0].geometry["coordinates"] = respon.data.coordinate;
+                        //     this.boundariesGoogleMap(lat,lng,respon.data);            
+                        // }); 
                         // this.axios.get("/api/cityJson/"+theCity).then(respon => {
                         //     // var city_coordinates = respon.data
                         //     // this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
@@ -1752,7 +1769,7 @@
             },
 
             boundariesGoogleMap(lat,lng,coor){        
-                
+                console.log("boundaries")
                 var data = coor.reduce((acc, val) => acc.concat(val), []);   
                 // var data = coor; 
                 for (let i = 0; i < data.length; i++) {

@@ -112,8 +112,8 @@
             </div> -->
             <!--end responsive pano-->
         </div>
-        <!--end panorama-->    
-        <div class="row">    
+        <!--end panorama-->
+        <div class="row">
         <div class="col-12">
             <div class="tab typelabel nav-link fixed-nav btn-group" v-bind:style="{width:width}">
             <!-- <div class="row col-12 m-t-10">
@@ -1581,30 +1581,30 @@ export default {
                 this.axios.get("/api/advertisement/ads").then(response => {
                     this.ads_list = response.data;
                 });
-                //end   
+                //end
                 window.addEventListener('resize', this.handleResize);
                 this.handleResize();
                 console.log(this.window.width);
                 if(this.window.width >= 320 && this.window.width < 450) {
-                    this.windowSize = 1;                
-                } 
-                
+                    this.windowSize = 1;
+                }
+
                 else if(this.window.width >= 450 && this.window.width < 768) {
-                    this.windowSize = 2;                
-                } 
+                    this.windowSize = 2;
+                }
                 else if(this.window.width >= 768 && this.window.width < 992) {
-                    this.windowSize = 4;                    
+                    this.windowSize = 4;
                 }
                 else if(this.window.width >= 992 && this.window.width < 1024) {
                     this.windowSize = 7;
                 }
                 else if (this.window.width >= 1024 && this.window.width < 1280) {
                     this.windowSize = 8;
-                    // console.log('1024');                    
+                    // console.log('1024');
                 }
                 else if (this.window.width >= 1280 && this.window.width < 1440) {
-                    this.windowSize = 9;                   
-                
+                    this.windowSize = 9;
+
                 }
                 else if (this.window.width >= 1440 && this.window.width < 1880) {
                     this.windowSize = 9;
@@ -1612,7 +1612,7 @@ export default {
                 }
                 // else if( this.window.width > 1700) {
                 // }
-           
+
                 this.customer_id = this.cusid;
                 this.activePanoImage = 0;
 
@@ -1633,7 +1633,7 @@ export default {
                                 $('.ele').each(function(active_el){
                                     if($(this).position().top <= (cur_pos+71)){
                                         $('.top-fixed-btn.active').removeClass('active');
-                                        $('.top-fixed-btn').eq(active_el).addClass('active');                            
+                                        $('.top-fixed-btn').eq(active_el).addClass('active');
                                     }
                                 });
                                 if (cur_pos >= 100) {
@@ -1645,7 +1645,7 @@ export default {
                             });
                         } else {
                             $(document).scroll(function() {
-                            
+
                                 $(".fixed-nav").css({"position": "fixed","top":"100px"});
                                 var cur_pos = $(this).scrollTop();
 
@@ -1654,8 +1654,8 @@ export default {
                                         $('.top-fixed-btn.active').removeClass('active');
                                         $('.top-fixed-btn').eq(active_el).addClass('active');
                                     }
-                                });                    
-                                
+                                });
+
                                 if (cur_pos >= 100) {
                                     $(".fixed-nav").css({"position": "fixed","top":"65px"});
                                 } else {
@@ -1664,8 +1664,8 @@ export default {
                             });
                         }
                         //greater than 768
-                    } 
-                    
+                    }
+
                     else {
                        //less than 768
                         if(this.loginuser == true) {
@@ -1675,7 +1675,7 @@ export default {
                             $('.ele').each(function(active_el){
                                 if($(this).position().top <= (cur_pos+71)){
                                     $('.top-fixed-btn.active').removeClass('active');
-                                    $('.top-fixed-btn').eq(active_el).addClass('active');                            
+                                    $('.top-fixed-btn').eq(active_el).addClass('active');
                                 }
                             });
                             if (cur_pos >= 100) {
@@ -1688,7 +1688,7 @@ export default {
 
                         } else {
                             $(document).scroll(function() {
-                            
+
                                 $(".fixed-nav").css({"position": "fixed","top":"100px"});
                                 var cur_pos = $(this).scrollTop();
                                 console.log("cur",cur_pos)
@@ -1698,8 +1698,8 @@ export default {
                                         $('.top-fixed-btn.active').removeClass('active');
                                         $('.top-fixed-btn').eq(active_el).addClass('active');
                                     }
-                                });                    
-                                
+                                });
+
                                 if (cur_pos >= 100) {
                                     $(".fixed-nav").css({"position": "fixed","top":"110px","display": "inline-flex","width": "100%"});
                                 } else {
@@ -1707,12 +1707,12 @@ export default {
                                 }
                             });
                         }
-                       //end less than 768           
-                    } 
-                   
+                       //end less than 768
+                    }
+
                     //for end responsive
 
-                
+
                 if(this.type == "nursing")
                 {
                     this.axios.get('/api/profile/customer/'+this.cusid+'/'+this.type) .then(response => {
@@ -2090,20 +2090,20 @@ export default {
                 //     $("li.nav-item").removeClass("active");
                 //     $(this).addClass("active");
                 //                         });
-                     
+
                     // console.log('element6')
-                       
+
                         // $('.top-fixed-btn.active').removeClass('active');
                         //  $('.top-fixed-btn.active');
-     
-                   
+
+
                     //    $('.top-fixed-btn2.active').css({'background':'red'});
                     //    $('.top-fixed-btn2').eq(active_el).addClass('active');
                     //    $('#top-fixed-btn2').css({'background':'green'});
                 //}
                 // else
                 // {
-                
+
                 //     //   $('.top-fixed-btn').css({'color': '#000','width':'145px','cursor':' pointer','padding': '5px','border-radius': '5px','text-decoration': 'none','position': 'relative','box-shadow': '3px 5px 3px #ccc!important','background': '#fbaa84','border': '1px solid #ff9563;'});
                 //       $('.top-fixed-btn').eq(active_el).addClass('active');
                 // }

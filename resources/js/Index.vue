@@ -21,7 +21,7 @@
                         <div class="maintab-content" id="v-pills-tabContent">
                             <!--section one-->
                             <section>
-                                <div class="container-fluid main-wrapper">
+                                <div class="main-wrapper">
                                     <!--slider for ads-->
                                     <div class="col-md-auto pad-free">
                                         <adsslider></adsslider>
@@ -204,6 +204,8 @@
       adsslider
     }, 
     created() {
+        // localStorage.setItem('hospital_history','9,10')
+        // localStorage.setItem('nursing_history','1,2,3,4')
         $(document).scroll(function() {
             var cur_pos = $(this).scrollTop();
             if (cur_pos >= 100) {

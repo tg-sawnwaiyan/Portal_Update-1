@@ -2,7 +2,7 @@
     <!-- Page Content  -->
     <div id="content">
         <div class="card">
-            <div class="card-body">          
+            <div class="card-body">
                 <h4 class="page-header header">ニュース編集</h4>
                 <br>
                 <form @submit.prevent="updatepost">
@@ -51,14 +51,14 @@
                     <div class="form-group">
                         <label>内容:<span class="error">*</span></label>
                         <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="10" placeholder="内容を入力してください。" v-model="news.body"></textarea>
-                        <span v-if="errors.body" class="error">{{errors.body}}</span> 
+                        <span v-if="errors.body" class="error">{{errors.body}}</span>
                     </div>
                     <div class="form-group">
                         <label>関連ニュース:</label>
                         <div class="card related-card">
                             <div class="card-body">
                                 <input type="hidden" v-model="old_photo" >
-                                <div class="d-sm-flex">                                   
+                                <div class="d-sm-flex">
                                     <div class="d-flex align-items-center cat_box">
                                          <label class="cat_lbl"> カテゴリー:</label>
                                         <select v-model="category_id_1" id="categories" class="form-control cat_select" @change='getPostsByCatId()'>
@@ -81,33 +81,54 @@
                                                     <p>
                                                          <img :src="'/upload/news/'+ news.photo" class="float-left m-r-10" alt="news" @error="imgUrlAlt">
                                                          {{news.title}}
-                                                    </p> 
+                                                    </p>
                                                 </div>
                                                 <div class="control__indicator"></div>
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="offset-md-4 col-md-8 mt-3" v-if="pagination">
-                                                <nav aria-label="Page navigation example">
-                                                    <ul class="pagination">
-                                                        <li class="page-item">
-                                                            <span class="spanclass" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
-                                                        </li>
-                                                        <li class="page-item">
-                                                            <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i> 前へ</span>
-                                                        </li>
-                                                        <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
-                                                            <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
-                                                        </li>
-                                                        <li class="page-item">
-                                                            <span class="spanclass" @click="next">次へ <i class='fas fa-angle-right'></i></span>
-                                                        </li>
-                                                        <li class="page-item">
-                                                            <span class="spanclass" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
-                                                        </li>
-                                                    </ul>
-                                                </nav>
-                                            </div>
+                                    <!-- <div class="offset-md-4 col-md-8 mt-3" v-if="pagination">
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination">
+                                                <li class="page-item">
+                                                    <span class="spanclass" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
+                                                </li>
+                                                <li class="page-item">
+                                                    <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i> 前へ</span>
+                                                </li>
+                                                <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
+                                                    <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
+                                                </li>
+                                                <li class="page-item">
+                                                    <span class="spanclass" @click="next">次へ <i class='fas fa-angle-right'></i></span>
+                                                </li>
+                                                <li class="page-item">
+                                                    <span class="spanclass" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div> -->
+                                    <div class="col-12 mt-3" v-if="pagination">
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination">
+                                                <li class="page-item">
+                                                    <span class="spanclass pc-480" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
+                                                </li>
+                                                <li class="page-item">
+                                                    <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i><span class="pc-paginate"> 前へ</span></span>
+                                                </li>
+                                                <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
+                                                    <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
+                                                </li>
+                                                <li class="page-item">
+                                                    <span class="spanclass" @click="next"><span class="pc-480">次へ </span><i class='fas fa-angle-right'></i></span>
+                                                </li>
+                                                <li class="page-item">
+                                                    <span class="spanclass pc-480" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
                                 </div>
                                 <input type="hidden" v-model="checkedNews" >
                             </div>
@@ -118,7 +139,7 @@
                         <span class="btn main-bg-color white all-btn" @click="checkValidate()"> 保存</span>
                         <span@click="$router.go(-1)" :to="{name: 'news_list'}" class="btn btn-danger all-btn">キャンセル</span>
                     </div>
-                </form>              
+                </form>
             </div>
         </div>
     </div>

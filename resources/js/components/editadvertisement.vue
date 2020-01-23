@@ -13,7 +13,7 @@
                             <div class="form-group">
                                                 <label>広告タイトル : <span class="error">*</span></label>
                                                 <input type="title" class="form-control box" id="title"  name="title" v-model="advertisement.title" placeholder="広告タイトルを入力してください。">
-                                                <span v-if="errors.includes('title')" class="error">題名が必須です。</span>
+                                                <span v-if="errors.title" class="error">{{errors.title}}</span>
                                     </div>
                             <div class="form-group">
                                             <label>説明 : <span class="error"></span></label>
@@ -34,20 +34,24 @@
                                         <input type = "checkbox"  value ="sidebar" id="sbar" name="side_bar" v-model="advertisements.sidebars" ><strong> サイドバー </strong>(167px*100px 200円)
                                         <div class="control__indicator"></div>
                                     </label>
-                                    <!-- <span class="error">{{errors.location}}</span> -->
+                                
                                 </div>
                             </div>
                             <div class="form-group" id="showimage">
                                 <label>写真 : <span class="error">*</span></label><br/>
                                 <div class="custom-file">
-                                    <input type="file" ref="file" accept="image/*" id="upd_img" @change ="fileSelected">
-                                   <!-- <span v-if="errors.photo" class="error">{{errors.photo}}</span> -->
-                                   <span v-if="errors.includes('photo')" class="error">写真が必須です。</span>
+                                    <input type="file" v-if="!showhide" ref="file" accept="image/*" id="upd_img" @change ="fileSelected">
+                                    <input type="file" v-if="showhide" id="upload" accept="image/*" @change="uploadImage">
+                                    <span v-if="errors.photo" class="error">{{errors.photo}}</span>
+                                   
                                 </div>
+                                 <div class="col-md-12" id="par">
+                                        <div class="row image_preview"></div>
+                                    </div>
                             </div>
                             <div class="image_show" v-if="update_img && upload_img">
                                 <div class='col-md-2'>
-                                    <!-- <span class='img-close-btn' v-on:click="removeUpload()">X</span> -->
+                                 
                                     <img :src="upload_img" class='show-img' @error="imgUrlAlt">
                                 </div>
 
@@ -55,9 +59,10 @@
 
                             <div class="form-group image_update" v-if="!update_img" id="x-image" >
                                 <div class="col-md-12" >
-                                    <div id='x-image' class='col-md-2'>
+                                    <div v-if="!showhide" id='x-image' class='col-md-2'>
                                         <span class='img-close-btn' v-on:click='closeBtnMethod(advertisement.photo)'>X</span>
-                                        <img :src="'/upload/advertisement/'+ advertisement.photo" class='show-img' alt="ads" @error="imgUrlAlt">
+                                        <img :src="'/upload/advertisement/'+ advertisement.photo"  class='show-img' alt="ads" @error="imgUrlAlt">
+                                
                                     </div>
                                 </div>
                             </div>
@@ -78,7 +83,11 @@
 export default {
           data() {
             return {
-                errors: [],
+                errors: {
+                    title:"",
+                    location:"",
+                    photo:""
+                },
                 advertisement: {
                     title: '',
                     description:'',
@@ -93,10 +102,13 @@ export default {
                 old_photo: "",
                 upload_img:'',
                 update_img: false,
+                showhide:false
             }
         },
         created() {
-            this.axios
+            if(this.$route.name == "editadvertisement"){
+                 this.showhide = false;
+                 this.axios
                 .get(`/api/advertisement/edit/${this.$route.params.id}`)
                 .then((response) => {
                     this.advertisement.title = response.data.title;
@@ -106,12 +118,23 @@ export default {
                     this.updateCheck(this.ischeck);
                     this.advertisement.photo=response.data.photo;
                 });
+            }
+            else{
+                this.showhide = true;
+                this.advertisement.title = '';
+                this.advertisement.description = '';
+                this.advertisement.link = '';
+                this.ischeck = '';
+                 this.advertisement.photo='';
+            }
+           
         },
          methods: {
             imgUrlAlt(event) {
                 event.target.src = "images/noimage.jpg"
             },
             fileSelected(){
+                console.log('file');
                 this.advertisement.photo = event.target.files[0];
                 this.upload_img = URL.createObjectURL(event.target.files[0]);
                 this.update_img = true;
@@ -124,6 +147,7 @@ export default {
                     var image_x = document.getElementById('x-image');
                     image_x.parentNode.removeChild(image_x);
                 }
+                this.advertisement.photo = '';
             },
             updateCheck: function (check){
                 this.advertisement.location.shift()
@@ -146,9 +170,16 @@ export default {
                     });
                 }
             },
+            uploadImage() {
+                
+                $('.image_preview').html("<div class='col-md-2'><img src='" + URL.createObjectURL(event.target.files[0]) + "' class='show-img'></div>");
+                this.advertisement.photo = event.target.files[0];
+             
+
+            },
 
             updateAds() {
-                if( `${this.$route.params.id}` && this.errors.length == 0){
+               
                     this.$swal({
                         title: "確認",
                         text: "広告を更新してよろしいでしょうか",
@@ -182,24 +213,23 @@ export default {
                                 adsData.append('location', 'sidebar,topbar');
                             }
                         }
-                        //console.log(this.advertisement.photo);
+                   
                         adsData.append('title',this.advertisement.title)
                         adsData.append('description',this.advertisement.description)
                         adsData.append('link',this.advertisement.link)
                         adsData.append('photo',this.advertisement.photo)
                         adsData.append('old_photo',this.old_photo)
-                        //ads.photo=this.advertisement.photo
+                      
                         this.$loading(true);
                         this.axios.post(`/api/advertisement/update/${this.$route.params.id}`, adsData)
                         .then((response) => {
                             this.$loading(false);
-                            // alert('Successfully Updated!')
+                           
                             this.$swal({
                                 position: 'top-end',
                                 type: 'success',
                                 title: '広告を更新しました。',
-                                // showConfirmButton: false,
-                                // timer: 1500,
+                             
                                 confirmButtonText: "閉じる",
                                 confirmButtonColor: "#6cb2eb",
                                 width: 250,
@@ -212,36 +242,86 @@ export default {
                         }
                     })
                 });
-             }
+             
 
+            },
+              add() {
+                  this.$swal({
+                            title: "確認",
+                            text: "広告を投稿してよろしいでしょうか。",
+                            type: "success",
+                            width: 350,
+                            height: 200,
+                            showCancelButton: true,
+                            confirmButtonColor: "#6cb2eb",
+                            cancelButtonColor: "#b1abab",
+                            cancelButtonTextColor: "#000",
+                            confirmButtonText: "はい",
+                            cancelButtonText: "キャンセル",
+                            confirmButtonClass: "all-btn",
+                            cancelButtonClass: "all-btn"
+                        }).then(response => { 
+                             let adsData = new FormData();
+                            adsData.append('title', this.advertisement.title)
+                            adsData.append('description', this.advertisement.description)
+                            adsData.append('link', this.advertisement.link)
+                            adsData.append('location', this.advertisement.location)
+                            adsData.append('photo', this.advertisement.photo)
+                            this.$loading(true);
+                        this.axios.post('/api/advertisement/add', adsData)
+                              .then((response) => {
+                        this.$loading(false);
+                       
+                        this.$swal({
+                            position: 'top-end',
+                            type: 'success',
+                            // title:'確認済',
+                            text: '広告を投稿しました。',
+                            confirmButtonText: "閉じる",
+                            confirmButtonColor: "#6cb2eb",
+                            width: 250,
+                            height: 200,
+
+                        })
+                        this.$router.push({
+                            name: 'ads'
+                        });
+                    }).catch(error => {
+
+                        if (error.response.status == 422) {
+
+                            this.errors = error.response.data.errors
+
+                        }
+                         });
+               
+                    })
             },
 
             clickValidation() {
-                if(this.advertisement.title){
-                    if(this.update_img){
-                        if($('input[type="file"]').val() == null || $('input[type="file"]').val() == ''){
-                            this.errors = [];
-                            this.errors.push("photo");
-                        }
-                        else{
-                            this.errors = [];
-                            this.updateAds();
-                        }
-                    }
-                    else{
-                        this.errors = [];
-                        this.updateAds();
-                    }
-                }else {
-                    this.errors = [];
-                    this.errors.push("title");
-                    if(this.update_img){
-                        if($('input[type="file"]').val() == null || $('input[type="file"]').val() == ''){
-                            this.errors.push("photo");
-                        }
-                    }
+                if (this.advertisement.title) 
+                {
+                    this.errors.title = "";
+                } else 
+                {
+                    this.errors.title = " 題名が必須です。";
+                }
+            
+                if(this.advertisement.photo)
+                {
+                    this.errors.photo = "";     
+                } else 
+                {    
+                    this.errors.photo = "写真が必須です。";
                 }
 
+                if(!this.errors.title && !this.errors.photo && this.$route.params.id)
+                {
+                this.updateAds();
+                }
+                else if(!this.errors.title && !this.errors.photo && !this.$route.params.id){
+                    this.add();
+                }
             }
 
         }

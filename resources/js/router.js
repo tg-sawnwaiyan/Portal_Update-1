@@ -17,23 +17,16 @@ import categorylist from "./components/categorylist";
 import createcategory from "./components/createcategory";
 import FacilitiesListComponent from "./components/FacilitiesListComponent";
 import CreateFacilityComponent from "./components/CreateFacilityComponent";
-import EditFacilityComponent from "./components/EditFacilityComponent";
 import joboffercreate from "./components/JobOfferCreate";
 import Profile from "./components/Profile";
 import JobOfferList from "./components/JobOfferList";
 import ProfileEdit from "./components/ProfileEdit";
-import ProfilePublish from "./components/ProfilePublish";
-// import medicalacceptancelist from "./components/medicalacceptancelist";
-// import createmedicalacceptance from "./components/createmedicalacceptance";
-// import editmedicalacceptance from "./components/editmedicalacceptance";
 import HospitalHistory from "./components/HospitalHistory";
 import favouriteHospital from "./components/favouriteHospital";
 import NursingHistory from "./components/NursingHistory";
-import GoogleMap from "./components/GoogleMap";
 import subject from "./components/Subject";
 import subjectlist from "./components/SubjectList";
 import advertisementlist from "./components/advertisementlist";
-import advertisement from "./components/advertisement";
 import editadvertisement from "./components/editadvertisement";
 import comment from "./components/Comment";
 import commentlist from "./components/commentlist";
@@ -105,25 +98,7 @@ const routes = [
             auth: false
         }
     },
-    // USER ROUTES
-    // {
-    //   path: '/dashboard',
-    //   name: 'dashboard',
-    //   component: Dashboard,
-    //   meta: {
-    //     auth: true
-    //   }
-    // },
-    // // ADMIN ROUTES
-    // {
-    //   path: '/admin',
-    //   name: 'admin.dashboard',
-    //   component: AdminDashboard,
-    //   meta: {
-    //     auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
-    //   }
-    // },
-
+    
     {
         name: 'News',
         path: '/',
@@ -144,12 +119,6 @@ const routes = [
         path: '/nursingSearch',
         component: nursingSearch
     },
-    // {
-    //     name: "passport",
-    //     path: "/passport",
-    //     component: passport
-    // },
-
     {
         name: "newdetails",
         path: "/newsdetails/:id",
@@ -190,30 +159,7 @@ const routes = [
             auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
         }
     },
-    // {
-    //     name: "customersearchlist",
-    //     path: "/customersearchlist",
-    //     component: CustomerSearchListComponent
-    // },
-    // {
-    //     name: "newssearchlist",
-    //     path: "/newssearchlist",
-    //     component: NewsSearchListComponent,
-    // },
-    // {
-    //     name: "custedit",
-    //     path: "/custsedit",
-    //     component: custedit
-    // },
-    // {
-    //     name: "jobsearchlist",
-    //     path: "/jobsearchlist",
-    //     component: JobSearchListComponent,
-    //     meta: {
-    //         auth: undefined
-    //     }
-    // },
-
+   
     {
         name: "job_details",
         path: "/job_details/:id",
@@ -290,16 +236,11 @@ const routes = [
     {
         name: "editfacility",
         path: "/editfacility",
-        component: EditFacilityComponent,
+        component: CreateFacilityComponent,
         meta: {
             auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
         }
     },
-    // {
-    //     name: "createcustomer",
-    //     path: "/createcustomer",
-    //     component: createcustomer
-    // },
     {
         name: "profile",
         path: "/profile",
@@ -341,14 +282,7 @@ const routes = [
             auth: true
         }
     },
-    {
-        name: "profilepublish",
-        path: "/profilepublish",
-        component: ProfilePublish,
-        meta: {
-            auth: true,
-        }
-    },
+   
     {
         name: "hospital_history",
         path: "/hospital_history",
@@ -357,45 +291,13 @@ const routes = [
             auth: false
         }
     },
-    // {
-    //     name: "createmedicalacceptance",
-    //     path: "/createmedicalacceptance",
-    //     component: createmedicalacceptance,
-    //     meta: {
-    //         auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
-    //     }
-    // },
-
-    // {
-    //     name: "medicalacceptancelist",
-    //     path: "/medicalacceptancelist",
-    //     component: medicalacceptancelist,
-    //     meta: {
-    //         auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
-    //     }
-    // },
-
-    // {
-    //     name: "editmedicalacceptance",
-    //     path: "/editmedicalacceptance",
-    //     component: editmedicalacceptance,
-    //     meta: {
-    //         auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
-    //     }
-    // },
+   
     // {
     //     name: "userPasswordResetList",
     //     path: "/userPasswordResetList",
     //     component: userPasswordResetList
     // },
-    {
-        name: "advertisement",
-        path: "/advertisement",
-        component: advertisement,
-        meta: {
-            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
-        }
-    },
+  
 
     {
         name: "favouriteHospital",
@@ -413,16 +315,6 @@ const routes = [
             auth: false
         }
     },
-    // {
-    //     name: "type",
-    //     path: "/type",
-    //     component: type
-    // },
-    // {
-    //     name: "typelist",
-    //     path: "/typelist",
-    //     component: typelist
-    // },
     {
         name: "subject",
         path: "/subject",
@@ -448,6 +340,14 @@ const routes = [
         }
     },
     {
+        name: "advertisement",
+        path: "/advertisement",
+        component: editadvertisement,
+        meta: {
+            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
+        }
+    },
+    {
         name: "editadvertisement",
         path: "/editads",
         component: editadvertisement,
@@ -463,14 +363,7 @@ const routes = [
         auth: false
       }
     },
-    {
-      name: 'google_map',
-      path: '/google_map',
-      component: GoogleMap,
-      meta: {
-        auth: undefined
-      }
-    },
+    
   {
     name: 'comment',
     path: '/comment/:customer_id',
@@ -543,14 +436,6 @@ const routes = [
         auth: false
     }
   },
-//   {
-//     name: 'modal',
-//     path: '/modal',
-//     component: modal,
-//     meta: {
-//         auth: undefined
-//     }
-//   },
   {
     name: 'termsAndConditions',
     path: '/termsAndConditions',
