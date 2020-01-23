@@ -191,7 +191,7 @@
                 }
             },
             created() {
-                if(this.$route.params.id) {
+                if(this.$route.name == "editPost"){
                     this.status = 1;
                     this.axios
                         .get(`/api/new/editPost/${this.$route.params.id}`)
@@ -223,13 +223,6 @@
                     }.bind(this));
                     this.getPostsByCatId();
                 }
-            },
-            mounted() {
-                this.axios
-                    .get(`/api/category/category_list`)
-                    .then(function(response) {
-                        this.categories = response.data;
-                    }.bind(this));
             },
             computed: {
             pages() {

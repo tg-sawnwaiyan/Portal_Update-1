@@ -3,7 +3,7 @@
     <div>
         <div class="d-flex justify-content-end m-b-10" v-if="!norecord_msg">
             <!-- <router-link to="/create_news" class="main-bg-color create-btn all-btn"> -->
-            <router-link to="/editPost" class="main-bg-color create-btn all-btn">
+            <router-link to="/create_news" class="main-bg-color create-btn all-btn">
                 <i class="fas fa-plus-circle"></i> ニュース新規作成
             </router-link>
         </div>
@@ -17,7 +17,7 @@
                     <p class="record-txt01">表示するデータありません</p>
                     <p>表示するデータありません‼新しいデータを作成してください。</p>
                     <!-- <a href="/create_news" class="main-bg-color create-btn alt-btn"> -->
-                    <a href="/editPost" class="main-bg-color create-btn alt-btn">
+                    <a href="/create_news" class="main-bg-color create-btn alt-btn">
                         <i class="fas fa-plus-circle"></i> 新しいデータ作成
                     </a>
                 </div>
