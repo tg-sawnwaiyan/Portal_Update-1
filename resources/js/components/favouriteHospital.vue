@@ -396,7 +396,7 @@
                                 if(this.fav_hospital.length < this.fav_hos && this.fav_hospital.length > 0)
                                 {
                                   var hos_id = '';
-                                  this.message = "Some of your listed-hospital sites are deactivated !"
+                                  this.message = "申し訳ございません。最近見た施設のリストは全部表示されません。いくつかのアカウントが解除になっていますので。"
                                    for(var i= 0;i<this.fav_hospital.length;i++)
                                      {
                                          if(i== this.fav_hospital.length-1)
@@ -418,8 +418,9 @@
                                     position: 'top-end',
                                     type: 'info',
                                     // title: '作成されました',
-                                    text: 'Your listed-hospital sites are deactivated ! Go Back.',
+                                    text: '申し訳ございません。最近見た施設のリストは表示されません。全部のアカウントが解除になっていますので。',
                                     showConfirmButton: true,
+                                    confirmButtonText: "閉じる",
                                     width: 250,
                                     height: 200,
                                     }).then(response => {
