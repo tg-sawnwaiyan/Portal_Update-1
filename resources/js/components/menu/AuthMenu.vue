@@ -122,49 +122,55 @@
                                 </transition>
                             </li>
                             <li v-if="$auth.check(2)">
-                                    <span @click="subMenu(1)" :class="{ active : isActive == 1 }"><i class="fa fa-user-md"></i>  介護施設 <i class="fas fa-angle-right" :class="{ down : isRotate == 1 }"></i></span>
-                                    <transition name="slideup">
-                                        <ul class="sub_menu" v-show="isSubmenu[1].show">
-                                            <li @click="toggle">
-                                                <router-link :to="{ name: 'nuscustomerlist' }"><i class="fa fa-user"></i>  事業者一覧</router-link>
-                                            </li>
-                                            <li @click="toggle">
-                                                <router-link :to="{ name: 'nusfeaturelist' }"><i class="fa fa-file-alt"></i>  特徴設定</router-link>
-                                            </li>
-                                            <li @click="toggle">
-                                                <router-link :to="{ name: 'nuscommentlist' }"><i class="fa fa-list"></i>  コメント一覧</router-link>
-                                            </li>
-                                        </ul>
-                                    </transition>
-                                </li>
-                                <li v-if="$auth.check(2)">
-                                    <span @click="subMenu(2)" :class="{ active : isActive == 2 }"><i class="fa fa-user-md"></i>  病院 <i class="fas fa-angle-right" :class="{ down : isRotate == 2 }"></i></span>
-                                    <transition name="slideup">
-                                        <ul class="sub_menu" v-show="isSubmenu[2].show">
-                                            <li @click="toggle">
-                                                <router-link :to="{ name: 'hoscustomerlist' }"><i class="fa fa-user"></i>  事業者一覧</router-link>
-                                            </li>
-                                            <li @click="toggle">
-                                                <router-link :to="{ name: 'facilitieslist' }"><i class="fa fa-sun"></i>  院内施設設定</router-link>
-                                            </li>
-                                            <li @click="toggle">
-                                                <router-link :to="{ name: 'hosfeaturelist' }"><i class="fa fa-list"></i>  特徴設定</router-link>
-                                            </li>
-                                            <li @click="toggle">
-                                                <router-link :to="{ name: 'subjectlist' }"><i class="fa fa-list"></i>  診療科目設定</router-link>
-                                            </li>
-                                            <li @click="toggle">
-                                                <router-link :to="{ name: 'hoscommentlist' }"><i class="fa fa-list"></i>  コメント一覧</router-link>
-                                            </li>
-                                        </ul>
-                                    </transition>
-                                </li>
-                                <li v-if="$auth.check(2)"  @click="toggle">
-                                    <router-link :to="{ name: 'occupationlist' }"><i class="fa fa-suitcase"></i>  職種設定</router-link>
-                                </li>
-                                <li v-if="$auth.check(2)"  @click="toggle">
-                                    <router-link :to="{ name: 'ads' }"><i class="fa fa-globe"></i>  広告</router-link>
-                                </li>
+                                <span @click="subMenu(1)" :class="{ active : isActive == 1 }"><i class="fa fa-user-md"></i>  介護施設 <i class="fas fa-angle-right" :class="{ down : isRotate == 1 }"></i></span>
+                                <transition name="slideup">
+                                    <ul class="sub_menu" v-show="isSubmenu[1].show">
+                                        <li @click="toggle">
+                                            <router-link :to="{ name: 'nuscustomerlist' }"><i class="fa fa-user"></i>  事業者一覧</router-link>
+                                        </li>
+                                        <li @click="toggle">
+                                            <router-link :to="{ name: 'nusfeaturelist' }"><i class="fa fa-file-alt"></i>  特徴設定</router-link>
+                                        </li>
+                                        <li @click="toggle">
+                                            <router-link :to="{ name: 'nuscommentlist' }"><i class="fa fa-list"></i>  コメント一覧</router-link>
+                                        </li>
+                                    </ul>
+                                </transition>
+                            </li>
+                            <li v-if="$auth.check(2)">
+                                <span @click="subMenu(2)" :class="{ active : isActive == 2 }"><i class="fa fa-user-md"></i>  病院 <i class="fas fa-angle-right" :class="{ down : isRotate == 2 }"></i></span>
+                                <transition name="slideup">
+                                    <ul class="sub_menu" v-show="isSubmenu[2].show">
+                                        <li @click="toggle">
+                                            <router-link :to="{ name: 'hoscustomerlist' }"><i class="fa fa-user"></i>  事業者一覧</router-link>
+                                        </li>
+                                        <li @click="toggle">
+                                            <router-link :to="{ name: 'facilitieslist' }"><i class="fa fa-sun"></i>  院内施設設定</router-link>
+                                        </li>
+                                        <li @click="toggle">
+                                            <router-link :to="{ name: 'hosfeaturelist' }"><i class="fa fa-list"></i>  特徴設定</router-link>
+                                        </li>
+                                        <li @click="toggle">
+                                            <router-link :to="{ name: 'subjectlist' }"><i class="fa fa-list"></i>  診療科目設定</router-link>
+                                        </li>
+                                        <li @click="toggle">
+                                            <router-link :to="{ name: 'hoscommentlist' }"><i class="fa fa-list"></i>  コメント一覧</router-link>
+                                        </li>
+                                    </ul>
+                                </transition>
+                            </li>
+                            <li v-if="$auth.check(2)"  @click="toggle">
+                                <router-link :to="{ name: 'occupationlist' }"><i class="fa fa-suitcase"></i>  職種設定</router-link>
+                            </li>
+                            <li v-if="$auth.check(2)"  @click="toggle">
+                                <router-link :to="{ name: 'ads' }"><i class="fa fa-globe"></i>  広告</router-link>
+                            </li>
+                            <li v-if="$auth.check(2)"  @click="toggle">
+                                <router-link :to="{ name: 'jobofferlist' }"><i class="fa fa-edit"></i>  求人編集</router-link>
+                            </li>
+                            <li v-if="$auth.check(2)"  @click="toggle">
+                                <router-link :to="{ name: 'jobapplicantlist' }"><i class="fa fa-tasks"></i>  求人応募者一覧</router-link>
+                            </li>
                             <li>
                                 <a href="#" @click.prevent="$auth.logout()"><i class="fa fa-lock"></i> ログアウト</a>
                             </li>

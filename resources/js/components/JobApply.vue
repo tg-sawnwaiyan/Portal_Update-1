@@ -110,9 +110,10 @@
                 <div class="form-group row pl-3">
                     <div class="col-md-12 "><label> 郵便番号 </label> </div>
                     <div class="col-md-12 p-0">
-                        <input type="text" class="form-control box float-left" id="postal" placeholder="郵便番号を入力してください。" v-model="jobApply.postal" maxlength="7" v-on:keyup="getPostal" />
+                        <input type="text" class="form-control box float-left" id="postal" placeholder="郵便番号を入力してください。" v-model="jobApply.postal" maxlength="7" />
                         <span id="jsErrorMessage" class="float-left eg-txt"></span>
-                        <span class="float-left eg-txt">例）1006740 (<a href="https://www.post.japanpost.jp/zipcode/" target="_blank">郵便番号検索</a>)</span>
+                        <span class="float-left submit1 btn main-bg-color continue all-btn submit m-l-20" @click="getPostal">検索</span>
+                        <span class="float-left m-l-20">例）1006740 (<a href="https://www.post.japanpost.jp/zipcode/" target="_blank">郵便番号検索</a>)</span>
                     </div>
                 </div>
 
@@ -146,7 +147,7 @@
                     <div class="col-md-12 "><label>番地（建物名)<span class="error sp1">必須</span></label></div>
                     <div class="col-md-12 p-0">
                         <input type="text" class="city form-control float-left" id="str_address" v-model="jobApply.str_address" placeholder="番地を入力してください。" @keyup="focusCity" @change="aggreBtn"/>
-                        <span class="float-left eg-txt">例）東京都千代田区丸の内1-9-1 グラントウキョウノースタワー40階</span>
+                        <span class="float-left eg-txt">例）丸の内1-9-1 グラントウキョウノースタワー40階</span>
                         <br>
                         <span class="error m-l-30" v-if="focus_city">※入力は必須です。</span>
                         <div v-if="errors.str_address" class="text-danger mt-2 ml-4">{{ errors.str_address }}</div>
@@ -540,7 +541,7 @@ export default {
                 if(town_id == 2)
                 {
                 this.jobApply.str_address = ''
-                this.jobApply.postal = '';
+                // this.jobApply.postal = '';
                 this.jobApply.township = 0;
                 }
                 this.town_list = response.data.townships
@@ -548,7 +549,7 @@ export default {
         })
       },
       getLocation(){
-          this.comments.postal = '';
+          // this.comments.postal = '';
           this.comments.city = '';
           this.aggreBtn();    
       },
