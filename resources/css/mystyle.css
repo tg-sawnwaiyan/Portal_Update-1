@@ -30,6 +30,14 @@ p {
     line-height: 1.7em;
     color: #000;
 }
+.main-wrapper {
+    max-width: 1600px;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
 
 .form1 {
     /* border:1px solid#118063; */
@@ -1478,8 +1486,9 @@ border-top: 5px solid #e66527; */
 
 .nav-warp {
     position: relative;
-    max-width: 80%;
+    max-width: 1535px;
     padding: 0;
+    width: 100%;
 }
 
 #app .logo-text {

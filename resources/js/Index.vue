@@ -21,7 +21,7 @@
                         <div class="maintab-content" id="v-pills-tabContent">
                             <!--section one-->
                             <section>
-                                <div class="container-fluid main-wrapper">
+                                <div class="main-wrapper">
                                     <!--slider for ads-->
                                     <div class="col-md-auto pad-free">
                                         <adsslider></adsslider>
