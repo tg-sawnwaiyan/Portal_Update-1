@@ -50,13 +50,13 @@
                                         <input type="text" id="furigana" name="furigana" class="form-control float-left" placeholder="ふりがなを入力してください。" v-model="comments.furigana" @keyup="ChekChar"    @change="aggreBtn"/>
                                     <!-- </div>
                                     <div class="col-md-3"> -->
-                                         <span class="float-left eg-txt"> 例）さがし たろう</span>
+                                         <span class="float-left eg-txt"> 例）サガシ　タロウ</span>
                                         <span class="error m-l-30" v-if="furigana_focus " >※入力は必須です。</span>
 
                                     <!-- </div> -->
 
                                 </div>
-                                 <span class="float-left text-danger p-l-30" v-if="charErr">※ひらがなで入力してください!</span>
+                                 <span class="float-left text-danger p-l-30" v-if="charErr">※カタカナで入力してください!</span>
 
                             </div>
                         </div>
@@ -116,10 +116,9 @@
                                  <div class="form-group row pl-3">                             
                                     <div class="col-md-12 "><label>  市区町村 <span class="error sp1">必須</span></label></div>
                                     <div class="col-md-12 p-0">
-                                        <select v-model="comments.township" class="division form-control" id="division" @change="getLocation()">
+                                        <select v-model="comments.township" class="division form-control" id="division" @change="aggreBtn">
                                             <option value="0">選択してください。</option>
-                                           
-                                            <option v-for="town in townships" :key="town.id" v-bind:value="town.id">
+                                            <option v-for="town in comments.townships_list" :key="town.id" v-bind:value="town.id">
                                                 {{town.township_name}}
                                             </option>
                                         </select>
@@ -414,9 +413,9 @@ import DatePicker from 'vue2-datepicker';
                     arr_document: [{}],
                     selectedValue: 0,
                     township:0,
+                    townships_list:[],
                  
                 },
-                townships:[],
                 errors: [],
                 fav_nursing: [],
                 local_sto: '',
@@ -456,9 +455,8 @@ import DatePicker from 'vue2-datepicker';
                 .then(response => {
                     this.city_list = response.data;
                 });
-            if(this.comments.name != '' && this.comments.fav_mail != '' && this.comments.postal != '' && this.comments.selectedValue != 0 && this.comments.township != 0 && this.comments.city != '' && this.comments.phone != '' && this.comments.mail != ''){
+            if(this.comments.name != '' && this.comments.fav_mail != '' && this.comments.postal != '' && this.comments.selectedValue != 0 && this.comments.township != 0 && this.comments.city != '' && (this.comments.phone != '' || this.comments.mail != '')){
                     this.btn_disable=false;
-                    //  $('#error-msg').html('<div class="error"></div>');
                 }else{
                     this.btn_disable=true;
                 }
@@ -471,7 +469,6 @@ import DatePicker from 'vue2-datepicker';
                         .post('/api/hospital/postList/' + postal)
                         .then(response => {
                             var post_data = response.data.postal_list;
-                            console.log('before',post_data)
                             var length = response.data.postal_list.length;
                             if (length > 0) {
                                 var pref = post_data[0]['city_id'];
@@ -480,7 +477,6 @@ import DatePicker from 'vue2-datepicker';
                                 this.comments.township = response.data.township_id[0]['id'];  
                                 this.comments.city = post_data[0]["street"];                               
                                 this.comments.division = pref;
-                                console.log('after',post_data)
                               
                                  $('#jsErrorMessage').html('<div class="error"></div>');
                             } else {
@@ -507,17 +503,17 @@ import DatePicker from 'vue2-datepicker';
                 // this.comments.postal = '';
                     this.comments.township = 0;
                 }
-                this.townships = response.data.townships
+                this.comments.townships_list = response.data.townships
                 this.aggreBtn();
             })
             
             },
-            getLocation(){
+            // getLocation(){
 
-                // this.comments.postal = '';
-                this.comments.city = '';
-                this.aggreBtn();
-            },
+            //     // this.comments.postal = '';
+            //     this.comments.city = '';
+            //     this.aggreBtn();
+            // },
             add() {
                 this.all_mail = JSON.parse(localStorage.getItem("item"));
                 // this.reservation = JSON.parse(localStorage.getItem("reserve"));

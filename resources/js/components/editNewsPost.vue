@@ -3,7 +3,12 @@
     <div id="content">
         <div class="card">
             <div class="card-body">
-                <h4 class="page-header header">ニュース編集</h4>
+                <div v-if='status == 1'>
+                    <h4 class="page-header header">ニュース編集</h4>
+                </div>
+                <div v-else>
+                    <h4 class="page-header header">ニュース新規作成</h4>
+                </div>
                 <br>
                 <form @submit.prevent="updatepost">
                     <div class="form-group">
@@ -136,7 +141,8 @@
                     </div>
 
                     <div class="form-group">
-                        <span class="btn main-bg-color white all-btn" @click="checkValidate()"> 保存</span>
+                        <span class="btn main-bg-color white all-btn" @click="checkValidate()" v-if='status == 1'> 保存</span>
+                        <span class="btn main-bg-color white all-btn" @click="checkValidate()" v-if='status == 0'> 作成</span>
                         <span@click="$router.go(-1)" :to="{name: 'news_list'}" class="btn btn-danger all-btn">キャンセル</span>
                     </div>
                 </form>
@@ -149,6 +155,7 @@
         data() {
                 return {
                     selectedValue: 0,
+                    status:0,
                     arr: [],
                     errors: {
                         title: "",
@@ -184,35 +191,38 @@
                 }
             },
             created() {
-                this.axios
-                    .get(`/api/new/editPost/${this.$route.params.id}`)
-                    .then((response) => {
-                        this.news = response.data;
-                        this.checkedNews = [];
-                        if(this.news.related_news != undefined){
-                            this.checkedNews = this.news.related_news.split(',');
-                        }
-                        else{
+                if(this.$route.name == "editPost"){
+                    this.status = 1;
+                    this.axios
+                        .get(`/api/new/editPost/${this.$route.params.id}`)
+                        .then((response) => {
+                            this.news = response.data;
                             this.checkedNews = [];
-                        }
+                            if(this.news.related_news != undefined){
+                                this.checkedNews = this.news.related_news.split(',');
+                            }
+                            else{
+                                this.checkedNews = [];
+                            }
 
-                        if(this.news.photo == null || this.news.photo == '') {
-                            this.old_photo = '';
-                        }
-                        // console.log(this.news.photo);
+                            if(this.news.photo == null || this.news.photo == '') {
+                                this.old_photo = '';
+                            }
+                            // console.log(this.news.photo);
 
-                        // this.updateselected();
-                        this.selectedValue = this.news.category_id;
-                    });
-                    this.getPostsByCatId();
-                    this.getSearchPostsByCatId();
-            },
-            mounted() {
-                this.axios
-                    .get(`/api/category/category_list`)
+                            // this.updateselected();
+                            this.selectedValue = this.news.category_id;
+                        });
+                        this.getPostsByCatId();
+                        this.getSearchPostsByCatId();
+                 } 
+                else {
+                    this.axios.get('/api/category/category_list')
                     .then(function(response) {
                         this.categories = response.data;
                     }.bind(this));
+                    this.getPostsByCatId();
+                }
             },
             computed: {
             pages() {
@@ -340,7 +350,6 @@
                                     height: 200,
                                 })
 
-                                //alert('Successfully Updated!')
                                 this.$router.go(-1);
                             })
                             .catch(error=>{
@@ -350,6 +359,60 @@
                             });
                         });
 
+                    },
+                    add() {
+                            this.$swal({
+                            title: "確認",
+                            text: "ニュースを投稿してよろしいでしょうか。",
+                            type: "info",
+                            width: 350,
+                            height: 200,
+                            showCancelButton: true,
+                            confirmButtonColor: "#6cb2eb",
+                            cancelButtonColor: "#b1abab",
+                            cancelButtonTextColor: "#000",
+                            confirmButtonText: "はい",
+                            cancelButtonText: "キャンセル",
+                            confirmButtonClass: "all-btn",
+                            cancelButtonClass: "all-btn"
+                        }).then(response => {
+                        let fData = new FormData();
+                            fData.append('photo', this.news.photo)
+                            fData.append('title', this.news.title)
+                            fData.append('main_point', this.news.main_point)
+                            fData.append('body', this.news.body)
+                            fData.append('category_id', this.news.category_id)
+                            fData.append('related_news', this.checkedNews)
+                            console.log(fData);
+                            this.$loading(true);
+                        this.axios.post('/api/new/add', fData)
+                            .then(response => {
+                            this.$loading(false);
+                            this.name = ''
+                            console.log(response);
+                            this.$swal({
+                            position: 'top-end',
+                            type: 'success',
+                            // title: "確認済",
+                            text: 'ニュースを投稿しました。',
+                            confirmButtonText: "閉じる",
+                            confirmButtonColor: "#6cb2eb",
+                            // showConfirmButton: false,
+                            // timer: 1800,
+                            width: 270,
+                            height: 200,
+                        })
+                                this.$router.push({
+                                    name: 'news_list'
+                                })
+                            }).catch(error=>{
+
+                            if(error.response.status == 422){
+
+                                this.errors = error.response.data.errors
+                            }});
+
+                        })
                     },
                     getstates: function() {
                         this.news.category_id = this.selectedValue;
@@ -455,7 +518,11 @@
                             !this.errors.body &&
                             !this.errors.category_id
                         ) {
-                            this.updatepost();
+                            if(this.status == 0) {
+                                this.add();
+                            } else {
+                                this.updatepost();
+                            }
                         }
                     },
                 imgUrlAlt(event) {

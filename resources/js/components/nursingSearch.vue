@@ -1250,19 +1250,13 @@
                 },
                 w_width:$(window).width(),
                 cityArray: [],
+                citynewArray:[],
             }
         },
 
         created(){
             this.$loading(true);
-            this.axios.get("./json/gadm36_jpn_1.json").then(respon => {
-                console.log(respon.data);
-                console.log(respon.data[0].features)
-                this.cityArray = respon.data[0].features;
-                // console.log(respon.data[0].features)
-                // console.log(respon.data[0].features.indexOf(respon.data[0].features.includes("geometrytest")))
-                this.$loading(false);
-            });
+            this.cityCall();
             window.addEventListener('resize', this.handleResize)
             this.handleResize();
 
@@ -1384,6 +1378,16 @@
             handleResize() {
                 this.window.width = window.innerWidth;
                 this.window.height = window.innerHeight;
+            },
+            cityCall(){
+                this.axios.get("./json/gadm36_jpn_1.json").then(respon => {
+                    // console.log('return array',respon.data);
+                    console.log('return feature',respon.data.features)
+                    this.cityArray = respon.data.features;
+                    // console.log('not 0 array',respon.data.features)
+                    // console.log(respon.data[0].features.indexOf(respon.data[0].features.includes("geometrytest")))
+                    this.$loading(false);
+                });
             },
 
             searchfreeword(){
@@ -1674,7 +1678,7 @@
                         center: new google.maps.LatLng(lat, lng),
                         minZoom: 7,
                         maxZoom: 14,
-                        zoom: 10,
+                        zoom: 7,
                         mapTypeId: google.maps.MapTypeId.ROADMAP,
                         options: {
                             gestureHandling: 'greedy'
@@ -1713,39 +1717,65 @@
                 }
 
                var township_name = townshipName;
-               this.coordinate = [
-                   {"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"MultiPolygon"}}]}
-               ]
+            //    this.coordinate = [];
+            //    this.coordinate = [
+            //        {"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"MultiPolygon"}}]}
+            //    ]
 
                if(this.ci == true && (this.townshipID[0] == "-1" || this.townshipID.length == 0))
                {                   
                     this.loading = false;                    
                }
                else if(this.ci == false && (this.townshipID[0] == 0 || this.townshipID[0] == "-1" || this.townshipID.length == 0)){ 
-                //    this.axios.get("https://testikportal.management-partners.co.jp/gadm36_jpn_1.json").then(respon => {
-                //         var city_coordinates = [];
-                //         city_coordinates = respon.data.features
+                //    this.axios.get("./json/gadm36_jpn_1.json").then(respon => {
+                //         var cc = [];
+                //         cc = respon.data.features
+                //         console.log(typeof(cc))
+                //         console.log(cc)
                 //         var result = [];
-                //         for (let i = 0; i < city_coordinates.length; i++) {
+                //         for (let i = 0; i < cc.length; i++) {
                             
-                //             if(city_coordinates[i]['properties']['NAME_1'] == theCity){
-                //             result.push(city_coordinates[i])
+                //             if(cc[i]['properties']['NAME_1'] == theCity){
+                //             result.push(cc[i])
                 //             }
                             
                 //         }
                 //         this.coordinate = result.reduce((acc, val) => acc.concat(val), []);
+                //         console.log('coor',this.coordinate)
                 //         this.boundariesGoogleMap(lat,lng,this.coordinate);            
                 //     });            
                 // var jsonfile = theCity+".json";
-                for (var i=0; i <this.cityArray.length ; i++) { 
+                // console.log(this.cityArray)
+
+
+                // for (var i=0; i <this.cityArray.length ; i++) { 
+                //     if(this.cityArray[i]['properties']['NAME_1'] == theCity){
+                //         console.log(typeof(this.cityArray[i]))
+                //         console.log('c',this.cityArray[i])
+                //         this.citynewArray.push(this.cityArray[i]);
+                //         break;
+                //     }
+                // }
+                var newresult=[];
+                for (let i = 0; i < this.cityArray.length; i++) {
+                            
                     if(this.cityArray[i]['properties']['NAME_1'] == theCity){
-                        console.log(this.cityArray[i])
-                        this.coordinate = this.cityArray[i].reduce((acc, val) => acc.concat(val), []);
-                        this.boundariesGoogleMap(lat,lng,this.cityArray[i]);
-                        break;
+                    newresult.push(this.cityArray[i])
                     }
+                    
                 }
-                        // this.axios.get("https://testikportal.management-partners.co.jp/json/"+jsonfile).then(respon => {
+                this.coordinate = newresult.reduce((acc, val) => acc.concat(val), []);
+                console.log('coor',this.coordinate)
+                this.boundariesGoogleMap(lat,lng,this.coordinate);   
+
+                // var aaa = this.citynewArray.reduce((acc, val) => acc.concat(val), []);
+                // console.log(typeof(this.coordinate))
+                // console.log('co',this.coordinate)
+                // var cc = this.coordinate.reduce((acc, val) => acc.concat(val), []);
+                // console.log('coo',cc)
+                // this.boundariesGoogleMap(lat,lng,this.citynewArray);
+
+                        // this.axios.get("./json/gadm36_jpn_1.json").then(respon => {
                         //     console.log(respon.data)
                         //     // this.coordinate[0].features[0].geometry["coordinates"] = respon.data.coordinate;
                         //     this.boundariesGoogleMap(lat,lng,respon.data);            
@@ -1769,21 +1799,26 @@
             },
 
             boundariesGoogleMap(lat,lng,coor){        
-                console.log("boundaries")
+               
+                // var bb = coor.reduce((acc, val) => acc.concat(val), []);   
                 var data = coor.reduce((acc, val) => acc.concat(val), []);   
                 // var data = coor; 
+        
                 for (let i = 0; i < data.length; i++) {
+
                     this.map.data.addGeoJson(data[i]); 
                 }
+     
                 var bounds = new google.maps.LatLngBounds();
+
                 this.map.data.forEach(function(feature){
+                    console.log('feature',feature)
                     var geo = feature.getGeometry();
+                    console.log('geo',geo)
                     geo.forEachLatLng(function(LatLng){
                     bounds.extend(LatLng)
                     });
                 });
-                this.map.fitBounds(bounds);
-
                 this.map.data.setStyle({
                 strokeColor: "red",
                 fillColor: 'red',
@@ -1791,6 +1826,13 @@
                 fillOpacity: 0.1,
                 strokeWeight: 1
                 })
+                // console.log('geo',geo)
+                console.log('fit bounds',bounds)
+
+                this.map.fitBounds(bounds)
+
+
+                
                 this.loading = false;
             },
 
@@ -1883,7 +1925,7 @@
                             position: position,
                             map: this.map,
                             animation: google.maps.Animation.DROP,
-                            zoom:7,
+                            zoom:5,
                             icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' + img + '|ff9563|000000',
                             title: this.markers[i]['name'],
                             options: {
@@ -1905,7 +1947,18 @@
                     });
 
                 }
-                this.map.fitBounds(bounds);
+                console.log('position',position)
+                // if(position == undefined){
+                //     var mapProp = {
+                //     center: new google.maps.LatLng(35.6804, 139.7690),
+                //     zoom: 6,
+                //     };
+                //     this.map.center(35.6804, 139.7690);
+                // }
+                // else{
+                //     this.map.fitBounds(bounds);
+                // }
+                
             },
             // make infowindow, marker , google map
             clearmap(citylatlng)

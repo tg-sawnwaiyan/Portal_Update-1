@@ -22,7 +22,8 @@ let globalData = new Vue({
         hosFav: 0,
         nusHis: 0,
         hosHis: 0,
-        visit: 'true'
+        visit: 'true',
+        test:[]
     }
 });
 Vue.mixin({
@@ -47,6 +48,10 @@ Vue.mixin({
             get: function() { return globalData.$data.visit },
             set: function(newVal) { globalData.$data.visit = newVal; }
         },
+        test: {
+            get: function() { return globalData.$data.test },
+            set: function(newVal) { globalData.$data.test = newVal; }
+        }
     }
 })
 

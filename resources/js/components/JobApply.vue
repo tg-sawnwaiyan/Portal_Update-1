@@ -56,12 +56,12 @@
             <div class="col-md-9 col-sm-12 form-right">
                 <div class="col-md-12 pad-free">
                     <input type="text" class="form-control float-left" id="furigana" placeholder="ふりがなを入力してください。" v-model="jobApply.last_name" @keyup="ChekChar"  @change="aggreBtn"/>
-                    <span class="float-left eg-txt"> 例）さがし たろう</span>
+                    <span class="float-left eg-txt"> 例）サガシ　タロウ</span>
                     <!-- <span class="error m-l-30" v-if="focus_lname">※入力は必須です。</span> -->
                     <span class="error m-l-30" v-if="jobApply.furigana_focus   ">※入力は必須です。</span>
                     <!-- <div v-if="errors.last_name" class="text-danger mt-2 ml-4">{{ errors.last_name }}</div> -->
                 </div>
-                <span class="float-left text-danger p-l-30" v-if="charErr">ひらがなで入力してください!</span>
+                <span class="float-left text-danger p-l-30" v-if="charErr">カタカナで入力してください!</span>
             </div>
         </div>
         <div class="form-group m-0 row bd">
@@ -297,7 +297,17 @@
               </label>
             </div>
             <div class="col-md-9 col-sm-12 form-right">
-              <span class="pl-4">{{ jobApply.selectedValue }}</span>
+              <span class="pl-4">{{ jobApply.selectedCity }}</span>
+            </div>
+          </div>
+          <div class="form-group m-0 row bd">
+            <div class="col-sm-3 form-left">
+              <label for="str_address">
+                <strong>市区町村</strong>
+              </label>
+            </div>
+            <div class="col-md-9 col-sm-12 form-right">
+              <span class="pl-4">{{ jobApply.townshipname }}</span>
             </div>
           </div>
           <div class="form-group m-0 row bd">
@@ -387,7 +397,7 @@
           <li class="active">3.<span>送信</span>完了</li>
         </ul>
         <div class="text-center">
-          <h3>入力内容は送信されました‼</h3>
+          <h3>入力内容は送信されました。</h3>
           <br />
           <p>ご登録頂き、ありがとうございます。</p>
           <p>今後ともどうぞよろしくお願い申し上げます。</p>
@@ -443,6 +453,7 @@ export default {
         remark: "",
         terms: false,
         selectedValue: 0,
+        selectedCity: '',
         township:0,
         townshipname:'',
         division: 0,
@@ -545,14 +556,19 @@ export default {
                 this.jobApply.township = 0;
                 }
                 this.town_list = response.data.townships
+                for (var i = 0; i < this.town_list.length; i++) {
+                    if (this.jobApply.township == this.town_list[i].id) {
+                        this.jobApply.townshipname = this.town_list[i].township_name;
+                    }
+                }
                 this.aggreBtn();    
         })
       },
-      getLocation(){
-          // this.comments.postal = '';
-          this.comments.city = '';
-          this.aggreBtn();    
-      },
+    //   getLocation(){
+    //       // this.comments.postal = '';
+    //       this.comments.city = '';
+    //       this.aggreBtn();    
+    //   },
 
     apply() {
 
@@ -623,7 +639,7 @@ export default {
         this.type = "confirm";
          for (var i = 0; i < this.city_list.length; i++) {
         if (this.jobApply.selectedValue == this.city_list[i].id) {
-            this.jobApply.selectedValue = this.city_list[i].city_name;
+            this.jobApply.selectedCity = this.city_list[i].city_name;
         }
          }
 
