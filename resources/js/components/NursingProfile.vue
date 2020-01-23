@@ -64,8 +64,8 @@
                             <div id="changeGalleryLink"  class="col-md-12">
                                     <div class="row" id ="gallery-photo">
                                             <div class="col-md-6 gallery-area-photo p0-480" v-bind:id="'photo'+indx" v-for="(img,indx) in img_arr" :key="img.id">
-                                                    <div class="col-md-12">
-                                                            <input type="file" name="" class="nursing-photo m-b-10" v-bind:class="img.classname" id="upload_img" @change="preview_image($event,indx)">
+                                                    <div class="col-md-12 p0-480">
+                                                            <input type="file" name="" class="nursing-photo m-b-10 p-t-10" v-bind:class="img.classname" id="upload_img" @change="preview_image($event,indx)">
                                                             <div class="col-md-12 m-b-10 p0-480" v-bind:class="img.id">
                                                                 <input type="hidden" class="already-photo" v-model="img.photo">
                                                                 <img v-bind:src="img.src" class="img-fluid nursing-image" alt="profile" v-if="img.src!=null" @error="imgUrlAlt">
@@ -161,11 +161,11 @@
                             <div class="form-group">
                                 <label class="heading-lbl col-lg-2 col-md-3 pad-free">支払い方法 <span class="error">*</span></label>
                                 <div class="col-lg-10 col-md-12 float-right pad-free nursing-m-b-15">
-                                    <input type="text"  class="form-control col-9 nursing-payment-method float-left white-bg-color" v-model="nursing_info.method">
-                                    <div class="col-3 float-right">
+                                    <input type="text"  class="form-control col-md-9 col-12 nursing-payment-method float-left white-bg-color" v-model="nursing_info.method">
+                                    <div class="col-md-3 col-12 float-right nursing-addbtn">
                                         <span class="nusing_btn1 btn all-btn main-bg-color" style="min-width: 0px;" @click="methodAdd()"><i class="fas fa-plus-circle"></i>追加</span>
                                     </div>
-                                    <div class="col-md-12 pad-free m-t-50" id="gallery-payment">
+                                    <div class="col-md-12 pad-free m-t-50 nursing-gallery" id="gallery-payment">
                                         <!-- test -->
                                         <div class="pad-free col-md-12 gallery-area-payment" v-bind:id="'payment'+indx" v-for="(payment,indx) in payment_arr" :key="payment.id">
                                             <div class="col-md-12">
@@ -727,7 +727,7 @@ export default {
                 city_id: 0,
                 township_list: [],
                 address_show: ''
-                
+
             }
         },
 
@@ -1161,7 +1161,7 @@ export default {
                 this.nursing_info.longitude = $('#new_long').val();
                 this.customer_info.address = $('#address_val').val();
                 this.address_show = $('#address_show').val();
-                
+
                 this.customer_info.townships_id = Number($('#gmaptownship').val());
                 localStorage.setItem('lat_num',this.nursing_info.latitude);
                 localStorage.setItem('lng_num',this.nursing_info.longitude);
