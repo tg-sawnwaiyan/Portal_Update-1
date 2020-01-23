@@ -314,7 +314,7 @@
                                     this.hos_profiles = response.data;
                                     if(response.data.length<this.his_hos && response.data.length > 0) { 
                                         var hos_id = '';
-                                        this.message = "Some Hospital Accounts are Deactivated!";
+                                        this.message = "現在本サイトに掲載されていない病院については最近見た施設リストから削除しました。";
                                         for(var i= 0;i<this.hos_profiles.length;i++) {
                                             if(i== this.hos_profiles.length-1) {
                                                 hos_id += this.hos_profiles[i]['id'];
@@ -331,7 +331,7 @@
                                         this.his_hos = 0;
                                         this.$swal({
                                             // title: "確認",
-                                            text: "申し訳ございません。最近見た施設のリストは全部表示されません。いくつかのアカウントが解除になっていますので。",
+                                            text: "お気に入りの病院は既に本サイトに掲載されておりませんので、最近見た施設リストから削除しました。",
                                             type: 'info',
                                             width: 350,
                                             height: 200,
