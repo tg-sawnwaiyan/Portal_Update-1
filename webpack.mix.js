@@ -12,32 +12,12 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+   // .extract(['vue','jquery','bootstrap'])
    .sass('resources/sass/app.scss', 'public/css');
-mix.copy('resources/css/mystyle.css', 'public/css'); //V
-mix.copy('resources/css/all.css', 'public/css'); //V
-mix.copy('resources/css/carousel.css', 'public/css'); //V
-mix.copy('resources/css/fullpage.min.css', 'public/css'); //V
-mix.copy('resources/css/jquery.scrolling-tabs.min.css', 'public/css'); //V
-mix.copy('resources/css/nprogress.css', 'public/css'); //V
-mix.copy('resources/css/pannellum.css', 'public/css'); //V
-// mix.sass('resources/sass/style.scss', 'public/css');
-mix.copy('resources/js/jquery.min.js', 'public/js');
-mix.copy('resources/js/jquery-3.4.1.min.js', 'public/js');
-mix.copy('resources/js/adsslider.js', 'public/js');
-mix.copy('resources/js/vue-scrollto.js', 'public/js');
-mix.copy('resources/js/vue-fullpage.min.js', 'public/js');
-mix.copy('resources/js/vue-clazy-load.js', 'public/js');
-mix.copy('resources/js/sweetalert2.all.js', 'public/js');
-mix.copy('resources/js/popper.min.js', 'public/js');
-mix.copy('resources/js/pannellum.js', 'public/js');
-mix.copy('resources/js/nprogress.js', 'public/js');
-mix.copy('resources/js/myJs.js', 'public/js');
-mix.copy('resources/js/jssor.slider-27.5.0.min.js', 'public/js');
-mix.copy('resources/js/jquery.scrolling-tabs.min.js', 'public/js');
-mix.copy('resources/js/jquery.dataTables.min.js', 'public/js');
-mix.copy('resources/js/dataTables.bootstrap4.min.js', 'public/js');
-mix.copy('resources/js/custom.js', 'public/js');
-// mix.json()
+// mix.css('resources/css/mystyle.css', 'public/css'); //V
+
+// mix.js('resources/js/myJs.js', 'public/js');
+
 // mix.webpackConfig({
 //    resolve: {
 //       alias: {

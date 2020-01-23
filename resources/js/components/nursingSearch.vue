@@ -1380,14 +1380,19 @@
                 this.window.height = window.innerHeight;
             },
             cityCall(){
-                this.axios.get("./json/gadm36_jpn_1.json").then(respon => {
-                    // console.log('return array',respon.data);
-                    console.log('return feature',respon.data.features)
-                    this.cityArray = respon.data.features;
-                    // console.log('not 0 array',respon.data.features)
-                    // console.log(respon.data[0].features.indexOf(respon.data[0].features.includes("geometrytest")))
+                // this.axios.get("http://192.168.10.111/testapi/myapi?city=Hokkaido",
+                // {headers: {
+                //     'Content-Type': 'application/json'
+                //     }}).then(respon => {
+                //     // console.log('return array',respon.data);
+                //     console.log('return feature',respon.data)
+                //     // this.cityArray = [];
+                //     // this.coordinate[0].features[0].geometry["coordinates"]
+                //     // console.log('not 0 array',respon.data.features)
+                //     // console.log(respon.data[0].features.indexOf(respon.data[0].features.includes("geometrytest")))
+                //     this.$loading(false);
+                // });
                     this.$loading(false);
-                });
             },
 
             searchfreeword(){
@@ -1727,7 +1732,7 @@
                     this.loading = false;                    
                }
                else if(this.ci == false && (this.townshipID[0] == 0 || this.townshipID[0] == "-1" || this.townshipID.length == 0)){ 
-                //    this.axios.get("./json/gadm36_jpn_1.json").then(respon => {
+                //    this.axios.get("./json/city_json.json").then(respon => {
                 //         var cc = [];
                 //         cc = respon.data.features
                 //         console.log(typeof(cc))
@@ -1775,7 +1780,7 @@
                 // console.log('coo',cc)
                 // this.boundariesGoogleMap(lat,lng,this.citynewArray);
 
-                        // this.axios.get("./json/gadm36_jpn_1.json").then(respon => {
+                        // this.axios.get("./json/city_json.json").then(respon => {
                         //     console.log(respon.data)
                         //     // this.coordinate[0].features[0].geometry["coordinates"] = respon.data.coordinate;
                         //     this.boundariesGoogleMap(lat,lng,respon.data);            
