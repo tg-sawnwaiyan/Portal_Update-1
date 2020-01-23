@@ -1380,11 +1380,12 @@
                 this.window.height = window.innerHeight;
             },
             cityCall(){
-                this.axios.get("https://testikportal.management-partners.co.jp/json/gadm36_jpn_1.json").then(respon => {
+                // https://testikportal.management-partners.co.jp/json/gadm36_jpn_1.json
+                this.axios.get("./json/hokkaido_minna.json").then(respon => {
                     // console.log('return array',respon.data);
-                    console.log('return feature',respon.data.features)
-                    this.cityArray = respon.data.features;
-                    // console.log('not 0 array',respon.data.features)
+                    console.log('return feature',respon.data)
+                    this.cityArray = respon.data;
+                    console.log(this.cityArray)
                     // console.log(respon.data[0].features.indexOf(respon.data[0].features.includes("geometrytest")))
                     this.$loading(false);
                 });
@@ -1586,7 +1587,7 @@
 
                 if(this.getCity.length > 0)
                 {
-                      var theCity = response.data.getCity[0]['city_eng']
+                      var theCity = response.data.getCity[0]['city_eng'].trim();
                       var lat = response.data.getCity[0]['latitude']
                       var lng = response.data.getCity[0]['longitude']
                 }
@@ -1757,16 +1758,35 @@
                 //     }
                 // }
                 var newresult=[];
-                for (let i = 0; i < this.cityArray.length; i++) {
+                // for (let i = 0; i < this.cityArray.length; i++) {
                             
-                    if(this.cityArray[i]['properties']['NAME_1'] == theCity){
-                    newresult.push(this.cityArray[i])
-                    }
+                //     if(this.cityArray[i]['properties']['NAME_1'] == theCity){
+                //     newresult.push(this.cityArray[i])
+                //     }
                     
+                // }
+                if(theCity == "Hokkaido"){
+                    this.coordinate = this.cityArray.reduce((acc, val) => acc.concat(val), []);
+                    console.log('coor',this.coordinate)
+                    this.boundariesGoogleMap(lat,lng,this.coordinate);   
                 }
-                this.coordinate = newresult.reduce((acc, val) => acc.concat(val), []);
-                console.log('coor',this.coordinate)
-                this.boundariesGoogleMap(lat,lng,this.coordinate);   
+                else{
+                    this.axios.get("./json/city_json.json").then(respon => {
+                        var cc = [];
+                        cc = respon.data[0].features
+                        var result = [];
+                        for (let i = 0; i < cc.length; i++) {
+                            if(cc[i]['properties']['NAME_1'] == theCity){
+                            result.push(cc[i])
+                            }
+                        }
+                        this.coordinate = result.reduce((acc, val) => acc.concat(val), []);
+                        this.boundariesGoogleMap(lat,lng,this.coordinate);            
+                        // this.coordinate[0].features[0].geometry["coordinates"] = respon.data.coordinate;
+                        // this.boundariesGoogleMap(lat,lng,respon.data);            
+                    }); 
+                }
+                
 
                 // var aaa = this.citynewArray.reduce((acc, val) => acc.concat(val), []);
                 // console.log(typeof(this.coordinate))
@@ -2090,7 +2110,7 @@
                         mmarker.push([this.searchmarkers[i]['alphabet'], this.searchmarkers[i]['lat'], this.searchmarkers[i]['lng']])
                         item.push(this.searchmarkers[i])
                     }
-                    const theCity = this.searchmarkers[0]['city_eng']
+                    const theCity = this.searchmarkers[0]['city_eng'].trim();
                     const lat = this.searchmarkers[0]['lat']
                     const lng = this.searchmarkers[0]['lng']
 
@@ -2103,7 +2123,7 @@
                     //if choose city
                     if(this.citylatlng.length > 0)
                     {
-                        const theCity = this.citylatlng[0]['city_eng']
+                        const theCity = this.citylatlng[0]['city_eng'].trim();
                         const lat = this.citylatlng[0]['latitude']
                         const lng = this.citylatlng[0]['longitude']
                         this.coordinates(theCity,lat,lng);
