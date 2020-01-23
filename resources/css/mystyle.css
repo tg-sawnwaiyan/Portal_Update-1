@@ -9009,6 +9009,9 @@ padding: 11px;
 }
 
 @media only screen and (max-width:1440px) {
+    .hos_lbl {
+        width: 165px;
+    }
     .nursing_map {
         padding-left: 70px;
     }
@@ -9095,9 +9098,14 @@ padding: 11px;
 }
 
 @media only screen and (max-width:1280px) {
+    /* hospital and nursing profile */
     .nursing_map {
         padding-left: 40px;
     }
+    .hos_lbl {
+        width: 60%;
+    }
+    /* end hospital and nursing profile */
     .card_height {
         float: left;
         height: 170px;
@@ -9281,7 +9289,7 @@ padding: 0;
     .heading-lbl1 {
         font-size: 1.05em;
         flex: 0 0 27%;
-        max-width: 150px;
+        max-width: 125px;
     }
     .news-post-btn {
         font-size: 13px;
@@ -9293,6 +9301,19 @@ padding: 0;
         float: none !important;
         flex: 0 0 100%;
         max-width: 100%;
+    }
+    .hos_lbl {
+        width: 75%;
+    }
+    .hos_lbl1{
+        max-width: 18%;
+    }
+    .hos_toggle{
+        max-width: 100%;
+    }
+    .m-l-20 {
+        margin-left: 15px !important;
+
     }
     /* end nursing profile */
     /* common */
@@ -9975,7 +9996,7 @@ display: none;
     .heading-lbl1 {
         font-size: 1.05em;
         flex: 0 0 20%;
-        max-width: 150px;
+        max-width: 122px;
     }
     .nursing_btn {
         margin-top: 0px;
@@ -9987,6 +10008,18 @@ display: none;
     .nursing_input {
         flex: 0 0 85%;
     }
+    .hos_lbl{
+        width: 78%;
+    }
+    .hos_map_lbl{
+        padding-bottom: 10px;
+    }
+    .m-l-20 {
+        margin-left: 65px !important;
+    }
+    /* .postal {
+        width: 100%;
+    } */
     /* end nursing profile */
     .sp-768 {
         display: block;
@@ -10920,6 +10953,13 @@ background-image: none;
     .nursing_table1 {
         display: block;
     }
+    .nursing-addbtn{
+        margin-top:10px;
+        padding-left: 1px;
+    }
+    .nursing-gallery{
+        margin-top:100px;
+    }
     .nursing_cost {
         padding: 0px;
         margin-left: 16px;
@@ -10944,6 +10984,20 @@ background-image: none;
     }
     .nursing-m-b-15{
         margin-bottom: 10px !important;
+    }
+    .p-t-10{
+        padding-top:10px !important;
+        margin-left: 13px;
+    }
+    .hos-del{
+        padding-bottom:10px;
+    }
+    .m-l-20 {
+        margin-left: 5px !important;
+        margin-top: 5px;
+    }
+    .postal {
+        width: 100%;
     }
     /* end nursing profile */
 }
@@ -11040,6 +11094,9 @@ background-image: none;
     .nursing_btn span {
         margin-left: 0;
         margin-top: 0;
+    }
+    .postal {
+        width: 100%;
     }
 }
 
