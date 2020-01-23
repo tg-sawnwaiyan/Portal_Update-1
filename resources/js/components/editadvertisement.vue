@@ -126,7 +126,7 @@ export default {
                 this.advertisement.description = '';
                 this.advertisement.link = '';
                 this.ischeck = '';
-                 this.advertisement.photo='';
+                 this.advertisement.photo='';     
             }
            
         },
