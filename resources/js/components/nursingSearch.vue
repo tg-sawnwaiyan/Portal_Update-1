@@ -10,7 +10,7 @@
                         <div>
                             <div class="row map-wrap"  id="searchMap">
                                 <!-- search map and path -->
-                                <div class="col-lg-5 col-md-12 col-sm-12 float-left map-leftwrapper">
+                                <div class="col-lg-5 col-md-12 col-sm-12 float-left map-leftwrapper" id="scroll-responsive">
                                     <!-- <h2 class="map-header">あなたらしい<br/>暮らしができる<br/> 老人ホームが <br/>見つかります。</h2> -->
                                     <h2 class="map-header">あなたらしい暮ら<br/>しができる。そん<br/>な老人ホームが見 <br/>つかります。</h2>
                                     <!--search input-->
@@ -543,7 +543,7 @@
                                         </bulma-accordion>
                             </section>
                             <!-- search city , township  -->
-                            <div id="scroll-responsive">
+                            <div >
                                 <div class="select" id="filter" style="justify-content:space-between">
                                     <h5 class="profile_header" style="border-left: 5px solid #ff9563;">現在の検索条件</h5>
                                     <div class="row">
@@ -632,15 +632,15 @@
                                             </div>
                                         </div> -->
                                         <div class="m-t-10 m-b-10">
-                                            <div v-if="loading" class=" m-t-10 m-b-10" style="background-color:#000;opacity:0.5;position:relative;z-index:10;">
-                                                <div class="lds-ripple m-t-10 m-b-10" >
+                                            <div v-if="loading" class=" m-t-10 m-b-10" style="background-color:#000;opacity:0.5;position:absolute;z-index:10;width: 98%;margin-top: 0px !important;">
+                                                <div class="lds-ripple m-t-10 m-b-10" style="width:100%;heigth:100%" >
                                                     <div>
                                                         <div></div><div></div>
                                                     </div>
                                                 </div>
-                                                <div class="col-12 overlay" style="z-index:9"></div>
+                                                <div class="col-12 overlay" style="z-index:9"> ffff</div>
                                             </div>
-                                            <div id="mymap"></div>
+                                            <div id="mymap" ></div>
                                         </div>
                                         <!-- <div id="mymap" class="select m-t-10 m-b-10"></div> -->
                                     </div>
@@ -706,9 +706,9 @@
                                                                         <div class="col-7 col-lg-7 col-sm-6 m-b-15 p-l-0">
                                                                             <ul class="nursingSearch-list">
                                                                                 <!-- <li class="d-flex"><p class="text-truncate"><span>住所</span><span> {{items.township_name}} {{items.address}}</span></p></li> -->
-                                                                                 <li class="d-flex"><p class="text-truncate"><span>Operator</span><span> {{items.operator}}</span></p></li>
+                                                                                 <li class="d-flex"><p class="text-truncate"><span>運営事業者</span><span> {{items.operator}}</span></p></li>
                                                                                 <li class="d-flex"><span>電話 </span><span class="text-truncate">{{items.phone}}</span></li>
-                                                                                <li class="d-flex"><span>サイト</span><a :href="'http://'+ items.website" target="_blank"  class="text-truncate">{{items.website}}</a></li>
+                                                                                <!-- <li class="d-flex"><span>サイト</span><a :href="'http://'+ items.website" target="_blank"  class="text-truncate">{{items.website}}</a></li> -->
                                                                             </ul>
                                                                         </div>
                                                                     </div>
@@ -1499,6 +1499,7 @@
 
 
             getStateClick(e,lat,lng) {
+                $("#mymap").css({'display' : 'block','height' : '500px','width':'100%'});
                 $('.select').removeClass('select');
                 $('#searchMap').addClass('select');
                 $('#showSearchMap').removeClass('select');
@@ -1511,6 +1512,7 @@
                 this.moving_in = -1;
                 this.per_month = -1;
                 $("#nursing-search").css("display", "block");
+                
                 if(e.target.id == ''){
                     var id = $('#selectCity').val();
                 }else{
@@ -2356,11 +2358,11 @@
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.19);
+  background-color: rgba(0, 0, 0, 0.19);  
   opacity: 0.1; */
   top: 0;
   background-color: rgba(0, 0, 0, 0.19);
-  position: absolute;
+  position: relative;
   background: #000;
   width: 100%;
   height: 500px;
@@ -2537,6 +2539,7 @@
 
 div#holder {
     position: absolute;
+
 }
 
 .hidden {
