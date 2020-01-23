@@ -1380,7 +1380,7 @@
                 this.window.height = window.innerHeight;
             },
             cityCall(){
-                this.axios.get("https://testikportal.management-partners.co.jp/json/gadm36_jpn_1.json").then(respon => {
+                this.axios.get("./json/gadm36_jpn_1.json").then(respon => {
                     // console.log('return array',respon.data);
                     console.log('return feature',respon.data.features)
                     this.cityArray = respon.data.features;
