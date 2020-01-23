@@ -80,7 +80,7 @@
 
               <div
 
-                class="col-md-6 gallery-area-photo p0-480"
+                class="col-md-6 gallery-area-photo p0-990 p0-480"
 
                 v-bind:id="'photo'+indx"
 
@@ -90,12 +90,14 @@
 
               >
 
-                <div class="col-md-12 p0-480">
+                <div class="col-md-12 p0-990 p0-480">
 
                   <input type="file" name class="hospital-photo m-b-15 p-t-10"  v-bind:class="'classname'+indx" id="upload_img" @change="preview_image($event,indx)" />
                   <div class="col-md-12" v-bind:class="img.id">
                     <input type="hidden" class="already-photo" v-model="img.photo" />
+                    <div>
                     <img v-bind:src="img.src" class="img-fluid hospital-image" alt="profile" v-if="img.src != null" @error="imgUrlAlt"/>
+                    </div>
                   </div>
 
                 </div>
@@ -983,7 +985,7 @@
 
               <div class="form-group">
 
-                <label class="heading-lbl hos_lbl1 col-2 pad-free ">
+                <label class="heading-lbl hos_lbl1  col-2 pad-free ">
 
                   こだわりの特長
 

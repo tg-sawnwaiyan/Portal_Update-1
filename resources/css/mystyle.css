@@ -9303,7 +9303,7 @@ padding: 0;
         max-width: 100%;
     }
     .hos_lbl {
-        width: 75%;
+        width: 100%;
     }
     .hos_lbl1{
         max-width: 18%;
@@ -9313,8 +9313,11 @@ padding: 0;
     }
     .m-l-20 {
         margin-left: 15px !important;
-
     }
+    .toggle-div table td:first-child {
+        padding-left: 20px;
+    }
+
     /* end nursing profile */
     /* common */
     .col-slg-12 {
@@ -9492,7 +9495,26 @@ padding: 0;
 }
 
 @media only screen and (max-width: 990px) {
-    /* common */
+ /* hospital and nursing profile */
+    .nursing_input{
+        max-width: 82%;
+    }
+    .heading-lbl {
+        font-size: 1.05em;
+        flex: 0 0 20%;
+        max-width: 125px;
+    }
+    .p0-990{
+        padding:0 !important;
+    }
+    .hos_lbl{
+        width: 75px;
+    }
+    .schedule-toggle-div table th, .schedule-toggle-div table td:first-child {
+        padding: 17px;
+    }
+    /* end hospital and nursing profile */
+     /* common */
     li {
         list-style: none;
     }
@@ -9990,7 +10012,7 @@ display: none;
     /* nursing profile */
     .heading-lbl {
         font-size: 1.05em;
-        flex: 0 0 16%;
+        flex: 0 0 20%;
         max-width: 125px;
     }
     .heading-lbl1 {
@@ -10009,7 +10031,7 @@ display: none;
         flex: 0 0 85%;
     }
     .hos_lbl{
-        width: 78%;
+        width: 100%;
     }
     .hos_map_lbl{
         padding-bottom: 10px;
@@ -10925,7 +10947,7 @@ background-image: none;
     .heading-lbl {
         font-size: 1.05em;
         flex: 0 0 100%;
-        max-width: 100%;
+        /* max-width: 100%; */
     }
     .heading-lbl1 {
         font-size: 1.05em;
