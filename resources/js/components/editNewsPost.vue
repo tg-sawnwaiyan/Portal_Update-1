@@ -7,7 +7,7 @@
                     <h4 class="page-header header">ニュース編集</h4>
                 </div>
                 <div v-else>
-                    <h4 class="page-header header">News Adding</h4>
+                    <h4 class="page-header header">ニュース新規作成</h4>
                 </div>
                 <br>
                 <form @submit.prevent="updatepost">
@@ -141,7 +141,8 @@
                     </div>
 
                     <div class="form-group">
-                        <span class="btn main-bg-color white all-btn" @click="checkValidate()"> 保存</span>
+                        <span class="btn main-bg-color white all-btn" @click="checkValidate()" v-if='status == 1'> 保存</span>
+                        <span class="btn main-bg-color white all-btn" @click="checkValidate()" v-if='status == 0'> 作成</span>
                         <span@click="$router.go(-1)" :to="{name: 'news_list'}" class="btn btn-danger all-btn">キャンセル</span>
                     </div>
                 </form>
@@ -356,7 +357,6 @@
                                     height: 200,
                                 })
 
-                                //alert('Successfully Updated!')
                                 this.$router.go(-1);
                             })
                             .catch(error=>{
