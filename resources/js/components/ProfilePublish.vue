@@ -802,25 +802,29 @@
                     <div class="col-md-12">
                         <h5 class="profile_subtit">フォトアルバム</h5>
                         <div class="row gallery-list m-0">
-                            <div v-for="(image,index) in  light_images" :key="index" class="col-md-4 col-lg-3 m-b-10 gallery-item">
-                                    <img  :src ="'/upload/nursing_profile/' + image.name"  class="img-fluid" @click="showLightbox(image.name)" @error="imgUrlAlt" >
-                                    <span>{{image.title}}</span><br>
-
+                            <div v-for="(image,index) in  light_images" :key="index" class="col-6 col-md-4 col-sm-4 col-lg-3 m-b-10 ">
+                                    <div class="gallery-item">
+                                        <img  :src ="'/upload/nursing_profile/' + image.name"  class="img-fluid" @click="showLightbox(image.name)" @error="imgUrlAlt" >
+                                    </div>                                   
+                                    <span class="img_txt">{{image.title}}</span>                                  
                                 <!-- <span>{{image.photo}}</span> -->
                             </div>
                             <lightbox id="mylightbox" ref="lightbox" :images="light_images" :directory="thumbnailDir+'nursing_profile/'" :timeoutDuration="5000" />
                         </div>
                     </div>
 
-                    <div class="col-md-12  m-b-15">
+                    <div class="col-md-12">
                         <h5 class="profile_subtit">動画</h5>
                         <div class="row m-0" v-if="videos == ''">
                             <div class="col-12 pad-free-750"> <p class="no-data-color">表示されるデータがありません。</p> </div>
                         </div>
-                        <div class="row col-12 pad-free-750" v-else>
-                            <div v-for="(video) in  videos" :key="video.id" class="col-sm-4 col-md-4 col-lg-3">
-                                <iframe :src="'https://www.youtube.com/embed/'+video.photo" controls class="pad-free col-12"></iframe>
-                                <span style="color:orange;font-weight:bold;">{{video.title}}</span><br>
+                        <div class="row gallery-list m-0 pad-free-750" v-else>
+                            <div v-for="(video) in  videos" :key="video.id" class="col-6  col-sm-4 col-md-4 col-lg-3 m-b-10">
+                                <div class="gallery-item">
+                                    <iframe :src="'https://www.youtube.com/embed/'+video.photo" controls></iframe>
+                                </div>                                
+                                <span class="video_txt">{{video.title}}</span>
+                                
                             </div>
                         </div>
                     </div>
@@ -1311,9 +1315,11 @@
             <div class="col-md-12 pad-free-750">
                 <h5 class="profile_subtit">フォトアルバム</h5>
                 <div class="row m-0 gallery-list">
-                    <div v-for="(image,index) in  light_images" :key="index" class="col-md-4 col-lg-3 m-b-10 gallery-item">
-                        <img  :src ="'/upload/hospital_profile/' + image.name"  class="img-fluid" @click="showLightbox(image.name)" @error="imgUrlAlt" >
-                        <span style="color:orange;font-weight:bold;">{{image.title}}</span><br>
+                    <div v-for="(image,index) in  light_images" :key="index" class="col-6 col-lg-3 col-md-4 col-sm-4 m-b-10">
+                        <div class=" gallery-item">
+                            <img  :src ="'/upload/hospital_profile/' + image.name"  class="img-fluid" @click="showLightbox(image.name)" @error="imgUrlAlt" >
+                        </div>
+                        <span class="img_txt">{{image.title}}</span><br>
 
                         <!-- <span>{{image.photo}}</span> -->
                     </div>
@@ -1324,10 +1330,12 @@
             <!-- Hospital Video -->
                 <div class="col-md-12 pad-free-750">
                     <h5 class="profile_subtit">動画</h5>
-                    <div class="row m-0" v-if="videos.length>0">
-                        <div v-for="(video) in  videos" :key="video.id" class="col-sm-4 col-md-4 col-lg-3">
-                            <iframe :src="'https://www.youtube.com/embed/'+video.photo" controls></iframe>
-                            <span style="color:orange;font-weight:bold;">{{video.title}}</span><br>
+                    <div class="row m-0 gallery-list" v-if="videos.length>0">
+                        <div v-for="(video) in  videos" :key="video.id" class="col-6 col-lg-3 col-md-4 col-sm-4 m-b-10">
+                            <div class=" gallery-item">
+                                <iframe :src="'https://www.youtube.com/embed/'+video.photo" controls></iframe>
+                            </div>
+                            <span class="video_txt">{{video.title}}</span><br>
                         </div>
                     </div>
                     <div class="row m-0" v-else>
