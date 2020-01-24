@@ -1,31 +1,17 @@
 <template>
-
     <layout>
-
         <div class="m-lr-0 justify-content-md-center">
-
             <div class="row">
-
                 <div class="col-12 p-r-0">
-
                     <div class="col-12 p-r-0">
-
                         <!-- <form class="col-lg-12 mb-2 pad-free"> -->
-
                             <div class="row col-md-12 m-0 p-r-0">
-
                                 <div class="col-sm-12 col-md-3 col-lg-6">
-
                                     <div class="col-md-2 float-right">
-
                                         <!-- <span class="btn btn my-2 col-md-12 my-sm-0 danger-bg-color btn-danger" v-if="status == 1" @click="clearSearch()">X</span> -->
-
                                     </div>
-
                                 </div>
-
                                 <div class="col-sm-12 col-md-9 col-lg-6 p-l-0 m-b-15">
-
                                      <!--search input-->
                                     <div class="search-input">
                                         <span class="btn btn my-2 col-md-12 my-sm-0 danger-bg-color btn-danger cross-btn" v-if="status == 1" @click="clearSearch()">X</span>
@@ -34,16 +20,10 @@
                                             <i class="fas fa-search"></i> 検索
                                         </button>
                                     </div>
-                                    <!--end search input-->                                   
-
+                                    <!--end search input-->  
                                 </div>
-
                             </div>
-
-
-
                         <!-- </form> -->
-
                         <div class="row" v-if="status == '0'" id="view-1024">
                             <!-- category box -->
                             <div class="card col-md-12 col-lg-6 d-none d-sm-block p-l-0 first-child" style="border:0px!important;">

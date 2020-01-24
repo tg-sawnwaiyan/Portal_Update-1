@@ -7,7 +7,7 @@
                 <div class="col-md-12 m-lr-0 pad-free">
                     <div class="form-group form-group-wrapper">
                         <label class="heading-lbl col-2 pad-free">パノラマ<span class="error">*</span></label>
-                        
+                       
                         <span class="btn-file">ファイルを選ぶ
                         <input type="file" name="" class="nursing-panorama m-b-10"  id="upload_panorama" @change="preview_panorama()" multiple>
                         </span>
