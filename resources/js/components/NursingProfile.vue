@@ -649,10 +649,8 @@
 <script>
 
 import 'quill/dist/quill.snow.css'
-import {quillEditor} from 'vue-quill-editor'
 import {Button, Input,Select} from 'iview'
 import GoogleMap from './GoogleMap.vue'
-import DatePicker from 'vue2-datepicker';
 
 export default {
         components: {
@@ -660,8 +658,6 @@ export default {
             Button,
             Input,
             Select,
-            quillEditor,
-            DatePicker
         },
 
        data() {
