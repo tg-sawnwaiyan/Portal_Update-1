@@ -2229,15 +2229,31 @@ width: 18rem;
 /*End Ad*/
 
 
-/*For Terms & conditions */
+/*For Terms & conditions & sitePolicy */
+.site_header{
+    font-weight: bold;
+    margin-top: 30px;
+    position: relative;
+    margin: 20px 0;
+}
+.site_header::after{
+    background: #d2571c;;
+}
 
 .title h5 {
     padding-left: 5px;
     margin-bottom: 15px;
-    border-left: 3px solid red;
+    border-left: 3px solid rgb(249, 121, 60);
     font-weight: 700;
 }
-
+.sitepolicy_home{
+    margin-bottom: 20px;
+    margin-left: 5px;
+}
+.sitepolicy_home span {
+    font-weight: 500;
+    font-size: 15px;
+}
 .sitepolicy ol,
 .privacy ol {
     margin-bottom: 35px;
@@ -2280,7 +2296,7 @@ ul.sub-ul li {
 }
 
 
-/*End Terms & conditions */
+/*End Terms & conditions & sitePolicy */
 
 
 /*for search for,*/
