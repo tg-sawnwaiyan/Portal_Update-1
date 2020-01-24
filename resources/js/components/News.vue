@@ -434,7 +434,7 @@
                         
                         <!-- one show -->
                         <div class="row col-md-12 pad-free m-0" v-if="(w_width < 1280 && w_width > 768) || (w_width < 480)">
-                            <div class="col-md-4 m-b-8 p-l-0" v-for="item in latest_post_all_cats.slice(3, 11)"  :key="item.id">
+                            <div class="col-md-4 m-b-8 pad-new" v-for="item in latest_post_all_cats.slice(3, 11)"  :key="item.id">
 
                                 <div class="col-md-12 row adslist-card news-3-card m-0">
 
@@ -514,9 +514,14 @@
             <span v-else>
              <div class="col-md-12 category_box" id="view-1024-pattern" :class="'bordertop-color'+(5-(Math.floor(index%5)))" v-for="(group,name,index) in post_groups" :key="index">
 
-                <h4 class="category_news_title" :class="'h-color'+(5-(Math.floor(index%5)))"><span>{{name}}</span> <label style="float: right; color: #999; font-size: 14px;">新着ニュース一覧</label></h4>
+                <h4 class="category_news_title" :class="'h-color'+(5-(Math.floor(index%5)))"><span>{{name}}</span> 
+                    <label class="list-label" for="">新着ニュース一覧</label>
+                    <label class="list-label sp-414">                         
+                            <p :class="'newsChangeLink'+index" @click="newsToggle(index)" ><i :id="'newstogg' + index" class="fas fa-sort-down"></i></p>                      
+                    </label>
+                </h4>
 
-                <div class="row m-lr-0" v-if="group[0].pattern == 1">
+                <div :id="'newsChangeLink' + index" class="row m-lr-0" v-if="group[0].pattern == 1">
 
                     <div class="col-md-6 col-lg-3 pad-new pattern-child">
 
@@ -667,7 +672,7 @@
 
                 </div>
 
-                <div class="row m-lr-0" v-if="group[0].pattern == 2">
+                <div :id="'newsChangeLink' + index" class="row m-lr-0" v-if="group[0].pattern == 2">
 
                     <div class="col-md-6 col-lg-3 pad-new pattern-child">
 
@@ -795,7 +800,7 @@
 
                 </div>
 
-                <div class="row m-lr-0" v-if="group[0].pattern == 3">
+                <div :id="'newsChangeLink' + index" class="row m-lr-0" v-if="group[0].pattern == 3">
 
                     <div class="col-md-6 col-lg-3 pad-new pattern-child">
 
@@ -1124,17 +1129,29 @@
     },
 
     methods: {
+           
+            newsToggle(id)
+                {
 
-
-
-            log() {
-
-                // console.log()
+                    var class_by_id = $('#newstogg'+id).attr('class');
+                    if(class_by_id == "fas fa-sort-down animate rotate")
+                    {
+                        $('#newstogg'+id).removeClass("fas fa-sort-down animate rotate");
+                        $('.newsChangeLink'+id).addClass("fas fa-sort-down");
+                        $('#newsChangeLink'+id).show('medium');
+                    }
+                    else {
+                        $('#newstogg'+id).removeClass("fas fa-sort-down");
+                        $('.newsChangeLink'+id).removeClass("fas fa-sort-down");
+                        $('#newstogg'+id).addClass("fas fa-sort-down animate rotate");
+                        $('#newsChangeLink'+id).hide('medium');
+                    }
 
             },
-
+            log() {
+                // console.log()
+            },
             getAllCat: function() {
-
                 this.axios
 
                     .get('/api/home')
@@ -1465,16 +1482,28 @@
 
                 this.computed_width = '96%';
 
-            },
-            
+            }           
 
         }
-
     }
 
  </script>
 
 <style>
+.list-label{
+    float: right; 
+    color: #999; 
+    font-size: 14px;
+}
+.list-label > p{
+    padding-left: 10px;
+    font-weight: bold;
+    line-height: 1.2px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 20px;
+}
 .pad-new{
     padding-left: 5px !important;
     padding-right: 5px !important;
@@ -1611,5 +1640,9 @@
         display: none;
     }
 }
-
+@media only screen and (max-width:480px){
+    .list-label{  
+        color: #fff;     
+    }
+}
 </style>
