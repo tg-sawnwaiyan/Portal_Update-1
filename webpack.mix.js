@@ -1,9 +1,15 @@
 const mix = require('laravel-mix');
-require('laravel-mix-bundle-analyzer');
+// require('laravel-mix-bundle-analyzer');
  
-if (!mix.inProduction()) {
-    mix.bundleAnalyzer();
-}
+// if (!mix.inProduction()) {
+//     mix.bundleAnalyzer();
+// }
+// if (mix.inDevelopment()) {
+//     mix.bundleAnalyzer();
+// }
+// if (mix.isWatching()) {
+//    mix.bundleAnalyzer();
+// }
 
 /*
  |--------------------------------------------------------------------------
