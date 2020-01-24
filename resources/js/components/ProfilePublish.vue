@@ -534,115 +534,212 @@
                     </div>
 
                     <!--Table responsive-->
-                    <div class="card col-md-12 mb-10 sp-414" v-for="(cost) in method_payment" :key="cost.id">
-                        <div class="card-body pad-t-10">
-                            <div class="row mb-10">
-                            <div class="col-7">
-                                <h6 class="font-weight-bold">プラン名 / 居室詳細</h6>
-                                <label class="method-name-respon">{{cost.payment_name}}</label>
+                    <div class="card sp-414 mb-3" v-for="(cost) in method_payment" :key="cost.id">
+                        <div class="card-header font-weight-bold">{{cost.payment_name}}</div>
+                        <div class="card-body payment-body">
+                                <!-- <h6 class="font-weight-bold">プラン名 / 居室詳細</h6> -->
+                                
+                                <!-- <label class="method-name-respon">{{cost.payment_name}}</label>
                                 <span class="room-type"> {{cost.living_room_type}} </span>
-                                {{cost.area}}
-                            </div>
-                            <div class="col-5">
+                                {{cost.area}} -->
+                            <!-- <div class="col-5">
                                 <h5 class="method-name-respon">入居時費用</h5>
                                 <span class="cash-lbl-respon">{{cost.expense_moving}}</span>
                                 <h5 class="method-name-respon">月額費用</h5>
                                 <span class="cash-lbl-respon">{{cost.monthly_fees}}</span>
-                            </div>
-                            </div>
-                            <span class="detail-btn mb-10" :class="'changeLink changeLink'+cost.id" @click="costConfirmMini(cost.id)" >詳しくはこちら</span>
-                            <div class="col-md-12 collapse miniChangeLink" :id="'changeLinkMini' + cost.id">
-                                    <label class="cost_heading_lbl_respon m-b-15">{{cost.payment_name}}</label>
-                                    <div class="col-md-12">
-                                        <label class="cost_heading_lbl_mini_res"><i class="fas fa-yen-sign"></i> 入居にかかる費用</label>
-                                        <table id="costDetails" class="table table-condensed cost_table moving-in_tbl">
-                                            <tbody>
-                                                <tr>
-                                                    <th class="method-name-respon">入居一時金または</th>
-                                                    <td><span class="cash-lbl-respon">{{cost.deposit}}</span></td>
-                                                    <th class="method-name-respon">その他（使途）</th>
-                                                    <td>{{cost.other_use}}</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-                                    <div class="col-md-12">
-                                        <label class="cost_heading_lbl_mini_res"><i class="fas fa-yen-sign"></i> 月額費用</label>
-                                        <table class="table table-condensed cost_table">
-                                            <tbody>
-
-                                                <tr>
-                                                    <th class="method-name-respon">賃料</th>
-                                                    <td><span class="cash-lbl-respon">{{cost.rent}}</span></td>
-                                                </tr>
-
-                                                <tr>
-                                                    <th class="method-name-respon">管理費</th>
-                                                    <td><span class="cash-lbl-respon">{{cost.admin_expense}}</span></td>
-                                                </tr>
-
-                                                <tr>
-                                                    <th class="method-name-respon">食費 </th>
-                                                    <td><span class="cash-lbl-respon">{{cost.food_expense}}</span></td>
-                                                </tr>
-
-                                                <tr>
-                                                    <th class="method-name-respon">介護上乗せ金（生活サービス費</th>
-                                                    <td><span class="cash-lbl-respon">{{cost.nurse_care_surcharge}}</span></td>
-                                                </tr>
-
-                                                <tr>
-                                                    <th class="method-name-respon">その他 </th>
-                                                    <td>{{cost.other_monthly_cost}}</td>
-                                                </tr>
-
-                                            </tbody>
-
-                                        </table>
-                                    </div>
-
-                                    <div class="col-md-12">
-                                        <label class="cost_heading_lbl_mini_res"><i class="fas fa-yen-sign"></i> 返還金について</label>
-                                        <table class="table table-condensed cost_table">
-                                            <tbody>
-
-                                                <tr>
-
-                                                    <th class="method-name-respon">返還制度</th>
-
-                                                    <td>{{cost.refund_system}}</td>
-
-                                                </tr>
-
-                                                <tr>
-
-                                                    <th class="method-name-respon">償却期間</th>
-
-                                                    <td>{{cost.depreciation_period}}</td>
-
-                                                </tr>
-
-                                                <tr>
-
-                                                    <th class="method-name-respon">初期償却</th>
-
-                                                    <td>{{cost.initial_deprecration}}</td>
-
-                                                </tr>
-
-                                                <tr>
-
-                                                    <th class="method-name-respon">その他メッセージ</th>
-
-                                                    <td>{{cost.other_message_refund}}</td>
-
-                                                </tr>
-
-                                            </tbody>
-                                        </table>
-                                    </div>
+                            </div> -->
+                            <p class="mb-2"><span>初期</span> {{cost.expense_moving}}</p>
+                            <p><span>月額</span> {{cost.monthly_fees}}</p>
+                            
+                            
+                            <!-- <span class="detail-btn mb-10" :class="'changeLink changeLink'+cost.id" @click="costConfirmMini(cost.id)" >詳しくはこちら</span> -->
+                            <!-- <div class="col-md-12 collapse miniChangeLink" :id="'changeLinkMini' + cost.id">
+                                <label class="cost_heading_lbl_respon m-b-15">{{cost.payment_name}}</label>
+                                <div class="col-md-12">
+                                    <label class="cost_heading_lbl_mini_res"><i class="fas fa-yen-sign"></i> 入居にかかる費用</label>
+                                    <table id="costDetails" class="table table-condensed cost_table moving-in_tbl">
+                                        <tbody>
+                                            <tr>
+                                                <th class="method-name-respon">入居一時金または</th>
+                                                <td><span class="cash-lbl-respon">{{cost.deposit}}</span></td>
+                                                <th class="method-name-respon">その他（使途）</th>
+                                                <td>{{cost.other_use}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
+
+                                <div class="col-md-12">
+                                    <label class="cost_heading_lbl_mini_res"><i class="fas fa-yen-sign"></i> 月額費用</label>
+                                    <table class="table table-condensed cost_table">
+                                        <tbody>
+
+                                            <tr>
+                                                <th class="method-name-respon">賃料</th>
+                                                <td><span class="cash-lbl-respon">{{cost.rent}}</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <th class="method-name-respon">管理費</th>
+                                                <td><span class="cash-lbl-respon">{{cost.admin_expense}}</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <th class="method-name-respon">食費 </th>
+                                                <td><span class="cash-lbl-respon">{{cost.food_expense}}</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <th class="method-name-respon">介護上乗せ金（生活サービス費</th>
+                                                <td><span class="cash-lbl-respon">{{cost.nurse_care_surcharge}}</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <th class="method-name-respon">その他 </th>
+                                                <td>{{cost.other_monthly_cost}}</td>
+                                            </tr>
+
+                                        </tbody>
+
+                                    </table>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label class="cost_heading_lbl_mini_res"><i class="fas fa-yen-sign"></i> 返還金について</label>
+                                    <table class="table table-condensed cost_table">
+                                        <tbody>
+
+                                            <tr>
+
+                                                <th class="method-name-respon">返還制度</th>
+
+                                                <td>{{cost.refund_system}}</td>
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <th class="method-name-respon">償却期間</th>
+
+                                                <td>{{cost.depreciation_period}}</td>
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <th class="method-name-respon">初期償却</th>
+
+                                                <td>{{cost.initial_deprecration}}</td>
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <th class="method-name-respon">その他メッセージ</th>
+
+                                                <td>{{cost.other_message_refund}}</td>
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div> -->
+                        </div>                       
+                        <div class="payment-footer">
+                            <span class="detail-btn" :class="'changeLink changeLink'+cost.id" @click="costConfirmMini(cost.id)" >詳しくはこちら</span>
+                            <div class="col-md-12 collapse miniChangeLink" :id="'changeLinkMini' + cost.id">
+                                <label class="cost_heading_lbl_respon m-b-15">{{cost.payment_name}}</label>
+                                <div class="col-md-12">
+                                    <label class="cost_heading_lbl_mini_res"><i class="fas fa-yen-sign"></i> 入居にかかる費用</label>
+                                    <table id="costDetails" class="table table-condensed cost_table moving-in_tbl">
+                                        <tbody>
+                                            <tr>
+                                                <th class="method-name-respon">入居一時金または</th>
+                                                <td><span class="cash-lbl-respon">{{cost.deposit}}</span></td>
+                                                <th class="method-name-respon">その他（使途）</th>
+                                                <td>{{cost.other_use}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label class="cost_heading_lbl_mini_res"><i class="fas fa-yen-sign"></i> 月額費用</label>
+                                    <table class="table table-condensed cost_table">
+                                        <tbody>
+
+                                            <tr>
+                                                <th class="method-name-respon">賃料</th>
+                                                <td><span class="cash-lbl-respon">{{cost.rent}}</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <th class="method-name-respon">管理費</th>
+                                                <td><span class="cash-lbl-respon">{{cost.admin_expense}}</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <th class="method-name-respon">食費 </th>
+                                                <td><span class="cash-lbl-respon">{{cost.food_expense}}</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <th class="method-name-respon">介護上乗せ金（生活サービス費</th>
+                                                <td><span class="cash-lbl-respon">{{cost.nurse_care_surcharge}}</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <th class="method-name-respon">その他 </th>
+                                                <td>{{cost.other_monthly_cost}}</td>
+                                            </tr>
+
+                                        </tbody>
+
+                                    </table>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label class="cost_heading_lbl_mini_res"><i class="fas fa-yen-sign"></i> 返還金について</label>
+                                    <table class="table table-condensed cost_table">
+                                        <tbody>
+
+                                            <tr>
+
+                                                <th class="method-name-respon">返還制度</th>
+
+                                                <td>{{cost.refund_system}}</td>
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <th class="method-name-respon">償却期間</th>
+
+                                                <td>{{cost.depreciation_period}}</td>
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <th class="method-name-respon">初期償却</th>
+
+                                                <td>{{cost.initial_deprecration}}</td>
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <th class="method-name-respon">その他メッセージ</th>
+
+                                                <td>{{cost.other_message_refund}}</td>
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <!--End table responsive-->
@@ -872,7 +969,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row col-md-12 float: right pad-free-750" style="display: flex; justify-content: flex-end" >
+                        <div class="d-flex justify-content-end pad-free-750">
                             <label for="" class="m-r-15"><i class="fas fa-check green"></i> 受入れ可</label>
                             <label for="" class="m-r-15"><i class="fas fa-times red"></i> 受入れ不可</label>
                             <label for="" class="m-r-15"><i class="fas fa-adjust blue"></i> 応相談</label>
@@ -2657,7 +2754,14 @@ h3 {
     color: #f9793c;
     border: 1px solid #68ec37;
 }
-
+.payment-footer .changeLink{
+    padding: 8px 5px;
+    border: 0px; 
+    border-radius: 0;
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+    background: linear-gradient(to bottom,#f6f6ea 0,#ffffcc 100%);
+}
 .CloseBtn {
     border: none !important;
     color: #f9793c !important;
@@ -2668,7 +2772,9 @@ h3 {
 .miniChangeLink {
     padding: 0px;
 }
-
+.payment-footer .miniChangeLink {
+    padding: 10px;
+}
 .room-type {
     /* background: #fdd6c3; */
     background: #fbaa84;
@@ -2771,7 +2877,21 @@ h3 {
     font-size: 25px;
     text-align: center;
 }
-
+.payment-body p {
+    font-size: 18px;
+    color: #ff6117;
+    font-weight: bold;   
+}
+.payment-body p span {  
+    display: inline-block;
+    padding: 0px 5px;
+    margin-right: 3px;
+    font-size: 14px;
+    color: #000;
+    background: #ffc;
+    border: 1px solid #ffc041;
+    border-radius: 5px;    
+}
 
 
 @media only screen and (max-width: 375px) and (min-width: 320px) {
@@ -2816,6 +2936,9 @@ h3 {
   #pano-slider-page .card-carousel {
         width: 415px!important;
     }   
+    .changeLink {
+        font-size: 10px;
+    }
 }
 
 @media only screen and (max-width: 992px) and (min-width: 769px) {
@@ -2832,6 +2955,9 @@ h3 {
     .nav-content
     {
        margin-right: 30px;
+    }
+    .changeLink {
+        font-size: 10px;
     }
 }
 /* Large devices (laptops/desktops, 992px and up) */

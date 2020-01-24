@@ -4860,15 +4860,6 @@ margin-right: 2% !important;
     font-size: 25px;
 }
 
-.card-header {
-    padding: 0.75rem 1.25rem;
-    margin-bottom: 0;
-    background-color: rgba(0, 0, 0, 0.03);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
-    padding-top: 0px !important;
-    padding-left: 9px !important;
-}
-
 .box-searchmap {
     position: relative;
     padding: 16px;
