@@ -1252,12 +1252,13 @@
                 cityArray: [],
                 allCity: [],
                 citynewArray:[],
+                boundsval: 'no marker'
             }
         },
 
         created(){
-            this.$loading(true);
-            this.cityCall();
+            // this.$loading(true);
+            // this.cityCall();
             window.addEventListener('resize', this.handleResize)
             this.handleResize();
 
@@ -1382,7 +1383,7 @@
             },
             cityCall(){
                 // https://testikportal.management-partners.co.jp/json/gadm36_jpn_1.json
-                this.axios.get("./json/hokkaido_minna.json").then(respon => {
+                this.axios.get("https://testikportal.management-partners.co.jp/json/hokkaido_new.json").then(respon => {
                     // console.log('return array',respon.data);
                     console.log('return feature',respon.data)
                     this.cityArray = respon.data;
@@ -1768,41 +1769,50 @@
                 //     }
                     
                 // }
-                if(theCity == "Hokkaido"){
-                    this.coordinate = this.cityArray.reduce((acc, val) => acc.concat(val), []);
-                    console.log('coor',this.coordinate)
-                    this.boundariesGoogleMap(lat,lng,this.coordinate);   
-                }
-                else{
-                    if(this.allCity.length != 0){                        
-                        var result = [];
-                        for (let i = 0; i < this.allCity.length; i++) {
-                            if(this.allCity[i]['properties']['NAME_1'] == theCity){
-                            result.push(this.allCity[i])
-                            }
-                        }
-                        this.coordinate = result.reduce((acc, val) => acc.concat(val), []);
-                        this.boundariesGoogleMap(lat,lng,this.coordinate);  
-                    }
-                    else{
-                        this.axios.get("./json/city_json.json").then(respon => {
-                            var cc = [];
-                            cc = respon.data[0].features
-                            this.allCity = cc;
-                            var result = [];
-                            for (let i = 0; i < cc.length; i++) {
-                                if(cc[i]['properties']['NAME_1'] == theCity){
-                                result.push(cc[i])
-                                }
-                            }
-                            this.coordinate = result.reduce((acc, val) => acc.concat(val), []);
-                            this.boundariesGoogleMap(lat,lng,this.coordinate);            
-                            // this.coordinate[0].features[0].geometry["coordinates"] = respon.data.coordinate;
-                            // this.boundariesGoogleMap(lat,lng,respon.data);            
-                        }); 
-                    }
-                }
+
+                var jsonfile = theCity+".json";
                 
+                this.axios.get("https://testikportal.management-partners.co.jp/json/"+jsonfile).then(respon => {
+                    this.coordinate = respon.data.reduce((acc, val) => acc.concat(val), []);
+                    this.boundariesGoogleMap(lat,lng,this.coordinate);  
+                }); 
+
+                // Thuzar Test
+                // if(theCity == "Hokkaido"){
+                //     this.coordinate = this.cityArray.reduce((acc, val) => acc.concat(val), []);
+                //     console.log('coor',this.coordinate)
+                //     this.boundariesGoogleMap(lat,lng,this.coordinate);   
+                // }
+                // else{
+                //     if(this.allCity.length != 0){                        
+                //         var result = [];
+                //         for (let i = 0; i < this.allCity.length; i++) {
+                //             if(this.allCity[i]['properties']['NAME_1'] == theCity){
+                //             result.push(this.allCity[i])
+                //             }
+                //         }
+                //         this.coordinate = result.reduce((acc, val) => acc.concat(val), []);
+                //         this.boundariesGoogleMap(lat,lng,this.coordinate);  
+                //     }
+                //     else{
+                //         this.axios.get("./json/city_json.json").then(respon => {
+                //             var cc = [];
+                //             cc = respon.data[0].features
+                //             this.allCity = cc;
+                //             var result = [];
+                //             for (let i = 0; i < cc.length; i++) {
+                //                 if(cc[i]['properties']['NAME_1'] == theCity){
+                //                 result.push(cc[i])
+                //                 }
+                //             }
+                //             this.coordinate = result.reduce((acc, val) => acc.concat(val), []);
+                //             this.boundariesGoogleMap(lat,lng,this.coordinate);            
+                //             // this.coordinate[0].features[0].geometry["coordinates"] = respon.data.coordinate;
+                //             // this.boundariesGoogleMap(lat,lng,respon.data);            
+                //         }); 
+                //     }
+                // }
+                // End Thuzar Test
 
                 // var aaa = this.citynewArray.reduce((acc, val) => acc.concat(val), []);
                 // console.log(typeof(this.coordinate))
@@ -1864,11 +1874,11 @@
                 })
                 // console.log('geo',geo)
                 console.log('fit bounds',bounds)
-
-                this.map.fitBounds(bounds)
-
-
                 
+                if(this.boundsval == 'no marker'){
+                    this.boundsval = bounds;
+                }
+                this.map.fitBounds(this.boundsval)                
                 this.loading = false;
             },
 
@@ -1984,6 +1994,14 @@
 
                 }
                 console.log('position',position)
+                this.boundsval = bounds;
+                if(position != undefined){
+                    this.map.fitBounds(this.boundsval);
+                }
+                else{
+                    this.boundsval = "no marker";
+                }
+                
                 // if(position == undefined){
                 //     var mapProp = {
                 //     center: new google.maps.LatLng(35.6804, 139.7690),
