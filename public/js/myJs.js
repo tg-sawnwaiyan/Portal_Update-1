@@ -60,95 +60,23 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 363);
+/******/ 	return __webpack_require__(__webpack_require__.s = 356);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 363:
+/***/ 356:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(364);
+module.exports = __webpack_require__(357);
 
 
 /***/ }),
 
-/***/ 364:
+/***/ 357:
 /***/ (function(module, exports) {
 
 var timeout;
-// $(".path").hover(
-//   function() {
-//     clearTimeout(timeout);
-//     $('#info-box').css({
-//       'display':'block',
-//     });
-
-//     $('.info-box').html($(this).data('info'));
-
-//     $('.'+$(this).data('info')).css({
-//       'opacity': '0.5',
-//       'font-weight':'bold',
-//       'text-decoration':'underline',
-//        'color':'#fff',
-//     });
-//   },
-//   function(){
-//   	timeout = setTimeout(function(){
-//       $('.info-box').css('display','none');
-//       },1000);
-// });
-
-//   $(".path").mouseout(function(){
-// $('.'+$(this).data('info')).css({
-//   'background':'transparent',
-//   'opacity':'1'
-// });
-
-//     $(".path").mouseleave(function(e) {
-//       $(".info-box").css("display", "none");
-//     });
-
-// $(document)
-// .mousemove(function(e) {
-//   $(".info-box").css("top", e.pageY - $(".info-box").height() - 35);
-//   $(".info-box").css("left", e.pageX - $(".info-box").width() / 2);
-// })
-// .mouseover();
-
-// $(".path").mouseout(function(){
-//   $('.'+$(this).data('info')).css({
-//     'background':'transparent',
-//     'opacity':'1',
-//     'text-decoration':'none'
-//   });
-// })
-
-// var ios = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-// if(ios) {
-//   $('abbr').on('click touchend', function() {
-//     var link = $(this).attr('href');
-//     window.open(link,'_blank');
-//     return false;
-//   });
-// }
-
-// $('.path').on("click", function(e) {
-// e.preventDefault();
-// $('.path').removeClass('selected');
-// $('.path.selected').attr("class", "");
-// $('.'+$(this).data('info')).addClass("selected");
-// var title = $(this).attr("title");
-// var id = $(this).attr("id");
-
-// });
-// $('#select').on('change',function(){
-//   var id = this.value;
-
-// })
-// $('.text').click(function() {
-//   $('.checkbox, .nursgingcheckbox, .jobcheckbox').slideToggle("slow");
-// });
 
 // save button get value search map
 $('#save_value').click(function () {
@@ -250,49 +178,6 @@ $('.checkbox').on('click', function () {
     }
 });
 
-/*data_carry
-
-
-
-/*data_carry
-
-*/
-// $(function() {
-//     $('#btnSubmit').on('click', function() {
-//       // your code goes here
-//       $('#outputSpan').val($('#name').val());
-//       $('#outputfurigana').val($('#furigana').val());
-//       $('#outputpostal').val($('.postal').val());
-//       $('#outputdivision').val($('#division').val());
-//       $('#outputcity').val($('#city').val());
-//       $('#outputphone').val($('#phone').val());
-//       $('#outputmail').val($('#mail').val());
-
-//     //   $('#outputpresent').val($('#present').val());
-//       $('#outputpresent').val($('input:checkbox[name=present]:checked').val());
-
-//       $('#outputrelation').val($('#relation').val());
-//       $('#outputttname').val($('#ttname').val());
-
-//       $('#outputsex').val($('input:radio[name=sex]:checked').val());
-//     //   alert($('input:radio[name=sex]:checked').val());
-
-//       $('#outputyears').val($('#years').val());
-//       $('#outputnursing').val($('#nursing').val());
-
-//     //   $('#outputfect').val($('#fect').val());
-
-//       $('#outputfect').val($('input:radio[name=fect]:checked').val());
-//     //   alert($('input:radio[name=fect]:checked').val());
-
-//     //   $('#outputdesire').val($('#desire').val());
-//       $('#outputdesire').val($('input:radio[name=desire]:checked').val());
-
-//       $('#outputhope').val($('#hope').val());
-//       // not triiger output tab to be open
-//       $('[href="#output"]').trigger('click');
-//     });
-//   });
 $(".checkbox").on("click", function () {
     if ($(".checkbox:checked").length == $(".checkbox").length) {
         $(".select_all").prop("checked", true);
@@ -300,104 +185,23 @@ $(".checkbox").on("click", function () {
         $(".select_all").prop("checked", false);
     }
 });
-// });
 
 /* start nurse profile*/
 
-$(".readMore").click(function () {
-    var elem = $(".readMore").text();
-    if (elem == "ReadMore") {
-        //Stuff to do when btn is in the read more state
-        $(".readMore").text("ReadLess");
-        $(".displaytext").slideDown();
-    } else {
-        //Stuff to do when btn is in the read less state
-        $(".readMore").text("ReadMore");
-        $(".displaytext").slideUp();
-    }
-});
+// $(".readMore").click(function() {
+//   var elem = $(".readMore").text();
+//   if (elem == "ReadMore") {
+//     //Stuff to do when btn is in the read more state
+//     $(".readMore").text("ReadLess");
+//     $(".displaytext").slideDown();
+//   } else {
+//     //Stuff to do when btn is in the read less state
+//     $(".readMore").text("ReadMore");
+//     $(".displaytext").slideUp();
+//   }
+// });
 
 /* end nurse profile*/
-
-/*select check
-
-*/
-
-// function scrollTab() {
-
-//     $("#a").on("click", function() {
-
-//     });
-
-//     if ($(".detal_wrap").length) {
-//         $(".a_sp a[href^='#']").click(function() {
-
-//             var speed = 600;
-//             var href = $(this).attr("href");
-//             var target = $(href === "#" || href === "" ? "html" : href);
-//             var position = target.offset().top;
-//             $("html, body, .scrolldiv2").animate({ scrollTop: position - 60 },
-//                 speed,
-//                 "swing"
-//             );
-
-//         });
-//     }
-// }
-
-// function changeType() {
-//     if (this.type == "nursing") {
-//         document.getElementById("hospital-lbl").classList.add("dim-btn");
-//         document.getElementById("nursing-lbl").classList.remove("dim-btn");
-
-//         scrollTab();
-//     } else {
-//         document.getElementById("nursing-lbl").classList.add("dim-btn");
-//         document.getElementById("hospital-lbl").classList.remove("dim-btn");
-
-//         scrollTab();
-//     }
-// }
-
-// $("nav-item").on("change", function(e) {
-//     e.preventDefault();
-
-// });
-
-
-// var profilePublish = $("#profilePublish");
-// stickyDiv = "sticky";
-// header = $(".header").height();
-
-// $(".scrolldiv2").scroll(function() {
-//     if ($(this).scrollTop() > header) {
-//         profilePublish.addClass(stickyDiv);
-//     } else {
-//         profilePublish.removeClass(stickyDiv);
-//     }
-// });
-
-//   $(".a_sp a[href^='#']").click(function() {
-//     var speed = 600;
-//     var href = $(this).attr("href");
-//     var target = $(href === "#" || href === "" ? "html" : href);
-//     var position = target.offset().top;
-//     $("html, body, .scrolldiv2").animate({ scrollTop: position - 60 },
-//         speed,
-//         "swing"
-//     );
-// });
-
-//   function closeBtnMethod(){
-
-//     if(confirm("Are you sure you want to delete?"))
-//     {
-//         var image_x = document.getElementById('x-image');
-//         image_x.parentNode.removeChild(image_x);
-//         document.getElementById('showimage').style.display = 'block';
-//     }
-// }
-
 
 function closeBtnPreview(indx, sec) {
     if (confirm("Are you sure you want to delete?")) {
@@ -405,28 +209,6 @@ function closeBtnPreview(indx, sec) {
         panorama_preview.parentNode.removeChild(panorama_preview);
     }
 }
-
-// function closebtn(){
-//   swal({
-//     title: "Are you sure?",
-//     text: "You will not be able to recover this imaginary file!",
-//     type: "warning",
-//     showCancelButton: true,
-//     confirmButtonColor: '#DD6B55',
-//     confirmButtonText: 'Yes, delete it!',
-//     closeOnConfirm: false,
-//     //closeOnCancel: false
-//   },
-//   function (isConfirm){
-//     if(isConfirm){
-//         var image_x = document.getElementById('x-image');
-//         image_x.parentNode.removeChild(image_x);
-//         document.getElementById('showimage').style.display = 'block';
-//     }
-
-//   }
-//   );
-// };
 
 function showImg(c, event) {
     $("." + c).html("<img src='" + URL.createObjectURL(event.target.files[0]) + "' class='show-img'>");
@@ -533,16 +315,6 @@ function DeltArr(index, type) {
         isDivThere++;
     }
 }
-
-//   $('input[name="number"]').keyup(function(e)
-//   {
-//   if (/\D/g.test(this.value))
-//   {
-//     // Filter non-digits from input value.
-//     this.value = this.value.replace(/\D/g, '');
-//   }
-// });
-
 
 var ct = 1;
 

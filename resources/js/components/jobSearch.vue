@@ -872,13 +872,12 @@
 
 <script>
 import layout from '../components/home.vue'
-import { BulmaAccordion, BulmaAccordionItem } from "vue-bulma-accordion";
+
 
 export default {
     components: {
       layout,
-      BulmaAccordion,
-      BulmaAccordionItem
+      
     },
     //props: ['initOpen'],
     data(){
