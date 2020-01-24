@@ -2233,11 +2233,17 @@ width: 18rem;
 .site_header{
     font-weight: bold;
     margin-top: 30px;
-    position: relative;
-    margin: 20px 0;
 }
-.site_header::after{
-    background: #d2571c;;
+.site_header:after{
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    display: inline-block;
+    width: 100px;
+    height: 5px;
+    left: 685px;
+    border-radius: 2px;
+    background: #d2571c;
 }
 
 .title h5 {
@@ -2248,10 +2254,18 @@ width: 18rem;
 }
 .sitepolicy_home{
     margin-bottom: 20px;
-    margin-left: 5px;
+    margin-left: -5px;
 }
 .sitepolicy_home span {
-    font-weight: 500;
+    color:#000;
+    font-size: 15px;
+}
+.privacy {
+    margin-bottom: 20px;
+    margin-left: 2%;
+}
+.privacy span {
+    color:#000;
     font-size: 15px;
 }
 .sitepolicy ol,
@@ -2279,6 +2293,7 @@ ul.sub-ul li {
 }
 
 .office_contact {
+    color:#000;
     text-align: center;
     font-size: 15px;
 }
