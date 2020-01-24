@@ -1,7 +1,6 @@
-import 'es6-promise/auto'
+// import 'es6-promise/auto'
 import axios from 'axios'
 import './bootstrap'
-// import Vue from 'vue'
 import VueAuth from '@websanova/vue-auth'
 import VueAxios from 'vue-axios'
 import VueRouter from 'vue-router'
@@ -11,9 +10,17 @@ import VueSidebarMenu from 'vue-sidebar-menu'
 import router from './router'
 import Vuex from 'vuex';
 import * as VueGoogleMaps from "vue2-google-maps";
+import DatePicker from 'vue2-datepicker';
+import { BulmaAccordion, BulmaAccordionItem } from "vue-bulma-accordion";
+import Slick from 'vue-slick';//vue slick
+
+Vue.use(Slick);
+Vue.use(BulmaAccordion, BulmaAccordionItem)
 Vue.use(Vuex);
+Vue.use(DatePicker);
 Vue.use(VueSidebarMenu);
 //start editor
+
 //start onepage
 import 'animate.css'
 let globalData = new Vue({
@@ -58,13 +65,8 @@ Vue.mixin({
 import VueCarousel from '@chenfengyuan/vue-carousel';
 Vue.component(VueCarousel.name, VueCarousel);
 
-//vue slick
-import Slick from 'vue-slick';
-Vue.use(Slick);
-
 var VueScrollactive = require('vue-scrollactive');
 Vue.use(VueScrollactive);
-
 
 //vue-pannellum
 import VuePannellum from '../js/components/vue-pannellum.vue'
@@ -89,20 +91,21 @@ Vue.use(Lightbox)
     //end Light Gallery
 
 Vue.use(require('vue-moment'));
+// Vue.use(require('vue-moment'));
 
 //autocomplete
 
 //end autocomplete
 //vuejs loading
 import VueLoading from 'vuejs-loading-plugin'
-import { Button } from 'iview'
+// import { Button } from 'iview'
 Vue.use(VueLoading, {
     text: '送信中'
 })
 
 window.events = new Vue();
 Vue.use(VueClazyLoad)
-Vue.use(VueRouter);
+// Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
 Vue.use(VueGoogleMaps, {
     load: {

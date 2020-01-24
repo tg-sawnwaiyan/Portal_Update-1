@@ -11,7 +11,6 @@ import jobapplylist from "./components/jobapplylist";
 import customerlist from "./components/customerlist";
 import job_details from "./components/job_details";
 import news_list from "./components/news_list";
-// import create_news from "./components/create_news";
 import editPost from "./components/editNewsPost";
 import categorylist from "./components/categorylist";
 import createcategory from "./components/createcategory";
