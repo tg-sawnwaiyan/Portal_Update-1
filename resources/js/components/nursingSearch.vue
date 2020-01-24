@@ -1250,6 +1250,7 @@
                 },
                 w_width:$(window).width(),
                 cityArray: [],
+                allCity: [],
                 citynewArray:[],
             }
         },
@@ -1694,7 +1695,7 @@
             coordinates(theCity,lat,lng){
               
                 
-                this.loading = false
+                // this.loading = false
                 let  coor =[];
                 var townshipName = [];
                 var town = [];
@@ -1773,20 +1774,33 @@
                     this.boundariesGoogleMap(lat,lng,this.coordinate);   
                 }
                 else{
-                    this.axios.get("./json/city_json.json").then(respon => {
-                        var cc = [];
-                        cc = respon.data[0].features
+                    if(this.allCity.length != 0){                        
                         var result = [];
-                        for (let i = 0; i < cc.length; i++) {
-                            if(cc[i]['properties']['NAME_1'] == theCity){
-                            result.push(cc[i])
+                        for (let i = 0; i < this.allCity.length; i++) {
+                            if(this.allCity[i]['properties']['NAME_1'] == theCity){
+                            result.push(this.allCity[i])
                             }
                         }
                         this.coordinate = result.reduce((acc, val) => acc.concat(val), []);
-                        this.boundariesGoogleMap(lat,lng,this.coordinate);            
-                        // this.coordinate[0].features[0].geometry["coordinates"] = respon.data.coordinate;
-                        // this.boundariesGoogleMap(lat,lng,respon.data);            
-                    }); 
+                        this.boundariesGoogleMap(lat,lng,this.coordinate);  
+                    }
+                    else{
+                        this.axios.get("./json/city_json.json").then(respon => {
+                            var cc = [];
+                            cc = respon.data[0].features
+                            this.allCity = cc;
+                            var result = [];
+                            for (let i = 0; i < cc.length; i++) {
+                                if(cc[i]['properties']['NAME_1'] == theCity){
+                                result.push(cc[i])
+                                }
+                            }
+                            this.coordinate = result.reduce((acc, val) => acc.concat(val), []);
+                            this.boundariesGoogleMap(lat,lng,this.coordinate);            
+                            // this.coordinate[0].features[0].geometry["coordinates"] = respon.data.coordinate;
+                            // this.boundariesGoogleMap(lat,lng,respon.data);            
+                        }); 
+                    }
                 }
                 
 
