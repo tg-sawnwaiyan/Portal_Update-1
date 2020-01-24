@@ -396,7 +396,7 @@
                                 if(this.fav_hospital.length < this.fav_hos && this.fav_hospital.length > 0)
                                 {
                                   var hos_id = '';
-                                  this.message = "申し訳ございません。最近見た施設のリストは全部表示されません。いくつかのアカウントが解除になっていますので。"
+                                  this.message = "現在本サイトに掲載されていない病院についてはお気に入りリストから削除しました。"
                                    for(var i= 0;i<this.fav_hospital.length;i++)
                                      {
                                          if(i== this.fav_hospital.length-1)
@@ -418,7 +418,7 @@
                                     position: 'top-end',
                                     type: 'info',
                                     // title: '作成されました',
-                                    text: '申し訳ございません。最近見た施設のリストは表示されません。全部のアカウントが解除になっていますので。',
+                                    text: 'お気に入りの病院は既に本サイトに掲載されておりませんので、お気に入りリストから削除しました。',
                                     showConfirmButton: true,
                                     confirmButtonText: "閉じる",
                                     width: 250,

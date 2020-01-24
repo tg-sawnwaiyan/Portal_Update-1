@@ -444,7 +444,7 @@ export default {
                 if(response.data.length<this.his_nus) {
                     // $('.msg').html('<span>Some Nursing Accounts are Deactivated!</span>');
                     var nus_id = '';
-                    this.message = "申し訳ございません。最近見た施設のリストは表示されません。全部のアカウントが解除になっていますので。";
+                    this.message = "現在本サイトに掲載されていない介護施設については最近見た施設リストから削除しました。";
                     for(var i= 0;i<this.nur_profiles.length;i++) {
                         if(i== this.nur_profiles.length-1) {
                             nus_id += this.nur_profiles[i]['id'];
@@ -461,7 +461,7 @@ export default {
                 this.his_nus = 0;
                 this.$swal({
                     title: "確認",
-                    text: "申し訳ございません。最近見た施設のリストは表示されません。全部のアカウントが解除になっていますので。",
+                    text: "お気に入りの病院は既に本サイトに掲載されておりませんので、最近見た施設リストから削除しました。",
                     type: 'info',
                     width: 350,
                     height: 200,

@@ -7,12 +7,12 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <meta name="user" content="Auth::user()">
 <title>{{ config('app.name', 'Healthcare Portal') }}</title>
-<script src="{{ asset('js/manifest.js') }}" defer></script>
+<!-- <script src="{{ asset('js/manifest.js') }}" defer></script> -->
 <!-- <script src="{{ asset('js/vendor.js') }}" defer></script> -->
 <script src="{{ asset('js/app.js') }}" defer></script>
 
 <!-- <script src="/js/manifest.js"></script> -->
-<script src="/js/vendor.js"></script>
+<!-- <script src="/js/vendor.js"></script> -->
 <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
 <script src="{{ asset('js/myJs.js') }}" defer></script>
 <script src="{{ asset('js/vue-clazy-load.js') }}"></script>

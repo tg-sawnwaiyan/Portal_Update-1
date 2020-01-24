@@ -10,7 +10,7 @@
                         <div>
                             <div class="row map-wrap"  id="searchMap">
                                 <!-- search map and path -->
-                                <div class="col-lg-5 col-md-12 col-sm-12 float-left map-leftwrapper">
+                                <div class="col-lg-5 col-md-12 col-sm-12 float-left map-leftwrapper" id="scroll-responsive">
                                     <!-- <h2 class="map-header">あなたらしい<br/>暮らしができる<br/> 老人ホームが <br/>見つかります。</h2> -->
                                     <h2 class="map-header">あなたらしい暮ら<br/>しができる。そん<br/>な老人ホームが見 <br/>つかります。</h2>
                                     <!--search input-->
@@ -543,7 +543,7 @@
                                         </bulma-accordion>
                             </section>
                             <!-- search city , township  -->
-                            <div id="scroll-responsive">
+                            <div >
                                 <div class="select" id="filter" style="justify-content:space-between">
                                     <h5 class="profile_header" style="border-left: 5px solid #ff9563;">現在の検索条件</h5>
                                     <div class="row">
@@ -632,15 +632,15 @@
                                             </div>
                                         </div> -->
                                         <div class="m-t-10 m-b-10">
-                                            <div v-if="loading" class=" m-t-10 m-b-10" style="background-color:#000;opacity:0.5;position:relative;z-index:10;">
-                                                <div class="lds-ripple m-t-10 m-b-10" >
+                                            <div v-if="loading" class=" m-t-10 m-b-10" style="background-color:#000;opacity:0.5;position:absolute;z-index:10;width: 98%;margin-top: 0px !important;">
+                                                <div class="lds-ripple m-t-10 m-b-10" style="width:100%;heigth:100%" >
                                                     <div>
                                                         <div></div><div></div>
                                                     </div>
                                                 </div>
-                                                <div class="col-12 overlay" style="z-index:9"></div>
+                                                <div class="col-12 overlay" style="z-index:9"> ffff</div>
                                             </div>
-                                            <div id="mymap"></div>
+                                            <div id="mymap" ></div>
                                         </div>
                                         <!-- <div id="mymap" class="select m-t-10 m-b-10"></div> -->
                                     </div>
@@ -706,9 +706,9 @@
                                                                         <div class="col-7 col-lg-7 col-sm-6 m-b-15 p-l-0">
                                                                             <ul class="nursingSearch-list">
                                                                                 <!-- <li class="d-flex"><p class="text-truncate"><span>住所</span><span> {{items.township_name}} {{items.address}}</span></p></li> -->
-                                                                                 <li class="d-flex"><p class="text-truncate"><span>Operator</span><span> {{items.operator}}</span></p></li>
+                                                                                 <li class="d-flex"><p class="text-truncate"><span>運営事業者</span><span> {{items.operator}}</span></p></li>
                                                                                 <li class="d-flex"><span>電話 </span><span class="text-truncate">{{items.phone}}</span></li>
-                                                                                <li class="d-flex"><span>サイト</span><a :href="'http://'+ items.website" target="_blank"  class="text-truncate">{{items.website}}</a></li>
+                                                                                <!-- <li class="d-flex"><span>サイト</span><a :href="'http://'+ items.website" target="_blank"  class="text-truncate">{{items.website}}</a></li> -->
                                                                             </ul>
                                                                         </div>
                                                                     </div>
@@ -1250,6 +1250,7 @@
                 },
                 w_width:$(window).width(),
                 cityArray: [],
+                allCity: [],
                 citynewArray:[],
             }
         },
@@ -1380,19 +1381,15 @@
                 this.window.height = window.innerHeight;
             },
             cityCall(){
-                // this.axios.get("http://192.168.10.111/testapi/myapi?city=Hokkaido",
-                // {headers: {
-                //     'Content-Type': 'application/json'
-                //     }}).then(respon => {
-                //     // console.log('return array',respon.data);
-                //     console.log('return feature',respon.data)
-                //     // this.cityArray = [];
-                //     // this.coordinate[0].features[0].geometry["coordinates"]
-                //     // console.log('not 0 array',respon.data.features)
-                //     // console.log(respon.data[0].features.indexOf(respon.data[0].features.includes("geometrytest")))
-                //     this.$loading(false);
-                // });
+                // https://testikportal.management-partners.co.jp/json/gadm36_jpn_1.json
+                this.axios.get("./json/hokkaido_minna.json").then(respon => {
+                    // console.log('return array',respon.data);
+                    console.log('return feature',respon.data)
+                    this.cityArray = respon.data;
+                    console.log(this.cityArray)
+                    // console.log(respon.data[0].features.indexOf(respon.data[0].features.includes("geometrytest")))
                     this.$loading(false);
+                });
             },
 
             searchfreeword(){
@@ -1503,6 +1500,7 @@
 
 
             getStateClick(e,lat,lng) {
+                $("#mymap").css({'display' : 'block','height' : '500px','width':'100%'});
                 $('.select').removeClass('select');
                 $('#searchMap').addClass('select');
                 $('#showSearchMap').removeClass('select');
@@ -1515,6 +1513,7 @@
                 this.moving_in = -1;
                 this.per_month = -1;
                 $("#nursing-search").css("display", "block");
+                
                 if(e.target.id == ''){
                     var id = $('#selectCity').val();
                 }else{
@@ -1591,7 +1590,7 @@
 
                 if(this.getCity.length > 0)
                 {
-                      var theCity = response.data.getCity[0]['city_eng']
+                      var theCity = response.data.getCity[0]['city_eng'].trim();
                       var lat = response.data.getCity[0]['latitude']
                       var lng = response.data.getCity[0]['longitude']
                 }
@@ -1696,7 +1695,7 @@
             coordinates(theCity,lat,lng){
               
                 
-                this.loading = false
+                // this.loading = false
                 let  coor =[];
                 var townshipName = [];
                 var town = [];
@@ -1732,7 +1731,7 @@
                     this.loading = false;                    
                }
                else if(this.ci == false && (this.townshipID[0] == 0 || this.townshipID[0] == "-1" || this.townshipID.length == 0)){ 
-                //    this.axios.get("./json/city_json.json").then(respon => {
+                //    this.axios.get("./json/gadm36_jpn_1.json").then(respon => {
                 //         var cc = [];
                 //         cc = respon.data.features
                 //         console.log(typeof(cc))
@@ -1762,16 +1761,48 @@
                 //     }
                 // }
                 var newresult=[];
-                for (let i = 0; i < this.cityArray.length; i++) {
+                // for (let i = 0; i < this.cityArray.length; i++) {
                             
-                    if(this.cityArray[i]['properties']['NAME_1'] == theCity){
-                    newresult.push(this.cityArray[i])
-                    }
+                //     if(this.cityArray[i]['properties']['NAME_1'] == theCity){
+                //     newresult.push(this.cityArray[i])
+                //     }
                     
+                // }
+                if(theCity == "Hokkaido"){
+                    this.coordinate = this.cityArray.reduce((acc, val) => acc.concat(val), []);
+                    console.log('coor',this.coordinate)
+                    this.boundariesGoogleMap(lat,lng,this.coordinate);   
                 }
-                this.coordinate = newresult.reduce((acc, val) => acc.concat(val), []);
-                console.log('coor',this.coordinate)
-                this.boundariesGoogleMap(lat,lng,this.coordinate);   
+                else{
+                    if(this.allCity.length != 0){                        
+                        var result = [];
+                        for (let i = 0; i < this.allCity.length; i++) {
+                            if(this.allCity[i]['properties']['NAME_1'] == theCity){
+                            result.push(this.allCity[i])
+                            }
+                        }
+                        this.coordinate = result.reduce((acc, val) => acc.concat(val), []);
+                        this.boundariesGoogleMap(lat,lng,this.coordinate);  
+                    }
+                    else{
+                        this.axios.get("./json/city_json.json").then(respon => {
+                            var cc = [];
+                            cc = respon.data[0].features
+                            this.allCity = cc;
+                            var result = [];
+                            for (let i = 0; i < cc.length; i++) {
+                                if(cc[i]['properties']['NAME_1'] == theCity){
+                                result.push(cc[i])
+                                }
+                            }
+                            this.coordinate = result.reduce((acc, val) => acc.concat(val), []);
+                            this.boundariesGoogleMap(lat,lng,this.coordinate);            
+                            // this.coordinate[0].features[0].geometry["coordinates"] = respon.data.coordinate;
+                            // this.boundariesGoogleMap(lat,lng,respon.data);            
+                        }); 
+                    }
+                }
+                
 
                 // var aaa = this.citynewArray.reduce((acc, val) => acc.concat(val), []);
                 // console.log(typeof(this.coordinate))
@@ -1780,7 +1811,7 @@
                 // console.log('coo',cc)
                 // this.boundariesGoogleMap(lat,lng,this.citynewArray);
 
-                        // this.axios.get("./json/city_json.json").then(respon => {
+                        // this.axios.get("./json/gadm36_jpn_1.json").then(respon => {
                         //     console.log(respon.data)
                         //     // this.coordinate[0].features[0].geometry["coordinates"] = respon.data.coordinate;
                         //     this.boundariesGoogleMap(lat,lng,respon.data);            
@@ -2095,7 +2126,7 @@
                         mmarker.push([this.searchmarkers[i]['alphabet'], this.searchmarkers[i]['lat'], this.searchmarkers[i]['lng']])
                         item.push(this.searchmarkers[i])
                     }
-                    const theCity = this.searchmarkers[0]['city_eng']
+                    const theCity = this.searchmarkers[0]['city_eng'].trim();
                     const lat = this.searchmarkers[0]['lat']
                     const lng = this.searchmarkers[0]['lng']
 
@@ -2108,7 +2139,7 @@
                     //if choose city
                     if(this.citylatlng.length > 0)
                     {
-                        const theCity = this.citylatlng[0]['city_eng']
+                        const theCity = this.citylatlng[0]['city_eng'].trim();
                         const lat = this.citylatlng[0]['latitude']
                         const lng = this.citylatlng[0]['longitude']
                         this.coordinates(theCity,lat,lng);
@@ -2341,11 +2372,11 @@
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.19);
+  background-color: rgba(0, 0, 0, 0.19);  
   opacity: 0.1; */
   top: 0;
   background-color: rgba(0, 0, 0, 0.19);
-  position: absolute;
+  position: relative;
   background: #000;
   width: 100%;
   height: 500px;
@@ -2522,6 +2553,7 @@
 
 div#holder {
     position: absolute;
+
 }
 
 .hidden {

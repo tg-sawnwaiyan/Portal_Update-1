@@ -99,7 +99,7 @@ p {
     background: #e1e1e1;
     padding: 0px;
     box-shadow: 0px 1px 5px 0px #ccc !important;
-    /* height: 100%; */
+    height: 100%;
 }
 
 .admin-sidebar,
@@ -1538,6 +1538,7 @@ border-top: 5px solid #e66527; */
     -moz-box-shadow: 0px 1px 2px 0px #ccc !important;
     min-height: 100vh;
     background: #fff;
+    max-width: 1620px;
 }
 
 .full-content {
@@ -2841,7 +2842,7 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
 
 #myTabContent {
     border: 1px solid #ccc;
-    height: 376px;
+    height: 390px;
 }
 
 .nav-tabs .nav-link {
@@ -7015,7 +7016,7 @@ color: green;
 
 .nursingSearch-list span:first-child {
     display: inline-block;
-    width: 50px;
+    width: 65px;
     margin-right: 10px;
     color: #d2571c;
 }
@@ -8836,7 +8837,7 @@ background-color: #f57e46;
     /* position: absolute; */
     width: 100%;
     /* height: auto; */
-    
+    /* box-shadow: 0px 1px 5px 0px #b1b1b1 !important; */
     transition: all 250ms ease-out;
 }
 
