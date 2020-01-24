@@ -1308,15 +1308,15 @@
 
 <script>
 // import 'quill/dist/quill.snow.css'
-import {Button, Input,Select} from 'iview'
+// import {Button, Input,Select} from 'iview'
 import GoogleMap from './GoogleMap.vue'
 // import { timeout } from 'q'
 export default {
          components: {
                 GoogleMap,
-                Button,
-                Input,
-                Select,
+                // Button,
+                // Input,
+                // Select,
         },
        data() {
             return {
