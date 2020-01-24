@@ -30,6 +30,7 @@ p {
     line-height: 1.7em;
     color: #000;
 }
+
 .main-wrapper {
     max-width: 1600px;
     width: 100%;
@@ -442,21 +443,30 @@ border: 1px solid #eee; */
 .gallery-list .gallery-item {
     width: 100%;
     height: 250px;
-    margin-bottom: 35px;
+    margin-bottom: 5px;
 }
 
-.gallery-list img {
+.gallery-list .gallery-item img {
     position: relative;
     object-fit: cover;
     height: 100%;
-    margin-bottom: 3px;
+    cursor: pointer;
+    border: 3px solid #808080;
+}
+
+.gallery-list .gallery-item iframe {
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
     cursor: pointer;
     border: 3px solid #808080;
 }
 
 .gallery-list span {
+    display: inline-block;
     color: #ff9563;
     font-weight: bold;
+    line-height: 1;
 }
 
 
@@ -6723,7 +6733,8 @@ color: green;
     margin-bottom: 15px;
     border-radius: 3px;
 }
-.postal{
+
+.postal {
     width: 50%;
 }
 
@@ -9030,6 +9041,9 @@ padding: 11px;
         height: 170px;
         cursor: pointer;
     }
+    .gallery-list .gallery-item {
+        height: 200px;
+    }
 }
 
 @media only screen and (max-width: 1400px) {
@@ -9180,6 +9194,9 @@ padding: 11px;
         margin-bottom: 0 !important;
     }
     /*End job apply list */
+    .gallery-list .gallery-item {
+        height: 180px;
+    }
 }
 
 @media only screen and (max-width: 1240px) {
@@ -9315,15 +9332,14 @@ padding: 0;
     .hos_lbl {
         width: 75%;
     }
-    .hos_lbl1{
+    .hos_lbl1 {
         max-width: 18%;
     }
-    .hos_toggle{
+    .hos_toggle {
         max-width: 100%;
     }
     .m-l-20 {
         margin-left: 15px !important;
-
     }
     /* end nursing profile */
     /* common */
@@ -9401,8 +9417,7 @@ padding: 0;
     /*end job search*/
     /* profile publish */
     .gallery-list .gallery-item {
-        width: 33%;
-        height: 160px;
+        height: 130px;
     }
     .lightbox-arrow svg {
         width: 30px !important;
@@ -9742,18 +9757,11 @@ padding: 0;
         margin: 5px 2px;
         font-size: 14px;
     }
-    .gallery-list .gallery-item {
-        width: 33%;
-        height: 130px;
-    }
     .lightbox-arrow-left {
         left: -20px !important;
     }
     .lightbox-arrow-right {
         right: -20px !important;
-    }
-    .gallery-list .gallery-item {
-        width: 33%;
     }
     /* .top-mail-btn {
         top: -67px !important;
@@ -10018,10 +10026,10 @@ display: none;
     .nursing_input {
         flex: 0 0 85%;
     }
-    .hos_lbl{
+    .hos_lbl {
         width: 78%;
     }
-    .hos_map_lbl{
+    .hos_map_lbl {
         padding-bottom: 10px;
     }
     .m-l-20 {
@@ -10879,9 +10887,8 @@ background-image: none;
     /*END comment list */
     #customer_list .table.List_tbl .btn {
         display: block;
-        width:100%;
+        width: 100%;
         margin-bottom: 10px;
-
     }
 }
 
@@ -10963,12 +10970,12 @@ background-image: none;
     .nursing_table1 {
         display: block;
     }
-    .nursing-addbtn{
-        margin-top:10px;
+    .nursing-addbtn {
+        margin-top: 10px;
         padding-left: 1px;
     }
-    .nursing-gallery{
-        margin-top:100px;
+    .nursing-gallery {
+        margin-top: 100px;
     }
     .nursing_cost {
         padding: 0px;
@@ -10982,25 +10989,26 @@ background-image: none;
         /* width: 35%; */
         width: 100%;
     }
-    .nursing_table_title th,.nursing_table_title td{
+    .nursing_table_title th,
+    .nursing_table_title td {
         display: block;
-        width:100%;
+        width: 100%;
     }
-    .nursing_p-r-2{
+    .nursing_p-r-2 {
         padding-right: 2px !important;
     }
-    .nursing_p-l-2{
+    .nursing_p-l-2 {
         padding-left: 2px !important;
     }
-    .nursing-m-b-15{
+    .nursing-m-b-15 {
         margin-bottom: 10px !important;
     }
-    .p-t-10{
-        padding-top:10px !important;
+    .p-t-10 {
+        padding-top: 10px !important;
         margin-left: 13px;
     }
-    .hos-del{
-        padding-bottom:10px;
+    .hos-del {
+        padding-bottom: 10px;
     }
     .m-l-20 {
         margin-left: 5px !important;
@@ -11064,8 +11072,6 @@ background-image: none;
     /*End create news */
     /* Profile Publish */
     .gallery-list .gallery-item {
-        /* padding: 3px; */
-        margin-bottom: 25px;
         font-size: 12px;
     }
     .top-mail-btn {
