@@ -9808,7 +9808,7 @@ padding: 0;
         border-radius: 0px;
     }
     .ele {
-        margin-top: 0px;
+        margin-top: 30px;
     }
     .top-mail-btn-res {
         background: #ffffff;
@@ -10768,9 +10768,6 @@ background-image: none;
     }
     .facility_tbl th {
         width: 80px;
-    }
-    .gallery-list .gallery-item {
-        width: 50%;
     }
     .main-cost-wrap {
         width: 330px;
