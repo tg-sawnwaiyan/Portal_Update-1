@@ -1353,17 +1353,6 @@
                 this.window.width = window.innerWidth;
                 this.window.height = window.innerHeight;
             },
-            cityCall(){
-                // https://testikportal.management-partners.co.jp/json/gadm36_jpn_1.json
-                this.axios.get("./json/hokkaido_new.json").then(respon => {
-                    // console.log('return array',respon.data);
-                    console.log('return feature',respon.data)
-                    this.cityArray = respon.data;
-                    console.log(this.cityArray)
-                    // console.log(respon.data[0].features.indexOf(respon.data[0].features.includes("geometrytest")))
-                    this.$loading(false);
-                });
-            },
 
             searchfreeword(){
                 this.ci = true;
@@ -1692,10 +1681,10 @@
                     this.loading = false;                    
                }
                else if(this.ci == false && (this.townshipID[0] == 0 || this.townshipID[0] == "-1" || this.townshipID.length == 0)){ 
-                var newresult=[];
                 var jsonfile = theCity+".json";
                 
-                this.axios.get("./json/"+jsonfile).then(respon => {
+                // https://testikportal.management-partners.co.jp/json/gadm36_jpn_1.json
+                this.axios.get("./json/cities/"+jsonfile).then(respon => {
                     this.coordinate = respon.data.reduce((acc, val) => acc.concat(val), []);
                     this.boundariesGoogleMap(lat,lng,this.coordinate);  
                 }); 
