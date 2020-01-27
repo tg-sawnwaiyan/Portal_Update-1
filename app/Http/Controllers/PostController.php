@@ -245,11 +245,11 @@ class PostController extends Controller
 
             $query = $query->where(function($qu) use ($search_word){
                             $qu->where('title', 'LIKE', "%{$search_word}%")
-                                ->orWhere('main_point', 'LIKE', "%{$search_word}%");
+                                ->orWhere('main_point', 'LIKE', "%{$search_word}%"); 
                         });
         }
         $query = $query->orderBy('id','DESC')
-                        ->paginate(15);
+                        ->paginate(12);
         return  response()->json($query);
         
     }
@@ -257,7 +257,7 @@ class PostController extends Controller
     public function getPostById(Request $request) {
         $request = $request->all();
 
-        $posts = Post::where("category_id",$request['cat_id'])->orderBy('created_at','DESC')->paginate(10);
+        $posts = Post::where("category_id",$request['cat_id'])->orderBy('created_at','DESC')->paginate(12);
         return response()->json($posts);
     }
 
