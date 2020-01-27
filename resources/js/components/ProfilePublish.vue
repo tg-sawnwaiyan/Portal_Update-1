@@ -1725,9 +1725,9 @@ export default {
                     localStorage.setItem('cusType',this.type);
                     localStorage.setItem('cusId',this.cusid);
                 }
-
                 this.type = localStorage.getItem('cusType');
                 this.cusid = Number(localStorage.getItem('cusId'));
+                
                 //for responsive
                     if(this.window.width > 768) {
                         //greater than 768
@@ -1762,7 +1762,7 @@ export default {
                                 });
 
                                 if (cur_pos >= 100) {
-                                    $(".fixed-nav").css({"position": "fixed","top":"65px"});
+                                    $(".fixed-nav").css({"position": "fixed","top":"90px"});
                                 } else {
                                     $(".fixed-nav").css({"position": "unset", "top": "unset"});
                                 }
@@ -1784,7 +1784,7 @@ export default {
                                 }
                             });
                             if (cur_pos >= 100) {
-                                $(".fixed-nav").css({"position": "fixed","top":"100px"});
+                                $(".fixed-nav").css({"position": "fixed","top":"50px","display": "inline-flex","width": "100%"});
                             } else {
                                 $(".fixed-nav").css({"position": "unset", "top": "unset"});
                             }
@@ -1806,7 +1806,7 @@ export default {
                                 });
 
                                 if (cur_pos >= 100) {
-                                    $(".fixed-nav").css({"position": "fixed","top":"110px","display": "inline-flex","width": "100%"});
+                                    $(".fixed-nav").css({"position": "fixed","top":"90px","display": "inline-flex","width": "100%"});
                                 } else {
                                     $(".fixed-nav").css({"position": "unset", "top": "unset", "display": "none"});
                                 }
@@ -1998,11 +1998,22 @@ export default {
                     });
                 }
 
-                var new_width = $("#content-all").width();
+                // var new_width = $("#content-all").width();
 
-                var fixed_width = new_width - 80;
+                // var fixed_width = new_width - 80;
 
-                this.width = fixed_width + "px";
+                // this.width = fixed_width + "px";
+
+                var new_width = $("#Profile-page").width();
+                this.width = new_width + "px";
+                console.log(new_width + "px");
+
+
+                var main_header = $(".main-header").height();
+                console.log(main_header + "px");
+
+                var admin_header = $(".admin-header").height();
+                console.log(admin_header + "px");
 
             },
 
