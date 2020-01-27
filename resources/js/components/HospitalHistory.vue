@@ -330,19 +330,20 @@
                                     } else if(response.data.length == 0){
                                         this.his_hos = 0;
                                         this.$swal({
-                                            title: "確認",
-                                            text: "Sorry!Hospital Accounts are already deactived.",
-                                            type: "warning",
+                                            // title: "確認",
+                                            text: "申し訳ございません。最近見た施設のリストは全部表示されません。いくつかのアカウントが解除になっていますので。",
+                                            type: 'info',
                                             width: 350,
                                             height: 200,
-                                            showCancelButton: true,
-                                            confirmButtonColor: "#dc3545",
-                                            cancelButtonColor: "#b1abab",
-                                            cancelButtonTextColor: "#000",
-                                            confirmButtonText: "削除",
-                                            cancelButtonText: "キャンセル",
+                                            // showCancelButton: true,
+                                            showConfirmButton: true,
+                                            // confirmButtonColor: "#dc3545",
+                                            // cancelButtonColor: "#b1abab",
+                                            // cancelButtonTextColor: "#000",
+                                            confirmButtonText: "閉じる",
+                                            // cancelButtonText: "キャンセル",
                                             confirmButtonClass: "all-btn",
-                                            cancelButtonClass: "all-btn"
+                                            // cancelButtonClass: "all-btn"
                                         }).then(response => {
                                             localStorage.setItem('hospital_history','');
                                             this.local_sto = localStorage.getItem("hospital_history");

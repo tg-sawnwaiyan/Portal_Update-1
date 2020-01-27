@@ -6,7 +6,7 @@
             <div class="d-flex align-items-center">
                 <a class="navbar-brand logo-text" href="/">
                 <!-- LOGO <span>HERE</span>  -->
-                <img src="/images/testlogo7.png" style="width:240px;height:auto;">
+                <img src="/images/c9.png" style="width:240px;height:auto;">
                 </a>
                 
                 <div class="h-tel"><a class="tel" href="tel:03-1234-5678"><i class="fas fa-phone-alt"></i><span>03-1234-5678</span></a><br class="pc-1024"><a href="mailto:mpm_secretary@management-partners.co.jp"><p class="sp-1024"><i class="fas fa-envelope"></i></p><span>mpm_secretary@management-partners.co.jp</span></a></div>

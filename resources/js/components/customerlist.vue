@@ -31,7 +31,7 @@
                                 </td>
                                 <td>
                                     <div class="row m-0">
-                                        <div class="col-sm-8 p-0">
+                                        <div class="col-sm-12 p-0">
                                             <div class="row">
                                                 <div class="col-lg-2 col-md-4 custom_title">
                                                     <strong>事業者名:</strong>
@@ -66,23 +66,29 @@
                                             <!-- <div class="col-md-2 max-width13"><strong>Logo:</strong></div><div class="col-md-10">{{customer.logo}}</div> -->
                                             <div class="row mt-3">
                                                 <div class="col-md-12">
-                                                    <button class="btn delete-borderbtn" @click="deleteCustomer(customer.id)">削除</button>
+                                                    <button class="btn delete-borderbtn mr-2" @click="deleteCustomer(customer.id)">削除</button>
                                                     <!-- <router-link :to="{name:'custedit',params:{id:customer.id}}" class="btn main-bg-color all-btn white">Edit</router-link> -->
                                                     <!-- <button class="btn confirm-borderbtn" v-if="customer.status == 0">確認済</button> -->
 
                                                     <button class="btn confirm-borderbtn" :id="'confirm-btn'+customer.id" v-if="customer.status == 0" @click="comfirm(customer.id)">新規登録承認</button>
-                                                    <span class="btn confirm-borderbtn" style="border-color: #ccc!important; color: #ccc!important;cursor:not-allowed;" :id="'confirm-btn'+customer.id" v-else>登録承認済</span>
+                                                    <!-- <span class="btn confirm-borderbtn" style="border-color: #ccc!important; color: #ccc!important;cursor:not-allowed;" :id="'confirm-btn'+customer.id" v-else>登録承認済</span>     -->
+                                                    <span v-else class="">
+
+                                                        <router-link :to="{name: 'profiledit', params:{cusid: customer.id}}" v-if="customer.status == 1" class="btn confirm-orangebtn  mr-2"><i class="fa fa-map"></i> プロフィール設定</router-link>
+                                            <!-- <button class="btn confirm-orangebtn">プロフィール設定</button> -->
+                                            <router-link :to="{name: 'profile', params:{cusid: customer.id, type: customer.type_id == 2? 'hospital':'nursing'}}" v-if="customer.status == 1" class="btn confirm-orangebtn"><i class="fa fa-edit"></i> ページ編集</router-link>
+                                            <p class="mt-2">この事業者は登録承認済です。</p>
+                                                    </span>
                                                     
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-4">
+                                        <!-- <div class="col-sm-4">
                                             <p class="text-right mt-2">
                                             <router-link :to="{name: 'profiledit', params:{cusid: customer.id}}" v-if="customer.status == 1" class="btn confirm-orangebtn mb-2"><i class="fa fa-map"></i> プロフィール設定</router-link><br>
-                                            <!-- <button class="btn confirm-orangebtn">プロフィール設定</button> -->
                                             <router-link :to="{name: 'profile', params:{cusid: customer.id, type: customer.type_id == 2? 'hospital':'nursing'}}" v-if="customer.status == 1" class="btn confirm-orangebtn"><i class="fa fa-edit"></i> ページ編集</router-link>
                                             </p>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </td>
                                 <!-- <td class="text-right  mr-4 mb-3 mt-2">

@@ -62,7 +62,7 @@
                 <!-- <span @click="menuToggle()">Click</span> -->
                 <!--section one-->
                 <section>
-                    <div class="container-fluid main-wrapper">
+                    <div class="container-fluid">
                         <!--slider for ads-->
                         <div class="col-md-auto pad-free">
 

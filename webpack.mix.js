@@ -37,7 +37,7 @@ mix.copy('resources/js/jquery.scrolling-tabs.min.js', 'public/js');
 mix.copy('resources/js/jquery.dataTables.min.js', 'public/js');
 mix.copy('resources/js/dataTables.bootstrap4.min.js', 'public/js');
 mix.copy('resources/js/custom.js', 'public/js');
-
+// mix.json()
 // mix.webpackConfig({
 //    resolve: {
 //       alias: {
