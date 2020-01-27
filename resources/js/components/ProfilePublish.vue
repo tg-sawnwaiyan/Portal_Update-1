@@ -1727,6 +1727,12 @@ export default {
                 }
                 this.type = localStorage.getItem('cusType');
                 this.cusid = Number(localStorage.getItem('cusId'));
+
+                var main_header = $(".main-header").height();
+                var main_top = main_header + 20 + px ;
+
+                var admin_header = $(".admin-header").height();
+                var admin_top = admin_header + 20 + px ;
                 
                 //for responsive
                     if(this.window.width > 768) {
@@ -1784,7 +1790,7 @@ export default {
                                 }
                             });
                             if (cur_pos >= 100) {
-                                $(".fixed-nav").css({"position": "fixed","top":"50px","display": "inline-flex","width": "100%"});
+                                $(".fixed-nav").css({"position": "fixed","top": "50px","display": "inline-flex","width": "100%"});
                             } else {
                                 $(".fixed-nav").css({"position": "unset", "top": "unset"});
                             }
@@ -2006,14 +2012,7 @@ export default {
 
                 var new_width = $("#Profile-page").width();
                 this.width = new_width + "px";
-                console.log(new_width + "px");
 
-
-                var main_header = $(".main-header").height();
-                console.log(main_header + "px");
-
-                var admin_header = $(".admin-header").height();
-                console.log(admin_header + "px");
 
             },
 
