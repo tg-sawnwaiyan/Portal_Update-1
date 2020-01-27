@@ -55,7 +55,7 @@
                     </div>
                     <div class="form-group">
                         <label>内容:<span class="error">*</span></label>
-                        <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="10" placeholder="内容を入力してください。" v-model="news.body"></textarea>
+                        <quill-editor  ref="myQuilEditor" id="exampleFormControlTextarea1" class="rounded-0" placeholder="内容を入力してください。"  @change="onDetailInfoEditorChange($event)" v-model="news.body" :options="editorOption" @blur="onEditorBlur($event)" @focus="onEditorFocus($event)"/>
                         <span v-if="errors.body" class="error">{{errors.body}}</span>
                     </div>
                     <div class="form-group">
@@ -77,43 +77,24 @@
                                     </div>
                                 </div>
                                 <br>
+                                <!-- Testing Area -->
                                 <div class="row">
-                                    <div class="related_post_box card card-default" v-for="news in displayItems" :key="news.id">
+                                    <div class="related_post_box card card-default" v-for="r_news in related_news.data" :key="r_news.id">
                                         <div class="card-body">
                                             <label class="form-check-label control control--checkbox">
-                                                <input type="checkbox" :value="news.id" id="aaa" v-model="checkedNews">
+                                                <input type="checkbox" :value="r_news.id" id="aaa" v-model="checkedNews">
                                                 <div id="create_news" class="create_news">
                                                     <p>
-                                                         <img :src="'/upload/news/'+ news.photo" class="float-left m-r-10" alt="news" @error="imgUrlAlt">
-                                                         {{news.title}}
+                                                         <img :src="'/upload/news/'+ r_news.photo" class="float-left m-r-10" alt="news" @error="imgUrlAlt">
+                                                         {{r_news.title}}
                                                     </p>
                                                 </div>
                                                 <div class="control__indicator"></div>
                                             </label>
                                         </div>
                                     </div>
-                                    <!-- <div class="offset-md-4 col-md-8 mt-3" v-if="pagination">
-                                        <nav aria-label="Page navigation example">
-                                            <ul class="pagination">
-                                                <li class="page-item">
-                                                    <span class="spanclass" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
-                                                </li>
-                                                <li class="page-item">
-                                                    <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i> 前へ</span>
-                                                </li>
-                                                <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
-                                                    <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
-                                                </li>
-                                                <li class="page-item">
-                                                    <span class="spanclass" @click="next">次へ <i class='fas fa-angle-right'></i></span>
-                                                </li>
-                                                <li class="page-item">
-                                                    <span class="spanclass" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
-                                                </li>
-                                            </ul>
-                                        </nav>
-                                    </div> -->
-                                    <div class="col-12 mt-3" v-if="pagination">
+                                    <pagination :data="related_news" @pagination-change-page="getSearchPostsByCatId"></pagination>
+                                    <!-- <div class="col-12 mt-3" v-if="pagination">
                                         <nav aria-label="Page navigation example">
                                             <ul class="pagination">
                                                 <li class="page-item">
@@ -133,7 +114,7 @@
                                                 </li>
                                             </ul>
                                         </nav>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <input type="hidden" v-model="checkedNews" >
                             </div>
@@ -143,15 +124,23 @@
                     <div class="form-group">
                         <span class="btn main-bg-color white all-btn" @click="checkValidate()" v-if='status == 1'> 保存</span>
                         <span class="btn main-bg-color white all-btn" @click="checkValidate()" v-if='status == 0'> 作成</span>
-                        <span@click="$router.go(-1)" :to="{name: 'news_list'}" class="btn btn-danger all-btn">キャンセル</span>
+                        <span @click="$router.go(-1)" :to="{name: 'news_list'}" class="btn btn-danger all-btn">キャンセル</span>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </template>
+
 <script>
+import 'quill/dist/quill.snow.css'
+import {quillEditor} from 'vue-quill-editor'
+
     export default {
+        components: {
+            quillEditor
+        },
+
         data() {
                 return {
                     selectedValue: 0,
@@ -186,43 +175,21 @@
                     pageRange: 5,
                     items: [],
                     pagination: false,
-                    // check_head: false,
                     search_word:''
                 }
             },
             created() {
-                if(this.$route.name == "editPost"){
-                    this.status = 1;
-                    this.axios
-                        .get(`/api/new/editPost/${this.$route.params.id}`)
-                        .then((response) => {
-                            this.news = response.data;
-                            this.checkedNews = [];
-                            if(this.news.related_news != undefined){
-                                this.checkedNews = this.news.related_news.split(',');
-                            }
-                            else{
-                                this.checkedNews = [];
-                            }
-
-                            if(this.news.photo == null || this.news.photo == '') {
-                                this.old_photo = '';
-                            }
-                            // console.log(this.news.photo);
-
-                            // this.updateselected();
-                            this.selectedValue = this.news.category_id;
-                        });
-                        this.getPostsByCatId();
-                        this.getSearchPostsByCatId();
-                 } 
-                else {
-                    // this.axios.get('/api/category/category_list')
-                    // .then(function(response) {
-                    //     this.categories = response.data;
-                    // }.bind(this));
-                    this.getPostsByCatId();
-                }
+                // alert(this.$route.params.id);
+                // if(this.$route.name == "editPost"){
+                //     alert('id');
+                //         this.status = 1;
+                //         this.axios
+                //             .get(`/api/new/editPost/${this.$route.params.id}`)
+                //             .then((response) => {
+                //                 this.news = response.data;
+                //               });
+                //  }
+                this.getResults();
             },
             mounted() {
                 this.axios.get('/api/category/category_list')
@@ -230,60 +197,41 @@
                     this.categories = response.data;
                 }.bind(this));
             },
-            computed: {
-            pages() {
-                    return Math.ceil(this.related_news.length / this.size);
-                },
-                displayPageRange() {
-                    const half = Math.ceil(this.pageRange / 2);
-                    const isEven = this.pageRange % 2 == 0;
-                    const offset = isEven ? 1 : 2;
-                    let start, end;
-                    if (this.pages < this.pageRange) {
-                        start = 1;
-                        end = this.pages;
-                    } else if (this.currentPage < half) {
-                        start = 1;
-                        end = start + this.pageRange - 1;
-                    } else if (this.pages - half < this.currentPage) {
-                        end = this.pages;
-                        start = end - this.pageRange + 1;
-                    } else {
-                        start = this.currentPage - half + offset;
-                        end = this.currentPage + half;
-                    }
-                    let indexes = [];
-                    for (let i = start; i <= end; i++) {
-                        indexes.push(i);
-                    }
-                    return indexes;
-                },
-                displayItems() {
-                    // if(this.check_head == true){
-                    //     const head = 0;
-                    //     return this.related_news.slice(head,head + this.size);
-                    // }else{
-                        const head = this.currentPage * this.size;
-                        return this.related_news.slice(head,head + this.size);
-                    // }
-                },
-                isSelected(page) {
-                    return page - 1 == this.currentPage;
-                }
-        },
             methods: {
+                
+                getResults() {
+                   
+                    if(this.$route.name == "editPost"){
+                        this.status = 1;
+                        this.axios
+                            .get(`/api/new/editPost/${this.$route.params.id}`)
+                            .then((response) => {
+                                this.news = response.data;
+
+                                this.checkedNews = [];
+                                if(this.news.related_news != undefined){
+                                    this.checkedNews = this.news.related_news.split(',');
+                                }
+                                else{
+                                    this.checkedNews = [];
+                                }
+
+                                if(this.news.photo == null || this.news.photo == '') {
+                                    this.old_photo = '';
+                                }
+                                this.selectedValue = this.news.category_id;
+                        });
+                        this.getPostsByCatId();
+                        this.getSearchPostsByCatId();
+                    } 
+                    else {
+                        this.getPostsByCatId();
+                    }
+                },
                     fileSelected(e) {
-                        // $('.image_show').html("<div class='col-md-2'><img src='" + URL.createObjectURL(event.target.files[0]) + "' class='show-img'></div>");
-
-                        // this.upload_img = this.news.photo;
-
                         this.news.photo = event.target.files[0];
                         this.upload_img = URL.createObjectURL(event.target.files[0]);
-
                     },
-                    // updateselected() {
-                    //     $('.image_update').html("<div id='x-image' class='col-md-2'><span class='img-close-btn' onClick='closebtn()'>X</span><img src= upload/news/" + this.news.photo + " class='show-img''></div>");
-                    // },
                     removeUpload(e) {
                          this.$swal({
                             title: "確認",
@@ -301,7 +249,6 @@
                             cancelButtonClass: "all-btn"
                         }).then(response => {
                                 this.$swal({
-                                        // title: "削除されました",
                                         text: "画像を削除しました。",
                                         type: "success",
                                         width: 350,
@@ -318,6 +265,9 @@
                         const input = this.$refs.file;
                         input.type = 'text';
                         input.type = 'file';
+                    },
+                    onDetailInfoEditorChange({ editor, html, text }) {
+                        this.news['body'] = html
                     },
                     updatepost() {
                         this.$swal({
@@ -364,7 +314,6 @@
                             }
                             });
                         });
-
                     },
                     add() {
                             this.$swal({
@@ -389,47 +338,44 @@
                             fData.append('body', this.news.body)
                             fData.append('category_id', this.news.category_id)
                             fData.append('related_news', this.checkedNews)
-                            console.log(fData);
                             this.$loading(true);
                         this.axios.post('/api/new/add', fData)
                             .then(response => {
                             this.$loading(false);
                             this.name = ''
-                            console.log(response);
                             this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            // title: "確認済",
                             text: 'ニュースを投稿しました。',
                             confirmButtonText: "閉じる",
                             confirmButtonColor: "#6cb2eb",
-                            // showConfirmButton: false,
-                            // timer: 1800,
                             width: 270,
                             height: 200,
                         })
-                                this.$router.push({
-                                    name: 'news_list'
-                                })
-                            }).catch(error=>{
-
+                            this.$router.push({
+                                name: 'news_list'
+                            })
+                        }).catch(error=>{
                             if(error.response.status == 422){
-
                                 this.errors = error.response.data.errors
                             }});
-
                         })
                     },
                     getstates: function() {
                         this.news.category_id = this.selectedValue;
                     },
-                    getPostsByCatId: function() {
+                    getPostsByCatId: function(page) {
+                        if (typeof page === 'undefined') {
+                            page = 1;
+                        }
                         var cat_id = this.category_id_1;
+                        let fd = new FormData();
+                        fd.append("cat_id", cat_id);
+
                         this.axios
-                        .post('/api/new/getPostsByCatId/' + cat_id)
+                        .post('/api/new/getPostsByCatId/?page=' + page,fd)
                         .then(response => {
                             this.related_news = response.data;
-                            // this.check_head = true;
                             if(this.related_news.length > this.size) {
                                 this.pagination = true;
                             }else{
@@ -437,7 +383,10 @@
                             }
                         });
                     },
-                    getSearchPostsByCatId: function() {
+                    getSearchPostsByCatId: function(page) {
+                        if (typeof page === 'undefined') {
+                            page = 1;
+                        }
                         var cat_id = this.category_id_1;
                         if(this.search_word == '') {
                             var search_word = this.search_word;
@@ -448,7 +397,7 @@
                         let fd = new FormData();
                         fd.append("search_word", search_word);
                         fd.append("selected_category", cat_id);
-                        this.axios.post("/api/news_list/search", fd).then(response => {
+                        this.axios.post("/api/news_list/search?page=" + page,fd).then(response => {
                             this.related_news = response.data;
                             this.check_head = true;
                             if(this.related_news.length > this.size) {
@@ -460,7 +409,6 @@
                         this.search_word = '1';
                     },
                     closeBtnMethod: function(old_photo) {
-                        // console.log(old_photo);
                         if(confirm)
                         {
                             this.$swal({
@@ -483,7 +431,6 @@
                             document.getElementById('showimage').style.display = 'block';
                            }).then(response => {
                                 this.$swal({
-                                        // title: "削除されました",
                                         text: "画像を削除しました。",
                                         type: "success",
                                         width: 350,
@@ -494,7 +441,6 @@
                                     this.old_photo = old_photo;
                                     this.getPostsByCatId;
                            });
-
                         }
                     },
                     checkValidate() {
@@ -534,31 +480,12 @@
                 imgUrlAlt(event) {
                 event.target.src = "images/noimage.jpg"
             },
-            first() {
-                    this.currentPage = 0;
-                    window.scrollTo(0,0);
-                },
-                last() {
-                    this.currentPage = this.pages - 1;
-                    window.scrollTo(0,0);
-                },
-                prev() {
-                    if (0 < this.currentPage) {
-                        this.currentPage--;
-                    }
-                    window.scrollTo(0,0);
-                },
-                next() {
-                    if (this.currentPage < this.pages - 1) {
-                        this.currentPage++;
-                    }
-                    window.scrollTo(0,0);
-                },
-                pageSelect(index) {
-                    this.currentPage = index - 1;
-                    window.scrollTo(0,0);
-                },
-
             }
     }
 </script>
+
+<style>
+ .quill-editor{
+          background-color: #fff;
+  }
+</style>
