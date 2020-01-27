@@ -642,7 +642,7 @@
                                 if(this.fav_nursing.length < this.fav_nus && this.fav_nursing.length > 0)
                                 {      
                                      var nus_id = '';
-                                     this.message = "申し訳ございません。最近見た施設のリストは全部表示されません。いくつかのアカウントが解除になっていますので。";
+                                     this.message = "現在本サイトに掲載されていない介護施設についてはお気に入りリストから削除しました。";
                                      for(var i= 0;i<this.fav_nursing.length;i++)
                                      {
                                          if(i== this.fav_nursing.length-1)
@@ -667,7 +667,7 @@
                                     position: 'top-end',
                                     type: 'info',
                                     // title: '作成されました',
-                                    text: '申し訳ございません。最近見た施設のリストは表示されません。全部のアカウントが解除になっていますので。',
+                                    text: 'お気に入りの介護施設は既に本サイトに掲載されておりませんので、お気に入りリストから削除しました。',
                                     showConfirmButton: true,
                                     confirmButtonText: "閉じる",
                                     width: 250,
