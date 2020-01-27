@@ -1307,7 +1307,8 @@
 
 
 <script>
-// import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.snow.css'
+import {quillEditor} from 'vue-quill-editor'
 // import {Button, Input,Select} from 'iview'
 import GoogleMap from './GoogleMap.vue'
 // import { timeout } from 'q'
