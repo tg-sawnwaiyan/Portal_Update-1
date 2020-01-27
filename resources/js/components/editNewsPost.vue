@@ -217,12 +217,18 @@
                         this.getSearchPostsByCatId();
                  } 
                 else {
-                    this.axios.get('/api/category/category_list')
-                    .then(function(response) {
-                        this.categories = response.data;
-                    }.bind(this));
+                    // this.axios.get('/api/category/category_list')
+                    // .then(function(response) {
+                    //     this.categories = response.data;
+                    // }.bind(this));
                     this.getPostsByCatId();
                 }
+            },
+            mounted() {
+                this.axios.get('/api/category/category_list')
+                .then(function(response) {
+                    this.categories = response.data;
+                }.bind(this));
             },
             computed: {
             pages() {
