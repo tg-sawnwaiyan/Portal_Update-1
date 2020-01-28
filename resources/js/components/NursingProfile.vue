@@ -751,6 +751,9 @@ export default {
         },
 
         methods: {
+            someParentMethod(a){
+                console.log(a);
+            },
             initialCall(){
                 this.address_show = $('#address_show').val();
                 this.axios

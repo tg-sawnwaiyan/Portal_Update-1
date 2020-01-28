@@ -102,7 +102,7 @@
             />
 
           </GmapMap>
-
+        <span @click="callParent()">Click</span>
 
         </div>
 </template>
@@ -167,6 +167,11 @@ export default {
         });
   },
   methods: {
+      callParent(){
+          console.log(this.$parent.$options);
+          console.log(this.$parent.$options.methods);
+        //   this.$parent.$options.methods.someParentMethod('hello');
+      },
     // receives a place object via the autocomplete component
     addressSelect: function (lat_add,lng_add) {
       // Add a new marker
