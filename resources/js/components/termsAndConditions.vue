@@ -2,7 +2,7 @@
   <div class="col-md-12 scrolldiv4">
     <div class="row">
       <div class="col-12 text-center p-3 jt1 mb-4">
-        <h4>プライバシーポリシー</h4>
+        <h2 class="site_header">プライバシーポリシー</h2>
       </div>
       <div class="container">
         <div class="title">

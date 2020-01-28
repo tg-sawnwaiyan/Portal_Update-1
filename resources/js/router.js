@@ -44,7 +44,7 @@ import Unauthorized from './components/419';
 import Jobapplicantlist from './components/Jobapplicantlist'
 import adminlist from './components/AdminList'
 import admincreate from './components/AdminCreate'
-
+import sitepolicy from './components/sitepolicy'
 // import menu from './components/menu/Menu';
 
 // Routes
@@ -97,7 +97,7 @@ const routes = [
             auth: false
         }
     },
-    
+
     {
         name: 'News',
         path: '/',
@@ -158,7 +158,7 @@ const routes = [
             auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
         }
     },
-   
+
     {
         name: "job_details",
         path: "/job_details/:id",
@@ -281,7 +281,7 @@ const routes = [
             auth: true
         }
     },
-   
+
     {
         name: "hospital_history",
         path: "/hospital_history",
@@ -290,13 +290,13 @@ const routes = [
             auth: false
         }
     },
-   
+
     // {
     //     name: "userPasswordResetList",
     //     path: "/userPasswordResetList",
     //     component: userPasswordResetList
     // },
-  
+
 
     {
         name: "favouriteHospital",
@@ -362,7 +362,7 @@ const routes = [
         auth: false
       }
     },
-    
+
   {
     name: 'comment',
     path: '/comment/:customer_id',
@@ -439,6 +439,14 @@ const routes = [
     name: 'termsAndConditions',
     path: '/termsAndConditions',
     component: termsAndConditions,
+    meta: {
+        auth: false
+    }
+  },
+  {
+    name: 'sitepolicy',
+    path: '/sitepolicy',
+    component: sitepolicy,
     meta: {
         auth: false
     }
