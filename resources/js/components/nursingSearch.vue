@@ -1257,8 +1257,6 @@
         },
 
         created(){
-            // this.$loading(true);
-            // this.cityCall();
             window.addEventListener('resize', this.handleResize)
             this.handleResize();
 
@@ -1281,8 +1279,6 @@
             else if(this.window.width >= 992 && this.window.width < 1024) {
                 this.windowSize = 2;
                 this.paginationFactor=398;
-                // console.log(this.window.width);
-                // console.log(this.windowSize);
             }
             else if (this.window.width >= 1024 && this.window.width < 1200) {
                 this.windowSize = 3;
@@ -1291,39 +1287,15 @@
                 else if (this.window.width >= 1200 && this.window.width < 1280) {
                 this.windowSize = 2;
                 this.paginationFactor=412;
-                //  console.log(this.window.width);
             }
             else if (this.window.width >= 1280 && this.window.width < 1440) {
                 this.windowSize = 3;
                 this.paginationFactor=329;
-                // this.paginationFactor=355;
-                // console.log(this.window.width);
-                // console.log(this.paginationFactor);
-                // console.log(this.windowSize);
             }
             else if (this.window.width >= 1440 && this.window.width < 1880) {
                 this.windowSize = 3;
                 this.paginationFactor=344;
             }
-            // $(document).scroll(function() {
-            //         $(".custom_group").css({"position": "fixed","top":"100px"});
-            //         var cur_pos = $(this).scrollTop();
-
-            //         // $('.ele').each(function(active_el){
-            //         //     if($(this).position().top <= (cur_pos+71)){
-            //         //         $('.top-fixed-btn.active').removeClass('active');
-            //         //         $('.top-fixed-btn').eq(active_el).addClass('active');
-            //         //     }
-            //         // });
-
-            //         if (cur_pos >= 100) {
-            //             $(".custom_group").css({"position": "fixed","top":"100px"});
-            //         } else {
-            //             $(".custom_group").css({"position": "unset", "top": "unset"});
-            //         }
-            //     });
-            // else if( this.window.width > 1700) {
-            // }
         },
 
         mounted() {
@@ -1381,17 +1353,6 @@
                 this.window.width = window.innerWidth;
                 this.window.height = window.innerHeight;
             },
-            cityCall(){
-                // https://testikportal.management-partners.co.jp/json/gadm36_jpn_1.json
-                this.axios.get("./json/hokkaido_new.json").then(respon => {
-                    // console.log('return array',respon.data);
-                    console.log('return feature',respon.data)
-                    this.cityArray = respon.data;
-                    console.log(this.cityArray)
-                    // console.log(respon.data[0].features.indexOf(respon.data[0].features.includes("geometrytest")))
-                    this.$loading(false);
-                });
-            },
 
             searchfreeword(){
                 this.ci = true;
@@ -1404,7 +1365,6 @@
                 if ($('#search-free-word').val() != '')
                 {
                     this.id = -1;
-
                     var search_word = $('#search-free-word').val();
                 }
                 else{
@@ -1412,7 +1372,6 @@
                 }
 
                 if(localStorage.getItem("nursing_fav") == null){
-
                     this.locast = 0;
                 }
                 else{
@@ -1430,19 +1389,17 @@
                 },
                 })
                 .then((response) => {
-                        $("#mymap").css({'display' : 'block','height' : '440px','width':'100%'});
-                        $("#filtertable").css("display", "block");
-                        $("#nursing-search").css("display", "block");
+                    $("#mymap").css({'display' : 'block','height' : '440px','width':'100%'});
+                    $("#filtertable").css("display", "block");
+                    $("#nursing-search").css("display", "block");
 
-                         if(response.data.nursing.length != 0){
-                            this.norecord_msg = false;
-                            this.changeMap(response);
-                        }else{
-                            $("#mymap").css({'display' : 'none'});
-                            this.norecord_msg = true;
-                        }
-
-                    // document.getElementById('search-free-word').value = '';
+                        if(response.data.nursing.length != 0){
+                        this.norecord_msg = false;
+                        this.changeMap(response);
+                    }else{
+                        $("#mymap").css({'display' : 'none'});
+                        this.norecord_msg = true;
+                    }
                 });
 
             },
@@ -1493,12 +1450,8 @@
                 this.currentOffset += this.paginationFactor;
                 }
             },
-          
-
 
 //  google map  function start========================================
-
-
 
             getStateClick(e,lat,lng) {
                 $("#mymap").css({'display' : 'block','height' : '500px','width':'100%'});
@@ -1523,7 +1476,6 @@
                 this.id = id;
 
                 if(localStorage.getItem("nursing_fav") == null){
-
                     this.locast = 0;
                 }
                 else{
@@ -1642,7 +1594,6 @@
                 this.SpecialFeatureID = [];
                 this.onchangeid = 1;
                 if(localStorage.getItem("nursing_fav") == null){
-
                     this.locast = 0;
                 }
                 else{
@@ -1694,8 +1645,6 @@
                 
             },
             coordinates(theCity,lat,lng){
-              
-                
                 // this.loading = false
                 let  coor =[];
                 var townshipName = [];
@@ -1732,110 +1681,16 @@
                     this.loading = false;                    
                }
                else if(this.ci == false && (this.townshipID[0] == 0 || this.townshipID[0] == "-1" || this.townshipID.length == 0)){ 
-                //    this.axios.get("./json/gadm36_jpn_1.json").then(respon => {
-                //         var cc = [];
-                //         cc = respon.data.features
-                //         console.log(typeof(cc))
-                //         console.log(cc)
-                //         var result = [];
-                //         for (let i = 0; i < cc.length; i++) {
-                            
-                //             if(cc[i]['properties']['NAME_1'] == theCity){
-                //             result.push(cc[i])
-                //             }
-                            
-                //         }
-                //         this.coordinate = result.reduce((acc, val) => acc.concat(val), []);
-                //         console.log('coor',this.coordinate)
-                //         this.boundariesGoogleMap(lat,lng,this.coordinate);            
-                //     });            
-                // var jsonfile = theCity+".json";
-                // console.log(this.cityArray)
-
-
-                // for (var i=0; i <this.cityArray.length ; i++) { 
-                //     if(this.cityArray[i]['properties']['NAME_1'] == theCity){
-                //         console.log(typeof(this.cityArray[i]))
-                //         console.log('c',this.cityArray[i])
-                //         this.citynewArray.push(this.cityArray[i]);
-                //         break;
-                //     }
-                // }
-                var newresult=[];
-                // for (let i = 0; i < this.cityArray.length; i++) {
-                            
-                //     if(this.cityArray[i]['properties']['NAME_1'] == theCity){
-                //     newresult.push(this.cityArray[i])
-                //     }
-                    
-                // }
-
                 var jsonfile = theCity+".json";
                 
-                this.axios.get("./json/"+jsonfile).then(respon => {
+                // https://testikportal.management-partners.co.jp/json/gadm36_jpn_1.json
+                this.axios.get("./json/cities/"+jsonfile).then(respon => {
                     this.coordinate = respon.data.reduce((acc, val) => acc.concat(val), []);
                     this.boundariesGoogleMap(lat,lng,this.coordinate);  
                 }); 
 
-                // Thuzar Test
-                // if(theCity == "Hokkaido"){
-                //     this.coordinate = this.cityArray.reduce((acc, val) => acc.concat(val), []);
-                //     console.log('coor',this.coordinate)
-                //     this.boundariesGoogleMap(lat,lng,this.coordinate);   
-                // }
-                // else{
-                //     if(this.allCity.length != 0){                        
-                //         var result = [];
-                //         for (let i = 0; i < this.allCity.length; i++) {
-                //             if(this.allCity[i]['properties']['NAME_1'] == theCity){
-                //             result.push(this.allCity[i])
-                //             }
-                //         }
-                //         this.coordinate = result.reduce((acc, val) => acc.concat(val), []);
-                //         this.boundariesGoogleMap(lat,lng,this.coordinate);  
-                //     }
-                //     else{
-                //         this.axios.get("./json/city_json.json").then(respon => {
-                //             var cc = [];
-                //             cc = respon.data[0].features
-                //             this.allCity = cc;
-                //             var result = [];
-                //             for (let i = 0; i < cc.length; i++) {
-                //                 if(cc[i]['properties']['NAME_1'] == theCity){
-                //                 result.push(cc[i])
-                //                 }
-                //             }
-                //             this.coordinate = result.reduce((acc, val) => acc.concat(val), []);
-                //             this.boundariesGoogleMap(lat,lng,this.coordinate);            
-                //             // this.coordinate[0].features[0].geometry["coordinates"] = respon.data.coordinate;
-                //             // this.boundariesGoogleMap(lat,lng,respon.data);            
-                //         }); 
-                //     }
-                // }
-                // End Thuzar Test
-
-                // var aaa = this.citynewArray.reduce((acc, val) => acc.concat(val), []);
-                // console.log(typeof(this.coordinate))
-                // console.log('co',this.coordinate)
-                // var cc = this.coordinate.reduce((acc, val) => acc.concat(val), []);
-                // console.log('coo',cc)
-                // this.boundariesGoogleMap(lat,lng,this.citynewArray);
-
-                        // this.axios.get("./json/gadm36_jpn_1.json").then(respon => {
-                        //     console.log(respon.data)
-                        //     // this.coordinate[0].features[0].geometry["coordinates"] = respon.data.coordinate;
-                        //     this.boundariesGoogleMap(lat,lng,respon.data);            
-                        // }); 
-                        // this.axios.get("/api/cityJson/"+theCity).then(respon => {
-                        //     // var city_coordinates = respon.data
-                        //     // this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
-                        //     // this.coordinate = city_coordinates;
-                        //     this.coordinate[0].features[0].geometry["coordinates"] = respon.data;
-                        //     this.boundariesGoogleMap(lat,lng,this.coordinate);            
-                        // }); 
                 }  
                 else{
-           
                     this.axios.get('/api/townshipJson/'+township_name).then(res => {
                         // var city_coordinates = res.data
                         // this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
@@ -1845,7 +1700,6 @@
             },
 
             boundariesGoogleMap(lat,lng,coor){        
-               
                 // var bb = coor.reduce((acc, val) => acc.concat(val), []);   
                 var data = coor.reduce((acc, val) => acc.concat(val), []);   
                 // var data = coor; 
@@ -1858,9 +1712,7 @@
                 var bounds = new google.maps.LatLngBounds();
 
                 this.map.data.forEach(function(feature){
-                    console.log('feature',feature)
                     var geo = feature.getGeometry();
-                    console.log('geo',geo)
                     geo.forEachLatLng(function(LatLng){
                     bounds.extend(LatLng)
                     });
@@ -1872,8 +1724,6 @@
                 fillOpacity: 0.1,
                 strokeWeight: 1
                 })
-                // console.log('geo',geo)
-                console.log('fit bounds',bounds)
                 
                 if(this.boundsval == 'no marker'){
                     this.boundsval = bounds;
@@ -1942,7 +1792,6 @@
               
                 if(this.marker.length)
                 {
-                   
                    for (let index = 0; index < this.marker.length; index++) {
                        this.marker[index].setMap(null);
                    }
@@ -1964,9 +1813,6 @@
                     var img = this.markers[i]['alphabet']
                     var myLatLng = new google.maps.LatLng(lats, lngs);
                     var  position = new google.maps.LatLng(markers[i][1], markers[i][2]);
-                    // var trafficLayer = new google.maps.TrafficLayer();
-                    // trafficLayer.setMap(this.map);
-            
                     this.marker[i] = new google.maps.Marker({
                             position: position,
                             map: this.map,
@@ -1979,7 +1825,6 @@
                         }
                     });
                     marker = this.marker[i]
-                    // this.googleMarker = marker;
                     bounds.extend(position);
                     google.maps.event.addListener(marker, 'click', (function(marker, i) {
                     return function() {
@@ -1993,7 +1838,6 @@
                     });
 
                 }
-                console.log('position',position)
                 this.boundsval = bounds;
                 if(position != undefined){
                     this.map.fitBounds(this.boundsval);
@@ -2099,9 +1943,7 @@
                     var search_word = $('#search-free-word').val();
                 }
 
-
                 if(localStorage.getItem("nursing_fav") == null){
-
                     this.locast = 0;
                 }
                 else{
@@ -2120,7 +1962,6 @@
                     Moving_in:this.moving_in,
                     Per_month:this.per_month,
                     local:this.locast
-
                 },
                 }).then((response)=>{
                 this.nus_data = response.data.nursing;
@@ -2135,7 +1976,7 @@
                 if(this.map != null){
                     var map = this.map
                     var callback = function(feature) {
-                            map.data.remove(feature);
+                        map.data.remove(feature);
                     };
                     map.data.forEach(callback);
                 }
@@ -2180,8 +2021,6 @@
               }
                 });
             },
-
-
             // hover animate function
             mouseover(index) {
                 for (let i = 0; i < this.markerHover.length; i++) {
@@ -2200,21 +2039,7 @@
                     }
                 }
             },
-
-
 //  google map  function end========================================
-
-            features(e) {
-                if (e.target.checked) {
-
-                }
-            },
-
-            getStateHover(e) {
-                // if(e.target.tagName ==='AREA'){
-                //  console.log(e)
-                // }
-            },
 
             imgUrlAlt(event) {
                 event.target.src = "images/noimage.jpg"
@@ -2229,20 +2054,17 @@
                         fav_arr.push(index);
                         fav_arr = [...new Set(fav_arr)];
                         localStorage.setItem("nursing_fav", fav_arr);
-                        // $("#nus-fav-local").html(fav_arr.length);
                         this.nusFav = fav_arr.length;
                     }
                     else{
                         var fav_arr = [index];
                         localStorage.setItem("nursing_fav", fav_arr);
-                        // $("#nus-fav-local").html(fav_arr.length);
                         this.nusFav = fav_arr.length;
                     }
 
                     $(".fav-nursing-link-box>a").css({'cursor':'pointer','pointer-events':'auto'});
                 }
                 else{
-                    //  alert(status);
                     this.nus_data[ind].fav_check = '';
 
                     var fav_arr = JSON.parse("[" + localStorage.getItem("nursing_fav") + "]");
@@ -2251,7 +2073,6 @@
                         fav_arr.splice(index, 1);
                         localStorage.setItem("nursing_fav", fav_arr);
                     }
-                    // $("#nus-fav-local").html(fav_arr.length);
                     this.nusFav = fav_arr.length;
 
                     if(fav_arr.length == 0){
@@ -2328,9 +2149,6 @@
                     this.getTownships = response.data.getTownships
                     this.special_features = response.data.special_features
                     this.subjects = response.data.subjects;
-                    //   this.sub_child = response.data.sub_child;
-                    //console.log("aaa",this.subjects);
-                    // this.id = id;
                 })
                     this.search();
             },
@@ -2340,13 +2158,6 @@
 
 <style scoped>
 .lds-ripple {
-  /* display: inline-block;
-  position: absolute;
-  width: 80px;
-  height: 80px;
-  top: 40%;
-  left: 50%;
-  z-index: 1; */
   position: absolute;
   width: 100% !important;
   height: 500px !important;
@@ -2386,12 +2197,6 @@
 }
 
 .overlay{
-  /* position: relative;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.19);  
-  opacity: 0.1; */
   top: 0;
   background-color: rgba(0, 0, 0, 0.19);
   position: relative;
@@ -2577,19 +2382,6 @@ div#holder {
 .hidden {
     display: none;
 }
-
-/* div.overlay {
-    position: relative;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #5e5e5e;
-    opacity: 0.7;
-    z-index: 1;
-} */
-
-/* div.overlay.standard { background: #fff url('/images/google/loading.jpg') no-repeat 50% 50%; } */
-
   .card_1 {
     display: inline-block;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .15);
@@ -2716,21 +2508,6 @@ div#holder {
     display: flex;
     transition: transform 150ms ease-out;
     transform: translatex(0px);
-  }
-
-  #nursing-search .card-carousel-cards .card-carousel--card {
-    /* margin: 0 10px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-    background-color: #fff;
-    border-radius: 4px;
-    z-index: 3;
-    margin-bottom: 2px;
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1); */
-  }
-
-  #nursing-search .card-carousel-cards .card-carousel--card:hover {
-    /* box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22); */
-
   }
 
   #nursing-search .card-carousel-cards .card-carousel--card:first-child {
