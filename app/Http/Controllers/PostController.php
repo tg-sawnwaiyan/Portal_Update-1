@@ -28,7 +28,7 @@ class PostController extends Controller
 
     //    $news_list = Post::orderBy('id','DESC')->get()->toArray();
     //    $category_list = Category::select('id','name')->get()->toArray();
-            $news_list = Post::orderBy('id', 'desc')->paginate(10);
+            $news_list = Post::orderBy('id', 'desc')->paginate(12);
             $category_list = Category::select('id','name')->get()->toArray();
     
             return response()->json(Array("news"=>$news_list,"category"=>$category_list));
