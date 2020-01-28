@@ -957,10 +957,10 @@
 
                     <div class="col-12">
                         <h5 class="profile_subtit"> 医療面の受入れ</h5>
-                        <div class="row col-12 pad-free-750" style="margin: 0 auto;">
-                            <div v-for="maccept in medical_acceptance" :key="maccept.id" class="col-md-4 col-sm-6 pad-free-750" >
+                        <div class="row col-12 pad-free-750 m-auto">
+                            <div v-for="maccept in medical_acceptance" :key="maccept.id" class="col-md-4 col-sm-6 pad-free-750 accept-wrap" >
                                 <div class="accept-box">
-                                    <div class="float-left" v-for="(ma,index) in medical" :key="index" style="padding-right:10px;">
+                                    <div class="float-left" v-for="(ma,index) in medical" :key="index">
                                         <i v-if="ma.name === maccept.name && ma.accept_type === 'accept'" class="fas fa-check green"></i>
                                         <i v-if="ma.name === maccept.name && ma.accept_type === 'unaccept'" class="fas fa-times red"></i>
                                         <i v-if="ma.name === maccept.name && ma.accept_type === 'negotiate'" class="fas fa-adjust blue"></i>
@@ -1727,12 +1727,6 @@ export default {
                 }
                 this.type = localStorage.getItem('cusType');
                 this.cusid = Number(localStorage.getItem('cusId'));
-
-                var main_header = $(".main-header").height();
-                var main_top = main_header + 20 + px ;
-
-                var admin_header = $(".admin-header").height();
-                var admin_top = admin_header + 20 + px ;
                 
                 //for responsive
                     if(this.window.width > 768) {
@@ -1790,7 +1784,7 @@ export default {
                                 }
                             });
                             if (cur_pos >= 100) {
-                                $(".fixed-nav").css({"position": "fixed","top": "50px","display": "inline-flex","width": "100%"});
+                                $(".fixed-nav").css({"position": "fixed","top": admin_top ,"display": "inline-flex","width": "100%"});
                             } else {
                                 $(".fixed-nav").css({"position": "unset", "top": "unset"});
                             }
@@ -1800,7 +1794,7 @@ export default {
                         } else {
                             $(document).scroll(function() {
 
-                                $(".fixed-nav").css({"position": "fixed","top":"100px"});
+                                $(".fixed-nav").css({"position": "fixed","top":"125px"});
                                 var cur_pos = $(this).scrollTop();
                                 console.log("cur",cur_pos)
 
@@ -1812,7 +1806,7 @@ export default {
                                 });
 
                                 if (cur_pos >= 100) {
-                                    $(".fixed-nav").css({"position": "fixed","top":"90px","display": "inline-flex","width": "100%"});
+                                    $(".fixed-nav").css({"position": "fixed","top": main_top ,"display": "inline-flex","width": "100%"});
                                 } else {
                                     $(".fixed-nav").css({"position": "unset", "top": "unset", "display": "none"});
                                 }
@@ -2012,7 +2006,15 @@ export default {
 
                 var new_width = $("#Profile-page").width();
                 this.width = new_width + "px";
+                console.log(new_width + "px");
 
+
+                var main_header = $(".main-header").height();
+                 var main_top =  main_header  + "px" ;
+
+                var admin_header = $(".admin-header").height();
+                 var admin_top = admin_header  + "px" ;
+                 
 
             },
 

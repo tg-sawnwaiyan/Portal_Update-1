@@ -642,27 +642,24 @@ border-radius: 3px;
     border-left: 5px solid #63b7ff;
     color: #63b7ff;
 }
+
 .h-color1 p {
-   
     color: #a3774a;
 }
 
 .h-color2 p {
-   
     color: #9579ef;
 }
 
 .h-color3 p {
-    
     color: #21d1de;
 }
 
 .h-color4 p {
-    
     color: #d1291d;
 }
 
-.h-color5 p{
+.h-color5 p {
     color: #63b7ff;
 }
 
@@ -1244,7 +1241,12 @@ box-shadow: 0px 0px 5px rgb(212, 201, 201); */
 
 #profilenav .fav-profile {
     position: absolute;
-    top: 70px;
+    top: 60px;
+}
+
+#Profile-page .public-nurheader {
+    padding-bottom: 5px;
+    line-height: 0.2;
 }
 
 .fav-profile {
@@ -9826,116 +9828,160 @@ padding: 0;
     .lightbox-arrow-right {
         right: -20px !important;
     }
-    /* .top-mail-btn {
-        top: -67px !important;
-    } */
-    /* .fav-profile {
-        top: -10px !important;
-    } */
-    .fixed-nav {
-        width: 100%;
+    .accept-wrap {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+        padding: 0;
     }
-    .top-fixed-btn,
-    .top-fixed-btn.active {
-        /* width: auto;
-        padding: 10px 46px; */
-        margin-bottom: 10px !important;
-        border-radius: 0px;
-    }
-    .top-fixed-btn {
-        text-align: center;
-        font-size: 12px;
-        border-radius: 0px;
-    }
-    #element1 {
-        margin-top: 0;
-    }
-    .ele {
-        margin-top: 30px;
-    }
-    .top-mail-btn-res {
-        background: #ffffff;
-        margin-bottom: 10px;
-        color: #000;
-        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12) !important;
-        font-weight: bold;
-        width: 100%;
-        border: 1px solid;
-    }
-    /*End  profile publish */
-    /* job details */
-    .job_id {
-        float: none;
-        display: block;
-        width: 185px;
-        margin-top: 20px;
-        text-align: center;
-    }
-    .search_jobid {
-        float: right;
-        margin-top: 5px;
-    }
-    .job_status {
-        margin-top: 10px;
-    }
-    .form-wrap .form-left {
-        padding: 10px 15px 5px 15px;
-        /* border-bottom: 1px solid #ced4da; */
-    }
-    .form-wrap label {
-        display: block;
-    }
-    .form-wrap .form-control,
-    .form-wrap .full-wd.form-control {
-        width: 85% !important;
-    }
-    .eg-txt {
-        margin-top: 10px;
-    }
-    /*End job details */
-    /* comment list */
-    .commentWrap .d-flex {
-        flex-wrap: wrap;
-    }
-    /*END comment list */
-    /* customer list */
-    #customer_list .table.List_tbl td {
-        display: block;
-        width: 100%;
-    }
-    #customer_list .table.List_tbl td:last-child {
-        border-top: 0;
-    }
-    /*End customer list */
 }
 
 
-/* Media Queries*/
+/* .top-mail-btn {
+        top: -67px !important;
+    } */
 
+
+/* .fav-profile {
+        top: -10px !important;
+    } */
+
+.fixed-nav {
+    width: 100%;
+}
+
+.top-fixed-btn,
+.top-fixed-btn.active {
+    /* width: auto;
+        padding: 10px 46px; */
+    margin-bottom: 10px !important;
+    border-radius: 0px;
+}
+
+.top-fixed-btn {
+    text-align: center;
+    font-size: 12px;
+    border-radius: 0px;
+}
+
+#element1 {
+    margin-top: 0;
+}
+
+.ele {
+    margin-top: 30px;
+}
+
+.top-mail-btn-res {
+    background: #ffffff;
+    margin-bottom: 10px;
+    color: #000;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12) !important;
+    font-weight: bold;
+    width: 100%;
+    border: 1px solid;
+}
+
+
+/*End  profile publish */
+
+
+/* job details */
+
+.job_id {
+    float: none;
+    display: block;
+    width: 185px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.search_jobid {
+    float: right;
+    margin-top: 5px;
+}
+
+.job_status {
+    margin-top: 10px;
+}
+
+.form-wrap .form-left {
+    padding: 10px 15px 5px 15px;
+    /* border-bottom: 1px solid #ced4da; */
+}
+
+.form-wrap label {
+    display: block;
+}
+
+.form-wrap .form-control,
+.form-wrap .full-wd.form-control {
+    width: 85% !important;
+}
+
+.eg-txt {
+    margin-top: 10px;
+}
+
+
+/*End job details */
+
+
+/* comment list */
+
+.commentWrap .d-flex {
+    flex-wrap: wrap;
+}
+
+
+/*END comment list */
+
+
+/* customer list */
+
+#customer_list .table.List_tbl td {
+    display: block;
+    width: 100%;
+}
+
+#customer_list .table.List_tbl td:last-child {
+    border-top: 0;
+}
+
+
+/*End customer list */
+
+
+}
+
+/* Media Queries*/
 @media (max-width: 1024px) and (min-width: 320px) {
     .maintab-content {
         padding: 7px;
     }
+    
     .adminview-sidebar {
         height: auto;
     }
+    
     .customer-sidebar {
         display: none;
     }
 }
-
 @media (max-width: 600px) and (min-width: 400px) {
     .source-img-small {
         width: 500px;
     }
+    
     .ads-card {
         width: 120px;
     }
+    
     .adminview-sidebar {
         height: auto;
     }
 }
-
 @media (min-width: 320px) {
     .source-img-small {
         width: 90%;
@@ -9943,6 +9989,7 @@ padding: 0;
     /* .ads-card{
 width: 18rem;
 } */
+    
     .smallads-title {
         font-size: 12px;
         line-height: 1.357;
@@ -9953,6 +10000,7 @@ width: 18rem;
         top: -0.2rem;
         max-height: 200px;
     }
+    
     .today .adslist-card .smallads-title {
         font-size: 12px;
         line-height: 1.357;
@@ -9963,15 +10011,18 @@ width: 18rem;
         top: -0.2rem;
         max-height: 65px;
     }
+    
     .today .smallads-title {
         display: block;
         white-space: normal;
     }
+    
     .adslist-card {
         /* height: 71px; */
         width: 100%;
         padding: 10px 0px 10px 0px;
     }
+    
     .userview-sidebar {
         background-color: #f5f5f5;
         /* height: 91vh; */
@@ -9980,93 +10031,111 @@ width: 18rem;
         margin-top: 2px;
     }
 }
-
 @media screen and (max-width: 979px) and (max-width:752px) {
     /* create new */
+    
     .related_post_box .create_news img {
         max-width: 100px;
     }
+    
     .related_post_box .card-body {
         padding: 1rem 0.8rem;
     }
     /*end create new */
+    
     #news.t_card2 {
         margin-left: 40px;
     }
+    
     #news.t_card4 {
         margin-left: 30px;
     }
+    
     .tab-pane {
         padding-left: 0px !important;
         padding-right: 0px !important;
     }
+    
     .news_catsearch label {
         width: 30%;
     }
+    
     .news_catsearch section {
         width: 265px;
     }
 }
-
 @media screen and (max-width: 1024px) and (min-width: 768px) {
     /*fav nursing*/
+    
     .lbl-size {
         width: 355px;
     }
+    
     .lbl-width {
         width: 92px;
     }
+    
     dl.favnur dt {
         width: 22%;
     }
+    
     #nursing dl dd {
         padding-left: 0px;
     }
+    
     #headerbar {
         z-index: 999;
     }
     /*end fav nursing*/
     /*news_start*/
+    
     .t_card {
         max-width: none;
     }
+    
     .t_card2 {
         margin-left: 40px;
     }
+    
     .t_card4 {
         margin-left: 40px;
     }
     /*news_end*/
 }
-
 @media only screen and (max-width:768px) {
     .pc-768 {
         display: none;
     }
+    
     #myTabContent {
         margin-bottom: 10px;
     }
     /* start pagination */
+    
     .pagination {
         justify-content: center;
         text-align: center;
         margin-bottom: 10px;
         /* margin-right: 50%; */
     }
+    
     .pagination .page-item {
         padding: 1px;
     }
+    
     .page-item .spanclass {
         width: 30px;
         height: 30px;
         background-image: none;
     }
+    
     .spanclass {
         float: left;
         margin-top: 2px;
         border: 1px solid #8e3c15;
         border-radius: 3px;
     }
+    
     .spanclass a {
         position: relative;
     }
@@ -10075,32 +10144,40 @@ display: none;
 } */
     /* end pagination */
     /* nursing profile */
+    
     .heading-lbl {
         font-size: 1.05em;
         flex: 0 0 20%;
         max-width: 125px;
     }
+    
     .heading-lbl1 {
         font-size: 1.05em;
         flex: 0 0 20%;
         max-width: 122px;
     }
+    
     .nursing_btn {
         margin-top: 0px;
     }
+    
     .nursing_btn span {
         margin-left: 121px;
         margin-top: -45px;
     }
+    
     .nursing_input {
         flex: 0 0 85%;
     }
+    
     .hos_lbl {
         width: 100%;
     }
+    
     .hos_map_lbl {
         padding-bottom: 10px;
     }
+    
     .m-l-20 {
         margin-left: 65px !important;
     }
@@ -10108,40 +10185,50 @@ display: none;
         width: 100%;
     } */
     /* end nursing profile */
+    
     .sp-768 {
         display: block;
     }
+    
     .sp-768-block {
         display: block;
         width: 100% !important;
         padding: 5px 10px !important;
     }
+    
     .tab {
         max-width: 100% !important;
         flex: 100% !important;
     }
     /* header & menu */
+    
     .v-sidebar-menu {
         display: none !important;
     }
+    
     .content-all {
         padding-left: 0;
     }
     /* sp_adminNav */
+    
     .admin_head {
         font-size: 18px;
         background: #2c3b41;
         color: #fff;
     }
+    
     .admin_head01 {
         padding-left: 35px;
     }
+    
     .admin_head02 {
         padding-left: 50px;
     }
+    
     #sp_adminheader {
         display: block;
     }
+    
     #sp_adminheader .overlay {
         position: absolute;
         top: 0;
@@ -10154,6 +10241,7 @@ display: none;
         background: #000015;
         opacity: 0.5;
     }
+    
     .sp_adminNav {
         display: block;
         position: fixed;
@@ -10163,6 +10251,7 @@ display: none;
         height: 100%;
         z-index: 1;
     }
+    
     .sidebar_brand {
         position: fixed;
         width: 230px;
@@ -10171,6 +10260,7 @@ display: none;
         background: #222D32;
         overflow-y: auto;
     }
+    
     #sp_adminheader .admin_menu {
         position: absolute;
         display: block;
@@ -10180,9 +10270,11 @@ display: none;
         z-index: 99;
         cursor: pointer;
     }
+    
     .sp_adminNav ul li {
         position: relative;
     }
+    
     .sp_adminNav ul li span {
         display: block;
         width: 100%;
@@ -10190,10 +10282,12 @@ display: none;
         color: #fff;
         cursor: pointer;
     }
+    
     .sp_adminNav ul li span.active {
         background: #1E282C;
         border-left: 3px solid #d2571c;
     }
+    
     .sp_adminNav ul li i:first-child {
         margin-left: 10px;
         height: 30px;
@@ -10204,11 +10298,13 @@ display: none;
         color: #fff;
         background-color: #1e1e21;
     }
+    
     .sp_adminNav ul li i:nth-child(2) {
         position: absolute;
         right: 15%;
         top: 20px;
     }
+    
     .sp_adminNav ul li a {
         display: block;
         width: 100%;
@@ -10216,26 +10312,33 @@ display: none;
         color: #fff;
         transition: 0.3s all;
     }
+    
     .sp_adminNav ul li a:hover {
         background-color: rgba(30, 30, 33, 0.5);
         text-decoration: none;
     }
+    
     .sp_adminNav .sub_menu {
         padding: 0 8px;
         background: #2C3B41;
     }
+    
     .sp_adminNav .sub_menu a {
         line-height: 40px;
     }
+    
     .sp_adminNav ul.sub_menu li i:first-child {
         margin-left: 0;
     }
+    
     .sp_adminNav ul.sub_menu li:first-child {
         padding-top: 8px;
     }
+    
     .sp_adminNav ul.sub_menu li:last-child {
         padding-bottom: 8px;
     }
+    
     .down {
         -ms-transform: rotate(90deg);
         -webkit-transform: rotate(90deg);
@@ -10249,107 +10352,133 @@ display: none;
     /*end sp_adminNav */
     /*End header & menu */
     /* create new */
+    
     .related_post_box .create_news img {
         max-width: 100px;
     }
+    
     .related_post_box .card-body {
         padding: 1rem 0.8rem;
     }
     /*end create new */
+    
     .map-text-wrapper {
         display: flex;
     }
     /* job apply */
+    
     .register_box,
     .confirm_box {
         padding: 0;
     }
+    
     .register_box .multi-step span,
     .confirm_box .multi-step span {
         display: none;
     }
+    
     .multi-step {
         margin-bottom: 20px;
     }
+    
     .multi-step li {
         width: 28.73%;
         padding: 5px 10px;
         margin-left: 10px;
         font-size: 12px;
     }
+    
     .multi-step li::before {
         border-width: 9px;
         margin-top: -9px;
     }
+    
     .multi-step li.no-active::after {
         border-left-color: #fff;
         border-width: 8px;
         margin-top: -8px;
     }
+    
     .form-wrap .form-control,
     .form-wrap .full-wd.form-control {
         width: 90% !important;
         margin: 10px;
     }
+    
     .eg-txt {
         padding-left: 5px;
         width: 100%;
     }
     /*End job apply */
+    
     .wd-in {
         width: 256px;
     }
+    
     .t_card {
         max-width: none;
     }
+    
     .t_card2 {
         margin-left: 40px;
     }
+    
     .t_card4 {
         margin-left: 40px;
     }
     /*news_end*/
+    
     .card_height {
         float: left;
         height: 190px;
         cursor: pointer;
     }
     /*category*/
+    
     .t-r {
         margin-left: 17px;
         margin-right: 0px;
         margin-top: 20px;
     }
+    
     .t-l {
         margin-left: 39px;
     }
     /*category*/
     /*occupation*/
+    
     .o-r1 {
         margin-right: 0px;
     }
+    
     .o-r2 {
         margin-left: 48px;
         margin-top: 20px;
     }
     /*occupation*/
     /*advertisement*/
+    
     .a-d1 {
         margin-right: 53px;
     }
+    
     .a-d2 {
         margin-left: 78px;
         margin-top: 20px;
     }
+    
     .map-wrap {
         display: none;
     }
+    
     .searchButton {
         width: 13%;
     }
+    
     .searchTerm {
         width: 87%;
     }
+    
     #pc-hos-fav-local,
     #pc-nus-fav-local,
     #pc-hos-his-local,
@@ -10358,27 +10487,34 @@ display: none;
         font-weight: bold;
         font-size: 16px;
     }
+    
     .job-content .detail-btn .btn {
         width: 90%;
     }
+    
     .hospital-subject {
         display: table-cell;
         /* width: 74%; */
     }
+    
     .hos-content .detail-btn .btn {
         width: 100%;
     }
+    
     .sp_hos_phone {
         padding: 5px;
     }
+    
     .circle-phone {
         width: 30px;
         height: 30px;
     }
+    
     .phone-no {
         padding: 0px;
         font-size: 20px;
     }
+    
     .hos_phone i,
     .sp_hos_phone i {
         width: 30px;
@@ -10386,40 +10522,47 @@ display: none;
         line-height: 30px;
         font-size: 15px;
     }
+    
     #job_detail .fav-profile {
         width: 100%;
         padding: 10px !important;
     }
 }
-
 @media only screen and (max-width:750px) {
     .pc-750 {
         display: none;
     }
+    
     .sp-750 {
         display: block;
     }
+    
     .pad-t-10 {
         padding: 10px 0px 0px 0px;
     }
+    
     .pad-0-res {
         padding: 0px;
     }
+    
     .d-block {
         display: block !important;
     }
+    
     .profile-tit {
         padding: 0px;
     }
+    
     table.timeTable th,
     table.timeTable td {
         vertical-align: middle !important;
         width: 50px !important;
         padding: 5px !important;
     }
-    .public-nurheader {
+    /* .public-nurheader {
         margin-bottom: 10px;
-    }
+    } */
+    
     .dropdown {
         display: inline-block;
         width: 100%;
@@ -10435,9 +10578,11 @@ display: none;
         border-radius: 0.25rem;
         -webkit-appearance: none;
     }
+    
     .dropdown-men.show {
         display: inline-flex !important;
     }
+    
     .dropdown-menu-form {
         padding: 5px 10px 0;
         width: 100%;
@@ -10445,44 +10590,52 @@ display: none;
         overflow-y: scroll;
         transform: translate3d(0px, 33px, 0px) !important;
     }
+    
     .btn-sm {
         padding: 2px;
     }
+    
     ul.tab-menu-responsive {
         font-size: 10px;
     }
+    
     ul.tab-menu-responsive li {
         width: 25%;
         text-align: center;
     }
+    
     ul.tab-menu-responsive li a {
         font-size: 12px;
         padding-left: 1px;
         padding-right: 1px;
     }
+    
     ul.tab-menu-responsive li a i {
         display: block;
         font-size: 15px;
     }
+    
     div.div1 a.router-link-exact-active,
     div.div2 a.router-link-exact-active {
         border-left: 1px solid transparent !important;
     }
+    
     .btn-group {
         display: flex;
         flex-direction: row;
     }
+    
     .pad-free-750 {
         padding-left: 0px;
         padding-right: 0px;
     }
+    
     .facility_tbl th,
     .cost_table th,
     .map_tbl th {
         width: 120px;
     }
 }
-
 @media only screen and (max-width: 620px) {
     .pagination {
         justify-content: center;
@@ -10490,83 +10643,102 @@ display: none;
         margin-bottom: 10px;
         /* margin-right: 50%; */
     }
+    
     .pagination .page-item {
         padding: 1px;
     }
+    
     .page-item .spanclass {
         width: 30px;
         height: 30px;
         background-image: none;
     }
+    
     .spanclass {
         float: left;
         margin-top: 2px;
         border: 1px solid #8e3c15;
         border-radius: 3px;
     }
+    
     .spanclass a {
         position: relative;
     }
     /* profile publish */
+    
     .gallery-list .gallery-item {
         height: 100px;
     }
     /*End  profile publish */
     /*job search*/
+    
     .job-content {
         margin-bottom: 60px;
         padding: 10px;
     }
+    
     .form-wrap .form-right {
         border-left: none;
     }
     /*end job search*/
+    
     .width17 {
         width: 48%;
     }
+    
     .fixed-nav {
         display: flex;
         width: 100%;
     }
     /* new details */
+    
     .related_box {
         width: 50%;
     }
+    
     .related_box:nth-child(3n) {
         padding-right: 10px;
     }
+    
     .related_box:nth-child(2n) {
         padding-right: 0;
     }
     /*End new details */
 }
-
 @media only screen and (max-width:576px) {
     .w-sm-25 {
         width: 25% !important;
     }
+    
     .w-sm-65 {
         width: 65% !important;
     }
+    
     .w-sm-75 {
         width: 75% !important;
     }
+    
     .w-sm-100 {
         width: 100% !important;
     }
+    
     .sp-576 {
         display: block;
     }
     /* create news */
+    
     .related-card .cat_box {
         width: 100%;
     }
+    
     .related-card .cat_select {
         width: 71%;
     }
+    
     .related-card .search_box {
         width: 100%;
     }
+    
     .related_post_box .create_news img {
         float: none !important;
         margin-bottom: 10px;
@@ -10574,44 +10746,52 @@ display: none;
     }
     /*end create news */
 }
-
 @media only screen and (max-width:480px) {
     /*news*/
-    .wrapper-4 img{
+    
+    .wrapper-4 img {
         width: 95px;
         float: left;
     }
-    .txt-box{
+    
+    .txt-box {
         padding-left: 110px !important;
         position: absolute;
     }
-    .wrapper-3{
+    
+    .wrapper-3 {
         float: left;
         width: 95px;
         margin-right: 10px;
         height: 100%;
     }
-    .wrapper-3 img.fit-image{
+    
+    .wrapper-3 img.fit-image {
         height: 100%;
-
     }
-    .single-news-box{
+    
+    .single-news-box {
         min-height: 75px;
     }
-    .single-news-box p{
+    
+    .single-news-box p {
         overflow: hidden;
         height: -webkit-fill-available;
     }
-    .category_box{
+    
+    .category_box {
         margin-top: 0px;
     }
-    .category_box h4{
+    
+    .category_box h4 {
         font-size: 16px;
     }
-    .category_news_title{
+    
+    .category_news_title {
         padding: 0px 10px 10px 0px;
     }
     /*fav nursing*/
+    
     .close-480 {
         display: block;
         line-height: 2px;
@@ -10620,56 +10800,71 @@ display: none;
         width: 35px;
         padding: 0px;
     }
+    
     .check-resize {
         display: block;
     }
+    
     dl.favnur dt {
         display: block;
         width: auto;
     }
+    
     #nursing dl dd {
         padding-left: 0px;
     }
+    
     .fav-update-wrap {
         max-width: 100%;
         flex: 0 0 100%;
     }
+    
     .fav-update-wrap {
         padding: 0;
         background: #eaeef0;
         border: 1px solid #ddd;
         text-align: center;
     }
+    
     .favnur {
         border-right: 1px solid #ccc !important;
     }
+    
     .compare-wrap {
         max-width: 100%;
     }
+    
     .fav-update-btn {
         width: 35%;
         line-height: 25px;
     }
+    
     .fnt-title {
         font-size: 15px;
     }
+    
     .fnt-check {
         font-size: 13px;
     }
+    
     .pb-4,
     .py-4 {
         padding-bottom: 0px !important;
     }
+    
     #nursing .modal-footer {
         padding: 0px;
     }
+    
     .modal-hr hr {
         margin-top: 0.5rem;
         margin-bottom: 0.5rem;
     }
+    
     .lbl-size {
         width: auto;
     }
+    
     .job_count {
         font-size: 15px;
         padding: 0px 5px 0px;
@@ -10684,9 +10879,11 @@ width: 60px;
 height: 30px;
 transition: background-color .3s;
 } */
+    
     .pc-480 {
         display: none;
     }
+    
     .page-item:first-child .spanclass,
     .page-item:last-child .spanclass,
     .page-item:nth-child(2) .spanclass,
@@ -10695,6 +10892,7 @@ transition: background-color .3s;
         height: 30px;
         transition: background-color .3s;
     }
+    
     .pagination {
         /* flex-wrap: wrap; */
         justify-content: center;
@@ -10702,6 +10900,7 @@ transition: background-color .3s;
         margin-bottom: 10px;
         /* margin-right: 20%; */
     }
+    
     .pagination .page-item {
         padding: 1px;
     }
@@ -10710,38 +10909,47 @@ width: 28px;
 height: 25px;
 background-image: none;
 } */
+    
     .spanclass {
         float: left;
         margin-top: 2px;
         border: 1px solid #8e3c15;
         border-radius: 3px;
     }
+    
     .spanclass a {
         position: relative;
     }
+    
     .pc-paginate {
         display: none;
     }
     /*create_news*/
+    
     .news_catsearch {
         padding: 15px;
     }
+    
     .news_catsearch label {
         display: none;
     }
+    
     .admin_page_edit {
         text-align: justify !important;
         padding: 10px;
     }
+    
     .admin_page_edit .edit-borderbtn,
     .admin_page_edit .delete-borderbtn {
         min-width: 55px;
         font-size: 12px;
     }
+    
     .custom_title {
         position: relative;
         margin: 5px 0;
     }
+    
     .custom_title:after {
         content: '';
         position: absolute;
@@ -10753,113 +10961,143 @@ background-image: none;
         border-radius: 2px;
         background: #d2571c;
     }
+    
     #customer_list .custom_title:after {
         left: 15px;
     }
+    
     .scroll_responsive {
         overflow-x: auto;
     }
+    
     .scroll_responsive .table {
         margin-bottom: 0 !important;
     }
+    
     .custom-table {
         width: 555px;
     }
+    
     .t_card {
         margin-left: 22px;
     }
+    
     #create_news .title {
         padding: 14px;
         font-size: 12px;
         padding-left: 10px;
         margin-top: -7px;
     }
+    
     .card_height {
         float: left;
         height: 236px;
         cursor: pointer;
     }
+    
     .pc-m-0-10 {
         margin: 0px 10px;
     }
+    
     .pc-m-r-10 {
         margin-right: 10px;
     }
+    
     .mb-10 {
         margin-bottom: 10px;
     }
+    
     .related-card .cat_wrap {
         width: 100%;
     }
     /* end create news */
     /* news list */
+    
     .List_tbl tr {
         width: 100%;
     }
+    
     .List_tbl tr td {
         display: block;
         width: 100%;
     }
+    
     .table.List_tbl td:first-child {
         width: 100%;
     }
+    
     .table.List_tbl td:nth-child(2) {
         border: none;
     }
+    
     #customer_list .table.List_tbl td:last-child {
         border: none;
         text-align: left !important;
     }
     /*end news list */
     /* new details */
+    
     .related_box {
         width: 100%;
         padding: 0 !important;
     }
     /*End new details */
     /*category*/
+    
     .t-r {
         margin-right: -8px;
     }
+    
     .t-l {
         margin-left: 1px;
     }
     /*occupation*/
+    
     .o-r1 {
         margin-right: 19px;
     }
+    
     .o-r2 {
         margin-left: 29px;
     }
     /*occupation*/
     /*advertisement*/
+    
     .a-d1 {
         margin-right: 0px;
     }
+    
     .a-d2 {
         margin-left: 12px;
         margin-top: 20px;
     }
+    
     .info_tbl th {
         width: 90px;
     }
+    
     .cash-lbl {
         font-size: 1.4em;
     }
+    
     .facility_tbl th {
         width: 80px;
     }
+    
     .main-cost-wrap {
         width: 330px;
         overflow-x: scroll;
     }
+    
     .main-cost-table {
         width: 550px !important;
         float: none !important;
     }
+    
     .changeLink {
         font-size: 12px;
     }
+    
     .staff_tbl tr,
     .moving-in_tbl tr {
         display: -webkit-box;
@@ -10872,64 +11110,79 @@ background-image: none;
         flex-wrap: wrap;
         border-bottom: 0;
     }
+    
     .staff_tbl th,
     .moving-in_tbl th {
         width: 100px;
     }
+    
     .staff_tbl td,
     .moving-in_tbl td {
         width: calc(100% - 100px);
     }
+    
     .cost_table th,
     .map_tbl th {
         width: 100px;
     }
+    
     .cost_table td,
     .map_tbl td {
         width: calc(100% - 100px);
     }
+    
     #googlemap {
         min-height: 200px;
     }
+    
     .comment-btn-wrapper {
         width: 100%;
     }
+    
     .no-data-size {
         font-size: 16px !important;
     }
+    
     .nocomment-phone {
         font-size: 25px !important;
     }
+    
     .no-comment-title span {
         display: block;
         line-height: 1.2;
     }
+    
     .no-comment-title a {
         font-size: 20px;
     }
+    
     .phone-color {
         width: 30px !important;
         height: 30px !important;
         font-size: 18px !important;
         line-height: 30px !important;
     }
+    
     .fav-profile {
         width: 128px;
         right: 11px;
         padding: 5px 2px !important;
         font-size: 14px;
     }
+    
     .top-mail-btn {
         right: 135px !important;
         width: 128px !important;
         font-size: 12px !important;
     }
+    
     .top-fixed-btn,
     .top-fixed-btn.active {
         /* padding: 3.29999%; */
     }
     /*End  profile publish */
     /* Job Detail */
+    
     .job-title-color {
         padding-left: 23px;
         font-size: 16px;
@@ -10937,9 +11190,11 @@ background-image: none;
     }
     /*End Job Detail */
     /* job apply */
+    
     .jop-apply-tit-wrap {
         padding: 0;
     }
+    
     .job-apply-color {
         padding-left: 23px;
         font-size: 16px;
@@ -10947,221 +11202,282 @@ background-image: none;
     }
     /*End job apply */
     /* common */
+    
     .p0-480 {
         padding: 0 !important;
     }
+    
     .breadcrumb {
         padding: 0 !important;
     }
     /*End common */
+    
     .map-text-wrapper {
         display: block;
     }
+    
     .searchButton {
         width: 28%;
     }
+    
     .searchTerm {
         width: 80%;
     }
+    
     .freeword-responsive h3 {
         padding: 0px;
     }
+    
     .map-fa-icon {
         width: 100%;
     }
+    
     .freeword-responsive p {
         text-align: center !important;
         font-size: 20px;
     }
+    
     .offset {
         width: 100% !important;
     }
     /* comment list */
+    
     .commentlist_tbl td {
         display: block;
         width: 100%;
     }
+    
     .commentlist_tbl td:nth-child(2) {
         padding-left: 5px;
     }
     /*END comment list */
+    
     #customer_list .table.List_tbl .btn {
         display: block;
         width: 100%;
         margin-bottom: 10px;
     }
+    
+    .accept-wrap {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding: 0;
+    }
 }
-
 @media only screen and (max-width: 414px) {
     .sp-414 {
         display: block !important;
     }
+    
     .sp-414-table {
         display: table-cell !important;
     }
+    
     .pc-414 {
         display: none !important;
     }
+    
     .pc-414-table {
         display: none !important;
     }
+    
     .pc-414-inline {
         display: none !important;
     }
     /*create_news*/
+    
     .sp-414-timetable .table th,
     .sp-414-timetable .table td {
         padding: 0px !important;
         vertical-align: middle;
     }
+    
     .hos-content {
         padding: 10px;
     }
+    
     .m-b-414 {
         margin-bottom: 10px;
     }
+    
     div#sp-414-block .nur_date {
         display: inline-block;
         margin-top: 10px;
     }
+    
     div#sp-414-block .fac_list {
         padding: 6px;
         display: inline-block;
         width: auto;
     }
     /* nursing profile */
+    
     .d-flex {
         flex-wrap: wrap !important;
     }
+    
     .nursing_input {
         flex: 0 0 100%;
         padding: 0;
         margin: 0;
         padding: 0 7px;
     }
+    
     .heading-lbl {
         font-size: 1.05em;
         flex: 0 0 100%;
         /* max-width: 100%; */
     }
+    
     .heading-lbl1 {
         font-size: 1.05em;
         flex: 0 0 100%;
         max-width: 100%;
     }
+    
     .nursing_btn {
         margin-top: 0px;
     }
+    
     .nusing_btn1 {
         background-color: #0cc72c !important;
         width: 68px;
     }
+    
     .nursing_toggle_responsive {
         margin-top: -45px;
         margin-left: 127px;
     }
+    
     .nursing_add_responsive {
         margin-top: -27px;
     }
+    
     .nursing_table {
         display: block;
         width: 100%;
     }
+    
     .nursing_table1 {
         display: block;
     }
+    
     .nursing-addbtn {
         margin-top: 10px;
         padding-left: 1px;
     }
+    
     .nursing-gallery {
         margin-top: 100px;
     }
+    
     .nursing_cost {
         padding: 0px;
         margin-left: 16px;
     }
+    
     .nursing_title_lbl {
         display: block;
         margin-bottom: -20px;
     }
+    
     #gallery-payment table tr>th:first-child {
         /* width: 35%; */
         width: 100%;
     }
+    
     .nursing_table_title th,
     .nursing_table_title td {
         display: block;
         width: 100%;
     }
+    
     .nursing_p-r-2 {
         padding-right: 2px !important;
     }
+    
     .nursing_p-l-2 {
         padding-left: 2px !important;
     }
+    
     .nursing-m-b-15 {
         margin-bottom: 10px !important;
     }
+    
     .p-t-10 {
         padding-top: 10px !important;
         margin-left: 13px;
     }
+    
     .hos-del {
         padding-bottom: 10px;
     }
+    
     .m-l-20 {
         margin-left: 5px !important;
         margin-top: 5px;
     }
+    
     .postal {
         width: 100%;
     }
     /* end nursing profile */
 }
-
 @media only screen and (max-width: 380px) {
     /* header */
+    
     #sp_headerbar .fav_his {
         float: none;
         text-align: center;
     }
+    
     ul.menu li.first-submenu {
         position: absolute;
         top: 18px;
         right: 16px;
         font-size: 20px;
     }
+    
     .login_nav li.first-submenu {
         top: 18px !important;
     }
+    
     ul.menu_list li i.fa-twitter,
     ul.menu_list li i.fa-facebook-f {
         color: inherit !important;
     }
+    
     .first-submenu span {
         display: none;
     }
+    
     .d-none-380 {
         display: none !important;
     }
+    
     .backwrapper {
         padding: 10px;
         background: #f7f0ed;
     }
+    
     .d-none-768 {
         display: block;
         text-align: center;
     }
+    
     .d-none-380 {
         display: none;
     }
+    
     .sp_social .social-link {
         float: none;
         display: inline-block;
     }
     /*end header */
     /* create news */
+    
     .related_post_box {
         -webkit-box-flex: 0;
         -ms-flex: 0 0 100%;
@@ -11171,14 +11487,17 @@ background-image: none;
     }
     /*End create news */
     /* Profile Publish */
+    
     .gallery-list .gallery-item {
         font-size: 12px;
     }
+    
     .top-mail-btn {
         right: 125px !important;
         width: 98px !important;
         font-size: 12px !important;
     }
+    
     .fav-profile {
         /* width: 116px; */
         right: 0px;
@@ -11186,52 +11505,57 @@ background-image: none;
         top: 0px !important;
     }
     /*End  Profile Publish */
+    
     .related-card .cat_lbl {
         font-size: 12px;
     }
+    
     .related-card .cat_select {
         width: 66%;
         margin-left: auto;
     }
 }
-
 @media only screen and (max-width:320px) {
     /*create_news*/
+    
     .searchButton {
         width: 35% !important;
     }
+    
     .news_catsearch label {
         width: 55%;
     }
+    
     .nursing_toggle_responsive {
         /* margin-top: -45px; */
         margin-left: 115px;
     }
+    
     .nursing_btn span {
         margin-left: 0;
         margin-top: 0;
     }
+    
     .postal {
         width: 100%;
     }
 }
-
 @media screen and (max-width: 979px) and (min-width: 752px) {
     .map-box-reponsive {
         display: block;
     }
+    
     .fav-update-btn {
         margin: 33px auto;
     }
 }
 
-
 /**************card carousel***********************/
-
 @media only screen and (max-width:768px) {
     #fav-history-page .card-carousel-cards .card-carousel--card--footer {
         padding: 0px;
     }
+    
     #hospital .nav-content,
     #nursing .nav-content {
         border: none;
@@ -11240,193 +11564,214 @@ background-image: none;
         margin-left: 0px !important;
         width: 25px !important;
     }
+    
     #fav-history-page .nav-box[disabled] .nav-content {
         border: none;
         background: #fff !important;
         width: 25px !important;
     }
 }
-
 @media only screen and (min-width: 320px) and (max-width: 360px) {
     #fav-history-page .card-carousel {
         width: 263px !important;
     }
+    
     #fav-history-page .card-carousel {
         overflow: visible;
     }
+    
     #fav-hospital-page #fav-history-page .card-carousel {
         width: 272px !important;
     }
+    
     #fav-hospital-page #fav-history-page .card-carousel-wrapper {
         margin-left: -16px;
     }
 }
-
 @media only screen and (min-width: 360px) and (max-width: 375px) {
     #fav-history-page .card-carousel {
         width: 261px !important;
     }
+    
     #fav-history-page .card-carousel {
         overflow: visible;
     }
+    
     #fav-hospital-page #fav-history-page .card-carousel {
         width: 272px !important;
     }
+    
     #fav-hospital-page #fav-history-page .card-carousel-wrapper {
         margin-left: -16px;
     }
 }
-
 @media only screen and (min-width: 375px) and (max-width: 450px) {
     #fav-history-page .card-carousel {
         width: 261px !important;
     }
+    
     #fav-history-page .card-carousel {
         overflow: visible;
     }
+    
     #fav-hospital-page #fav-history-page .card-carousel {
         width: 272px !important;
     }
+    
     #fav-hospital-page #fav-history-page .card-carousel-wrapper {
         margin-left: -11px;
     }
 }
 
-
 /* Medium devices (landscape tablets, 768px and up) */
-
 @media only screen and (min-width: 414px) and (max-width: 768px) {
     #fav-history-page .card-carousel {
         width: 261px !important;
     }
+    
     #fav-hospital-page #fav-history-page .card-carousel {
         width: 272px !important;
     }
+    
     #fav-hospital-page #fav-history-page .card-carousel-wrapper {
         margin-left: 5px;
     }
 }
-
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     #fav-history-page .card-carousel {
         width: 521px!important;
     }
+    
     #fav-hospital-page #fav-history-page .card-carousel {
         width: 545px !important;
     }
+    
     #fav-hospital-page #fav-history-page .card-carousel-wrapper {
         margin-left: -13px;
     }
+    
     #fav-history-page .card-carousel {
         overflow: visible;
     }
 }
 
-
 /* Large devices (laptops/desktops, 992px and up) */
-
 @media only screen and (min-width: 992px) and (max-width: 1024px) {
     #fav-history-page .card-carousel {
         width: 799px!important;
     }
+    
     .custom-table>.table th,
     .table td {
         padding: 6px;
     }
+    
     .nav-content {
         margin-left: 3px;
         margin-right: -10px;
     }
+    
     .profile_wd {
         width: 242px !important;
     }
 }
-
 @media only screen and (min-width: 1024px) and (max-width: 1200px) {
     #fav-history-page .card-carousel {
         width: 768px !important;
     }
+    
     #fav-hospital-page #fav-history-page .card-carousel {
         width: 800px !important;
     }
 }
-
 @media only screen and (min-width: 1023px) and (max-width: 1200px) {
     .map-leftwrapper {
         padding-left: 0px;
     }
 }
-
 @media only screen and (min-width: 1200px) and (max-width: 1280px) {
     #fav-history-page .card-carousel {
         /* width: 783px!important; */
         width: 783px!important;
     }
+    
     #fav-hospital-page #fav-history-page .card-carousel {
         width: 814px !important;
     }
 }
 
-
 /* Extra large devices (large laptops and desktops, 1200px and up) */
-
 @media only screen and (min-width: 1280px) and (max-width: 1440px) {
     #fav-history-page .card-carousel {
         /* width: 783px!important; */
         width: 1503px!important;
     }
+    
     #fav-hospital-page #fav-history-page .card-carousel {
         width: 1084px !important;
     }
+    
     .map-wrap {
         overflow: hidden;
     }
 }
-
 @media only screen and (min-width: 1440px) and (max-width: 1880px) {
     #fav-history-page .card-carousel {
         width: 1046px!important;
         margin-left: 20px;
     }
+    
     #fav-hospital-page #fav-history-page .card-carousel {
         width: 1084px !important;
     }
+    
     .main-content {
         width: 100%;
     }
+    
     .nav-warp {
         max-width: 96%;
         padding: 0;
     }
+    
     .fixed-ads-fluid {
         width: 100%;
     }
+    
     #headerbar {
         display: block;
         top: 76px;
     }
+    
     #headerbar li {
         display: inline-block;
     }
+    
     .gNav {
         margin-left: 2%;
     }
+    
     .gNav li a {
         padding: 0 5px;
     }
+    
     .navbar-expand-lg .navbar-nav .nav-link {
         padding-right: 5px;
         padding-left: 5px;
     }
+    
     .social-link:nth-child(3) {
         margin-left: 5px;
     }
+    
     .ads-slider {
         margin: 0 0 20px 35px;
     }
+    
     .adslist-card {
         height: auto;
     }
+    
     .ads-img {
         display: block;
         float: none;
@@ -11434,33 +11779,39 @@ background-image: none;
         width: auto;
         margin: 0 auto;
     }
+    
     .fav-profile {
         right: 37px;
     }
+    
     .today .adslist-card .smallads-title {
         top: 7px;
     }
+    
     .sub-title>.ads-title {
         position: unset;
         margin: 10px 0 30px;
     }
+    
     .job-img {
         /* max-width: 80% !important;*/
         margin: 0 auto 20px;
         flex: unset;
     }
+    
     .job-box {
         /* max-width: 100% !important;*/
         flex: unset;
     }
+    
     .compare-wrap {
         max-width: 82%;
     }
+    
     .fav-update-wrap {
         max-width: 19%;
         flex: 0 0 18%;
     }
 }
-
 
 /**************end card carousel***********************/

@@ -1383,7 +1383,7 @@
             },
             cityCall(){
                 // https://testikportal.management-partners.co.jp/json/gadm36_jpn_1.json
-                this.axios.get("https://testikportal.management-partners.co.jp/json/hokkaido_new.json").then(respon => {
+                this.axios.get("./json/hokkaido_new.json").then(respon => {
                     // console.log('return array',respon.data);
                     console.log('return feature',respon.data)
                     this.cityArray = respon.data;
@@ -1772,7 +1772,7 @@
 
                 var jsonfile = theCity+".json";
                 
-                this.axios.get("https://testikportal.management-partners.co.jp/json/"+jsonfile).then(respon => {
+                this.axios.get("./json/"+jsonfile).then(respon => {
                     this.coordinate = respon.data.reduce((acc, val) => acc.concat(val), []);
                     this.boundariesGoogleMap(lat,lng,this.coordinate);  
                 }); 

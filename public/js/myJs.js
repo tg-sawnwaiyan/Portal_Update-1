@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -339,6 +338,3 @@ function delIt(eleId) {
 /***/ })
 
 /******/ });
-=======
-!function(e){var c={};function t(n){if(c[n])return c[n].exports;var o=c[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=e,t.c=c,t.d=function(e,c,n){t.o(e,c)||Object.defineProperty(e,c,{configurable:!1,enumerable:!0,get:n})},t.n=function(e){var c=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(c,"a",c),c},t.o=function(e,c){return Object.prototype.hasOwnProperty.call(e,c)},t.p="/",t(t.s=343)}({343:function(e,c,t){e.exports=t(344)},344:function(e,c){$("#save_value").click(function(){var e=[];$(":checkbox:checked").each(function(){e.push(parseInt($(this).val()))})});$(".select_all").on("click",function(){this.checked?$(".checkbox").each(function(){this.checked=!0}):$(".checkbox").each(function(){this.checked=!1})}),$(".checkbox").on("click",function(){$(".checkbox:checked").length==$(".checkbox").length?$(".select_all").prop("checked",!0):$(".select_all").prop("checked",!1)}),$(".checkbox").on("click",function(){$(".checkbox:checked").length==$(".checkbox").length?$(".select_all").prop("checked",!0):$(".select_all").prop("checked",!1)}),$("select").on("click",function(){$(this).parent(".select-box").toggleClass("open")}),$(document).mouseup(function(e){var c=$(".select-box");0===c.has(e.target).length&&c.removeClass("open")}),$("select").on("change",function(){var e=$(this).find("option:selected").text(),c=$(this).attr("id");$("[for='"+c+"']").find(".label-desc").html(e)})}});
->>>>>>> d3df1b54ebf1b868a10fe48c140c196d64f49525

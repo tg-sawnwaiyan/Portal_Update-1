@@ -113,7 +113,7 @@ export default {
          address:String,
          township: Number,
          city: Number,
-         township_list: Array
+         township_list: Array 
         },
   data () {
     return {
