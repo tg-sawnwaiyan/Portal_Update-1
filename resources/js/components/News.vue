@@ -1698,10 +1698,7 @@
     .news-slider-width{
         width: 702px;
     }
-    .pad-new{    
-        padding-right: 20px !important;
-        padding-left: 20px !important;
-    }
+    
 }
 @media only screen and (max-width: 414px){
     .news-slider-width{
