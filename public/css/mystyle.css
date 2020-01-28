@@ -2332,11 +2332,6 @@ width: 18rem;
     font-size: 15px;
 }
 
-.sitepolicy ol,
-.privacy ol {
-    margin-bottom: 35px;
-}
-
 .sitepolicy ol li,
 .privacy ol li {
     margin-bottom: 5px;
@@ -2354,6 +2349,10 @@ ol.sub-ol li,
 ul.sub-ul li {
     font-weight: 500;
     font-size: 15px;
+}
+
+.sub-list li {
+    list-style-type: square !important;
 }
 
 .office_contact {
@@ -9625,7 +9624,7 @@ padding: 0;
     }
     /* end hospital and nursing profile */
     /* common */
-    li {
+    ul li {
         list-style: none;
     }
     /*end common */
