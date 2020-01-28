@@ -1695,7 +1695,7 @@
                 }  
                 else{
                     var jsonfile = theCity+".json";
-                    console.log('json',jsonfile.toLowerCase());
+                    jsonfile = jsonfile.toLowerCase();
                     this.axios.get('./json/Townships/'+jsonfile).then(res => {
                      var township_coor = []
                      for(var i = 0; i < res.data.features.length; i++)
@@ -1707,11 +1707,7 @@
                               township_coor.push(res.data.features[i]);
                                this.boundariesGoogleMap(lat,lng,township_coor);       
                          }
-                       
-                     }
-                       
-                       
-                        
+                     }                     
                     })
                 }
             },
