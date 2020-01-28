@@ -1,6 +1,10 @@
 const mix = require('laravel-mix');
 // require('laravel-mix-bundle-analyzer');
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> 3d44a6d0188a3a22827e0b7cf7e2db5b969ce6b3
 // if (!mix.inProduction()) {
 //     mix.bundleAnalyzer();
 // }
@@ -27,7 +31,7 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css');
 // mix.css('resources/css/mystyle.css', 'public/css'); //V
 
-mix.js('resources/js/myJs.js', 'public/js');
+// mix.js('resources/js/myJs.js', 'public/js');
 
 // mix.webpackConfig({
 //    resolve: {
