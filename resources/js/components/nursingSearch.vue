@@ -1694,7 +1694,9 @@
                 }  
                 else{
                      console.log('c');
-                    this.axios.get('/api/townshipJson/'+township_name).then(res => {
+                    this.axios.get('./json/Townships/'+jsonfile).then(res => {
+
+                        console.log(res);
                         // var city_coordinates = res.data
                         // this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
                          this.boundariesGoogleMap(lat,lng,res.data);       
