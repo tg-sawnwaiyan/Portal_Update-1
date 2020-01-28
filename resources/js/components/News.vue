@@ -522,8 +522,8 @@
                 </h4>
 
                 <div :id="'newsChangeLink' + index" class="row m-lr-0" v-if="group[0].pattern == 1">
-
-                    <div class="col-md-6 col-lg-3 pad-new pattern-child">
+                    <slick :options="slickOptions" class="news-slider-width">                  
+                    <div class="pad-new pattern-child">
 
                         <router-link :to="'/newsdetails/'+group[0].pid">
 
@@ -533,7 +533,7 @@
 
                                     <transition name="fade">
 
-                                        <img :src="'/upload/news/' + group[0].photo" class="fit-image" @error="imgUrlAlt">
+                                        <img :src="'/upload/news/' + group[0].photo" class="fit-image img-fluid" @error="imgUrlAlt">
 
                                     </transition>                                
 
@@ -558,7 +558,7 @@
 
                     </div>
 
-                    <div class="col-md-6 col-lg-3 pad-new pattern-child">
+                    <div class="pad-new pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(1, 4)" :key="index" :to="'/newsdetails/'+item.pid">
 
@@ -572,7 +572,7 @@
 
                                         <transition name="fade">
 
-                                            <img :src="'/upload/news/' + item.photo" class="fit-image-0"  @error="imgUrlAlt">
+                                            <img :src="'/upload/news/' + item.photo" class="fit-image-0 img-fluid"  @error="imgUrlAlt">
 
                                         </transition>
 
@@ -608,7 +608,7 @@
 
                     </div>
 
-                    <div class="col-md-6 col-lg-3 pad-new pattern-child">
+                    <div class="pad-new pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(4,12)" :key="index" :to="'/newsdetails/'+item.pid" style="color:#333;">
 
@@ -622,7 +622,7 @@
 
                     </div>
 
-                    <div class="col-md-6 col-lg-3 pad-new pattern-child">
+                    <div class="pad-new pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(12, 15)" :key="index" :to="'/newsdetails/'+item.pid">
 
@@ -668,13 +668,13 @@
 
                         </router-link>
 
-                    </div>
-
+                    </div>                    
+                     </slick>
                 </div>
 
                 <div :id="'newsChangeLink' + index" class="row m-lr-0" v-if="group[0].pattern == 2">
-
-                    <div class="col-md-6 col-lg-3 pad-new pattern-child">
+                    <slick :options="slickOptions" class="news-slider-width"> 
+                    <div class="pad-new pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(0, 3)" :key="index" :to="'/newsdetails/'+item.pid">
 
@@ -720,9 +720,9 @@
 
                         </router-link>
 
-                    </div>
+                    </div>                    
 
-                    <div class="col-md-6 col-lg-3 pad-new pattern-child">
+                    <div class="pad-new pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(3, 11)" :key="index" :to="'/newsdetails/'+item.pid" style="color:#333;">
 
@@ -736,7 +736,7 @@
 
                     </div>
 
-                    <div class="col-md-6 col-lg-3 pad-new pattern-child">
+                    <div class="pad-new pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(11, 14)" :key="index" :to="'/newsdetails/'+item.pid">
 
@@ -784,7 +784,7 @@
 
                     </div>
 
-                    <div class="col-md-6 col-lg-3 pad-new pattern-child">
+                    <div class="pad-new pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(14, 22)" :key="index" :to="'/newsdetails/'+item.pid" style="color:#333;">
 
@@ -797,12 +797,13 @@
                         </router-link>
 
                     </div>
+                    </slick>
 
                 </div>
 
                 <div :id="'newsChangeLink' + index" class="row m-lr-0" v-if="group[0].pattern == 3">
-
-                    <div class="col-md-6 col-lg-3 pad-new pattern-child">
+                    <slick :options="slickOptions" class="news-slider-width"> 
+                    <div class="pad-new pattern-child">
 
                         <router-link :to="'/newsdetails/'+group[0].pid">
 
@@ -812,7 +813,7 @@
 
                                     <transition name="fade">
 
-                                        <img v-bind:src="'/upload/news/' + group[0].photo" class="fit-image" @error="imgUrlAlt">
+                                        <img v-bind:src="'/upload/news/' + group[0].photo" class="fit-image img-fluid" @error="imgUrlAlt">
 
                                     </transition>
 
@@ -831,7 +832,7 @@
 
                     </div>
 
-                    <div class="col-md-6 col-lg-3 pad-new pattern-child">
+                    <div class="pad-new pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(1, 4)" :key="index" :to="'/newsdetails/'+item.pid">
 
@@ -843,7 +844,7 @@
 
                                     <transition name="fade">
 
-                                        <img v-bind:src="'/upload/news/' + item.photo" class="fit-image-0" @error="imgUrlAlt">
+                                        <img v-bind:src="'/upload/news/' + item.photo" class="fit-image-0 img-fluid" @error="imgUrlAlt">
 
                                     </transition>
 
@@ -879,7 +880,7 @@
 
                     </div>
 
-                    <div class="col-md-6 col-lg-3 pad-new pattern-child">
+                    <div class="pad-new pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(4, 7)" :key="index" :to="'/newsdetails/'+item.pid">
 
@@ -891,7 +892,7 @@
 
                                     <transition name="fade">
 
-                                        <img v-bind:src="'/upload/news/' + item.photo" class="fit-image-0" @error="imgUrlAlt">
+                                        <img v-bind:src="'/upload/news/' + item.photo" class="fit-image-0 img-fluid" @error="imgUrlAlt">
 
                                     </transition>
 
@@ -927,7 +928,7 @@
 
                     </div>
 
-                    <div class="col-md-6 col-lg-3 pad-new pattern-child">
+                    <div class="pad-new pattern-child">
 
                         <router-link :to="'/newsdetails/'+group[7].pid" v-if="group[7]">
 
@@ -937,7 +938,7 @@
 
                                     <transition name="fade">
 
-                                        <img v-bind:src="'/upload/news/' + group[7].photo" class="fit-image" @error="imgUrlAlt">
+                                        <img v-bind:src="'/upload/news/' + group[7].photo" class="fit-image img-fluid" @error="imgUrlAlt">
 
                                     </transition>
 
@@ -963,6 +964,7 @@
                         </router-link>
 
                     </div>
+                    </slick>
 
                 </div>
 
@@ -979,12 +981,14 @@
 
     import layout from '../components/home.vue'
     import News from './News.vue'
+    import Slick from 'vue-slick'
 
     export default {
 
         components: {
             News,         
-            layout
+            layout,
+            Slick
         },
 
       async mounted() {
@@ -1075,61 +1079,93 @@
             w_width: $(window).width(),
             norecord_msg: false,
             // w_width: $(window).width() + 16,
-
         }
-
     },
 
-    created() {      
-        var today = new Date();
-        var month =(String) (today.getMonth()+1);
-        var date = (String) (today.getDate());
+    created() {
+                            
+                var today = new Date();
+                var month =(String) (today.getMonth()+1);
+                var date = (String) (today.getDate());
 
-        if(month.length == 1)
-        {
-            month = '0' + today.getMonth();
-        }
+                if(month.length == 1)
+                {
+                    month = '0' + today.getMonth();
+                }
 
-        if(date.length == 1 )
-        {
-            date = '0' + today.getDate();
+                if(date.length == 1 )
+                {
+                    date = '0' + today.getDate();
+                }
+                var todaydate = today.getFullYear()+'-'+ month +'-'+ date;
 
-        }
-        var todaydate = today.getFullYear()+'-'+ month +'-'+ date;
-
-        if(localStorage.getItem('date') == null)
-
-        {
-
-              localStorage.setItem('date',todaydate);
-
-              this.getCategoryRandomValue();
-
-        }
-
-        else{
-              var localdate = localStorage.getItem('date');
-
-              if(todaydate > localdate)
-
-              {
-
-                  localStorage.setItem('date',todaydate);
-
-                  this.getCategoryRandomValue();
-
-              }
-
-
-
-        }
-
-    //     this.categoryId();  
+                if(localStorage.getItem('date') == null)
+                {
+                    localStorage.setItem('date',todaydate);
+                    this.getCategoryRandomValue();
+                }
+                else{
+                    var localdate = localStorage.getItem('date');
+                    if(todaydate > localdate)
+                    {
+                        localStorage.setItem('date',todaydate);
+                        this.getCategoryRandomValue();
+                    }
+                };    
+                           
 
     },
-
+    computed:{        
+            slickOptions() {
+                return {
+                slidesToShow: 4,
+                infinite: false,
+                accessibility: true,
+                adaptiveHeight: false,
+                arrows: true,
+                dots: true,
+                draggable: true,
+                edgeFriction: 0.30,
+                swipe: true,
+                responsive: [{
+                    breakpoint: 1280,
+                        settings: {
+                            slidesToShow: 3,                           
+                            slidesToScroll: 1,  
+                            infinite:false 
+                        }
+                    }, {
+                    breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1, 
+                            infinite: false                           
+                        }
+                    },{
+                        breakpoint: 414,
+                            settings:{
+                                slidesToShow: 1,
+                                slidesToScroll:1,
+                                infinite: false
+                            }
+                    }]                    
+                }
+            }
+    },
     methods: {
-           
+            next() {
+                this.$refs.slick.next();
+            },
+            prev() {
+                this.$refs.slick.prev();
+            },
+            reInit() {
+                // Helpful if you have to deal with v-for to update dynamic lists
+                this.$nextTick(() => {
+                    this.$refs.slick.reSlick();
+                });
+            },
+                  
             newsToggle(id)
                 {
 
@@ -1531,7 +1567,7 @@
 
 .single-news-box {
     background: #f7f7f7;
-    height: 96%;
+    height: 310px;
     padding: 10px;
     /* box-shadow: 0px 0px 2px #ddd; */
     border:solid #f3efef;
@@ -1622,6 +1658,9 @@
 .nav {
     flex-wrap: nowrap;
 }
+.news-slider-width{
+    width: 100%;
+}
 @media only screen and (min-width: 1024px) and (max-width: 1200px){
     #view-1024 .first-child {
         max-width: 65.66%;
@@ -1643,6 +1682,30 @@
 @media only screen and (max-width:480px){
     .list-label{  
         color: #fff;     
+    }
+}
+@media only screen and (max-width: 1280px){
+    .news-slider-width{
+        width: 100%;
+    }
+}
+@media only screen and (max-width:1024px){
+    .news-slider-width{
+        width: 100%;
+    }
+}
+@media only screen and (max-width:768px){
+    .news-slider-width{
+        width: 100%;
+    }
+    .pad-new{    
+        /* padding-right: 20px !important;
+        padding-left: 20px !important; */
+    }
+}
+@media only screen and (max-width: 414px){
+    .news-slider-width{
+        width: 100%;
     }
 }
 </style>

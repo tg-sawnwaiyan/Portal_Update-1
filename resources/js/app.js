@@ -65,6 +65,9 @@ Vue.mixin({
 import VueCarousel from '@chenfengyuan/vue-carousel';
 Vue.component(VueCarousel.name, VueCarousel);
 
+Vue.component('pagination', require('laravel-vue-pagination'));
+
+
 var VueScrollactive = require('vue-scrollactive');
 Vue.use(VueScrollactive);
 
