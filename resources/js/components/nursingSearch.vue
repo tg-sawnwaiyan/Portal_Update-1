@@ -553,7 +553,7 @@
 
                                         <div class="card-body">
                                             <select id="selectCity" class="form-control custom-select" @change="nursingSearchData(1);" style="background-color: #fff;" v-model="id">
-                                            <option value="-1" >▼市区町村</option>
+                                            <option value="-1" disabled>▼市区町村</option>
                                             <option  :value="city.id" v-for="city in cities" :key="city.id">{{city.city_name}}</option>
                                             </select>
                                             <select id="selectTownship" class="form-control mt-1 custom-select" style="background-color: #fff;" @change="nursingSearchData(2);" v-model="township_id">
@@ -1352,7 +1352,7 @@
             handleResize() {
                 this.window.width = window.innerWidth;
                 this.window.height = window.innerHeight;
-            },
+            },            
 
             searchfreeword(){
                 this.ci = true;
@@ -1678,33 +1678,46 @@
 
                if(this.ci == true && (this.townshipID[0] == "-1" || this.townshipID.length == 0))
                {              
-                   console.log('a');     
+                  
                     this.loading = false;                    
                }
                else if(this.ci == false && (this.townshipID[0] == 0 || this.townshipID[0] == "-1" || this.townshipID.length == 0)){ 
-                    console.log('b');
+                
+                var newresult=[];
                 var jsonfile = theCity+".json";
                 
-                // https://testikportal.management-partners.co.jp/json/gadm36_jpn_1.json
                 this.axios.get("./json/cities/"+jsonfile).then(respon => {
+                    console.log(respon.data)
                     this.coordinate = respon.data.reduce((acc, val) => acc.concat(val), []);
                     this.boundariesGoogleMap(lat,lng,this.coordinate);  
                 }); 
 
                 }  
                 else{
-                     console.log('c');
+                    var jsonfile = theCity+".json";
+                    console.log('json',jsonfile.toLowerCase());
                     this.axios.get('./json/Townships/'+jsonfile).then(res => {
-
-                        console.log(res);
-                        // var city_coordinates = res.data
-                        // this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
-                         this.boundariesGoogleMap(lat,lng,res.data);       
+                     var township_coor = []
+                     for(var i = 0; i < res.data.features.length; i++)
+                     {
+                      
+                         if(res.data.features[i]['properties']['N03_007'] == township_name)
+                         {
+                            //  console.log(res.data);
+                              township_coor.push(res.data.features[i]);
+                               this.boundariesGoogleMap(lat,lng,township_coor);       
+                         }
+                       
+                     }
+                       
+                       
+                        
                     })
                 }
             },
 
             boundariesGoogleMap(lat,lng,coor){        
+               
                 // var bb = coor.reduce((acc, val) => acc.concat(val), []);   
                 var data = coor.reduce((acc, val) => acc.concat(val), []);   
                 // var data = coor; 
@@ -1717,7 +1730,9 @@
                 var bounds = new google.maps.LatLngBounds();
 
                 this.map.data.forEach(function(feature){
+                    console.log('feature',feature)
                     var geo = feature.getGeometry();
+                    console.log('geo',geo)
                     geo.forEachLatLng(function(LatLng){
                     bounds.extend(LatLng)
                     });
@@ -1729,6 +1744,8 @@
                 fillOpacity: 0.1,
                 strokeWeight: 1
                 })
+                // console.log('geo',geo)
+                console.log('fit bounds',bounds)
                 
                 if(this.boundsval == 'no marker'){
                     this.boundsval = bounds;
@@ -1797,6 +1814,7 @@
               
                 if(this.marker.length)
                 {
+                   
                    for (let index = 0; index < this.marker.length; index++) {
                        this.marker[index].setMap(null);
                    }
@@ -1818,6 +1836,9 @@
                     var img = this.markers[i]['alphabet']
                     var myLatLng = new google.maps.LatLng(lats, lngs);
                     var  position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+                    // var trafficLayer = new google.maps.TrafficLayer();
+                    // trafficLayer.setMap(this.map);
+            
                     this.marker[i] = new google.maps.Marker({
                             position: position,
                             map: this.map,
@@ -1830,6 +1851,7 @@
                         }
                     });
                     marker = this.marker[i]
+                    // this.googleMarker = marker;
                     bounds.extend(position);
                     google.maps.event.addListener(marker, 'click', (function(marker, i) {
                     return function() {
@@ -1843,6 +1865,7 @@
                     });
 
                 }
+                console.log('position',position)
                 this.boundsval = bounds;
                 if(position != undefined){
                     this.map.fitBounds(this.boundsval);
@@ -1851,16 +1874,6 @@
                     this.boundsval = "no marker";
                 }
                 
-                // if(position == undefined){
-                //     var mapProp = {
-                //     center: new google.maps.LatLng(35.6804, 139.7690),
-                //     zoom: 6,
-                //     };
-                //     this.map.center(35.6804, 139.7690);
-                // }
-                // else{
-                //     this.map.fitBounds(bounds);
-                // }
                 
             },
             // make infowindow, marker , google map
@@ -1948,7 +1961,9 @@
                     var search_word = $('#search-free-word').val();
                 }
 
+
                 if(localStorage.getItem("nursing_fav") == null){
+
                     this.locast = 0;
                 }
                 else{
@@ -1967,6 +1982,7 @@
                     Moving_in:this.moving_in,
                     Per_month:this.per_month,
                     local:this.locast
+
                 },
                 }).then((response)=>{
                 this.nus_data = response.data.nursing;
@@ -1981,7 +1997,7 @@
                 if(this.map != null){
                     var map = this.map
                     var callback = function(feature) {
-                        map.data.remove(feature);
+                            map.data.remove(feature);
                     };
                     map.data.forEach(callback);
                 }
@@ -2026,6 +2042,8 @@
               }
                 });
             },
+
+
             // hover animate function
             mouseover(index) {
                 for (let i = 0; i < this.markerHover.length; i++) {
@@ -2044,7 +2062,21 @@
                     }
                 }
             },
+
+
 //  google map  function end========================================
+
+            features(e) {
+                if (e.target.checked) {
+
+                }
+            },
+
+            getStateHover(e) {
+                // if(e.target.tagName ==='AREA'){
+                //  console.log(e)
+                // }
+            },
 
             imgUrlAlt(event) {
                 event.target.src = "images/noimage.jpg"
@@ -2059,17 +2091,20 @@
                         fav_arr.push(index);
                         fav_arr = [...new Set(fav_arr)];
                         localStorage.setItem("nursing_fav", fav_arr);
+                        // $("#nus-fav-local").html(fav_arr.length);
                         this.nusFav = fav_arr.length;
                     }
                     else{
                         var fav_arr = [index];
                         localStorage.setItem("nursing_fav", fav_arr);
+                        // $("#nus-fav-local").html(fav_arr.length);
                         this.nusFav = fav_arr.length;
                     }
 
                     $(".fav-nursing-link-box>a").css({'cursor':'pointer','pointer-events':'auto'});
                 }
                 else{
+                    //  alert(status);
                     this.nus_data[ind].fav_check = '';
 
                     var fav_arr = JSON.parse("[" + localStorage.getItem("nursing_fav") + "]");
@@ -2078,6 +2113,7 @@
                         fav_arr.splice(index, 1);
                         localStorage.setItem("nursing_fav", fav_arr);
                     }
+                    // $("#nus-fav-local").html(fav_arr.length);
                     this.nusFav = fav_arr.length;
 
                     if(fav_arr.length == 0){
@@ -2154,6 +2190,9 @@
                     this.getTownships = response.data.getTownships
                     this.special_features = response.data.special_features
                     this.subjects = response.data.subjects;
+                    //   this.sub_child = response.data.sub_child;
+                    //console.log("aaa",this.subjects);
+                    // this.id = id;
                 })
                     this.search();
             },
@@ -2163,6 +2202,13 @@
 
 <style scoped>
 .lds-ripple {
+  /* display: inline-block;
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  top: 40%;
+  left: 50%;
+  z-index: 1; */
   position: absolute;
   width: 100% !important;
   height: 500px !important;
@@ -2202,6 +2248,12 @@
 }
 
 .overlay{
+  /* position: relative;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.19);  
+  opacity: 0.1; */
   top: 0;
   background-color: rgba(0, 0, 0, 0.19);
   position: relative;
@@ -2387,6 +2439,19 @@ div#holder {
 .hidden {
     display: none;
 }
+
+/* div.overlay {
+    position: relative;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #5e5e5e;
+    opacity: 0.7;
+    z-index: 1;
+} */
+
+/* div.overlay.standard { background: #fff url('/images/google/loading.jpg') no-repeat 50% 50%; } */
+
   .card_1 {
     display: inline-block;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .15);
@@ -2513,6 +2578,21 @@ div#holder {
     display: flex;
     transition: transform 150ms ease-out;
     transform: translatex(0px);
+  }
+
+  #nursing-search .card-carousel-cards .card-carousel--card {
+    /* margin: 0 10px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    background-color: #fff;
+    border-radius: 4px;
+    z-index: 3;
+    margin-bottom: 2px;
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1); */
+  }
+
+  #nursing-search .card-carousel-cards .card-carousel--card:hover {
+    /* box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22); */
+
   }
 
   #nursing-search .card-carousel-cards .card-carousel--card:first-child {
