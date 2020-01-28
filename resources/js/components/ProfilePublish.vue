@@ -538,7 +538,7 @@
                         <div class="card-header font-weight-bold">{{cost.payment_name}}</div>
                         <div class="card-body payment-body">
                                 <!-- <h6 class="font-weight-bold">プラン名 / 居室詳細</h6> -->
-                                
+
                                 <!-- <label class="method-name-respon">{{cost.payment_name}}</label>
                                 <span class="room-type"> {{cost.living_room_type}} </span>
                                 {{cost.area}} -->
@@ -550,8 +550,8 @@
                             </div> -->
                             <p class="mb-2"><span>初期</span> {{cost.expense_moving}}</p>
                             <p><span>月額</span> {{cost.monthly_fees}}</p>
-                            
-                            
+
+
                             <!-- <span class="detail-btn mb-10" :class="'changeLink changeLink'+cost.id" @click="costConfirmMini(cost.id)" >詳しくはこちら</span> -->
                             <!-- <div class="col-md-12 collapse miniChangeLink" :id="'changeLinkMini' + cost.id">
                                 <label class="cost_heading_lbl_respon m-b-15">{{cost.payment_name}}</label>
@@ -645,7 +645,7 @@
                                     </table>
                                 </div>
                             </div> -->
-                        </div>                       
+                        </div>
                         <div class="payment-footer">
                             <span class="detail-btn" :class="'changeLink changeLink'+cost.id" @click="costConfirmMini(cost.id)" >詳しくはこちら</span>
                             <div class="col-md-12 collapse miniChangeLink" :id="'changeLinkMini' + cost.id">
@@ -902,8 +902,8 @@
                             <div v-for="(image,index) in  light_images" :key="index" class="col-6 col-md-4 col-sm-4 col-lg-3 m-b-10 ">
                                     <div class="gallery-item">
                                         <img  :src ="'/upload/nursing_profile/' + image.name"  class="img-fluid" @click="showLightbox(image.name)" @error="imgUrlAlt" >
-                                    </div>                                   
-                                    <span class="img_txt">{{image.title}}</span>                                  
+                                    </div>
+                                    <span class="img_txt">{{image.title}}</span>
                                 <!-- <span>{{image.photo}}</span> -->
                             </div>
                             <lightbox id="mylightbox" ref="lightbox" :images="light_images" :directory="thumbnailDir+'nursing_profile/'" :timeoutDuration="5000" />
@@ -919,9 +919,9 @@
                             <div v-for="(video) in  videos" :key="video.id" class="col-6  col-sm-4 col-md-4 col-lg-3 m-b-10">
                                 <div class="gallery-item">
                                     <iframe :src="'https://www.youtube.com/embed/'+video.photo" controls></iframe>
-                                </div>                                
+                                </div>
                                 <span class="video_txt">{{video.title}}</span>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -1140,8 +1140,8 @@
 
 
 
-    <div v-if="type == 'hospital'" id="hospitalView">      
-            <h5 class="profile-tit"> {{customer_name}}</h5>           
+    <div v-if="type == 'hospital'" id="hospitalView">
+            <h5 class="profile-tit"> {{customer_name}}</h5>
            <div class="tab typelabel nav-link fixed-nav" v-bind:style="{width:width}">
                 <!-- <div class="row col-12 m-t-10">
                      <h5 style="color:#000" class="h_4 header font15rem font-weight-bold">ひだまりこころクリニック　サンシャインサカエ院</h5>
@@ -1203,7 +1203,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> 
+                        </div>
                         <!--responsive with gallery-->
                         <div class="sp-414 res-pano m-b-10"  v-if="images.length > 0">
                             <slick :options="slickOptions" ref="slickSetting1">
@@ -1224,11 +1224,11 @@
                                     </h3>
                                 </div>
                             </slick>
-                            
+
                         </div>
                         <!--end responsive with gallery -->
                     </div>
-                    <!--end for slide image-->                   
+                    <!--end for slide image-->
 
                     <!--for address-->
                      <div class="col-md-7 col-sm-12 detail_profile_right col-slg-12 pad-free-750">
@@ -1264,7 +1264,7 @@
                                             <p v-html="cust.access"></p>
                                         </td>
                                         <td v-else> - </td>
-                                    </tr>                                    
+                                    </tr>
                                      <tr>
                                         <th class="custom-bg-color">
                                             <font>件名 </font>
@@ -1727,7 +1727,7 @@ export default {
                 }
                 this.type = localStorage.getItem('cusType');
                 this.cusid = Number(localStorage.getItem('cusId'));
-                
+
                 //for responsive
                     if(this.window.width > 768) {
                         //greater than 768
@@ -2014,7 +2014,7 @@ export default {
 
                 var admin_header = $(".admin-header").height();
                  var admin_top = admin_header  + "px" ;
-                 
+
 
             },
 
@@ -2768,7 +2768,7 @@ h3 {
 }
 .payment-footer .changeLink{
     padding: 8px 5px;
-    border: 0px; 
+    border: 0px;
     border-radius: 0;
     border-top: 1px solid #eeeeee;
     border-bottom: 1px solid #eeeeee;
@@ -2892,9 +2892,9 @@ h3 {
 .payment-body p {
     font-size: 18px;
     color: #ff6117;
-    font-weight: bold;   
+    font-weight: bold;
 }
-.payment-body p span {  
+.payment-body p span {
     display: inline-block;
     padding: 0px 5px;
     margin-right: 3px;
@@ -2902,7 +2902,7 @@ h3 {
     color: #000;
     background: #ffc;
     border: 1px solid #ffc041;
-    border-radius: 5px;    
+    border-radius: 5px;
 }
 
 
@@ -2924,7 +2924,7 @@ h3 {
 }
 @media only screen and (max-width:750px) {
     .comment-age {
-        margin: 0px;    
+        margin: 0px;
     }
 }
 @media only screen and (max-width: 450px) and (min-width: 376px) {
@@ -2947,7 +2947,7 @@ h3 {
 @media only screen and (max-width: 768px) and (min-width: 451px) {
   #pano-slider-page .card-carousel {
         width: 415px!important;
-    }   
+    }
     .changeLink {
         font-size: 10px;
     }
@@ -2976,12 +2976,12 @@ h3 {
 @media only screen and (max-width: 1024px) and (min-width: 993px) {
   #pano-slider-page .card-carousel {
         width: 823px!important;
-    }  
+    }
 }
 @media only screen and (max-width: 1200px) and (min-width: 1025px) {
   #pano-slider-page .card-carousel {
         width: 930px!important;
-    }  
+    }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
@@ -2992,7 +2992,7 @@ h3 {
     .thumbnails-pano
     {
     width: 1000px;
-    }   
+    }
 }
 @media only screen and (max-width: 1880px) and (min-width: 1440px) {
     #pano-slider-page .card-carousel {
