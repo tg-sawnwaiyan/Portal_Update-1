@@ -1,9 +1,6 @@
 <template>
-  <div class="col-md-12 scrolldiv4">
-    <div class="row">
-      <div class="col-12 text-center p-3 jt1 mb-4">
-        <h2 class="site_header">プライバシーポリシー</h2>
-      </div>
+  <div>
+      <h2 class="site_header">プライバシーポリシー</h2>
       <div class="container">
         <div class="title">
           <h5>個人情報保護方針</h5>
@@ -183,7 +180,6 @@
         </div>
         <br />
       </div>
-    </div>
   </div>
 </template>
 

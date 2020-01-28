@@ -1,9 +1,6 @@
 <template>
-  <div class="col-md-12 scrolldiv4">
-    <div class="row">
-      <div class="col-12 text-center p-3 jt1 mb-4">
-        <h2 class="site_header">サイトポリシー</h2>
-      </div>
+  <div>
+      <h2 class="site_header">サイトポリシー</h2>
       <div class="container">
        <div class="sitepolicy_home">
             <span>このウェブサイトは株式会社ティーズ運営しております。</span>
@@ -108,7 +105,6 @@
         </div>
         <br/>
       </div>
-    </div>
   </div>
 </template>
 
