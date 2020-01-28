@@ -143,7 +143,7 @@
                     <div class="form-group">
                         <span class="btn main-bg-color white all-btn" @click="checkValidate()" v-if='status == 1'> 保存</span>
                         <span class="btn main-bg-color white all-btn" @click="checkValidate()" v-if='status == 0'> 作成</span>
-                        <span@click="$router.go(-1)" :to="{name: 'news_list'}" class="btn btn-danger all-btn">キャンセル</span>
+                        <span @click="$router.go(-1)" :to="{name: 'news_list'}" class="btn btn-danger all-btn">キャンセル</span>
                     </div>
                 </form>
             </div>
@@ -217,12 +217,18 @@
                         this.getSearchPostsByCatId();
                  } 
                 else {
-                    this.axios.get('/api/category/category_list')
-                    .then(function(response) {
-                        this.categories = response.data;
-                    }.bind(this));
+                    // this.axios.get('/api/category/category_list')
+                    // .then(function(response) {
+                    //     this.categories = response.data;
+                    // }.bind(this));
                     this.getPostsByCatId();
                 }
+            },
+            mounted() {
+                this.axios.get('/api/category/category_list')
+                .then(function(response) {
+                    this.categories = response.data;
+                }.bind(this));
             },
             computed: {
             pages() {

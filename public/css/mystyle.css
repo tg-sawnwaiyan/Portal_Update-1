@@ -639,6 +639,29 @@ border-radius: 3px;
     border-left: 5px solid #63b7ff;
     color: #63b7ff;
 }
+.h-color1 p {
+   
+    color: #a3774a;
+}
+
+.h-color2 p {
+   
+    color: #9579ef;
+}
+
+.h-color3 p {
+    
+    color: #21d1de;
+}
+
+.h-color4 p {
+    
+    color: #d1291d;
+}
+
+.h-color5 p{
+    color: #63b7ff;
+}
 
 .bordertop-color1 {
     border-top: 2px solid #a3774a;
@@ -1371,7 +1394,7 @@ box-shadow: 0px 0px 5px rgb(212, 201, 201); */
 .main-header {
     position: fixed;
     width: 100%;
-    height: 65px;
+    height: 80px;
     left: 0px;
     padding: 10px 0;
     /* background-color: #eee;
@@ -1526,11 +1549,11 @@ border-top: 5px solid #e66527; */
 }
 
 #app .logo-text {
-    padding: 0 25px 0 0;
+    padding: 3px 25px 0 0;
     font-size: 40px;
     font-weight: bold;
-    color: #d2571c;
-    text-shadow: 3px 4px #ccc;
+    color: #444;
+    /* text-shadow: 3px 4px #ccc; */
 }
 
 #app .logo-text span {
@@ -10587,6 +10610,41 @@ display: none;
 }
 
 @media only screen and (max-width:480px) {
+    /*news*/
+    .wrapper-4 img{
+        width: 95px;
+        float: left;
+    }
+    .txt-box{
+        padding-left: 110px !important;
+        position: absolute;
+    }
+    .wrapper-3{
+        float: left;
+        width: 95px;
+        margin-right: 10px;
+        height: 100%;
+    }
+    .wrapper-3 img.fit-image{
+        height: 100%;
+
+    }
+    .single-news-box{
+        min-height: 75px;
+    }
+    .single-news-box p{
+        overflow: hidden;
+        height: -webkit-fill-available;
+    }
+    .category_box{
+        margin-top: 0px;
+    }
+    .category_box h4{
+        font-size: 16px;
+    }
+    .category_news_title{
+        padding: 0px 10px 10px 0px;
+    }
     /*fav nursing*/
     .close-480 {
         display: block;
