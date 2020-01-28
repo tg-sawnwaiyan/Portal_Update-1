@@ -64,7 +64,6 @@
                                 <pagination :data="news_list" @pagination-change-page="getResults"></pagination>
                         </table>
                     </div>
-                    <!-- Testing End -->
 
                 </div>
             </div>
