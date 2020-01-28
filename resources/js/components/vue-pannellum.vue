@@ -19,7 +19,7 @@
 import 'pannellum'
 import 'pannellum/build/pannellum.css'
 
-import _debounce from 'lodash.debounce'
+// import _debounce from 'lodash/debounce'
 
 export default {
   props: {
@@ -161,20 +161,20 @@ export default {
     },
     onMouseUp () {
       if (this.debug) this.info += ' mu'
-      this.debounceRotate()
+      // this.debounceRotate()
     },
     onTouchMove () {
       if (this.debug) this.info += ' tm'
     },
     onTouchEnd () {
       if (this.debug) this.info += ' te'
-      this.debounceRotate()
+      // this.debounceRotate()
     },
-    debounceRotate: _debounce(function () {
-      // priority of orientation is higher
-      if (this.orientation) this.viewer.startOrientation()
-      else if (this.autoRotate) this.viewer.startAutoRotate()
-    }, 3000),
+    // debounceRotate: _debounce(function () {
+    //   // priority of orientation is higher
+    //   if (this.orientation) this.viewer.startOrientation()
+    //   else if (this.autoRotate) this.viewer.startAutoRotate()
+    // }, 3000),
   },
 }
 </script>

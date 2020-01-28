@@ -7,7 +7,10 @@
                 <div class="col-md-12 m-lr-0 pad-free">
                     <div class="form-group form-group-wrapper">
                         <label class="heading-lbl col-2 pad-free">パノラマ<span class="error">*</span></label>
+                       
+                        <span class="btn-file">ファイルを選ぶ
                         <input type="file" name="" class="nursing-panorama m-b-10"  id="upload_panorama" @change="preview_panorama()" multiple>
+                        </span>
 
                         <div class="row col-md-12 pad-free panorama panorama-box">
                         <!-- <div > -->
@@ -646,15 +649,15 @@
 <script>
 
 import 'quill/dist/quill.snow.css'
-import {Button, Input,Select} from 'iview'
+// import {Button, Input,Select} from 'iview'
 import GoogleMap from './GoogleMap.vue'
 
 export default {
         components: {
             GoogleMap,
-            Button,
-            Input,
-            Select,
+            // Button,
+            // Input,
+            // Select,
         },
 
        data() {
@@ -1307,4 +1310,5 @@ export default {
     margin: 0px;
     margin-bottom: 15px;
   }
+
  </style>

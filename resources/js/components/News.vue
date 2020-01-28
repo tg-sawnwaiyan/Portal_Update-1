@@ -1,31 +1,17 @@
 <template>
-
     <layout>
-
         <div class="m-lr-0 justify-content-md-center">
-
             <div class="row">
-
-                <div class="col-12 p-r-0">
-
-                    <div class="col-12 p-r-0">
-
+                <div class="col-12">
+                    <div class="col-md-12 m-lr-0 p-0">
                         <!-- <form class="col-lg-12 mb-2 pad-free"> -->
-
-                            <div class="row col-md-12 m-0 p-r-0">
-
+                            <div class="row col-md-12 m-lr-0 p-0">
                                 <div class="col-sm-12 col-md-3 col-lg-6">
-
                                     <div class="col-md-2 float-right">
-
                                         <!-- <span class="btn btn my-2 col-md-12 my-sm-0 danger-bg-color btn-danger" v-if="status == 1" @click="clearSearch()">X</span> -->
-
                                     </div>
-
                                 </div>
-
-                                <div class="col-sm-12 col-md-9 col-lg-6 p-l-0 m-b-15">
-
+                                <div class="col-sm-12 col-md-9 col-lg-6 pad-new m-b-15">
                                      <!--search input-->
                                     <div class="search-input">
                                         <span class="btn btn my-2 col-md-12 my-sm-0 danger-bg-color btn-danger cross-btn" v-if="status == 1" @click="clearSearch()">X</span>
@@ -34,19 +20,13 @@
                                             <i class="fas fa-search"></i> 検索
                                         </button>
                                     </div>
-                                    <!--end search input-->                                   
-
+                                    <!--end search input-->  
                                 </div>
-
                             </div>
-
-
-
                         <!-- </form> -->
-
-                        <div class="row" v-if="status == '0'" id="view-1024">
+                        <div class="row col-12 m-lr-0 p-0" v-if="status == '0'" id="view-1024">
                             <!-- category box -->
-                            <div class="card col-md-12 col-lg-6 d-none d-sm-block p-l-0 first-child" style="border:0px!important;">
+                            <div class="card col-md-12 col-lg-6 pad-new d-none d-sm-block first-child" style="border:0px!important;">
 
                                 <div class="card-header tab-card-header clearfix cat-nav">
                                     <span id="left-button" class="left-arr-btn arr-btn" @click="swipeLeft" v-if="is_cat_slided" ><i class="fas fa-angle-left"></i></span>
@@ -149,10 +129,10 @@
 
                             <!-- category right side -->
                             <div class="col-md-12 col-lg-6 pad-free last-child">
-                                <div class="col-sm-12 m-lr-0 pad-free" v-if="status =='0'">
+                                <div class="" v-if="status =='0'">
                                     <!-- two show () -->
-                                    <div v-if="(w_width >= 1280) || (w_width <= 768 && w_width >= 480)" class="row col-sm-12 p-l-0 m-0">
-                                        <div class="col-sm-6 m-b-8 p-l-0" v-for="latest_post_all_cat in latest_post_all_cats.slice(0, 2)" :key="latest_post_all_cat.id">
+                                    <div v-if="(w_width >= 1280) || (w_width <= 768 && w_width >= 480)" class="row col-sm-12 p-lr-0 m-0">
+                                        <div class="col-sm-6 m-b-8 pad-new" v-for="latest_post_all_cat in latest_post_all_cats.slice(0, 2)" :key="latest_post_all_cat.id">
 
                                             <div class="col-md-12 row m-0 pad-free">
 
@@ -212,8 +192,8 @@
                                     </div>
 
                                     <!-- one show -->
-                                    <div v-if="(w_width < 1280 && w_width > 768) || (w_width < 480)" class="row col-sm-12 p-l-0 m-0">
-                                        <div class="col-sm-12 m-b-8 p-l-0" v-for="latest_post_all_cat in latest_post_all_cats.slice(0, 1)" :key="latest_post_all_cat.id">
+                                    <div v-if="(w_width < 1280 && w_width > 768) || (w_width < 480)" class="row col-sm-12 p-lr-0 m-0">
+                                        <div class="col-sm-12 m-b-8 pad-new" v-for="latest_post_all_cat in latest_post_all_cats.slice(0, 1)" :key="latest_post_all_cat.id">
                                             <div class="col-md-12 row m-0 pad-free">
 
                                                 <div class="hovereffect fit-image">
@@ -271,8 +251,8 @@
                                     </div>
 
                                     <!-- two show -->
-                                    <div class="row col-sm-12 p-l-0 m-0" v-if="(w_width >= 1280) || (w_width <= 768 && w_width >= 480)">
-                                        <div class="col-sm-6 m-b-8 p-l-0" v-for="item in latest_post_all_cats.slice(2, 6)"  :key="item.id">
+                                    <div class="row col-sm-12 p-lr-0 m-0" v-if="(w_width >= 1280) || (w_width <= 768 && w_width >= 480)">
+                                        <div class="col-sm-6 m-b-8 pad-new" v-for="item in latest_post_all_cats.slice(2, 6)"  :key="item.id">
 
                                             <div class="col-md-12 row adslist-card news-3-card m-0">
 
@@ -330,8 +310,8 @@
                                     </div>
 
                                     <!-- one show -->
-                                    <div class="row col-sm-12 p-l-0 m-0" v-if="(w_width < 1280 && w_width > 768) || (w_width < 480)">
-                                        <div class="col-sm-12 m-b-8 p-l-0" v-for="item in latest_post_all_cats.slice(1, 3)"  :key="item.id">
+                                    <div class="row col-sm-12 p-lr-0 m-0" v-if="(w_width < 1280 && w_width > 768) || (w_width < 480)">
+                                        <div class="col-sm-12 m-b-8 pad-new" v-for="item in latest_post_all_cats.slice(1, 3)"  :key="item.id">
 
                                             <div class="col-md-12 row adslist-card news-3-card m-0">
 
@@ -396,8 +376,8 @@
                     <!-- category bottom -->
                     <div class="col-md-12 m-lr-0 p-0" v-if="status == '0'">
                         <!-- two show -->
-                        <div class="row col-md-12 pad-free m-0" v-if="(w_width >= 1280) || (w_width <= 768 && w_width >= 480)">
-                            <div class="col-md-6 col-lg-3 m-b-8 p-l-0" v-for="item in latest_post_all_cats.slice(6, 14)"  :key="item.id">
+                        <div class="row col-12 m-lr-0 p-0" v-if="(w_width >= 1280) || (w_width <= 768 && w_width >= 480)">
+                            <div class="col-md-6 col-lg-3 m-b-8 pad-new" v-for="item in latest_post_all_cats.slice(6, 14)"  :key="item.id">
 
                                 <div class="col-md-12 row adslist-card news-3-card m-0">
 
@@ -538,7 +518,7 @@
 
                 <div class="row m-lr-0" v-if="group[0].pattern == 1">
 
-                    <div class="col-md-6 col-lg-3 p-lr-0 pattern-child">
+                    <div class="col-md-6 col-lg-3 pad-new pattern-child">
 
                         <router-link :to="'/newsdetails/'+group[0].pid">
 
@@ -548,11 +528,9 @@
 
                                     <transition name="fade">
 
-                                        <img :src="'/upload/news/' + group[0].photo"  @error="imgUrlAlt">
+                                        <img :src="'/upload/news/' + group[0].photo" class="fit-image" @error="imgUrlAlt">
 
-                                    </transition>
-
-                                    <p> {{group[0].main_point}} </p>
+                                    </transition>                                
 
                                     <transition name="fade" slot="placeholder">
 
@@ -567,16 +545,15 @@
                                     </div>
 
                                     </transition>
-
                                 </clazy-load>
-
+                                   <p> {{group[0].main_point}} </p>
                             </div>
 
                         </router-link>
 
                     </div>
 
-                    <div class="col-md-6 col-lg-3 p-r-0 pattern-child">
+                    <div class="col-md-6 col-lg-3 pad-new pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(1, 4)" :key="index" :to="'/newsdetails/'+item.pid">
 
@@ -626,7 +603,7 @@
 
                     </div>
 
-                    <div class="col-md-6 col-lg-3 p-r-0 pattern-child">
+                    <div class="col-md-6 col-lg-3 pad-new pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(4,12)" :key="index" :to="'/newsdetails/'+item.pid" style="color:#333;">
 
@@ -640,7 +617,7 @@
 
                     </div>
 
-                    <div class="col-md-6 col-lg-3 p-r-0 pattern-child">
+                    <div class="col-md-6 col-lg-3 pad-new pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(12, 15)" :key="index" :to="'/newsdetails/'+item.pid">
 
@@ -692,7 +669,7 @@
 
                 <div class="row m-lr-0" v-if="group[0].pattern == 2">
 
-                    <div class="col-md-6 col-lg-3 p-lr-0 pattern-child">
+                    <div class="col-md-6 col-lg-3 pad-new pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(0, 3)" :key="index" :to="'/newsdetails/'+item.pid">
 
@@ -740,7 +717,7 @@
 
                     </div>
 
-                    <div class="col-md-6 col-lg-3 p-r-0 pattern-child">
+                    <div class="col-md-6 col-lg-3 pad-new pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(3, 11)" :key="index" :to="'/newsdetails/'+item.pid" style="color:#333;">
 
@@ -754,7 +731,7 @@
 
                     </div>
 
-                    <div class="col-md-6 col-lg-3 p-r-0 pattern-child">
+                    <div class="col-md-6 col-lg-3 pad-new pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(11, 14)" :key="index" :to="'/newsdetails/'+item.pid">
 
@@ -802,7 +779,7 @@
 
                     </div>
 
-                    <div class="col-md-6 col-lg-3 p-r-0 pattern-child">
+                    <div class="col-md-6 col-lg-3 pad-new pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(14, 22)" :key="index" :to="'/newsdetails/'+item.pid" style="color:#333;">
 
@@ -820,7 +797,7 @@
 
                 <div class="row m-lr-0" v-if="group[0].pattern == 3">
 
-                    <div class="col-md-6 col-lg-3 p-lr-0 pattern-child">
+                    <div class="col-md-6 col-lg-3 pad-new pattern-child">
 
                         <router-link :to="'/newsdetails/'+group[0].pid">
 
@@ -835,30 +812,21 @@
                                     </transition>
 
                                     <transition name="fade" slot="placeholder">
-
                                         <div class="preloader">
-
                                             <div class="circle">
-
                                             <div class="circle-inner"></div>
-
                                             </div>
-
                                         </div>
-
-                                    </transition>
-
-                                    <p>{{group[0].main_point}}</p>
-
+                                    </transition>    
                                 </clazy-load>
-
+                                 <p>{{group[0].main_point}}</p>
                             </div>
 
                         </router-link>
 
                     </div>
 
-                    <div class="col-md-6 col-lg-3 p-r-0 pattern-child">
+                    <div class="col-md-6 col-lg-3 pad-new pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(1, 4)" :key="index" :to="'/newsdetails/'+item.pid">
 
@@ -906,7 +874,7 @@
 
                     </div>
 
-                    <div class="col-md-6 col-lg-3 p-r-0 pattern-child">
+                    <div class="col-md-6 col-lg-3 pad-new pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(4, 7)" :key="index" :to="'/newsdetails/'+item.pid">
 
@@ -954,7 +922,7 @@
 
                     </div>
 
-                    <div class="col-md-6 col-lg-3 p-r-0 pattern-child">
+                    <div class="col-md-6 col-lg-3 pad-new pattern-child">
 
                         <router-link :to="'/newsdetails/'+group[7].pid" v-if="group[7]">
 
@@ -980,11 +948,10 @@
 
                                         </div>
 
-                                    </transition>
-
-                                    <p>{{group[7].main_point}}</p>
+                                    </transition>                                  
 
                                 </clazy-load>
+                                 <p>{{group[7].main_point}}</p>
 
                             </div>
 
@@ -1508,151 +1475,88 @@
  </script>
 
 <style>
-
+.pad-new{
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
 .news-list-display{
-
     /* border: 1px solid #f7f7f7; */
-
     padding: 5px 10px;
-
     margin-bottom: 4px;
-
     background: #f7f7f7;
-
     /* box-shadow: 0px 0px 1px #ddd; */
-
     border:solid #f3efef;
-
     border-width: 0 .1rem .1rem 0;
-
 }
 
 .news-3-card {
-
     background-color: #f7f7f7;
-
     /* box-shadow: 0 0 2px #ddd; */
-
     border:solid #f3efef;
-
     border-width: 0 .1rem .1rem 0;
-
 }
 
 .news-3-card .img-box{
-
     padding-left: 10px;
-
 }
 
 .single-news-box {
-
     background: #f7f7f7;
-
     height: 96%;
-
     padding: 10px;
-
     /* box-shadow: 0px 0px 2px #ddd; */
-
     border:solid #f3efef;
-
     border-width: 0 .1rem .1rem 0;
-
+    overflow: hidden;
 }
-
-
 
 .news-tabColor .nav-link {
-
-        background: #75b777 !important;
-
-        color: #fff;
-
-        border-right: 1px solid #fff;
-
-    }
+    background: #75b777 !important;
+    color: #fff;
+    border-right: 1px solid #fff;
+}
 
 .news-borderColor {
+    border: 1px solid #75b777 !important;
+}
 
-        border: 1px solid #75b777 !important;
-
-    }
-
-    .tab-pane{
-
-        padding: 10px;
-
-    }
-
-
+.tab-pane{
+    padding: 10px;
+}
 
 .left{
-
- float: left;
-
- width: 30%;
-
- border: 1px solid black;
-
+    float: left;
+    width: 30%;
+    border: 1px solid black;
 }
-
-
 
 .internal{
-
- /* width: 31.75%;
-
- border: 1px solid black; */
-
- display: inline-block;
-
+    /* width: 31.75%;
+    border: 1px solid black; */
+    display: inline-block;
 }
-
 
 
 .center{
-
- /* float: left;
-
-width: 38.9%;
-
-border: 1px solid black;
-
-margin: 1px; */
-
-/* width: 95%; */
-
-overflow: hidden;
-
-white-space: nowrap;
-
-display: inline-block;
-
-/* max-width: 100%; */
-
+    /* float: left;
+    width: 38.9%;
+    border: 1px solid black;
+    margin: 1px; */
+    /* width: 95%; */
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    /* max-width: 100%; */
 }
-
-
-
 .right{
-
- float: right;
-
- width: 30%;
- /* border: 1px solid black; */
+    float: right;
+    width: 30%;
+    /* border: 1px solid black; */
 }
-
-
-
 .cat-nav {
-
     padding-bottom: 0;
-
     height: 40px;
-
 }
-
 
 .card-header-tabs {
     margin-right: -0.625rem;
@@ -1661,50 +1565,33 @@ display: inline-block;
     border-bottom: 0;
 }
 .arr-btn {
-
     cursor: pointer;
-
     display: inline-block;
     background:transparent;
     padding: 5px 1px 4px;
     font-size: 25px;
-
     /* padding-top: 5px;
-
     padding-bottom: 4px; */
-
 }
 
 .left-arr-btn {
-
     position: relative;
-
     top: -10px;
-
     left: -8px;
-
 }
 
 .right-arr-btn {
-
     position: relative;
-
     top: -10px;
-
     right: -26px;
-
 }
 
 #myTab ul li {
-
     display: inline-block;
-
 }
 
 .nav {
-
     flex-wrap: nowrap;
-
 }
 @media only screen and (min-width: 1024px) and (max-width: 1200px){
     #view-1024 .first-child {
