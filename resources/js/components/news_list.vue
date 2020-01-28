@@ -61,7 +61,7 @@
                                     </div>
                                 </td>
                             </tr>
-                                <pagination :data="news_list" @pagination-change-page="getResults"></pagination>
+                                <pagination :data="news_list" @pagination-change-page="searchbyCategory"></pagination>
                         </table>
                     </div>
 
@@ -103,11 +103,9 @@
 
         },
         methods: {
-            getResults(page) {
-                if (typeof page === 'undefined') {
-                    page = 1;
-                }
-                this.$http.get('/api/news_list?page=' + page)
+            getResults() {
+                
+                this.$http.get('/api/news_list')
                     .then(response => {
 
                         this.news_list = response.data.news;
@@ -182,7 +180,11 @@
                     });
                 },
 
-                searchbyCategory() {
+                searchbyCategory(page) {
+
+                    if (typeof page === 'undefined') {
+                        page = 1;
+                    }
                     var search_word = $("#search-item").val();
 
                     var selected_category = document.getElementById("selectBox").value;
@@ -190,7 +192,7 @@
                     fd.append("search_word", search_word);
                     fd.append("selected_category", selected_category);
                     this.$loading(true);
-                    this.axios.post("/api/news_list/search", fd).then(response => {
+                    this.axios.post("/api/news_list/search?page="+page, fd).then(response => {
                         this.$loading(false);
                         this.news_list = response.data;
                         this.norecord = this.news_list.length;
