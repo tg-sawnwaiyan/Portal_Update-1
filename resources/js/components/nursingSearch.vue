@@ -1677,10 +1677,12 @@
             //    ]
 
                if(this.ci == true && (this.townshipID[0] == "-1" || this.townshipID.length == 0))
-               {                   
+               {              
+                   console.log('a');     
                     this.loading = false;                    
                }
                else if(this.ci == false && (this.townshipID[0] == 0 || this.townshipID[0] == "-1" || this.townshipID.length == 0)){ 
+                    console.log('b');
                 var jsonfile = theCity+".json";
                 
                 // https://testikportal.management-partners.co.jp/json/gadm36_jpn_1.json
@@ -1691,6 +1693,7 @@
 
                 }  
                 else{
+                     console.log('c');
                     this.axios.get('/api/townshipJson/'+township_name).then(res => {
                         // var city_coordinates = res.data
                         // this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
