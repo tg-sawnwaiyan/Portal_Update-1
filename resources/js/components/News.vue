@@ -673,8 +673,8 @@
                 </div>
 
                 <div :id="'newsChangeLink' + index" class="row m-lr-0" v-if="group[0].pattern == 2">
-
-                    <div class="col-md-6 col-lg-3 pad-new pattern-child">
+                    <slick :options="slickOptions" class="news-slider-width"> 
+                    <div class="pad-new pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(0, 3)" :key="index" :to="'/newsdetails/'+item.pid">
 
@@ -720,9 +720,9 @@
 
                         </router-link>
 
-                    </div>
+                    </div>                    
 
-                    <div class="col-md-6 col-lg-3 pad-new pattern-child">
+                    <div class="pad-new pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(3, 11)" :key="index" :to="'/newsdetails/'+item.pid" style="color:#333;">
 
@@ -736,7 +736,7 @@
 
                     </div>
 
-                    <div class="col-md-6 col-lg-3 pad-new pattern-child">
+                    <div class="pad-new pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(11, 14)" :key="index" :to="'/newsdetails/'+item.pid">
 
@@ -784,7 +784,7 @@
 
                     </div>
 
-                    <div class="col-md-6 col-lg-3 pad-new pattern-child">
+                    <div class="pad-new pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(14, 22)" :key="index" :to="'/newsdetails/'+item.pid" style="color:#333;">
 
@@ -797,12 +797,13 @@
                         </router-link>
 
                     </div>
+                    </slick>
 
                 </div>
 
                 <div :id="'newsChangeLink' + index" class="row m-lr-0" v-if="group[0].pattern == 3">
-
-                    <div class="col-md-6 col-lg-3 pad-new pattern-child">
+                    <slick :options="slickOptions" class="news-slider-width"> 
+                    <div class="pad-new pattern-child">
 
                         <router-link :to="'/newsdetails/'+group[0].pid">
 
@@ -831,7 +832,7 @@
 
                     </div>
 
-                    <div class="col-md-6 col-lg-3 pad-new pattern-child">
+                    <div class="pad-new pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(1, 4)" :key="index" :to="'/newsdetails/'+item.pid">
 
@@ -879,7 +880,7 @@
 
                     </div>
 
-                    <div class="col-md-6 col-lg-3 pad-new pattern-child">
+                    <div class="pad-new pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(4, 7)" :key="index" :to="'/newsdetails/'+item.pid">
 
@@ -927,7 +928,7 @@
 
                     </div>
 
-                    <div class="col-md-6 col-lg-3 pad-new pattern-child">
+                    <div class="pad-new pattern-child">
 
                         <router-link :to="'/newsdetails/'+group[7].pid" v-if="group[7]">
 
@@ -963,6 +964,7 @@
                         </router-link>
 
                     </div>
+                    </slick>
 
                 </div>
 
@@ -1129,19 +1131,15 @@
                     breakpoint: 1280,
                         settings: {
                             slidesToShow: 3,                           
-                            slidesToScroll: 1,   
+                            slidesToScroll: 1,  
+                            infinite:false 
                         }
                     }, {
-                    breakpoint: 750,
+                    breakpoint: 780,
                         settings: {
                             slidesToShow: 2,
-                            slidesToScroll: 1,                            
-                        }
-                    },{
-                     breakpoint: 414,
-                        settings: {
-                             slidesToShow: 0,
-                            slidesToScroll: 1,   
+                            slidesToScroll: 1, 
+                            infinite: false                           
                         }
                     }]                    
                 }
@@ -1653,6 +1651,9 @@
 .nav {
     flex-wrap: nowrap;
 }
+.news-slider-width{
+    width: 100%;
+}
 @media only screen and (min-width: 1024px) and (max-width: 1200px){
     #view-1024 .first-child {
         max-width: 65.66%;
@@ -1689,6 +1690,10 @@
 @media only screen and (max-width:768px){
     .news-slider-width{
         width: 702px;
+    }
+    .pad-new{    
+        padding-right: 20px !important;
+        padding-left: 20px !important;
     }
 }
 </style>
