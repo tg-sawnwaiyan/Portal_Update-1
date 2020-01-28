@@ -60,9 +60,9 @@
                                         <button class="btn delete-borderbtn ml-2" @click="deletePost(newsList.id)">削除</button>
                                     </div>
                                 </td>
-                            </tr>
-                                <pagination :data="news_list" @pagination-change-page="searchbyCategory"></pagination>
+                            </tr>                                
                         </table>
+                        <pagination :data="news_list" @pagination-change-page="searchbyCategory"></pagination>
                     </div>
 
                 </div>
@@ -109,11 +109,7 @@
                     .then(response => {
 
                         this.news_list = response.data.news;
-                        console.log('News List');
-                        console.log(this.news_list);
-
                         this.categories = response.data.category;
-
                         this.norecord = this.news_list.length
                         if(this.norecord > this.size) {
                             this.pagination = true;
@@ -179,7 +175,6 @@
                             });
                     });
                 },
-
                 searchbyCategory(page) {
 
                     if (typeof page === 'undefined') {
