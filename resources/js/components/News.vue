@@ -1141,6 +1141,13 @@
                             slidesToScroll: 1, 
                             infinite: false                           
                         }
+                    },{
+                        breakpoint: 414,
+                            settings:{
+                                slidesToShow: 1,
+                                slidesToScroll:1,
+                                infinite: false
+                            }
                     }]                    
                 }
             }
@@ -1694,6 +1701,11 @@
     .pad-new{    
         padding-right: 20px !important;
         padding-left: 20px !important;
+    }
+}
+@media only screen and (max-width: 414px){
+    .news-slider-width{
+        width: 400px;
     }
 }
 </style>
