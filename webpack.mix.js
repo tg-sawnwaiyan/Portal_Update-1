@@ -27,7 +27,7 @@ mix.js('resources/js/app.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css');
 // mix.css('resources/css/mystyle.css', 'public/css'); //V
 
-mix.js('resources/js/myJs.js', 'public/js');
+// mix.js('resources/js/myJs.js', 'public/js');
 
 // mix.webpackConfig({
 //    resolve: {
