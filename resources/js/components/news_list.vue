@@ -53,6 +53,7 @@
                                         <router-link
                                             :to="{name: 'newdetails', params:{id:newsList.id}}"
                                         >{{newsList.title}}</router-link>
+                                        {{newsList.id}}
                                     </h5>
                                     <p class="mt-2">{{newsList.main_point}}</p>
                                     <div class="d-flex mt-4">

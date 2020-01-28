@@ -1394,6 +1394,7 @@
                     .get('/api/get_latest_post_all_cat')
 
                     .then(response => {
+                        console.log(response.data)
                         this.$loading(false);
                         this.latest_post_all_cats = response.data;
 
