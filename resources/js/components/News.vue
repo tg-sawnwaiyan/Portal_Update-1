@@ -1724,6 +1724,9 @@
     .slick-prev{
         left: 5px;
         z-index: 999;
+        background: #afaeae;
+        border-radius: 50%;
+        border:1px solid #807777;
     }
     
 }
