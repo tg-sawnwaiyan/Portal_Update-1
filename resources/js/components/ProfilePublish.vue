@@ -1784,7 +1784,7 @@ export default {
                                 }
                             });
                             if (cur_pos >= 100) {
-                                $(".fixed-nav").css({"position": "fixed","top": admin_top ,"display": "inline-flex","width": "100%"});
+                                $(".fixed-nav").css({"position": "fixed","top": admin_top ,"display": "inline-flex","width": "100%","left":"0","right":"0"});
                             } else {
                                 $(".fixed-nav").css({"position": "unset", "top": "unset"});
                             }
@@ -1998,15 +1998,15 @@ export default {
                     });
                 }
 
-                // var new_width = $("#content-all").width();
+                var new_width = $("#content-all").width();
 
-                // var fixed_width = new_width - 80;
+                var fixed_width = new_width - 80;
 
-                // this.width = fixed_width + "px";
+                this.width = fixed_width + "px";
 
-                var new_width = $("#Profile-page").width();
-                this.width = new_width + "px";
-                console.log(new_width + "px");
+                // var new_width = $("#Profile-page").width();
+                // this.width = new_width + "px";
+                // console.log(new_width + "px");
 
 
                 var main_header = $(".main-header").height();
