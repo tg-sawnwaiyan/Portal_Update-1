@@ -12,7 +12,7 @@
                 <div class="d-flex justify-content-center registerform_container">
                     <div class="brand_logo_container">
                         <!-- <h4 style="position:relative; bottom: 60px; width:152px;">事業者新規登録</h4> -->
-                        <img src="/images/login5.png" class="brand_logo" alt="Logo">
+                        <img src="/images/login.png" class="brand_logo" alt="Logo">
                         <div id="preview">
                           <img v-if="url" :src="url" class="brand_logo" alt="Logo">
                         </div>                        

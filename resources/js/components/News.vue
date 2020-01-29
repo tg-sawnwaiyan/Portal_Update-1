@@ -1394,6 +1394,7 @@
                     .get('/api/get_latest_post_all_cat')
 
                     .then(response => {
+                        console.log(response.data)
                         this.$loading(false);
                         this.latest_post_all_cats = response.data;
 
@@ -1698,7 +1699,7 @@
     .news-slider-width{
         width: 100%;
     }
-    .slick-next{
+    .slick-next, .slick-prev{
         border: 1px solid #807777;
         outline: none;
         background: #f7f7f7;
@@ -1707,13 +1708,13 @@
     }  
     
     .slick-next::before{
-        border: solid #757575;
+        
         border-width: .2rem .2rem 0 0;
         height: 9px;
         width: 9px;  
     }
     .slick-prev::before{
-        border: solid #757575;
+        
         border-width: .2rem .2rem 0 0;
         height: 9px;
         width: 9px;
@@ -1723,10 +1724,13 @@
     }
     .slick-prev{
         left: 5px;
-        z-index: 999;
-        background: #afaeae;
-        border-radius: 50%;
-        border:1px solid #807777;
+        z-index: 999;       
+    }
+    .button:not(:disabled).slick-next{
+        opacity: 0;
+    }
+    .slick-disabled{
+        opacity: 0;
     }
     
 }

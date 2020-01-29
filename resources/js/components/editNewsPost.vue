@@ -346,7 +346,7 @@ import {quillEditor} from 'vue-quill-editor'
                         fd.append("cat_id", cat_id);
 
                         this.axios
-                        .post('/api/new/getPostsByCatId/?page=' + page,fd)
+                        .post('/api/new/getPostsByCatId/page=' + page,fd)
                         .then(response => {
                             this.related_news = response.data;
                             if(this.related_news.length > this.size) {
