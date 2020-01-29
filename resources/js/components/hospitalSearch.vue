@@ -28,10 +28,7 @@
             <maptag></maptag>
         </div>
           </div>
-          <section id="map-responsive">
-            <div>
-             
-            </div>
+        <section id="map-responsive">            
             <div class="freeword-responsive"> 
                 <h3 class="map-resicon">
                   <div class="map-text-wrapper">
@@ -52,8 +49,8 @@
                     </button>
                 </div>
               <!--end search input-->
-            </div>
-                                
+            </div>  
+            <bulcomponent></bulcomponent>                            
         </section>
         <div id="scroll-responsive">
             <div id="hos_search" class="col-12 hospitalselect pad-free m-b-10">
@@ -386,14 +383,15 @@
 
 
 <script>
- import maptag from './map.vue' 
-  import layout from '../components/home.vue' 
+import maptag from './map.vue' 
+import layout from '../components/home.vue' 
+import bulcomponent from './bulcomponent.vue' 
  
   export default {
     components: {
         maptag,
-      layout,
-      
+        layout,
+        bulcomponent
     },
 
     data() {
