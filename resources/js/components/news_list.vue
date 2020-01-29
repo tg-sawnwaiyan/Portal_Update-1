@@ -190,7 +190,7 @@
                     this.axios.post("/api/news_list/search?page="+page, fd).then(response => {
                         this.$loading(false);
                         this.news_list = response.data;
-                        this.norecord = this.news_list.length;
+                        this.norecord = this.news_list.data.length;
                         if(this.news_list.length > this.size){
                             this.pagination = true;
                         }else{

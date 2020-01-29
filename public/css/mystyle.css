@@ -5877,6 +5877,8 @@ position: relative;
         padding: 2px;
         height: 120px;
     }
+
+
     /* .top-ad-slider .ads-img {
 
 font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
@@ -9865,6 +9867,8 @@ padding: 0;
     .d-none-768 {
         display: none;
     }
+
+
     /*end  header */
     /* ads slider */
     .ads-slider {
@@ -10177,6 +10181,9 @@ width: 18rem;
     /*news_end*/
 }
 @media only screen and (max-width:768px) {
+    .nus-town-m-t {
+        margin-top: 10px;
+    }
     .pc-768 {
         display: none;
     }
@@ -10412,7 +10419,6 @@ width: 18rem;
     .sp_adminNav ul.sub_menu li:last-child {
         padding-bottom: 8px;
     }
-
     .down {
         -ms-transform: rotate(90deg);
         -webkit-transform: rotate(90deg);
