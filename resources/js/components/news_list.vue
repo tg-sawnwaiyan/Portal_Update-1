@@ -37,7 +37,7 @@
                     </div>
                     <hr />
                     <h5 class="header">ニュース一覧</h5>
-                    <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデタが消える。</div> 
+                    <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div> 
 
                     <div v-else class="container-fuid">
                         <table class="table List_tbl">
