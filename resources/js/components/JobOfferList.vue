@@ -64,12 +64,12 @@
                                                     </label> -->
                                                     <div class="model-7">
                                                         <div class="checkbox">
-                                                                <input type='checkbox' v-if="job.recordstatus == 1" @click="confirm(job.id)" checked/>                                                                             
-                                                                <input type='checkbox' v-if="job.recordstatus==0" @click="confirm(job.id)"  />                                                                              
+                                                                <input type='checkbox' v-if="job.recordstatus == 1" @click="confirm(job.id)" checked/>
+                                                                <input type='checkbox' v-if="job.recordstatus==0" @click="confirm(job.id)"  />
                                                                 <label for="checkbox"></label>
                                                                 <div v-if="job.recordstatus == 1" class="on">公開中</div>
-                                                                <div v-if="job.recordstatus == 0" class="on">非行化</div> 
-                                                                
+                                                                <div v-if="job.recordstatus == 0" class="on">非行化</div>
+
                                                                 <!-- <span>OFF</span>  -->
 
                                                             </div>
@@ -129,11 +129,11 @@
                                                 <router-link :to="{name: 'job_details', params:{id:job.id,loginuser:loginuser}}">{{job.title}} </router-link>
                                                 <div class="model-7">
                                                     <div class="checkbox">
-                                                        <input type='checkbox' v-if="job.recordstatus == 1" @click="confirm(job.id)" checked/>                                                                             
-                                                        <input type='checkbox' v-if="job.recordstatus==0" @click="confirm(job.id)"  />                                                                              
+                                                        <input type='checkbox' v-if="job.recordstatus == 1" @click="confirm(job.id)" checked/>
+                                                        <input type='checkbox' v-if="job.recordstatus==0" @click="confirm(job.id)"  />
                                                         <label for="checkbox"></label>
                                                         <div v-if="job.recordstatus == 1" class="on">公開中</div>
-                                                        <div v-if="job.recordstatus == 0" class="on">非行化</div> 
+                                                        <div v-if="job.recordstatus == 0" class="on">非行化</div>
                                                     </div>
                                                 </div>
                                             </h5>
@@ -192,7 +192,7 @@
             </div>
         </div>
     </div>
-                           
+
                             <!-- <table class="table table-hover custom-table">
               <thead style="background-color:rgb(183, 218, 210);">
                 <tr>
@@ -230,17 +230,17 @@
                 </tr>
               </tbody>
             </table> -->
-            
+
                         <!-- <div>
                             <button class="btn confirmed" v-if="job.recordstatus == 1" @click="confirm(job.id)">OFF</button>
 
                             <button class="btn confirm-borderbtn" v-if="job.recordstatus == 0" @click="confirm(job.id)">ON</button>
                         </div> -->
 
-                            
-                                        
 
-                                       
+
+
+
 
                                         <!-- <label>
                       <strong>Title :</strong>
@@ -266,9 +266,9 @@
                     <small>
                       <a class="btn text-danger delete-borderbtn" @click="deleteJob(job.id)">削除</a>
                     </small> -->
-                                    
-                        
-                    
+
+
+
 </template>
 <script>
     export default {
@@ -292,7 +292,7 @@
                     norecord_msg: false,
                     nosearch_msg: false,
                     subtitle: 'OFF'
-                   
+
                 };
             },
 
@@ -360,8 +360,8 @@
                     this.axios.get("/api/job/index").then(response => {
                         this.$loading(false);
                         this.jobs = response.data.profilejob;
-                        console.log(this.jobs);
-                  
+                        console.log("aaabbb",this.jobs);
+
                         this.customer_id = response.data.user;
                         if (this.jobs.length > this.size) {
                         this.pagination = true;
@@ -390,14 +390,14 @@
                 //                     location.reload();
                 //                 });
 
-                    
+
                 //     },
                 confirm(id) {
-                  
+
                     this.axios.get(`/api/job/confirm/${id}`)
                         .then(response => {
 
-                                
+
                             // this.jobs = response.data.jobs;
                             this.getAllJobs();
                         });
@@ -444,8 +444,10 @@
 
                         let fd = new FormData();
                         fd.append("search_word", search_word);
+                         this.$loading(true);
                         this.axios.post("/api/job/search", fd).then(response => {
-                            this.jobs = response.data;
+                            this.$loading(false);
+                            this.jobs = response.data.jobsearch;
                             if (this.jobs.length > this.size) {
                             this.pagination = true;
                             } else {
@@ -573,7 +575,7 @@
     border: 2px solid #555;
     height: 22px;
     width: 50px;
-  
+
 }
 .model-7 .checkbox label:after {
   background: #555;

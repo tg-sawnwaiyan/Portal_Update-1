@@ -42,7 +42,6 @@
                         </thead>
                         <tbody>
                             <tr  v-for="jobapply in displayItems" :key="jobapply.id">
-
                                 <td>{{jobapply.first_name}}</td>
 
                                 <td>{{jobapply.last_name}}</td>
@@ -161,7 +160,9 @@ export default {
 
                       let fd = new FormData();
                         fd.append("search_word", search_word);
+                        this.$loading(true);
                         this.axios.post("/api/jobapplicant/search", fd).then(response => {
+                            this.$loading(false);
                             this.jobapplies = response.data;
                             if (this.jobapplies.length > this.size) {
                             this.pagination = true;

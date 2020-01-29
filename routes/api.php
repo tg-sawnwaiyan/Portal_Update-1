@@ -20,11 +20,11 @@ use App\HospitalProfile;
 // })->middleware('auth:api');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-   
+
     if($request->user()->type_id == 2){
         $lat_lng = HospitalProfile::select('id','latitude','longitude')->where('customer_id', $request->user()->customer_id)->get();
     }
-    else if($request->user()->type_id > 2) {     
+    else if($request->user()->type_id > 2) {
         $lat_lng = NursingProfile::select('id','latitude','longitude')->where('customer_id', $request->user()->customer_id)->get();
     }
 
@@ -42,7 +42,7 @@ Route::middleware('auth:api')->get('/admin/{cusid}/{type}', function ($cusid, $t
     return response()->json(array("user"=>$request->user(), "lat_lng"=>$lat_lng));
 });
 
-Route::group(['middleware' => ['auth']], function() {   
+Route::group(['middleware' => ['auth']], function() {
 
 });
 
@@ -238,7 +238,7 @@ Route::group(['prefix' => 'profile'], function () {
 });
 Route::group(['prefix' => 'job'], function () {
     // Route::get('getjob/{id}', 'JobController@getJob');
-    Route::post('search', 'JobController@search');
+    // Route::post('search', 'JobController@search');
 });
 
 Route::group(['prefix' => 'category'], function () {
