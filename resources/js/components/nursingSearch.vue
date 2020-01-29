@@ -6,7 +6,7 @@
             </div>
             <div class="search-map"  @mouseover="getStateHover">
                 <div class="row" id="hos">
-                    <div class="col-md-12">
+                    <div class="col-md-12" id="scrollMap">
                         <div>
                             <div class="row map-wrap"  id="searchMap">
                                 <!-- search map and path -->
@@ -24,7 +24,7 @@
                                 
                                     <!--end search input-->
                                 </div>
-                                <div class="col-lg-7 col-md-12 col-sm-12 float-right" id="scrollMap">
+                                <div class="col-lg-7 col-md-12 col-sm-12 float-right" >
                                     <maptag></maptag>
                                 </div>
                             </div>
@@ -61,14 +61,20 @@
                                         <div><p class="nurs-sub-heading">地域で絞り込む</p></div>                                    
                                         <div class="card search-border-dash">
                                             <div class="card-body">
+                                                <div class="row">
+                                                <div class="col-lg-6">
                                                 <select id="selectCity" class="form-control custom-select" @change="nursingSearchData(1);" style="background-color: #fff;" v-model="id">
                                                 <option value="-1" disabled>▼市区町村</option>
                                                 <option  :value="city.id" v-for="city in cities" :key="city.id">{{city.city_name}}</option>
                                                 </select>
-                                                <select id="selectTownship" class="form-control mt-1 custom-select" style="background-color: #fff;" @change="nursingSearchData(2);" v-model="township_id">
+                                                </div>
+                                                <div class="col-lg-6">
+                                                <select id="selectTownship" class="form-control custom-select nus-town-m-t" style="background-color: #fff;" @change="nursingSearchData(2);" v-model="township_id">
                                                 <option value="-1" >▼市区町村</option>
                                                 <option  :value="selectTownship.id"  v-for="selectTownship in getTownships" :key="selectTownship.id">{{selectTownship.township_name}}</option>
                                                 </select>
+                                                </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -76,7 +82,8 @@
                                         <div><p class="nurs-sub-heading">料金で絞り込む</p></div>
                                         <div class="card search-border-dash">
                                         <div class="card-body">
-                                            <div class="">
+                                            <div class="row">
+                                                <div class="col-lg-6">
                                             <select name="" id="" class="form-control custom-select" style="background-color: #fff;" @change="nursingSearchData" v-model="moving_in">
                                                 <option data-price-type="" value="-1" >▼入居一時金</option>
                                                 <!-- <option data-price-type="" value="0">一時金なし</option> -->
@@ -95,7 +102,9 @@
                                                 <option data-price-type="" value="30000000">3,000万円以下</option>
                                                 <option data-price-type="more" value="30000000">3,000万円以上</option>
                                             </select>
-                                            <select name="" id="" class="form-control  mt-1 custom-select" style="background-color: #fff;" @change="nursingSearchData" v-model="per_month">
+                                                </div>
+                                                <div class="col-lg-6">
+                                            <select name="" id="" class="form-control custom-select nus-town-m-t" style="background-color: #fff;" @change="nursingSearchData" v-model="per_month">
                                                 <option data-price-type="" value="-1" >▼月額利用料</option>
                                                 <option data-price-type="" value="100000">10万円以下</option>
                                                 <option data-price-type="" value="120000">12万円以下</option>
@@ -114,11 +123,12 @@
                                                 <option data-price-type="" value="500000">50万円以下</option>
                                                 <option data-price-type="more" value="500000">50万円以上</option>
                                             </select>
+                                                </div>
                                             </div>
                                         </div>
                                         </div>
                                     </div>                                    
-                                    <div class="col-lg-2 col-md-4 m-b-414 pc-768 align-self-center">
+                                    <div class="col-lg-2 col-md-4 m-b-414 pc-768 align-self-center m-t-30">
                                         <span class="btn seemore-btn select" style="width:100%;padding:20px 10px;" id="showSearchMap" @click="showSearchMap"><i class="fas fa-exchange-alt"></i>&nbsp;都道府県を再選択する</span>                                    
                                     </div>
                                     </div>
