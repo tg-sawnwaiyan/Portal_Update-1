@@ -1699,7 +1699,7 @@
     .news-slider-width{
         width: 100%;
     }
-    .slick-next{
+    .slick-next, .slick-prev{
         border: 1px solid #807777;
         outline: none;
         background: #f7f7f7;
@@ -1708,13 +1708,13 @@
     }  
     
     .slick-next::before{
-        border: solid #757575;
+        
         border-width: .2rem .2rem 0 0;
         height: 9px;
         width: 9px;  
     }
     .slick-prev::before{
-        border: solid #757575;
+        
         border-width: .2rem .2rem 0 0;
         height: 9px;
         width: 9px;
@@ -1724,7 +1724,13 @@
     }
     .slick-prev{
         left: 5px;
-        z-index: 999;
+        z-index: 999;       
+    }
+    .button:not(:disabled).slick-next{
+        opacity: 0;
+    }
+    .slick-disabled{
+        opacity: 0;
     }
     
 }
