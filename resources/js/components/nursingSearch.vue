@@ -10,20 +10,21 @@
                         <div>
                             <div class="row map-wrap"  id="searchMap">
                                 <!-- search map and path -->
-                                <div class="col-lg-5 col-md-12 col-sm-12 float-left map-leftwrapper" id="scroll-responsive">
+                                <div class="col-lg-5 col-md-12 col-sm-12 float-left map-leftwrapper">
                                     <h2 class="map-header">あなたらしい暮ら<br/>しができる。そん<br/>な老人ホームが見 <br/>つかります。</h2>
                                     <!--search input-->
                                     <div class="wrap">
                                         <div class="search">
-                                            <input type="text"  id="search-free-word" class="searchTerm" placeholder="地名、施設名などを入力">
-                                            <button class="searchButton"  @click="searchfreeword" >
+                                            <input type="text"  id="search-free-word" class="searchTerm" placeholder="地名、施設名などを入力"> 
+                                            <button class="searchButton"  @click="searchfreeword">
                                                 <i class="fas fa-search"></i> 検索
                                             </button>
-                                        </div>
+                                        </div>                                        
                                     </div>
+                                
                                     <!--end search input-->
                                 </div>
-                                <div class="col-lg-7 col-md-12 col-sm-12 float-right">
+                                <div class="col-lg-7 col-md-12 col-sm-12 float-right" id="scrollMap">
                                     <maptag></maptag>
                                 </div>
                             </div>
@@ -51,12 +52,13 @@
                                 <bulcomponent></bulcomponent>
                             </section>
                             <!-- search city , township  -->
-                            <div>
+                            
+                            <div id="scroll-responsive">
                                 <div class="select" id="filter" style="justify-content:space-between">
                                     <h5 class="profile_header" style="border-left: 5px solid #ff9563;">現在の検索条件</h5>
                                     <div class="row">
                                     <div class="col-lg-5 col-md-6 m-b-414">
-                                        <div><p class="nurs-sub-heading">地域で絞り込む</p></div>
+                                        <div><p class="nurs-sub-heading">地域で絞り込む</p></div>                                    
                                         <div class="card search-border-dash">
                                             <div class="card-body">
                                                 <select id="selectCity" class="form-control custom-select" @change="nursingSearchData(1);" style="background-color: #fff;" v-model="id">
@@ -115,10 +117,9 @@
                                             </div>
                                         </div>
                                         </div>
-                                    </div>
-
+                                    </div>                                    
                                     <div class="col-lg-2 col-md-4 m-b-414 pc-768 align-self-center">
-                                        <span class="btn seemore-btn select" style="width:100%;padding:20px 10px;" id="showSearchMap" @click="showSearchMap"><i class="fas fa-exchange-alt"></i>&nbsp;都道府県を再選択する</span>
+                                        <span class="btn seemore-btn select" style="width:100%;padding:20px 10px;" id="showSearchMap" @click="showSearchMap"><i class="fas fa-exchange-alt"></i>&nbsp;都道府県を再選択する</span>                                    
                                     </div>
                                     </div>
                                 </div>
@@ -887,7 +888,7 @@
                 },
                 })
                 .then((response) => {
-                    $("#mymap").css({'display' : 'block','height' : '440px','width':'100%'});
+                    $("#mymap").css({'display' : 'block','height' : '400px','width':'100%'});
                     $("#filtertable").css("display", "block");
                     $("#nursing-search").css("display", "block");
 
@@ -953,7 +954,7 @@
 
             parentGetStateClick(e,parentVue) {
                 var _this = parentVue;
-                $("#mymap").css({'display' : 'block','height' : '500px','width':'100%'});
+                $("#mymap").css({'display' : 'block','height' : '400px','width':'100%'});
                 $('.select').removeClass('select');
                 $('#searchMap').addClass('select');
                 $('#showSearchMap').removeClass('select');
@@ -994,7 +995,7 @@
                 })
                     .then((response) => {
                     //   _this.$loading(false);
-                    $("#mymap").css({'display' : 'block','height' : '500px','width':'100%'});
+                    $("#mymap").css({'display' : 'block','height' : '400px','width':'100%'});
                     // $("#mymap").css('display', 'block');
                     $("#nursing-search").css("display", "block");
                     $("#filtertable").css("display", "block");
@@ -1691,7 +1692,7 @@
   z-index: 1; */
   position: absolute;
   width: 100% !important;
-  height: 500px !important;
+  height: 400px !important;
 
 }
 .lds-ripple > div {
@@ -1739,7 +1740,7 @@
   position: relative;
   background: #000;
   width: 100%;
-  height: 500px;
+  height: 400px;
 }
 
   .path {
