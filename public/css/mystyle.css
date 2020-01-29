@@ -10034,6 +10034,9 @@ width: 18rem;
 }
 
 @media only screen and (max-width:768px) {
+    .nus-town-m-t {
+        margin-top: 10px;
+    }
     .pc-768 {
         display: none;
     }
