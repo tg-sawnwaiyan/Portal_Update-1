@@ -7,10 +7,12 @@
                 <div class="col-md-12 m-lr-0 pad-free">
                     <div class="form-group form-group-wrapper">
                         <label class="heading-lbl col-2 pad-free">パノラマ<span class="error">*</span></label>
-                       
-                        <span class="btn-file">ファイルを選ぶ
-                        <input type="file" name="" class="nursing-panorama m-b-10"  id="upload_panorama" @change="preview_panorama()" multiple>
-                        </span>
+                  
+                        <span class="btn-file">画像を選択                     
+                        <input type="file" name="img" class="nursing-panorama m-b-10"  id="upload_panorama" @change="preview_panorama()" multiple>
+                        </span> 
+                        <span id="imgname" class="pl-4">{{img_name}}</span>
+                        
 
                         <div class="row col-md-12 pad-free panorama panorama-box">
                         <!-- <div > -->
@@ -46,8 +48,8 @@
                     </div>
                     <div class="form-group form-group-wrapper d-flex">
                             <label class="heading-lbl col-md-2 col-12 pad-free">電話番号<span class="error">*</span></label>
-                            <div class="col-md-10 col-12 row">
-                            <input type="text" class="form-control customer-phone col-md-10 col-12 nursing_input" id="phone" placeholder="電話番号を入力してください。" v-model="customer_info.phone" v-on:keyup="isNumberOnly" pattern="[0-9-]*" @focusout="focusPhone" title="Please enter number only." maxlength="14">
+                            <div class="col-md-10 col-12 p-0">
+                            <input type="text" class="form-control customer-phone  nursing_input" id="phone" placeholder="電話番号を入力してください。" v-model="customer_info.phone" v-on:keyup="isNumberOnly" pattern="[0-9-]*" @focusout="focusPhone" title="Please enter number only." maxlength="14">
                             <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>
                             <span class="error" v-else></span>
                             </div>
@@ -68,7 +70,10 @@
                                     <div class="row" id ="gallery-photo">
                                             <div class="col-md-6 gallery-area-photo p0-480" v-bind:id="'photo'+indx" v-for="(img,indx) in img_arr" :key="img.id">
                                                     <div class="col-md-12 p0-480">
-                                                            <input type="file" name="" class="nursing-photo m-b-10 p-t-10" v-bind:class="img.classname" id="upload_img" @change="preview_image($event,indx)">
+                                                            <span class="btn-file mb-5">画像を選択        
+                                                            <input type="file" name="" class="nursing-photo" v-bind:class="img.classname" id="upload_img" @change="preview_image($event,indx)">
+                                                            </span> 
+                                                            <span>{{img.photo}}</span>
                                                             <div class="col-md-12 m-b-10 p0-480" v-bind:class="img.id">
                                                                 <input type="hidden" class="already-photo" v-model="img.photo">
                                                                 <img v-bind:src="img.src" class="img-fluid nursing-image" alt="profile" v-if="img.src!=null" @error="imgUrlAlt">
@@ -727,8 +732,8 @@ export default {
                 ph_num: false,
                 city_id: 0,
                 township_list: [],
-                address_show: ''
-
+                address_show: '',
+                img_name:''
             }
         },
 
@@ -737,7 +742,7 @@ export default {
         },
 
         created(){
-
+            
             if(this.type != undefined && this.cusid!= undefined){
                 localStorage.setItem('cusType',this.type);
                 localStorage.setItem('cusId',this.cusid);
@@ -889,8 +894,9 @@ export default {
                 this.img_arr[indx]['src'] = URL.createObjectURL(event.target.files[0]);
                 // $('#already-photo1').html("<img src='"+URL.createObjectURL(event.target.files[0])+"' class='img-fluid nursing-image'>");
             },
-
             preview_panorama() {
+                const file =event.target.files[0];
+                this.img_name = file.name;
                 for(var i=0; i< event.target.files.length; i++) {
                     var pathreal = URL.createObjectURL(event.target.files[i]);
                     this.panorama_arr.push({id:null,type:"panorama",photo:event.target.files[i].name,title:'',description:'', path:pathreal, file:event.target.files[i]});
@@ -932,7 +938,6 @@ export default {
 
             },
             DeleteArr(indx,type,id,photo) {
-
                 this.$swal({
                         title: "確認",
                         text: "職種を削除してよろしいでしょうか。",
@@ -988,6 +993,7 @@ export default {
                             }
                             else{
                                 this.panorama_arr.splice(indx, 1);
+                                this.img_name = '';
                             }
                         }
                     }
@@ -1152,7 +1158,7 @@ export default {
             },
 
             createProfile() {
-
+                
                 this.$loading(true);
                 console.log(this.img_arr)
 
@@ -1276,11 +1282,15 @@ export default {
                                     width: 250,
                                     height: 200,
                                 })
-                        }).catch(error=>{
-                        this.$loading(false);
-                        if(error.response.status == 422){
-                        this.profile_arr = 'error';
-                        this.errors = error.response.data.errors
+                        }).then(response => {
+                            this.img_name = '';
+                            console.log('testestestesw');
+                         })   
+                        .catch(error=>{
+                            this.$loading(false);
+                            if(error.response.status == 422){
+                            this.profile_arr = 'error';
+                            this.errors = error.response.data.errors
 
                         }
                     }) ;

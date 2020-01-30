@@ -553,7 +553,7 @@
 
                                         <div class="card-body">
                                             <select id="selectCity" class="form-control custom-select" @change="nursingSearchData(1);" style="background-color: #fff;" v-model="id">
-                                            <option value="-1" >▼市区町村</option>
+                                            <option value="-1" disabled>▼市区町村</option>
                                             <option  :value="city.id" v-for="city in cities" :key="city.id">{{city.city_name}}</option>
                                             </select>
                                             <select id="selectTownship" class="form-control mt-1 custom-select" style="background-color: #fff;" @change="nursingSearchData(2);" v-model="township_id">
@@ -1677,7 +1677,8 @@
             //    ]
 
                if(this.ci == true && (this.townshipID[0] == "-1" || this.townshipID.length == 0))
-               {                   
+               {              
+                  
                     this.loading = false;                    
                }
                else if(this.ci == false && (this.townshipID[0] == 0 || this.townshipID[0] == "-1" || this.townshipID.length == 0)){ 
@@ -1693,11 +1694,20 @@
 
                 }  
                 else{
-           
-                    this.axios.get('/api/townshipJson/'+township_name).then(res => {
-                        // var city_coordinates = res.data
-                        // this.coordinate = city_coordinates.reduce((acc, val) => acc.concat(val), []);
-                         this.boundariesGoogleMap(lat,lng,res.data);       
+                    var jsonfile = theCity+".json";
+                    jsonfile = jsonfile.toLowerCase();
+                    this.axios.get('./json/Townships/'+jsonfile).then(res => {
+                     var township_coor = []
+                     for(var i = 0; i < res.data.features.length; i++)
+                     {
+                      
+                         if(res.data.features[i]['properties']['N03_007'] == township_name)
+                         {
+                            //  console.log(res.data);
+                              township_coor.push(res.data.features[i]);
+                               this.boundariesGoogleMap(lat,lng,township_coor);       
+                         }
+                     }                     
                     })
                 }
             },

@@ -21,6 +21,7 @@
                 </div>
                 <div v-else class="container-fuid">
                     <h4 class="main-color m-b-10">ニュース検索</h4>
+                    <!-- Testing Start -->
                     <div class="row">
                         <div class="col-12 col-sm-6 mb-3">
                             <input type="text" class="form-control w-75 w-sm-100" placeholder="ニュース検索" id="search-item" @keyup="searchbyCategory()" />
@@ -60,10 +61,11 @@
                                         <button class="btn delete-borderbtn ml-2" @click="deletePost(newsList.id)">削除</button>
                                     </div>
                                 </td>
-                            </tr>                                
+                            </tr>
+                                <pagination :data="news_list" @pagination-change-page="getResults"></pagination>
                         </table>
-                        <pagination :data="news_list" @pagination-change-page="searchbyCategory"></pagination>
                     </div>
+                    <!-- Testing End -->
 
                 </div>
             </div>
@@ -103,13 +105,16 @@
 
         },
         methods: {
-            getResults() {
-                
-                this.$http.get('/api/news_list')
+            getResults(page) {
+                if (typeof page === 'undefined') {
+                    page = 1;
+                }
+                this.$http.get('/api/news_list?page=' + page)
                     .then(response => {
 
                         this.news_list = response.data.news;
                         this.categories = response.data.category;
+
                         this.norecord = this.news_list.length
                         if(this.norecord > this.size) {
                             this.pagination = true;
@@ -175,11 +180,8 @@
                             });
                     });
                 },
-                searchbyCategory(page) {
 
-                    if (typeof page === 'undefined') {
-                        page = 1;
-                    }
+                searchbyCategory() {
                     var search_word = $("#search-item").val();
 
                     var selected_category = document.getElementById("selectBox").value;
@@ -187,7 +189,7 @@
                     fd.append("search_word", search_word);
                     fd.append("selected_category", selected_category);
                     this.$loading(true);
-                    this.axios.post("/api/news_list/search?page="+page, fd).then(response => {
+                    this.axios.post("/api/news_list/search", fd).then(response => {
                         this.$loading(false);
                         this.news_list = response.data;
                         this.norecord = this.news_list.length;
