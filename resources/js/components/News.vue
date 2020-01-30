@@ -39,7 +39,7 @@
 
                                                 <div class="hovereffect fit-image">
 
-                                                <clazy-load class="wrapper-1" @load="log"  src="images/noimage.jpg" :key="latest_post_all_cat.id">
+                                                <div class="wrapper-1" @load="log"  src="images/noimage.jpg" :key="latest_post_all_cat.id">
 
                                                     <transition name="fade">
 
@@ -49,7 +49,7 @@
 
                                                     <!-- <img class="img-responsive fit-image" :src="'/upload/news/' + latest_post_all_cat.photo " alt="" @error="imgUrlAlt"> -->
 
-                                                    <transition name="fade" slot="placeholder">
+                                                    <!-- <transition name="fade" slot="placeholder">
 
                                                     <div class="preloader">
 
@@ -61,9 +61,9 @@
 
                                                     </div>
 
-                                                    </transition>
+                                                    </transition> -->
 
-                                                </clazy-load>
+                                                </div>
 
                                                     <!-- <div class="overlay">
 
