@@ -3500,9 +3500,11 @@ background: #ff9b53;  /
     display: block;
     width: 100%;
 } */
+
 #news_details .related_content {
     width: 100%;
 }
+
 .related_box {
     float: left;
     width: 25%;
@@ -8183,8 +8185,8 @@ margin-right: auto; */
     position: absolute;
     top: 50%;
     display: block;
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     padding: 0;
     -webkit-transform: translate(0, -50%);
     -ms-transform: translate(0, -50%);
@@ -9622,6 +9624,9 @@ padding: 0;
     ul li {
         list-style: none;
     }
+    li.first-submenu {
+        list-style: none;
+    }
     /*end common */
     /* header */
     .main-header {
@@ -10139,6 +10144,10 @@ width: 18rem;
     /*news_end*/
 }
 @media only screen and (max-width:768px) {
+    .nus-town-m-t {
+        margin-top: 10px;
+    }
+    
     .pc-768 {
         display: none;
     }

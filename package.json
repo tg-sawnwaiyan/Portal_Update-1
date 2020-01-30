@@ -28,8 +28,6 @@
     },
     "dependencies": {
         "@chenfengyuan/vue-carousel": "^1.0.2",
-        "@ckeditor/ckeditor5-build-classic": "^12.4.0",
-        "@ckeditor/ckeditor5-vue": "^1.0.1",
         "@websanova/vue-auth": "^2.21.14-beta",
         "animate.css": "^3.7.2",
         "async": "^3.1.0",

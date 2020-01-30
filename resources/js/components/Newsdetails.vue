@@ -19,7 +19,7 @@
           <!-- <span v-else>Back</span> -->
           <div v-else class="d-flex justify-content-end mb-4">
               <router-link to="/news_list" class="btn mr-2 all-btn submit" style="background:#ffc107;"><i class="fas fa-arrow-left"></i> 戻る</router-link>
-              <router-link :to="{name: 'editPost', params: {id: newdetails[0].id}}" class="btn edit-borderbtn">編集</router-link>&nbsp;
+              <router-link v-if="getData" :to="{name: 'editPost', params: {id: newdetails[0].id}}" class="btn edit-borderbtn">編集</router-link>&nbsp;
           </div>
           
         </div>
@@ -93,24 +93,20 @@
                     <p class="img_2 mb-1">{{news.main_point}}</p>
                   </div>
                   <div>
-                    <p class="p5 mb-2">{{news.body}}</p>
+                    <p class="p5 mb-2" v-html="news.body"></p>
                   </div>
                 </div>
                 <div class="col-md-12 mt-2 related-area">
-                  <h5
-                    class="seemore_tit"
-                  >記事をもっと見る</h5>
+                  <h5 class="seemore_tit" >記事をもっと見る</h5>
                   <br />
                   <!-- 関連ニュース -->
-                  <div
-                    class="pad-free"
-                    v-for="latest_new in latest_news"
-                    :key="latest_new.id"
-                    style="display:inline;margin-right:10px;"
-                  >
-                    <router-link :to="'/newsdetails/'+ latest_new.id">
+                  <div class="pad-free" v-for="latest_new in latest_news" :key="latest_new.id" style="display:inline;margin-right:10px;" >
+                    <a :href="'/newsdetails/'+latest_new.id">
                       <span>{{ latest_new.main_point }} |</span>
-                    </router-link>
+                    </a>
+                    <!-- <router-link :to="'/newsdetails/'+ latest_new.id">
+                      <span>{{ latest_new.main_point }} |</span>
+                    </router-link> -->
                   </div>
                 </div>             
             </div>
@@ -145,11 +141,7 @@
                   <h4 class="h4 next-title" style="border-left: 5px solid orange;">関連ニュース</h4>
                 </div>
                 <div class="related_content">
-                <div
-                  class="related_box mt-2"
-                  v-for="latest_post_all_cat in latest_post_all_cats"
-                  :key="latest_post_all_cat.id"
-                >
+                <div class="related_box mt-2" v-for="latest_post_all_cat in latest_post_all_cats" :key="latest_post_all_cat.id" >
                   <router-link :to="'/newsdetails/'+ latest_post_all_cat.id">
                     <div class="hovereffect fit-image" style="cursor:pointer;">
                       <img
@@ -197,6 +189,7 @@ export default {
       latest_post_all_cats: [],
       latest_news: [],
       othersDetails: true,
+      getData:false,
     };
   },
   created() {
@@ -212,7 +205,8 @@ export default {
       .get(`/api/newdetails/${this.$route.params.id}`)
       .then(response => {
         this.newdetails = response.data.news;
-    
+        this.getData = true;
+    console.log(this.newdetails[0].id)
         
       });
     // alert(this.$route.params.id);

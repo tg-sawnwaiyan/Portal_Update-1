@@ -15,7 +15,7 @@
                                      <!--search input-->
                                     <div class="search-input">
                                         <span class="btn btn my-2 col-md-12 my-sm-0 danger-bg-color btn-danger cross-btn" v-if="status == 1" @click="clearSearch()">X</span>
-                                        <input type="text" class="searchNews" placeholder="ニュース検索" id="search-free-word" v-bind:value="search_word">
+                                        <input typee="text" class="searchNews" placeholder="ニュース検索" id="search-free-word" v-bind:value="search_word">
                                         <button type="submit" class="searchButtonNews" @click="searchCategory()">
                                             <i class="fas fa-search"></i> 検索
                                         </button>
@@ -24,6 +24,81 @@
                                 </div>
                             </div>
                         <!-- </form> -->
+
+
+                       <!-- slier -->
+                      
+                        <slick  v-if="latest_post_all_cats.length > 0" ref="slick" :options="categoryslider" class="cat-slider d-block d-sm-none">  
+                        
+                            <div class="list-group-item adslist-card m-b-10"  v-for="latest_post_all_cat in latest_post_all_cats" :key="latest_post_all_cat.id">
+                                <a target="_blank">
+                                    <div class="slide-img">
+                                       <div class="col-sm-6 pad-free" >
+
+                                            <div class="col-md-12 row m-0 pad-free">
+
+                                                <div class="hovereffect fit-image">
+
+                                                <div class="wrapper-1" @load="log"  src="images/noimage.jpg" :key="latest_post_all_cat.id">
+
+                                                    <transition name="fade">
+
+                                                        <img :src="'/upload/news/' + latest_post_all_cat.photo " class="img-responsive fit-image" @error="imgUrlAlt">
+
+                                                    </transition>
+
+                                                    <!-- <img class="img-responsive fit-image" :src="'/upload/news/' + latest_post_all_cat.photo " alt="" @error="imgUrlAlt"> -->
+
+                                                    <!-- <transition name="fade" slot="placeholder">
+
+                                                    <div class="preloader">
+
+                                                        <div class="circle">
+
+                                                        <div class="circle-inner"></div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    </transition> -->
+
+                                                </div>
+
+                                                    <!-- <div class="overlay">
+
+                                                        <router-link class="btn btn-sm all-btn secondary-bg-color m-t-20" :to="'/newsdetails/'+ latest_post_all_cat.id">詳細</router-link>
+
+                                                    </div> -->
+
+                                                    <div class="info">
+
+                                                        <div class="col-12" style="border:none;">
+
+                                                            <p class=" p_3">
+
+                                                                {{ latest_post_all_cat.main_point }}
+
+                                                            </p>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                   
+                                </a>    
+                            </div>
+
+                        </slick>
+                       <!-- slider -->
+
+
                         <div class="row col-12 m-lr-0 p-0" v-if="status == '0'" id="view-1024">
                             <!-- category box -->
                             <div class="card col-md-12 col-lg-6 pad-new d-none d-sm-block first-child" style="border:0px!important;">
@@ -33,12 +108,12 @@
                                     <div class="nav nav-tabs card-header-tabs center" id="myTab" ref="content" v-bind:style="{ width: computed_width }">
 
                                         <ul class="nav nav-tabs" role="tablist">
-
+                              
                                             <li v-for="cat in cats" :key="cat.id" class="nav-item nav-line" id="category-id" v-bind:value="cat.id" v-on:click="getPostByCatID(cat.id);getLatestPostByCatID(cat.id);" ref="itemWidth">
 
                                                 <a class="nav-link" href="#two" v-if = "cats[0].id != cat.id" id="one-tab" data-toggle="tab" role="tab" aria-controls="One" aria-selected="true" >
 
-                                                {{ cat.name }}</a>
+                                               {{ cat.name }}</a>
 
                                                 <a class="nav-link active nav-line" href="#two" v-if = "cats[0].id == cat.id" id="one-tab" data-toggle="tab" role="tab" aria-controls="One" aria-selected="true" >
 
@@ -65,7 +140,7 @@
                                                  <clazy-load class="wrapper-0" @load="log"  src="images/noimage.jpg" :key="latest_post.id">
 
                                                     <transition name="fade">
-
+                                                      
                                                         <img v-bind:src="'/upload/news/' + latest_post.photo" class="source-img img-responsive"  @error="imgUrlAlt">
 
                                                     </transition>
@@ -128,9 +203,10 @@
                             <!-- end category box -->
 
                             <!-- category right side -->
-                            <div class="col-md-12 col-lg-6 pad-free last-child">
+                            <div class="col-md-12 col-lg-6 pad-free last-child  d-none d-sm-block">
                                 <div class="" v-if="status =='0'">
-                                    <!-- two show () -->
+                                    <!-- two show () aaaaaaaaa-->  
+                                   
                                     <div v-if="(w_width >= 1280) || (w_width <= 768 && w_width >= 480)" class="row col-sm-12 p-lr-0 m-0">
                                         <div class="col-sm-6 m-b-8 pad-new" v-for="latest_post_all_cat in latest_post_all_cats.slice(0, 2)" :key="latest_post_all_cat.id">
 
@@ -251,7 +327,9 @@
                                     </div>
 
                                     <!-- two show -->
-                                    <div class="row col-sm-12 p-lr-0 m-0" v-if="(w_width >= 1280) || (w_width <= 768 && w_width >= 480)">
+                                  
+                                    <div class="row col-sm-12 p-lr-0 m-0 " v-if="(w_width >= 1280) || (w_width <= 768 && w_width >= 480)">
+                                  
                                         <div class="col-sm-6 m-b-8 pad-new" v-for="item in latest_post_all_cats.slice(2, 6)"  :key="item.id">
 
                                             <div class="col-md-12 row adslist-card news-3-card m-0">
@@ -299,18 +377,13 @@
                                                         <p> {{item.main_point}} </p>
 
                                                     </router-link>
-
                                                 </div>
-
                                             </div>
-
-
-
                                         </div>
                                     </div>
 
                                     <!-- one show -->
-                                    <div class="row col-sm-12 p-lr-0 m-0" v-if="(w_width < 1280 && w_width > 768) || (w_width < 480)">
+                                    <div class="row col-sm-12 p-lr-0 m-0 " v-if="(w_width < 1280 && w_width > 768) || (w_width < 480)">
                                         <div class="col-sm-12 m-b-8 pad-new" v-for="item in latest_post_all_cats.slice(1, 3)"  :key="item.id">
 
                                             <div class="col-md-12 row adslist-card news-3-card m-0">
@@ -374,7 +447,7 @@
                     </div>
 
                     <!-- category bottom -->
-                    <div class="col-md-12 m-lr-0 p-0" v-if="status == '0'">
+                    <div class="col-md-12 m-lr-0 p-0 d-none d-sm-block" v-if="status == '0'">
                         <!-- two show -->
                         <div class="row col-12 m-lr-0 p-0" v-if="(w_width >= 1280) || (w_width <= 768 && w_width >= 480)">
                             <div class="col-md-6 col-lg-3 m-b-8 pad-new" v-for="item in latest_post_all_cats.slice(6, 14)"  :key="item.id">
@@ -1115,7 +1188,22 @@
                            
 
     },
-    computed:{        
+    computed:{  
+
+        categoryslider(){
+            return {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                infinite: true,
+                accessibility: true,
+                adaptiveHeight: false,
+                edgeFriction: 0.30,
+                swipe: true,
+                autoplay: true,
+                lazyLoad: 'ondemand',   
+                arrows: false              
+            }
+        }    ,  
             slickOptions() {
                 return {
                 slidesToShow: 4,
@@ -1394,8 +1482,10 @@
                     .get('/api/get_latest_post_all_cat')
 
                     .then(response => {
+                    
                         this.$loading(false);
                         this.latest_post_all_cats = response.data;
+                       
 
                     });
             },
@@ -1651,6 +1741,28 @@
     right: -26px;
 }
 
+.cat-slider .list-group-item{
+    border-bottom-right-radius:0rem !important;
+    border-bottom-left-radius:0rem !important;
+    border-top-left-radius:0rem !important;
+    border-top-right-radius:0rem !important;
+
+}
+
+.cat-slider .adslist-card{
+    padding:0;
+}
+
+.hovereffect .info{
+    width: 100%;
+    height: 80px !important;
+    position: absolute;
+    top:140px !important;
+    background-color: #2a2d2cb0;
+    color: #fff;
+    text-align: justify !important;
+}
+
 #myTab ul li {
     display: inline-block;
 }
@@ -1694,14 +1806,52 @@
         width: 100%;
     }
 }
+
 @media only screen and (max-width:768px){
+    
+    
     .news-slider-width{
+       
         width: 100%;
     }
-    .pad-new{    
-        /* padding-right: 20px !important;
-        padding-left: 20px !important; */
+    .slick-next, .slick-prev{
+        border: 1px solid #807777;
+        outline: none;
+        background: #f7f7f7;
+        border-radius: 50%;
+        box-shadow: 0 0 0 1px rgba(0,0,0,0.04), 0 4px 8px 0 rgba(0,0,0,0.20);
+      
+       
+    }  
+    
+    .slick-next::before{
+        
+        border-width: .2rem .2rem 0 0;
+        height: 9px;
+        width: 9px;  
     }
+    .slick-prev::before{
+        
+        border-width: .2rem .2rem 0 0;
+        height: 9px;
+        width: 9px;
+    }
+    .slick-next{
+     
+        right: 0px
+    }
+    .slick-prev{
+      
+        left: 5px;
+        z-index: 999;       
+    }
+    .button:not(:disabled).slick-next{
+        opacity: 0;
+    }
+    .slick-disabled{
+        opacity: 0;
+    }
+    
 }
 @media only screen and (max-width: 414px){
     .news-slider-width{

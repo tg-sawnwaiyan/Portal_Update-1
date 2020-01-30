@@ -7,13 +7,13 @@
                 <a class="navbar-brand logo-text" href="/">
                 <!-- LOGO <span>HERE</span>  -->
                 <h4 style=" font-size: 13px; letter-spacing: 1.5px; font-weight: bold; ">介護医療福祉の総合サイト</h4>
-                <img src="/images/logo5.png" style="width:240px;height:auto;" />
+                <img src="/images/logo.png" style="width:240px;height:auto;" />
                 </a>
                 
                 <div class="h-tel"><a class="tel" href="tel:03-1234-5678"><i class="fas fa-phone-alt"></i><span>03-1234-5678</span></a><br class="pc-1024"><a href="mailto:info@t-i-s.jp"><p class="sp-1024"><i class="fas fa-envelope"></i></p><span>info@t-i-s.jp</span></a></div>
                 <ul class="sp_social login_socail d-none-380">
-                <li class="social-link" v-if="!$auth.check()"><a href="http://localhost:8000/registerForm"><i class="fab fa-twitter"></i></a></li>
-                <li class="social-link" v-if="!$auth.check()"><a href="http://localhost:8000/registerForm"><i class="fab fa-facebook-f"></i></a></li>
+                <li class="social-link" v-if="!$auth.check()"><a href="https://twitter.com/login"><i class="fab fa-twitter"></i></a></li>
+                <li class="social-link" v-if="!$auth.check()"><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>
                 </ul>
             </div>
             <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,8 +43,8 @@
                     <li class="nav-item  m-l-10" v-if="!$auth.check()">
                         <router-link :to="{name: 'register'}" class="nav-link pad-free"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;<span>事業者 登録</span></router-link>
                     </li> 
-                    <li class="social-link" v-if="!$auth.check()"><a href="http://localhost:8000/registerForm"><i class="fab fa-twitter"></i></a></li>
-                    <li class="social-link" v-if="!$auth.check()"><a href="http://localhost:8000/registerForm"><i class="fab fa-facebook-f"></i></a></li>
+                    <li class="social-link" v-if="!$auth.check()"><a href="https://twitter.com/login?lang=en"><i class="fab fa-twitter"></i></a></li>
+                    <li class="social-link" v-if="!$auth.check()"><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>
             
                     
                     <li class="col-12 userprofile-name pc" v-if="$auth.check()">

@@ -53,6 +53,7 @@
                                         <router-link
                                             :to="{name: 'newdetails', params:{id:newsList.id}}"
                                         >{{newsList.title}}</router-link>
+                                        {{newsList.id}}
                                     </h5>
                                     <p class="mt-2">{{newsList.main_point}}</p>
                                     <div class="d-flex mt-4">
@@ -190,7 +191,7 @@
                     this.axios.post("/api/news_list/search?page="+page, fd).then(response => {
                         this.$loading(false);
                         this.news_list = response.data;
-                        this.norecord = this.news_list.length;
+                        this.norecord = this.news_list.data.length;
                         if(this.news_list.length > this.size){
                             this.pagination = true;
                         }else{

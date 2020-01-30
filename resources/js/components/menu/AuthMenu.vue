@@ -12,8 +12,8 @@
                     </a>
                     <div class="h-tel" v-if="visit == 'true'"><a class="tel" href="tel:03-1234-5678"><i class="fas fa-phone-alt"></i><span>03-1234-5678</span></a><br class="pc-1024"><a href="mailto:info@t-i-s.jp"><p class="sp-1024"><i class="fas fa-envelope"></i></p><span>info@t-i-s.jp</span></a></div>
                     <ul class="sp_social d-none-380"  v-if="visit == 'true'">
-                        <li class="social-link"><a href="http://localhost:8000/registerForm"><i class="fab fa-twitter"></i></a></li>
-                        <li class="social-link"><a href="http://localhost:8000/registerForm"><i class="fab fa-facebook-f"></i></a></li>
+                        <li class="social-link"><a href="https://twitter.com/login?lang=en"><i class="fab fa-twitter"></i></a></li>
+                        <li class="social-link"><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>
                     </ul>
                 </div>
                 <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,8 +52,8 @@
                         <li class="nav-item m-r-10" v-if="visit == 'true'">
                             <a class="nav-link pad-free" @click="gotoDash()"><i class="fas fa-tachometer-alt"></i> 管理画面へ</a>
                         </li>
-                        <li class="social-link" v-if="!$auth.check()"><a href="http://localhost:8000/registerForm"><i class="fab fa-twitter"></i></a></li>
-                        <li class="social-link" v-if="!$auth.check()"><a href="http://localhost:8000/registerForm"><i class="fab fa-facebook-f"></i></a></li>
+                        <li class="social-link" v-if="!$auth.check()"><a href="https://twitter.com/login?lang=en"><i class="fab fa-twitter"></i></a></li>
+                        <li class="social-link" v-if="!$auth.check()"><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>
 
 
                         <li class="userprofile-name pc" v-if="$auth.check()">

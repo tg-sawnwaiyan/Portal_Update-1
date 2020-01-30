@@ -185,7 +185,8 @@ Route::group(['middleware' => ['auth:api']], function() {
         Route::get('editPost/{id}', 'PostController@edit');
         Route::post('update/{id}', 'PostController@update');
         Route::delete('delete/{id}', 'PostController@delete');
-        Route::post('getPostsByCatId', 'PostController@getPostById');
+        // Route::post('getPostsByCatId', 'PostController@getPostById');
+        Route::post('getPostsByCatId/{id}', 'PostController@getPostById');
     });
     // End News
 
@@ -386,9 +387,9 @@ Route::group(['prefix' => 'nurse'], function () {
     Route::delete('delete/{id}','NursingMailController@destroy');
 });
 
-Route::group(['prefix' => 'new'], function () {
-    Route::post('getPostsByCatId/{id}', 'PostController@getPostById');
-});
+// Route::group(['prefix' => 'new'], function () {
+//     Route::post('getPostsByCatId/{id}', 'PostController@getPostById');
+// });
 
 Route::get('cost','ProfilePublishController@getCost');
 Route::get('hospital','ProfilePublishController@hospital');
