@@ -80,7 +80,7 @@
 
               <div
 
-                class="col-md-6 gallery-area-photo p0-480"
+                class="col-md-6 gallery-area-photo p0-990 p0-480"
 
                 v-bind:id="'photo'+indx"
 
@@ -90,12 +90,14 @@
 
               >
 
-                <div class="col-md-12 p0-480">
+                <div class="col-md-12 p0-990 p0-480">
 
                   <input type="file" name class="hospital-photo m-b-15 p-t-10"  v-bind:class="'classname'+indx" id="upload_img" @change="preview_image($event,indx)" />
                   <div class="col-md-12" v-bind:class="img.id">
                     <input type="hidden" class="already-photo" v-model="img.photo" />
+                    <div>
                     <img v-bind:src="img.src" class="img-fluid hospital-image" alt="profile" v-if="img.src != null" @error="imgUrlAlt"/>
+                    </div>
                   </div>
 
                 </div>
@@ -131,7 +133,7 @@
 
           </span>
 
-           <span class='changeGalleryVideoLink  btn btn all-btn main-bg-color nursing_toggle_responsive ' style="min-width: 0px;" @click="galleryVideoToggle" >
+           <span class='changeGalleryVideoLink  btn btn all-btn main-bg-color nursing_toggle_responsive  ' style="min-width: 0px;" @click="galleryVideoToggle" >
                                         <i id="video" class="fas fa-sort-down"></i>
            </span>
 
@@ -223,7 +225,7 @@
 
             name="specialist"
 
-            class="form-control col-md-10 col-12 specialist white-bg-color"
+            class="form-control col-md-10 col-12 hos-768 specialist white-bg-color"
 
             v-model="hospital_info.specialist"
 
@@ -307,7 +309,7 @@
 
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 m-t-768">
 
                               <span>まで:</span>
 
@@ -347,7 +349,7 @@
 
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 m-t-768">
 
                               <span>まで:</span>
 
@@ -393,7 +395,7 @@
 
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 m-t-768">
 
                               <span>まで:</span>
 
@@ -433,7 +435,7 @@
 
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 m-t-768">
 
                               <span>まで:</span>
 
@@ -479,7 +481,7 @@
 
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 m-t-768">
 
                               <span>まで:</span>
 
@@ -519,7 +521,7 @@
 
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 m-t-768">
 
                               <span>まで:</span>
 
@@ -565,7 +567,7 @@
 
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 m-t-768">
 
                               <span>まで:</span>
 
@@ -605,7 +607,7 @@
 
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 m-t-768">
 
                               <span>まで:</span>
 
@@ -651,7 +653,7 @@
 
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 m-t-768">
 
                               <span>まで:</span>
 
@@ -691,7 +693,7 @@
 
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 m-t-768">
 
                               <span>まで:</span>
 
@@ -737,7 +739,7 @@
 
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 m-t-768">
 
                               <span>まで:</span>
 
@@ -777,7 +779,7 @@
 
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 m-t-768">
 
                               <span>まで:</span>
 
@@ -823,7 +825,7 @@
 
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 m-t-768">
 
                               <span>まで:</span>
 
@@ -863,7 +865,7 @@
 
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 m-t-768">
 
                               <span>まで:</span>
 
@@ -909,7 +911,7 @@
 
             name="close-day"
 
-            class="form-control white-bg-color close-day col-md-10 col-12"
+            class="form-control white-bg-color close-day col-md-10 col-12 hos-768"
 
             v-model="hospital_info.closed_day"
 
@@ -983,7 +985,7 @@
 
               <div class="form-group">
 
-                <label class="heading-lbl hos_lbl1 col-2 pad-free ">
+                <label class="heading-lbl hos_lbl1  col-2 pad-free ">
 
                   こだわりの特長
 
@@ -993,7 +995,7 @@
 
                 <span
 
-                  class="btn all-btn main-bg-color nursing_toggle_responsive"
+                  class="btn all-btn main-bg-color nursing_toggle_responsive btn-toggle"
 
                   style="min-width: 0px;"
 
@@ -1048,7 +1050,7 @@
 
             name="official-website"
 
-            class="form-control col-md-10 col-12 website white-bg-color"
+            class="form-control col-md-10 col-12  hos-768 website white-bg-color"
 
             v-model="hospital_info.website"
 
@@ -1066,7 +1068,7 @@
 
             name="congestion"
 
-            class="form-control col-md-10 col-12 congestion white-bg-color"
+            class="form-control col-md-10 col-12  hos-768 congestion white-bg-color"
 
             v-model="hospital_info.congestion"
 

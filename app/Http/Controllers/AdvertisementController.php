@@ -15,8 +15,8 @@ class AdvertisementController extends Controller
     public function index()
     {
 
-        $ads =Advertisement::all()->toArray();
-        return array_reverse($ads);
+        $ads =Advertisement::orderBy('id', 'DESC')->paginate(12);
+        return response()->json($ads);
     }
 
     /**
@@ -162,9 +162,8 @@ class AdvertisementController extends Controller
         $advertisement = Advertisement::query()
                             ->where('title', 'LIKE', "%{$search_word}%")
                             ->orderBy('id','DESC')
-                            ->get()
-                            ->toArray();
-        return $advertisement;
+                            ->paginate(12);
+        return response()->json($advertisement);
 
     }
 }

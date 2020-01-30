@@ -17,16 +17,21 @@ class CommentController extends Controller
     {
         // $comment =Comment::all()->toArray();
         // return array_reverse($comment);
-        $sql = "SELECT comments.*,customers.name from comments JOIN customers ON comments.customer_id= customers.id WHERE customers.type_id=$type AND customers.status=1";
-
-        $commentList = DB::select($sql);
+        // $sql = "SELECT comments.*,customers.name from comments JOIN customers ON comments.customer_id= customers.id WHERE customers.type_id=$type AND customers.status=1 ORDER BY id DESC";
+        $commentList = DB::table('comments')
+                ->join('customers','comments.customer_id','=','customers.id')
+                ->where('customers.type_id', $type)
+                ->where('customers.status', 1)
+                ->orderBy('comments.id','DESC')
+                ->paginate(12);
+        // $commentList = DB::select($sql)->paginate(12);
         foreach ($commentList as $com) {
             $splitTimeStamp = explode(" ",$com->created_at);
             $com->created_date = $splitTimeStamp[0];
             $com->created_time = $splitTimeStamp[1];
         }
         // return $comments;
-        return $commentList;
+        return response()->json($commentList);
     }
 
 
@@ -159,9 +164,8 @@ class CommentController extends Controller
                             ->join('customers','comments.customer_id','=','customers.id')
                             ->where('customers.name', 'LIKE', "%{$search_word}%")
                             ->orderBy('comments.id','DESC')
-                            ->get()
-                            ->toArray();
-        return $search_comment;
+                            ->paginate(12);
+        return response()->json($search_comment);
 
     }
 

@@ -22,7 +22,7 @@ class CustomerController extends Controller
     {        
         // $customers = Customer::all()->toArray();
         // return array_reverse($customers);
-        $customer =Customer::where('type_id',$type)->orderBy('created_at', 'desc')->get();
+        $customer =Customer::where('type_id',$type)->orderBy('created_at', 'desc')->paginate(12);
         return response()->json($customer);
     }
 
@@ -224,9 +224,8 @@ class CustomerController extends Controller
         $search_customer = Customer::query()
                             ->where('name', 'LIKE' , "%{$search_word}%")
                             ->orderBy('id','DESC')
-                            ->get()
-                            ->toArray();
-        return $search_customer;
+                            ->paginate(12);
+        return response()->json($search_customer);
     }
 
     public function accountStatusUpdate(Request $request)
