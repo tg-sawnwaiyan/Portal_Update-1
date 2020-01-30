@@ -1,9 +1,9 @@
 const mix = require('laravel-mix');
-// require('laravel-mix-bundle-analyzer');
+require('laravel-mix-bundle-analyzer');
  
-// if (!mix.inProduction()) {
-//     mix.bundleAnalyzer();
-// }
+if (!mix.inProduction()) {
+    mix.bundleAnalyzer();
+}
 // if (mix.inDevelopment()) {
 //     mix.bundleAnalyzer();
 // }
@@ -23,7 +23,7 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-   // .extract(['vue','jquery','bootstrap'])
+   .extract(['vue','jquery','bootstrap'])
    .sass('resources/sass/app.scss', 'public/css');
 // mix.css('resources/css/mystyle.css', 'public/css'); //V
 
