@@ -45,8 +45,135 @@
                         <hr />
                         <h5 class="header">求人一覧</h5>
                         <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
-                        <div v-else class="container-fuid">
-                        <!-- <table class="table table-hover custom-table">
+                        <div v-if="$auth.check(1)" class="container-fuid">
+                            <div class="card card-default m-b-20" v-for="job in jobs.data" :key="job.id">
+                                <div class="card-body joboffer-body">
+                                    <div class="row">
+                                        <div class="col-md-12 m-t-8">
+                                            <div class="joboffer-header">
+                                                <h5 class="joboffer-tit clearfix">
+                                                    <router-link :to="{name: 'job_details', params:{id:job.id,loginuser:loginuser}}">{{job.title}} </router-link>
+                                                    <!-- <span class="job_id">jobapplylistcount{{job.count}}</span> -->
+                                                    <span class="float-right">応募者数:
+                                                    <span class="text-orange"><span class="job_count">{{job.count}}件</span></span>
+                                                    </span>
+                                                    <!-- <label class="switch">
+                                                        <input type="checkbox" v-if="job.recordstatus != 1" >
+                                                        <input type="checkbox" v-else @click="confirm(job.id)">
+                                                        <span class="slider round"></span>
+                                                    </label> -->
+                                                    <div class="model-7">
+                                                        <div class="checkbox">
+                                                                <input type='checkbox' v-if="job.recordstatus == 1" @click="confirm(job.id)" checked/>
+                                                                <input type='checkbox' v-if="job.recordstatus==0" @click="confirm(job.id)"  />
+                                                                <label for="checkbox"></label>
+                                                                <div v-if="job.recordstatus == 1" class="on">公開中</div>
+                                                                <div v-if="job.recordstatus == 0" class="on">非行化</div>
+
+                                                                <!-- <span>OFF</span>  -->
+
+                                                            </div>
+                                                    </div>
+                                                    <span class="job_id">求人番号：{{job.jobid}}</span>
+                                                </h5>
+                                            </div>
+
+                                            <div class="joboffer-body">
+
+                                                <p class="mb-2"><span class="text-orange"><span class="job_ico">&#xa5;</span>給料 :</span><span class=""> {{job.salary}}</span></p>
+                                                <p class="mb-2"><span class="text-orange"><span class="job_ico">★</span> スキル :</span><span class=""> {{job.skills}}</span></p>
+                                                <ul class="btn-list mt-4">
+                                                    <li>
+                                                        <router-link :to="{name: 'joboffercreate', params:{id:job.id}}" class="btn edit-borderbtn">編集</router-link>
+                                                    </li>
+                                                    <li>
+                                                        <router-link :to="{name: 'jobapplylist', params:{id:job.id,title:job.title}}" class="btn confirm-borderbtn confirmed">求人応募一覧ページへ</router-link>
+                                                    </li>
+                                                    <!-- <li><a class="btn text-success active-borderbtn">Disabled</a></li> -->
+                                                    <li><a class="btn text-danger delete-borderbtn" @click="deleteJob(job.id)">削除</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="container-fuid" v-if="$auth.check(2)">
+                            <table class="table table-hover custom-table">
+                                <thead style="background-color:rgb(183, 218, 210);">
+                                    <tr>
+                                         <!-- <th>姓</th>
+
+                                        <th>名</th>
+
+                                        <th>生年月日</th>
+
+                                        <th>性別</th>
+
+                                        <th>郵便番号</th>
+
+                                        <th>街路住所</th>
+
+
+                                        <th>電話番号</th>
+
+                                        <th>メールアドレス</th> -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr  v-for="job in jobs.data" :key="job.id">
+                                        <th>
+                                            <h5 class="joboffer-tit clearfix">
+                                                <router-link :to="{name: 'job_details', params:{id:job.id,loginuser:loginuser}}">{{job.title}} </router-link>
+                                                <div class="model-7">
+                                                    <div class="checkbox">
+                                                        <input type='checkbox' v-if="job.recordstatus == 1" @click="confirm(job.id)" checked/>
+                                                        <input type='checkbox' v-if="job.recordstatus==0" @click="confirm(job.id)"  />
+                                                        <label for="checkbox"></label>
+                                                        <div v-if="job.recordstatus == 1" class="on">公開中</div>
+                                                        <div v-if="job.recordstatus == 0" class="on">非行化</div>
+                                                    </div>
+                                                </div>
+                                            </h5>
+                                        </th>
+
+                                        <th>
+                                            <p class="mb-2"><span class="text-orange"><span class="job_ico">&#xa5;</span>給料 :</span><span class=""> {{job.salary}}</span></p>
+                                            <p class="mb-2"><span class="text-orange"><span class="job_ico">★</span> スキル :</span><span class=""> {{job.skills}}</span></p>
+                                        </th>
+
+                                        <th>
+                                            <span class="">応募者数:
+                                                <span class="text-orange"><span class="job_count">{{job.count}}件</span></span>
+                                            </span><br>
+                                            <span class="job_id" style="float: left">求人番号：{{job.jobid}}</span>
+                                        </th>
+
+                                        <th>
+                                            <ul class="btn-list mt-4">
+                                                <li>
+                                                    <router-link :to="{name: 'joboffercreate', params:{id:job.id}}" class="btn edit-borderbtn">編集</router-link>
+                                                </li>
+                                                <li>
+                                                    <router-link :to="{name: 'jobapplylist', params:{id:job.id,title:job.title}}" class="btn confirm-borderbtn confirmed">求人応募一覧ページへ</router-link>
+                                                </li>
+                                                <li><a class="btn text-danger delete-borderbtn" @click="deleteJob(job.id)">削除</a></li>
+                                            </ul>
+                                        </th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <pagination :data="jobs" @pagination-change-page="searchJobOffer"></pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                            <!-- <table class="table table-hover custom-table">
               <thead style="background-color:rgb(183, 218, 210);">
                 <tr>
                   <th>施設種別</th>
@@ -83,34 +210,6 @@
                 </tr>
               </tbody>
             </table> -->
-                        <div class="card card-default m-b-20" v-for="job in jobs.data" :key="job.id">
-                            <div class="card-body joboffer-body">
-                                <div class="row">
-                                    <div class="col-md-12 m-t-8">
-                                        <div class="joboffer-header">
-                                            <h5 class="joboffer-tit clearfix">
-                            <router-link :to="{name: 'job_details', params:{id:job.id,loginuser:loginuser}}">{{job.title}} </router-link>
-                            <!-- <span class="job_id">jobapplylistcount{{job.count}}</span> -->
-                            <span class="float-right">応募者数:
-                            <span class="text-orange"><span class="job_count">{{job.count}}件</span></span>
-                            </span>
-                            <!-- <label class="switch">
-                                <input type="checkbox" v-if="job.recordstatus != 1" >
-                                 <input type="checkbox" v-else @click="confirm(job.id)">
-                                <span class="slider round"></span>
-                            </label> -->
-                           <div class="model-7">
-                               <div class="checkbox">
-                                    <input type='checkbox' v-if="job.recordstatus == 1" @click="confirm(job.id)" checked/>
-                                    <input type='checkbox' v-if="job.recordstatus==0" @click="confirm(job.id)"  />
-                                    <label for="checkbox"></label>
-                                    <div v-if="job.recordstatus == 1" class="on">公開中</div>
-                                    <div v-if="job.recordstatus == 0" class="on">非行化</div>
-
-                                    <!-- <span>OFF</span>  -->
-
-                             </div>
-                           </div>
 
                         <!-- <div>
                             <button class="btn confirmed" v-if="job.recordstatus == 1" @click="confirm(job.id)">OFF</button>
@@ -118,25 +217,10 @@
                             <button class="btn confirm-borderbtn" v-if="job.recordstatus == 0" @click="confirm(job.id)">ON</button>
                         </div> -->
 
-                            <span class="job_id">求人番号：{{job.jobid}}</span>
-                        </h5>
-                                        </div>
 
-                                        <div class="joboffer-body">
 
-                                            <p class="mb-2"><span class="text-orange"><span class="job_ico">&#xa5;</span>給料 :</span><span class=""> {{job.salary}}</span></p>
-                                            <p class="mb-2"><span class="text-orange"><span class="job_ico">★</span> スキル :</span><span class=""> {{job.skills}}</span></p>
-                                            <ul class="btn-list mt-4">
-                                                <li>
-                                                    <router-link :to="{name: 'joboffercreate', params:{id:job.id}}" class="btn edit-borderbtn">編集</router-link>
-                                                </li>
-                                                <li>
-                                                    <router-link :to="{name: 'jobapplylist', params:{id:job.id,title:job.title}}" class="btn confirm-borderbtn confirmed">求人応募一覧ページへ</router-link>
-                                                </li>
-                                                <!-- <li><a class="btn text-success active-borderbtn">Disabled</a></li> -->
-                                                <li><a class="btn text-danger delete-borderbtn" @click="deleteJob(job.id)">削除</a></li>
-                                            </ul>
-                                        </div>
+
+
 
                                         <!-- <label>
                       <strong>Title :</strong>
@@ -162,17 +246,9 @@
                     <small>
                       <a class="btn text-danger delete-borderbtn" @click="deleteJob(job.id)">削除</a>
                     </small> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                        <pagination :data="jobs" @pagination-change-page="searchJobOffer"></pagination>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+
+
 </template>
 <script>
     export default {
@@ -187,11 +263,7 @@
                     customer_id: "",
                     count: "",
                     job_id: [],
-                    currentPage: 0,
-                    size: 5,
-                    pageRange: 5,
                     items: [],
-                    pagination: false,
                     loginuser: true,
                     norecord_msg: false,
                     nosearch_msg: false,
@@ -228,15 +300,10 @@
                     this.axios.get("/api/job/index").then(response => {
                         this.$loading(false);
                         this.jobs = response.data.profilejob;
-                        console.log(this.jobs);
+                        console.log("aaabbb",this.jobs);
 
                         this.customer_id = response.data.user;
-                        if (this.jobs.length > this.size) {
-                        this.pagination = true;
-                        } else {
-                            this.pagination = false;
-                        }
-                        if(this.jobs.length != 0){
+                        if(this.jobs.data.length != 0){
                             this.norecord_msg = false;
                         }else{
                             this.norecord_msg = true;
@@ -315,14 +382,11 @@
 
                         let fd = new FormData();
                         fd.append("search_word", search_word);
+                         this.$loading(true);
                         this.axios.post("/api/job/search?page="+page, fd).then(response => {
-                            this.jobs = response.data;
-                            if (this.jobs.length > this.size) {
-                            this.pagination = true;
-                            } else {
-                                this.pagination = false;
-                            }
-                            if(this.jobs.length != 0){
+                            this.$loading(false);
+                            this.jobs = response.data.jobsearch;
+                            if(this.jobs.data.length != 0){
                                 this.nosearch_msg = false;
                             }else{
                                 this.nosearch_msg = true;

@@ -35,12 +35,18 @@ class JobApplyController extends Controller
         if(auth()->user()->role == 2){
             $query = "SELECT job_applies.* FROM job_applies LEFT JOIN jobs ON job_applies.job_id = jobs.id JOIN customers ON customers.id =jobs.customer_id";
             $jobapplicant = DB::select($query);
-            //return $jobapplicant; 
+
+            $jobapplicant = DB::table('job_applies')->leftjoin('jobs','jobs.id', '=', 'job_applies.job_id')
+                                                    ->join('customers', 'customers.id', '=', 'jobs.customer_id')
+                                                    ->select('job_applies.*')
+                                                    ->orderBy('id', 'DESC')
+                                                    ->paginate(12);
+            //return $jobapplicant;
             return response()->json($jobapplicant);
         }else{
             $query = "SELECT job_applies.* FROM job_applies LEFT JOIN jobs ON job_applies.job_id = jobs.id JOIN customers ON customers.id =jobs.customer_id WHERE customers.id = ".auth()->user()->customer_id;
             $jobapplicant = DB::select($query);
-            //return $jobapplicant; 
+            //return $jobapplicant;
             return response()->json($jobapplicant);
         }
     }
@@ -64,7 +70,7 @@ class JobApplyController extends Controller
      */
     public function store(Request $request)
     {
-      
+
             $string = '';
             $count = count($request->skills);
 
@@ -82,27 +88,27 @@ class JobApplyController extends Controller
 
             $jobapply = new JobApply;
             $jobapply->job_id = $request->job_id;
-            $jobapply->first_name = $request->first_name; 
+            $jobapply->first_name = $request->first_name;
             $jobapply->last_name = $request->last_name;
             $jobapply->birthday = $request->birthday;
             $jobapply->gender = $request->gender;
             $jobapply->postal = $request->postal;
             $jobapply->township_id = $request->township;
             $jobapply->street_address = $request->str_address;
-            $jobapply->phone = $request->phone; 
-            $jobapply->email = $request->email;       
+            $jobapply->phone = $request->phone;
+            $jobapply->email = $request->email;
             $jobapply->skill = $string;
             $jobapply->remark = $request->remark;
-          
+
              $query = "SELECT j.*,c.email,c.name as cus_name,ci.city_name as city_name,(CASE c.type_id WHEN '2' THEN CONCAT((200000+c.id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT((500000+c.id),'-',LPAD(j.id, 4, '0')) END) as jobnum,
                        (CASE c.type_id WHEN '2' THEN CONCAT(200000+c.id) ELSE CONCAT(500000+c.id) END) as cusnum
-                        from customers as c join jobs as j on c.id = j.customer_id join townships as t on t.id = j.township_id join cities as ci on ci.id = t.city_id 
+                        from customers as c join jobs as j on c.id = j.customer_id join townships as t on t.id = j.township_id join cities as ci on ci.id = t.city_id
                         where c.recordstatus=1 and j.id = " . $jobapply->job_id;
 
-            $infos = DB::select($query);  
+            $infos = DB::select($query);
 
-          
-       
+
+
             foreach($infos as $info) {
                 $job_title = $info->title;
                 $job_description = $info->description;
@@ -146,8 +152,8 @@ class JobApplyController extends Controller
              else{
                 $jobapply->salary = $salary_type . " : " . number_format((int)($salary));
              }
-            
-       
+
+
              \Mail::to($customer_mail)->send(new jobApplyMailToCustomer($jobapply));
              \Mail::to($jobapply->email)->send(new jobApplyMailToUser($jobapply));
              \Mail::to($admin_email)->send(new jobApplyMailToAdmin($jobapply));
@@ -219,12 +225,21 @@ class JobApplyController extends Controller
         $request = $request->all();
         $search_word = $request['search_word'];
         $customer_id = auth()->user()->customer_id;
-
         $query = DB::table('job_applies');
+        if(auth()->user()->role == 2){
+        $query = $query->where(function($qu) use ($search_word){
+                            $qu->where('job_applies.first_name', 'LIKE', "%{$search_word}%")
+                                ->orWhere('job_applies.last_name', 'LIKE', "%{$search_word}%")
+                                ->orWhere('job_applies.email', 'LIKE', "%{$search_word}%");
+                        });
+        $query = $query->orderBy('job_applies.id','ASC')
+                        ->paginate(12);
+        return response()->json($query);
+     }else {
         $query = $query->leftjoin('jobs','job_applies.job_id','=','jobs.id');
         $query = $query->join('customers','customers.id','=','jobs.customer_id');
         $query = $query->where('customer_id', $customer_id);
-        if(array_key_exists('job_id',$request)) { 
+        if(array_key_exists('job_id',$request)) {
             $query = $query->where('job_applies.job_id', $request['job_id']);
         }
         $query = $query->where(function($qu) use ($search_word){
@@ -232,9 +247,10 @@ class JobApplyController extends Controller
                                 ->orWhere('job_applies.last_name', 'LIKE', "%{$search_word}%")
                                 ->orWhere('job_applies.email', 'LIKE', "%{$search_word}%");
                         });
-        $query = $query->orderBy('job_applies.id','DESC')
+        $query = $query->orderBy('job_applies.id','ASC')
                         ->get()
                         ->toArray();
         return $query;
+     }
     }
 }

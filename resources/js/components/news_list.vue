@@ -53,7 +53,6 @@
                                         <router-link
                                             :to="{name: 'newdetails', params:{id:newsList.id}}"
                                         >{{newsList.title}}</router-link>
-                                        {{newsList.id}}
                                     </h5>
                                     <p class="mt-2">{{newsList.main_point}}</p>
                                     <div class="d-flex mt-4">
@@ -61,7 +60,7 @@
                                         <button class="btn delete-borderbtn ml-2" @click="deletePost(newsList.id)">削除</button>
                                     </div>
                                 </td>
-                            </tr>                                
+                            </tr>
                         </table>
                         <pagination :data="news_list" @pagination-change-page="searchbyCategory"></pagination>
                     </div>
@@ -105,7 +104,7 @@
         },
         methods: {
             getResults() {
-                
+
                 this.$http.get('/api/news_list')
                     .then(response => {
 
@@ -161,7 +160,7 @@
                                     this.norecord_msg = true;
                                 }
                                  this.$loading(false);
-                           
+
                                 this.$swal({
                                     text: "ニュースを削除しました。",
                                     type: "success",
