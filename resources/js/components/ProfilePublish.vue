@@ -1784,7 +1784,7 @@ export default {
                                 }
                             });
                             if (cur_pos >= 100) {
-                                $(".fixed-nav").css({"position": "fixed","top": admin_top ,"display": "inline-flex","width": "100%","left":"0","right":"0"});
+                                $(".fixed-nav").css({"position": "fixed","top": admin_top ,"display": "inline-flex","width": "100%"});
                             } else {
                                 $(".fixed-nav").css({"position": "unset", "top": "unset"});
                             }

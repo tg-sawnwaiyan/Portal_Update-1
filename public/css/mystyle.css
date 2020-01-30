@@ -6753,8 +6753,8 @@ color: green;
     transition: all 0.5s ease-in-out;
     /* overflow: hidden; */
     z-index: 4;
-    /* left: 0;
-    right: 0; */
+    left: 0;
+    right: 0;
     text-align: center;
 }
 
@@ -9423,10 +9423,6 @@ padding: 0;
 }
 
 @media only screen and (max-width:1024px) {
-    .fixed-nav{
-        /* left: 22%; */
-        display: flex;
-    }
     /* nursing profile */
     .heading-lbl {
         font-size: 1.05em;
