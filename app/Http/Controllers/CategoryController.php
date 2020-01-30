@@ -37,8 +37,8 @@ class CategoryController extends Controller
     {
         // $categories = Category::select('name')->get();
         // return $categories;
-        $categories = Category::all()->toArray();
-        return array_reverse($categories);
+        $categories = Category::orderBy('id','desc')->paginate(12); 
+        return response()->json($categories);
     }
 
     public function list()
@@ -130,9 +130,8 @@ class CategoryController extends Controller
         $search_categories = Category::query()
                             ->where('name', 'LIKE', "%{$search_word}%")
                             ->orderBy('id','DESC')
-                            ->get()
-                            ->toArray();
-        return $search_categories;
+                            ->paginate(12);
+        return response()->json($search_categories);
 
     }
 

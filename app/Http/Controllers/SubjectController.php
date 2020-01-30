@@ -12,7 +12,7 @@ class SubjectController extends Controller
 
     public function index()
     {
-        $Subjects = Subject::all()->toArray();
+        $Subjects = Subject::orderBy('id', 'DESC')->paginate(12);
 
         for($i=0;$i<count($Subjects);$i++)
         {
@@ -147,9 +147,8 @@ class SubjectController extends Controller
         $search_subjects = Subject::query()
                             ->where('name', 'LIKE', "%{$search_word}%")
                             ->orderBy('id','DESC')
-                            ->get()
-                            ->toArray();
-        return $search_subjects;
+                            ->paginate(12);
+        return response()->json($search_subjects);
     }
 
     public function getHospitalClinicalSubject($customer_id) {
