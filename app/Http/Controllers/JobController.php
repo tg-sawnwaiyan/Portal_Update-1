@@ -398,7 +398,7 @@ class JobController extends Controller
             FROM `jobs`
             JOIN customers ON jobs.customer_id = customers.id
             LEFT JOIN job_applies ON jobs.id = job_applies.job_id
-            WHERE jobs.title LIKE '%$search_word%'  OR jobs.description LIKE '%$search_word%' AND customers.recordstatus=1 GROUP BY jobs.id ORDER BY jobs.id DESC";
+            WHERE jobs.title LIKE '%$search_word%' AND customers.recordstatus=1 GROUP BY jobs.id ORDER BY jobs.id DESC";
             $jobsearch = DB::select($query);
 
             foreach($jobsearch as $jobs){
