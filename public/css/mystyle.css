@@ -11042,14 +11042,12 @@ background-image: none;
         position: relative;
         top: -92px;
     }
-    .brand_logo_containe{
-        border-radius: 0%;
-        border:0;
+    .brand_logo_container{
+        border-radius: 0px;
+        border: 0px solid #ececec;
     }
     .user_card {
-        box-shadow: 0px ;
-        -webkit-box-shadow: 0px ;
-     -moz-box-shadow:  0px
+        box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 0px 0 rgba(0, 0, 0, 0.19);
     }
 
     .sp-414 {
@@ -11179,6 +11177,10 @@ background-image: none;
 }
 
 @media only screen and (max-width: 380px) {
+    .links {
+        position: relative;
+        top: -55px;
+    }
     /* header */
     #sp_headerbar .fav_his {
         float: none;
@@ -11256,6 +11258,9 @@ background-image: none;
 }
 
 @media only screen and (max-width:320px) {
+    .registerform_container {
+        margin-top: 0px;
+    }
     /*create_news*/
     .searchButton {
         width: 35% !important;
