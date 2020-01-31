@@ -1,7 +1,7 @@
 <template>
 
   <div class="loginwrapper">
-		<div class="d-flex justify-content-center h-100">      
+		<div class="d-flex justify-content-center h-100">
         <div class="user_card" id="altrole">
           <!-- <h4 style="position:relative; bottom: 60px; width:152px;">事業者ログイン</h4> -->
             <div class="links" style="top:-50px;">
@@ -12,35 +12,35 @@
             </div>
 
             <div class="d-flex justify-content-center">
-              <div class="brand_logo_container">                
+              <div class="brand_logo_container">
                 <img src="/images/login.png" class="brand_logo" alt="logo">
               </div>
-            </div>            
+            </div>
             <!-- <div class="col-md-12">
-                <div class="row">                    
+                <div class="row">
                 </div>
             </div>
              -->
             <div class="d-flex justify-content-center">
               <div class="row width">
-                <div class="col-12 m-t-80">  
-                  <div class="user_name">{{name}}</div>          
+                <div class="col-12 m-t-80">
+                  <div class="user_name">{{name}}</div>
                 <form autocomplete="off" @submit.prevent="login" method="post">
                     <div class="input-group m-b-20">
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
-                        </div>                      
-                      <input type="email" id="email" class="form-control input_user" placeholder="ユーザー名" v-model="email" required autofocus>                                            
+                        </div>
+                      <input type="email" id="email" class="form-control input_user" placeholder="ユーザー名" v-model="email" required autofocus>
                     </div>
                     <div class="input-group m-b-20">
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
                         <input type="password" class="form-control input_pass" name="password" value=""  id="password" v-model="password" placeholder="パスワード" required >
-                        
+
                     </div>
                     <span class="alert alert-danger" v-if="has_error">パスワードが間違っています。</span>
-                    
+
                     <div class="d-flex justify-content-center mt-3">
                       <button type="submit" name="button" id="getUser" class="btn login_btn">ログイン</button>
                     </div>
@@ -51,14 +51,14 @@
                         <router-link :to="{name: 'reset'}" class="nav-link pad-free">パスワードをお忘れですか？</router-link>
                     </span>
                   </div>
-                </div>                 
+                </div>
                 </div>
               </div>
             </div>
         </div>
     </div>
   </div>
- 
+
 </template>
 <script>
   export default {
@@ -71,8 +71,8 @@
       }
     },
     mounted() {
-     if(this.$route.path == "/admin_login"){                 
-        $('#altrole').addClass('admin_user_card');  
+     if(this.$route.path == "/admin_login"){
+        $('#altrole').addClass('admin_user_card');
 
        }
       else {
@@ -80,8 +80,8 @@
        }
     },
     created(){
-       if(this.$route.path == "/admin_login"){  
-         this.name="管理者ログイン";        
+       if(this.$route.path == "/admin_login"){
+         this.name="管理者ログイン";
         $('#altrole').addClass('admin_user_card');
          console.log('ADMIN LOGIN');
 
@@ -89,18 +89,18 @@
          this.name ='事業者ログイン';
        }
     },
-    
+
     methods: {
       login() {
         // get the redirect object
-       
+
         var redirect = this.$auth.redirect()
         console.log(this)
         var _this = this
         this.$loading(true);
-        
-        if(this.$route.path == "/admin_login"){  
-          
+
+        if(this.$route.path == "/admin_login"){
+
           this.$auth.loginAdmin({
           params: {
             email: _this.email,
@@ -145,7 +145,7 @@
           fetchUser: true
         })
         }
-        
+
       }
     }
   }
