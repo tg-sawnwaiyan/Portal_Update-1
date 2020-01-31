@@ -630,22 +630,22 @@ border-radius: 3px;
     color: #63b7ff;
 }
 .h-color1 p {
-   
+
     color: #a3774a;
 }
 
 .h-color2 p {
-   
+
     color: #9579ef;
 }
 
 .h-color3 p {
-    
+
     color: #21d1de;
 }
 
 .h-color4 p {
-    
+
     color: #d1291d;
 }
 
@@ -883,6 +883,14 @@ border-radius: 3px;
     /* top: 35%;
 width: 100%; */
 }
+.reg_title{
+    margin-bottom: 10px;
+    text-align:center;
+    font-size: 19px;
+    font-weight: bold;
+    /* color: #2980B9; */
+    color:#2C3E50;
+}
 
 .form_container {
     margin-top: 100px;
@@ -891,11 +899,12 @@ width: 100%; */
 .loginwrapper {
     background: #e1e1e1;
     height: 100vh;
+    /* padding:20px 40px; */
 }
 
 .login_btn {
     width: 100%;
-    background: #d2571c !important;
+    background: #2980B9 !important;
     color: #f5f5f5!important;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12) !important;
     font-weight: bold;
@@ -904,7 +913,8 @@ width: 100%; */
 }
 
 .login_btn:hover {
-    background: #f3773c !important;
+    opacity: 0.9;
+    /* background: #f3773c !important; */
 }
 
 .login_btn:focus {
@@ -913,7 +923,7 @@ width: 100%; */
 }
 
 .input-group-text {
-    background: #d2571c !important;
+    background:#2980B9 !important;
     color: white !important;
     border: 0 !important;
     border-radius: 0.25rem 0 0 0.25rem !important;
@@ -934,7 +944,7 @@ width: 100%; */
 }
 
 .user_card .links a {
-    color: #96390d !important;
+    color: #2C3E50 !important;
     font-weight: bold;
 }
 
@@ -987,7 +997,7 @@ width: 100%; */
 }
 
 .user_registercard form label {
-    color: #a93f0c!important;
+    color:#2C3E50 !important;
     font-weight: bold;
     align-self: flex-end;
     padding: 0px;
@@ -1024,7 +1034,7 @@ margin-left: -108px; */
 
 .register_btn {
     color: white !important;
-    width: 30%;
+    width: 150px;
 }
 
 .register_btn:focus {
@@ -4532,7 +4542,7 @@ top: 66px; */
         display: none;
     }
     .registerformwrapper {
-        padding: 0px;
+        padding: 15px 11px;
     }
 }
 
@@ -8075,7 +8085,7 @@ margin-right: auto; */
 .slick-track:after {
     display: table;
     content: '';
-    
+
 }
 
 .slick-track:after {
@@ -8190,7 +8200,7 @@ margin-right: auto; */
     color: #d2571c;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    
+
 }
 
 .slick-prev {
@@ -8211,7 +8221,7 @@ margin-right: auto; */
     width: 10px;
     display: inline-block;
     content: "";
-    
+
 }
 
 [dir='rtl'] .slick-prev:before {
@@ -8228,15 +8238,15 @@ margin-right: auto; */
     left: -25px;
 }
 
-.slick-next:before {    
+.slick-next:before {
     border: solid #666;
     border-width: .2rem .2rem 0 0;
     height: 10px;
     top: 1.5rem;
     width: 10px;
-    display: inline-block;    
+    display: inline-block;
     content:"";
-    
+
 }
 
 [dir='rtl'] .slick-next:before {
@@ -8883,7 +8893,7 @@ background-color: #f57e46;
 
 .wrapper-3 img {
     /* position: absolute; */
-    width: 100%;    
+    width: 100%;
     transition: all 250ms ease-out;
 }
 
@@ -9178,6 +9188,11 @@ padding: 11px;
 }
 
 @media only screen and (max-width:1280px) {
+    /* Register */
+    .loginwrapper {
+        height: 105vh;
+        padding: 40px 40px;
+    }
     /* hospital and nursing profile */
     .nursing_map {
         padding-left: 40px;
@@ -9572,6 +9587,10 @@ padding: 0;
 }
 
 @media only screen and (max-width: 990px) {
+    .loginwrapper {
+        height: 235vh;
+        padding: 259px 40px;
+    }
     /* common */
     li {
         list-style: none;
@@ -9782,7 +9801,7 @@ padding: 0;
         display: none;
     }
 
- 
+
     /*end  header */
     /* ads slider */
     .ads-slider {
@@ -10038,6 +10057,13 @@ width: 18rem;
 }
 
 @media only screen and (max-width:768px) {
+    .loginwrapper {
+    height: 105vh;
+    padding: 10px 40px;
+    }
+    .p-l-162 {
+        padding-left: 200px;
+    }
     .nus-town-m-t {
         margin-top: 10px;
     }
@@ -10236,7 +10262,7 @@ width: 18rem;
     }
     .sp_adminNav ul.sub_menu li:last-child {
         padding-bottom: 8px;
-    } 
+    }
     .down {
         -ms-transform: rotate(90deg);
         -webkit-transform: rotate(90deg);
@@ -11004,6 +11030,26 @@ background-image: none;
 }
 
 @media only screen and (max-width: 414px) {
+    .loginwrapper {
+        background: #fbfbfb;
+        height: 140vh;
+        padding: 180px 0px;
+    }
+    .p-l-162 {
+        padding-left: 0px;
+    }
+    .links {
+        position: relative;
+        top: -92px;
+    }
+    .brand_logo_container{
+        border-radius: 0px;
+        border: 0px solid #ececec;
+    }
+    .user_card {
+        box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 0px 0 rgba(0, 0, 0, 0.19);
+    }
+
     .sp-414 {
         display: block !important;
     }
@@ -11131,6 +11177,10 @@ background-image: none;
 }
 
 @media only screen and (max-width: 380px) {
+    .links {
+        position: relative;
+        top: -55px;
+    }
     /* header */
     #sp_headerbar .fav_his {
         float: none;
@@ -11208,6 +11258,9 @@ background-image: none;
 }
 
 @media only screen and (max-width:320px) {
+    .registerform_container {
+        margin-top: 0px;
+    }
     /*create_news*/
     .searchButton {
         width: 35% !important;
