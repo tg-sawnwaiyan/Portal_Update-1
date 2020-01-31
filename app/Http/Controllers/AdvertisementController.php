@@ -18,6 +18,12 @@ class AdvertisementController extends Controller
         $ads =Advertisement::orderBy('id', 'DESC')->paginate(12);
         return response()->json($ads);
     }
+    public function slider()
+    {
+
+        $ads =Advertisement::orderBy('id', 'DESC')->get();
+        return response()->json($ads);
+    }
 
     /**
      * Show the form for creating a new resource.

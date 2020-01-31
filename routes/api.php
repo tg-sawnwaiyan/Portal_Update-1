@@ -204,7 +204,7 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::group(['prefix' => 'advertisement'], function () {
         Route::post('add', 'AdvertisementController@store');
         Route::get('edit/{id}', 'AdvertisementController@edit');
-        // Route::get('ads', 'AdvertisementController@index');
+        Route::get('ads', 'AdvertisementController@index');
         Route::post('update/{id}', 'AdvertisementController@update');
         Route::delete('delete/{id}','AdvertisementController@destroy');
     });
@@ -248,7 +248,7 @@ Route::group(['prefix' => 'category'], function () {
 
 Route::group(['prefix' => 'advertisement'], function () {
     Route::post('search', 'AdvertisementController@search');
-    Route::get('ads', 'AdvertisementController@index');
+    Route::get('adslide', 'AdvertisementController@slider');
 });
 
 Route::group(['prefix' => 'facility'], function () {
