@@ -13,8 +13,8 @@ class SpecialFeatureController extends Controller
 
     public function index($type)
     {
-        $feature = special_feature::where('type','=',$type)->get()->toArray();
-        return array_reverse($feature);
+        $feature = special_feature::where('type','=',$type)->orderBy('id', 'desc')->paginate(12);
+        return response()->json($feature);
     }
 
 
@@ -120,8 +120,7 @@ class SpecialFeatureController extends Controller
                             ->where('name', 'LIKE', "%{$search_word}%")
                             ->orwhere('short_name', 'LIKE', "%{$search_word}%")
                             ->orderBy('id','DESC')
-                            ->get()
-                            ->toArray();
-        return $special_feature;
+                            ->paginate(12);
+        return response()->json($special_feature);
     }
 }

@@ -14,8 +14,8 @@ class OccupationsController extends Controller
      */
     public function index()
     {
-        $occupation = Occupations::all()->toArray();
-        return $occupation;
+        $occupation = Occupations::orderBy('id','DESC')->paginate(12);
+        return response()->json($occupation);
     }
 
     public function typelist()
@@ -165,8 +165,7 @@ class OccupationsController extends Controller
         $search_occupations = Occupations::query()
                             ->where('name', 'LIKE', "%{$search_word}%")
                             ->orderBy('id','DESC')
-                            ->get()
-                            ->toArray();
-        return $search_occupations;
+                            ->paginate(12);
+        return response()->json($search_occupations);
     }
 }

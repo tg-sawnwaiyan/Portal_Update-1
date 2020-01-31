@@ -35,6 +35,12 @@ class JobApplyController extends Controller
         if(auth()->user()->role == 2){
             $query = "SELECT job_applies.* FROM job_applies LEFT JOIN jobs ON job_applies.job_id = jobs.id JOIN customers ON customers.id =jobs.customer_id";
             $jobapplicant = DB::select($query);
+
+            $jobapplicant = DB::table('job_applies')->leftjoin('jobs','jobs.id', '=', 'job_applies.job_id')
+                                                    ->join('customers', 'customers.id', '=', 'jobs.customer_id')
+                                                    ->select('job_applies.*')
+                                                    ->orderBy('id', 'DESC')
+                                                    ->paginate(12);
             //return $jobapplicant;
             return response()->json($jobapplicant);
         }else{
@@ -227,9 +233,8 @@ class JobApplyController extends Controller
                                 ->orWhere('job_applies.email', 'LIKE', "%{$search_word}%");
                         });
         $query = $query->orderBy('job_applies.id','ASC')
-                        ->get()
-                        ->toArray();
-        return $query;
+                        ->paginate(12);
+        return response()->json($query);
      }else {
         $query = $query->leftjoin('jobs','job_applies.job_id','=','jobs.id');
         $query = $query->join('customers','customers.id','=','jobs.customer_id');

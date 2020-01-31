@@ -929,7 +929,7 @@
                     <div class="col-12">
                         <h5 class="profile_subtit">協力医療機関</h5>
                         <div v-if="cooperate_medical.length>0" class="col-md-12 pad-free-750">
-                                <div v-for="comedical in cooperate_medical" :key="comedical.id" class="col-md-12 pad-free-750" >
+                                <div v-for="comedical in cooperate_medical" :key="comedical.id" class="col-md-12 pad-free" >
                                     <label class="cost_heading_lbl_mini"><i class="fas fa-university"></i> {{comedical.name}}</label>
                                     <table border="1" class="table table-bordered cost_table facility_tbl">
                                         <tbody>
@@ -958,7 +958,7 @@
                     <div class="col-12">
                         <h5 class="profile_subtit"> 医療面の受入れ</h5>
                         <div class="row col-12 pad-free-750 m-auto">
-                            <div v-for="maccept in medical_acceptance" :key="maccept.id" class="col-md-4 col-sm-6 pad-free-750 accept-wrap" >
+                            <div v-for="maccept in medical_acceptance" :key="maccept.id" class="col-md-4 col-sm-6 pad-free accept-wrap" >
                                 <div class="accept-box">
                                     <div class="float-left" v-for="(ma,index) in medical" :key="index">
                                         <i v-if="ma.name === maccept.name && ma.accept_type === 'accept'" class="fas fa-check green"></i>

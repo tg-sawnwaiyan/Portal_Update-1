@@ -13,8 +13,8 @@ class FacilityController extends Controller
 
     public function index()
     {
-        $facilities = Facility::all()->toArray();
-        return array_reverse($facilities);
+        $facilities = Facility::orderBy('id', 'DESC')->paginate(12);
+        return response()->json($facilities);
     }
 
     //add facility
@@ -86,9 +86,9 @@ class FacilityController extends Controller
 
         $search_facilities = Facility::query()
                             ->where('description', 'LIKE', "%{$search_word}%")
-                            ->get()
-                            ->toArray();
-        return $search_facilities;
+                            ->orderBy('id', 'DESC')
+                            ->paginate(12);
+        return response()->json($search_facilities);
     }
 
     public function getFacilitybyProfileType($profile_type,$customer_id) {

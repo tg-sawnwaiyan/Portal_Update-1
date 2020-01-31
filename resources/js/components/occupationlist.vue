@@ -29,7 +29,7 @@
                     <h5 class="header">求人職種一覧</h5>
                     <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデタが消える。</div>
                     <div v-else class="container-fuid">
-                        <div class="card card-default m-b-20" v-for="occupations in displayItems" :key="occupations.id">
+                        <div class="card card-default m-b-20" v-for="occupations in occupation.data" :key="occupations.id">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6 col-sm-8 m-t-8">{{occupations.name}}</div>
@@ -41,27 +41,7 @@
                                 </div>
                         </div>
                     </div>
-                    <div class="col-12" v-if="pagination">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <span class="spanclass pc-480" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
-                                </li>
-                                <li class="page-item">
-                                    <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i><span class="pc-paginate"> 前へ</span></span>
-                                </li>
-                                <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
-                                    <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
-                                </li>
-                                <li class="page-item">
-                                    <span class="spanclass" @click="next"><span class="pc-paginate">次へ </span><i class='fas fa-angle-right'></i></span>
-                                </li>
-                                <li class="page-item">
-                                    <span class="spanclass pc-480" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
+                    <pagination :data="occupation" @pagination-change-page="searchOccupation"></pagination>
                 </div>
             </div>
         </div>
@@ -76,11 +56,7 @@
                     norecord: 0,
                     norecord_msg: false,
                     nosearch_msg: false,
-                    currentPage: 0,
-                    size: 10,
-                    pageRange: 5,
                     items: [],
-                    pagination: false,
                 }
             },
             created() {
@@ -88,57 +64,15 @@
                 this.axios
                     .get('/api/occupation/type')
                     .then(response => {
-                        console.log(response)
                         this.$loading(false);
                         this.occupation = response.data;
-                        this.norecord = this.occupation.length;
-                        if (this.norecord > this.size) {
-                            this.pagination = true;
-                        } else {
-                            this.pagination = false;
-                        }
+                        this.norecord = this.occupation.data.length;
                         if (this.norecord != 0) {
                             this.norecord_msg = false;
                         }else {
                             this.norecord_msg = true;
                         }
                     });
-            },
-            computed: {
-                pages() {
-                        return Math.ceil(this.occupation.length / this.size);
-                    },
-                    displayPageRange() {
-                        const half = Math.ceil(this.pageRange / 2);
-                        const isEven = this.pageRange / 2 == 0;
-                        const offset = isEven ? 1 : 2;
-                        let start, end;
-                        if (this.pages < this.pageRange) {
-                            start = 1;
-                            end = this.pages;
-                        } else if (this.currentPage < half) {
-                            start = 1;
-                            end = start + this.pageRange - 1;
-                        } else if (this.pages - half < this.currentPage) {
-                            end = this.pages;
-                            start = end - this.pageRange + 1;
-                        } else {
-                            start = this.currentPage - half + offset;
-                            end = this.currentPage + half;
-                        }
-                        let indexes = [];
-                        for (let i = start; i <= end; i++) {
-                            indexes.push(i);
-                        }
-                        return indexes;
-                    },
-                    displayItems() {
-                        const head = this.currentPage * this.size;
-                        return this.occupation.slice(head, head + this.size);
-                    },
-                    isSelected(page) {
-                        return page - 1 == this.currentPage;
-                    }
             },
             methods: {
 
@@ -162,12 +96,7 @@
                                 .delete(`/api/occupation/delete/${id}`)
                                 .then(response => {
                                     this.occupation = response.data;
-                                    this.norecord = this.occupation.length;
-                                    if (this.norecord > this.size) {
-                                        this.pagination = true;
-                                    } else {
-                                        this.pagination = false;
-                                    }
+                                    this.norecord = this.occupation.data.length;
                                     if (this.norecord != 0) {
                                         this.norecord_msg = false;
                                     }else {
@@ -191,74 +120,25 @@
                         });
 
                     },
-                    searchOccupation() {
+                    searchOccupation(page) {
+                        if(typeof page === "undefined"){
+                            page = 1;
+                        }
                         var search_word = $("#search-item").val();
 
                         let fd = new FormData();
                         fd.append("search_word", search_word);
                         this.$loading(true);
-                        this.axios.post("/api/occupation/search", fd).then(response => {
+                        this.axios.post("/api/occupation/search?page="+page, fd).then(response => {
                             this.$loading(false);
                             this.occupation = response.data;
-                            if(this.occupation.length > this.size){
-                                this.pagination = true;
-                            }else{
-                                this.pagination = false;
-                            }
-                            if(this.occupation.length != 0) {
+                            if(this.occupation.data.length != 0) {
                                 this.nosearch_msg = false;
                             }else{
                                 this.nosearch_msg = true;
                             }
                         });
                     },
-                // first() {
-                //     this.currentPage = 0;
-                // },
-                // last() {
-                //     this.currentPage = this.pages - 1;
-                // },
-                // prev() {
-                //     if (0 < this.currentPage) {
-                //         this.currentPage--;
-                //     }
-                // },
-                // next() {
-                //     if (this.currentPage < this.pages - 1) {
-                //         this.currentPage++;
-                //     }
-                // },
-                // pageSelect(index) {
-                //     this.currentPage = index - 1;
-                //     window.scrollTo(0,0);
-                // },
-
-                  first() {
-                    this.currentPage = 0;
-                    $("html, body").animate({ scrollTop: 0 }, "slow");
-                },
-                last() {
-                    this.currentPage = this.pages - 1;
-                    $("html, body").animate({ scrollTop: 0 }, "slow");
-                },
-                prev() {
-                    if (0 < this.currentPage) {
-                        $("html, body").animate({ scrollTop: 0 }, "slow");
-                        this.currentPage--;
-                    }
-                },
-                next() {
-                    if (this.currentPage < this.pages - 1) {
-                        $("html, body").animate({ scrollTop: 0 }, "slow");
-                        this.currentPage++;
-                    }
-                },
-                pageSelect(index) {
-                    this.currentPage = index - 1;
-                    $("html, body").animate({ scrollTop: 0 }, "slow");
-                    // window.scrollTo(0,0);
-                },
-
             }
     }
 </script>
