@@ -1328,7 +1328,7 @@ box-shadow: 0px 0px 5px rgb(212, 201, 201); */
     position: relative;
     background: #fff;
     border-radius: 1px;
-    border-bottom: 1px dashed #25ac8a;
+    border-bottom: 1px dashed #2980b9;
     width: 100%;
     padding: 5px;
     margin-bottom: 20px;
@@ -5603,7 +5603,7 @@ color: #fff !important;
 }
 
 .breadcrumb-item>a {
-    color: #19a984;
+    color: #2980b9;
     font-weight: bold;
 }
 
@@ -7754,25 +7754,9 @@ border-bottom: none;
     color: #2980b9;
 }
 
-.job_count {
-    /* border-radius: 50%;
-
-background: #f9d7c6;
-
-color: #bd440a;
-
-display: inline-block; */
-    /* border: 1px solid #dc3545 !important;
-
-color: #dc3545;
-
-background: #fff;
-
-box-shadow: none !important;
-
-min-width: 60px; */
+.job_count {    
     display: inline-block;
-    background: #ff9967;
+    background: #2980b9;
     color: #fff;
     padding: 4px 15px 3px;
     border-radius: 3px;
