@@ -310,7 +310,7 @@ export default {
 .lbl-lat-lng {
     margin: 15px 0px;
     font-weight: bold;
-    border-left: 5px solid #ff6117;
+    border-left: 5px solid #2980b9;
     padding-left: 10px;
 }
 .hide{
