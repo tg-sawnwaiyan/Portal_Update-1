@@ -1,8 +1,8 @@
 <template>
   <layout>
 <div>
-  <div class="col-md-12" style="border-bottom: 1px dashed #ff6117;padding-bottom: 10px; margin-bottom: 20px;">
-    <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#ff6117;"></i>&nbsp;地図検索</h5>
+  <div class="col-md-12" style="border-bottom: 1px dashed #2980b9;padding-bottom: 10px; margin-bottom: 20px;">
+    <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#2980b9;"></i>&nbsp;地図検索</h5>
   </div>
   <div class="search-map card-body"  @mouseover="getStateHover">
     <div class="row" id="hos">
@@ -11,13 +11,13 @@
           <!-- <div class="info-box"></div> -->
           <div class="row map-wrap">
           <div class="col-lg-5 col-md-12 col-sm-12 float-left map-leftwrapper">
-            <h2 class="map-header" style="bottom: 120px;">赤ちゃんからおと<br/>なまでみんなで通<br/>える街の名医が見<br/>つかります。</h2>
+            <h2 class="map-header" style="bottom: 120px;color:#2c3e50;">赤ちゃんからおと<br/>なまでみんなで通<br/>える街の名医が見<br/>つかります。</h2>
 
             <!--search input-->
               <div class="wrap">
                 <div class="search">
-                    <input type="text" id="search-free-word" class="searchTerm" placeholder="地名、施設名などを入力">
-                    <button type="submit" class="searchButton" @click="searchfreeword">
+                    <input type="text" id="search-free-word" class="searchTerm" placeholder="地名、施設名などを入力" style="border: 3px solid #63b7ff;">
+                    <button type="submit" class="searchButton" style="border: 1px solid #63b7ff;background: #63b7ff;" @click="searchfreeword">
                       <i class="fas fa-search"></i> 検索
                   </button>
                 </div>

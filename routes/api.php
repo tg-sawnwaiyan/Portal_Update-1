@@ -292,6 +292,7 @@ Route::get('nursing-vgallery/{id}','GalleryController@getVideobyCustomerId');
 Route::get('nursing-panorrama-gallery/{id}','GalleryController@getPanoramabyCustomerId');
 Route::post('nursing/movephoto','NursingProfileController@movePhoto');
 Route::post('nursing/movepanorama','NursingProfileController@movePanorama');
+Route::post('nursing/movelatlng/{id}','ProfileController@movelatlng');
 Route::post('hospital/movephoto','HospitalProfileController@movePhoto');
 Route::post('user/movephoto','UserController@movePhoto');
 Route::post('user/password-change','UserController@changePassword');

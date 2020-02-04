@@ -100,6 +100,53 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="card card-default m-b-20 col-md-11" >
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12 m-t-8">
+                                            
+                                            <div class="form-group" id="newcreate">
+                                              
+                                                <span v-if="customer_info.type_id == 2" class="btn main-bg-color white all-btn"  @click="Save()">
+                                                    New Hospital Account Create
+                                                </span>
+                                                <span v-else class="btn main-bg-color white all-btn"  @click="Save()">
+                                                    New Nursing Account Create
+                                                </span>
+                                            </div>
+                                            <div id="nusNew">
+                                                <div class="form-group" >
+                                                    <select v-model="nursing_data.city_id" class="division form-control"  @change="getTownship()">
+                                                            <option value="0">選択してください。</option>
+                                                            <option v-for="cities in city_list" :key="cities.id" v-bind:value="cities.id">
+                                                                {{cities.city_name}}
+                                                            </option>
+                                                    </select>
+                                                     <span v-if="errors.city" class="error">{{errors.city}}</span>
+                                                </div>
+                                                <div class="form-group" >
+                                                    <select v-model="nursing_data.town_id" class="division form-control" @change="changeTownship()"  >
+                                                            <option value="0">市区町村を選択してください。</option>
+                                                            <option v-for="tw in town_list" :key="tw.id" v-bind:value="tw.id">
+                                                                {{tw.township_name}}
+                                                            </option>
+                                                    </select>
+                                                     <span v-if="errors.township" class="error">{{errors.township}}</span>
+                                                </div>
+                                                <div class="form-group">
+                                                     <span  class="btn btn-danger"  style="margin-left:700px;" @click="CancelNew()">
+                                                        Cancel
+                                                    </span>
+                                                    <span style="float:right" class="btn main-bg-color white all-btn"  @click="CreateNew()">
+                                                        Create
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="card card-default m-b-20 col-md-11">
                                 <div class="card-body">
                                     <div class="row">
@@ -150,12 +197,27 @@
                     password: '',
                     password_confirmation: '',
                     old_password: '',
-                    errors: {
-                        password: ""
+                   errors: {
+                        password: "" ,
+                        city:'',
+                        township:''
+                    },
+                    city_list:[],
+                    town_list:[],
+                    nursing_data:{
+                        city_id:'',
+                        town_id:'',  
                     }
                 }
             },
             created() {
+                this.nursing_data.city_id = 0;
+                this.nursing_data.town_id= 0;
+                 this.axios.get('/api/hospital/citiesList')
+                .then(response => {
+                    this.city_list = response.data;
+                  
+                });
                 this.axios
                     .get('/api/customerinfo/' + this.cusid)
                     .then(response => {
@@ -174,6 +236,58 @@
                     });
             },
             methods: {
+                 Save(){
+                    document.getElementById('newcreate').style.display = "none";
+                    document.getElementById('nusNew').style.display = "block";
+                },
+                CreateNew(){
+                    if(this.nursing_data.city_id != 0 )
+                    {
+                        this.errors.city = "";
+                    }
+                    else{
+                       this.errors.city = "都道府県が必須です";
+                    }
+                    if(this.nursing_data.town_id != 0)
+                    {
+                        this.errors.township = "";
+            
+                    }
+                    else{
+                         this.errors.township = "市区町村が必須です";
+                    }
+                    if(this.errors.city == ""  &&  this.errors.township == "")
+                    {
+                        this.axios.post(`/api/nursing/movelatlng/${this.cusid}`, this.nursing_data)
+                                        .then((response) => {
+                                            this.$swal({
+                                            // title: "確認",
+                                            text: "Success",
+                                            type: "success",
+                                            width: 350,
+                                            height: 200,
+                                            confirmButtonColor: "#6cb2eb",                       
+                                            confirmButtonText: "作成",
+                                            confirmButtonClass: "all-btn",
+                                        
+                                });
+                        });
+                    }
+                    else{
+                        console.log('a');
+                    }
+                   
+                   
+                   
+                },
+                CancelNew(){
+                     document.getElementById('newcreate').style.display = "block";
+                     document.getElementById('nusNew').style.display = "none";
+                     this.nursing_data.city_id = 0;
+                     this.nursing_data.town_id = 0;
+                     this.errors.city = '';
+                     this.errors.township = '';
+                },
                 imgUrlAlt(event) {
                     event.target.src = "images/noimage.jpg"
                 },
@@ -356,6 +470,21 @@
                                 });
                         })
                     },
+                     getTownship(){
+                         this.errors.city = '';
+                        this.nursing_data.town_id = 0;
+                        this.axios.get('/api/auth/township',{
+                        params:{
+                            city:this.nursing_data.city_id
+                        },
+                        }).then((response)=>{
+                            this.town_list = response.data.townships
+                        })
+                  },
+                  changeTownship(){
+                      this.errors.township = '';
+
+                  },
                     AccountStatusChange(status) {
                         if(status == '1') {
                             var confirm_text = '事業者登録を解除しないですか。';

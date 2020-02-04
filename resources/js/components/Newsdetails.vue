@@ -138,7 +138,7 @@
                 style="border-top: 2px dashed #eee;"
               >
                 <div class="row col-md-12 text-center m-lr-0 pad-free">
-                  <h4 class="h4 next-title" style="border-left: 5px solid orange;">関連ニュース</h4>
+                  <h4 class="h4 next-title" style="border-left: 5px solid #2980b9;">関連ニュース</h4>
                 </div>
                 <div class="related_content">
                 <div class="related_box mt-2" v-for="latest_post_all_cat in latest_post_all_cats" :key="latest_post_all_cat.id" >

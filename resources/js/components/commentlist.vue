@@ -272,12 +272,19 @@
                         });
                     },
                     searchcomment(page) {
+                          if(this.$route.path == "/nuscommentlist"){
+                                  this.type = "nursing";
+                              }
+                              else{
+                                  this.type = "hospital"
+                              }
                         if(typeof page === "undefined"){
                             page = 1;
                         }
                         var search_word = $("#search-item").val();
                         let fd = new FormData();
                         fd.append("search_word", search_word);
+                        fd.append("type",this.type);
                         this.$loading(true);
                         this.axios.post("/api/comments/search?page="+page, fd).then(response => {
                             this.$loading(false);
