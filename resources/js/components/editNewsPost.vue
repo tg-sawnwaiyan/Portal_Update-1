@@ -383,7 +383,7 @@ import {quillEditor} from 'vue-quill-editor'
 
                         let fd = new FormData();
                         fd.append("search_word", search_word);
-                        fd.append("selected_category", cat_id);
+                        fd.append("selected_category", selected_category);
                         this.axios.post("/api/news_list/search?page=" + page,fd).then(response => {
                             this.related_news = response.data;
                             this.check_head = true;
