@@ -26,18 +26,14 @@ class CustomerController extends Controller
         return response()->json($customer);
     }
     public function nusaccount() {
-        // $customer = "SELECT nursing_profiles.id,nursing_profiles.name,nursing_profiles.email,nursing_profiles.phone,nursing_profiles.logo from nursing_profiles";
-        // $nuscustomer = DB::select($customer);
-        // return $nuscustomer;
-        $nuscustomer = NursingProfile::all()->toArray();
-        return array_reverse($nuscustomer);
+        $customer = "SELECT nursing_profiles.id,nursing_profiles.name,nursing_profiles.email,nursing_profiles.phone,nursing_profiles.logo from nursing_profiles  JOIN customers ON nursing_profiles.customer_id= customers.id";
+        $nuscustomer = DB::select($customer);
+        return $nuscustomer;
     }
     public function hosaccount() {
-        // $customer = "SELECT hospital_profiles.id,hospital_profiles.name,hospital_profiles.email,hospital_profiles.phone,hospital_profiles.logo from hospital_profiles";
-        // $hoscustomer = DB::select($customer);
-        // return $hoscustomer;
-        $hoscustomer = HospitalProfile::all()->toArray();
-        return array_reverse($hoscustomer);
+        $customer = "SELECT hospital_profiles.id,hospital_profiles.name,hospital_profiles.email,hospital_profiles.phone,hospital_profiles.logo from hospital_profiles JOIN customers ON hospital_profiles.customer_id= customers.id";
+        $hoscustomer = DB::select($customer);
+        return $hoscustomer;
     }
 
     public function uploadvideo(Request $request)
