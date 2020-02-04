@@ -2832,12 +2832,12 @@ h3 {
 
 .cash-lbl-mini {
     font-size: 1.4em !important;
-    color: #ff6117;
+    color: #d2571c;
     font-weight: bold;
 }
 .cash-lbl-respon {
     font-size: 1.1em !important;
-    color: #ff6117;
+    color: #d2571c;
     font-weight: bold;
 }
 .detail-btn {
@@ -2913,7 +2913,7 @@ h3 {
 }
 .payment-body p {
     font-size: 18px;
-    color: #ff6117;
+    color: #d2571c;
     font-weight: bold;
 }
 .payment-body p span {
