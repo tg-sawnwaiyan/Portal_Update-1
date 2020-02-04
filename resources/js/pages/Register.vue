@@ -1,8 +1,8 @@
 <template>
-    <div class="loginwrapper" >
+    <div class="login_wp" >
         <div class="d-flex justify-content-center h-100">
             <div class="user_card user_registercard">
-                <div class="links">
+                <div class="links links_2">
                     <!-- <router-link to="/" class="mr-auto text-white" style="color: #a93f0c!important;font-weight:bold;">ホーム</router-link> -->
                     <router-link to="/login" class="ml-auto text">ログイン</router-link>
                     <a href="/" class="mr-auto text-white ">ホーム</a>
@@ -29,7 +29,7 @@
                     <!-- <div id="preview">
                         <img v-if="url" :src="url" class="img-thumbnail img" />
                     </div> -->
-                    <!-- <div class="input-group mb-3 inputfile">
+                    <div class="input-group mb-3 mb-7 inputfile">
                         <label class=" col-lg-3 col-md-4 col-12 control-label">ロゴ</label>
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-image"></i></span>
@@ -38,8 +38,8 @@
                         <input type="file" class="inputfile" name="img" @change="onFileChange"/> -->
                          <!-- <span v-if="errors.img" class="error">{{errors.img}}</span> -->
                         <!-- <input type="file" accept="image/*" @change="showMyImage(this)" name="img" id="file" ref="file" class="form-control inputfile"> -->
-                    <!-- </div> -->
-                    <div class="input-group mb-3">
+                    </div>
+                    <div class="input-group mb-3 mb-7">
                         <label class="col-12 col-lg-3 col-md-4 control-label">事業者名</label>
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -49,7 +49,7 @@
                     </div>
 
 
-                    <div class="input-group mb-3">
+                    <div class="input-group mb-3 mb-7">
                         <label class="col-12 col-lg-3 col-md-4 control-label">メールアドレス </label>
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-envelope"></i></span>
@@ -62,7 +62,7 @@
                     </div>
 
 
-                    <div class="input-group mb-3">
+                    <div class="input-group mb-3 mb-7">
                         <label class="col-12 col-lg-3 col-md-4 control-label">パスワード </label>
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
@@ -75,7 +75,7 @@
                     </div>
 
 
-                    <div class="input-group mb-3">
+                    <div class="input-group mb-3 mb-7">
                         <label class="col-12 col-lg-3 col-md-4 control-label">パスワード確認</label>
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
@@ -90,7 +90,7 @@
 
                     <!-- <span class="error p-l-162" v-if="passerr">※パスワードが一致しません。</span> -->
 
-                    <div class="input-group mb-3">
+                    <div class="input-group mb-3 mb-7">
                         <label class="col-12 col-lg-3 col-md-4 control-label">事業者タイプ</label>
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-list"></i></span>
@@ -103,14 +103,14 @@
                         </select>
                     </div>
 
-                    <div class="input-group mb-3 hide form-check form-check-inline" id="showHideActionNursing">
+                    <div class="input-group mb-3 mb-7 hide form-check form-check-inline" id="showHideActionNursing">
                         <label class="col-12 col-lg-3 col-md-4 control-label">看護種類</label>
                         <div class="input-group-append " id="nursing">
                         </div>
                         <div class="error" id="radioerror" style="margin-bottom: 6px;margin-left: 210px;">必須</div>
                     </div>
 
-                    <!-- <div class="input-group mb-3">
+                    <div class="input-group mb-3 mb-7">
                         <label class="col-12 col-lg-3 col-md-4 control-label">都道府県</label>
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
@@ -123,7 +123,7 @@
                          <span v-if="errors.cities" class="error">{{errors.cities}}</span>
                     </div> -->
 
-                    <!-- <div class="input-group mb-3" v-if="!show">
+                    <div class="input-group mb-3 mb-7" v-if="!show">
                         <label class="col-12 col-lg-3 col-md-4 control-label">市区町村</label>
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
@@ -135,7 +135,7 @@
                          <span v-if="errors.township" class="error">{{errors.township}}</span>
                     </div> -->
                     <span class="p-l-162" style="color:#999;">※ 数字と'-'のみ </span>
-                    <div class="input-group mb-3">
+                    <div class="input-group mb-3 mb-7">
 
                         <label class="col-12 col-lg-3 col-md-4 control-label">電話番号</label>
 
