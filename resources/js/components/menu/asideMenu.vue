@@ -87,7 +87,7 @@
 </template>
 <style  scoped>
 .v-sidebar-menu {
-    top: 50px;
+    top: 60px;
     bottom: 0;
     height: auto !important; 
     background-color: #222d32;
