@@ -195,7 +195,7 @@
                                                                     </p>
 
                                                                     <p class="item-name"><img :src="'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld='+items.alphabet+'|ff9563|000000'" alt="">
-                                                                        <router-link :to="{name: 'profile', params: {cusid:items.cus_id, type: 'nursing'}}" class="pseudolink" style="font-weight:bold;color:#ff6117 !important">{{items.name}}</router-link>
+                                                                        <router-link :to="{name: 'profile', params: {cusid:items.nursing_id, type: 'nursing'}}" class="pseudolink" style="font-weight:bold;color:#ff6117 !important">{{items.name}}</router-link>
                                                                     </p>
                                                                     <p>{{items.city_name}} <i class="fas fa-angle-double-right" style="color:#b9b5b5;"></i> {{items.township_name}}</p>
                                                                 </div>
@@ -540,7 +540,7 @@
                                                 <div class="row pad-free">
                                                     <div class="col-lg-9 col-sm-12">
                                                     <h5 class="nur-tit">
-                                                        <router-link :to="{name: 'profile', params: {cusid:nus.cus_id, type: 'nursing'}}" class="pseudolink" style="font-weight:bold;">{{nus.name}}</router-link>
+                                                        <router-link :to="{name: 'profile', params: {cusid:nus.nursing_id, type: 'nursing'}}" class="pseudolink" style="font-weight:bold;">{{nus.name}}</router-link>
                                                     </h5>
 
                                                     <div class="d-flex sp-414" id="sp-414-block">
@@ -570,7 +570,7 @@
                                                 <div class="col-md-4 col-sm-12 job-img">
                                                     <img :src="'/upload/nursing_profile/'+nus.logo" alt="image" @error="imgUrlAlt">
                                                     <div class="mt-4 col-12 detail-btn text-center pc-768">
-                                                        <router-link :to="{name: 'profile', params: {cusid:nus.cus_id, type: 'nursing'}}" class="btn all-btn" style="font-weight:bold;">詳細を見る</router-link>
+                                                        <router-link :to="{name: 'profile', params: {cusid:nus.nursing_id, type: 'nursing'}}" class="btn all-btn" style="font-weight:bold;">詳細を見る</router-link>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-8 col-sm-12 job-box">
@@ -642,7 +642,7 @@
                                                 </div>
                                                 <!--end responsive add-fav and phone-->
                                                 <div class="detail-btn text-center sp-768">
-                                                    <router-link :to="{name: 'profile', params: {cusid:nus.cus_id, type: 'nursing'}}" class="btn all-btn" style="font-weight:bold;">詳細を見る</router-link>
+                                                    <router-link :to="{name: 'profile', params: {cusid:nus.nursing_id, type: 'nursing'}}" class="btn all-btn" style="font-weight:bold;">詳細を見る</router-link>
                                                 </div>
                                         </div>
                                     </div>

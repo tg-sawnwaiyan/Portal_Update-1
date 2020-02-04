@@ -18,20 +18,105 @@ class CommentController extends Controller
         // $comment =Comment::all()->toArray();
         // return array_reverse($comment);
         // $sql = "SELECT comments.*,customers.name from comments JOIN customers ON comments.customer_id= customers.id WHERE customers.type_id=$type AND customers.status=1 ORDER BY id DESC";
-        $commentList = DB::table('comments')
-                ->join('customers','comments.customer_id','=','customers.id')
-                ->where('customers.type_id', $type)
-                ->where('customers.status', 1)
-                ->orderBy('comments.id','DESC')
-                ->paginate(12);
-        // $commentList = DB::select($sql)->paginate(12);
+      
+        // $commentList = DB::table('comments')
+        //         ->join('customers','comments.customer_id','=','customers.id')
+        //         ->where('customers.type_id', $type)
+        //         ->where('customers.status', 1)
+        //         ->orderBy('comments.id','DESC')
+        //         ->paginate(1);
+
+       
+        if($type == 3)
+        {
+            $commentList = DB::table('comments')
+            ->join('nursing_profiles','comments.profile_id','=','nursing_profiles.id')
+            ->select('comments.*')
+            ->where('nursing_profiles.recordstatus', 1)
+            ->where('comments.type','nursing')
+            ->orderBy('comments.id','DESC')
+            ->paginate(1);
+
+            $query = "select id,name from nursing_profiles where recordstatus = 1 and name is not null";
+            $profilelist = DB::select($query);
+        }
+        else{
+            $commentList = DB::table('comments')
+            ->join('hospital_profiles','comments.profile_id','=','hospital_profiles.id')
+            ->select('comments.*')
+            ->where('hospital_profiles.recordstatus', 1)
+            ->where('comments.type','hospital')
+            ->orderBy('comments.id','DESC')
+            ->paginate(1);
+
+            $query = "select id,name from hospital_profiles where recordstatus = 1 and name is not null";
+            $profilelist = DB::select($query);
+        }
+
+
+        // $commentList = DB::select($sql)->paginate(1);
         foreach ($commentList as $com) {
             $splitTimeStamp = explode(" ",$com->created_at);
             $com->created_date = $splitTimeStamp[0];
             $com->created_time = $splitTimeStamp[1];
         }
+
+     
         // return $comments;
-        return response()->json($commentList);
+        return response()->json(array("commentlist"=>$commentList,"profilelist"=>$profilelist));
+    }
+
+    public function getCustomComment($type,$profileid)
+    {
+        if($type == 3)
+        {
+            if($profileid == 0)
+            {
+                $commentList = DB::table('comments')
+                ->join('nursing_profiles','comments.profile_id','=','nursing_profiles.id')
+                ->select('comments.*')
+                ->where('nursing_profiles.recordstatus', 1)
+                ->where('comments.type','nursing')
+                ->orderBy('comments.id','DESC')
+                ->paginate(1);
+            }
+            else{
+                $commentList = DB::table('comments')
+                ->join('nursing_profiles','comments.profile_id','=','nursing_profiles.id')
+                ->select('comments.*')
+                ->where('nursing_profiles.recordstatus', 1)
+                ->where('comments.type','nursing')
+                ->where('comments.profile_id',$profileid)
+                ->orderBy('comments.id','DESC')
+                ->paginate(1);
+            }
+           
+        }
+        else{
+            if($profileid == 0)
+            {
+                $commentList = DB::table('comments')
+                ->join('hospital_profiles','comments.profile_id','=','hospital_profiles.id')
+                ->select('comments.*')
+                ->where('hospital_profiles.recordstatus', 1)
+                ->where('comments.type','hospital')
+                ->orderBy('comments.id','DESC')
+                ->paginate(1);
+            }
+            else{
+                $commentList = DB::table('comments')
+                ->join('hospital_profiles','comments.profile_id','=','hospital_profiles.id')
+                ->select('comments.*')
+                ->where('hospital_profiles.recordstatus', 1)
+                ->where('comments.type','hospital')
+                ->where('comments.profile_id',$profileid)
+                ->orderBy('comments.id','DESC')
+                ->paginate(1);
+            }
+           
+        
+        }
+        return $commentList;
     }
 
 
@@ -48,6 +133,7 @@ class CommentController extends Controller
 
     public function store(Request $request)
     {
+    
 
         // $request->validate([
         //     'title' => 'required',
@@ -80,35 +166,48 @@ class CommentController extends Controller
         $comment->year = $request->input('year');
         $comment->gender = $request->input('gender');
         $comment->zipcode = $zipcode;
-        $comment->customer_id = $request->customer_id;
+        $comment->profile_id = $request->profile_id;
         $comment->status = 0;
         $comment->recordstatus = 1;
+        $comment->type = $request->types;
         $comment ->save();
 
 
         $getComment = Comment::findOrFail($comment->id);
-        $query = "SELECT cu.id as cusid ,cu.name as cusname,
-        co.* ,(CASE cu.type_id WHEN '2' THEN CONCAT((200000+cu.id)) ELSE CONCAT((500000+cu.id)) END) as cusnum 
-        from customers As cu  Join comments As co on cu.id = co.customer_id 
-         where co.customer_id =" . $comment->customer_id . " and co.id =" .$comment->id;
+        // $query = "SELECT cu.id as cusid ,cu.name as cusname,
+        // co.* ,(CASE cu.type_id WHEN '2' THEN CONCAT((200000+cu.id)) ELSE CONCAT((500000+cu.id)) END) as cusnum 
+        // from customers As cu  Join comments As co on cu.id = co.customer_id 
+        //  where co.customer_id =" . $comment->customer_id . " and co.id =" .$comment->id;
+        // $getComment = DB::select($query);
+      
+        if($request->types == "nursing")
+        {
+       
+            $query = "SELECT np.id as cusid ,np.name as cusname,
+            co.* , CONCAT((200000+np.id))  as cusnum 
+            from nursing_profiles As np  Join comments As co on np.id = co.profile_id 
+             where co.profile_id =" . $comment->profile_id . " and co.id =" .$comment->id;
+           
+        }
+        else{
+        
+            $query = "SELECT hp.id as cusid ,hp.name as cusname,
+            co.* , CONCAT((500000+hp.id))  as cusnum 
+            from hospital_profiles As hp  Join comments As co on hp.id = co.profile_id 
+             where co.profile_id =" . $comment->profile_id . " and co.id =" .$comment->id;
+          
+        }
+
         $getComment = DB::select($query);
 
-        // if($getComment[0]->gender == 0 )
-        // {
-        //     $getComment[0]->gender = "男性";
-        // }
-        // else{
-        //     $getComment[0]->gender = "女性";
-        // }
-        $admin_email = 'thuzar@management-partners.co.jp';
-        // $admin_email = 'thuzar.ts92@gmail.com';
-        // \Mail::to('mayphue17@management-part')->send(new SendMailComment($getComment));
+    
+        $admin_email = 'susandiaung565@gmail.com';
+       
         \Mail::to($admin_email)->send(new SendMailComment($getComment));
 
-        // return response()->json(['success'=>'Done!']);
+     
 
     }
-
 
     public function show($id)
     {
@@ -127,26 +226,65 @@ class CommentController extends Controller
     }
 
 
-    public function destroy($id)
+    public function destroy($id,$type)
     {
         //
 
         $comment = Comment::find($id);
         $comment->delete();
-        $comments = Comment::all()->toArray();
-        return array_reverse($comments);
+        if($type == 'nursing')
+        {
+            $commentList = DB::table('comments')
+            ->join('nursing_profiles','comments.profile_id','=','nursing_profiles.id')
+            ->select('comments.*')
+            ->where('nursing_profiles.recordstatus', 1)
+            ->where('comments.type','nursing')
+            ->orderBy('comments.id','DESC')
+            ->paginate(1);
+        }
+        else{
+            $commentList = DB::table('comments')
+            ->join('hospital_profiles','comments.profile_id','=','hospital_profiles.id')
+            ->select('comments.*')
+            ->where('hospital_profiles.recordstatus', 1)
+            ->where('comments.type','hospital')
+            ->orderBy('comments.id','DESC')
+            ->paginate(1);
+        }
+        return response()->json($commentList);
     }
-    public function confirm($id)
+    public function confirm($id,$type)
      {
-
             $comment =Comment::find($id);
             $comment->status =1;
             $comment->save();
-            $comment =Comment::all()->toArray();
-            $data = array("comments"=> $comment, "success", "Comment successfully confirmed");
-            return response()->json($data);
+
+           
+            if($type == 'nursing')
+            {
+                $commentList = DB::table('comments')
+                ->join('nursing_profiles','comments.profile_id','=','nursing_profiles.id')
+                ->select('comments.*')
+                ->where('nursing_profiles.recordstatus', 1)
+                ->where('comments.type','nursing')
+                ->orderBy('comments.id','DESC')
+                ->paginate(1);
+            }
+            else{
+                $commentList = DB::table('comments')
+                ->join('hospital_profiles','comments.profile_id','=','hospital_profiles.id')
+                ->select('comments.*')
+                ->where('hospital_profiles.recordstatus', 1)
+                ->where('comments.type','hospital')
+                ->orderBy('comments.id','DESC')
+                ->paginate(1);
+            }
+    
+  
+            return response()->json(array("comments"=> $commentList, "success"=>"success", "comment"=>"Comment successfully confirmed"));
 
     }
+   
 
     public function list()
     {
@@ -164,7 +302,7 @@ class CommentController extends Controller
                             ->join('customers','comments.customer_id','=','customers.id')
                             ->where('customers.name', 'LIKE', "%{$search_word}%")
                             ->orderBy('comments.id','DESC')
-                            ->paginate(12);
+                            ->paginate(1);
         return response()->json($search_comment);
 
     }

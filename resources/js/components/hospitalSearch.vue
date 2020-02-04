@@ -234,7 +234,7 @@
                                     <div class="row pad-free">
                                         <div class="col-md-10 col-sm-12">
                                         <h5 class="hos-title">
-                                            <router-link :to="{name: 'profile', params: {cusid:hos.cus_id, type: 'hospital'}}" class="pseudolink">{{hos.name}}</router-link>
+                                            <router-link :to="{name: 'profile', params: {cusid:hos.hos_id, type: 'hospital'}}" class="pseudolink">{{hos.name}}</router-link>
                                         </h5>
                                      
                                         <div class="clearfix d-flex m-t-10">
@@ -344,7 +344,7 @@
                                         </p>
                                       </div>
                                     </div>
-                                    <div class="mt-4 detail-btn text-center"><router-link :to="{name: 'profile', params: {cusid:hos.cus_id, type: 'hospital'}}" class="btn all-btn">詳細を見る</router-link></div>
+                                    <div class="mt-4 detail-btn text-center"><router-link :to="{name: 'profile', params: {cusid:hos.hos_id, type: 'hospital'}}" class="btn all-btn">詳細を見る</router-link></div>
                                 </div>
                             </div>
                         </div>

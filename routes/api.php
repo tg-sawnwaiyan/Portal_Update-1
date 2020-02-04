@@ -370,9 +370,10 @@ Route::group(['prefix' => 'comments'], function () {
     Route::post('add', 'CommentController@store');
     Route::get('edit/{id}', 'CommentController@edit');
     Route::get('comment/{type}', 'CommentController@index');
-    Route::get('confirm/{id}','CommentController@confirm');
+    Route::get('getCustomComment/{type}/{profileid}', 'CommentController@getCustomComment');
+    Route::get('confirm/{id}/{type}','CommentController@confirm');
     Route::post('update/{id}', 'CommentController@update');
-    Route::delete('delete/{id}','CommentController@destroy');
+    Route::delete('delete/{id}/{type}','CommentController@destroy');
     Route::post('search','CommentController@search');
     //Route::get('getcommentlist/{cusid}','CommentController@getCommentList');
     Route::get('comment_list','CommentController@list');
