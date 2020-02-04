@@ -29,7 +29,7 @@
                     <!-- <div id="preview">
                         <img v-if="url" :src="url" class="img-thumbnail img" />
                     </div> -->
-                    <div class="input-group mb-3 mb-7 inputfile">
+                    <!-- <div class="input-group mb-3 mb-7 inputfile">
                         <label class=" col-lg-3 col-md-4 col-12 control-label">ロゴ</label>
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-image"></i></span>
@@ -38,7 +38,7 @@
                         <input type="file" class="inputfile" name="img" @change="onFileChange"/> -->
                          <!-- <span v-if="errors.img" class="error">{{errors.img}}</span> -->
                         <!-- <input type="file" accept="image/*" @change="showMyImage(this)" name="img" id="file" ref="file" class="form-control inputfile"> -->
-                    </div>
+                    <!-- </div> -->
                     <div class="input-group mb-3 mb-7">
                         <label class="col-12 col-lg-3 col-md-4 control-label">事業者名</label>
                         <div class="input-group-append">
@@ -110,7 +110,7 @@
                         <div class="error" id="radioerror" style="margin-bottom: 6px;margin-left: 210px;">必須</div>
                     </div>
 
-                    <div class="input-group mb-3 mb-7">
+                    <!-- <div class="input-group mb-3 mb-7">
                         <label class="col-12 col-lg-3 col-md-4 control-label">都道府県</label>
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
@@ -123,7 +123,7 @@
                          <span v-if="errors.cities" class="error">{{errors.cities}}</span>
                     </div> -->
 
-                    <div class="input-group mb-3 mb-7" v-if="!show">
+                    <!-- <div class="input-group mb-3 mb-7" v-if="!show">
                         <label class="col-12 col-lg-3 col-md-4 control-label">市区町村</label>
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
