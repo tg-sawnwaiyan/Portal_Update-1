@@ -5,10 +5,11 @@
             <div class="nav-warp d-flex"  :class="visit == 'true' ?  container: ''">
                 <div class="d-flex align-items-center">
                     <a class="navbar-brand logo-text" href="/" v-if="visit == 'true'">
-                    LOGO <span>HERE</span>
+                    <h4 style="font-size: 13px; letter-spacing: 1.5px; font-weight: bold;">介護医療福祉の総合サイト</h4>
+                    <img src="/images/logo.png" style="width:215px;height:auto;" />                     
                     </a>
-                    <a class="" style="color:#fff;font-size:20px;width:230px;text-align:center;background: #b74a15;" href="/"  v-if="visit != 'true'">
-                    LOGO <span>HERE</span>
+                    <a class="" style="color:#fff;font-size:20px;width:230px;text-align:center;background: #346e90;border-right:1px solid #fff;" href="/"  v-if="visit != 'true'">                     
+                      <img src="/images/admin_logo1.png" style="width:240px;height:auto;" />
                     </a>
                     <div class="h-tel" v-if="visit == 'true'"><a class="tel" href="tel:03-1234-5678"><i class="fas fa-phone-alt"></i><span>03-1234-5678</span></a><br class="pc-1024"><a href="mailto:info@t-i-s.jp"><p class="sp-1024"><i class="fas fa-envelope"></i></p><span>info@t-i-s.jp</span></a></div>
                     <ul class="sp_social d-none-380"  v-if="visit == 'true'">
@@ -50,7 +51,7 @@
                             <router-link :to="{name: 'register'}" class="nav-link pad-free"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;<span>事業者 登録</span></router-link>
                         </li>
                         <li class="nav-item m-r-10" v-if="visit == 'true'">
-                            <a class="nav-link pad-free" @click="gotoDash()"><i class="fas fa-tachometer-alt"></i> 管理画面へ</a>
+                            <a class="nav-link pad-free d-flex h-100 align-items-center mt-0" @click="gotoDash()"><i class="fas fa-tachometer-alt mr-1"></i> 管理画面へ</a>
                         </li>
                         <li class="social-link" v-if="!$auth.check()"><a href="https://twitter.com/login?lang=en"><i class="fab fa-twitter"></i></a></li>
                         <li class="social-link" v-if="!$auth.check()"><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>

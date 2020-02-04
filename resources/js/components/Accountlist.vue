@@ -1,0 +1,88 @@
+<template>
+    <div class="card">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card  text-dark">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4 class="page-header header">施設一覧</h4>
+                                <br>
+                            </div>
+                            <div class="row col-12 m-lr-0" v-if="type == 'nursing'">
+                            <div class="col-md-3 m-b-10 nursing_responsive"  v-for="nursingprofiles in nursingprofile" :key="nursingprofiles.id">
+                                <div class="card h-100 ">
+                                    <!-- <img :src="logo" id="thumbnil" class="profile_logo m-b-8" alt="Logo"  @error="imgUrlAlt" width="200px" > -->
+                                    <!-- <img :src="'/upload/nursing_profile/'+ nursingprofile.logo" id="thumbnil" class="profile_logo m-b-8" alt="Logo"  width="200px" > -->
+                                   <div class="card-body nus_account">
+                                       <div class="img_title">
+                                            <img :src="'/upload/nursing_profile/'+ nursingprofiles.logo"  alt="Logo" @error="imgUrlAlt" />
+                                       </div>
+                                          <strong>Name </strong>
+                                          <p>{{nursingprofiles.name}}</p>
+
+                                          <strong>Phone </strong>
+                                          <p>{{nursingprofiles.phone}}</p>
+
+                                         <strong>Email </strong>
+                                          <p>{{nursingprofiles.email}}</p>
+                                   </div>
+                                </div>
+                            </div>
+                            </div>
+                              <div class="row col-12 m-lr-0" v-else>
+                               <div class="col-md-3 m-b-10 nursing_responsive" v-for="hospitalprofiles in hospitalprofile" :key="hospitalprofiles.id">
+                                    <div class="card h-100">
+                                    <div class="card-body nus_account">
+                                        <div class="img_title">
+                                            <img :src="'/upload/hospital_profile/'+ hospitalprofiles.logo" alt="Logo"   @error="imgUrlAlt" />
+                                        </div>
+                                          <strong>Name </strong>
+                                          <p>{{hospitalprofiles.name}}</p>
+
+                                          <strong>Phone </strong>
+                                          <p>{{hospitalprofiles.phone}}</p>
+
+                                          <strong>Email </strong>
+                                          <p>{{hospitalprofiles.email}}</p>
+
+                                    </div>
+                                </div>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+export default {
+    data() {
+       return{
+            nursingprofile:[],
+            type:"nursing",
+            hospitalprofile:[],
+       }
+    },
+    created(){
+         this.type = localStorage.getItem('cusType');
+                console.log("aaaaaaa",this.type);
+                this.cusid = Number(localStorage.getItem('cusId'));
+                 if(this.type == "nursing") {
+                      this.axios.get(`/api/account_nursing`).then(response => {
+                    //this.$loading(false);
+                    this.nursingprofile = response.data;
+                    console.log("aaa",this.nursingprofile);
+                    });
+            } else {
+                this.axios.get(`/api/account_hospital`).then(response => {
+                    //this.$loading(false);
+                    this.hospitalprofile = response.data;
+            });
+            }
+
+    }
+}
+</script>

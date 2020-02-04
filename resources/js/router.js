@@ -45,6 +45,8 @@ import Jobapplicantlist from './components/Jobapplicantlist'
 import adminlist from './components/AdminList'
 import admincreate from './components/AdminCreate'
 import sitepolicy from './components/sitepolicy'
+import Accountlist from './components/Accountlist'
+
 // import menu from './components/menu/Menu';
 
 // Routes
@@ -252,6 +254,14 @@ const routes = [
         name: "profiledit",
         path: "/profiledit",
         component: ProfileEdit,
+        meta: {
+            auth: true,
+        }
+    },
+    {
+        name: "accountlist",
+        path: "/accountlist",
+        component: Accountlist,
         meta: {
             auth: true,
         }

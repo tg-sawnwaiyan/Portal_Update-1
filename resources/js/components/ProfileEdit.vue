@@ -15,7 +15,7 @@
                                     <!-- <div class="header2"> -->
                                         <h5 class=" clearfix">事業者番号 : <span style="color:orange;font-weight:bold">{{customer_info.cusnum}}</span></h5>
                                     <!-- </div> -->
-                                </div>                                
+                                </div>
                             </div>
                             <!--card-->
                             <div class="card card-default m-b-20 col-md-11">
@@ -154,17 +154,17 @@
                                             <div class="header2">
                                                 <h5 class=" clearfix" v-if="accout_status == '解除'">事業者登録を{{accout_status}}します。</h5>
                                                 <h5 class=" clearfix" v-else>事業者登録を{{accout_status}}。</h5>
-                                            </div>                                            
+                                            </div>
                                             <div class="form-group">
                                                 <!-- <button class="btn confirmed" v-if="customer_info.accout_status != 0" >{{accout_status}}</button>
                                                 <button class="btn confirm-borderbtn" v-else @click="AccountStatusChange(customer_info.recordstatus)">{{accout_status}}</button> -->
                                                 <span class="btn btn-danger"  v-if="customer_info.recordstatus ==1"  @click="AccountStatusChange(customer_info.recordstatus)">
                                                     {{accout_status}}
                                                 </span>
-                                                
+
                                                 <span class="btn btn-success" v-if="customer_info.recordstatus ==0" @click="AccountStatusChange(customer_info.recordstatus)">
                                                     {{accout_status}}
-                                                </span>                                                
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
@@ -534,7 +534,7 @@
                                         } else {
                                             this.logo = 'upload/nursing_profile/' + response.data.logo;
                                         }
-                                            
+
                                     }).catch(error => {
 
                                         if (error.response.status == 422) {

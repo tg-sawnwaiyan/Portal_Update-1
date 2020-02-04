@@ -4,10 +4,10 @@
 		<div class="d-flex justify-content-center h-100">
         <div class="user_card" id="altrole">
           <!-- <h4 style="position:relative; bottom: 60px; width:152px;">事業者ログイン</h4> -->
-            <div class="links" style="top:-50px;">
+            <div class="links login_top">
               <!-- <router-link to="/" class="mr-auto text-white">ホーム</router-link> -->
-              <router-link to="/register" class="ml-auto text">登録</router-link>
-              <a href="/" class="mr-auto text-white">ホーム</a>
+              <router-link to="/register" class="ml-auto text login_1">登録</router-link>
+              <a href="/" class="mr-auto text-white login_2">ホーム</a>
               <!-- <a href="/register" class="ml-auto text">登録</a> -->
             </div>
 
@@ -73,7 +73,6 @@
     mounted() {
      if(this.$route.path == "/admin_login"){
         $('#altrole').addClass('admin_user_card');
-
        }
       else {
          $('#altrole').addClass('customer_user_card');
@@ -84,23 +83,18 @@
          this.name="管理者ログイン";
         $('#altrole').addClass('admin_user_card');
          console.log('ADMIN LOGIN');
-
        }else {
          this.name ='事業者ログイン';
        }
     },
-
     methods: {
       login() {
         // get the redirect object
-
         var redirect = this.$auth.redirect()
         console.log(this)
         var _this = this
         this.$loading(true);
-
         if(this.$route.path == "/admin_login"){
-
           this.$auth.loginAdmin({
           params: {
             email: _this.email,
@@ -145,7 +139,6 @@
           fetchUser: true
         })
         }
-
       }
     }
   }

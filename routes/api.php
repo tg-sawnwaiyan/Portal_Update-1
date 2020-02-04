@@ -311,6 +311,8 @@ Route::get('staffinfo/{id}', 'ProfilePublishController@getStaffbyCustomerId');
 
 // Route::post('nursing/galleryupdate/{id}', 'NursingProfileController@galleryupdate');
 Route::post('hospital/galleryupdate/{id}', 'HospitalProfileController@galleryupdate');
+Route::get('account_nursing','CustomerController@nusaccount');
+Route::get('account_hospital','CustomerController@hosaccount');
 
 // Route::post('nursing/cooperate/{id}', 'NursingProfileController@cooperateupdate');
 // Route::post('nursing/paymentmethod/{id}', 'NursingProfileController@paymentupdate');
