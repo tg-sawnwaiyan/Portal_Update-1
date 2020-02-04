@@ -414,7 +414,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <tr v-for="(cost,index) in method_payment" :key="cost.id" @click="changeBg(cost.id,index)" :class="'cost'+index">
+                                        <tr v-for="(cost,index) in method_payment" :key="cost.id" :class="'cost'+index">
                                             <td>
                                                 <h5 class="method-name">{{cost.payment_name}}</h5>
                                                 <span class="room-type"> {{cost.living_room_type}} </span>
@@ -423,8 +423,8 @@
                                             <td><span class="cash-lbl-mini">{{cost.expense_moving}}</span></td>
                                             <td><span class="cash-lbl-mini">{{cost.monthly_fees}}</span></td>
                                             <td>
-                                                <span :class="'changeLink changeLink'+cost.id" @click="costConfirm(cost.id)" >詳しくはこちら</span>
-                                                <span :class="'closeLink closeLink'+cost.id" @click="closeDetail(cost.id)" class="hideCloseBtn float-right">詳しくを閉じる</span>
+                                                <span :class="'changeLink changeLink'+cost.id" @click="costConfirm(cost.id,index)" >詳しくはこちら</span>
+                                                <span :class="'closeLink closeLink'+cost.id" @click="closeDetail(cost.id,index)" class="hideCloseBtn float-right">詳しくを閉じる</span>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -648,7 +648,7 @@
                             </div> -->
                         </div>
                         <div class="payment-footer">
-                            <span class="detail-btn" :class="'changeLink changeLink'+cost.id" @click="costConfirmMini(cost.id)" >詳しくはこちら</span>
+                            <span class="detail-btn" :class="'changeLink changeLink'+cost.id" @click="costConfirmMini(cost.id,index)" >詳しくはこちら</span>
                             <div class="col-md-12 collapse miniChangeLink" :id="'changeLinkMini' + cost.id">
                                 <label class="cost_heading_lbl_respon m-b-15">{{cost.payment_name}}</label>
                                 <div class="col-md-12">
@@ -2131,10 +2131,6 @@ export default {
                 this.window.height = window.innerHeight;
                 console.log('hello');
             },
-            changeBg(ch,a) {
-                $('.main-cost-table td').css({'background':'transparent'});
-                $('.cost'+a+' td').css({'background':'#ffe9df'});
-            },
             showLightbox: function(imageName) {
                 this.$refs.lightbox.show(imageName);
             },
@@ -2231,7 +2227,7 @@ export default {
 
 
 
-    costConfirm(id){
+    costConfirm(id,inx){
 
         $('.changeLink').text("詳しくはこちら");
         $('.changeLink').removeClass("CloseBtn");
@@ -2241,15 +2237,20 @@ export default {
         $('#changeLink'+id).show('medium');
         $('.closeLink').css({'display':'none'});
         $('.closeLink'+id).css({'display':'inline'});
+
+        $('.main-cost-table td').css({'background':'transparent'});
+        $('.cost'+inx+' td').css({'background':'#ffe9df'});
     },
     costConfirmMini(id){
         $('#changeLinkMini'+id).toggle('medium');
     },
-    closeDetail(id) {
+    closeDetail(id,inx) {
         $('.changeLink').text("詳しくはこちら");
         $('.changeLink').removeClass("CloseBtn");
         $('.closeLink'+id).css({'display':'none'});
-        $('.closeChangeLink').hide('medium');        
+        $('.closeChangeLink').hide('medium');    
+        $('.main-cost-table td').css({'background':'transparent'});
+        $('.cost'+inx+' td').css({'background':'transparent'});    
     },
     documentPost() {
         localStorage.removeItem("item");
