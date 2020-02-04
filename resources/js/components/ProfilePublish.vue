@@ -958,8 +958,8 @@
 
                     <div class="col-12">
                         <h5 class="profile_subtit"> 医療面の受入れ</h5>
-                        <div class="row col-12 pad-free-750 m-auto">
-                            <div v-for="maccept in medical_acceptance" :key="maccept.id" class="col-md-4 col-sm-6 pad-free accept-wrap" >
+                        <div class="row  m-0">
+                            <div v-for="maccept in medical_acceptance" :key="maccept.id" class="col-md-4 col-sm-6  accept-wrap" >
                                 <div class="accept-box">
                                     <div class="float-left" v-for="(ma,index) in medical" :key="index">
                                         <i v-if="ma.name === maccept.name && ma.accept_type === 'accept'" class="fas fa-check green"></i>
@@ -2832,12 +2832,12 @@ h3 {
 
 .cash-lbl-mini {
     font-size: 1.4em !important;
-    color: #ff6117;
+    color: #d2571c;
     font-weight: bold;
 }
 .cash-lbl-respon {
     font-size: 1.1em !important;
-    color: #ff6117;
+    color: #d2571c;
     font-weight: bold;
 }
 .detail-btn {
@@ -2913,7 +2913,7 @@ h3 {
 }
 .payment-body p {
     font-size: 18px;
-    color: #ff6117;
+    color: #d2571c;
     font-weight: bold;
 }
 .payment-body p span {

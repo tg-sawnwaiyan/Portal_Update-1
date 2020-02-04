@@ -19,11 +19,25 @@ class CustomerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index($type)
-    {        
+    {
         // $customers = Customer::all()->toArray();
         // return array_reverse($customers);
         $customer =Customer::where('type_id',$type)->orderBy('created_at', 'desc')->paginate(12);
         return response()->json($customer);
+    }
+    public function nusaccount() {
+        // $customer = "SELECT nursing_profiles.id,nursing_profiles.name,nursing_profiles.email,nursing_profiles.phone,nursing_profiles.logo from nursing_profiles";
+        // $nuscustomer = DB::select($customer);
+        // return $nuscustomer;
+        $nuscustomer = NursingProfile::all()->toArray();
+        return array_reverse($nuscustomer);
+    }
+    public function hosaccount() {
+        // $customer = "SELECT hospital_profiles.id,hospital_profiles.name,hospital_profiles.email,hospital_profiles.phone,hospital_profiles.logo from hospital_profiles";
+        // $hoscustomer = DB::select($customer);
+        // return $hoscustomer;
+        $hoscustomer = HospitalProfile::all()->toArray();
+        return array_reverse($hoscustomer);
     }
 
     public function uploadvideo(Request $request)
@@ -135,18 +149,18 @@ class CustomerController extends Controller
         $user = User::where('customer_id',$id)->first();
         if($user !== null){
             $user->delete();
-        }        
+        }
 
         $nursing = NursingProfile::where('customer_id',$id)->first();
         if($nursing !== null){
             $nursing->delete();
         }
-        
+
         $hospital = HospitalProfile::where('customer_id',$id)->first();
         if($hospital !== null){
             $hospital->delete();
         }
-        
+
         $customers = Customer::all();
         $data = array("status"=>"deleted", "customers"=>$customers);
         return response()->json($data);
@@ -154,24 +168,24 @@ class CustomerController extends Controller
 
     public function confirm($id)
     {
-      
+
         $getCustomer = Customer::findOrFail($id);
 
         $query = "SELECT c.latitude,c.longitude FROM cities as c
                        left join  townships as t on t.city_id = c.id
                        left join customers as cu on cu.townships_id = t.id
                        where cu.id = " .$id. " group by c.id";
-                     
+
         $citylatlng = DB::select($query);
-    
+
         $checkUser = User::where('email',$getCustomer->email)->select('email')->value('email');
         // $getUserId = User::where('email',$getCustomer->email)->value('id');
         $comfirmUser =  auth('api')->user()->id;
-        if(!empty($checkUser)){            
+        if(!empty($checkUser)){
             return response()->json('already');
         }else{
             \Mail::to($getCustomer->email)->send(new SendMailable($getCustomer));
-           
+
             $data = array(
                 'name'=>$getCustomer->name,
                 'email'=>$getCustomer->email,
@@ -186,25 +200,25 @@ class CustomerController extends Controller
                 'latitude' => $citylatlng[0]->latitude,
                 'longitude' => $citylatlng[0]->longitude,
 
-               );            
+               );
             $lastid = User::where('email',$getCustomer->email)->select('id')->value('id'); //user table last id
             $model_has_roles = array(
-                'role_id'=>2,   
+                'role_id'=>2,
                 'model_type'=> 'App\User',
                 'model_id'=> $lastid,
             );
-         
-            if($getCustomer->type_id == 2){ 
+
+            if($getCustomer->type_id == 2){
 
                 \DB::table('hospital_profiles')->insert($insert);
             }else{
-       
+
                 \DB::table('nursing_profiles')->insert($insert);
-            }  
+            }
            DB::table('model_has_roles')->insert($model_has_roles);
-            
+
             $cus = Customer::find($id);
-            $cus->status = 1; 
+            $cus->status = 1;
             $cus->confirm_user_id = $comfirmUser;
             $cus->user_id = $lastid;
             $cus->save();
@@ -230,24 +244,24 @@ class CustomerController extends Controller
 
     public function accountStatusUpdate(Request $request)
    {
-       $request = $request->all();      
-    //    $user = User::find(auth('api')->user()->id);       
+       $request = $request->all();
+    //    $user = User::find(auth('api')->user()->id);
        $cusId = $request['cus_id'];
        if(auth()->user()->role == 2) {
            $customer = Customer::find($cusId);
            $user = User::find($customer['user_id']);
        }else{
            $user = User::find(auth('api')->user()->id);
-       } 
+       }
 
        $customer = Customer::find($user['customer_id']);
-      
-        if($request['status'] == '1') { 
-            $customer->recordstatus = '0'; } 
-        if($request['status'] == '0') { 
+
+        if($request['status'] == '1') {
+            $customer->recordstatus = '0'; }
+        if($request['status'] == '0') {
             $customer->recordstatus = '1';
         }
-      
+
        $customer->save();
 
        return response()->json($customer);
