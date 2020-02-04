@@ -1582,6 +1582,7 @@ border-top: 5px solid #e66527; */
     font-size: 40px;
     font-weight: bold;
     color: #2980b9;
+    margin-right: 0px;
     /* text-shadow: 3px 4px #ccc; */
 }
 
@@ -11661,7 +11662,7 @@ background-image: none;
         display: inline-block;
     }
     .gNav {
-        margin-left: 2%;
+        margin-left: 0%;
     }
     .gNav li a {
         padding: 0 5px;
