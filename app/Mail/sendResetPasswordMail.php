@@ -16,10 +16,12 @@ class sendResetPasswordMail extends Mailable
      *
      * @return void
      */
-    public $resetPass;
-    public function __construct($resetPass)
+    public $checkmail;
+    // public $testurlen;
+    public function __construct($checkmail)
     {
-        $this->resetPass = $resetPass;
+        $this->checkmail = $checkmail;
+        // $this->testurlen = md5($getEmail);
     }
 
     /**
@@ -29,6 +31,7 @@ class sendResetPasswordMail extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.resetMail');
+        return $this->view('mail.resetMail')
+                    ->subject("[T-IS ティーズ] パスワード再設定用のＵＲＬのお知らせ");
     }
 }

@@ -1,7 +1,7 @@
 <template>
 
-<div class="row">
-      <div class="col-12">
+<div class="row o-r1 m-r-5">
+      <div class="col-12 o-r2">
           <div class="card">
               <div class="card-body">
                   <div class="row">
@@ -26,12 +26,7 @@
                             </div><br/>
                             <div class="form-group ">
                                 <span class="btn main-bg-color white all-btn" @click="checkValidate()">{{subtitle}}</span>
-                                <!-- <button class="btn main-bg-color white all-btn">{{subtitle}}</button> -->
                                 <router-link class="btn btn-danger all-btn" to="/occupationlist" > キャンセル </router-link>
-                                <!-- <router-link class="btn news-post-btn all-btn" to="/featurelist" >Create</router-link>             -->
-                                <!-- <button class="btn news-post-btn all-btn">{{subtitle}}</button> -->
-                                
-				
                             </div>
                             </form>
                         </div>
@@ -59,8 +54,8 @@ export default {
                         name: ''
                    },
                 selectedValue:0,
-                header: '職種作成',
-                subtitle: '作成する'
+                header: '求人職腫新規作成',
+                subtitle: '作成'
             }
         },
         created() {
@@ -83,8 +78,8 @@ export default {
                         this.occupation.parent = response.data.parent;
                         this.selectedValue = response.data.parent;
                         this.occupationList.name = response.data.name;
-                        this.header = ' 職種更新';
-                        this.subtitle = '更新する';
+                        this.header = ' 求人職種編集';
+                        this.subtitle = '保存';
                         return this.header;
                         return this.subtitle;
                     }
@@ -115,7 +110,7 @@ export default {
                 {
                     this.$swal({
                              title: "確認",
-                            text: "作成よろしいでしょうか。",
+                            text: "職種を投稿してよろしいでしょうか。",
                             type: "success",
                             width: 350,
                             height: 200,
@@ -123,7 +118,7 @@ export default {
                             confirmButtonColor: "#6cb2eb",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
-                            confirmButtonText: "作成",
+                            confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
@@ -137,8 +132,9 @@ export default {
                             this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            title: '作成されました。',
-                            confirmButtonText: "はい",
+                            // title:'確認済',
+                            text: '求人職種を投稿しました。',
+                            confirmButtonText: "閉じる",
                             confirmButtonColor: "#6cb2eb",
                             // showConfirmButton: false,
                             // timer: 1800,
@@ -171,7 +167,7 @@ export default {
               updateType() {
                   this.$swal({
                             title: "確認",
-                            text: "更新よろしいでしょうか。",
+                            text: "求人職種を更新してよろしいでしょうか。",
                             type: "info",
                             width: 350,
                             height: 200,
@@ -179,7 +175,7 @@ export default {
                             confirmButtonColor: "#6cb2eb",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
-                            confirmButtonText: "更新",
+                            confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
@@ -193,8 +189,8 @@ export default {
                         this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            title: '更新されました。',
-                            confirmButtonText: "はい",
+                            text: '求人職種を更新しました。',
+                            confirmButtonText: "閉じる",
                             confirmButtonColor: "#6cb2eb",
                             width: 250,
                             height: 200,

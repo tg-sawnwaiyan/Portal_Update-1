@@ -10,6 +10,10 @@ use DB;
 use App\Medical;
 use App\Category;
 
+use App\Customer;
+use App\SubjectJunctions;
+use App\SpecialFeaturesJunctions;
+
 class HospitalProfileController extends Controller
 {
     /**
@@ -85,16 +89,32 @@ class HospitalProfileController extends Controller
     }
 
     public function getPostalList($postal){
+
         $postal = (int)$postal;
-        $query = "SELECT * FROM zipcode WHERE zip7_code LIKE '".$postal."%'";
+        $query = "SELECT * FROM zipcode WHERE zip7_code LIKE '".$postal."'";
         $postal_list = DB::select($query);
-        return $postal_list;
+        if(count($postal_list)>0){
+            $township = "SELECT id from townships where township_name LIKE '". $postal_list[0]->city ."'";
+            $township_id = DB::select($township);
+        }   
+        else{
+            $township_id = null;
+        }
+        return response()->json(Array('postal_list'=>$postal_list,'township_id'=>$township_id));
+      
     }
 
     public function getCitiesName() {
         $query = "SELECT cities.id, cities.city_name FROM cities";
         $city_list = DB::select($query);
         return $city_list;
+    }
+
+    public function getTownshipName()
+    {
+        $query = "SELECT id,township_name from townships";
+        $township_list = DB::select ($query);
+        return $township_list;
     }
     
     /**
@@ -168,50 +188,120 @@ class HospitalProfileController extends Controller
     }
 
     public function movePhoto(Request $request) {
+     
+        
         $request = $request->all();
         foreach ($request as $file){
             $destination = 'upload/hospital_profile/'.$file->getClientOriginalName();
             $upload_img = move_uploaded_file($file, $destination);
         }        
     }
+    
+    public function profileupdate($id,Request $request) {
+      
+        $request = $request->all();       
+    
+        // Customer Profile
+        $customer = Customer::find($id);
 
-    public function galleryupdate($id,Request $request) {
-        $request = $request->all();
+        $customer->name = $request[0]['customer_info']['name'];
+        $customer->email = $request[0]['customer_info']['email'];
+        $customer->phone = $request[0]['customer_info']['phone']; 
+        $customer->address = $request[0]['customer_info']['address'];  
+        $customer->townships_id = $request[0]['customer_info']['townships_id'];
+        $customer->save();
+        // End 
 
-        $gallery = Gallery::where('customer_id', $id)
-                        ->delete();
+        // Hospital Profile
+        $hospital = HospitalProfile::where('customer_id',$id)->first();
+        $hospital->access = $request[0]['hospital_info']['access'];
+        $hospital->specialist =  $request[0]['hospital_info']['specialist'];
+        $hospital->details_info=  $request[0]['hospital_info']['details_info'];
+        $hospital->closed_day =  $request[0]['hospital_info']['closed_day'];
+        $hospital->facilities =  $request[0]['facilities'];
+        $hospital->website =  $request[0]['hospital_info']['website'];
+        $hospital->congestion =  $request[0]['hospital_info']['congestion'];
+        $hospital->latitude =  $request[0]['hospital_info']['latitude'];
+        $hospital->longitude =  $request[0]['hospital_info']['longitude'];   
+        $hospital->save();
+       // End 
+        
+        // Schedule 
+        $schedule = Schedule::where('customer_id', $id)
+                    ->delete();
 
-        for($i=0; $i<count($request); $i++) {
+        for($i=0; $i<2; $i++) {
+            if($i == 0) { $part = 'am'; } else { $part = 'pm'; }
             $data = array(
                 'customer_id' => $id,
-                'type' => $request[$i]['type'],
-                'photo'=>$request[$i]['photo'],
-                'title'=>$request[$i]['title'],
-                'description'=>$request[$i]['description'],
+                'mon' => $request[0]['schedule_list'][$i][0],
+                'tue' => $request[0]['schedule_list'][$i][1],
+                'wed' => $request[0]['schedule_list'][$i][2],
+                'thu' => $request[0]['schedule_list'][$i][3],
+                'fri' => $request[0]['schedule_list'][$i][4],
+                'sat' => $request[0]['schedule_list'][$i][5],
+                'sun' => $request[0]['schedule_list'][$i][6],
+                'part' => $part,
                 'created_at' => date('Y/m/d H:i:s'),
-                'updated_at' => date('Y/m/d H:i:s')
+                'updated_at' => date('Y/m/d H:i:s') 
             );
-            DB::table('galleries')->insert($data);
+            DB::table('schedule')->insert($data);
+        // End
         }
-    }
+        
+        // Special Feature
+        $feature = SpecialFeaturesJunctions::where('customer_id', $id)
+                    ->delete();
 
-    public function profileupdate($id,Request $request) {
-        $request = $request->all();
-        print_r($request);
-        $hospital = HospitalProfile::where('customer_id',$id);
-        $uploadData = array(
-            'access' => $request[0]['access'],
-            'specialist' =>  $request[0]['specialist'],
-            'details_info'=>  strip_tags($request[0]['details_info']),
-            'closed_day' =>  $request[0]['close_day'],
-            'facilities' =>  $request[0]['facilities'],
-            'website' =>  $request[0]['website'],
-            'congestion' =>  $request[0]['congestion'],
-            'latitude' =>  $request[0]['latitude'],
-            'longitude' =>  $request[0]['longitude']
-       );
+        for($indx=0; $indx<count($request[0]['chek_feature'][0]['special_feature_id']); $indx++) {
+            $new_feature = new SpecialFeaturesJunctions();
+            $new_feature->customer_id = $id;
+            $new_feature->special_feature_id = $request[0]['chek_feature'][0]['special_feature_id'][$indx];
+            $new_feature->save();
+        }
+        // End
 
-       $hospital->update($uploadData);
+        // SubjectJuncitonsUpdate 
+        $subject = SubjectJunctions::where('customer_id', $id)
+                    ->delete();
+
+        for($indx=0; $indx<count($request[0]['subjects'][0]['subject_id']); $indx++) {
+            $new_subject = new SubjectJunctions();
+            $new_subject->customer_id = $id;
+            $new_subject->subject_id = $request[0]['subjects'][0]['subject_id'][$indx];
+            $new_subject->save();
+        }
+        // End
+
+         // Gallary 
+         if(count($request[0]["video"]) > 0){
+            $del_gallery = Gallery::where(['customer_id'=> $id,'type'=>'video'])->delete(); 
+            for($i=0; $i<count($request[0]["video"]); $i++) {
+                $gallery = new Gallery;
+                $gallery->customer_id = $id;
+                $gallery->type = $request[0]["video"][$i]['type'];
+                $gallery->photo = $request[0]["video"][$i]['photo'];
+                $gallery->title = $request[0]["video"][$i]['title'];
+                $gallery->description = $request[0]["video"][$i]['description'];
+    
+                $gallery->save();
+            }
+        }
+        if(count($request[0]["image"]) > 0){
+            $del_gallery = Gallery::where(['customer_id'=> $id,'type'=>'photo'])->delete(); 
+            for($i=0; $i<count($request[0]["image"]); $i++) {
+                $gallery = new Gallery;
+                $gallery->customer_id = $id;
+                $gallery->type = $request[0]["image"][$i]['type'];
+                $gallery->photo = $request[0]["image"][$i]['photo'];
+                $gallery->title = $request[0]["image"][$i]['title'];
+                $gallery->description = $request[0]["image"][$i]['description'];
+    
+                $gallery->save();
+            }
+        }
+   
+        return response()->json('success');
     }
 
 }

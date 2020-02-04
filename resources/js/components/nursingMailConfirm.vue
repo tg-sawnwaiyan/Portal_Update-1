@@ -8,7 +8,7 @@
                 <!-- <div class="col-12 m-b-10">
             <h4 class="job-apply-color">入力内容のご確認</h4>
         </div> -->
-                <div class="col-12 pad-free m-b-20">
+                <div class="col-12 pad-free m-b-10">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
@@ -29,9 +29,7 @@
             </ol> -->
                     </nav>
                 </div>
-                <div class="col-12 m-b-10">
-                    <h4 class="nursing-info">資料請求される方について</h4>
-                </div>
+                
                 <div class="col-md-12 confirm_box" v-if="type == 'confirm'">
                     <div id="loader"></div>
                     <ul class="multi-step">
@@ -40,6 +38,7 @@
                         <li>3.送信完了</li>
                     </ul>
                     <form class="col-md-12 form-wrap" @submit.prevent="add" method="post">
+                        <h4 class="form-tit">資料請求される方について</h4>
                         <div class="mb-5">
                             <p class="require-txt">
                                 <span style="color: red; font-weight: bold; font-size: 15px;">※</span> ご入力いただいた内容に誤りがないかどうか、ご確認ください。
@@ -85,10 +84,11 @@
                                 <div class="col-md-9 col-sm-12 form-right">
                                     <div class="form-group row pl-4 mb-0">
                                         <div class="col-md-3 font-weight-bold">
-                                            郵便番号
+                                            郵便番号 
                                         </div>
                                         <div class="col-md-9 p-0">
-                                            <input type="text" name="outputpostal" id="outputpostal" class="mailbox m-b-10" disabled v-model="comments.postal" />
+                                          <!-- <input type="text" name="outputpostal" id="outputpostal" class="mailbox m-b-10" disabled v-model="comments.postal" /> -->
+                                          <label>{{comments.postal}}</label>
                                         </div>
                                     </div>
                                     <div class="form-group row pl-4 mb-0">
@@ -96,15 +96,26 @@
                                             都道府県
                                         </div>
                                         <div class="col-md-9 p-0">
-                                            <input type="text" name="outputdivision" id="outputdivision" class="mailbox m-b-15" disabled v-model="comments.division" />
+                                            <!-- <input type="text" name="outputdivision" id="outputdivision" class="mailbox m-b-15" disabled v-model="comments.division" /> -->
+                                            <label>{{comments.division}}</label>
                                         </div>
                                     </div>
                                     <div class="form-group row pl-4 mb-0">
                                         <div class="col-md-3 font-weight-bold">
-                                            市区町村、番地（建物名）
+                                            市区町村
                                         </div>
                                         <div class="col-md-9 p-0">
-                                            <input type="text" name="outputcity" id="outputcity" class="mailbox" disabled v-model="comments.city" />
+                                            <!-- <input type="text" name="outputcity" id="outputcity" class="mailbox" disabled v-model="comments.city" /> -->
+                                            <label>{{comments.townshipname}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row pl-4 mb-0">
+                                        <div class="col-md-3 font-weight-bold">
+                                            番地（建物名）
+                                        </div>
+                                        <div class="col-md-9 p-0">
+                                            <!-- <input type="text" name="outputcity" id="outputcity" class="mailbox" disabled v-model="comments.city" /> -->
+                                            <label>{{comments.city}}</label>
                                         </div>
                                     </div>
                                 </div>
@@ -142,7 +153,7 @@
               </div> -->
                         </div>
                         <div class="mb-5">
-                            <h3 class="form-tit">入居対象者様について</h3>
+                            <h3 class="form-tit" v-if="type !== 'completed'">入居対象者様について</h3>
                             <div class="form-group m-0 row bd">
                                 <div class="col-md-3 col-sm-12 form-left">
                                     入居対象者様とのご関係
@@ -213,10 +224,10 @@
                         <li class="active">3.送信完了</li>
                     </ul>
                     <div class="text-center">
-                        <h3>入力内容は送信されました‼</h3>
+                        <h3>資料請求が完了いたしました。‼</h3>
                         <br />
-                        <p>この度は「探しっくす」をご利用いただきましてありがとうございました。</p>
-                        <p>ご見学の日程等の詳細、お申込みいただいた資料の送付およびお問い合わせいただいた内容につきましては、各施設よりご対応させていただきます。</p>
+                        <p>この度は「T-IS ティーズ」をご利用いただきましてありがとうございました。</p>
+                        <p>お申込みいただいた資料の送付およびお問い合わせいただいた内容につきましては、各施設よりご対応させていただきます。</p>
                         <p>今後ともどうぞよろしくお願い申し上げます。</p>
                         <br />
                         <br />
@@ -260,18 +271,21 @@
                     fav_name: [{}],
                     // arr_reserve: [{}],
                     arr_document: [{}],
-                    selectedValue: 0
+                    selectedValue: 0,
+                    fav_name_copy:[]
                 },
                 errors: [],
                 fav_nursing: [],
                 local_sto: "",
                 post_list: [],
-                city_list: []
+                city_list: [],
+                town_list:[]
             };
         },
         created() {
             this.comments = JSON.parse(localStorage.getItem("inputValue"));
-            console.log("confirm", this.comments);
+          
+            console.log(this.comments);
             // if (this.comments.present) {
             //   this.comments.present = "する";
             // } else {
@@ -279,16 +293,31 @@
             // }
             this.axios.get("/api/hospital/citiesList").then(response => {
                 this.city_list = response.data;
-                console.log("testing", this.comments.division);
+             
                 for (var i = 0; i < this.city_list.length; i++) {
                     if (this.comments.division == this.city_list[i].id) {
                         this.comments.division = this.city_list[i].city_name;
                     }
                 }
             });
+
+             this.axios.get("/api/hospital/townshipList").then(response => {
+                this.town_list = response.data;
+              
+                for (var i = 0; i < this.town_list.length; i++) {
+                    if (this.comments.township == this.town_list[i].id) {
+                        this.comments.townshipname = this.town_list[i].township_name;
+                    }
+                }
+            });
+
+
+
+           
         },
         methods: {
             add() {
+                    this.comments.fav_name_copy = [];
                     this.$loading(true);
                     this.axios
                         .post("/api/nurse/add", this.comments)

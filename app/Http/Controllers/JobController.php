@@ -12,22 +12,60 @@ class JobController extends Controller
 
     public function index()
     {
-        $query = "SELECT jobs.* ,customers.type_id,      
-        (CASE customers.type_id WHEN '2' THEN CONCAT((500000+customers.id),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((200000+customers.id),'-',LPAD(jobs.id, 4, '0')) END) as jobid
-        FROM `jobs`
-        JOIN customers ON jobs.customer_id = customers.id
-        LEFT JOIN job_applies ON jobs.id = job_applies.job_id
-        WHERE customers.recordstatus=1 and jobs.customer_id = ".auth()->user()->customer_id." GROUP BY jobs.id ORDER BY jobs.id DESC";
-        $profilejob = DB::select($query);
+        if( auth()->user()->role == 2){
+            // $query = "SELECT jobs.* ,customers.type_id,
+            // (CASE customers.type_id WHEN '2' THEN CONCAT((200000+customers.id),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(jobs.id, 4, '0')) END) as jobid
+            // FROM `jobs`
+            // JOIN customers ON jobs.customer_id = customers.id
+            // LEFT JOIN job_applies ON jobs.id = job_applies.job_id
+            // WHERE customers.recordstatus=1 GROUP BY jobs.id ORDER BY jobs.id DESC";
+            // $profilejob = DB::select($query);
 
-        foreach($profilejob as $jobs){
-            $job_id = $jobs->id;
-            $jobapplies =  DB::table('job_applies')->join('jobs','job_applies.job_id','=','jobs.id')
-                           ->where('job_applies.job_id','=',$job_id)->count();
-            $jobs->count = $jobapplies;
+            $profilejob = DB::table('jobs')
+                    ->select('jobs.*','customers.type_id',
+                    DB::raw('(CASE WHEN customers.type_id = "2" THEN CONCAT((200000+customers.id),"-",LPAD(jobs.id, 4, "0")) ELSE CONCAT((500000+customers.id),"-",LPAD(jobs.id, 4, "0")) END) as jobid'))
+                    ->join('customers','jobs.customer_id','=','customers.id')
+                    ->leftjoin('job_applies','jobs.id','=','job_applies.job_id')
+                    ->where('customers.recordstatus', '1')
+                    ->groupBy('jobs.id')
+                    ->orderBy('jobs.id', 'DESC')
+                    ->paginate(12);
+
+            foreach($profilejob as $jobs){
+                $job_id = $jobs->id;
+                $jobapplies =  DB::table('job_applies')->join('jobs','job_applies.job_id','=','jobs.id')
+                            ->where('job_applies.job_id','=',$job_id)->count();
+                $jobs->count = $jobapplies;
+            }
+            return response()->json(array('profilejob'=>$profilejob));
+        }else{
+            // $query = "SELECT jobs.* ,customers.type_id,
+            // (CASE customers.type_id WHEN '2' THEN CONCAT((200000+customers.id),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(jobs.id, 4, '0')) END) as jobid
+            // FROM `jobs`
+            // JOIN customers ON jobs.customer_id = customers.id
+            // LEFT JOIN job_applies ON jobs.id = job_applies.job_id
+            // WHERE customers.recordstatus=1 and jobs.customer_id = ".auth()->user()->customer_id." GROUP BY jobs.id ORDER BY jobs.id DESC";
+            // $profilejob = DB::select($query);
+
+            $profilejob = DB::table('jobs')
+                    ->select('jobs.*','customers.type_id',
+                    DB::raw('(CASE WHEN customers.type_id = "2" THEN CONCAT((200000+customers.id),"-",LPAD(jobs.id, 4, "0")) ELSE CONCAT((500000+customers.id),"-",LPAD(jobs.id, 4, "0")) END) as jobid'))
+                    ->join('customers','jobs.customer_id','=','customers.id')
+                    ->leftjoin('job_applies','jobs.id','=','job_applies.job_id')
+                    ->where('customers.recordstatus', '1')
+                    ->where('jobs.customer_id',auth()->user()->customer_id)
+                    ->groupBy('jobs.id')
+                    ->orderBy('jobs.id', 'DESC')
+                    ->paginate(12);
+
+            foreach($profilejob as $jobs){
+                $job_id = $jobs->id;
+                $jobapplies =  DB::table('job_applies')->join('jobs','job_applies.job_id','=','jobs.id')
+                            ->where('job_applies.job_id','=',$job_id)->count();
+                $jobs->count = $jobapplies;
+            }
+            return response()->json(array('profilejob'=>$profilejob));
         }
-        return response()->json(array('profilejob'=>$profilejob));
-
     }
 
     public function create()
@@ -37,9 +75,9 @@ class JobController extends Controller
 
     public function getOccupationList()
     {
-        $occupationlist = Occupations::select('id','name')->get()->toArray();
-
-        return response()->json($occupationlist);
+        // $occupationlist = Occupations::select('id','name')->get()->toArray();
+        $occupationList = Occupations::select('id','name')->where('parent','!=',0)->get()->toArray();
+        return response()->json($occupationList);
     }
 
     public function getSkill()
@@ -55,7 +93,7 @@ class JobController extends Controller
 
         $township_id = DB::select($query);
         return $township_id;
-    } 
+    }
 
     public function store(Request $request)
     {
@@ -164,8 +202,11 @@ class JobController extends Controller
         // }
         $job->occupation_id = $request->occupation_id;
         $job->title =$request->input('title');
-        $job->customer_id= auth()->user()->customer_id;
-
+        if(isset($request->customer_id)){
+            $job->customer_id= $request->customer_id;
+        }else{
+            $job->customer_id= auth()->user()->customer_id;
+        }
         $job->description = $request->input('description');
         $job->skills = $string;
         // $job->city_id = $request->input('city_id');
@@ -183,23 +224,24 @@ class JobController extends Controller
         $job->user_id = 1;
         $job->recordstatus = 1;
         $job->zipcode_id = $request->input('zipcode_id');
+        $job->township_id = $request->input('str_address');
 
         // $query = "SELECT townships.id FROM `townships` INNER JOIN zipcode on townships.township_name = zipcode.city
         //     WHERE zipcode.id = " . $request->input('zipcode_id');
         // $tid = DB::select($query);
-        
+
         // $infos = DB::table('jobs')
         // ->join('customers', 'customers.id', '=', 'jobs.customer_id')
         // ->select('jobs.*','customers.email')
         // ->where('jobs.id', '=', $jobapply->job_id)
         // ->get();
-        $tid = DB::table('townships')
-             ->join('zipcode','zipcode.city','=','townships.township_name')
-             ->select('townships.id')
-              ->where('zipcode.id','=',$request->input('zipcode_id'))
-              ->value('townships.id');
-        $job->township_id = $tid;
-       
+        // $tid = DB::table('townships')
+        //      ->join('zipcode','zipcode.city','=','townships.township_name')
+        //      ->select('townships.id')
+        //       ->where('zipcode.id','=',$request->input('zipcode_id'))
+        //       ->value('townships.id');
+        // $job->township_id = $tid;
+
         $job->save();
         return $job;
     }
@@ -215,10 +257,19 @@ class JobController extends Controller
     {
 
         // $job = Job::find($id);
-        $sql = "SELECT jobs.*, zipcode.id as zip_id, zipcode.zip7_code, zipcode.pref as cityname, zipcode.city as township, zipcode.street from jobs inner join zipcode on jobs.zipcode_id = zipcode.id WHERE jobs.id = $id";
+        // $sql = "SELECT jobs.*, zipcode.id as zip_id, zipcode.zip7_code, zipcode.pref as cityname,zipcode.city_id, zipcode.city as township, zipcode.street from jobs inner join zipcode on jobs.zipcode_id = zipcode.id WHERE jobs.id = $id";
+        $sql1 = "SELECT * FROM jobs WHERE jobs.id = $id";
+        $job1 = DB::select($sql1);
+
+        if($job1[0]->zipcode_id != null){
+            $sql = "SELECT jobs.*, zipcode.id as zip_id, zipcode.zip7_code, zipcode.pref as cityname,zipcode.city_id, zipcode.city as township, zipcode.street from jobs inner join zipcode on jobs.zipcode_id = zipcode.id WHERE jobs.id = $id";
+        }
+        else{
+            $sql = "SELECT jobs.*, townships.city_id, townships.id as township_id from jobs inner join townships on jobs.township_id = townships.id WHERE jobs.id = $id";
+        }
         $job = DB::select($sql);
 
-        return response()->json($job);
+        return response()->json(Array("job"=>$job));
     }
 
 
@@ -256,7 +307,11 @@ class JobController extends Controller
                 $job->occupation_id = 0;
             }
             $job->title =$request->input('title');
-            $job->customer_id= auth()->user()->customer_id;
+            if(isset($request->customer_id)){
+                $job->customer_id= $request->customer_id;
+            }else{
+                $job->customer_id= auth()->user()->customer_id;
+            }
 
             $job->description = $request->input('description');
             $job->skills = $string;
@@ -275,26 +330,27 @@ class JobController extends Controller
             $job->user_id = 1;
             $job->recordstatus = 1;
             $job->zipcode_id = $request->input('zipcode_id');
+            $job->township_id = $request->input('str_address');
 
             // $query = "SELECT townships.id FROM `townships` INNER JOIN zipcode on townships.township_name = zipcode.city
             //     WHERE zipcode.id = " . $request->input('zipcode_id');
             // $tid = DB::select($query);
-            
+
             // $infos = DB::table('jobs')
             // ->join('customers', 'customers.id', '=', 'jobs.customer_id')
             // ->select('jobs.*','customers.email')
             // ->where('jobs.id', '=', $jobapply->job_id)
             // ->get();
-            $tid = DB::table('townships')
-                ->join('zipcode','zipcode.city','=','townships.township_name')
-                ->select('townships.id')
-                ->where('zipcode.id','=',$request->input('zipcode_id'))
-                ->value('townships.id');
-            $job->township_id = $tid;
-        
+            // $tid = DB::table('townships')
+            //     ->join('zipcode','zipcode.city','=','townships.township_name')
+            //     ->select('townships.id')
+            //     ->where('zipcode.id','=',$request->input('zipcode_id'))
+            //     ->value('townships.id');
+            // $job->township_id = $tid;
+
             $job->save();
 
-            
+
 
 
             // // $cstring = '';
@@ -342,7 +398,7 @@ class JobController extends Controller
 
         }
 
-        return response()->json('The Job successfully updated');
+        return response()->json("Success");
     }
 
 
@@ -357,17 +413,49 @@ class JobController extends Controller
         $search_word = $request['search_word'];
         $customer_id = auth()->user()->customer_id;
 
-        $query = Job::query();
-        $query = $query->where('customer_id', $customer_id);
-        $query = $query->where(function($qu) use ($search_word){
-                            $qu->where('title', 'LIKE', "%{$search_word}%")
-                                ->orWhere('description', 'LIKE', "%{$search_word}%");
-                        });
-        $query = $query->orderBy('id','DESC')
-                        ->get()
-                        ->toArray();
-        return $query;
+        // $query = Job::query();
+        // $query = "SELECT jobs.* ,customers.type_id,
+        //     (CASE customers.type_id WHEN '2' THEN CONCAT((200000+customers.id),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(jobs.id, 4, '0')) END) as jobid
+        //     FROM `jobs`
+        //     JOIN customers ON jobs.customer_id = customers.id
+        //     LEFT JOIN job_applies ON jobs.id = job_applies.job_id
+        //     WHERE jobs.title LIKE '%$search_word%' AND customers.recordstatus=1 GROUP BY jobs.id ORDER BY jobs.id DESC";
+        //     $jobsearch = DB::select($query);
+
+            $jobsearch = DB::table('jobs')
+                    ->select('jobs.*','customers.type_id',
+                    DB::raw('(CASE WHEN customers.type_id = "2" THEN CONCAT((200000+customers.id),"-",LPAD(jobs.id, 4, "0")) ELSE CONCAT((500000+customers.id),"-",LPAD(jobs.id, 4, "0")) END) as jobid'))
+                    ->join('customers','jobs.customer_id','=','customers.id')
+                    ->leftjoin('job_applies','jobs.id','=','job_applies.job_id')
+                    ->where('jobs.title', 'LIKE', "%{$search_word}%")
+                    ->where('customers.recordstatus', '1')
+                    ->groupBy('jobs.id')
+                    ->orderBy('jobs.id', 'DESC')
+                    ->paginate(12);
+
+            foreach($jobsearch as $jobs){
+                $job_id = $jobs->id;
+                $jobapplies =  DB::table('job_applies')->join('jobs','job_applies.job_id','=','jobs.id')
+                            ->where('job_applies.job_id','=',$job_id)->count();
+                $jobs->count = $jobapplies;
+            }
+            return response()->json(array('jobsearch'=>$jobsearch));
+        // $query = $query->where('job_id', $customer_id);
+        // $query = $query->where(function($qu) use ($search_word){
+        //                     $qu->where('title', 'LIKE', "%{$search_word}%")
+        //                         ->orWhere('description', 'LIKE', "%{$search_word}%");
+        //                 });
+        //                 foreach($query as $jobs){
+        //                     $job_id = $jobs->id;
+        //                     $jobapplies =  DB::table('job_applies')->join('jobs','job_applies.job_id','=','jobs.id')
+        //                                 ->where('job_applies.job_id','=',$job_id)->count();
+        //                     $jobs->count = $jobapplies;
+        //                 }
+        // $query = $query->orderBy('id','DESC')
+        //                 ->get()
+        //                 ->toArray();
     }
+
 
     public function confirm($id)
     {
@@ -379,11 +467,17 @@ class JobController extends Controller
            else {
                 $jobs->recordstatus =0;
            }
-           
+
            $jobs->save();
         //    $jobs =Job::all()->toArray();
            $data = array("jobs"=> $jobs, "success", "Comment successfully confirmed");
            return response()->json($data);
 
+   }
+   public function getCustomerList(){
+       $query = "SELECT customers.id, customers.name, customers.email FROM jobs
+                LEFT JOIN customers ON customers.id = jobs.customer_id WHERE customers.recordstatus = 1 GROUP BY jobs.customer_id";
+        $cus_list = DB::select($query);
+        return $cus_list;
    }
 }

@@ -13,19 +13,25 @@ use App\Mail\SendMailComment;
 class CommentController extends Controller
 {
     protected $zipcode;
-    public function index()
+    public function index($type)
     {
         // $comment =Comment::all()->toArray();
         // return array_reverse($comment);
-        $sql = "SELECT comments.*,customers.name from comments JOIN customers ON comments.customer_id= customers.id";
-        $commentList = DB::select($sql);
+        // $sql = "SELECT comments.*,customers.name from comments JOIN customers ON comments.customer_id= customers.id WHERE customers.type_id=$type AND customers.status=1 ORDER BY id DESC";
+        $commentList = DB::table('comments')
+                ->join('customers','comments.customer_id','=','customers.id')
+                ->where('customers.type_id', $type)
+                ->where('customers.status', 1)
+                ->orderBy('comments.id','DESC')
+                ->paginate(12);
+        // $commentList = DB::select($sql)->paginate(12);
         foreach ($commentList as $com) {
             $splitTimeStamp = explode(" ",$com->created_at);
             $com->created_date = $splitTimeStamp[0];
             $com->created_time = $splitTimeStamp[1];
         }
         // return $comments;
-        return $commentList;
+        return response()->json($commentList);
     }
 
 
@@ -81,18 +87,23 @@ class CommentController extends Controller
 
 
         $getComment = Comment::findOrFail($comment->id);
-        $query = "SELECT cu.id as cusid ,cu.name as cusname,co.* from customers As cu  Join comments As co on cu.id = co.customer_id  where co.customer_id =" . $comment->customer_id . " and co.id =" .$comment->id;
+        $query = "SELECT cu.id as cusid ,cu.name as cusname,
+        co.* ,(CASE cu.type_id WHEN '2' THEN CONCAT((200000+cu.id)) ELSE CONCAT((500000+cu.id)) END) as cusnum 
+        from customers As cu  Join comments As co on cu.id = co.customer_id 
+         where co.customer_id =" . $comment->customer_id . " and co.id =" .$comment->id;
         $getComment = DB::select($query);
 
-        if($getComment[0]->gender == 0 )
-        {
-            $getComment[0]->gender = "Male";
-        }
-        else{
-            $getComment[0]->gender = "Female";
-        }
+        // if($getComment[0]->gender == 0 )
+        // {
+        //     $getComment[0]->gender = "男性";
+        // }
+        // else{
+        //     $getComment[0]->gender = "女性";
+        // }
+        $admin_email = 'thuzar@management-partners.co.jp';
+        // $admin_email = 'thuzar.ts92@gmail.com';
         // \Mail::to('mayphue17@management-part')->send(new SendMailComment($getComment));
-        \Mail::to($getComment[0]->email)->send(new SendMailComment($getComment));
+        \Mail::to($admin_email)->send(new SendMailComment($getComment));
 
         // return response()->json(['success'=>'Done!']);
 
@@ -149,13 +160,12 @@ class CommentController extends Controller
         $request = $request->all();
         $search_word = $request['search_word'];
 
-        $search_comment = DB::table('comments') 
+        $search_comment = DB::table('comments')
                             ->join('customers','comments.customer_id','=','customers.id')
                             ->where('customers.name', 'LIKE', "%{$search_word}%")
                             ->orderBy('comments.id','DESC')
-                            ->get()
-                            ->toArray();
-        return $search_comment;
+                            ->paginate(12);
+        return response()->json($search_comment);
 
     }
 

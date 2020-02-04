@@ -1,55 +1,41 @@
 <template>
- <div class="row">
-      <div class="col-12">
-          <div class="card">
-              <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <!-- <h4 class="page-header header" id="myspan">特殊機能作成</h4> -->
-                            <h4 class="page-header header">{{ header }}</h4>
-                        </div>
-                        <div class="col-md-12">
-                             <form @submit.prevent="add">
-                            <div class="form-group">
-                                <label>特徴 :<span class="error">*</span></label>
-                                <input type="text" class="form-control"  v-model="feature.name"  placeholder="特徴を入力してください。" >
-                                <!-- <span v-if="errors.name" class="error">{{errors.name[0]}}</span> -->
-                                  <span v-if="errors.name" class="error">{{errors.name}}</span>
-                            </div>
-                            <div class="form-group">
-                                <label>特徴の略語 :<span class="error">*</span></label>
-                                <input type="text" class="form-control" v-model="feature.short_name"  placeholder="特徴の略語を入力してください。" >
-                                 <!-- <span v-if="errors.short_name" class="error">{{errors.short_name[0]}}</span> -->
-                                   <span v-if="errors.short_name" class="error">{{errors.short_name}}</span>
-                            </div>
-                            <div class="form_group">
-                                <label> カテゴリー:<span class="error">*</span></label>
-                                <select v-model="feature.type" name="type" class="form-control">
-                                        <option v-bind:value='-1'>選択してください。 </option>
-                                        <option value="病院" >病院</option>
-                                        <option value="介護">介護</option>
-                                </select>
-                                <span v-if="errors.type" class="error">{{errors.type}}</span>
-                                    <!-- <span v-if="errors.nur" class="error">{{errors.nur}}</span> -->
-                            </div> <br/>
+ <div id="feature">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="page-header header">{{ header }}</h4>
+            <br>
+            <form @submit.prevent="add">
+                <div class="form-group">
+                    <label>特徴 :<span class="error">*</span></label>
+                    <input type="text" class="form-control"  v-model="feature.name"  placeholder="特徴を入力してください。" >
+                    <!-- <span v-if="errors.name" class="error">{{errors.name[0]}}</span> -->
+                        <span v-if="errors.name" class="error">{{errors.name}}</span>
+                </div>
+                <div class="form-group">
+                    <label>特徴の略語 :<span class="error">*</span></label>
+                    <input type="text" class="form-control" v-model="feature.short_name"  placeholder="特徴の略語を入力してください。" >
+                        <!-- <span v-if="errors.short_name" class="error">{{errors.short_name[0]}}</span> -->
+                        <span v-if="errors.short_name" class="error">{{errors.short_name}}</span>
+                </div>
+                <div class="form_group">
+                    <label> カテゴリー:<span class="error">*</span></label>
+                    <select v-model="feature.type" name="type" class="form-control">
+                            <option v-bind:value='-1'>選択してください。 </option>
+                            <option value="nursing">介護</option>
+                            <option value="hospital" >病院</option>
+                    </select>
+                    <span v-if="errors.type" class="error">{{errors.type}}</span>
+                        <!-- <span v-if="errors.nur" class="error">{{errors.nur}}</span> -->
+                </div> <br/>
 
-                            <div class="form-group ">
-                                  <span class="btn main-bg-color white all-btn" @click="checkValidate()"> {{subtitle}}</span>
-                                <!-- <button class="btn main-bg-color white all-btn">{{subtitle}}</button> -->
-                                <router-link class="btn btn-danger all-btn" to="/featurelist" > キャンセル </router-link>
-                                <!-- <router-link class="btn news-post-btn all-btn" to="/featurelist" >Create</router-link>             -->
-                                <!-- <button class="btn news-post-btn all-btn" >{{subtitle}}</button> -->
-                              
-                                <!-- {{ this.errors.type }} -->
-                            </div>
-                                </form>
-                            </div>
-                         </div>
-                    </div>
-            </div>
-          </div>
-      </div>
-
+                <div class="form-group ">
+                        <span class="btn main-bg-color white all-btn" @click="checkValidate()"> {{subtitle}}</span>
+                    <span class="btn btn-danger all-btn" @click="$router.go(-1)" > キャンセル </span>
+                </div>
+            </form>
+        </div>
+     </div>
+</div>
 </template>
 <script>
 export default {
@@ -72,8 +58,8 @@ export default {
                         nurse:""
                     },
                     selectedValue:0,
-                    header: '特殊を作成',
-                    subtitle: '作成する'
+                    header: '特徴新規作成',
+                    subtitle: '作成'
             }
         },
           created() {
@@ -88,15 +74,15 @@ export default {
                     .then((response) => {
 
                     this.feature= response.data;
-                    if(this.feature.type == '病院')
-                    {
-                        this.feature.type = '病院';
-                    }
-                    else if (this.feature.type == '介護') {
-                        this.feature.type = '介護';
-                    }
-                      this.header = ' 特徴更新';
-                        this.subtitle = '更新する';
+                    // if(this.feature.type == 'hospital')
+                    // {
+                    //     this.feature.type = 'hospital';
+                    // }
+                    // else if (this.feature.type == '介護') {
+                    //     this.feature.type = '介護';
+                    // }
+                      this.header = ' 特徴編集';
+                        this.subtitle = '保存';
                         return this.header;
                         return this.subtitle;
 
@@ -150,7 +136,7 @@ export default {
                     // console.log('this.$route.params.id');
                     this.$swal({
                             title: "確認",
-                            text: "作成よろしいでしょうか。",
+                            text: "特徴を投稿してよろしいでしょうか。",
                             type: "success",
                             width: 350,
                             height: 200,
@@ -158,7 +144,7 @@ export default {
                             confirmButtonColor: "#6cb2eb",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
-                            confirmButtonText: "作成",
+                            confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
@@ -172,8 +158,9 @@ export default {
                             this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            title: '作成されました。',
-                            confirmButtonText: "はい",
+                            // title:'確認済',
+                            text: '特徴を投稿しました。',
+                            confirmButtonText: "閉じる",
                             confirmButtonColor: "#6cb2eb",
                             // showConfirmButton: false,
                             // timer: 1800,
@@ -181,8 +168,10 @@ export default {
                             height: 200,
                         })
                         // alert('Successfully Created')
-                        this.$router.push({name: 'featurelist'});
+                        // this.$router.push({name: 'featurelist'});
+                        this.$router.go(-1);
                         }).catch(error=>{
+                            console.log(error)
 
                     if(error.response.status == 422){
 
@@ -208,7 +197,7 @@ export default {
             updateFeature() {
                  this.$swal({
                             title: "確認",
-                            text: "更新よろしいでしょうか。",
+                            text: "特徴を更新してよろしいでしょうか。",
                             type: "info",
                             width: 350,
                             height: 200,
@@ -216,7 +205,7 @@ export default {
                             confirmButtonColor: "#6cb2eb",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
-                            confirmButtonText: "更新",
+                            confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
@@ -228,15 +217,16 @@ export default {
                     this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            title: '更新されました。',
-                            confirmButtonText: "はい",
+                            text: '特徴を更新しました。',
+                            confirmButtonText: "閉じる",
                             confirmButtonColor: "#6cb2eb",
                             width: 250,
                             height: 200,
                         })
-                    this.$router.push({name: 'featurelist'});
+                    // this.$router.push({name: 'featurelist'});
+                    this.$router.go(-1);
                 }).catch(error=>{
-
+                    console.log(error)
                 if(error.response.status == 422){
 
                     this.errors = error.response.data.errors

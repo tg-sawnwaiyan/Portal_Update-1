@@ -1,7 +1,7 @@
 <template>
 
-<div class="row">
-      <div class="col-12">
+<div class="row o-r1 m-r-20">
+      <div class="col-12 o-r2">
             <div class="card">
                 <div class="card-body">
                     <div class="row">
@@ -59,7 +59,7 @@ export default {
 
                 selectedValue:0,
                 header: '診療科目作成',
-                subtitle: '作成する'
+                subtitle: '作成'
 
             }
         },
@@ -68,7 +68,7 @@ export default {
              this.axios.get('/api/subjects/subjectlist')
               .then(function (response) {
                    this.SubjectList = response.data;
-                   console.log(this.SubjectList);
+                   console.log('aa',this.SubjectList);
 
               }.bind(this));
         },
@@ -84,8 +84,8 @@ export default {
                         this.Subject.parent = response.data.parent;
                         this.selectedValue = response.data.parent;
                         this.SubjectList.name = response.data.name;
-                        this.header = ' 診療科目更新';
-                        this.subtitle = '更新する';
+                        this.header = ' 診療科目編集';
+                        this.subtitle = '保存';
                         return this.header;
                         return this.subtitle;
                 });
@@ -101,7 +101,7 @@ export default {
                         this.errors.name = "";
                     } else {
                         // console.log('null');
-                        this.errors.name = "科目が必須です。";
+                        this.errors.name = "診療科目が必須です。";
                     }
                    if (
                         !this.errors.name
@@ -115,8 +115,8 @@ export default {
                  if( `${this.$route.params.id}` == "undefined")
                 {
                     this.$swal({
-                                title: "確認",
-                            text: "作成よろしいでしょうか。",
+                            title: "確認",
+                            text: "診療科目を投稿してよろしいでしょうか。",
                             type: "success",
                             width: 350,
                             height: 200,
@@ -124,7 +124,7 @@ export default {
                             confirmButtonColor: "#6cb2eb",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
-                            confirmButtonText: "作成",
+                            confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
@@ -138,8 +138,9 @@ export default {
                             this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            title: '作成されました。',
-                            confirmButtonText: "はい",
+                            // title:'確認済',
+                            text: '診療科目投稿しました。',
+                            confirmButtonText: "閉じる",
                             confirmButtonColor: "#6cb2eb",
                             // showConfirmButton: false,
                             // timer: 1800,
@@ -173,7 +174,7 @@ export default {
 
                 this.$swal({
                           title: "確認",
-                            text: "更新よろしいでしょうか。",
+                            text: "診療科目を更新してよろしいでしょうか。",
                             type: "info",
                             width: 350,
                             height: 200,
@@ -181,7 +182,7 @@ export default {
                             confirmButtonColor: "#6cb2eb",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
-                            confirmButtonText: "更新",
+                            confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
@@ -193,10 +194,10 @@ export default {
                         this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            title: '更新されました。',
+                            text: '診療科目を更新しました。',
                             // showConfirmButton: false,
                             // timer: 1800,
-                            confirmButtonText: "はい",
+                            confirmButtonText: "閉じる",
                             confirmButtonColor: "#6cb2eb",
                             width: 250,
                             height: 200,

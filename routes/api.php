@@ -14,19 +14,31 @@ use App\HospitalProfile;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-// Route::get('/user', function (Request $request) {
+// Route::Ma('/user', function (Request $request) {
 //     $user = $request->user();
 //    return $request;
 // })->middleware('auth:api');
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {  
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+
     if($request->user()->type_id == 2){
         $lat_lng = HospitalProfile::select('id','latitude','longitude')->where('customer_id', $request->user()->customer_id)->get();
     }
-    else {
+    else if($request->user()->type_id > 2) {
         $lat_lng = NursingProfile::select('id','latitude','longitude')->where('customer_id', $request->user()->customer_id)->get();
-    }    
-    
+    }
+
+    return response()->json(array("user"=>$request->user(), "lat_lng"=>$lat_lng));
+});
+
+Route::middleware('auth:api')->get('/admin/{cusid}/{type}', function ($cusid, $type, Request $request) {
+    if($type == 'hospital'){
+        $lat_lng = HospitalProfile::select('id','latitude','longitude')->where('customer_id', $cusid)->get();
+    }
+    else if($type == 'nursing') {
+        $lat_lng = NursingProfile::select('id','latitude','longitude')->where('customer_id', $cusid)->get();
+    }
+
     return response()->json(array("user"=>$request->user(), "lat_lng"=>$lat_lng));
 });
 
@@ -41,10 +53,10 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('getjobsearch/{searchword}','SearchMapController@getJobSearch');
     Route::get('getCity','SearchMapController@getCity');
     Route::get('profile_view/{cusid}/{type}','ProfilePublishController@getCustomerLatLng');
-    Route::get('townshipJson','SearchMapController@townshipJson');
-    Route::get('cityJson/{theCity}','SearchMapController@cityJson');
+    Route::get('townshipJson/{township_name}','SearchMapController@townshipJson');
+    // Route::get('cityJson/{theCity}','SearchMapController@cityJson');
     // Route::get('getstation/{id}','SearchMapController@getJobStation');
-    
+
 
 // public route api end
 
@@ -55,6 +67,7 @@ Route::prefix('auth')->group(function () {
     Route::get('township','registerController@getTownship');
     Route::get('getTypes','registerController@getTypes');
     Route::post('login', 'AuthController@login');
+    Route::post('admin_login', 'AuthController@admin_login');
     Route::get('refresh', 'AuthController@refresh');
     Route::group(['middleware' => 'auth:api'], function(){
         Route::get('user', 'AuthController@user');
@@ -104,7 +117,7 @@ Route::group(['middleware' => ['auth:api']], function() {
 
        // occupation
        Route::group(['prefix' => 'occupation'], function () {
-        Route::get('occupationList', 'OccupationsController@TypeList');
+        Route::get('occupationList', 'OccupationsController@typeList');
         Route::get('type', 'OccupationsController@index');
         Route::post('add', 'OccupationsController@store');
         Route::get('edit/{id}', 'OccupationsController@edit');
@@ -138,6 +151,7 @@ Route::group(['middleware' => ['auth:api']], function() {
         Route::post('update/{id}', 'JobController@update');
         Route::delete('delete/{id}', 'JobController@destroy');
         Route::post('search', 'JobController@search');
+        Route::get('customerList', 'JobController@getCustomerList');
     });
     // End Job
 
@@ -164,13 +178,15 @@ Route::group(['middleware' => ['auth:api']], function() {
     // End Customer
 
     // News
+    Route::post('news_list/search', 'PostController@search');
+    Route::get('news_list', 'PostController@index');
     Route::group(['prefix' => 'new'], function () {
         Route::post('add', 'PostController@add');
         Route::get('editPost/{id}', 'PostController@edit');
         Route::post('update/{id}', 'PostController@update');
         Route::delete('delete/{id}', 'PostController@delete');
+        // Route::post('getPostsByCatId', 'PostController@getPostById');
         Route::post('getPostsByCatId/{id}', 'PostController@getPostById');
-
     });
     // End News
 
@@ -188,7 +204,7 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::group(['prefix' => 'advertisement'], function () {
         Route::post('add', 'AdvertisementController@store');
         Route::get('edit/{id}', 'AdvertisementController@edit');
-        // Route::get('ads', 'AdvertisementController@index');
+        Route::get('ads', 'AdvertisementController@index');
         Route::post('update/{id}', 'AdvertisementController@update');
         Route::delete('delete/{id}','AdvertisementController@destroy');
     });
@@ -199,7 +215,7 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::group(['prefix' => 'feature'], function () {
         Route::post('add', 'SpecialFeatureController@store');
         Route::get('edit/{id}', 'SpecialFeatureController@edit');
-        Route::get('featurelist', 'SpecialFeatureController@index');
+        Route::get('featurelist/{type}', 'SpecialFeatureController@index');
         Route::get('nursing-feature/{type}', 'SpecialFeatureController@getFeaturebyProfileType');
         Route::post('update/{id}', 'SpecialFeatureController@update');
         Route::delete('delete/{id}','SpecialFeatureController@destroy');
@@ -222,7 +238,7 @@ Route::group(['prefix' => 'profile'], function () {
 });
 Route::group(['prefix' => 'job'], function () {
     // Route::get('getjob/{id}', 'JobController@getJob');
-    Route::post('search', 'JobController@search');
+    // Route::post('search', 'JobController@search');
 });
 
 Route::group(['prefix' => 'category'], function () {
@@ -232,7 +248,7 @@ Route::group(['prefix' => 'category'], function () {
 
 Route::group(['prefix' => 'advertisement'], function () {
     Route::post('search', 'AdvertisementController@search');
-    Route::get('ads', 'AdvertisementController@index');
+    Route::get('adslide', 'AdvertisementController@slider');
 });
 
 Route::group(['prefix' => 'facility'], function () {
@@ -244,11 +260,13 @@ Route::group(['prefix' => 'customer'], function () {
 });
 
 Route::get('getReset','registerController@getReset');
+Route::post('reset','registerController@reset');
+Route::post('resetpassword','registerController@resetpassword');
 Route::post('register','registerController@store');
 // Route::get('getskill', 'JobApplyController@getSkills');
 Route::get('getjobtitle/{jobs_id}', 'JobApplyController@getJobTitle');
 Route::get('skill', 'JobController@getSkill');
-Route::get('customers','CustomerController@index');
+Route::get('customers/{type}','CustomerController@index');
 Route::get('custedit','CustomerController@edit');
 Route::get('confirm/{id}','CustomerController@confirm');
 Route::get('facilities', 'FacilityController@index');
@@ -257,8 +275,8 @@ Route::get('facility_types', 'FacTypesController@index');
 Route::get('featurelist', 'SpecialFeatureController@index');
 
 Route::get('feature/{type}/{id}','SpecialFeatureController@getFeaturebyProfileType');
-Route::post('sfeature/update/{id}','SpecialFeaturesJunctionsController@update');
-Route::post('subject_junctions/update/{id}','SubjectJunctionsController@update');
+// Route::post('sfeature/update/{id}','SpecialFeaturesJunctionsController@update');
+// Route::post('subject_junctions/update/{id}','SubjectJunctionsController@update');
 Route::post('station_junctions/update/{id}','StationJunctionsController@update');
 
 Route::get('facility/{type}/{id}','FacilityController@getFacilitybyProfileType');
@@ -267,6 +285,7 @@ Route::get('station/{id}','StationController@getStationbyCustomerId');
 
 Route::get('hospital-pgallery/{id}','GalleryController@getPhotobyCustomerId');
 Route::get('hospital-vgallery/{id}','GalleryController@getVideobyCustomerId');
+Route::post('delete-pgallery','GalleryController@deleteGallery');
 
 Route::get('nursing-pgallery/{id}','GalleryController@getPhotobyCustomerId');
 Route::get('nursing-vgallery/{id}','GalleryController@getVideobyCustomerId');
@@ -277,7 +296,7 @@ Route::post('hospital/movephoto','HospitalProfileController@movePhoto');
 Route::post('user/movephoto','UserController@movePhoto');
 Route::post('user/password-change','UserController@changePassword');
 Route::post('user/email-change','UserController@changeEmail');
-Route::get('user/userinfo','UserController@getUserInfo');
+// Route::get('user/userinfo','UserController@getUserInfo');
 
 Route::get('nursing-cooperate/{id}','CooperateMedicalController@getCooperateByCustomerId');
 Route::get('nursing-payment/{id}','PaymentMethodController@getPaymentByCustomerId');
@@ -289,21 +308,21 @@ Route::get('townshiplist/{city_id}','NursingProfileController@getTownships');
 Route::get('hospitalinfo/{id}','HospitalProfileController@edit');
 Route::get('staffinfo/{id}', 'ProfilePublishController@getStaffbyCustomerId');
 
-Route::post('nursing/galleryupdate/{id}', 'NursingProfileController@galleryupdate');
+// Route::post('nursing/galleryupdate/{id}', 'NursingProfileController@galleryupdate');
 Route::post('hospital/galleryupdate/{id}', 'HospitalProfileController@galleryupdate');
 
-Route::post('nursing/cooperate/{id}', 'NursingProfileController@cooperateupdate');
-Route::post('nursing/paymentmethod/{id}', 'NursingProfileController@paymentupdate');
+// Route::post('nursing/cooperate/{id}', 'NursingProfileController@cooperateupdate');
+// Route::post('nursing/paymentmethod/{id}', 'NursingProfileController@paymentupdate');
 
 Route::post('nursing/profile/{id}', 'NursingProfileController@profileupdate');
 Route::post('hospital/profile/{id}', 'HospitalProfileController@profileupdate');
 
-Route::post('schedule/update/{id}', 'ScheduleController@update');
+// Route::post('schedule/update/{id}', 'ScheduleController@update');
 Route::get('schedule/{id}', 'ScheduleController@getSchedulebyCustomerId');
 
-Route::post('customer/profile/{id}', 'NursingProfileController@Customerprofileupdate');
-Route::post('staff/profile/{id}', 'NursingProfileController@Staffprofileupdate');
-Route::post('acceptance/transactions/{id}', 'NursingProfileController@AcceptanceTransactions');
+// Route::post('customer/profile/{id}', 'NursingProfileController@Customerprofileupdate');
+// Route::post('staff/profile/{id}', 'NursingProfileController@Staffprofileupdate');
+// Route::post('acceptance/transactions/{id}', 'NursingProfileController@AcceptanceTransactions');
 
 Route::get('medical/acceptancewithtransactions/{id}', 'MedicalController@getAcceptanceWithTransactions');
 
@@ -316,14 +335,15 @@ Route::post('search', 'HomeController@search');
 Route::get('get_latest_posts_by_catId/{searchword}', 'HomeController@getLatestPostsByAllCatId');
 Route::get('get_cat_random', 'HomeController@getCategoryRandom');
 
-Route::get('news_list', 'PostController@index');
+
 Route::get('newdetails/{id}', 'PostController@show');
 Route::get('relatednews/{id}', 'PostController@show_related');
 // Route::get('newsdetailsrelated/{id}','PostController@relatednews');
-Route::post('news_list/search', 'PostController@search');
+
 
 Route::post('jobapply','JobApplyController@store');
 Route::get('jobapplylist/{jobs_id}','JobApplyController@getJobapplies');
+Route::post('jobapplylist/search','JobApplyController@search');
 // Route::get('job_details', 'JobDetailController@index');
 Route::get('job_details/{id}', 'JobDetailController@show');
 
@@ -341,6 +361,7 @@ Route::post('nursing_fav/{local_sto}', 'HospitalProfileController@getFavouriteNu
 Route::group(['prefix' => 'hospital'], function () {
     Route::post('postList/{postal}', 'HospitalProfileController@getPostalList');
     Route::get('citiesList', 'HospitalProfileController@getCitiesName');
+    Route::get('townshipList', 'HospitalProfileController@getTownshipName');
     Route::get('favourite_list', 'HospitalProfileController@index');
     Route::delete('delete/{id}', 'HospitalProfileController@destroy');
 });
@@ -348,7 +369,7 @@ Route::group(['prefix' => 'hospital'], function () {
 Route::group(['prefix' => 'comments'], function () {
     Route::post('add', 'CommentController@store');
     Route::get('edit/{id}', 'CommentController@edit');
-    Route::get('comment', 'CommentController@index');
+    Route::get('comment/{type}', 'CommentController@index');
     Route::get('confirm/{id}','CommentController@confirm');
     Route::post('update/{id}', 'CommentController@update');
     Route::delete('delete/{id}','CommentController@destroy');
@@ -366,9 +387,19 @@ Route::group(['prefix' => 'nurse'], function () {
     Route::delete('delete/{id}','NursingMailController@destroy');
 });
 
-Route::group(['prefix' => 'new'], function () {
-    Route::post('getPostsByCatId/{id}', 'PostController@getPostById');
-});
+// Route::group(['prefix' => 'new'], function () {
+//     Route::post('getPostsByCatId/{id}', 'PostController@getPostById');
+// });
 
 Route::get('cost','ProfilePublishController@getCost');
 Route::get('hospital','ProfilePublishController@hospital');
+Route::get('jobapplicantlist','JobApplyController@jobapplicantlist');
+Route::post('jobapplicant/search','JobApplyController@search');
+
+Route::group(['prefix' => 'main_admin'], function () {
+    Route::get('admin_list','UserController@getAdminList');
+    Route::post('add','UserController@storeAdmin');
+    Route::get('edit/{id}','UserController@editAdmin');
+    Route::post('update','UserController@updateAdmin');
+    Route::delete('delete/{id}','UserController@deleteAdmin');
+});

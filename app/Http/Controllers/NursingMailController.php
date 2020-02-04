@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\nursingMailing;
 use App\Mail\userNursingMail;
+use App\Mail\adminNursingMail;
 class NursingMailController extends Controller
 {
     /**
@@ -36,6 +37,7 @@ class NursingMailController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function mail(Request $request){
+      
         // $favourite_name = $request->fav_name;
         // return $favourite_name[1];
       
@@ -55,33 +57,54 @@ class NursingMailController extends Controller
         // else{
         //     $request->arr_reserve[1] = "no result";
         // }
-        // return $request;
+        //  return $request;
         $favourite_mail = $request->fav_mail;
         $favourite_id = $request->fav_id;
         $favourite_name = $request->fav_name;
-        // $fav_reserve = $request->arr_reserve;
+       
         $fav_documentation = $request->arr_document;
-
+       
+     
          for($i = 1; $i<count($favourite_id); $i++){
             
-            $request->fav_id = $favourite_id[$i];
-            $request->fav_name = $favourite_name[$i];  
-            if (isset($fav_documentation[$i])){
-                if ($fav_documentation[$i] == true) {
+            $request->related_fav_id = 500000+intval($favourite_id[$i]);
+            $request->related_fav_name = $favourite_name[$i];  
+           
+         
+            if(isset($fav_documentation[$favourite_id[$i]])){
+           
+                if ($fav_documentation[$favourite_id[$i]] == true ) {
+                   $name_arr[] = $request->fav_name[$favourite_id[$i]];
+                
+                   $request->fav_name_copy = $name_arr;
+                 
                     \Mail::to($favourite_mail[$i])->send(new nursingMailing($request));
                 } 
-            }           
+              
+            } 
+        
+     
         // \Mail::to('hero2012.zk@gmail.com')->send(new nursingMailing($request));
     
-    }
-        $admin_email = 'thuzar.ts92@gmail.com';
-        // $admin_email = 'management.partner87@gmail.com ';
-        \Mail::to($admin_email)->send(new nursingMailing($request));
+    }      
 
-        \Mail::to($request->mail)->send(new userNursingMail($request));
+
+
+        // $admin_email = 'thuzar.ts92@gmail.com';
+        // $admin_email = 'susandiaung565@gmail.com';
+        $admin_email = 'thuzar@management-partners.co.jp';
+        // $admin_email = 'management.partner87@gmail.com ';
+       
+        \Mail::to($admin_email)->send(new adminNursingMail($request));
+
+        if($request->mail != null || $request->mail != '')
+        {        
+            \Mail::to($request->mail)->send(new userNursingMail($request));
+        }
 
         return response()->json(['success'=>'Done!']);
     }
+
     public function store(Request $request)
     {
         //

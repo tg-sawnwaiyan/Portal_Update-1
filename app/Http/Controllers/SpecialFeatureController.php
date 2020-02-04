@@ -11,10 +11,10 @@ use DB;
 class SpecialFeatureController extends Controller
 {
 
-    public function index()
+    public function index($type)
     {
-        $feature = special_feature::all()->toArray();
-        return array_reverse($feature);
+        $feature = special_feature::where('type','=',$type)->orderBy('id', 'desc')->paginate(12);
+        return response()->json($feature);
     }
 
 
@@ -106,7 +106,7 @@ class SpecialFeatureController extends Controller
     {
         $feature = special_feature::find($id);
         $feature->delete();
-        $features = special_feature::all()->toArray();
+        $features = special_feature::orderBy('id','DESC')->get()->toArray();
          return $features;
         // return response()->json('The Feature successfully deleted');
     }
@@ -120,8 +120,7 @@ class SpecialFeatureController extends Controller
                             ->where('name', 'LIKE', "%{$search_word}%")
                             ->orwhere('short_name', 'LIKE', "%{$search_word}%")
                             ->orderBy('id','DESC')
-                            ->get()
-                            ->toArray();
-        return $special_feature;
+                            ->paginate(12);
+        return response()->json($special_feature);
     }
 }

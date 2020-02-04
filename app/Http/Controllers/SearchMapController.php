@@ -7,6 +7,8 @@ use App\Customer;
 use DB;
 use Storage;
 use File;
+use Response;
+
 class SearchMapController extends Controller
 {
     public function getMap()
@@ -17,21 +19,22 @@ class SearchMapController extends Controller
         $moving_in = $_GET['moving_in'];
         $per_month = $_GET['per_month'];
         $localst = $_GET['local'];
+        $feature = $_GET['feature'];
         if($localst != 0)
         {
           $local = explode(',',$localst);
         }
-        else{
+        else{          
 
             $local = 0;
         }
 
-        $query = "SELECT '' as fav_check,'' as alphabet,n.id as nursing_id,n.id,n.latitude as lat ,n.longitude as lng, n.*,c.*,c.id as cus_id,ci.city_name,t.township_name,ty.name AS type_name
+        $query = "SELECT '' as fav_check,'' as alphabet,n.id as nursing_id,n.id,n.latitude as lat ,n.longitude as lng, n.*,c.*,c.id as cus_id,ci.city_name,t.township_name,ty.description AS type_name
                     FROM nursing_profiles AS n
                     JOIN customers AS c  ON c.id = n.customer_id
                     LEFT JOIN townships AS t  ON t.id = c.townships_id
                     LEFT JOIN cities AS ci ON t.city_id = ci.id
-                    LEFT JOIN types AS ty ON c.type_id = ty.id
+                    LEFT JOIN fac_types AS ty ON n.fac_type = ty.id
                     LEFT JOIN special_features_junctions as spej on spej.customer_id = n.customer_id  
                     LEFT JOIN special_features as spe on spe.id = spej.special_feature_id
                     LEFT JOIN acceptance_transactions as acct on acct.customer_id = n.customer_id
@@ -58,7 +61,7 @@ class SearchMapController extends Controller
                 $query .= " t.city_id=" . $id . " and t.id =".$township_id." and n.moving_in_to <= ".$moving_in." and n.per_month_to <= ".$per_month;
             }
             else if($id != null && $township_id != -1 && $moving_in != -1 && $per_month == -1){
-                $query .= " t.city_id=" . $id . " and t.id =".$township_id." and n.moving_in_to <= ".$moving_in;
+                $query .= " t.city_id=" . $id         . " and t.id =".$township_id." and n.moving_in_to <= ".$moving_in;
             }
             else if($id != null && $township_id != -1 && $moving_in == -1 && $per_month != -1){
                 $query .= " t.city_id=" . $id . " and t.id =".$township_id." and n.per_month_to <= ".$per_month;
@@ -66,8 +69,10 @@ class SearchMapController extends Controller
 
             $query .= " group by c.id order BY n.id ASC LIMIT 26";
     
-
+        
           $nursing_profile = DB::select($query);
+
+          
 
 
          //to bind fav_nursing
@@ -76,21 +81,23 @@ class SearchMapController extends Controller
             {
                 $arr[] = ( $nursing_profile[$i]->nursing_id);                
             }
-            if($local != 0)
-            {
-                for($i = 0;$i<count($local);$i++)
-                {
-                    $local_arr = (string)($local[$i]);
-                    if(isset($arr)){
-                        if(in_array($local_arr, $arr))
-                        {
-                            $nus_id = array_search($local_arr,$arr);
-                            $nursing_profile[$nus_id]->fav_check = "check";                    
-                        }
-                    }              
-                }
-            }
+           
          }    
+
+         if($local != 0 && isset($arr))
+         {
+             for($i = 0;$i<count($local);$i++)
+             {
+                 $local_arr = (string)($local[$i]);
+                 if(isset($arr)){
+                     if(in_array($local_arr, $arr))
+                     {
+                         $nus_id = array_search($local_arr,$arr);
+                         $nursing_profile[$nus_id]->fav_check = "check";                    
+                     }
+                 }              
+             }
+         }
          
         $alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 
@@ -107,19 +114,19 @@ class SearchMapController extends Controller
             }
         }
 
-     
-
-       
+    
 
         $city               = DB::table('cities')->get();
         $getCity            = DB::table('cities')->where('id', $id)->get();
         $getTownships       = DB::table('townships')->where('city_id', $id)->get();
-        $special_features   = DB::table('special_features')->get();
+        $special_features   = DB::table('special_features')->where('type',$feature)->get();
         $fac_types          = DB::table('fac_types')->get();
         $subs = "SELECT *,'' as child from subjects where parent = " . 0 ." order by id";
         $subjects = DB::select($subs);
 
-       
+        $spe_query = "SELECT spe.*,spej.customer_id from  special_features as spe join special_features_junctions as spej on spe.id = spej.special_feature_id";
+        $specialfeature = DB::select($spe_query);
+
         foreach($subjects as $sub)
         {
             $id = $sub->id;
@@ -130,7 +137,17 @@ class SearchMapController extends Controller
       
    
         $medical_acceptance = DB::table('medical_acceptance')->get();
-        $occupations        = DB::table('occupation')->get();
+        $occupation = "SELECT *,'' as child from occupation where parent = " . 0 ." order by id";
+        $occupations = DB::select($occupation);
+
+        foreach($occupations as $occu)
+        {
+            $id = $occu->id;
+            $db_occ = "SELECT occupation.* from occupation where parent =". $id ." order by id";
+            $occuchild = DB::select($db_occ);
+            $occu->child = $occuchild;
+        }
+        //$occupations        = DB::table('occupation')->get();
 
 
       
@@ -144,7 +161,8 @@ class SearchMapController extends Controller
             'subjects' => $subjects,
             'occupations' => $occupations,
             'nursing' => $nursing_profile,
-            'alphabet' => $alphabet
+            'alphabet' => $alphabet,
+            'specialfeature'=>$specialfeature
         ]);
     }
 
@@ -183,7 +201,9 @@ class SearchMapController extends Controller
           {
              if($searchword != 'all')
              {
-                $query .= " and (n.method like '%" . $searchword . "%' or n.business_entity like '%".$searchword."%') group by c.id";
+                // $query .= " and (n.method like '%" . $searchword . "%' or n.business_entity like '%".$searchword."%') group by c.id";
+              
+                 $query .= " and (ci.city_name like '%" . $searchword . "%' or t.township_name like '%" . $searchword . "%' or c.name like '%".$searchword."%') group by c.id";
              }
              else{
                  
@@ -323,15 +343,25 @@ class SearchMapController extends Controller
 
 
             $nus_data = DB::select($query);
-          
+        
+           
            //to bind fav_nursing
+           if($nus_data != null)
+           {
             for($i = 0;$i<count($nus_data);$i++)
-            {
-                $arr[] = ( $nus_data[$i]->nursing_id);
-               
-            }
+                {
+                    $arr[] = ( $nus_data[$i]->nursing_id);
+             
+                }
+           }
+           else{
+               $arr[] = [];
+           }
+           
+
+           
             
-            if($local != 0)
+            if($local != 0 && isset($arr))
             {
                 for($i = 0;$i<count($local);$i++)
                 {
@@ -376,7 +406,7 @@ class SearchMapController extends Controller
             $city               = DB::table('cities')->get();
             $getCity            = DB::table('cities')->where('id', $id)->get();
             $getTownships       = DB::table('townships')->where('city_id', $id)->get();
-            $special_features   = DB::table('special_features')->get();
+            $special_features   = DB::table('special_features')->where('type','nursing')->get();
             $fac_types          = DB::table('fac_types')->get();
             $subjects           = DB::table('subjects')->where('parent',0)->get();
             $sub_child          = DB::table('subjects')->get();
@@ -535,7 +565,7 @@ class SearchMapController extends Controller
 
         
         $hos_data = DB::select($query);
-        $spe_query = "SELECT spe.*,spej.customer_id from  special_features as spe join special_features_junctions as spej on spe.id = spej.special_feature_id";
+        $spe_query = "SELECT spe.*,spej.customer_id from  special_features as spe join special_features_junctions as spej on spe.id = spej.special_feature_id where spe.type = 'hospital'";
         $specialfeature = DB::select($spe_query);
         //subjects for result
         $sub_query = "SELECT sub.*,subj.customer_id from  subjects as sub join subject_junctions as subj on sub.id = subj.subject_id";
@@ -555,7 +585,7 @@ class SearchMapController extends Controller
             $arr[] = ( $hos_data[$i]->hos_id);
            
         }
-        if($local != 0)
+        if($local != 0 && isset($arr))
         {
             for($i = 0;$i<count($local);$i++)
             {
@@ -593,32 +623,34 @@ class SearchMapController extends Controller
          $empstatus = $_GET['empstatus'];
 
         $query = "SELECT j.id as jobid,j.recordstatus as job_record, j.*,c.*,n.*,h.*,
-                (CASE c.type_id WHEN '2' THEN CONCAT((500000+c.id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT((200000+c.id),'-',LPAD(j.id, 4, '0')) END) as jobnum 
+                (CASE c.type_id WHEN '2' THEN CONCAT((200000+c.id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT((500000+c.id),'-',LPAD(j.id, 4, '0')) END) as jobnum 
                 from  jobs as j              
                 join customers as c on c.id = j.customer_id
                 left Join townships as t on t.id = j.township_id 
                 left Join nursing_profiles As n on n.customer_id = c.id 
                 left Join hospital_profiles As h on h.customer_id = c.id 
                 left Join cities as ci on ci.id = t.city_id   
-                where ";
+                where  j.recordstatus=1 ";
 
         if($id == -1)
         {
 
             if($searchword == 'all')
             {
-                $query = "SELECT j.id as jobid, j.*,c.*,n.*,h.*,
-                        (CASE c.type_id WHEN '2' THEN CONCAT((500000+c.id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT((200000+c.id),'-',LPAD(j.id, 4, '0')) END) as jobnum 
+                $query = "SELECT j.id as jobid,j.recordstatus as job_record, j.*,c.*,n.*,h.*,
+                        (CASE c.type_id WHEN '2' THEN CONCAT((200000+c.id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT((500000+c.id),'-',LPAD(j.id, 4, '0')) END) as jobnum 
                         from  jobs as j
                         join customers as c on c.id = j.customer_id
                         left Join nursing_profiles As n on n.customer_id = c.id 
                         left Join hospital_profiles As h on h.customer_id = c.id 
-                        left Join townships as t on t.id = j.township_id ";         
+                        left Join townships as t on t.id = j.township_id   
+                        where  j.recordstatus=1 ";  
+                               
             }
             else{
              
 
-                $query .= " (j.title like '%" . $searchword . "%' or ci.city_name like '%" . $searchword . "%' or t.township_name like '%".$searchword."%')";
+                $query .= " and (j.title like '%" . $searchword . "%' or ci.city_name like '%" . $searchword . "%' or t.township_name like '%".$searchword."%')";
             }
            
         }
@@ -660,7 +692,7 @@ class SearchMapController extends Controller
               $empstatus = implode(',', $empstatus);
           }
 
-          $query .= " t.city_id =".$id;
+          $query .= " and  t.city_id =".$id;
 
           if($townshipID != '0')
           {
@@ -702,7 +734,7 @@ class SearchMapController extends Controller
          
         $job_data = DB::select($query);
 
-        $city = DB::table('cities')->get();
+        $city = DB::table('cities')->get(    );
 
 
         // $station = "SELECT * from"
@@ -799,39 +831,115 @@ class SearchMapController extends Controller
         return true;
     }
 
-    public function cityJson($theCity)
-    {   
-        // $handle = public_path('google-map-json\\jp_cities.json');
-        // // $file = File::allFiles($handle);
-        // // $files = File::allFiles(public_path());
-        // // $path = public_path().('/google-map-json/jp_cities.json');
-        // // $json = file_get_contents($path);
-        // $obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $handle), true );
-        // // dd($file);
-        
-        // foreach($obj as $key => $value){
-        //     $json = $value;
+    // public function cityJson($theCity)
+    // {
+    //     ini_set('memory_limit','-1');
+       
+       
+    //     if($theCity == 'null'){
+    //         $theCity = 'Tokyo';
+    //     }
+    //     if($theCity == 'Hokkaido'){
+    //         $test = config('constant.hokkido');
+    //         return $test;
+    //         // $Json = new coordinateArray();
+    //         // $getCityJsonOne =$Json->cityArray();
+    //         // $path = base_path().('/google-map-json/hokkido.json');
+    //         // $json = file_get_contents($path);
+    //         // return $json;
             
-        // }
-        // return response()->json($json);
-        return "Testing";
-    }
-
-    public function townshipJson()
-    {
-    // $path = public_path().('/google-map-json/japan-cities_5percent.json');
-    // $json = file_get_contents($path);
-    // $obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $json), true );
-    
-    // foreach($obj as $key => $value){
-    //     $jsons = $value;
+    //         // $obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $json), true );
+            
+    //         //$obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $json), true );
+    //         //$forLoop = $obj['features'];
+    //         // return $forLoop;
+    //         //foreach ($forLoop as $key => $value) {
+    //           //  $jsonArray[] = $value;
+    //             // if($value['properties']['NAME_1'] == $theCity){
+    //             //     $jsonArray[] = $value;
         
+    //             // }
+    //        // }
+    //     //     for ($i=0; $i <count($forLoop) ; $i++) { 
+    //     //        $jsonArray[] = $forLoop[$i];
+    //     //     if($forLoop[$i]['properties']['NAME_1'] == $theCity){
+   
+    //     //        $jsonArray[] = $forLoop[$i];
+   
+    //     //        }
+   
+    //     //    }
+    //          //return response()->json($jsonArray);
+    //     }
+    //     // else{
+    //     //     return '1';
+    //     //  $Json = new coordinateArray();
+    //     //  $getCityJsonTwo =$Json->otherCity();
+      
+            
+    //     //  $obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $getCityJsonTwo), true );
+    //     //  $forLoop = $obj['features'];
+    //     //  for ($i=0; $i <count($forLoop) ; $i++) { 
+    //     //  if($forLoop[$i]['properties']['NAME_1'] == $theCity){
+    //     //     $jsonArray[] = $forLoop[$i];
+    //     //     }
+    //     //  }
+    //     //   return response()->json($jsonArray);
+    //     // }
+         
+       
     // }
-    // return response()->json($jsons);
-    return "Testing";
+
+    // public function cityJson($theCity)
+    // {
+    //     // $test = config('constant.hokkido');
+    //     // return $test;
+    //     if($theCity == 'null'){
+    //         $theCity = 'Tokyo';
+    //     }
+
+    //     // $jsonArray = [];
+       
+    //     $path = base_path().('/google-map-json/gadm36_jpn_1.json');
+    //     $json = file_get_contents($path);
+    //     ini_set('memory_limit','-1');
+    //     $obj = json_decode(preg_replace('/[\x00-\x1F\x80-\xFF]/', '',$json), true );
+    //     //return count($json);
+    //     $forLoop = $obj['features'];
+        
+    //     for ($i=0; $i <count($forLoop) ; $i++) { 
+
+    //     if($forLoop[$i]['properties']['NAME_1'] == $theCity){
+
+    //         $jsonArray[] = $forLoop[$i];
+
+    //         }
+ 
+    //     }
+
+    //     //   return response()->json($obj);
+    //       return response()->json($jsonArray);
+       
+    // }
+
+    public function townshipJson($township_name)
+    {
+        $postalCode = explode(",",$township_name);
+        $path = base_path().('/google-map-json/japan-cities_5percent.json');
+        $json = file_get_contents($path);
+        ini_set('memory_limit','-1');
+        $obj = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $json), true );
+        $forLoop = $obj['features'];
     
+            for ($i=0; $i <count($postalCode) ; $i++) { 
+                for ($j=0; $j <count($forLoop) ; $j++) { 
+                    if($forLoop[$j]['properties']['N03_007'] === $postalCode[$i]){
+                        $jsonArray[] = $forLoop[$j];
+                    }
+                }
+            }
+    
+        return response()->json($jsonArray);
     }
-
-
     
 }

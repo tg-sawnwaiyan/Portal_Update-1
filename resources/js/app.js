@@ -1,71 +1,82 @@
-import 'es6-promise/auto'
+// import 'es6-promise/auto'
 import axios from 'axios'
 import './bootstrap'
-// import Vue from 'vue'
 import VueAuth from '@websanova/vue-auth'
 import VueAxios from 'vue-axios'
 import VueRouter from 'vue-router'
 import Index from './Index'
 import auth from './auth'
-import Slide from 'vue-burger-menu'
-Vue.use(Slide);
-
+import VueSidebarMenu from 'vue-sidebar-menu'
 import router from './router'
 import Vuex from 'vuex';
 import * as VueGoogleMaps from "vue2-google-maps";
+import DatePicker from 'vue2-datepicker';
+import { BulmaAccordion, BulmaAccordionItem } from "vue-bulma-accordion";
+import Slick from 'vue-slick';//vue slick
+
+Vue.use(Slick);
+Vue.use(BulmaAccordion, BulmaAccordionItem)
 Vue.use(Vuex);
+Vue.use(DatePicker);
+Vue.use(VueSidebarMenu);
 //start editor
+
 //start onepage
 import 'animate.css'
-// import 'fullpage-vue/src/fullpage.css'
-// import VueFullpage from 'fullpage-vue'
-// Vue.use(VueFullpage)
-//end onepage
-//end editor
-//vue carousel
-
 let globalData = new Vue({
-    data: { 
-        nusFav:0,
-        hosFav:0,
-        nusHis:0,
-        hosHis:0
+    data: {
+        nusFav: 0,
+        hosFav: 0,
+        nusHis: 0,
+        hosHis: 0,
+        visit: 'true',
+        test:[]
     }
-  });
-  Vue.mixin({
+});
+Vue.mixin({
     computed: {
-      nusFav: {
-        get: function () { return globalData.$data.nusFav },
-        set: function (newVal) { globalData.$data.nusFav = newVal; }
-      },
-      hosFav: {
-        get: function () { return globalData.$data.hosFav },
-        set: function (newVal) { globalData.$data.hosFav = newVal; }
-      },
-      nusHis: {
-        get: function () { return globalData.$data.nusHis },
-        set: function (newVal) { globalData.$data.nusHis = newVal; }
-      },
-      hosHis: {
-        get: function () { return globalData.$data.hosHis },
-        set: function (newVal) { globalData.$data.hosHis = newVal; }
-      },
+        nusFav: {
+            get: function() { return globalData.$data.nusFav },
+            set: function(newVal) { globalData.$data.nusFav = newVal; }
+        },
+        hosFav: {
+            get: function() { return globalData.$data.hosFav },
+            set: function(newVal) { globalData.$data.hosFav = newVal; }
+        },
+        nusHis: {
+            get: function() { return globalData.$data.nusHis },
+            set: function(newVal) { globalData.$data.nusHis = newVal; }
+        },
+        hosHis: {
+            get: function() { return globalData.$data.hosHis },
+            set: function(newVal) { globalData.$data.hosHis = newVal; }
+        },
+        visit: {
+            get: function() { return globalData.$data.visit },
+            set: function(newVal) { globalData.$data.visit = newVal; }
+        },
+        test: {
+            get: function() { return globalData.$data.test },
+            set: function(newVal) { globalData.$data.test = newVal; }
+        }
     }
-  })
+})
 
 import VueCarousel from '@chenfengyuan/vue-carousel';
 Vue.component(VueCarousel.name, VueCarousel);
 
-//vue slick
-import Slick from 'vue-slick';
-Vue.use(Slick);
+Vue.component('pagination', require('laravel-vue-pagination'));
+
+
+var VueScrollactive = require('vue-scrollactive');
+Vue.use(VueScrollactive);
 
 //vue-pannellum
 import VuePannellum from '../js/components/vue-pannellum.vue'
 Vue.use(VuePannellum);
 Vue.component('VPannellumn', VuePannellum)
 
-//vue Panorama 
+//vue Panorama
 // import Panorama from 'vuejs-panorama';
 // Vue.use(Panorama);
 
@@ -83,24 +94,21 @@ Vue.use(Lightbox)
     //end Light Gallery
 
 Vue.use(require('vue-moment'));
+// Vue.use(require('vue-moment'));
 
+//autocomplete
 
+//end autocomplete
 //vuejs loading
 import VueLoading from 'vuejs-loading-plugin'
+// import { Button } from 'iview'
 Vue.use(VueLoading, {
     text: '送信中'
 })
 
 window.events = new Vue();
-window.flash = function(message) {
-    window.events.$emit('flash', message);
-}
-Vue.component('flash', require('../js/components/Flash.vue'));
-Vue.component('ads_slider', require('../js/components/ads_slider.vue'));
-
-
 Vue.use(VueClazyLoad)
-Vue.use(VueRouter);
+// Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
 Vue.use(VueGoogleMaps, {
     load: {
@@ -139,9 +147,3 @@ const app = new Vue({
     },
 
 });
-
-// export function createApp() {
-//   return new Vue({
-//     render: h => h(App)
-//   });
-// }

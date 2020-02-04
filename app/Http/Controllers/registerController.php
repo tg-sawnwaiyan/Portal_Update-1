@@ -61,17 +61,20 @@ class registerController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'img' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'name' => 'required|min:3|max:50',
+
+        $request->validate( [
+            "file('img')" => 'image|mimes:jpeg,png,jpg|max:2048',
+            'name' => 'required',
             'email' => 'required|email|unique:customers',
-            'phone' => 'max:13',
+            // 'phone' => 'max:13',
             'password' => 'min:6|required_with:comfirm_password|same:comfirm_password',
             'comfirm_password' => 'min:6',
             //'address' =>'required',
             'cities'=> 'required',
             'township'=> 'required',
-            ]);
+        ]);
+        
+  
             // $type = 2;
 
             // if($request->types == '3'){
@@ -80,14 +83,17 @@ class registerController extends Controller
 
             // $destinationPath = public_path('/images');
             $image = $request->file('img');
-            
-            $getName = time().'.'.$image->getClientOriginalExtension();
-            
-            if($request->types == 2){
-                $image->move('upload/hospital_profile/', $getName);
-            }
-            else{
-                $image->move('upload/nursing_profile/', $getName);
+            if($image) {
+                $getName = time().'.'.$image->getClientOriginalExtension();
+                
+                if($request->types == 2){     
+                    $image->move('upload/hospital_profile/', $getName);
+                }
+                else{
+                    $image->move('upload/nursing_profile/', $getName);
+                }
+            } else {
+                $getName = 'noimage.jpg';
             }            
             // $dbPath = $destinationPath. '/'.$input['img'];
             $customer = new Customer;
@@ -129,7 +135,8 @@ class registerController extends Controller
                 $customer->township_name = $ad->township_name;
             }
 
-            $admin_email = 'thuzar.ts92@gmail.com';
+            // $admin_email = 'thuzar.ts92@gmail.com';
+            $admin_email = 'thuzar@management-partners.co.jp';
             \Mail::to($admin_email)->send(new customerCreateMail($customer));
 
             Session::flash('success reg', "Special message goes here");
@@ -178,10 +185,57 @@ class registerController extends Controller
         //
     }
     // regisert end
-    public function reset()
+    public function reset(Request $request)
     {
-        return view('auth.passwordReset');
+        // return view('auth.passwordReset');
+        $getEmail = $request->email;
+       
+        $checkmail = User::where('email',$getEmail)->select('*')->get();
+       
+        if(!$checkmail->isEmpty()){
+         
+            $getTime = Carbon\Carbon::now();
+            $token = md5($getEmail.$getTime);
+            $data = array([
+                'email' => $getEmail,
+                'token' => $token,
+                'created_at' => $getTime,
+            ]);
+            DB::table('password_resets')->insert($data);
+            $checkmail[0]["role"] = $token;    
+            \Mail::to($getEmail)->send(new sendResetPasswordMail($checkmail));
+            return response()->json(['success' => 'success'], 200);
+            // return back()->with('reset','Check Your email for reset password');
+        }
+        else{
+          
+            return response()->json(['error' => 'error'], 404);
+            // return back()->with('reset','Email Not Exist.');
+        }
     }
+
+    public function resetpassword(Request $request)
+    {
+        // return view('auth.passwordReset');
+        $hashPass = bcrypt($request->password);
+        $token = $request->token;
+        $checkmail = DB::select('SELECT email FROM password_resets WHERE token = "'.$token.'" AND created_at > DATE_SUB(CURDATE(), INTERVAL 2 DAY)');
+        if(!empty($checkmail)){    
+            $getEmail = $checkmail[0]->email;
+            $updatePass = array(
+                'password' => $hashPass
+            );
+            DB::table('users')->where('email',$getEmail)->update($updatePass);
+            DB::table('customers')->where('email',$getEmail)->update($updatePass);
+            DB::table('password_resets')->where('email',$getEmail)->delete();
+            return response()->json("success");
+        }
+        else{
+            DB::table('password_resets')->where('email',$getEmail)->delete();
+            return response()->json("Expired. Please reset mail send again.");
+        }
+    }
+
     public function insertUesr(Request $request)
     {
         $getEmail = $request->email;
@@ -234,4 +288,5 @@ class registerController extends Controller
         \Mail::to($getEmail)->send(new sendResetPasswordMail($resetPass));
         return response()->json('success approved and send mail');
     }
+
 }

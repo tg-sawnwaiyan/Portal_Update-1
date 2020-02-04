@@ -3,7 +3,7 @@
     <div>
         <div class="tab-content job-detail">
             <div class="row">
-                <div class="col-md-12 pad-free m-b-20">
+                <div class="col-md-12 pad-free m-b-10">
                     <nav aria-label="breadcrumb">
                         <!-- <ol class="breadcrumb">
                             <li class="breadcrumb-item"><span @click="changeRoute()" class="link-span">ホーム</span></li>
@@ -21,9 +21,9 @@
                     </nav>
                 </div>
                 <div class="col-12 m-b-10">
-                    <h4 class="nursing-info">資料請求される方について</h4>
+
                 </div>
-                <div class="col-md-12 register_box mt-3" v-if="type == 'register'">
+                <div class="col-md-12 register_box" v-if="type == 'register'">
                     <ul class="multi-step">
                         <li class="active">1.お客様情報のご入力</li>
                         <li class="no-active">2.入力内容のご確認</li>
@@ -31,29 +31,40 @@
                     </ul>
                     <!--inputform-->
                     <form class="col-md-12 form-wrap">
-                        <p class="require-txt"><span class="error sp1">必須</span> のついた項目は全て入力してくださいますようお願いいたします。</p>
+                        <h4 class="form-tit">資料請求される方について</h4>
+                        <!-- <h4 class="nursing-info">資料請求される方について</h4> -->
+                        <p class="require-txt"><span class="error sp1" style="margin-left:0px;">必須</span> のついた項目は全て入力してくださいますようお願いいたします。</p>
                         <div class="form-group m-0 row bd">
                             <div class="col-md-3 col-sm-12 form-left"><label>お名前 <span class="error sp1">必須</span></label></div>
                             <div class="col-md-9 col-sm-12 form-right">
-                                <input type="text" id="tbname" name="name" class="form-control float-left" placeholder="お名前を入力してください。" v-model="comments.name" @change="aggreBtn" @focusout="focusName"/>
-                                <span class="error m-l-30" v-if="comment_focus">※入力は必須です。</span>
+                                <input type="text" id="tbname" name="name" class="form-control float-left" placeholder="お名前を入力してください。" v-model="comments.name" @change="aggreBtn" @keyup="focusName"/>
                                 <span class="float-left eg-txt">例）探し 太郎</span>
+                                 <span class="error m-l-30" v-if="comment_focus">※入力は必須です。</span>
                             </div>
                         </div>
                         <div class="form-group m-0 row bd">
                             <div class="col-md-3 col-sm-12 form-left"> <label>ふりがな <span class="error sp1">必須</span></label></div>
                             <div class="col-md-9 col-sm-12 form-right">
-                                <input type="text" id="furigana" name="furigana" class="form-control float-left" placeholder="ふりがなを入力してください。" v-model="comments.furigana" @keyup="ChekChar" @change="aggreBtn" @focusout="focusFuri"/>
-                                <span class="error m-l-30" v-if="furigana_focus">※入力は必須です。</span>
-                                <span class="float-left eg-txt"> 例）さがし たろう</span>
-                                <div class="text-danger mt-2 ml-4 char-err"></div>
+                                <div class="col-md-12 pad-free">
+                                    <!-- <div class="col-md-9 pad-free"> -->
+                                        <input type="text" id="furigana" name="furigana" class="form-control float-left" placeholder="ふりがなを入力してください。" v-model="comments.furigana" @keyup="ChekChar"    @change="aggreBtn"/>
+                                    <!-- </div>
+                                    <div class="col-md-3"> -->
+                                         <span class="float-left eg-txt"> 例）サガシ　タロウ</span>
+                                        <span class="error m-l-30" v-if="furigana_focus " >※入力は必須です。</span>
+
+                                    <!-- </div> -->
+
+                                </div>
+                                 <span class="float-left text-danger p-l-30" v-if="charErr">※カタカナで入力してください!</span>
+
                             </div>
                         </div>
                         <div class="form-group m-0 row bd">
                             <div class="col-md-3 col-sm-12 form-left"> <label>生年月日 </label></div>
                             <div class="col-md-9 col-sm-12 form-right">
                                 <!-- <input type="text" id="bdate" name="bdate" class="form-control float-left" placeholder="生年月日を入力してください。" v-model="comments.bdate" @change="aggreBtn" @focusout="focusbdate"/> -->
-                                <date-picker class="box" valueType="format" v-model="comments.bdate" style="margin-left: 11px;"></date-picker>
+                                <date-picker class="box" :lang="lang" valueType="format" v-model="comments.bdate" style="margin-left: 11px;"></date-picker>
                                 <!-- <span class="error m-l-30" v-if="bdate_focus">※入力は必須です。</span> -->
                             </div>
                         </div>
@@ -81,17 +92,18 @@
                             <div class="col-md-3 col-sm-12 form-left"><label>ご住所:</label></div>
                             <div class="col-md-9 col-sm-12 form-right">
                                 <div class="form-group row pl-3">
-                                    <div class="col-md-12 "><label> 郵便番号</label></div>
+                                    <div class="col-md-12 "><label> 郵便番号 </label></div>
                                     <div class="col-md-12 p-0">
-                                        <input type="text" v-model="comments.postal" name="postal" class="postal form-control float-left" id="postal" v-on:keyup="getPostal" placeholder="郵便番号を入力してください。" maxlength="7"/>
+                                        <input type="text" v-model="comments.postal" name="postal" class="postal form-control float-left" id="postal" placeholder="郵便番号を入力してください。" maxlength="7"/>
                                         <div id="jsErrorMessage" class="float-left eg-txt"></div>
-                                        <span class="float-left eg-txt">例）1006740 (<a href="https://www.post.japanpost.jp/zipcode/" target="_blank">郵便番号検索</a>)</span>
+                                        <span class="float-left submit1 btn main-bg-color continue all-btn submit m-l-20" @click="getPostal">検索</span>
+                                        <span class="float-left m-l-20">例）1006740 (<a href="https://www.post.japanpost.jp/zipcode/" target="_blank">郵便番号検索</a>)</span>
                                     </div>
                                 </div>
-                                <div class="form-group row pl-3">
+                                <div class="form-group row pl-3">                                  
                                     <div class="col-md-12 "><label>  都道府県<span class="error sp1">必須</span></label></div>
                                     <div class="col-md-12 p-0">
-                                        <select v-model="comments.selectedValue" class="division form-control" id="division" @change="aggreBtn">
+                                        <select v-model="comments.selectedValue" class="division form-control" id="division" @change="getTownship(2)">
                                             <option value="0">選択してください。</option>
                                             <option v-for="cities in city_list" :key="cities.id" v-bind:value="cities.id">
                                                 {{cities.city_name}}
@@ -100,37 +112,54 @@
                                         <span v-if="errors.division" class="error">{{errors.division[0]}}</span>
                                     </div>
                                 </div>
-                                <div class="form-group row pl-3">
-                                    <div class="col-md-12 "><label>市区町村、番地（建物名)<span class="error sp1">必須</span></label></div>
+
+                                 <div class="form-group row pl-3">                             
+                                    <div class="col-md-12 "><label>  市区町村 <span class="error sp1">必須</span></label></div>
                                     <div class="col-md-12 p-0">
-                                         <input type="text" id="city" name="city" class="city form-control float-left" placeholder="市区町村、番地を入力してください。" v-model="comments.city" @change="aggreBtn" @focusout="focusCity">
-                                        <span class="float-left eg-txt">例）東京都千代田区丸の内1-9-1 グラントウキョウノースタワー40階</span>
-                                    </div>
+                                        <select v-model="comments.township" class="division form-control" id="division" @change="aggreBtn">
+                                            <option value="0">選択してください。</option>
+                                            <option v-for="town in comments.townships_list" :key="town.id" v-bind:value="town.id">
+                                                {{town.township_name}}
+                                            </option>
+                                        </select>
+                                        <!-- <span v-if="errors.division" class="error">{{errors.division[0]}}</span> -->
+                                    </div>  
                                 </div>
-                            </div>
-                        </div>
-                        <div class="form-group m-0 row bd">
-                            <div class="col-md-3 col-sm-12 form-left"><label>電話番号</label><span class="error sp1">必須</span></div>
-                            <div class="col-md-9 col-sm-12 form-right">
-                            <div class="form-group row pl-3">
+                                <div class="form-group row pl-3">
+                                    <div class="col-md-12 "><label>番地（建物名)<span class="error sp1">必須</span></label></div>
                                     <div class="col-md-12 p-0">
-                                        <input type="text" id="phone" name="number" class="form-control float-left" placeholder="電話番号を入力してください。" v-model="comments.phone" @change="aggreBtn" @focusout="focusMail" v-on:keyup="isNumberOnly" maxlength="14">
-                                        <span class="error m-l-30" v-if="mail_focus">※入力は必須です。</span>
-                                        <span class="error m-l-30" v-else-if="ph_length || ph_error">※電話番号が正しくありません。もう一度入力してください。</span>
-                                        <span class="float-left eg-txt">例）0312345678（半角）</span>
+                                         <input type="text" id="city" name="city" class="city form-control float-left" placeholder="番地を入力してください。" v-model="comments.city" @change="aggreBtn" @keyup="focusCity">
+                                        <span class="float-left eg-txt">例）区丸の内1-9-1 グラントウキョウノースタワー40階</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group m-0 row bd-all">
-                            <div class="col-md-3 col-sm-12 form-left"><label>メールアドレス <span class="error sp1">必須</span></label></div>
+                            <div class="col-md-3 col-sm-12 form-left"><br/><label>電話番号</label></div>
+                            <div class="col-md-9 col-sm-12 form-right">
+                            <div class="form-group row pl-3">
+                                    <div class="col-md-12 p-0">
+                                        <label class="col-md-12">※ 電話番号またはメールアドレス必須 <span class="error sp1">必須</span></label>
+                                        <input type="text" id="phone" name="number" class="form-control float-left" placeholder="電話番号を入力してください。" v-model="comments.phone" pattern="[0-9-]*" @keyup="focusPhone" @change="aggreBtn" maxlength="14" title="Please enter number only.">
+                                        <!-- v-on:keyup="isNumberOnly" -->
+                                                                               
+                                        <span class="float-left eg-txt">例）0312345678（半角）</span>
+                                        <!-- <span class="error m-l-30" v-if="mail_focus">※入力は必須です。</span>                                        -->
+                                    </div>
+                                     <span class="error m-l-30" v-if="ph_length || ph_error">※電話番号が正しくありません。もう一度入力してください。</span>
+                                </div>
+                            </div>
+                            <!-- </div>
+                            <div class="form-group m-0 row bd-all"> -->
+                            <div class="col-md-3 col-sm-12 form-left"><label>メールアドレス </label></div>
                             <div class="col-md-9 col-sm-12 form-right">
                             <div class="form-group row pl-3">
                                 <div class="col-md-12 p-0">
-                                        <input type="text" id="mail" name="mail" class="form-control float-left" placeholder="メールアドレスを入力してください。" v-model="comments.mail" @change="aggreBtn" @focusout="focusMail">
-                                        <span class="error m-l-30" v-if="mail_focus">※入力は必須です。</span>
+                                        <input type="email" id="mail" name="mail" class="form-control float-left" placeholder="メールアドレスを入力してください。" v-model="comments.mail" @change="aggreBtn" @keyup="focusMail">                          
                                         <span class="float-left eg-txt"> 例）abc@example.jp （半角）</span>
+                                       
                                     </div>
+                                     <span class="error m-l-30" v-if="mail_focus && this.comments.mail !=''">※メールアドレスが正しくありません。もう一度入力してください。</span>
                                 </div>
                             </div>
                         </div>
@@ -147,7 +176,7 @@
                         <div class="btn-list mt-2  clearfix">
                             <ul>
                                 <li> <button type="button" :disabled="isdisable" class="submit1 btn main-bg-color continue all-btn submit" @click="add()">確認ページに進む</button></li>
-                                <li class="m-r-15"><a @click="$router.go(-1)" class="btn btn-danger all-btn submit">戻る</a></li>                                
+                                <li class="m-r-15"><a @click="$router.go(-1)" class="btn btn-danger all-btn submit">戻る</a></li>
                             </ul>
                         </div>
                         <!--next_form-->
@@ -173,7 +202,7 @@
                                 <div class="col-md-3 col-sm-12 form-left"><label>お名前</label></div>
                                 <div class="col-md-9 col-sm-12 form-right">
                                     <input type="text" id="ttname" name="ttname" class="form-control float-left" placeholder="お名前を入力してください。"  v-model="comments.ttname">
-                                    <span class="eg-txt float-left">例）さがし　たろう</span>
+                                    <span class="eg-txt float-left">例）探し 太郎</span>
                                 </div>
                             </div>
                             <div class="form-group m-0 row bd">
@@ -333,7 +362,7 @@
                                 <li class="m-r-15">
                                 <!-- <router-link :to="{name: 'favouriteNursing'}"  class="btn btn-danger all-btn submit">戻る</router-link> -->
                                 <a @click="$router.go(-1)" class="btn btn-danger all-btn submit">戻る</a>
-                                </li>                                
+                                </li>
                             </ul>
                         </div>
                     </form>
@@ -343,11 +372,17 @@
     </div>
 </template>
 <script>
-import DatePicker from 'vue2-datepicker';
     export default {
-        components: { DatePicker },
        data() {
             return {
+                lang:{
+                days: ['日', '月', '火', '水', '木', '金', '土'],
+                months: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                placeholder: {
+                date: new Date().toISOString().slice(0,10),
+
+                }
+            },
                 type:'register',
                 comments: {
                     name: '',
@@ -355,6 +390,7 @@ import DatePicker from 'vue2-datepicker';
                     bdate: '',
                     postal: '',
                     division: 0,
+                    townshipname:0,
                     city: '',
                     phone: '',
                     mail: '',
@@ -374,6 +410,9 @@ import DatePicker from 'vue2-datepicker';
                     // arr_reserve: [{}],
                     arr_document: [{}],
                     selectedValue: 0,
+                    township:0,
+                    townships_list:[],
+                 
                 },
                 errors: [],
                 fav_nursing: [],
@@ -394,6 +433,8 @@ import DatePicker from 'vue2-datepicker';
                 mail_focus: false,
                 ph_length: false,
                 ph_error: false,
+                charErr:false,
+                mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
             }
         },
         computed: {
@@ -408,44 +449,69 @@ import DatePicker from 'vue2-datepicker';
                 this.comments = this.bk_data;
                 this.selectedValue = this.bk_postal;
             }
-            this.axios.get('/api/hospital/citiesList')
+            this.axios.get('/api/hospital/citiesList')        
                 .then(response => {
                     this.city_list = response.data;
                 });
-            if(this.comments.name != '' && this.comments.fav_mail != '' && this.comments.postal != '' && this.comments.selectedValue != 0 && this.comments.city != '' && this.comments.phone != '' && this.comments.mail != ''){
+            if(this.comments.name != '' && this.comments.fav_mail != '' && this.comments.postal != '' && this.comments.selectedValue != 0 && this.comments.township != 0 && this.comments.city != '' && (this.comments.phone != '' || this.comments.mail != '')){
                     this.btn_disable=false;
-                    //  $('#error-msg').html('<div class="error"></div>');
                 }else{
                     this.btn_disable=true;
                 }
         },
         methods: {
-            getPostal: function(event) {
-                if (this.comments.postal.length > 4) {
+            getPostal: function(event) {    
+                if (this.comments.postal.length > 5) {
                     var postal = this.comments.postal;
                     this.axios
                         .post('/api/hospital/postList/' + postal)
                         .then(response => {
-                            var post_data = response.data;
-                            var length = response.data.length;
+                            var post_data = response.data.postal_list;
+                            var length = response.data.postal_list.length;
                             if (length > 0) {
                                 var pref = post_data[0]['city_id'];
-                                if (post_data[0]['street'] == '') {
-                                    this.comments.city = post_data[0]['city'];
-                                } else {
-                                    this.comments.city = post_data[0]['city'] + ' - ' + post_data[0]['street'];
-                                }
                                 this.comments.selectedValue = pref;
+                                this.getTownship(1);
+                                this.comments.township = response.data.township_id[0]['id'];  
+                                this.comments.city = post_data[0]["street"];                               
                                 this.comments.division = pref;
+                              
                                  $('#jsErrorMessage').html('<div class="error"></div>');
                             } else {
-                                this.comments.city = '';
+
                                 this.comments.selectedValue = 0;
+                                this.comments.township = 0;
+                                this.comments.city = '';
                                 $('#jsErrorMessage').html('<div class="error">郵便番号の書式を確認してください。</div>');
                             }
+                            this.aggreBtn();    
                         });
                 }
             },
+            getTownship(town_id){
+            
+            this.axios.get('/api/auth/township',{
+                params:{
+                city:this.comments.selectedValue
+                },
+            }).then((response)=>{
+                if(town_id == 2)
+                {
+                this.comments.city = ''
+                // this.comments.postal = '';
+                    this.comments.township = 0;
+                }
+                this.comments.townships_list = response.data.townships
+                this.aggreBtn();
+            })
+            
+            },
+            // getLocation(){
+
+            //     // this.comments.postal = '';
+            //     this.comments.city = '';
+            //     this.aggreBtn();
+            // },
             add() {
                 this.all_mail = JSON.parse(localStorage.getItem("item"));
                 // this.reservation = JSON.parse(localStorage.getItem("reserve"));
@@ -465,7 +531,7 @@ import DatePicker from 'vue2-datepicker';
                 });
             },
             aggreBtn: function(){
-                if(this.comments.name != '' && this.comments.selectedValue != 0 && this.comments.city != '' && (this.comments.mail != '' || this.comments.phone != '')){
+                if(($('#furigana').val().length > 0 && !this.charErr) && this.comments.name != '' && this.comments.selectedValue != 0 && this.comments.township != 0 && this.comments.city != '' && (this.mail_reg.test(this.comments.mail) || (!this.ph_length && !this.ph_num && this.comments.phone.length > 0 ) ) ){
                     this.btn_disable=false;
                 }else{
                     this.btn_disable=true;
@@ -474,18 +540,21 @@ import DatePicker from 'vue2-datepicker';
             focusName: function(event) {
                 if(this.comments.name != ''){
                     this.comment_focus=false;
+                    this.aggreBtn();
                 }else{
                     this.comment_focus=true;
+                     this.btn_disable = true;
                     document.getElementById('tbname').style.backgroundColor = black;
                 }
             },
-            focusFuri: function(event) {
-                if(this.comments.furigana != ''){
-                    this.furigana_focus=false;
-                }else{
-                    this.furigana_focus=true;
-                }
-            },
+            // focusFuri: function(event) {
+            //     if(this.comments.furigana != ''){
+            //         this.furigana_focus=false;
+            //         this.aggreBtn();
+            //     }else{
+            //         this.furigana_focus=true;
+            //     }
+            // },
             // focusbdate: function(event) {
             //     if(this.comments.bdate != ''){
             //         this.bdate_focus = false;
@@ -494,19 +563,22 @@ import DatePicker from 'vue2-datepicker';
             //     }
             // },
             focusCity: function(event) {
-                if(this.comments.city != ''){
+                if(this.comments.city != 0){
                     this.city_focus=false;
+                    this.aggreBtn();
                 }else{
                     this.city_focus=true;
+                     this.btn_disable = true;
                 }
             },
             focusMail: function(event) {
-                if(this.comments.mail != '' || this.comments.phone != ''){
+                if((this.comments.mail != '' && this.mail_reg.test(this.comments.mail))){
                     this.mail_focus=false;
                 }else{
                     this.mail_focus=true;
                     // this.ph_length = false;
                 }
+                this.aggreBtn();
                 // var input_data = $('#phone').val();
                 // var code = 0;
                 // code = input_data.charCodeAt();
@@ -515,26 +587,60 @@ import DatePicker from 'vue2-datepicker';
                 // }else{
                 //     this.ph_error = true;
                 // }
+
+            },
+            focusPhone(){
+
+            //   var input_data = $('#phone').val(); 
+            //   console.log(input_data.length)
                 
+              if(this.comments.phone.charAt(this.comments.phone.length - 1) != '-' && this.comments.phone.charAt(0) != '-' && ((this.comments.phone.length >= 10 && this.comments.phone.length <= 14) || this.comments.phone.length == 0))
+              {  
+                  this.ph_num = false;
+                  this.ph_length = false; 
+                  this.aggreBtn();    
+              }
+              else{
+                  this.ph_num = true;
+                  this.ph_length = true;
+                  this.btn_disable = true;
+              }
+                    
             },
             ChekChar: function(event) {
-                    $('.char-err').text('');
-                    var input_val = $('#furigana').val();
-                    var code = 0;
-                        
-                    code = input_val.charCodeAt();
-                    if ((12448<= code && code <= 12543) || (19968<= code && code <= 19893)) {
-                                    
-                    } else {
-                    $('.char-err').text('カタカナのみを書いてください!');
-                    }
-                    
-                },
-            
-            isNumberOnly: function(event) {
-                var input_data = $('#phone').val();
+                var _this = this;
+               // $('.char-err').text('');
+                var input_val = $('#furigana').val();
+                var each_val = input_val.split('');
+                _this.charErr= false;
                 var code = 0;
-                code = input_data.charCodeAt();
+                $.each(each_val, function (key, value) {
+                    code = value.charCodeAt();
+                    // if (!(code > 12352 && code < 12447)) {
+                    if (!(code > 12448 && code < 12543)) {
+                        //$('.char-err').text('ひらがなで入力してください!');
+                        _this.btn_disable = true;
+                        _this.charErr = true;
+                    
+                    }  
+                });    
+                 if(input_val == ''){
+                    if(this.comments.furigana != ''){
+                    this.furigana_focus=false;                    
+                    }else{
+                        this.furigana_focus=true;
+                    }
+                }else{            
+                    this.furigana_focus=false;　
+                } 
+                this.aggreBtn(); 
+
+            },
+
+            isNumberOnly: function(event) {
+                // var input_data = $('#phone').val();
+                var code = 0;
+                code = this.comments.phone.charCodeAt();
                 if(this.comments.phone.length >= 10 && this.comments.phone.length <= 14) {
                     this.ph_length = false;
                     // console.log('a',this.comments.phone.length)
@@ -551,7 +657,7 @@ import DatePicker from 'vue2-datepicker';
                 }
 
 
-                
+
             }
         }
     }

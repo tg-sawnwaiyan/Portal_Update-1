@@ -60,6 +60,7 @@ class MedicalController extends Controller
             // 'recordstatus' => 2
         ]);
         $medical->save();
+        return $medical;
         // return $request;
         // if($request != null && $request != "")
         // {
@@ -96,6 +97,7 @@ class MedicalController extends Controller
      */
     public function update($id, Request $request)
     {
+        return 'a';
         $medical = Medical::find($id);
         $medical->update($request->all());
 

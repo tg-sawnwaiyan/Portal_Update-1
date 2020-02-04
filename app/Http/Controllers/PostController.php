@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Category;
 use App\PostView;
 use Illuminate\Http\Request;
 use DB;
@@ -25,8 +26,12 @@ class PostController extends Controller
     public function index()
     {
 
-       $news_list = Post::orderBy('id','DESC')->get()->toArray();
-       return response()->json($news_list);
+    //    $news_list = Post::orderBy('id','DESC')->get()->toArray();
+    //    $category_list = Category::select('id','name')->get()->toArray();
+            $news_list = Post::orderBy('id', 'desc')->paginate(12);
+            $category_list = Category::select('id','name')->get()->toArray();
+    
+            return response()->json(Array("news"=>$news_list,"category"=>$category_list));
 
     }
     // add news
@@ -219,9 +224,9 @@ class PostController extends Controller
         $filename = './upload/news/'.$file;
         \File::delete($filename);
         $post->delete();
-        $posts = Post::all()->toArray();
-        return array_reverse($posts);
-        // return response()->json('The news post successfully deleted');
+
+        $posts = Post::orderBy('id', 'desc')->paginate(15);
+        return response()->json($posts);
     }
 
     public function search(Request $request)
@@ -240,17 +245,20 @@ class PostController extends Controller
 
             $query = $query->where(function($qu) use ($search_word){
                             $qu->where('title', 'LIKE', "%{$search_word}%")
-                                ->orWhere('main_point', 'LIKE', "%{$search_word}%");
+                                ->orWhere('main_point', 'LIKE', "%{$search_word}%"); 
                         });
         }
         $query = $query->orderBy('id','DESC')
-                        ->get();
-        return $query;
+                        ->paginate(12);
+        return  response()->json($query);
+        
     }
 
-    public function getPostById($cat_id) {
-        $posts = Post::where("category_id",$cat_id)->orderBy('created_at','DESC')->get();
-        return $posts;
+    public function getPostById(Request $request) {
+        $request = $request->all();
+
+        $posts = Post::where("category_id",$request['cat_id'])->orderBy('created_at','DESC')->paginate(12);
+        return response()->json($posts);
     }
 
     // public function searchPost($search_word) {

@@ -1,25 +1,33 @@
 <template>
   <div id="Profile-page">
+    <h4 v-if="login_person == 'customer' && visit == 'false'" class="header" style="background:transparent;">マイページ編集</h4>
+    <button @click="$router.go(-1)" v-if="login_person == 'admin' && visit == 'false'" class="btn btn-danger all-btn submit" style="float:right">戻る</button>
+
+
+    <span v-if="!loginuser || visit == 'true'">
+      <h4 v-if="type == 'nursing'" class="public-nurheader" style="background:transparent;"><i class="fas fa-user-md"></i> ページ</h4>
+      <h4 v-if="type == 'hospital'" class="public-hosheader" style="background:transparent;"><i class="fas fa-briefcase-medical"></i> ページ</h4>
+    </span>
+
     <div v-if="type == 'nursing'">
 
       <ul class="nav nav-tabs nursing-tabColor" role="tablist" id="profilenav" v-bind:style="{width:width}" >
         <li role="presentation" class="subtab1 nav-item" v-if="loginuser">
-          <label for="hospital" class="typelabel nav-link" id="hospital-lbl">
-            <i class="fa fa-plus-circle"></i>
+          <label for="hospital" class="typelabel nav-link active" id="hospital-lbl">
+            <i class="fa fa-edit"></i>
             <input type="radio" v-model="btntype" value="create" v-on:change="changeBtnType('hospital-lbl','nursing-lbl')" name="btntype" id="hospital" />
-            作成
+            編集
           </label>
         </li>
 
-        <li role="presentation" class="subtab2 nav-item">
-          <label for="nursing" class="typelabel dim-btn nav-link active" id="nursing-lbl">
-
+        <li role="presentation" class="subtab2 nav-item" v-if="loginuser" >
+          <label for="nursing" class="typelabel dim-btn nav-link" id="nursing-lbl">
             <input type="radio" v-model="btntype" value="view" v-on:change="changeBtnType('nursing-lbl','hospital-lbl')" name="btntype" id="nursing" />
-            <span v-if="loginuser"><i class="fas fa-user-md" style="font-size:18px;"></i>&nbsp;マイページ</span>
-            <span v-if="!loginuser"><i class="fas fa-user-md"></i></span>
+            <span ><i class="fas fa-search" style="font-size:18px;"></i>&nbsp;プレビュー</span>
+            <!-- <span v-if="!loginuser"></span> -->
           </label>
         </li>
- 
+
         <span class="btn fav-profile fav-item fav-color" v-if="!view_pro_id && !loginuser" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
         <span class="btn fav-profile fav-item fav-color" style="color:#aaa;" v-if="view_pro_id && !loginuser" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
       </ul>
@@ -41,29 +49,29 @@
     <div v-if="type == 'hospital'">
       <ul class="nav nav-tabs hospital-tabColor" role="tablist" id="profilenav"  v-bind:style="{width:width}">
         <li role="presentation" class="subtab1 nav-item" v-if="loginuser">
-          <label for="hospital" class="typelabel nav-link" id="hospital-lbl">
-            <i class="fa fa-plus-circle"></i>
+          <label for="hospital" class="typelabel nav-link active" id="hospital-lbl">
+            <i class="fa fa-edit"></i>
             <input type="radio" v-model="btntype" value="create" v-on:change="changeBtnType('hospital-lbl','nursing-lbl')" name="btntype" id="hospital" />
-            作成
-          </label>             
-        </li>
-
-        <li role="presentation" class="subtab2 nav-item">
-          <label for="nursing" class="typelabel nav-link active" id="nursing-lbl">
-            <input type="radio" v-model="btntype" value="view" v-on:change="changeBtnType('nursing-lbl','hospital-lbl')" name="btntype" id="nursing" />
-            <span v-if="loginuser"><i class="fas fa-briefcase-medical" style="font-size:18px;"></i>&nbsp;マイページ</span>
-            <span v-if="!loginuser"><i class="fas fa-briefcase-medical"></i></span>
+            編集
           </label>
         </li>
 
-        <span style="font-size:14px;" class="btn fav-profile fav-color" v-if="!view_pro_id && !loginuser" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
-        <span style="color:#aaa;font-size:14px;" class="btn fav-profile fav-color" v-if="view_pro_id && !loginuser" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
+        <li role="presentation" class="subtab2 nav-item" v-if="loginuser">
+          <label for="nursing" class="typelabel nav-link" id="nursing-lbl">
+            <input type="radio" v-model="btntype" value="view" v-on:change="changeBtnType('nursing-lbl','hospital-lbl')" name="btntype" id="nursing" />
+            <span><i class="fas fa-search" style="font-size:18px;"></i>&nbsp;プレビュー</span>
+            <!-- <span v-if="!loginuser"><i class="fas fa-briefcase-medical"></i></span> -->
+          </label>
+        </li>
+
+        <span class="btn fav-profile fav-item fav-color" v-if="!view_pro_id && !loginuser" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
+        <span class="btn fav-profile fav-item fav-color" v-if="view_pro_id && !loginuser" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
       </ul>
 
       <div class="tab-content hospital-borderColor tab-content1 tabs">
         <form class="col-md-12 pad-free">
           <div class="col-md-12 pad-free tab-pane" v-if="btntype == 'create'">
-            <hospitalProfile></hospitalProfile>      
+            <hospitalProfile></hospitalProfile>
           </div>
 
           <div class="col-md-12 pad-free" v-if="btntype == 'view'">
@@ -76,7 +84,13 @@
 </template>
 
 
-
+<style scoped>
+#Profile-page {
+  overflow: hidden;
+  /* max-width: 1600px; */
+  width: 100%;
+}
+</style>
 <script>
 import hospitalProfile from "./HospitalProfile.vue";
 
@@ -97,9 +111,9 @@ export default {
     return {
         type: null,
         cusid: null,
-        btntype: "view",
+        btntype: "",
         width: "",
-        // login_status : '0',
+        login_person : null,
         loginuser: true,
         l_storage_hos_history: [],
         l_storage_nus_history: [],
@@ -110,30 +124,138 @@ export default {
     };
   },
   created() {
-    this.axios.get('/api/user').then(response => {
-        this.pro_id = response.data.lat_lng[0].id;
-        this.loginuser = true;
-       console.log(response.data)
-        localStorage.setItem("cusId", response.data.user.customer_id);
-        localStorage.setItem("lat_num", response.data.lat_lng[0].latitude==0?'35.6803997':response.data.lat_lng[0].latitude);
-        localStorage.setItem("lng_num", response.data.lat_lng[0].longitude==0?'139.76901739':response.data.lat_lng[0].longitude);
 
-        // localStorage.setItem("hospital_fav", this.l_storage_hos_fav);
-        // localStorage.setItem("nursing_fav", this.l_storage_nus_fav);
-        // localStorage.setItem("nursing_history", this.l_storage_nus_history);
-        // localStorage.setItem("hospital_history", this.l_storage_hos_history);
+    if(this.$auth.check()){
+        if(this.$auth.user().role === 1){
+            this.login_person = 'customer';
+            this.axios.get('/api/user').then(response => {
+                this.loginView(response);
+            })
+        }
+        else if(this.$auth.user().role === 2) {
+            if(this.$route.params.type){
+                localStorage.setItem("cusType", this.$route.params.type);
+                this.type = this.$route.params.type;
+            }
+            else{
+                this.type = localStorage.getItem("cusType");
+            }
+            if(this.$route.params.cusid){
+                localStorage.setItem("cusId", this.$route.params.cusid);
+                this.cusid = Number(this.$route.params.cusid);
+            }
+            else{
+                this.cusid = Number(localStorage.getItem("cusId"));
+            }
 
-        if(response.data.user.type_id == 2){
-            localStorage.setItem("cusType", 'hospital');
-            this.type = 'hospital';
+            this.login_person = 'admin';
+            this.axios.get(`/api/admin/${this.cusid}/${this.type}`).then(response => {
+                this.loginView(response);
+            })
+        }
+    }
+    else{
+        this.publicView();
+    }
+
+    this.scrollTop();
+
+    var new_width = $("#content-all").width();
+    var fixed_width = new_width - 49.5;
+    this.width = fixed_width + "px";
+
+  },
+  methods: {
+    loginView(response){
+      console.log('a',response.data);
+        if(this.visit == 'false'){
+            this.btntype = "create";
+            this.loginuser = true;
+            this.pro_id = response.data.lat_lng[0].id;
+            localStorage.setItem("lat_num", response.data.lat_lng[0].latitude==0?'35.6803997':response.data.lat_lng[0].latitude);
+            localStorage.setItem("lng_num", response.data.lat_lng[0].longitude==0?'139.76901739':response.data.lat_lng[0].longitude);
+
+            if(this.login_person == 'customer') {
+                localStorage.setItem("cusId", response.data.user.customer_id);
+                this.cusid = response.data.user.customer_id;
+
+                if(response.data.user.type_id == 2){
+                    localStorage.setItem("cusType", 'hospital');
+                    this.type = 'hospital';
+                }
+                else{
+                    localStorage.setItem("cusType", 'nursing');
+                    this.type = 'nursing';
+                }
+            }
         }
         else{
-            localStorage.setItem("cusType", 'nursing');
-            this.type = 'nursing';
-        }
-        this.cusid = response.data.user.customer_id;
-    }).catch((error) => {
+            this.btntype = "view";
+            this.loginuser = false;
+            if (this.$route.params.type) {
+            this.type = this.$route.params.type;
+            localStorage.setItem("cusType", this.type);
+            }
+            if (this.$route.params.cusid) {
+            this.cusid = this.$route.params.cusid;
+            localStorage.setItem("cusId", this.cusid);
+            }
+            this.type = localStorage.getItem("cusType");
+            this.cusid = Number(localStorage.getItem("cusId"));
 
+            this.axios.get(`/api/profile_view/${this.cusid}/${this.type}`).then(response => {
+                this.pro_id = response.data[0].pro_id;
+                localStorage.setItem("lat_num", response.data[0].latitude);
+                localStorage.setItem("lng_num", response.data[0].longitude);
+
+                if(this.type == 'hospital'){
+                    if(localStorage.getItem("hospital_history")) {
+                        var hos_his_arr = JSON.parse("[" + localStorage.getItem("hospital_history") + "]");
+                        hos_his_arr.push(response.data[0].pro_id);
+                        hos_his_arr = [...new Set(hos_his_arr)];
+                        localStorage.setItem("hospital_history", hos_his_arr);
+                        // $("#hos-his-local").html(hos_his_arr.length);
+                        this.hosHis = hos_his_arr.length;
+                    }
+                    else{
+                        var hos_his_arr = [response.data[0].pro_id];
+                        localStorage.setItem("hospital_history", hos_his_arr);
+                        // $("#hos-his-local").html(hos_his_arr.length);
+                        this.hosHis = hos_his_arr.length;
+                        $('.his-hospital-link-box>a').css({'cursor':'pointer','pointer-events':'auto'});
+                    }
+                    if(localStorage.getItem("hospital_fav")){
+                        var nus_fav_arr = JSON.parse("[" + localStorage.getItem("hospital_fav") + "]");
+                        this.view_pro_id = nus_fav_arr.includes(response.data[0].pro_id);
+                    }
+                }
+                else{
+                    if(localStorage.getItem("nursing_history")) {
+                        var nus_his_arr = JSON.parse("[" + localStorage.getItem("nursing_history") + "]");
+                        nus_his_arr.push(response.data[0].pro_id);
+                        nus_his_arr = [...new Set(nus_his_arr)];
+                        localStorage.setItem("nursing_history", nus_his_arr);
+                        // $("#nus-his-local").html(nus_his_arr.length);
+                        this.nusHis = nus_his_arr.length;
+                    }
+                    else{
+                        var nus_his_arr = [response.data[0].pro_id];
+                        localStorage.setItem("nursing_history", nus_his_arr);
+                        // $("#nus-his-local").html(nus_his_arr.length);
+                        this.nusHis = nus_his_arr.length;
+                        $('.his-nursing-link-box>a').css({'cursor':'pointer','pointer-events':'auto'});
+                    }
+
+                    if(localStorage.getItem("nursing_fav")){
+                        var nus_fav_arr = JSON.parse("[" + localStorage.getItem("nursing_fav") + "]");
+                        this.view_pro_id = nus_fav_arr.includes(response.data[0].pro_id);
+                    }
+                }
+            });
+        }
+    },
+    publicView(){
+        this.btntype = "view";
         this.loginuser = false;
         if (this.$route.params.type) {
         this.type = this.$route.params.type;
@@ -145,13 +267,13 @@ export default {
         }
         this.type = localStorage.getItem("cusType");
         this.cusid = Number(localStorage.getItem("cusId"));
-        
+
         this.axios.get(`/api/profile_view/${this.cusid}/${this.type}`).then(response => {
             console.log(response)
             this.pro_id = response.data[0].pro_id;
             localStorage.setItem("lat_num", response.data[0].latitude);
             localStorage.setItem("lng_num", response.data[0].longitude);
-            
+
 
             if(this.type == 'hospital'){
                 if(localStorage.getItem("hospital_history")) {
@@ -172,7 +294,7 @@ export default {
                 if(localStorage.getItem("hospital_fav")){
                     var nus_fav_arr = JSON.parse("[" + localStorage.getItem("hospital_fav") + "]");
                     this.view_pro_id = nus_fav_arr.includes(response.data[0].pro_id);
-                }                
+                }
             }
             else{
                 if(localStorage.getItem("nursing_history")) {
@@ -197,16 +319,7 @@ export default {
                 }
             }
         });
-    })
-
-    this.scrollTop();
-
-    var new_width = $("#content-all").width();
-    var fixed_width = new_width - 49.5;
-    this.width = fixed_width + "px";
-
-  },
-  methods: {
+    },
     changeBtnType(a,b) {
       this.scrollTop();
         document.getElementById(a).classList.add("active");
@@ -245,7 +358,7 @@ export default {
                 }
                 else{
                     this.hosFav = fav_arr.length;
-                }                
+                }
             }
             else{
                 var fav_arr = [this.pro_id];

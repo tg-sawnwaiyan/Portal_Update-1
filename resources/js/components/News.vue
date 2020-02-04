@@ -1,72 +1,119 @@
 <template>
-
     <layout>
-
         <div class="m-lr-0 justify-content-md-center">
-
             <div class="row">
-
-                <div class="col-12 p-r-0">
-
-                    <div class="col-12 p-r-0">
-
+                <div class="col-12">
+                    <div class="col-md-12 m-lr-0 p-0">
                         <!-- <form class="col-lg-12 mb-2 pad-free"> -->
-
-                            <div class="row col-md-12 m-0 p-r-0">
-
-                                <div class="col-md-6">
-
+                            <div class="row col-md-12 m-lr-0 p-0">
+                                <div class="col-sm-12 col-md-3 col-lg-6">
                                     <div class="col-md-2 float-right">
-
                                         <!-- <span class="btn btn my-2 col-md-12 my-sm-0 danger-bg-color btn-danger" v-if="status == 1" @click="clearSearch()">X</span> -->
-
                                     </div>
-
                                 </div>
-
-                                <div class="col-md-6 p-l-0 m-b-15">
-
-                                    <div class="row ">
-
-                                        <div class="col-md-9">
-
-                                            <span class="btn btn my-2 col-md-12 my-sm-0 danger-bg-color btn-danger cross-btn" v-if="status == 1" @click="clearSearch()">X</span>
-
-                                            <input type="text" placeholder="ニュース検索" aria-label="ニュース検索" class="form-control col-lg mr-sm-3 d-flex p-2 form-control" id="search-word" v-bind:value="search_word">
-
-                                        </div>
-
-                                        <div class="col-md-3 p-r-20">
-
-                                            <span class="btn btn my-2 col-md-12 my-sm-0 all-btn secondary-bg-color btn-secondary" @click="searchCategory()"><i class="fas fa-search"></i> 検索</span>
-
-                                        </div>
-
+                                <div class="col-sm-12 col-md-9 col-lg-6 pad-new m-b-15">
+                                     <!--search input-->
+                                    <div class="search-input">
+                                        <span class="btn btn my-2 col-md-12 my-sm-0 danger-bg-color btn-danger cross-btn" v-if="status == 1" @click="clearSearch()">X</span>
+                                        <input typee="text" class="searchNews" placeholder="ニュース検索" id="search-free-word" v-bind:value="search_word">
+                                        <button type="submit" class="searchButtonNews" @click="searchCategory()">
+                                            <i class="fas fa-search"></i> 検索
+                                        </button>
                                     </div>
-
+                                    <!--end search input-->  
                                 </div>
-
                             </div>
-
-
-
                         <!-- </form> -->
 
-                        <div class="row" v-if="status == '0'">
 
-                            <div class="card col-md-6 d-none d-sm-block p-l-0" style="border:0px!important;">
+                       <!-- slier -->
+                      
+                        <slick  v-if="latest_post_all_cats.length > 0" ref="slick" :options="categoryslider" class="cat-slider d-block d-sm-none">  
+                        
+                            <div class="list-group-item adslist-card m-b-10"  v-for="latest_post_all_cat in latest_post_all_cats" :key="latest_post_all_cat.id">
+                                <a target="_blank">
+                                    <div class="slide-img">
+                                       <div class="col-sm-6 pad-free" >
+
+                                            <div class="col-md-12 row m-0 pad-free">
+
+                                                <div class="hovereffect fit-image">
+
+                                                <div class="wrapper-1" @load="log"  src="images/noimage.jpg" :key="latest_post_all_cat.id">
+
+                                                    <transition name="fade">
+
+                                                        <img :src="'/upload/news/' + latest_post_all_cat.photo " class="img-responsive fit-image" @error="imgUrlAlt">
+
+                                                    </transition>
+
+                                                    <!-- <img class="img-responsive fit-image" :src="'/upload/news/' + latest_post_all_cat.photo " alt="" @error="imgUrlAlt"> -->
+
+                                                    <!-- <transition name="fade" slot="placeholder">
+
+                                                    <div class="preloader">
+
+                                                        <div class="circle">
+
+                                                        <div class="circle-inner"></div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    </transition> -->
+
+                                                </div>
+
+                                                    <!-- <div class="overlay">
+
+                                                        <router-link class="btn btn-sm all-btn secondary-bg-color m-t-20" :to="'/newsdetails/'+ latest_post_all_cat.id">詳細</router-link>
+
+                                                    </div> -->
+
+                                                    <div class="info">
+
+                                                        <div class="col-12" style="border:none;">
+
+                                                            <p class=" p_3">
+
+                                                                {{ latest_post_all_cat.main_point }}
+
+                                                            </p>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                   
+                                </a>    
+                            </div>
+
+                        </slick>
+                       <!-- slider -->
+
+
+                        <div class="row col-12 m-lr-0 p-0" v-if="status == '0'" id="view-1024">
+                            <!-- category box -->
+                            <div class="card col-md-12 col-lg-6 pad-new d-none d-sm-block first-child" style="border:0px!important;">
 
                                 <div class="card-header tab-card-header clearfix cat-nav">
                                     <span id="left-button" class="left-arr-btn arr-btn" @click="swipeLeft" v-if="is_cat_slided" ><i class="fas fa-angle-left"></i></span>
                                     <div class="nav nav-tabs card-header-tabs center" id="myTab" ref="content" v-bind:style="{ width: computed_width }">
 
                                         <ul class="nav nav-tabs" role="tablist">
-
+                              
                                             <li v-for="cat in cats" :key="cat.id" class="nav-item nav-line" id="category-id" v-bind:value="cat.id" v-on:click="getPostByCatID(cat.id);getLatestPostByCatID(cat.id);" ref="itemWidth">
 
                                                 <a class="nav-link" href="#two" v-if = "cats[0].id != cat.id" id="one-tab" data-toggle="tab" role="tab" aria-controls="One" aria-selected="true" >
 
-                                                {{ cat.name }}</a>
+                                               {{ cat.name }}</a>
 
                                                 <a class="nav-link active nav-line" href="#two" v-if = "cats[0].id == cat.id" id="one-tab" data-toggle="tab" role="tab" aria-controls="One" aria-selected="true" >
 
@@ -93,7 +140,7 @@
                                                  <clazy-load class="wrapper-0" @load="log"  src="images/noimage.jpg" :key="latest_post.id">
 
                                                     <transition name="fade">
-
+                                                      
                                                         <img v-bind:src="'/upload/news/' + latest_post.photo" class="source-img img-responsive"  @error="imgUrlAlt">
 
                                                     </transition>
@@ -153,12 +200,15 @@
                                 </div>
 
                             </div>
+                            <!-- end category box -->
 
-                            <div class="col-sm-6 pad-free">
-                                <div class="col-sm-12 m-lr-0 pad-free" v-if="status =='0'">
-                                    <!-- two show -->
-                                    <div v-if="(w_width > 1279) || (w_width < 768 && w_width > 479)" class="row col-sm-12 p-l-0 m-0">
-                                        <div class="col-sm-6 m-b-8 p-l-0" v-for="latest_post_all_cat in latest_post_all_cats.slice(0, 2)" :key="latest_post_all_cat.id">
+                            <!-- category right side -->
+                            <div class="col-md-12 col-lg-6 pad-free last-child  d-none d-sm-block">
+                                <div class="" v-if="status =='0'">
+                                    <!-- two show () aaaaaaaaa-->  
+                                   
+                                    <div v-if="(w_width >= 1280) || (w_width <= 768 && w_width >= 480)" class="row col-sm-12 p-lr-0 m-0">
+                                        <div class="col-sm-6 m-b-8 pad-new" v-for="latest_post_all_cat in latest_post_all_cats.slice(0, 2)" :key="latest_post_all_cat.id">
 
                                             <div class="col-md-12 row m-0 pad-free">
 
@@ -218,8 +268,8 @@
                                     </div>
 
                                     <!-- one show -->
-                                    <div v-if="(w_width < 1280 && w_width > 767) || (w_width < 480)" class="row col-sm-12 p-l-0 m-0">
-                                        <div class="col-sm-12 m-b-8 p-l-0" v-for="latest_post_all_cat in latest_post_all_cats.slice(0, 1)" :key="latest_post_all_cat.id">
+                                    <div v-if="(w_width < 1280 && w_width > 768) || (w_width < 480)" class="row col-sm-12 p-lr-0 m-0">
+                                        <div class="col-sm-12 m-b-8 pad-new" v-for="latest_post_all_cat in latest_post_all_cats.slice(0, 1)" :key="latest_post_all_cat.id">
                                             <div class="col-md-12 row m-0 pad-free">
 
                                                 <div class="hovereffect fit-image">
@@ -277,8 +327,10 @@
                                     </div>
 
                                     <!-- two show -->
-                                    <div class="row col-sm-12 p-l-0 m-0" v-if="(w_width > 1279) || (w_width < 768 && w_width > 479)">
-                                        <div class="col-sm-6 m-b-8 p-l-0" v-for="item in latest_post_all_cats.slice(2, 6)"  :key="item.id">
+                                  
+                                    <div class="row col-sm-12 p-lr-0 m-0 " v-if="(w_width >= 1280) || (w_width <= 768 && w_width >= 480)">
+                                  
+                                        <div class="col-sm-6 m-b-8 pad-new" v-for="item in latest_post_all_cats.slice(2, 6)"  :key="item.id">
 
                                             <div class="col-md-12 row adslist-card news-3-card m-0">
 
@@ -325,19 +377,14 @@
                                                         <p> {{item.main_point}} </p>
 
                                                     </router-link>
-
                                                 </div>
-
                                             </div>
-
-
-
                                         </div>
                                     </div>
 
                                     <!-- one show -->
-                                    <div class="row col-sm-12 p-l-0 m-0" v-if="(w_width < 1280 && w_width > 767) || (w_width < 480)">
-                                        <div class="col-sm-12 m-b-8 p-l-0" v-for="item in latest_post_all_cats.slice(1, 3)"  :key="item.id">
+                                    <div class="row col-sm-12 p-lr-0 m-0 " v-if="(w_width < 1280 && w_width > 768) || (w_width < 480)">
+                                        <div class="col-sm-12 m-b-8 pad-new" v-for="item in latest_post_all_cats.slice(1, 3)"  :key="item.id">
 
                                             <div class="col-md-12 row adslist-card news-3-card m-0">
 
@@ -395,12 +442,15 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- end category right side -->
                         </div>
                     </div>
 
-                    <div class="col-md-12 m-lr-0 p-0" v-if="status == '0'">
-                        <div class="row col-md-12 pad-free m-0" v-if="(w_width > 1279) || (w_width < 768 && w_width > 479)">
-                            <div class="col-md-3 m-b-8 p-l-0" v-for="item in latest_post_all_cats.slice(6, 14)"  :key="item.id">
+                    <!-- category bottom -->
+                    <div class="col-md-12 m-lr-0 p-0 d-none d-sm-block" v-if="status == '0'">
+                        <!-- two show -->
+                        <div class="row col-12 m-lr-0 p-0" v-if="(w_width >= 1280) || (w_width <= 768 && w_width >= 480)">
+                            <div class="col-md-6 col-lg-3 m-b-8 pad-new" v-for="item in latest_post_all_cats.slice(6, 14)"  :key="item.id">
 
                                 <div class="col-md-12 row adslist-card news-3-card m-0">
 
@@ -455,8 +505,9 @@
                             </div>
                         </div>
                         
-                        <div class="row col-md-12 pad-free m-0" v-if="(w_width < 1280 && w_width > 767) || (w_width < 480)">
-                            <div class="col-md-3 m-b-8 p-l-0" v-for="item in latest_post_all_cats.slice(3, 11)"  :key="item.id">
+                        <!-- one show -->
+                        <div class="row col-md-12 pad-free m-0" v-if="(w_width < 1280 && w_width > 768) || (w_width < 480)">
+                            <div class="col-md-4 m-b-8 pad-new" v-for="item in latest_post_all_cats.slice(3, 11)"  :key="item.id">
 
                                 <div class="col-md-12 row adslist-card news-3-card m-0">
 
@@ -511,7 +562,7 @@
                             </div>
                         </div>
                     </div>
-
+                    <!-- end category bottom -->
                 </div>
 
             </div>
@@ -534,13 +585,18 @@
                 </div>
             </span>
             <span v-else>
-             <div class="col-md-12 category_box" :class="'bordertop-color'+(5-(Math.floor(index%5)))" v-for="(group,name,index) in post_groups" :key="index">
+             <div class="col-md-12 category_box" id="view-1024-pattern" :class="'bordertop-color'+(5-(Math.floor(index%5)))" v-for="(group,name,index) in post_groups" :key="index">
 
-                <h4 class="category_news_title" :class="'h-color'+(5-(Math.floor(index%5)))"><span>{{name}}</span> <label style="float: right; color: #999; font-size: 14px;">新着ニュース一覧</label></h4>
+                <h4 class="category_news_title" :class="'h-color'+(5-(Math.floor(index%5)))"><span>{{name}}</span> 
+                    <label class="list-label" for="">新着ニュース一覧</label>
+                    <label class="list-label sp-414">                         
+                            <p :class="'newsChangeLink'+index" @click="newsToggle(index)" ><i :id="'newstogg' + index" class="fas fa-sort-down"></i></p>                      
+                    </label>
+                </h4>
 
-                <div class="row m-lr-0" v-if="group[0].pattern == 1">
-
-                    <div class="col-md-3 p-lr-0">
+                <div :id="'newsChangeLink' + index" class="row m-lr-0" v-if="group[0].pattern == 1">
+                    <slick :options="slickOptions" class="news-slider-width">                  
+                    <div class="pad-new pattern-child">
 
                         <router-link :to="'/newsdetails/'+group[0].pid">
 
@@ -550,11 +606,9 @@
 
                                     <transition name="fade">
 
-                                        <img :src="'/upload/news/' + group[0].photo"  @error="imgUrlAlt">
+                                        <img :src="'/upload/news/' + group[0].photo" class="fit-image img-fluid" @error="imgUrlAlt">
 
-                                    </transition>
-
-                                    <p> {{group[0].main_point}} </p>
+                                    </transition>                                
 
                                     <transition name="fade" slot="placeholder">
 
@@ -569,16 +623,15 @@
                                     </div>
 
                                     </transition>
-
                                 </clazy-load>
-
+                                   <p> {{group[0].main_point}} </p>
                             </div>
 
                         </router-link>
 
                     </div>
 
-                    <div class="col-md-3 p-r-0">
+                    <div class="pad-new pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(1, 4)" :key="index" :to="'/newsdetails/'+item.pid">
 
@@ -592,7 +645,7 @@
 
                                         <transition name="fade">
 
-                                            <img :src="'/upload/news/' + item.photo" class="fit-image-0"  @error="imgUrlAlt">
+                                            <img :src="'/upload/news/' + item.photo" class="fit-image-0 img-fluid"  @error="imgUrlAlt">
 
                                         </transition>
 
@@ -628,7 +681,7 @@
 
                     </div>
 
-                    <div class="col-md-3 p-r-0">
+                    <div class="pad-new pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(4,12)" :key="index" :to="'/newsdetails/'+item.pid" style="color:#333;">
 
@@ -642,7 +695,7 @@
 
                     </div>
 
-                    <div class="col-md-3 p-r-0">
+                    <div class="pad-new pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(12, 15)" :key="index" :to="'/newsdetails/'+item.pid">
 
@@ -688,13 +741,13 @@
 
                         </router-link>
 
-                    </div>
-
+                    </div>                    
+                     </slick>
                 </div>
 
-                <div class="row m-lr-0" v-if="group[0].pattern == 2">
-
-                    <div class="col-md-3 p-lr-0">
+                <div :id="'newsChangeLink' + index" class="row m-lr-0" v-if="group[0].pattern == 2">
+                    <slick :options="slickOptions" class="news-slider-width"> 
+                    <div class="pad-new pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(0, 3)" :key="index" :to="'/newsdetails/'+item.pid">
 
@@ -740,9 +793,9 @@
 
                         </router-link>
 
-                    </div>
+                    </div>                    
 
-                    <div class="col-md-3 p-r-0">
+                    <div class="pad-new pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(3, 11)" :key="index" :to="'/newsdetails/'+item.pid" style="color:#333;">
 
@@ -756,7 +809,7 @@
 
                     </div>
 
-                    <div class="col-md-3 p-r-0">
+                    <div class="pad-new pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(11, 14)" :key="index" :to="'/newsdetails/'+item.pid">
 
@@ -804,7 +857,7 @@
 
                     </div>
 
-                    <div class="col-md-3 p-r-0">
+                    <div class="pad-new pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(14, 22)" :key="index" :to="'/newsdetails/'+item.pid" style="color:#333;">
 
@@ -817,12 +870,13 @@
                         </router-link>
 
                     </div>
+                    </slick>
 
                 </div>
 
-                <div class="row m-lr-0" v-if="group[0].pattern == 3">
-
-                    <div class="col-md-3 p-lr-0">
+                <div :id="'newsChangeLink' + index" class="row m-lr-0" v-if="group[0].pattern == 3">
+                    <slick :options="slickOptions" class="news-slider-width"> 
+                    <div class="pad-new pattern-child">
 
                         <router-link :to="'/newsdetails/'+group[0].pid">
 
@@ -832,35 +886,26 @@
 
                                     <transition name="fade">
 
-                                        <img v-bind:src="'/upload/news/' + group[0].photo" class="fit-image" @error="imgUrlAlt">
+                                        <img v-bind:src="'/upload/news/' + group[0].photo" class="fit-image img-fluid" @error="imgUrlAlt">
 
                                     </transition>
 
                                     <transition name="fade" slot="placeholder">
-
                                         <div class="preloader">
-
                                             <div class="circle">
-
                                             <div class="circle-inner"></div>
-
                                             </div>
-
                                         </div>
-
-                                    </transition>
-
-                                    <p>{{group[0].main_point}}</p>
-
+                                    </transition>    
                                 </clazy-load>
-
+                                 <p>{{group[0].main_point}}</p>
                             </div>
 
                         </router-link>
 
                     </div>
 
-                    <div class="col-md-3 p-r-0">
+                    <div class="pad-new pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(1, 4)" :key="index" :to="'/newsdetails/'+item.pid">
 
@@ -872,7 +917,7 @@
 
                                     <transition name="fade">
 
-                                        <img v-bind:src="'/upload/news/' + item.photo" class="fit-image-0" @error="imgUrlAlt">
+                                        <img v-bind:src="'/upload/news/' + item.photo" class="fit-image-0 img-fluid" @error="imgUrlAlt">
 
                                     </transition>
 
@@ -908,7 +953,7 @@
 
                     </div>
 
-                    <div class="col-md-3 p-r-0">
+                    <div class="pad-new pattern-child">
 
                         <router-link v-for="(item,index) in group.slice(4, 7)" :key="index" :to="'/newsdetails/'+item.pid">
 
@@ -920,7 +965,7 @@
 
                                     <transition name="fade">
 
-                                        <img v-bind:src="'/upload/news/' + item.photo" class="fit-image-0" @error="imgUrlAlt">
+                                        <img v-bind:src="'/upload/news/' + item.photo" class="fit-image-0 img-fluid" @error="imgUrlAlt">
 
                                     </transition>
 
@@ -956,7 +1001,7 @@
 
                     </div>
 
-                    <div class="col-md-3 p-r-0">
+                    <div class="pad-new pattern-child">
 
                         <router-link :to="'/newsdetails/'+group[7].pid" v-if="group[7]">
 
@@ -966,7 +1011,7 @@
 
                                     <transition name="fade">
 
-                                        <img v-bind:src="'/upload/news/' + group[7].photo" class="fit-image" @error="imgUrlAlt">
+                                        <img v-bind:src="'/upload/news/' + group[7].photo" class="fit-image img-fluid" @error="imgUrlAlt">
 
                                     </transition>
 
@@ -982,76 +1027,23 @@
 
                                         </div>
 
-                                    </transition>
-
-                                    <p>{{group[7].main_point}}</p>
+                                    </transition>                                  
 
                                 </clazy-load>
+                                 <p>{{group[7].main_point}}</p>
 
                             </div>
 
                         </router-link>
 
                     </div>
+                    </slick>
 
                 </div>
 
-
-
-                <!-- Old design -->
-
-                    <!-- <div class="col-md-3 p-l-0" v-for="(item,i) in group" :key="i">
-
-                            <div class="col-md-12 row m-b-10 adslist-card m-lr-0" style="background-color: #eee;box-shadow: 0 0 2px #bfb9b9;">
-
-                                <div class="col-md-4 img-box">
-
-                                    <router-link :to="'/newsdetails/'+item.pid">
-
-                                        <img v-bind:src="'/upload/news/' + item.photo" class="fit-image" style="height:5rem;width:6rem" @error="imgUrlAlt">
-
-                                    </router-link>
-
-                                </div>
-
-
-
-                                <div class="col-md-8 txt-box">
-
-                                    <router-link :to="'/newsdetails/'+item.pid">
-
-                                        <p> {{item.main_point}} </p>
-
-                                    </router-link>
-
-                                </div>
-
-                            </div>
-
-                    </div>-->
-
-                <!-- Old design end -->
-
             </div>
             </span>
-
         </div>
-
-
-        <!-- </div>
-
-        </div>
-
-    </div>
-
-    </div> -->
-
-    <!-- <div v-else>
-
-    <NewsSearchListComponent></NewsSearchListComponent>
-
-    </div> -->
-
     </layout>
 
 </template>
@@ -1062,15 +1054,19 @@
 
     import layout from '../components/home.vue'
     import News from './News.vue'
+    import Slick from 'vue-slick'
 
     export default {
 
         components: {
             News,         
-            layout
+            layout,
+            Slick
         },
 
       async mounted() {
+            this.visit = 'true';
+            localStorage.setItem('visit', this.visit);
 
             $('#navtab').removeClass('news-tabColor hospital-tabColor nursing-tabColor job-tabColor');
 
@@ -1156,71 +1152,130 @@
             w_width: $(window).width(),
             norecord_msg: false,
             // w_width: $(window).width() + 16,
-
         }
-
     },
 
-    created() {      
-        var today = new Date();
-        var month =(String) (today.getMonth()+1);
-        var date = (String) (today.getDate());
+    created() {
+                            
+                var today = new Date();
+                var month =(String) (today.getMonth()+1);
+                var date = (String) (today.getDate());
 
-        if(month.length == 1)
-        {
-            month = '0' + today.getMonth();
-        }
+                if(month.length == 1)
+                {
+                    month = '0' + today.getMonth();
+                }
 
-        if(date.length == 1 )
-        {
-            date = '0' + today.getDate();
+                if(date.length == 1 )
+                {
+                    date = '0' + today.getDate();
+                }
+                var todaydate = today.getFullYear()+'-'+ month +'-'+ date;
 
-        }
-        var todaydate = today.getFullYear()+'-'+ month +'-'+ date;
-
-        if(localStorage.getItem('date') == null)
-
-        {
-
-              localStorage.setItem('date',todaydate);
-
-              this.getCategoryRandomValue();
-
-        }
-
-        else{
-              var localdate = localStorage.getItem('date');
-
-              if(todaydate > localdate)
-
-              {
-
-                  localStorage.setItem('date',todaydate);
-
-                  this.getCategoryRandomValue();
-
-              }
-
-
-
-        }
-
-    //     this.categoryId();  
+                if(localStorage.getItem('date') == null)
+                {
+                    localStorage.setItem('date',todaydate);
+                    this.getCategoryRandomValue();
+                }
+                else{
+                    var localdate = localStorage.getItem('date');
+                    if(todaydate > localdate)
+                    {
+                        localStorage.setItem('date',todaydate);
+                        this.getCategoryRandomValue();
+                    }
+                };    
+                           
 
     },
+    computed:{  
 
+        categoryslider(){
+            return {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                infinite: true,
+                accessibility: true,
+                adaptiveHeight: false,
+                edgeFriction: 0.30,
+                swipe: true,
+                autoplay: true,
+                lazyLoad: 'ondemand',   
+                arrows: false              
+            }
+        }    ,  
+            slickOptions() {
+                return {
+                slidesToShow: 4,
+                infinite: false,
+                accessibility: true,
+                adaptiveHeight: false,
+                arrows: true,
+                dots: true,
+                draggable: true,
+                edgeFriction: 0.30,
+                swipe: true,
+                responsive: [{
+                    breakpoint: 1280,
+                        settings: {
+                            slidesToShow: 3,                           
+                            slidesToScroll: 1,  
+                            infinite:false 
+                        }
+                    }, {
+                    breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1, 
+                            infinite: false                           
+                        }
+                    },{
+                        breakpoint: 414,
+                            settings:{
+                                slidesToShow: 1,
+                                slidesToScroll:1,
+                                infinite: false
+                            }
+                    }]                    
+                }
+            }
+    },
     methods: {
+            next() {
+                this.$refs.slick.next();
+            },
+            prev() {
+                this.$refs.slick.prev();
+            },
+            reInit() {
+                // Helpful if you have to deal with v-for to update dynamic lists
+                this.$nextTick(() => {
+                    this.$refs.slick.reSlick();
+                });
+            },
+                  
+            newsToggle(id)
+                {
 
-
-
-            log() {
-
-                // console.log()
+                    var class_by_id = $('#newstogg'+id).attr('class');
+                    if(class_by_id == "fas fa-sort-down animate rotate")
+                    {
+                        $('#newstogg'+id).removeClass("fas fa-sort-down animate rotate");
+                        $('.newsChangeLink'+id).addClass("fas fa-sort-down");
+                        $('#newsChangeLink'+id).show('medium');
+                    }
+                    else {
+                        $('#newstogg'+id).removeClass("fas fa-sort-down");
+                        $('.newsChangeLink'+id).removeClass("fas fa-sort-down");
+                        $('#newstogg'+id).addClass("fas fa-sort-down animate rotate");
+                        $('#newsChangeLink'+id).hide('medium');
+                    }
 
             },
-
+            log() {
+                // console.log()
+            },
             getAllCat: function() {
-
                 this.axios
 
                     .get('/api/home')
@@ -1315,9 +1370,9 @@
 
             getPostByCatID: function(catId = 1) {
 
-                if ($('#search-word').val() != null) {
+                if ($('#search-free-word').val() != null) {
 
-                    var search_word = $('#search-word').val();
+                    var search_word = $('#search-free-word').val();
 
                 } else {
 
@@ -1377,9 +1432,9 @@
 
             getLatestPostByCatID: function(catId) {
 
-                if ($('#search-word').val()) {
+                if ($('#search-free-word').val()) {
 
-                    var search_word = $('#search-word').val();
+                    var search_word = $('#search-free-word').val();
                 } else {
 
                     var search_word = null;
@@ -1421,21 +1476,23 @@
             },
 
             getLatestPostFromAllCat: function() {
-                this.$loading(true);
+                // this.$loading(true);
                 this.axios
 
                     .get('/api/get_latest_post_all_cat')
 
                     .then(response => {
+                    
                         this.$loading(false);
                         this.latest_post_all_cats = response.data;
+                       
 
                     });
             },
 
             searchCategory() {
 
-                if ($('#search-word').val() == null || $('#search-word').val() == '' || $('#search-word').val() == 'null') {
+                if ($('#search-free-word').val() == null || $('#search-free-word').val() == '' || $('#search-free-word').val() == 'null') {
 
 
             console.log("statusBar",this.search_word);
@@ -1447,7 +1504,7 @@
 
                     this.status = 1;
 
-                    this.search_word = $('#search-word').val();
+                    this.search_word = $('#search-free-word').val();
                     //console.log("word",this.search_word);
                     this.getLatestPostsByCatID();                 
 
@@ -1551,161 +1608,110 @@
 
                 this.computed_width = '96%';
 
-            },
-            
+            }           
 
         }
-
     }
 
  </script>
 
 <style>
-
+.list-label{
+    float: right; 
+    color: #999; 
+    font-size: 14px;
+}
+.list-label > p{
+    padding-left: 10px;
+    font-weight: bold;
+    line-height: 1.2px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 20px;
+}
+.pad-new{
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
 .news-list-display{
-
     /* border: 1px solid #f7f7f7; */
-
     padding: 5px 10px;
-
     margin-bottom: 4px;
-
     background: #f7f7f7;
-
     /* box-shadow: 0px 0px 1px #ddd; */
-
     border:solid #f3efef;
-
     border-width: 0 .1rem .1rem 0;
-
 }
 
 .news-3-card {
-
     background-color: #f7f7f7;
-
     /* box-shadow: 0 0 2px #ddd; */
-
     border:solid #f3efef;
-
     border-width: 0 .1rem .1rem 0;
-
 }
 
 .news-3-card .img-box{
-
     padding-left: 10px;
-
 }
 
 .single-news-box {
-
     background: #f7f7f7;
-
-    height: 96%;
-
+    height: 310px;
     padding: 10px;
-
     /* box-shadow: 0px 0px 2px #ddd; */
-
     border:solid #f3efef;
-
     border-width: 0 .1rem .1rem 0;
-
+    overflow: hidden;
 }
-
-
 
 .news-tabColor .nav-link {
-
-        background: #75b777 !important;
-
-        color: #fff;
-
-        border-right: 1px solid #fff;
-
-    }
+    background: #75b777 !important;
+    color: #fff;
+    border-right: 1px solid #fff;
+}
 
 .news-borderColor {
+    border: 1px solid #75b777 !important;
+}
 
-        border: 1px solid #75b777 !important;
-
-    }
-
-    .tab-pane{
-
-        padding: 10px;
-
-    }
-
-
+.tab-pane{
+    padding: 10px;
+}
 
 .left{
-
- float: left;
-
- width: 30%;
-
- border: 1px solid black;
-
+    float: left;
+    width: 30%;
+    border: 1px solid black;
 }
-
-
 
 .internal{
-
- /* width: 31.75%;
-
- border: 1px solid black; */
-
- display: inline-block;
-
+    /* width: 31.75%;
+    border: 1px solid black; */
+    display: inline-block;
 }
-
 
 
 .center{
-
- /* float: left;
-
-width: 38.9%;
-
-border: 1px solid black;
-
-margin: 1px; */
-
-/* width: 95%; */
-
-overflow: hidden;
-
-white-space: nowrap;
-
-display: inline-block;
-
-/* max-width: 100%; */
-
+    /* float: left;
+    width: 38.9%;
+    border: 1px solid black;
+    margin: 1px; */
+    /* width: 95%; */
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    /* max-width: 100%; */
 }
-
-
-
 .right{
-
- float: right;
-
- width: 30%;
- /* border: 1px solid black; */
+    float: right;
+    width: 30%;
+    /* border: 1px solid black; */
 }
-
-
-
 .cat-nav {
-
     padding-bottom: 0;
-
     height: 40px;
-
 }
-
 
 .card-header-tabs {
     margin-right: -0.625rem;
@@ -1714,50 +1720,142 @@ display: inline-block;
     border-bottom: 0;
 }
 .arr-btn {
-
     cursor: pointer;
-
     display: inline-block;
     background:transparent;
     padding: 5px 1px 4px;
     font-size: 25px;
-
     /* padding-top: 5px;
-
     padding-bottom: 4px; */
-
 }
 
 .left-arr-btn {
-
     position: relative;
-
     top: -10px;
-
     left: -8px;
-
 }
 
 .right-arr-btn {
-
     position: relative;
-
     top: -10px;
-
     right: -26px;
+}
 
+.cat-slider .list-group-item{
+    border-bottom-right-radius:0rem !important;
+    border-bottom-left-radius:0rem !important;
+    border-top-left-radius:0rem !important;
+    border-top-right-radius:0rem !important;
+
+}
+
+.cat-slider .adslist-card{
+    padding:0;
+}
+
+.hovereffect .info{
+    width: 100%;
+    height: 80px !important;
+    position: absolute;
+    top:140px !important;
+    background-color: #2a2d2cb0;
+    color: #fff;
+    text-align: justify !important;
 }
 
 #myTab ul li {
-
     display: inline-block;
-
 }
 
 .nav {
-
     flex-wrap: nowrap;
-
+}
+.news-slider-width{
+    width: 100%;
+}
+@media only screen and (min-width: 1024px) and (max-width: 1200px){
+    #view-1024 .first-child {
+        max-width: 65.66%;
+        flex: 0 0 65.66%;
+    }
+    #view-1024 .last-child {
+        max-width: 33.33%;
+        flex: 0 0 33.33%;
+    }
+    #view-1024-pattern .col-lg-3 {
+        max-width: 33.33%;
+        flex: 0 0 33.33%;
+        /* overflow: hidden; */
+    }
+    #view-1024-pattern .col-lg-3:last-child {
+        display: none;
+    }
+}
+@media only screen and (max-width:480px){
+    .list-label{  
+        color: #fff;     
+    }
+}
+@media only screen and (max-width: 1280px){
+    .news-slider-width{
+        width: 100%;
+    }
+}
+@media only screen and (max-width:1024px){
+    .news-slider-width{
+        width: 100%;
+    }
 }
 
+@media only screen and (max-width:768px){
+    
+    
+    .news-slider-width{
+       
+        width: 100%;
+    }
+    .slick-next, .slick-prev{
+        border: 1px solid #807777;
+        outline: none;
+        background: #f7f7f7;
+        border-radius: 50%;
+        box-shadow: 0 0 0 1px rgba(0,0,0,0.04), 0 4px 8px 0 rgba(0,0,0,0.20);
+      
+       
+    }  
+    
+    .slick-next::before{
+        
+        border-width: .2rem .2rem 0 0;
+        height: 9px;
+        width: 9px;  
+    }
+    .slick-prev::before{
+        
+        border-width: .2rem .2rem 0 0;
+        height: 9px;
+        width: 9px;
+    }
+    .slick-next{
+     
+        right: 0px
+    }
+    .slick-prev{
+      
+        left: 5px;
+        z-index: 999;       
+    }
+    .button:not(:disabled).slick-next{
+        opacity: 0;
+    }
+    .slick-disabled{
+        opacity: 0;
+    }
+    
+}
+@media only screen and (max-width: 414px){
+    .news-slider-width{
+        width: 100%;
+    }
+}
 </style>

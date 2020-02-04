@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Auth;
+use DB;
 use Illuminate\Http\Request;
 
 
@@ -36,8 +37,8 @@ class CategoryController extends Controller
     {
         // $categories = Category::select('name')->get();
         // return $categories;
-        $categories = Category::all()->toArray();
-        return array_reverse($categories);
+        $categories = Category::orderBy('id','desc')->paginate(12); 
+        return response()->json($categories);
     }
 
     public function list()
@@ -97,10 +98,22 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category = Category::find($id);
-        $category->delete();
-        $categories = Category::all()->toArray();
+        $post = "SELECT * from posts where category_id =" .$id;
+        $pid = DB::select($post);
+
+        if(count($pid) != 0)
+        {
+            return response()->json(['error' => 'There are News that related this category So you can not delete this!'], 404);
+        }
+        else{
+           $category->delete();
+           $categories = Category::all()->toArray();
+           return array_reverse($categories);
+        }
+        
+     
         // return response()->json(array('categories'=>$categories,'msg'=>'The Category successfully deleted'));
-        return array_reverse($categories);
+      
 
 
     }
@@ -117,9 +130,8 @@ class CategoryController extends Controller
         $search_categories = Category::query()
                             ->where('name', 'LIKE', "%{$search_word}%")
                             ->orderBy('id','DESC')
-                            ->get()
-                            ->toArray();
-        return $search_categories;
+                            ->paginate(12);
+        return response()->json($search_categories);
 
     }
 

@@ -49,7 +49,7 @@
                             <dl class="itemBox favnur" id="bd" v-else>
                                 <dt class="pr-4">比較する項目</dt>
                                 <dd>
-                                    <ul class="test">
+                                    <ul class="item-compare">
                                         <li v-if="address_check">住所</li>
                                         <li v-if="tran_check">交通手段</li>
                                         <li v-if="month_check">月額費用</li>
@@ -60,14 +60,6 @@
                                         <li v-if="opening_check">開設日</li>
                                     </ul>
                                 </dd>
-                                <!-- <dd v-if="tran_check" style="width: 84px;">、交通手段</dd>
-                        <dd v-if="month_check" style="width: 80px;">、月額費用</dd>
-                        <dd v-if="entry_check" style="width:100px;">、入居一時金</dd>
-                        <dd v-if="condition_check" style="width:80px;">、入居条件 </dd>
-                        <dd v-if="special_check" style="width: 51px;">、特長</dd>
-                        <dd v-if="medical_check" style="width: 135px;">、医療面の受け入れ</dd>
-                        <dd v-if="capacity_check" style="width:50px;">、定員</dd>
-                        <dd v-if="opening_check" class="da">、開設日</dd> -->
                             </dl>
                         </div>
 
@@ -81,22 +73,23 @@
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLongTitle">比較する項目を選ぶ</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <button class="btn btn-secondary">閉じる&times;</button>
+                                            <button class="btn btn-secondary pc-480">閉じる&times;</button>
+                                            <button class="btn btn-secondary close-480"><span>&times;</span></button>
                                         </button>
                                     </div>
-                                    <div class="modal-body">
+                                    <div class="modal-body modal-hr">
                                         <div class="row">
                                             <div class="col-md-3">
-                                                <p>エリア</p>
+                                                <p class="fnt-title">エリア</p>
                                             </div>
                                             <div class="col-md-3">
-                                                <label class="form-check-label control control--checkbox">
+                                                <label class="form-check-label control control--checkbox fnt-check">
                                                     <input type="checkbox" value="address" v-model="address_check" class="form-check-input"> 住所
                                                     <div class="control__indicator"></div>
                                                 </label>
                                             </div>
                                             <div class="col-md-3">
-                                                <label class="form-check-label control control--checkbox">
+                                                <label class="form-check-label control control--checkbox fnt-check">
                                                     <input type="checkbox" v-model="tran_check" class="form-check-input"> 交通手段
                                                     <div class="control__indicator"></div>
                                                 </label>
@@ -105,21 +98,21 @@
                                         <hr>
                                         <div class="row">
                                             <div class="col-md-3">
-                                                <p>費用・条件</p>
+                                                <p class="fnt-title">費用・条件</p>
                                             </div>
                                             <div class="col-md-3">
-                                                <label class="form-check-label control control--checkbox">
+                                                <label class="form-check-label control control--checkbox fnt-check">
                                                     <input type="checkbox" v-model="month_check" class="form-check-input"> 月額費用
                                                     <div class="control__indicator"></div>
                                                 </label>
                                                 <br>
-                                                <label style="width:400px;"  class="form-check-label control control--checkbox">
+                                                <label  class="form-check-label control control--checkbox fnt-check lbl-size">
                                                     <input type="checkbox" v-model="condition_check" class="form-check-input"> 入居条件 （自立、要支援、要介護、認知症相談可）
                                                     <div class="control__indicator"></div>
                                                 </label>
                                             </div>
                                             <div class="col-md-3">
-                                                <label class="form-check-label control control--checkbox">
+                                                <label class="form-check-label control control--checkbox fnt-check lbl-width">
                                                     <input type="checkbox" v-model="entry_check" class="form-check-input"> 入居一時金
                                                     <div class="control__indicator"></div>
                                                 </label>
@@ -128,10 +121,10 @@
                                         <hr>
                                         <div class="row">
                                             <div class="col-md-3">
-                                                <p>サービス内容</p>
+                                                <p class="fnt-title">サービス内容</p>
                                             </div>
                                             <div class="col-md-9">
-                                                <label class="form-check-label control control--checkbox">
+                                                <label class="form-check-label control control--checkbox fnt-check">
                                                     <input type="checkbox" v-model="special_check" class="form-check-input"> 特長 （24時間看護、職員体制、食事メニューの選択など）
                                                     <div class="control__indicator"></div>
                                                 </label>
@@ -140,16 +133,16 @@
                                         <hr>
                                         <div class="row pb-4">
                                             <div class="col-md-3">
-                                                <p>施設情報</p>
+                                                <p class="fnt-title">施設情報</p>
                                             </div>
                                             <div class="col-md-3">
-                                                <label class="form-check-label control control--checkbox">
+                                                <label class="form-check-label control control--checkbox fnt-check">
                                                     <input type="checkbox" v-model="capacity_check" class="form-check-input"> 定員
                                                     <div class="control__indicator"></div>
                                                 </label>
                                             </div>
                                             <div class="col-md-3">
-                                                <label class="form-check-label control control--checkbox">
+                                                <label class="form-check-label control control--checkbox fnt-check">
                                                     <input type="checkbox" v-model="opening_check" class="form-check-input"> 開設日
                                                      <div class="control__indicator"></div>
                                                 </label>
@@ -239,13 +232,30 @@
                 <!--result-->
                 <div class="col-12">
                     <div class="clearfix">
-                        <div class="float-right">
+                        <div>
+                            <label><strong> {{message}} </strong></label>
+                        </div>
+                        <div class="float-right pc-480">
+                            
                             <label class="btn my-2 my-sm-0 all-btn secondary-bg-color btn-secondary control controlinner--checkbox" style="width:300px;">
-                                <input type="checkbox" @change="checkAll()" class="check-all-btn" />
+                                <input type="checkbox" @change="checkAll()" class="check-all-btn" v-model="checkallbtn" id="main-check-all"/>
                                 <span class="checkmark"></span>すべての資料請求にチェックを入れる
                                 <div class="controlinner__indicator" style="top:8px;left:7px;"></div>
                             </label>
-                            <button type="button" class="btn btn-success all-btn float-right m-l-10" @click="addingMail()" :disabled="isdisable">資料請求する</button>
+                            <!-- <button type="button" class="btn btn-success all-btn float-right m-l-10" @click="addingMail()" :disabled="isdisable">資料請求する</button> -->
+                        </div>
+                        <div class="float-right check-resize">
+                            <!-- <label class="btn my-2 my-sm-0 all-btn secondary-bg-color btn-secondary control controlinner--checkbox pc-480" style="width:300px;">
+                                <input type="checkbox" @change="checkAll()" class="check-all-btn" />
+                                <span class="checkmark"></span>すべての資料請求にチェックを入れる
+                                <div class="controlinner__indicator" style="top:8px;left:7px;"></div>
+                            </label> -->
+                            <label class="btn my-sm-0 all-btn secondary-bg-color btn-secondary control controlinner--checkbox fnt-check">
+                                <input type="checkbox" @change="checkAll()" class="check-all-btn" />
+                                <span class="checkmark"></span>すべてチェック
+                                <div class="controlinner__indicator" style="top:8px;left:3px;"></div>
+                            </label>
+                            <!-- <button type="button" class="btn btn-success all-btn float-right m-l-10 fnt-check" @click="addingMail()" :disabled="isdisable">資料請求する</button> -->
                         </div>
                     </div>
                     <div class="m-t-20" id="fav-history-page">
@@ -379,17 +389,25 @@
                             </div>
                         </div>
                     </div>
+                    <button type="button" class="btn btn-success col-sm-4 offset-sm-4 col-md-2 offset-md-5 m-b-10" @click="addingMail()" :disabled="isdisable">資料請求する</button>
                 </div>
                 <!--end compare box-->
                 <!--result-->
 
                 <!--end result-->
+                
             </div>
+            
         </div>
 
-        <button type="button" class="btn btn-success mt-5 float-right" @click="addingMail()" :disabled="isdisable">資料請求する</button>
+        
     </div>
 </template>
+<style>
+.added-class:after {
+  content:none
+}
+</style>
 
 <script>
 
@@ -397,6 +415,8 @@
      
         data() {
                 return {
+                    status_all:'0',
+                    chek_status:true,
                     errors: [],
                     fav_nursing: [],
                     local_sto: "",
@@ -441,10 +461,12 @@
                     paginationFactor: 261,
                     disableBtn: false,
                     check:false,
+                    checkallbtn:false,
                     window:{
                         width: 0,
                         height: 0
-                    }
+                    },
+                    message:''
                 };
             },
             computed: {
@@ -460,6 +482,8 @@
             },
 
             created() {
+             
+            
                 //for cardcarousel responsive
                 window.addEventListener('resize', this.handleResize)
                 this.handleResize(); 
@@ -609,10 +633,55 @@
                         }
                     },
                     getAllFavourite: function(local_storage) {
+                       
                         this.axios
                             .post('/api/nursing_fav/' + local_storage)
                             .then(response => {
                                 this.fav_nursing = response.data;
+                              
+                                if(this.fav_nursing.length < this.fav_nus && this.fav_nursing.length > 0)
+                                {      
+                                     var nus_id = '';
+                                     this.message = "現在本サイトに掲載されていない介護施設についてはお気に入りリストから削除しました。";
+                                     for(var i= 0;i<this.fav_nursing.length;i++)
+                                     {
+                                         if(i== this.fav_nursing.length-1)
+                                         {
+                                             nus_id += this.fav_nursing[i]['id'];
+                                         }
+                                         else{
+                                            nus_id += this.fav_nursing[i]['id'] + ",";
+                                         }
+                                       
+                                     }      
+                                
+                                     localStorage.setItem('nursing_fav',nus_id);
+                                     this.local_sto = localStorage.getItem("nursing_fav");
+                                     this.nusFav = this.fav_nursing.length;
+                                  
+                                }
+                                if(this.fav_nursing.length == 0)
+                                { 
+                                  
+                                    this.$swal({   
+                                    position: 'top-end',
+                                    type: 'info',
+                                    // title: '作成されました',
+                                    text: 'お気に入りの介護施設は既に本サイトに掲載されておりませんので、お気に入りリストから削除しました。',
+                                    showConfirmButton: true,
+                                    confirmButtonText: "閉じる",
+                                    width: 250,
+                                    height: 200,
+                                    }).then(response => {
+                                         localStorage.setItem('nursing_fav','');
+                                         this.local_sto = localStorage.getItem("nursing_fav");
+                                         this.nusFav = 0;
+                                          $('.fav-nursing-link-box>a').css({'cursor':'not-allowed','pointer-events':'none'});
+                                          $( '.fav-nursing-link-box>a').parent('div').css({'cursor':'not-allowed'});
+                                         this.$router.push({name: 'nursingSearch'});    
+                                    });
+                                    
+                                }
                                 for (var i = 0; i < this.fav_nursing.length; i++) {
                                     var j = this.fav_nursing[i].id;
                                     if (this.document_status[j] == true) {
@@ -625,6 +694,7 @@
                             });
                     },
                     addingMail() {
+
                         for (var i = 0; i < this.fav_nursing.length; i++) {
                             this.fav_email.push({
                                 'id': this.fav_nursing[i]['id'],
@@ -632,6 +702,7 @@
                                 'name': this.fav_nursing[i]['name']
                             });
                         }
+                        
                         localStorage.setItem("document", JSON.stringify(this.document_status));
                         localStorage.removeItem("item");
                         localStorage.setItem("item", JSON.stringify(this.fav_email));
@@ -642,33 +713,37 @@
                         });
                     },
                     checkAll() {
-                        this.disableBtn = false;
+                        this.disableBtn = '';
+
                         if ($('.check-all-btn').is(":checked")) {
-                            // $('.checkbox1').prop("checked", true);
-                            // $('.checkbox2').prop("checked", true);
+                            this.disableBtn = false;
+                            
                         } else {
-                            // $('.checkbox1').prop("checked", false);
-                            // $('.checkbox2').prop("checked", false);
-                             this.disableBtn = true;
+                            this.disableBtn = true;
+                        
                         }
                         for (var i = 0; i < this.fav_nursing.length; i++) {
                             var j = this.fav_nursing[i].id;
                             if ($('.check-all-btn').is(":checked")) {
                                 this.document_status[j] = true;
-                                // this.reserv_status[j] = true;
                             } else {
                                 this.document_status[j] = false;
-                                // this.reserv_status[j] = false;
                             }
                         }
+                        
                     },
                     checkSingle(nid) {
                         if (this.document_status[nid]) {
                             this.disableBtn = false;
                         }
-                        else if(!this.document_status.includes(true)){
+                        else if(!this.document_status.includes(true)) {
                             this.disableBtn = true;
+                            this.checkallbtn = false;
                         }
+                        else if(this.document_status.includes(false)){
+                            this.checkallbtn = false;
+                        }
+                       
                     },
                     itemCompare() {
                         $('.mycheck').css('display', 'block');

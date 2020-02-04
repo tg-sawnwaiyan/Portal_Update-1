@@ -18,12 +18,11 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-
+    public function index($type)
+    {        
         // $customers = Customer::all()->toArray();
         // return array_reverse($customers);
-        $customer =Customer::orderBy('created_at', 'desc')->get();
+        $customer =Customer::where('type_id',$type)->orderBy('created_at', 'desc')->paginate(12);
         return response()->json($customer);
     }
 
@@ -55,7 +54,7 @@ class CustomerController extends Controller
     {
         $request->validate([
             'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'name' => 'required|min:2|max:50',
+            'name' => 'required',
             'phone' => 'required|numeric',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
@@ -64,8 +63,6 @@ class CustomerController extends Controller
 
         ],[
             'name.required' => 'Name is required',
-            'name.min' => 'Name must be at least 2 characters.',
-            'name.max' => 'Name should not be greater than 50 characters.',
         ]);
         $imageName = $request->logo->getClientOriginalName();
         $request->logo->move(public_path('images'), $imageName);
@@ -105,15 +102,10 @@ class CustomerController extends Controller
 
     public function edit($id)
     {
-        if($id == 0) {
-            $u_id = auth('api')->user()->id;
-            $id = User::where('id',$u_id)->select('customer_id')->value('customer_id');
-            $type = User::where('id',$u_id)->select('type_id')->value('type_id');
-        }
-        $customer = Customer::find($id);
-        $customer['type_id'] = isset($type)? $type: '';
+        $sql = "SELECT *, (CASE c.type_id WHEN '2' THEN CONCAT((200000+c.id)) ELSE CONCAT((500000+c.id)) END) as cusnum FROM customers as c WHERE c.id = ".$id;
+        $customer = DB::select($sql);
 
-        return response()->json($customer);
+        return response()->json($customer[0]);
     }
 
     public function getCustomerInfo($id) {
@@ -155,7 +147,9 @@ class CustomerController extends Controller
             $hospital->delete();
         }
         
-        return response()->json('Customer successfully deleted');
+        $customers = Customer::all();
+        $data = array("status"=>"deleted", "customers"=>$customers);
+        return response()->json($data);
     }
 
     public function confirm($id)
@@ -176,7 +170,7 @@ class CustomerController extends Controller
         if(!empty($checkUser)){            
             return response()->json('already');
         }else{
-            \Mail::to($getCustomer)->send(new SendMailable($getCustomer));
+            \Mail::to($getCustomer->email)->send(new SendMailable($getCustomer));
            
             $data = array(
                 'name'=>$getCustomer->name,
@@ -215,7 +209,9 @@ class CustomerController extends Controller
             $cus->user_id = $lastid;
             $cus->save();
 
-            return response()->json('success');
+            $customers = Customer::all();
+            $data = array("status"=>"success", "customers"=>$customers);
+            return response()->json($data);
         }
     }
 
@@ -228,17 +224,22 @@ class CustomerController extends Controller
         $search_customer = Customer::query()
                             ->where('name', 'LIKE' , "%{$search_word}%")
                             ->orderBy('id','DESC')
-                            ->get()
-                            ->toArray();
-        return $search_customer;
+                            ->paginate(12);
+        return response()->json($search_customer);
     }
 
     public function accountStatusUpdate(Request $request)
    {
-       $request = $request->all();
-      
-       $user = User::find(auth('api')->user()->id);
-       
+       $request = $request->all();      
+    //    $user = User::find(auth('api')->user()->id);       
+       $cusId = $request['cus_id'];
+       if(auth()->user()->role == 2) {
+           $customer = Customer::find($cusId);
+           $user = User::find($customer['user_id']);
+       }else{
+           $user = User::find(auth('api')->user()->id);
+       } 
+
        $customer = Customer::find($user['customer_id']);
       
         if($request['status'] == '1') { 

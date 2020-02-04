@@ -4,27 +4,28 @@
     <form class="col-md-12 form-class">
      <div class="col-md-12 pad-free">
 
-        <div class="form-group form-group-wrapper">
+        <div class="form-group form-group-wrapper d-flex">
 
-                <label class="heading-lbl">名前<span class="error">*</span></label>
+                <label class="heading-lbl col-md-2 col-12 pad-free">施設名称 <span class="error">*</span></label>
 
-                <input type="text" class="form-control customer-name col-10 float-right" placeholder="Name" v-model="customer_info.name">
+                <input type="text" class="form-control customer-name col-md-10 col-12 nursing_input" placeholder="施設名称を入力してください。" v-model="customer_info.name">
         </div>
 
-        <div class="form-group form-group-wrapper">
+        <div class="form-group form-group-wrapper d-flex">
 
-                <label class="heading-lbl">メールアドレス<span class="error">*</span></label>
-                <label class=" col-10 float-right customer-email"> {{customer_info.email}} </label>
+                <label class="heading-lbl1 col-md-2 col-12 pad-free">メールアドレス <span class="error">*</span></label>
+                <label class="col-md-10 col-12 customer-email"> {{customer_info.email}} </label>
 
                 <!-- <input type="text" class="form-control customer-email col-10 float-right"  placeholder="Email" v-model="customer_info.email"> -->
         </div>
         <div class="form-group form-group-wrapper d-flex">
 
-                <label class="heading-lbl col-2 pad-free">電話番号<span class="error">*</span></label>
-                <div class="col-10 row">
-                <input type="text" class="form-control customer-phone col-12" id="phone" placeholder="Phone" v-model="customer_info.phone" v-on:keyup="isNumberOnly" maxlength="14">
-                <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>    
-                <span class="error" v-else></span> 
+                <label class="heading-lbl col-md-2 col-12 pad-free">電話番号 <span class="error">*</span></label>
+                <div class="col-md-10 col-12 row">
+                <input type="text" class="form-control customer-phone col-md-10 col-12 nursing_input" id="phone" placeholder="Phone" v-model="customer_info.phone" pattern="[0-9-]*"  @focusout="focusPhone"  maxlength="14" title="Please enter number only.">
+                <!-- v-on:keyup="isNumberOnly" -->
+                <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>
+                <span class="error" v-else></span>
                 </div>
         </div>
 
@@ -38,23 +39,23 @@
 
         <div class="form-group form-group-wrapper">
 
-          <label class="heading-lbl col-2 pad-free">フォトアルバム</label>
+          <label class="heading-lbl col-md-2 col-12 pad-free">フォトアルバム</label>
 
-          <span class="galleryadd btn all-btn main-bg-color float-right" style="min-width: 0px;" @click="galleryAdd()">
-         
+          <span class="galleryadd btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px;" @click="galleryAdd()">
+
             <i class="fas fa-plus-circle"></i> 追加
 
           </span>
-           <span class='changeGalleryLink btn btn all-btn main-bg-color ' style="min-width: 0px;" @click="galleryToggle" >
+           <span class='changeGalleryLink btn btn all-btn main-bg-color nursing_toggle_responsive' style="min-width: 0px;" @click="galleryToggle" >
                   <i id="gallery" class="fas fa-sort-down"></i>
             </span>
 
-          <div id="changeGalleryLink" class="col-md-12">
-                <div class="row" id ="gallery-photo">   
+          <!-- <div id="changeGalleryLink" class="col-md-12">
+                <div class="row" id ="gallery-photo">
                         <div class="col-md-6 gallery-area-photo" v-bind:id="'photo'+indx" v-for="(img,indx) in img_arr" :key="img.id">
                                 <div class="col-md-12">
-                                        <input type="file" name="" class="hospital-photo m-b-10" v-bind:class="img.classname" id="upload_img" @change="preview_image(img.classname,indx)">
-                                        <div class="col-md-12 m-b-10" v-bind:class="img.classname">
+                                        <input type="file" name="" class="hospital-photo m-b-10" v-bind:class="img.id" id="upload_img" @change="preview_image(img.id,indx)">
+                                        <div class="col-md-12 m-b-10" v-bind:class="img.id">
                                                 <input type="hidden" class="already-photo" v-model="img.photo">
                                                 <img :src="'/upload/hospital_profile/'+ img.photo" class="img-fluid" alt="profile" v-if="img.photo" v-bind:id="'already-photo'+indx" @error="imgUrlAlt">
                                         </div>
@@ -68,18 +69,18 @@
                                 </div>
                         </div>
                 </div>
-          </div>
+          </div> -->
 
-          <!-- <div class="col-md-12">
+        <div id="changeGalleryLink" class="col-md-12">
 
 
             <div class="row" id="gallery-photo">
 
-           
+
 
               <div
 
-                class="col-md-6 gallery-area-photo"
+                class="col-md-6 gallery-area-photo p0-990 p0-480"
 
                 v-bind:id="'photo'+indx"
 
@@ -88,31 +89,28 @@
                 :key="img.id"
 
               >
-            
 
-                <div class="col-md-12">
+                <div class="col-md-12 p0-990 p0-480">
 
-                  <input type="file" name class="hospital-photo m-b-15" v-bind:class="img.classname" id="upload_img" @change="preview_image(img.classname,indx)" />
-
-                  <div class="col-md-12" v-bind:class="img.classname">
-
+                  <input type="file" name class="hospital-photo m-b-15 p-t-10"  v-bind:class="'classname'+indx" id="upload_img" @change="preview_image($event,indx)" />
+                  <div class="col-md-12" v-bind:class="img.id">
                     <input type="hidden" class="already-photo" v-model="img.photo" />
-
-                    <img :src="'/upload/hospital_profile/'+ img.photo" class="img-fluid hospital-image" alt="profile" v-if="img.photo" v-bind:id="'already-photo'+indx" @error="imgUrlAlt"/>
-
+                    <div>
+                    <img v-bind:src="img.src" class="img-fluid hospital-image" alt="profile" v-if="img.src != null" @error="imgUrlAlt"/>
+                    </div>
                   </div>
 
                 </div>
 
                 <div class="col-md-12">
-
-                  <input type="text" name="title" placeholder="タイトル" class="form-control m-b-15 title white-bg-color" v-model="img.title" />
-
-                  <textarea name="description" placeholder="コンテンツ" class="form-control m-b-15 description white-bg-color" v-model="img.description" ></textarea>
+                  <label class="m-t-10">タイトル:</label>
+                  <input type="text" name="title" placeholder="タイトルを入力してください。" class="form-control m-b-15 title white-bg-color" v-model="img.title" />
+                  <label>コンテンツ:</label>
+                  <textarea name="description" placeholder="コンテンツを入力してください。" class="form-control m-b-15 description white-bg-color" v-model="img.description" ></textarea>
 
                 </div>
-                <div class="col-md-12 text-right">
-                  <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,'photo')">
+                <div class="col-md-12 text-right hos-del">
+                  <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,img.id,'photo')">
                     <i class="fa fa-trash"></i> 削除
                   </a>
                  </div>
@@ -121,7 +119,7 @@
 
             </div>
 
-          </div> -->
+          </div>
 
         </div>
 
@@ -129,13 +127,13 @@
 
           <label class="heading-lbl col-2 pad-free">動画</label>
 
-          <span class="galleryvideo btn all-btn main-bg-color float-right" style="min-width: 0px;" @click="galleryVideoAdd()" >
+          <span class="galleryvideo btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px;" @click="galleryVideoAdd()" >
 
             <i class="fas fa-plus-circle"></i> 追加
 
           </span>
 
-           <span class='changeGalleryVideoLink  btn btn all-btn main-bg-color ' style="min-width: 0px;" @click="galleryVideoToggle" >
+           <span class='changeGalleryVideoLink  btn btn all-btn main-bg-color nursing_toggle_responsive  ' style="min-width: 0px;" @click="galleryVideoToggle" >
                                         <i id="video" class="fas fa-sort-down"></i>
            </span>
 
@@ -145,23 +143,23 @@
 
               <!-- Add by + Button -->
 
-              <div class="col-md-6 gallery-area-video" v-bind:id="'video'+indx" v-for="(video,indx) in video_arr" :key="video.id" >
+              <div class="col-md-6 gallery-area-video p0-480" v-bind:id="'video'+indx" v-for="(video,indx) in video_arr" :key="video.id" >
 
                 <div class="col-md-12">
-
-                  <input type="text" name="url" placeholder="url" class="form-control m-b-15 video-url white-bg-color" v-model="video.photo" />
+                  <label>URL:</label>
+                  <input type="text" name="url" placeholder="URLを入力してください。" class="form-control m-b-15 video-url white-bg-color" v-model="video.photo" />
 
                 </div>
 
                 <div class="col-md-12">
-
-                  <input type="text" name="title" placeholder="タイトル" class="form-control m-b-15 title white-bg-color" v-model="video.title" />
-
-                  <textarea name="description" placeholder="コンテンツ" class="form-control m-b-15 description white-bg-color" v-model="video.description" ></textarea>
+                  <label>タイトル:</label>
+                  <input type="text" name="title" placeholder="タイトルを入力してください。" class="form-control m-b-15 title white-bg-color" v-model="video.title" />
+                  <label>コンテンツ:</label>
+                  <textarea name="description" placeholder="コンテンツを入力してください。" class="form-control m-b-15 description white-bg-color" v-model="video.description" ></textarea>
 
                 </div>
-                <div class="col-md-12 text-right">
-                  <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,'video')">
+                <div class="col-md-12 text-right hos-del">
+                  <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,video.id,'video')">
 
                   <i class="fa fa-trash"></i> 削除
 
@@ -193,8 +191,8 @@
             <tr>
                 <td>
                     <div class="form-group">
-                        <label  class="heading-lbl col-2 pad-free">診療科目</label>
-                        <span class="btn all-btn main-bg-color" style="min-width: 0px;" @click="clinicalSubject()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate1}"></i></span>
+                        <label  class="heading-lbl col-2 pad-free">診療科目 </label>
+                        <span class="btn all-btn main-bg-color nursing_toggle_responsive" style="min-width: 0px;" @click="clinicalSubject()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate1}"></i></span>
                         <div class="col-md-10 float-right clinical-subject-toggle-div toggle-div m-t-10">
                             <div class="row"> <div v-for="subj in clinical_subj" :key="subj.id" class="form-check form-check-inline col-sm-3">
                                     <label class="form-check-label control control--checkbox" style="padding-left:5px;">
@@ -227,17 +225,16 @@
 
             name="specialist"
 
-            class="form-control col-10 specialist white-bg-color"
+            class="form-control col-md-10 col-12 hos-768 specialist white-bg-color"
 
             v-model="hospital_info.specialist"
 
           ></textarea>
-
         </div>
         <table class="table table-bordered table-wrapper">
           <tr>
-                  <td class="width17" style="border:none;"> <label class="heading-lbl pad-free"> 医院からのお知らせ<span class="error">*</span></label></td>
-                  <td style="border:none;">
+                  <th class="nursing_table" style="border:none;"> <label class="heading-lbl hos_lbl pad-free">医院からのお知らせ <span class="error">*</span></label></th>
+                  <td class="nursing_table1" style="border:none;">
                           <!-- <textarea name="feature" id="" cols="30" rows="10" ></textarea> -->
                           <quill-editor  ref="myQuilEditor" name="detailsinfo" class="details-info" @change="onDetailInfoEditorChange($event)" v-model="hospital_info.details_info" :options="editorOption"/>
                   </td>
@@ -254,11 +251,11 @@
 
             <td>
 
-              <label class="heading-lbl col-2 pad-free">診療時間</label>
+              <label class="heading-lbl col-2 pad-free">診療時間 </label>
 
               <span
 
-                class="btn all-btn main-bg-color"
+                class="btn all-btn main-bg-color nursing_toggle_responsive"
 
                 style="min-width: 0px;"
 
@@ -270,7 +267,7 @@
 
               </span>
 
-              <div class="col-md-10 float-right m-t-10 schedule-toggle-div toggle-div pad-free">
+              <div class="col-md-10 hos_toggle float-right m-t-10 schedule-toggle-div toggle-div pad-free">
 
                 <div class="col-12">
 
@@ -290,7 +287,7 @@
 
                       <tr>
 
-                        <td>月</td>
+                        <td >月</td>
 
                         <td>
 
@@ -312,7 +309,7 @@
 
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 m-t-768">
 
                               <span>まで:</span>
 
@@ -352,7 +349,7 @@
 
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 m-t-768">
 
                               <span>まで:</span>
 
@@ -398,7 +395,7 @@
 
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 m-t-768">
 
                               <span>まで:</span>
 
@@ -438,7 +435,7 @@
 
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 m-t-768">
 
                               <span>まで:</span>
 
@@ -484,7 +481,7 @@
 
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 m-t-768">
 
                               <span>まで:</span>
 
@@ -524,7 +521,7 @@
 
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 m-t-768">
 
                               <span>まで:</span>
 
@@ -570,7 +567,7 @@
 
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 m-t-768">
 
                               <span>まで:</span>
 
@@ -610,7 +607,7 @@
 
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 m-t-768">
 
                               <span>まで:</span>
 
@@ -656,7 +653,7 @@
 
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 m-t-768">
 
                               <span>まで:</span>
 
@@ -696,7 +693,7 @@
 
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 m-t-768">
 
                               <span>まで:</span>
 
@@ -742,7 +739,7 @@
 
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 m-t-768">
 
                               <span>まで:</span>
 
@@ -782,7 +779,7 @@
 
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 m-t-768">
 
                               <span>まで:</span>
 
@@ -828,7 +825,7 @@
 
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 m-t-768">
 
                               <span>まで:</span>
 
@@ -868,7 +865,7 @@
 
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 m-t-768">
 
                               <span>まで:</span>
 
@@ -908,13 +905,13 @@
 
         <div class="form-group form-group-wrapper row ml-0 mr-0">
 
-          <label class="heading-lbl col-2 pad-free">休診日</label>
+          <label class="heading-lbl col-md-2 col-12 pad-free">休診日 </label>
 
           <textarea
 
             name="close-day"
 
-            class="form-control white-bg-color close-day col-10"
+            class="form-control white-bg-color close-day col-md-10 col-12 hos-768"
 
             v-model="hospital_info.closed_day"
 
@@ -932,11 +929,11 @@
 
               <div class="form-group">
 
-                <label class="heading-lbl col-2 pad-free">施設情報</label>
+                <label class="heading-lbl col-2 pad-free">施設情報 </label>
 
                 <span
 
-                  class="btn all-btn main-bg-color"
+                  class="btn all-btn main-bg-color nursing_toggle_responsive"
 
                   style="min-width: 0px;"
 
@@ -988,7 +985,7 @@
 
               <div class="form-group">
 
-                <label class="heading-lbl col-2 pad-free">
+                <label class="heading-lbl hos_lbl1  col-2 pad-free ">
 
                   こだわりの特長
 
@@ -998,7 +995,7 @@
 
                 <span
 
-                  class="btn all-btn main-bg-color"
+                  class="btn all-btn main-bg-color nursing_toggle_responsive btn-toggle"
 
                   style="min-width: 0px;"
 
@@ -1045,7 +1042,7 @@
 
         <div class="form-group form-group-wrapper row ml-0 mr-0">
 
-          <label class="heading-lbl col-2 pad-free">公式サイト</label>
+          <label class="heading-lbl col-md-2 col-12 pad-free">公式サイト</label>
 
           <input
 
@@ -1053,7 +1050,7 @@
 
             name="official-website"
 
-            class="form-control col-10 website white-bg-color"
+            class="form-control col-md-10 col-12  hos-768 website white-bg-color"
 
             v-model="hospital_info.website"
 
@@ -1065,13 +1062,13 @@
 
         <div class="form-group form-group-wrapper row mr-0 ml-0">
 
-          <label class="heading-lbl col-2 pad-free">混雑状況</label>
+          <label class="heading-lbl col-md-2 col-12 pad-free">混雑状況</label>
 
           <textarea
 
             name="congestion"
 
-            class="form-control col-10 congestion white-bg-color"
+            class="form-control col-md-10 col-12  hos-768 congestion white-bg-color"
 
             v-model="hospital_info.congestion"
 
@@ -1246,29 +1243,25 @@
         </table> -->
         <!-- End Test Station Area -->
         <table class="table table-bordered table-wrapper">
-                    <tr>
-                        <td>
-                            <label class="heading-lbl col-2 pad-free">地図</label>
-                            <span class="btn all-btn main-bg-color" style="min-width: 0px;" @click="maptogglediv()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
-                            <div class="col-md-10 float-right m-t-10 map-toggle-div toggle-div pad-free">
-                                <div class="col-md-12">
-                                    <GoogleMap :address="customer_info.address" :lat_num='hospital_info.latitude' :lng_num='hospital_info.longitude' v-if="hospital_info.latitude != 0"></GoogleMap>
-                                    <GoogleMap :address="customer_info.address" :lat_num='35.6803997' :lng_num='139.76901739' v-if="hospital_info.latitude == 0"></GoogleMap>
+            <tr>
+                <td>
+                    <label class="heading-lbl col-2 pad-free">地図</label>
+                    <span class="btn all-btn main-bg-color nursing_toggle_responsive" style="min-width: 0px;" @click="maptogglediv()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
+                    <div class="col-md-10 hos_toggle float-right m-t-10 map-toggle-div toggle-div pad-free">
+                        <div class="col-md-12">
+                            <GoogleMap :address="address_show" :township="customer_info.townships_id" :lat_num='hospital_info.latitude' :lng_num='hospital_info.longitude' :city="city_id" :township_list="township_list"></GoogleMap>
+                            <!-- <GoogleMap :address="customer_info.address" :lat_num='35.6803997' :lng_num='139.76901739' v-if="hospital_info.latitude == 0"></GoogleMap> -->
 
-                                    <div class="form-group">
-                                            <label>交通 / アクセス<span class="error">*</span></label>
-                                            <!-- <textarea name="address" rows="10" class="form-control"></textarea> -->
-                                            <quill-editor  ref="myQuilEditor" name="address" :options="editorOption" class="transporation-access" @change="onAccessEditorChange($event)" v-model="hospital_info.access"/>
-                                    </div>
-
-                                </div>
+                            <div class="form-group">
+                                <label>交通 / アクセス<span class="error">*</span></label>
+                                <!-- <textarea name="address" rows="10" class="form-control"></textarea> -->
+                                <quill-editor  ref="myQuilEditor" name="address" :options="editorOption" class="transporation-access" @change="onAccessEditorChange($event)" v-model="hospital_info.access"/>
                             </div>
-                        </td>
-                    </tr>
-                </table>
-
-
-
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
         <!-- Consultation -->
 
 
@@ -1301,7 +1294,7 @@
 
         <div style="position:fixed;width:100%;background:rgba(0,0,0,.5);left:0;right:0;bottom:0;padding:0 0 10px 0;">
             <div class="row col-2 col-offset-5 mx-auto">
-                <span class="btn secondary-bg-color col-8 offset-2 all-btn m-t-15 pad-10" @click="Create_Profile()">作成</span>
+                <span class="btn secondary-bg-color col-8 offset-2 all-btn m-t-15 pad-10" @click="Create_Profile()">更新</span>
             </div>
         </div>
 
@@ -1318,50 +1311,56 @@
 <script>
 import 'quill/dist/quill.snow.css'
 import {quillEditor} from 'vue-quill-editor'
-import {Button, Input,Select} from 'iview'
+// import {Button, Input,Select} from 'iview'
 import GoogleMap from './GoogleMap.vue'
+// import { timeout } from 'q'
 export default {
          components: {
                 GoogleMap,
-                Button,
-                Input,
-                Select,
-                quillEditor
+                quillEditor,
+                // Button,
+                // Input,
+                // Select,
         },
        data() {
-                return {
-                        fac_list: [],
-                        img_arr:[],img_list:[],
-                        video_arr:[], video_list:[],gallery_list:[],
-                        feature_list:[],
-                        profile_type:'hospital',
-                        schedule_arr:[],shedule_am:[],shedule_pm:[],
-                        schedule_list:[],
-                        customer_info:[],
-                        customer_info_push:[],
-                        hospital_info:[],  save_hospital_info:[],
-                        chek_feature : [],
-                        subjects:[],
-                        city: '',
-                        postal: '',clinical_subj:[],
-                        isRotate1: false,
-                        isRotate2: false,
-                        isRotate3: false,
-                        isRotate4: false,
-                        isRotate5: false,
-                          editorOption:{
-                        debug:'info',
-                        placeholder:'Type your post...',
-                        readonly:true,
-                        theme:'snow',
-                        access_val: '',
-                        detail_info: '', stations:[], station_list:[],                        
-                },
-                ph_length: false,
-                ph_num: false,
-                }
+            return {
+                fac_list: [],
+                img_arr:[],
+                video_arr:[],
+                feature_list:[],
+                profile_type:'hospital',
+                schedule_arr:[],shedule_am:[],shedule_pm:[],
+                schedule_list:[],
+                customer_info:[],
+                customer_info_push:[],
+                hospital_info:[],  save_hospital_info:[],
+                chek_feature : [],
+                subjects:[],
+                facilities:[],
+                city: '',
+                postal: '',clinical_subj:[],
+                isRotate1: false,
+                isRotate2: false,
+                isRotate3: false,
+                isRotate4: false,
+                isRotate5: false,
+                    editorOption:{
+                debug:'info',
+                placeholder:'Type your post...',
+                readonly:true,
+                theme:'snow',
+                access_val: '',
+                detail_info: '', stations:[], station_list:[],
+            },
+            ph_length: false,
+            ph_num: false,
+            city_id: 0,
+            township_list: [],
+            address_show:''
+            }
         },
         created(){
+
 
                 if(this.type != undefined && this.cusid!= undefined){
                         localStorage.setItem('cusType',this.type);
@@ -1377,26 +1376,38 @@ export default {
                 //       this.station_list = response.data;
                 // });
 
+                this.initialCall();
+                // quill.editor.disable()
+        },
+        methods: {
+            initialCall(){
+              this.address_show = $('#address_show').val();
                 this.axios
                 .get('/api/clinical-subject/'+this.cusid)
                 .then(response=>{
-                        this.clinical_subj = response.data;
+                    this.clinical_subj = response.data;
                 });
                  this.axios
                 .get('/api/schedule/'+this.cusid)
                 .then(response=>{
-                        this.schedule_arr = response.data;
+                    this.schedule_arr = response.data;
                 });
                 this.axios
                 .get('/api/customerinfo/'+this.cusid)
                 .then(response=>{
-                        this.customer_info = response.data;
+                    this.customer_info = response.data;
+                    this.axios
+                    .get('/api/nurscities/'+this.customer_info.townships_id)
+                    .then(response=>{
+                        this.city_id = Number(response.data[0].city_id);
+                        this.township_list = response.data[0].township_list;
+                    });
                 });
                 this.axios
                 .get('/api/hospitalinfo/'+this.cusid)
                 .then(response=>{
                     this.hospital_info = response.data;
-                    
+
                     if(this.hospital_info.latitude == 0){
                         localStorage.setItem('lat_num',35.6803997);
                         localStorage.setItem('lng_num',139.76901739);
@@ -1410,6 +1421,7 @@ export default {
                 .get('/api/hospital-pgallery/'+this.cusid)
                 .then(response=>{
                         this.img_arr = response.data;
+
                 });
                 this.axios
                 .get('/api/hospital-vgallery/'+this.cusid)
@@ -1426,9 +1438,7 @@ export default {
                 .then(response=>{
                         this.fac_list = response.data;
                 });
-                // quill.editor.disable()
-        },
-        methods: {
+            },
              imgUrlAlt(event) {
                 event.target.src = "images/noimage.jpg"
             },
@@ -1444,9 +1454,9 @@ export default {
                     $(".hos-fac-toggle-div").toggle('medium');
                     this.isRotate3 = !this.isRotate3;
             },
-            preview_image(img_class,indx) {
-                  $("."+img_class).html("<img src='"+URL.createObjectURL(event.target.files[0])+"' class='img-fluid hospital-image'>");
-                  document.getElementById('already-photo'+indx).src= URL.createObjectURL(event.target.files[0]);
+            preview_image(event,indx) {
+                this.img_arr[indx]['photo'] = event.target.files[0].name;
+                this.img_arr[indx]['src'] = URL.createObjectURL(event.target.files[0]);
             },
             facilityCheck(check_id) {
                     $('.facility-'+check_id).attr('checked','true');
@@ -1455,7 +1465,7 @@ export default {
                     $('.feature-'+check_id).attr('checked','true');
             },
             stationCheck(check_id) {
-                $('.station-'+check_id).attr('checked','true'); 
+                $('.station-'+check_id).attr('checked','true');
             },
             subjectCheck(check_id) {
                     $('.subject-'+check_id).attr('checked','true');
@@ -1465,34 +1475,76 @@ export default {
                      this.isRotate1 = !this.isRotate1;
 
             },
-            DeltArr(indx,type) {
-                    var arr_list = [];
-                    var arr_count = document.getElementsByClassName('gallery-area-'+type);
-                    for(var i=0; i< arr_count.length; i++) {
-                            arr_list[i] = document.getElementsByClassName('gallery-area-'+type);
-                    }
-                    for(var i=0; i<= arr_count.length; i++) {
-                            if(i == indx) {
-                                    arr_list.splice(indx,1);
-                                    var ele = document.getElementById(type+indx);
-                                    var parentEle = document.getElementById('gallery-'+type);
-                                    parentEle.removeChild(ele);
+            DeltArr(indx,id,type) {
+
+
+              this.$swal({
+                        title: "確認",
+                        text: "職種を削除してよろしいでしょうか。",
+                        type: "warning",
+                        width: 350,
+                        height: 200,
+                        showCancelButton: true,
+                        confirmButtonColor: "#dc3545",
+                        cancelButtonColor: "#b1abab",
+                        cancelButtonTextColor: "#000",
+                        confirmButtonText: "削除",
+                        cancelButtonText: "キャンセル",
+                        confirmButtonClass: "all-btn",
+                        cancelButtonClass: "all-btn"
+                    }).then(response => {
+                        console.log(type+"/"+id)
+                        if(type == 'photo') {
+                            if(id){
+
+                                let fd = new FormData();
+                                fd.append('id',id);
+                                fd.append('photo',this.img_arr[indx]['photo']);
+                                fd.append('customer_id',this.cusid)
+                                fd.append('custype','hospital')
+                                this.img_arr.splice(indx,1);
+
+                                this.axios
+                                .post('/api/delete-pgallery',fd)
+                                .then(response=>{
+
+                                    this.$swal({
+                                        text: "職種を削除しました。",
+                                        type: "success",
+                                        width: 350,
+                                        height: 200,
+                                        confirmButtonText: "閉じる",
+                                        confirmButtonColor: "#dc3545"
+                                    });
+                                })
+                                .catch(error=>{
+                                    console.log(error)
+                                    if(error.response.status == 422){
+                                        this.errors = error.response.data.errors
+                                    }
+                                })
+                            } else {
+                                this.img_arr.splice(indx,1);
                             }
-                    }
+                        }
+
+                        if(type == 'video') {
+                            this.video_arr.splice(indx,1);
+                        }
+                 });
+
             },
             galleryAdd() {
-            
+
                     var date = new Date;
                     var s = date.getMilliseconds();
                     var m = date.getMinutes();
                     var h = date.getHours();
-                    var classname = "class"+h+m+s;
-                    var c = "'"+classname+"'";
-                    this.img_arr.push({classname:classname,photo:'',title:'',description:''});
-                  
-                   
-      
-                  
+                    // var classname = "class"+h+m+s;
+                    // var c = "'"+classname+"'";
+                    this.img_arr.push({id:null,photo:'',title:'',description:'', src:null});
+
+
             },
              galleryToggle()
                 {
@@ -1501,20 +1553,18 @@ export default {
 
                       if(class_by_id == "fas fa-sort-down animate rotate")
                       {
+
                                 $('#gallery').removeClass("fas fa-sort-down animate rotate");
                                 $('.changeGalleryLink').addClass("fas fa-sort-down");
                                 $('#changeGalleryLink').show('medium');
                                 $('.galleryadd').show();
                       }
                       else {
-
-
                                 $('#gallery').removeClass("fas fa-sort-down");
                                 $('.changeGalleryLink').removeClass("fas fa-sort-down");
                                 $('#gallery').addClass("fas fa-sort-down animate rotate");
                                 $('#changeGalleryLink').hide('medium');
-                                 $('.galleryadd').show();
-                                      $('.galleryadd').hide();
+                                $('.galleryadd').hide();
                       }
                 },
                 galleryVideoToggle()
@@ -1539,256 +1589,177 @@ export default {
                 },
             onAccessEditorChange({ editor, html, text }) {
                 // console.log('editor change!', editor, html, text)
-                this.access_val = html
+                // this.access_val = html
+                this.hospital_info.access = html;
             },
             onDetailInfoEditorChange({ editor, html, text }) {
                 // console.log('editor change!', editor, html, text)
-                this.detail_info = html
+                // this.detail_info = jQuery(html).text();
+                this.hospital_info.details_info = jQuery(html).text();
             },
             galleryVideoAdd() {
                    this.video_arr.push({title:'',description:'',url:''});
-                 
+
             },
             specialFeAdd() {
                      $(".special-feature-toggle-div").toggle('medium');
-                     this.isRotate4 = !this.isRotate4;  
+                     this.isRotate4 = !this.isRotate4;
             },
             StationAdd() {
                 $(".station-toggle-div").toggle('medium');
                 this.isRotate4 = !this.isRotate4;
             },
             Create_Profile () {
-                    this.customer_info = [];
-                    var name = $('.customer-name').val();
-                    var email = $('.customer-email').text();
-                    var phone = $('.customer-phone').val();
-                    var address = $('#city').val();
-                    this.customer_info_push.push({name:name,email:email,phone:phone,address:address});
 
-                    // var access = $('.access').val();
-                    var subject = $('.subject').val();
-                    var specialist = $('.specialist').val();
-                    // var details_info = $('.details-info').text();
-                    var close_day = $('.close-day').val();
-                    var website = $('.website').val();
-                    var congestion = $('.congestion').val();
-                    var latitude = $('#new_lat').val();
-                    var longitude = $('#new_long').val();
-                    localStorage.setItem('lat_num',latitude);
-                    localStorage.setItem('lng_num',longitude);
+                this.save_hospital_info = [];
+                this.$loading(true);
 
-                    var img = document.getElementsByClassName('gallery-area-photo');
-                    let pt = new FormData();
-                    for(var i = 0; i< img.length; i++) {
-                          var file = img[i].getElementsByClassName('hospital-photo')[0].files[0];
-                          if(file) {                   
-                                var file_name = file.name;
-                                pt.append(i ,file )
+                if(this.hospital_info.details_info === undefined)
+                {
+                  this.hospital_info.details_info = "";
+                }
 
-                                        // let fd = new FormData();
-                                        // fd.append('file' ,file )
-                                        // fd.append('photo' ,file_name )
-                                        // fd.append('type', 'photo')
-                          } else {
-                                  var file_name = img[i].getElementsByClassName('already-photo')[0].value;
-                          }
-                          this.img_list.push({type:"photo",photo:file_name,title:img[i].getElementsByClassName('title')[0].value, description:img[i].getElementsByClassName('description')[0].value});
+                this.hospital_info.latitude = $('#new_lat').val();
+                this.hospital_info.longitude = $('#new_long').val();
+                this.customer_info.address = $('#address_val').val();
+                this.address_show = $('#address_show').val();
+
+                this.customer_info.townships_id = Number($('#gmaptownship').val());
+                localStorage.setItem('lat_num',this.hospital_info.latitude);
+                localStorage.setItem('lng_num',this.hospital_info.longitude);
+                let pt = new FormData();
+                var img = document.getElementsByClassName('gallery-area-photo');
+                for(var i =this.img_arr.length-1;i>=0;i--)
+                {
+                    this.img_arr[i]['type'] = 'photo';
+                    if(this.img_arr[i]['photo'] == null || this.img_arr[i]['photo'] == '')
+                    {
+                        this.img_arr.splice(i,1);
                     }
 
-                    this.axios.post('/api/hospital/movephoto', pt)
-                        .then(response => {
-                            }).catch(error=>{
-                                console.log(error);
-                                if(error.response.status == 422){
-                                    this.errors = error.response.data.errors
-                                }
-                        })
 
-                    var video = document.getElementsByClassName('gallery-area-video');
-                        for(var i = 0; i< video.length; i++) {
-                           this.video_list.push({type:"video",photo:video[i].getElementsByClassName('video-url')[0].value,title:video[i].getElementsByClassName('title')[0].value, description:video[i].getElementsByClassName('description')[0].value});
-                        }
-                     this.gallery_list = this.img_list.concat(this.video_list);
-
-
-                    var s_features =[];
-                        $.each($("input[name='special-features']:checked"), function(){
-                            s_features.push($(this).val());
-                        });
-                        this.chek_feature.push({special_feature_id:s_features});
-
-                     var chek_facility = [];
-                     var facilities ;
-                        $.each($("input[name='facility']:checked"), function(){
-                               chek_facility.push($(this).val());
-                        });
-                        facilities = chek_facility.join(',');
-
-                    var chek_subj = [];
-                        $.each($("input[name='subject']:checked"), function(){
-                               chek_subj.push($(this).val());
-                        });
-                        this.subjects.push({subject_id:chek_subj});
-
-                    // var chek_station=[];
-                    // $.each($("input[name='station']:checked"), function(){
-                    //   alert($(this).val());
-                    //     chek_station.push($(this).val());
-                    // });
-                    // this.stations.push({station_id:chek_station});
-
-                     // Consultation
-                     for(var j = 0; j< 2; j++) {
-                        for(var i = 0; i< 7; i++) {
-                                if(j == 0) { this.shedule_am[i] = $('.form-control.am-from'+i+'').val() + '-' + $('.form-control.am-to'+i+'').val(); }
-                                if(j == 1) { this.shedule_pm[i] = $('.form-control.pm-from'+i+'').val() + '-' + $('.form-control.pm-to'+i+'').val(); }
-                        }
-                        if(j == 0) { this.schedule_list.push(this.shedule_am); }
-                        if(j == 1) { this.schedule_list.push(this.shedule_pm); }
-                      }
-                       this.save_hospital_info.push({latitude:latitude,longitude:longitude,access:this.access_val,specialist:specialist,details_info:this.detail_info,close_day:close_day,website:website,
-                       congestion:congestion,facilities:facilities});
-                        if(this.gallery_list.length > 0) {
-                                this.axios
-                                    .post(`/api/hospital/galleryupdate/${this.cusid}`,this.gallery_list)
-                                        .then((response) => {
-                                        }).catch(error=>{
-                                        if(error.response.status == 422){
-                                            this.gallery_list = 'error';
-                                            this.errors = error.response.data.errors
-                                    }
-                                }) ;
-                        }
-                        if(this.customer_info_push.length > 0) {
-                                this.axios
-                                        .post(`/api/customer/profile/${this.cusid}`,this.customer_info_push)
-                                                .then((response) => {
-
-                                                }).catch(error=>{
-                                                if(error.response.status == 422){
-                                                  this.customer_info_push = 'error';
-                                                  this.errors = error.response.data.errors
-                                        }
-                                }) ;
-                        }
-                        if(this.save_hospital_info.length > 0) {
-                                this.axios
-                                        .post(`/api/hospital/profile/${this.cusid}`,this.save_hospital_info)
-                                                .then((response) => {
-                                                }).catch(error=>{
-                                                if(error.response.status == 422){
-                                                  this.save_hospital_info = 'error';
-                                                  this.errors = error.response.data.errors
-                                        }
-                                }) ;
-                        }
-                        if(this.schedule_list.length > 0) {
-                                this.axios
-                                        .post(`/api/schedule/update/${this.cusid}`,this.schedule_list)
-                                                .then((response) => {
-
-                                                }).catch(error=>{
-                                                if(error.response.status == 422){
-                                                  this.schedule_list = 'error';
-                                                  this.errors = error.response.data.errors
-                                }
-                        }) ;
-                        }
-
-                        if(this.chek_feature.length > 0) {
-                                this.axios
-                                        .post(`/api/sfeature/update/${this.cusid}`,this.chek_feature)
-                                                .then((response) => {
-
-                                                }).catch(error=>{
-                                                if(error.response.status == 422){
-                                                  this.chek_feature = 'error';
-                                                  this.errors = error.response.data.errors
-                                }
-                        }) ;
-                        }
-
-                        // if(this.stations.length > 0) {
-                        //   this.axios
-                        //   .post(`/api/station_junctions/update/${this.cusid}`,this.stations)
-                        //   .then((response) => {
-
-
-                        //       }).catch(error=>{
-                        //       if(error.response.status == 422){
-                        //           this.stations = 'error';
-                        //           this.errors = error.response.data.errors
-                        //       }
-                        //   }) ;
-                        // }
-
-                        if(this.subjects.length > 0) {
-                                this.axios
-                                        .post(`/api/subject_junctions/update/${this.cusid}`,this.subjects)
-                                                .then((response) => {
-
-                                                }).catch(error=>{
-                                                if(error.response.status == 422){
-                                                  this.subjects = 'error';
-                                                  this.errors = error.response.data.errors
-                                }
-                        }) ;
-                        }
-
-                        if(this.gallery_list != 'error' && this.customer_info != 'error' && this.hospital_info != 'error' && this.schedule_list != 'error') {
-                            this.$swal({
-                                    position: 'top-end',
-                                    type: 'success',
-                                    title: '更新されました',
-                                    confirmButtonText: "はい",
-                                    confirmButtonColor: "#6cb2eb",
-                                    width: 250,
-                                    height: 200,
-                                }).then(response => {
-                                    document.getElementById('nursing').click();
-                            })
-                        }
-                },
-                isNumberOnly: function(event) {
-                var input_data = $('#phone').val();
-                var code = 0;
-                code = input_data.charCodeAt();
-                if((48 <= code && code <= 57) && (this.customer_info.phone.length >= 10 && this.customer_info.phone.length <= 14)){
-                    this.ph_num = false;
-                    this.ph_length = false;
-                }else{
-                    this.ph_num = true;
-                    this.ph_length = true;
+                    var file = img[i].getElementsByClassName('hospital-photo')[0].files[0];
+                    console.log(img[i].getElementsByClassName('hospital-photo')[0].files)
+                    if(file) {
+                        pt.append(i ,file )
+                    }
                 }
+
+                for(var i =this.video_arr.length-1;i>=0;i--)
+                {
+                    this.video_arr[i]['type'] = 'video';
+                    if(this.video_arr[i].photo == null || this.video_arr[i].photo == '' )
+                    {
+                        this.video_arr.splice(i,1);
+                    }
+
+                }
+
+                this.axios.post('/api/hospital/movephoto', pt)
+                    .then(response => {
+                        }).catch(error=>{
+
+                            if(error.response.status == 422){
+                                this.errors = error.response.data.errors
+                            }
+                    })
+
+                this.chek_feature = [];
+                var s_features =[];
+                    $.each($("input[name='special-features']:checked"), function(){
+                        s_features.push($(this).val());
+                    });
+                    this.chek_feature.push({special_feature_id:s_features});
+
+                  var chek_facility = [];
+
+                    $.each($("input[name='facility']:checked"), function(){
+                            chek_facility.push($(this).val());
+                    });
+                    this.facilities = chek_facility.join(',');
+
+                this.subjects = [];
+                var chek_subj = [];
+                    $.each($("input[name='subject']:checked"), function(){
+                            chek_subj.push($(this).val());
+                    });
+                    this.subjects.push({subject_id:chek_subj});
+
+
+
+                // Consultation
+                this.schedule_list = [];
+                for(var j = 0; j< 2; j++) {
+                    for(var i = 0; i< 7; i++) {
+                            if(j == 0) { this.shedule_am[i] = $('.form-control.am-from'+i+'').val() + '-' + $('.form-control.am-to'+i+'').val(); }
+                            if(j == 1) { this.shedule_pm[i] = $('.form-control.pm-from'+i+'').val() + '-' + $('.form-control.pm-to'+i+'').val(); }
+                    }
+                    if(j == 0) { this.schedule_list.push(this.shedule_am); }
+                    if(j == 1) { this.schedule_list.push(this.shedule_pm); }
+                }
+
+
+                    this.save_hospital_info.push({ customer_info:this.customer_info,hospital_info:this.hospital_info,facilities:this.facilities,
+                    schedule_list:this.schedule_list,chek_feature:this.chek_feature, subjects:this.subjects, image:this.img_arr,video:this.video_arr
+                });
+
+
+
+                if(this.save_hospital_info.length > 0) {
+
+                    this.axios
+                    .post(`/api/hospital/profile/${this.cusid}`,this.save_hospital_info)
+                    .then((response) => {
+
+                        this.initialCall();
+
+                        this.$swal({
+                            position: 'top-end',
+                            type: 'success',
+                            title: '更新されました',
+                            confirmButtonText: "閉じる",
+                            confirmButtonColor: "#6cb2eb",
+                            width: 250,
+                            height: 200,
+                        })
+                        this.$loading(false);
+                    }).catch(error=>{
+
+                        this.$loading(false);
+                        if(error.response.status == 422){
+                            this.save_hospital_info = 'error';
+                            this.errors = error.response.data.errors
+                        }
+                    }) ;
+                }
+            },
+              isNumberOnly: function(event) {
+              var input_data = $('#phone').val();
+              var code = 0;
+              code = input_data.charCodeAt();
+
+              if((48 <= code && code <= 57) && (this.customer_info.phone.length >= 10 && this.customer_info.phone.length <= 14)){
+                  this.ph_num = false;
+                  this.ph_length = false;
+              }else{
+                  this.ph_num = true;
+                  this.ph_length = true;
+              }
+            },
+            focusPhone(){
+              var input_data = $('#phone').val();
+              if(input_data.length >= 10 && input_data.length <= 14 && input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-')
+              {
+                  this.ph_num = false;
+                  this.ph_length = false;
+              }
+              else{
+                  this.ph_num = true;
+                  this.ph_length = true;
+              }
             }
             },
-            getPostal: function(event) {
-                if (this.postal.length > 4) {
-                    var postal = this.postal;
-                    this.axios
-                        .post('/api/hospital/postList/' + postal)
-                        .then(response => {
-                            var post_data = response.data;
-                            var length = response.data.length;
-                            if (length > 0) {
-                                var pref = post_data[0]['city_id'];
-                                if (post_data[0]['street'] == '') {
-                                    this.city = post_data[0]['city'];
-                                } else {
-                                    this.city = post_data[0]['city'] + ' - ' + post_data[0]['street'];
-                                }
-                                // this.comments.selectedValue = pref;
-                                // this.comments.division = pref;
-                            } else {
-                                this.city = '';
-                                // this.comments.selectedValue = 0;
-                                $('#jsErrorMessage').html('<div class="error">郵便番号の書式を確認してください。</div>');
-                            }
-                        });
-                }
-            },
-            
-           
+
         }
 
 </script>

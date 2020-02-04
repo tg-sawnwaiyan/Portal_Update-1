@@ -7,7 +7,7 @@
                         <li class="breadcrumb-item">
                             <router-link to="/">ホーム</router-link>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">病院の歴史</li>
+                        <li class="breadcrumb-item active" aria-current="page">最近見た病院リスト</li>
                     </ol>
                 </nav>
             </div>
@@ -21,7 +21,7 @@
                             </g>
                         </g>
                     </svg>
-                    &nbsp;<span class="font-weight-bold"> 最近見た施設リスト</span>
+                    &nbsp;<span class="font-weight-bold"> 最近見た病院リスト</span>
                     &nbsp; <span class="job_count">{{his_hos}} 件</span>
                 </div>
             </div>
@@ -40,7 +40,9 @@
                                 <div class="card-carousel-cards col-3 pad-free" :style="{ transform: 'translateX' + '(' + currentOffset + 'px' + ')'}">
                                     <div class="card-carousel--card">
                                         <div class="card-carousel--card--footer">
-
+                                            <div class="msg"> 
+                                                    <label><strong> {{message}} </strong></label>
+                                            </div>
                                             <table class="table table-bordered">
                                                 <tr>
                                                     <td v-for="hos_profile in hos_profiles" :key="hos_profile.id">
@@ -56,7 +58,7 @@
                                                 <tr>
                                                     <td v-for="hos_profile in hos_profiles" :key="hos_profile.id">
                                                         <div class="profile_wd">
-                                                            <span class="btn btn-danger all-btn hos-btn m-t-8 m-b-3" @click="deleteLocalSto(hos_profile.id)">最近見た施設リストから削除</span>
+                                                            <span class="btn btn-danger all-btn hos-btn m-t-8 m-b-3" @click="deleteLocalSto(hos_profile.id)">最近見た病院リストから削除</span>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -160,7 +162,7 @@
                                                         </dl>
                                                     </td>
                                                 </tr>
-                                                <tr>
+                                                <!-- <tr>
                                                         <td v-for="hos_profile in hos_profiles" :key="hos_profile.id">
                                                             <dl>
                                                                 <dt class="text-left">専門医</dt>
@@ -176,7 +178,7 @@
                                                             <dd class="profile_wd text-left m-l-10">{{hos_profile.medical_department}}</dd>
                                                         </dl>
                                                     </td>
-                                                </tr>
+                                                </tr> -->
                                                 
                                             </table>
 
@@ -204,6 +206,7 @@
         data() {
                 return {
                     his_hos:'',
+                    message:'',
                     hos_profiles: [],
                     specialfeature: [],
                     local_sto: "",
@@ -306,9 +309,52 @@
                         this.axios
                             .post("/api/hospital_history/" + local_storage)
                             .then(response => {
-                                console.log(response);
-                                this.hos_profiles = response.data;
-                            });
+                                console.log(response.data)
+                                // if(response.data.length<this.his_hos && response.data.length > 0) {
+                                    this.hos_profiles = response.data;
+                                    if(response.data.length<this.his_hos && response.data.length > 0) { 
+                                        var hos_id = '';
+                                        this.message = "現在本サイトに掲載されていない病院については最近見た施設リストから削除しました。";
+                                        for(var i= 0;i<this.hos_profiles.length;i++) {
+                                            if(i== this.hos_profiles.length-1) {
+                                                hos_id += this.hos_profiles[i]['id'];
+                                            }
+                                            else {
+                                                hos_id += this.hos_profiles[i]['id'] + ",";
+                                            }
+                                        }
+                                        localStorage.setItem('hospital_history',hos_id);
+                                        this.local_sto = localStorage.getItem("hospital_history");
+                                        this.hosHis = this.hos_profiles.length;
+
+                                    } else if(response.data.length == 0){
+                                        this.his_hos = 0;
+                                        this.$swal({
+                                            // title: "確認",
+                                            text: "お気に入りの病院は既に本サイトに掲載されておりませんので、最近見た施設リストから削除しました。",
+                                            type: 'info',
+                                            width: 350,
+                                            height: 200,
+                                            // showCancelButton: true,
+                                            showConfirmButton: true,
+                                            // confirmButtonColor: "#dc3545",
+                                            // cancelButtonColor: "#b1abab",
+                                            // cancelButtonTextColor: "#000",
+                                            confirmButtonText: "閉じる",
+                                            // cancelButtonText: "キャンセル",
+                                            confirmButtonClass: "all-btn",
+                                            // cancelButtonClass: "all-btn"
+                                        }).then(response => {
+                                            localStorage.setItem('hospital_history','');
+                                            this.local_sto = localStorage.getItem("hospital_history");
+                                            this.hosHis = 0;
+                                            this.$router.push({
+                                                name: 'hospital_search',
+                                            });
+                                        });
+                                    }
+                                // }
+                        });
                     },
                     deleteLocalSto: function(id) {
 
