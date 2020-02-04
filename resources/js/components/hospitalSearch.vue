@@ -972,13 +972,7 @@ import bulcomponent from './bulcomponent.vue'
     vertical-align: middle;
     background: #ddd;
 }
-.nosearch-data{
-    font-size: 25px;
-    color: #f57e46;
-    font-weight: bold;
-    margin: 20px 0;
-    text-align: center;
-}
+
 .nosearch{
     font-size: 14px;
     color: #a5a5a5;
