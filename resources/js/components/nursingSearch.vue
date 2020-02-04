@@ -1,22 +1,22 @@
 <template>
     <layout>
         <div>
-            <div class="col-md-12" style="border-bottom: 1px dashed #ff6117;padding-bottom: 10px; margin-bottom: 20px;">
-                <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#ff6117;"></i>&nbsp;地図検索</h5>
+            <div class="col-md-12" style="border-bottom: 1px dashed #2980b9;padding-bottom: 10px; margin-bottom: 20px;">
+                <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#ff9563;"></i>&nbsp;地図検索</h5>
             </div>
             <div class="search-map"  @mouseover="getStateHover">
                 <div class="row" id="hos">
                     <div class="col-md-12" id="scrollMap">
                         <div>
-                            <div class="row map-wrap"  id="searchMap">
+                            <div class="row map-wrap"  id="searchMap" style="background-color:#fdf3ef;">
                                 <!-- search map and path -->
                                 <div class="col-lg-5 col-md-12 col-sm-12 float-left map-leftwrapper">
-                                    <h2 class="map-header">あなたらしい暮ら<br/>しができる。そん<br/>な老人ホームが見 <br/>つかります。</h2>
+                                   <h2 class="map-header" style="color:#9e3d0e;">あなたらしい暮ら<br/>しができる。そん<br/>な老人ホームが見 <br/>つかります。</h2>
                                     <!--search input-->
                                     <div class="wrap">
                                         <div class="search">
-                                            <input type="text"  id="search-free-word" class="searchTerm" placeholder="地名、施設名などを入力"> 
-                                            <button class="searchButton"  @click="searchfreeword">
+                                            <input type="text"  id="search-free-word" style="border: 3px solid #ff9563;" class="searchTerm" placeholder="地名、施設名などを入力"> 
+                                            <button class="searchButton" style="border: 1px solid #ff9563;background: #ff9563;" @click="searchfreeword">
                                                 <i class="fas fa-search"></i> 検索
                                             </button>
                                         </div>                                        
@@ -55,7 +55,7 @@
                             
                             <div id="scroll-responsive">
                                 <div class="select" id="filter" style="justify-content:space-between">
-                                    <h5 class="profile_header" style="border-left: 5px solid #ff9563;">現在の検索条件</h5>
+                                   <h5 class="profile_header" style="border-left: 5px solid #ff9563;">現在の検索条件</h5>
                                     <div class="row">
                                     <div class="col-lg-5 col-md-6 m-b-414">
                                         <div><p class="nurs-sub-heading">地域で絞り込む</p></div>                                    
@@ -195,7 +195,7 @@
                                                                     </p>
 
                                                                     <p class="item-name"><img :src="'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld='+items.alphabet+'|ff9563|000000'" alt="">
-                                                                        <router-link :to="{name: 'profile', params: {cusid:items.cus_id, type: 'nursing'}}" class="pseudolink" style="font-weight:bold;color:#ff6117 !important">{{items.name}}</router-link>
+                                                                        <router-link :to="{name: 'profile', params: {cusid:items.cus_id, type: 'nursing'}}" class="pseudolink" style="font-weight:bold;color:#2980b9 !important">{{items.name}}</router-link>
                                                                     </p>
                                                                     <p>{{items.city_name}} <i class="fas fa-angle-double-right" style="color:#b9b5b5;"></i> {{items.township_name}}</p>
                                                                 </div>
@@ -2037,8 +2037,8 @@ div#holder {
     height: 15px;
     padding: 5px;
     box-sizing: border-box;
-    border-top: 5px solid #ff9563;
-    border-right: 5px solid #ff9563;
+    border-top: 5px solid #2980b9;
+    border-right: 5px solid #2980b9;
     margin: 4px 0px;
     transition: transform 150ms linear;
   }
@@ -2166,7 +2166,7 @@ div#holder {
     line-height: 50px;
     vertical-align: middle;
     background: #fffff4;
-    border: 2px solid #ff9563;
+    border: 2px solid #2980b9;
     border-radius: 50%;
     text-align: center;
 }
@@ -2175,13 +2175,13 @@ div#holder {
     right:15px;
 }
 .nursing-tabColor .nav-link {
-    background: #ff9563 !important;
+    background: #2980b9 !important;
     color: #fff;
     border-right: 1px solid #fff;
 }
 
 .nursing-borderColor {
-    border: 1px solid #ff9563 !important;
+    border: 1px solid #2980b9 !important;
 }
 .tab-pane{
     padding: 10px;
