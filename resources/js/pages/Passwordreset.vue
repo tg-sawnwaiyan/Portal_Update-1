@@ -4,8 +4,8 @@
         <div class="user_card">
             <div class="links" style="top:-65px;">
               <!-- <router-link to="/" class="mr-auto text-white">ホーム</router-link> -->
-              <router-link to="/login" class="ml-auto text" style="color: #a93f0c!important;font-weight:bold;">ログイン</router-link>
-              <a href="/" class="mr-auto text-white">ホーム</a>
+              <router-link to="/login" class="ml-auto text login_3">ログイン</router-link>
+              <a href="/" class="mr-auto text-white login_4">ホーム</a>
               <!-- <a href="/register" class="ml-auto text">登録</a> -->
             </div>
 

@@ -966,7 +966,27 @@ width: 100%; */
 .links a {
     color: #d2cfcf !important;
 }
+/*login*/
+.login_1{
+    top: -39px;
+    margin-right: 20px;
+}
+.login_2{
+    top: -38px;
+    margin-left: 10px;
+    position: absolute;
+}
 
+.login_3{
+    top: 11px;
+    margin-right: 13px;
+}
+.login_4{
+    top: 11px;
+    margin-left: 10px;
+    position: absolute;
+}
+/*login*/
 .user_card .links a {
     color: #2C3E50 !important;
     font-weight: bold;
@@ -9165,16 +9185,18 @@ padding: 11px;
         height: 170px;
         cursor: pointer;
     }
-    /*login*/
-    .login_2 {
-        margin-left: 18px;
-    }
-    .login_1 {
-        margin-right: 18px;
-    }
-    .login_top {
-        top: -28px;
-    }
+     /*login*/
+     .login_2
+     {
+         margin-left: 18px;
+     }
+     .login_1{
+         margin-right: 18px;
+     }
+     .login_top
+     {
+         top: -6px;
+     }
 }
 
 @media only screen and (max-width: 1400px) {
@@ -9258,8 +9280,8 @@ padding: 11px;
     }
     /* login */
     .login_top {
-        top: -34px;
-        margin-left: 15px;
+        top: -6px;
+        /* margin-left: 15px; */
     }
     .login_1 {
         margin-right: 27px;
@@ -11143,7 +11165,8 @@ background-image: none;
         position: absolute;
         height: 170px;
         width: 170px;
-        top: 1px;
+        top: -81px;
+    
     }
     .links_2 {
         top: 78px;
@@ -11443,11 +11466,12 @@ background-image: none;
         margin-left: 22px;
     }
     .loginwrapper {
-        height: 105vh;
+        
         padding: 10px 40px;
         position: fixed;
         /* margin-left: -53px; */
         background: #fbfbfb;
+        top: 20px;
     }
     .registerform_container {
         margin-top: 0px;
