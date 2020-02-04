@@ -424,6 +424,7 @@
                                             <td><span class="cash-lbl-mini">{{cost.monthly_fees}}</span></td>
                                             <td>
                                                 <span :class="'changeLink changeLink'+cost.id" @click="costConfirm(cost.id)" >詳しくはこちら</span>
+                                                <span :class="'closeLink closeLink'+cost.id" @click="closeDetail(cost.id)" class="hideCloseBtn float-right">詳しくを閉じる</span>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -2238,9 +2239,17 @@ export default {
         $('.changeLink'+id).addClass("CloseBtn");
         $('.closeChangeLink').hide('medium');
         $('#changeLink'+id).show('medium');
+        $('.closeLink').css({'display':'none'});
+        $('.closeLink'+id).css({'display':'inline'});
     },
     costConfirmMini(id){
         $('#changeLinkMini'+id).toggle('medium');
+    },
+    closeDetail(id) {
+        $('.changeLink').text("詳しくはこちら");
+        $('.changeLink').removeClass("CloseBtn");
+        $('.closeLink'+id).css({'display':'none'});
+        $('.closeChangeLink').hide('medium');        
     },
     documentPost() {
         localStorage.removeItem("item");
@@ -2765,6 +2774,18 @@ h3 {
 .changeLink:hover {
     color: #f9793c;
     border: 1px solid #68ec37;
+}
+.closeLink {
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    border: 1px solid #ffc041;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #f9793c;
+}
+.hideCloseBtn {
+    display: none;
 }
 .payment-footer .changeLink{
     padding: 8px 5px;
