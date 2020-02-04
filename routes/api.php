@@ -152,6 +152,8 @@ Route::group(['middleware' => ['auth:api']], function() {
         Route::delete('delete/{id}', 'JobController@destroy');
         Route::post('search', 'JobController@search');
         Route::get('customerList', 'JobController@getCustomerList');
+        Route::post('profileList/{cId}', 'JobController@getProfileList');
+        Route::post('profileName/{id}','JobController@getProfileName');
     });
     // End Job
 
