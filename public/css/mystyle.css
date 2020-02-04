@@ -30,6 +30,7 @@ p {
     line-height: 1.7em;
     color: #000;
 }
+
 .main-wrapper {
     max-width: 1600px;
     width: 100%;
@@ -219,8 +220,8 @@ scrollbar-width: thin;*/
 label {
     margin-bottom: 0.2rem;
 }
+
 .btn-file {
-    width: 10px;
     border: 1px dashed #eee;
     background: #ccc9c9ee;
     padding: 10px;
@@ -229,21 +230,46 @@ label {
     position: relative;
     overflow: hidden;
 }
+
 .btn-file input[type=file] {
-  position: absolute;
-  top: 0;
-  right: 0;
-  min-width: 100%;
-  min-height: 100%;
-  font-size: 100px;
-  text-align: right;
-  filter: alpha(opacity=0);
-  opacity: 0;
-  outline: none;
-  background: white;
-  cursor: inherit;
-  display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
 }
+
+
+/* nursing and hospital accountlist */
+
+.img_title {
+    height: 200px;
+    margin-bottom: 10px;
+}
+
+.img_title img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.nus_account p {
+    line-height: 1.3em;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+
+/* end nursing and hospital accountlist */
+
 
 /********************************** End Common **********************************/
 
@@ -466,7 +492,7 @@ border: 1px solid #eee; */
 .gallery-list .gallery-item {
     width: 100%;
     height: 250px;
-    margin-bottom: 35px;
+    margin-bottom: 5px;
 }
 
 .gallery-list img {
@@ -629,27 +655,24 @@ border-radius: 3px;
     border-left: 5px solid #63b7ff;
     color: #63b7ff;
 }
-.h-color1 p {
 
+.h-color1 p {
     color: #a3774a;
 }
 
 .h-color2 p {
-
     color: #9579ef;
 }
 
 .h-color3 p {
-
     color: #21d1de;
 }
 
 .h-color4 p {
-
     color: #d1291d;
 }
 
-.h-color5 p{
+.h-color5 p {
     color: #63b7ff;
 }
 
@@ -883,13 +906,14 @@ border-radius: 3px;
     /* top: 35%;
 width: 100%; */
 }
-.reg_title{
+
+.reg_title {
     margin-bottom: 10px;
-    text-align:center;
+    text-align: center;
     font-size: 19px;
     font-weight: bold;
     /* color: #2980B9; */
-    color:#2980b9f5;
+    color: #2980b9f5;
 }
 
 .form_container {
@@ -923,7 +947,7 @@ width: 100%; */
 }
 
 .input-group-text {
-    background:#2980B9 !important;
+    background: #2980B9 !important;
     color: white !important;
     border: 0 !important;
     border-radius: 0.25rem 0 0 0.25rem !important;
@@ -1017,7 +1041,7 @@ width: 100%; */
 }
 
 .user_registercard form label {
-    color:#2C3E50 !important;
+    color: #2C3E50 !important;
     font-weight: bold;
     align-self: flex-end;
     padding: 0px;
@@ -1426,10 +1450,10 @@ border-top: 5px solid #e66527; */
     -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
     z-index: 99;
 }
-.gSecondNav{
-   
-}
-.gSecondNav li{
+
+.gSecondNav {}
+
+.gSecondNav li {
     float: left;
     list-style: none;
     background: #ecf1f5;
@@ -1439,6 +1463,7 @@ border-top: 5px solid #e66527; */
     color: #000;
     margin: 10px;
 }
+
 .gNav {
     margin-left: 2%;
 }
@@ -1637,6 +1662,7 @@ border-top: 5px solid #e66527; */
     vertical-align: middle;
     background: #ddd;
 }
+
 
 /* .nosearch-data {
     font-size: 25px;
@@ -3216,7 +3242,7 @@ overflow-y: auto;
 
 .router-link-exact-active>i.fa,
 .router-link-exact-active>i.fas {
-    color: #ff9563 !important;
+    color: #2980b9 !important;
 }
 
 .nav-pills .nav-link {
@@ -3228,9 +3254,8 @@ overflow-y: auto;
     border-left-color: #ff9563;
     font-weight: bold;
     border-radius: 0px !important;
-    border-left: 3px solid #ff9563;
     /* color: #fff !important; */
-    color: #ff9563 !important;
+    color: #2980b9 !important;
     font-weight: bold;
 }
 
@@ -3607,7 +3632,8 @@ ul.hospital-subject>li:before {
     border-radius: 20px;
     border: 1px solid #ff9563;
 }
-.hos_feature_list{
+
+.hos_feature_list {
     display: inline-block;
     padding: 5px 10px;
     margin: 0 0 10px 3px;
@@ -3615,8 +3641,9 @@ ul.hospital-subject>li:before {
     color: #63b7ff;
     border: 1px solid #63b7ff;
     text-align: center;
-    border-radius: 20px;    
+    border-radius: 20px;
 }
+
 .link-span {
     cursor: pointer;
 }
@@ -4574,7 +4601,6 @@ top: 66px; */
 
 @media (max-width: 1024px) and (min-width: 320px) {
     .loginwrapper {
-    
         position: fixed;
         width: 100%;
         background: #fbfbfb;
@@ -5886,8 +5912,6 @@ position: relative;
         padding: 2px;
         height: 120px;
     }
-
-
     /* .top-ad-slider .ads-img {
 
 font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
@@ -6548,8 +6572,8 @@ button.confirmed {
 }
 
 .swal2-icon.swal2-warning {
-    color: #dc3545  !important;
-    border-color: #dc3545  !important;
+    color: #dc3545 !important;
+    border-color: #dc3545 !important;
 }
 
 
@@ -6829,7 +6853,8 @@ color: green;
     margin-bottom: 15px;
     border-radius: 3px;
 }
-.postal{
+
+.postal {
     width: 50%;
 }
 
@@ -7381,6 +7406,7 @@ font-weight: bold;
 .txt-err {
     text-align: center;
 }
+
 .favnur {
     border: 1px solid #ccc;
     border-radius: 3px;
@@ -8127,7 +8153,6 @@ margin-right: auto; */
 .slick-track:after {
     display: table;
     content: '';
-
 }
 
 .slick-track:after {
@@ -8186,12 +8211,15 @@ margin-right: auto; */
 
 
 /* Arrows */
-.ads-slider .slick-prev{
+
+.ads-slider .slick-prev {
     opacity: 0;
 }
-.ads-slider .slick-next{
+
+.ads-slider .slick-next {
     opacity: 0;
 }
+
 .slick-prev,
 .slick-next {
     font-size: 0;
@@ -8242,7 +8270,6 @@ margin-right: auto; */
     color: #2980b9;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-
 }
 
 .slick-prev {
@@ -8263,7 +8290,6 @@ margin-right: auto; */
     width: 10px;
     display: inline-block;
     content: "";
-
 }
 
 [dir='rtl'] .slick-prev:before {
@@ -8287,8 +8313,7 @@ margin-right: auto; */
     top: 1.5rem;
     width: 10px;
     display: inline-block;
-    content:"";
-
+    content: "";
 }
 
 [dir='rtl'] .slick-next:before {
@@ -9142,6 +9167,11 @@ padding: 11px;
 }
 
 @media only screen and (max-width:1440px) {
+    /* hos and nursing account */
+    .img_title {
+        height: 165px;
+    }
+    /* end hos and nursing account */
     .hos_lbl {
         width: 165px;
     }
@@ -9243,17 +9273,18 @@ padding: 11px;
 }
 
 @media only screen and (max-width:1280px) {
-     /* login */
-     .login_top{
-        top: -6px;
-        margin-left: 15px;
+    .img_title {
+        height: 135px;
     }
-    .login_1
-    {
+    /* login */
+    .login_top {
+        top: -6px;
+        /* margin-left: 15px; */
+    }
+    .login_1 {
         margin-right: 27px;
     }
-    .login_2
-    {
+    .login_2 {
         margin-left: -4px;
     }
     /* Register */
@@ -9264,7 +9295,6 @@ padding: 11px;
         background: #e1e1e1;
         width: 100%;
         background: #fbfbfb;
-    
     }
     /* hospital and nursing profile */
     .nursing_map {
@@ -9450,6 +9480,9 @@ padding: 0;
 }
 
 @media only screen and (max-width:1024px) {
+    .nursing_responsive {
+        max-width: 40%;
+    }
     /* nursing profile */
     .heading-lbl {
         font-size: 1.05em;
@@ -9473,15 +9506,14 @@ padding: 0;
     .hos_lbl {
         width: 75%;
     }
-    .hos_lbl1{
+    .hos_lbl1 {
         max-width: 18%;
     }
-    .hos_toggle{
+    .hos_toggle {
         max-width: 100%;
     }
     .m-l-20 {
         margin-left: 15px !important;
-
     }
     /* end nursing profile */
     /* common */
@@ -9559,7 +9591,6 @@ padding: 0;
     /*end job search*/
     /* profile publish */
     .gallery-list .gallery-item {
-        width: 33%;
         height: 160px;
     }
     .lightbox-arrow svg {
@@ -9874,8 +9905,6 @@ padding: 0;
     .d-none-768 {
         display: none;
     }
-
-
     /*end  header */
     /* ads slider */
     .ads-slider {
@@ -9908,7 +9937,6 @@ padding: 0;
         font-size: 14px;
     }
     .gallery-list .gallery-item {
-        width: 33%;
         height: 130px;
     }
     .lightbox-arrow-left {
@@ -9916,9 +9944,6 @@ padding: 0;
     }
     .lightbox-arrow-right {
         right: -20px !important;
-    }
-    .gallery-list .gallery-item {
-        width: 33%;
     }
     /* .top-mail-btn {
         top: -67px !important;
@@ -10131,12 +10156,15 @@ width: 18rem;
 }
 
 @media only screen and (max-width:768px) {
+    .nursing_responsive {
+        max-width: 33%;
+    }
     .loginwrapper {
-    height: 105vh;
-    padding: 10px 40px;
-    position: fixed;
-    width: 100%;
-    background: #fbfbfb;
+        height: 105vh;
+        padding: 10px 40px;
+        position: fixed;
+        width: 100%;
+        background: #fbfbfb;
     }
     .p-l-162 {
         padding-left: 200px;
@@ -10147,7 +10175,7 @@ width: 18rem;
     .pc-768 {
         display: none;
     }
-    #myTabContent{
+    #myTabContent {
         margin-bottom: 10px;
     }
     /* start pagination */
@@ -10199,10 +10227,10 @@ width: 18rem;
     .nursing_input {
         flex: 0 0 85%;
     }
-    .hos_lbl{
+    .hos_lbl {
         width: 78%;
     }
-    .hos_map_lbl{
+    .hos_map_lbl {
         padding-bottom: 10px;
     }
     .m-l-20 {
@@ -10644,7 +10672,7 @@ width: 18rem;
         padding-right: 0;
     }
     /*End new details */
-    #myBtn{
+    #myBtn {
         bottom: 0px;
         right: 0px;
     }
@@ -10686,39 +10714,38 @@ width: 18rem;
 
 @media only screen and (max-width:480px) {
     /*news*/
-    .wrapper-4 img{
+    .wrapper-4 img {
         width: 95px;
         float: left;
     }
-    .txt-box{
+    .txt-box {
         padding-left: 110px !important;
         position: absolute;
     }
-    .wrapper-3{
+    .wrapper-3 {
         /* float: left;
         width: 95px;
         margin-right: 10px;
         height: 100%; */
     }
-    .wrapper-3 img.fit-image{
+    .wrapper-3 img.fit-image {
         height: 100%;
-
     }
-    .single-news-box{
+    .single-news-box {
         min-height: 75px;
         height: 96% !important;
     }
-    .single-news-box p{
+    .single-news-box p {
         overflow: hidden;
         height: -webkit-fill-available;
     }
-    .category_box{
+    .category_box {
         margin-top: 0px;
     }
-    .category_box h4{
+    .category_box h4 {
         font-size: 16px;
     }
-    .category_news_title{
+    .category_news_title {
         padding: 0px 10px 10px 0px;
     }
     /*fav nursing*/
@@ -10959,9 +10986,6 @@ background-image: none;
     .facility_tbl th {
         width: 80px;
     }
-    .gallery-list .gallery-item {
-        width: 50%;
-    }
     .main-cost-wrap {
         width: 330px;
         overflow-x: scroll;
@@ -11100,16 +11124,17 @@ background-image: none;
     /*END comment list */
     #customer_list .table.List_tbl .btn {
         display: block;
-        width:100%;
+        width: 100%;
         margin-bottom: 10px;
-
     }
 }
 
 @media only screen and (max-width: 414px) {
-
-     /*register*/
-     .login_wp {
+    .nursing_responsive {
+        max-width: 100%;
+    }
+    /*register*/
+    .login_wp {
         height: 105vh;
         padding: 10px !important;
         position: fixed;
@@ -11128,9 +11153,10 @@ background-image: none;
         font-size: 19px;
         font-weight: bold;
         /* color: #2980B9; */
-        color: #2980B9 ;
+        color: #2980B9;
     }
-    .mb-7, .my-3 {
+    .mb-7,
+    .my-3 {
         margin-bottom: 2px !important;
     }
     .brand_logo_container {
@@ -11165,14 +11191,13 @@ background-image: none;
         position: relative;
         /* top: -92px; */
     }
-    .brand_logo_container{
+    .brand_logo_container {
         border-radius: 0px;
         border: 0px solid #ececec;
     }
     .user_card {
         box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 0px 0 rgba(0, 0, 0, 0.19);
     }
-
     .sp-414 {
         display: block !important;
     }
@@ -11250,12 +11275,12 @@ background-image: none;
     .nursing_table1 {
         display: block;
     }
-    .nursing-addbtn{
-        margin-top:10px;
+    .nursing-addbtn {
+        margin-top: 10px;
         padding-left: 1px;
     }
-    .nursing-gallery{
-        margin-top:100px;
+    .nursing-gallery {
+        margin-top: 100px;
     }
     .nursing_cost {
         padding: 0px;
@@ -11269,25 +11294,26 @@ background-image: none;
         /* width: 35%; */
         width: 100%;
     }
-    .nursing_table_title th,.nursing_table_title td{
+    .nursing_table_title th,
+    .nursing_table_title td {
         display: block;
-        width:100%;
+        width: 100%;
     }
-    .nursing_p-r-2{
+    .nursing_p-r-2 {
         padding-right: 2px !important;
     }
-    .nursing_p-l-2{
+    .nursing_p-l-2 {
         padding-left: 2px !important;
     }
-    .nursing-m-b-15{
+    .nursing-m-b-15 {
         margin-bottom: 10px !important;
     }
-    .p-t-10{
-        padding-top:10px !important;
+    .p-t-10 {
+        padding-top: 10px !important;
         margin-left: 13px;
     }
-    .hos-del{
-        padding-bottom:10px;
+    .hos-del {
+        padding-bottom: 10px;
     }
     .m-l-20 {
         margin-left: 5px !important;
@@ -11300,13 +11326,13 @@ background-image: none;
 }
 
 @media only screen and (max-width: 380px) {
-    .login_2{
+    .login_2 {
         margin-left: -25px;
     }
-    .login_1{
+    .login_1 {
         margin-right: -7px;
     }
-    .login_top{
+    .login_top {
         top: -120px;
     }
     .loginwrapper {
@@ -11335,9 +11361,10 @@ background-image: none;
         font-size: 19px;
         font-weight: bold;
         /* color: #2980B9; */
-        color: #2980B9 ;
+        color: #2980B9;
     }
-    .mb-7, .my-3 {
+    .mb-7,
+    .my-3 {
         margin-bottom: 7px !important;
     }
     .brand_logo_container {
@@ -11345,7 +11372,6 @@ background-image: none;
         height: 170px;
         width: 170px;
         top: -80px;
-    
     }
     /*register*/
     .links {
@@ -11403,8 +11429,6 @@ background-image: none;
     /*End create news */
     /* Profile Publish */
     .gallery-list .gallery-item {
-        /* padding: 3px; */
-        margin-bottom: 25px;
         font-size: 12px;
     }
     .top-mail-btn {
@@ -11429,14 +11453,13 @@ background-image: none;
 }
 
 @media only screen and (max-width:320px) {
-
-    .login_2{
+    .login_2 {
         margin-left: -53px;
     }
-    .login_1{
+    .login_1 {
         margin-right: -21px;
     }
-    .login_top{
+    .login_top {
         top: -111px;
         margin-left: 22px;
     }
@@ -11717,7 +11740,7 @@ background-image: none;
     }
 }
 
-#nusNew{
+#nusNew {
     display: none;
 }
 

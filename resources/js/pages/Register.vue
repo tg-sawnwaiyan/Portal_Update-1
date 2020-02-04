@@ -29,16 +29,16 @@
                     <!-- <div id="preview">
                         <img v-if="url" :src="url" class="img-thumbnail img" />
                     </div> -->
-                    <div class="input-group mb-3 mb-7 inputfile">
+                    <!-- <div class="input-group mb-3 mb-7 inputfile">
                         <label class=" col-lg-3 col-md-4 col-12 control-label">ロゴ</label>
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-image"></i></span>
-                        </div>
-                        <span class="btn all-btn choose-btn" style="color: #2C3E50 !important;box-shadow:none!important;" @click="choosefile()">ロゴを選択</span> <span id="imgname" style = "padding: 8px 0 0 30px;">{{img_name}}</span>
-                        <input type="file" class="inputfile" name="img" @change="onFileChange"/>
+                        </div> -->
+                        <!-- <span class="btn all-btn choose-btn" style="color: #2C3E50 !important;box-shadow:none!important;" @click="choosefile()">ロゴを選択</span> <span id="imgname" style = "padding: 8px 0 0 30px;">{{img_name}}</span>
+                        <input type="file" class="inputfile" name="img" @change="onFileChange"/> -->
                          <!-- <span v-if="errors.img" class="error">{{errors.img}}</span> -->
                         <!-- <input type="file" accept="image/*" @change="showMyImage(this)" name="img" id="file" ref="file" class="form-control inputfile"> -->
-                    </div>
+                    <!-- </div> -->
                     <div class="input-group mb-3 mb-7">
                         <label class="col-12 col-lg-3 col-md-4 control-label">事業者名</label>
                         <div class="input-group-append">
@@ -110,7 +110,7 @@
                         <div class="error" id="radioerror" style="margin-bottom: 6px;margin-left: 210px;">必須</div>
                     </div>
 
-                    <div class="input-group mb-3 mb-7">
+                    <!-- <div class="input-group mb-3 mb-7">
                         <label class="col-12 col-lg-3 col-md-4 control-label">都道府県</label>
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
@@ -121,9 +121,9 @@
                             <option v-for ="city in cities" :value='city.id' :key="city.id">{{ city.city_name }}</option>
                         </select>
                          <span v-if="errors.cities" class="error">{{errors.cities}}</span>
-                    </div>
+                    </div> -->
 
-                    <div class="input-group mb-3 mb-7" v-if="!show">
+                    <!-- <div class="input-group mb-3 mb-7" v-if="!show">
                         <label class="col-12 col-lg-3 col-md-4 control-label">市区町村</label>
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
@@ -133,7 +133,7 @@
                             <option v-for ="township in townships" :value='township.id' :key='township.id'>{{ township.township_name }}</option>
                         </select>
                          <span v-if="errors.township" class="error">{{errors.township}}</span>
-                    </div>
+                    </div> -->
                     <span class="p-l-162" style="color:#999;">※ 数字と'-'のみ </span>
                     <div class="input-group mb-3 mb-7">
 
@@ -170,10 +170,10 @@
         img_name:'',
         username: '',
         email: '',
-        cities: [],
-        city : '',
-        townships :[],
-        township :'',
+        //cities: [],
+        //city : '',
+        //townships :[],
+        //township :'',
         type:'',
         typ:[],
         types:[],
@@ -189,8 +189,8 @@
             name:"",
             email:"",
             password:"",
-            cities:"",
-            township:""
+            //cities:"",
+            //township:""
         },
 
         success: false,
@@ -241,26 +241,26 @@
         //     }
 
         // },
-      getCities() {
-         this.axios.get('/api/auth/getCities')
-         .then(function (response) {
-             console.log("getCities")
-             console.log(response)
-          this.cities = response.data.cities;
-          }.bind(this));
-      },
-      getTownship(){
-        this.show = false;
-        this.axios.get('/api/auth/township',{
-          params:{
-            city:this.city
-          },
-        }).then((response)=>{
-            console.log("townships")
-            console.log(response.data.townships)
-          this.townships = response.data.townships
-        })
-      },
+    //   getCities() {
+    //      this.axios.get('/api/auth/getCities')
+    //      .then(function (response) {
+    //          console.log("getCities")
+    //          console.log(response)
+    //       this.cities = response.data.cities;
+    //       }.bind(this));
+    //   },
+    //   getTownship(){
+    //     this.show = false;
+    //     this.axios.get('/api/auth/township',{
+    //       params:{
+    //         city:this.city
+    //       },
+    //     }).then((response)=>{
+    //         console.log("townships")
+    //         console.log(response.data.townships)
+    //       this.townships = response.data.townships
+    //     })
+    //   },
       getType(){
         this.axios.get('/api/auth/getTypes',{
           params:{
@@ -297,15 +297,15 @@
             window.pwd_same = true;
         }
     },
-    choosefile() {
-        $('.inputfile').trigger('click');
-    },
-      onFileChange(e) {
-      const file = e.target.files[0];
-      this.images = file;
-      this.img_name = file.name;
-      this.url = URL.createObjectURL(file);
-    },
+    // choosefile() {
+    //     $('.inputfile').trigger('click');
+    // },
+    //   onFileChange(e) {
+    //   const file = e.target.files[0];
+    //   this.images = file;
+    //   this.img_name = file.name;
+    //   this.url = URL.createObjectURL(file);
+    // },
       register() {
 
         var input_data = $('#phone').val();
@@ -322,13 +322,13 @@
 
         var app = this
         let fData = new FormData();
-                        fData.append('img', app.images)
+                        //fData.append('img', app.images)
                         fData.append('name', app.username)
                         fData.append('email', app.email)
                         fData.append('password', app.password)
                         fData.append('comfirm_password', app.password_confirmation)
-                        fData.append('cities', app.city)
-                        fData.append('township', app.township)
+                        //fData.append('cities', app.city)
+                        //fData.append('township', app.township)
                         fData.append('types', app.type)
                         fData.append('phone', app.phone)
 
@@ -403,7 +403,7 @@
 
     },
     created(){
-      this.getCities()
+      //this.getCities()
     }
 
   }
