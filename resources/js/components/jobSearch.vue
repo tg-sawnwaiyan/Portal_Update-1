@@ -10,7 +10,7 @@
         <div>
           <!-- <div class="info-box"></div> -->
           <!--start map-->
-          <div class="row map-wrap">
+          <div class="row map-wrap" style="background-color:#ececec;">
 
           <!-- free word left wrapper--->
             <div class="col-lg-5 col-md-12 col-sm-12 float-left map-leftwrapper">
