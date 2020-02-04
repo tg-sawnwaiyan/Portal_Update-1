@@ -244,6 +244,23 @@ label {
   cursor: inherit;
   display: block;
 }
+/* nursing and hospital accountlist */
+.img_title{
+    height:200px;
+    margin-bottom: 10px;
+
+}
+.img_title img{
+    width:100%;
+    height: 100%;
+    object-fit: cover;
+}
+.nus_account p{
+    line-height: 1.3em;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+/* end nursing and hospital accountlist */
 
 /********************************** End Common **********************************/
 
@@ -1407,7 +1424,7 @@ border-top: 5px solid #e66527; */
     z-index: 99;
 }
 .gSecondNav{
-   
+
 }
 .gSecondNav li{
     float: left;
@@ -3595,7 +3612,7 @@ ul.hospital-subject>li:before {
     color: #63b7ff;
     border: 1px solid #63b7ff;
     text-align: center;
-    border-radius: 20px;    
+    border-radius: 20px;
 }
 .link-span {
     cursor: pointer;
@@ -4553,6 +4570,12 @@ top: 66px; */
 /* Media Queries*/
 
 @media (max-width: 1024px) and (min-width: 320px) {
+    .loginwrapper {
+
+        position: fixed;
+        width: 100%;
+        background: #fbfbfb;
+    }
     .maintab-content {
         padding: 7px;
     }
@@ -9116,6 +9139,11 @@ padding: 11px;
 }
 
 @media only screen and (max-width:1440px) {
+     /* hos and nursing account */
+     .img_title{
+        height: 165px;
+    }
+    /* end hos and nursing account */
     .hos_lbl {
         width: 165px;
     }
@@ -9127,6 +9155,18 @@ padding: 11px;
         height: 170px;
         cursor: pointer;
     }
+     /*login*/
+     .login_2
+     {
+         margin-left: 18px;
+     }
+     .login_1{
+         margin-right: 18px;
+     }
+     .login_top
+     {
+         top: -28px;
+     }
 }
 
 @media only screen and (max-width: 1400px) {
@@ -9205,10 +9245,31 @@ padding: 11px;
 }
 
 @media only screen and (max-width:1280px) {
+    .img_title{
+        height: 135px;
+    }
+     /* login */
+     .login_top{
+        top: -34px;
+        margin-left: 15px;
+    }
+    .login_1
+    {
+        margin-right: 27px;
+    }
+    .login_2
+    {
+        margin-left: -4px;
+    }
     /* Register */
     .loginwrapper {
         height: 105vh;
         padding: 40px 40px;
+        position: fixed;
+        background: #e1e1e1;
+        width: 100%;
+        background: #fbfbfb;
+
     }
     /* hospital and nursing profile */
     .nursing_map {
@@ -9394,6 +9455,9 @@ padding: 0;
 }
 
 @media only screen and (max-width:1024px) {
+    .nursing_responsive{
+        max-width: 40%;
+    }
     /* nursing profile */
     .heading-lbl {
         font-size: 1.05em;
@@ -9607,6 +9671,7 @@ padding: 0;
     .loginwrapper {
         height: 235vh;
         padding: 259px 40px;
+        background: #fbfbfb;
     }
     /* common */
     li {
@@ -10074,9 +10139,15 @@ width: 18rem;
 }
 
 @media only screen and (max-width:768px) {
+    .nursing_responsive{
+        max-width: 33%;
+    }
     .loginwrapper {
     height: 105vh;
     padding: 10px 40px;
+    position: fixed;
+    width: 100%;
+    background: #fbfbfb;
     }
     .p-l-162 {
         padding-left: 200px;
@@ -11047,17 +11118,66 @@ background-image: none;
 }
 
 @media only screen and (max-width: 414px) {
+    .nursing_responsive{
+        max-width: 100%;
+    }
+
+     /*register*/
+     .login_wp {
+        height: 105vh;
+        padding: 10px !important;
+        position: fixed;
+        /* margin-left: -34px; */
+        /* background-color: #dc3545; */
+        /* top: 22px; */
+        width: 100%;
+        background-color: #fbfbfb;
+    }
+    .registerform_container {
+        margin-top: 142px;
+    }
+    .reg_title {
+        margin-bottom: -24px;
+        text-align: center;
+        font-size: 19px;
+        font-weight: bold;
+        /* color: #2980B9; */
+        color: #2980B9 ;
+    }
+    .mb-7, .my-3 {
+        margin-bottom: 2px !important;
+    }
+    .brand_logo_container {
+        position: absolute;
+        height: 170px;
+        width: 170px;
+        top: 1px;
+
+    }
+    .links_2 {
+        top: 78px;
+    }
+    /* .registerformwrapper
+    {
+        margin-top: 62px;
+    } */
+    /*register*/
     .loginwrapper {
+        height: 105vh;
+        padding: 10px 40px;
+        position: fixed;
         background: #fbfbfb;
-        height: 140vh;
-        padding: 180px 0px;
+    }
+    .login_top {
+        top: -123px;
+        margin-left: 15px;
     }
     .p-l-162 {
         padding-left: 0px;
     }
     .links {
         position: relative;
-        top: -92px;
+        /* top: -92px; */
     }
     .brand_logo_container{
         border-radius: 0px;
@@ -11194,9 +11314,57 @@ background-image: none;
 }
 
 @media only screen and (max-width: 380px) {
+    .login_2{
+        margin-left: -25px;
+    }
+    .login_1{
+        margin-right: -7px;
+    }
+    .login_top{
+        top: -120px;
+    }
+    .loginwrapper {
+        height: 105vh;
+        padding: 10px 40px;
+        position: fixed;
+        background: #fbfbfb;
+        /* margin-left:-34px; */
+    }
+    /*register*/
+    .login_wp {
+        height: 105vh;
+        padding: 10px;
+        position: fixed;
+        /* margin-left: -34px; */
+        /* background-color: #dc3545; */
+        top: 22px;
+        background-color: #fbfbfb;
+    }
+    .registerform_container {
+        margin-top: 60px;
+    }
+    .reg_title {
+        margin-bottom: -24px;
+        text-align: center;
+        font-size: 19px;
+        font-weight: bold;
+        /* color: #2980B9; */
+        color: #2980B9 ;
+    }
+    .mb-7, .my-3 {
+        margin-bottom: 7px !important;
+    }
+    .brand_logo_container {
+        position: absolute;
+        height: 170px;
+        width: 170px;
+        top: -80px;
+
+    }
+    /*register*/
     .links {
         position: relative;
-        top: -55px;
+        /* top: -55px; */
     }
     /* header */
     #sp_headerbar .fav_his {
@@ -11275,6 +11443,24 @@ background-image: none;
 }
 
 @media only screen and (max-width:320px) {
+
+    .login_2{
+        margin-left: -53px;
+    }
+    .login_1{
+        margin-right: -21px;
+    }
+    .login_top{
+        top: -111px;
+        margin-left: 22px;
+    }
+    .loginwrapper {
+        height: 105vh;
+        padding: 10px 40px;
+        position: fixed;
+        /* margin-left: -53px; */
+        background: #fbfbfb;
+    }
     .registerform_container {
         margin-top: 0px;
     }

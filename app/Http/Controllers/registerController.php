@@ -24,7 +24,8 @@ class registerController extends Controller
     {   $type = Type::all();
         $cities = DB::table('cities')->get();
         $townships = DB::table('townships')->get();
-        return view('register',compact('type','townships','cities'));
+        // return view('register',compact('type','townships','cities'));
+        return view('register',compact('type'));
     }
     public function getCities()
     {
@@ -70,11 +71,11 @@ class registerController extends Controller
             'password' => 'min:6|required_with:comfirm_password|same:comfirm_password',
             'comfirm_password' => 'min:6',
             //'address' =>'required',
-            'cities'=> 'required',
-            'township'=> 'required',
+            //'cities'=> 'required',
+            //'township'=> 'required',
         ]);
-        
-  
+
+
             // $type = 2;
 
             // if($request->types == '3'){
@@ -82,29 +83,29 @@ class registerController extends Controller
             // }
 
             // $destinationPath = public_path('/images');
-            $image = $request->file('img');
-            if($image) {
-                $getName = time().'.'.$image->getClientOriginalExtension();
-                
-                if($request->types == 2){     
-                    $image->move('upload/hospital_profile/', $getName);
-                }
-                else{
-                    $image->move('upload/nursing_profile/', $getName);
-                }
-            } else {
-                $getName = 'noimage.jpg';
-            }            
+            // $image = $request->file('img');
+            // if($image) {
+            //     $getName = time().'.'.$image->getClientOriginalExtension();
+
+            //     if($request->types == 2){
+            //         $image->move('upload/hospital_profile/', $getName);
+            //     }
+            //     else{
+            //         $image->move('upload/nursing_profile/', $getName);
+            //     }
+            // } else {
+            //     $getName = 'noimage.jpg';
+            // }
             // $dbPath = $destinationPath. '/'.$input['img'];
             $customer = new Customer;
-            $customer->logo= $getName;
+            //$customer->logo= $getName;
             $customer->name = $request->name;
             $customer->email = $request->email;
             $customer->phone = $request->phone;
             $customer->type_id = $request->types;
             $customer->password = bcrypt($request->password);
             // $customer->address = $request->address;
-            $customer->townships_id = $request->township;
+            //$customer->townships_id = $request->township;
             $customer->save();
 
             if($request->types == 2){
@@ -123,20 +124,20 @@ class registerController extends Controller
             // elseif($request->types == 6){
             //     $customer->type = '介護  (訪問介護・看護)';
             // }
-            $query = "SELECT townships.*, cities.city_name
-                    FROM townships 
-                    JOIN cities
-                    ON cities.id = townships.city_id
-                    WHERE townships.id =" . $customer->townships_id;
+            // $query = "SELECT townships.*, cities.city_name
+            //         FROM townships
+            //         JOIN cities
+            //         ON cities.id = townships.city_id
+            //         WHERE townships.id =" . $customer->townships_id;
 
-            $address = DB::select($query);
-            foreach($address as $ad) {
-                $customer->city_name = $ad->city_name;
-                $customer->township_name = $ad->township_name;
-            }
-
+            // $address = DB::select($query);
+            // foreach($address as $ad) {
+            //     $customer->city_name = $ad->city_name;
+            //     $customer->township_name = $ad->township_name;
+            // }
+         $admin_email = 'mayphuekyawsoe123@gmail.com';
             // $admin_email = 'thuzar.ts92@gmail.com';
-            $admin_email = 'thuzar@management-partners.co.jp';
+            //$admin_email = 'thuzar@management-partners.co.jp';
             \Mail::to($admin_email)->send(new customerCreateMail($customer));
 
             Session::flash('success reg', "Special message goes here");
@@ -189,11 +190,11 @@ class registerController extends Controller
     {
         // return view('auth.passwordReset');
         $getEmail = $request->email;
-       
+
         $checkmail = User::where('email',$getEmail)->select('*')->get();
-       
+
         if(!$checkmail->isEmpty()){
-         
+
             $getTime = Carbon\Carbon::now();
             $token = md5($getEmail.$getTime);
             $data = array([
@@ -202,13 +203,13 @@ class registerController extends Controller
                 'created_at' => $getTime,
             ]);
             DB::table('password_resets')->insert($data);
-            $checkmail[0]["role"] = $token;    
+            $checkmail[0]["role"] = $token;
             \Mail::to($getEmail)->send(new sendResetPasswordMail($checkmail));
             return response()->json(['success' => 'success'], 200);
             // return back()->with('reset','Check Your email for reset password');
         }
         else{
-          
+
             return response()->json(['error' => 'error'], 404);
             // return back()->with('reset','Email Not Exist.');
         }
@@ -220,7 +221,7 @@ class registerController extends Controller
         $hashPass = bcrypt($request->password);
         $token = $request->token;
         $checkmail = DB::select('SELECT email FROM password_resets WHERE token = "'.$token.'" AND created_at > DATE_SUB(CURDATE(), INTERVAL 2 DAY)');
-        if(!empty($checkmail)){    
+        if(!empty($checkmail)){
             $getEmail = $checkmail[0]->email;
             $updatePass = array(
                 'password' => $hashPass
