@@ -1094,7 +1094,7 @@
 
                    <p class="no-data-color pb-3 no-data-size">口コミはありません。</p>
                    <div class="m-b-20 text-center">
-                        <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
+                        <router-link :to="{name: 'comment', params: { type: type,customer_id: customer_id }}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
                         <span>口コミを追加する</span>
                         </router-link>
                     </div>

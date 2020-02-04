@@ -9,10 +9,10 @@
                     </p>
                     <p>OOPS!!</p>
                     <p class="record-txt01">表示するデータありません</p>
-                    <p>表示するデータありません‼新しいデータを作成してください。</p>
+                    <!-- <p>表示するデータありません‼新しいデータを作成してください。</p>
                     <a href="/comment" class="main-bg-color create-btn all-btn">
                         <i class="fas fa-plus-circle"></i> 新しいデータ作成
-                    </a>
+                    </a> -->
                 </div>
                 <div v-else class="container-fuid">
                     <h4 class="main-color m-b-10">コメント 検索</h4>
@@ -23,6 +23,16 @@
 
                     </div>
                     <hr />
+                     <div class="form-group" >
+                        Search with profile name
+                        <select v-model="profileid" class="division form-control"  @change="getComment()">
+                                <option value="0">選択してください。</option>
+                                <option v-for="pro in profilelist" :key="pro.id" v-bind:value="pro.id">
+                                    {{pro.name}}
+                                </option>
+                        </select>
+                     </div>
+                        
                     <h5 class="header">{{title}}</h5>
                     <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
                     <div v-else class="container-fuid">
@@ -85,17 +95,21 @@
 <script>
     export default {
         data() {
-                return {
+               return {
                     comments: [],
+                    profilelist:[],
                     norecord: 0,
                     items: [],
                     norecord_msg: false,
                     nosearch_msg: false,
                     title: '',
+                    type:'',
+                    profileid:''
                 }
 
             },
             created() {
+                 this.profileid = 0;
                 this.$loading(true);
                 if(this.$route.path == "/nuscommentlist"){
                     this.title = "コメント一覧";
@@ -103,8 +117,9 @@
                     .get('/api/comments/comment/3')
                     .then(response => {
                         this.$loading(false);
-                        this.comments = response.data;
-                        this.norecord = this.comments.data.length;                        
+                        this.comments = response.data.commentlist;
+                        this.profilelist = response.data.profilelist;
+                        this.norecord = this.comments.data.length;                   
                         if(this.norecord != 0) {
                             this.norecord_msg = false;
                         }else{
@@ -118,7 +133,9 @@
                     .get('/api/comments/comment/2')
                     .then(response => {
                         this.$loading(false);
-                        this.comments = response.data;
+                        this.comments = response.data.commentlist;
+                        console.log('this.comments',this.comments);
+                        this.profilelist = response.data.profilelist;
                         this.norecord = this.comments.data.length;
                         if(this.norecord != 0) {
                             this.norecord_msg = false;
@@ -129,6 +146,24 @@
                 }
             },
             methods: {
+                getComment()
+                {
+                    console.log(this.profileid);
+                    this.$loading(true);
+                    if(this.$route.path == "/nuscommentlist"){ 
+                        this.axios.get('/api/comments/getCustomComment/3/'+this.profileid).then(response => {
+                            this.$loading(false);
+                            this.comments = response.data;
+                        });
+                    }
+                    else if(this.$route.path == "/hoscommentlist"){
+                        this.axios.get('/api/comments/getCustomComment/2/'+this.profileid).then(response => {
+                            this.$loading(false);
+                                this.comments = response.data;
+                                                    
+                         });
+                    }
+                },
                 deleteComment(id) {
                         this.$swal({
                             title: "確認",
@@ -145,11 +180,17 @@
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
                         }).then(response => {
+                             if(this.$route.path == "/nuscommentlist"){
+                                  this.type = "nursing";
+                              }
+                              else{
+                                  this.type = "hospital"
+                              }
                             this.axios
-                                .delete(`/api/comments/delete/${id}`)
+                                .delete(`/api/comments/delete/${id}`+'/'+this.type)
                                 .then(response => {
                                     this.comments = response.data;
-                                    this.norecord = this.comments.length;
+                                   this.norecord = this.comments.data.length;
                                     if(this.norecord > this.size){
                                         this.pagination = true;
                                     }else{
@@ -196,7 +237,13 @@
                             cancelButtonClass: "all-btn"
                         }).then(response => {
                             this.$loading(true);
-                            this.axios.get(`/api/comments/confirm/${id}`)
+                             if(this.$route.path == "/nuscommentlist"){
+                                  this.type = "nursing";
+                              }
+                              else{
+                                  this.type = "hospital"
+                              }
+                            this.axios.get(`/api/comments/confirm/${id}`+'/'+this.type)
                                 .then(response => {
                                     this.$loading(false);
                                     this.comments = response.data.comments;
@@ -225,12 +272,19 @@
                         });
                     },
                     searchcomment(page) {
+                          if(this.$route.path == "/nuscommentlist"){
+                                  this.type = "nursing";
+                              }
+                              else{
+                                  this.type = "hospital"
+                              }
                         if(typeof page === "undefined"){
                             page = 1;
                         }
                         var search_word = $("#search-item").val();
                         let fd = new FormData();
                         fd.append("search_word", search_word);
+                        fd.append("type",this.type);
                         this.$loading(true);
                         this.axios.post("/api/comments/search?page="+page, fd).then(response => {
                             this.$loading(false);
