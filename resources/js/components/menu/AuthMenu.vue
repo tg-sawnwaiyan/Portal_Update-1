@@ -51,7 +51,7 @@
                             <router-link :to="{name: 'register'}" class="nav-link pad-free"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;<span>事業者 登録</span></router-link>
                         </li>
                         <li class="nav-item m-r-10" v-if="visit == 'true'">
-                            <a class="nav-link pad-free" @click="gotoDash()"><i class="fas fa-tachometer-alt"></i> 管理画面へ</a>
+                            <a class="nav-link pad-free d-flex h-100 align-items-center mt-0" @click="gotoDash()"><i class="fas fa-tachometer-alt mr-1"></i> 管理画面へ</a>
                         </li>
                         <li class="social-link" v-if="!$auth.check()"><a href="https://twitter.com/login?lang=en"><i class="fab fa-twitter"></i></a></li>
                         <li class="social-link" v-if="!$auth.check()"><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>

@@ -6,7 +6,7 @@
           <!-- <h4 style="position:relative; bottom: 60px; width:152px;">事業者ログイン</h4> -->
             <div class="links login_top">
               <!-- <router-link to="/" class="mr-auto text-white">ホーム</router-link> -->
-              <router-link to="/register" class="ml-auto text login_1">登録</router-link>
+             <router-link to="/register" class="ml-auto text login_1">登録</router-link>
               <a href="/" class="mr-auto text-white login_2">ホーム</a>
               <!-- <a href="/register" class="ml-auto text">登録</a> -->
             </div>
