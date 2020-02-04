@@ -3222,7 +3222,8 @@ overflow-y: auto;
 
 .router-link-exact-active>i.fa,
 .router-link-exact-active>i.fas {
-    color: #2980b9 !important;
+    color: #23a2f5 !important;
+    /* color: #2980b9 !important; */
 }
 
 .nav-pills .nav-link {
@@ -3235,7 +3236,8 @@ overflow-y: auto;
     font-weight: bold;
     border-radius: 0px !important;
     /* color: #fff !important; */
-    color: #2980b9 !important;
+    color: #23a2f5 !important;
+    /* color: #2980b9 !important; */
     font-weight: bold;
 }
 
