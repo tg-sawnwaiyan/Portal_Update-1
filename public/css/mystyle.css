@@ -11748,3 +11748,6 @@ background-image: none;
 
 
 /**************end card carousel***********************/
+strong {
+    font-weight: bold!important;
+}
