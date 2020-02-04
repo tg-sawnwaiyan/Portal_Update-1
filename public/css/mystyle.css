@@ -30,6 +30,7 @@ p {
     line-height: 1.7em;
     color: #000;
 }
+
 .main-wrapper {
     max-width: 1600px;
     width: 100%;
@@ -219,6 +220,7 @@ scrollbar-width: thin;*/
 label {
     margin-bottom: 0.2rem;
 }
+
 .btn-file {
     width: 10px;
     border: 1px dashed #eee;
@@ -229,21 +231,23 @@ label {
     position: relative;
     overflow: hidden;
 }
+
 .btn-file input[type=file] {
-  position: absolute;
-  top: 0;
-  right: 0;
-  min-width: 100%;
-  min-height: 100%;
-  font-size: 100px;
-  text-align: right;
-  filter: alpha(opacity=0);
-  opacity: 0;
-  outline: none;
-  background: white;
-  cursor: inherit;
-  display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
 }
+
 
 /********************************** End Common **********************************/
 
@@ -629,27 +633,24 @@ border-radius: 3px;
     border-left: 5px solid #63b7ff;
     color: #63b7ff;
 }
-.h-color1 p {
 
+.h-color1 p {
     color: #a3774a;
 }
 
 .h-color2 p {
-
     color: #9579ef;
 }
 
 .h-color3 p {
-
     color: #21d1de;
 }
 
 .h-color4 p {
-
     color: #d1291d;
 }
 
-.h-color5 p{
+.h-color5 p {
     color: #63b7ff;
 }
 
@@ -883,13 +884,14 @@ border-radius: 3px;
     /* top: 35%;
 width: 100%; */
 }
-.reg_title{
+
+.reg_title {
     margin-bottom: 10px;
-    text-align:center;
+    text-align: center;
     font-size: 19px;
     font-weight: bold;
     /* color: #2980B9; */
-    color:#2C3E50;
+    color: #2C3E50;
 }
 
 .form_container {
@@ -923,7 +925,7 @@ width: 100%; */
 }
 
 .input-group-text {
-    background:#2980B9 !important;
+    background: #2980B9 !important;
     color: white !important;
     border: 0 !important;
     border-radius: 0.25rem 0 0 0.25rem !important;
@@ -997,7 +999,7 @@ width: 100%; */
 }
 
 .user_registercard form label {
-    color:#2C3E50 !important;
+    color: #2C3E50 !important;
     font-weight: bold;
     align-self: flex-end;
     padding: 0px;
@@ -3184,7 +3186,7 @@ overflow-y: auto;
 
 .router-link-exact-active>i.fa,
 .router-link-exact-active>i.fas {
-    color: #ff9563 !important;
+    color: #2980b9 !important;
 }
 
 .nav-pills .nav-link {
@@ -3196,9 +3198,8 @@ overflow-y: auto;
     border-left-color: #ff9563;
     font-weight: bold;
     border-radius: 0px !important;
-    border-left: 3px solid #ff9563;
     /* color: #fff !important; */
-    color: #ff9563 !important;
+    color: #2980b9 !important;
     font-weight: bold;
 }
 
@@ -5839,8 +5840,6 @@ position: relative;
         padding: 2px;
         height: 120px;
     }
-
-
     /* .top-ad-slider .ads-img {
 
 font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
@@ -6782,7 +6781,8 @@ color: green;
     margin-bottom: 15px;
     border-radius: 3px;
 }
-.postal{
+
+.postal {
     width: 50%;
 }
 
@@ -8085,7 +8085,6 @@ margin-right: auto; */
 .slick-track:after {
     display: table;
     content: '';
-
 }
 
 .slick-track:after {
@@ -8144,12 +8143,15 @@ margin-right: auto; */
 
 
 /* Arrows */
-.ads-slider .slick-prev{
+
+.ads-slider .slick-prev {
     opacity: 0;
 }
-.ads-slider .slick-next{
+
+.ads-slider .slick-next {
     opacity: 0;
 }
+
 .slick-prev,
 .slick-next {
     font-size: 0;
@@ -8200,7 +8202,6 @@ margin-right: auto; */
     color: #d2571c;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-
 }
 
 .slick-prev {
@@ -8221,7 +8222,6 @@ margin-right: auto; */
     width: 10px;
     display: inline-block;
     content: "";
-
 }
 
 [dir='rtl'] .slick-prev:before {
@@ -8245,8 +8245,7 @@ margin-right: auto; */
     top: 1.5rem;
     width: 10px;
     display: inline-block;
-    content:"";
-
+    content: "";
 }
 
 [dir='rtl'] .slick-next:before {
@@ -9400,15 +9399,14 @@ padding: 0;
     .hos_lbl {
         width: 75%;
     }
-    .hos_lbl1{
+    .hos_lbl1 {
         max-width: 18%;
     }
-    .hos_toggle{
+    .hos_toggle {
         max-width: 100%;
     }
     .m-l-20 {
         margin-left: 15px !important;
-
     }
     /* end nursing profile */
     /* common */
@@ -9800,8 +9798,6 @@ padding: 0;
     .d-none-768 {
         display: none;
     }
-
-
     /*end  header */
     /* ads slider */
     .ads-slider {
@@ -10058,8 +10054,8 @@ width: 18rem;
 
 @media only screen and (max-width:768px) {
     .loginwrapper {
-    height: 105vh;
-    padding: 10px 40px;
+        height: 105vh;
+        padding: 10px 40px;
     }
     .p-l-162 {
         padding-left: 200px;
@@ -10070,7 +10066,7 @@ width: 18rem;
     .pc-768 {
         display: none;
     }
-    #myTabContent{
+    #myTabContent {
         margin-bottom: 10px;
     }
     /* start pagination */
@@ -10122,10 +10118,10 @@ width: 18rem;
     .nursing_input {
         flex: 0 0 85%;
     }
-    .hos_lbl{
+    .hos_lbl {
         width: 78%;
     }
-    .hos_map_lbl{
+    .hos_map_lbl {
         padding-bottom: 10px;
     }
     .m-l-20 {
@@ -10567,7 +10563,7 @@ width: 18rem;
         padding-right: 0;
     }
     /*End new details */
-    #myBtn{
+    #myBtn {
         bottom: 0px;
         right: 0px;
     }
@@ -10609,39 +10605,38 @@ width: 18rem;
 
 @media only screen and (max-width:480px) {
     /*news*/
-    .wrapper-4 img{
+    .wrapper-4 img {
         width: 95px;
         float: left;
     }
-    .txt-box{
+    .txt-box {
         padding-left: 110px !important;
         position: absolute;
     }
-    .wrapper-3{
+    .wrapper-3 {
         /* float: left;
         width: 95px;
         margin-right: 10px;
         height: 100%; */
     }
-    .wrapper-3 img.fit-image{
+    .wrapper-3 img.fit-image {
         height: 100%;
-
     }
-    .single-news-box{
+    .single-news-box {
         min-height: 75px;
         height: 96% !important;
     }
-    .single-news-box p{
+    .single-news-box p {
         overflow: hidden;
         height: -webkit-fill-available;
     }
-    .category_box{
+    .category_box {
         margin-top: 0px;
     }
-    .category_box h4{
+    .category_box h4 {
         font-size: 16px;
     }
-    .category_news_title{
+    .category_news_title {
         padding: 0px 10px 10px 0px;
     }
     /*fav nursing*/
@@ -11023,9 +11018,8 @@ background-image: none;
     /*END comment list */
     #customer_list .table.List_tbl .btn {
         display: block;
-        width:100%;
+        width: 100%;
         margin-bottom: 10px;
-
     }
 }
 
@@ -11042,14 +11036,13 @@ background-image: none;
         position: relative;
         top: -92px;
     }
-    .brand_logo_container{
+    .brand_logo_container {
         border-radius: 0px;
         border: 0px solid #ececec;
     }
     .user_card {
         box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 0px 0 rgba(0, 0, 0, 0.19);
     }
-
     .sp-414 {
         display: block !important;
     }
@@ -11127,12 +11120,12 @@ background-image: none;
     .nursing_table1 {
         display: block;
     }
-    .nursing-addbtn{
-        margin-top:10px;
+    .nursing-addbtn {
+        margin-top: 10px;
         padding-left: 1px;
     }
-    .nursing-gallery{
-        margin-top:100px;
+    .nursing-gallery {
+        margin-top: 100px;
     }
     .nursing_cost {
         padding: 0px;
@@ -11146,25 +11139,26 @@ background-image: none;
         /* width: 35%; */
         width: 100%;
     }
-    .nursing_table_title th,.nursing_table_title td{
+    .nursing_table_title th,
+    .nursing_table_title td {
         display: block;
-        width:100%;
+        width: 100%;
     }
-    .nursing_p-r-2{
+    .nursing_p-r-2 {
         padding-right: 2px !important;
     }
-    .nursing_p-l-2{
+    .nursing_p-l-2 {
         padding-left: 2px !important;
     }
-    .nursing-m-b-15{
+    .nursing-m-b-15 {
         margin-bottom: 10px !important;
     }
-    .p-t-10{
-        padding-top:10px !important;
+    .p-t-10 {
+        padding-top: 10px !important;
         margin-left: 13px;
     }
-    .hos-del{
-        padding-bottom:10px;
+    .hos-del {
+        padding-bottom: 10px;
     }
     .m-l-20 {
         margin-left: 5px !important;
