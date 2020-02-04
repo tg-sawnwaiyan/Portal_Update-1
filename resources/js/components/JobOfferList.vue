@@ -138,6 +138,10 @@
                                                 </div>
                                             </h5>
                                         </th>
+                                        <th>
+                                            <p><span>事業者名:</span><span>{{job.name}}</span></p>
+                                            <p><span >施設名:</span><span v-for="profile_name in job.profile_name" :key="profile_name.id">{{profile_name.name}}</span></p>
+                                        </th>
 
                                         <th>
                                             <p class="mb-2"><span class="text-orange"><span class="job_ico">&#xa5;</span>給料 :</span><span class=""> {{job.salary}}</span></p>
@@ -300,8 +304,7 @@
                     this.axios.get("/api/job/index").then(response => {
                         this.$loading(false);
                         this.jobs = response.data.profilejob;
-                        console.log("aaabbb",this.jobs);
-
+                        console.log('result',this.jobs)
                         this.customer_id = response.data.user;
                         if(this.jobs.data.length != 0){
                             this.norecord_msg = false;
