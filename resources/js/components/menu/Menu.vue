@@ -7,7 +7,7 @@
                 <a class="navbar-brand logo-text" href="/">
                 <!-- LOGO <span>HERE</span>  -->
                 <h4 style=" font-size: 13px; letter-spacing: 1.5px; font-weight: bold; ">介護医療福祉の総合サイト</h4>
-                <img src="/images/logo.png" style="width:240px;height:auto;" />
+                <img src="/images/logo.png" style="width:215px;height:auto;" />
                 </a>
                 
                 <div class="h-tel"><a class="tel" href="tel:03-1234-5678"><i class="fas fa-phone-alt"></i><span>03-1234-5678</span></a><br class="pc-1024"><a href="mailto:info@t-i-s.jp"><p class="sp-1024"><i class="fas fa-envelope"></i></p><span>info@t-i-s.jp</span></a></div>
@@ -31,8 +31,18 @@
                 </li>
                 <li>
                 <router-link :to="{ name: 'jobSearch' }">求人検索</router-link>
-                </li>
+                </li>    
+               
             </ul>
+             <ul class="gSecondNav">
+                <li>
+                <a>サイトポリシー</a>
+                </li>
+                <li>
+                <a>プライバシーポリシー</a>
+                </li>
+            </ul>            
+            
 
             <div class="collapse navbar-collapse  d-flex justify-content-end" id="navbarSupportedContent">
                 <div class="d-flex">
