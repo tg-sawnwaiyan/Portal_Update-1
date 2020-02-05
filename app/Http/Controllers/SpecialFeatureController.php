@@ -106,8 +106,8 @@ class SpecialFeatureController extends Controller
     {
         $feature = special_feature::find($id);
         $feature->delete();
-        $features = special_feature::orderBy('id','DESC')->get()->toArray();
-         return $features;
+        $features = special_feature::orderBy('id','DESC')->paginate(12);
+         return response()->json($features);
         // return response()->json('The Feature successfully deleted');
     }
 
