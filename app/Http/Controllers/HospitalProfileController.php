@@ -27,13 +27,12 @@ class HospitalProfileController extends Controller
     }
 
     function getFavouriteHospital($local_sto) {
-        $query = "SELECT hospital_profiles.* , '' AS schedule_am, '' AS schedule_pm, group_concat(special_features_junctions.special_feature_id) AS special, group_concat(subject_junctions.subject_id) AS sub, customers.name, customers.email, customers.phone, customers.logo, townships.township_name, townships.city_id, cities.city_name FROM `hospital_profiles`
-                    JOIN customers ON hospital_profiles.customer_id = customers.id
-                    LEFT JOIN townships ON townships.id = customers.townships_id
-                    LEFT JOIN cities ON townships.city_id = cities.id
-                    LEFT JOIN special_features_junctions ON special_features_junctions.customer_id = customers.id
-                    LEFT JOIN subject_junctions ON subject_junctions.customer_id = customers.id
-                    WHERE hospital_profiles.id IN (" . $local_sto . ") GROUP BY customers.id";
+        $query = "SELECT hospital_profiles.* , '' AS schedule_am, '' AS schedule_pm, group_concat(special_features_junctions.special_feature_id) AS special, group_concat(subject_junctions.subject_id) AS sub, townships.township_name, townships.city_id, cities.city_name FROM `hospital_profiles`
+        LEFT JOIN townships ON townships.id = hospital_profiles.townships_id
+        LEFT JOIN cities ON townships.city_id = cities.id
+        LEFT JOIN special_features_junctions ON special_features_junctions.profile_id = hospital_profiles.id
+        LEFT JOIN subject_junctions ON subject_junctions.profile_id = hospital_profiles.id
+        WHERE hospital_profiles.id IN (" . $local_sto . ") group by hospital_profiles.id";
         $fav_hospital = DB::select($query);
         foreach($fav_hospital as $fav) {
             $sfeature = $fav->special;
@@ -48,11 +47,11 @@ class HospitalProfileController extends Controller
                 $subjects = DB::select($sql);
                 $fav->sub = $subjects;
             }
-            $cId = $fav->customer_id;
-            $sql = "SELECT schedule.* FROM schedule WHERE schedule.customer_id = $cId AND schedule.part = 'am'";
+            $cId = $fav->profile_id;
+            $sql = "SELECT schedule.* FROM schedule WHERE schedule.profile_id = $cId AND schedule.part = 'am'";
             $schedule_am = DB::select($sql);
             $fav->schedule_am = $schedule_am;
-            $sql = "SELECT schedule.* FROM schedule WHERE schedule.customer_id = $cId AND schedule.part = 'pm'";
+            $sql = "SELECT schedule.* FROM schedule WHERE schedule.profile_id = $cId AND schedule.part = 'pm'";
             $schedule_pm = DB::select($sql);
             $fav->schedule_pm = $schedule_pm;
         }
@@ -60,23 +59,22 @@ class HospitalProfileController extends Controller
     }
 
     function getFavouriteNursing($local_sto) {
-        $query = "SELECT nursing_profiles.* , group_concat(special_features_junctions.special_feature_id) AS special,'' AS payment_method, customers.name, customers.email, customers.address, customers.logo, townships.township_name, townships.city_id, cities.city_name FROM `nursing_profiles`
-                    LEFT JOIN customers ON nursing_profiles.customer_id = customers.id
-                    LEFT JOIN townships ON townships.id = customers.townships_id
-                    LEFT JOIN cities ON townships.city_id = cities.id
-                    LEFT JOIN special_features_junctions ON special_features_junctions.customer_id = customers.id
-                    WHERE nursing_profiles.id IN (" . $local_sto . ") GROUP BY customers.id";
+        $query = "SELECT nursing_profiles.* , group_concat(special_features_junctions.special_feature_id) AS special,'' AS payment_method, townships.township_name, townships.city_id, cities.city_name FROM `nursing_profiles`
+        LEFT JOIN townships ON townships.id = nursing_profiles.townships_id
+        LEFT JOIN cities ON townships.city_id = cities.id
+        LEFT JOIN special_features_junctions ON special_features_junctions.profile_id = nursing_profiles.id
+        WHERE nursing_profiles.id IN (" . $local_sto . ") group by nursing_profiles.id";
         $fav_nursing = DB::select($query);
         foreach($fav_nursing as $nur) {
             if($nur->special != null){
                 $sfeature = $nur->special;
-                $cId = $nur->customer_id;
+                $cId = $nur->profile_id;
                 if($sfeature != null){
                     $sql = "SELECT short_name FROM special_features WHERE id IN (".$sfeature.")";
                     $specialfeature = DB::select($sql);
                     $nur->special = $specialfeature;
                 }            
-                $sql = "SELECT * FROM method_payment WHERE customer_id = $cId";
+                $sql = "SELECT * FROM method_payment WHERE profile_id = $cId";
                 $payment = DB::select($sql);
                 $nur->payment_method = $payment;                
             }
@@ -157,7 +155,7 @@ class HospitalProfileController extends Controller
      */
     public function edit($id)
     {
-        $hospital = HospitalProfile::where('customer_id',$id)->first();
+        $hospital = HospitalProfile::where('id',$id)->first();
        
         return response()->json($hospital);
     }
@@ -213,7 +211,7 @@ class HospitalProfileController extends Controller
         // End 
 
         // Hospital Profile
-        $hospital = HospitalProfile::where('customer_id',$id)->first();
+        $hospital = HospitalProfile::where('id',$id)->first();
         $hospital->access = $request[0]['hospital_info']['access'];
         $hospital->specialist =  $request[0]['hospital_info']['specialist'];
         $hospital->details_info=  $request[0]['hospital_info']['details_info'];
@@ -227,13 +225,13 @@ class HospitalProfileController extends Controller
        // End 
         
         // Schedule 
-        $schedule = Schedule::where('customer_id', $id)
+        $schedule = Schedule::where('profile_id', $id)
                     ->delete();
 
         for($i=0; $i<2; $i++) {
             if($i == 0) { $part = 'am'; } else { $part = 'pm'; }
             $data = array(
-                'customer_id' => $id,
+                'profile_id' => $id,
                 'mon' => $request[0]['schedule_list'][$i][0],
                 'tue' => $request[0]['schedule_list'][$i][1],
                 'wed' => $request[0]['schedule_list'][$i][2],
@@ -250,24 +248,24 @@ class HospitalProfileController extends Controller
         }
         
         // Special Feature
-        $feature = SpecialFeaturesJunctions::where('customer_id', $id)
+        $feature = SpecialFeaturesJunctions::where('profile_id', $id)
                     ->delete();
 
         for($indx=0; $indx<count($request[0]['chek_feature'][0]['special_feature_id']); $indx++) {
             $new_feature = new SpecialFeaturesJunctions();
-            $new_feature->customer_id = $id;
+            $new_feature->profile_id = $id;
             $new_feature->special_feature_id = $request[0]['chek_feature'][0]['special_feature_id'][$indx];
             $new_feature->save();
         }
         // End
 
         // SubjectJuncitonsUpdate 
-        $subject = SubjectJunctions::where('customer_id', $id)
+        $subject = SubjectJunctions::where('profile_id', $id)
                     ->delete();
 
         for($indx=0; $indx<count($request[0]['subjects'][0]['subject_id']); $indx++) {
             $new_subject = new SubjectJunctions();
-            $new_subject->customer_id = $id;
+            $new_subject->profile_id = $id;
             $new_subject->subject_id = $request[0]['subjects'][0]['subject_id'][$indx];
             $new_subject->save();
         }
@@ -275,10 +273,10 @@ class HospitalProfileController extends Controller
 
          // Gallary 
          if(count($request[0]["video"]) > 0){
-            $del_gallery = Gallery::where(['customer_id'=> $id,'type'=>'video'])->delete(); 
+            $del_gallery = Gallery::where(['profile_id'=> $id,'type'=>'video'])->delete(); 
             for($i=0; $i<count($request[0]["video"]); $i++) {
                 $gallery = new Gallery;
-                $gallery->customer_id = $id;
+                $gallery->profile_id = $id;
                 $gallery->type = $request[0]["video"][$i]['type'];
                 $gallery->photo = $request[0]["video"][$i]['photo'];
                 $gallery->title = $request[0]["video"][$i]['title'];
@@ -288,10 +286,10 @@ class HospitalProfileController extends Controller
             }
         }
         if(count($request[0]["image"]) > 0){
-            $del_gallery = Gallery::where(['customer_id'=> $id,'type'=>'photo'])->delete(); 
+            $del_gallery = Gallery::where(['profile_id'=> $id,'type'=>'photo'])->delete(); 
             for($i=0; $i<count($request[0]["image"]); $i++) {
                 $gallery = new Gallery;
-                $gallery->customer_id = $id;
+                $gallery->profile_id = $id;
                 $gallery->type = $request[0]["image"][$i]['type'];
                 $gallery->photo = $request[0]["image"][$i]['photo'];
                 $gallery->title = $request[0]["image"][$i]['title'];

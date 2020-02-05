@@ -1074,7 +1074,7 @@
                         </div>
                     </div>
                     <div class="m-b-20 text-right">
-                        <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
+                        <router-link :to="{name: 'comment', params: { customer_id: profile_id }}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
                         <span>口コミを追加する</span>
                         </router-link>
                     </div>
@@ -1094,7 +1094,7 @@
 
                    <p class="no-data-color pb-3 no-data-size">口コミはありません。</p>
                    <div class="m-b-20 text-center">
-                        <router-link :to="{name: 'comment', params: { type: type,customer_id: customer_id }}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
+                        <router-link :to="{name: 'comment', params: { type: type,customer_id: profile_id }}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
                         <span>口コミを追加する</span>
                         </router-link>
                     </div>
@@ -1317,7 +1317,7 @@
                     <h5 class="profile_subtit">医院からのお知らせ </h5>
 
                     <p v-for="hospital in hospitals" :key="hospital.id" class="col-12">
-                        <span v-if="hospital.details_info">{{ hospital.details_info }}</span>
+                        <span v-if="hospital.details_info"><p v-html="hospital.details_info"></p></span>
                         <span v-else><p class="no-data-color">表示されるデータがありません。</p></span>
                     </p>
                 </div>
@@ -1503,7 +1503,7 @@
                         </div>
                     </div>
                     <div class="m-b-20 text-right">
-                        <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
+                        <router-link :to="{name: 'comment', params: { customer_id: profile_id }}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
                         <span>口コミを追加する</span>
                         </router-link>
                     </div>
@@ -1524,7 +1524,7 @@
                    <p class="no-data-color pb-3 no-data-size">
                        口コミはありません。</p>
                     <div class="m-b-20 text-center">
-                        <router-link :to="{name: 'comment', params: { customer_id: customer_id }}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
+                        <router-link :to="{name: 'comment', params: { customer_id: profile_id }}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
                         <span>口コミを追加する</span>
                         </router-link>
                     </div>
@@ -1591,7 +1591,7 @@ export default {
             var that = this;
             return {
                 ads_list: [],
-                customer_id: "",
+                profile_id: "",
                 url: 'upload/nursing_profile/Imagepanorama/',
                 isAutoRotationOn: true,
                 isOrientationOn: true,
@@ -1677,7 +1677,7 @@ export default {
         },
 
         props:{
-                cusid:Number,
+                pro_id:Number,
                 type:String,
                 loginuser:Boolean,
         },
@@ -1719,15 +1719,15 @@ export default {
                 // else if( this.window.width > 1700) {
                 // }
 
-                this.customer_id = this.cusid;
+                this.profile_id = this.pro_id;
                 this.activePanoImage = 0;
 
-                if(this.type != undefined && this.cusid!= undefined){
-                    localStorage.setItem('cusType',this.type);
-                    localStorage.setItem('cusId',this.cusid);
-                }
-                this.type = localStorage.getItem('cusType');
-                this.cusid = Number(localStorage.getItem('cusId'));
+                // if(this.type != undefined && this.pro_id!= undefined){
+                //     localStorage.setItem('cusType',this.type);
+                //     localStorage.setItem('cusId',this.pro_id);
+                // }
+                // this.type = localStorage.getItem('cusType');
+                // this.pro_id = Number(localStorage.getItem('cusId'));
 
                 //for responsive
                     if(this.window.width > 768) {
@@ -1821,12 +1821,12 @@ export default {
 
                 if(this.type == "nursing")
                 {
-                    this.axios.get('/api/profile/customer/'+this.cusid+'/'+this.type) .then(response => {
+                    this.axios.get('/api/profile/customer/'+this.pro_id+'/'+this.type) .then(response => {
                         this.customer = response.data;
                         this.customer_name = response.data[0].name;
                     });
 
-                    this.axios.get('/api/profile/nursing/'+this.cusid) .then(response => {
+                    this.axios.get('/api/profile/nursing/'+this.pro_id) .then(response => {
                         this.nursing_profiles = response.data.feature;
                         console.log('This is JSON value');
                         console.log(response.data);
@@ -1887,12 +1887,12 @@ export default {
 
 
 
-                    this.axios.get(`/api/profile/specialfeature/${this.type}/${this.cusid}`) .then(response => {
+                    this.axios.get(`/api/profile/specialfeature/${this.type}/${this.pro_id}`) .then(response => {
                         this.specialfeature = response.data;
 
                     });
 
-                    this.axios.get('/api/profile/comment/'+this.cusid) .then(response => {
+                    this.axios.get('/api/profile/comment/'+this.pro_id) .then(response => {
 
                         this.comments = response.data;
                         if(this.comments.length > this.size){
@@ -1911,11 +1911,11 @@ export default {
                 }
 
                 else{
-                    this.axios.get('/api/profile/customer/'+this.cusid+'/'+this.type).then(response => {
+                    this.axios.get('/api/profile/customer/'+this.pro_id+'/'+this.type).then(response => {
                         this.customer = response.data;
                         this.customer_name = response.data[0].name;
                     });
-                    this.axios.get('/api/profile/hospital/'+this.cusid).then(response => {
+                    this.axios.get('/api/profile/hospital/'+this.pro_id).then(response => {
                         console.log('This is JSON value');
                         console.log(response.data);
                         console.log(response.data);
@@ -1966,13 +1966,13 @@ export default {
 
                     });
 
-                    this.axios.get(`/api/profile/specialfeature/${this.type}/${this.cusid}`).then(response => {
+                    this.axios.get(`/api/profile/specialfeature/${this.type}/${this.pro_id}`).then(response => {
 
                         this.specialfeature = response.data;
 
                     });
 
-                    this.axios.get('/api/profile/comment/'+this.cusid).then(response => {
+                    this.axios.get('/api/profile/comment/'+this.pro_id).then(response => {
 
                         this.comments = response.data;
                         if(this.comments.length > this.size){
@@ -1983,7 +1983,7 @@ export default {
 
                     });
 
-                    this.axios.get('/api/profile/subject/'+this.cusid).then(response => {
+                    this.axios.get('/api/profile/subject/'+this.pro_id).then(response => {
                             this.subjects = response.data;
                         for(var i=0; i< response.data.length; i++) {
                             this.subject += response.data[i]['name'] + " , ";
@@ -1991,7 +1991,7 @@ export default {
 
                     });
 
-                    this.axios.get('/api/profile/schedule/'+this.cusid) .then(response => {
+                    this.axios.get('/api/profile/schedule/'+this.pro_id) .then(response => {
 
                             this.am_arr = response.data.am;
                             this.pm_arr = response.data.pm;
@@ -2267,7 +2267,7 @@ export default {
         });
     },
      imgUrlAlt(event) {
-                event.target.src = "images/noimage.jpg"
+                event.target.src = "/images/noimage.jpg"
     },
     first() {
         this.currentPage = 0;

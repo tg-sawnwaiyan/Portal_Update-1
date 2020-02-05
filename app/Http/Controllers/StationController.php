@@ -130,7 +130,7 @@ class StationController extends Controller
     public function getStationbyCustomerId($customer_id) {
        
         $station_list = Station::all()->toArray();
-        $nursing_station = StationJunctions::query()->where('customer_id','=',$customer_id)->get()->toArray();
+        $nursing_station = StationJunctions::query()->where('profile_id','=',$customer_id)->get()->toArray();
         
         for($indx = 0; $indx<count($nursing_station); $indx++) {
             for($sec_indx = 0; $sec_indx<count($station_list); $sec_indx++) {
