@@ -151,13 +151,38 @@ export default {
             },
 
             closeBtnMethod: function(old_photo) {
-                this.update_img = true;
-                if(this.advertisement.photo)
-                {
-                    var image_x = document.getElementById('x-image');
-                    image_x.parentNode.removeChild(image_x);
-                }
-                this.advertisement.photo = '';
+                this.$swal({
+                    title: "確認",
+                    text: "削除してよろしいでしょうか",
+                    type: "warning",
+                    width: 350,
+                    height: 200,
+                    showCancelButton: true,
+                    confirmButtonColor: "#dc3545",
+                    cancelButtonColor: "#b1abab",
+                    cancelButtonTextColor: "#000",
+                    confirmButtonText: "はい",
+                    cancelButtonText: "キャンセル",
+                    confirmButtonClass: "all-btn",
+                    cancelButtonClass: "all-btn"
+                }).then(response => {
+                        this.$swal({
+                                text: "画像を削除しました。",
+                                type: "success",
+                                width: 350,
+                                height: 200,
+                                confirmButtonText: "閉じる",
+                                confirmButtonColor: "#dc3545"
+                            });
+                    }).then(response => {
+                        this.img_name = '';
+                        this.update_img = true;
+                        this.advertisement.photo = '';
+                        if(this.advertisement.photo){
+                            var image_x = document.getElementById('x-image');
+                            image_x.parentNode.removeChild(image_x);
+                        }
+                }); 
             },
             // updateCheck: function (check){
             //     this.advertisement.location.shift()
