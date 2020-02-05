@@ -239,6 +239,12 @@
       }
     },
     mounted() {
+        var _this = this;
+        $('#app').click(function() {
+            if(_this.isFav){
+                _this.isFav = false;
+            }
+        });
         console.log("menu "+this.$auth.check())
         if(localStorage.getItem("visit")){
             this.visit = localStorage.getItem("visit");

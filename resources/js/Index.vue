@@ -187,6 +187,7 @@
                 $('#headerbar li').css('display','inline-block');
             }
         });
+        
         console.log("created")
         document.addEventListener('scroll', this.handleScroll);
 
