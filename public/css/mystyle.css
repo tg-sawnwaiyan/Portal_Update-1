@@ -5739,6 +5739,56 @@ padding-bottom: 15px; */
     position: relative;
 }
 
+/*admin_pagination*/
+.page-item.active .page-link
+{
+    z-index: 3;
+    /* color: #fff; */
+    background-color: #2980b9;
+    border: 1px solid #2980b9;
+    box-shadow: none;
+}
+.page-link:focus{
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+.page-link {
+    position: relative;
+    display: block;
+    padding: 12px;
+    margin-left: -1px;
+    line-height: 12px;
+    color: #000000;
+    font-weight: bold;
+    background-color: #fff;
+    border: 1px solid #2980b9;
+    margin-left: 5px;
+    box-shadow: none;
+}
+
+.page-link:hover
+{
+    background-color: #b7c2b7;
+    color: #2980b9;
+    border: 1px solid #766666;
+}
+@media screen and ( max-width: 480px ){
+    li.page-item {
+        display: none;
+    }
+   
+    .page-item:first-child,
+    .page-item:nth-child( 2 ),
+    /* .page-item:nth-child( 1 ), */
+    .page-item:nth-last-child( 2 ),
+    .page-item:last-child,
+    .page-item.active,
+    .page-item.disabled {
+        display: block;
+    }
+}
+/*end_admin_pagination*/
+
 
 /* end listadmin .pagination */
 
