@@ -146,6 +146,8 @@ export default {
                 this.advertisement.photo = event.target.files[0];
                 this.upload_img = URL.createObjectURL(event.target.files[0]);
                 this.update_img = true;
+                const file =event.target.files[0];
+                this.img_name = file.name;
             },
 
             closeBtnMethod: function(old_photo) {
@@ -184,7 +186,6 @@ export default {
                 this.advertisement.photo = event.target.files[0];
                 const file =event.target.files[0];
                 this.img_name = file.name;
-
             },
 
             updateAds() {

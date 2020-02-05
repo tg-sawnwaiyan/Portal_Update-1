@@ -33,7 +33,7 @@
 
                     <div class="image_show" v-if="upload_img">
                         <div class='col-md-2'>
-                            <span class='img-close-btn' v-on:click="removeUpload()">X</span>
+                            <span class='img-close-btn test' v-on:click="removeUpload()" v-if='status == 1'>X</span>
                             <img :src="upload_img" class='show-img'>
                         </div>
                     </div>
