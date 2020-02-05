@@ -966,7 +966,27 @@ width: 100%; */
 .links a {
     color: #d2cfcf !important;
 }
+/*login*/
+.login_1{
+    top: -39px;
+    margin-right: 20px;
+}
+.login_2{
+    top: -38px;
+    margin-left: 10px;
+    position: absolute;
+}
 
+.login_3{
+    top: 11px;
+    margin-right: 13px;
+}
+.login_4{
+    top: 11px;
+    margin-left: 10px;
+    position: absolute;
+}
+/*login*/
 .user_card .links a {
     color: #2C3E50 !important;
     font-weight: bold;
@@ -1335,7 +1355,7 @@ box-shadow: 0px 0px 5px rgb(212, 201, 201); */
     position: relative;
     background: #fff;
     border-radius: 1px;
-    border-bottom: 1px dashed #25ac8a;
+    border-bottom: 1px dashed #2980b9;
     width: 100%;
     padding: 5px;
     margin-bottom: 20px;
@@ -1441,7 +1461,8 @@ border-top: 5px solid #e66527; */
     padding: 5px 10px;
     border-radius: 5px;
     color: #000;
-    margin: 10px;
+    margin: 5px;
+    font-size: 12px;
 }
 
 .gNav {
@@ -1590,6 +1611,7 @@ border-top: 5px solid #e66527; */
     font-size: 40px;
     font-weight: bold;
     color: #2980b9;
+    margin-right: 0px;
     /* text-shadow: 3px 4px #ccc; */
 }
 
@@ -3222,7 +3244,8 @@ overflow-y: auto;
 
 .router-link-exact-active>i.fa,
 .router-link-exact-active>i.fas {
-    color: #2980b9 !important;
+    color: #23a2f5 !important;
+    /* color: #2980b9 !important; */
 }
 
 .nav-pills .nav-link {
@@ -3235,7 +3258,8 @@ overflow-y: auto;
     font-weight: bold;
     border-radius: 0px !important;
     /* color: #fff !important; */
-    color: #2980b9 !important;
+    color: #23a2f5 !important;
+    /* color: #2980b9 !important; */
     font-weight: bold;
 }
 
@@ -5612,7 +5636,7 @@ color: #fff !important;
 }
 
 .breadcrumb-item>a {
-    color: #19a984;
+    color: #2980b9;
     font-weight: bold;
 }
 
@@ -7763,25 +7787,9 @@ border-bottom: none;
     color: #2980b9;
 }
 
-.job_count {
-    /* border-radius: 50%;
-
-background: #f9d7c6;
-
-color: #bd440a;
-
-display: inline-block; */
-    /* border: 1px solid #dc3545 !important;
-
-color: #dc3545;
-
-background: #fff;
-
-box-shadow: none !important;
-
-min-width: 60px; */
+.job_count {    
     display: inline-block;
-    background: #ff9967;
+    background: #2980b9;
     color: #fff;
     padding: 4px 15px 3px;
     border-radius: 3px;
@@ -9163,16 +9171,18 @@ padding: 11px;
         height: 170px;
         cursor: pointer;
     }
-    /*login*/
-    .login_2 {
-        margin-left: 18px;
-    }
-    .login_1 {
-        margin-right: 18px;
-    }
-    .login_top {
-        top: -28px;
-    }
+     /*login*/
+     .login_2
+     {
+         margin-left: 18px;
+     }
+     .login_1{
+         margin-right: 18px;
+     }
+     .login_top
+     {
+         top: -6px;
+     }
 }
 
 @media only screen and (max-width: 1400px) {
@@ -9256,8 +9266,8 @@ padding: 11px;
     }
     /* login */
     .login_top {
-        top: -34px;
-        margin-left: 15px;
+        top: -6px;
+        /* margin-left: 15px; */
     }
     .login_1 {
         margin-right: 27px;
@@ -11141,7 +11151,8 @@ background-image: none;
         position: absolute;
         height: 170px;
         width: 170px;
-        top: 1px;
+        top: -81px;
+    
     }
     .links_2 {
         top: 78px;
@@ -11441,11 +11452,12 @@ background-image: none;
         margin-left: 22px;
     }
     .loginwrapper {
-        height: 105vh;
+        
         padding: 10px 40px;
         position: fixed;
         /* margin-left: -53px; */
         background: #fbfbfb;
+        top: 20px;
     }
     .registerform_container {
         margin-top: 0px;
@@ -11663,7 +11675,7 @@ background-image: none;
         display: inline-block;
     }
     .gNav {
-        margin-left: 2%;
+        margin-left: 0%;
     }
     .gNav li a {
         padding: 0 5px;
@@ -11722,3 +11734,6 @@ background-image: none;
 
 
 /**************end card carousel***********************/
+strong {
+    font-weight: bold!important;
+}

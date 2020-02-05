@@ -95,9 +95,16 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                <!-- <div class="row">
                                     <pagination :data="related_news" @pagination-change-page="getPostsByCatId"></pagination>
-                                </div>
+                                </div> -->
+
+                                 <div>
+                              <pagination :data="related_news" @pagination-change-page="getPostsByCatId" :limit="limitpc">
+                                <span slot="prev-nav"><i class="fas fa-angle-left"></i> 前へ</span>
+                                <span slot="next-nav">次へ <i class="fas fa-angle-right"></i></span>
+                            </pagination>
+                        </div>
                                 
                                 <input type="hidden" v-model="checkedNews" >
                             </div>
@@ -122,6 +129,12 @@ import {quillEditor} from 'vue-quill-editor'
     export default {
         components: {
             quillEditor
+        },
+           props:{
+            limitpc: {
+                type: Number,
+                default: 5
+            },
         },
 
         data() {
@@ -370,7 +383,7 @@ import {quillEditor} from 'vue-quill-editor'
 
                         let fd = new FormData();
                         fd.append("search_word", search_word);
-                        fd.append("selected_category", cat_id);
+                        fd.append("selected_category", null);
                         this.axios.post("/api/news_list/search?page=" + page,fd).then(response => {
                             this.related_news = response.data;
                             this.check_head = true;

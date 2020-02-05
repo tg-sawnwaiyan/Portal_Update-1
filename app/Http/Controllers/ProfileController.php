@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -16,6 +17,33 @@ class ProfileController extends Controller
         $user = auth()->user();
         // $data = array('user'->$user);
         return auth()->user();
+    }
+
+    public function movelatlng($id,Request $request)
+    {
+
+        $query = "SELECT latitude,longitude FROM cities  where id = " .$request->city_id ;
+        $citylatlng = DB::select($query);
+    
+
+        $insert = array(
+            'customer_id' => $id,
+            'latitude' => $citylatlng[0]->latitude,
+            'longitude' => $citylatlng[0]->longitude,
+            'township_id' => $request->town_id,
+
+        ); 
+
+        $type_id = DB::table('users')->select('type_id')->where('customer_id',$id)->value('type_id');
+     
+        if($type_id == 2){ 
+
+            \DB::table('hospital_profiles')->insert($insert);
+        }else{
+
+             \DB::table('nursing_profiles')->insert($insert);
+        }  
+        return response()->json('success');
     }
 
     /**

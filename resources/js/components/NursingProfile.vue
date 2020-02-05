@@ -1317,13 +1317,30 @@ export default {
 </script>
 
  <style>
-  .quill-editor{
-    background-color: #fff;
-  }
-  .panorama-box {
-    padding: 10px 10px 20px 0px;
-    margin: 0px;
-    margin-bottom: 15px;
-  }
+.panorama .col-md-3 {  
+       -webkit-box-flex: 0;   
+        flex: 0 0 10% !important;  
+       max-width: 10% !important;
+        }
+       
+       .panorama-old-img{   
+            height:80px; 
+            width: 130px;    
+        } 
+             
+        .panorama-new-img{   
+           height:80px; 
+           width: 130px; 
+           
+        }  
 
+        .quill-editor{ 
+           background-color: #fff; 
+         } 
+         
+        .panorama-box { 
+           padding: 10px 10px 20px 0px;  
+           margin: 0px;  
+          margin-bottom: 15px; 
+           }
  </style>

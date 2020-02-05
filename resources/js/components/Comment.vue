@@ -168,6 +168,7 @@ export default {
                 comments: {
                         type:'confirm',
                         title: '',
+                        profile_id:'',
                         comment:'',
                         email:'',
                         name:'',
@@ -198,8 +199,9 @@ export default {
             }
         },
         created(){
+            this.comments.types = this.$route.params.type;
             this.comments.gender = 0;
-            this.comments.customer_id = this.$route.params.customer_id;
+            this.comments.profile_id = this.$route.params.customer_id;
         },
 
 

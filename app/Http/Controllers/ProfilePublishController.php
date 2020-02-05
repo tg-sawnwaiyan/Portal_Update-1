@@ -128,6 +128,8 @@ class ProfilePublishController extends Controller
         return $comments;
     }
 
+
+
     public function getCustomer($cusid,$type)
     {
         // $customer = Customer::where('id',$cusid)->get();

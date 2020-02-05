@@ -12,11 +12,14 @@
                         <form @submit.prevent="add" class="mt-2 pb-5 col-md-12">
                           <div class="form-group" v-if="this.$auth.check(2)">
                             <div class="form-group" v-if="check">
-                              <label>Customer Name:</label>
+                              <label>事業者名:</label>
                               <label>{{cusName}}</label>
+                              <br>
+                              <label>施設名:</label>
+                              <label>{{profileName}}</label>
                             </div>
                             <div v-else>
-                            <label>Customer Name:</label>
+                            <label>事業者名:</label>
                             <autocomplete 
                             placeholder="事業者名を検索" 
                             input-class="form-control" 
@@ -24,6 +27,14 @@
                             :results-display="formattedDisplay"
                             @selected="getSelected($event)">
                             </autocomplete>
+                            <br>
+                            <label>施設名:</label>
+                            <select v-model="selectedValue" class="division form-control" @change="getProfile($event)">
+                                <option value="0">選択してください。</option>
+                                <option v-for="profile in profileList" :key="profile.id" v-bind:value="profile.id">
+                                    {{profile.name}}
+                                </option>
+                            </select>
                             </div>
                           </div>
                             <div class="form-group">
@@ -498,7 +509,8 @@ import Autocomplete from 'vuejs-auto-complete'
 
                         user_id: "",
 
-                        recordstatus: ""
+                        recordstatus: "",
+                        profile_id: 0,
                     },
 
                     ischeck: "",
@@ -508,10 +520,20 @@ import Autocomplete from 'vuejs-auto-complete'
                     townships:[],
                     customerList: {
                     id: "",
-                    name: ""
+                    name: "",
+                    email: "",
+                    type_id: ""
                     },
                     check: false,
-                    cusName: ''
+                    cusName: '',
+                    profileList: {
+                        id:"",
+                        name:""
+                    },
+                    profileName: '',
+                    table_name: {
+                        profile: ''
+                    }
                 };
             },
 
@@ -598,6 +620,8 @@ import Autocomplete from 'vuejs-auto-complete'
                         this.joboffer.user_id = response.data.job[0].user_id;
 
                         this.joboffer.recordstatus = response.data.job[0].recordstatus;
+
+                        this.joboffer.profile_id = response.data.job[0].profile_id;
                         this.header = " 求人編集";
                         this.subtitle = "保存";
                         this.axios.get('/api/job/customerList')
@@ -606,11 +630,25 @@ import Autocomplete from 'vuejs-auto-complete'
                           for(var i=0; i<cus_list.length; i++){
                             if(this.joboffer.customer_id == response.data[i].id){
                               this.cusName = response.data[i].name + '「 ' +response.data[i].email+ ' 」';
+                              if(response.data[i].type_id == 2){
+                                this.table_name.profile = 'nursing_profiles';
+                            }else{
+                                this.table_name.profile = 'hospital_profiles';
+                            }
                             }
                           }
-                          
+                          this.axios.post(`/api/job/profileName/${this.joboffer.profile_id}`,this.table_name)
+                        .then(response=> {
+                            for(var i=0; i<response.data.length; i++){
+                                if(this.joboffer.profile_id == response.data[i].id){
+                                    this.profileName = response.data[i].name;
+                                }
+                            }
+                            // this.profileName = response.data[0].name;
+                        });
                           this.customerList = response.data;
                         });
+                        
                         return this.header;
                         return this.subtitle;
                     });
@@ -987,7 +1025,27 @@ import Autocomplete from 'vuejs-auto-complete'
                     return result.name + '「' + result.email + '」';
                   },
                   getSelected(event){
-                    this.joboffer.customer_id = event.value;
+                      if(event.selectedObject.type_id == 2){
+                          this.table_name.profile = 'nursing_profiles';
+                      }else {
+                          this.table_name.profile = 'hospital_profiles';
+                      }
+
+                        this.joboffer.customer_id = event.value;
+                        this.axios.post(`/api/job/profileList/${this.joboffer.customer_id}`,this.table_name)
+                    .then(response=> {
+                    this.profileList = response.data;
+                    if(this.profileList != ''){
+                        this.selectedValue = this.profileList[0].id;
+                        this.joboffer.profile_id = this.profileList[0].id;
+                    }else{
+                        this.selectedValue = 0;
+                    }
+                    });
+                  },
+                  getProfile(event){
+                      console.log('event', event.target.value)
+                      this.joboffer.profile_id = event.target.value;
                   }
                 }
             };

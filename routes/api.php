@@ -152,6 +152,8 @@ Route::group(['middleware' => ['auth:api']], function() {
         Route::delete('delete/{id}', 'JobController@destroy');
         Route::post('search', 'JobController@search');
         Route::get('customerList', 'JobController@getCustomerList');
+        Route::post('profileList/{cId}', 'JobController@getProfileList');
+        Route::post('profileName/{id}','JobController@getProfileName');
     });
     // End Job
 
@@ -292,6 +294,7 @@ Route::get('nursing-vgallery/{id}','GalleryController@getVideobyCustomerId');
 Route::get('nursing-panorrama-gallery/{id}','GalleryController@getPanoramabyCustomerId');
 Route::post('nursing/movephoto','NursingProfileController@movePhoto');
 Route::post('nursing/movepanorama','NursingProfileController@movePanorama');
+Route::post('nursing/movelatlng/{id}','ProfileController@movelatlng');
 Route::post('hospital/movephoto','HospitalProfileController@movePhoto');
 Route::post('user/movephoto','UserController@movePhoto');
 Route::post('user/password-change','UserController@changePassword');
@@ -372,9 +375,10 @@ Route::group(['prefix' => 'comments'], function () {
     Route::post('add', 'CommentController@store');
     Route::get('edit/{id}', 'CommentController@edit');
     Route::get('comment/{type}', 'CommentController@index');
-    Route::get('confirm/{id}','CommentController@confirm');
+    Route::get('getCustomComment/{type}/{profileid}', 'CommentController@getCustomComment');
+    Route::get('confirm/{id}/{type}','CommentController@confirm');
     Route::post('update/{id}', 'CommentController@update');
-    Route::delete('delete/{id}','CommentController@destroy');
+    Route::delete('delete/{id}/{type}','CommentController@destroy');
     Route::post('search','CommentController@search');
     //Route::get('getcommentlist/{cusid}','CommentController@getCommentList');
     Route::get('comment_list','CommentController@list');

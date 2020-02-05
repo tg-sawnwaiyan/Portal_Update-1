@@ -165,15 +165,20 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                     hidden: this.$auth.check(1),
                     child: [
                         {
-                        href: '/news_list',
-                        title: 'ニュース一覧',
-                        icon: 'fa fa-file-alt'
+                            href: '/news_list',
+                            title: 'ニュース一覧',
+                            icon: 'fa fa-file-alt'
                         },
                         {
-                        href: '/categorylist',
-                        title: 'カテゴリー設定',
-                        icon: 'fa fa-file-alt'
-                        }
+                            href: '/categorylist',
+                            title: 'カテゴリー設定',
+                            icon: 'fa fa-file-alt'
+                        },
+                        {
+                            href: '/ads',
+                            title: '広告',
+                            icon: 'fa fa-globe',
+                        },
                     ]
                 },
                 {
@@ -230,18 +235,9 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                         }
                     ]
                 },
-                {
-                    href: '/occupationlist',
-                    title: '求人職種設定',
-                    icon: 'fa fa-suitcase',
-                    hidden: this.$auth.check(1)
-                },
-                {
-                    href: '/ads',
-                    title: '広告',
-                    icon: 'fa fa-globe',
-                    hidden: this.$auth.check(1)
-                },
+                
+                
+                
                 {
                     header: true,
                     title: '事業者管理画面',
@@ -267,16 +263,28 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                     hidden: this.$auth.check(2)
                 },
                 {
-                    href: '/jobofferlist',
-                    title: '求人編集',
-                    icon: 'fa fa-edit',
-                    // hidden: this.$auth.check(2)
-                },
-                {
-                    href: '/jobapplicantlist',
-                    title: '求人応募者一覧',
-                    icon: 'fa fa-tasks',
-                    // hidden: this.$auth.check(2)
+                    title: '求人',
+                    icon: 'fa fa-list-ul',                    
+                    child: [
+                        {
+                            href: '/occupationlist',
+                            title: '求人職種設定',
+                            icon: 'fa fa-suitcase',
+                            hidden: this.$auth.check(1),
+                        },
+                        {
+                            href: '/jobofferlist',
+                            title: '求人編集',
+                            icon: 'fa fa-edit',
+                            // hidden: this.$auth.check(2)
+                        },
+                        {
+                            href: '/jobapplicantlist',
+                            title: '求人応募者一覧',
+                            icon: 'fa fa-tasks',
+                            // hidden: this.$auth.check(2)
+                        },
+                    ]
                 },
                 {
                     title: 'ログアウト',
