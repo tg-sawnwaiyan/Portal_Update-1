@@ -93,7 +93,7 @@
                     <p class="img_2 mb-1">{{news.main_point}}</p>
                   </div>
                   <div>
-                    <p class="p5 mb-2" v-html="news.body"></p>
+                    <p class="p5 mb-2 " v-html="news.body"></p>
                   </div>
                 </div>
                 <div class="col-md-12 mt-2 related-area">
