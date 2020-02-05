@@ -1627,7 +1627,11 @@ border-top: 5px solid #e66527; */
     font-size: 30px;
     color: #f57e46;
 }
-
+.logo_subtitle{
+    font-size: 13px;
+    letter-spacing: 1.5px;
+     font-weight: bold;
+}
 .main-content {
     /* padding: 0px;*/
     width: 80%;
@@ -3543,8 +3547,7 @@ background: #ff9b53;  /
 
 .related_box {
     float: left;
-    min-width: 25%;
-    max-width: 25%;
+    width: 25%;  
     padding-right: 10px;
 }
 
@@ -3732,7 +3735,7 @@ ul.hospital-subject>li:before {
     border: 3px solid #2980b9;
     border-right: none;
     padding: 5px;
-    height: 46px;
+    height: 40px;
     border-radius: 5px 0 0 5px;
     outline: none;
     color: #495057;
@@ -3754,7 +3757,7 @@ ul.hospital-subject>li:before {
     border: 3px solid #75b777;
     border-right: none;
     padding: 5px;
-    height: 46px;
+    height: 40px;
     border-radius: 5px 0 0 5px;
     outline: none;
     color: #495057;
@@ -3766,7 +3769,7 @@ ul.hospital-subject>li:before {
 
 .searchButton {
     width: 85px;
-    height: 46px;
+    height: 40px;
     border: 1px solid #2980b9;
     background: #2980b9;
     text-align: center;
@@ -3776,7 +3779,7 @@ ul.hospital-subject>li:before {
 
 .searchButtonNews {
     width: 85px;
-    height: 46px;
+    height: 40px;
     border: 1px solid #75b777;
     background: #75b777;
     text-align: center;
@@ -5670,8 +5673,9 @@ color: #fff !important;
 }
 
 .breadcrumb-item+.breadcrumb-item::before {
-    color: #118063 !important;
-    content: ">" !important;
+    content: '\F105';
+    font-family: 'Font Awesome 5 Free';
+    padding: 0 4px;
 }
 
 
@@ -6030,7 +6034,8 @@ font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "�
     margin-bottom: 10px;
     font-size: 22px;
     font-weight: bold;
-    border-bottom: 1px dashed #25ac8a;
+    border-bottom: 1px dashed #2980b9;
+    color: #2980b9;
 }
 
 
@@ -9774,6 +9779,12 @@ padding: 0;
     .gNav {
         display: none;
     }
+    .gSecondNav{
+        display: none;
+    }
+    .logo_subtitle{
+        display: none;
+    }
     #navbarSupportedContent {
         display: none !important;
     }
@@ -10217,6 +10228,7 @@ padding: 0;
 @media (max-width: 1024px) and (min-width: 320px) {
     .maintab-content {
         padding: 7px;
+        /* margin-top: 105px; */
     }
     .adminview-sidebar {
         height: auto;
@@ -10342,6 +10354,10 @@ width: 18rem;
 }
 
 @media only screen and (max-width:768px) {
+    .set-date {
+        margin: 0 auto;
+        text-indent: 1em;        
+    }
     .nursing_responsive {
         max-width: 33%;
     }
@@ -10667,6 +10683,10 @@ width: 18rem;
         padding-left: 0px;
         padding-right: 0px;
     }
+    .margin-free-750{
+        margin-left: 0px;
+        margin-right: 0px;
+    }
     .facility_tbl th,
     .cost_table th,
     .map_tbl th {
@@ -10802,6 +10822,8 @@ width: 18rem;
     }
     .category_box h4 {
         font-size: 16px;
+        padding-left: 5px;
+        padding-right: 5px;
     }
     .category_news_title {
         padding: 0px 10px 10px 0px;
@@ -11515,6 +11537,9 @@ background-image: none;
 }
 
 @media only screen and (max-width:320px) {
+    .set-date {       
+        text-indent: 0em;       
+    }
     .login_2 {
         margin-left: -53px;
     }
@@ -11583,6 +11608,9 @@ background-image: none;
         border: none;
         background: #fff !important;
         width: 25px !important;
+    }
+    .slick-dotted.slick-slider {
+        margin-bottom: 0px;
     }
 }
 
