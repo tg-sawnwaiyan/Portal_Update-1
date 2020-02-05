@@ -228,8 +228,8 @@
 {
     z-index: 3;
     /* color: #fff; */
-    background-color: #D2571C;
-    border: 1px solid #D2571C;
+    background-color: #2980B9;
+    border: 1px solid #2980B9;
     box-shadow: none;
 }
 .page-link:focus{
@@ -245,15 +245,14 @@
     color: #000000;
     font-weight: bold;
     background-color: #fff;
-    border: 1px solid #D2571C;
+    border: 1px solid #2980B9;
     margin-left: 5px;
     box-shadow: none;
 }
-
 .page-link:hover
 {
-    background-color: #b7c2b7;
-    color: #d2571c;
+    background-color: #B7C2B7;
+    color: #2980B9;
     border: 1px solid #766666;
 }
 @media screen and ( max-width: 480px ){
@@ -271,5 +270,4 @@
         display: block;
     }
 }
-
 </style>

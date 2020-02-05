@@ -161,7 +161,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                 },
                 {
                     title: 'ニュース',
-                    icon: 'fa fa-list-ul',
+                    icon: 'fa fa-newspaper',
                     hidden: this.$auth.check(1),
                     child: [
                         {
@@ -205,7 +205,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                 },
                 {
                     title: '病院',
-                    icon: 'fa fa-user-md',
+                    icon: 'fa fa-building',
                     hidden: this.$auth.check(1),
                     child: [
                         {
@@ -264,7 +264,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                 },
                 {
                     title: '求人',
-                    icon: 'fa fa-list-ul',                    
+                    icon: 'fa fa-suitcase',                    
                     child: [
                         {
                             href: '/occupationlist',
