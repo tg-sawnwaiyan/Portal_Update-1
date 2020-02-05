@@ -3544,7 +3544,14 @@ background: #ff9b53;  /
 #news_details .related_content {
     width: 100%;
 }
-
+.newsDetail_leftwrapper{
+    max-width:500px;
+}
+.img-wrap{
+    width:100%;
+    text-align: center;
+    padding: 30px;
+}
 .related_box {
     float: left;
     width: 25%;  
@@ -4632,9 +4639,7 @@ top: 66px; */
         width: 100%;
         background: #fbfbfb;
     }
-    .maintab-content {
-        padding: 7px;
-    }
+    
     .adminview-sidebar {
         height: auto;
     }
@@ -9336,6 +9341,9 @@ padding: 11px;
 }
 
 @media only screen and (max-width:1280px) {
+    .maintab-content {
+        padding: 7px;
+    }
     .img_title {
         height: 135px;
     }
@@ -9754,6 +9762,9 @@ padding: 0;
 }
 
 @media only screen and (max-width: 990px) {
+    #myTabContent {
+        margin-bottom: 10px;
+    }
     .loginwrapper {
         height: 235vh;
         padding: 259px 40px;
@@ -10226,10 +10237,7 @@ padding: 0;
 /* Media Queries*/
 
 @media (max-width: 1024px) and (min-width: 320px) {
-    .maintab-content {
-        padding: 7px;
-        /* margin-top: 105px; */
-    }
+   
     .adminview-sidebar {
         height: auto;
     }
@@ -10354,6 +10362,12 @@ width: 18rem;
 }
 
 @media only screen and (max-width:768px) {
+    .newsDetail_leftwrapper{
+        max-width: 320px;
+    }
+    .img-wrap{        
+        padding-bottom: 0px;
+    }
     .set-date {
         margin: 0 auto;
         text-indent: 1em;        
@@ -10376,10 +10390,7 @@ width: 18rem;
     }
     .pc-768 {
         display: none;
-    }
-    #myTabContent {
-        margin-bottom: 10px;
-    }
+    }    
     /* start pagination */
     .pagination {
         justify-content: center;
@@ -11612,6 +11623,17 @@ background-image: none;
     .slick-dotted.slick-slider {
         margin-bottom: 0px;
     }
+    .p5{
+        font-size: 16px;
+    }
+    .news_detail_tit {
+        line-height: 1.3;
+    }
+    .details_title{
+        margin-bottom: 20px !important;
+    }
+    
+
 }
 
 @media only screen and (min-width: 320px) and (max-width: 360px) {

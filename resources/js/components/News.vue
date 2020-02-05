@@ -1199,7 +1199,7 @@
                 adaptiveHeight: false,
                 edgeFriction: 0.30,
                 swipe: true,
-                autoplay: false,
+                autoplay: true,
                 lazyLoad: 'ondemand',   
                 arrows: false              
             }
