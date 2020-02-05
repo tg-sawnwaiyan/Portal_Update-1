@@ -63,16 +63,27 @@
                         </tbody>
                     </table>
                 </div>
-                 <pagination :data="jobapplies" @pagination-change-page="searchApplicantList"></pagination>
+                 <!-- <pagination :data="jobapplies" @pagination-change-page="searchApplicantList"></pagination> -->
+                            <pagination :data="jobapplies" @pagination-change-page="searchApplicantList" :limit="limitpc">
+                                <span slot="prev-nav"><i class="fas fa-angle-left"></i> 前へ</span>
+                                <span slot="next-nav">次へ <i class="fas fa-angle-right"></i></span>
+                            </pagination>
                 </div>
         </div>
     </div>
 </template>
 <script>
 export default {
-   data() {
 
-                return {
+      props:{
+                limitpc: {
+                type: Number,
+                default: 5
+            },
+        },
+
+   data() {
+         return {
 
                     jobapplies: [],
                     items: [],
@@ -104,6 +115,7 @@ export default {
                       let fd = new FormData();
                         fd.append("search_word", search_word);
                         this.$loading(true);
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
                         this.axios.post("/api/jobapplicant/search?page="+page, fd).then(response => {
                             this.$loading(false);
                             this.jobapplies = response.data;
@@ -117,3 +129,4 @@ export default {
               }
 }
 </script>
+
