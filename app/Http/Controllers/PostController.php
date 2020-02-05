@@ -225,7 +225,7 @@ class PostController extends Controller
         \File::delete($filename);
         $post->delete();
 
-        $posts = Post::orderBy('id', 'desc')->paginate(15);
+        $posts = Post::orderBy('id', 'desc')->paginate(12);
         return response()->json($posts);
     }
 

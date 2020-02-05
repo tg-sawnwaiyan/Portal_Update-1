@@ -120,7 +120,7 @@ class MedicalController extends Controller
     public function getAcceptanceWithTransactions($customer_id) {
         $medical = Medical::all()->toArray();
 
-        $acceptance_transcation = AcceptanceTransaction::where('customer_id','=',$customer_id)->get()->toArray();
+        $acceptance_transcation = AcceptanceTransaction::where('profile_id','=',$customer_id)->get()->toArray();
 
         for($indx=0; $indx<count($acceptance_transcation); $indx++) {
             for($sec_indx = 0; $sec_indx < count($medical); $sec_indx++) {

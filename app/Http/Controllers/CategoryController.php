@@ -107,8 +107,8 @@ class CategoryController extends Controller
         }
         else{
            $category->delete();
-           $categories = Category::all()->toArray();
-           return array_reverse($categories);
+           $categories = Category::orderBy('id','DESC')->paginate(12);
+           return response()->json($categories);
         }
         
      
