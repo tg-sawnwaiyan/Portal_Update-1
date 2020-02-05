@@ -95,10 +95,10 @@ class FacilityController extends Controller
         $facility_list = Facility::all()->toArray();
 
         if($profile_type == 'nursing') {
-            $profile_facility = NursingProfile::where('customer_id','=',$customer_id)->value('facilities');
+            $profile_facility = NursingProfile::where('id','=',$customer_id)->value('facilities');
         }
         if($profile_type == 'hospital') {
-            $profile_facility = HospitalProfile::where('customer_id','=',$customer_id)->value('facilities');
+            $profile_facility = HospitalProfile::where('id','=',$customer_id)->value('facilities');
         }
 
         $facility = explode(',',$profile_facility);

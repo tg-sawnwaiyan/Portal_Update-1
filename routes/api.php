@@ -31,12 +31,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return response()->json(array("user"=>$request->user(), "lat_lng"=>$lat_lng));
 });
 
-Route::middleware('auth:api')->get('/admin/{cusid}/{type}', function ($cusid, $type, Request $request) {
+Route::middleware('auth:api')->get('/getprofile/{proid}/{type}', function ($proid, $type, Request $request) {
     if($type == 'hospital'){
-        $lat_lng = HospitalProfile::select('id','latitude','longitude')->where('customer_id', $cusid)->get();
+        $lat_lng = HospitalProfile::select('id','latitude','longitude')->where('id', $proid)->get();
     }
     else if($type == 'nursing') {
-        $lat_lng = NursingProfile::select('id','latitude','longitude')->where('customer_id', $cusid)->get();
+        $lat_lng = NursingProfile::select('id','latitude','longitude')->where('id', $proid)->get();
     }
 
     return response()->json(array("user"=>$request->user(), "lat_lng"=>$lat_lng));
@@ -52,7 +52,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('getmap','SearchMapController@getMap');
     Route::get('getjobsearch/{searchword}','SearchMapController@getJobSearch');
     Route::get('getCity','SearchMapController@getCity');
-    Route::get('profile_view/{cusid}/{type}','ProfilePublishController@getCustomerLatLng');
+    Route::get('profile_view/{proid}/{type}','ProfilePublishController@getCustomerLatLng');
     Route::get('townshipJson/{township_name}','SearchMapController@townshipJson');
     // Route::get('cityJson/{theCity}','SearchMapController@cityJson');
     // Route::get('getstation/{id}','SearchMapController@getJobStation');
@@ -231,9 +231,9 @@ Route::group(['middleware' => ['auth:api']], function() {
 Route::group(['prefix' => 'profile'], function () {
     Route::get('nursing/{cusid}','ProfilePublishController@nursingProfile');
     Route::get('hospital/{cusid}','ProfilePublishController@hospitalProfile');
-    Route::get('specialfeature/{type}/{cusid}','ProfilePublishController@getSpecialfeature');
+    Route::get('specialfeature/{type}/{proid}','ProfilePublishController@getSpecialfeature');
     Route::get('comment/{cusid}','ProfilePublishController@getComment');
-    Route::get('customer/{cusid}/{type}','ProfilePublishController@getCustomer');
+    Route::get('customer/{proid}/{type}','ProfilePublishController@getCustomer');
     Route::get('schedule/{cusid}','ProfilePublishController@getSchedule');
     // Route::get('hosfacility','ProfilePublishController@getHosfacilities');
     Route::get('subject/{cusid}','ProfilePublishController@getSubject');

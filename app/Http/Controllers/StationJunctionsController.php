@@ -26,12 +26,12 @@ class StationJunctionsController extends Controller
     {
         $request = $request->all();
 
-        $feature = StationJunctions::where('customer_id', $id)
+        $feature = StationJunctions::where('profile_id', $id)
                     ->delete();
 
         for($indx=0; $indx<count($request[0]['station_id']); $indx++) {
             $new_feature = new StationJunctions();
-            $new_feature->customer_id = $id;
+            $new_feature->profile_id = $id;
             $new_feature->station_id = $request[0]['station_id'][$indx];
             $new_feature->save();
         }

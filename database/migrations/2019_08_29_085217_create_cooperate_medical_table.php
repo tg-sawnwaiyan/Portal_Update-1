@@ -15,7 +15,7 @@ class CreateCooperateMedicalTable extends Migration
     {
         Schema::create('cooperate_medical', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('customer_id');
+            $table->integer('profile_id');
             $table->string('clinical_subject');
             $table->string('details');
             $table->string('medical_expense');
