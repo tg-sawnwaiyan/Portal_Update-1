@@ -41,7 +41,13 @@
                                 </div>
                         </div>
                     </div>
-                    <pagination :data="occupation" @pagination-change-page="searchOccupation"></pagination>
+                    <!-- <pagination :data="occupation" @pagination-change-page="searchOccupation"></pagination> -->
+                    <div>
+                            <pagination :data="occupation" @pagination-change-page="searchOccupation" :limit="limitpc">
+                                <span slot="prev-nav"><i class="fas fa-angle-left"></i> 前へ</span>
+                                <span slot="next-nav">次へ <i class="fas fa-angle-right"></i></span>
+                            </pagination>
+                        </div>
                 </div>
             </div>
         </div>
@@ -50,6 +56,14 @@
 
 <script>
     export default {
+        
+          props:{
+                limitpc: {
+                type: Number,
+                default: 5
+            },
+        },
+
         data() {
                 return {
                     occupation: [],
@@ -129,6 +143,7 @@
                         let fd = new FormData();
                         fd.append("search_word", search_word);
                         this.$loading(true);
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
                         this.axios.post("/api/occupation/search?page="+page, fd).then(response => {
                             this.$loading(false);
                             this.occupation = response.data;
@@ -142,3 +157,4 @@
             }
     }
 </script>
+

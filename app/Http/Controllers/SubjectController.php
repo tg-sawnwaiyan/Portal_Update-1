@@ -136,8 +136,8 @@ class SubjectController extends Controller
         $Subject = Subject::find($id);
         $Subject->delete();
         // return response()->json('The Subject was successfully deleted');
-        $subjects = Subject::all()->toArray();
-        return $subjects;
+        $subjects = Subject::orderBy('id', 'DESC')->paginate(12);
+        return response()->json($subjects);
     }
 
     public function search(Request $request) {

@@ -55,7 +55,13 @@
                             </table>
                             
                         </div>
-                        <pagination :data="features" @pagination-change-page="searchFeature"></pagination>
+                        <!-- <pagination :data="features" @pagination-change-page="searchFeature"></pagination> -->
+                            <div>
+                              <pagination :data="features" @pagination-change-page="searchFeature" :limit="limitpc">
+                                <span slot="prev-nav"><i class="fas fa-angle-left"></i> 前へ</span>
+                                <span slot="next-nav">次へ <i class="fas fa-angle-right"></i></span>
+                            </pagination>
+                        </div>
                     </div>
                 </div>
                 <!--end card-->
@@ -67,6 +73,12 @@
 
 <script>
     export default {
+        props:{
+                limitpc: {
+                type: Number,
+                default: 5
+            },
+        },
         data() {
                 return {
                     features: [],
@@ -164,6 +176,7 @@
                         let fd = new FormData();
                         fd.append("search_word", search_word);
                         this.$loading(true);
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
                         this.axios.post("/api/feature/search?page="+page, fd).then(response => {
                             this.$loading(false);
                             this.features = response.data;

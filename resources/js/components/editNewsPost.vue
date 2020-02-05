@@ -100,7 +100,7 @@
                                 </div> -->
 
                                  <div>
-                              <pagination :data="related_news" @pagination-change-page="getPostsByCatId" :limit="limitpc">
+                              <pagination :data="related_news" @pagination-change-page="getSearchPostsByCatId" :limit="limitpc">
                                 <span slot="prev-nav"><i class="fas fa-angle-left"></i> 前へ</span>
                                 <span slot="next-nav">次へ <i class="fas fa-angle-right"></i></span>
                             </pagination>
@@ -369,7 +369,7 @@ import {quillEditor} from 'vue-quill-editor'
                             }
                         });
                     },
-                    getSearchPostsByCatId: function(page) {
+                    getSearchPostsByCatId(page) {
                         if (typeof page === 'undefined') {
                             page = 1;
                         }
@@ -383,7 +383,7 @@ import {quillEditor} from 'vue-quill-editor'
 
                         let fd = new FormData();
                         fd.append("search_word", search_word);
-                        fd.append("selected_category", null);
+                        fd.append("selected_category", cat_id);
                         this.axios.post("/api/news_list/search?page=" + page,fd).then(response => {
                             this.related_news = response.data;
                             this.check_head = true;
