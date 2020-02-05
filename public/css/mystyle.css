@@ -519,7 +519,6 @@ border: 1px solid #eee; */
 /********************************** Common Admin And User Panel **********************************/
 
 .show-img {
-    height: 100px;
     width: 100%;
     margin: 15px 0px;
     border-radius: 5px;
@@ -966,27 +965,35 @@ width: 100%; */
 .links a {
     color: #d2cfcf !important;
 }
+
+
 /*login*/
-.login_1{
+
+.login_1 {
     top: -39px;
     margin-right: 20px;
 }
-.login_2{
+
+.login_2 {
     top: -38px;
     margin-left: 10px;
     position: absolute;
 }
 
-.login_3{
+.login_3 {
     top: 11px;
     margin-right: 13px;
 }
-.login_4{
+
+.login_4 {
     top: 11px;
     margin-left: 10px;
     position: absolute;
 }
+
+
 /*login*/
+
 .user_card .links a {
     color: #2C3E50 !important;
     font-weight: bold;
@@ -1398,6 +1405,7 @@ box-shadow: 0px 0px 5px rgb(212, 201, 201); */
     line-height: 50px;
     vertical-align: middle;
     z-index: 99;
+    overflow: hidden;
 }
 
 .admin-header .nav-warp {
@@ -1619,7 +1627,11 @@ border-top: 5px solid #e66527; */
     font-size: 30px;
     color: #f57e46;
 }
-
+.logo_subtitle{
+    font-size: 13px;
+    letter-spacing: 1.5px;
+     font-weight: bold;
+}
 .main-content {
     /* padding: 0px;*/
     width: 80%;
@@ -1800,8 +1812,15 @@ border-top: 5px solid #e66527; */
     width: 200px;
 }
 
+.List_tbl tr td:first-child div {
+    width: 200px;
+    height: 180px;
+}
+
 .List_tbl tr td:first-child img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .List_tbl tr td:nth-child(2) {
@@ -3522,10 +3541,13 @@ background: #ff9b53;  /
     width: 100%;
 } */
 
+#news_details .related_content {
+    width: 100%;
+}
+
 .related_box {
     float: left;
-    min-width: 25%;
-    max-width: 25%;
+    width: 25%;  
     padding-right: 10px;
 }
 
@@ -3713,7 +3735,7 @@ ul.hospital-subject>li:before {
     border: 3px solid #2980b9;
     border-right: none;
     padding: 5px;
-    height: 46px;
+    height: 40px;
     border-radius: 5px 0 0 5px;
     outline: none;
     color: #495057;
@@ -3735,7 +3757,7 @@ ul.hospital-subject>li:before {
     border: 3px solid #75b777;
     border-right: none;
     padding: 5px;
-    height: 46px;
+    height: 40px;
     border-radius: 5px 0 0 5px;
     outline: none;
     color: #495057;
@@ -3747,7 +3769,7 @@ ul.hospital-subject>li:before {
 
 .searchButton {
     width: 85px;
-    height: 46px;
+    height: 40px;
     border: 1px solid #2980b9;
     background: #2980b9;
     text-align: center;
@@ -3757,7 +3779,7 @@ ul.hospital-subject>li:before {
 
 .searchButtonNews {
     width: 85px;
-    height: 46px;
+    height: 40px;
     border: 1px solid #75b777;
     background: #75b777;
     text-align: center;
@@ -5651,8 +5673,9 @@ color: #fff !important;
 }
 
 .breadcrumb-item+.breadcrumb-item::before {
-    color: #118063 !important;
-    content: ">" !important;
+    content: '\F105';
+    font-family: 'Font Awesome 5 Free';
+    padding: 0 4px;
 }
 
 
@@ -5740,54 +5763,56 @@ padding-bottom: 15px; */
     position: relative;
 }
 
+
 /*admin_pagination*/
-.page-item.active .page-link
-{
+
+.page-item.active .page-link {
     z-index: 3;
     /* color: #fff; */
     background-color: #2980b9;
     border: 1px solid #2980b9;
     box-shadow: none;
 }
-.page-link:focus{
+
+.page-link:focus {
     box-shadow: none;
     -webkit-box-shadow: none;
 }
+
 .page-link {
-    position: relative;
-    display: block;
-    padding: 12px;
-    margin-left: -1px;
+    padding: 12px 12px 11px 12px;
+    margin-left: 5px;
+    height: 100%;
     line-height: 12px;
     color: #000000;
     font-weight: bold;
     background-color: #fff;
     border: 1px solid #2980b9;
-    margin-left: 5px;
     box-shadow: none;
 }
 
-.page-link:hover
-{
+.page-link:hover {
     background-color: #b7c2b7;
     color: #2980b9;
     border: 1px solid #766666;
 }
-@media screen and ( max-width: 480px ){
+
+@media screen and ( max-width: 480px) {
     li.page-item {
         display: none;
     }
-   
     .page-item:first-child,
-    .page-item:nth-child( 2 ),
+    .page-item:nth-child( 2),
     /* .page-item:nth-child( 1 ), */
-    .page-item:nth-last-child( 2 ),
+    .page-item:nth-last-child( 2),
     .page-item:last-child,
     .page-item.active,
     .page-item.disabled {
         display: block;
     }
 }
+
+
 /*end_admin_pagination*/
 
 
@@ -6009,7 +6034,8 @@ font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "�
     margin-bottom: 10px;
     font-size: 22px;
     font-weight: bold;
-    border-bottom: 1px dashed #25ac8a;
+    border-bottom: 1px dashed #2980b9;
+    color: #2980b9;
 }
 
 
@@ -7838,7 +7864,7 @@ border-bottom: none;
     color: #2980b9;
 }
 
-.job_count {    
+.job_count {
     display: inline-block;
     background: #2980b9;
     color: #fff;
@@ -9222,18 +9248,16 @@ padding: 11px;
         height: 170px;
         cursor: pointer;
     }
-     /*login*/
-     .login_2
-     {
-         margin-left: 18px;
-     }
-     .login_1{
-         margin-right: 18px;
-     }
-     .login_top
-     {
-         top: -6px;
-     }
+    /*login*/
+    .login_2 {
+        margin-left: 18px;
+    }
+    .login_1 {
+        margin-right: 18px;
+    }
+    .login_top {
+        top: -6px;
+    }
 }
 
 @media only screen and (max-width: 1400px) {
@@ -9736,7 +9760,7 @@ padding: 0;
         background: #fbfbfb;
     }
     /* common */
-    li {
+    ul li {
         list-style: none;
     }
     /*end common */
@@ -9753,6 +9777,12 @@ padding: 0;
         display: none;
     }
     .gNav {
+        display: none;
+    }
+    .gSecondNav{
+        display: none;
+    }
+    .logo_subtitle{
         display: none;
     }
     #navbarSupportedContent {
@@ -9945,6 +9975,134 @@ padding: 0;
         display: none;
     }
     /*end  header */
+    /* header & menu */
+    .v-sidebar-menu {
+        display: none !important;
+    }
+    .content-all {
+        padding-left: 0;
+    }
+    /* sp_adminNav */
+    .admin_head {
+        font-size: 18px;
+        background: #2c3b41;
+        color: #fff;
+    }
+    .admin_head01 {
+        padding-left: 35px;
+    }
+    .admin_head02 {
+        padding-left: 50px;
+    }
+    #sp_adminheader {
+        display: block;
+    }
+    #sp_adminheader .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1030;
+        background: #000015;
+        opacity: 0.5;
+    }
+    .sp_adminNav {
+        display: block;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+    .sidebar_brand {
+        position: fixed;
+        width: 230px;
+        height: 100%;
+        padding: 0 0 150px 0;
+        background: #222D32;
+        overflow-y: auto;
+    }
+    #sp_adminheader .admin_menu {
+        position: absolute;
+        display: block;
+        top: 0;
+        right: 10px;
+        color: #fff;
+        z-index: 99;
+        cursor: pointer;
+    }
+    .sp_adminNav ul li {
+        position: relative;
+    }
+    .sp_adminNav ul li span {
+        display: block;
+        width: 100%;
+        height: 100%;
+        color: #fff;
+        cursor: pointer;
+    }
+    .sp_adminNav ul li span.active {
+        background: #1E282C;
+        border-left: 3px solid #2980b9;
+    }
+    .sp_adminNav ul li i:first-child {
+        margin-left: 10px;
+        height: 30px;
+        line-height: 30px;
+        width: 30px;
+        text-align: center;
+        border-radius: 3px;
+        color: #fff;
+        background-color: #1e1e21;
+    }
+    .sp_adminNav ul li i:nth-child(2) {
+        position: absolute;
+        right: 15%;
+        top: 20px;
+    }
+    .sp_adminNav ul li a {
+        display: block;
+        width: 100%;
+        padding-left: 5px;
+        color: #fff;
+        transition: 0.3s all;
+    }
+    .sp_adminNav ul li a:hover {
+        background-color: rgba(30, 30, 33, 0.5);
+        text-decoration: none;
+    }
+    .sp_adminNav .sub_menu {
+        padding: 0 8px;
+        background: #2C3B41;
+    }
+    .sp_adminNav .sub_menu a {
+        line-height: 40px;
+    }
+    .sp_adminNav ul.sub_menu li i:first-child {
+        margin-left: 0;
+    }
+    .sp_adminNav ul.sub_menu li:first-child {
+        padding-top: 8px;
+    }
+    .sp_adminNav ul.sub_menu li:last-child {
+        padding-bottom: 8px;
+    }
+    .down {
+        -ms-transform: rotate(90deg);
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg);
+        transform-origin: center;
+        -moz-transition: all .3s linear;
+        -webkit-transition: all .3s linear;
+        transition: all .3s linear;
+        transform-origin: center;
+    }
+    /*end sp_adminNav */
+    /*End header & menu */
     /* ads slider */
     .ads-slider {
         width: 80%;
@@ -10070,6 +10228,7 @@ padding: 0;
 @media (max-width: 1024px) and (min-width: 320px) {
     .maintab-content {
         padding: 7px;
+        /* margin-top: 105px; */
     }
     .adminview-sidebar {
         height: auto;
@@ -10195,6 +10354,10 @@ width: 18rem;
 }
 
 @media only screen and (max-width:768px) {
+    .set-date {
+        margin: 0 auto;
+        text-indent: 1em;        
+    }
     .nursing_responsive {
         max-width: 33%;
     }
@@ -10291,134 +10454,6 @@ width: 18rem;
         max-width: 100% !important;
         flex: 100% !important;
     }
-    /* header & menu */
-    .v-sidebar-menu {
-        display: none !important;
-    }
-    .content-all {
-        padding-left: 0;
-    }
-    /* sp_adminNav */
-    .admin_head {
-        font-size: 18px;
-        background: #2c3b41;
-        color: #fff;
-    }
-    .admin_head01 {
-        padding-left: 35px;
-    }
-    .admin_head02 {
-        padding-left: 50px;
-    }
-    #sp_adminheader {
-        display: block;
-    }
-    #sp_adminheader .overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1030;
-        background: #000015;
-        opacity: 0.5;
-    }
-    .sp_adminNav {
-        display: block;
-        position: fixed;
-        top: 50px;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-    }
-    .sidebar_brand {
-        position: fixed;
-        width: 230px;
-        height: 100%;
-        padding: 0 0 150px 0;
-        background: #222D32;
-        overflow-y: auto;
-    }
-    #sp_adminheader .admin_menu {
-        position: absolute;
-        display: block;
-        top: 0;
-        right: 10px;
-        color: #fff;
-        z-index: 99;
-        cursor: pointer;
-    }
-    .sp_adminNav ul li {
-        position: relative;
-    }
-    .sp_adminNav ul li span {
-        display: block;
-        width: 100%;
-        height: 100%;
-        color: #fff;
-        cursor: pointer;
-    }
-    .sp_adminNav ul li span.active {
-        background: #1E282C;
-        border-left: 3px solid #2980b9;
-    }
-    .sp_adminNav ul li i:first-child {
-        margin-left: 10px;
-        height: 30px;
-        line-height: 30px;
-        width: 30px;
-        text-align: center;
-        border-radius: 3px;
-        color: #fff;
-        background-color: #1e1e21;
-    }
-    .sp_adminNav ul li i:nth-child(2) {
-        position: absolute;
-        right: 15%;
-        top: 20px;
-    }
-    .sp_adminNav ul li a {
-        display: block;
-        width: 100%;
-        padding-left: 5px;
-        color: #fff;
-        transition: 0.3s all;
-    }
-    .sp_adminNav ul li a:hover {
-        background-color: rgba(30, 30, 33, 0.5);
-        text-decoration: none;
-    }
-    .sp_adminNav .sub_menu {
-        padding: 0 8px;
-        background: #2C3B41;
-    }
-    .sp_adminNav .sub_menu a {
-        line-height: 40px;
-    }
-    .sp_adminNav ul.sub_menu li i:first-child {
-        margin-left: 0;
-    }
-    .sp_adminNav ul.sub_menu li:first-child {
-        padding-top: 8px;
-    }
-    .sp_adminNav ul.sub_menu li:last-child {
-        padding-bottom: 8px;
-    }
-    .down {
-        -ms-transform: rotate(90deg);
-        -webkit-transform: rotate(90deg);
-        transform: rotate(90deg);
-        transform-origin: center;
-        -moz-transition: all .3s linear;
-        -webkit-transition: all .3s linear;
-        transition: all .3s linear;
-        transform-origin: center;
-    }
-    /*end sp_adminNav */
-    /*End header & menu */
     /* create new */
     .related_post_box .create_news img {
         max-width: 100px;
@@ -10648,6 +10683,10 @@ width: 18rem;
         padding-left: 0px;
         padding-right: 0px;
     }
+    .margin-free-750{
+        margin-left: 0px;
+        margin-right: 0px;
+    }
     .facility_tbl th,
     .cost_table th,
     .map_tbl th {
@@ -10783,6 +10822,8 @@ width: 18rem;
     }
     .category_box h4 {
         font-size: 16px;
+        padding-left: 5px;
+        padding-right: 5px;
     }
     .category_news_title {
         padding: 0px 10px 10px 0px;
@@ -10978,6 +11019,11 @@ background-image: none;
     }
     .table.List_tbl td:first-child {
         width: 100%;
+    }
+    .List_tbl tr td:first-child div {
+        width: 95%;
+        height: auto;
+        margin: 5px auto;
     }
     .table.List_tbl td:nth-child(2) {
         border: none;
@@ -11203,7 +11249,6 @@ background-image: none;
         height: 170px;
         width: 170px;
         top: -81px;
-    
     }
     .links_2 {
         top: 78px;
@@ -11492,6 +11537,9 @@ background-image: none;
 }
 
 @media only screen and (max-width:320px) {
+    .set-date {       
+        text-indent: 0em;       
+    }
     .login_2 {
         margin-left: -53px;
     }
@@ -11503,7 +11551,6 @@ background-image: none;
         margin-left: 22px;
     }
     .loginwrapper {
-        
         padding: 10px 40px;
         position: fixed;
         /* margin-left: -53px; */
@@ -11561,6 +11608,9 @@ background-image: none;
         border: none;
         background: #fff !important;
         width: 25px !important;
+    }
+    .slick-dotted.slick-slider {
+        margin-bottom: 0px;
     }
 }
 
@@ -11785,6 +11835,7 @@ background-image: none;
 
 
 /**************end card carousel***********************/
+
 strong {
     font-weight: bold!important;
 }

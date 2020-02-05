@@ -14,7 +14,7 @@
                                 <div class="col-sm-12 col-md-9 col-lg-6 pad-new m-b-15">
                                      <!--search input-->
                                     <div class="search-input">
-                                        <span class="btn btn my-2 col-md-12 my-sm-0 danger-bg-color btn-danger cross-btn" v-if="status == 1" @click="clearSearch()">X</span>
+                                        <span class="btn btn col-md-12 my-sm-0 danger-bg-color btn-danger cross-btn" v-if="status == 1" @click="clearSearch()">X</span>
                                         <input typee="text" class="searchNews" placeholder="ニュース検索" id="search-free-word" v-bind:value="search_word">
                                         <button type="submit" class="searchButtonNews" @click="searchCategory()">
                                             <i class="fas fa-search"></i> 検索
@@ -31,7 +31,7 @@
                         <slick  v-if="latest_post_all_cats.length > 0" ref="slick" :options="categoryslider" class="cat-slider d-block d-sm-none">  
                         
                             <div class="list-group-item adslist-card m-b-10"  v-for="latest_post_all_cat in latest_post_all_cats" :key="latest_post_all_cat.id">
-                                <a target="_blank">
+                                 <router-link :to="{name:'newdetails', params: {id:latest_post_all_cat.id}}">
                                     <div class="slide-img">
                                        <div class="col-sm-6 pad-free" >
 
@@ -92,7 +92,7 @@
                                         </div>
                                     </div>
                                    
-                                </a>    
+                                 </router-link>   
                             </div>
 
                         </slick>
@@ -1199,7 +1199,7 @@
                 adaptiveHeight: false,
                 edgeFriction: 0.30,
                 swipe: true,
-                autoplay: true,
+                autoplay: false,
                 lazyLoad: 'ondemand',   
                 arrows: false              
             }
@@ -1749,8 +1749,12 @@
 
 }
 
-.cat-slider .adslist-card{
-    padding:0;
+.cat-slider .adslist-card{  
+    padding: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+    background: #fff;
+    border: none;
 }
 
 .hovereffect .info{

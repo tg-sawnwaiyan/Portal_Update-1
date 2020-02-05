@@ -7,7 +7,7 @@
     <!-- Tab panes -->
     <div class="tab-content1 tabs">
       <div role="tabpanel" class="tab-pane active" id="tab1">
-        <div class="col-sm-12 pad-free">
+        <div class="row col-sm-12 margin-free-750">
           <nav aria-label="breadcrumb" v-if="othersDetails">
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
@@ -24,7 +24,7 @@
           
         </div>
         <div class="justify-content-md-center scrolldiv2">
-          <div class="col-md-12">
+          <div class="col-md-12 pad-free">
             <div class="row m-lr-0 mb-3" v-for="news in newdetails" :key="news.id">
               <!-- <div class="col-md-12">
                 <h4 class="h_4 header">{{newdetails.title}}</h4>
@@ -59,12 +59,7 @@
                     <span>{{ latest_new.main_point }}</span>
                   </router-link>
                 </div>
-              </div>-->   
-
-             
-               
-             
-            
+              </div>-->  
                 <div class="col-md-12" >
                   <h4 class="header news_detail_tit">{{news.title}}</h4>   
                   <div class="set-date">
@@ -93,7 +88,7 @@
                     <p class="img_2 mb-1">{{news.main_point}}</p>
                   </div>
                   <div>
-                    <p class="p5 mb-2" v-html="news.body"></p>
+                    <p class="p5 mb-2 " v-html="news.body"></p>
                   </div>
                 </div>
                 <div class="col-md-12 mt-2 related-area">
@@ -133,12 +128,19 @@
                   </div>
                 </div>
             </div> -->
-            <div
-                class="row col-md-12 m-lr-0 m-t-15 pad-free"
-                style="border-top: 2px dashed #eee;"
-              >
-                <div class="row col-md-12 text-center m-lr-0 pad-free">
-                  <h4 class="h4 next-title" style="border-left: 5px solid #2980b9;">関連ニュース</h4>
+            <!-- {{latest_post_all_cats}} -->
+            <!-- <div v-for="latest_post_all_cat in latest_post_all_cats" :key="latest_post_all_cat.id">
+            <div v-if="latest_post_all_cats">
+                  <h2> if wrapper</h2>
+            </div>
+            <div v-else>
+                <h2> else wrapper</h2>
+            </div>
+            </div> -->
+
+            <div class="row col-md-12 m-lr-0 m-t-15" >
+                <div class="row col-md-12 text-center m-lr-0 pad-free" style="border-top: 2px dashed #eee;" v-if="latest_post_all_cats">
+                  <h4 class="h4 next-title" style="border-left: 5px solid #2980b9;" >関連ニュース</h4>
                 </div>
                 <div class="related_content">
                 <div class="related_box mt-2" v-for="latest_post_all_cat in latest_post_all_cats" :key="latest_post_all_cat.id" >

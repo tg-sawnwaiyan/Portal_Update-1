@@ -205,7 +205,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                 },
                 {
                     title: '病院',
-                    icon: 'fa fa-building',
+                    icon: 'fa  fa-hospital',
                     hidden: this.$auth.check(1),
                     child: [
                         {
