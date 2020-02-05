@@ -1355,7 +1355,7 @@ box-shadow: 0px 0px 5px rgb(212, 201, 201); */
     position: relative;
     background: #fff;
     border-radius: 1px;
-    border-bottom: 1px dashed #25ac8a;
+    border-bottom: 1px dashed #2980b9;
     width: 100%;
     padding: 5px;
     margin-bottom: 20px;
@@ -1461,7 +1461,8 @@ border-top: 5px solid #e66527; */
     padding: 5px 10px;
     border-radius: 5px;
     color: #000;
-    margin: 10px;
+    margin: 5px;
+    font-size: 12px;
 }
 
 .gNav {
@@ -1610,6 +1611,7 @@ border-top: 5px solid #e66527; */
     font-size: 40px;
     font-weight: bold;
     color: #2980b9;
+    margin-right: 0px;
     /* text-shadow: 3px 4px #ccc; */
 }
 
@@ -5634,7 +5636,7 @@ color: #fff !important;
 }
 
 .breadcrumb-item>a {
-    color: #19a984;
+    color: #2980b9;
     font-weight: bold;
 }
 
@@ -5736,6 +5738,56 @@ padding-bottom: 15px; */
 .spanclass a {
     position: relative;
 }
+
+/*admin_pagination*/
+.page-item.active .page-link
+{
+    z-index: 3;
+    /* color: #fff; */
+    background-color: #2980b9;
+    border: 1px solid #2980b9;
+    box-shadow: none;
+}
+.page-link:focus{
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+.page-link {
+    position: relative;
+    display: block;
+    padding: 12px;
+    margin-left: -1px;
+    line-height: 12px;
+    color: #000000;
+    font-weight: bold;
+    background-color: #fff;
+    border: 1px solid #2980b9;
+    margin-left: 5px;
+    box-shadow: none;
+}
+
+.page-link:hover
+{
+    background-color: #b7c2b7;
+    color: #2980b9;
+    border: 1px solid #766666;
+}
+@media screen and ( max-width: 480px ){
+    li.page-item {
+        display: none;
+    }
+   
+    .page-item:first-child,
+    .page-item:nth-child( 2 ),
+    /* .page-item:nth-child( 1 ), */
+    .page-item:nth-last-child( 2 ),
+    .page-item:last-child,
+    .page-item.active,
+    .page-item.disabled {
+        display: block;
+    }
+}
+/*end_admin_pagination*/
 
 
 /* end listadmin .pagination */
@@ -7785,25 +7837,9 @@ border-bottom: none;
     color: #2980b9;
 }
 
-.job_count {
-    /* border-radius: 50%;
-
-background: #f9d7c6;
-
-color: #bd440a;
-
-display: inline-block; */
-    /* border: 1px solid #dc3545 !important;
-
-color: #dc3545;
-
-background: #fff;
-
-box-shadow: none !important;
-
-min-width: 60px; */
+.job_count {    
     display: inline-block;
-    background: #ff9967;
+    background: #2980b9;
     color: #fff;
     padding: 4px 15px 3px;
     border-radius: 3px;
@@ -11689,7 +11725,7 @@ background-image: none;
         display: inline-block;
     }
     .gNav {
-        margin-left: 2%;
+        margin-left: 0%;
     }
     .gNav li a {
         padding: 0 5px;
@@ -11748,3 +11784,6 @@ background-image: none;
 
 
 /**************end card carousel***********************/
+strong {
+    font-weight: bold!important;
+}
