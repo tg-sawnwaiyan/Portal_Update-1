@@ -6,7 +6,7 @@
             <div class="d-flex align-items-center">
                 <a class="navbar-brand logo-text" href="/">
                 <!-- LOGO <span>HERE</span>  -->
-                <h4 style=" font-size: 13px; letter-spacing: 1.5px; font-weight: bold; ">介護医療福祉の総合サイト</h4>
+                <h4 class="logo_subtitle">介護医療福祉の総合サイト</h4>
                 <img src="/images/logo.png" style="width:215px;height:auto;" />
                 </a>
                 
