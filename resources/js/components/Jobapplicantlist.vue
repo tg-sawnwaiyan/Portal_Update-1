@@ -63,16 +63,27 @@
                         </tbody>
                     </table>
                 </div>
-                 <pagination :data="jobapplies" @pagination-change-page="searchApplicantList"></pagination>
+                 <!-- <pagination :data="jobapplies" @pagination-change-page="searchApplicantList"></pagination> -->
+                            <pagination :data="jobapplies" @pagination-change-page="searchApplicantList" :limit="limitpc">
+                                <span slot="prev-nav"><i class="fas fa-angle-left"></i> 前へ</span>
+                                <span slot="next-nav">次へ <i class="fas fa-angle-right"></i></span>
+                            </pagination>
                 </div>
         </div>
     </div>
 </template>
 <script>
 export default {
-   data() {
 
-                return {
+      props:{
+                limitpc: {
+                type: Number,
+                default: 5
+            },
+        },
+
+   data() {
+         return {
 
                     jobapplies: [],
                     items: [],
@@ -104,6 +115,7 @@ export default {
                       let fd = new FormData();
                         fd.append("search_word", search_word);
                         this.$loading(true);
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
                         this.axios.post("/api/jobapplicant/search?page="+page, fd).then(response => {
                             this.$loading(false);
                             this.jobapplies = response.data;
@@ -117,3 +129,54 @@ export default {
               }
 }
 </script>
+
+<style>
+.page-item.active .page-link
+{
+    z-index: 3;
+    /* color: #fff; */
+    background-color: #D2571C;
+    border: 1px solid #D2571C;
+    box-shadow: none;
+}
+.page-link:focus{
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+.page-link {
+    position: relative;
+    display: block;
+    padding: 12px;
+    margin-left: -1px;
+    line-height: 12px;
+    color: #000000;
+    font-weight: bold;
+    background-color: #fff;
+    border: 1px solid #D2571C;
+    margin-left: 5px;
+    box-shadow: none;
+}
+
+.page-link:hover
+{
+    background-color: #b7c2b7;
+    color: #d2571c;
+    border: 1px solid #766666;
+}
+@media screen and ( max-width: 480px ){
+    li.page-item {
+        display: none;
+    }
+   
+    .page-item:first-child,
+    .page-item:nth-child( 2 ),
+    /* .page-item:nth-child( 1 ), */
+    .page-item:nth-last-child( 2 ),
+    .page-item:last-child,
+    .page-item.active,
+    .page-item.disabled {
+        display: block;
+    }
+}
+
+</style>

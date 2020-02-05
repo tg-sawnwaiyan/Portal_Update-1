@@ -100,7 +100,7 @@
                                 </div> -->
 
                                  <div>
-                              <pagination :data="related_news" @pagination-change-page="getPostsByCatId" :limit="limitpc">
+                              <pagination :data="related_news" @pagination-change-page="getSearchPostsByCatId" :limit="limitpc">
                                 <span slot="prev-nav"><i class="fas fa-angle-left"></i> 前へ</span>
                                 <span slot="next-nav">次へ <i class="fas fa-angle-right"></i></span>
                             </pagination>
@@ -369,7 +369,7 @@ import {quillEditor} from 'vue-quill-editor'
                             }
                         });
                     },
-                    getSearchPostsByCatId: function(page) {
+                    getSearchPostsByCatId(page) {
                         if (typeof page === 'undefined') {
                             page = 1;
                         }
@@ -383,7 +383,7 @@ import {quillEditor} from 'vue-quill-editor'
 
                         let fd = new FormData();
                         fd.append("search_word", search_word);
-                        fd.append("selected_category", selected_category);
+                        fd.append("selected_category", cat_id);
                         this.axios.post("/api/news_list/search?page=" + page,fd).then(response => {
                             this.related_news = response.data;
                             this.check_head = true;
@@ -475,4 +475,53 @@ import {quillEditor} from 'vue-quill-editor'
  .quill-editor{
           background-color: #fff;
   }
+  /*pagination*/
+  .page-item.active .page-link
+{
+    z-index: 3;
+    /* color: #fff; */
+    background-color: #D2571C;
+    border: 1px solid #D2571C;
+    box-shadow: none;
+}
+.page-link:focus{
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+.page-link {
+    position: relative;
+    display: block;
+    padding: 12px;
+    margin-left: -1px;
+    line-height: 12px;
+    color: #000000;
+    font-weight: bold;
+    background-color: #fff;
+    border: 1px solid #D2571C;
+    margin-left: 5px;
+    box-shadow: none;
+}
+
+.page-link:hover
+{
+    background-color: #b7c2b7;
+    color: #d2571c;
+    border: 1px solid #766666;
+}
+@media screen and ( max-width: 480px ){
+    li.page-item {
+        display: none;
+    }
+   
+    .page-item:first-child,
+    .page-item:nth-child( 2 ),
+    /* .page-item:nth-child( 1 ), */
+    .page-item:nth-last-child( 2 ),
+    .page-item:last-child,
+    .page-item.active,
+    .page-item.disabled {
+        display: block;
+    }
+}
+
 </style>
