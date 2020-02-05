@@ -141,7 +141,7 @@
                                 .delete(`/api/feature/delete/${id}`)
                                 .then(response => {
                                     this.features = response.data;
-                                    this.norecord = this.features.length;
+                                    this.norecord = this.features.data.length;
                                     if (this.norecord > this.size) {
                                         this.pagination = true;
                                     } else {

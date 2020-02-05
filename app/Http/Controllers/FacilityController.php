@@ -75,8 +75,8 @@ class FacilityController extends Controller
     {
         $facility = Facility::find($id);
         $facility->delete();
-        $facilities = Facility::all()->toArray();
-        return array_reverse($facilities);
+        $facilities = Facility::orderBy('id', 'DESC')->paginate(12);
+        return response()->json($facilities);
     }
 
     public function search(Request $request)

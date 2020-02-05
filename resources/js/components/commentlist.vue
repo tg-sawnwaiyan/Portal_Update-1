@@ -15,19 +15,19 @@
                     </a> -->
                 </div>
                 <div v-else class="container-fuid">
-                    <h4 class="main-color m-b-10">コメント 検索</h4>
+                    <!-- <h4 class="main-color m-b-10">コメント 検索</h4>
                     <div class="row">
                         <div class="col-md-12">
                             <input type="text" class="form-control" placeholder="検索" id="search-item" @keyup="searchcomment()" />
                         </div>
 
                     </div>
-                    <hr />
+                    <hr /> -->
                      <div class="form-group" >
                         Search with profile name
-                        <select v-model="profileid" class="division form-control"  @change="getComment()">
+                        <select  v-model="profileid" class="division form-control"  @change="getComment()">
                                 <option value="0">選択してください。</option>
-                                <option v-for="pro in profilelist" :key="pro.id" v-bind:value="pro.id">
+                                <option  id="search-item" v-for="pro in profilelist" :key="pro.id" v-bind:value="pro.id">
                                     {{pro.name}}
                                 </option>
                         </select>
@@ -281,7 +281,11 @@
                         if(typeof page === "undefined"){
                             page = 1;
                         }
-                        var search_word = $("#search-item").val();
+                      
+                        // var search_word = $("#search-item").val();
+                        var search_word = this.profileid;
+                        console.log("serch_word",search_word);
+                       
                         let fd = new FormData();
                         fd.append("search_word", search_word);
                         fd.append("type",this.type);
