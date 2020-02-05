@@ -425,7 +425,70 @@ class JobController extends Controller
     {
         $job = Job::find($id);
         $job->delete();
-        return response()->json('The Job successfully deleted');
+        if( auth()->user()->role == 2){
+            // $query = "SELECT jobs.* ,customers.type_id,
+            // (CASE customers.type_id WHEN '2' THEN CONCAT((200000+customers.id),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(jobs.id, 4, '0')) END) as jobid
+            // FROM `jobs`
+            // JOIN customers ON jobs.customer_id = customers.id
+            // LEFT JOIN job_applies ON jobs.id = job_applies.job_id
+            // WHERE customers.recordstatus=1 GROUP BY jobs.id ORDER BY jobs.id DESC";
+            // $profilejob = DB::select($query);
+
+            $profilejob = DB::table('jobs')
+                    ->select('jobs.*','customers.type_id','customers.name',
+                    DB::raw('(CASE WHEN customers.type_id = "2" THEN CONCAT((200000+customers.id),"-",LPAD(jobs.id, 4, "0")) ELSE CONCAT((500000+customers.id),"-",LPAD(jobs.id, 4, "0")) END) as jobid'))
+                    ->join('customers','jobs.customer_id','=','customers.id')
+                    ->leftjoin('job_applies','jobs.id','=','job_applies.job_id')
+                    ->where('customers.recordstatus', '1')
+                    ->groupBy('jobs.id')
+                    ->orderBy('jobs.id', 'DESC')
+                    ->paginate(12);
+
+            foreach($profilejob as $jobs){
+                $job_id = $jobs->id;
+                $jobapplies =  DB::table('job_applies')->join('jobs','job_applies.job_id','=','jobs.id')
+                            ->where('job_applies.job_id','=',$job_id)->count();
+                $jobs->count = $jobapplies;
+                $type_id = $jobs->type_id;
+                $profile_id = $jobs->profile_id;
+                if($type_id == 2){
+                    $profile_table = 'nursing_profiles';
+                }else{
+                    $profile_table = 'hospital_profiles';
+                }
+                $profile_name = DB::table($profile_table)->select('id','name')->where($profile_table.'.id', '=' , $profile_id)->get();
+                $jobs->profile_name = $profile_name;
+            }
+            return response()->json(array('profilejob'=>$profilejob));
+        }else{
+            // $query = "SELECT jobs.* ,customers.type_id,
+            // (CASE customers.type_id WHEN '2' THEN CONCAT((200000+customers.id),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(jobs.id, 4, '0')) END) as jobid
+            // FROM `jobs`
+            // JOIN customers ON jobs.customer_id = customers.id
+            // LEFT JOIN job_applies ON jobs.id = job_applies.job_id
+            // WHERE customers.recordstatus=1 and jobs.customer_id = ".auth()->user()->customer_id." GROUP BY jobs.id ORDER BY jobs.id DESC";
+            // $profilejob = DB::select($query);
+
+            $profilejob = DB::table('jobs')
+                    ->select('jobs.*','customers.type_id',
+                    DB::raw('(CASE WHEN customers.type_id = "2" THEN CONCAT((200000+customers.id),"-",LPAD(jobs.id, 4, "0")) ELSE CONCAT((500000+customers.id),"-",LPAD(jobs.id, 4, "0")) END) as jobid'))
+                    ->join('customers','jobs.customer_id','=','customers.id')
+                    ->leftjoin('job_applies','jobs.id','=','job_applies.job_id')
+                    ->where('customers.recordstatus', '1')
+                    ->where('jobs.customer_id',auth()->user()->customer_id)
+                    ->groupBy('jobs.id')
+                    ->orderBy('jobs.id', 'DESC')
+                    ->paginate(12);
+
+            foreach($profilejob as $jobs){
+                $job_id = $jobs->id;
+                $jobapplies =  DB::table('job_applies')->join('jobs','job_applies.job_id','=','jobs.id')
+                            ->where('job_applies.job_id','=',$job_id)->count();
+                $jobs->count = $jobapplies;
+            }
+            return response()->json(array('profilejob'=>$profilejob));
+        }
+        // return response()->json('The Job successfully deleted');
     }
     public function search(Request $request) {
         $request = $request->all();

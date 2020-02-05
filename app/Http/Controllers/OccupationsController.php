@@ -152,8 +152,8 @@ class OccupationsController extends Controller
 
         $occupation = Occupations::find($id);
         $occupation->delete();
-        $occupations = Occupations::all()->toArray();
-        return array_reverse($occupations);
+        $occupations = Occupations::orderBy('id','DESC')->paginate(12);
+        return response()->json($occupations);
         // return response()->json('The Type was successfully deleted');
     }
 

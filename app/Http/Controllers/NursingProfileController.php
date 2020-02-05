@@ -28,7 +28,7 @@ class NursingProfileController extends Controller
 
     public function edit($id) {
 
-        $nursing = NursingProfile::where('customer_id', $id)
+        $nursing = NursingProfile::where('id', $id)
                     ->first();
         return $nursing;
     }
@@ -62,7 +62,7 @@ class NursingProfileController extends Controller
 
         $customer->save();
 
-        $nursing = NursingProfile::where('customer_id',$id)->first();
+        $nursing = NursingProfile::where('id',$id)->first();
         // Nursing Profile 
         // print_r($request);exit;
         $nursing->access = $request[0]['nursing_profile']['access'];
@@ -96,12 +96,12 @@ class NursingProfileController extends Controller
         // End
 
         // Cooperate List
-        $medical = Cooperate_Medical::where('customer_id', $id)
+        $medical = Cooperate_Medical::where('profile_id', $id)
                         ->delete();
 
         for($i=0; $i<count($request[0]['cooperate_list']); $i++) {
             $cop_medical = new Cooperate_Medical;
-            $cop_medical->customer_id = $id;
+            $cop_medical->profile_id = $id;
             $cop_medical->name = $request[0]['cooperate_list'][$i]['name'];
             $cop_medical->clinical_subject = $request[0]['cooperate_list'][$i]['clinical_subject'];
             $cop_medical->details = $request[0]['cooperate_list'][$i]['details'];
@@ -113,12 +113,12 @@ class NursingProfileController extends Controller
         // End
 
         // Payment List
-        $payment = method_payment::where('customer_id', $id)
+        $payment = method_payment::where('profile_id', $id)
                         ->delete();
         
         for($i=0; $i<count($request[0]['payment_list']); $i++) {
             $m_payment = new method_payment;
-            $m_payment->customer_id = $id;
+            $m_payment->profile_id = $id;
             $m_payment->payment_name = $request[0]['payment_list'][$i]['payment_name'];
             $m_payment->expense_moving = $request[0]['payment_list'][$i]['expense_moving'];
             $m_payment->monthly_fees = $request[0]['payment_list'][$i]['monthly_fees'];
@@ -146,10 +146,10 @@ class NursingProfileController extends Controller
         // End
 
         // Staff Info
-        $staff = Staff::where('customer_id', $id)->first();
+        $staff = Staff::where('profile_id', $id)->first();
     
         if($staff) {
-            $staff->customer_id = $id;
+            $staff->profile_id = $id;
             $staff->staff = $request[0]['staff_info']['staff'];
             $staff->nursing_staff = $request[0]['staff_info']['nursing_staff'];
             $staff->min_num_staff = $request[0]['staff_info']['min_num_staff'];
@@ -158,7 +158,7 @@ class NursingProfileController extends Controller
             $staff->save();
         } else {
             $new_staff = new Staff;
-            $new_staff->customer_id = $id;
+            $new_staff->profile_id = $id;
             $new_staff->staff = $request[0]['staff_info']['staff'];
             $new_staff->nursing_staff = $request[0]['staff_info']['nursing_staff'];
             $new_staff->min_num_staff = $request[0]['staff_info']['min_num_staff'];
@@ -169,13 +169,13 @@ class NursingProfileController extends Controller
         // End
 
         // Accepatance
-        $transition = AcceptanceTransaction::where('customer_id', $id)
+        $transition = AcceptanceTransaction::where('profile_id', $id)
                         ->delete();
 
         for($i=0; $i<count($request[0]['acceptance']); $i++) { 
             if($request[0]['acceptance'][$i] != '') {
                 $accept_transaction = new AcceptanceTransaction;
-                $accept_transaction->customer_id = $id;
+                $accept_transaction->profile_id = $id;
                 $accept_transaction->medical_acceptance_id = $request[0]['acceptance'][$i]['id'];
                 $accept_transaction->accept_type = $request[0]['acceptance'][$i]['type'];
                 $accept_transaction->save();
@@ -184,22 +184,22 @@ class NursingProfileController extends Controller
         // End
 
         // Feature
-        $feature = SpecialFeaturesJunctions::where('customer_id', $id) ->delete();
+        $feature = SpecialFeaturesJunctions::where('profile_id', $id) ->delete();
 
         for($indx=0; $indx<count($request[0]['chek_feature'][0]['special_feature_id']); $indx++) {
             $new_feature = new SpecialFeaturesJunctions();
-            $new_feature->customer_id = $id;
+            $new_feature->profile_id = $id;
             $new_feature->special_feature_id = $request[0]['chek_feature'][0]['special_feature_id'][$indx];
             $new_feature->save();
         }
         // End
 
         // Gallary 
-        $del_gallery = Gallery::where(['customer_id'=> $id,'type'=>'video'])->delete(); 
+        $del_gallery = Gallery::where(['profile_id'=> $id,'type'=>'video'])->delete(); 
         if(count($request[0]["video"]) > 0){
             for($i=0; $i<count($request[0]["video"]); $i++) {
                 $gallery = new Gallery;
-                $gallery->customer_id = $id;
+                $gallery->profile_id = $id;
                 $gallery->type = 'video';
                 $gallery->photo = $request[0]["video"][$i]['photo'];
                 $gallery->title = $request[0]["video"][$i]['title'];
@@ -209,11 +209,11 @@ class NursingProfileController extends Controller
             }
         }
         print_r($request[0]["image"]);
-        $del_gallery = Gallery::where(['customer_id'=> $id,'type'=>'photo'])->delete(); 
+        $del_gallery = Gallery::where(['profile_id'=> $id,'type'=>'photo'])->delete(); 
         if(count($request[0]["image"]) > 0){
             for($i=0; $i<count($request[0]["image"]); $i++) {
                 $gallery = new Gallery;
-                $gallery->customer_id = $id;
+                $gallery->profile_id = $id;
                 $gallery->type = 'photo';
                 $gallery->photo = $request[0]["image"][$i]['photo'];
                 $gallery->title = $request[0]["image"][$i]['title'];
@@ -223,11 +223,11 @@ class NursingProfileController extends Controller
             }
         }
 
-        $del_gallery = Gallery::where(['customer_id'=> $id,'type'=>'panorama'])->delete(); 
+        $del_gallery = Gallery::where(['profile_id'=> $id,'type'=>'panorama'])->delete(); 
         if(count($request[0]["panorama"]) > 0){
             for($i=0; $i<count($request[0]["panorama"]); $i++) {
                 $gallery = new Gallery;
-                $gallery->customer_id = $id;
+                $gallery->profile_id = $id;
                 $gallery->type = 'panorama';
                 $gallery->photo = $request[0]["panorama"][$i]['photo'];
                 $gallery->title = $request[0]["panorama"][$i]['title'];

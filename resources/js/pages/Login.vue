@@ -127,7 +127,7 @@
             this.visit = 'false';
             localStorage.setItem('visit', this.visit);
             // handle redirection
-            const redirectTo = this.$auth.user().role === 1 ? 'profile' : '/'
+            const redirectTo = this.$auth.user().role === 1 ? 'accountlist' : '/'
             this.$router.push({name: redirectTo})
           },
           error: function(e) {

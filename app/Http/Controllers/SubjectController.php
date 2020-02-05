@@ -136,8 +136,8 @@ class SubjectController extends Controller
         $Subject = Subject::find($id);
         $Subject->delete();
         // return response()->json('The Subject was successfully deleted');
-        $subjects = Subject::all()->toArray();
-        return $subjects;
+        $subjects = Subject::orderBy('id', 'DESC')->paginate(12);
+        return response()->json($subjects);
     }
 
     public function search(Request $request) {
@@ -154,7 +154,7 @@ class SubjectController extends Controller
     public function getHospitalClinicalSubject($customer_id) {
         $subject_list = Subject::all()->toArray();
 
-        $clinical_subject = SubjectJunctions::where('customer_id','=',$customer_id)->get()->toArray();
+        $clinical_subject = SubjectJunctions::where('profile_id','=',$customer_id)->get()->toArray();
       
 
         for($indx=0; $indx<count($clinical_subject); $indx++) {
