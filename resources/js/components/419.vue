@@ -41,13 +41,13 @@
         border: none; 
         padding: 7px 15px 10px 15px; 
         color: #fff; 
-        background: #d2571c; 
+        background: #2980b9; 
         font-weight: bold; 
         border-radius: 5px;
         font-size: 20px;
     }
     .gohome:hover {
-        background: #9a4117;
+        background: #2980b9;
         text-decoration:none;
         color: #fff; 
     }
