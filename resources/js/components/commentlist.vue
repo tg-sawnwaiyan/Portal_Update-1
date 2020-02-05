@@ -275,13 +275,13 @@
                           if(this.$route.path == "/nuscommentlist"){
                                   this.type = "nursing";
                               }
-                              else{
+                              else{  
                                   this.type = "hospital"
                               }
                         if(typeof page === "undefined"){
                             page = 1;
                         }
-                      
+                               
                         // var search_word = $("#search-item").val();
                         var search_word = this.profileid;
                         console.log("serch_word",search_word);
