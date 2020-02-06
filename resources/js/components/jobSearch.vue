@@ -15,7 +15,7 @@
           <!-- free word left wrapper--->
             <div class="col-lg-5 col-md-12 col-sm-12 float-left map-leftwrapper">
               <!-- <h2 class="map-header" style="bottom: 184px;">老人ホームや病院<br/>で働きたいあなた<br/>の希望叶えます。</h2> -->
-              <h2 class="map-header" style="bottom: 120px;color:#332f2f;">あなたのやさしい<br/>手を求めてる老人<br/>ホーム・病院が見<br/>つかります。</h2>
+              <h2 class="map-header job-map-header" style="bottom: 120px;">あなたのやさしい<br/>手を求めてる老人<br/>ホーム・病院が見<br/>つかります。</h2>
 
 
               <!--search input-->
@@ -47,17 +47,17 @@
                   <div class="map-text-wrapper">
                     <div>
                       <!-- <img src="/images/map-responsive1.png" alt="" class="img-responsive"> -->
-                      <i class="fa icon map-fa-icon"></i>
+                      <i class="fa icon map-fa-icon map-fa-icon-job"></i>
                     </div>
                     <div>
-                      <p class="text-left"> &nbsp;あなたのやさしい 手を求めてる老人<br class="pc-768"/>ホーム・病院が見つかります。</p>
+                      <p class="text-left job-map-header"> &nbsp;あなたのやさしい 手を求めてる老人<br class="pc-768"/>ホーム・病院が見つかります。</p>
                     </div>
                   </div>
                 </h3>
 
 
              <!--search input-->
-                <div class="search">
+                <div class="search job-search-box">
                     <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、施設名などを入力">
                     <button type="submit" class="searchButton" @click="searchfreeword">
                       <i class="fas fa-search"></i> 検索

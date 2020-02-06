@@ -11,7 +11,7 @@
           <!-- <div class="info-box"></div> -->
           <div class="row map-wrap">
           <div class="col-lg-5 col-md-12 col-sm-12 float-left map-leftwrapper">
-            <h2 class="map-header" style="bottom: 120px;color:#2c3e50;">赤ちゃんからおと<br/>なまでみんなで通<br/>える街の名医が見<br/>つかります。</h2>
+            <h2 class="map-header hospital-map-header" style="bottom: 120px;">赤ちゃんからおと<br/>なまでみんなで通<br/>える街の名医が見<br/>つかります。</h2>
 
             <!--search input-->
               <div class="wrap">
@@ -34,15 +34,15 @@
                   <div class="map-text-wrapper">
                     <div>
                       <!-- <img src="/images/map-responsive1.png" alt="" class="img-responsive"> -->
-                      <i class="fa icon map-fa-icon"></i>
+                      <i class="fa icon map-fa-icon map-fa-icon-hospital"></i>
                     </div>             
                     <div>
-                      <p class="text-left"> &nbsp;赤ちゃんからおとなまでみんなで通<br class="pc-768"/>える街の名医が見つかります。 </p>    
+                      <p class="text-left hospital-map-header"> &nbsp;赤ちゃんからおとなまでみんなで通<br class="pc-768"/>える街の名医が見つかります。 </p>    
                     </div>
                   </div>
                 </h3>              
              <!--search input-->
-                <div class="search">
+                <div class="search hospital-search-box">
                     <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、施設名などを入力">
                     <button type="submit" class="searchButton" @click="searchfreeword">
                       <i class="fas fa-search"></i> 検索
