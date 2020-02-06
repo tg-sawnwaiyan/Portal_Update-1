@@ -112,7 +112,7 @@
                                 .delete(`/api/category/delete/${id}`)
                                 .then(response => {
                                     this.categories = response.data;
-                                    this.norecord = this.categories.length;
+                                    this.norecord = this.categories.data.length;
                                     if (this.norecord > this.size) {
                                         this.pagination = true;
                                     } else {

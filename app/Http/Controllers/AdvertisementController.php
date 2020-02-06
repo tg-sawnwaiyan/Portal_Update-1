@@ -155,8 +155,8 @@ class AdvertisementController extends Controller
         //$filename = public_path().'/upload/advertisement/'.$file;
         \File::delete($filename);
         $ads->delete();
-        $advertisements = Advertisement::all()->toArray();
-        return array_reverse($advertisements);
+        $advertisements = Advertisement::orderBy('id', 'DESC')->paginate(12);
+        return response()->json($advertisements);
         // return response()->json('The successfully deleted');
     }
 

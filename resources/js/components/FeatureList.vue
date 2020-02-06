@@ -57,7 +57,7 @@
                         </div>
                         <!-- <pagination :data="features" @pagination-change-page="searchFeature"></pagination> -->
                             <div>
-                              <pagination :data="features" @pagination-change-page="searchFeature" :limit="limitpc">
+                              <pagination :data="features" @pagination-change-page="searchFeature" :limit="limitpc" class="mt-3">
                                 <span slot="prev-nav"><i class="fas fa-angle-left"></i> 前へ</span>
                                 <span slot="next-nav">次へ <i class="fas fa-angle-right"></i></span>
                             </pagination>
@@ -141,7 +141,7 @@
                                 .delete(`/api/feature/delete/${id}`)
                                 .then(response => {
                                     this.features = response.data;
-                                    this.norecord = this.features.length;
+                                    this.norecord = this.features.data.length;
                                     if (this.norecord > this.size) {
                                         this.pagination = true;
                                     } else {

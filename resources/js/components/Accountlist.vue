@@ -26,6 +26,7 @@
 
                                          <strong>Email </strong>
                                           <p>{{nursingprofiles.email}}</p>
+                                          <router-link :to="{ path:'/profile/nursing/'+ nursingprofiles.id}" class="btn all-btn" style="font-weight:bold;">Edit</router-link>
                                    </div>
                                 </div>
                             </div>
@@ -45,7 +46,7 @@
 
                                           <strong>Email </strong>
                                           <p>{{hospitalprofiles.email}}</p>
-
+                                        <router-link :to="{ path:'/profile/hospital/'+ hospitalprofiles.id}" class="btn all-btn" style="font-weight:bold;">Edit</router-link>
                                     </div>
                                 </div>
                                </div>
@@ -62,14 +63,14 @@ export default {
     data() {
        return{
             nursingprofile:[],
-            type:"nursing",
+            type:null,
             hospitalprofile:[],
        }
     },
     created(){
-         this.type = localStorage.getItem('cusType');
-                console.log("aaaaaaa",this.type);
-                this.cusid = Number(localStorage.getItem('cusId'));
+        this.type = this.$auth.user().type_id == 2?'hospital':'nursing';
+        console.log(this.type)
+        // this.cusid = Number(localStorage.getItem('cusId'));
                  if(this.type == "nursing") {
                       this.axios.get(`/api/account_nursing`).then(response => {
                     //this.$loading(false);

@@ -233,7 +233,7 @@ class CustomerController extends Controller
 
         $search_customer = Customer::query()
                             ->where('name', 'LIKE' , "%{$search_word}%")
-                            ->orderBy('id','DESC')
+                            ->orderBy('created_at', 'desc')
                             ->paginate(12);
         return response()->json($search_customer);
     }

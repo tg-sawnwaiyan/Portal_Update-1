@@ -375,8 +375,15 @@
                             this.axios
                                 .delete(`/api/job/delete/${id}`)
                                 .then(response => {
-                                    let i = this.jobs.map(item => item.id).indexOf(id); // find index of your object
-                                    this.jobs.splice(i, 1);
+                                    // let i = this.jobs.map(item => item.id).indexOf(id); // find index of your object
+                                    // this.jobs.splice(i, 1);
+                                    this.jobs = response.data.profilejob;
+                                    this.customer_id = response.data.user;
+                                    if(this.jobs.data.length != 0){
+                                        this.norecord_msg = false;
+                                    }else{
+                                        this.norecord_msg = true;
+                                    }
                                     this.$swal({
                                         text: "求人を削除しました。",
                                         type: "success",

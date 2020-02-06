@@ -5,7 +5,7 @@
               <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <h4 class="page-header header">広告編集</h4>
+                            <h4 class="page-header header">{{header}}</h4>
                             <br>
                         </div>
                         <div class="col-md-12">
@@ -39,9 +39,12 @@
                             </div> -->
                             <div class="form-group" id="showimage">
                                 <label>写真 : <span class="error">*</span></label><br/>
-                                <div class="custom-file">
-                                    <input type="file" v-if="!showhide" ref="file" accept="image/*" id="upd_img" @change ="fileSelected">
-                                    <input type="file" v-if="showhide" id="upload" accept="image/*" @change="uploadImage"> 
+                                <div class="d-flex align-items-center">
+                                    <span class="btn-file d-inline-block">画像を選択        
+                                        <input type="file" v-if="!showhide" ref="file" accept="image/*" id="upd_img" @change ="fileSelected">
+                                        <input type="file" v-if="showhide" id="upload" accept="image/*" @change="uploadImage"> 
+                                    </span> 
+                                    <span class="pl-4">{{img_name}}</span>
                                 </div>
                                 <span v-if="errors.photo" class="error">{{errors.photo}}</span>
                                  <div class="col-md-12" id="par">
@@ -102,7 +105,9 @@ export default {
                 old_photo: "",
                 upload_img:'',
                 update_img: false,
-                showhide:false
+                showhide:false,
+                header : '',
+                img_name : ''
             }
         },
         created() {
@@ -119,6 +124,7 @@ export default {
                     // this.updateCheck(this.ischeck);
                     this.advertisement.photo=response.data.photo;
                 });
+                this.header = '広告編集';
             }
             else{
                 this.showhide = true;
@@ -126,7 +132,8 @@ export default {
                 this.advertisement.description = '';
                 this.advertisement.link = '';
                 this.ischeck = '';
-                 this.advertisement.photo='';     
+                this.advertisement.photo='';     
+                this.header = '広告新規作成';
             }
            
         },
@@ -139,16 +146,43 @@ export default {
                 this.advertisement.photo = event.target.files[0];
                 this.upload_img = URL.createObjectURL(event.target.files[0]);
                 this.update_img = true;
+                const file =event.target.files[0];
+                this.img_name = file.name;
             },
 
             closeBtnMethod: function(old_photo) {
-                this.update_img = true;
-                if(this.advertisement.photo)
-                {
-                    var image_x = document.getElementById('x-image');
-                    image_x.parentNode.removeChild(image_x);
-                }
-                this.advertisement.photo = '';
+                this.$swal({
+                    title: "確認",
+                    text: "削除してよろしいでしょうか",
+                    type: "warning",
+                    width: 350,
+                    height: 200,
+                    showCancelButton: true,
+                    confirmButtonColor: "#dc3545",
+                    cancelButtonColor: "#b1abab",
+                    cancelButtonTextColor: "#000",
+                    confirmButtonText: "はい",
+                    cancelButtonText: "キャンセル",
+                    confirmButtonClass: "all-btn",
+                    cancelButtonClass: "all-btn"
+                }).then(response => {
+                        this.$swal({
+                                text: "画像を削除しました。",
+                                type: "success",
+                                width: 350,
+                                height: 200,
+                                confirmButtonText: "閉じる",
+                                confirmButtonColor: "#dc3545"
+                            });
+                    }).then(response => {
+                        this.img_name = '';
+                        this.update_img = true;
+                        this.advertisement.photo = '';
+                        if(this.advertisement.photo){
+                            var image_x = document.getElementById('x-image');
+                            image_x.parentNode.removeChild(image_x);
+                        }
+                }); 
             },
             // updateCheck: function (check){
             //     this.advertisement.location.shift()
@@ -175,8 +209,8 @@ export default {
                 
                 $('.image_preview').html("<div class='col-md-2'><img src='" + URL.createObjectURL(event.target.files[0]) + "' class='show-img'></div>");
                 this.advertisement.photo = event.target.files[0];
-             
-
+                const file =event.target.files[0];
+                this.img_name = file.name;
             },
 
             updateAds() {

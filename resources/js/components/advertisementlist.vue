@@ -37,8 +37,8 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <h5  class="mb-2"><strong>タイトル</strong></h5>
-                                    <p>{{ads.title}}</p>
+                                    <!-- <h5  class="mb-2"><strong>タイトル</strong></h5> -->
+                                    <h5 class="font-weight-bold">{{ads.title}}</h5>
                                     <!-- <div class="col-md-2 max-width16"><strong>描写  :</strong></div><div class="col-md-10">{{ads.description}}</div> -->
                                     <div class="d-flex mt-4">
                                         <router-link :to="{name: 'editadvertisement', params: { id: ads.id }}" class="btn edit-borderbtn">編集</router-link>

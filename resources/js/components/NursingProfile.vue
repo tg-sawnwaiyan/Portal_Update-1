@@ -1287,7 +1287,6 @@ export default {
                                 })
                         }).then(response => {
                             this.img_name = '';
-                            console.log('testestestesw');
                          })   
                         .catch(error=>{
                             this.$loading(false);
