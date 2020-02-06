@@ -635,9 +635,9 @@
 
                             <router-link v-for="(item,index) in group.slice(1, 4)" :key="index" :to="'/newsdetails/'+item.pid">
 
-                                <div class="col-md-12 col-sm-12 row m-b-10 adslist-card m-lr-0 news-3-card">
+                                <div class="col-12 row m-b-10 adslist-card m-lr-0 news-3-card">
 
-                                    <div class="col-md-4 col-sm-4 img-box">
+                                    <div class="col-4 img-box">
 
                                         <clazy-load class="wrapper-4" @load="log" src="images/noimage.jpg" :key="index" >
 
@@ -669,7 +669,7 @@
 
 
 
-                                    <div class="col-md-8 col-sm-8 txt-box">
+                                    <div class="col-8 txt-box">
 
                                         <p> {{item.main_point}} </p>
 
@@ -699,9 +699,9 @@
 
                             <router-link v-for="(item,index) in group.slice(12, 15)" :key="index" :to="'/newsdetails/'+item.pid">
 
-                                <div class="col-md-12 col-sm-12 row m-b-10 adslist-card m-lr-0 news-3-card">
+                                <div class="col-12 row m-b-10 adslist-card m-lr-0 news-3-card">
 
-                                    <div class="col-md-4 col-sm-4 img-box">
+                                    <div class="col-4 img-box">
 
                                         <clazy-load class="wrapper-4" @load="log" src="images/noimage.jpg" :key="index" >
 
@@ -731,7 +731,7 @@
 
 
 
-                                    <div class="col-md-8 col-sm-8 txt-box">
+                                    <div class="col-8 txt-box">
 
                                         <p> {{item.main_point}} </p>
 
@@ -751,9 +751,9 @@
 
                             <router-link v-for="(item,index) in group.slice(0, 3)" :key="index" :to="'/newsdetails/'+item.pid">
 
-                                <div class="col-md-12 col-sm-12 row m-b-10 adslist-card m-lr-0 news-3-card">
+                                <div class="col-12 row m-b-10 adslist-card m-lr-0 news-3-card">
 
-                                    <div class="col-md-4 col-sm-4 img-box">
+                                    <div class="col-4 img-box">
 
                                         <clazy-load class="wrapper-4" @load="log" src="images/noimage.jpg" :key="index">
 
@@ -783,7 +783,7 @@
 
 
 
-                                    <div class="col-md-8 col-sm-8 txt-box">
+                                    <div class="col-8 txt-box">
 
                                         <p> {{item.main_point}} </p>
 
@@ -813,9 +813,9 @@
 
                             <router-link v-for="(item,index) in group.slice(11, 14)" :key="index" :to="'/newsdetails/'+item.pid">
 
-                                <div class="col-md-12 col-sm-12 row m-b-10 adslist-card m-lr-0 news-3-card">
+                                <div class="col-12 row m-b-10 adslist-card m-lr-0 news-3-card">
 
-                                    <div class="col-md-4 col-sm-4 img-box">
+                                    <div class="col-4 img-box">
 
                                         <clazy-load class="wrapper-4" @load="log" src="images/noimage.jpg" :key="index">
 
@@ -845,7 +845,7 @@
 
 
 
-                                    <div class="col-md-8 col-sm-8 txt-box">
+                                    <div class="col-8 txt-box">
 
                                         <p> {{item.main_point}} </p>
 
@@ -908,9 +908,9 @@
 
                             <router-link v-for="(item,index) in group.slice(1, 4)" :key="index" :to="'/newsdetails/'+item.pid">
 
-                                <div class="col-md-12 col-sm-12 row m-b-10 adslist-card m-lr-0 news-3-card">
+                                <div class="col-12 row m-b-10 adslist-card m-lr-0 news-3-card">
 
-                                    <div class="col-md-4 img-box">
+                                    <div class="col-4 img-box">
 
                                         <clazy-load class="wrapper-4" @load="log" src="images/noimage.jpg" :key="index">
 
@@ -940,7 +940,7 @@
 
 
 
-                                    <div class="col-md-8 txt-box">
+                                    <div class="col-8 txt-box">
 
                                         <p> {{item.main_point}} </p>
 
@@ -956,9 +956,9 @@
 
                             <router-link v-for="(item,index) in group.slice(4, 7)" :key="index" :to="'/newsdetails/'+item.pid">
 
-                                <div class="col-md-12 row m-b-10 adslist-card m-lr-0 news-3-card">
+                                <div class="col-12 row m-b-10 adslist-card m-lr-0 news-3-card">
 
-                                    <div class="col-md-4 img-box">
+                                    <div class="col-4 img-box">
 
                                         <clazy-load class="wrapper-4" @load="log" src="images/noimage.jpg" :key="index">
 
@@ -988,7 +988,7 @@
 
 
 
-                                    <div class="col-md-8 txt-box">
+                                    <div class="col-8 txt-box">
 
                                         <p> {{item.main_point}} </p>
 
@@ -1796,6 +1796,7 @@
         display: none;
     }
 }
+
 @media only screen and (max-width:480px){
     .list-label{  
         color: #fff;     
