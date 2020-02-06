@@ -3588,6 +3588,10 @@ background: #ff9b53;  /
     color: #fff;
 }
 
+#news_list .select_box {
+    width: 65%;
+}
+
 
 /*footer*/
 
@@ -10782,14 +10786,11 @@ width: 18rem;
 }
 
 @media only screen and (max-width:576px) {
-    .w-sm-25 {
+    #news_list .select_label {
         width: 25% !important;
     }
     .w-sm-65 {
         width: 65% !important;
-    }
-    .w-sm-75 {
-        width: 75% !important;
     }
     .w-sm-100 {
         width: 100% !important;
@@ -10803,6 +10804,7 @@ width: 18rem;
     }
     .related-card .cat_select {
         width: 71%;
+        margin-left: auto;
     }
     .related-card .search_box {
         width: 100%;
@@ -10811,6 +10813,9 @@ width: 18rem;
         float: none !important;
         margin-bottom: 10px;
         max-width: 100%;
+    }
+    #news_list .select_box {
+        width: 75%;
     }
     /*end create news */
 }
@@ -11237,7 +11242,7 @@ background-image: none;
         width: 100%;
         margin-bottom: 10px;
     }
-    .admin_header div span {
+    .admin_header .first_txt {
         display: none;
     }
 }
@@ -11435,6 +11440,12 @@ background-image: none;
         width: 100%;
     }
     /* end nursing profile */
+    #news_list .select_box {
+        width: 72%;
+    }
+    .related-card .cat_select {
+        width: 65%;
+    }
 }
 
 @media only screen and (max-width: 380px) {
@@ -11557,54 +11568,6 @@ background-image: none;
     /*End  Profile Publish */
     .related-card .cat_lbl {
         font-size: 12px;
-    }
-    .related-card .cat_select {
-        width: 66%;
-        margin-left: auto;
-    }
-}
-
-@media only screen and (max-width:320px) {
-    .set-date {
-        text-indent: 0em;
-    }
-    .login_2 {
-        margin-left: -53px;
-    }
-    .login_1 {
-        margin-right: -21px;
-    }
-    .login_top {
-        top: -111px;
-        margin-left: 22px;
-    }
-    .loginwrapper {
-        padding: 10px 40px;
-        position: fixed;
-        /* margin-left: -53px; */
-        background: #fbfbfb;
-        top: 20px;
-    }
-    .registerform_container {
-        margin-top: 0px;
-    }
-    /*create_news*/
-    .searchButton {
-        width: 35% !important;
-    }
-    .news_catsearch label {
-        width: 55%;
-    }
-    .nursing_toggle_responsive {
-        /* margin-top: -45px; */
-        margin-left: 115px;
-    }
-    .nursing_btn span {
-        margin-left: 0;
-        margin-top: 0;
-    }
-    .postal {
-        width: 100%;
     }
 }
 
@@ -11875,4 +11838,57 @@ background-image: none;
 
 strong {
     font-weight: bold!important;
+}
+
+@media only screen and (max-width:320px) {
+    .set-date {
+        text-indent: 0em;
+    }
+    .login_2 {
+        margin-left: -53px;
+    }
+    .login_1 {
+        margin-right: -21px;
+    }
+    .login_top {
+        top: -111px;
+        margin-left: 22px;
+    }
+    .loginwrapper {
+        padding: 10px 40px;
+        position: fixed;
+        /* margin-left: -53px; */
+        background: #fbfbfb;
+        top: 20px;
+    }
+    .registerform_container {
+        margin-top: 0px;
+    }
+    /*create_news*/
+    .searchButton {
+        width: 35% !important;
+    }
+    .news_catsearch label {
+        width: 55%;
+    }
+    .nursing_toggle_responsive {
+        /* margin-top: -45px; */
+        margin-left: 115px;
+    }
+    .nursing_btn span {
+        margin-left: 0;
+        margin-top: 0;
+    }
+    .postal {
+        width: 100%;
+    }
+    .admin_header div span {
+        display: none;
+    }
+    #news_list .select_box {
+        width: 70%;
+    }
+    #news_list .select_label {
+        width: 26% !important;
+    }
 }
