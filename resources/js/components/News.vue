@@ -1779,16 +1779,16 @@
 }
 @media only screen and (min-width: 1024px) and (max-width: 1200px){
     #view-1024 .first-child {
-        max-width: 65.66%;
-        flex: 0 0 65.66%;
+        max-width: 66.666667%;
+        flex: 0 0 66.666667%;
     }
     #view-1024 .last-child {
         max-width: 33.33%;
         flex: 0 0 33.33%;
     }
     #view-1024-pattern .col-lg-3 {
-        max-width: 33.33%;
-        flex: 0 0 33.33%;
+        max-width: 33.333333%;
+        flex: 0 0 33.333333%;
         /* overflow: hidden; */
     }
     #view-1024-pattern .col-lg-3:last-child {
