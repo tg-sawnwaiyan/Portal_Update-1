@@ -181,8 +181,10 @@
             var cur_pos = $(this).scrollTop();
             if (cur_pos >= 100) {
                 $('#headerbar li').css('display','block');
+                $('#myBtn').css('display','block');
             } else {
                 $('#headerbar li').css('display','inline-block');
+                $('#myBtn').css('display','none');
             }
         });
         
