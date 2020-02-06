@@ -52,7 +52,7 @@ class CustomerProfileContoller extends Controller
         $nur_histories = DB::select($query);
         foreach($nur_histories as $nur) {
             $sfeature = $nur->special;
-            $cId = $nur->profile_id;
+            $cId = $nur->id;
             if($sfeature != null){
                 $sql = "SELECT short_name FROM special_features WHERE id IN (".$sfeature.")";
                 $specialfeature = DB::select($sql);
