@@ -47,7 +47,7 @@ class HospitalProfileController extends Controller
                 $subjects = DB::select($sql);
                 $fav->sub = $subjects;
             }
-            $cId = $fav->profile_id;
+            $cId = $fav->id;
             $sql = "SELECT schedule.* FROM schedule WHERE schedule.profile_id = $cId AND schedule.part = 'am'";
             $schedule_am = DB::select($sql);
             $fav->schedule_am = $schedule_am;
@@ -68,7 +68,7 @@ class HospitalProfileController extends Controller
         foreach($fav_nursing as $nur) {
             if($nur->special != null){
                 $sfeature = $nur->special;
-                $cId = $nur->profile_id;
+                $cId = $nur->id;
                 if($sfeature != null){
                     $sql = "SELECT short_name FROM special_features WHERE id IN (".$sfeature.")";
                     $specialfeature = DB::select($sql);
