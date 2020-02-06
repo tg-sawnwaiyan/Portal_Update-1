@@ -1918,10 +1918,8 @@ export default {
                         this.customer_name = response.data[0].name;
                     });
                     this.axios.get('/api/profile/hospital/'+this.pro_id).then(response => {
-                        console.log('This is JSON value');
-                        console.log(response.data);
-                        console.log(response.data);
-                        this.google = response.data.hoslatlong;
+                      
+                        this.google = response.data.hospital;
 
                         this.hospitals = response.data.hospital;
 
@@ -1929,13 +1927,13 @@ export default {
 
                         this.fac_list = response.data.facility;
 
-                        this.markers[0]['position']['lat']  = response.data.hoslatlong[0]['latitude'];
+                        this.markers[0]['position']['lat']  = response.data.hospital[0]['latitude'];
 
-                        this.markers[0]['position']['lng']  = response.data.hoslatlong[0]['longitude'];
+                        this.markers[0]['position']['lng']  = response.data.hospital[0]['longitude'];
 
-                        this.center['lat'] = response.data.hoslatlong[0]['latitude'];
+                        this.center['lat'] = response.data.hospital[0]['latitude'];
 
-                        this.center['lng'] = response.data.hoslatlong[0]['longitude'];
+                        this.center['lng'] = response.data.hospital[0]['longitude'];
 
                         this.images = response.data.images;
 
@@ -1952,7 +1950,7 @@ export default {
 
                         // this.panoimages = response.data.panoimages;
 
-                        if(response.data.hoslatlong[0]['latitude'] == 0 && response.data.hoslatlong[0]['longitude'] == 0)
+                        if(response.data.hospital[0]['latitude'] == 0 && response.data.hospital[0]['longitude'] == 0)
 
                         {
 
