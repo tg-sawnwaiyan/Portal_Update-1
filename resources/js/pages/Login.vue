@@ -12,7 +12,7 @@
             </div>
 
             <div class="d-flex justify-content-center">
-              <div class="brand_logo_container">
+              <div class="brand_logo_container logo_bk">
                 <img src="/images/login.png" class="brand_logo" alt="logo">
               </div>
             </div>
