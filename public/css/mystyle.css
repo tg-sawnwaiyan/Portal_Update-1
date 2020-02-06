@@ -11234,6 +11234,10 @@ background-image: none;
 }
 
 @media only screen and (max-width: 414px) {
+    .newsDetail_leftwrapper{
+        max-width: 100%;
+        margin-right: 0px !important;
+    }
     .nursing_responsive {
         max-width: 100%;
     }

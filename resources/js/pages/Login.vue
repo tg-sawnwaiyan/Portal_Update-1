@@ -145,7 +145,7 @@
 </script>
 <style>
 .admin_user_card{
-  background-color: #222d32 !important;
+  background-color: #3e758e !important;
   color: #fff;
 }
 .admin_user_card .user_name{
@@ -155,11 +155,11 @@
   color: #fff !important;
 }
 .admin_user_card .input-group-text{
-  background: #787a7b !important;
+  background: #2980b9 !important;
   color: #f5f5f5 !important;
 }
 .admin_user_card .brand_logo_container{
-  border:10px solid #787a7b;
+  border: 10px solid #5789a0;
 }
 .customer_user_card{
   background-color: #fbfbfb !important;
