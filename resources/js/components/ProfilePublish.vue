@@ -1827,18 +1827,19 @@ export default {
                         this.customer = response.data;
                         this.customer_name = response.data[0].name;
                     });
-
                     this.axios.get('/api/profile/nursing/'+this.pro_id) .then(response => {
-                        this.nursing_profiles = response.data.feature;
+                        
                         console.log('This is JSON value');
                         console.log(response.data);
-                        console.log(response.data);
 
-                        this.nus_method= response.data.method;
+                        // this.nursing_profiles = response.data.feature;
+                        // this.nus_method= response.data.method;
+                        this.nusfacilities = response.data.facility;
+
+                        this.nursing_profiles = response.data.nurselatlong[0]['feature'];
+                        this.nus_method= response.data.nurselatlong[0]['method'];
 
                         this.method_payment = response.data.cost;
-
-                        this.nusfacilities = response.data.facility;
 
                         this.cooperate_medical = response.data.comedical;
 
