@@ -73,11 +73,8 @@
                   </div>
                 </div>
                 <div class="col-12">
-                  <div class="float-left mr-4" style="max-width:500px;">
-                    <div
-                      class="img-wrap mb-2"
-                      style="width:100%;text-align: center;padding: 30px;"
-                    >
+                  <div class="float-left mr-4 newsDetail_leftwrapper">
+                    <div class="img-wrap mb-2">
                       <img
                         :src="'/upload/news/'+ news.photo"
                         class="img-responsive img_2"
@@ -85,7 +82,7 @@
                         @error="imgUrlAlt"
                       />
                     </div>
-                    <p class="img_2 mb-1">{{news.main_point}}</p>
+                    <p class="img_2 details_title mb-1">{{news.main_point}}</p>
                   </div>
                   <div>
                     <p class="p5 mb-2 " v-html="news.body"></p>

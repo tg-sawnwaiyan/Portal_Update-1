@@ -58,9 +58,10 @@
                                         </tr>
                                     </table>
                                     <div class="d-inline-block mt-3">
-                                        <button class="btn confirmed" v-if="comment.status != 0" >確認</button>
-                                        <button class="btn confirm-borderbtn" v-else @click="commentConfirm(comment.id)">確認</button>
                                         <button class="btn text-danger delete-borderbtn" @click="deleteComment(comment.id)">削除</button>
+                                        <button class="btn confirmed" v-if="comment.status != 0" >確認済み</button>
+                                        <button class="btn confirm-borderbtn" v-else @click="commentConfirm(comment.id)">新規口コミ承認</button>
+                                        
                                     </div>
                                 </div>
 

@@ -42,7 +42,7 @@ class ProfilePublishController extends Controller
         $facility_list = Facility::select('id','description')->get();
         $hosfacility= explode(',',$hospital[0]->facilities);
         $facility = Facility::whereIn('id',$hosfacility)->select('description','id')->get();
-        $logo = Customer::where('id',$cusid)->select('logo as photo')->get()->toArray();
+        $logo = HospitalProfile::where('id',$cusid)->select('logo as photo')->get()->toArray();
         $gallery = Gallery::where('profile_id',$cusid)->where('type','photo')->get()->toArray();
         $images = array_merge($logo,$gallery);
 
