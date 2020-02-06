@@ -36,23 +36,22 @@ class ProfilePublishController extends Controller
 
     public function hospitalProfile($cusid)
     {
-        $hospital = HospitalProfile::where('customer_id',$cusid)->get();
+        $hospital = HospitalProfile::where('id',$cusid)->get();
 
         //for hospital map
-        $hoslatlong =  DB::table('customers') ->select('customers.address','hospital_profiles.*')
-                        ->join('hospital_profiles','hospital_profiles.customer_id','=','customers.id')
-                        ->where('hospital_profiles.customer_id','=',$cusid)->get();
+        $hoslatlong =  DB::table('hospital_profiles') ->select('hospital_profiles.*')
+                        ->where('hospital_profiles.id','=',$cusid)->get();
 
         $facility_list = Facility::select('id','description')->get();
-        $profile_facility =  HospitalProfile::select('facilities')->where('customer_id',$cusid)->value('facilities');
+        $profile_facility =  HospitalProfile::select('facilities')->where('id',$cusid)->value('facilities');
         $hosfacility= explode(',',$profile_facility);
         $facility = Facility::whereIn('id',$hosfacility)->select('description','id')->get();
         //for image slide show
         $logo = Customer::where('id',$cusid)->select('logo as photo')->get()->toArray();
-        $gallery = Gallery::where('customer_id',$cusid)->where('type','photo')->get()->toArray();
+        $gallery = Gallery::where('profile_id',$cusid)->where('type','photo')->get()->toArray();
         $images = array_merge($logo,$gallery);
 
-        $videos = Gallery::where('customer_id',$cusid)->where('type','video')->select()->get()->toArray();
+        $videos = Gallery::where('profile_id',$cusid)->where('type','video')->select()->get()->toArray();
         for($i=0;$i<count($videos);$i++) {
             $first_arr = explode('v=',$videos[$i]['photo']);
             if(count($first_arr)>1) {
@@ -69,16 +68,14 @@ class ProfilePublishController extends Controller
     public function nursingProfile($cusid)
     {
 
-        $feature = NursingProfile::select('feature')->where('customer_id',$cusid)->get();
-
-        $method = NursingProfile::select('method')->where('customer_id',$cusid)->get();
-        $facility = NursingProfile::where('customer_id',$cusid)->get(); 
+        $feature = NursingProfile::select('feature')->where('id',$cusid)->get();
+        $method = NursingProfile::select('method')->where('id',$cusid)->get();
+        $facility = NursingProfile::where('id',$cusid)->get(); 
         $tmp = FacType::where('id', $facility[0]['fac_type'])->first();
-        $facility[0]['fac_type'] = $tmp['description'];
-       
-        $comedical = Cooperate_Medical::where('customer_id',$cusid)->get();
+        $facility[0]['fac_type'] = $tmp['description'];       
+        $comedical = Cooperate_Medical::where('profile_id',$cusid)->get();
 
-        $sql = "SELECT method_payment.* from method_payment INNER JOIN customers ON method_payment.customer_id= customers.id WHERE method_payment.customer_id=$cusid";
+        $sql = "SELECT method_payment.* from method_payment INNER JOIN nursing_profiles ON method_payment.profile_id= nursing_profiles.id WHERE method_payment.profile_id=$cusid";
         $cost = DB::select($sql);
 
         //forshow all medical acceptance
@@ -87,22 +84,21 @@ class ProfilePublishController extends Controller
         //forshow custom icon
         $medical =  DB::table('acceptance_transactions') ->select('acceptance_transactions.accept_type','medical_acceptance.name')
                         ->join('medical_acceptance','medical_acceptance.id','=','acceptance_transactions.medical_acceptance_id')
-                        ->where('acceptance_transactions.customer_id','=',$cusid)->get();
+                        ->where('acceptance_transactions.profile_id','=',$cusid)->get();
 
-        $staff = Staff::where('customer_id',$cusid)->get();
+        $staff = Staff::where('profile_id',$cusid)->get();
 
          //for nursing map
-        $nurselatlong =  DB::table('customers') ->select('customers.address','nursing_profiles.*')
-                             ->join('nursing_profiles','nursing_profiles.customer_id','=','customers.id')
-                             ->where('nursing_profiles.customer_id','=',$cusid)->get();
+        $nurselatlong =  DB::table('nursing_profiles') ->select('nursing_profiles.*')
+                             ->where('nursing_profiles.id','=',$cusid)->get();
 
         //for image slide show
         $logo = Customer::where('id',$cusid)->select('logo as photo')->get()->toArray();
-        $gallery = Gallery::where('customer_id',$cusid)->where('type','photo')->get()->toArray();
+        $gallery = Gallery::where('profile_id',$cusid)->where('type','photo')->get()->toArray();
         $images = array_merge($logo,$gallery);
 
-        $panoimages = Gallery::where('customer_id',$cusid)->where('type','panorama')->select()->orderBy('id','desc')->get();
-        $videos = Gallery::where('customer_id',$cusid)->where('type','video')->select()->get()->toArray();
+        $panoimages = Gallery::where('profile_id',$cusid)->where('type','panorama')->select()->orderBy('id','desc')->get();
+        $videos = Gallery::where('profile_id',$cusid)->where('type','video')->select()->get()->toArray();
         for($i=0;$i<count($videos);$i++) {
             $first_arr = explode('v=',$videos[$i]['photo']);
             if(count($first_arr)>1) {
@@ -116,9 +112,9 @@ class ProfilePublishController extends Controller
         return response()->json(array("feature"=>$feature,"facility"=>$facility,"comedical"=>$comedical,"medicalacceptance"=>$medicalacceptance,"staff"=>$staff, "nurselatlong"=>$nurselatlong,"cost"=>$cost,"medical"=>$medical,"method"=>$method,"images"=>$images,"panoimages"=>$panoimages,"videos"=>$videos));
     }
 
-    public function getComment($cusid)
+    public function getComment($proid)
     {
-        $sql = "SELECT comments.id,comments.title,comments.email,comments.year,comments.comment, comments.created_at from comments INNER JOIN nursing_profiles ON comments.customer_id= nursing_profiles.customer_id WHERE comments.customer_id = $cusid AND comments.status = 1";
+        $sql = "SELECT comments.id,comments.title,comments.email,comments.year,comments.comment, comments.created_at from comments INNER JOIN nursing_profiles ON comments.profile_id= nursing_profiles.id WHERE comments.profile_id = $proid AND comments.status = 1";
         $comments = DB::select($sql);
         foreach ($comments as $cm) {
             $splitTimeStamp = explode(" ",$cm->created_at);
@@ -130,7 +126,7 @@ class ProfilePublishController extends Controller
 
 
 
-    public function getCustomer($cusid,$type)
+    public function getCustomer($proid,$type)
     {
         // $customer = Customer::where('id',$cusid)->get();
         if($type == 'hospital'){
@@ -139,11 +135,11 @@ class ProfilePublishController extends Controller
         else{
             $type = 'nursing_profiles';
         }
-        $sql = "SELECT customers.*,$type.* from customers inner join $type on customers.id = $type.customer_id where customers.id = $cusid";
+        $sql = "SELECT $type.* from $type where id = $proid";
         $customer = DB::select($sql);
         return $customer;
     }
-    public function getCustomerLatLng($cusid,$type)
+    public function getCustomerLatLng($proid,$type)
     {
         // $customer = Customer::where('id',$cusid)->get();
         if($type == 'hospital'){
@@ -152,13 +148,13 @@ class ProfilePublishController extends Controller
         else{
             $type = 'nursing_profiles';
         }
-        $sql = "SELECT $type.latitude,$type.longitude,$type.id as pro_id from customers inner join $type on customers.id = $type.customer_id where customers.id = $cusid";
-        $customer = DB::select($sql);
-        return $customer;
+        $sql = "SELECT $type.latitude,$type.longitude,$type.id as pro_id FROM $type where $type.id = $proid";
+        $profilelatlan = DB::select($sql);
+        return $profilelatlan;
     }
 
-    public function getSpecialfeature($type,$cusid){
-        $sfeature = SpecialFeaturesJunctions::where('customer_id',$cusid)->get()->toArray();
+    public function getSpecialfeature($type,$proid){
+        $sfeature = SpecialFeaturesJunctions::where('profile_id',$proid)->get()->toArray();
 
         if($sfeature != null){
             for($indx = 0; $indx<count($sfeature); $indx++) {
@@ -172,7 +168,7 @@ class ProfilePublishController extends Controller
     }
 
     public function getSubject($cusid){
-        $sub = SubjectJunctions::where('customer_id',$cusid)->get()->toArray();
+        $sub = SubjectJunctions::where('profile_id',$cusid)->get()->toArray();
 
         if($sub != null){
             for($indx = 0; $indx<count($sub); $indx++) {
@@ -187,10 +183,10 @@ class ProfilePublishController extends Controller
     }
 
     public function getSchedule($cusid){
-        $schedule_am = Schedule::select('mon','tue','wed','thu','fri','sat','sun')->where('customer_id', $cusid)
+        $schedule_am = Schedule::select('mon','tue','wed','thu','fri','sat','sun')->where('profile_id', $cusid)
                             ->where('part', '=', 'am')
                             ->get();
-        $schedule_pm = Schedule::select('mon','tue','wed','thu','fri','sat','sun')->where('customer_id', $cusid)
+        $schedule_pm = Schedule::select('mon','tue','wed','thu','fri','sat','sun')->where('profile_id', $cusid)
                             ->where('part', '=', 'pm')
                             ->get();
 
@@ -235,7 +231,7 @@ class ProfilePublishController extends Controller
     }
 
     public function getStaffbyCustomerId($cusid) {
-        $staff = Staff::where("customer_id",$cusid)->first();
+        $staff = Staff::where("profile_id",$cusid)->first();
 
         return $staff;
     }

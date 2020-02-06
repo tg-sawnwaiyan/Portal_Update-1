@@ -154,7 +154,7 @@ class SubjectController extends Controller
     public function getHospitalClinicalSubject($customer_id) {
         $subject_list = Subject::all()->toArray();
 
-        $clinical_subject = SubjectJunctions::where('customer_id','=',$customer_id)->get()->toArray();
+        $clinical_subject = SubjectJunctions::where('profile_id','=',$customer_id)->get()->toArray();
       
 
         for($indx=0; $indx<count($clinical_subject); $indx++) {

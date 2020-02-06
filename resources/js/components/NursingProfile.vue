@@ -748,11 +748,12 @@ export default {
             if(this.type != undefined && this.cusid!= undefined){
                 localStorage.setItem('cusType',this.type);
                 localStorage.setItem('cusId',this.cusid);
+               
             }
 
             this.type = localStorage.getItem('cusType');
             this.cusid = Number(localStorage.getItem('cusId'));
-
+ alert(this.cusid)
             this.initialCall();
 
         },

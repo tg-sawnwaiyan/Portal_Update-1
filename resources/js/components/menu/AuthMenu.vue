@@ -23,7 +23,7 @@
                 
                 <ul class="gNav">
                     <li v-if="visit == 'false'">
-                        <router-link :to="{ name: 'News' }" style="margin-left: 15px;"> サイトを表示</router-link>
+                        <router-link :to="{ name: 'News' }"> サイトを表示</router-link>
                     </li>
 
                     <li v-if="visit == 'true'">

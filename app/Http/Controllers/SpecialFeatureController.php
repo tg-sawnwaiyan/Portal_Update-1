@@ -27,7 +27,7 @@ class SpecialFeatureController extends Controller
        
         $cooperate_list = special_feature::where('type','=',$profile_type)->get()->toArray();
        
-        $profile_feature = SpecialFeaturesJunctions::where('customer_id','=',$customer_id)->get()->toArray();
+        $profile_feature = SpecialFeaturesJunctions::where('profile_id','=',$customer_id)->get()->toArray();
       
         for($indx=0; $indx<count($profile_feature); $indx++) {
             for($sec_indx = 0; $sec_indx<count($cooperate_list); $sec_indx++) {

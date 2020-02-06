@@ -3,30 +3,47 @@
   <div class="card profile m-t-22 " style="border:none;">
     <form class="col-md-12 form-class">
      <div class="col-md-12 pad-free">
-
-        <div class="form-group form-group-wrapper d-flex">
-
-                <label class="heading-lbl col-md-2 col-12 pad-free">施設名称 <span class="error">*</span></label>
-
-                <input type="text" class="form-control customer-name col-md-10 col-12 nursing_input" placeholder="施設名称を入力してください。" v-model="customer_info.name">
-        </div>
-
-        <div class="form-group form-group-wrapper d-flex">
-
-                <label class="heading-lbl1 col-md-2 col-12 pad-free">メールアドレス <span class="error">*</span></label>
-                <label class="col-md-10 col-12 customer-email"> {{customer_info.email}} </label>
-
-                <!-- <input type="text" class="form-control customer-email col-10 float-right"  placeholder="Email" v-model="customer_info.email"> -->
-        </div>
-        <div class="form-group form-group-wrapper d-flex">
-
-                <label class="heading-lbl col-md-2 col-12 pad-free">電話番号 <span class="error">*</span></label>
-                <div class="col-md-10 col-12 row">
-                <input type="text" class="form-control customer-phone col-md-10 col-12 nursing_input" id="phone" placeholder="Phone" v-model="customer_info.phone" pattern="[0-9-]*"  @focusout="focusPhone"  maxlength="14" title="Please enter number only.">
-                <!-- v-on:keyup="isNumberOnly" -->
-                <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>
-                <span class="error" v-else></span>
+             <div class="form-group row">
+              
+                <div class="col-md-2">
+                  <div class="card">
+                    <div class="card-body">
+                    </div>
+                  </div>
                 </div>
+                <div class="col-md-10">
+                  <div class="form-group form-group-wrapper d-flex">
+                      <label class="heading-lbl col-md-2 col-12 pad-free">施設名称 <span class="error">*</span></label>
+                      <input type="text" class="form-control customer-name col-md-10 col-12 nursing_input" placeholder="施設名称を入力してください。" v-model="customer_info.name">
+                  </div>
+
+                  <div class="form-group form-group-wrapper d-flex">
+                          <label class="heading-lbl1 col-md-2 col-12 pad-free">メールアドレス <span class="error">*</span></label>
+                          <label class="col-md-10 col-12 customer-email"> {{customer_info.email}} </label>
+                          <!-- <input type="text" class="form-control customer-email col-10 float-right"  placeholder="Email" v-model="customer_info.email"> -->
+                  </div>
+                  <div class="form-group form-group-wrapper d-flex">
+                          <label class="heading-lbl col-md-2 col-12 pad-free">電話番号 <span class="error">*</span></label>
+                          <div class="col-md-10 col-12 row">
+                          <input type="text" class="form-control customer-phone col-md-10 col-12 nursing_input" id="phone" placeholder="Phone" v-model="customer_info.phone" pattern="[0-9-]*"  @focusout="focusPhone"  maxlength="14" title="Please enter number only.">
+                          <!-- v-on:keyup="isNumberOnly" -->
+                          <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>
+                          <span class="error" v-else></span>
+                          </div>
+                  </div>
+                </div>
+            </div>
+
+        
+         <div class="form-group form-group-wrapper row ml-0 mr-0">
+           <label class="heading-lbl col-md-2 col-12 pad-free">公式サイト</label>
+           <input type="text" name="official-website" class="form-control col-md-10 col-12  hos-768 website white-bg-color" v-model="hospital_info.website" />
+        </div>
+
+
+        <div class="form-group form-group-wrapper row mr-0 ml-0">
+          <label class="heading-lbl col-md-2 col-12 pad-free">混雑状況</label>
+          <textarea name="congestion" class="form-control col-md-10 col-12  hos-768 congestion white-bg-color" v-model="hospital_info.congestion"></textarea>
         </div>
 
         <!-- <div class="form-group">
@@ -37,142 +54,7 @@
                 </div>
         </div>-->
 
-        <div class="form-group form-group-wrapper">
-
-          <label class="heading-lbl col-md-2 col-12 pad-free">フォトアルバム</label>
-
-          <span class="galleryadd btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px;" @click="galleryAdd()">
-
-            <i class="fas fa-plus-circle"></i> 追加
-
-          </span>
-           <span class='changeGalleryLink btn btn all-btn main-bg-color nursing_toggle_responsive' style="min-width: 0px;" @click="galleryToggle" >
-                  <i id="gallery" class="fas fa-sort-down"></i>
-            </span>
-
-          <!-- <div id="changeGalleryLink" class="col-md-12">
-                <div class="row" id ="gallery-photo">
-                        <div class="col-md-6 gallery-area-photo" v-bind:id="'photo'+indx" v-for="(img,indx) in img_arr" :key="img.id">
-                                <div class="col-md-12">
-                                        <input type="file" name="" class="hospital-photo m-b-10" v-bind:class="img.id" id="upload_img" @change="preview_image(img.id,indx)">
-                                        <div class="col-md-12 m-b-10" v-bind:class="img.id">
-                                                <input type="hidden" class="already-photo" v-model="img.photo">
-                                                <img :src="'/upload/hospital_profile/'+ img.photo" class="img-fluid" alt="profile" v-if="img.photo" v-bind:id="'already-photo'+indx" @error="imgUrlAlt">
-                                        </div>
-                                </div>
-                                <div class="col-md-12">
-                                        <input type="text" name="title" placeholder="タイトル" class="form-control m-b-15 title white-bg-color" v-model="img.title">
-                                        <textarea name="description" placeholder="コンテンツ" class="form-control m-b-15 description white-bg-color" v-model="img.description"></textarea>
-                                </div>
-                                <div class="col-md-12 text-right">
-                                        <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,'photo')"> <i class="fa fa-trash"></i> 削除</a>
-                                </div>
-                        </div>
-                </div>
-          </div> -->
-
-        <div id="changeGalleryLink" class="col-md-12">
-
-
-            <div class="row" id="gallery-photo">
-
-
-
-              <div
-
-                class="col-md-6 gallery-area-photo p0-990 p0-480"
-
-                v-bind:id="'photo'+indx"
-
-                v-for="(img,indx) in img_arr"
-
-                :key="img.id"
-
-              >
-
-                <div class="col-md-12 p0-990 p0-480">
-
-                  <input type="file" name class="hospital-photo m-b-15 p-t-10"  v-bind:class="'classname'+indx" id="upload_img" @change="preview_image($event,indx)" />
-                  <div class="col-md-12" v-bind:class="img.id">
-                    <input type="hidden" class="already-photo" v-model="img.photo" />
-                    <div>
-                    <img v-bind:src="img.src" class="img-fluid hospital-image" alt="profile" v-if="img.src != null" @error="imgUrlAlt"/>
-                    </div>
-                  </div>
-
-                </div>
-
-                <div class="col-md-12">
-                  <label class="m-t-10">タイトル:</label>
-                  <input type="text" name="title" placeholder="タイトルを入力してください。" class="form-control m-b-15 title white-bg-color" v-model="img.title" />
-                  <label>コンテンツ:</label>
-                  <textarea name="description" placeholder="コンテンツを入力してください。" class="form-control m-b-15 description white-bg-color" v-model="img.description" ></textarea>
-
-                </div>
-                <div class="col-md-12 text-right hos-del">
-                  <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,img.id,'photo')">
-                    <i class="fa fa-trash"></i> 削除
-                  </a>
-                 </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="form-group form-group-wrapper">
-
-          <label class="heading-lbl col-2 pad-free">動画</label>
-
-          <span class="galleryvideo btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px;" @click="galleryVideoAdd()" >
-
-            <i class="fas fa-plus-circle"></i> 追加
-
-          </span>
-
-           <span class='changeGalleryVideoLink  btn btn all-btn main-bg-color nursing_toggle_responsive  ' style="min-width: 0px;" @click="galleryVideoToggle" >
-                                        <i id="video" class="fas fa-sort-down"></i>
-           </span>
-
-          <div id="changeGalleryVideoLink" class="col-md-12">
-
-            <div class="row" id="gallery-video">
-
-              <!-- Add by + Button -->
-
-              <div class="col-md-6 gallery-area-video p0-480" v-bind:id="'video'+indx" v-for="(video,indx) in video_arr" :key="video.id" >
-
-                <div class="col-md-12">
-                  <label>URL:</label>
-                  <input type="text" name="url" placeholder="URLを入力してください。" class="form-control m-b-15 video-url white-bg-color" v-model="video.photo" />
-
-                </div>
-
-                <div class="col-md-12">
-                  <label>タイトル:</label>
-                  <input type="text" name="title" placeholder="タイトルを入力してください。" class="form-control m-b-15 title white-bg-color" v-model="video.title" />
-                  <label>コンテンツ:</label>
-                  <textarea name="description" placeholder="コンテンツを入力してください。" class="form-control m-b-15 description white-bg-color" v-model="video.description" ></textarea>
-
-                </div>
-                <div class="col-md-12 text-right hos-del">
-                  <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,video.id,'video')">
-
-                  <i class="fa fa-trash"></i> 削除
-
-                  </a>
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
+        
 
         <!-- <div class="form-group form-group-wrapper row ml-0 mr-0">
           <label class="heading-lbl col-2 pad-free">
@@ -1040,41 +922,7 @@
 
 
 
-        <div class="form-group form-group-wrapper row ml-0 mr-0">
-
-          <label class="heading-lbl col-md-2 col-12 pad-free">公式サイト</label>
-
-          <input
-
-            type="text"
-
-            name="official-website"
-
-            class="form-control col-md-10 col-12  hos-768 website white-bg-color"
-
-            v-model="hospital_info.website"
-
-          />
-
-        </div>
-
-
-
-        <div class="form-group form-group-wrapper row mr-0 ml-0">
-
-          <label class="heading-lbl col-md-2 col-12 pad-free">混雑状況</label>
-
-          <textarea
-
-            name="congestion"
-
-            class="form-control col-md-10 col-12  hos-768 congestion white-bg-color"
-
-            v-model="hospital_info.congestion"
-
-          ></textarea>
-
-        </div>
+        
 
 
 
@@ -1242,6 +1090,143 @@
                 </tr>
         </table> -->
         <!-- End Test Station Area -->
+
+        <div class="form-group form-group-wrapper">
+
+          <label class="heading-lbl col-md-2 col-12 pad-free">フォトアルバム</label>
+
+          <span class="galleryadd btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px;" @click="galleryAdd()">
+
+            <i class="fas fa-plus-circle"></i> 追加
+
+          </span>
+           <span class='changeGalleryLink btn btn all-btn main-bg-color nursing_toggle_responsive' style="min-width: 0px;" @click="galleryToggle" >
+                  <i id="gallery" class="fas fa-sort-down"></i>
+            </span>
+
+          <!-- <div id="changeGalleryLink" class="col-md-12">
+                <div class="row" id ="gallery-photo">
+                        <div class="col-md-6 gallery-area-photo" v-bind:id="'photo'+indx" v-for="(img,indx) in img_arr" :key="img.id">
+                                <div class="col-md-12">
+                                        <input type="file" name="" class="hospital-photo m-b-10" v-bind:class="img.id" id="upload_img" @change="preview_image(img.id,indx)">
+                                        <div class="col-md-12 m-b-10" v-bind:class="img.id">
+                                                <input type="hidden" class="already-photo" v-model="img.photo">
+                                                <img :src="'/upload/hospital_profile/'+ img.photo" class="img-fluid" alt="profile" v-if="img.photo" v-bind:id="'already-photo'+indx" @error="imgUrlAlt">
+                                        </div>
+                                </div>
+                                <div class="col-md-12">
+                                        <input type="text" name="title" placeholder="タイトル" class="form-control m-b-15 title white-bg-color" v-model="img.title">
+                                        <textarea name="description" placeholder="コンテンツ" class="form-control m-b-15 description white-bg-color" v-model="img.description"></textarea>
+                                </div>
+                                <div class="col-md-12 text-right">
+                                        <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,'photo')"> <i class="fa fa-trash"></i> 削除</a>
+                                </div>
+                        </div>
+                </div>
+          </div> -->
+
+        <div id="changeGalleryLink" class="col-md-12">
+
+
+            <div class="row" id="gallery-photo">
+
+
+
+              <div
+
+                class="col-md-6 gallery-area-photo p0-990 p0-480"
+
+                v-bind:id="'photo'+indx"
+
+                v-for="(img,indx) in img_arr"
+
+                :key="img.id"
+
+              >
+
+                <div class="col-md-12 p0-990 p0-480">
+
+                  <input type="file" name class="hospital-photo m-b-15 p-t-10"  v-bind:class="'classname'+indx" id="upload_img" @change="preview_image($event,indx)" />
+                  <div class="col-md-12" v-bind:class="img.id">
+                    <input type="hidden" class="already-photo" v-model="img.photo" />
+                    <div>
+                    <img v-bind:src="img.src" class="img-fluid hospital-image" alt="profile" v-if="img.src != null" @error="imgUrlAlt"/>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="col-md-12">
+                  <label class="m-t-10">タイトル:</label>
+                  <input type="text" name="title" placeholder="タイトルを入力してください。" class="form-control m-b-15 title white-bg-color" v-model="img.title" />
+                  <label>コンテンツ:</label>
+                  <textarea name="description" placeholder="コンテンツを入力してください。" class="form-control m-b-15 description white-bg-color" v-model="img.description" ></textarea>
+
+                </div>
+                <div class="col-md-12 text-right hos-del">
+                  <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,img.id,'photo')">
+                    <i class="fa fa-trash"></i> 削除
+                  </a>
+                 </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="form-group form-group-wrapper">
+
+          <label class="heading-lbl col-2 pad-free">動画</label>
+
+          <span class="galleryvideo btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px;" @click="galleryVideoAdd()" >
+
+            <i class="fas fa-plus-circle"></i> 追加
+
+          </span>
+
+           <span class='changeGalleryVideoLink  btn btn all-btn main-bg-color nursing_toggle_responsive  ' style="min-width: 0px;" @click="galleryVideoToggle" >
+                                        <i id="video" class="fas fa-sort-down"></i>
+           </span>
+
+          <div id="changeGalleryVideoLink" class="col-md-12">
+
+            <div class="row" id="gallery-video">
+
+              <!-- Add by + Button -->
+
+              <div class="col-md-6 gallery-area-video p0-480" v-bind:id="'video'+indx" v-for="(video,indx) in video_arr" :key="video.id" >
+
+                <div class="col-md-12">
+                  <label>URL:</label>
+                  <input type="text" name="url" placeholder="URLを入力してください。" class="form-control m-b-15 video-url white-bg-color" v-model="video.photo" />
+
+                </div>
+
+                <div class="col-md-12">
+                  <label>タイトル:</label>
+                  <input type="text" name="title" placeholder="タイトルを入力してください。" class="form-control m-b-15 title white-bg-color" v-model="video.title" />
+                  <label>コンテンツ:</label>
+                  <textarea name="description" placeholder="コンテンツを入力してください。" class="form-control m-b-15 description white-bg-color" v-model="video.description" ></textarea>
+
+                </div>
+                <div class="col-md-12 text-right hos-del">
+                  <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,video.id,'video')">
+
+                  <i class="fa fa-trash"></i> 削除
+
+                  </a>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
         <table class="table table-bordered table-wrapper">
             <tr>
                 <td>
@@ -1362,7 +1347,8 @@ export default {
         created(){
 
 
-                if(this.type != undefined && this.cusid!= undefined){
+                if(this.type != undefined && this.cusid!= undefined)
+                {
                         localStorage.setItem('cusType',this.type);
                         localStorage.setItem('cusId',this.cusid);
                 }
@@ -1407,6 +1393,7 @@ export default {
                 .get('/api/hospitalinfo/'+this.cusid)
                 .then(response=>{
                     this.hospital_info = response.data;
+                    console.log("this.hospital_info",this.hospital_info);
 
                     if(this.hospital_info.latitude == 0){
                         localStorage.setItem('lat_num',35.6803997);
@@ -1764,6 +1751,9 @@ export default {
 
 </script>
 <style>
+.card-body{
+  height: 250px !important;
+}
  .quill-editor{
           background-color: #fff;
   }

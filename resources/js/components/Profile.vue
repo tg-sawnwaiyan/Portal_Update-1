@@ -35,11 +35,11 @@
       <div class="tab-content nursing-borderColor tab-content1 tabs">
         <form class="col-md-12 pad-free">
           <div class="col-md-12 pad-free tab-pane" v-if="btntype == 'create'">
-            <nursingProfile :cusid="cusid" :type="type"></nursingProfile>
+            <nursingProfile :pro_id="pro_id" :type="type"></nursingProfile>
           </div>
 
           <div class="col-md-12 pad-free" v-if="btntype == 'view'">
-            <profilePublish :cusid="cusid" :type="type" :loginuser="loginuser"></profilePublish>
+            <profilePublish :pro_id="pro_id" :type="type" :loginuser="loginuser"></profilePublish>
           </div>
         </form>
       </div>
@@ -75,7 +75,7 @@
           </div>
 
           <div class="col-md-12 pad-free" v-if="btntype == 'view'">
-            <profilePublish :cusid="cusid" :type="type" :loginuser="loginuser"></profilePublish>
+            <profilePublish :pro_id="pro_id" :type="type" :loginuser="loginuser"></profilePublish>
           </div>
         </form>
       </div>
@@ -110,7 +110,7 @@ export default {
   data() {
     return {
         type: null,
-        cusid: null,
+        // pro_id: null,
         btntype: "",
         width: "",
         login_person : null,
@@ -124,35 +124,19 @@ export default {
     };
   },
   created() {
-
-    if(this.$auth.check()){
+console.log("Profile.vue")
+    this.pro_id = this.$route.params.id;
+    this.type = this.$route.params.type;
+    if(this.$auth.check()){        
         if(this.$auth.user().role === 1){
-            this.login_person = 'customer';
-            this.axios.get('/api/user').then(response => {
-                this.loginView(response);
-            })
+            this.login_person = 'customer';            
         }
         else if(this.$auth.user().role === 2) {
-            if(this.$route.params.type){
-                localStorage.setItem("cusType", this.$route.params.type);
-                this.type = this.$route.params.type;
-            }
-            else{
-                this.type = localStorage.getItem("cusType");
-            }
-            if(this.$route.params.cusid){
-                localStorage.setItem("cusId", this.$route.params.cusid);
-                this.cusid = Number(this.$route.params.cusid);
-            }
-            else{
-                this.cusid = Number(localStorage.getItem("cusId"));
-            }
-
             this.login_person = 'admin';
-            this.axios.get(`/api/admin/${this.cusid}/${this.type}`).then(response => {
-                this.loginView(response);
-            })
         }
+        this.axios.get(`/api/getprofile/${this.pro_id}/${this.type}`).then(response => {
+            this.loginView(response);
+        })
     }
     else{
         this.publicView();
@@ -166,48 +150,19 @@ export default {
 
   },
   methods: {
-    loginView(response){
-      console.log('a',response.data);
+    loginView(response){        
         if(this.visit == 'false'){
             this.btntype = "create";
             this.loginuser = true;
-            this.pro_id = response.data.lat_lng[0].id;
             localStorage.setItem("lat_num", response.data.lat_lng[0].latitude==0?'35.6803997':response.data.lat_lng[0].latitude);
             localStorage.setItem("lng_num", response.data.lat_lng[0].longitude==0?'139.76901739':response.data.lat_lng[0].longitude);
-
-            if(this.login_person == 'customer') {
-                localStorage.setItem("cusId", response.data.user.customer_id);
-                this.cusid = response.data.user.customer_id;
-
-                if(response.data.user.type_id == 2){
-                    localStorage.setItem("cusType", 'hospital');
-                    this.type = 'hospital';
-                }
-                else{
-                    localStorage.setItem("cusType", 'nursing');
-                    this.type = 'nursing';
-                }
-            }
         }
         else{
             this.btntype = "view";
             this.loginuser = false;
-            if (this.$route.params.type) {
-            this.type = this.$route.params.type;
-            localStorage.setItem("cusType", this.type);
-            }
-            if (this.$route.params.cusid) {
-            this.cusid = this.$route.params.cusid;
-            localStorage.setItem("cusId", this.cusid);
-            }
-            this.type = localStorage.getItem("cusType");
-            this.cusid = Number(localStorage.getItem("cusId"));
-
-            this.axios.get(`/api/profile_view/${this.cusid}/${this.type}`).then(response => {
-                this.pro_id = response.data[0].pro_id;
+            this.axios.get(`/api/profile_view/${this.pro_id}/${this.type}`).then(response => {
                 localStorage.setItem("lat_num", response.data[0].latitude);
                 localStorage.setItem("lng_num", response.data[0].longitude);
-
                 if(this.type == 'hospital'){
                     if(localStorage.getItem("hospital_history")) {
                         var hos_his_arr = JSON.parse("[" + localStorage.getItem("hospital_history") + "]");
@@ -245,7 +200,6 @@ export default {
                         this.nusHis = nus_his_arr.length;
                         $('.his-nursing-link-box>a').css({'cursor':'pointer','pointer-events':'auto'});
                     }
-
                     if(localStorage.getItem("nursing_fav")){
                         var nus_fav_arr = JSON.parse("[" + localStorage.getItem("nursing_fav") + "]");
                         this.view_pro_id = nus_fav_arr.includes(response.data[0].pro_id);
@@ -257,24 +211,11 @@ export default {
     publicView(){
         this.btntype = "view";
         this.loginuser = false;
-        if (this.$route.params.type) {
-        this.type = this.$route.params.type;
-        localStorage.setItem("cusType", this.type);
-        }
-        if (this.$route.params.cusid) {
-        this.cusid = this.$route.params.cusid;
-        localStorage.setItem("cusId", this.cusid);
-        }
-        this.type = localStorage.getItem("cusType");
-        this.cusid = Number(localStorage.getItem("cusId"));
-
-        this.axios.get(`/api/profile_view/${this.cusid}/${this.type}`).then(response => {
-            console.log(response)
-            this.pro_id = response.data[0].pro_id;
+        console.log("public")
+        this.axios.get(`/api/profile_view/${this.pro_id}/${this.type}`).then(response => {
+            console.log("public view",response)
             localStorage.setItem("lat_num", response.data[0].latitude);
             localStorage.setItem("lng_num", response.data[0].longitude);
-
-
             if(this.type == 'hospital'){
                 if(localStorage.getItem("hospital_history")) {
                     var hos_his_arr = JSON.parse("[" + localStorage.getItem("hospital_history") + "]");
@@ -312,7 +253,6 @@ export default {
                     this.nusHis = nus_his_arr.length;
                     $('.his-nursing-link-box>a').css({'cursor':'pointer','pointer-events':'auto'});
                 }
-
                 if(localStorage.getItem("nursing_fav")){
                     var nus_fav_arr = JSON.parse("[" + localStorage.getItem("nursing_fav") + "]");
                     this.view_pro_id = nus_fav_arr.includes(response.data[0].pro_id);
@@ -320,19 +260,11 @@ export default {
             }
         });
     },
+
     changeBtnType(a,b) {
       this.scrollTop();
         document.getElementById(a).classList.add("active");
         document.getElementById(b).classList.remove("active");
-
-
-      // if (this.btntype == "create") {
-      //   document.getElementById("hospital-lbl").classList.add("dim-btn");
-      //   document.getElementById("nursing-lbl").classList.remove("dim-btn");
-      // } else {
-      //   document.getElementById("nursing-lbl").classList.add("dim-btn");
-      //   document.getElementById("hospital-lbl").classList.remove("dim-btn");
-      // }
     },
     favAddFun(status){
         if(this.type == 'nursing'){

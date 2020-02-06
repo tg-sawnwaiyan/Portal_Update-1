@@ -42,7 +42,7 @@ class ScheduleController extends Controller
 
     public function getSchedulebyCustomerId($customer_id) {
 
-        $schedule_am = Schedule::where('customer_id', $customer_id)
+        $schedule_am = Schedule::where('profile_id', $customer_id)
                             ->where('part', '=', 'am')
                             ->get()
                             ->toArray();
@@ -108,7 +108,7 @@ class ScheduleController extends Controller
         }
 
 
-        $schedule_pm = Schedule::where('customer_id', $customer_id)
+        $schedule_pm = Schedule::where('profile_id', $customer_id)
                                 ->where('part', '=', 'pm')
                                 ->get()
                                 ->toArray();

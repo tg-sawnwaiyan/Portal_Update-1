@@ -71,12 +71,12 @@ class SpecialFeaturesJunctionsController extends Controller
     {
         $request = $request->all();
 
-        $feature = SpecialFeaturesJunctions::where('customer_id', $id)
+        $feature = SpecialFeaturesJunctions::where('profile_id', $id)
                     ->delete();
 
         for($indx=0; $indx<count($request[0]['special_feature_id']); $indx++) {
             $new_feature = new SpecialFeaturesJunctions();
-            $new_feature->customer_id = $id;
+            $new_feature->profile_id = $id;
             $new_feature->special_feature_id = $request[0]['special_feature_id'][$indx];
             $new_feature->save();
         }
