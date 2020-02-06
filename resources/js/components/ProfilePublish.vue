@@ -1683,6 +1683,8 @@ export default {
         },
 
         created(){
+            this.pro_id = this.$route.params.id;
+            this.type = this.$route.params.type;
                 //
                 this.axios.get("/api/advertisement/ads").then(response => {
                     this.ads_list = response.data;

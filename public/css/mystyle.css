@@ -887,23 +887,31 @@ border-radius: 3px;
     width: 170px;
     top: -75px;
     border-radius: 50%;
-    background: #fff;
+    /* background: #fff; */
     padding: 10px;
     text-align: center;
-    /* border: 10px solid #a93f0c; */
     border: 10px solid #ececec;
+    margin-left: 10px;
+}
+.logo_bk{
+    background-color: #fbfbfb;
 }
 
 .brand_logo {
-    height: 150px;
+    /* height: 150px;
     width: 150px;
     border-radius: 50%;
     border: 2px solid white;
     position: absolute;
     left: 0;
-    bottom: 0.5%;
-    /* top: 35%;
-width: 100%; */
+    bottom: 0.5%; */
+
+     
+    width: 137px;
+    position: absolute;
+    left: 7px;
+    top: 32px;
+
 }
 
 .reg_title {
