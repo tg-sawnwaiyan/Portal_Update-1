@@ -10666,11 +10666,7 @@ width: 18rem;
         padding: 10px !important;
     }
 }
-@media only screen and (max-width: 760px){
-    .d-block {
-        display: block !important;
-    }
-}
+
 @media only screen and (max-width:750px) {
     .maintab-content{
         margin: 115px 0 0 0;
@@ -10686,10 +10682,7 @@ width: 18rem;
     }
     .pad-0-res {
         padding: 0px;
-    }
-    .d-block {
-        display: block !important;
-    }
+    }   
     .profile-tit {
         padding: 0px;
         margin: 0px;
