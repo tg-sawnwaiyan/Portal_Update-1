@@ -38,7 +38,7 @@
 
                     <div class="form-group form-group-wrapper d-flex">
                             <label class="heading-lbl col-md-2 col-12 pad-free">施設名称<span class="error">*</span></label>
-                            <input type="text" class="form-control customer-name col-md-10 col-12 nursing_input" id="btn" placeholder="施設名称を入力してください。" v-model="customer_info.name">
+                            <input type="text" class="form-control customer-name col-md-10 col-12 nursing_input" id="btn" placeholder="施設名称を入力してください。" v-model="nursing_info.name">
                     </div>
                     <div class="form-group form-group-wrapper d-flex">
                             <label class="heading-lbl col-md-2 col-12 pad-free">運営事業者</label>
@@ -46,12 +46,12 @@
                     </div>
                     <div class="form-group form-group-wrapper d-flex">
                             <label class="heading-lbl1 col-md-2 col-12 pad-free">メールアドレス<span class="error">*</span></label>
-                            <label class=" col-md-10 col-12 customer-email"> {{customer_info.email}} </label>
+                            <label class=" col-md-10 col-12 customer-email"> {{nursing_info.email}} </label>
                     </div>
                     <div class="form-group form-group-wrapper d-flex">
                             <label class="heading-lbl col-md-2 col-12 pad-free">電話番号<span class="error">*</span></label>
                             <div class="col-md-10 col-12 p-0">
-                            <input type="text" class="form-control customer-phone  nursing_input" id="phone" placeholder="電話番号を入力してください。" v-model="customer_info.phone" v-on:keyup="isNumberOnly" pattern="[0-9-]*" @focusout="focusPhone" title="Please enter number only." maxlength="14">
+                            <input type="text" class="form-control customer-phone  nursing_input" id="phone" placeholder="電話番号を入力してください。" v-model="nursing_info.phone" v-on:keyup="isNumberOnly" pattern="[0-9-]*" @focusout="focusPhone" title="Please enter number only." maxlength="14">
                             <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>
                             <span class="error" v-else></span>
                             </div>
@@ -599,13 +599,13 @@
                             <div class="col-md-10 float-right m-t-10 map-toggle-div toggle-div pad-free">
                                 <div class="col-md-12">
                                     <div class="col-md-12 pad-free" id="mapbox">
-                                        <GoogleMap :address="address_show" :township="customer_info.townships_id" :city="city_id" :township_list="township_list" :lat_num='nursing_info.latitude' :lng_num='nursing_info.longitude'></GoogleMap>
+                                        <GoogleMap :address="address_show" :township="nursing_info.townships_id" :city="city_id" :township_list="township_list" :lat_num='nursing_info.latitude' :lng_num='nursing_info.longitude'></GoogleMap>
                                     </div>
 
-                                    <!-- <GoogleMap :address="customer_info.address" :lat_num='35.6803997' :lng_num='139.76901739' v-if="nursing_info.latitude == 0"></GoogleMap> -->
+                                    <!-- <GoogleMap :address="nursing_info.address" :lat_num='35.6803997' :lng_num='139.76901739' v-if="nursing_info.latitude == 0"></GoogleMap> -->
                                     <!-- <div class="form-group">
                                             <label>住所<span class="error">*</span></label>
-                                            <quill-editor  ref="myQuilEditor"  name="address" :options="editorOption" @change="onCustomerAddressChange($event)" class="customer-address" v-model="customer_info.address"/>
+                                            <quill-editor  ref="myQuilEditor"  name="address" :options="editorOption" @change="onCustomerAddressChange($event)" class="customer-address" v-model="nursing_info.address"/>
                                     </div> -->
 
                                     <!-- Test Station Area -->
@@ -687,7 +687,7 @@ export default {
                 fac_list: [],
                 feature_list:[],
                 medical_acceptance:[],
-                customer_info:[],customer_info_push:[], nursing_info:[], staff_info:[], staff_info_push:[],
+                nursing_info:[],nursing_info_push:[], nursing_info:[], staff_info:[], staff_info_push:[],
                 acceptance: [],
 
                 img_arr:[],
@@ -744,16 +744,17 @@ export default {
         },
 
         created(){
+            this.pro_id = this.$route.params.id;
+            this.type = this.$route.params.type;
             
-            if(this.type != undefined && this.cusid!= undefined){
-                localStorage.setItem('cusType',this.type);
-                localStorage.setItem('cusId',this.cusid);
-               
-            }
+            // if(this.type != undefined && this.pro_id!= undefined){
+            //     localStorage.setItem('cusType',this.type);
+            //     localStorage.setItem('cusId',this.pro_id);
+            // }
 
-            this.type = localStorage.getItem('cusType');
-            this.cusid = Number(localStorage.getItem('cusId'));
- alert(this.cusid)
+            // this.type = localStorage.getItem('cusType');
+            // this.pro_id = Number(localStorage.getItem('cusId'));
+
             this.initialCall();
 
         },
@@ -761,21 +762,22 @@ export default {
         methods: {
             initialCall(){
                 this.address_show = $('#address_show').val();
+                // this.axios
+                // .get('/api/customerinfo/'+this.pro_id)
+                // .then(response=>{
+                //     this.nursing_info = response.data;
+                    
+                // });
                 this.axios
-                .get('/api/customerinfo/'+this.cusid)
+                .get('/api/nursinginfo/'+this.pro_id)
                 .then(response=>{
-                    this.customer_info = response.data;
+                    this.nursing_info = response.data;
                     this.axios
-                    .get('/api/nurscities/'+this.customer_info.townships_id)
+                    .get('/api/nurscities/'+this.nursing_info.townships_id)
                     .then(response=>{
                         this.city_id = Number(response.data[0].city_id);
                         this.township_list = response.data[0].township_list;
                     });
-                });
-                this.axios
-                .get('/api/nursinginfo/'+this.cusid)
-                .then(response=>{
-                    this.nursing_info = response.data;
 
                     if(this.nursing_info.latitude == 0){
                         localStorage.setItem('lat_num',35.6803997);
@@ -789,7 +791,7 @@ export default {
                 });
 
                 this.axios
-                .get('/api/staffinfo/'+this.cusid)
+                .get('/api/staffinfo/'+this.pro_id)
                 .then(response=>{
                     this.staff_info = response.data;
                 });
@@ -807,45 +809,45 @@ export default {
                 });
 
                 this.axios
-                .get('/api/medical/acceptancewithtransactions/'+this.cusid)
+                .get('/api/medical/acceptancewithtransactions/'+this.pro_id)
                 .then(response => {
                     this.medical_acceptance = response.data;
                 });
 
                 this.axios
-                .get('/api/feature/'+this.profile_type+'/'+this.cusid)
+                .get('/api/feature/'+this.profile_type+'/'+this.pro_id)
                 .then(response=>{
                     this.feature_list = response.data;
                 });
 
                 this.axios
-                .get('/api/nursing-pgallery/'+this.cusid)
+                .get('/api/nursing-pgallery/'+this.pro_id)
                 .then(response=>{
                     console.log(response)
                     this.img_arr = response.data;
                 });
 
                 this.axios
-                .get('/api/nursing-panorrama-gallery/'+this.cusid)
+                .get('/api/nursing-panorrama-gallery/'+this.pro_id)
                 .then(response=>{
                     this.panorama_arr = response.data;
                     this.panorama_length = this.panorama_arr.length;
                 });
 
                 this.axios
-                .get('/api/nursing-vgallery/'+this.cusid)
+                .get('/api/nursing-vgallery/'+this.pro_id)
                 .then(response=>{
                     this.video_arr = response.data;
                 });
 
                 this.axios
-                .get('/api/nursing-cooperate/'+this.cusid)
+                .get('/api/nursing-cooperate/'+this.pro_id)
                 .then(response=>{
                     this.cooperate_arr = response.data;
                 });
 
                 this.axios
-                .get('/api/nursing-payment/'+this.cusid)
+                .get('/api/nursing-payment/'+this.pro_id)
                 .then(response=>{
                     this.payment_arr = response.data;
                 });
@@ -916,7 +918,7 @@ export default {
                             fd.append('id',id);
                             fd.append('type','panorama');
                             fd.append('photo',photo);
-                            fd.append('customer_id',this.cusid)
+                            fd.append('customer_id',this.pro_id)
 
                             this.axios
                             .post('/api/delete-pgallery',fd)
@@ -964,7 +966,7 @@ export default {
                             fd.append('id',id);
                             fd.append('type',type);
                             fd.append('photo',photo);
-                            fd.append('customer_id',this.cusid)
+                            fd.append('customer_id',this.pro_id)
                             fd.append('custype','nursing')
 
                             if(type == 'photo'){
@@ -1170,10 +1172,10 @@ export default {
 
                 this.nursing_info.latitude = $('#new_lat').val();
                 this.nursing_info.longitude = $('#new_long').val();
-                this.customer_info.address = $('#address_val').val();
+                this.nursing_info.address = $('#address_val').val();
                 this.address_show = $('#address_show').val();
 
-                this.customer_info.townships_id = Number($('#gmaptownship').val());
+                this.nursing_info.townships_id = Number($('#gmaptownship').val());
                 localStorage.setItem('lat_num',this.nursing_info.latitude);
                 localStorage.setItem('lng_num',this.nursing_info.longitude);
 
@@ -1267,14 +1269,14 @@ export default {
                         }
                     })
 
-                this.profile_arr.push({nursing_profile:this.nursing_info,customer_info:this.customer_info,staff_info:this.staff_info, cooperate_list:this.cooperate_arr,
+                this.profile_arr.push({nursing_profile:this.nursing_info,nursing_info:this.nursing_info,staff_info:this.staff_info, cooperate_list:this.cooperate_arr,
                                         payment_list:this.payment_arr, video:this.video_arr, image: this.img_arr, panorama: this.panorama_arr,
                                         acceptance:acceptance,chek_feature:this.chek_feature
                 });
 
                 if(this.profile_arr.length > 0) {
                     this.axios
-                        .post(`/api/nursing/profile/${this.cusid}`,this.profile_arr)
+                        .post(`/api/nursing/profile/${this.pro_id}`,this.profile_arr)
                         .then((response) => {
                             this.initialCall();
                             this.$swal({
@@ -1288,7 +1290,6 @@ export default {
                                 })
                         }).then(response => {
                             this.img_name = '';
-                            console.log('testestestesw');
                          })   
                         .catch(error=>{
                             this.$loading(false);
@@ -1304,7 +1305,7 @@ export default {
                 var input_data = $('#phone').val();
                 var code = 0;
                 code = input_data.charCodeAt();
-                if((48 <= code && code <= 57) && (this.customer_info.phone.length >= 10 && this.customer_info.phone.length <= 14)){
+                if((48 <= code && code <= 57) && (this.nursing_info.phone.length >= 10 && this.nursing_info.phone.length <= 14)){
                     this.ph_num = false;
                     this.ph_length = false;
                 }else{

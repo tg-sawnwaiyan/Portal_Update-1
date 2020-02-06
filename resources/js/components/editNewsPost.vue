@@ -19,14 +19,21 @@
 
                     <div class="form-group" id="showimage">
                         <label class="">写真:</label>
-                        <div class="custom-file">
+                        <!-- <div class="custom-file">
                             <input type="file" ref="file" accept="image/*" @change="fileSelected">
+                        </div> -->
+                        <div class="d-flex align-items-center">
+                            <span class="btn-file d-inline-block">画像を選択        
+                                <input type="file" ref="file" accept="image/*" @change="fileSelected">
+                            </span> 
+                            <span class="pl-4">{{img_name}}</span>
                         </div>
+                        
                     </div>
 
                     <div class="image_show" v-if="upload_img">
                         <div class='col-md-2'>
-                            <span class='img-close-btn' v-on:click="removeUpload()">X</span>
+                            <span class='img-close-btn test' v-on:click="removeUpload()" v-if='status == 1'>X</span>
                             <img :src="upload_img" class='show-img'>
                         </div>
                     </div>
@@ -100,7 +107,7 @@
                                 </div> -->
 
                                  <div>
-                              <pagination :data="related_news" @pagination-change-page="getSearchPostsByCatId" :limit="limitpc">
+                              <pagination :data="related_news" @pagination-change-page="getSearchPostsByCatId" :limit="limitpc" class="mt-3">
                                 <span slot="prev-nav"><i class="fas fa-angle-left"></i> 前へ</span>
                                 <span slot="next-nav">次へ <i class="fas fa-angle-right"></i></span>
                             </pagination>
@@ -171,7 +178,8 @@ import {quillEditor} from 'vue-quill-editor'
                     pageRange: 5,
                     items: [],
                     pagination: false,
-                    search_word:''
+                    search_word:'',
+                    img_name : ''
                 }
             },
             created() {
@@ -217,6 +225,8 @@ import {quillEditor} from 'vue-quill-editor'
                     fileSelected(e) {
                         this.news.photo = event.target.files[0];
                         this.upload_img = URL.createObjectURL(event.target.files[0]);
+                        const file =event.target.files[0];
+                        this.img_name = file.name;
                     },
                     removeUpload(e) {
                          this.$swal({
@@ -242,7 +252,9 @@ import {quillEditor} from 'vue-quill-editor'
                                         confirmButtonText: "閉じる",
                                         confirmButtonColor: "#dc3545"
                                     });
-                           });
+                           }).then(response => {
+                            this.img_name = '';
+                         });
                         this.news.photo = '';
                         this.upload_img = '';
                         this.reset();

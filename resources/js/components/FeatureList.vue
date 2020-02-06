@@ -57,7 +57,7 @@
                         </div>
                         <!-- <pagination :data="features" @pagination-change-page="searchFeature"></pagination> -->
                             <div>
-                              <pagination :data="features" @pagination-change-page="searchFeature" :limit="limitpc">
+                              <pagination :data="features" @pagination-change-page="searchFeature" :limit="limitpc" class="mt-3">
                                 <span slot="prev-nav"><i class="fas fa-angle-left"></i> 前へ</span>
                                 <span slot="next-nav">次へ <i class="fas fa-angle-right"></i></span>
                             </pagination>

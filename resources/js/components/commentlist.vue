@@ -84,7 +84,13 @@
                         </div>
                     </div>
                 </div>
-                <pagination :data="comments" @pagination-change-page="searchcomment"></pagination>
+                <!-- <pagination :data="comments" @pagination-change-page="searchcomment"></pagination> -->
+                <div>
+                    <pagination :data="comments" @pagination-change-page="searchcomment" :limit="limitpc">
+                                <span slot="prev-nav"><i class="fas fa-angle-left"></i> 前へ</span>
+                                <span slot="next-nav">次へ <i class="fas fa-angle-right"></i></span>
+                    </pagination>
+                </div>
                 </div>
             </div>
         </div>
@@ -94,6 +100,12 @@
 
 <script>
     export default {
+         props:{
+            limitpc: {
+                type: Number,
+                default: 5
+            },
+        },
         data() {
                return {
                     comments: [],
@@ -290,6 +302,7 @@
                         fd.append("search_word", search_word);
                         fd.append("type",this.type);
                         this.$loading(true);
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
                         this.axios.post("/api/comments/search?page="+page, fd).then(response => {
                             this.$loading(false);
                             this.comments = response.data;

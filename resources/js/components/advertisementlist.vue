@@ -37,8 +37,8 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <h5  class="mb-2"><strong>タイトル</strong></h5>
-                                    <p>{{ads.title}}</p>
+                                    <!-- <h5  class="mb-2"><strong>タイトル</strong></h5> -->
+                                    <h5 class="font-weight-bold">{{ads.title}}</h5>
                                     <!-- <div class="col-md-2 max-width16"><strong>描写  :</strong></div><div class="col-md-10">{{ads.description}}</div> -->
                                     <div class="d-flex mt-4">
                                         <router-link :to="{name: 'editadvertisement', params: { id: ads.id }}" class="btn edit-borderbtn">編集</router-link>
@@ -72,7 +72,11 @@
                             </div>
                         </div> -->
                     </div>
-                    <pagination :data="advertisements" @pagination-change-page="searchAdvertisment"></pagination>
+                    <!-- <pagination :data="advertisements" @pagination-change-page="searchAdvertisment"></pagination> -->
+                            <pagination :data="advertisements" @pagination-change-page="searchAdvertisment" :limit="limitpc">
+                                <span slot="prev-nav"><i class="fas fa-angle-left"></i> 前へ</span>
+                                <span slot="next-nav">次へ <i class="fas fa-angle-right"></i></span>
+                            </pagination>
                 </div>
             </div>
         </div>
@@ -80,6 +84,12 @@
 </template>
 <script>
     export default {
+            props:{
+            limitpc: {
+                type: Number,
+                default: 5
+            },
+        },
         data() {
                 return {
                     advertisements: [],
@@ -156,6 +166,7 @@
                         let fd = new FormData();
                         fd.append("search_word", search_word);
                         this.$loading(true);
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
                         this.axios.post("/api/advertisement/search?page="+page, fd).then(response => {
                             this.$loading(false);
                             this.advertisements = response.data;

@@ -36,17 +36,12 @@ class ProfilePublishController extends Controller
 
     public function hospitalProfile($cusid)
     {
-        $hospital = HospitalProfile::where('id',$cusid)->get();
-
+             
         //for hospital map
-        $hoslatlong =  DB::table('hospital_profiles') ->select('hospital_profiles.*')
-                        ->where('hospital_profiles.id','=',$cusid)->get();
-
+        $hospital =  DB::table('hospital_profiles') ->select('hospital_profiles.*')->where('hospital_profiles.id','=',$cusid)->get();
         $facility_list = Facility::select('id','description')->get();
-        $profile_facility =  HospitalProfile::select('facilities')->where('id',$cusid)->value('facilities');
-        $hosfacility= explode(',',$profile_facility);
+        $hosfacility= explode(',',$hospital[0]->facilities);
         $facility = Facility::whereIn('id',$hosfacility)->select('description','id')->get();
-        //for image slide show
         $logo = Customer::where('id',$cusid)->select('logo as photo')->get()->toArray();
         $gallery = Gallery::where('profile_id',$cusid)->where('type','photo')->get()->toArray();
         $images = array_merge($logo,$gallery);
@@ -62,7 +57,7 @@ class ProfilePublishController extends Controller
             }
         }
 
-        return response()->json(array("hoslatlong"=>$hoslatlong,"hospital"=>$hospital,"images"=>$images,"videos"=>$videos,"facility_list"=>$facility_list,"facility"=>$facility));
+        return response()->json(array("hospital"=>$hospital,"images"=>$images,"videos"=>$videos,"facility_list"=>$facility_list,"facility"=>$facility));
     }
 
     public function nursingProfile($cusid)
