@@ -64,7 +64,7 @@
                                                             <div class="profile_img_wrap">
                                                                 <img class="profile_img" v-bind:src="'/upload/hospital_profile/' + hos_profile.logo" alt  @error="imgUrlAlt"/>
                                                             </div> 
-                                                            <router-link :to="{name: 'profile', params: {cusid:hos_profile.customer_id, type: 'hospital'}}" class="pseudolink">{{hos_profile.name}}</router-link>
+                                                            <router-link :to="{ path:'/profile/hospital/'+ hos_profile.id}" class="pseudolink">{{hos_profile.name}}</router-link>
                                                         </td>
                                                     </tr>
                                                     <tr>

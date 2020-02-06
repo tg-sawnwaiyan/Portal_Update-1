@@ -28,7 +28,7 @@
                                     </div>
                                         <!--end slider for ads-->
                                     <div class="row justify-content-md-center">
-                                        <div class="col-12 col-lg-12 col-md-10 tab p0-480">
+                                        <div class="col-12 col-lg-12 col-md-12 tab p0-480">
                                         <!-- vue component -->
                                             <router-view :key="$route.fullPath"></router-view>
                                     </div>
@@ -36,7 +36,7 @@
                                     </div>
                                 </div>
                                 <div class="container-fluid footer footer-div">
-                                    <span>Copyright©Management Partners Corp.All Rights Reserved. </span>
+                                    <span>Copyright©Trust Growth Co,Ltd.All Rights Reserved. </span>
                                 </div>
                             </section>
                         </div>
