@@ -10,7 +10,7 @@
                 </div>
 
                 <div class="d-flex justify-content-center registerform_container">
-                    <div class="brand_logo_container">
+                    <div class="brand_logo_container logo_bk">
                         <!-- <h4 style="position:relative; bottom: 60px; width:152px;">事業者新規登録</h4> -->
                         <img src="/images/login.png" class="brand_logo" alt="Logo">
                         <div id="preview">

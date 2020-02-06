@@ -83,11 +83,8 @@
         components: {
         },
            props:{
-            // limitsp: {
-            //     type: Number,
-            //     default: 2
-            // },
-            limitpc: {
+          
+          limitpc: {
                 type: Number,
                 default: 5
             },
