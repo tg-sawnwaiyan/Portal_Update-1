@@ -21,7 +21,6 @@
                         </div>
                     </div>
                     <hr />
-                    <h5 class="header">広告一覧</h5>
                     <div class="d-flex header pb-3 admin_header">
                         <h5>広告一覧</h5>
                         <div class="ml-auto" v-if="!norecord_msg">

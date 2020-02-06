@@ -1,13 +1,13 @@
 <template>
-    <div class="row">
-        <div class="col-12">
-            <div class="row m-b-10" v-if="!norecord_msg">
+    <div id="joboffer_list">
+        <div class="col-12  p0-480">
+            <!-- <div class="row m-b-10" v-if="!norecord_msg">
                 <div class="col-md-12">
                     <router-link to="/joboffercreate" class="float-right main-bg-color create-btn all-btn" style="color: blue;">
                         <i class="fas fa-plus-circle"></i> 求人新規作成
                     </router-link>
                 </div>
-            </div>
+            </div> -->
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <!-- <li class="breadcrumb-item"><a href="../index.html">ホーム</a></li>
@@ -16,7 +16,7 @@
           就職活動リスト</li>-->
                 </ol>
             </nav>
-            <div class="col-md-12 col-md-12 tab-content tab-content1 tabs pad-free border-style">
+            <div class="col-md-12 col-md-12 tab-content tab-content1 tabs pad-free border-style p0-480">
                 <div class="col-md-12 scrolldiv">
                     <div v-if="norecord_msg" class="card card-default m-b-20 card-wrap">
                         <p class="record-ico">
@@ -43,7 +43,14 @@
                             </div>
                         </div>
                         <hr />
-                        <h5 class="header">求人一覧</h5>
+                        <div class="d-flex header pb-3 admin_header">
+                            <h5>求人一覧</h5>
+                            <div class="ml-auto" v-if="!norecord_msg">
+                                <router-link to="/joboffercreate" class="main-bg-color create-btn all-btn">
+                                    <i class="fas fa-plus-circle"></i> <span class="first_txt"> 求人</span><span>新規作成</span>
+                                </router-link>
+                            </div>
+                        </div>
                         <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
                         <div v-if="$auth.check(1)" class="container-fuid">
                             <div class="card card-default m-b-20" v-for="job in jobs.data" :key="job.id">
@@ -99,29 +106,69 @@
                             </div>
                         </div>
 
-
                         <div class="container-fuid" v-if="$auth.check(2)">
-                            <table class="table table-hover custom-table">
-                                <thead style="background-color:rgb(183, 218, 210);">
-                                    <tr>
-                                         <!-- <th>姓</th>
-
-                                        <th>名</th>
-
-                                        <th>生年月日</th>
-
-                                        <th>性別</th>
-
-                                        <th>郵便番号</th>
-
-                                        <th>街路住所</th>
-
-
-                                        <th>電話番号</th>
-
-                                        <th>メールアドレス</th> -->
-                                    </tr>
-                                </thead>
+                            <div class="card card-default m-b-20" v-for="job in jobs.data" :key="job.id">
+                                <div class="card-body p-3">
+                                    <div class="row">
+                                        <div class="col-9">
+                                            <div class="joboffer-tit clearfix">
+                                                <router-link :to="{name: 'job_details', params:{id:job.id,loginuser:loginuser}}">{{job.title}} </router-link>
+                                                <div class="model-7">
+                                                    <div class="checkbox">
+                                                        <input type='checkbox' v-if="job.recordstatus == 1" @click="confirm(job.id)" checked/>
+                                                        <input type='checkbox' v-if="job.recordstatus==0" @click="confirm(job.id)"  />
+                                                        <label for="checkbox"></label>
+                                                        <div v-if="job.recordstatus == 1" class="on">公開中</div>
+                                                        <div v-if="job.recordstatus == 0" class="on">非行化</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-3  text-right">
+                                            <button :class="'btn btn all-btn main-bg-color changeLink'+job.id"  @click="jobToggle(job.id)">
+                                            <i :id="'icon' + job.id" class="fa fa-angle-down"></i> 詳細</button>
+                                        </div>
+                                    </div>
+                                     <div class="collapse" :id="'changeLink' + job.id">
+                                         <div class="d-flex mt-3 mb-2">
+                                             <p class="">応募者数:
+                                                <span class="text-orange"><span class="job_count">{{job.count}}件</span></span>
+                                                </p>
+                                             <p class="job_id mt-0 ml-auto  d-flex align-items-center">求人番号：{{job.jobid}}</p>
+                                         </div>
+                                        
+                                        <table class="table table-bordered">
+                                            <tr>
+                                                <td  class="w-50">
+                                                     <p class="mb-2"><span class="text-orange"><span class="job_ico">&#xa5;</span>給料 :</span><span class=""> {{job.salary}}</span></p>
+                                                </td>
+                                                <td class="w-50">
+                                                    <p><span class="text-primary">事業者名:</span><span>{{job.name}}</span></p>  
+                                                   
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td  class="w-50">
+                                                     <p class="mb-2"><span class="text-orange"><span class="job_ico">★</span> スキル :</span><span class=""> {{job.skills}}</span></p>
+                                                </td>
+                                                <td  class="w-50">
+                                                     <p><span class="text-primary">施設名:</span><span v-for="profile_name in job.profile_name" :key="profile_name.id">{{profile_name.name}}</span></p> 
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <ul class="btn-list mt-4">
+                                            <li>
+                                                <router-link :to="{name: 'joboffercreate', params:{id:job.id}}" class="btn edit-borderbtn">編集</router-link>
+                                            </li>                           
+                                            <li><a class="btn text-danger delete-borderbtn" @click="deleteJob(job.id)">削除</a></li>
+                                            <li class="mt-2">
+                                                <router-link :to="{name: 'jobapplylist', params:{id:job.id,title:job.title}}" class="btn confirm-borderbtn confirmed">求人応募一覧ページへ</router-link>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <table class="table table-hover custom-table">
                                 <tbody>
                                     <tr  v-for="job in jobs.data" :key="job.id">
                                         <th>
@@ -160,15 +207,15 @@
                                                 <li>
                                                     <router-link :to="{name: 'joboffercreate', params:{id:job.id}}" class="btn edit-borderbtn">編集</router-link>
                                                 </li>
+                                                <li><a class="btn text-danger delete-borderbtn" @click="deleteJob(job.id)">削除</a></li>
                                                 <li>
                                                     <router-link :to="{name: 'jobapplylist', params:{id:job.id,title:job.title}}" class="btn confirm-borderbtn confirmed">求人応募一覧ページへ</router-link>
                                                 </li>
-                                                <li><a class="btn text-danger delete-borderbtn" @click="deleteJob(job.id)">削除</a></li>
                                             </ul>
                                         </th>
                                     </tr>
                                 </tbody>
-                            </table>
+                            </table> -->
                         </div>
                         <!-- <pagination :data="jobs" @pagination-change-page="searchJobOffer"></pagination> -->
                         <div>
@@ -328,6 +375,23 @@
 
                     });
                 },
+                jobToggle(id) {
+                    console.log(id);
+                        var class_by_id = $('#icon' + id).attr('class');
+                        if (class_by_id == "fa fa-angle-down") {
+                            $('#icon' + id).removeClass("fa fa-angle-down");
+                            $('.changeLink' + id).removeClass("fa fa-angle-up");
+                            $('#icon' + id).addClass("fa fa-angle-up");
+                            $('#changeLink' + id).show('medium');
+                        } else {
+
+                            $('#icon' + id).removeClass("fa fa-angle-up");
+                            $('.changeLink' + id).removeClass("fa fa-angle-up");
+                            $('#icon' + id).addClass("fa fa-angle-down");
+                            $('#changeLink' + id).hide('medium');
+                        }
+
+                    },
 
                 //  confirm(id) {
                 //     console.log(id);

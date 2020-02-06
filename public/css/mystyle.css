@@ -4518,6 +4518,11 @@ div.b {
     margin-right: 8px;
 }
 
+#joboffer_list .all-btn {
+    min-width: 65px;
+    font-size: 13px;
+}
+
 
 /* End job offer list */
 
@@ -11445,6 +11450,10 @@ background-image: none;
     }
     .related-card .cat_select {
         width: 65%;
+    }
+    #joboffer_list .all-btn {
+        min-width: 50px;
+        padding: 5px;
     }
 }
 

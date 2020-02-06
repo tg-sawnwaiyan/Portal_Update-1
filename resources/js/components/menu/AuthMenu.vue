@@ -82,11 +82,11 @@
             </div>
             <div id="sp_adminheader" v-if="visit == 'false'">
                 <div class="admin_menu"  @click="toggle">
-                    <span>メニュー</span>&nbsp;<i :class="!isNav? open : close" style="width:15px;" ></i>
+                    <span>メニュー</span>&nbsp;<i :class="!isNav? open : close"></i>
                     <!-- <div class="overlay" :class="!isNav? overlay : overlay01"></div> -->
                 </div>
-                <div class="sp_adminNav"  v-if="isNav">
-                    <div class="overlay"></div> 
+                <div class="sp_adminNav"  v-if="isNav" >
+                    <div class="overlay" @click="slideLeft"></div> 
                 </div>
                 <transition name="slide">  
                     <div class="sp_adminNav"  v-if="isNav">
@@ -417,6 +417,9 @@
          toggle() {
             this.isNav = !this.isNav;
             // $(".content-all").css ({"opacity": "0.9","background":"#000015"});
+        },
+        slideLeft() {
+            this.isNav = false;
         },
          subMenu: function (n) {   
                  if(this.isSubmenu[n].show){
