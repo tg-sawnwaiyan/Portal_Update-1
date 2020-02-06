@@ -98,17 +98,33 @@
                                管理者画面
                             </li>
                             <li v-if="$auth.check(1)" @click="toggle">
+                                <router-link :to="{ name: 'accountlist' }"><i class="fa fa-user"></i>  施設一覧</router-link>
+                            </li>
+                            <li v-if="$auth.check(1)" @click="toggle">
                                 <router-link :to="{ name: 'profiledit' }"><i class="fa fa-map"></i>  プロファイル設定</router-link>
                             </li>
                             <li v-if="$auth.check(1)" @click="toggle">
                                 <router-link :to="{ name: 'profile' }"><i class="fa fa-map"></i>  マイページ編集</router-link>
                             </li>
-                            <li v-if="$auth.check(1)" @click="toggle">
+                            <li v-if="$auth.check(1)">
+                                <span @click="subMenu(4)" :class="{ active : isActive == 4 }"><i class="fa fa-suitcase"></i>  求人 <i class="fas fa-angle-right" :class="{ down : isRotate == 4 }"></i></span>
+                                <transition name="slideup">
+                                    <ul class="sub_menu" v-show="isSubmenu[4].show">
+                                        <li @click="toggle">
+                                            <router-link :to="{ name: 'jobofferlist' }"><i class="fa fa-edit"></i>  求人編集</router-link>
+                                        </li>
+                                        <li @click="toggle">
+                                            <router-link :to="{ name: 'jobapplicantlist' }"><i class="fa fa-tasks"></i>  求人応募者一覧</router-link>
+                                        </li>
+                                    </ul>
+                                </transition>
+                            </li>
+                            <!-- <li v-if="$auth.check(1)" @click="toggle">
                                 <router-link :to="{ name: 'jobofferlist' }"><i class="fa fa-map"></i>  求人編集</router-link>
                             </li>
                             <li v-if="$auth.check(1)" @click="toggle">
                                 <router-link :to="{ name: 'jobapplicantlist' }"><i class="fa fa-list-ul"></i>  求人応募者一覧</router-link>
-                            </li>
+                            </li> -->
                             <li v-if="$auth.check(2)">
                                 <span @click="subMenu(0)" :class="{ active : isActive == 0 }"><i class="fa fa-list-ul"></i>  ニュース <i class="fas fa-angle-right" :class="{ down : isRotate == 0 }"></i></span>
                                 <transition name="slideup">
@@ -118,6 +134,9 @@
                                         </li>
                                         <li @click="toggle">
                                             <router-link :to="{ name: 'categorylist' }"><i class="fa fa-file-alt"></i>  カテゴリー設定</router-link>
+                                        </li>
+                                        <li @click="toggle">
+                                            <router-link :to="{ name: 'ads' }"><i class="fa fa-globe"></i>  広告</router-link>
                                         </li>
                                     </ul>
                                 </transition>
@@ -139,7 +158,7 @@
                                 </transition>
                             </li>
                             <li v-if="$auth.check(2)">
-                                <span @click="subMenu(2)" :class="{ active : isActive == 2 }"><i class="fa fa-user-md"></i>  病院 <i class="fas fa-angle-right" :class="{ down : isRotate == 2 }"></i></span>
+                                <span @click="subMenu(2)" :class="{ active : isActive == 2 }"><i class="fa fa-hospital"></i>  病院 <i class="fas fa-angle-right" :class="{ down : isRotate == 2 }"></i></span>
                                 <transition name="slideup">
                                     <ul class="sub_menu" v-show="isSubmenu[2].show">
                                         <li @click="toggle">
@@ -160,17 +179,21 @@
                                     </ul>
                                 </transition>
                             </li>
-                            <li v-if="$auth.check(2)"  @click="toggle">
-                                <router-link :to="{ name: 'occupationlist' }"><i class="fa fa-suitcase"></i>  職種設定</router-link>
-                            </li>
-                            <li v-if="$auth.check(2)"  @click="toggle">
-                                <router-link :to="{ name: 'ads' }"><i class="fa fa-globe"></i>  広告</router-link>
-                            </li>
-                            <li v-if="$auth.check(2)"  @click="toggle">
-                                <router-link :to="{ name: 'jobofferlist' }"><i class="fa fa-edit"></i>  求人編集</router-link>
-                            </li>
-                            <li v-if="$auth.check(2)"  @click="toggle">
-                                <router-link :to="{ name: 'jobapplicantlist' }"><i class="fa fa-tasks"></i>  求人応募者一覧</router-link>
+                            <li v-if="$auth.check(2)">
+                                <span @click="subMenu(3)" :class="{ active : isActive == 3 }"><i class="fa fa-suitcase"></i>  求人 <i class="fas fa-angle-right" :class="{ down : isRotate == 3 }"></i></span>
+                                <transition name="slideup">
+                                    <ul class="sub_menu" v-show="isSubmenu[3].show">
+                                        <li @click="toggle">
+                                            <router-link :to="{ name: 'occupationlist' }"><i class="fa fa-suitcase"></i>  求人職種設定</router-link>
+                                        </li>
+                                        <li @click="toggle">
+                                            <router-link :to="{ name: 'jobofferlist' }"><i class="fa fa-edit"></i>  求人編集</router-link>
+                                        </li>
+                                        <li @click="toggle">
+                                            <router-link :to="{ name: 'jobapplicantlist' }"><i class="fa fa-tasks"></i>  求人応募者一覧</router-link>
+                                        </li>
+                                    </ul>
+                                </transition>
                             </li>
                             <li>
                                 <a href="#" @click.prevent="$auth.logout()"><i class="fa fa-lock"></i> ログアウト</a>
@@ -361,7 +384,7 @@
         main_header : 'main-header',
         admin_header :'admin-header',
         container : 'container',
-        isSubmenu : [{show:true},{show:false},{show:false}],
+        isSubmenu : [{show:true},{show:false},{show:false},{show:false},{show:false}],
         isActive: 0,
         isRotate : 0,
       }
@@ -400,7 +423,7 @@
                      this.isSubmenu[n].show = false;  
                      this.isRotate = null;
                  }else{
-                     for(var i = 0; i < 3; i++) { 
+                     for(var i = 0; i < 5; i++) { 
                         this.isSubmenu[i].show = false;              
                     }
                     this.isSubmenu[n].show = true; 

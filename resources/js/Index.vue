@@ -36,7 +36,7 @@
                                     </div>
                                 </div>
                                 <div class="container-fluid footer footer-div">
-                                    <span>Copyright©Management Partners Corp.All Rights Reserved. </span>
+                                    <span>Copyright©Trust Growth Co,Ltd.All Rights Reserved. </span>
                                 </div>
                             </section>
                         </div>
