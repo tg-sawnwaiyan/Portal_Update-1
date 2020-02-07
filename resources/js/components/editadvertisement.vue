@@ -139,7 +139,7 @@ export default {
         },
          methods: {
             imgUrlAlt(event) {
-                event.target.src = "images/noimage.jpg"
+                event.target.src = "/images/noimage.jpg"
             },
             fileSelected(){
             
