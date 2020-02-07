@@ -47,6 +47,7 @@ import admincreate from './components/AdminCreate'
 import sitepolicy from './components/sitepolicy'
 import Accountlist from './components/Accountlist'
 
+
 // import menu from './components/menu/Menu';
 
 // Routes
@@ -57,6 +58,7 @@ const routes = [
         name: 'Unauthorized',
         component: Unauthorized,
     },
+
 
     {
         path: '/register',
@@ -356,6 +358,7 @@ const routes = [
             auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
         }
     },
+
     {
         name: "editadvertisement",
         path: "/editads",
