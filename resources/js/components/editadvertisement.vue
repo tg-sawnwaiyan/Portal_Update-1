@@ -60,8 +60,8 @@
                             </div>
 
                             <div class="form-group image_update" v-if="!update_img" id="x-image" >
-                                <div class="col-md-12" >
-                                    <div v-if="!showhide" id='x-image' class='col-md-2'>
+                                <div class="row" >
+                                    <div v-if="!showhide" id='x-image' class='col-md-4 col-6'>
                                         <span class='img-close-btn' v-on:click='closeBtnMethod(advertisement.photo)'>X</span>
                                         <img :src="'/upload/advertisement/'+ advertisement.photo"  class='show-img' alt="ads" @error="imgUrlAlt">
                                 
