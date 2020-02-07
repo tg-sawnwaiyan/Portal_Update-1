@@ -76,7 +76,7 @@
 
                                                         <router-link :to="{name: 'profiledit', params:{cusid: customer.id}}" v-if="customer.status == 1" class="btn confirm-orangebtn  mr-2"><i class="fa fa-map"></i> プロフィール設定</router-link>
                                             <!-- <button class="btn confirm-orangebtn">プロフィール設定</button> -->
-                                            <router-link :to="{name: 'profile', params:{cusid: customer.id, type: customer.type_id == 2? 'hospital':'nursing'}}" v-if="customer.status == 1" class="btn confirm-orangebtn"><i class="fa fa-edit"></i> ページ編集</router-link>
+                                            <router-link :to="{ path:'/accountlist/'+ type +'/'+ customer.id}" v-if="customer.status == 1" class="btn confirm-orangebtn"><i class="fa fa-edit"></i> Account List</router-link>
                                             <p class="mt-2">この事業者は登録承認済です。</p>
                                                     </span>
                                                     
@@ -173,6 +173,7 @@
                     norecord_msg: false,
                     nosearch_msg: false,
                     title: '',
+                    type: null,
                 };
             },
             created() {
@@ -184,6 +185,7 @@
             methods: {
                 initialCall(){
                     if(this.$route.path == "/nuscustomerlist"){
+                        this.type = "nursing";
                         this.title = "介護施設事業者一覧";
                         this.axios.get("/api/customers/3").then(response => {
                             this.$loading(false);
@@ -197,6 +199,7 @@
                         });
                     }
                     else if(this.$route.path == "/hoscustomerlist"){
+                        this.type = "hospital";
                         this.title = "病院事業者一覧";
                         this.axios.get("/api/customers/2").then(response => {
                             this.$loading(false);
