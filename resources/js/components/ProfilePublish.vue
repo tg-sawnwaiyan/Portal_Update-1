@@ -372,13 +372,13 @@
 
                 <h5 class="profile_header">特長 </h5>
 
-                    <div  v-for="nurseprofile in nursing_profiles" :key="nurseprofile.id" class="col-md-12">
-                        <span v-if="nurseprofile.feature != null">
-                            <p v-html="nurseprofile.feature"></p>
+                    <div  class="col-md-12">
+                        <span v-if="nursing_profiles != null">
+                            <p v-html="nursing_profiles"></p>
                         </span>
-                        <span v-else>
+                        <!-- <span v-else>
                             <p class="no-data-color">表示されるデータがありません。</p>
-                        </span>
+                        </span> -->
                     </div>
 
             </div>
@@ -386,13 +386,13 @@
             <div class="row ele m-lr-0" id="element3">
                 <h5 class="profile_header col-md-12">費用</h5>
                     <div class="col-12 pad-free-750">
-                        <table class="table table-striped table-bordered payment-tbl" v-for="nusmethod in nus_method" :key="nusmethod.id">
+                        <table class="table table-striped table-bordered payment-tbl" >
                             <tr>
                                 <th class="custom-bg-color">
                                     <font>支払方法</font>
                                 </th>
-                                <td v-if="nusmethod.method">
-                                    <font>{{nusmethod.method}}</font>
+                                <td v-if="nus_method">
+                                    <font>{{nus_method}}</font>
                                 </td>
                                 <td v-else> -
                                 </td>
@@ -946,6 +946,10 @@
                                                 <th class="custom-bg-color">診療費用</th>
                                                 <td >{{comedical.medical_expense}}</td>
                                             </tr>
+                                            <tr>
+                                                <th class="custom-bg-color">備考</th>
+                                                <td >{{comedical.remark}}</td>
+                                            </tr>
 
                                         </tbody>
 
@@ -974,6 +978,10 @@
                             <label for="" class="m-r-15"><i class="fas fa-check green"></i> 受入れ可</label>
                             <label for="" class="m-r-15"><i class="fas fa-times red"></i> 受入れ不可</label>
                             <label for="" class="m-r-15"><i class="fas fa-adjust blue"></i> 応相談</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="">備考</label>
+                            <p v-html="nus_pro.acceptance_remark"></p>
                         </div>
                     </div>
 
@@ -1014,7 +1022,10 @@
                                     </tbody>
 
                                 </table>
-
+                                <div class="form-group">
+                                    <label for="">備考</label>
+                                    <p v-html="st.remarks"></p>
+                                </div>
                             </div>
 
                         </div>
@@ -1590,6 +1601,7 @@ export default {
 
             var that = this;
             return {
+                nus_pro:[],
                 ads_list: [],
                 profile_id: "",
                 url: 'upload/nursing_profile/Imagepanorama/',
@@ -1834,6 +1846,7 @@ export default {
 
                         // this.nursing_profiles = response.data.feature;
                         // this.nus_method= response.data.method;
+                        this.nus_pro = response.data.nurselatlong[0];
                         this.nusfacilities = response.data.facility;
 
                         this.nursing_profiles = response.data.nurselatlong[0]['feature'];

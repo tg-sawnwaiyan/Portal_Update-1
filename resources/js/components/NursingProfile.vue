@@ -1217,7 +1217,7 @@ export default {
 
                 // Logo
                 let lg = new FormData();
-                if(this.profile_img) {
+                if(document.getElementsByClassName('customer-logo')[0].files[0]) {
                     var file = document.getElementsByClassName('customer-logo')[0].files[0];
                     lg.append('logo',file);
                     this.axios.post('/api/nursing/movelogo', lg)
