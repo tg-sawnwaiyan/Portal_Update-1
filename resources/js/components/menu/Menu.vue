@@ -206,6 +206,12 @@
                         <li>
                         <router-link :to="{ name: 'jobSearch' }"><i class="fas fa-users"></i> 求人検索</router-link>
                         </li>
+                        <li>
+                            <a><i class="fas fa-info-circle"></i> サイトポリシー</a>
+                        </li>
+                        <li>
+                            <a>プライバシーポリシー</a>
+                        </li>
                         <li v-if="!$auth.check()">
                         <router-link :to="{name: 'login'}" class="nav-link pad-free"><i class="fa fa-sign-in-alt"></i> 事業者 ログイン</router-link>
                         </li>

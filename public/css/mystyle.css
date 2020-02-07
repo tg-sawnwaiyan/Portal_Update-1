@@ -3324,7 +3324,7 @@ overflow-y: auto;
 
 #headerbar .router-link-exact-active>i.fa,
 .router-link-exact-active>i.fas {
-    color: #c40000 !important;
+    color: #0b4580 !important;
     font-weight: bold;
 }
 
@@ -9399,7 +9399,25 @@ padding: 11px;
 }
 
 @media only screen and (max-width:1280px) {
-    
+    .h-tel {
+        padding-left: 12px;
+        margin: 10px 0;        
+    }
+    .gNav{
+        margin-left: 0%;
+    }
+    .gSecondNav li {        
+        background: transparent;
+        border-left: solid 1px #a7b7c7;
+        border-right: none;
+        border-top: none;
+        border-bottom: none;
+        padding: 5px;
+        border-radius: 0px;
+        color: #000;
+        margin: 0px;
+        font-size: 12px;
+    }    
     .maintab-content {
         padding: 7px;
     }
