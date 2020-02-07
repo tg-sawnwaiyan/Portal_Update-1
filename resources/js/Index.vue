@@ -24,7 +24,7 @@
                                 <div class="main-wrapper">
                                     <!--slider for ads-->
                                     <div class="col-md-auto pad-free">
-                                        <adsslider></adsslider>
+                                        <adsslider class="d-none d-sm-block"></adsslider>
                                     </div>
                                         <!--end slider for ads-->
                                     <div class="row justify-content-md-center">
@@ -181,8 +181,10 @@
             var cur_pos = $(this).scrollTop();
             if (cur_pos >= 100) {
                 $('#headerbar li').css('display','block');
+                $('#myBtn').css('display','block');
             } else {
                 $('#headerbar li').css('display','inline-block');
+                $('#myBtn').css('display','none');
             }
         });
         
