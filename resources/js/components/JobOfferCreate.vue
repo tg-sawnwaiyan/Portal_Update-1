@@ -354,9 +354,10 @@
                                 <label for="salary">職種:</label>
 
                                 <select v-model="joboffer.occupation_id" class="form-control">
-                                    <option value="0">なし</option>
+                                    <option value="-1">なし</option>
                                     <option v-for="occupation in OccupationList" :key="occupation.id" :value="occupation.id">{{occupation.name}}</option>
                                 </select>
+                                <span v-if="errors.occupation_id" class="error">{{errors.occupation_id}}</span>
                             </div>
 
                             <div class="form-group">
@@ -464,7 +465,8 @@ import Autocomplete from 'vuejs-auto-complete'
                   location:'',
                   salary_type:'',
                   salary:'',
-                  working_hours:''
+                  working_hours:'',
+                  occupation_id: ''
                 },
                 OccupationList: {
                     id: "",
@@ -475,7 +477,7 @@ import Autocomplete from 'vuejs-auto-complete'
                         title: "",
                         description:"",
                         customer_id: "",
-                        occupation_id: 0,
+                        occupation_id: -1,
                         description: "",
                         salary_type:-1,
                         fields: [{
@@ -715,6 +717,13 @@ import Autocomplete from 'vuejs-auto-complete'
                             this.errors.working_hours = "";
                         }
 
+                        if (this.joboffer.occupation_id == '-1') {
+                            this.errors.occupation_id = " 職種が必須です。";
+                        }
+                        else {
+                            this.errors.occupation_id = null;
+                        }
+
                         if (
                             !this.errors.title &&
                             !this.errors.description &&
@@ -724,7 +733,8 @@ import Autocomplete from 'vuejs-auto-complete'
                             !this.errors.description &&
                             !this.errors.salary_type &&
                             !this.errors.salary &&
-                            !this.errors.working_hours
+                            !this.errors.working_hours&&
+                            !this.errors.occupation_id
 
                         ) {
 

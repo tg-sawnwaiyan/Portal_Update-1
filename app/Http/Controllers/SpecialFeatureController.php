@@ -112,7 +112,7 @@ class SpecialFeatureController extends Controller
                 return response()->json(['error' => 'この特徴に関連している施設がありますので削除できません。'], 404);
             }else{
                 $feature->delete();
-                $features = special_feature::orderBy('id','DESC')->paginate(12);
+                $features = special_feature::where('type',$type)->orderBy('id','DESC')->paginate(12);
                 return response()->json($features);
             }
         }else{
@@ -122,12 +122,10 @@ class SpecialFeatureController extends Controller
                 return response()->json(['error' => 'この特徴に関連している施設がありますので削除できません。'], 404);
             }else{
                 $feature->delete();
-                $features = special_feature::orderBy('id','DESC')->paginate(12);
+                $features = special_feature::where('type',$type)->orderBy('id','DESC')->paginate(12);
                 return response()->json($features);
             }
         }
-        
-        // return response()->json('The Feature successfully deleted');
     }
 
     public function search(Request $request,$type)

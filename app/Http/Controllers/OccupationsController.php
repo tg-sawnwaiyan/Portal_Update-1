@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Occupations;
+use DB;
 use Illuminate\Http\Request;
 
 class OccupationsController extends Controller
@@ -151,10 +152,15 @@ class OccupationsController extends Controller
     {
 
         $occupation = Occupations::find($id);
-        $occupation->delete();
+        $query = "SELECT * FROM jobs WHERE jobs.occupation_id = $id";
+        $jobs = DB::select($query);
+        if(count($jobs) != 0){
+            return response()->json(['error' => 'この求人職種に関連している施設がありますので削除できません。'], 404);
+        }else{
+            $occupation->delete();
         $occupations = Occupations::orderBy('id','DESC')->paginate(12);
         return response()->json($occupations);
-        // return response()->json('The Type was successfully deleted');
+        }
     }
 
     public function search(Request $request)
