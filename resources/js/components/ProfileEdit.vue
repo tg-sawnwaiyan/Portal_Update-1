@@ -18,7 +18,7 @@
                                 </div>
                             </div>
                             <!--card-->
-                            <div class="card card-default m-b-20 col-md-11">
+                            <!-- <div class="card card-default m-b-20 col-md-11">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-12 m-t-8">
@@ -34,14 +34,14 @@
                                                 </div>
                                                 <div class="">
                                                     <span class="btn main-bg-color white all-btn"  @click="profileChange()">
-                                     変更
-                                </span>
+                                                        変更
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <!--card-->
 
                             <!--card-->
@@ -188,9 +188,9 @@
         data() {
                 return {
                     customer_info: [],
-                    type: 'nursing',
+                    type: this.$route.params.type,
                     logo: '',
-                    cusid: this.$auth.check(1)?Number(localStorage.getItem('cusId')):this.$route.params.cusid,
+                    cusid: this.$route.params.id,
                     upload_img: null,
                     image: '',
                     accout_status:'',
@@ -211,6 +211,7 @@
                 }
             },
             created() {
+                
                 this.nursing_data.city_id = 0;
                 this.nursing_data.town_id= 0;
                  this.axios.get('/api/hospital/citiesList')
@@ -229,9 +230,9 @@
                             this.accout_status = '解除しない';
                         }
                         if (this.customer_info.type_id == '2') {
-                            this.logo = 'upload/hospital_profile/' + response.data.logo;
+                            this.logo = '/upload/hospital_profile/' + response.data.logo;
                         } else {
-                            this.logo = 'upload/nursing_profile/' + response.data.logo;
+                            this.logo = '/upload/nursing_profile/' + response.data.logo;
                         }
                     });
             },
@@ -289,7 +290,7 @@
                      this.errors.township = '';
                 },
                 imgUrlAlt(event) {
-                    event.target.src = "images/noimage.jpg"
+                    event.target.src = "/images/noimage.jpg"
                 },
                 preview_image(fileInput) {
                         this.logo = URL.createObjectURL(event.target.files[0]);
@@ -530,9 +531,9 @@
                                             this.accout_status = '解除しない';
                                         }
                                         if (this.customer_info.type_id == '2') {
-                                            this.logo = 'upload/hospital_profile/' + response.data.logo;
+                                            this.logo = '/upload/hospital_profile/' + response.data.logo;
                                         } else {
-                                            this.logo = 'upload/nursing_profile/' + response.data.logo;
+                                            this.logo = '/upload/nursing_profile/' + response.data.logo;
                                         }
 
                                     }).catch(error => {

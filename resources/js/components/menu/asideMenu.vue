@@ -152,6 +152,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
         status:false,
         isClick: true,
         collapsed: false,
+        url_name: null,
         menu: [
                 {
                     header: true,
@@ -245,23 +246,23 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                     hiddenOnCollapse: true
                 },
                 {
-                    href: '/accountlist',
+                    href: `/accountlist/${this.$auth.user().type_id == 2 ? 'hospital/': 'nursing/'}${this.$auth.user().customer_id}`,
                     title: '施設一覧',
                     icon: 'fa fa-user',
-                    hidden: this.$auth.check(2)
+                    hidden: this.$auth.check(2),
                 },
                 {
-                    href: '/profiledit',
+                    href: `/profiledit/${this.$auth.user().type_id == 2 ? 'hospital/': 'nursing/'}${this.$auth.user().customer_id}`,
                     title: 'プロファイル設定',
                     icon: 'fa fa-map',
                     hidden: this.$auth.check(2)
                 },
-                {
-                    href: '/profile',
-                    title: 'マイページ編集',
-                    icon: 'fa fa-map',
-                    hidden: this.$auth.check(2)
-                },
+                // {
+                //     href: '/profile',
+                //     title: 'マイページ編集',
+                //     icon: 'fa fa-map',
+                //     hidden: this.$auth.check(2)
+                // },
                 {
                     title: '求人',
                     icon: 'fa fa-suitcase',                    
@@ -295,6 +296,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
       }
     },
 created() {
+    this.url_name = this.$auth.user().type_id == 2 ? 'hospital/': 'nursing/' + this.$auth.user().customer_id;
     console.log("aside "+this.$auth.check())
     console.log("aside visit "+this.visit)
     axios.interceptors.response.use((response) => {

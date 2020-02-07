@@ -1592,7 +1592,7 @@ export default {
             return {
                 ads_list: [],
                 profile_id: "",
-                url: 'upload/nursing_profile/Imagepanorama/',
+                url: '/upload/nursing_profile/Imagepanorama/',
                 isAutoRotationOn: true,
                 isOrientationOn: true,
                 markers: [
