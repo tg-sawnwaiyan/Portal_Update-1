@@ -893,7 +893,8 @@ border-radius: 3px;
     border: 10px solid #ececec;
     margin-left: 10px;
 }
-.logo_bk{
+
+.logo_bk {
     background-color: #fbfbfb;
 }
 
@@ -905,13 +906,10 @@ border-radius: 3px;
     position: absolute;
     left: 0;
     bottom: 0.5%; */
-
-     
     width: 137px;
     position: absolute;
     left: 7px;
     top: 32px;
-
 }
 
 .reg_title {
@@ -1404,6 +1402,11 @@ box-shadow: 0px 0px 5px rgb(212, 201, 201); */
     /* border-bottom: 1px solid #42b698; */
 }
 
+.admin_header h5 {
+    margin-bottom: -50px;
+    line-height: 2.5;
+}
+
 .fit-image2 {
     width: 350px;
     object-fit: cover;
@@ -1653,14 +1656,16 @@ border-top: 5px solid #e66527; */
     font-size: 30px;
     color: #f57e46;
 }
-.logo_subtitle{
+
+.logo_subtitle {
     font-size: 13px;
     letter-spacing: 1.5px;
-     font-weight: bold;
+    font-weight: bold;
 }
+
 .main-content {
     /* padding: 0px;*/
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
     box-shadow: 0px 1px 2px 0px #ccc !important;
     -webkit-box-shadow: 0px 1px 2px 0px #ccc !important;
@@ -3570,17 +3575,20 @@ background: #ff9b53;  /
 #news_details .related_content {
     width: 100%;
 }
-.newsDetail_leftwrapper{
-    max-width:500px;
+
+.newsDetail_leftwrapper {
+    max-width: 500px;
 }
-.img-wrap{
-    width:100%;
+
+.img-wrap {
+    width: 100%;
     text-align: center;
     padding: 30px;
 }
+
 .related_box {
     float: left;
-    width: 25%;  
+    width: 25%;
     padding-right: 10px;
 }
 
@@ -3596,6 +3604,10 @@ background: #ff9b53;  /
 #news_details .info p {
     max-width: 250px;
     color: #fff;
+}
+
+#news_list .select_box {
+    width: 65%;
 }
 
 
@@ -4556,6 +4568,11 @@ div.b {
     margin-right: 8px;
 }
 
+#joboffer_list .all-btn {
+    min-width: 65px;
+    font-size: 13px;
+}
+
 
 /* End job offer list */
 
@@ -4697,7 +4714,6 @@ top: 66px; */
         width: 100%;
         background: #fbfbfb;
     }
-    
     .adminview-sidebar {
         height: auto;
     }
@@ -9399,6 +9415,7 @@ padding: 11px;
 }
 
 @media only screen and (max-width:1280px) {
+    
     .maintab-content {
         padding: 7px;
     }
@@ -9848,10 +9865,10 @@ padding: 0;
     .gNav {
         display: none;
     }
-    .gSecondNav{
+    .gSecondNav {
         display: none;
     }
-    .logo_subtitle{
+    .logo_subtitle {
         display: none;
     }
     #navbarSupportedContent {
@@ -10078,14 +10095,23 @@ padding: 0;
         background: #000015;
         opacity: 0.5;
     }
-    .sp_adminNav {
+    .overlay_wrap {
         display: block;
         position: fixed;
         top: 60px;
         left: 0;
         width: 100%;
         height: 100%;
-        z-index: 1;
+        z-index: 2;
+    }
+    .sp_adminNav {
+        display: block;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 230px;
+        height: 100%;
+        z-index: 3;
     }
     .sidebar_brand {
         position: fixed;
@@ -10295,7 +10321,6 @@ padding: 0;
 /* Media Queries*/
 
 @media (max-width: 1024px) and (min-width: 320px) {
-   
     .adminview-sidebar {
         height: auto;
     }
@@ -10420,15 +10445,15 @@ width: 18rem;
 }
 
 @media only screen and (max-width:768px) {
-    .newsDetail_leftwrapper{
+    .newsDetail_leftwrapper {
         max-width: 320px;
     }
-    .img-wrap{        
+    .img-wrap {
         padding-bottom: 0px;
     }
     .set-date {
         margin: 0 auto;
-        text-indent: 1em;        
+        text-indent: 1em;
     }
     .nursing_responsive {
         max-width: 33%;
@@ -10448,7 +10473,7 @@ width: 18rem;
     }
     .pc-768 {
         display: none;
-    }    
+    }
     /* start pagination */
     .pagination {
         justify-content: center;
@@ -10666,12 +10691,19 @@ width: 18rem;
         padding: 10px !important;
     }
 }
+<<<<<<< HEAD
 @media only screen and (max-width: 760px){
     .d-block {
         display: block !important;
     }
 }
+=======
+
+>>>>>>> 153a1db9f6a9784b07f849f9af62a048c25f67ee
 @media only screen and (max-width:750px) {
+    .maintab-content{
+        margin: 115px 0 0 0;
+    }
     .pc-750 {
         display: none;
     }
@@ -10683,10 +10715,7 @@ width: 18rem;
     }
     .pad-0-res {
         padding: 0px;
-    }
-    .d-block {
-        display: block !important;
-    }
+    }   
     .profile-tit {
         padding: 0px;
         margin: 0px;
@@ -10756,7 +10785,7 @@ width: 18rem;
         padding-left: 0px;
         padding-right: 0px;
     }
-    .margin-free-750{
+    .margin-free-750 {
         margin-left: 0px;
         margin-right: 0px;
     }
@@ -10830,14 +10859,11 @@ width: 18rem;
 }
 
 @media only screen and (max-width:576px) {
-    .w-sm-25 {
+    #news_list .select_label {
         width: 25% !important;
     }
     .w-sm-65 {
         width: 65% !important;
-    }
-    .w-sm-75 {
-        width: 75% !important;
     }
     .w-sm-100 {
         width: 100% !important;
@@ -10851,6 +10877,7 @@ width: 18rem;
     }
     .related-card .cat_select {
         width: 71%;
+        margin-left: auto;
     }
     .related-card .search_box {
         width: 100%;
@@ -10859,6 +10886,9 @@ width: 18rem;
         float: none !important;
         margin-bottom: 10px;
         max-width: 100%;
+    }
+    #news_list .select_box {
+        width: 75%;
     }
     /*end create news */
 }
@@ -11285,6 +11315,14 @@ background-image: none;
         width: 100%;
         margin-bottom: 10px;
     }
+    .admin_header .first_txt {
+        display: none;
+    }
+    #news_post .card-body,
+    #cat_post .card-body,
+    #ads_post .card-body {
+        padding: 13px;
+    }
 }
 
 @media only screen and (max-width: 414px) {
@@ -11484,6 +11522,16 @@ background-image: none;
         width: 100%;
     }
     /* end nursing profile */
+    #news_list .select_box {
+        width: 72%;
+    }
+    .related-card .cat_select {
+        width: 65%;
+    }
+    #joboffer_list .all-btn {
+        min-width: 50px;
+        padding: 5px;
+    }
 }
 
 @media only screen and (max-width: 380px) {
@@ -11607,54 +11655,6 @@ background-image: none;
     .related-card .cat_lbl {
         font-size: 12px;
     }
-    .related-card .cat_select {
-        width: 66%;
-        margin-left: auto;
-    }
-}
-
-@media only screen and (max-width:320px) {
-    .set-date {       
-        text-indent: 0em;       
-    }
-    .login_2 {
-        margin-left: -53px;
-    }
-    .login_1 {
-        margin-right: -21px;
-    }
-    .login_top {
-        top: -111px;
-        margin-left: 22px;
-    }
-    .loginwrapper {
-        padding: 10px 40px;
-        position: fixed;
-        /* margin-left: -53px; */
-        background: #fbfbfb;
-        top: 20px;
-    }
-    .registerform_container {
-        margin-top: 0px;
-    }
-    /*create_news*/
-    .searchButton {
-        width: 35% !important;
-    }
-    .news_catsearch label {
-        width: 55%;
-    }
-    .nursing_toggle_responsive {
-        /* margin-top: -45px; */
-        margin-left: 115px;
-    }
-    .nursing_btn span {
-        margin-left: 0;
-        margin-top: 0;
-    }
-    .postal {
-        width: 100%;
-    }
 }
 
 @media screen and (max-width: 979px) and (min-width: 752px) {
@@ -11689,17 +11689,15 @@ background-image: none;
     .slick-dotted.slick-slider {
         margin-bottom: 0px;
     }
-    .p5{
+    .p5 {
         font-size: 16px;
     }
     .news_detail_tit {
         line-height: 1.3;
     }
-    .details_title{
+    .details_title {
         margin-bottom: 20px !important;
     }
-    
-
 }
 
 @media only screen and (min-width: 320px) and (max-width: 360px) {
@@ -11846,9 +11844,7 @@ background-image: none;
     #fav-hospital-page #fav-history-page .card-carousel {
         width: 1084px !important;
     }
-    .main-content {
-        width: 100%;
-    }
+    
     .nav-warp {
         max-width: 96%;
         padding: 0;
@@ -11926,4 +11922,57 @@ background-image: none;
 
 strong {
     font-weight: bold!important;
+}
+
+@media only screen and (max-width:320px) {
+    .set-date {
+        text-indent: 0em;
+    }
+    .login_2 {
+        margin-left: -53px;
+    }
+    .login_1 {
+        margin-right: -21px;
+    }
+    .login_top {
+        top: -111px;
+        margin-left: 22px;
+    }
+    .loginwrapper {
+        padding: 10px 40px;
+        position: fixed;
+        /* margin-left: -53px; */
+        background: #fbfbfb;
+        top: 20px;
+    }
+    .registerform_container {
+        margin-top: 0px;
+    }
+    /*create_news*/
+    .searchButton {
+        width: 35% !important;
+    }
+    .news_catsearch label {
+        width: 55%;
+    }
+    .nursing_toggle_responsive {
+        /* margin-top: -45px; */
+        margin-left: 115px;
+    }
+    .nursing_btn span {
+        margin-left: 0;
+        margin-top: 0;
+    }
+    .postal {
+        width: 100%;
+    }
+    .admin_header div span {
+        display: none;
+    }
+    #news_list .select_box {
+        width: 70%;
+    }
+    #news_list .select_label {
+        width: 26% !important;
+    }
 }

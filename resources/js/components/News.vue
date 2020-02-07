@@ -1226,12 +1226,19 @@
                     }, {
                     breakpoint: 1024,
                         settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 1, 
+                            infinite: false                           
+                        }
+                    },{
+                    breakpoint: 770,
+                        settings: {
                             slidesToShow: 2,
                             slidesToScroll: 1, 
                             infinite: false                           
                         }
                     },{
-                        breakpoint: 414,
+                        breakpoint: 420,
                             settings:{
                                 slidesToShow: 1,
                                 slidesToScroll:1,
@@ -1813,7 +1820,7 @@
     }
 }
 
-@media only screen and (max-width:768px){
+@media only screen and (max-width:1280px){
     
     
     .news-slider-width{

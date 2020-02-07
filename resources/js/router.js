@@ -260,7 +260,7 @@ const routes = [
     },
     {
         name: "accountlist",
-        path: "/accountlist",
+        path: "/accountlist/:type/:id",
         component: Accountlist,
         meta: {
             auth: true,

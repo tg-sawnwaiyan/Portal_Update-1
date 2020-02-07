@@ -1,6 +1,6 @@
 <template>
-     <div class="row">
-      <div class="col-12">
+     <div id="ads_post">
+      
           <div class="card">
               <div class="card-body">
                     <div class="row">
@@ -44,7 +44,7 @@
                                         <input type="file" v-if="!showhide" ref="file" accept="image/*" id="upd_img" @change ="fileSelected">
                                         <input type="file" v-if="showhide" id="upload" accept="image/*" @change="uploadImage"> 
                                     </span> 
-                                    <span class="pl-4">{{img_name}}</span>
+                                    <span class="pl-4 text-wrap w-75">{{img_name}}</span>
                                 </div>
                                 <span v-if="errors.photo" class="error">{{errors.photo}}</span>
                                  <div class="col-md-12" id="par">
@@ -79,7 +79,7 @@
                     </div>
             </div>
           </div>
-      </div>
+      
 </template>
 <script>
 export default {
