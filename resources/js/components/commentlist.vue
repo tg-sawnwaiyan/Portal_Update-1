@@ -15,19 +15,19 @@
                     </a> -->
                 </div>
                 <div v-else class="container-fuid">
-                    <h4 class="main-color m-b-10">コメント 検索</h4>
+                    <!-- <h4 class="main-color m-b-10">コメント 検索</h4>
                     <div class="row">
                         <div class="col-md-12">
                             <input type="text" class="form-control" placeholder="検索" id="search-item" @keyup="searchcomment()" />
                         </div>
 
                     </div>
-                    <hr />
+                    <hr /> -->
                      <div class="form-group" >
                         Search with profile name
-                        <select v-model="profileid" class="division form-control"  @change="getComment()">
+                        <select  v-model="profileid" class="division form-control"  @change="getComment()">
                                 <option value="0">選択してください。</option>
-                                <option v-for="pro in profilelist" :key="pro.id" v-bind:value="pro.id">
+                                <option  id="search-item" v-for="pro in profilelist" :key="pro.id" v-bind:value="pro.id">
                                     {{pro.name}}
                                 </option>
                         </select>
@@ -58,9 +58,10 @@
                                         </tr>
                                     </table>
                                     <div class="d-inline-block mt-3">
-                                        <button class="btn confirmed" v-if="comment.status != 0" >確認</button>
-                                        <button class="btn confirm-borderbtn" v-else @click="commentConfirm(comment.id)">確認</button>
                                         <button class="btn text-danger delete-borderbtn" @click="deleteComment(comment.id)">削除</button>
+                                        <button class="btn confirmed" v-if="comment.status != 0" >確認済み</button>
+                                        <button class="btn confirm-borderbtn" v-else @click="commentConfirm(comment.id)">新規口コミ承認</button>
+                                        
                                     </div>
                                 </div>
 
@@ -287,13 +288,17 @@
                           if(this.$route.path == "/nuscommentlist"){
                                   this.type = "nursing";
                               }
-                              else{
+                              else{  
                                   this.type = "hospital"
                               }
                         if(typeof page === "undefined"){
                             page = 1;
                         }
-                        var search_word = $("#search-item").val();
+                               
+                        // var search_word = $("#search-item").val();
+                        var search_word = this.profileid;
+                        console.log("serch_word",search_word);
+                       
                         let fd = new FormData();
                         fd.append("search_word", search_word);
                         fd.append("type",this.type);

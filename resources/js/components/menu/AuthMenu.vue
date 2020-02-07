@@ -411,7 +411,7 @@
         gotoDash() {
             this.visit = 'false';
             localStorage.setItem('visit', this.visit);
-            const redirectTo = this.$auth.user().role === 2 ? 'news_list' : 'profile'
+            const redirectTo = this.$auth.user().role === 2 ? 'news_list' : 'accountlist'
             this.$router.push({name: redirectTo})
         },
          toggle() {
