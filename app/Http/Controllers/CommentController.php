@@ -240,7 +240,7 @@ class CommentController extends Controller
             ->where('nursing_profiles.recordstatus', 1)
             ->where('comments.type','nursing')
             ->orderBy('comments.id','DESC')
-            ->paginate(1);
+            ->paginate(12);
         }
         else{
             $commentList = DB::table('comments')
@@ -249,7 +249,7 @@ class CommentController extends Controller
             ->where('hospital_profiles.recordstatus', 1)
             ->where('comments.type','hospital')
             ->orderBy('comments.id','DESC')
-            ->paginate(1);
+            ->paginate(12);
         }
         return response()->json($commentList);
     }
@@ -268,7 +268,7 @@ class CommentController extends Controller
                 ->where('nursing_profiles.recordstatus', 1)
                 ->where('comments.type','nursing')
                 ->orderBy('comments.id','DESC')
-                ->paginate(1);
+                ->paginate(12);
             }
             else{
                 $commentList = DB::table('comments')
@@ -277,7 +277,7 @@ class CommentController extends Controller
                 ->where('hospital_profiles.recordstatus', 1)
                 ->where('comments.type','hospital')
                 ->orderBy('comments.id','DESC')
-                ->paginate(1);
+                ->paginate(12);
             }
     
   
@@ -310,7 +310,7 @@ class CommentController extends Controller
                 ->where('comments.type','nursing')
                 ->select('comments.*')
                 ->orderBy('comments.id','DESC')
-                ->paginate(1);
+                ->paginate(12);
             }
             else{
                 $search_comment = DB::table('comments')
@@ -320,7 +320,7 @@ class CommentController extends Controller
                 ->where('comments.type','hospital')
                 ->select('comments.*')
                 ->orderBy('comments.id','DESC')
-                ->paginate(1);
+                ->paginate(12);
             }
         }
         else{
@@ -332,7 +332,7 @@ class CommentController extends Controller
                 ->where('comments.type','nursing')
                 ->select('comments.*')
                 ->orderBy('comments.id','DESC')
-                ->paginate(1);
+                ->paginate(12);
             }
             else{
                 $search_comment = DB::table('comments')
@@ -341,7 +341,7 @@ class CommentController extends Controller
                 ->where('comments.type','hospital')
                 ->select('comments.*')
                 ->orderBy('comments.id','DESC')
-                ->paginate(1);
+                ->paginate(12);
             }
         }
        
