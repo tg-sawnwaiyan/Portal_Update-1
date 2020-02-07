@@ -25,9 +25,8 @@ class CustomerController extends Controller
         $customer =Customer::where('type_id',$type)->orderBy('created_at', 'desc')->paginate(12);
         return response()->json($customer);
     }
-    public function nusaccount() {
-        $customer = "SELECT nursing_profiles.id,nursing_profiles.name,nursing_profiles.email,nursing_profiles.phone,nursing_profiles.logo from nursing_profiles  JOIN customers ON nursing_profiles.customer_id= customers.id";
-        $nuscustomer = DB::select($customer);
+    public function nusaccount($id) {
+        $nuscustomer = NursingProfile::where('customer_id',$id)->select('id','logo','name','phone','email')->get();
         return $nuscustomer;
     }
     public function hosaccount() {
