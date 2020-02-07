@@ -477,7 +477,7 @@ import {quillEditor} from 'vue-quill-editor'
                         }
                     },
                 imgUrlAlt(event) {
-                event.target.src = "images/noimage.jpg"
+                event.target.src = "/images/noimage.jpg"
             },
             }
     }

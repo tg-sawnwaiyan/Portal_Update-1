@@ -4,133 +4,75 @@
         <!-- <span style="position:fixed;right:50px;" class="btn secondary-bg-color all-btn" @click="createProfile()">作成</span> -->
         <form class="col-md-12 form-class">
             <div class="col-md-12 pad-free">
-                <div class="col-md-12 m-lr-0 pad-free">
-                    <div class="form-group form-group-wrapper">
-                        <div class="row m-0 mt-2">
-                            <label class="heading-lbl col-4 col-lg-2 col-md-3 col-sm-3">パノラマ<span class="error">*</span></label>
-                            <div class="col-8 col-lg-10 col-md-9 col-sm-9">
-                                <span class="btn-file">画像を選択                     
-                                <input type="file" name="img" class="nursing-panorama m-b-10"  id="upload_panorama" @change="preview_panorama()" multiple>
-                                </span> 
-                                <span id="imgname" class="pl-4">{{img_name}}</span>
-                            </div>
-                        </div>
-                    
-                        <div class="row col-md-12 pad-free panorama panorama-box">
-                        <!-- <div > -->
-                            <div class="col-sm-3 col-md-3 mt-2 gallery-area-panorama" v-bind:id="'x-panorama'+indx" v-for="(img,indx) in panorama_arr" :key="img.id">
-                                <input type="hidden" class="already-panorama" v-model="img.photo">
-                                <span class='img-close-btn' v-on:click="DeleteArr(indx,'panorama',img.id,img.photo)">X</span>
-                                <img :src="'/upload/nursing_profile/Imagepanorama/'+ img.photo" class="img-fluid panorama-old-img" alt="profile" v-if="img.id!=null"  id="already-panorama">
-                                <img :src="img.path" class="img-fluid panorama-new-img" alt="profile" v-if="img.id==null" id="already-panorama">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- <div class="row col-md-12 text-center">
-                        <label class="h_4 next-title"> Panorama</label>
-                        <input type="file" name="" class="nursing-panorama m-b-10"  id="upload_panorama" @change="preview_panorama()" multiple>
-                    </div>
-                        -->
-
-                </div>
-
                 <button v-scroll-to="{ el: '#btn'}" id="btn_click" hidden></button>
+                    <div class="row col-md-12 pad-free">
+                        <div class="col-md-6">
+                            <div class="form-group form-group-wrapper logo-area d-flex">
+                                <img :src="profile_img" id="thumbnil" class="profile_logo m-b-8" alt="Logo"  @error="imgUrlAlt" width="400px" >
+                                <br>
+                                <input type="file" name="" class ="customer-logo m-b-10" id="customer-logo" @change="preview_image($event,'0')">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group form-group-wrapper d-flex">
+                                <label class="heading-lbl col-md-2 col-12 pad-free">施設名称<span class="error">*</span></label>
+                                <input type="text" class="form-control customer-name col-md-10 col-12 nursing_input" id="btn" placeholder="施設名称を入力してください。" v-model="nursing_info.name">
+                            </div>
+                            <div class="form-group form-group-wrapper d-flex">
+                                <label class="heading-lbl1 col-md-2 col-12 pad-free">メールアドレス<span class="error">*</span></label>
+                                <input type="text" class="form-control customer-email col-md-10 col-12 nursing_input" id="btn" v-model="nursing_info.email" placeholder="メールアドレスを入力してください。">
+                            </div>
+                            <div class="form-group form-group-wrapper d-flex">
+                                <label class="heading-lbl col-md-2 col-12 pad-free">電話番号<span class="error">*</span></label>
+                                <div class="col-md-10 col-12 p-0">
+                                    <input type="text" class="form-control customer-phone  nursing_input" id="phone" placeholder="電話番号を入力してください。" v-model="nursing_info.phone" v-on:keyup="isNumberOnly" pattern="[0-9-]*" @focusout="focusPhone" title="Please enter number only." maxlength="14">
+                                    <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>
+                                    <span class="error" v-else></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="form-group form-group-wrapper d-flex">
-                            <label class="heading-lbl col-md-2 col-12 pad-free">施設名称<span class="error">*</span></label>
-                            <input type="text" class="form-control customer-name col-md-10 col-12 nursing_input" id="btn" placeholder="施設名称を入力してください。" v-model="nursing_info.name">
+                            <label class="heading-lbl col-md-2 col-12 pad-free">公式サイト</label>
+                            <input type="text" name="official-website" class="form-control website col-md-10 col-12 nursing_input" v-model="nursing_info.website">
                     </div>
                     <div class="form-group form-group-wrapper d-flex">
                             <label class="heading-lbl col-md-2 col-12 pad-free">運営事業者</label>
                             <input type="text" class="form-control customer-name col-md-10 col-12 nursing_input" id="btn" v-model="nursing_info.operator" placeholder="運営事業者を入力してください。">
                     </div>
-                    <div class="form-group form-group-wrapper d-flex">
-                            <label class="heading-lbl1 col-md-2 col-12 pad-free">メールアドレス<span class="error">*</span></label>
-                            <label class=" col-md-10 col-12 customer-email"> {{nursing_info.email}} </label>
-                    </div>
-                    <div class="form-group form-group-wrapper d-flex">
-                            <label class="heading-lbl col-md-2 col-12 pad-free">電話番号<span class="error">*</span></label>
-                            <div class="col-md-10 col-12 p-0">
-                            <input type="text" class="form-control customer-phone  nursing_input" id="phone" placeholder="電話番号を入力してください。" v-model="nursing_info.phone" v-on:keyup="isNumberOnly" pattern="[0-9-]*" @focusout="focusPhone" title="Please enter number only." maxlength="14">
-                            <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>
-                            <span class="error" v-else></span>
-                            </div>
-                    </div>
-                    <div class="form-group form-group-wrapper d-flex">
-                            <label class="heading-lbl col-md-2 col-12 pad-free">公式サイト</label>
-                            <input type="text" name="official-website" class="form-control website col-md-10 col-12 nursing_input" v-model="nursing_info.website">
-                    </div>
-                    <div class="form-group form-group-wrapper">
-                            <label class="heading-lbl col-md-2 col-12 pad-free">フォトアルバム</label>
 
-                                    <span class="galleryadd btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px" @click="galleryAdd()">
-                                    <i class="fas fa-plus-circle"></i> 追加</span>
-                                    <span class='changeGalleryLink btn btn all-btn main-bg-color nursing_toggle_responsive' style="min-width: 0px;" @click="galleryToggle" >
-                                        <i id="gallery" class="fas fa-sort-down"></i>
-                                   </span>
-                            <div id="changeGalleryLink"  class="col-md-12">
-                                    <div class="row" id ="gallery-photo">
-                                            <div class="col-md-6 gallery-area-photo p0-480" v-bind:id="'photo'+indx" v-for="(img,indx) in img_arr" :key="img.id">
-                                                    <div class="col-md-12 p0-480">
-                                                            <span class="btn-file d-inline-block">画像を選択        
-                                                            <input type="file" name="" class="nursing-photo" v-bind:class="img.classname" id="upload_img" @change="preview_image($event,indx)">
-                                                            </span> 
-                                                            <span class="d-inline-block align-top pt-2" v-bind:id="'img_name'+indx"></span>
-                                                            <div class="col-md-12  p0-480" v-bind:class="img.id">
-                                                                <input type="hidden" class="already-photo" v-model="img.photo">
-                                                                <img v-bind:src="img.src" class="img-fluid nursing-image" alt="profile" v-if="img.src!=null" @error="imgUrlAlt">
-                                                            </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <label class="m-t-10">タイトル:</label>
-                                                        <input type="text" name="title" placeholder="タイトル" class="form-control m-b-15 title white-bg-color" v-model="img.title">
-                                                        <label>コンテンツ:</label>
-                                                        <textarea name="description" placeholder="コンテンツ" class="form-control m-b-15 description white-bg-color" v-model="img.description"></textarea>
-                                                    </div>
-                                                    <div class="col-md-12 text-right">
-                                                            <a class="mr-auto text-danger btn delete-borderbtn" @click="DeleteArr(indx,'photo',img.id,img.photo)"> <i class="fa fa-trash"></i> 削除</a>
-                                                    </div>
-                                            </div>
-                                    </div>
+                    <!-- start panorama area -->
+                    <div class="col-md-12 m-lr-0 pad-free">
+                        <div class="form-group form-group-wrapper">
+                            <div class="row m-0 mt-2">
+                                <label class="heading-lbl col-4 col-lg-2 col-md-3 col-sm-3">パノラマ<span class="error">*</span></label>
+                                <div class="col-8 col-lg-10 col-md-9 col-sm-9">
+                                    <span class="btn-file">画像を選択                     
+                                        <input type="file" name="img" class="nursing-panorama m-b-10"  id="upload_panorama" @change="preview_panorama()" multiple>
+                                    </span> 
+                                    <span id="imgname" class="pl-4">{{img_name}}</span>
+                                </div>
                             </div>
-                    </div>
-
-                    <div class="form-group form-group-wrapper">
-                            <label class="heading-lbl col-2 pad-free">動画</label> <span class="galleryvideo btn all-btn main-bg-color float-right nursing_add_responsive " style="min-width: 0px;" @click="galleryVideoAdd()">
-                                    <i class="fas fa-plus-circle"></i> 追加</span>
-                                    <span class='changeGalleryVideoLink  btn btn all-btn main-bg-color nursing_toggle_responsive ' style="min-width: 0px;" @click="galleryVideoToggle" >
-                                        <i id="video" class="fas fa-sort-down"></i>
-                                   </span>
-                            <div id="changeGalleryVideoLink" class="col-md-12">
-                                    <div class="row" id="gallery-video">
-                                            <div class="col-md-6 gallery-area-video" v-bind:id="'video'+indx" v-for="(video,indx) in video_arr" :key="video.id">
-                                                <div class="col-md-12">
-                                                    <label>URL:</label>
-                                                    <input type="text" name="url" placeholder="url" class="form-control m-b-15 video-url white-bg-color" v-model="video.photo">
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <label>タイトル:</label>
-                                                    <input type="text" name="title" placeholder="タイトル" class="form-control m-b-15 title white-bg-color" v-model="video.title">
-                                                    <label>コンテンツ:</label>
-                                                    <textarea name="description" placeholder="コンテンツ" class="form-control m-b-15 description white-bg-color" v-model="video.description"></textarea>
-                                                </div>
-                                                <div class="col-md-12 text-right">
-                                                <a class="mr-auto text-danger btn delete-borderbtn" @click="DeleteArr(indx,'video',video.id,video.photo)"> <i class="fa fa-trash"></i> 削除</a>
-                                                </div>
-                                            </div>
-                                    </div>
+                            <div class="row col-md-12 pad-free panorama panorama-box">
+                                <div class="col-sm-3 col-md-3 mt-2 gallery-area-panorama" v-bind:id="'x-panorama'+indx" v-for="(img,indx) in panorama_arr" :key="img.id">
+                                    <input type="hidden" class="already-panorama" v-model="img.photo">
+                                    <span class='img-close-btn' v-on:click="DeleteArr(indx,'panorama',img.id,img.photo)">X</span>
+                                    <img :src="'/upload/nursing_profile/Imagepanorama/'+ img.photo" class="img-fluid panorama-old-img" alt="profile" v-if="img.id!=null"  id="already-panorama">
+                                    <img :src="img.path" class="img-fluid panorama-new-img" alt="profile" v-if="img.id==null" id="already-panorama">
+                                </div>
                             </div>
+                        </div>
                     </div>
-                <table class="table table-bordered table-wrapper">
+                    <!-- end panoram area -->
+                    <table class="table table-bordered table-wrapper">
                         <tr>
-                                <th class="nursing_table" style="border:none;"> <label class="heading-lbl pad-free">特長<span class="error">*</span></label></th>
-                                <td  class="nursing_table1" style="border:none;">
-                                        <!-- <textarea name="feature" id="" cols="30" rows="10" ></textarea> -->
-                                        <quill-editor  ref="myQuilEditor" name="feature" class="feature" v-model="nursing_info.feature" @change="onFeatureEditorChange($event)" :options="editorOption" @blur="onEditorBlur($event)" @focus="onEditorFocus($event)"/>
-
-                                </td>
+                            <th class="nursing_table" style="border:none;"> <label class="heading-lbl pad-free">特長<span class="error">*</span></label></th>
+                            <td  class="nursing_table1" style="border:none;">
+                                <!-- <textarea name="feature" id="" cols="30" rows="10" ></textarea> -->
+                                <quill-editor  ref="myQuilEditor" name="feature" class="feature" v-model="nursing_info.feature" @change="onFeatureEditorChange($event)" :options="editorOption" @blur="onEditorBlur($event)" @focus="onEditorFocus($event)"/>
+                            </td>
                         </tr>
-
                 </table>
 
                 <!--table 1 for 費用-->
@@ -590,6 +532,70 @@
 
                 <!-- end table 6 for こだわりの特長  -->
 
+                <!-- start photo and video area -->
+                <div class="form-group form-group-wrapper">
+                    <label class="heading-lbl col-md-2 col-12 pad-free">フォトアルバム</label>
+                    <span class="galleryadd btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px" @click="galleryAdd()">
+                        <i class="fas fa-plus-circle"></i> 追加
+                    </span>
+                    <span class='changeGalleryLink btn btn all-btn main-bg-color nursing_toggle_responsive' style="min-width: 0px;" @click="galleryToggle" >
+                        <i id="gallery" class="fas fa-sort-down"></i>
+                    </span>
+                    <div id="changeGalleryLink"  class="col-md-12">
+                        <div class="row" id ="gallery-photo">
+                            <div class="col-md-6 gallery-area-photo p0-480" v-bind:id="'photo'+indx" v-for="(img,indx) in img_arr" :key="img.id">
+                                <div class="col-md-12 p0-480">
+                                    <span class="btn-file d-inline-block">画像を選択        
+                                        <input type="file" name="" class="nursing-photo" v-bind:class="img.classname" id="upload_img" @change="preview_image($event,indx)">
+                                    </span> 
+                                    <span class="d-inline-block align-top pt-2" v-bind:id="'img_name'+indx"></span>
+                                    <div class="col-md-12  p0-480" v-bind:class="img.id">
+                                        <input type="hidden" class="already-photo" v-model="img.photo">
+                                        <img v-bind:src="img.src" class="img-fluid nursing-image" alt="profile" v-if="img.src!=null" @error="imgUrlAlt">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="m-t-10">タイトル:</label>
+                                    <input type="text" name="title" placeholder="タイトル" class="form-control m-b-15 title white-bg-color" v-model="img.title">
+                                    <label>コンテンツ:</label>
+                                        <textarea name="description" placeholder="コンテンツ" class="form-control m-b-15 description white-bg-color" v-model="img.description"></textarea>
+                                </div>
+                                <div class="col-md-12 text-right">
+                                    <a class="mr-auto text-danger btn delete-borderbtn" @click="DeleteArr(indx,'photo',img.id,img.photo)"> <i class="fa fa-trash"></i> 削除</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="form-group form-group-wrapper">
+                            <label class="heading-lbl col-2 pad-free">動画</label> <span class="galleryvideo btn all-btn main-bg-color float-right nursing_add_responsive " style="min-width: 0px;" @click="galleryVideoAdd()">
+                                    <i class="fas fa-plus-circle"></i> 追加</span>
+                                    <span class='changeGalleryVideoLink  btn btn all-btn main-bg-color nursing_toggle_responsive ' style="min-width: 0px;" @click="galleryVideoToggle" >
+                                        <i id="video" class="fas fa-sort-down"></i>
+                                   </span>
+                            <div id="changeGalleryVideoLink" class="col-md-12">
+                                    <div class="row" id="gallery-video">
+                                            <div class="col-md-6 gallery-area-video" v-bind:id="'video'+indx" v-for="(video,indx) in video_arr" :key="video.id">
+                                                <div class="col-md-12">
+                                                    <label>URL:</label>
+                                                    <input type="text" name="url" placeholder="url" class="form-control m-b-15 video-url white-bg-color" v-model="video.photo">
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <label>タイトル:</label>
+                                                    <input type="text" name="title" placeholder="タイトル" class="form-control m-b-15 title white-bg-color" v-model="video.title">
+                                                    <label>コンテンツ:</label>
+                                                    <textarea name="description" placeholder="コンテンツ" class="form-control m-b-15 description white-bg-color" v-model="video.description"></textarea>
+                                                </div>
+                                                <div class="col-md-12 text-right">
+                                                <a class="mr-auto text-danger btn delete-borderbtn" @click="DeleteArr(indx,'video',video.id,video.photo)"> <i class="fa fa-trash"></i> 削除</a>
+                                                </div>
+                                            </div>
+                                    </div>
+                            </div>
+                    </div>
+                <!-- end photo and video area -->
+
                 <!-- table 7 for 公式サイト -->
                 <table class="table table-bordered table-wrapper">
                     <tr>
@@ -687,7 +693,7 @@ export default {
                 fac_list: [],
                 feature_list:[],
                 medical_acceptance:[],
-                nursing_info:[],nursing_info_push:[], nursing_info:[], staff_info:[], staff_info_push:[],
+                nursing_info:[],nursing_info_push:[], staff_info:[], staff_info_push:[],
                 acceptance: [],
 
                 img_arr:[],
@@ -735,7 +741,7 @@ export default {
                 city_id: 0,
                 township_list: [],
                 address_show: '',
-                img_name:''
+                img_name:'',profile_img:''
             }
         },
 
@@ -772,6 +778,7 @@ export default {
                 .get('/api/nursinginfo/'+this.pro_id)
                 .then(response=>{
                     this.nursing_info = response.data;
+                    this.profile_img = '/upload/nursing_profile/' +this.nursing_info.logo;
                     this.axios
                     .get('/api/nurscities/'+this.nursing_info.townships_id)
                     .then(response=>{
@@ -823,7 +830,6 @@ export default {
                 this.axios
                 .get('/api/nursing-pgallery/'+this.pro_id)
                 .then(response=>{
-                    console.log(response)
                     this.img_arr = response.data;
                 });
 
@@ -868,7 +874,7 @@ export default {
               }
             },
             imgUrlAlt(event) {
-                event.target.src = "images/noimage.jpg"
+                event.target.src = "/images/noimage.jpg"
             },
 
             onEditorBlur(quill) {
@@ -895,10 +901,15 @@ export default {
                 this.isRotate3 = !this.isRotate3;
             },
             preview_image(event,indx) {
-                this.img_arr[indx]['photo'] = event.target.files[0].name;
-                this.img_arr[indx]['src'] = URL.createObjectURL(event.target.files[0]);
-                $('#img_name'+indx).text(event.target.files[0].name);
-                // $('#already-photo1').html("<img src='"+URL.createObjectURL(event.target.files[0])+"' class='img-fluid nursing-image'>");
+                if(indx == '0') {
+                    this.nursing_info.logo = event.target.files[0].name;
+                    this.profile_img = URL.createObjectURL(event.target.files[0]);
+                    $('#customer-logo').text(event.target.files[0].name);
+                } else {
+                    this.img_arr[indx]['photo'] = event.target.files[0].name;
+                    this.img_arr[indx]['src'] = URL.createObjectURL(event.target.files[0]);
+                    $('#img_name'+indx).text(event.target.files[0].name);
+                }
             },
             preview_panorama() {
                 const file =event.target.files[0];
@@ -1166,7 +1177,6 @@ export default {
             createProfile() {
                 
                 this.$loading(true);
-                console.log(this.img_arr)
 
                 this.profile_arr = [];
 
@@ -1182,8 +1192,6 @@ export default {
                 // Photo
                 let pt = new FormData();
                 var img = document.getElementsByClassName('gallery-area-photo');
-                console.log("img")
-                console.log(img)
                 for(var i =this.img_arr.length-1;i>=0;i--)
                 {
                     this.img_arr[i]['type'] = 'photo';
@@ -1193,7 +1201,6 @@ export default {
                     }
 
                     var file = img[i].getElementsByClassName('nursing-photo')[0].files[0];
-                    console.log(img[i].getElementsByClassName('nursing-photo')[0].files)
                     if(file) {
                         pt.append(i ,file )
                     }
@@ -1207,6 +1214,21 @@ export default {
                         this.errors = error.response.data.errors
                     }
                 })
+
+                // Logo
+                let lg = new FormData();
+                if(document.getElementsByClassName('customer-logo')[0].files[0]) {
+                    var file = document.getElementsByClassName('customer-logo')[0].files[0];
+                    lg.append('logo',file);
+                    this.axios.post('/api/nursing/movelogo', lg)
+                    .then(response => {
+                    }).catch(error=>{
+                        console.log(error);
+                    if(error.response.status == 422){
+                        this.errors = error.response.data.errors
+                    }
+                     })
+                }
 
                 // Video
                 for(var i =this.video_arr.length-1;i>=0;i--){
@@ -1269,7 +1291,7 @@ export default {
                         }
                     })
 
-                this.profile_arr.push({nursing_profile:this.nursing_info,nursing_info:this.nursing_info,staff_info:this.staff_info, cooperate_list:this.cooperate_arr,
+                this.profile_arr.push({nursing_profile:this.nursing_info,staff_info:this.staff_info, cooperate_list:this.cooperate_arr,
                                         payment_list:this.payment_arr, video:this.video_arr, image: this.img_arr, panorama: this.panorama_arr,
                                         acceptance:acceptance,chek_feature:this.chek_feature
                 });

@@ -107,7 +107,7 @@
                                 <router-link :to="{ name: 'profile' }"><i class="fa fa-map"></i>  マイページ編集</router-link>
                             </li>
                             <li v-if="$auth.check(1)">
-                                <span @click="subMenu(4)" :class="{ active : isActive == 4 }"><i class="fa fa-suitcase"></i>  求人 <i class="fas fa-angle-right" :class="{ down : isRotate == 4 }"></i></span>
+                                <span @click="subMenu(4)" :class="{ active : isActive == 4 }"><i class="fas fa-users"></i>  求人 <i class="fas fa-angle-right" :class="{ down : isRotate == 4 }"></i></span>
                                 <transition name="slideup">
                                     <ul class="sub_menu" v-show="isSubmenu[4].show">
                                         <li @click="toggle">
@@ -158,7 +158,7 @@
                                 </transition>
                             </li>
                             <li v-if="$auth.check(2)">
-                                <span @click="subMenu(2)" :class="{ active : isActive == 2 }"><i class="fa fa-hospital"></i>  病院 <i class="fas fa-angle-right" :class="{ down : isRotate == 2 }"></i></span>
+                                <span @click="subMenu(2)" :class="{ active : isActive == 2 }"><i class="fas fa-briefcase-medical"></i>  病院 <i class="fas fa-angle-right" :class="{ down : isRotate == 2 }"></i></span>
                                 <transition name="slideup">
                                     <ul class="sub_menu" v-show="isSubmenu[2].show">
                                         <li @click="toggle">
@@ -180,7 +180,7 @@
                                 </transition>
                             </li>
                             <li v-if="$auth.check(2)">
-                                <span @click="subMenu(3)" :class="{ active : isActive == 3 }"><i class="fa fa-suitcase"></i>  求人 <i class="fas fa-angle-right" :class="{ down : isRotate == 3 }"></i></span>
+                                <span @click="subMenu(3)" :class="{ active : isActive == 3 }"><i class="fas fa-users"></i>  求人 <i class="fas fa-angle-right" :class="{ down : isRotate == 3 }"></i></span>
                                 <transition name="slideup">
                                     <ul class="sub_menu" v-show="isSubmenu[3].show">
                                         <li @click="toggle">
@@ -196,7 +196,7 @@
                                 </transition>
                             </li>
                             <li>
-                                <a href="#" @click.prevent="$auth.logout()"><i class="fa fa-lock"></i> ログアウト</a>
+                                <a href="#" @click.prevent="$auth.logout()" class="p-0"><i class="fa fa-lock"></i> ログアウト</a>
                             </li>
                         </ul>
                         <ul class="sidebar_brand" v-if="visit == 'true'">

@@ -252,7 +252,7 @@ const routes = [
     },
     {
         name: "profiledit",
-        path: "/profiledit",
+        path: "/profiledit/:type/:id",
         component: ProfileEdit,
         meta: {
             auth: true,
@@ -260,7 +260,7 @@ const routes = [
     },
     {
         name: "accountlist",
-        path: "/accountlist",
+        path: "/accountlist/:type/:id",
         component: Accountlist,
         meta: {
             auth: true,

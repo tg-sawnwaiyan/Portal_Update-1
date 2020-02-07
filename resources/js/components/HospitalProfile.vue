@@ -5,18 +5,23 @@
         <div class="col-md-12 pad-free">
             <div class="form-group row">
               
-                <div class="col-md-2">
+                <div class="col-lg-4 col-md-4">
                   <div class="card card-logo" >
                     <div class="card-body">  
                         <img :src="logo" class="profile-logo m-b-20 img-fluid"   @error="imgUrlAlt" >
-                        <span class="btn-file">画像を選択                     
+
+
+                        <div class="d-flex align-items-center"><span class="btn-file d-inline-block">
+                        画像を選択                     
                         <input type="file" name="img" class="pro-logo nursing-panorama" @change="logo_preview(this)">
-                        </span> 
+                        </span>
+                        <span class="pl-4"></span> 
+                        </div>
                         <span id="imgname" class="d-inline-block align-top pt-2 text-truncate" style="max-width:200px;">{{img_name}}</span>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-10">
+                <div class="col-lg-8 col-md-8">
                     <div class="form-group form-group-wrapper d-flex">
                         <label class="heading-lbl col-md-2 col-12 pad-free">施設名称 <span class="error">*</span></label>
                         <input type="text" class="form-control customer-name col-md-10 col-12 nursing_input" placeholder="施設名称を入力してください。" v-model="hospital_info.name">
@@ -109,7 +114,7 @@
             </label>
 
             <textarea name="specialist" class="form-control col-md-10 col-12 hos-768 specialist white-bg-color" v-model="hospital_info.specialist" ></textarea>
-        </div>
+        </div>  
 
         <table class="table table-bordered table-wrapper">
             <tr>
@@ -1584,7 +1589,7 @@ export default {
             onDetailInfoEditorChange({ editor, html, text }) {
                 // console.log('editor change!', editor, html, text)
                 // this.detail_info = jQuery(html).text();
-                this.hospital_info.details_info = jQuery(html).text();
+                this.hospital_info.details_info = html;
             },
             galleryVideoAdd() {
                    this.video_arr.push({title:'',description:'',url:''});
@@ -1771,12 +1776,14 @@ export default {
 </script>
 <style>
 .profile-logo{
-  height: 150px;
-  width:200px;
+  max-height: 120px;
+  overflow: hidden;
+
 }
-.card-logo .card-body{
+
+/* .card-logo .card-body{
   height: 250px !important;
-}
+} */
  .quill-editor{
           background-color: #fff;
   }

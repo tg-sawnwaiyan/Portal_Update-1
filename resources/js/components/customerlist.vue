@@ -11,8 +11,8 @@
                     <p>表示するデータありません‼新しいデータを作成してください。</p>
                 </div>
                 <div v-else class="container-fuid">
-                    <h4 class="main-color m-b-10">事業者検索</h4>
-                    <div class="row">
+                    <h4 class="main-color mb-3">事業者検索</h4>
+                    <div class="row mb-4">
                         <div class="col-md-12">
                             <input type="text" class="form-control" placeholder="事業者検索" id="search-word" @keyup="searchCustomer()" />
                         </div>
@@ -21,15 +21,9 @@
                     <h5 class="header">{{title}}</h5>
                     <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデタが消える。</div>
                     <div v-else class="container-fuid">
-                        <table class="table List_tbl">
+                        <table class="table table-bordered">
                             <tr v-for="customer in customers.data" :key="customer.id">
-                                <td>
-                                    <div>
-                                        <img :src="'/upload/hospital_profile/'+ customer.logo" class="img-fluid" alt="cust" v-if="customer.type_id == 2" @error="imgUrlAlt" />
-                                        <img :src="'/upload/nursing_profile/'+ customer.logo" class="img-fluid" alt="cust" v-if="customer.type_id != 2" @error="imgUrlAlt" />
-                                    </div>
-                                </td>
-                                <td>
+                                <td  class="p-4">
                                     <div class="row m-0">
                                         <div class="col-sm-12 p-0">
                                             <div class="row">
@@ -66,17 +60,16 @@
                                             <!-- <div class="col-md-2 max-width13"><strong>Logo:</strong></div><div class="col-md-10">{{customer.logo}}</div> -->
                                             <div class="row mt-3">
                                                 <div class="col-md-12">
-                                                    <button class="btn delete-borderbtn mr-2" @click="deleteCustomer(customer.id)">削除</button>
+                                                    <button class="btn delete-borderbtn mr-2 mb-2" @click="deleteCustomer(customer.id)">削除</button>
                                                     <!-- <router-link :to="{name:'custedit',params:{id:customer.id}}" class="btn main-bg-color all-btn white">Edit</router-link> -->
                                                     <!-- <button class="btn confirm-borderbtn" v-if="customer.status == 0">確認済</button> -->
 
-                                                    <button class="btn confirm-borderbtn" :id="'confirm-btn'+customer.id" v-if="customer.status == 0" @click="comfirm(customer.id)">新規登録承認</button>
+                                                    <button class="btn confirm-borderbtn  mb-2" :id="'confirm-btn'+customer.id" v-if="customer.status == 0" @click="comfirm(customer.id)">新規登録承認</button>
                                                     <!-- <span class="btn confirm-borderbtn" style="border-color: #ccc!important; color: #ccc!important;cursor:not-allowed;" :id="'confirm-btn'+customer.id" v-else>登録承認済</span>     -->
-                                                    <span v-else class="">
-
-                                                        <router-link :to="{name: 'profiledit', params:{cusid: customer.id}}" v-if="customer.status == 1" class="btn confirm-orangebtn  mr-2"><i class="fa fa-map"></i> プロフィール設定</router-link>
+                                                    <span v-else class="">                                                  
                                             <!-- <button class="btn confirm-orangebtn">プロフィール設定</button> -->
-                                            <router-link :to="{name: 'profile', params:{cusid: customer.id, type: customer.type_id == 2? 'hospital':'nursing'}}" v-if="customer.status == 1" class="btn confirm-orangebtn"><i class="fa fa-edit"></i> ページ編集</router-link>
+                                            <router-link :to="{ path:'/accountlist/'+ type +'/'+ customer.id}" v-if="customer.status == 1" class="btn confirm-orangebtn  mb-2"><i class="fa fa-edit"></i> 施設一覧</router-link>
+                                             <router-link :to="{ path:'/profiledit/'+ type +'/'+ customer.id}" v-if="customer.status == 1" class="btn confirm-orangebtn  mr-2 mb-2"><i class="fa fa-map"></i> プロフィール設定</router-link>
                                             <p class="mt-2">この事業者は登録承認済です。</p>
                                                     </span>
                                                     
@@ -91,9 +84,6 @@
                                         </div> -->
                                     </div>
                                 </td>
-                                <!-- <td class="text-right  mr-4 mb-3 mt-2">
-                                    
-                                </td> -->
                             </tr>
                         </table>
                         <!-- <div v-for="customer in displayItems" :key="customer.id" class="card card-default m-b-20">
@@ -173,6 +163,7 @@
                     norecord_msg: false,
                     nosearch_msg: false,
                     title: '',
+                    type: null,
                 };
             },
             created() {
@@ -184,6 +175,7 @@
             methods: {
                 initialCall(){
                     if(this.$route.path == "/nuscustomerlist"){
+                        this.type = "nursing";
                         this.title = "介護施設事業者一覧";
                         this.axios.get("/api/customers/3").then(response => {
                             this.$loading(false);
@@ -197,6 +189,7 @@
                         });
                     }
                     else if(this.$route.path == "/hoscustomerlist"){
+                        this.type = "hospital";
                         this.title = "病院事業者一覧";
                         this.axios.get("/api/customers/2").then(response => {
                             this.$loading(false);
@@ -304,7 +297,7 @@
                         });
                     },
                     imgUrlAlt(event) {
-                        event.target.src = "images/noimage.jpg"
+                        event.target.src = "/images/noimage.jpg"
                     },                    
             }
     };

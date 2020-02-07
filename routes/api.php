@@ -293,6 +293,7 @@ Route::get('nursing-pgallery/{id}','GalleryController@getPhotobyCustomerId');
 Route::get('nursing-vgallery/{id}','GalleryController@getVideobyCustomerId');
 Route::get('nursing-panorrama-gallery/{id}','GalleryController@getPanoramabyCustomerId');
 Route::post('nursing/movephoto','NursingProfileController@movePhoto');
+Route::post('nursing/movelogo','NursingProfileController@moveLogo');
 Route::post('nursing/movepanorama','NursingProfileController@movePanorama');
 Route::post('nursing/movelatlng/{id}','ProfileController@movelatlng');
 Route::post('hospital/movephoto','HospitalProfileController@movePhoto');
@@ -313,8 +314,8 @@ Route::get('staffinfo/{id}', 'ProfilePublishController@getStaffbyCustomerId');
 
 // Route::post('nursing/galleryupdate/{id}', 'NursingProfileController@galleryupdate');
 Route::post('hospital/galleryupdate/{id}', 'HospitalProfileController@galleryupdate');
-Route::get('account_nursing','CustomerController@nusaccount');
-Route::get('account_hospital','CustomerController@hosaccount');
+Route::get('account_nursing/{id}','CustomerController@nusaccount');
+Route::get('account_hospital/{id}','CustomerController@hosaccount');
 
 // Route::post('nursing/cooperate/{id}', 'NursingProfileController@cooperateupdate');
 // Route::post('nursing/paymentmethod/{id}', 'NursingProfileController@paymentupdate');
