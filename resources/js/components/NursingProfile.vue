@@ -69,7 +69,6 @@
                         <tr>
                             <th class="nursing_table" style="border:none;"> <label class="heading-lbl pad-free">特長<span class="error">*</span></label></th>
                             <td  class="nursing_table1" style="border:none;">
-                                {{nursing_info.feature}}
                                 <!-- <textarea name="feature" id="" cols="30" rows="10" ></textarea> -->
                                 <quill-editor  ref="myQuilEditor" name="feature" class="feature" v-model="nursing_info.feature" @change="onFeatureEditorChange($event)" :options="editorOption" @blur="onEditorBlur($event)" @focus="onEditorFocus($event)"/>
                             </td>

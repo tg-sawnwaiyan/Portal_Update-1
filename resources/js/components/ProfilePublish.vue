@@ -392,7 +392,7 @@
                                     <font>支払方法</font>
                                 </th>
                                 <td v-if="nus_method">
-                                    <font>{{nus_method}}</font>
+                                    <p>{{nus_method}}</p>
                                 </td>
                                 <td v-else> -
                                 </td>
