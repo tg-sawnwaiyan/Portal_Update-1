@@ -220,8 +220,8 @@ Route::group(['middleware' => ['auth:api']], function() {
         Route::get('featurelist/{type}', 'SpecialFeatureController@index');
         Route::get('nursing-feature/{type}', 'SpecialFeatureController@getFeaturebyProfileType');
         Route::post('update/{id}', 'SpecialFeatureController@update');
-        Route::delete('delete/{id}','SpecialFeatureController@destroy');
-        Route::post('search','SpecialFeatureController@search');
+        Route::delete('delete/{id}/{type}','SpecialFeatureController@destroy');
+        Route::post('search/{type}','SpecialFeatureController@search');
     });
     //End SpecialFeature
 
@@ -293,6 +293,7 @@ Route::get('nursing-pgallery/{id}','GalleryController@getPhotobyCustomerId');
 Route::get('nursing-vgallery/{id}','GalleryController@getVideobyCustomerId');
 Route::get('nursing-panorrama-gallery/{id}','GalleryController@getPanoramabyCustomerId');
 Route::post('nursing/movephoto','NursingProfileController@movePhoto');
+Route::post('nursing/movelogo','NursingProfileController@moveLogo');
 Route::post('nursing/movepanorama','NursingProfileController@movePanorama');
 Route::post('nursing/movelatlng/{id}','ProfileController@movelatlng');
 Route::post('hospital/movephoto','HospitalProfileController@movePhoto');

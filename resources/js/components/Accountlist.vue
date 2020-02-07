@@ -81,10 +81,9 @@ export default {
             }
 
     },
-    method: {
+    methods: {
         imgUrlAlt(event,$id) 
         {
-            console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
             event.target.src = "/images/noimage.jpg"
         }
     }
