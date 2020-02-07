@@ -11964,6 +11964,10 @@ strong {
 }
 
 @media only screen and (max-width:320px) {
+
+    .comment{
+        background-color: red;;
+    }
     .set-date {
         text-indent: 0em;
     }
@@ -12014,4 +12018,17 @@ strong {
     #news_list .select_label {
         width: 26% !important;
     }
+}
+
+/*comment*/
+@media only screen and (max-width:360px) {
+
+    .comment{
+        padding: 20px;
+    }
+    .text-right
+    {
+        text-align: left !important;
+    }
+    
 }

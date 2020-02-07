@@ -12,7 +12,7 @@
                     <div class="card-body ">
                         <div class="row">
                          <div class="col-sm-10 offset-1">
-                                <form @submit.prevent ="add" class="m-t-16 sendEmail comform"  method="post">
+                                <form @submit.prevent ="add" class="m-t-16 sendEmail comform comment"  method="post" >
                                         <div class="form-group row">
                                             <div class="col-sm-4 text-right">
                                                 <label for ="title"  ><strong> 口コミタイトル <span class="error sp1">必須</span></strong>   </label>
