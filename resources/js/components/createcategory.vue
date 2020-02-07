@@ -1,5 +1,5 @@
 <template>
-    <div class="card">
+    <div class="card"  id="cat_post">
         <div class="card-body">
             <h4 class="page-header header">{{title}}</h4>
             <br>

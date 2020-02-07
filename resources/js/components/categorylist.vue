@@ -1,10 +1,5 @@
 <template>
         <div>
-            <div class="d-flex justify-content-end m-b-10" v-if="!norecord_msg">               
-                <router-link to="/createcategory" class="main-bg-color create-btn all-btn">
-                    <i class="fas fa-plus-circle"></i> カテゴリー新規作成
-                </router-link>           
-            </div>
             <!--card-->
             <div class="col-12  tab-content">
                 <div class="p-2 p0-480">
@@ -20,7 +15,7 @@
                         </a>
                     </div>
                     <div v-else class="container-fuid">
-                        <h4 class="main-color m-b-10">ニュースカテゴリー検索</h4>
+                        <h4 class="main-color mb-3">ニュースカテゴリー検索</h4>
                         <div class="row">
                             <div class="col-md-12">
                                 <input type="text" class="form-control" placeholder="ニュースカテゴリー検索" id="search-item" @keyup="searchCategory()" />
@@ -30,7 +25,14 @@
                             </div>-->
                         </div>
                         <hr />
-                        <h5 class="header">ニュースカテゴリー一覧</h5>
+                        <div class="d-flex header pb-3 admin_header">
+                            <h5>ニュースカテゴリー一覧</h5>
+                            <div class="ml-auto" v-if="!norecord_msg">
+                                <router-link to="/createcategory" class="main-bg-color create-btn all-btn">
+                                    <i class="fas fa-plus-circle"></i> <span class="first_txt">カテゴリー</span><span>新規作成</span>
+                                </router-link>
+                            </div>
+                        </div>
                         <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデータが消える。</div>
                         <div v-else class="container-fuid">
                             <div class="card card-default m-b-20" v-for="category in categories.data" :key="category.id">

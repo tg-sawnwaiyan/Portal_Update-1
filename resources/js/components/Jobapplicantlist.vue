@@ -1,6 +1,6 @@
 <template>
     <div id="job_apply" class="col-12  tab-content">
-        <div class="container-fluid">
+        <div class="container-fluid p0-480">
                 <h4 class="main-color m-b-10">求人応募者検索</h4>
                 <div class="row">
                     <div class="col-md-12">
@@ -64,7 +64,7 @@
                     </table>
                 </div>
                  <!-- <pagination :data="jobapplies" @pagination-change-page="searchApplicantList"></pagination> -->
-                            <pagination :data="jobapplies" @pagination-change-page="searchApplicantList" :limit="limitpc">
+                            <pagination :data="jobapplies" @pagination-change-page="searchApplicantList" :limit="limitpc" class="mt-3">
                                 <span slot="prev-nav"><i class="fas fa-angle-left"></i> 前へ</span>
                                 <span slot="next-nav">次へ <i class="fas fa-angle-right"></i></span>
                             </pagination>
