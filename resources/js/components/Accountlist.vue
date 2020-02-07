@@ -21,7 +21,7 @@
                                           <p>{{nursingprofiles.name}}</p>
                                           <p>{{nursingprofiles.phone}}</p>
                                           <p>{{nursingprofiles.email}}</p>
-                                          <router-link :to="{ path:'/profile/nursing/'+ nursingprofiles.id}" class="btn all-btn" style="font-weight:bold;">Edit</router-link>
+                                          <router-link :to="{ path:'/profile/nursing/'+ nursingprofiles.id}" class="btn btn-success" style="font-weight:bold;">Edit</router-link>
                                    </div>
                                 </div>
                             </div>
@@ -31,7 +31,7 @@
                                     <div class="card h-100">
                                     <div class="card-body nus_account">
                                         <div class="img_title">
-                                            <img :src="'/upload/hospital_profile/'+ hospitalprofiles.logo" alt="Logo"   @error="imgUrlAlt" />
+                                            <img :src="'/upload/hospital_profile/'+ hospitalprofiles.logo"    @error="imgUrlAlt(hospitalprofiles.id)" />
                                         </div>
                                           <strong>Name </strong>
                                           <p>{{hospitalprofiles.name}}</p>
@@ -41,7 +41,7 @@
 
                                           <strong>Email </strong>
                                           <p>{{hospitalprofiles.email}}</p>
-                                        <router-link :to="{ path:'/profile/hospital/'+ hospitalprofiles.id}" class="btn all-btn" style="font-weight:bold;">Edit</router-link>
+                                        <router-link :to="{ path:'/profile/hospital/'+ hospitalprofiles.id}" class="btn btn-success" style="font-weight:bold;">Edit</router-link>
                                     </div>
                                 </div>
                                </div>
@@ -60,6 +60,7 @@ export default {
             nursingprofile:[],
             type:null,
             hospitalprofile:[],
+             
        }
     },
     created(){
@@ -81,8 +82,9 @@ export default {
 
     },
     method: {
-        imgUrlAlt(event) 
+        imgUrlAlt(event,$id) 
         {
+            console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
             event.target.src = "/images/noimage.jpg"
         }
     }
