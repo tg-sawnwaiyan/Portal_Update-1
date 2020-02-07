@@ -48,7 +48,8 @@
         width: 100%;
         height: 100%;
         z-index: 9999;
-        background: url("./images/loading1.gif") center no-repeat #fff;
+        /* background: url("./images/loading1.gif") center no-repeat #fff; */
+         background: url("./images/pageloading.gif") center no-repeat #fff; 
     }
       /* Safari */
       @-webkit-keyframes spin {

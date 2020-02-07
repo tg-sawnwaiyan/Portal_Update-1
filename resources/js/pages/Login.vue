@@ -127,8 +127,8 @@
             this.visit = 'false';
             localStorage.setItem('visit', this.visit);
             // handle redirection
-            const redirectTo = this.$auth.user().role === 1 ? 'accountlist' : '/'
-            this.$router.push({name: redirectTo})
+            const redirectTo = this.$auth.user().role === 1 ? (this.$auth.user().type_id == 2 ? '/accountlist/hospital/'+ this.$auth.user().customer_id : '/accountlist/nursing/'+ this.$auth.user().customer_id ) : '/news_list'
+            this.$router.push({path: redirectTo})
           },
           error: function(e) {
             this.$loading(false);
@@ -145,7 +145,7 @@
 </script>
 <style>
 .admin_user_card{
-  background-color: #3791b9 !important;
+  background-color: #3791B9 !important;
   color: #fff;
 }
 .admin_user_card .user_name{
@@ -155,13 +155,13 @@
   color: #fff !important;
 }
 .admin_user_card .input-group-text{
-  background: #044a77 !important;
-  color: #f5f5f5 !important;
+  background: #044A77 !important;
+  color: #F5F5F5 !important;
 }
 .admin_user_card .brand_logo_container{
-  border: 10px solid #4399bf;
+  border: 10px solid #4399BF;
 }
 .customer_user_card{
-  background-color: #fbfbfb !important;
+  background-color: #FBFBFB !important;
 }
 </style>

@@ -30,7 +30,7 @@ class ProfileController extends Controller
             'customer_id' => $id,
             'latitude' => $citylatlng[0]->latitude,
             'longitude' => $citylatlng[0]->longitude,
-            'township_id' => $request->town_id,
+            'townships_id' => $request->town_id,
 
         ); 
 

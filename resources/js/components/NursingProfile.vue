@@ -868,7 +868,7 @@ export default {
               }
             },
             imgUrlAlt(event) {
-                event.target.src = "images/noimage.jpg"
+                event.target.src = "/images/noimage.jpg"
             },
 
             onEditorBlur(quill) {

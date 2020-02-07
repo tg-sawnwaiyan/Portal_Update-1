@@ -1,6 +1,6 @@
 <template>
     <!-- Page Content  -->
-    <div id="content">
+    <div id="news_post">
         <div class="card">
             <div class="card-body">
                 <div v-if='status == 1'>
@@ -477,7 +477,7 @@ import {quillEditor} from 'vue-quill-editor'
                         }
                     },
                 imgUrlAlt(event) {
-                event.target.src = "images/noimage.jpg"
+                event.target.src = "/images/noimage.jpg"
             },
             }
     }
