@@ -980,7 +980,7 @@
                             <label for="" class="m-r-15"><i class="fas fa-adjust blue"></i> 応相談</label>
                         </div>
                         <div class="form-group">
-                            <label for="">備考</label>
+                            <!-- <label for="">備考</label> -->
                             <p v-html="nus_pro.acceptance_remark"></p>
                         </div>
                     </div>
@@ -1023,7 +1023,7 @@
 
                                 </table>
                                 <div class="form-group">
-                                    <label for="">備考</label>
+                                    <!-- <label for="">備考</label> -->
                                     <p v-html="st.remarks"></p>
                                 </div>
                             </div>
