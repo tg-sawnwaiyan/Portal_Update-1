@@ -1311,17 +1311,31 @@
                         </div>
                         <div class="row m-lr-0" v-else> <p class="no-data-color">表示されるデータがありません。</p> </div>
 
-                        <h5 class="header m-t-10">診療科目</h5>
-
-                        <div class="row col-md-12" v-if="subjects">
-                            <ul class="sub_container" v-for="sub in subjects" :key="sub.id">
-                                <li>{{sub.name}}</li>
-                            </ul>
-                        </div>
-                        <div class='row col-12' v-else> <p class="no-data-color">表示されるデータがありません。</p> </div>
+                       
                     </div>
                     <!--end for address-->
                 </div>
+
+                <!-- <h5 class="header m-t-10">診療科目</h5>
+                <div class="row col-md-12" v-if="subjects">
+                    <ul class="sub_container" v-for="sub in subjects" :key="sub.id">
+                        <li>{{sub.name}}</li>
+                    </ul>
+                </div>
+                <div class='row col-12' v-else> <p class="no-data-color">表示されるデータがありません。</p> </div> -->
+
+
+                 <div class="col-12 m-b-20 pad-free-750">
+                    <h5 class="profile_subtit">診療科目 </h5>
+
+                    <div class="row col-md-12" v-if="subjects">
+                    <ul class="sub_container" v-for="sub in subjects" :key="sub.id">
+                        <li>{{sub.name}}</li>
+                    </ul>
+                </div>
+                </div>
+
+             
             <!--end ee-->
 
                 <div class="col-12 m-b-20 pad-free-750">
@@ -1604,7 +1618,7 @@ export default {
                 nus_pro:[],
                 ads_list: [],
                 profile_id: "",
-                url: 'upload/nursing_profile/Imagepanorama/',
+                url: '/upload/nursing_profile/Imagepanorama/',
                 isAutoRotationOn: true,
                 isOrientationOn: true,
                 markers: [

@@ -16,17 +16,12 @@
                                     <!-- <img :src="'/upload/nursing_profile/'+ nursingprofile.logo" id="thumbnil" class="profile_logo m-b-8" alt="Logo"  width="200px" > -->
                                    <div class="card-body nus_account">
                                        <div class="img_title">
-                                            <img :src="'/upload/nursing_profile/'+ nursingprofiles.logo"  alt="Logo" @error="imgUrlAlt" />
+                                            <img :src="'/upload/nursing_profile/'+ nursingprofiles.logo"  @error="imgUrlAlt" />
                                        </div>
-                                          <strong>Name </strong>
                                           <p>{{nursingprofiles.name}}</p>
-
-                                          <strong>Phone </strong>
                                           <p>{{nursingprofiles.phone}}</p>
-
-                                         <strong>Email </strong>
                                           <p>{{nursingprofiles.email}}</p>
-                                          <router-link :to="{ path:'/profile/nursing/'+ nursingprofiles.id}" class="btn all-btn" style="font-weight:bold;">Edit</router-link>
+                                          <router-link :to="{ path:'/profile/nursing/'+ nursingprofiles.id}" class="btn btn-success" style="font-weight:bold;">Edit</router-link>
                                    </div>
                                 </div>
                             </div>
@@ -36,7 +31,7 @@
                                     <div class="card h-100">
                                     <div class="card-body nus_account">
                                         <div class="img_title">
-                                            <img :src="'/upload/hospital_profile/'+ hospitalprofiles.logo" alt="Logo"   @error="imgUrlAlt" />
+                                            <img :src="'/upload/hospital_profile/'+ hospitalprofiles.logo"    @error="imgUrlAlt(hospitalprofiles.id)" />
                                         </div>
                                           <strong>Name </strong>
                                           <p>{{hospitalprofiles.name}}</p>
@@ -46,7 +41,7 @@
 
                                           <strong>Email </strong>
                                           <p>{{hospitalprofiles.email}}</p>
-                                        <router-link :to="{ path:'/profile/hospital/'+ hospitalprofiles.id}" class="btn all-btn" style="font-weight:bold;">Edit</router-link>
+                                        <router-link :to="{ path:'/profile/hospital/'+ hospitalprofiles.id}" class="btn btn-success" style="font-weight:bold;">Edit</router-link>
                                     </div>
                                 </div>
                                </div>
@@ -65,25 +60,33 @@ export default {
             nursingprofile:[],
             type:null,
             hospitalprofile:[],
+             
        }
     },
     created(){
-        this.type = this.$auth.user().type_id == 2?'hospital':'nursing';
-        console.log(this.type)
-        // this.cusid = Number(localStorage.getItem('cusId'));
-                 if(this.type == "nursing") {
-                      this.axios.get(`/api/account_nursing`).then(response => {
-                    //this.$loading(false);
-                    this.nursingprofile = response.data;
-                    console.log("aaa",this.nursingprofile);
-                    });
+        this.cusid = this.$route.params.id;
+        this.type = this.$route.params.type;
+        // this.type = this.$auth.user().type_id == 2?'hospital':'nursing';
+            if(this.type == "nursing") {
+                this.axios.get(`/api/account_nursing/${this.cusid}`).then(response => {
+                //this.$loading(false);
+                this.nursingprofile = response.data;
+                console.log("aaa",this.nursingprofile);
+            });
             } else {
-                this.axios.get(`/api/account_hospital`).then(response => {
+                this.axios.get(`/api/account_hospital/${this.cusid}`).then(response => {
                     //this.$loading(false);
                     this.hospitalprofile = response.data;
             });
             }
 
+    },
+    method: {
+        imgUrlAlt(event,$id) 
+        {
+            console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+            event.target.src = "/images/noimage.jpg"
+        }
     }
 }
 </script>
