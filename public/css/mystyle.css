@@ -1191,12 +1191,15 @@ margin-left: -108px; */
     font-weight: bold;
     font-size: 20px;
 }
+
 .nursing-map-addicon:before {
     color: #ff9563!important;
 }
+
 .hospital-map-addicon:before {
     color: #63b7ff!important;
 }
+
 .job-map-addicon:before {
     color: #828282!important;
 }
@@ -1258,9 +1261,11 @@ box-shadow: 0px 0px 5px rgb(212, 201, 201); */
 .map-fa-icon-nursing {
     background: url(/images/map-responsive-nursing.png) center top no-repeat;
 }
+
 .map-fa-icon-hospital {
     background: url(/images/map-responsive-hospital.png) center top no-repeat;
 }
+
 .map-fa-icon-job {
     background: url(/images/map-responsive-job.png) center top no-repeat;
 }
@@ -3764,13 +3769,15 @@ ul.hospital-subject>li:before {
 }
 
 .nursing-map-header {
-    color:#9e3d0e!important;
+    color: #9e3d0e!important;
 }
+
 .hospital-map-header {
-    color:#2c3e50!important;
+    color: #2c3e50!important;
 }
+
 .job-map-header {
-    color:#332f2f!important;
+    color: #332f2f!important;
 }
 
 .wrap {
@@ -3795,12 +3802,15 @@ ul.hospital-subject>li:before {
     outline: none;
     color: #495057;
 }
+
 .nursing-search-box .searchTerm {
     border: 3px solid rgb(255, 149, 99);
 }
+
 .hospital-search-box .searchTerm {
     border: 3px solid rgb(99, 183, 255);
 }
+
 .job-search-box .searchTerm {
     border: 3px solid rgb(130, 130, 130);
 }
@@ -3845,10 +3855,12 @@ ul.hospital-subject>li:before {
     border: 1px solid rgb(99, 183, 255);
     background: rgb(99, 183, 255);
 }
+
 .nursing-search-box .searchButton {
     border: 1px solid rgb(255, 149, 99);
     background: rgb(255, 149, 99);
 }
+
 .job-search-box .searchButton {
     border: 1px solid rgb(130, 130, 130);
     background: rgb(130, 130, 130);
@@ -10690,11 +10702,13 @@ width: 18rem;
         padding: 10px !important;
     }
 }
-@media only screen and (.max-width: 760px){
+
+@media only screen and (.max-width: 760px) {
     .d-block {
         display: block !important;
     }
 }
+
 @media only screen and (max-width:750px) {
     .pc-750 {
         display: none;
@@ -10862,6 +10876,7 @@ width: 18rem;
     }
     .w-sm-100 {
         width: 100% !important;
+        margin-bottom: 10px;
     }
     .sp-576 {
         display: block;
@@ -11321,7 +11336,7 @@ background-image: none;
 }
 
 @media only screen and (max-width: 414px) {
-    .newsDetail_leftwrapper{
+    .newsDetail_leftwrapper {
         max-width: 100%;
         margin-right: 0px !important;
     }

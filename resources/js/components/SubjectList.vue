@@ -1,10 +1,5 @@
 <template>
     <div>
-        <div class="d-flex justify-content-end m-b-10" v-if="!norecord_msg">
-            <router-link to="/subject" class="main-bg-color create-btn all-btn">
-                <i class="fas fa-plus-circle"></i> 診療科目新規作成
-            </router-link>
-        </div>
         <div class="col-12 tab-content">
             <div class="p-2 p0-480">
                 <div v-if="norecord_msg" class="card card-default card-wrap">
@@ -15,12 +10,12 @@
                     <p class="record-txt01">表示するデータありません</p>
                     <p>表示するデータありません‼新しいデータを作成してください。</p>
                     <a href="/subject" class="main-bg-color create-btn all-btn">
-                        <i class="fas fa-plus-circle"></i> 新しく作る
+                        <i class="fas fa-plus-circle"></i> 診療科目新規作成
                     </a>
                 </div>
                 <div v-else class="container-fuid">
-                    <h4 class="main-color m-b-10">診療科目検索</h4>
-                    <div class="row">
+                    <h4 class="main-color mb-3">診療科目検索</h4>
+                    <div class="row mb-4">
                         <div class="col-md-12">
                             <input type="text" class="form-control" placeholder="診療科目検索" id="search-item" @keyup="searchSubject()">
                         </div>
@@ -29,7 +24,14 @@
                     </div> -->
                     </div>
                     <hr/>
-                    <h5 class="header">診療科目一覧</h5>
+                    <div class="d-flex header pb-3 admin_header">
+                        <h5>診療科目一覧</h5>
+                        <div class="ml-auto" v-if="!norecord_msg">
+                            <router-link to="/subject" class="main-bg-color create-btn all-btn">
+                                <i class="fas fa-plus-circle"></i> <span class="first_txt">診療科目</span><span>新規作成</span>
+                            </router-link>
+                        </div>
+                    </div>
                     <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデタが消える。</div>
                     <div v-else class="container-fuid">
                         <div class="card card-default m-b-20" v-for="subject in subjects.data" :key="subject.id">

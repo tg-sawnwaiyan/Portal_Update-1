@@ -10,12 +10,12 @@
                     <p class="record-txt01">表示するデータありません</p>
                     <p>表示するデータありません‼新しいデータを作成してください。</p>
                     <a href="/advertisement" class="main-bg-color create-btn all-btn">
-                        <i class="fas fa-plus-circle"></i> 新しいデータ作成
+                        <i class="fas fa-plus-circle"></i> 広告新規作成
                     </a>
                 </div>
                 <div v-else class="container-fuid">
-                    <h4 class="main-color m-b-10">広告検索</h4>
-                    <div class="row">
+                    <h4 class="main-color mb-3">広告検索</h4>
+                    <div class="row mb-4">
                         <div class="col-md-12">
                             <input type="text" class="form-control" placeholder="広告検索" id="search-item" @keyup="searchAdvertisment()" />
                         </div>
