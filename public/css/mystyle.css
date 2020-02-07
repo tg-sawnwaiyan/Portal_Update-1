@@ -1665,7 +1665,7 @@ border-top: 5px solid #e66527; */
 
 .main-content {
     /* padding: 0px;*/
-    width: 100%;
+    width: 80%;
     margin: 0 auto;
     box-shadow: 0px 1px 2px 0px #ccc !important;
     -webkit-box-shadow: 0px 1px 2px 0px #ccc !important;
@@ -11902,6 +11902,10 @@ background-image: none;
 }
 
 @media only screen and (min-width: 1440px) and (max-width: 1880px) {
+  
+    .main-content {
+        width: 100%;
+    }
     #fav-history-page .card-carousel {
         width: 1046px!important;
         margin-left: 20px;
