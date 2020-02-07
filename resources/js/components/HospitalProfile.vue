@@ -1542,44 +1542,39 @@ export default {
             },
              galleryToggle()
                 {
-
-                      var class_by_id = $('#gallery').attr('class');
-
-                      if(class_by_id == "fas fa-sort-down animate rotate")
-                      {
-
-                                $('#gallery').removeClass("fas fa-sort-down animate rotate");
-                                $('.changeGalleryLink').addClass("fas fa-sort-down");
-                                $('#changeGalleryLink').show('medium');
-                                $('.galleryadd').show();
-                      }
-                      else {
-                                $('#gallery').removeClass("fas fa-sort-down");
-                                $('.changeGalleryLink').removeClass("fas fa-sort-down");
-                                $('#gallery').addClass("fas fa-sort-down animate rotate");
-                                $('#changeGalleryLink').hide('medium');
-                                $('.galleryadd').hide();
-                      }
+                    var class_by_id = $('#gallery').attr('class');
+                    if(class_by_id == "fas fa-sort-down animate rotate")
+                    {
+                        $('#gallery').removeClass("fas fa-sort-down animate rotate");
+                        $('.changeGalleryLink').addClass("fas fa-sort-down");
+                        $('#changeGalleryLink').show('medium');
+                        $('.galleryadd').show();
+                    }
+                    else {
+                        $('#gallery').removeClass("fas fa-sort-down");
+                        $('.changeGalleryLink').removeClass("fas fa-sort-down");
+                        $('#gallery').addClass("fas fa-sort-down animate rotate");
+                        $('#changeGalleryLink').hide('medium');
+                        $('.galleryadd').hide();
+                    }
                 },
                 galleryVideoToggle()
                 {
-                       var class_by_id = $('#video').attr('class');
-
-                      if(class_by_id == "fas fa-sort-down animate rotate")
-                      {
-                                $('#video').removeClass("fas fa-sort-down animate rotate");
-                                $('.changeGalleryVideoLink').addClass("fas fa-sort-down");
-                                $('#changeGalleryVideoLink').show('medium');
-                                 $('.galleryvideo').show();
-                      }
-                      else {
-
-                                $('#video').removeClass("fas fa-sort-down");
-                                $('.changeGalleryVideoLink').removeClass("fas fa-sort-down");
-                                $('#video').addClass("fas fa-sort-down animate rotate");
-                                $('#changeGalleryVideoLink').hide('medium');
-                                $('.galleryvideo').hide();
-                      }
+                    var class_by_id = $('#video').attr('class');
+                    if(class_by_id == "fas fa-sort-down animate rotate")
+                    {
+                        $('#video').removeClass("fas fa-sort-down animate rotate");
+                        $('.changeGalleryVideoLink').addClass("fas fa-sort-down");
+                        $('#changeGalleryVideoLink').show('medium');
+                        $('.galleryvideo').show();
+                    }
+                    else {
+                        $('#video').removeClass("fas fa-sort-down");
+                        $('.changeGalleryVideoLink').removeClass("fas fa-sort-down");
+                        $('#video').addClass("fas fa-sort-down animate rotate");
+                        $('#changeGalleryVideoLink').hide('medium');
+                        $('.galleryvideo').hide();
+                    }
                 },
             onAccessEditorChange({ editor, html, text }) {
                 // console.log('editor change!', editor, html, text)
