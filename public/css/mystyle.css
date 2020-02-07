@@ -887,11 +887,11 @@ border-radius: 3px;
     width: 170px;
     top: -75px;
     border-radius: 50%;
-    /* background: #fff; */
+    background: #fff;
     padding: 10px;
     text-align: center;
     border: 10px solid #ececec;
-    margin-left: 10px;
+    margin-left: 5px;
 }
 .logo_bk{
     background-color: #fbfbfb;
@@ -909,7 +909,7 @@ border-radius: 3px;
      
     width: 137px;
     position: absolute;
-    left: 7px;
+    left: 8px;
     top: 32px;
 
 }
@@ -935,7 +935,7 @@ border-radius: 3px;
 
 .login_btn {
     width: 100%;
-    background: #2980B9 !important;
+    background: #044A77 !important;
     color: #f5f5f5!important;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12) !important;
     font-weight: bold;
@@ -9357,8 +9357,8 @@ padding: 11px;
     }
     /* login */
     .login_top {
-        top: -6px;
-        /* margin-left: 15px; */
+        top: -5px;
+        margin-left: 17px;
     }
     .login_1 {
         margin-right: 27px;
@@ -9373,7 +9373,6 @@ padding: 11px;
         position: fixed;
         background: #e1e1e1;
         width: 100%;
-        background: #fbfbfb;
     }
     /* hospital and nursing profile */
     .nursing_map {
@@ -10266,13 +10265,14 @@ padding: 0;
     }
 }
 
-@media (min-width: 320px) {
+@media only screen and (min-width: 320px) {
     .source-img-small {
         width: 90%;
     }
     /* .ads-card{
 width: 18rem;
 } */
+
     .smallads-title {
         font-size: 12px;
         line-height: 1.357;
@@ -10388,7 +10388,7 @@ width: 18rem;
         padding: 10px 40px;
         position: fixed;
         width: 100%;
-        background: #fbfbfb;
+        background: #e1e1e1;
     }
     .p-l-162 {
         padding-left: 200px;
@@ -11237,6 +11237,23 @@ background-image: none;
     .nursing_responsive {
         max-width: 100%;
     }
+    .login_top {
+        top: -144px;
+        margin-left: 17px;
+    }
+    /*reset*/
+    .login_3 {
+        top: -98px;
+        margin-right: 13px;
+    }
+    
+    .login_4 {
+        top: -101px;
+        margin-left: 10px;
+        position: absolute;
+    }
+  */
+     /*reset*/
     /*register*/
     .login_wp {
         height: 105vh;
@@ -11263,11 +11280,15 @@ background-image: none;
     .my-3 {
         margin-bottom: 2px !important;
     }
-    .brand_logo_container {
+    /* .brand_logo_container {
         position: absolute;
         height: 170px;
         width: 170px;
-        top: -81px;
+        top: -48px;
+    } */
+    .brand_logo_container {
+        /* border-radius: 50%; */
+        border: 0px solid #ececec;
     }
     .links_2 {
         top: 78px;
@@ -11277,16 +11298,28 @@ background-image: none;
         margin-top: 62px;
     } */
     /*register*/
-    .loginwrapper {
+    .loginwrapper_admin {
         height: 105vh;
-        padding: 10px 40px;
+        padding: 20px;
         position: fixed;
         background: #fbfbfb;
+        /* margin-left:-34px; */
     }
-    .login_top {
-        top: -123px;
-        margin-left: 15px;
+    .loginwrapper {
+        height: 105vh;
+        /* padding: 10px 40px; */
+        position: fixed;
+        background: #fbfbfb;
+        top: 1px;
     }
+
+    .test{
+        position: fixed;
+        background: #fbfbfb;
+        top: -54px;
+    }
+  
+ 
     .p-l-162 {
         padding-left: 0px;
     }
@@ -11295,8 +11328,8 @@ background-image: none;
         /* top: -92px; */
     }
     .brand_logo_container {
-        border-radius: 0px;
-        border: 0px solid #ececec;
+        border-radius: 50%;
+        /* border: 0px solid #ececec; */
     }
     .user_card {
         box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 0px 0 rgba(0, 0, 0, 0.19);
@@ -11428,19 +11461,33 @@ background-image: none;
     /* end nursing profile */
 }
 
+
 @media only screen and (max-width: 380px) {
+
+    .user_registercard {
+        width: 100%;
+        height: auto;
+    }
     .login_2 {
-        margin-left: -25px;
+        margin-left: -8px;
     }
     .login_1 {
-        margin-right: -7px;
+        margin-right: 10px;
     }
     .login_top {
-        top: -120px;
+        top: -110px;
+        margin-left: 12px;
     }
     .loginwrapper {
         height: 105vh;
         padding: 10px 40px;
+        position: fixed;
+        background: #fbfbfb;
+        /* margin-left:-34px; */
+    }
+    .loginwrapper_admin {
+        height: 105vh;
+        padding: 6px;
         position: fixed;
         background: #fbfbfb;
         /* margin-left:-34px; */
@@ -11450,7 +11497,7 @@ background-image: none;
         height: 105vh;
         padding: 10px;
         position: fixed;
-        /* margin-left: -34px; */
+        margin-left: -34px;
         /* background-color: #dc3545; */
         top: 22px;
         background-color: #fbfbfb;
@@ -11559,15 +11606,38 @@ background-image: none;
     .set-date {       
         text-indent: 0em;       
     }
+    /*ps_reset*/
+
+    .brand_logo_container {
+        /* border-radius: 50%; */
+        border: 0px solid #ececec;
+    }
+    .login_4 {
+        top: -101px;
+        margin-left: -43px;
+        position: absolute;
+    }
+    .login_3 {
+        top: -100px;
+        margin-right: -20px;
+    }
+     /*ps_reset*/
     .login_2 {
-        margin-left: -53px;
+        margin-left: -23px;
     }
     .login_1 {
-        margin-right: -21px;
+        margin-right: 7px;
     }
     .login_top {
-        top: -111px;
+        top: -10px;
         margin-left: 22px;
+    }
+    .login_t2 {
+        top: -78px;
+        margin-left: 22px;
+    }
+    .brand_logo_container {
+         top: -41px;
     }
     .loginwrapper {
         padding: 10px 40px;
@@ -11575,6 +11645,13 @@ background-image: none;
         /* margin-left: -53px; */
         background: #fbfbfb;
         top: 20px;
+    }
+    .loginwrapper_admin {
+        height: 105vh;
+        padding: 7px;
+        position: fixed;
+        background: #fbfbfb;
+        /* margin-left:-34px; */
     }
     .registerform_container {
         margin-top: 0px;
