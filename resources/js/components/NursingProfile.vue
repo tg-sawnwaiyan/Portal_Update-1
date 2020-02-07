@@ -1149,7 +1149,7 @@ export default {
                     $('.changeGalleryLink').removeClass("fas fa-sort-down");
                     $('#gallery').addClass("fas fa-sort-down animate rotate");
                     $('#changeGalleryLink').hide('medium');
-                    $('.galleryadd').show();
+                    // $('.galleryadd').show();
                     $('.galleryadd').hide();
                 }
             },
