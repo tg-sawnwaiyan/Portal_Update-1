@@ -10691,15 +10691,6 @@ width: 18rem;
         padding: 10px !important;
     }
 }
-<<<<<<< HEAD
-@media only screen and (max-width: 760px){
-    .d-block {
-        display: block !important;
-    }
-}
-=======
-
->>>>>>> 153a1db9f6a9784b07f849f9af62a048c25f67ee
 @media only screen and (max-width:750px) {
     .maintab-content{
         margin: 115px 0 0 0;
