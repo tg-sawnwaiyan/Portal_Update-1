@@ -47,7 +47,7 @@ class HospitalProfileController extends Controller
                 $subjects = DB::select($sql);
                 $fav->sub = $subjects;
             }
-            $cId = $fav->profile_id;
+            $cId = $fav->id;
             $sql = "SELECT schedule.* FROM schedule WHERE schedule.profile_id = $cId AND schedule.part = 'am'";
             $schedule_am = DB::select($sql);
             $fav->schedule_am = $schedule_am;
@@ -68,7 +68,7 @@ class HospitalProfileController extends Controller
         foreach($fav_nursing as $nur) {
             if($nur->special != null){
                 $sfeature = $nur->special;
-                $cId = $nur->profile_id;
+                $cId = $nur->id;
                 if($sfeature != null){
                     $sql = "SELECT short_name FROM special_features WHERE id IN (".$sfeature.")";
                     $specialfeature = DB::select($sql);
@@ -186,7 +186,8 @@ class HospitalProfileController extends Controller
     }
 
     public function movePhoto(Request $request) {
-     
+    
+
         
         $request = $request->all();
         foreach ($request as $file){
@@ -198,20 +199,16 @@ class HospitalProfileController extends Controller
     public function profileupdate($id,Request $request) {
       
         $request = $request->all();       
-    
-        // Customer Profile
-        $customer = Customer::find($id);
 
-        $customer->name = $request[0]['customer_info']['name'];
-        $customer->email = $request[0]['customer_info']['email'];
-        $customer->phone = $request[0]['customer_info']['phone']; 
-        $customer->address = $request[0]['customer_info']['address'];  
-        $customer->townships_id = $request[0]['customer_info']['townships_id'];
-        $customer->save();
-        // End 
 
         // Hospital Profile
         $hospital = HospitalProfile::where('id',$id)->first();
+        $hospital->name = $request[0]['hospital_info']['name'];
+        $hospital->logo = $request[0]['hospital_info']['logo'];
+        $hospital->email = $request[0]['hospital_info']['email'];
+        $hospital->phone = $request[0]['hospital_info']['phone']; 
+        $hospital->address = $request[0]['hospital_info']['address'];  
+        $hospital->townships_id = $request[0]['hospital_info']['townships_id'];
         $hospital->access = $request[0]['hospital_info']['access'];
         $hospital->specialist =  $request[0]['hospital_info']['specialist'];
         $hospital->details_info=  $request[0]['hospital_info']['details_info'];

@@ -278,7 +278,7 @@
                                                                         <img class="profile_img" style="" v-bind:src="'/upload/nursing_profile/' + nur_profile.logo" alt  @error="imgUrlAlt"/>
                                                                     </div> 
                                                                     <div class="profile_wd">
-                                                                        <router-link :to="{name: 'profile', params: {cusid:nur_profile.customer_id, type: 'nursing'}}" class="pseudolink" style="font-weight:bold;">{{nur_profile.name}}</router-link>
+                                                                        <router-link :to="{ path:'/profile/nursing/'+ nur_profile.id}" class="pseudolink" style="font-weight:bold;">{{nur_profile.name}}</router-link>
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -633,7 +633,6 @@
                         }
                     },
                     getAllFavourite: function(local_storage) {
-                       
                         this.axios
                             .post('/api/nursing_fav/' + local_storage)
                             .then(response => {

@@ -4,8 +4,8 @@
                 <!--Start hokkaido-box and  tohoku-box -->
                 <bulma-accordion-item>
                     <p slot="title" class="title is-4 has-text-weight-normal">北海道・東北</p>
-                    <i slot="icon-closed" class="fa fa-plus-circle map-addicon"></i>
-                    <i slot="icon-open" class="fa fa-minus-circle map-addicon"></i>
+                    <i slot="icon-closed" :class="$route.name == 'nursingSearch'? 'nursing-map-addicon': ($route.name == 'hospital_search'? 'hospital-map-addicon': 'job-map-addicon')" class="fa fa-plus-circle map-addicon"></i>
+                    <i slot="icon-open" :class="$route.name == 'nursingSearch'? 'nursing-map-addicon': ($route.name == 'hospital_search'? 'hospital-map-addicon': 'job-map-addicon')" class="fa fa-minus-circle map-addicon"></i>
                     <p slot="content" class="custom_group">
                         <a data-info="Hokkaido" @click="getStateClick">
                         <li id="1" v-scroll-to="'#scroll-responsive'" @click="selected = 1" :class="{resHighlight:selected == 1}">北海道 <i class="fas fa-angle-double-right arrow_icon"></i></li>
@@ -34,8 +34,8 @@
             <!--  Start kanto-box -->
             <bulma-accordion-item>
                 <p slot="title" class="title is-4 has-text-weight-normal">関東</p>
-                <i slot="icon-closed" class="fa fa-plus-circle map-addicon"></i>
-                <i slot="icon-open" class="fa fa-minus-circle map-addicon"></i>
+                <i slot="icon-closed" :class="$route.name == 'nursingSearch'? 'nursing-map-addicon': ($route.name == 'hospital_search'? 'hospital-map-addicon': 'job-map-addicon')" class="fa fa-plus-circle map-addicon"></i>
+                <i slot="icon-open" :class="$route.name == 'nursingSearch'? 'nursing-map-addicon': ($route.name == 'hospital_search'? 'hospital-map-addicon': 'job-map-addicon')" class="fa fa-minus-circle map-addicon"></i>
                 <p slot="content" class="custom_group">
                     <a data-info="Tokyo" @click="getStateClick" >
                     <li id="13" v-scroll-to="'#scroll-responsive'" @click="selected = 13" :class="{resHighlight:selected == 13}">東京 <i class="fas fa-angle-double-right arrow_icon"></i></li>
@@ -67,8 +67,8 @@
             <!-- Start hokuriku-box-->
                 <bulma-accordion-item>
                     <p slot="title" class="title is-4 has-text-weight-normal">北陸</p>
-                    <i slot="icon-closed" class="fa fa-plus-circle map-addicon"></i>
-                    <i slot="icon-open" class="fa fa-minus-circle map-addicon"></i>
+                    <i slot="icon-closed" :class="$route.name == 'nursingSearch'? 'nursing-map-addicon': ($route.name == 'hospital_search'? 'hospital-map-addicon': 'job-map-addicon')" class="fa fa-plus-circle map-addicon"></i>
+                    <i slot="icon-open" :class="$route.name == 'nursingSearch'? 'nursing-map-addicon': ($route.name == 'hospital_search'? 'hospital-map-addicon': 'job-map-addicon')" class="fa fa-minus-circle map-addicon"></i>
                     <p slot="content" class="custom_group">
                         <a data-info="Niigata" @click="getStateClick" >
                         <li id="15" v-scroll-to="'#scroll-responsive'" @click="selected = 15" :class="{resHighlight:selected == 15}">新潟 <i class="fas fa-angle-double-right arrow_icon"></i></li>
@@ -91,8 +91,8 @@
                 <!--Start tokai-box -->
                 <bulma-accordion-item>
                     <p slot="title" class="title is-4 has-text-weight-normal">東海</p>
-                    <i slot="icon-closed" class="fa fa-plus-circle map-addicon"></i>
-                    <i slot="icon-open" class="fa fa-minus-circle map-addicon"></i>
+                    <i slot="icon-closed" :class="$route.name == 'nursingSearch'? 'nursing-map-addicon': ($route.name == 'hospital_search'? 'hospital-map-addicon': 'job-map-addicon')" class="fa fa-plus-circle map-addicon"></i>
+                    <i slot="icon-open" :class="$route.name == 'nursingSearch'? 'nursing-map-addicon': ($route.name == 'hospital_search'? 'hospital-map-addicon': 'job-map-addicon')" class="fa fa-minus-circle map-addicon"></i>
                     <p slot="content" class="custom_group">
                         <a data-info="Aichi" @click="getStateClick" >
                         <li id="23" v-scroll-to="'#scroll-responsive'" @click="selected = 23" :class="{resHighlight:selected == 23}">愛知 <i class="fas fa-angle-double-right arrow_icon"></i></li>
@@ -112,8 +112,8 @@
                 <!-- Start kansai -box -->
                 <bulma-accordion-item>
                     <p slot="title" class="title is-4 has-text-weight-normal">関西</p>
-                    <i slot="icon-closed" class="fa fa-plus-circle map-addicon"></i>
-                    <i slot="icon-open" class="fa fa-minus-circle map-addicon"></i>
+                    <i slot="icon-closed" :class="$route.name == 'nursingSearch'? 'nursing-map-addicon': ($route.name == 'hospital_search'? 'hospital-map-addicon': 'job-map-addicon')" class="fa fa-plus-circle map-addicon"></i>
+                    <i slot="icon-open" :class="$route.name == 'nursingSearch'? 'nursing-map-addicon': ($route.name == 'hospital_search'? 'hospital-map-addicon': 'job-map-addicon')" class="fa fa-minus-circle map-addicon"></i>
                     <p slot="content" class="custom_group">
                         <a data-info="Osaka" @click="getStateClick" >
                         <li id="27" v-scroll-to="'#scroll-responsive'" @click="selected = 27" :class="{resHighlight:selected == 27}">大阪 <i class="fas fa-angle-double-right arrow_icon"></i></li>
@@ -139,8 +139,8 @@
                 <!-- Start chugoku-box and shikoku-box-->
                 <bulma-accordion-item>
                     <p slot="title" class="title is-4 has-text-weight-normal">中国・四国</p>
-                    <i slot="icon-closed" class="fa fa-plus-circle map-addicon"></i>
-                    <i slot="icon-open" class="fa fa-minus-circle map-addicon"></i>
+                    <i slot="icon-closed" :class="$route.name == 'nursingSearch'? 'nursing-map-addicon': ($route.name == 'hospital_search'? 'hospital-map-addicon': 'job-map-addicon')" class="fa fa-plus-circle map-addicon"></i>
+                    <i slot="icon-open" :class="$route.name == 'nursingSearch'? 'nursing-map-addicon': ($route.name == 'hospital_search'? 'hospital-map-addicon': 'job-map-addicon')" class="fa fa-minus-circle map-addicon"></i>
                     <p slot="content" class="custom_group">
                         <a data-info="Okayama" @click="getStateClick" >
                         <li id="33" v-scroll-to="'#scroll-responsive'" @click="selected = 33" :class="{resHighlight:selected == 33}">岡山 <i class="fas fa-angle-double-right arrow_icon"></i></li>
@@ -175,8 +175,8 @@
                 <!-- Start kyushu-box and  okinawa-box -->
                 <bulma-accordion-item>
                     <p slot="title" class="title is-4 has-text-weight-normal">九州・沖縄</p>
-                    <i slot="icon-closed" class="fa fa-plus-circle map-addicon"></i>
-                    <i slot="icon-open" class="fa fa-minus-circle map-addicon"></i>
+                    <i slot="icon-closed" :class="$route.name == 'nursingSearch'? 'nursing-map-addicon': ($route.name == 'hospital_search'? 'hospital-map-addicon': 'job-map-addicon')" class="fa fa-plus-circle map-addicon"></i>
+                    <i slot="icon-open" :class="$route.name == 'nursingSearch'? 'nursing-map-addicon': ($route.name == 'hospital_search'? 'hospital-map-addicon': 'job-map-addicon')" class="fa fa-minus-circle map-addicon"></i>
                     <p slot="content" class="custom_group">
                         <a data-info="Fukuoka" @click="getStateClick" >
                         <li id="40" v-scroll-to="'#scroll-responsive'" @click="selected = 40" :class="{resHighlight:selected == 40}">福岡 <i class="fas fa-angle-double-right arrow_icon"></i></li>

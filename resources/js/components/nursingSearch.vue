@@ -11,7 +11,7 @@
                             <div class="row map-wrap"  id="searchMap" style="background-color:#fdf3ef;">
                                 <!-- search map and path -->
                                 <div class="col-lg-5 col-md-12 col-sm-12 float-left map-leftwrapper">
-                                   <h2 class="map-header" style="color:#9e3d0e;">あなたらしい暮ら<br/>しができる。そん<br/>な老人ホームが見 <br/>つかります。</h2>
+                                   <h2 class="map-header nursing-map-header">あなたらしい暮ら<br/>しができる。そん<br/>な老人ホームが見 <br/>つかります。</h2>
                                     <!--search input-->
                                     <div class="wrap">
                                         <div class="search">
@@ -33,15 +33,15 @@
                                     <h3 class="map-resicon">
                                     <div class="map-text-wrapper">
                                         <div>
-                                        <i class="fa icon map-fa-icon"></i>
+                                        <i class="fa icon map-fa-icon map-fa-icon-nursing"></i>
                                         </div>
                                         <div>
-                                        <p class="text-left"> &nbsp;あなたらしい暮らしができる。そん<br class="pc-768"/>な老人ホームが見つかります。</p>
+                                        <p class="text-left nursing-map-header"> &nbsp;あなたらしい暮らしができる。そん<br class="pc-768"/>な老人ホームが見つかります。</p>
                                         </div>
                                     </div>
                                     </h3>
                                     <!--search input-->
-                                    <div class="search">
+                                    <div class="search nursing-search-box">
                                         <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、施設名などを入力">
                                         <button type="submit" class="searchButton" @click="searchfreeword">
                                             <i class="fas fa-search"></i> 検索

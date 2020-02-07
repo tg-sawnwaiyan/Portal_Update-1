@@ -111,7 +111,7 @@
                                                                 <img class="profile_img" v-bind:src="'/upload/nursing_profile/' + nur_profile.logo" alt @error="imgUrlAlt"/>
                                                             </div>
                                                             <div class="profile_wd">
-                                                                <router-link class="pseudolink" :to="{name: 'profile', params: {cusid:nur_profile.customer_id, type: 'nursing'}}" >{{nur_profile.name}}</router-link>
+                                                                <router-link class="pseudolink" :to="{ path:'/profile/nursing/'+ nur_profile.id}" >{{nur_profile.name}}</router-link>
                                                             </div>
                                                         </td>
                                                     </tr>
