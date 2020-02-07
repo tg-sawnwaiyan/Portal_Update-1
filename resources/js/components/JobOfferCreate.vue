@@ -352,7 +352,7 @@
 
                             <div class="form-group">
                                 <label for="salary">職種:</label>
-
+                                <span class="error sp2">必須</span>
                                 <select v-model="joboffer.occupation_id" class="form-control">
                                     <option value="-1">なし</option>
                                     <option v-for="occupation in OccupationList" :key="occupation.id" :value="occupation.id">{{occupation.name}}</option>

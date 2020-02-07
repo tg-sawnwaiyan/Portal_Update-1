@@ -218,7 +218,7 @@ export default {
                     this.$swal({
                         title: "確認",
                         text: "広告を更新してよろしいでしょうか",
-                        type: "success",
+                        type: "info",
                         width: 350,
                         height: 200,
                         showCancelButton: true,
@@ -285,7 +285,7 @@ export default {
                   this.$swal({
                             title: "確認",
                             text: "広告を投稿してよろしいでしょうか。",
-                            type: "success",
+                            type: "info",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
