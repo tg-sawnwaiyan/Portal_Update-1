@@ -137,7 +137,7 @@ export default {
                     this.$swal({
                             title: "確認",
                             text: "特徴を投稿してよろしいでしょうか。",
-                            type: "success",
+                            type: "info",
                             width: 350,
                             height: 200,
                             showCancelButton: true,

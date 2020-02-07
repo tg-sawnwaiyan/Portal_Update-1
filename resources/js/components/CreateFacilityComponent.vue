@@ -74,7 +74,7 @@ export default {
      this.$swal({
                             title: "確認",
                             text: "院内施設を投稿してよろしいでしょうか。",
-                            type: "success",
+                            type: "info",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
