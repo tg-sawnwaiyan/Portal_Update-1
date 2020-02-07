@@ -1,11 +1,6 @@
 <template>
     <!-- Page Content  -->
-    <div>
-        <div class="d-flex justify-content-end m-b-10" v-if="!norecord_msg">
-            <router-link to="/create_news" class="main-bg-color create-btn all-btn">
-                <i class="fas fa-plus-circle"></i> ニュース新規作成
-            </router-link>
-        </div>
+    <div id="news_list">       
         <div class="col-12  tab-content">
             <div class="p-2 p0-480">
                 <div v-if="norecord_msg" class="card card-default card-wrap">
@@ -20,15 +15,15 @@
                     </a>
                 </div>
                 <div v-else class="container-fuid">
-                    <h4 class="main-color m-b-10">ニュース検索</h4>
+                    <h4 class="main-color mb-3">ニュース検索</h4>
                     <div class="row">
-                        <div class="col-12 col-sm-6 mb-3">
+                        <div class="col-12 col-sm-6 mb-2">
                             <input type="text" class="form-control w-75 w-sm-100" placeholder="ニュース検索" id="search-item" @keyup="searchbyCategory()" />
                         </div>
                         <div class="col-12 col-sm-6">
                             <div class=" d-flex  justify-content-md-end align-items-center">
-                            <label for="selectBox" class="w-sm-25">カテゴリー</label>
-                            <select  id="selectBox" class="form-control w-65 w-sm-75 ml-2" @change="searchbyCategory()">
+                            <label for="selectBox" class="select_label  mr-2">カテゴリー</label>
+                            <select  id="selectBox" class="form-control select_box" @change="searchbyCategory()">
                                     <option selected="selected" value>全体</option>
                                     <option v-for="category in categories" :key="category.id" v-bind:value="category.id">{{category.name}}</option>
                                 </select>
@@ -36,7 +31,15 @@
                         </div>
                     </div>
                     <hr />
-                    <h5 class="header">ニュース一覧</h5>
+                    <div class="d-flex header pb-3 admin_header">
+                        <h5>ニュース一覧</h5>
+                        <div class="ml-auto" v-if="!norecord_msg">
+                            <router-link to="/create_news" class="main-bg-color create-btn all-btn">
+                                <i class="fas fa-plus-circle"></i> <span class="first_txt">ニュース</span><span>新規作成</span>
+                            </router-link>
+                        </div>
+                    </div>
+                    
                     <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div> 
 
                     <div v-else class="container-fuid">

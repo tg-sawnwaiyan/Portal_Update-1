@@ -1577,14 +1577,10 @@ export default {
                       }
                 },
             onAccessEditorChange({ editor, html, text }) {
-                // console.log('editor change!', editor, html, text)
-                // this.access_val = html
                 this.hospital_info.access = html;
             },
             onDetailInfoEditorChange({ editor, html, text }) {
-                // console.log('editor change!', editor, html, text)
-                // this.detail_info = jQuery(html).text();
-                this.hospital_info.details_info = jQuery(html).text();
+                this.hospital_info.details_info = html;
             },
             galleryVideoAdd() {
                    this.video_arr.push({title:'',description:'',url:''});
