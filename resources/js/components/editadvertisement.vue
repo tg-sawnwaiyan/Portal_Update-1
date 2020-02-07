@@ -1,6 +1,6 @@
 <template>
-     <div class="row">
-      <div class="col-12">
+     <div id="ads_post">
+      
           <div class="card">
               <div class="card-body">
                     <div class="row">
@@ -79,7 +79,7 @@
                     </div>
             </div>
           </div>
-      </div>
+      
 </template>
 <script>
 export default {

@@ -10044,14 +10044,23 @@ padding: 0;
         background: #000015;
         opacity: 0.5;
     }
-    .sp_adminNav {
+    .overlay_wrap {
         display: block;
         position: fixed;
         top: 60px;
         left: 0;
         width: 100%;
         height: 100%;
-        z-index: 1;
+        z-index: 2;
+    }
+    .sp_adminNav {
+        display: block;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 230px;
+        height: 100%;
+        z-index: 3;
     }
     .sidebar_brand {
         position: fixed;
@@ -11249,6 +11258,11 @@ background-image: none;
     }
     .admin_header .first_txt {
         display: none;
+    }
+    #news_post .card-body,
+    #cat_post .card-body,
+    #ads_post .card-body {
+        padding: 13px;
     }
 }
 
