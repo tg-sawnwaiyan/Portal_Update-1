@@ -801,7 +801,7 @@ import bulcomponent from './bulcomponent.vue'
       }
     },
     imgUrlAlt(event) {
-        event.target.src = "images/noimage.jpg"
+        event.target.src = "/images/noimage.jpg"
     },
     pageSelect(index) {
         this.currentPage = index - 1;

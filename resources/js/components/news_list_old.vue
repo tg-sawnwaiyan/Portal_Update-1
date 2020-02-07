@@ -47,7 +47,7 @@
                                     <div v-if="newsList.photo !=null">
                                         <img :src="'/upload/news/'+ newsList.photo"   @error="imgUrlAlt" />
                                     </div>
-                                    <div  v-else> <img src="images/noimage.jpg" alt  /></div>
+                                    <div  v-else> <img src="/images/noimage.jpg" alt  /></div>
                                 </td>
                                 <td>
                                     <h5>
@@ -206,7 +206,7 @@
                     });
                 },
                 imgUrlAlt(event) {
-                    event.target.src = "images/noimage.jpg"
+                    event.target.src = "/images/noimage.jpg"
                 },
         }
     };

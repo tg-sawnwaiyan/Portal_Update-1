@@ -48,23 +48,35 @@ class NursingProfileController extends Controller
         }        
     }
 
+    public function moveLogo(Request $request) {
+        $request = $request->all();
+        $destination = 'upload/nursing_profile/'.$request['logo']->getClientOriginalName();
+        $upload_img = move_uploaded_file($request['logo'], $destination);   
+    }
+
     public function profileupdate($id,Request $request) { 
         $request = $request->all();
 
         // Customer Info List
-        $customer = Customer::find($id);
+        // $customer = Customer::find($id);
 
-        $customer->name = $request[0]['customer_info']['name'];
-        $customer->email = $request[0]['customer_info']['email'];
-        $customer->phone = $request[0]['customer_info']['phone'];
-        $customer->address = $request[0]['customer_info']['address'];
-        $customer->townships_id = $request[0]['customer_info']['townships_id'];
+        // $customer->name = $request[0]['customer_info']['name'];
+        // $customer->email = $request[0]['customer_info']['email'];
+        // $customer->phone = $request[0]['customer_info']['phone'];
+        // $customer->address = $request[0]['customer_info']['address'];
+        // $customer->townships_id = $request[0]['customer_info']['townships_id'];
 
-        $customer->save();
+        // $customer->save();
 
         $nursing = NursingProfile::where('id',$id)->first();
         // Nursing Profile 
         // print_r($request);exit;
+        $nursing->name = $request[0]['nursing_profile']['name'];
+        $nursing->email = $request[0]['nursing_profile']['email'];
+        $nursing->phone = $request[0]['nursing_profile']['phone'];
+        $nursing->address = $request[0]['nursing_profile']['address'];
+        $nursing->logo = $request[0]['nursing_profile']['logo'];
+
         $nursing->access = $request[0]['nursing_profile']['access'];
         $nursing->operator = $request[0]['nursing_profile']['operator'];
         $nursing->business_entity = $request[0]['nursing_profile']['business_entity'];
@@ -142,7 +154,7 @@ class NursingProfileController extends Controller
 
         
 
-        DB::update("UPDATE users SET name='".$request[0]['customer_info']['name']."', email='".$request[0]['customer_info']['email']."' WHERE customer_id=$id");
+        // DB::update("UPDATE users SET name='".$request[0]['customer_info']['name']."', email='".$request[0]['customer_info']['email']."' WHERE customer_id=$id");
         // End
 
         // Staff Info
@@ -208,7 +220,7 @@ class NursingProfileController extends Controller
                 $gallery->save();
             }
         }
-        print_r($request[0]["image"]);
+
         $del_gallery = Gallery::where(['profile_id'=> $id,'type'=>'photo'])->delete(); 
         if(count($request[0]["image"]) > 0){
             for($i=0; $i<count($request[0]["image"]); $i++) {

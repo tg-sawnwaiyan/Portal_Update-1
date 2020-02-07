@@ -63,9 +63,10 @@ class ProfilePublishController extends Controller
     public function nursingProfile($cusid)
     {
 
-        $feature = NursingProfile::select('feature')->where('id',$cusid)->get();
-        $method = NursingProfile::select('method')->where('id',$cusid)->get();
+        // $feature = NursingProfile::select('feature')->where('id',$cusid)->get();
+        // $method = NursingProfile::select('method')->where('id',$cusid)->get();
         $facility = NursingProfile::where('id',$cusid)->get(); 
+
         $tmp = FacType::where('id', $facility[0]['fac_type'])->first();
         $facility[0]['fac_type'] = $tmp['description'];       
         $comedical = Cooperate_Medical::where('profile_id',$cusid)->get();
@@ -84,11 +85,13 @@ class ProfilePublishController extends Controller
         $staff = Staff::where('profile_id',$cusid)->get();
 
          //for nursing map
-        $nurselatlong =  DB::table('nursing_profiles') ->select('nursing_profiles.*')
-                             ->where('nursing_profiles.id','=',$cusid)->get();
+        // $nurselatlong =  DB::table('nursing_profiles') ->select('nursing_profiles.*')
+        //                      ->where('nursing_profiles.id','=',$cusid)->get();
+        $nurselatlong = NursingProfile::where('id',$cusid)->get(); 
 
         //for image slide show
-        $logo = Customer::where('id',$cusid)->select('logo as photo')->get()->toArray();
+        $logo = NursingProfile::where('id',$cusid)->select('logo as photo')->get()->toArray(); // to change
+
         $gallery = Gallery::where('profile_id',$cusid)->where('type','photo')->get()->toArray();
         $images = array_merge($logo,$gallery);
 
@@ -104,7 +107,9 @@ class ProfilePublishController extends Controller
             }
         }
 
-        return response()->json(array("feature"=>$feature,"facility"=>$facility,"comedical"=>$comedical,"medicalacceptance"=>$medicalacceptance,"staff"=>$staff, "nurselatlong"=>$nurselatlong,"cost"=>$cost,"medical"=>$medical,"method"=>$method,"images"=>$images,"panoimages"=>$panoimages,"videos"=>$videos));
+        return response()->json(array("facility"=>$facility,"comedical"=>$comedical,"medicalacceptance"=>$medicalacceptance,
+        "staff"=>$staff, "nurselatlong"=>$nurselatlong,"cost"=>$cost,"medical"=>$medical,"images"=>$images,"panoimages"=>$panoimages,
+        "videos"=>$videos));
     }
 
     public function getComment($proid)
