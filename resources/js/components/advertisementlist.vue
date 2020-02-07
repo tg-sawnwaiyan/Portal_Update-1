@@ -1,10 +1,5 @@
 <template>
     <div id="ads_list">
-        <div class="d-flex justify-content-end m-b-10" v-if="!norecord_msg">
-            <router-link to="/advertisement" class="main-bg-color create-btn all-btn">
-                <i class="fas fa-plus-circle"></i> 広告新規作成
-            </router-link>
-        </div>
         <div class="col-md-12  tab-content">
             <div class="p-2 p0-480">
                 <div v-if="norecord_msg" class="card card-default card-wrap">
@@ -26,7 +21,14 @@
                         </div>
                     </div>
                     <hr />
-                    <h5 class="header">広告一覧</h5>
+                    <div class="d-flex header pb-3 admin_header">
+                        <h5>広告一覧</h5>
+                        <div class="ml-auto" v-if="!norecord_msg">
+                            <router-link to="/advertisement" class="main-bg-color create-btn all-btn">
+                                <i class="fas fa-plus-circle"></i> <span class="first_txt">広告</span><span>新規作成</span>
+                            </router-link>
+                        </div>
+                    </div>
                     <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデタが消える。</div>
                     <div v-else class="container-fuid">
                         <table  class="table List_tbl">

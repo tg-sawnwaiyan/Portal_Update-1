@@ -1,5 +1,5 @@
 <template>
-    <div class="card text-dark">
+    <div class="card text-dark" id="cat_post">
         <div class="card-body">
             <h4 class="page-header header">カテゴリー編集</h4>
             <br>
