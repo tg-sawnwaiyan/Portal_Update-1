@@ -411,8 +411,8 @@
         gotoDash() {
             this.visit = 'false';
             localStorage.setItem('visit', this.visit);
-            const redirectTo = this.$auth.user().role === 2 ? 'news_list' : 'accountlist'
-            this.$router.push({name: redirectTo})
+            const redirectTo = this.$auth.user().role === 1 ? (this.$auth.user().type_id == 2 ? '/accountlist/hospital/'+ this.$auth.user().customer_id : '/accountlist/nursing/'+ this.$auth.user().customer_id ) : '/news_list'
+            this.$router.push({path: redirectTo})
         },
          toggle() {
             this.isNav = !this.isNav;

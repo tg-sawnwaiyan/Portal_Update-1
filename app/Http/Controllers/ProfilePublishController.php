@@ -90,7 +90,7 @@ class ProfilePublishController extends Controller
         $nurselatlong = NursingProfile::where('id',$cusid)->get(); 
 
         //for image slide show
-        $logo = Customer::where('id',$cusid)->select('logo as photo')->get()->toArray(); // to change
+        $logo = NursingProfile::where('id',$cusid)->select('logo as photo')->get()->toArray(); // to change
 
         $gallery = Gallery::where('profile_id',$cusid)->where('type','photo')->get()->toArray();
         $images = array_merge($logo,$gallery);

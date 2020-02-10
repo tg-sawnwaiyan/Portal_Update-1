@@ -50,7 +50,7 @@
                                         <td class="text-right pr-4">
                                             <!-- <button class="btn btn-sm btn-primary all-btn" v-if="getUser.status == 1">Approved</button> -->
                                             <router-link :to="{name:'specialfeature', params:{id : feature.id}}" class="btn edit-borderbtn">編集</router-link>
-                                            <button class="btn text-danger delete-borderbtn" @click="deleteFeature(feature.id)">削除</button>
+                                            <button class="btn text-danger delete-borderbtn" @click="deleteFeature(feature.id,feature.type)">削除</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -95,6 +95,7 @@
             created() {
                 this.$loading(true);
                 if(this.$route.path == "/nusfeaturelist"){
+                    this.type = 'nursing';
                     this.title = "特徴一覧";
                     this.axios.get("/api/feature/featurelist/nursing").then(response => {
                         this.$loading(false);
@@ -108,6 +109,7 @@
                     });
                 }
                 else if(this.$route.path == "/hosfeaturelist"){
+                    this.type = 'hospital';
                     this.title = "特徴一覧";
                     this.axios.get("/api/feature/featurelist/hospital").then(response => {
                         this.$loading(false);
@@ -123,7 +125,7 @@
 
             },
             methods: {
-                deleteFeature(id) {
+                deleteFeature(id,type) {
                         this.$swal({
                             title: "確認",
                             text: "特徴を削除してよろしいでしょうか。",
@@ -140,7 +142,7 @@
                             cancelButtonClass: "all-btn"
                         }).then(response => {
                             this.axios
-                                .delete(`/api/feature/delete/${id}`)
+                                .delete(`/api/feature/delete/${id}/${type}`)
                                 .then(response => {
                                     this.features = response.data;
                                     this.norecord = this.features.data.length;
@@ -163,9 +165,19 @@
                                         confirmButtonText: "閉じる",
                                         confirmButtonColor: "#dc3545"
                                     });
-                                })
-                                .catch(() => {
-                                    this.$swal("Failed", "wrong");
+                                }).catch(error=>{
+                                    if(error.response.status == 404){
+                                        // this.$swal("このカテゴリに関連するニュースがあるため、削除できません。");
+                                        this.$swal({
+                                            title: "削除に失敗しました",
+                                            text: "削除に失敗しました この特徴の施設が存在するため削除できません。 ",
+                                            type: "error",
+                                            width: 350,
+                                            height: 200,
+                                            confirmButtonText: "閉じる",
+                                            confirmButtonColor: "#dc3545"
+                                        });
+                                    }
                                 });
                         });
                     },
@@ -179,7 +191,7 @@
                         fd.append("search_word", search_word);
                         this.$loading(true);
                         $("html, body").animate({ scrollTop: 0 }, "slow");
-                        this.axios.post("/api/feature/search?page="+page, fd).then(response => {
+                        this.axios.post("/api/feature/search/"+this.type+"?page="+page, fd).then(response => {
                             this.$loading(false);
                             this.features = response.data;
                             if(this.features.data.length != 0){

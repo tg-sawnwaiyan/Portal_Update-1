@@ -28,6 +28,7 @@ class ProfileController extends Controller
 
         $insert = array(
             'customer_id' => $id,
+            'name' => $request->name,
             'latitude' => $citylatlng[0]->latitude,
             'longitude' => $citylatlng[0]->longitude,
             'townships_id' => $request->town_id,
