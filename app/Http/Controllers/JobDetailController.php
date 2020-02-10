@@ -48,18 +48,11 @@ class JobDetailController extends Controller
     public function show($id)
     {
        
-        // $query = "SELECT jobs.* ,customers.type_id, customers.name as cusname,
-        // (CASE customers.type_id WHEN '2' THEN CONCAT((200000+customers.id),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(jobs.id, 4, '0')) END) as jobid
-        // FROM `jobs`
-        // JOIN customers ON jobs.customer_id = customers.id
-        // WHERE customers.recordstatus=1 and jobs.id = $id";
-
         $query = "SELECT jobs.* ,customers.type_id, customers.name as cusname,
         (CASE customers.type_id WHEN '2' THEN CONCAT((200000+customers.id),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(jobs.id, 4, '0')) END) as jobid
         FROM `jobs`
-        left JOIN hospital_profiles  as hp ON jobs.profile_id = hp.id
-        left join nursing_profiles as np on jobs.profile_id = np.id
-        WHERE ((np.recordstatus=1 and jobs.id = $id ) or (hp.recordstatus =1 and jobs.id = $id))";
+        JOIN customers ON jobs.customer_id = customers.id
+        WHERE customers.recordstatus=1 and jobs.id = $id";
         $selectedJob = DB::select($query);
         
         return $selectedJob;
