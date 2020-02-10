@@ -167,9 +167,10 @@
                                 </label>
                                 <div class="row col-md-12">
                                     <div class="col-md-6 pad-free">
-                                        <input type="text" class="form-control box" id="postal" placeholder="165879" v-model="joboffer.postal" maxlength="7" v-on:keyup="getPostal" />
+                                        <input type="text" class="form-control box" id="postal" placeholder="165879" v-model="joboffer.postal" maxlength="7" />
                                     </div>
                                     <div class="col-md-6">
+                                      <span class="float-left submit1 btn main-bg-color continue all-btn submit m-l-20" @click="getPostal">検索</span>
                                         <span class="float-left eg-txt">例）1006740 (<a href="https://www.post.japanpost.jp/zipcode/" target="_blank">郵便番号検索</a>)</span>
                                     </div>
                                 </div>
@@ -775,7 +776,7 @@ import Autocomplete from 'vuejs-auto-complete'
                        if(town_id == 2)
                       {
                         this.joboffer.location = ''
-                        this.joboffer.postal = '';
+                        // this.joboffer.postal = '';
                         this.joboffer.zipcode_id = null;
                         this.joboffer.str_address = 0;
                       }
@@ -784,7 +785,7 @@ import Autocomplete from 'vuejs-auto-complete'
                   },
                   getLocation(){
     
-                     this.joboffer.postal = '';
+                    //  this.joboffer.postal = '';
                      this.joboffer.location = '';
                   },
 
