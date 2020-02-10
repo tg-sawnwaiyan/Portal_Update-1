@@ -119,13 +119,13 @@
                                     </div>
                                     <div class="col-md-12 pad-free m-t-50 nursing-gallery" id="gallery-payment">
                                         <!-- test -->
-                                        <div class="pad-free col-md-12 gallery-area-payment" v-bind:id="'payment'+indx" v-for="(payment,indx) in payment_arr" :key="payment.id">
+                                        <div class="pad-free col-md-12 gallery-area-payment" v-bind:id="'payments'+indx" v-for="(payment,indx) in payment_arr" :key="payment.id">
                                             <div class="col-md-12">
                                                 <table class="table">
                                                     <tr>
                                                     <td colspan="2" class="text-right" style="border:none;!important">
-                                                        <span :class="'btn btn all-btn main-bg-color changeLink'+indx" style="min-width: 0px;" @click="paymentToggle(indx)" >
-                                                            <i :id="'icon' + indx" class="fas fa-sort-down"></i>
+                                                        <span :class="'btn btn all-btn main-bg-color changeLinkpayment'+indx" style="min-width: 0px;" @click="mainToggle('payment',indx)">
+                                                            <i :id="'payment'+indx" class="fas fa-sort-down"></i>
                                                         </span>
                                                         <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,'payment')">
                                                         <i class="fa fa-trash"></i> 削除</a>
@@ -141,7 +141,7 @@
                                                     </tr>
                                                 </table>
                                             </div>
-                                            <div class="col-md-12 " :id="'changeLink' + indx" >
+                                            <div class="col-md-12 " :id="'changeLinkpayment'+indx" >
                                                 <div class="col-md-12">
                                                         <h3 class="title-lbl">料金概要</h3>
                                                         <table class="table">
@@ -380,11 +380,11 @@
 
                                     <div class="col-md-12 pad-free" id="gallery-cooperate">
                                         <!-- cooperation -->
-                                        <div class="col-md-12 m-t-30 m-b-20 gallery-area-cooperate" v-bind:id="'cooperate'+indx" v-for="(cooperate,indx) in cooperate_arr" :key="cooperate.id">
+                                        <div class="col-md-12 m-t-30 m-b-20 gallery-area-cooperate" v-bind:id="'cooperated'+indx" v-for="(cooperate,indx) in cooperate_arr" :key="cooperate.id">
 
                                             <div class="clearfix" style="margin-bottom:30px;text-align:right">
-                                                <span :class="'btn all-btn main-bg-color cooperateChangeLink'+indx" style="min-width: 0px;" @click="cooperateToggle(indx)" >
-                                                        <i :id="'cooperatetogg' + indx" class="fas fa-sort-down"></i>
+                                                <span :class="'btn all-btn main-bg-color changeLinkcooperate'+indx" style="min-width: 0px;" @click="mainToggle('cooperate',indx)">
+                                                        <i :id="'cooperate'+indx" class="fas fa-sort-down"></i>
                                                 </span>
                                                  <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,'cooperate')">
                                                 <i class="fa fa-trash"></i> 削除</a>
@@ -395,7 +395,7 @@
                                                 <label class="col-2 pad-free">名前 :</label>
                                                 <input type="text" class="form-control col-10 float-right cooperate-name white-bg-color" name="co-medical-header[]" v-model="cooperate.name">
                                             </div>
-                                              <div :id="'cooperateChangeLink' + indx">
+                                              <div :id="'changeLinkcooperate'+indx">
                                             <table class="table table-bordered nursing_table_title">
                                             <tr>
                                                 <th class="width15 title-bg">診療科目</th>
@@ -538,10 +538,10 @@
                     <span class="galleryadd btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px" @click="galleryAdd()">
                         <i class="fas fa-plus-circle"></i> 追加
                     </span>
-                    <span class='changeGalleryLink btn btn all-btn main-bg-color nursing_toggle_responsive' style="min-width: 0px;" @click="galleryToggle" >
-                        <i id="gallery" class="fas fa-sort-down"></i>
+                    <span class='changeLinkphoto btn btn all-btn main-bg-color nursing_toggle_responsive' style="min-width: 0px;" @click="mainToggle('photo',null)" >
+                        <i id="photo" class="fas fa-sort-down"></i>
                     </span>
-                    <div id="changeGalleryLink"  class="col-md-12">
+                    <div id="changeLinkphoto"  class="col-md-12">
                         <div class="row" id ="gallery-photo">
                             <div class="col-md-6 gallery-area-photo p0-480" v-bind:id="'photo'+indx" v-for="(img,indx) in img_arr" :key="img.id">
                                 <div class="col-md-12 p0-480">
@@ -571,10 +571,10 @@
                     <div class="form-group form-group-wrapper">
                             <label class="heading-lbl col-2 pad-free">動画</label> <span class="galleryvideo btn all-btn main-bg-color float-right nursing_add_responsive " style="min-width: 0px;" @click="galleryVideoAdd()">
                                     <i class="fas fa-plus-circle"></i> 追加</span>
-                                    <span class='changeGalleryVideoLink  btn btn all-btn main-bg-color nursing_toggle_responsive ' style="min-width: 0px;" @click="galleryVideoToggle" >
+                                    <span class='changeLinkvideo  btn btn all-btn main-bg-color nursing_toggle_responsive ' style="min-width: 0px;" @click="mainToggle('video',null)">
                                         <i id="video" class="fas fa-sort-down"></i>
                                    </span>
-                            <div id="changeGalleryVideoLink" class="col-md-12">
+                            <div id="changeLinkvideo" class="col-md-12">
                                     <div class="row" id="gallery-video">
                                             <div class="col-md-6 gallery-area-video" v-bind:id="'video'+indx" v-for="(video,indx) in video_arr" :key="video.id">
                                                 <div class="col-md-12">
@@ -1096,84 +1096,32 @@ export default {
                 this.nursing_info['access'] = html
             },
 
-            paymentToggle(id)
-            {
+            mainToggle(type,id) {
+                if(id == null) { id =''; }
 
-                var class_by_id = $('#icon'+id).attr('class');
+                var class_by_id = $('#'+type+id).attr('class');
                 if(class_by_id == "fas fa-sort-down animate rotate")
                 {
-                    $('#icon'+id).removeClass("fas fa-sort-down animate rotate");
-                    $('.changeLink'+id).addClass("fas fa-sort-down");
-                    $('#changeLink'+id).show('medium');
+                    $('#'+type+id).removeClass("fas fa-sort-down animate rotate");
+                    $('.changeLink'+type+id).addClass("fas fa-sort-down");
+                    $('#changeLink'+type+id).show('medium');
+
+                    if(type == 'photo' || type == 'video') {
+                        $('.gallery'+type).show();
+                    }
+                    
                 }
                 else {
-                    $('#icon'+id).removeClass("fas fa-sort-down");
-                    $('.changeLink'+id).removeClass("fas fa-sort-down");
-                    $('#icon'+id).addClass("fas fa-sort-down animate rotate");
-                    $('#changeLink'+id).hide('medium');
-                }
+                    $('#'+type+id).removeClass("fas fa-sort-down");
+                    $('.changeLink'+type+id).removeClass("fas fa-sort-down");
+                    $('#'+type+id).addClass("fas fa-sort-down animate rotate");
+                    $('#changeLink'+type+id).hide('medium');
 
-            },
-            cooperateToggle(id)
-            {
-
-                var class_by_id = $('#cooperatetogg'+id).attr('class');
-                if(class_by_id == "fas fa-sort-down animate rotate")
-                {
-                    $('#cooperatetogg'+id).removeClass("fas fa-sort-down animate rotate");
-                    $('.cooperateChangeLink'+id).addClass("fas fa-sort-down");
-                    $('#cooperateChangeLink'+id).show('medium');
-                }
-                else {
-                    $('#cooperatetogg'+id).removeClass("fas fa-sort-down");
-                    $('.cooperateChangeLink'+id).removeClass("fas fa-sort-down");
-                    $('#cooperatetogg'+id).addClass("fas fa-sort-down animate rotate");
-                    $('#cooperateChangeLink'+id).hide('medium');
-                }
-
-            },
-
-            galleryToggle()
-            {
-                var class_by_id = $('#gallery').attr('class');
-
-                if(class_by_id == "fas fa-sort-down animate rotate")
-                {
-                    $('#gallery').removeClass("fas fa-sort-down animate rotate");
-                    $('.changeGalleryLink').addClass("fas fa-sort-down");
-                    $('#changeGalleryLink').show('medium');
-                    $('.galleryadd').show();
-                }
-                else {
-                    $('#gallery').removeClass("fas fa-sort-down");
-                    $('.changeGalleryLink').removeClass("fas fa-sort-down");
-                    $('#gallery').addClass("fas fa-sort-down animate rotate");
-                    $('#changeGalleryLink').hide('medium');
-                    // $('.galleryadd').show();
-                    $('.galleryadd').hide();
+                    if(type == 'photo' || type == 'video') {
+                        $('.gallery'+type).hide();
+                    }
                 }
             },
-
-            galleryVideoToggle()
-            {
-                var class_by_id = $('#video').attr('class');
-
-                if(class_by_id == "fas fa-sort-down animate rotate")
-                {
-                    $('#video').removeClass("fas fa-sort-down animate rotate");
-                    $('.changeGalleryVideoLink').addClass("fas fa-sort-down");
-                    $('#changeGalleryVideoLink').show('medium');
-                    $('.galleryvideo').show();
-                }
-                else {
-                    $('#video').removeClass("fas fa-sort-down");
-                    $('.changeGalleryVideoLink').removeClass("fas fa-sort-down");
-                    $('#video').addClass("fas fa-sort-down animate rotate");
-                    $('#changeGalleryVideoLink').hide('medium');
-                    $('.galleryvideo').hide();
-                }
-            },
-
             createProfile() {
                 
                 this.$loading(true);
