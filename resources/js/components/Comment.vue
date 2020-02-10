@@ -105,7 +105,7 @@
 
 
                                          <div class="form-group row"  v-for="field in comments.fields" :key="field.id">
-                                            <div class="col-sm-4 text-right">
+                                            <div class="col-sm-4">
                                                 <label for ="zipcode"  ><strong> 郵便番号(半角数字)</strong>   </label>
                                             </div>
                                              <div class="col-sm-6">
