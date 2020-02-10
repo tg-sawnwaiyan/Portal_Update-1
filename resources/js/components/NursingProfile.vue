@@ -119,7 +119,7 @@
                             <div class="form-group">
                                 <label class="heading-lbl col-lg-2 col-md-3 pad-free">タイプ</label>
                                 <div class="col-lg-10 col-md-12 float-right pad-free nursing-m-b-15">
-                                    <span class="nusing_btn1 btn all-btn main-bg-color" style="min-width: 0px;" @click="methodAdd()"><i class="fas fa-plus-circle"></i>追加</span>
+                                    <span class="nusing_btn1 btn all-btn main-bg-color" style="min-width: 0px;" @click="methodAdd(this)"><i class="fas fa-plus-circle"></i>追加</span>
                                     <div class="col-md-12 pad-free m-t-50 nursing-gallery" id="gallery-payment">
                                         <div class="pad-free col-md-12 gallery-area-payment" v-bind:id="'payments'+indx" v-for="(payment,indx) in payment_arr" :key="payment.id">
                                             <div class="col-md-12">
@@ -127,7 +127,7 @@
                                                     <tr>
                                                     <td colspan="2" class="text-right" style="border:none;!important">
                                                         <span :class="'btn btn all-btn main-bg-color changeLinkpayment'+indx" style="min-width: 0px;" @click="mainToggle('payment',indx)">
-                                                            <i :id="'payment'+indx" class="fas fa-sort-down animate rotate"></i>
+                                                            <i :id="'payment'+indx" v-bind:class="[payment.id != null? 'fas fa-sort-down animate rotate':'fas fa-sort-down']"></i>
                                                         </span>
                                                         <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,'payment')">
                                                         <i class="fa fa-trash"></i> 削除</a>
@@ -143,7 +143,7 @@
                                                     </tr>
                                                 </table>
                                             </div>
-                                            <div class="col-md-12 " :id="'changeLinkpayment'+indx" style="display: none;">
+                                            <div class="col-md-12 " v-bind:style="[payment.id != null? {'display':'none'}:{'display':'block'}]" :id="'changeLinkpayment'+indx">
                                                 <div class="col-md-12">
                                                         <h3 class="title-lbl">料金概要</h3>
                                                         <table class="table">
