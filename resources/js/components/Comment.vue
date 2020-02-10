@@ -1,20 +1,20 @@
 <template>
  <div class="">
      
-      <div class="col-12 col-lg-12 col-md-10 tab" >
+      <div class="col-12 col-lg-12 col-md-12 tab" >
        
-          <div class="card title_comment" style="background:#fff4ee;">
+          <div class="card title_comment title_comment2" style="background:#edf2f4;">
      
                     <!-- <div class="card-header text-center jt1">
                         <h4 style="padding-top: 20px;"><i class="	fa fa-comments" style="font-size:;"></i> 口コミ作成 </h4>
                     </div> -->
-                       <div class="col-12 m-b-10 m-t-8"><h4 class="comment-apply-color" style="margin-left:5px;"><i class="fa fa-comments com_ic"></i> 口コミ作成</h4></div>
+                       <div class="col-12 m-b-10 m-t-8 com-mt"><h4 class="comment-apply-color" style="margin-left:5px;"><i class="fa fa-comments com_ic"></i> 口コミ作成</h4></div>
                     <div class="card-body ">
                         <div class="row">
-                         <div class="col-sm-10 offset-1">
-                                <form @submit.prevent ="add" class="m-t-16 sendEmail comform"  method="post">
+                         <div class="col-sm-12 col-md-12">
+                                <form @submit.prevent ="add" class="m-t-16 sendEmail comform comment"  method="post" >
                                         <div class="form-group row">
-                                            <div class="col-sm-4 text-right">
+                                            <div class="col-sm-4 text-left">
                                                 <label for ="title"  ><strong> 口コミタイトル <span class="error sp1">必須</span></strong>   </label>
                                             </div>
                                              <div class="col-sm-8">
@@ -40,7 +40,7 @@
                                          </div> -->
 
                                           <div class="form-group row">
-                                                <div class="col-sm-4 text-right">
+                                                <div class="col-sm-4 text-left">
                                                         <label for ="email" ><strong> メールアドレス（半角英数字）<span class="error sp1">必須</span></strong>  </label>
                                                 </div>
                                                 <div class="col-sm-8">
@@ -57,7 +57,7 @@
                                          </div> -->
 
                                          <div class="form-group row">
-                                            <div class="col-sm-4 text-right">
+                                            <div class="col-sm-4 text-left">
                                                 <label for ="name"  ><strong> お名前 <span class="error sp1">必須</span></strong>   </label>
                                             </div>
                                              <div class="col-sm-8">
@@ -68,7 +68,7 @@
 
 
                                          <div class="form-group row">
-                                            <div class="col-sm-4 text-right">
+                                            <div class="col-sm-4 text-left">
                                                 <label for ="year"  ><strong> 生まれた年</strong>   </label>
                                             </div>
                                              <div class="col-sm-8">
@@ -80,7 +80,7 @@
                                         </div><br>
 
                                         <!-- <div class="form-group row">
-                                            <div class="col-sm-4 text-right">
+                                            <div class="col-sm-4 text-left">
                                                 <label for ="gender"  ><strong> 性別 <span class="error sp1">必須</span></strong>   </label>
                                             </div>
                                              <div class="col-sm-8">
@@ -93,7 +93,7 @@
                                             <div class="col-sm-4 text-right">
                                                 <label for ="zipcode"  ><strong> 郵便番号(半角数字)</strong>   </label>
                                             </div>
-                                             <div class="col-sm-4">
+                                             <div class="col-sm-4"  style="margin-bottom:10px;">
                                                  <input type="text" class="form-control box fnumericzip" value="firstzip" v-model="field.fzipcode" maxlength="3" v-on:keydown="isNumber">
                                               <span v-if="errors.fzipcode" class="error">{{errors.fzipcode[0]}}</span>
                                              </div>
@@ -119,7 +119,7 @@
                                         </div><br>
 
                                           <div class="form-group row">
-                                                <div class="col-sm-4 text-right">
+                                                <div class="col-sm-4 text-left">
                                                         <label for ="comment" ><strong> 口コミ内容<span class="error sp1">必須</span></strong>  </label>
                                                 </div>
                                                 <div class="col-sm-8">
