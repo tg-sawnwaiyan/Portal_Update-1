@@ -96,7 +96,7 @@ class HomeController extends Controller
 
 
         $pattern_arr = [1,2,3];
-        $random = "SELECT  id, pattern from categories order by rand()      ";
+        $random = "SELECT  id, pattern from categories order by rand()";
         $cat_random = DB::select($random);
         $k = count($cat_random);
         for($i=0;$i<count($cat_random);$i++)
@@ -183,6 +183,7 @@ class HomeController extends Controller
         }
 
         $sql = trim($sql,' UNION ');
+        // return $sql;
 
         $posts = DB::select($sql);
 

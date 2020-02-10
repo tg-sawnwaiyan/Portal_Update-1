@@ -15304,38 +15304,6 @@ function processAttrs (el) {
   }
 }
 
-<<<<<<< HEAD
-
-/***/ }),
-
-/***/ 371:
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(34);
-__webpack_require__(8);
-module.exports = __webpack_require__(27);
-
-
-/***/ }),
-
-/***/ 5:
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-=======
 function checkInFor (el) {
   var parent = el;
   while (parent) {
@@ -15345,7 +15313,6 @@ function checkInFor (el) {
     parent = parent.parent;
   }
   return false
->>>>>>> d902ef6985633b9fdcad03f51d6c9523af0a01ad
 }
 
 function parseModifiers (name) {
@@ -17194,7 +17161,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 369:
+/***/ 371:
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(35);
@@ -17242,8 +17209,4 @@ module.exports = __webpack_amd_options__;
 
 /***/ })
 
-<<<<<<< HEAD
 },[371]);
-=======
-},[369]);
->>>>>>> d902ef6985633b9fdcad03f51d6c9523af0a01ad
