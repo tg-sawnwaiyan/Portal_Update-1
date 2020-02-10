@@ -89,7 +89,7 @@
                                              </div>
                                         </div><br> -->
 
-                                        <div class="form-group row"  v-for="field in comments.fields" :key="field.id">
+                                        <!-- <div class="form-group row"  v-for="field in comments.fields" :key="field.id">
                                             <div class="col-sm-4 text-right">
                                                 <label for ="zipcode"  ><strong> 郵便番号(半角数字)</strong>   </label>
                                             </div>
@@ -101,6 +101,21 @@
                                                  <input type="text" class="form-control box lnumericzip" value="secondzip" v-model="field.lzipcode" maxlength="4" v-on:keydown="isNumber">
                                                   <span v-if="errors.lzipcode" class="error">{{errors.lzipcode[0]}}</span>
                                              </div>
+                                        </div><br> -->
+
+
+                                         <div class="form-group row"  v-for="field in comments.fields" :key="field.id">
+                                            <div class="col-sm-4 text-right">
+                                                <label for ="zipcode"  ><strong> 郵便番号(半角数字)</strong>   </label>
+                                            </div>
+                                             <div class="col-sm-6">
+                                                 <input type="text" class="form-control box fnumericzip" value="firstzip" v-model="field.fzipcode" maxlength="7" v-on:keydown="isNumber">
+                                              <span v-if="errors.fzipcode" class="error">{{errors.fzipcode[0]}}</span>
+                                             </div>
+                                             <div class="col-sm-2">
+                                                 <label> 例）1006740 </label>
+                                             </div>
+                                             
                                         </div><br>
 
                                           <div class="form-group row">
@@ -255,7 +270,7 @@ export default {
                     .then((response) => {
                         this.$loading(false);
                         this.type="completed";
-                    this.name = ''
+                        this.name = ''
                         this.$swal({
                             position: 'top-end',
                             type: 'success',
