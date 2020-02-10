@@ -116,6 +116,11 @@
                                                 </span>
                                             </div>
                                             <div id="nusNew">
+                                                 <div class="form-group">
+                                                    <label>Name :</label>
+                                                    <input type="text" class="form-control" v-model="nursing_data.name" placeholder="Enter  name...">
+                                                    <span v-if="errors.name" class="error">{{errors.name}}</span>
+                                                </div>
                                                 <div class="form-group" >
                                                     <select v-model="nursing_data.city_id" class="division form-control"  @change="getTownship()">
                                                             <option value="0">選択してください。</option>
@@ -199,12 +204,14 @@
                     old_password: '',
                    errors: {
                         password: "" ,
+                        name:"",
                         city:'',
                         township:''
                     },
                     city_list:[],
                     town_list:[],
                     nursing_data:{
+                        name:'',
                         city_id:'',
                         town_id:'',  
                     }
@@ -242,6 +249,13 @@
                     document.getElementById('nusNew').style.display = "block";
                 },
                 CreateNew(){
+                    if(this.nursing_data.name != '' )
+                    {
+                        this.errors.name = "";
+                    }
+                    else{
+                       this.errors.name = "Name is required";
+                    }
                     if(this.nursing_data.city_id != 0 )
                     {
                         this.errors.city = "";
@@ -257,7 +271,7 @@
                     else{
                          this.errors.township = "市区町村が必須です";
                     }
-                    if(this.errors.city == ""  &&  this.errors.township == "")
+                    if(this.errors.city == ""  &&  this.errors.township == "" && this.errors.name == "")
                     {
                         this.axios.post(`/api/nursing/movelatlng/${this.cusid}`, this.nursing_data)
                                         .then((response) => {
@@ -272,14 +286,14 @@
                                             confirmButtonClass: "all-btn",
                                         
                                 });
+
+                            document.getElementById('newcreate').style.display = "block";
+                            document.getElementById('nusNew').style.display = "none";
+                            this.nursing_data.name = '';
+                            this.nursing_data.town_id = 0;
+                            this.nursing_data.city_id = 0;
                         });
-                    }
-                    else{
-                        console.log('a');
-                    }
-                   
-                   
-                   
+                    }  
                 },
                 CancelNew(){
                      document.getElementById('newcreate').style.display = "block";

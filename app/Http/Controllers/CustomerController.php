@@ -20,8 +20,6 @@ class CustomerController extends Controller
      */
     public function index($type)
     {
-        // $customers = Customer::all()->toArray();
-        // return array_reverse($customers);
         $customer =Customer::where('type_id',$type)->orderBy('created_at', 'desc')->paginate(12);
         return response()->json($customer);
     }
@@ -29,9 +27,9 @@ class CustomerController extends Controller
         $nuscustomer = NursingProfile::where('customer_id',$id)->select('id','logo','name','phone','email')->get();
         return $nuscustomer;
     }
-    public function hosaccount() {
-        $customer = "SELECT hospital_profiles.id,hospital_profiles.name,hospital_profiles.email,hospital_profiles.phone,hospital_profiles.logo from hospital_profiles JOIN customers ON hospital_profiles.customer_id= customers.id";
-        $hoscustomer = DB::select($customer);
+    public function hosaccount($id) {
+      
+        $hoscustomer = HospitalProfile::where('customer_id',$id)->select('id','logo','name','phone','email')->get();
         return $hoscustomer;
     }
 
