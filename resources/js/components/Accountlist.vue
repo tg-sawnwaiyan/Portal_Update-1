@@ -16,11 +16,10 @@
                                     <!-- <img :src="'/upload/nursing_profile/'+ nursingprofile.logo" id="thumbnil" class="profile_logo m-b-8" alt="Logo"  width="200px" > -->
                                    <div class="card-body nus_account">
                                        <div class="img_title">
-                                            <img :src="'/upload/nursing_profile/'+ nursingprofiles.logo"  @error="imgUrlAlt" />
+                                            <img :src="'/upload/nursing_profile/'+ nursingprofiles.logo" alt="aa" @error="imgUrlAlt" />
                                        </div>
-                                          <p>{{nursingprofiles.name}}</p>
-                                          <p>{{nursingprofiles.phone}}</p>
-                                          <p>{{nursingprofiles.email}}</p>
+                                          <p class="acc_color"><strong>{{nursingprofiles.name}}</strong></p>
+                                          <p v-if="nursingprofiles.email">{{nursingprofiles.email}}</p>
                                           <router-link :to="{ path:'/profile/nursing/'+ nursingprofiles.id}" class="btn btn-success" style="font-weight:bold;">Edit</router-link>
                                    </div>
                                 </div>
@@ -29,22 +28,16 @@
                               <div class="row col-12 m-lr-0" v-else>
                                <div class="col-md-3 m-b-10 nursing_responsive" v-for="hospitalprofiles in hospitalprofile" :key="hospitalprofiles.id">
                                     <div class="card h-100">
-                                    <div class="card-body nus_account">
-                                        <div class="img_title">
-                                            <img :src="'/upload/hospital_profile/'+ hospitalprofiles.logo"    @error="imgUrlAlt(hospitalprofiles.id)" />
+                                        <div class="card-body nus_account">
+                                            <div class="img_title">
+                                                <img :src="'/upload/hospital_profile/'+ hospitalprofiles.logo" @error="imgUrlAlt"/>
+                                            </div>
+                                            <p class="acc_color"><strong>{{hospitalprofiles.name}}</strong></p>
+                                            <p v-if="hospitalprofiles.email"> ({{hospitalprofiles.email}})</p>
+                                            <router-link :to="{ path:'/profile/hospital/'+ hospitalprofiles.id}" class="btn btn-success" style="font-weight:bold;">Edit</router-link>
                                         </div>
-                                          <strong>Name </strong>
-                                          <p>{{hospitalprofiles.name}}</p>
-
-                                          <strong>Phone </strong>
-                                          <p>{{hospitalprofiles.phone}}</p>
-
-                                          <strong>Email </strong>
-                                          <p>{{hospitalprofiles.email}}</p>
-                                        <router-link :to="{ path:'/profile/hospital/'+ hospitalprofiles.id}" class="btn btn-success" style="font-weight:bold;">Edit</router-link>
                                     </div>
                                 </div>
-                               </div>
                             </div>
                         </div>
                     </div>
@@ -82,10 +75,17 @@ export default {
 
     },
     methods: {
-        imgUrlAlt(event,$id) 
-        {
+        imgUrlAlt(event) {
+          
             event.target.src = "/images/noimage.jpg"
-        }
+        },
     }
 }
 </script>
+
+
+<style scoped>
+ .acc_color{
+        color:#2980b9
+    }
+</style>
