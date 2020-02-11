@@ -217,7 +217,7 @@ class JobController extends Controller
             $job->customer_id= auth()->user()->customer_id;
         }
         $job->description = $request->input('description');
-        $job->skills = $string;
+        $job->skills = $request->input('skills');
         // $job->city_id = $request->input('city_id');
         // $job->street_address = $request->input('str_address');
         $job->location = $request->input('location');
@@ -328,7 +328,7 @@ class JobController extends Controller
             }
 
             $job->description = $request->input('description');
-            $job->skills = $string;
+            $job->skills = $request->input('skills');
             // $job->city_id = $request->input('city_id');
             // $job->street_address = $request->input('str_address');
             $job->location = $request->input('location');

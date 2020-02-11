@@ -270,6 +270,59 @@ label {
 
 /* end nursing and hospital accountlist */
 
+.lastblock {
+    display: block;
+}
+
+.hospitalselect {
+    display: none;
+}
+
+span.tooltip {
+    padding: 0px 5px;
+    position: relative;
+    background: #ffbb99;
+    cursor: pointer;
+}
+
+.tooltip-info {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+}
+
+span.tooltip::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: 1.5em;
+    font-size: 0.9em;
+    padding: 1px 5px;
+    display: none;
+    color: white;
+    background: rgba(0, 0, 0, 0.75);
+    border-radius: 4px;
+    transition: opacity 0.1s ease-out;
+    z-index: 99;
+    text-align: left;
+}
+
+span:hover::before {
+    display: inline-block;
+}
+
+[data-toggle="collapse"] .fa:before {
+    content: "\f139";
+}
+
+[data-toggle="collapse"].collapsed .fa:before {
+    content: "\f13a";
+}
+
+.card-2 {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    border-radius: 10px;
+}
+
 
 /********************************** End Common **********************************/
 
@@ -2443,14 +2496,19 @@ ul.sub-ul li {
     background: #f5f5f5 !important;
 }
 
-.joboffer-salary-type {
+/* .joboffer-salary-type {
     margin-left: 15px;
-}
+} */
 
 .joboffer-salary {
     margin-left: 5px;
 }
-
+.autocomplete__box , .autocomplete__inputs {
+    padding: 0 !important;
+}
+.autocomplete__box {
+    padding-left: 5px !important;
+}
 
 /*End Terms & conditions */
 
@@ -3344,7 +3402,7 @@ overflow-y: auto;
 
 #headerbar .router-link-exact-active>i.fa,
 .router-link-exact-active>i.fas {
-    color: #c40000 !important;
+    color: #0b4580 !important;
     font-weight: bold;
 }
 
@@ -9246,6 +9304,45 @@ padding: 11px;
 }
 
 
+/* 419 */
+
+
+/* .container {
+    position: relative;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+} */
+
+.content {
+    text-align: center;
+}
+
+.title {
+    font-size: 36px;
+    padding: 20px;
+    color: #636b6f;
+}
+
+.gohome {
+    text-decoration: none;
+    border: none;
+    padding: 7px 15px 10px 15px;
+    color: #fff;
+    background: #2980b9;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.gohome:hover {
+    background: #2980b9;
+    text-decoration: none;
+    color: #fff;
+}
+
+
 /*--------------------------------------------------------------------------------responsive -----------------------------------------------------------------------*/
 
 #sp_headerbar {
@@ -9434,6 +9531,25 @@ padding: 11px;
 }
 
 @media only screen and (max-width:1280px) {
+    .h-tel {
+        padding-left: 12px;
+        margin: 10px 0;
+    }
+    .gNav {
+        margin-left: 0%;
+    }
+    .gSecondNav li {
+        background: transparent;
+        border-left: solid 1px #a7b7c7;
+        border-right: none;
+        border-top: none;
+        border-bottom: none;
+        padding: 5px;
+        border-radius: 0px;
+        color: #000;
+        margin: 0px;
+        font-size: 12px;
+    }
     .maintab-content {
         padding: 7px;
     }
@@ -9874,7 +9990,7 @@ padding: 0;
     /*end common */
     /* header */
     .main-header {
-        padding: 0;
+        padding: 4px 0;
         height: auto;
     }
     .nav-warp .d-flex {
@@ -10146,8 +10262,8 @@ padding: 0;
     #sp_adminheader .admin_menu {
         position: absolute;
         display: block;
-        top: 0;
-        right: 10px;
+        top: 5px;
+        right: 15px;
         color: #fff;
         z-index: 99;
         cursor: pointer;
@@ -10904,6 +11020,20 @@ width: 18rem;
     }
     #news_list .select_box {
         width: 75%;
+    }
+    .joboffer-salary-type {
+        padding: 0;  
+    }
+    .joboffer-salary {
+        margin: 10px 0 0 0;
+        padding: 0;
+    }
+    .tel-input {
+        padding: 0;
+    }
+    .tel-button {
+        margin-top: 10px;
+        padding: 0;
     }
     /*end create news */
 }
@@ -11854,6 +11984,9 @@ background-image: none;
 }
 
 @media only screen and (min-width: 1440px) and (max-width: 1880px) {
+    .main-content {
+        width: 100%;
+    }
     #fav-history-page .card-carousel {
         width: 1046px!important;
         margin-left: 20px;

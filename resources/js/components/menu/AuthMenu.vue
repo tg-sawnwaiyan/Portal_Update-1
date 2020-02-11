@@ -130,7 +130,7 @@
                                 <transition name="slideup">
                                     <ul class="sub_menu" v-show="isSubmenu[1].show">
                                         <li  @click="toggle">
-                                            <router-link :to="{ name: 'news_list' }"><i class="fa fa-file-alt"></i>  ニュース一覧</router-link>
+                                            <router-link :to="{ name: 'news_list' }" ><i class="fa fa-file-alt"></i>  ニュース一覧</router-link>
                                         </li>
                                         <li @click="toggle">
                                             <router-link :to="{ name: 'categorylist' }"><i class="fa fa-file-alt"></i>  カテゴリー設定</router-link>

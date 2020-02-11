@@ -184,16 +184,7 @@ class SearchMapController extends Controller
               $local = 0;
           }
 
-          $query = "SELECT '' as fav_check,'' as alphabet, n.id as nursing_id,n.latitude as lat ,n.longitude as lng,n.*, ci.id as city_id, ci.city_eng,ci.city_name,t.township_name,ty.name AS type_name 
-                    from nursing_profiles as n  
-                    left join types AS ty ON c.type_id = ty.id
-                    left join townships as t on t.id = n.townships_id
-                    left join cities as ci on ci.id = t.city_id
-                    left join fac_types as f on f.id = n.fac_type 
-                    left join special_features_junctions as spej on spej.profile_id = n.id  
-                    left join special_features as spe on spe.id = spej.special_feature_id
-                    left join acceptance_transactions as acct on acct.profile_id = n.id
-                    left join medical_acceptance as med on med.id = acct.medical_acceptance_id where n.recordstatus=1 group by n.id";
+          $query = "SELECT '' as fav_check,'' as alphabet, n.id as nursing_id,n.latitude as lat ,n.longitude as lng,n.*, ci.id as city_id, ci.city_eng,ci.city_name,t.township_name,f.description AS type_name from nursing_profiles as n left join townships as t on t.id = n.townships_id left join cities as ci on ci.id = t.city_id left join fac_types as f on f.id = n.fac_type left join special_features_junctions as spej on spej.profile_id = n.id left join special_features as spe on spe.id = spej.special_feature_id left join acceptance_transactions as acct on acct.profile_id = n.id left join medical_acceptance as med on med.id = acct.medical_acceptance_id where n.recordstatus=1";
 
           if($id == -1)
           {
@@ -201,13 +192,12 @@ class SearchMapController extends Controller
              {
                 // $query .= " and (n.method like '%" . $searchword . "%' or n.business_entity like '%".$searchword."%') group by c.id";
               
-                 $query .= " and (ci.city_name like '%" . $searchword . "%' or t.township_name like '%" . $searchword . "%' or c.name like '%".$searchword."%') group by h.id";
+                 $query .= " and (ci.city_name like '%" . $searchword . "%' or t.township_name like '%" . $searchword . "%' or n.name like '%".$searchword."%') group by n.id";
              }
              else{
                  
-                $query = "SELECT '' as fav_check,'' as alphabet, n.id as nursing_id,n.latitude as lat ,n.longitude as lng,n.*, ci.id as city_id, ci.city_eng,ci.city_name,t.township_name,ty.name AS type_name 
+                $query = "SELECT '' as fav_check,'' as alphabet, n.id as nursing_id,n.latitude as lat ,n.longitude as lng,n.*, ci.id as city_id, ci.city_eng,ci.city_name,t.township_name,f.description AS type_name 
                             from nursing_profiles as n  
-                            left join types AS ty ON c.type_id = ty.id
                             left join townships as t on t.id = n.townships_id
                             left join cities as ci on ci.id = t.city_id
                             left join fac_types as f on f.id = n.fac_type 
@@ -379,7 +369,7 @@ class SearchMapController extends Controller
             $spe_query = "SELECT spe.*,spej.profile_id from  special_features as spe join special_features_junctions as spej on spe.id = spej.special_feature_id";
             $specialfeature = DB::select($spe_query);
 
-            $med_query = "SELECT med.*,acc.customer_id from acceptance_transactions as acc join medical_acceptance as med on acc.medical_acceptance_id = med.id";
+            $med_query = "SELECT med.*,acc.profile_id from acceptance_transactions as acc join medical_acceptance as med on acc.medical_acceptance_id = med.id";
             $medicalacceptance = DB::select($med_query);
             
             $fac_query = "SELECT fac.* from nursing_profiles as n   join fac_types  as fac on fac.id = n.fac_type";
@@ -550,7 +540,7 @@ class SearchMapController extends Controller
             if($searchword != 'undefined')
             {
                
-                $query .= " and (ci.city_name like '%" . $searchword . "%' or t.township_name like '%" . $searchword . "%' or c.name like '%".$searchword."%') group by h.id";
+                $query .= " and (ci.city_name like '%" . $searchword . "%' or t.township_name like '%" . $searchword . "%' or h.name like '%".$searchword."%')";
             }
            
             $query .=  " group by h.id";
@@ -618,7 +608,7 @@ class SearchMapController extends Controller
          $empstatus = $_GET['empstatus'];
 
         $query = "SELECT j.id as jobid,j.recordstatus as job_record, j.*,c.*,n.*,h.*,
-                (CASE c.type_id WHEN '2' THEN CONCAT((200000+j.profile_id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT((500000+j.profile_id),'-',LPAD(j.id, 4, '0')) END) as jobnum 
+                (CASE c.type_id WHEN '2' THEN CONCAT((200000+j.customer_id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT((500000+j.customer_id),'-',LPAD(j.id, 4, '0')) END) as jobnum 
                 from  jobs as j              
                 join customers as c on c.id = j.customer_id
                 left Join townships as t on t.id = j.township_id 
@@ -633,7 +623,7 @@ class SearchMapController extends Controller
             if($searchword == 'all')
             {
                 $query = "SELECT j.id as jobid,j.recordstatus as job_record, j.*,c.*,n.*,h.*,
-                        (CASE c.type_id WHEN '2' THEN CONCAT((200000+j.profile_id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT((500000+j.profile_id),'-',LPAD(j.id, 4, '0')) END) as jobnum 
+                        (CASE c.type_id WHEN '2' THEN CONCAT((200000+j.customer_id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT((500000+j.customer_id),'-',LPAD(j.id, 4, '0')) END) as jobnum 
                         from  jobs as j
                         join customers as c on c.id = j.customer_id
                         left Join nursing_profiles As n on n.customer_id = c.id 
