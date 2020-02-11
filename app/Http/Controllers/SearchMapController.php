@@ -463,7 +463,7 @@ class SearchMapController extends Controller
 
         if($id == -1) 
         {
-            if($searchword == "all") 
+            if($searchword == "all")    
             {
                 $query ="SELECT '' as fav_check, h.id as hos_id, h.*
                         from  hospital_profiles as h     
@@ -477,7 +477,7 @@ class SearchMapController extends Controller
             }
             else{
 
-                $query .= " (ci.city_name like '%" . $searchword . "%' or t.township_name like '%" . $searchword . "%' or h.name like '%".$searchword."%') group by h.id";
+                $query .= " (ci.city_name like '%" . $searchword . "%' or t.township_name like '%" . $searchword . "%' or h.name like '%".$searchword."%' or h.subject like '%".$searchword."%') group by h.id";
             }
            
         }
@@ -550,7 +550,7 @@ class SearchMapController extends Controller
             if($searchword != 'undefined')
             {
                
-                $query .= " and (ci.city_name like '%" . $searchword . "%' or t.township_name like '%" . $searchword . "%' or c.name like '%".$searchword."%') group by h.id";
+                $query .= " and (ci.city_name like '%" . $searchword . "%' or t.township_name like '%" . $searchword . "%' or c.name like '%".$searchword."%' or h.subject like '%".$searchword."%') group by h.id";
             }
            
             $query .=  " group by h.id";
