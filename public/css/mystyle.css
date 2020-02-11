@@ -270,7 +270,55 @@ label {
 
 /* end nursing and hospital accountlist */
 
+.lastblock{
+    display: block;
+}
+.hospitalselect {
+    display: none;
+}  
+span.tooltip {
+    padding: 0px 5px;
+    position: relative;
+    background: #ffbb99;
+    cursor: pointer;
+  }
 
+  .tooltip-info {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  span.tooltip::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: 1.5em;
+    font-size: 0.9em;
+    padding: 1px 5px;
+    display: none;
+    color: white;
+    background: rgba(0, 0, 0, 0.75);
+    border-radius: 4px;
+    transition: opacity 0.1s ease-out;
+    z-index: 99;
+    text-align: left;
+  }
+
+  span:hover::before {
+    display: inline-block;
+  }
+
+  [data-toggle="collapse"] .fa:before {
+    content: "\f139";
+  }
+
+  [data-toggle="collapse"].collapsed .fa:before {
+    content: "\f13a";
+  }
+  .card-2 {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    border-radius: 10px;
+  }
 /********************************** End Common **********************************/
 
 
@@ -1674,7 +1722,7 @@ border-top: 5px solid #e66527; */
 
 .main-content {
     /* padding: 0px;*/
-    width: 100%;
+    width: 80%;
     margin: 0 auto;
     box-shadow: 0px 1px 2px 0px #ccc !important;
     -webkit-box-shadow: 0px 1px 2px 0px #ccc !important;
@@ -3338,7 +3386,7 @@ overflow-y: auto;
 
 #headerbar .router-link-exact-active>i.fa,
 .router-link-exact-active>i.fas {
-    color: #c40000 !important;
+    color: #0b4580 !important;
     font-weight: bold;
 }
 
@@ -9232,7 +9280,37 @@ padding: 11px;
     display: none;
 }
 
-
+/* 419 */
+/* .container {
+    position: relative;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+} */
+.content {
+    text-align: center;
+}
+.title {
+    font-size: 36px;
+    padding: 20px;
+    color: #636b6f;
+}
+.gohome{
+    text-decoration:none;
+    border: none; 
+    padding: 7px 15px 10px 15px; 
+    color: #fff; 
+    background: #2980b9; 
+    font-weight: bold; 
+    border-radius: 5px;
+    font-size: 20px;
+}
+.gohome:hover {
+    background: #2980b9;
+    text-decoration:none;
+    color: #fff; 
+}
 /*--------------------------------------------------------------------------------responsive -----------------------------------------------------------------------*/
 
 #sp_headerbar {
@@ -9424,7 +9502,25 @@ padding: 11px;
 }
 
 @media only screen and (max-width:1280px) {
-    
+    .h-tel {
+        padding-left: 12px;
+        margin: 10px 0;        
+    }
+    .gNav{
+        margin-left: 0%;
+    }
+    .gSecondNav li {        
+        background: transparent;
+        border-left: solid 1px #a7b7c7;
+        border-right: none;
+        border-top: none;
+        border-bottom: none;
+        padding: 5px;
+        border-radius: 0px;
+        color: #000;
+        margin: 0px;
+        font-size: 12px;
+    }    
     .maintab-content {
         padding: 7px;
     }
@@ -11888,6 +11984,10 @@ background-image: none;
 }
 
 @media only screen and (min-width: 1440px) and (max-width: 1880px) {
+  
+    .main-content {
+        width: 100%;
+    }
     #fav-history-page .card-carousel {
         width: 1046px!important;
         margin-left: 20px;

@@ -1810,47 +1810,6 @@
     display: none;
   }
 
-  span.tooltip {
-    padding: 0px 5px;
-    position: relative;
-    background: #ffbb99;
-    cursor: pointer;
-  }
-
-  .tooltip-info {
-    position: absolute;
-    top: -9999px;
-    left: -9999px;
-  }
-
-  span.tooltip::before {
-    content: attr(data-tooltip);
-    position: absolute;
-    top: 1.5em;
-    font-size: 0.9em;
-    padding: 1px 5px;
-    display: none;
-    color: white;
-    background: rgba(0, 0, 0, 0.75);
-    border-radius: 4px;
-    transition: opacity 0.1s ease-out;
-    z-index: 99;
-    text-align: left;
-  }
-
-  span:hover::before {
-    display: inline-block;
-  }
-
-  [data-toggle="collapse"] .fa:before {
-    content: "\f139";
-  }
-
-  [data-toggle="collapse"].collapsed .fa:before {
-    content: "\f13a";
-  }
-
-
   .left-div {
     background-color: #e8e7e7;
     text-align: right;
@@ -2071,21 +2030,6 @@ div#holder {
     transform: translatex(0px);
   }
 
-  #nursing-search .card-carousel-cards .card-carousel--card {
-    /* margin: 0 10px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-    background-color: #fff;
-    border-radius: 4px;
-    z-index: 3;
-    margin-bottom: 2px;
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1); */
-  }
-
-  #nursing-search .card-carousel-cards .card-carousel--card:hover {
-    /* box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22); */
-
-  }
-
   #nursing-search .card-carousel-cards .card-carousel--card:first-child {
     margin-left: 0;
   }
@@ -2209,12 +2153,7 @@ div#holder {
   right: 0;
 }
 /************************responsive ****************************/
-@media only screen and (max-width:1024px) {
-  table > tbody > tr th{
-    /* width:100px !important; */
-  }
 
-}
 @media only screen and (max-width: 480px){
   table > tbody > tr th{
     padding: 25px 5px;
