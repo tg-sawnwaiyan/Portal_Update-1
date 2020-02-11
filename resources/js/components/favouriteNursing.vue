@@ -701,10 +701,13 @@
                                 'name': this.fav_nursing[i]['name']
                             });
                         }
+
+                          console.log("this.document_status",this.fav_nursing);
                         
                         localStorage.setItem("document", JSON.stringify(this.document_status));
                         localStorage.removeItem("item");
                         localStorage.setItem("item", JSON.stringify(this.fav_email));
+                      
                         this.$router.push({
                             name: 'nursingFavouriteMail',
                             // params: { favmail: this.fav_email},
