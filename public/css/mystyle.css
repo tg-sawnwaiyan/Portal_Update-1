@@ -1449,7 +1449,7 @@ box-shadow: 0px 0px 5px rgb(212, 201, 201); */
     line-height: 50px;
     vertical-align: middle;
     z-index: 99;
-    overflow: hidden;
+    /* overflow: hidden;  */
 }
 
 .admin-header .nav-warp {
@@ -1503,9 +1503,13 @@ border-top: 5px solid #e66527; */
     z-index: 99;
 }
 
-.gSecondNav {}
-
 .gSecondNav li {
+    list-style: none;
+    float: left;
+}
+
+
+/* .gSecondNav li {
     float: left;
     list-style: none;
     background: #ecf1f5;
@@ -1515,7 +1519,7 @@ border-top: 5px solid #e66527; */
     color: #000;
     margin: 5px;
     font-size: 12px;
-}
+} */
 
 .gNav {
     margin-left: 2%;
@@ -1660,11 +1664,7 @@ border-top: 5px solid #e66527; */
 
 #app .logo-text {
     padding: 0 0px 0 0;
-    font-size: 40px;
-    font-weight: bold;
-    color: #2980b9;
     margin-right: 0px;
-    /* text-shadow: 3px 4px #ccc; */
 }
 
 #app .logo-text span {
@@ -9379,9 +9379,6 @@ padding: 11px;
     #headerbar li {
         display: inline-block;
     }
-    .gNav {
-        margin-left: 2%;
-    }
     .gNav li a {
         padding: 0 5px;
     }
@@ -11338,7 +11335,9 @@ background-image: none;
     }
     #news_post .card-body,
     #cat_post .card-body,
-    #ads_post .card-body {
+    #ads_post .card-body,
+    #create_fact .card-body,
+    #create_subject .card-body {
         padding: 13px;
     }
 }

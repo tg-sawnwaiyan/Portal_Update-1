@@ -32,16 +32,21 @@
                 <li>
                 <router-link :to="{ name: 'jobSearch' }">求人検索</router-link>
                 </li>    
-               
+               <li>
+                <a>サイトポリシー</a>
+                </li>
+                <li>
+                <a>プライバシーポリシー</a>
+                </li>
             </ul>
-             <ul class="gSecondNav">
+             <!-- <ul class="gSecondNav">
                 <li>
                 <a>サイトポリシー</a>
                 </li>
                 <li>
                 <a>プライバシーポリシー</a>
                 </li>
-            </ul>            
+            </ul>             -->
             
 
             <div class="collapse navbar-collapse  d-flex justify-content-end" id="navbarSupportedContent">

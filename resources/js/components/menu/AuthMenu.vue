@@ -9,7 +9,7 @@
                     <img src="/images/logo.png" style="width:215px;height:auto;" />                     
                     </a>
                     <a class="" style="color:#fff;font-size:20px;width:230px;text-align:center;background: rgb(36, 84, 113);" href="/"  v-if="visit != 'true'">                     
-                      <img src="/images/admin_logo1.png" style="width:240px;height:auto;" />
+                      <img src="/images/admin_logo1.png" style="width:230px;height:auto;" />
                     </a>
                     <div class="h-tel" v-if="visit == 'true'"><a class="tel" href="tel:03-1234-5678"><i class="fas fa-phone-alt"></i><span>03-1234-5678</span></a><br class="pc-1024"><a href="mailto:info@t-i-s.jp"><p class="sp-1024"><i class="fas fa-envelope"></i></p><span>info@t-i-s.jp</span></a></div>
                     <ul class="sp_social d-none-380"  v-if="visit == 'true'">
@@ -81,7 +81,7 @@
                 </div>
             </div>
             <div id="sp_adminheader" v-if="visit == 'false'">
-                <div class="admin_menu"  @click="toggle">
+                <div class="admin_menu"  @click="toggle" >
                     <span>メニュー</span>&nbsp;<i :class="!isNav? open : close"></i>
                     <!-- <div class="overlay" :class="!isNav? overlay : overlay01"></div> -->
                 </div>
@@ -107,9 +107,9 @@
                                 <router-link :to="{ name: 'profile' }"><i class="fa fa-map"></i>  マイページ編集</router-link>
                             </li>
                             <li v-if="$auth.check(1)">
-                                <span @click="subMenu(4)" :class="{ active : isActive == 4 }"><i class="fas fa-users"></i>  求人 <i class="fas fa-angle-right" :class="{ down : isRotate == 4 }"></i></span>
+                                <span @click="subMenu(0)" :class="{ active : isActive == 0 }"><i class="fas fa-users"></i>  求人 <i class="fas fa-angle-right" :class="{ down : isRotate == 0 }"></i></span>
                                 <transition name="slideup">
-                                    <ul class="sub_menu" v-show="isSubmenu[4].show">
+                                    <ul class="sub_menu" v-show="isSubmenu[0].show">
                                         <li @click="toggle">
                                             <router-link :to="{ name: 'jobofferlist' }"><i class="fa fa-edit"></i>  求人編集</router-link>
                                         </li>
@@ -126,9 +126,9 @@
                                 <router-link :to="{ name: 'jobapplicantlist' }"><i class="fa fa-list-ul"></i>  求人応募者一覧</router-link>
                             </li> -->
                             <li v-if="$auth.check(2)">
-                                <span @click="subMenu(0)" :class="{ active : isActive == 0 }"><i class="fa fa-list-ul"></i>  ニュース <i class="fas fa-angle-right" :class="{ down : isRotate == 0 }"></i></span>
+                                <span @click="subMenu(1)" :class="{ active : isActive == 1 }"><i class="fa fa-list-ul"></i>  ニュース <i class="fas fa-angle-right" :class="{ down : isRotate == 1 }"></i></span>
                                 <transition name="slideup">
-                                    <ul class="sub_menu" v-show="isSubmenu[0].show">
+                                    <ul class="sub_menu" v-show="isSubmenu[1].show">
                                         <li  @click="toggle">
                                             <router-link :to="{ name: 'news_list' }"><i class="fa fa-file-alt"></i>  ニュース一覧</router-link>
                                         </li>
@@ -142,9 +142,9 @@
                                 </transition>
                             </li>
                             <li v-if="$auth.check(2)">
-                                <span @click="subMenu(1)" :class="{ active : isActive == 1 }"><i class="fa fa-user-md"></i>  介護施設 <i class="fas fa-angle-right" :class="{ down : isRotate == 1 }"></i></span>
+                                <span @click="subMenu(2)" :class="{ active : isActive == 2 }"><i class="fa fa-user-md"></i>  介護施設 <i class="fas fa-angle-right" :class="{ down : isRotate == 2 }"></i></span>
                                 <transition name="slideup">
-                                    <ul class="sub_menu" v-show="isSubmenu[1].show">
+                                    <ul class="sub_menu" v-show="isSubmenu[2].show">
                                         <li @click="toggle">
                                             <router-link :to="{ name: 'nuscustomerlist' }"><i class="fa fa-user"></i>  事業者一覧</router-link>
                                         </li>
@@ -158,9 +158,9 @@
                                 </transition>
                             </li>
                             <li v-if="$auth.check(2)">
-                                <span @click="subMenu(2)" :class="{ active : isActive == 2 }"><i class="fas fa-briefcase-medical"></i>  病院 <i class="fas fa-angle-right" :class="{ down : isRotate == 2 }"></i></span>
+                                <span @click="subMenu(3)" :class="{ active : isActive == 3 }"><i class="fas fa-briefcase-medical"></i>  病院 <i class="fas fa-angle-right" :class="{ down : isRotate == 3 }"></i></span>
                                 <transition name="slideup">
-                                    <ul class="sub_menu" v-show="isSubmenu[2].show">
+                                    <ul class="sub_menu" v-show="isSubmenu[3].show">
                                         <li @click="toggle">
                                             <router-link :to="{ name: 'hoscustomerlist' }"><i class="fa fa-user"></i>  事業者一覧</router-link>
                                         </li>
@@ -180,9 +180,9 @@
                                 </transition>
                             </li>
                             <li v-if="$auth.check(2)">
-                                <span @click="subMenu(3)" :class="{ active : isActive == 3 }"><i class="fas fa-users"></i>  求人 <i class="fas fa-angle-right" :class="{ down : isRotate == 3 }"></i></span>
+                                <span @click="subMenu(4)" :class="{ active : isActive == 4 }"><i class="fas fa-users"></i>  求人 <i class="fas fa-angle-right" :class="{ down : isRotate == 4 }"></i></span>
                                 <transition name="slideup">
-                                    <ul class="sub_menu" v-show="isSubmenu[3].show">
+                                    <ul class="sub_menu" v-show="isSubmenu[4].show">
                                         <li @click="toggle">
                                             <router-link :to="{ name: 'occupationlist' }"><i class="fa fa-suitcase"></i>  求人職種設定</router-link>
                                         </li>
