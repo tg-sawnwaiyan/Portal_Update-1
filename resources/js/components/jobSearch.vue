@@ -479,6 +479,7 @@ export default {
     },
     search()
     {
+      
         if(this.townshipID == null || this.townshipID == '')
         {
           this.townshipID[0] = 0;
@@ -508,6 +509,7 @@ export default {
           },
         }).then((response)=>{
             this.job_data = response.data.job;
+            console.log("this.job_data",this.job_data);
           if(this.job_data.length > 0)
           {
                $('#job_search').css("display","block");

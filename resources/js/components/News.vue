@@ -597,7 +597,6 @@
                 <div :id="'newsChangeLink' + index" class="row m-lr-0" v-if="group[0].pattern == 1">
                     <slick :options="slickOptions" class="news-slider-width">                  
                         <div class="pad-new pattern-child" v-if="group[0]">
-
                             <router-link :to="'/newsdetails/'+group[0].pid">
 
                                 <div class="col-12 single-news-box">
@@ -632,7 +631,6 @@
                         </div>
 
                         <div class="pad-new pattern-child" v-if="group[1]">
-
                             <router-link v-for="(item,index) in group.slice(1, 4)" :key="index" :to="'/newsdetails/'+item.pid">
 
                                 <div class="col-12 row m-b-10 adslist-card m-lr-0 news-3-card">
@@ -682,7 +680,6 @@
                         </div>
 
                         <div class="pad-new pattern-child" v-if="group[4]">
-
                             <router-link v-for="(item,index) in group.slice(4,12)" :key="index" :to="'/newsdetails/'+item.pid" style="color:#333;">
 
                                 <p class="text-truncate news-list-display">
@@ -696,7 +693,6 @@
                         </div>
 
                         <div class="pad-new pattern-child" v-if="group[12]">
-
                             <router-link v-for="(item,index) in group.slice(12, 15)" :key="index" :to="'/newsdetails/'+item.pid">
 
                                 <div class="col-12 row m-b-10 adslist-card m-lr-0 news-3-card">
@@ -1339,26 +1335,16 @@
             },
 
             getLatestPostsByCatID: function() {
-
-
-
+                this.post_groups = [];
                 if (this.search_word == null || this.search_word == '' || this.search_word == 'null') {
-
-                    var searchword = 'all_news_search';
-                   
-
+                    var searchword = 'all_news_search';                
                 } else {
-
                     var searchword = this.search_word;
-
                 }
-
                 // console.log(searchword);
 
                 this.axios
-
                 .get('/api/get_latest_posts_by_catId/'+searchword)
-
                 .then(response => {
                     if(response.data.length>0) {
                         this.post_groups = this.groupBy(response.data, 'name');
@@ -1377,66 +1363,35 @@
 
 
             getPostByCatID: function(catId = 1) {
-
                 if ($('#search-free-word').val() != null) {
-
                     var search_word = $('#search-free-word').val();
-
                 } else {
-
                     var search_word = null;
-
                 }
-
-
 
                 if (catId !== undefined) {
-
                     var cat_id = catId;
-
                 } else {
-
                     var cat_id = 1;
-
                 }
-
-
-
                 let fd = new FormData();
-
                 fd.append('search_word', search_word);
-
                 fd.append('category_id', cat_id);
-
-
-
                 $('.search-item').css('display', 'none');
-
                 this.categoryId = cat_id;
-
                 this.axios.post("/api/posts", fd)
-
                     .then(response => {
-
                         this.posts = response.data;
-
                     });
-
             },
 
-
-
             getCategoryRandomValue(){
-
-
 
             this.axios.get("/api/get_cat_random") .then(response => {
 
                 });
 
             },
-
-
 
             getLatestPostByCatID: function(catId) {
 
