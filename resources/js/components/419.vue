@@ -20,38 +20,7 @@
         </div>
     </div>
 </template>
-<style scoped>
-    .container {
-        position: relative;
-        align-items: center;
-        display: flex;
-        justify-content: center;
-        height: 100vh;
-    }
-    .content {
-        text-align: center;
-    }
-    .title {
-        font-size: 36px;
-        padding: 20px;
-        color: #636b6f;
-    }
-    .gohome{
-        text-decoration:none;
-        border: none; 
-        padding: 7px 15px 10px 15px; 
-        color: #fff; 
-        background: #2980b9; 
-        font-weight: bold; 
-        border-radius: 5px;
-        font-size: 20px;
-    }
-    .gohome:hover {
-        background: #2980b9;
-        text-decoration:none;
-        color: #fff; 
-    }
-</style>
+
 <script>
 export default {
     methods:{
