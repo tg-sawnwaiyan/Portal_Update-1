@@ -8,7 +8,7 @@
                     <div class="col-md-12 p-0">
                     <input type="text" v-model="comment.postal" name="postal" class="form-control white-bg-color float-left postal" id="postal" placeholder="郵便番号を入力してください。" maxlength="7"/>
                     <div id="jsErrorMessage"></div>
-                    <span class="float-left submit1 btn main-bg-color continue all-btn submit m-l-20  m-l-480" @click="getPostal">検索</span>
+                    <span class="float-left submit1 btn main-bg-color continue all-btn submit m-l-20  m-l-480" @click="getPostal">郵便番号より住所を検索</span>
                     <span class="float-left m-l-20 m-l-768">例）1006740 (<a href="https://www.post.japanpost.jp/zipcode/" target="_blank">郵便番号検索</a>)</span>
                     </div>
                   </div>
