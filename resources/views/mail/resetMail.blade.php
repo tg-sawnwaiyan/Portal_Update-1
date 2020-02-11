@@ -48,14 +48,11 @@
 
 </html> -->
 
-
+<!--template-->
 <div style="width:800px;">
 <div style="text-align: center;">
 	        <div style="padding: 60px;">
-
-                <!-- <span><span style="font-size: 40px;font-weight: bold;color: #fff;font-family: ;background: #2980B9;border-radius: 4px;padding: 6px;">T-IS</span></span> -->
-                
-                <span style="background: #fbaa84;">               
+                 <span style="background: #fbaa84;">               
                     <a href="#" style="background: #2980B9;font-weight: 900; letter-spacing: 2px; font-size: 16px; mso-height-rule: exactly; line-height: 40px; text-align: center; text-decoration: none; display: block; font-weight: 900; text-transform: uppercase;float:right;padding:7px;">
                     <span style="color:#ffffff">T-IS</span>
                     </a> 

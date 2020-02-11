@@ -105,8 +105,8 @@
                   </div>
                 </div>
               </div>-->
-
-                            <div class="form-group">
+<!-- ---------------------------------------------------------------------- -->
+                            <!-- <div class="form-group">
                                 <label for="description" class="mt-2">
                                     経験・スキル:
                                     <a class="btn btn-sm main-bg-color all-btn white mb-2 ml-4" @click="addRow">
@@ -117,7 +117,7 @@
                                     <div class="form-group row sk" id="newlinktpl" v-for="(field,id) in joboffer.fields" :key="id">
                                         <div class="col-sm-9">
                                             <input type="text" class="form-control" v-model="field.skills" placeholder="経験・スキルを入力してください。" />
-                                            <!-- <input type="text" class="form-control"  v-model="joboffer.skills" >  -->
+                                          
                                         </div>
 
                                         <div class="col-sm-3">
@@ -126,7 +126,24 @@
                                     </div>
                                 </div>
                                 <div id="newlink"></div>
+                            </div> -->
+
+
+                              <div class="form-group">
+                                <label for="skill">
+                                    経験・スキル:
+                                 
+                                </label>
+                                <textarea name="description" class="form-control" cols="50" rows="5" v-model="joboffer.description" placeholder="経験・スキルを入力してください。"></textarea>
+                                <!-- <span v-if="errors.description" class="error">{{errors.description}}</span> -->
+                                 <!-- <span v-if="errors.includes('description')" class="error">題名が必須です。(description)</span> -->
+                                <span v-if="errors.description" class="error">{{errors.description}}</span>
                             </div>
+
+
+
+                         
+<!-- --------------------------------------------------------------------------- -->
 
                             <!-- <div class="mb-1 row">
                 <div class="col-sm-3">
@@ -167,9 +184,10 @@
                                 </label>
                                 <div class="row col-md-12">
                                     <div class="col-md-6 pad-free">
-                                        <input type="text" class="form-control box" id="postal" placeholder="165879" v-model="joboffer.postal" maxlength="7" v-on:keyup="getPostal" />
+                                        <input type="text" class="form-control box" id="postal" placeholder="165879" v-model="joboffer.postal" maxlength="7" />
                                     </div>
                                     <div class="col-md-6">
+                                      <span class="float-left submit1 btn main-bg-color continue all-btn submit m-l-20" @click="getPostal">検索</span>
                                         <span class="float-left eg-txt">例）1006740 (<a href="https://www.post.japanpost.jp/zipcode/" target="_blank">郵便番号検索</a>)</span>
                                     </div>
                                 </div>
@@ -775,7 +793,7 @@ import Autocomplete from 'vuejs-auto-complete'
                        if(town_id == 2)
                       {
                         this.joboffer.location = ''
-                        this.joboffer.postal = '';
+                        // this.joboffer.postal = '';
                         this.joboffer.zipcode_id = null;
                         this.joboffer.str_address = 0;
                       }
@@ -784,7 +802,7 @@ import Autocomplete from 'vuejs-auto-complete'
                   },
                   getLocation(){
     
-                     this.joboffer.postal = '';
+                    //  this.joboffer.postal = '';
                      this.joboffer.location = '';
                   },
 

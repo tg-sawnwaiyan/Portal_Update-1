@@ -155,7 +155,8 @@ class CommentController extends Controller
 
         // ]);
 
-        $zipcode =  $request->fields[0]['fzipcode'] . '-' . $request->fields[0]['lzipcode'];
+        // $zipcode =  $request->fields[0]['fzipcode'] . '-' . $request->fields[0]['lzipcode'];
+        
 
 
         $comment = new Comment();
@@ -165,7 +166,7 @@ class CommentController extends Controller
         $comment->name =  $request->input('name');
         $comment->year = $request->input('year');
         $comment->gender = $request->input('gender');
-        $comment->zipcode = $zipcode;
+        $comment->zipcode = $request->fields[0]['fzipcode'];
         $comment->profile_id = $request->profile_id;
         $comment->status = 0;
         $comment->recordstatus = 1;
