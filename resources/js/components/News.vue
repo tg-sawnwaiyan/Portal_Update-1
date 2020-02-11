@@ -1002,7 +1002,7 @@
 
                                 <div class="col-12 single-news-box">
 
-                                    <clazy-load class="wrapper-3" @load="log" src="/images/noimage.jpg" :key="index">
+                                    <clazy-load class="wrapper-3" @load="log" src="/images/noimage.jpg" :key="index" v-if="group[7].photo">
 
                                         <transition name="fade">
 

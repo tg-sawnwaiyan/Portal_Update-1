@@ -17161,11 +17161,7 @@ if (false) {
 
 /***/ }),
 
-<<<<<<< HEAD
 /***/ 369:
-=======
-/***/ 368:
->>>>>>> 7212930ce8c2ff4b89e0c4c9369c577005c535e9
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(35);
@@ -17213,8 +17209,4 @@ module.exports = __webpack_amd_options__;
 
 /***/ })
 
-<<<<<<< HEAD
 },[369]);
-=======
-},[368]);
->>>>>>> 7212930ce8c2ff4b89e0c4c9369c577005c535e9
