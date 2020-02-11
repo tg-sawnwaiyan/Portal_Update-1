@@ -9,7 +9,7 @@ use App\Schedule;
 use DB;
 use App\Medical;
 use App\Category;
-
+use App\Subject;
 use App\Customer;
 use App\SubjectJunctions;
 use App\SpecialFeaturesJunctions;
@@ -198,7 +198,14 @@ class HospitalProfileController extends Controller
     
     public function profileupdate($id,Request $request) {
       
-        $request = $request->all();       
+        $request = $request->all();  
+        
+        $subject = [];
+        for($i=0;$i<count($request[0]['subjects'][0]['subject_id']);$i++)
+        {    
+            $subject[$i] = Subject::where('id',$request[0]['subjects'][0]['subject_id'][$i])->value('name');    
+        }
+       
 
 
         // Hospital Profile
@@ -218,6 +225,7 @@ class HospitalProfileController extends Controller
         $hospital->congestion =  $request[0]['hospital_info']['congestion'];
         $hospital->latitude =  $request[0]['hospital_info']['latitude'];
         $hospital->longitude =  $request[0]['hospital_info']['longitude'];   
+        $hospital->subject = implode($subject, ',');
         $hospital->save();
        // End 
         
@@ -255,6 +263,9 @@ class HospitalProfileController extends Controller
             $new_feature->save();
         }
         // End
+
+
+
 
         // SubjectJuncitonsUpdate 
         $subject = SubjectJunctions::where('profile_id', $id)
