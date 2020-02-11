@@ -891,7 +891,7 @@
                         </div>
                     </div>
                     <div class="m-b-20 text-right">
-                        <router-link :to="{name: 'comment', params: { customer_id: profile_id }}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
+                        <router-link :to="{ path:'/comment/nursing/'+ pro_id}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
                         <span>口コミを追加する</span>
                         </router-link>
                     </div>
@@ -901,7 +901,7 @@
 
                    <p class="no-data-color pb-3 no-data-size">口コミはありません。</p>
                    <div class="m-b-20 text-center">
-                        <router-link :to="{name: 'comment', params: { type: type,customer_id: profile_id }}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
+                        <router-link :to="{ path:'/comment/nursing/'+ pro_id}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
                         <span>口コミを追加する</span>
                         </router-link>
                     </div>
@@ -1283,7 +1283,7 @@
                         </div>
                     </div>
                     <div class="m-b-20 text-right">
-                        <router-link :to="{name: 'comment', params: { customer_id: profile_id }}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
+                        <router-link :to="{ path:'/comment/hospital/'+ pro_id}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
                         <span>口コミを追加する</span>
                         </router-link>
                     </div>
@@ -1292,7 +1292,7 @@
                    <p class="no-data-color pb-3 no-data-size">
                        口コミはありません。</p>
                     <div class="m-b-20 text-center">
-                        <router-link :to="{name: 'comment', params: { customer_id: profile_id }}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
+                        <router-link :to="{ path:'/comment/hospital/'+ pro_id}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
                         <span>口コミを追加する</span>
                         </router-link>
                     </div>                   

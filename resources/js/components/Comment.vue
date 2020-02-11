@@ -11,8 +11,14 @@
                        <div class="col-12 m-b-10 m-t-8 com-mt"><h4 class="comment-apply-color" style="margin-left:5px;"><i class="fa fa-comments com_ic"></i> 口コミ作成</h4></div>
                     <div class="card-body ">
                         <div class="row">
-                         <div class="col-sm-12 col-md-12">
-                                <form @submit.prevent ="add" class="m-t-16 sendEmail comform comment"  method="post" >
+                            <div class="col-sm-12 col-md-12" v-if="type == 'register'">
+                                <ul class="multi-step">
+                                    <li class="active">1.<span>必要事項のご</span>入力</li>
+                                    <li class="no-active">2.<span>内容のご</span>確認</li>
+                                    <li>3.<span>送信</span>完了</li>
+                                </ul>
+                                <!-- <form @submit.prevent ="add" class="m-t-16 sendEmail comform comment"  method="post" > -->
+                                <form  class="m-t-16 sendEmail comform comment">
                                         <div class="form-group row">
                                             <div class="col-sm-4 text-left">
                                                 <label for ="title"  ><strong> 口コミタイトル <span class="error sp1">必須</span></strong>   </label>
@@ -150,19 +156,110 @@
                                         <div class="form-group row">
                                             
                                             <div class="col-sm-12 text-center">
-                                                <span class="btn main-bg-color white all-btn" @click="checkValidate()">作成する</span>
-                                                 <router-link class="btn btn-danger all-btn" to="/profile" > キャンセル </router-link>
+                                                <span class="btn main-bg-color white all-btn" @click="checkValidate()">確認画面へ進む</span>
+                                                <router-link class="btn btn-danger all-btn" to="/profile" > キャンセル </router-link>
                                                  <!-- <button class="btn main-bg-color white all-btn"> 利用規約、個人情報の取り扱いについてに同意して確認する </button> -->
                                                  <!-- <button class="btn main-bg-color white all-btn"> 確認 </button> -->
                                                       <!-- <span :disabled="isDisabled" >確認画面へ進む</span> -->
                                             </div>
                                             
                                         </div>
-                                  </form>
-                             </div>
+                                </form>
+                            </div>
+                            <div class="col-sm-12 col-md-12" v-if="type == 'confirm'">
+                                <ul class="multi-step">
+                                    <li class="active">1.<span>必要事項のご</span>入力</li>
+                                    <li class="active">2.<span>内容のご</span>確認</li>
+                                    <li>3.<span>送信</span>完了</li>
+                                </ul>
+                                <form @submit.prevent ="add" class="m-t-16 sendEmail comform comment"  method="post" >
+                                        <div class="form-group row">
+                                            <div class="col-sm-4 text-left">
+                                                <label for ="title"  ><strong> 口コミタイトル </strong>   </label>
+                                            </div>
+                                             <div class="col-sm-8">
+                                                <span class="pl-4">{{ comments.title }}</span>
+                                             </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-4 text-left">
+                                                <label for ="email" ><strong> メールアドレス</strong>  </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <span class="pl-4">{{ comments.email }}</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-4 text-left">
+                                                <label for ="name"  ><strong> お名前 </strong>   </label>
+                                            </div>
+                                             <div class="col-sm-8">
+                                                <span class="pl-4">{{ comments.name }}</span>
+                                             </div>
+                                        </div><br>
+
+
+                                         <div class="form-group row">
+                                            <div class="col-sm-4 text-left">
+                                                <label for ="year"  ><strong> 生まれた年</strong>   </label>
+                                            </div>
+                                             <div class="col-sm-8">
+                                                 <span class="pl-4">{{ selectedValue }}</span>
+                                             </div>
+                                        </div><br>
+
+                                        <div class="form-group row" v-for="field in comments.fields" :key="field.id">
+                                            <div class="col-sm-4" >
+                                                <label for ="zipcode"  ><strong> 郵便番号</strong>   </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <span class="pl-4">{{ field.fzipcode }}</span>
+                                            </div>
+                                        </div><br>
+
+                                          <div class="form-group row">
+                                                <div class="col-sm-4 text-left">
+                                                        <label for ="comment" ><strong> 口コミ内容</strong>  </label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <span class="pl-4">{{ comments.comment }}</span>
+                                                </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            
+                                            <div class="col-sm-12 text-center">
+                                                <span class="btn btn-danger white all-btn width17 pc-m-r-10" @click="editCmt()">入力画面へ戻る</span>
+                                                <span class="btn main-bg-color white all-btn" @click="add()">作成する</span>
+                                            </div>
+                                            
+                                        </div>
+                                </form>
+                            </div>
+                            <div class="col-md-12 confirm_box" v-if="type == 'completed'">
+                                <ul class="multi-step">
+                                <li class="active">1.<span>必要事項のご</span>入力</li>
+                                <li class="active">2.<span>内容のご</span>確認</li>
+                                <li class="active">3.<span>送信</span>完了</li>
+                                </ul>
+                                <div class="text-center">
+                                <h3>入力内容は送信されました。</h3>
+                                <br />
+                                <p>ご登録頂き、ありがとうございます。</p>
+                                <p>今後ともどうぞよろしくお願い申し上げます。</p>
+                                <br />
+                                <br />
+                                <router-link class="btn btn-info all-btn width17" to="/">ホームへ戻る</router-link>
+                                </div>
+
+                                <br />
+                                <br />
+                            </div>
                             <div class="col-sm-2"></div>
-                       </div>
-                     </div>
+                        </div>
+                    </div>
                 </div>
              </div>
          </div>
@@ -194,11 +291,12 @@ export default {
                             lzipcode:'',
                             id:''
                         }],
-                        customer_id:'',
+                        // profile_id:'',
                         status:'',
                         recordstatus:'',
 
                     },
+                    type: "register",
                     selectedValue:0,
                      mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
             }
@@ -214,9 +312,11 @@ export default {
             }
         },
         created(){
+            // this.pro_id = this.$route.params.id;
+            // this.type = this.$route.params.type;
             this.comments.types = this.$route.params.type;
             this.comments.gender = 0;
-            this.comments.profile_id = this.$route.params.customer_id;
+            this.comments.profile_id = this.$route.params.id;
         },
 
 
@@ -233,7 +333,7 @@ export default {
                         if(this.mail_reg.test(this.comments.email )){
                             this.errors.email = "";
                         }else{
-                            this.errors.email = "※メールアドレスが正しくありません。もう一度入力してください。"
+                            this.errors.email = "※メールアドレスが正しくあ                                                                                                                                                                                                                           りません。もう一度入力してください。"
                         }
                     } else {
                         this.errors.email = "メールアドレスが必須です。";
@@ -254,7 +354,8 @@ export default {
                         !this.errors.name  &&
                         !this.errors.comment 
                     ) {
-                        this.add();
+                        // this.add();
+                        this.type = 'confirm';
                     }
                 },
             isNumber: function(event) {
@@ -266,6 +367,7 @@ export default {
             },
             add() {
                   this.$loading(true);
+                  console.log(this.comments);
                   this.axios.post('/api/comments/add', this.comments)
                     .then((response) => {
                         this.$loading(false);
@@ -282,7 +384,7 @@ export default {
                             height: 200,
                         })
 
-                     this.$router.push({name: 'profile'});
+                    //  this.$router.push({name: 'profile'});
                     }).catch(error=>{
 
                     if(error.response.status == 422){
@@ -299,6 +401,9 @@ export default {
                this.comments.year = this.selectedValue;
 
            },
+           editCmt: function() {
+             this.type = 'register';
+            }
         //    CheckFirstZipcode(){
         //        var fzip = $('.fnumericzip').val();
         //        var lzip = $('.lnumericzip').val();
