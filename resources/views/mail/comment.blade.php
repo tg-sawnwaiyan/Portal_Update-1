@@ -3,9 +3,17 @@
 <div style="text-align: center;">
 	        <div style="padding: 60px;">
 
-                <span style="font-size: 40px;font-weight: bold;color: #d2571c;text-shadow: 3px 4px #ccc;">LOGO <span style="font-size: 30px; color: #f57e46;">HERE</span></span>
+                <!-- <span style="font-size: 40px;font-weight: bold;color: #d2571c;text-shadow: 3px 4px #ccc;">LOGO <span style="font-size: 30px; color: #f57e46;">HERE</span></span> -->
 
-	            <h5 style="color:#3e4348;font-size: 12px;margin-bottom: 30px;font-weight: bold;text-align: left;">
+	            <div style="text-align:center;"><span style="background: #fbaa84;">               
+                    <a href="#" style="background: #2980B9;font-weight: 900; letter-spacing: 2px; font-size: 16px; mso-height-rule: exactly; line-height: 40px; text-align: center; text-decoration: none; display: block; font-weight: 900; text-transform: uppercase;float:right;padding:7px;">
+                    <span style="color:#ffffff">T-IS</span>
+                    </a> 
+                    <br>          
+                </span></div>
+                
+                
+                <h5 style="color:#3e4348;font-size: 12px;margin-bottom: 30px;font-weight: bold;text-align: left;">
                 T-IS ティーズ管理者&nbsp;&nbsp;様
                     <p style="margin-top:10px;">口コミに投稿がありました。</p>                    
 	            </h5>
