@@ -99,13 +99,6 @@
     -webkit-box-shadow: 0px 0px 0px 0px red inset;
     box-shadow: 0px 0px 0px 0px red inset;
 }
-/* .v-sidebar-menu .vsm--header {
-    font-size: 18px;
-    background: #2c3b41;
-}
-.v-sidebar-menu .vsm--link {
-    font-size: 15px;
-} */
 .slide-enter-active {
    -moz-transition-duration: 0.3s;
    -webkit-transition-duration: 0.3s;

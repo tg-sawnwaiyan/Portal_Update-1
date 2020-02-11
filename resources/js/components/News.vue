@@ -39,7 +39,7 @@
 
                                                 <div class="hovereffect fit-image">
 
-                                                <div class="wrapper-1" @load="log"  src="/images/noimage.jpg" :key="latest_post_all_cat.id">
+                                                <div class="wrapper-1" @load="log"  src="/images/no-newimage.jpg" :key="latest_post_all_cat.id">
 
                                                     <transition name="fade">
 
@@ -137,7 +137,7 @@
 
                                                 <router-link :to="'/newsdetails/'+latest_post.id">
 
-                                                 <clazy-load class="wrapper-0" @load="log"  src="/images/noimage.jpg" :key="latest_post.id">
+                                                 <clazy-load class="wrapper-0" @load="log"  src="/images/no-newimage.jpg" :key="latest_post.id">
 
                                                     <transition name="fade">
                                                       
@@ -214,7 +214,7 @@
 
                                                 <div class="hovereffect fit-image">
 
-                                                <clazy-load class="wrapper-1" @load="log"  src="/images/noimage.jpg" :key="latest_post_all_cat.id">
+                                                <clazy-load class="wrapper-1" @load="log"  src="/images/no-newimage.jpg" :key="latest_post_all_cat.id">
 
                                                     <transition name="fade">
 
@@ -274,7 +274,7 @@
 
                                                 <div class="hovereffect fit-image">
 
-                                                <clazy-load class="wrapper-1" @load="log"  src="/images/noimage.jpg" :key="latest_post_all_cat.id">
+                                                <clazy-load class="wrapper-1" @load="log"  src="/images/no-newimage.jpg" :key="latest_post_all_cat.id">
 
                                                     <transition name="fade">
 
@@ -338,7 +338,7 @@
 
                                                     <router-link :to="'/newsdetails/'+item.id">
 
-                                                        <clazy-load class="wrapper-4" @load="log" src="/images/noimage.jpg" :key="item.id">
+                                                        <clazy-load class="wrapper-4" @load="log" src="/images/no-newimage.jpg" :key="item.id">
 
                                                             <transition name="fade">
 
@@ -392,7 +392,7 @@
 
                                                     <router-link :to="'/newsdetails/'+item.id">
 
-                                                        <clazy-load class="wrapper-4" @load="log" src="/images/noimage.jpg" :key="item.id">
+                                                        <clazy-load class="wrapper-4" @load="log" src="/images/no-newimage.jpg" :key="item.id">
 
                                                             <transition name="fade">
 
@@ -458,7 +458,7 @@
 
                                         <router-link :to="'/newsdetails/'+item.id">
 
-                                        <clazy-load class="wrapper-4" @load="log"  src="/images/noimage.jpg" :key="item.id">
+                                        <clazy-load class="wrapper-4" @load="log"  src="/images/no-newimage.jpg" :key="item.id">
 
                                             <!-- <img v-bind:src="'/upload/news/' + item.photo" class="fit-image" style="height:5rem;width:6rem" @error="imgUrlAlt"> -->
 
@@ -515,7 +515,7 @@
 
                                         <router-link :to="'/newsdetails/'+item.id">
 
-                                        <clazy-load class="wrapper-4" @load="log"  src="/images/noimage.jpg" :key="item.id">
+                                        <clazy-load class="wrapper-4" @load="log"  src="/images/no-newimage.jpg" :key="item.id">
 
                                             <!-- <img v-bind:src="'/upload/news/' + item.photo" class="fit-image" style="height:5rem;width:6rem" @error="imgUrlAlt"> -->
 
@@ -601,7 +601,7 @@
 
                                 <div class="col-12 single-news-box">
 
-                                    <clazy-load class="wrapper-3" @load="log" src="/images/noimage.jpg" :key="index" >
+                                    <clazy-load class="wrapper-3" @load="log" src="/images/no-newimage.jpg" :key="index" >
 
                                         <transition name="fade">
 
@@ -637,7 +637,7 @@
 
                                     <div class="col-4 img-box">
 
-                                        <clazy-load class="wrapper-4" @load="log" src="/images/noimage.jpg" :key="index" >
+                                        <clazy-load class="wrapper-4" @load="log" src="/images/no-newimage.jpg" :key="index" >
 
                                             <!-- <img v-bind:src="'/upload/news/' + item.photo" class="fit-image" style="height:5rem;width:6rem" @error="imgUrlAlt"> -->
 
@@ -699,7 +699,7 @@
 
                                     <div class="col-4 img-box">
 
-                                        <clazy-load class="wrapper-4" @load="log" src="/images/noimage.jpg" :key="index" >
+                                        <clazy-load class="wrapper-4" @load="log" src="/images/no-newimage.jpg" :key="index" >
 
                                             <transition name="fade">
 
@@ -751,7 +751,7 @@
 
                                     <div class="col-4 img-box">
 
-                                        <clazy-load class="wrapper-4" @load="log" src="/images/noimage.jpg" :key="index">
+                                        <clazy-load class="wrapper-4" @load="log" src="/images/no-newimage.jpg" :key="index">
 
                                             <transition name="fade">
 
@@ -813,7 +813,7 @@
 
                                     <div class="col-4 img-box">
 
-                                        <clazy-load class="wrapper-4" @load="log" src="/images/noimage.jpg" :key="index">
+                                        <clazy-load class="wrapper-4" @load="log" src="/images/no-newimage.jpg" :key="index">
 
                                             <transition name="fade">
 
@@ -877,7 +877,7 @@
 
                                 <div class="col-12 single-news-box">
 
-                                    <clazy-load class="wrapper-3" @load="log" src="/images/noimage.jpg" :key="index">
+                                    <clazy-load class="wrapper-3" @load="log" src="/images/no-newimage.jpg" :key="index">
 
                                         <transition name="fade">
 
@@ -908,7 +908,7 @@
 
                                     <div class="col-4 img-box">
 
-                                        <clazy-load class="wrapper-4" @load="log" src="/images/noimage.jpg" :key="index">
+                                        <clazy-load class="wrapper-4" @load="log" src="/images/no-newimage.jpg" :key="index">
 
                                         <transition name="fade">
 
@@ -956,7 +956,7 @@
 
                                     <div class="col-4 img-box">
 
-                                        <clazy-load class="wrapper-4" @load="log" src="/images/noimage.jpg" :key="index">
+                                        <clazy-load class="wrapper-4" @load="log" src="/images/no-newimage.jpg" :key="index">
 
                                         <transition name="fade">
 
@@ -1002,7 +1002,7 @@
 
                                 <div class="col-12 single-news-box">
 
-                                    <clazy-load class="wrapper-3" @load="log" src="/images/noimage.jpg" :key="index">
+                                    <clazy-load class="wrapper-3" @load="log" src="/images/no-newimage.jpg" :key="index">
 
                                         <transition name="fade">
 
@@ -1487,7 +1487,7 @@
 
                 console.log(event.target)
 
-                event.target.src = "/images/noimage.jpg"
+                event.target.src = "/images/no-newimage.jpg"
 
             },
 

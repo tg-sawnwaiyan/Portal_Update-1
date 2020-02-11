@@ -864,60 +864,6 @@ import bulcomponent from './bulcomponent.vue'
 
 <style>
 
-.lastblock{
-       display: block;
-
-}
-  .hospitalselect {
-    display: none;
-  }
-
-  span.tooltip {
-    padding: 0px 5px;
-    position: relative;
-    background: #ffbb99;
-    cursor: pointer;
-  }
-
-  .tooltip-info {
-    position: absolute;
-    top: -9999px;
-    left: -9999px;
-  }
-
-  span.tooltip::before {
-    content: attr(data-tooltip);
-    position: absolute;
-    top: 1.5em;
-    font-size: 0.9em;
-    padding: 1px 5px;
-    display: none;
-    color: white;
-    background: rgba(0, 0, 0, 0.75);
-    border-radius: 4px;
-    transition: opacity 0.1s ease-out;
-    z-index: 99;
-    text-align: left;
-  }
-
-  span:hover::before {
-    display: inline-block;
-  }
-
-  [data-toggle="collapse"] .fa:before {
-    content: "\f139";
-  }
-
-  [data-toggle="collapse"].collapsed .fa:before {
-    content: "\f13a";
-  }
-
-
-  .card-2 {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    border-radius: 10px;
-  }
-
   .toBeToggled {
     display: block;
   }
