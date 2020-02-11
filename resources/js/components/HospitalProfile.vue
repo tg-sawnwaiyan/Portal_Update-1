@@ -84,7 +84,7 @@
                 <td>
                     <div class="form-group">
                         <label  class="heading-lbl col-2 pad-free">診療科目 </label>
-                        <span class="btn all-btn main-bg-color nursing_toggle_responsive" style="min-width: 0px;" @click="clinicalSubject()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate1}"></i></span>
+                        <span class="btn all-btn main-bg-color nursing_toggle_responsive" style="min-width: 0px;" @click="toggleEvent('clinical-subject','1')"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate1}"></i></span>
                         <div class="col-md-10 float-right clinical-subject-toggle-div toggle-div m-t-10">
                             <div class="row"> <div v-for="subj in clinical_subj" :key="subj.id" class="form-check form-check-inline col-sm-3">
                                     <label class="form-check-label control control--checkbox" style="padding-left:5px;">
@@ -144,7 +144,7 @@
 
                 style="min-width: 0px;"
 
-                @click="scheduletogglediv()"
+                @click="toggleEvent('schedule','2')"
 
               >
 
@@ -808,7 +808,7 @@
 
                 <label class="heading-lbl col-2 pad-free">施設情報 </label>
 
-                <span class="btn all-btn main-bg-color nursing_toggle_responsive" style="min-width: 0px;" @click="factogglediv()" >
+                <span class="btn all-btn main-bg-color nursing_toggle_responsive" style="min-width: 0px;" @click="toggleEvent('hos-fac','3')" >
 
                   <i class="fas fa-sort-down animate"  :class  ="{'rotate': isRotate3}"></i>
 
@@ -868,7 +868,7 @@
 
                   style="min-width: 0px;"
 
-                  @click="specialFeAdd()"
+                  @click="toggleEvent('special-feature','4')"
 
                 >
 
@@ -1087,7 +1087,7 @@
             <i class="fas fa-plus-circle"></i> 追加
 
           </span>
-           <span class='changeGalleryLink btn btn all-btn main-bg-color nursing_toggle_responsive' style="min-width: 0px;" @click="galleryToggle" >
+           <span class='changeGalleryLink btn btn all-btn main-bg-color nursing_toggle_responsive' style="min-width: 0px;" @click="toggleEvent('photo','6')" :class="{'rotate': isRotate6}" >
                   <i id="gallery" class="fas fa-sort-down"></i>
             </span>
 
@@ -1112,7 +1112,7 @@
                 </div>
           </div> -->
 
-        <div id="changeGalleryLink" class="col-md-12">
+        <div id="changeGalleryLink" class="col-md-12 photo-toggle-div">
 
 
             <div class="row" id="gallery-photo">
@@ -1173,13 +1173,13 @@
 
           </span>
 
-           <span class='changeGalleryVideoLink  btn btn all-btn main-bg-color nursing_toggle_responsive  ' style="min-width: 0px;" @click="galleryVideoToggle" >
+           <span class='changeGalleryVideoLink  btn btn all-btn main-bg-color nursing_toggle_responsive' style="min-width: 0px;" @click="toggleEvent('video','7')" :class="{'rotate': isRotate7}">
                                         <i id="video" class="fas fa-sort-down"></i>
            </span>
 
-          <div id="changeGalleryVideoLink" class="col-md-12">
+          <div id="changeGalleryVideoLink" class="col-md-12 video-toggle-div">
 
-            <div class="row" id="gallery-video">
+            <div class="row toggle-div" id="gallery-video">
 
               <!-- Add by + Button -->
 
@@ -1217,7 +1217,7 @@
             <tr>
                 <td>
                     <label class="heading-lbl col-2 pad-free">地図</label>
-                    <span class="btn all-btn main-bg-color nursing_toggle_responsive" style="min-width: 0px;" @click="maptogglediv()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
+                    <span class="btn all-btn main-bg-color nursing_toggle_responsive" style="min-width: 0px;" @click="toggleEvent('map','5')"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
                     <div class="col-md-10 hos_toggle float-right m-t-10 map-toggle-div toggle-div pad-free">
                         <div class="col-md-12">
                             <GoogleMap :address="address_show" :township="hospital_info.townships_id" :lat_num='hospital_info.latitude' :lng_num='hospital_info.longitude' :city="city_id" :township_list="township_list"></GoogleMap>
@@ -1310,18 +1310,22 @@ export default {
                 facilities:[],
                 city: '',
                 postal: '',clinical_subj:[],
+
                 isRotate1: false,
                 isRotate2: false,
                 isRotate3: false,
                 isRotate4: false,
                 isRotate5: false,
-                    editorOption:{
-                debug:'info',
-                placeholder:'Type your post...',
-                readonly:true,
-                theme:'snow',
-                access_val: '',
-                detail_info: '', stations:[], station_list:[],
+                isRotate6: false,
+                isRotate7: false,
+
+                editorOption:{
+                    debug:'info',
+                    placeholder:'Type your post...',
+                    readonly:true,
+                    theme:'snow',
+                    access_val: '',
+                    detail_info: '', stations:[], station_list:[],
             },
             ph_length: false,
             ph_num: false,
@@ -1334,28 +1338,10 @@ export default {
             }
         },
         created(){
+            this.pro_id = this.$route.params.id;
+            this.type = this.$route.params.type;
 
-         
-
-
-                // if(this.type != undefined && this.pro_id!= undefined){
-                //         localStorage.setItem('cusType',this.type);
-                //         localStorage.setItem('cusId',this.pro_id);
-                // }
-
-                // this.type = localStorage.getItem('cusType');
-                // this.pro_id = Number(localStorage.getItem('cusId'));
-
-                // this.axios
-                //   .get('/api/station/'+this.pro_id)
-                //   .then(response=>{
-                //       this.station_list = response.data;
-                // });
-                this.pro_id = this.$route.params.id;
-                this.type = this.$route.params.type;
-
-                this.initialCall();
-                // quill.editor.disable()
+            this.initialCall();
         },
         methods: {
             initialCall(){
@@ -1365,23 +1351,19 @@ export default {
                 .then(response=>{
                     this.clinical_subj = response.data;
                 });
-                 this.axios
+
+                this.axios
                 .get('/api/schedule/'+this.pro_id)
                 .then(response=>{
                     this.schedule_arr = response.data;
                 });
-                // this.axios
-                // .get('/api/customerinfo/'+this.pro_id)
-                // .then(response=>{
-                //     this.hospital_info = response.data;
-                    
-                // });
+
                 this.axios
                 .get('/api/hospitalinfo/'+this.pro_id)
                 .then(response=>{
                     this.hospital_info = response.data;
                     this.logo = '/upload/hospital_profile/'+ this.hospital_info.logo;
-                    // this.hospital_info.logo =  response.data.logo;
+        
                     this.axios
                     .get('/api/nurscities/'+this.hospital_info.townships_id)
                     .then(response=>{
@@ -1420,38 +1402,24 @@ export default {
                         this.fac_list = response.data;
                 });
             },
-             imgUrlAlt(event) {
+            imgUrlAlt(event) {
                 event.target.src = "/images/noimage.jpg"
             },
-              logo_preview(fileInput) {
-                        this.logo = URL.createObjectURL(event.target.files[0]);
-                        this.img_name = document.getElementsByClassName('pro-logo')[0].files[0].name;
-                        // this.img_name = this.logo.file.name;
-                      
-                     
+            logo_preview(fileInput) {
+                this.logo = URL.createObjectURL(event.target.files[0]);
+                this.img_name = document.getElementsByClassName('pro-logo')[0].files[0].name;
               },
-            scheduletogglediv() {
-                    $(".schedule-toggle-div").toggle('medium');
-                    this.isRotate2 = !this.isRotate2;
-            },
-            maptogglediv() {
-                    $(".map-toggle-div").toggle('medium');
-                    this.isRotate5 = !this.isRotate5;
-            },
-            factogglediv() {
-                    $(".hos-fac-toggle-div").toggle('medium');
-                    this.isRotate3 = !this.isRotate3;
-            },
             preview_image(event,indx) {
                 console.log("indc",indx);
                 this.img_arr[indx]['photo'] = event.target.files[0].name;
                 this.img_arr[indx]['src'] = URL.createObjectURL(event.target.files[0]);
                 $('#img_name'+indx).text(event.target.files[0].name);
-
-               
-               
-               
             },
+            toggleEvent(type,indx) {
+                $("."+type+"-toggle-div").toggle('medium');
+                this['isRotate'+indx] = !this['isRotate'+indx];
+            },
+
             facilityCheck(check_id) {
                     $('.facility-'+check_id).attr('checked','true');
             },
@@ -1463,11 +1431,6 @@ export default {
             },
             subjectCheck(check_id) {
                     $('.subject-'+check_id).attr('checked','true');
-            },
-            clinicalSubject() {
-                     $(".clinical-subject-toggle-div").toggle('medium');
-                     this.isRotate1 = !this.isRotate1;
-
             },
             DeltArr(indx,id,type) {
 
@@ -1529,70 +1492,21 @@ export default {
 
             },
             galleryAdd() {
-
-                    var date = new Date;
-                    var s = date.getMilliseconds();
-                    var m = date.getMinutes();
-                    var h = date.getHours();
-                    // var classname = "class"+h+m+s;
-                    // var c = "'"+classname+"'";
-                    this.img_arr.push({id:null,photo:'',title:'',description:'', src:null});
-
-
+                var date = new Date;
+                var s = date.getMilliseconds();
+                var m = date.getMinutes();
+                var h = date.getHours();
+                this.img_arr.push({id:null,photo:'',title:'',description:'', src:null});
             },
-             galleryToggle()
-                {
-                    var class_by_id = $('#gallery').attr('class');
-                    if(class_by_id == "fas fa-sort-down animate rotate")
-                    {
-                        $('#gallery').removeClass("fas fa-sort-down animate rotate");
-                        $('.changeGalleryLink').addClass("fas fa-sort-down");
-                        $('#changeGalleryLink').show('medium');
-                        $('.galleryadd').show();
-                    }
-                    else {
-                        $('#gallery').removeClass("fas fa-sort-down");
-                        $('.changeGalleryLink').removeClass("fas fa-sort-down");
-                        $('#gallery').addClass("fas fa-sort-down animate rotate");
-                        $('#changeGalleryLink').hide('medium');
-                        $('.galleryadd').hide();
-                    }
-                },
-                galleryVideoToggle()
-                {
-                    var class_by_id = $('#video').attr('class');
-                    if(class_by_id == "fas fa-sort-down animate rotate")
-                    {
-                        $('#video').removeClass("fas fa-sort-down animate rotate");
-                        $('.changeGalleryVideoLink').addClass("fas fa-sort-down");
-                        $('#changeGalleryVideoLink').show('medium');
-                        $('.galleryvideo').show();
-                    }
-                    else {
-                        $('#video').removeClass("fas fa-sort-down");
-                        $('.changeGalleryVideoLink').removeClass("fas fa-sort-down");
-                        $('#video').addClass("fas fa-sort-down animate rotate");
-                        $('#changeGalleryVideoLink').hide('medium');
-                        $('.galleryvideo').hide();
-                    }
-                },
             onAccessEditorChange({ editor, html, text }) {
-                // console.log('editor change!', editor, html, text)
-                // this.access_val = html
                 this.hospital_info.access = html;
             },
             onDetailInfoEditorChange({ editor, html, text }) {
-                // console.log('editor change!', editor, html, text)
-                // this.detail_info = jQuery(html).text();
                 this.hospital_info.details_info = html;
             },
             galleryVideoAdd() {
                    this.video_arr.push({title:'',description:'',url:''});
 
-            },
-            specialFeAdd() {
-                     $(".special-feature-toggle-div").toggle('medium');
-                     this.isRotate4 = !this.isRotate4;
             },
             StationAdd() {
                 $(".station-toggle-div").toggle('medium');
@@ -1689,8 +1603,6 @@ export default {
                     });
                     this.subjects.push({subject_id:chek_subj});
 
-
-
                 // Consultation
                 this.schedule_list = [];
                 for(var j = 0; j< 2; j++) {
@@ -1776,10 +1688,7 @@ export default {
 
 }
 
-/* .card-logo .card-body{
-  height: 250px !important;
-} */
- .quill-editor{
+.quill-editor{
           background-color: #fff;
   }
 </style>
