@@ -73,13 +73,13 @@
                   </div>
                 </div>
                 <div class="col-12">
-                  <div class="float-left mr-4 newsDetail_leftwrapper">
+                  <div class="float-left mr-4 newsDetail_leftwrapper" id="detailNone">
                     <div class="img-wrap mb-2">
                       <img
                         :src="'/upload/news/'+ news.photo"
                         class="img-responsive img_2"
                         style="max-width:100%;"
-                        @error="imgUrlAlt"
+                      
                       />
                     </div>
                     <p class="img_2 details_title mb-1">{{news.main_point}}</p>
@@ -192,6 +192,7 @@ export default {
     };
   },
   created() {
+  
     //this.getLatestPostFromAllCat();
     if(this.$route.path.includes("/newsdetails") && this.$auth.check(2) && this.visit == 'false'){
         this.othersDetails = false;
@@ -203,22 +204,16 @@ export default {
     this.axios
       .get(`/api/newdetails/${this.$route.params.id}`)
       .then(response => {
-        this.newdetails = response.data.news;
-        this.getData = true;
-    console.log(this.newdetails[0].id)
-        
-      });
+        this.newdetails = response.data.news;          
+        this.getData = true;      
+      });   
+     
     // alert(this.$route.params.id);
     this.relatedNews(this.$route.params.id);
   },
 
-  methods: {
-    imgUrlAlt(event) {
-                event.target.src = "/images/noimage.jpg"
-            },
-
+  methods: {   
     // getLatestPostFromAllCat: function() {
-
     //         this.axios
     //         .get(`/api/get_latest_post_all_cat`)
     //         .then(response => {
@@ -244,14 +239,15 @@ export default {
         $('.tab-content').addClass(tab+'-borderColor'); 
           this.$router.push({name:'home',params:{page:e.target.hash}});   
     },
-    imgUrlAlt(event) {
-        event.target.src = "/images/noimage.jpg"
+    imgUrlAlt(event) {     
+        event.target.src = "/images/no-newimage.jpg"
     },
   }
 };
 </script>
 
 <style >
+
 .hospital-tabColor .nav-link {
         background: #63b7ff !important;
         color: #fff;
