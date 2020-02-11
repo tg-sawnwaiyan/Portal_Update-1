@@ -86,6 +86,7 @@
                         <label  class="heading-lbl col-2 pad-free">診療科目 </label>
                         <span class="btn all-btn main-bg-color nursing_toggle_responsive" style="min-width: 0px;" @click="toggleEvent('clinical-subject','1')"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate1}"></i></span>
                         <div class="col-md-10 float-right clinical-subject-toggle-div toggle-div m-t-10">
+                        
                             <div class="row"> <div v-for="subj in clinical_subj" :key="subj.id" class="form-check form-check-inline col-sm-3">
                                     <label class="form-check-label control control--checkbox" style="padding-left:5px;">
                                         <input type="checkbox" class="form-check-input"  name="subject" v-bind:value="subj.id" @click="subjectCheck(subj.id)" v-model="subj.checked">
@@ -1265,7 +1266,7 @@
 
         <div style="position:fixed;width:100%;background:rgba(0,0,0,.5);left:0;right:0;bottom:0;padding:0 0 10px 0;">
             <div class="row col-2 col-offset-5 mx-auto">
-                <span class="btn secondary-bg-color col-8 offset-2 all-btn m-t-15 pad-10" @click="Create_Profile()">更新</span>
+                <span class="btn secondary-bg-color col-8 offset-2 all-btn m-t-15 pad-10" @click="Create_Profile()">保存</span>
             </div>
         </div>
 

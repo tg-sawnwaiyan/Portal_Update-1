@@ -187,7 +187,7 @@
                                         <input type="text" class="form-control box" id="postal" placeholder="165879" v-model="joboffer.postal" maxlength="7" />
                                     </div>
                                     <div class="col-sm-6 col-12 tel-button">
-                                      <span class="float-left submit1 btn main-bg-color continue all-btn submit" @click="getPostal">検索</span>
+                                      <span class="float-left submit1 btn main-bg-color continue all-btn submit" @click="getPostal">郵便番号より住所を検索</span>
                                         <span class="float-left eg-txt">例）1006740 (<a href="https://www.post.japanpost.jp/zipcode/" target="_blank">郵便番号検索</a>)</span>
                                     </div>
                                 </div>

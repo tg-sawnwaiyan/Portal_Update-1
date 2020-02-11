@@ -11,10 +11,10 @@
                 </a>
                 
                 <div class="h-tel"><a class="tel" href="tel:03-1234-5678"><i class="fas fa-phone-alt"></i><span>03-1234-5678</span></a><br class="pc-1024"><a href="mailto:info@t-i-s.jp"><p class="sp-1024"><i class="fas fa-envelope"></i></p><span>info@t-i-s.jp</span></a></div>
-                <ul class="sp_social login_socail d-none-380">
+                <!-- <ul class="sp_social login_socail d-none-380">
                 <li class="social-link" v-if="!$auth.check()"><a href="https://twitter.com/login"><i class="fab fa-twitter"></i></a></li>
                 <li class="social-link" v-if="!$auth.check()"><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>
-                </ul>
+                </ul> -->
             </div>
             <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -228,7 +228,7 @@
                             <li><a href="tel::03-1234-5678"><i class="fas fa-phone-alt"></i><span>03-1234-5678</span></a></li>   
                             <li><a href="mailto:info@t-i-s.jp"><i class="fas fa-envelope"></i>info@t-i-s.jp</a></li>     
                         </ul>
-                        <ul class="sp_social d-none-768">
+                        <ul class="sp_social text-center">
                         <li class="social-link" v-if="!$auth.check()"><a href="https://twitter.com/login?lang=en"><i class="fab fa-twitter"></i></a></li>
                         <li class="social-link" v-if="!$auth.check()"><a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a></li>
                         </ul> 

@@ -378,7 +378,7 @@ const routes = [
 
   {
     name: 'comment',
-    path: '/comment/:type/:customer_id',
+    path: '/comment/:type/:id',
     component: comment,
     meta: {
         auth: false

@@ -24,7 +24,7 @@
                     <p v-if="error == 'registration_validation_error'">Validation error (s), please consult the message (s) below.</p>
                     <p v-else>Error, can not register at the moment. If the problem persists, please contact an administrator.</p>
                 </div>
-          <div class="reg_title">事業者登録</div>
+          <div class="reg_title">事業者新規登録</div>
                 <form autocomplete="off" @submit.prevent="register" v-if="!success" method="post" class="registerformwrapper">
                     <!-- <div id="preview">
                         <img v-if="url" :src="url" class="img-thumbnail img" />

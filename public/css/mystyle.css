@@ -10081,7 +10081,7 @@ padding: 0;
         float: right;
         position: absolute;
         right: 10px;
-        top: 75px;
+        top: 30px;
         z-index: 99;
     }
     .login_nav li.first-submenu {
@@ -10197,6 +10197,10 @@ padding: 0;
     }
     .d-none-768 {
         display: none;
+    }
+    .sp_social .social-link {
+        float: none;
+        display: inline-block;
     }
     /*end  header */
     /* header & menu */
@@ -11035,6 +11039,9 @@ width: 18rem;
         margin-top: 10px;
         padding: 0;
     }
+    ul.menu li.first-submenu {
+        top: 13px;
+    }
     /*end create news */
 }
 
@@ -11768,10 +11775,6 @@ background-image: none;
     }
     .d-none-380 {
         display: none;
-    }
-    .sp_social .social-link {
-        float: none;
-        display: inline-block;
     }
     /*end header */
     /* create news */

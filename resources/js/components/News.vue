@@ -161,7 +161,7 @@
 
                                                  </clazy-load>
 
-                                                    <p class="source-title" v-if="latest_post.title" aria-label="">{{ latest_post.title }}</p>
+                                                    <p class="source-title" v-if="latest_post.main_point" aria-label="">{{ latest_post.main_point }}</p>
 
                                                     <p class="source-subtitle" v-if="latest_post.created_at">
 
@@ -183,7 +183,7 @@
 
                                                             <img src="/images/4.png" alt="" style="width:16px; height: 16px;" class="img-responsive float-right" @error="imgUrlAlt">
 
-                                                            <span class="source-img-small d-inline-block text-truncate">{{ post.title }} </span>
+                                                            <span class="source-img-small d-inline-block text-truncate">{{ post.main_point }} </span>
 
                                                         </router-link>
 

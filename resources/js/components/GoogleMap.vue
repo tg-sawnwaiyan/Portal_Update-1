@@ -8,7 +8,7 @@
                     <div class="col-md-12 p-0">
                     <input type="text" v-model="comment.postal" name="postal" class="form-control white-bg-color float-left postal" id="postal" placeholder="郵便番号を入力してください。" maxlength="7"/>
                     <div id="jsErrorMessage"></div>
-                    <span class="float-left submit1 btn main-bg-color continue all-btn submit m-l-20  m-l-480" @click="getPostal">検索</span>
+                    <span class="float-left submit1 btn main-bg-color continue all-btn submit m-l-20  m-l-480" @click="getPostal">郵便番号より住所を検索</span>
                     <span class="float-left m-l-20 m-l-768">例）1006740 (<a href="https://www.post.japanpost.jp/zipcode/" target="_blank">郵便番号検索</a>)</span>
                     </div>
                   </div>
@@ -17,6 +17,7 @@
                             <div class="col-md-12 p-l-0 "><label>  都道府県</label></div>
                             <div class="col-md-12 p-l-0 nursing_p-r-2">
                                 <select v-model="city" class="division form-control" id="division" @change="cityChange('city',$event)">
+                                  <option value="0">選択してください。</option>
                                     <option v-for="cities in city_list" :key="cities.id" v-bind:value="cities.id">
                                         {{cities.city_name}}
                                     </option>
@@ -26,7 +27,8 @@
                         <div class="col-md-6 pad-free nursing-m-b-15">
                             <div class="col-md-12 p-r-0"><label>  市区町村</label></div>
                             <div class="col-md-12 p-r-0 nursing_p-l-2">
-                                <select v-model="township" class="division form-control" id="gmaptownship" @change="townshipChange($event)">
+                                <select v-model="township" class="division form-control" id="gmaptownship">
+                                  <option value="0">選択してください。</option>
                                     <option v-for="townships in township_list" :key="townships.id" v-bind:value="townships.id">
                                         {{townships.township_name}}
                                     </option>
@@ -102,7 +104,7 @@
             />
 
           </GmapMap>
-        <span @click="callParent()">Click</span>
+        <!-- <span @click="callParent()">Click</span> -->
 
         </div>
 </template>
@@ -167,11 +169,11 @@ export default {
         });
   },
   methods: {
-      callParent(){
-          console.log(this.$parent.$options);
-          console.log(this.$parent.$options.methods);
-        //   this.$parent.$options.methods.someParentMethod('hello');
-      },
+      // callParent(){
+      //     console.log(this.$parent.$options);
+      //     console.log(this.$parent.$options.methods);
+      //   //   this.$parent.$options.methods.someParentMethod('hello');
+      // },
     // receives a place object via the autocomplete component
     addressSelect: function (lat_add,lng_add) {
       // Add a new marker
@@ -250,7 +252,6 @@ export default {
                         .post('/api/hospital/postList/' + postal)
                         .then(response => {
                             var post_data = response.data.postal_list;
-                            console.log(response.data.postal_list)
                             var length = response.data.postal_list.length;
                             if (length > 0) {
                                 var pref = post_data[0]['city_id'];
@@ -259,9 +260,13 @@ export default {
                                 this.address_val = post_data[0]['pref']+post_data[0]['city']+post_data[0]['street'];
                                 this.city = post_data[0]['city_id'];
                                 this.cityChange('postal','');
+                                this.township = response.data.township_id[0]['id'];
+                                console.log('jkljljkl',this.township)
                                 $('#jsErrorMessage').html('<div></div>');
                             }else {
                                 this.address = '';
+                                this.township = 0;
+                                this.city = 0;
                                 $('#jsErrorMessage').html('<div class="error">郵便番号の書式を確認してください。</div>');
                             }
                         });
@@ -282,25 +287,26 @@ export default {
 
             },
             cityChange(status,event){
-                if(status != 'postal'){
-                    // this.comment.postal = '';
-                    this.comment.city = this.city_list[event.target.options.selectedIndex].city_name;
-                    this.address = this.comment.city;
-                }
-
+              
                 this.axios
                 .get('/api/townshiplist/'+this.city)
                 .then(response=>{
+                  if(status != 'postal'){
+                    // this.comment.postal = '';
+                    this.comment.city = this.city_list[event.target.options.selectedIndex].city_name;
+                    this.address = '';
+                    this.township = 0;
+                }
                     this.township_list = response.data.townships;
-                    this.township = this.township_list[0].id;
+                    // this.township = this.township_list[0].id;
                     var move_lat = response.data.coordinate[0].latitude;
                     var move_lon = response.data.coordinate[0].longitude;
                     this.addressSelect(move_lat,move_lon);
                 });
             },
-            townshipChange(event) {
-                this.address = this.comment.city+this.township_list[event.target.options.selectedIndex].township_name;
-            },
+            // townshipChange(event) {
+            //     this.address = this.comment.city+this.township_list[event.target.options.selectedIndex].township_name;
+            // },
 
   }
 };
