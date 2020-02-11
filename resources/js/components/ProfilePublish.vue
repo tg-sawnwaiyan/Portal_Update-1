@@ -339,8 +339,8 @@
                                             <td><span class="cash-lbl-mini">{{cost.expense_moving}}</span></td>
                                             <td><span class="cash-lbl-mini">{{cost.monthly_fees}}</span></td>
                                             <td>
-                                                <span :class="'changeLink changeLink'+cost.id" @click="costConfirm(cost.id,index)" >詳しくはこちら</span>
-                                                <span :class="'closeLink closeLink'+cost.id" @click="closeDetail(cost.id,index)" class="hideCloseBtn float-right">詳しくを閉じる</span>
+                                                <span :class="'changeLink changeLink'+cost.id" @click="costConfirm(cost.id,index)" >詳細はこちら</span>
+                                                <span :class="'closeLink closeLink'+cost.id" @click="closeDetail(cost.id,index)" class="hideCloseBtn float-right">詳細を閉じる</span>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -454,7 +454,7 @@
 
                         </div>
                         <div class="payment-footer">
-                            <span class="detail-btn" :class="'changeLink changeLink'+cost.id" @click="costConfirmMini(cost.id,index)" >詳しくはこちら</span>
+                            <span class="detail-btn" :class="'changeLink changeLink'+cost.id" @click="costConfirmMini(cost.id,index)" >詳細はこちら</span>
                             <div class="col-md-12 collapse miniChangeLink" :id="'changeLinkMini' + cost.id">
                                 <label class="cost_heading_lbl_respon m-b-15">{{cost.payment_name}}</label>
                                 <div class="col-md-12">
@@ -891,8 +891,8 @@
                         </div>
                     </div>
                     <div class="m-b-20 text-right">
-                        <router-link :to="{name: 'comment', params: { customer_id: profile_id }}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
-                        <span>口コミを追加する</span>
+                        <router-link :to="{ path:'/comment/nursing/'+ pro_id}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
+                        <span>口コミを投稿する</span>
                         </router-link>
                     </div>
 
@@ -901,8 +901,8 @@
 
                    <p class="no-data-color pb-3 no-data-size">口コミはありません。</p>
                    <div class="m-b-20 text-center">
-                        <router-link :to="{name: 'comment', params: { type: type,customer_id: profile_id }}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
-                        <span>口コミを追加する</span>
+                        <router-link :to="{ path:'/comment/nursing/'+ pro_id}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
+                        <span>口コミを投稿する</span>
                         </router-link>
                     </div>
                 </div>
@@ -1283,8 +1283,8 @@
                         </div>
                     </div>
                     <div class="m-b-20 text-right">
-                        <router-link :to="{name: 'comment', params: { customer_id: profile_id }}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
-                        <span>口コミを追加する</span>
+                        <router-link :to="{ path:'/comment/hospital/'+ pro_id}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
+                        <span>口コミを投稿する</span>
                         </router-link>
                     </div>
                </div>
@@ -1292,8 +1292,8 @@
                    <p class="no-data-color pb-3 no-data-size">
                        口コミはありません。</p>
                     <div class="m-b-20 text-center">
-                        <router-link :to="{name: 'comment', params: { customer_id: profile_id }}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
-                        <span>口コミを追加する</span>
+                        <router-link :to="{ path:'/comment/hospital/'+ pro_id}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
+                        <span>口コミを投稿する</span>
                         </router-link>
                     </div>                   
                 </div>
@@ -1990,7 +1990,7 @@ export default {
 
     costConfirm(id,inx){
 
-        $('.changeLink').text("詳しくはこちら");
+        $('.changeLink').text("詳細はこちら");
         $('.changeLink').removeClass("CloseBtn");
         $('.changeLink'+id).text("選択中");
         $('.changeLink'+id).addClass("CloseBtn");
@@ -2006,7 +2006,7 @@ export default {
         $('#changeLinkMini'+id).toggle('medium');
     },
     closeDetail(id,inx) {
-        $('.changeLink').text("詳しくはこちら");
+        $('.changeLink').text("詳細はこちら");
         $('.changeLink').removeClass("CloseBtn");
         $('.closeLink'+id).css({'display':'none'});
         $('.closeChangeLink').hide('medium');    

@@ -86,6 +86,7 @@
                         <label  class="heading-lbl col-2 pad-free">診療科目 </label>
                         <span class="btn all-btn main-bg-color nursing_toggle_responsive" style="min-width: 0px;" @click="toggleEvent('clinical-subject','1')"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate1}"></i></span>
                         <div class="col-md-10 float-right clinical-subject-toggle-div toggle-div m-t-10">
+                        
                             <div class="row"> <div v-for="subj in clinical_subj" :key="subj.id" class="form-check form-check-inline col-sm-3">
                                     <label class="form-check-label control control--checkbox" style="padding-left:5px;">
                                         <input type="checkbox" class="form-check-input"  name="subject" v-bind:value="subj.id" @click="subjectCheck(subj.id)" v-model="subj.checked">
