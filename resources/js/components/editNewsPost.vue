@@ -46,8 +46,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>写真コメント:<span class="error">*</span></label>
-                        <input type="text" class="form-control" placeholder="ニュースの写真コメントを入力してください。" v-model="news.main_point">
+                        <label>内容要約:<span class="error">*</span></label>
+                        <input type="text" class="form-control" placeholder="ニュースの内容要約を入力してください。" v-model="news.main_point">
                         <span v-if="errors.main_point" class="error">{{errors.main_point}}</span>
                     </div>
                     <div class="form-group">
@@ -451,7 +451,7 @@ import {quillEditor} from 'vue-quill-editor'
                         if (this.news.main_point) {
                             this.errors.main_point = "";
                         } else {
-                            this.errors.main_point = "ニュースの写真コメントが必須です。";
+                            this.errors.main_point = "ニュースの内容要約が必須です。";
                         }
                         if (this.news.body) {
                             this.errors.body = "";
