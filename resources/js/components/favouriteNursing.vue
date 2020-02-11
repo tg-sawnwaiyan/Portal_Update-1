@@ -637,6 +637,7 @@
                             .post('/api/nursing_fav/' + local_storage)
                             .then(response => {
                                 this.fav_nursing = response.data;
+                                console.log("this.fav_nursing",this.fav_nursing);
                               
                                 if(this.fav_nursing.length < this.fav_nus && this.fav_nursing.length > 0)
                                 {      
@@ -702,7 +703,7 @@
                             });
                         }
 
-                          console.log("this.document_status",this.fav_nursing);
+                        
                         
                         localStorage.setItem("document", JSON.stringify(this.document_status));
                         localStorage.removeItem("item");
