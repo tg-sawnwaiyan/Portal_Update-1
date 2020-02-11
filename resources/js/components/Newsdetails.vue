@@ -74,7 +74,7 @@
                 </div>
                 <div class="col-12">
                   <div class="float-left mr-4 newsDetail_leftwrapper">
-                    <div class="img-wrap mb-2">
+                    <div class="img-wrap mb-2" v-if="news.photo">
                       <img
                         :src="'/upload/news/'+ news.photo"
                         class="img-responsive img_2"
