@@ -240,7 +240,7 @@ export default {
           this.$router.push({name:'home',params:{page:e.target.hash}});   
     },
     imgUrlAlt(event) {     
-        event.target.src = "/images/no-newimage.jpg"
+        event.target.src = "/images/noimage.jpg"
     },
   }
 };

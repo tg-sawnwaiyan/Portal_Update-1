@@ -3659,8 +3659,9 @@ background: #ff9b53;  /
 } */
 
 #news_details .info p {
-    max-width: 250px;
+    /* max-width: 250px; */
     color: #fff;
+    padding: 0px 15px;
 }
 
 #news_list .select_box {
