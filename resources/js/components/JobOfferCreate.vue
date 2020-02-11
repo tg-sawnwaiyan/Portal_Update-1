@@ -131,13 +131,13 @@
 
                               <div class="form-group">
                                 <label for="skill">
-                                    経験・スキル:
+                                    経験・スキル
                                  
                                 </label>
-                                <textarea name="description" class="form-control" cols="50" rows="5" v-model="joboffer.description" placeholder="経験・スキルを入力してください。"></textarea>
-                                <!-- <span v-if="errors.description" class="error">{{errors.description}}</span> -->
-                                 <!-- <span v-if="errors.includes('description')" class="error">題名が必須です。(description)</span> -->
-                                <span v-if="errors.description" class="error">{{errors.description}}</span>
+                               
+                                <textarea name="skills" class="form-control" cols="50" rows="5" v-model="joboffer.skills" placeholder="経験・スキルを入力してください。"></textarea>
+                            
+                             
                             </div>
 
 
@@ -503,6 +503,7 @@ import Autocomplete from 'vuejs-auto-complete'
 
                             id: ""
                         }],
+                        skills:"",
                         postal: "",
                         zipcode_id: "",
                         pref: "",
@@ -585,6 +586,7 @@ import Autocomplete from 'vuejs-auto-complete'
                         .get(`/api/job/edit/${this.$route.params.id}`)
 
                     .then(response => {
+                      console.log("response.data.job",response.data.job);
                         this.joboffer.title = response.data.job[0].title;
                         if(response.data.job[0].zip7_code == null){
                           this.joboffer.postal = "";
@@ -608,13 +610,14 @@ import Autocomplete from 'vuejs-auto-complete'
 
                         this.joboffer.description = response.data.job[0].description;
 
-                        this.joboffer.fields.skills = response.data.job[0].skills;
+                        // this.joboffer.fields.skills = response.data.job[0].skills;
+                        this.joboffer.skills = response.data.job[0].skills;
 
-                        let arr = [];
+                        // let arr = [];
 
-                        arr = this.joboffer.fields.skills.split(",");
+                        // arr = this.joboffer.fields.skills.split(",");
 
-                        this.createskill(arr);
+                        // this.createskill(arr);
 
                         this.joboffer.location = response.data.job[0].location;
 
