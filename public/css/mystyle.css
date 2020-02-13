@@ -9562,9 +9562,6 @@ padding: 11px;
         margin: 0px;
         font-size: 12px;
     }
-    .maintab-content {
-        padding: 7px;
-    }
     .img_title {
         height: 135px;
     }
@@ -10082,6 +10079,12 @@ padding: 0;
         float: left;
         list-style: none;
     }
+    .sp_social .social-link a {
+        width: 20px;
+    }
+    .sp_social .social-link a i {
+        color: #fff;
+    }
     .social-link:first-child a {
         background: #0080aa;
     }
@@ -10095,7 +10098,7 @@ padding: 0;
         float: right;
         position: absolute;
         right: 10px;
-        top: 30px;
+        top: 18px;
         z-index: 99;
     }
     .login_nav li.first-submenu {
