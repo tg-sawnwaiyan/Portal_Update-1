@@ -19,7 +19,7 @@
                 <div class="col-12 m-t-40">   
                   <!-- <div class="user_name">パスワードのリセット</div>                       -->
                 <form autocomplete="off" @submit.prevent="resetPass" method="post">
-                  <div class="m-b-30 reset">
+                  <div class="mb-50  reset">
                     <div class="input-group">
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-envelope"></i></span>
@@ -133,6 +133,10 @@
 </script>
 
 <style>
+.reset{
+  margin-bottom:50px;
+  margin-top:30px;
+}
 .reset .error{
   position: absolute;
 }
