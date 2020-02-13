@@ -202,11 +202,7 @@ class CommentController extends Controller
         $getComment = DB::select($query);
 
     
-<<<<<<< HEAD
-        $admin_email = 'susan@management-partners.co.jp';
-=======
         $admin_email = 'thuzar@management-partners.co.jp';
->>>>>>> c6042cfdb8210b0994e2ad20d5ae3687431827bf
        
         \Mail::to($admin_email)->send(new SendMailComment($getComment));
 
