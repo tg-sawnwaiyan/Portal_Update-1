@@ -637,6 +637,7 @@
                             .post('/api/nursing_fav/' + local_storage)
                             .then(response => {
                                 this.fav_nursing = response.data;
+                                console.log("this.fav_nursing",this.fav_nursing);
                               
                                 if(this.fav_nursing.length < this.fav_nus && this.fav_nursing.length > 0)
                                 {      
@@ -701,10 +702,13 @@
                                 'name': this.fav_nursing[i]['name']
                             });
                         }
+
+                        
                         
                         localStorage.setItem("document", JSON.stringify(this.document_status));
                         localStorage.removeItem("item");
                         localStorage.setItem("item", JSON.stringify(this.fav_email));
+                      
                         this.$router.push({
                             name: 'nursingFavouriteMail',
                             // params: { favmail: this.fav_email},

@@ -167,4 +167,9 @@
 .customer_user_card{
   background-color: #FBFBFB !important;
 }
+@media only screen and (max-width: 380px){
+  .admin_user_card{
+    background-color: #fff !important;
+  }
+}
 </style>
