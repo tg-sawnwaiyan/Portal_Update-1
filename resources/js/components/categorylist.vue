@@ -16,7 +16,7 @@
                     </div>
                     <div v-else class="container-fuid">
                         <h4 class="main-color mb-3">ニュースカテゴリー検索</h4>
-                        <div class="row">
+                        <div class="row mb-4">
                             <div class="col-md-12">
                                 <input type="text" class="form-control" placeholder="ニュースカテゴリー検索" id="search-item" @keyup="searchCategory()" />
                             </div>

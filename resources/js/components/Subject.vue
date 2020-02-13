@@ -1,41 +1,39 @@
 <template>
 
-<div class="row o-r1 m-r-20">
-      <div class="col-12 o-r2">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h4 class="page-header header">{{ header }}</h4>
-                        </div>
-                             <div class="col-md-12">
-                                 <form @submit.prevent ="add">
-                                <div class="form-group">
-                                    <label>科目 :<span class="error">*</span></label>
-                                    <input type="text" class="form-control"  v-model="Subject.name"  placeholder="科目を入力してください。" >
-                                    <span v-if="errors.name" class="error">{{errors.name}}</span>
-                                </div>
-                                <div class="form-group">
-                                <label>ペアレント :<span class="error">*</span></label>
-                                    <select v-model="selectedValue" class="form-control" @change='getParent()'>
-                                        <option value="0">選択してください。</option>
-                                        <option v-for="Subjectlist in SubjectList" :key="Subjectlist.id" v-bind:value="Subjectlist.id">
-                                            {{Subjectlist.name}}
-                                        </option>
-                                    </select>
-                            </div><br/>
-                                 <div class="form-group">
-                                        <span class="btn main-bg-color white all-btn" @click="checkValidate()">{{subtitle}}</span>
-                                        <router-link class="btn btn-danger all-btn" to="/subjectlist" > キャンセル </router-link>
-                                         <!-- <button class="btn news-post-btn all-btn">{{subtitle}}</button> -->
-                                        
-                                </div>
-                             </form>
-                             </div>
-                    </div>
+<div id="create_subject">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="page-header header">{{ header }}</h4>
                 </div>
+                        <div class="col-md-12">
+                            <form @submit.prevent ="add">
+                        <div class="form-group">
+                            <label>科目 :<span class="error">*</span></label>
+                            <input type="text" class="form-control"  v-model="Subject.name"  placeholder="科目を入力してください。" >
+                            <span v-if="errors.name" class="error">{{errors.name}}</span>
+                        </div>
+                        <div class="form-group">
+                        <label>ペアレント :<span class="error">*</span></label>
+                            <select v-model="selectedValue" class="form-control" @change='getParent()'>
+                                <option value="0">選択してください。</option>
+                                <option v-for="Subjectlist in SubjectList" :key="Subjectlist.id" v-bind:value="Subjectlist.id">
+                                    {{Subjectlist.name}}
+                                </option>
+                            </select>
+                    </div><br/>
+                            <div class="form-group">
+                                <span class="btn main-bg-color white all-btn" @click="checkValidate()">{{subtitle}}</span>
+                                <router-link class="btn btn-danger all-btn" to="/subjectlist" > キャンセル </router-link>
+                                    <!-- <button class="btn news-post-btn all-btn">{{subtitle}}</button> -->
+                                
+                        </div>
+                        </form>
+                        </div>
             </div>
-      </div>
+        </div>
+    </div>
 </div>
 </template>
 

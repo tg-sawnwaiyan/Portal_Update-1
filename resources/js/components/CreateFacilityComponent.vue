@@ -1,34 +1,32 @@
 <template>    
- <div class="row t-r m-r-20">
-      <div class="col-12 t-l">  
-          <div class="card">
-              <div class="card-body">                
-                    <div class="row">
-                         
-                        <div class="col-md-12">
-                            <h4 class="page-header header">{{title}}</h4>
-                        </div>
-                        <div class="col-md-12">
-                             <form>
-                            <div class="form-group">
-                                <label>施設の種類:<span class="error">*</span></label>
-                                <input type="text" class="form-control"  v-model="facility.description"  :placeholder='[[placeholder]]' >
-                                      <span v-if="errors.description" class="error">{{errors.description}}</span>
-                            </div>
-                        
-                            <div class="form-group">
-                                <span class="btn main-bg-color white all-btn" @click="checkValidate()"> {{buttontext}}</span>
-                                <router-link to="/facilitieslist" class="btn btn-danger all-btn">キャンセル</router-link>    
-                                <!-- <button class="btn news-post-btn all-btn" > 作成する </button> -->
-                                                                         
-                                <!-- <router-link to="/facilitieslist" class="btn news-post-btn all-btn">更新</router-link> -->
-                            </div>  
-                                </form>  
-                            </div>
-                         </div>       
-                    </div>               
-            </div>
-    </div>
+ <div id="create_fact">
+    <div class="card">
+        <div class="card-body">                
+              <div class="row">
+                    
+                  <div class="col-md-12">
+                      <h4 class="page-header header">{{title}}</h4>
+                  </div>
+                  <div class="col-md-12">
+                        <form>
+                      <div class="form-group">
+                          <label>施設の種類:<span class="error">*</span></label>
+                          <input type="text" class="form-control"  v-model="facility.description"  :placeholder='[[placeholder]]' >
+                                <span v-if="errors.description" class="error">{{errors.description}}</span>
+                      </div>
+                  
+                      <div class="form-group">
+                          <span class="btn main-bg-color white all-btn" @click="checkValidate()"> {{buttontext}}</span>
+                          <router-link to="/facilitieslist" class="btn btn-danger all-btn">キャンセル</router-link>    
+                          <!-- <button class="btn news-post-btn all-btn" > 作成する </button> -->
+                                                                    
+                          <!-- <router-link to="/facilitieslist" class="btn news-post-btn all-btn">更新</router-link> -->
+                      </div>  
+                          </form>  
+                      </div>
+                    </div>       
+              </div>               
+      </div>
   </div>
 </template>
 <script>

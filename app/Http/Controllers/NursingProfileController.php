@@ -57,20 +57,8 @@ class NursingProfileController extends Controller
     public function profileupdate($id,Request $request) { 
         $request = $request->all();
 
-        // Customer Info List
-        // $customer = Customer::find($id);
-
-        // $customer->name = $request[0]['customer_info']['name'];
-        // $customer->email = $request[0]['customer_info']['email'];
-        // $customer->phone = $request[0]['customer_info']['phone'];
-        // $customer->address = $request[0]['customer_info']['address'];
-        // $customer->townships_id = $request[0]['customer_info']['townships_id'];
-
-        // $customer->save();
-
         $nursing = NursingProfile::where('id',$id)->first();
         // Nursing Profile 
-        // print_r($request);exit;
         $nursing->name = $request[0]['nursing_profile']['name'];
         $nursing->email = $request[0]['nursing_profile']['email'];
         $nursing->phone = $request[0]['nursing_profile']['phone'];
@@ -78,6 +66,7 @@ class NursingProfileController extends Controller
         $nursing->logo = $request[0]['nursing_profile']['logo'];
 
         $nursing->access = $request[0]['nursing_profile']['access'];
+        $nursing->townships_id = $request[0]['nursing_profile']['townships_id'];
         $nursing->operator = $request[0]['nursing_profile']['operator'];
         $nursing->business_entity = $request[0]['nursing_profile']['business_entity'];
         $nursing->website = $request[0]['nursing_profile']['website'];

@@ -199,7 +199,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                 },
                 {
                     title: '病院',
-                    icon: 'fa  fa-hospital',
+                    icon: 'fas fa-briefcase-medical',
                     hidden: this.$auth.check(1),
                     child: [
                         {
@@ -258,7 +258,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                 // },
                 {
                     title: '求人',
-                    icon: 'fa fa-suitcase',                    
+                    icon: 'fas fa-users',                    
                     child: [
                         {
                             href: '/occupationlist',
