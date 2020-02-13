@@ -2521,6 +2521,31 @@ ul.sub-ul li {
     padding-left: 5px !important;
 }
 
+.site_header {
+    position: relative;
+    margin: 30px 0;
+    font-weight: bold;
+    line-height: 2;
+    text-align: center;
+}
+
+.site_header:after {
+    position: absolute;
+    content: '';
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100px;
+    height: 5px;
+    margin: 0 auto;
+    border-radius: 2px;
+    background: #d2571c;
+}
+
+.sitepolicy_home, .privacy {
+    padding-left: 20px;
+}
+
 
 /*End Terms & conditions */
 
