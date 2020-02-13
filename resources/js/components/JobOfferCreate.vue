@@ -54,7 +54,7 @@
                                 </label>
                                 <textarea name="description" class="form-control" cols="50" rows="5" v-model="joboffer.description" placeholder="仕事内容を入力してください。"></textarea>
                                 <!-- <span v-if="errors.description" class="error">{{errors.description}}</span> -->
-                                 <!-- <span v-if="errors.includes('description')" class="error">題名が必須です。(description)</span> -->
+                                 <!-- <span v-if="errors.includes('description')" class="error">題名は必須です。(description)</span> -->
                                 <span v-if="errors.description" class="error">{{errors.description}}</span>
                             </div>
 
@@ -193,7 +193,7 @@
                                 </div>
                                 
                                 
-                                <!-- <span v-if="errors.includes('postal')" class="error">題名が必須です。(postal)</span> -->
+                                <!-- <span v-if="errors.includes('postal')" class="error">題名は必須です。(postal)</span> -->
                                  <!-- <span v-if="errors.postal" class="error">{{errors.postal}}</span> -->
                             </div>
                             <div class="form-group">
@@ -215,7 +215,7 @@
                                   
                                   <!-- <input type="text" class="form-control box" v-model="joboffer.pref" placeholder="都道府県を入力してください。" /> -->
                                   <!-- <span v-if="errors.pref" class="error">{{errors.pref}}</span> -->
-                                  <!-- <span v-if="errors.includes('pref')" class="error">題名が必須です。(pref)</span> -->
+                                  <!-- <span v-if="errors.includes('pref')" class="error">題名は必須です。(pref)</span> -->
                                   <span v-if="errors.pref" class="error">{{errors.pref}}</span>
                                 </div>
                                 <div class="col-md-6">
@@ -232,7 +232,7 @@
                                     </select>
                                     <!-- <input type="text" class="form-control box" v-model="joboffer.str_address" placeholder="市区町村、番地を入力してください。" /> -->
                                     <span v-if="errors.str_address" class="error">{{errors.str_address}}</span>
-                                    <!-- <span v-if="errors.includes('str_address')" class="error">題名が必須です。(str_address)</span> -->
+                                    <!-- <span v-if="errors.includes('str_address')" class="error">題名は必須です。(str_address)</span> -->
                                     <!-- <span v-if="errors.name" class="error">{{errors.str_address}}</span> -->
                                 </div>
                               </div>
@@ -248,7 +248,7 @@
                                 </label>
                                 <textarea name="location" class="form-control" cols="50" rows="5" v-model="joboffer.location" placeholder="勤務地を入力してください。"></textarea>
                                  <span v-if="errors.location" class="error">{{errors.location}}</span>
-                                 <!-- <span v-if="errors.includes('location')" class="error">題名が必須です。(location)</span> -->
+                                 <!-- <span v-if="errors.includes('location')" class="error">題名は必須です。(location)</span> -->
 
                             </div>
 
@@ -393,12 +393,12 @@
                                     </select>
                                       <p v-if="errors.salary_type" class="error">{{errors.salary_type}}</p>
                                     </div>
-                                       <!-- <span v-if="errors.includes('salary_type')" class="error">題名が必須です。(salary_type)</span> -->
+                                       <!-- <span v-if="errors.includes('salary_type')" class="error">題名は必須です。(salary_type)</span> -->
                                     <div class="col-sm-4 col-12 joboffer-salary">
                                       <input type="text" class="form-control" v-model="joboffer.salary" name="salary" placeholder="給与を入力してください。" v-on:keydown="isNumber" />
                                       <p v-if="errors.salary" class="error">{{errors.salary}}</p>
                                     </div>
-                                    <!-- <span v-if="errors.includes('salary')" class="error">題名が必須です。(salary)</span> -->
+                                    <!-- <span v-if="errors.includes('salary')" class="error">題名は必須です。(salary)</span> -->
 
                                 </div>
                             </div>
@@ -443,7 +443,7 @@
                                 </label>
                                 <input type="workhour" class="form-control" name="workhour" v-model="joboffer.working_hours" placeholder="就業時間を入力してください。" />
                                 <span v-if="errors.working_hours" class="error">{{errors.working_hours}}</span>
-                                <!-- <span v-if="errors.includes('working_hours')" class="error">題名が必須です。(working_hours)</span> -->
+                                <!-- <span v-if="errors.includes('working_hours')" class="error">題名は必須です。(working_hours)</span> -->
 
                             </div>
 
@@ -687,62 +687,62 @@ import Autocomplete from 'vuejs-auto-complete'
               checkValidate() {
 
                          if (this.joboffer.title == '') {
-                            this.errors.title = '施設種別名が必須です。';
+                            this.errors.title = '施設種別名は必須です。';
                         } else {
                             this.errors.title = "";
                         }
 
                           if (this.joboffer.description == '') {
-                            this.errors.description = '仕事内容が必須です。';
+                            this.errors.description = '仕事内容は必須です。';
                         } else {
                             this.errors.description = "";
                         }
 
                         // if (this.joboffer.postal == '') {
-                        //     this.errors.postal = '郵便番号が必須です。';
+                        //     this.errors.postal = '郵便番号は必須です。';
                         // } else {
                         //     this.errors.postal = "";
                         // }
 
                         if (this.joboffer.pref == '') {
-                            this.errors.pref = '都道府県が必須です。';
+                            this.errors.pref = '都道府県は必須です。';
                         } else {
                             this.errors.pref = "";
                         }
 
                         if (this.joboffer.str_address == '') {
-                            this.errors.str_address = '市区町村が必須です。';
+                            this.errors.str_address = '市区町村は必須です。';
                         } else {
                             this.errors.str_address = "";
                         }
 
                         if (this.joboffer.location == '') {
-                            this.errors.location = '勤務地が必須です。';
+                            this.errors.location = '勤務地は必須です。';
                         } else {
                             this.errors.location = "";
                         }
 
                         if (this.joboffer.salary_type == '-1') {
-                            this.errors.salary_type = " 給与タイプが必須です。";
+                            this.errors.salary_type = " 給与タイプは必須です。";
                         }
                         else {
                             this.errors.salary_type = null;
                         }
 
                         if (this.joboffer.salary == '') {
-                            this.errors.salary = '給与が必須です。';
+                            this.errors.salary = '給与は必須です。';
                         } else {
                             this.errors.salary = "";
                         }
 
                         if (this.joboffer.working_hours == '') {
-                            this.errors.working_hours = '就業時間が必須です。';
+                            this.errors.working_hours = '就業時間は必須です。';
                         } else {
                             this.errors.working_hours = "";
                         }
 
                         if (this.joboffer.occupation_id == '-1') {
-                            this.errors.occupation_id = " 職種が必須です。";
+                            this.errors.occupation_id = " 職種は必須です。";
                         }
                         else {
                             this.errors.occupation_id = null;

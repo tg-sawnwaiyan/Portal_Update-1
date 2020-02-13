@@ -601,32 +601,32 @@ export default {
     //   if (this.jobApply.first_name) {
     //     this.errors.first_name = "";
     //   } else {
-    //     this.errors.first_name = "お名前が必須です。";
+    //     this.errors.first_name = "お名前は必須です。";
     //   }
     //   if (this.jobApply.last_name) {
     //     this.errors.last_name = "";
     //   } else {
-    //     this.errors.last_name = "ふりがなが必須です。";
+    //     this.errors.last_name = "ふりがなは必須です。";
     //   }
     //   if (this.jobApply.str_address) {
     //     this.errors.str_address = "";
     //   } else {
-    //     this.errors.str_address = "電話番号が必須です。";
+    //     this.errors.str_address = "電話番号は必須です。";
     //   }
     //   if (this.jobApply.phone) {
     //     this.errors.phone = "";
     //   } else {
-    //     this.errors.phone = "電話番号が必須です。";
+    //     this.errors.phone = "電話番号は必須です。";
     //   }
     //   if (this.jobApply.email) {
     //     this.errors.email = "";
     //   } else {
-    //     this.errors.email = "メールアドレスが必須です。";
+    //     this.errors.email = "メールアドレスは必須です。";
     //   }
     //   if (this.jobApply.terms) {
     //     this.errors.terms = "";
     //   } else {
-    //     this.errors.terms = "「同意する」にチェックが必須です。";
+    //     this.errors.terms = "「同意する」にチェックは必須です。";
     //   }
       if (
         !this.errors.first_name &&

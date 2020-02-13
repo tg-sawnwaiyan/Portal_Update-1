@@ -190,7 +190,7 @@ export default {
                         this.errors.name = "";
                     } else {
                         // console.log('null');
-                        this.errors.name = " 事業者の種類が必須です。";
+                        this.errors.name = " 事業者の種類は必須です。";
                     }
                    if (
                         !this.errors.name
