@@ -220,7 +220,7 @@
                         <li v-if="!$auth.check()">
                         <router-link :to="{name: 'login'}" class="nav-link pad-free"><i class="fa fa-sign-in-alt"></i> 事業者 ログイン</router-link>
                         </li>
-                        <li v-if="!$auth.check()" style="border-bottom:1px solid #8c9090;">
+                        <li v-if="!$auth.check()" class="menu-list_last">
                         <router-link :to="{name: 'register'}" class="nav-link pad-free"><i class="fa fa-user-plus"></i> 事業者 登録</router-link>
                         </li>
                         <li>

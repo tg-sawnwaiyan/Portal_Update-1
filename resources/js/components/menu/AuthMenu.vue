@@ -264,7 +264,7 @@
                             <li  v-if="visit == 'true'">
                                 <a  @click="gotoDash()"><i class="fas fa-tachometer-alt"></i> 管理画面へ</a>
                             </li>
-                            <li>
+                            <li class="menu-list_last">
                                 <a href="#" @click.prevent="$auth.logout()"><i class="fa fa-lock"></i> ログアウト</a>
                             </li>
                             <li v-if="!$auth.check()">
