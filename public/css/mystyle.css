@@ -10860,9 +10860,9 @@ width: 18rem;
     .pad-0-res {
         padding: 0px;
     }
-    .d-block {
+    /* .d-block {
         display: block !important;
-    }
+    } */
     .profile-tit {
         padding: 0px;
         margin: 0px;
@@ -11065,8 +11065,8 @@ width: 18rem;
         float: left;
     }
     .txt-box {
-        padding-left: 110px !important;
-        position: absolute;
+        /* padding-left: 110px !important;
+        position: absolute; */
     }
     .wrapper-3 {
         /* float: left;
