@@ -260,8 +260,8 @@
     background-color: #fff;
     border: 1px solid #544e4e !important;
     border-radius: 5px;
-    margin-left: 15px;
-    padding: 3px 10px;
+    margin: 10px 0 0 15px;
+    padding: 0 10px;
 }
 .fade-enter-active,
 .fade-leave-active {
