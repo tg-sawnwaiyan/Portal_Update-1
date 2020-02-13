@@ -114,11 +114,11 @@ class JobController extends Controller
         //     'working_hours' => 'required',
 
         // ],[
-        //     'title.required'=>'施設種別が必須です。',
-        //     'description.required'=>'仕事内容が必須です。',
-        //     'location.required'=>'勤務地が必須です。',
-        //     'salary.required'=>'給与が必須です。',
-        //     'working_hours.required'=>'就業時間が必須です。',
+        //     'title.required'=>'施設種別は必須です。',
+        //     'description.required'=>'仕事内容は必須です。',
+        //     'location.required'=>'勤務地は必須です。',
+        //     'salary.required'=>'給与は必須です。',
+        //     'working_hours.required'=>'就業時間は必須です。',
         // ]);
 
         $string = '';

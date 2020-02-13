@@ -12,7 +12,7 @@
                 <br>
                 <form @submit.prevent="updatepost">
                     <div class="form-group">
-                        <label>題名:<span class="error">*</span></label>
+                        <label>題名 <span class="error sp1" style="margin-left:0px;">必須</span></label>
                         <input type="text" class="form-control" placeholder="題名を入力してください。" v-model="news.title">
                         <span v-if="errors.title" class="error">{{errors.title}}</span>
                     </div>
@@ -46,12 +46,12 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>内容要約:<span class="error">*</span></label>
+                        <label>内容要約 <span class="error sp1" style="margin-left:0px;">必須</span></label>
                         <input type="text" class="form-control" placeholder="ニュースの内容要約を入力してください。" v-model="news.main_point">
                         <span v-if="errors.main_point" class="error">{{errors.main_point}}</span>
                     </div>
                     <div class="form-group">
-                        <label>カテゴリー:<span class="error">*</span></label>
+                        <label>カテゴリー <span class="error sp1" style="margin-left:0px;">必須</span></label>
                             <select v-model="selectedValue" class="form-control" @change='getstates()'>
                                 <option v-bind:value="0">選択してください。</option>
                                 <option v-for="category in categories" :key="category.id" v-bind:value="category.id">
@@ -61,12 +61,12 @@
                         <span v-if="errors.category_id" class="error">{{errors.category_id}}</span>
                     </div>
                     <div class="form-group">
-                        <label>内容:<span class="error">*</span></label>
+                        <label>内容 <span class="error sp1" style="margin-left:0px;">必須</span></label>
                         <quill-editor  ref="myQuilEditor" id="exampleFormControlTextarea1" class="rounded-0" placeholder="内容を入力してください。"  @change="onDetailInfoEditorChange($event)" v-model="news.body" :options="editorOption" @blur="onEditorBlur($event)" @focus="onEditorFocus($event)"/>
                         <span v-if="errors.body" class="error">{{errors.body}}</span>
                     </div>
                     <div class="form-group">
-                        <label>関連ニュース:</label>
+                        <label>関連ニュース</label>
                         <div class="card related-card">
                             <div class="card-body">
                                 <input type="hidden" v-model="old_photo" >
@@ -446,22 +446,22 @@ import {quillEditor} from 'vue-quill-editor'
                         if (this.news.title) {
                             this.errors.title = "";
                         } else {
-                            this.errors.title = "ニュースの題名が必須です。";
+                            this.errors.title = "ニュースの題名は必須です。";
                         }
                         if (this.news.main_point) {
                             this.errors.main_point = "";
                         } else {
-                            this.errors.main_point = "ニュースの内容要約が必須です。";
+                            this.errors.main_point = "ニュースの内容要約は必須です。";
                         }
                         if (this.news.body) {
                             this.errors.body = "";
                         } else {
-                            this.errors.body = "ニュースの内容が必須です。";
+                            this.errors.body = "ニュースの内容は必須です。";
                         }
                         if (this.news.category_id) {
                             this.errors.category_id = "";
                         } else {
-                            this.errors.category_id = "ニュースのカテゴリーが必須です。";
+                            this.errors.category_id = "ニュースのカテゴリーは必須です。";
                         }
                         if (
                             !this.errors.title &&

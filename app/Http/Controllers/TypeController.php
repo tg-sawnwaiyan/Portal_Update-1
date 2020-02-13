@@ -47,7 +47,7 @@ class TypeController extends Controller
 
 
         ],[
-            'name.required'=>'名前が必須です。',
+            'name.required'=>'名前は必須です。',
             'name.unique'=>'名前はすでに使用されています。',
         ]);
 

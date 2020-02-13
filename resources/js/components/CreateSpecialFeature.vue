@@ -98,7 +98,7 @@ export default {
                         this.errors.name = "";
                     } else {
                         // console.log('null');
-                        this.errors.name = " 特徴が必須です。";
+                        this.errors.name = " 特徴は必須です。";
                     }
 
                     if (this.feature.short_name) {
@@ -106,13 +106,13 @@ export default {
                         this.errors.short_name = "";
                     } else {
                         // console.log('null');
-                        this.errors.short_name = " 特徴の略語が必須です。";
+                        this.errors.short_name = " 特徴の略語は必須です。";
                     }
                     
 
                     if (this.feature.type == '-1') {
                         console.log(this.feature.type);
-                        this.errors.type = " カテゴリが必須です。";
+                        this.errors.type = " カテゴリーは必須です。";
                     }
                     else {
                         this.errors.type = "";

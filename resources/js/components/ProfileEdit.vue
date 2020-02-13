@@ -261,7 +261,7 @@
                         this.errors.city = "";
                     }
                     else{
-                       this.errors.city = "都道府県が必須です";
+                       this.errors.city = "都道府県は必須です";
                     }
                     if(this.nursing_data.town_id != 0)
                     {
@@ -269,7 +269,7 @@
             
                     }
                     else{
-                         this.errors.township = "市区町村が必須です";
+                         this.errors.township = "市区町村は必須です";
                     }
                     if(this.errors.city == ""  &&  this.errors.township == "" && this.errors.name == "")
                     {
