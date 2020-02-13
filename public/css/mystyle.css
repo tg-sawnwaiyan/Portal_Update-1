@@ -940,11 +940,11 @@ border-radius: 3px;
     width: 170px;
     top: -75px;
     border-radius: 50%;
-    /* background: #fff; */
+    background: #fbfbfb;
     padding: 10px;
     text-align: center;
     border: 10px solid #ececec;
-    margin-left: 10px;
+    margin-left: 3px;
 }
 
 .logo_bk {
@@ -1040,26 +1040,25 @@ border-radius: 3px;
 
 .login_1 {
     top: -39px;
-    margin-right: 20px;
+    margin-right: 10px;
 }
 
 .login_2 {
-    top: -38px;
+    top: -39px;
     margin-left: 10px;
     position: absolute;
 }
 
 .login_3 {
     top: 11px;
-    margin-right: 13px;
+    margin-right: 2px;
 }
 
 .login_4 {
     top: 11px;
-    margin-left: 10px;
+    margin-left: 16px;
     position: absolute;
 }
-
 
 /*login*/
 
@@ -9468,7 +9467,7 @@ padding: 11px;
         margin-right: 18px;
     }
     .login_top {
-        top: -6px;
+        top: 0px;
     }
 }
 
@@ -9564,17 +9563,8 @@ padding: 11px;
     .img_title {
         height: 135px;
     }
-    /* login */
-    .login_top {
-        top: -6px;
-        /* margin-left: 15px; */
-    }
-    .login_1 {
-        margin-right: 27px;
-    }
-    .login_2 {
-        margin-left: -4px;
-    }
+   
+    
     /* Register */
     .loginwrapper {
         height: 105vh;
@@ -10855,6 +10845,9 @@ width: 18rem;
 }
 
 @media only screen and (max-width:750px) {
+    .login_1, .login_2{
+        top: 0px;
+    }
     .pc-750 {
         display: none;
     }
@@ -10867,9 +10860,9 @@ width: 18rem;
     .pad-0-res {
         padding: 0px;
     }
-    .d-block {
+    /* .d-block {
         display: block !important;
-    }
+    } */
     .profile-tit {
         padding: 0px;
         margin: 0px;
@@ -11072,8 +11065,8 @@ width: 18rem;
         float: left;
     }
     .txt-box {
-        padding-left: 110px !important;
-        position: absolute;
+        /* padding-left: 110px !important;
+        position: absolute; */
     }
     .wrapper-3 {
         /* float: left;
@@ -11533,11 +11526,14 @@ background-image: none;
     .my-3 {
         margin-bottom: 2px !important;
     }
-    .brand_logo_container {
-        position: absolute;
-        height: 170px;
-        width: 170px;
-        top: -81px;
+    .brand_logo_container {       
+        height: auto;     
+    }
+    .brand_logo{
+        width: auto;
+        position: relative;
+        left: auto;
+        top: auto
     }
     .links_2 {
         top: 78px;
@@ -11553,10 +11549,8 @@ background-image: none;
         position: fixed;
         background: #fbfbfb;
     }
-    .login_top {
-        top: -123px;
-        margin-left: 15px;
-    }
+  
+    
     .p-l-162 {
         padding-left: 0px;
     }
@@ -11709,15 +11703,9 @@ background-image: none;
 }
 
 @media only screen and (max-width: 380px) {
-    .login_2 {
-        margin-left: -25px;
-    }
-    .login_1 {
-        margin-right: -7px;
-    }
-    .login_top {
-        top: -120px;
-    }
+   
+   
+    
     .loginwrapper {
         height: 105vh;
         padding: 10px 40px;
@@ -11725,6 +11713,7 @@ background-image: none;
         background: #fbfbfb;
         /* margin-left:-34px; */
     }
+    
     /*register*/
     .login_wp {
         height: 105vh;
@@ -11750,12 +11739,13 @@ background-image: none;
     .my-3 {
         margin-bottom: 7px !important;
     }
-    .brand_logo_container {
+    /* .brand_logo_container {
         position: absolute;
         height: 170px;
         width: 170px;
         top: -80px;
-    }
+        margin-left: -1px;
+    } */
     /*register*/
     .links {
         position: relative;
@@ -12119,16 +12109,9 @@ strong {
     .set-date {
         text-indent: 0em;
     }
-    .login_2 {
-        margin-left: -53px;
-    }
-    .login_1 {
-        margin-right: -21px;
-    }
-    .login_top {
-        top: -111px;
-        margin-left: 22px;
-    }
+   
+   
+    
     .loginwrapper {
         padding: 10px 40px;
         position: fixed;
