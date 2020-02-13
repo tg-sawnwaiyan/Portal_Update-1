@@ -1089,23 +1089,23 @@ border-radius: 3px;
 
 .login_1 {
     top: -39px;
-    margin-right: 20px;
+    margin-right: 10px;
 }
 
 .login_2 {
-    top: -38px;
+    top: -39px;
     margin-left: 10px;
     position: absolute;
 }
 
 .login_3 {
     top: 11px;
-    margin-right: 13px;
+    margin-right: 2px;
 }
 
 .login_4 {
     top: 11px;
-    margin-left: 10px;
+    margin-left: 16px;
     position: absolute;
 }
 
@@ -2569,6 +2569,32 @@ ul.sub-ul li {
 
 .autocomplete__box {
     padding-left: 5px !important;
+}
+
+.site_header {
+    position: relative;
+    margin: 30px 0;
+    font-weight: bold;
+    line-height: 2;
+    text-align: center;
+}
+
+.site_header:after {
+    position: absolute;
+    content: '';
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100px;
+    height: 5px;
+    margin: 0 auto;
+    border-radius: 2px;
+    background: #d2571c;
+}
+
+.sitepolicy_home,
+.privacy {
+    padding-left: 20px;
 }
 
 
@@ -9517,7 +9543,7 @@ padding: 11px;
         margin-right: 18px;
     }
     .login_top {
-        top: -6px;
+        top: 0px;
     }
 }
 
@@ -9612,17 +9638,6 @@ padding: 11px;
     }
     .img_title {
         height: 135px;
-    }
-    /* login */
-    .login_top {
-        top: -6px;
-        /* margin-left: 15px; */
-    }
-    .login_1 {
-        margin-right: 27px;
-    }
-    .login_2 {
-        margin-left: -4px;
     }
     /* Register */
     /* .loginwrapper {
@@ -10904,6 +10919,10 @@ width: 18rem;
 }
 
 @media only screen and (max-width:750px) {
+    .login_1,
+    .login_2 {
+        top: 0px;
+    }
     .pc-750 {
         display: none;
     }
@@ -10916,9 +10935,9 @@ width: 18rem;
     .pad-0-res {
         padding: 0px;
     }
-    .d-block {
+    /* .d-block {
         display: block !important;
-    }
+    } */
     .profile-tit {
         padding: 0px;
         margin: 0px;
@@ -11124,8 +11143,8 @@ width: 18rem;
         float: left;
     }
     .txt-box {
-        padding-left: 110px !important;
-        position: absolute;
+        /* padding-left: 110px !important;
+        position: absolute; */
     }
     .wrapper-3 {
         /* float: left;

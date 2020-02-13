@@ -14,10 +14,9 @@
                 <h5 style="color:#3e4348;font-size: 12px;margin-bottom: 30px;font-weight: bold;text-align: left;">
                     <p style="margin-top:10px;">T-IS ティーズより資料請求がございました。</p>                    
 	            </h5>
-                <p style="text-align: left;margin: 0px;">
-                ***********************************************************************************************************************************
+                <p style="text-align: left;margin: 0px;">****************************************
                 </p>
-                <p style="text-align:left;margin:2px;color:#3e4348;font-size: 16px;"><span style="color:#d2571c">◎</span>【資料請求先】</p>
+                <p style="text-align:left;margin:2px;color:#3e4348;font-size: 16px;"><span style="color:#2980B9">◎</span>【資料請求先】</p>
                 @foreach($getComment->fav_name_copy as $name)
               
                     @if($name != null)
@@ -27,7 +26,7 @@
                 @endforeach
                 
                 <p style="text-align: left;margin: 0px;">
-                ***********************************************************************************************************************************
+                ****************************************
                 </p>
                 <p style="text-align:left;margin:2px;color:#3e4348;font-size: 16px;"><span style="color:#d2571c">◎</span>【資料請求された方について】</p>
                 <p style="text-align:left;margin:2px;color:#3e4348;font-size: 12px;">
