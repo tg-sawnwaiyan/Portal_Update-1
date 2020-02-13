@@ -85,7 +85,7 @@
                                 </div>
                                 <br>
 
-                                <div class="row">
+                                <div class="row m-0">
                                     <div class="related_post_box card card-default" v-for="r_news in related_news.data" :key="r_news.id">
                                         <div class="card-body">
                                             <label class="form-check-label control control--checkbox">
