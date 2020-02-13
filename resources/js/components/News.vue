@@ -1579,6 +1579,9 @@
  </script>
 
 <style>
+.slick-dots{
+    display: none !important;
+}
 .list-label{
     float: right; 
     color: #999; 

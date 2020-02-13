@@ -369,6 +369,15 @@
                this.errors.password = '';
           }
 
+        if((this.email != '' && this.mail_reg.test(this.email))){
+                
+            this.errors.email='';
+        }else{
+            
+            this.errors.email ='※メールアドレスが正しくありません。もう一度入力してください。';
+            
+        }
+
         var input_data = $('#phone').val();
         if(input_data.length >= 10 && input_data.length <= 14)
         {
@@ -380,10 +389,6 @@
             return;
         }
 
-
-       
-
-      
         if(this.errors.email == '' && this.errors.username == '' && this.errors.password == '' && this.errors.type == '' && this.ph_num == false && this.ph_length == false)
         {
              var app = this

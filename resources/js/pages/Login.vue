@@ -26,18 +26,17 @@
                 <div class="col-12 m-t-80">
                   <div class="user_name">{{name}}</div>
                 <form autocomplete="off" @submit.prevent="login" method="post">
-                  <div class="m-b-20">
+                  <div class="m-b-20 loginposition">
                     <div class="input-group ">
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                      <input type="email" id="email" class="form-control input_user" placeholder="ユーザー名" v-model="email"  autofocus @keyup="focusMail">
-                      
+                      <input type="text" id="email" class="form-control input_user" placeholder="ユーザー名" v-model="email"  autofocus @keyup="focusMail"> 
                     </div>
                      <span v-if="errors.email" class="error"><small>{{errors.email}}</small></span>
                   </div>
-                   <div class="m-b-20">
-                      <div class="input-group">
+                   <div class="m-b-20 loginposition">
+                      <div class="input-group ">
                           <div class="input-group-append">
                               <span class="input-group-text"><i class="fas fa-key"></i></span>
                           </div>
@@ -131,6 +130,11 @@
         else{
           this.errors.password = '';
         }
+        if((this.email != '' && this.mail_reg.test(this.email))){        
+            this.errors.email='';
+        }else{        
+            this.errors.email ='※メールアドレスが正しくありません。もう一度入力してください。';         
+        }  
         
         // get the redirect object
     
@@ -191,9 +195,10 @@
   }
 </script>
 <style>
-.error{
+.loginposition .error{
   position: absolute;
 }
+
 .admin_user_card{
   background-color: #3791B9 !important;
   color: #fff;
@@ -213,5 +218,10 @@
 }
 .customer_user_card{
   background-color: #FBFBFB !important;
+}
+@media only screen and (max-width: 380px){
+  .admin_user_card{
+    background-color: #fff !important;
+  }
 }
 </style>
