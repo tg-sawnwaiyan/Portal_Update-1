@@ -261,7 +261,7 @@
     border: 1px solid #544e4e !important;
     border-radius: 5px;
     margin: 10px 0 0 15px;
-    padding: 0 10px;
+    padding: 1px 10px;
 }
 .fade-enter-active,
 .fade-leave-active {

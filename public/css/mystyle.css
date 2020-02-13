@@ -10030,7 +10030,7 @@ padding: 0;
     #sp_headerbar {
         display: block;
         width: 96%;
-        margin: 10px auto;
+        margin: 0px auto;
         background: #fff
     }
     #sp_headerbar .fav_his {
@@ -10059,7 +10059,7 @@ padding: 0;
     }
     #sp_headerbar .count {
         position: absolute;
-        top: -19px;
+        top: -12px;
         right: -7px;
         width: 30px;
         height: 30px;
