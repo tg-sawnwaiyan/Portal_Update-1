@@ -10602,9 +10602,10 @@ width: 18rem;
 }
 
 @media only screen and (max-width:768px) {
-    .maintab-content {       
-        margin: 120px 0 0 0;
+    .tab{
+        margin-top: 20px;
     }
+    
     .newsDetail_leftwrapper {
         max-width: 320px;
     }
