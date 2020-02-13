@@ -10611,11 +10611,13 @@ width: 18rem;
         max-width: 33%;
     }
     .loginwrapper {
-        height: 105vh;
+        height: 100vh;
         padding: 10px 40px;
         position: fixed;
         width: 100%;
         background: #fbfbfb;
+        overflow: hidden;
+        overflow-y: scroll;
     }
     .p-l-162 {
         padding-left: 200px;
@@ -10942,7 +10944,27 @@ width: 18rem;
         width: 120px;
     }
 }
-
+@media only screen and (max-width: 735px) {
+    .brand_logo_container {
+        position: inherit;
+        width: auto;
+        height: auto;
+        border-radius: 0px;
+        border: 0px solid #ececec;
+    }
+    .brand_logo {
+        width: auto;
+        position: relative;
+        left: auto;
+        top: auto;        
+    }
+    .user_card{
+        box-shadow: none;
+        margin-top: auto !important;
+        transform: none !important;
+        height: auto !important;
+    }
+}
 @media only screen and (max-width: 620px) {
     .pagination {
         justify-content: center;
@@ -12108,16 +12130,13 @@ strong {
     /*comment*/
     .set-date {
         text-indent: 0em;
-    }
-   
-   
-    
+    }     
     .loginwrapper {
         padding: 10px 40px;
         position: fixed;
         /* margin-left: -53px; */
         background: #fbfbfb;
-        top: 20px;
+        /* top: 20px; */
     }
     .registerform_container {
         margin-top: 0px;
