@@ -27,7 +27,7 @@
                   <div class="user_name">{{name}}</div>
                 <form autocomplete="off" @submit.prevent="login" method="post">
                   <div class="m-b-20">
-                    <div class="input-group">
+                    <div class="input-group ">
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
