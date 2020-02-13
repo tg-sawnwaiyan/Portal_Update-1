@@ -11,16 +11,16 @@
                         <div class="col-md-12">
                              <form @submit.prevent="updateAds">
                             <div class="form-group">
-                                                <label>広告タイトル : <span class="error">*</span></label>
+                                                <label>広告タイトル <span class="error sp1" style="margin-left:0px;">必須</span></label>
                                                 <input type="title" class="form-control box" id="title"  name="title" v-model="advertisement.title" placeholder="広告タイトルを入力してください。">
                                                 <span v-if="errors.title" class="error">{{errors.title}}</span>
                                     </div>
                             <div class="form-group">
-                                            <label>説明 : <span class="error"></span></label>
+                                            <label>説明  <span class="error"></span></label>
                                             <textarea name="description" class="form-control" cols="50" rows="5" v-model="advertisement.description"></textarea>
                                     </div>
                             <div class="form-group">
-                                <label>広告リンク : <span class="error"></span></label>
+                                <label>広告リンク  <span class="error"></span></label>
                                 <input type="link" class="form-control box" id="link"  name="link" v-model="advertisement.link" placeholder="広告リンクを入力してください。">
                             </div>
                             <!-- <div class="form-group">
@@ -38,7 +38,7 @@
                                 </div>
                             </div> -->
                             <div class="form-group" id="showimage">
-                                <label>写真 : <span class="error">*</span></label><br/>
+                                <label>写真 <span class="error sp1" style="margin-left:0px;">必須</span></label><br/>
                                 <div class="d-flex align-items-center">
                                     <span class="btn-file d-inline-block">画像を選択        
                                         <input type="file" v-if="!showhide" ref="file" accept="image/*" id="upd_img" @change ="fileSelected">
