@@ -99,7 +99,7 @@ export default {
                         this.errors.name = "";
                     } else {
                         // console.log('null');
-                        this.errors.name = "診療科目が必須です。";
+                        this.errors.name = "診療科目は必須です。";
                     }
                    if (
                         !this.errors.name

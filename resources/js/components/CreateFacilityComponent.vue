@@ -148,10 +148,10 @@ export default {
                     } 
                    if(!this.facility.description && !this.$route.params.id){
                         // console.log('null');
-                        this.errors.description = " 院内施設の種類が必須です。";
+                        this.errors.description = " 院内施設の種類は必須です。";
                     }
                     else if(!this.facility.description && this.$route.params.id){
-                       this.errors.description = " 施設の種類が必須です。";
+                       this.errors.description = " 施設の種類は必須です。";
                     }
                    if ( !this.errors.description && !this.$route.params.id ) {
                         this.add();

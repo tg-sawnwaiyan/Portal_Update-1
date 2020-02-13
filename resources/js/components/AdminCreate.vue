@@ -108,7 +108,7 @@
                         if (this.adminData.name) {
                             this.errors.name = "";
                         } else {
-                            this.errors.name = "管理者名が必須です。";
+                            this.errors.name = "管理者名は必須です。";
                         }
                         if (this.adminData.email) {
                             if(this.mail_reg.test(this.adminData.email )){
@@ -118,22 +118,22 @@
                             }
                             
                         } else {
-                            this.errors.email = "メールアドレスが必須です。";
+                            this.errors.email = "メールアドレスは必須です。";
                         }
                         if (this.adminData.password) {
                             this.errors.password = "";
                         } else {
-                            this.errors.password = "パスワードが必須です。";
+                            this.errors.password = "パスワードは必須です。";
                         }
                         if (this.old_password) {
                             this.errors.old_password = "";
                         }else{
-                            this.errors.old_password = "現在のパスワードが必須です。"
+                            this.errors.old_password = "現在のパスワードは必須です。"
                         }
                         if (this.new_password) {
                             this.errors.new_password = "";
                         }else{
-                            this.errors.new_password = "新しいパスワードが必須です。"
+                            this.errors.new_password = "新しいパスワードは必須です。"
                         }
                         if (this.confirm_password) {
                             this.errors.confirm_password = "";

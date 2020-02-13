@@ -97,7 +97,7 @@
                 deleteCategory(id) {
                         this.$swal({
                             title: "確認",
-                            text: "ニュースカテゴリを削除してよろしいでしょうか。",
+                            text: "ニュースカテゴリーを削除してよろしいでしょうか。",
                             type: "warning",
                             width: 380,
                             height: 200,
@@ -140,10 +140,10 @@
                                 })
                                  .catch(error=>{
                                     if(error.response.status == 404){
-                                        // this.$swal("このカテゴリに関連するニュースがあるため、削除できません。");
+                                        // this.$swal("このカテゴリーに関連するニュースがあるため、削除できません。");
                                         this.$swal({
                                             title: "削除に失敗しました",
-                                            text: "削除に失敗しました このカテゴリのニュースが存在するため削除できません。 ",
+                                            text: "削除に失敗しました このカテゴリーのニュースが存在するため削除できません。 ",
                                             type: "error",
                                             width: 350,
                                             height: 200,

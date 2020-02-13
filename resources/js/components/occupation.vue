@@ -96,7 +96,7 @@ export default {
                         this.errors.name = "";
                     } else {
                         // console.log('null');
-                        this.errors.name = " 職種が必須です。";
+                        this.errors.name = " 職種は必須です。";
                     }
                    if (
                         !this.errors.name

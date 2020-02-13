@@ -93,7 +93,7 @@ export default {
                 this.updateCategory();
             })
         } else {
-        this.errors.name = " カテゴリー名が必須です。";
+        this.errors.name = " カテゴリー名は必須です。";
         }
         if (
             !this.errors.name
