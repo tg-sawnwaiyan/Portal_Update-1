@@ -5,7 +5,7 @@
             <br>
             <form>
                 <div class="form-group">
-                    <label>{{label}}<span class="error">*</span></label>
+                    <label>{{label}}<span class="error sp1" style="margin-left:0px;">必須</span></label>
                     <input type="text" class="form-control"  v-model="category.name"  :placeholder='[[placeholder]]'>
                         <span v-if="errors.name" class="error">{{errors.name}}</span>
                 </div>
@@ -38,7 +38,7 @@ export default {
           created() {
               if(this.$route.name == "editcategory"){
                     this.title = "カテゴリー編集";
-                    this.label = "カテゴリー名:";
+                    this.label = "カテゴリー名 ";
                     this.placeholder = "カテゴリー名を入力してください。";
                     this.buttontext = "保存";
                     this.axios
@@ -49,7 +49,7 @@ export default {
                 }
                 else{
                    this.title = "ニュースカテゴリー作成";
-                   this.label = "ニュースカテゴリー名 :";
+                   this.label = "ニュースカテゴリー名 ";
                    this.placeholder = "ニュースカテゴリー名を入力してください。";
                    this.buttontext = "作成";
                 }
