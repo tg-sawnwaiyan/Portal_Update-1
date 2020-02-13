@@ -1729,7 +1729,11 @@
     color: #fff;
     text-align: justify !important;
 }
-
+.noimage > .hovereffect .info{
+    top: 0px !important;
+    height: 360px !important;
+    background: #5f5f5f;
+}
 #myTab ul li {
     display: inline-block;
 }

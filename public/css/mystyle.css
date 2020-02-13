@@ -3687,8 +3687,9 @@ background: #ff9b53;  /
 } */
 
 #news_details .info p {
-    max-width: 250px;
+    /* max-width: 250px; */
     color: #fff;
+    padding: 0px 15px;
 }
 
 #news_list .select_box {
@@ -3947,7 +3948,7 @@ ul.hospital-subject>li:before {
 }
 
 .searchButtonNews {
-    width: 85px;
+    width: 25%;
     height: 40px;
     border: 1px solid #75b777;
     background: #75b777;
@@ -10604,6 +10605,10 @@ width: 18rem;
 }
 
 @media only screen and (max-width:768px) {
+    .tab{
+        margin-top: 20px;
+    }
+    
     .newsDetail_leftwrapper {
         max-width: 320px;
     }
@@ -11082,8 +11087,8 @@ width: 18rem;
         height: 100%;
     }
     .single-news-box {
-        min-height: 75px;
-        height: 96% !important;
+        /* min-height: 75px;
+        height: 96% !important; */
     }
     .single-news-box p {
         overflow: hidden;
