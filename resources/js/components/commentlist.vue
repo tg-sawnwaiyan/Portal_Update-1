@@ -9,21 +9,23 @@
                     </p>
                     <p>OOPS!!</p>
                     <p class="record-txt01">表示するデータありません</p>
-                    <!-- <p>表示するデータありません‼新しいデータを作成してください。</p>
-                    <a href="/comment" class="main-bg-color create-btn all-btn">
-                        <i class="fas fa-plus-circle"></i> 新しいデータ作成
-                    </a> -->
                 </div>
                 <div v-else class="container-fuid">
-                    <!-- <h4 class="main-color m-b-10">コメント 検索</h4>
-                    <div class="row">
+                    <h4 class="main-color mb-3">プロファイル名で検索</h4>
+                    <div class="row mb-4">
                         <div class="col-md-12">
-                            <input type="text" class="form-control" placeholder="検索" id="search-item" @keyup="searchcomment()" />
+                            <!-- <input type="text" class="form-control" placeholder="検索" id="search-item" @keyup="searchcomment()" /> -->
+                            <select  v-model="profileid" class="division form-control"  @change="getComment()">
+                                <option value="0">選択してください。</option>
+                                <option  id="search-item" v-for="pro in profilelist" :key="pro.id" v-bind:value="pro.id">
+                                    {{pro.name}}
+                                </option>
+                        </select>
                         </div>
 
                     </div>
-                    <hr /> -->
-                     <div class="form-group" >
+                    <hr />
+                     <!-- <div class="form-group" >
                         Search with profile name
                         <select  v-model="profileid" class="division form-control"  @change="getComment()">
                                 <option value="0">選択してください。</option>
@@ -31,7 +33,7 @@
                                     {{pro.name}}
                                 </option>
                         </select>
-                     </div>
+                     </div> -->
                         
                     <h5 class="header">{{title}}</h5>
                     <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
