@@ -963,7 +963,7 @@ border-radius: 3px;
 .brand_logo {
     width: 137px;
     position: absolute;
-    top: 32px;
+    top: 42px;
     left: 0;
     right: 0;
     margin: 0 auto;
@@ -976,7 +976,7 @@ border-radius: 3px;
 }
 
 .form_content {
-    padding: 55px 30px 40px 30px;
+    padding: 70px 30px 60px 30px;
 }
 
 .reg_title {
@@ -1014,7 +1014,7 @@ border-radius: 3px;
 
 .login_txt {
     display: block;
-    margin-top: 20px;
+    margin: 20px 0 0 0;
     color: #2C3E50 !important;
     font-weight: bold;
     text-align: center;
@@ -1029,12 +1029,51 @@ border-radius: 3px;
     text-decoration: none;
 }
 
+#psd_reset .reset_form {
+    padding: 90px 30px 0 30px;
+}
+
+#psd_reset .reset_form .reset {
+    position: relative;
+}
+
+#psd_reset .reset_txt {
+    margin: 30px 0 40px 0;
+}
+
+.loginwrapper .input-group {
+    margin-bottom: 30px;
+}
+
+.loginwrapper .error {
+    position: absolute;
+    top: 38px;
+    margin-top: 2px;
+    line-height: 0.8;
+}
+
+.loginwrapper .alert-danger {
+    width: 75%;
+    bottom: 40px;
+    margin: 0 auto;
+    top: unset;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
 @media only screen and (max-device-width: 990px) and (orientation: landscape) {
     html {
         background: #fbfbfb;
     }
     .loginwrapper {
-        margin: 100px 0 0 0;
+        margin: 160px 0 0 0;
+    }
+    .user_card {
+        margin-bottom: 30px;
+    }
+    #psd_reset.loginwrapper {
+        margin: 114px 0 0 0;
     }
     /* .logo_wrap {
         position: unset;
@@ -1049,7 +1088,10 @@ border-radius: 3px;
 
 @media only screen and (max-device-width: 576px) and (orientation: landscape) {
     .loginwrapper {
-        margin: 130px 0 0 0;
+        margin: 200px 0 0 0;
+    }
+    #psd_reset.loginwrapper {
+        margin: 140px 0 0 0;
     }
 }
 
@@ -1216,9 +1258,8 @@ margin-left: -108px; */
 }
 
 .user_name {
-    margin-bottom: 10px;
+    margin: 20px 0 30px 0;
     text-align: center;
-    margin-top: 20px;
     font-size: 19px;
     font-weight: bold;
     color: #2980b9f5
