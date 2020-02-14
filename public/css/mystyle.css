@@ -3973,7 +3973,7 @@ ul.hospital-subject>li:before {
 }
 
 .searchButtonNews {
-    width: 25%;
+    width: 15%;
     height: 40px;
     border: 1px solid #75b777;
     background: #75b777;
@@ -5995,6 +5995,9 @@ padding-bottom: 15px; */
 }
 
 @media screen and ( max-width: 480px) {
+    .searchButtonNews {
+        width: 25%;
+    }    
     li.page-item {
         display: none;
     }
@@ -6829,14 +6832,13 @@ button.confirmed {
     position: absolute;
     width: 20px;
     height: 20px;
-    right: 83px;
-    top: 12px;
+    right: 100px;
+    top: 10px;
     padding: 0px;
-    z-index: 99;
+    /* z-index: 99; */
     font-size: 13px;
     color: #fff;
 }
-
 
 /* end one page */
 
@@ -9674,6 +9676,9 @@ padding: 11px;
 }
 
 @media only screen and (max-width: 1240px) {
+    .cross-btn{
+        right: 90px !important;
+    }
     .comform {
         width: 100%;
         max-width: 100%;
@@ -9789,6 +9794,9 @@ padding: 0;
 }
 
 @media only screen and (max-width:1024px) {
+    .cross-btn{
+        right: 80px !important;
+    }
     .nursing_responsive {
         max-width: 40%;
     }
@@ -11031,6 +11039,9 @@ width: 18rem;
 }
 
 @media only screen and (max-width:576px) {
+    .searchButtonNews{
+        width: 20%;
+    }
     #news_list .select_label {
         width: 25% !important;
     }
@@ -12115,6 +12126,10 @@ strong {
 }
 
 @media only screen and (max-width:320px) {
+    .searchButtonNews {
+        width: 30%;
+    }
+    
     /*comment*/
     .comment {
         padding: 13px;
