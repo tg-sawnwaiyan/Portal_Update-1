@@ -74,14 +74,11 @@
                 </div>
                 <div class="col-12">
                   <div class="float-left mr-4 newsDetail_leftwrapper">
-                    <div class="img-wrap mb-2" v-if="news.photo">
-                      <img
-                        :src="'/upload/news/'+ news.photo"
-                        class="img-responsive img_2"
-                        style="max-width:100%;"
-                      
-                      />
+              
+                    <div class="img-wrap mb-2" v-if="!noimage" >
+                      <img :src="'/upload/news/'+ news.photo"  class="img-responsive img_2" alt="img" @error="imgUrlAlt" style="max-width:100%;"  />
                     </div>
+                   
                     <p class="img_2 details_title mb-1">{{news.main_point}}</p>
                   </div>
                   <div>
@@ -143,12 +140,8 @@
                 <div class="related_box mt-2" v-for="latest_post_all_cat in latest_post_all_cats" :key="latest_post_all_cat.id" >
                   <router-link :to="'/newsdetails/'+ latest_post_all_cat.id">
                     <div class="hovereffect fit-image" style="cursor:pointer;">
-                      <img
-                        class="img-responsive fit-image"
-                        v-bind:src="'/upload/news/' + latest_post_all_cat.photo"
-                        alt="img"
-                         @error="imgUrlAlt"
-                      />
+                      <img class="img-responsive fit-image" v-if="!noimage" v-bind:src="'/upload/news/' + latest_post_all_cat.photo" alt="img"  @error="imgUrlAlt1"/>
+                     
                       <div class="overlay">
                         <span class="btn btn-sm all-btn secondary-bg-color m-t-20">詳細</span>
                       </div>
@@ -189,10 +182,13 @@ export default {
       latest_news: [],
       othersDetails: true,
       getData:false,
+      noimage:false,
     };
   },
   created() {
-  
+    this.noimage = false;
+     console.log("this.noimgae created",this.noimage);
+   
     //this.getLatestPostFromAllCat();
     if(this.$route.path.includes("/newsdetails") && this.$auth.check(2) && this.visit == 'false'){
         this.othersDetails = false;
@@ -213,6 +209,16 @@ export default {
   },
 
   methods: {   
+    imgUrlAlt(event) { 
+      this.noimage = true;  
+      console.log("this.noimgae",this.noimage);
+      event.target.src = "/images/noimage.jpg"
+    },
+
+      imgUrlAlt1(event) { 
+     
+      event.target.src = "/images/noimage.jpg"
+    },
     // getLatestPostFromAllCat: function() {
     //         this.axios
     //         .get(`/api/get_latest_post_all_cat`)
@@ -239,9 +245,7 @@ export default {
         $('.tab-content').addClass(tab+'-borderColor'); 
           this.$router.push({name:'home',params:{page:e.target.hash}});   
     },
-    imgUrlAlt(event) {     
-        event.target.src = "/images/noimage.jpg"
-    },
+  
   }
 };
 </script>

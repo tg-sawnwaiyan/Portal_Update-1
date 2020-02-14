@@ -3,9 +3,12 @@
     <div id="news_post">
         <div class="card">
             <div class="card-body">
+                
                 <div v-if='status == 1'>
                     <h4 class="page-header header">ニュース編集</h4>
                 </div>
+
+                
                 <div v-else>
                     <h4 class="page-header header">ニュース新規作成</h4>
                 </div>
@@ -28,23 +31,33 @@
                             </span> 
                             <span class="pl-4">{{img_name}}</span>
                         </div>
+                      
                         
                     </div>
 
-                    <div class="image_show" v-if="upload_img">
-                        <div class='col-md-2'>
-                            <span class='img-close-btn test' v-on:click="removeUpload()" v-if='status == 1'>X</span>
-                            <img :src="upload_img" class='show-img'>
-                        </div>
-                    </div>
-                    <div class="form-group image_update" id="x-image" v-if ="news.photo && !upload_img && !old_photo">
-                        <div class="col-md-12" >
-                            <div id='x-image' class='col-md-2'>
-                                <span class='img-close-btn' v-on:click='closeBtnMethod(news.photo)'>X</span>
-                                <img :src="'/upload/news/'+ news.photo" class='show-img' alt="">
+                    
+                    
+                           <div class="image_show" v-if="upload_img ">
+                                <div class='col-md-2'>
+                                    <!-- <span class='img-close-btn test' v-on:click="removeUpload()" v-if='status == 1'>X</span> -->
+                                    <img :src="upload_img" class='show-img' @error="imgUrlAlt">
+                                </div>
+                            </div>  
+                        
+                        
+           
+                            <div  class="form-group image_update" id="x-image" v-if ="noimage == 0 && news.photo && !upload_img && !old_photo">
+                                <div class="col-md-12" >
+                                    <div id='x-image' class='col-md-2' >
+                                        <span class='img-close-btn' v-on:click='closeBtnMethod(news.photo)'>X</span>
+                                        <img :src="'/upload/news/'+ news.photo" class='show-img' alt="" @error="imgUrlAlt1">
+                                    </div>
+
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                    
+                   
+                 
                     <div class="form-group">
                         <label>内容要約 <span class="error sp1" style="margin-left:0px;">必須</span></label>
                         <input type="text" class="form-control" placeholder="ニュースの内容要約を入力してください。" v-model="news.main_point">
@@ -179,10 +192,12 @@ import {quillEditor} from 'vue-quill-editor'
                     items: [],
                     pagination: false,
                     search_word:'',
-                    img_name : ''
+                    img_name : '',
+                    noimage:0,
                 }
             },
             created() {
+                this.noimage = 0;
                 this.getResults();
             },
             mounted() {
@@ -201,7 +216,8 @@ import {quillEditor} from 'vue-quill-editor'
                             .get(`/api/new/editPost/${this.$route.params.id}`)
                             .then((response) => {
                                 this.news = response.data;
-
+                               
+                               this.noimage = 0;
                                 this.checkedNews = [];
                                 if(this.news.related_news != undefined){
                                     this.checkedNews = this.news.related_news.split(',');
@@ -476,11 +492,28 @@ import {quillEditor} from 'vue-quill-editor'
                             }
                         }
                     },
-                imgUrlAlt(event) {
+            imgUrlAlt(event) {
+              
+               event.target.src = "/images/noimage.jpg"
+            },
+
+            imgUrlAlt1(event) {
+              
+                this.noimage = 1;
                 event.target.src = "/images/noimage.jpg"
             },
+
+            
+            
             }
+
+            
+            
     }
+
+
+
+ 
 </script>
 
 <style>
