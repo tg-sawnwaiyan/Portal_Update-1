@@ -12,14 +12,14 @@
                         <form @submit.prevent="add" class="mt-2 pb-5 col-md-12">
                           <div class="form-group" v-if="this.$auth.check(2)">
                             <div class="form-group" v-if="check">
-                              <label>事業者名:</label>
+                              <label>事業者名</label>
                               <label>{{cusName}}</label>
                               <br>
-                              <label>施設名:</label>
+                              <label>施設名</label>
                               <label>{{profileName}}</label>
                             </div>
                             <div v-else>
-                            <label>事業者名:</label>
+                            <label>事業者名</label>
                             <autocomplete 
                             placeholder="事業者名を検索" 
                             input-class="form-control" 
@@ -28,7 +28,7 @@
                             @selected="getSelected($event)">
                             </autocomplete>
                             <br>
-                            <label>施設名:</label>
+                            <label>施設名</label>
                             <select v-model="selectedValue" class="division form-control" @change="getProfile($event)">
                                 <option value="0">選択してください。</option>
                                 <option v-for="profile in profileList" :key="profile.id" v-bind:value="profile.id">
@@ -39,7 +39,7 @@
                           </div>
                             <div class="form-group">
                                 <label for="title">
-                                    タイトル:
+                                    タイトル
                                     <span class="error sp2">必須</span>
                                 </label>
                                 <input type="title" class="form-control box" id="title" name="title" v-model="joboffer.title" placeholder="タイトルを入力してください。" />
@@ -49,7 +49,7 @@
 
                             <div class="form-group">
                                 <label for="description">
-                                    仕事内容:
+                                    仕事内容
                                     <span class="error sp2">必須</span>
                                 </label>
                                 <textarea name="description" class="form-control" cols="50" rows="5" v-model="joboffer.description" placeholder="仕事内容を入力してください。"></textarea>
@@ -179,7 +179,7 @@
               <div id="newlink"></div>-->
                             <div class="form-group">
                                 <label for="location">
-                                    郵便番号 :
+                                    郵便番号 
                                     <!-- <span class="error sp2">必須</span> -->
                                 </label>
                                 <div class="row m-0">
@@ -200,7 +200,7 @@
                               <div class="row">
                                 <div class="col-md-6">
                                   <label for="location">
-                                      都道府県:
+                                      都道府県
                                       <span class="error sp2">必須</span>
                                   </label>
 
@@ -220,7 +220,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="location">
-                                        番地（建物名):
+                                        番地（建物名)
                                         <span class="error sp2">必須</span>
                                     </label>
                                 
@@ -243,7 +243,7 @@
                             </div> -->
                             <div class="form-group">
                                 <label for="location">
-                                    勤務地:
+                                    勤務地
                                     <span class="error sp2">必須</span>
                                 </label>
                                 <textarea name="location" class="form-control" cols="50" rows="5" v-model="joboffer.location" placeholder="勤務地を入力してください。"></textarea>
@@ -296,12 +296,12 @@
               </div>-->
 
                             <div class="form-group">
-                                <label for="neareststation">最寄り駅:</label>
+                                <label for="neareststation">最寄り駅</label>
                                 <textarea name="neareststation" class="form-control" cols="50" rows="5" v-model="joboffer.nearest_station" placeholder="最寄り駅を入力してください。"></textarea>
                             </div>
 
                             <div class="form-group">
-                                <label for="neareststation">雇用形態:</label>
+                                <label for="neareststation">雇用形態</label>
                                 <br />
                                 <label class="control control--radio">
                                     <input type="radio" value="契約社員" v-model="joboffer.employmentstatus" /> 契約社員 &nbsp;&nbsp;&nbsp;
@@ -369,7 +369,7 @@
               </div>-->
 
                             <div class="form-group">
-                                <label for="salary">職種:</label>
+                                <label for="salary">職種</label>
                                 <span class="error sp2">必須</span>
                                 <select v-model="joboffer.occupation_id" class="form-control">
                                     <option value="-1">なし</option>
@@ -380,7 +380,7 @@
 
                             <div class="form-group">
                                 <label for="salary">
-                                    給与:
+                                    給与
                                     <span class="error sp2">必須</span>
                                 </label>
                                 <div class="row m-0">
@@ -404,7 +404,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="salary_remark">給料備考:</label>
+                                <label for="salary_remark">給料備考</label>
                                 <textarea name="salary_remark" class="form-control" cols="50" rows="5" v-model="joboffer.salary_remark" placeholder="給料備考を入力してください。"></textarea>
                             </div>
 
@@ -427,18 +427,18 @@
               </div>-->
 
                             <div class="form-group">
-                                <label for="allowance">諸手当:</label>
+                                <label for="allowance">諸手当</label>
                                 <textarea name="allowance" class="form-control" cols="50" rows="5" v-model="joboffer.allowances" placeholder="諸手当を入力してください。"></textarea>
                             </div>
 
                             <div class="form-group">
-                                <label for="insurance">各種保険:</label>
+                                <label for="insurance">各種保険</label>
                                 <textarea name="insurance" class="form-control" cols="50" rows="5" v-model="joboffer.insurance" placeholder="各種保険を入力してください。"></textarea>
                             </div>
 
                             <div class="form-group">
                                 <label for="workhour">
-                                    就業時間:
+                                    就業時間
                                     <span class="error sp2">必須</span>
                                 </label>
                                 <input type="workhour" class="form-control" name="workhour" v-model="joboffer.working_hours" placeholder="就業時間を入力してください。" />
@@ -448,7 +448,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="holiday">休日休暇:</label>
+                                <label for="holiday">休日休暇</label>
                                 <textarea name="holiday" class="form-control" cols="50" rows="5" v-model="joboffer.holidays" placeholder="休日休暇を入力してください。"></textarea>
                             </div>
                             <div class="form- group row">

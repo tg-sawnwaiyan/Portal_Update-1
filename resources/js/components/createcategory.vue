@@ -5,7 +5,7 @@
             <br>
             <form>
                 <div class="form-group">
-                    <label>{{label}}: <span class="error sp2">必須</span></label>
+                    <label>{{label}} <span class="error sp2">必須</span></label>
                     <input type="text" class="form-control"  v-model="category.name"  :placeholder='[[placeholder]]'>
                         <span v-if="errors.name" class="error">{{errors.name}}</span>
                 </div>

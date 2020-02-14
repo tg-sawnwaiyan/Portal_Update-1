@@ -13,7 +13,7 @@
                             <div class="card card-default m-b-20 col-md-11">
                                 <div class="card-body">
                                     <!-- <div class="header2"> -->
-                                        <h5 class=" clearfix">事業者番号 : <span style="color:orange;font-weight:bold">{{customer_info.cusnum}}</span></h5>
+                                        <h5 class=" clearfix">事業者番号 <span style="color:orange;font-weight:bold">{{customer_info.cusnum}}</span></h5>
                                     <!-- </div> -->
                                 </div>
                             </div>
@@ -54,7 +54,7 @@
                                             </div>
                                             <div class="form-group">
 
-                                                <label class="old-pass">現在のパスワード:</label>
+                                                <label class="old-pass">現在のパスワード</label>
                                                 <input type="password" name="old_password" v-model="old_password" placeholder="現在のパスワードを入力してください。" class="form-control old-password">
                                                 <div class="error" id="oldpassword" style="display: none;">現在のパスワードが必要です。</div>
                                                 <br>
@@ -88,7 +88,7 @@
                                                 <h5 class=" clearfix">メール設定</h5>
                                             </div>
                                             <div class="form-group">
-                                                <label class="email-address">メールアドレス:</label>
+                                                <label class="email-address">メールアドレス</label>
                                                 <input type="text" class="form-control email" v-model="customer_info.email">
                                             </div>
                                             <div class="form-group">
@@ -117,7 +117,7 @@
                                             </div>
                                             <div id="nusNew">
                                                  <div class="form-group">
-                                                    <label>Name :</label>
+                                                    <label>Name </label>
                                                     <input type="text" class="form-control" v-model="nursing_data.name" placeholder="Enter  name...">
                                                     <span v-if="errors.name" class="error">{{errors.name}}</span>
                                                 </div>
