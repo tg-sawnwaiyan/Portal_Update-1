@@ -1735,7 +1735,7 @@ border-top: 5px solid #e66527; */
 .logo_subtitle {
     font-size: 13px;
     letter-spacing: 1.5px;
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 
 .main-content {
@@ -2519,6 +2519,31 @@ ul.sub-ul li {
 
 .autocomplete__box {
     padding-left: 5px !important;
+}
+
+.site_header {
+    position: relative;
+    margin: 30px 0;
+    font-weight: bold;
+    line-height: 2;
+    text-align: center;
+}
+
+.site_header:after {
+    position: absolute;
+    content: '';
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100px;
+    height: 5px;
+    margin: 0 auto;
+    border-radius: 2px;
+    background: #d2571c;
+}
+
+.sitepolicy_home, .privacy {
+    padding-left: 20px;
 }
 
 

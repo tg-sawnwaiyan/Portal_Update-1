@@ -1,23 +1,14 @@
 <template>
 <layout>
     <div>
-         <div class="row">
-            <div class="card w-h">
-                <div class="card-body text-center">
-                    <span class="text-style">Server Maintenance</span>
-                </div>
+        <div class="card w-h">
+            <div class="card-body text-center">
+                <span class="text-style">Server Maintenance</span>
             </div>
         </div>
     </div>
 </layout>
-
-
-
-
-</template>
-
-
-   
+</template>   
 <style scoped>
 .w-h {
     width: 100%;
