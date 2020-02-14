@@ -33,10 +33,10 @@
                 <router-link :to="{ name: 'jobSearch' }">求人検索</router-link>
                 </li>    
                <li>
-                <a>サイトポリシー</a>
+                <router-link :to="{name: 'sitepolicy'}">サイトポリシー</router-link>
                 </li>
                 <li>
-                <a>プライバシーポリシー</a>
+                <router-link :to="{name: 'termsAndConditions'}">プライバシーポリシー</router-link>
                 </li>
             </ul>
              <!-- <ul class="gSecondNav">
@@ -212,10 +212,10 @@
                         <router-link :to="{ name: 'jobSearch' }"><i class="fas fa-users"></i> 求人検索</router-link>
                         </li>
                         <li>
-                            <a><i class="fas fa-info-circle"></i> サイトポリシー</a>
+                            <router-link :to="{name: 'sitepolicy'}"><i class="fas fa-info-circle"></i> サイトポリシー</router-link>
                         </li>
                         <li>
-                            <a><i class="fa fa-lock"></i> プライバシーポリシー</a>
+                            <router-link :to="{name: 'termsAndConditions'}"><i class="fa fa-lock"></i> プライバシーポリシー</router-link>
                         </li>
                         <li v-if="!$auth.check()">
                         <router-link :to="{name: 'login'}" class="nav-link pad-free"><i class="fa fa-sign-in-alt"></i> 事業者 ログイン</router-link>

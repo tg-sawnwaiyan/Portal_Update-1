@@ -1,8 +1,7 @@
 <div style="width:800px;">
 <div style="text-align: left;">
-	        <div style="padding: 60px;">
-                <!-- <span style="font-size: 40px;font-weight: bold;color: #d2571c;text-shadow: 3px 4px #ccc;">LOGO <span style="font-size: 30px; color: #f57e46;">HERE</span></span> -->
-                <span style="background: #fbaa84;">               
+	        <div style="padding: 10px;">
+            <span style="background: #fbaa84;">               
                     <a href="#" style="background: #2980B9;font-weight: 900; letter-spacing: 2px; font-size: 16px; mso-height-rule: exactly; line-height: 40px; text-align: center; text-decoration: none; display: block; font-weight: 900; text-transform: uppercase;float:left;padding:7px;">
                     <span style="color:#ffffff">T-IS</span>
                     </a> 
@@ -28,8 +27,7 @@
                     電話番号: {{$getComment->phone}}
                 </p>
                 <br>
-                <p style="text-align: left;margin: 0px;">
-                ****************************************</p>
+                <p style="text-align: left;margin: 0px;">****************************************</p>
                 <p style="font-size:12px;color:#807c7c;text-align:left;">
                     <span style="color:#000">[T-IS ティーズ] </span>
                     <br/>
