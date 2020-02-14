@@ -1,5 +1,5 @@
 <template>
- <div class="loginwrapper">
+ <div id="login" class="loginwrapper">
     <div class="user_card" id="altrole">
       <div class="logo_wrap">
         <div class="brand_logo_container logo_bk">
@@ -32,7 +32,7 @@
               </div>
                 <span v-if="errors.password" class="error"><small>{{errors.password}}</small></span>
             </div>
-            <div class="d-flex justify-content-center mt-5">
+            <div class="d-flex justify-content-center mt-3">
               <button type="submit" name="button" id="getUser" :class="btn_color">ログイン</button>
             </div>
            
@@ -229,34 +229,3 @@
     }
   }
 </script>
-<style>
-.loginposition .error{
-  position: absolute;
-}
-
-.admin_user_card{
-  background-color: #3791B9 !important;
-  color: #fff;
-}
-.admin_user_card .user_name{
-  color: #fff !important;
-}
-.admin_user_card .links a{
-  color: #fff !important;
-}
-.admin_user_card .input-group-text{
-  background: #044A77 !important;
-  color: #F5F5F5 !important;
-}
-.admin_user_card .brand_logo_container{
-  border: 10px solid #4399BF;
-}
-.customer_user_card{
-  background-color: #FBFBFB !important;
-}
-@media only screen and (max-width: 380px){
-  .admin_user_card{
-    background-color: #fff !important;
-  }
-}
-</style>
