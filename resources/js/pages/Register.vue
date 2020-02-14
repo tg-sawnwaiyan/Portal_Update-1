@@ -1,44 +1,21 @@
 <template>
-    <div class="login_wp" >
-        <div class="d-flex justify-content-center h-100">
-            <div class="user_card user_registercard">
-                <div class="links links_2">
-                    <!-- <router-link to="/" class="mr-auto text-white" style="color: #a93f0c!important;font-weight:bold;">ホーム</router-link> -->
-                    <router-link to="/login" class="ml-auto text">ログイン</router-link>
-                    <a href="/" class="mr-auto text-white ">ホーム</a>
-                    <!-- <a href="/login" class="ml-auto text" style="color: #a93f0c!important;font-weight:bold;">ログイン</a> -->
-                </div>
-
-                <div class="d-flex justify-content-center registerform_container">
-                    <div class="brand_logo_container logo_bk">
-                        <!-- <h4 style="position:relative; bottom: 60px; width:152px;">事業者新規登録</h4> -->
-                        <img src="/images/login.png" class="brand_logo" alt="Logo">
-                        <div id="preview">
-                          <img v-if="url" :src="url" class="brand_logo" alt="Logo">
-                        </div>
+    <div id="register" class="loginwrapper">
+        <div class="user_card user_registercard">
+            <div class="logo_wrap">
+                <div class="brand_logo_container logo_bk">
+                    <img src="/images/login.png" class="brand_logo" alt="介護医療福祉の総合サイト[T-IS ティーズ] ">
+                    <div id="preview">
+                        <img v-if="url" :src="url" class="brand_logo" alt="介護医療福祉の総合サイト[T-IS ティーズ] ">
                     </div>
                 </div>
-                <!-- <div class="error" id="radioerror" style="margin-bottom: 6px;margin-left: 210px;" v-if="errors !=''">入カされたデータが不正です</div> -->
-
-                <div class="alert alert-danger" v-if="has_error && !success">
-                    <p v-if="error == 'registration_validation_error'">Validation error (s), please consult the message (s) below.</p>
-                    <p v-else>Error, can not register at the moment. If the problem persists, please contact an administrator.</p>
-                </div>
-          <div class="reg_title">事業者新規登録</div>
+            </div>
+            <div class="login_link">
+                <a href="/" class="home_link">ホーム</a>
+               <router-link to="/login" class="ml-auto text">ログイン</router-link>    
+            </div>
+            <div class="form_content">
+                <div class="reg_title">事業者新規登録</div>
                 <form autocomplete="off" @submit.prevent="register" v-if="!success" method="post" class="registerformwrapper">
-                    <!-- <div id="preview">
-                        <img v-if="url" :src="url" class="img-thumbnail img" />
-                    </div> -->
-                    <!-- <div class="input-group mb-3 mb-7 inputfile">
-                        <label class=" col-lg-3 col-md-4 col-12 control-label">ロゴ</label>
-                        <div class="input-group-append">
-                            <span class="input-group-text"><i class="fas fa-image"></i></span>
-                        </div> -->
-                        <!-- <span class="btn all-btn choose-btn" style="color: #2C3E50 !important;box-shadow:none!important;" @click="choosefile()">ロゴを選択</span> <span id="imgname" style = "padding: 8px 0 0 30px;">{{img_name}}</span>
-                        <input type="file" class="inputfile" name="img" @change="onFileChange"/> -->
-                         <!-- <span v-if="errors.img" class="error">{{errors.img}}</span> -->
-                        <!-- <input type="file" accept="image/*" @change="showMyImage(this)" name="img" id="file" ref="file" class="form-control inputfile"> -->
-                    <!-- </div> -->
                     <div class="input-group mb-3 mb-7">
                         <label class="col-12 col-lg-3 col-md-4 control-label">事業者名</label>
                         <div class="input-group-append">
@@ -48,7 +25,6 @@
                         <div class="col-md-12 pad-free">
                             <span v-if="errors.username" class="error p-l-162">{{errors.username}}</span>
                         </div>
-                        <!-- <span v-if="errors.name" class="error p-l-162">{{errors.name}}</span> -->
                     </div>
 
 
@@ -58,7 +34,7 @@
                             <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                         </div>
                         <input type="text" class="form-control" name="email" v-model="email"  placeholder="メールアドレスを入力してください。"  @keypress="focusMail"> 
-                         <div class="col-md-12 pad-free">
+                            <div class="col-md-12 pad-free">
                             <span v-if="errors.email" class="error p-l-162">{{errors.email}}</span>
                         </div>
                     </div>
@@ -83,14 +59,11 @@
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
                         <input type="password" class="form-control" name="comfirm_password" id="confirm_pwd" @keyup="password_validate()" v-model="password_confirmation"  placeholder="パスワードをもう一度入カしてください。">
-                         <div class="col-md-12 pad-free">
+                            <div class="col-md-12 pad-free">
                             <span v-if="errors.password" class="error p-l-162">{{errors.password}}</span>
                         </div>
 
                     </div>
-
-
-                    <!-- <span class="error p-l-162" v-if="passerr">※パスワードが一致しません。</span> -->
 
                     <div class="input-group mb-3 mb-7">
                         <label class="col-12 col-lg-3 col-md-4 control-label">事業者タイプ</label>
@@ -103,7 +76,7 @@
                             <option value="2">病院</option>
 
                         </select>
-                         <div class="col-md-12 pad-free">
+                            <div class="col-md-12 pad-free">
                             <span v-if="errors.type" class="error p-l-162">{{errors.type}}</span>
                         </div>
                     </div>
@@ -114,41 +87,16 @@
                         </div>
                         <div class="error" id="radioerror" style="margin-bottom: 6px;margin-left: 210px;">必須</div>
                     </div>
-
-                    <!-- <div class="input-group mb-3 mb-7">
-                        <label class="col-12 col-lg-3 col-md-4 control-label">都道府県</label>
-                        <div class="input-group-append">
-                            <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
-
-                        </div>
-                        <select name="cities" id="cities" v-model="city" @change="getTownship()" class="form-control custom-select" required>
-                            <option value="">都道府県を選択してください。</option>
-                            <option v-for ="city in cities" :value='city.id' :key="city.id">{{ city.city_name }}</option>
-                        </select>
-                         <span v-if="errors.cities" class="error">{{errors.cities}}</span>
-                    </div> -->
-
-                    <!-- <div class="input-group mb-3 mb-7" v-if="!show">
-                        <label class="col-12 col-lg-3 col-md-4 control-label">市区町村</label>
-                        <div class="input-group-append">
-                            <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
-                        </div>
-                        <select name="township" id="township" v-model='township' class="form-control custom-select" required>
-                            <option value="">市区町村を選択してください。</option>
-                            <option v-for ="township in townships" :value='township.id' :key='township.id'>{{ township.township_name }}</option>
-                        </select>
-                         <span v-if="errors.township" class="error">{{errors.township}}</span>
-                    </div> -->
-                    <span class="p-l-162" style="color:#999;">※ 数字と'-'のみ </span>
-                    <div class="input-group mb-3 mb-7">
-
+                    
+                    <div class="input-group mb-3">                       
                         <label class="col-12 col-lg-3 col-md-4 control-label">電話番号</label>
-
-                        <div class="input-group-append">
-                            <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
+                        <div>
+                            <span class="p-l-162" style="color:#999;">※ 数字と'-'のみ </span>
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
+                            </div>
+                            <input class="form-control" id="phone" name="phone" pattern="[0-9-]*" v-model="phone"  placeholder="電話番号を入力してください。" @keyup="focusPhone" title="Please enter number only." maxlength="14">
                         </div>
-
-                        <input class="form-control" id="phone" name="phone" pattern="[0-9-]*" v-model="phone"  placeholder="電話番号を入力してください。" @keyup="focusPhone" title="Please enter number only." maxlength="14">
 
                         <div class="col-md-12 pad-free">
                             <span class="error p-l-162" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>
@@ -157,9 +105,9 @@
                     </div>
                     <div id="jsErrorMessage" class="error p-l-162"></div>
 
-                      <div class="form-group col-12 text-center">
-                              <button type="submit" class="btn register_btn login_btn" id="sub_btn">作成</button>
-                      </div>
+                        <div class="form-group col-12 text-center">
+                                <button type="submit" class="btn register_btn login_btn" id="sub_btn">作成</button>
+                        </div>
 
 
                 </form>

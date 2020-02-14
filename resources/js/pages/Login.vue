@@ -1,5 +1,5 @@
 <template>
- <div class="loginwrapper">
+ <div id="login" class="loginwrapper">
     <div class="user_card" id="altrole">
       <div class="logo_wrap">
         <div class="brand_logo_container logo_bk">
@@ -32,7 +32,7 @@
               </div>
                 <span v-if="errors.password" class="error"><small>{{errors.password}}</small></span>
             </div>
-            <div class="d-flex justify-content-center mt-5">
+            <div class="d-flex justify-content-center mt-3">
               <button type="submit" name="button" id="getUser" :class="btn_color">ログイン</button>
             </div>
            
