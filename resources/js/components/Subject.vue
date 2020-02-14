@@ -10,12 +10,12 @@
                         <div class="col-md-12">
                             <form @submit.prevent ="add">
                         <div class="form-group">
-                            <label>科目 :<span class="error">*</span></label>
+                            <label>科目: <span class="error sp2">必須</span></label>
                             <input type="text" class="form-control"  v-model="Subject.name"  placeholder="科目を入力してください。" >
                             <span v-if="errors.name" class="error">{{errors.name}}</span>
                         </div>
                         <div class="form-group">
-                        <label>ペアレント :<span class="error">*</span></label>
+                        <label>ペアレント: <span class="error sp2">必須</span></label>
                             <select v-model="selectedValue" class="form-control" @change='getParent()'>
                                 <option value="0">選択してください。</option>
                                 <option v-for="Subjectlist in SubjectList" :key="Subjectlist.id" v-bind:value="Subjectlist.id">

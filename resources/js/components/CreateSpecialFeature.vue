@@ -6,19 +6,19 @@
             <br>
             <form @submit.prevent="add">
                 <div class="form-group">
-                    <label>特徴 :<span class="error">*</span></label>
+                    <label>特徴: <span class="error sp2">必須</span></label>
                     <input type="text" class="form-control"  v-model="feature.name"  placeholder="特徴を入力してください。" >
                     <!-- <span v-if="errors.name" class="error">{{errors.name[0]}}</span> -->
                         <span v-if="errors.name" class="error">{{errors.name}}</span>
                 </div>
                 <div class="form-group">
-                    <label>特徴の略語 :<span class="error">*</span></label>
+                    <label>特徴の略語: <span class="error sp2">必須</span></label>
                     <input type="text" class="form-control" v-model="feature.short_name"  placeholder="特徴の略語を入力してください。" >
                         <!-- <span v-if="errors.short_name" class="error">{{errors.short_name[0]}}</span> -->
                         <span v-if="errors.short_name" class="error">{{errors.short_name}}</span>
                 </div>
                 <div class="form_group">
-                    <label> カテゴリー:<span class="error">*</span></label>
+                    <label> カテゴリー: <span class="error sp2">必須</span></label>
                     <select v-model="feature.type" name="type" class="form-control">
                             <option v-bind:value='-1'>選択してください。 </option>
                             <option value="nursing">介護</option>

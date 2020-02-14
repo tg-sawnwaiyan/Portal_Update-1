@@ -12,7 +12,7 @@
                 <br>
                 <form @submit.prevent="updatepost">
                     <div class="form-group">
-                        <label>題名 <span class="error sp1" style="margin-left:0px;">必須</span></label>
+                        <label>題名: <span class="error sp2">必須</span></label>
                         <input type="text" class="form-control" placeholder="題名を入力してください。" v-model="news.title">
                         <span v-if="errors.title" class="error">{{errors.title}}</span>
                     </div>
@@ -46,12 +46,12 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>内容要約 <span class="error sp1" style="margin-left:0px;">必須</span></label>
+                        <label>内容要約: <span class="error sp2">必須</span></label>
                         <input type="text" class="form-control" placeholder="ニュースの内容要約を入力してください。" v-model="news.main_point">
                         <span v-if="errors.main_point" class="error">{{errors.main_point}}</span>
                     </div>
                     <div class="form-group">
-                        <label>カテゴリー <span class="error sp1" style="margin-left:0px;">必須</span></label>
+                        <label>カテゴリー: <span class="error sp2">必須</span></label>
                             <select v-model="selectedValue" class="form-control" @change='getstates()'>
                                 <option v-bind:value="0">選択してください。</option>
                                 <option v-for="category in categories" :key="category.id" v-bind:value="category.id">
@@ -61,7 +61,7 @@
                         <span v-if="errors.category_id" class="error">{{errors.category_id}}</span>
                     </div>
                     <div class="form-group">
-                        <label>内容 <span class="error sp1" style="margin-left:0px;">必須</span></label>
+                        <label>内容: <span class="error sp2">必須</span></label>
                         <quill-editor  ref="myQuilEditor" id="exampleFormControlTextarea1" class="rounded-0" placeholder="内容を入力してください。"  @change="onDetailInfoEditorChange($event)" v-model="news.body" :options="editorOption" @blur="onEditorBlur($event)" @focus="onEditorFocus($event)"/>
                         <span v-if="errors.body" class="error">{{errors.body}}</span>
                     </div>
