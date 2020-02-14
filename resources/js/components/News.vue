@@ -1684,7 +1684,10 @@
 .right-arr-btn {
     position: relative;
     top: -10px;
-    right: -26px;
+    right: -18px;
+}
+#left-button .fas, #right-button .fas{
+    color: #828282;
 }
 
 .cat-slider .list-group-item{
