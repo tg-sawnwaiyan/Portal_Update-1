@@ -1725,7 +1725,8 @@
     height: 80px !important;
     position: absolute;
     top:140px !important;
-    background-color: #2a2d2cb0;
+    /* background-color: #2a2d2cb0; */
+    background-color: rgba(42, 45, 44, 0.69);
     color: #fff;
     text-align: justify !important;
 }
