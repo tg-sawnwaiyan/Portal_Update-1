@@ -7,7 +7,6 @@
                 <div v-if='status == 1'>
                     <h4 class="page-header header">ニュース編集</h4>
                 </div>
-
                 
                 <div v-else>
                     <h4 class="page-header header">ニュース新規作成</h4>
@@ -30,33 +29,25 @@
                                 <input type="file" ref="file" accept="image/*" @change="fileSelected">
                             </span> 
                             <span class="pl-4">{{img_name}}</span>
+                        </div>                    
+                        
+                    </div>                    
+                    
+                    <div class="image_show" v-if="upload_img ">
+                        <div class='col-md-2'>
+                            <!-- <span class='img-close-btn test' v-on:click="removeUpload()" v-if='status == 1'>X</span> -->
+                            <img :src="upload_img" class='show-img' @error="imgUrlAlt">
                         </div>
-                      
-                        
-                    </div>
-
-                    
-                    
-                           <div class="image_show" v-if="upload_img ">
-                                <div class='col-md-2'>
-                                    <!-- <span class='img-close-btn test' v-on:click="removeUpload()" v-if='status == 1'>X</span> -->
-                                    <img :src="upload_img" class='show-img' @error="imgUrlAlt">
-                                </div>
-                            </div>  
-                        
-                        
-           
-                            <div  class="form-group image_update" id="x-image" v-if ="noimage == 0 && news.photo && !upload_img && !old_photo">
-                                <div class="col-md-12" >
-                                    <div id='x-image' class='col-md-2' >
-                                        <span class='img-close-btn' v-on:click='closeBtnMethod(news.photo)'>X</span>
-                                        <img :src="'/upload/news/'+ news.photo" class='show-img' alt="" @error="imgUrlAlt1">
-                                    </div>
-
-                                </div>
+                    </div>  
+    
+                    <div  class="form-group image_update" id="x-image" v-if ="noimage == 0 && news.photo && !upload_img && !old_photo">
+                        <div class="col-md-12" >
+                            <div id='x-image' class='col-md-2' >
+                                <span class='img-close-btn' v-on:click='closeBtnMethod(news.photo)'>X</span>
+                                <img :src="'/upload/news/'+ news.photo" class='show-img' alt="" @error="imgUrlAlt1">
                             </div>
-                    
-                   
+                        </div>
+                    </div>
                  
                     <div class="form-group">
                         <label>内容要約 <span class="error sp1" style="margin-left:0px;">必須</span></label>
