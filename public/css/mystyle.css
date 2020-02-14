@@ -1735,7 +1735,7 @@ border-top: 5px solid #e66527; */
 .logo_subtitle {
     font-size: 13px;
     letter-spacing: 1.5px;
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 
 .main-content {
