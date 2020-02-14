@@ -823,14 +823,13 @@ border-radius: 3px;
     width: 80%;
     height: 80%;
     left: 10%;
-    top: 10%;
-    border-bottom: 1px solid #fff;
-    border-top: 1px solid #fff;
+    top: 10%;   
     -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
     transition: opacity 0.35s, transform 0.35s;
     -webkit-transform: scale(0, 1);
     -ms-transform: scale(0, 1);
     transform: scale(0, 1);
+    z-index: 100;
 }
 
 .hovereffect:hover .overlay {
@@ -892,68 +891,25 @@ border-radius: 3px;
 
 /********************************** Login And Register **********************************/
 
-.loginwrapper {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    height: 100vh;
-    flex-direction: row!important;
-    -ms-flex-align: center!important;
-    align-items: center!important;
-    justify-content: center;
-    background: #fbfbfb;
-}
-
 .user_card {
-    position: relative;
-    padding: 10px;
+    height: 400px;
     width: 350px;
+    margin-top: auto;
+    margin-bottom: auto;
+    /* background: #2980b9; */
+    background: #fbfbfb;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 5px;
     font-size: 14px;
-}
-
-.input-group .form-control:not(:first-child),
-.input-group .custom-select:not(:first-child) {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-}
-
-.admin_user_card {
-    background-color: #3791B9 !important;
-    color: #fff;
-}
-
-.admin_user_card .user_name {
-    color: #fff !important;
-}
-
-.admin_user_card .links a {
-    color: #fff !important;
-}
-
-.admin_user_card .input-group-text {
-    background: #044A77 !important;
-    color: #F5F5F5 !important;
-}
-
-.admin_user_card .brand_logo_container {
-    border: 10px solid #4399BF;
-}
-
-.admin_user_card .login_link a {
-    color: #fff !important;
-}
-
-.admin_user_card .login_txt {
-    color: #fff !important;
-}
-
-.customer_user_card {
-    background-color: #FBFBFB !important;
+    margin-top: 50vh;
+    transform: translateY(-50%);
 }
 
 .admin_card {
@@ -977,23 +933,17 @@ border-radius: 3px;
     transform: translateY(-50%);
 }
 
-.logo_wrap {
-    position: absolute;
-    top: -75px;
-    left: 0;
-    right: 0;
-    z-index: 1;
-}
-
 .brand_logo_container {
+    position: absolute;
     height: 170px;
     width: 170px;
-    margin: 0 auto;
+    top: -75px;
     border-radius: 50%;
     background: #fbfbfb;
     padding: 10px;
     text-align: center;
     border: 10px solid #ececec;
+    margin-left: 3px;
 }
 
 .logo_bk {
@@ -1001,26 +951,17 @@ border-radius: 3px;
 }
 
 .brand_logo {
+    /* height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    border: 2px solid white;
+    position: absolute;
+    left: 0;
+    bottom: 0.5%; */
     width: 137px;
     position: absolute;
-    top: 42px;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-}
-
-.login_link {
-    display: flex;
-    position: relative;
-    z-index: 2;
-}
-
-.form_content {
-    padding: 70px 30px 60px 30px;
-}
-
-#psd_reset_form .reset_form {
-    padding: 40px 30px;
+    left: 7px;
+    top: 32px;
 }
 
 .reg_title {
@@ -1034,6 +975,12 @@ border-radius: 3px;
 
 .form_container {
     margin-top: 100px;
+}
+
+.loginwrapper {
+    background: #e1e1e1;
+    height: 100vh;
+    /* padding:20px 40px; */
 }
 
 .login_btn {
@@ -1054,94 +1001,6 @@ border-radius: 3px;
     font-weight: bold;
     font-size: 16px;
     border-radius: 10px;
-}
-
-.login_txt {
-    display: block;
-    margin: 20px 0 0 0;
-    color: #2C3E50 !important;
-    font-weight: bold;
-    text-align: center;
-}
-
-.login_link a {
-    color: #2C3E50 !important;
-    font-weight: bold;
-}
-
-.login_txt:hover {
-    text-decoration: none;
-}
-
-#psd_reset .reset_form {
-    padding: 90px 30px 0 30px;
-}
-
-#psd_reset .reset_form .reset {
-    position: relative;
-}
-
-#psd_reset .reset_txt {
-    margin: 30px 0 40px 0;
-}
-
-.loginwrapper .input-group {
-    margin-bottom: 30px;
-}
-
-#register.loginwrapper .input-group {
-    margin-bottom: 0;
-}
-
-#register.loginwrapper .error {
-    position: unset;
-}
-
-.loginwrapper .error {
-    position: absolute;
-    top: 38px;
-    margin-top: 2px;
-    line-height: 0.8;
-}
-
-.loginwrapper .alert-danger {
-    width: 75%;
-    bottom: 40px;
-    margin: 0 auto;
-    top: unset;
-    left: 0;
-    right: 0;
-    text-align: center;
-}
-
-@media only screen and (max-device-width: 990px) and (orientation: landscape) {
-    html {
-        background: #fbfbfb;
-    }
-    .user_card {
-        margin-bottom: 30px;
-    }
-    .loginwrapper {
-        margin: 40px 0 0 0;
-    }
-}
-
-@media only screen and (max-device-width: 820px) and (orientation: landscape) {
-    #login.loginwrapper {
-        margin: 160px 0 0 0;
-    }
-    .loginwrapper {
-        margin: 114px 0 0 0;
-    }
-}
-
-@media only screen and (max-device-width: 576px) and (orientation: landscape) {
-    #login.loginwrapper {
-        margin: 200px 0 0 0;
-    }
-    .loginwrapper {
-        margin: 140px 0 0 0;
-    }
 }
 
 .login_btn:hover {
@@ -1199,7 +1058,6 @@ border-radius: 3px;
     margin-left: 16px;
     position: absolute;
 }
-
 
 /*login*/
 
@@ -1307,8 +1165,9 @@ margin-left: -108px; */
 }
 
 .user_name {
-    margin: 20px 0 30px 0;
+    margin-bottom: 10px;
     text-align: center;
+    margin-top: 20px;
     font-size: 19px;
     font-weight: bold;
     color: #2980b9f5
@@ -1875,7 +1734,7 @@ border-top: 5px solid #e66527; */
 .logo_subtitle {
     font-size: 13px;
     letter-spacing: 1.5px;
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 
 .main-content {
@@ -1931,7 +1790,6 @@ border-top: 5px solid #e66527; */
     margin: 20px 0;
     text-align: center;
 }
-
 .nosearch {
     font-size: 14px;
     color: #a5a5a5;
@@ -1939,7 +1797,6 @@ border-top: 5px solid #e66527; */
     margin: 20px 0;
     text-align: center;
 }
-
 .no_search_data {
     font-size: 20px;
     color: #a5a5a5;
@@ -2078,7 +1935,6 @@ border-top: 5px solid #e66527; */
 .newsList_txt h5 a {
     display: block;
 }
-
 .newsList_txt h5 a,
 .newsList_txt p {
     width: 90%;
@@ -2279,40 +2135,17 @@ textarea {
 
 
 /* .news-wrapper>ul>li.list-group-item {
-
 background-color: red !important;
-
 } */
 
 
 /* .news-wrapper >a:first-child{
-
-
-
 display: inline-block;
-
-
-
 margin-left: 0;
-
-
-
 margin-right: 2.1rem;
-
-
-
 padding: 0;
-
-
-
 vertical-align: top;
-
-
-
 width: 30rem;
-
-
-
 } */
 
 .news-wrapper>a:first-child>img {
@@ -2456,11 +2289,8 @@ div.b {
 
 
 /* .ads-card,
-
 .ads-card2 {
-
 width: 18rem;
-
 } */
 
 .ads-card2 .card-body {
@@ -2606,7 +2436,7 @@ width: 18rem;
 .title h5 {
     padding-left: 5px;
     margin-bottom: 15px;
-    border-left: 3px solid red;
+    border-left: 3px solid #2980b9;
     font-weight: 700;
 }
 
@@ -2679,11 +2509,10 @@ ul.sub-ul li {
     height: 5px;
     margin: 0 auto;
     border-radius: 2px;
-    background: #d2571c;
+    background: #2980b9;
 }
 
-.sitepolicy_home,
-.privacy {
+.sitepolicy_home, .privacy {
     padding-left: 20px;
 }
 
@@ -3196,22 +3025,13 @@ li.userprofile-name>a {
 
 
 /* .router-link-active{
-
-
-
 color: #fff !important;
-
-
-
 } */
 
 
 /* .nav-tabs .nav-link:focus,
-
 .nav-tabs .nav-link:hover {
-
 border-color: transparent !important;
-
 } */
 
 a:hover {
@@ -3622,13 +3442,7 @@ overflow-y: auto;
 
 
 /* .tab{
-
-
-
 height:743px;
-
-
-
 } */
 
 .main-tab {
@@ -3674,104 +3488,24 @@ ul.main-tab li:after {
 
 
 /* .tablink{
-
-
-
 color: #fff !important;
-
-
-
 } */
 
 
 /* .subtab1{
-
-
-
 background: #00b09b;
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
 .subtab2{
-
-
-
 background: #ffdde1;
-
-
-
 }
-
-
-
 .subtab3{
-
-
-
 background: #4eb3de ;
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
 .subtab4{
-
-
-
 background: #7586c6 ;
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
 .subtab5{
-
-
-
 background: #ff9b53;  /
-
-
-
-
-
-
-
-
-
-
-
 } */
 
 
@@ -3796,28 +3530,23 @@ background: #ff9b53;  /
     width: 100%;
     margin-bottom: 20px;
 }
-
 #news_details .related_wrap {
     width: 100%;
     border-top: 2px dashed #eee;
 }
-
 #news_details .related_wrap .next-title {
     display: inline-block;
     border-left: 5px solid #ffa500;
     letter-spacing: 3px;
 }
-
 #news_details .related_content {
     margin: 0 auto;
 }
-
 #news_details .related_box {
     display: inline-block;
     width: 250px;
     margin: 0 10px 15px 0;
 }
-
 #news_details .related_box a {
     display: block;
     width: 100%;
@@ -3868,9 +3597,6 @@ background: #ff9b53;  /
 .footer {
     font-size: 12px;
     /* padding-top: 15px;
-
-
-
 padding-bottom: 15px; */
     background: transparent;
     text-align: center;
@@ -4114,7 +3840,7 @@ ul.hospital-subject>li:before {
 }
 
 .searchButtonNews {
-    width: 25%;
+    width: 15%;
     height: 40px;
     border: 1px solid #75b777;
     background: #75b777;
@@ -4630,33 +4356,12 @@ screen and (min-width: 750px) {
 
 
 /* .news-wrapper >a:first-child{
-
-
-
 display: inline-block;
-
-
-
 margin-left: 0;
-
-
-
 margin-right: 2.1rem;
-
-
-
 padding: 0;
-
-
-
 vertical-align: top;
-
-
-
 width: 30rem;
-
-
-
 } */
 
 .news-wrapper>a:first-child>img {
@@ -4968,11 +4673,11 @@ top: 66px; */
 /* Media Queries*/
 
 @media (max-width: 1024px) and (min-width: 320px) {
-    /* .loginwrapper {
+    .loginwrapper {
         position: fixed;
         width: 100%;
         background: #fbfbfb;
-    } */
+    }
     .adminview-sidebar {
         height: auto;
     }
@@ -5166,13 +4871,7 @@ top: 66px; */
 
 
 /* .m-r-2per{
-
-
-
 margin-right: 2% !important;
-
-
-
 } */
 
 .p-t-0 {
@@ -5363,9 +5062,6 @@ margin-right: 2% !important;
     border-radius: 0.25rem;
     /* min-height: 350px !important; */
     /* max-height: 252px;
-
-
-
 min-height: 252px; */
     /* width: 49%; */
 }
@@ -5449,13 +5145,7 @@ li.userprofile-name>a {
 
 
 /* .router-link-active{
-
-
-
 color: #fff !important;
-
-
-
 } */
 
 a:hover {
@@ -5921,13 +5611,7 @@ a:hover {
 
 
 /* .tab{
-
-
-
 height:743px;
-
-
-
 } */
 
 .main-tab {
@@ -5973,13 +5657,7 @@ ul.main-tab li:after {
 
 
 /* .tablink{
-
-
-
 color: #fff !important;
-
-
-
 } */
 
 
@@ -6039,9 +5717,6 @@ color: #fff !important;
 .footer {
     font-size: 12px;
     /* padding-top: 15px;
-
-
-
 padding-bottom: 15px; */
     background: transparent;
     text-align: center;
@@ -6136,6 +5811,9 @@ padding-bottom: 15px; */
 }
 
 @media screen and ( max-width: 480px) {
+    .searchButtonNews {
+        width: 25%;
+    }    
     li.page-item {
         display: none;
     }
@@ -6331,9 +6009,7 @@ position: relative;
         height: 120px;
     }
     /* .top-ad-slider .ads-img {
-
 font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
-
 }  */
 }
 
@@ -6514,17 +6190,8 @@ body::-webkit-scrollbar-thumb {
 
 
 /* .top-ad-slider .ads-img {
-
-
-
 width: auto;
-
-
-
 margin-right: 13.2px;
-
-
-
 } */
 
 .top-ad-slider .list-group-item a {
@@ -6679,9 +6346,7 @@ margin-right: 13.2px;
 
 
 /* .fac_container>li:first-child {
-
 margin: 0;
-
 } */
 
 .hos-tit {
@@ -6810,13 +6475,7 @@ margin: 0;
 
 
 /* .pc {
-
-
-
 display: block !important;
-
-
-
 } */
 
 .sp {
@@ -6970,14 +6629,13 @@ button.confirmed {
     position: absolute;
     width: 20px;
     height: 20px;
-    right: 83px;
-    top: 12px;
+    right: 100px;
+    top: 10px;
     padding: 0px;
-    z-index: 99;
+    /* z-index: 99; */
     font-size: 13px;
     color: #fff;
 }
-
 
 /* end one page */
 
@@ -6997,13 +6655,7 @@ button.confirmed {
 
 
 /* .swal2-icon.swal2-success{
-
-
-
 color: green;
-
-
-
 }*/
 
 .swal2-icon.swal2-warning {
@@ -7711,11 +7363,8 @@ padding: 12px !important;
 
 
 /* .active {
-
 color: red;
-
 font-weight: bold;
-
 } */
 
 
@@ -7940,13 +7589,9 @@ dl.favnur dd {
 
 
 /* #fav-history-page .card-carousel--nav__left[disabled],
-
 .card-carousel--nav__right[disabled] {
-
 opacity: 0.2;
-
 border-color: black;
-
 } */
 
 .nav-box[disabled] {
@@ -8133,9 +7778,7 @@ border-color: black;
 
 
 /* .bd {
-
 border-bottom: none;
-
 } */
 
 .hh {
@@ -8915,9 +8558,7 @@ margin-right: auto; */
     padding-left: 20px;
     margin-left: 10px;
     /* margin-bottom: 15px;
-
 cursor: pointer;
-
 font-size: 18px; */
 }
 
@@ -9016,9 +8657,7 @@ font-size: 18px; */
     padding-left: 20px;
     margin-left: 10px;
     /* margin-bottom: 15px;
-
 cursor: pointer;
-
 font-size: 18px; */
 }
 
@@ -9412,7 +9051,7 @@ background-color: #f57e46;
     width: inherit;
     height: inherit;
     border-radius: 50%;
-    background: linear-gradient(rgb(248, 158, 117) -50%, rgba(86, 156, 43, 0) 60%);
+    background: linear-gradient(rgb(41,128, 185) -50%, rgba(86, 156, 43, 0) 60%);
 }
 
 .preloader .circle {
@@ -9729,15 +9368,17 @@ padding: 11px;
     .img_title {
         height: 135px;
     }
+   
+    
     /* Register */
-    /* .loginwrapper {
+    .loginwrapper {
         height: 105vh;
         padding: 40px 40px;
         position: fixed;
         background: #e1e1e1;
         width: 100%;
         background: #fbfbfb;
-    } */
+    }
     /* hospital and nursing profile */
     .nursing_map {
         padding-left: 40px;
@@ -9813,6 +9454,9 @@ padding: 11px;
 }
 
 @media only screen and (max-width: 1240px) {
+    .cross-btn{
+        right: 90px !important;
+    }
     .comform {
         width: 100%;
         max-width: 100%;
@@ -9928,6 +9572,9 @@ padding: 0;
 }
 
 @media only screen and (max-width:1024px) {
+    .cross-btn{
+        right: 80px !important;
+    }
     .nursing_responsive {
         max-width: 40%;
     }
@@ -10142,11 +9789,11 @@ padding: 0;
     #myTabContent {
         margin-bottom: 10px;
     }
-    /* .loginwrapper {
+    .loginwrapper {
         height: 235vh;
         padding: 259px 40px;
         background: #fbfbfb;
-    } */
+    }
     /* common */
     ul li {
         list-style: none;
@@ -10633,271 +10280,71 @@ padding: 0;
 
 /* Media Queries*/
 
-
-/**************card carousel***********************/
-
-@media only screen and (max-width:768px) {
-    #fav-history-page .card-carousel-cards .card-carousel--card--footer {
-        padding: 0px;
-    }
-    #hospital .nav-content,
-    #nursing .nav-content {
-        border: none;
-        background: transparent !important;
-        margin-right: 0px !important;
-        margin-left: 0px !important;
-        width: 25px !important;
-    }
-    #fav-history-page .nav-box[disabled] .nav-content {
-        border: none;
-        background: #fff !important;
-        width: 25px !important;
-    }
-    .slick-dotted.slick-slider {
-        margin-bottom: 0px;
-    }
-    .p5 {
-        font-size: 16px;
-    }
-    .news_detail_tit {
-        line-height: 1.3;
-    }
-    .details_title {
-        margin-bottom: 20px !important;
-    }
-}
-
-@media only screen and (min-width: 320px) and (max-width: 360px) {
-    #fav-history-page .card-carousel {
-        width: 263px !important;
-    }
-    #fav-history-page .card-carousel {
-        overflow: visible;
-    }
-    #fav-hospital-page #fav-history-page .card-carousel {
-        width: 272px !important;
-    }
-    #fav-hospital-page #fav-history-page .card-carousel-wrapper {
-        margin-left: -16px;
-    }
-}
-
-@media only screen and (min-width: 360px) and (max-width: 375px) {
-    #fav-history-page .card-carousel {
-        width: 261px !important;
-    }
-    #fav-history-page .card-carousel {
-        overflow: visible;
-    }
-    #fav-hospital-page #fav-history-page .card-carousel {
-        width: 272px !important;
-    }
-    #fav-hospital-page #fav-history-page .card-carousel-wrapper {
-        margin-left: -16px;
-    }
-}
-
-@media only screen and (min-width: 375px) and (max-width: 450px) {
-    #fav-history-page .card-carousel {
-        width: 261px !important;
-    }
-    #fav-history-page .card-carousel {
-        overflow: visible;
-    }
-    #fav-hospital-page #fav-history-page .card-carousel {
-        width: 272px !important;
-    }
-    #fav-hospital-page #fav-history-page .card-carousel-wrapper {
-        margin-left: -11px;
-    }
-}
-
-
-/* Medium devices (landscape tablets, 768px and up) */
-
-@media only screen and (min-width: 414px) and (max-width: 768px) {
-    #fav-history-page .card-carousel {
-        width: 261px !important;
-    }
-    #fav-hospital-page #fav-history-page .card-carousel {
-        width: 272px !important;
-    }
-    #fav-hospital-page #fav-history-page .card-carousel-wrapper {
-        margin-left: 5px;
-    }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-    #fav-history-page .card-carousel {
-        width: 521px!important;
-    }
-    #fav-hospital-page #fav-history-page .card-carousel {
-        width: 545px !important;
-    }
-    #fav-hospital-page #fav-history-page .card-carousel-wrapper {
-        margin-left: -13px;
-    }
-    #fav-history-page .card-carousel {
-        overflow: visible;
-    }
-}
-
-
-/* Large devices (laptops/desktops, 992px and up) */
-
-@media only screen and (min-width: 992px) and (max-width: 1024px) {
-    #fav-history-page .card-carousel {
-        width: 799px!important;
-    }
-    .custom-table>.table th,
-    .table td {
-        padding: 6px;
-    }
-    .nav-content {
-        margin-left: 3px;
-        margin-right: -10px;
-    }
-    .profile_wd {
-        width: 242px !important;
-    }
-}
-
-@media only screen and (min-width: 1024px) and (max-width: 1200px) {
-    #fav-history-page .card-carousel {
-        width: 768px !important;
-    }
-    #fav-hospital-page #fav-history-page .card-carousel {
-        width: 800px !important;
-    }
-}
-
-@media only screen and (min-width: 1023px) and (max-width: 1200px) {
-    .map-leftwrapper {
-        padding-left: 0px;
-    }
-}
-
-@media only screen and (min-width: 1200px) and (max-width: 1280px) {
-    #fav-history-page .card-carousel {
-        /* width: 783px!important; */
-        width: 783px!important;
-    }
-    #fav-hospital-page #fav-history-page .card-carousel {
-        width: 814px !important;
-    }
-}
-
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-
-@media only screen and (min-width: 1280px) and (max-width: 1440px) {
-    #fav-history-page .card-carousel {
-        /* width: 783px!important; */
-        width: 1503px!important;
-    }
-    #fav-hospital-page #fav-history-page .card-carousel {
-        width: 1084px !important;
-    }
-    .map-wrap {
-        overflow: hidden;
-    }
-}
-
-@media only screen and (min-width: 1440px) and (max-width: 1880px) {
-    .main-content {
-        width: 100%;
-    }
-    #fav-history-page .card-carousel {
-        width: 1046px!important;
-        margin-left: 20px;
-    }
-    #fav-hospital-page #fav-history-page .card-carousel {
-        width: 1084px !important;
-    }
-    .main-content {
-        width: 100%;
-    }
-    .nav-warp {
-        max-width: 96%;
-        padding: 0;
-    }
-    .fixed-ads-fluid {
-        width: 100%;
-    }
-    #headerbar {
-        display: block;
-        top: 86px;
-    }
-    #headerbar li {
-        display: inline-block;
-    }
-    .gNav {
-        margin-left: 0%;
-    }
-    .gNav li a {
-        padding: 0 5px;
-    }
-    .navbar-expand-lg .navbar-nav .nav-link {
-        padding-right: 5px;
-        padding-left: 5px;
-    }
-    .social-link:nth-child(3) {
-        margin-left: 5px;
-    }
-    .ads-slider {
-        margin: 0 0 20px 35px;
-    }
-    .adslist-card {
+@media (max-width: 1024px) and (min-width: 320px) {
+    .adminview-sidebar {
         height: auto;
     }
-    .ads-img {
-        display: block;
-        float: none;
-        max-width: 100%;
-        width: auto;
-        margin: 0 auto;
+    .customer-sidebar {
+        display: none;
     }
-    .fav-profile {
-        right: 37px;
+}
+
+@media (max-width: 600px) and (min-width: 400px) {
+    .source-img-small {
+        width: 500px;
+    }
+    .ads-card {
+        width: 120px;
+    }
+    .adminview-sidebar {
+        height: auto;
+    }
+}
+
+@media (min-width: 320px) {
+    .source-img-small {
+        width: 90%;
+    }
+    /* .ads-card{
+width: 18rem;
+} */
+    .smallads-title {
+        font-size: 12px;
+        line-height: 1.357;
+        color: #333;
+        overflow: hidden;
+        position: relative;
+        padding: 0;
+        top: -0.2rem;
+        max-height: 200px;
     }
     .today .adslist-card .smallads-title {
-        top: 7px;
+        font-size: 12px;
+        line-height: 1.357;
+        color: #333;
+        overflow: hidden;
+        position: relative;
+        padding: 0;
+        top: -0.2rem;
+        max-height: 65px;
     }
-    .sub-title>.ads-title {
-        position: unset;
-        margin: 10px 0 30px;
+    .today .smallads-title {
+        display: block;
+        white-space: normal;
     }
-    .job-img {
-        /* max-width: 80% !important;*/
-        margin: 0 auto 20px;
-        flex: unset;
+    .adslist-card {
+        /* height: 71px; */
+        width: 100%;
+        padding: 10px 0px 10px 0px;
     }
-    .job-box {
-        /* max-width: 100% !important;*/
-        flex: unset;
-    }
-    .compare-wrap {
-        max-width: 82%;
-    }
-    .fav-update-wrap {
-        max-width: 19%;
-        flex: 0 0 18%;
+    .userview-sidebar {
+        background-color: #f5f5f5;
+        /* height: 91vh; */
+        padding-top: 35%;
+        padding-left: 25px;
+        margin-top: 2px;
     }
 }
-
-#nusNew {
-    display: none;
-}
-
-
-/**************end card carousel***********************/
-
-strong {
-    font-weight: bold!important;
-}
-
-
-/*comment*/
 
 @media screen and (max-width: 979px) and (max-width:752px) {
     /* create new */
@@ -10924,15 +10371,9 @@ strong {
     .news_catsearch section {
         width: 265px;
     }
-    .map-box-reponsive {
-        display: block;
-    }
-    .fav-update-btn {
-        margin: 33px auto;
-    }
 }
 
-@media only screen and (max-width:768px) {
+@media screen and (max-width: 1024px) and (min-width: 768px) {
     /*fav nursing*/
     .lbl-size {
         width: 355px;
@@ -10960,6 +10401,10 @@ strong {
     .t_card4 {
         margin-left: 40px;
     }
+    /*news_end*/
+}
+
+@media only screen and (max-width:768px) {
     .tab {
         margin-top: 20px;
     }
@@ -10976,13 +10421,13 @@ strong {
     .nursing_responsive {
         max-width: 33%;
     }
-    /* .loginwrapper {
+    .loginwrapper {
         height: 105vh;
         padding: 10px 40px;
         position: fixed;
         width: 100%;
         background: #fbfbfb;
-    } */
+    }
     .p-l-162 {
         padding-left: 200px;
     }
@@ -11211,8 +10656,7 @@ strong {
 }
 
 @media only screen and (max-width:750px) {
-    .login_1,
-    .login_2 {
+    .login_1, .login_2{
         top: 0px;
     }
     .pc-750 {
@@ -11372,24 +10816,9 @@ strong {
     }
 }
 
-@media (max-width: 600px) and (min-width: 400px) {
-    .source-img-small {
-        width: 500px;
-    }
-    .ads-card {
-        width: 120px;
-    }
-    .adminview-sidebar {
-        height: auto;
-    }
-}
-
 @media only screen and (max-width:576px) {
     .searchButtonNews{
         width: 20%;
-    }
-    .maintab-content {
-        margin: 90px 0 0 0;
     }
     #news_list .select_label {
         width: 25% !important;
@@ -11545,6 +10974,15 @@ strong {
         padding: 0px 5px 0px;
     }
     /*end fav nursing*/
+    /*pagination*/
+    /* .page-item:first-child .spanclass,
+.page-item:last-child .spanclass,
+.page-item:nth-child(2) .spanclass,
+.page-item:nth-last-child(2) .spanclass {
+width: 60px;
+height: 30px;
+transition: background-color .3s;
+} */
     .pc-480 {
         display: none;
     }
@@ -11566,6 +11004,11 @@ strong {
     .pagination .page-item {
         padding: 1px;
     }
+    /* .page-item .spanclass {
+width: 28px;
+height: 25px;
+background-image: none;
+} */
     .spanclass {
         float: left;
         margin-top: 2px;
@@ -11897,6 +11340,15 @@ strong {
     .my-3 {
         margin-bottom: 2px !important;
     }
+    .brand_logo_container {       
+        height: auto;     
+    }
+    .brand_logo{
+        width: auto;
+        position: relative;
+        left: auto;
+        top: auto
+    }
     .links_2 {
         top: 78px;
     }
@@ -11905,16 +11357,14 @@ strong {
         margin-top: 62px;
     } */
     /*register*/
-    /* .loginwrapper {
+    .loginwrapper {
         height: 105vh;
         padding: 10px 40px;
         position: fixed;
         background: #fbfbfb;
-    } */
-    .login_top {
-        top: -123px;
-        margin-left: 15px;
     }
+  
+    
     .p-l-162 {
         padding-left: 0px;
     }
@@ -11922,8 +11372,12 @@ strong {
         position: relative;
         /* top: -92px; */
     }
-    .form_content {
-        padding: 55px 5px 40px 5px;
+    .brand_logo_container {
+        border-radius: 0px;
+        border: 0px solid #ececec;
+    }
+    .user_card {
+        box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 0px 0 rgba(0, 0, 0, 0.19);
     }
     .sp-414 {
         display: block !important;
@@ -11962,9 +11416,9 @@ strong {
         width: auto;
     }
     /* nursing profile */
-    /* .d-flex {
+    .d-flex {
         flex-wrap: wrap !important;
-    } */
+    }
     .nursing_input {
         flex: 0 0 100%;
         padding: 0;
@@ -12066,22 +11520,14 @@ strong {
     .searchButtonNews {
         width: 30%;
     }      
-    
-    .login_2 {
-        margin-left: -25px;
-    }
-    .login_1 {
-        margin-right: -7px;
-    }
-    .login_top {
-        top: -120px;
-    }
-    /* .loginwrapper {
+    .loginwrapper {
         height: 105vh;
         padding: 10px 40px;
         position: fixed;
         background: #fbfbfb;
-    } */
+        /* margin-left:-34px; */
+    }
+    
     /*register*/
     .login_wp {
         height: 105vh;
@@ -12103,24 +11549,17 @@ strong {
         /* color: #2980B9; */
         color: #2980B9;
     }
-    .brand_logo_container {
-        height: 150px;
-        width: 150px;
-    }
-    .brand_logo {
-        top: 40px;
-    }
-    .user_card {
-        width: 330px;
-    }
-    .brand_logo {
-        width: 100px
-    }
-    /*end login & register */
     .mb-7,
     .my-3 {
         margin-bottom: 7px !important;
     }
+    /* .brand_logo_container {
+        position: absolute;
+        height: 170px;
+        width: 170px;
+        top: -80px;
+        margin-left: -1px;
+    } */
     /*register*/
     .links {
         position: relative;
@@ -12192,54 +11631,283 @@ strong {
     }
 }
 
-@media only screen and (max-width:360px) {
-    .comment {
-        padding: 7px;
-        width: 323px;
-        left: -20px;
+@media screen and (max-width: 979px) and (min-width: 752px) {
+    .map-box-reponsive {
+        display: block;
     }
-    .comform {
-        max-width: none;
-    }
-    .fnumericzip {
-        margin-bottom: 10px;
-    }
-    .com-mt {
-        margin-top: 44px;
-    }
-    .title_comment2 {
-        margin-left: -15px;
-        margin-right: -15px;
-        padding: 12px;
-    }
-    .admin_header div span {
-        display: none;
+    .fav-update-btn {
+        margin: 33px auto;
     }
 }
 
+
+/**************card carousel***********************/
+
+@media only screen and (max-width:768px) {
+    #fav-history-page .card-carousel-cards .card-carousel--card--footer {
+        padding: 0px;
+    }
+    #hospital .nav-content,
+    #nursing .nav-content {
+        border: none;
+        background: transparent !important;
+        margin-right: 0px !important;
+        margin-left: 0px !important;
+        width: 25px !important;
+    }
+    #fav-history-page .nav-box[disabled] .nav-content {
+        border: none;
+        background: #fff !important;
+        width: 25px !important;
+    }
+    .slick-dotted.slick-slider {
+        margin-bottom: 0px;
+    }
+    .p5 {
+        font-size: 16px;
+    }
+    .news_detail_tit {
+        line-height: 1.3;
+    }
+    .details_title {
+        margin-bottom: 20px !important;
+    }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 360px) {
+    #fav-history-page .card-carousel {
+        width: 263px !important;
+    }
+    #fav-history-page .card-carousel {
+        overflow: visible;
+    }
+    #fav-hospital-page #fav-history-page .card-carousel {
+        width: 272px !important;
+    }
+    #fav-hospital-page #fav-history-page .card-carousel-wrapper {
+        margin-left: -16px;
+    }
+}
+
+@media only screen and (min-width: 360px) and (max-width: 375px) {
+    #fav-history-page .card-carousel {
+        width: 261px !important;
+    }
+    #fav-history-page .card-carousel {
+        overflow: visible;
+    }
+    #fav-hospital-page #fav-history-page .card-carousel {
+        width: 272px !important;
+    }
+    #fav-hospital-page #fav-history-page .card-carousel-wrapper {
+        margin-left: -16px;
+    }
+}
+
+@media only screen and (min-width: 375px) and (max-width: 450px) {
+    #fav-history-page .card-carousel {
+        width: 261px !important;
+    }
+    #fav-history-page .card-carousel {
+        overflow: visible;
+    }
+    #fav-hospital-page #fav-history-page .card-carousel {
+        width: 272px !important;
+    }
+    #fav-hospital-page #fav-history-page .card-carousel-wrapper {
+        margin-left: -11px;
+    }
+}
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+
+@media only screen and (min-width: 414px) and (max-width: 768px) {
+    #fav-history-page .card-carousel {
+        width: 261px !important;
+    }
+    #fav-hospital-page #fav-history-page .card-carousel {
+        width: 272px !important;
+    }
+    #fav-hospital-page #fav-history-page .card-carousel-wrapper {
+        margin-left: 5px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    #fav-history-page .card-carousel {
+        width: 521px!important;
+    }
+    #fav-hospital-page #fav-history-page .card-carousel {
+        width: 545px !important;
+    }
+    #fav-hospital-page #fav-history-page .card-carousel-wrapper {
+        margin-left: -13px;
+    }
+    #fav-history-page .card-carousel {
+        overflow: visible;
+    }
+}
+
+
+/* Large devices (laptops/desktops, 992px and up) */
+
+@media only screen and (min-width: 992px) and (max-width: 1024px) {
+    #fav-history-page .card-carousel {
+        width: 799px!important;
+    }
+    .custom-table>.table th,
+    .table td {
+        padding: 6px;
+    }
+    .nav-content {
+        margin-left: 3px;
+        margin-right: -10px;
+    }
+    .profile_wd {
+        width: 242px !important;
+    }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1200px) {
+    #fav-history-page .card-carousel {
+        width: 768px !important;
+    }
+    #fav-hospital-page #fav-history-page .card-carousel {
+        width: 800px !important;
+    }
+}
+
+@media only screen and (min-width: 1023px) and (max-width: 1200px) {
+    .map-leftwrapper {
+        padding-left: 0px;
+    }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1280px) {
+    #fav-history-page .card-carousel {
+        /* width: 783px!important; */
+        width: 783px!important;
+    }
+    #fav-hospital-page #fav-history-page .card-carousel {
+        width: 814px !important;
+    }
+}
+
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+
+@media only screen and (min-width: 1280px) and (max-width: 1440px) {
+    #fav-history-page .card-carousel {
+        /* width: 783px!important; */
+        width: 1503px!important;
+    }
+    #fav-hospital-page #fav-history-page .card-carousel {
+        width: 1084px !important;
+    }
+    .map-wrap {
+        overflow: hidden;
+    }
+}
+
+@media only screen and (min-width: 1440px) and (max-width: 1880px) {
+    .main-content {
+        width: 100%;
+    }
+    #fav-history-page .card-carousel {
+        width: 1046px!important;
+        margin-left: 20px;
+    }
+    #fav-hospital-page #fav-history-page .card-carousel {
+        width: 1084px !important;
+    }
+    .main-content {
+        width: 100%;
+    }
+    .nav-warp {
+        max-width: 96%;
+        padding: 0;
+    }
+    .fixed-ads-fluid {
+        width: 100%;
+    }
+    #headerbar {
+        display: block;
+        top: 86px;
+    }
+    #headerbar li {
+        display: inline-block;
+    }
+    .gNav {
+        margin-left: 0%;
+    }
+    .gNav li a {
+        padding: 0 5px;
+    }
+    .navbar-expand-lg .navbar-nav .nav-link {
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+    .social-link:nth-child(3) {
+        margin-left: 5px;
+    }
+    .ads-slider {
+        margin: 0 0 20px 35px;
+    }
+    .adslist-card {
+        height: auto;
+    }
+    .ads-img {
+        display: block;
+        float: none;
+        max-width: 100%;
+        width: auto;
+        margin: 0 auto;
+    }
+    .fav-profile {
+        right: 37px;
+    }
+    .today .adslist-card .smallads-title {
+        top: 7px;
+    }
+    .sub-title>.ads-title {
+        position: unset;
+        margin: 10px 0 30px;
+    }
+    .job-img {
+        /* max-width: 80% !important;*/
+        margin: 0 auto 20px;
+        flex: unset;
+    }
+    .job-box {
+        /* max-width: 100% !important;*/
+        flex: unset;
+    }
+    .compare-wrap {
+        max-width: 82%;
+    }
+    .fav-update-wrap {
+        max-width: 19%;
+        flex: 0 0 18%;
+    }
+}
+
+#nusNew {
+    display: none;
+}
+
+
+/**************end card carousel***********************/
+
+strong {
+    font-weight: bold!important;
+}
+
 @media only screen and (max-width:320px) {
-    #login.loginwrapper {
-        margin: 20px 0 0 0;
+    .searchButtonNews {
+        width: 30%;
     }
-    .user_card {
-        width: 290px;
-    }
-    .comment {
-        padding: 10px;
-        width: 288px;
-        left: -30px;
-    }
-    .fnumericzip {
-        margin-bottom: 10px;
-    }
-    .com-mt {
-        margin-top: 44px;
-    }
-    .title_comment2 {
-        margin-left: -15px;
-        margin-right: -15px;
-        padding: 18px;
-    }
+    
     /*comment*/
     .comment {
         padding: 13px;
@@ -12259,22 +11927,16 @@ strong {
     .set-date {
         text-indent: 0em;
     }
-    .login_2 {
-        margin-left: -53px;
-    }
-    .login_1 {
-        margin-right: -21px;
-    }
-    .login_top {
-        top: -111px;
-        margin-left: 22px;
-    }
-    /* .loginwrapper {
+   
+   
+    
+    .loginwrapper {
         padding: 10px 40px;
         position: fixed;
+        /* margin-left: -53px; */
         background: #fbfbfb;
         top: 20px;
-    } */
+    }
     .registerform_container {
         margin-top: 0px;
     }
@@ -12296,56 +11958,58 @@ strong {
     .postal {
         width: 100%;
     }
+    .admin_header div span {
+        display: none;
+    }
     #news_list .select_box {
         width: 70%;
     }
     #news_list .select_label {
         width: 26% !important;
     }
-    .source-img-small {
-        width: 90%;
+}
+
+
+/*comment*/
+
+@media only screen and (max-width:360px) {
+    .comment {
+        padding: 7px;
+        width: 323px;
+        left: -20px;
     }
-    .smallads-title {
-        font-size: 12px;
-        line-height: 1.357;
-        color: #333;
-        overflow: hidden;
-        position: relative;
-        padding: 0;
-        top: -0.2rem;
-        max-height: 200px;
+    .comform {
+        max-width: none;
     }
-    .today .adslist-card .smallads-title {
-        font-size: 12px;
-        line-height: 1.357;
-        color: #333;
-        overflow: hidden;
-        position: relative;
-        padding: 0;
-        top: -0.2rem;
-        max-height: 65px;
+    .fnumericzip {
+        margin-bottom: 10px;
     }
-    .today .smallads-title {
-        display: block;
-        white-space: normal;
+    .com-mt {
+        margin-top: 44px;
     }
-    .adslist-card {
-        /* height: 71px; */
-        width: 100%;
-        padding: 10px 0px 10px 0px;
+    .title_comment2 {
+        margin-left: -15px;
+        margin-right: -15px;
+        padding: 12px;
     }
-    .userview-sidebar {
-        background-color: #f5f5f5;
-        /* height: 91vh; */
-        padding-top: 35%;
-        padding-left: 25px;
-        margin-top: 2px;
+}
+
+@media only screen and (max-width:320px) {
+    .comment {
+        padding: 10px;
+        width: 288px;
+        left: -30px;
     }
-    .adminview-sidebar {
-        height: auto;
+    .fnumericzip {
+        margin-bottom: 10px;
     }
-    .customer-sidebar {
-        display: none;
+    .com-mt {
+        margin-top: 44px;
+    }
+    .title_comment2 {
+        margin-left: -15px;
+        margin-right: -15px;
+        padding: 18px;
     }
 }
 
