@@ -23,7 +23,7 @@
                         </div>
                         <input type="text" class="form-control" name="name" v-model="username"  placeholder="事業者名を入力してください。" @keyup="focusName">
                         <div class="col-md-12 pad-free">
-                            <span v-if="errors.username" class="error p-l-162">{{errors.username}}</span>
+                            <span v-if="errors.username" class="error">{{errors.username}}</span>
                         </div>
                     </div>
 
@@ -35,7 +35,7 @@
                         </div>
                         <input type="text" class="form-control" name="email" v-model="email"  placeholder="メールアドレスを入力してください。"  @keypress="focusMail"> 
                             <div class="col-md-12 pad-free">
-                            <span v-if="errors.email" class="error p-l-162">{{errors.email}}</span>
+                            <span v-if="errors.email" class="error">{{errors.email}}</span>
                         </div>
                     </div>
 
@@ -47,7 +47,7 @@
                         </div>
                         <input type="password" class="form-control" name="password" @keyup="password_validate()" v-model="password" id="pwd"  placeholder="パスワードを入力してください。">
                         <div class="col-md-12 pad-free">
-                            <span v-if="errors.password" class="error p-l-162">{{errors.password}}</span>
+                            <span v-if="errors.password" class="error">{{errors.password}}</span>
                         </div>
 
                     </div>
@@ -60,7 +60,7 @@
                         </div>
                         <input type="password" class="form-control" name="comfirm_password" id="confirm_pwd" @keyup="password_validate()" v-model="password_confirmation"  placeholder="パスワードをもう一度入カしてください。">
                             <div class="col-md-12 pad-free">
-                            <span v-if="errors.password" class="error p-l-162">{{errors.password}}</span>
+                            <span v-if="errors.password" class="error">{{errors.password}}</span>
                         </div>
 
                     </div>
@@ -77,7 +77,7 @@
 
                         </select>
                             <div class="col-md-12 pad-free">
-                            <span v-if="errors.type" class="error p-l-162">{{errors.type}}</span>
+                            <span v-if="errors.type" class="error">{{errors.type}}</span>
                         </div>
                     </div>
 
@@ -88,22 +88,22 @@
                         <div class="error" id="radioerror" style="margin-bottom: 6px;margin-left: 210px;">必須</div>
                     </div>
                     
-                    <div class="input-group mb-3">                       
-                        <label class="col-12 col-lg-3 col-md-4 control-label">電話番号</label>
-                        <div>
-                            <span class="p-l-162" style="color:#999;">※ 数字と'-'のみ </span>
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
+                    <div class="form-group row m-0 mb-3">
+                        <label class="col-12 col-lg-3 col-md-4 control-label p-0">電話番号</label>
+                        <div class="col-12 col-lg-9 col-md-8  p-0">
+                            <span style="color:#999;">※ 数字と'-'のみ </span>
+                            <div class="input-group">
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
+                                </div>
+                                <input class="form-control" id="phone" name="phone" pattern="[0-9-]*" v-model="phone"  placeholder="電話番号を入力してください。" @keyup="focusPhone" title="Please enter number only." maxlength="14">
                             </div>
-                            <input class="form-control" id="phone" name="phone" pattern="[0-9-]*" v-model="phone"  placeholder="電話番号を入力してください。" @keyup="focusPhone" title="Please enter number only." maxlength="14">
+                            <div class="col-md-12 pad-free">
+                                <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>
+                            </div>
                         </div>
-
-                        <div class="col-md-12 pad-free">
-                            <span class="error p-l-162" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>
-                        </div>
-
                     </div>
-                    <div id="jsErrorMessage" class="error p-l-162"></div>
+                    <div id="jsErrorMessage" class="error"></div>
 
                         <div class="form-group col-12 text-center">
                                 <button type="submit" class="btn register_btn login_btn" id="sub_btn">作成</button>

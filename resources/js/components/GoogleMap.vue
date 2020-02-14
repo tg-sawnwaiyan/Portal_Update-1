@@ -58,11 +58,11 @@
                   <h5 class="lbl-lat-lng">緯度経度の入力または地図のマーカを移動し施設の位置を指定してください。</h5>
                     <div class="row">
                       <div class="col-lg-4 col-md-12 hos_map_lbl">
-                        <label>緯度<span class="error">*</span></label>
+                        <label>緯度 <span class="error sp2">必須</span></label>
                         <input type="text" class="form-control white-bg-color" name="new_lat" v-model="new_lat" id="new_lat">
                       </div>
                       <div class="col-lg-4 col-md-12">
-                        <label>経度<span class="error">*</span></label>
+                        <label>経度 <span class="error sp2">必須</span></label>
                         <input type="text" class="form-control white-bg-color" name="new_long" v-model="new_long" id="new_long">
                       </div>
                       <div class="nursing_map col-lg-4 col-md-12">

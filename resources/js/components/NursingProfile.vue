@@ -46,7 +46,7 @@
                     <div class="col-md-12 m-lr-0 pad-free">
                         <div class="form-group form-group-wrapper">
                             <div class="row m-0 mt-2">
-                                <label class="heading-lbl col-4 col-lg-2 col-md-3 col-sm-3">パノラマ<span class="error">*</span></label>
+                                <label class="heading-lbl col-4 col-lg-2 col-md-3 col-sm-3">パノラマ <span class="error sp2">必須</span></label>
                                 <div class="col-8 col-lg-10 col-md-9 col-sm-9">
                                     <span class="btn-file">画像を選択                     
                                         <input type="file" name="img" class="nursing-panorama m-b-10"  id="upload_panorama" @change="preview_panorama()" multiple>
@@ -67,7 +67,7 @@
                     <!-- end panoram area -->
                     <table class="table table-bordered table-wrapper">
                         <tr>
-                            <th class="nursing_table" style="border:none;"> <label class="heading-lbl pad-free">特長<span class="error">*</span></label></th>
+                            <th class="nursing_table" style="border:none;"> <label class="heading-lbl pad-free">特長 <span class="error sp2">必須</span></label></th>
                             <td  class="nursing_table1" style="border:none;">
                                 <!-- <textarea name="feature" id="" cols="30" rows="10" ></textarea> -->
                                 <quill-editor  ref="myQuilEditor" name="feature" class="feature" v-model="nursing_info.feature" @change="onFeatureEditorChange($event)" :options="editorOption" @blur="onEditorBlur($event)" @focus="onEditorFocus($event)"/>
@@ -83,7 +83,7 @@
                                 <label class="heading-lbl" style="border-left: 5px solid #f9793c;padding-left: 5px;">費用</label>
                             </div>
                             <div class="form-group">
-                                <label class="heading-lbl col-lg-2 col-md-3 pad-free">入居時費用 <span class="error">*</span></label>
+                                <label class="heading-lbl col-lg-2 col-md-3 pad-free">入居時費用 <span class="error sp2">必須</span></label>
                                 <div class="col-lg-10 col-md-12 float-right pad-free nursing-m-b-15 ">
                                     <div class="row">
                                         <div class="col-md-6 nursing_cost" style="font-weight:bold;font-size:1.5em;margin-bottom:7px;">
@@ -97,7 +97,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="heading-lbl col-lg-2 col-md-3 pad-free">月額費用 <span class="error">*</span></label>
+                                <label class="heading-lbl col-lg-2 col-md-3 pad-free">月額費用 <span class="error sp2">必須</span></label>
                                 <div class="col-lg-10 col-md-12 float-right pad-free nursing-m-b-15">
                                     <div class="row">
                                         <div class="col-md-6 nursing_cost" style="font-weight:bold;font-size:1.5em;margin-bottom:7px;">
@@ -111,7 +111,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="heading-lbl col-lg-2 col-md-3 pad-free">支払い方法 <span class="error">*</span></label>
+                                <label class="heading-lbl col-lg-2 col-md-3 pad-free">支払い方法 <span class="error sp2">必須</span></label>
                                 <div class="col-lg-10 col-md-12 float-right pad-free nursing-m-b-15">
                                     <input type="text"  class="form-control col-md-9 col-12 nursing-payment-method float-left white-bg-color" v-model="nursing_info.method">
                                 </div>
@@ -375,7 +375,7 @@
                     <tr>
                         <td style="border:none;">
                             <div class="form-group">
-                                <label class="heading-lbl col-lg-2 col-md-3 pad-free">協力医療機関 <span class="error">*</span></label>
+                                <label class="heading-lbl col-lg-2 col-md-3 pad-free">協力医療機関 <span class="error sp2">必須</span></label>
                                 <div class="nursing_btn col-lg-10 col-md-9 pad-free float-right ">
                                     <span class="btn all-btn main-bg-color" style="min-width: 0px;" @click="cooperateAdd()">
                                             <i class="fas fa-plus-circle"></i> 追加</span>
@@ -640,7 +640,7 @@
                                     <!-- End Test Station Area -->
 
                                     <div class="form-group">
-                                            <label>交通 / アクセス<span class="error">*</span></label>
+                                            <label>交通 / アクセス <span class="error sp2">必須</span></label>
                                             <!-- <textarea name="address" rows="10" class="form-control"></textarea> -->
                                             <quill-editor  ref="myQuilEditor" name="address" :options="editorOption" class="transporation-access" @change="onAccessEditorChange($event)" v-model="nursing_info.access"/>
                                     </div>
