@@ -10,7 +10,7 @@
                   <div class="col-md-12">
                         <form>
                       <div class="form-group">
-                          <label>施設の種類:<span class="error">*</span></label>
+                          <label>施設の種類: <span class="error sp2">必須</span></label>
                           <input type="text" class="form-control"  v-model="facility.description"  :placeholder='[[placeholder]]' >
                                 <span v-if="errors.description" class="error">{{errors.description}}</span>
                       </div>

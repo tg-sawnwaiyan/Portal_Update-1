@@ -1,8 +1,8 @@
 <template>
     <layout>
         <div class="m-lr-0 justify-content-md-center">
-            <div class="row">
-                <div class="col-12">
+            <div class="">
+                <div class="row m-lr-0">
                     <div class="col-md-12 m-lr-0 p-0">
                         <!-- <form class="col-lg-12 mb-2 pad-free"> -->
                             <div class="row col-md-12 m-lr-0 p-0">
@@ -103,7 +103,7 @@
                             <!-- category box -->
                             <div class="card col-md-12 col-lg-6 pad-new d-none d-sm-block first-child" style="border:0px!important;">
 
-                                <div class="card-header tab-card-header clearfix cat-nav">
+                                <div class="card-header tab-card-header clearfix cat-nav infoBox" ref="infoBox">
                                     <span id="left-button" class="left-arr-btn arr-btn" @click="swipeLeft" v-if="is_cat_slided" ><i class="fas fa-angle-left"></i></span>
                                     <div class="nav nav-tabs card-header-tabs center" id="myTab" ref="content" v-bind:style="{ width: computed_width }">
 
@@ -1148,42 +1148,43 @@
             computed_width: '100%',
             w_width: $(window).width(),
             norecord_msg: false,
+            cat_box_width: null,
             // w_width: $(window).width() + 16,
         }
     },
 
     created() {
-                            
-                var today = new Date();
-                var month =(String) (today.getMonth()+1);
-                var date = (String) (today.getDate());
+        this.$nextTick(() => {
+            this.cat_box_width = this.$refs.infoBox.clientWidth;
+        })  
+        var today = new Date();
+        var month =(String) (today.getMonth()+1);
+        var date = (String) (today.getDate());
 
-                if(month.length == 1)
-                {
-                    month = '0' + today.getMonth();
-                }
+        if(month.length == 1)
+        {
+            month = '0' + today.getMonth();
+        }
 
-                if(date.length == 1 )
-                {
-                    date = '0' + today.getDate();
-                }
-                var todaydate = today.getFullYear()+'-'+ month +'-'+ date;
+        if(date.length == 1 )
+        {
+            date = '0' + today.getDate();
+        }
+        var todaydate = today.getFullYear()+'-'+ month +'-'+ date;
 
-                if(localStorage.getItem('date') == null)
-                {
-                    localStorage.setItem('date',todaydate);
-                    this.getCategoryRandomValue();
-                }
-                else{
-                    var localdate = localStorage.getItem('date');
-                    if(todaydate > localdate)
-                    {
-                        localStorage.setItem('date',todaydate);
-                        this.getCategoryRandomValue();
-                    }
-                };    
-                           
-
+        if(localStorage.getItem('date') == null)
+        {
+            localStorage.setItem('date',todaydate);
+            this.getCategoryRandomValue();
+        }
+        else{
+            var localdate = localStorage.getItem('date');
+            if(todaydate > localdate)
+            {
+                localStorage.setItem('date',todaydate);
+                this.getCategoryRandomValue();
+            }
+        };    
     },
     computed:{  
 
@@ -1280,32 +1281,22 @@
                 // console.log()
             },
             getAllCat: function() {
-                this.axios
-
-                    .get('/api/home')
-
-                    .then(response => {
-
-                        // console.log(response);
-
+                this.axios .get('/api/home') 
+                .then(response => {
                         this.cats = response.data;
-
                         var total_word = 0;
-
                         $.each(this.cats, function(key,value) {
-
                             total_word += value.name.length;
-
                         });
 
-                        if(total_word > 32) {
-
+                        if(this.cat_box_width/total_word < 23){
                             this.is_cat_overflow = true;
-                           
-
-                            this.computed_width = '99%';
-
                         }
+
+                        // if(total_word > 32) {
+                        //     this.is_cat_overflow = true;
+                        //     this.computed_width = '99%';
+                        // }
                         // else{
                         //       this.is_cat_overflow = false;
                         // }
@@ -1429,11 +1420,7 @@
                 .then(response => {
 
                     this.latest_post = response.data;
-
-
-
                     // console.log(this.pattern);
-
                 });
 
             },
@@ -1448,16 +1435,12 @@
                     
                         this.$loading(false);
                         this.latest_post_all_cats = response.data;
-                       
-
                     });
             },
 
             searchCategory() {
 
                 if ($('#search-free-word').val() == null || $('#search-free-word').val() == '' || $('#search-free-word').val() == 'null') {
-
-
             console.log("statusBar",this.search_word);
                     this.clearSearch();
 
@@ -1579,9 +1562,6 @@
  </script>
 
 <style>
-.slick-dots{
-    display: none !important;
-}
 .list-label{
     float: right; 
     color: #999; 
@@ -1728,7 +1708,8 @@
     height: 80px !important;
     position: absolute;
     top:140px !important;
-    background-color: #2a2d2cb0;
+    /* background-color: #2a2d2cb0; */
+    background-color: rgba(42, 45, 44, 0.69);
     color: #fff;
     text-align: justify !important;
 }
