@@ -968,16 +968,7 @@ border-radius: 3px;
 }
 
 .admin_card {
-    /* height: 400px; */
-    /* width: 350px; */
-    /* margin-top: auto; */
-    /* margin-bottom: auto; */
-    /* background: #2980b9; */
     background: #fbfbfb;
-    /* position: relative; */
-    /* display: flex; */
-    /* justify-content: center; */
-    /* flex-direction: column; */
     padding: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -1034,12 +1025,15 @@ border-radius: 3px;
     padding: 40px 30px;
 }
 
+#psd_reset_form .form_content {
+    padding: 90px 30px 60px 30px;
+}
+
 .reg_title {
     margin-bottom: 10px;
     text-align: center;
     font-size: 19px;
     font-weight: bold;
-    /* color: #2980B9; */
     color: #2980b9f5;
 }
 
@@ -12932,6 +12926,3 @@ strong {
 
 
 /*comment*/
-
-© 2020 GitHub,
-Inc. Terms Privacy Security Status Help Contact GitHub Pricing API Training Blog About Copied!
