@@ -40,7 +40,7 @@
                 </div>
                 
                 
-                <div class="d-flex justify-content-center mt-5">
+                <div class="d-flex justify-content-center mt-3">
                     <button type="submit" name="button" id="changePass" class="btn login_btn" :disabled="is_disabled">変更</button>
                 </div>     
             </form>
