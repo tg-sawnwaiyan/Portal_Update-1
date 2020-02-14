@@ -1,8 +1,8 @@
 <template>
     <layout>
         <div class="m-lr-0 justify-content-md-center">
-            <div class="row">
-                <div class="col-12">
+            <div class="">
+                <div class="row m-lr-0">
                     <div class="col-md-12 m-lr-0 p-0">
                         <!-- <form class="col-lg-12 mb-2 pad-free"> -->
                             <div class="row col-md-12 m-lr-0 p-0">
@@ -1562,9 +1562,6 @@
  </script>
 
 <style>
-.slick-dots{
-    display: none !important;
-}
 .list-label{
     float: right; 
     color: #999; 
@@ -1711,7 +1708,8 @@
     height: 80px !important;
     position: absolute;
     top:140px !important;
-    background-color: #2a2d2cb0;
+    /* background-color: #2a2d2cb0; */
+    background-color: rgba(42, 45, 44, 0.69);
     color: #fff;
     text-align: justify !important;
 }
