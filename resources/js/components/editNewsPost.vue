@@ -446,22 +446,22 @@ import {quillEditor} from 'vue-quill-editor'
                         if (this.news.title) {
                             this.errors.title = "";
                         } else {
-                            this.errors.title = "ニュースの題名が必須です。";
+                            this.errors.title = "ニュースの題名は必須です。";
                         }
                         if (this.news.main_point) {
                             this.errors.main_point = "";
                         } else {
-                            this.errors.main_point = "ニュースの内容要約が必須です。";
+                            this.errors.main_point = "ニュースの内容要約は必須です。";
                         }
                         if (this.news.body) {
                             this.errors.body = "";
                         } else {
-                            this.errors.body = "ニュースの内容が必須です。";
+                            this.errors.body = "ニュースの内容は必須です。";
                         }
                         if (this.news.category_id) {
                             this.errors.category_id = "";
                         } else {
-                            this.errors.category_id = "ニュースのカテゴリーが必須です。";
+                            this.errors.category_id = "ニュースのカテゴリーは必須です。";
                         }
                         if (
                             !this.errors.title &&

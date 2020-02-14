@@ -340,7 +340,7 @@ export default {
                     this.errors.title = "";
                 } else 
                 {
-                    this.errors.title = " 題名が必須です。";
+                    this.errors.title = " 題名は必須です。";
                 }
             
                 if(this.advertisement.photo)
@@ -348,7 +348,7 @@ export default {
                     this.errors.photo = "";     
                 } else 
                 {    
-                    this.errors.photo = "写真が必須です。";
+                    this.errors.photo = "写真は必須です。";
                 }
 
                 if(!this.errors.title && !this.errors.photo && this.$route.params.id)

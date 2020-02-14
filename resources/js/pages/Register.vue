@@ -44,7 +44,10 @@
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" class="form-control" name="name" v-model="username" required placeholder="事業者名を入力してください。">
+                        <input type="text" class="form-control" name="name" v-model="username"  placeholder="事業者名を入力してください。" @keyup="focusName">
+                        <div class="col-md-12 pad-free">
+                            <span v-if="errors.username" class="error p-l-162">{{errors.username}}</span>
+                        </div>
                         <!-- <span v-if="errors.name" class="error p-l-162">{{errors.name}}</span> -->
                     </div>
 
@@ -54,8 +57,7 @@
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                         </div>
-                        <input type="email" class="form-control" name="email" v-model="email" required placeholder="メールアドレスを入力してください。">
-
+                        <input type="text" class="form-control" name="email" v-model="email"  placeholder="メールアドレスを入力してください。"  @keypress="focusMail"> 
                          <div class="col-md-12 pad-free">
                             <span v-if="errors.email" class="error p-l-162">{{errors.email}}</span>
                         </div>
@@ -67,7 +69,7 @@
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input type="password" class="form-control" name="password" @keyup="password_validate()" v-model="password" id="pwd" required placeholder="パスワードを入力してください。">
+                        <input type="password" class="form-control" name="password" @keyup="password_validate()" v-model="password" id="pwd"  placeholder="パスワードを入力してください。">
                         <div class="col-md-12 pad-free">
                             <span v-if="errors.password" class="error p-l-162">{{errors.password}}</span>
                         </div>
@@ -80,7 +82,7 @@
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input type="password" class="form-control" name="comfirm_password" id="confirm_pwd" @keyup="password_validate()" v-model="password_confirmation" required placeholder="パスワードをもう一度入カしてください。">
+                        <input type="password" class="form-control" name="comfirm_password" id="confirm_pwd" @keyup="password_validate()" v-model="password_confirmation"  placeholder="パスワードをもう一度入カしてください。">
                          <div class="col-md-12 pad-free">
                             <span v-if="errors.password" class="error p-l-162">{{errors.password}}</span>
                         </div>
@@ -95,12 +97,15 @@
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-list"></i></span>
                         </div>
-                        <select id="type" class="form-control custom-select" name="types" :value="type.id" v-model="type" required>
+                        <select id="type" class="form-control custom-select" name="types" :value="type.id" v-model="type" @change="focusType" >
                             <option value="">事業者のタイプを選択してください(介護又は病院)。</option>
                             <option value="3">介護</option>
                             <option value="2">病院</option>
 
                         </select>
+                         <div class="col-md-12 pad-free">
+                            <span v-if="errors.type" class="error p-l-162">{{errors.type}}</span>
+                        </div>
                     </div>
 
                     <div class="input-group mb-3 mb-7 hide form-check form-check-inline" id="showHideActionNursing">
@@ -143,7 +148,7 @@
                             <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
                         </div>
 
-                        <input class="form-control" id="phone" name="phone" pattern="[0-9-]*" v-model="phone" required placeholder="電話番号を入力してください。" @keyup="focusPhone" title="Please enter number only." maxlength="14">
+                        <input class="form-control" id="phone" name="phone" pattern="[0-9-]*" v-model="phone"  placeholder="電話番号を入力してください。" @keyup="focusPhone" title="Please enter number only." maxlength="14">
 
                         <div class="col-md-12 pad-free">
                             <span class="error p-l-162" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>
@@ -189,6 +194,8 @@
             name:"",
             email:"",
             password:"",
+            username:"",
+            type:''
             //cities:"",
             //township:""
         },
@@ -198,7 +205,8 @@
         url: '',
         ph_length:'',
         ph_num:'',
-        Numbers:[]
+        Numbers:[],
+        mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
       }
 
     },
@@ -297,16 +305,78 @@
             window.pwd_same = true;
         }
     },
-    // choosefile() {
-    //     $('.inputfile').trigger('click');
-    // },
-    //   onFileChange(e) {
-    //   const file = e.target.files[0];
-    //   this.images = file;
-    //   this.img_name = file.name;
-    //   this.url = URL.createObjectURL(file);
-    // },
+    focusName:function(event)
+    {
+        if(this.username != null || this.username != '')
+        {
+            this.errors.username = ''
+        }
+    },
+    focusType:function(event)
+    {
+        if(this.type != '')
+        {
+            this.errors.type = ''
+        }
+    },
+
+       focusMail: function(event) {
+      
+                if((this.email != '' && this.mail_reg.test(this.email))){
+                 
+                    this.errors.email='';
+                }else{
+                   
+                    this.errors.email ='※メールアドレスが正しくありません。もう一度入力してください。';
+                  
+                }
+             
+            },
+            
+  
       register() {
+          if(this.type == '')
+          {
+             this.errors.type = "事業者タイプを選択してください。";
+          }
+          else{
+              this.errors.type = '';
+          }
+    
+          if(this.username == null || this.username == '')
+          {
+              this.errors.username = "事業者名が必須です。";
+          }
+          else
+          {
+              this.errors.username = "";
+          }
+
+          if(this.email == null || this.email == '')
+          {
+              this.errors.email = "メールアドレスが必須です。";
+          }
+          else
+          {
+              this.errors.email = "";
+          }
+
+          if(this.password_confirmation == null || this.password_confirmation == '' || this.password == null || this.password == '')
+          {
+             this.errors.password = "パスワードが必須です。";
+          }
+          else{
+               this.errors.password = '';
+          }
+
+        if((this.email != '' && this.mail_reg.test(this.email))){
+                
+            this.errors.email='';
+        }else{
+            
+            this.errors.email ='※メールアドレスが正しくありません。もう一度入力してください。';
+            
+        }
 
         var input_data = $('#phone').val();
         if(input_data.length >= 10 && input_data.length <= 14)
@@ -319,9 +389,10 @@
             return;
         }
 
-
-        var app = this
-        let fData = new FormData();
+        if(this.errors.email == '' && this.errors.username == '' && this.errors.password == '' && this.errors.type == '' && this.ph_num == false && this.ph_length == false)
+        {
+             var app = this
+            let fData = new FormData();
                         //fData.append('img', app.images)
                         fData.append('name', app.username)
                         fData.append('email', app.email)
@@ -331,23 +402,20 @@
                         //fData.append('township', app.township)
                         fData.append('types', app.type)
                         fData.append('phone', app.phone)
-
-        this.$loading(true);
-        this.axios.post('/api/register', fData)
-                            .then(response =>
-                             {
-                                 this.$loading(false);
-            this.$swal({
-                position: 'top-end',
-                type: 'success',
-                title: 'メールを送付しました。',
-                text: '確認のためしばらくお待ちください。',
-                width: 350,
-                height: 200,
-                confirmButtonColor: "#6cb2eb",
-                confirmButtonText: "閉じる",
-                confirmButtonClass: "all-btn",
-            })
+            this.$loading(true);
+            this.axios.post('/api/register', fData).then(response =>{
+                    this.$loading(false);
+                    this.$swal({
+                        position: 'top-end',
+                        type: 'success',
+                        title: 'メールを送付しました。',
+                        text: '確認のためしばらくお待ちください。',
+                        width: 350,
+                        height: 200,
+                        confirmButtonColor: "#6cb2eb",
+                        confirmButtonText: "閉じる",
+                        confirmButtonClass: "all-btn",
+                    })
                 this.$router.push({
                     name: 'News'
                 });
@@ -355,13 +423,7 @@
             if(error.response.status == 422){
              this.$loading(false);
              this.errors = error.response.data.errors;
-                if(this.errors.name)
-                {
-                    this.errors.name = "Name is required and must be greater than three.";
-                }
-                else{
-                    this.errors.name = "";
-                }
+               
                 if(this.errors.email)
                 {
                     this.errors.email = "このメールアドレスは既に存在します。";
@@ -382,6 +444,8 @@
                 // app.errors = error.response.data.message
 
             }});
+        }
+       
 
 
       },

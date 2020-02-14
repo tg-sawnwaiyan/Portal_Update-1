@@ -940,11 +940,11 @@ border-radius: 3px;
     width: 170px;
     top: -75px;
     border-radius: 50%;
-    /* background: #fff; */
+    background: #fbfbfb;
     padding: 10px;
     text-align: center;
     border: 10px solid #ececec;
-    margin-left: 10px;
+    margin-left: 3px;
 }
 
 .logo_bk {
@@ -1040,26 +1040,25 @@ border-radius: 3px;
 
 .login_1 {
     top: -39px;
-    margin-right: 20px;
+    margin-right: 10px;
 }
 
 .login_2 {
-    top: -38px;
+    top: -39px;
     margin-left: 10px;
     position: absolute;
 }
 
 .login_3 {
     top: 11px;
-    margin-right: 13px;
+    margin-right: 2px;
 }
 
 .login_4 {
     top: 11px;
-    margin-left: 10px;
+    margin-left: 16px;
     position: absolute;
 }
-
 
 /*login*/
 
@@ -1668,6 +1667,7 @@ border-top: 5px solid #e66527; */
     font-weight: bold;
     cursor: pointer;
     text-align: center;
+    justify-content: center;
 }
 
 .main-header .nav-item {
@@ -1723,7 +1723,7 @@ border-top: 5px solid #e66527; */
 }
 
 #app .logo-text {
-    padding: 0 0px 0 0;
+    padding: 0;
     margin-right: 0px;
 }
 
@@ -2519,6 +2519,31 @@ ul.sub-ul li {
 
 .autocomplete__box {
     padding-left: 5px !important;
+}
+
+.site_header {
+    position: relative;
+    margin: 30px 0;
+    font-weight: bold;
+    line-height: 2;
+    text-align: center;
+}
+
+.site_header:after {
+    position: absolute;
+    content: '';
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100px;
+    height: 5px;
+    margin: 0 auto;
+    border-radius: 2px;
+    background: #d2571c;
+}
+
+.sitepolicy_home, .privacy {
+    padding-left: 20px;
 }
 
 
@@ -9467,7 +9492,7 @@ padding: 11px;
         margin-right: 18px;
     }
     .login_top {
-        top: -6px;
+        top: 0px;
     }
 }
 
@@ -9484,7 +9509,7 @@ padding: 11px;
     }
     #headerbar {
         display: block;
-        top: 76px;
+        top: 86px;
     }
     #headerbar li {
         display: inline-block;
@@ -9548,9 +9573,6 @@ padding: 11px;
         padding-left: 12px;
         margin: 10px 0;
     }
-    .gNav {
-        margin-left: 0%;
-    }
     .gSecondNav li {
         background: transparent;
         border-left: solid 1px #a7b7c7;
@@ -9563,23 +9585,11 @@ padding: 11px;
         margin: 0px;
         font-size: 12px;
     }
-    .maintab-content {
-        padding: 7px;
-    }
     .img_title {
         height: 135px;
     }
-    /* login */
-    .login_top {
-        top: -6px;
-        /* margin-left: 15px; */
-    }
-    .login_1 {
-        margin-right: 27px;
-    }
-    .login_2 {
-        margin-left: -4px;
-    }
+   
+    
     /* Register */
     .loginwrapper {
         height: 105vh;
@@ -10033,7 +10043,7 @@ padding: 0;
     #sp_headerbar {
         display: block;
         width: 96%;
-        margin: 10px auto;
+        margin: 0px auto;
         background: #fff
     }
     #sp_headerbar .fav_his {
@@ -10062,8 +10072,8 @@ padding: 0;
     }
     #sp_headerbar .count {
         position: absolute;
-        top: -15px;
-        right: -20px;
+        top: -12px;
+        right: -7px;
         width: 30px;
         height: 30px;
         padding: 1px 5px;
@@ -10083,6 +10093,12 @@ padding: 0;
         float: left;
         list-style: none;
     }
+    .sp_social .social-link a {
+        width: 20px;
+    }
+    .sp_social .social-link a i {
+        color: #fff;
+    }
     .social-link:first-child a {
         background: #0080aa;
     }
@@ -10096,22 +10112,19 @@ padding: 0;
         float: right;
         position: absolute;
         right: 10px;
-        top: 30px;
+        top: 18px;
         z-index: 99;
-    }
-    .login_nav li.first-submenu {
-        top: 50px !important;
     }
     .login_socail {
         margin-top: -20px !important;
     }
     .login_nav .sp_nav {
-        top: 90px;
+        top: 65px;
     }
     .sp_nav {
         display: block;
         position: fixed;
-        top: 112px;
+        top: 98px;
         right: 0;
         width: 100%;
         height: 100%;
@@ -10142,6 +10155,9 @@ padding: 0;
         border-left: 1px solid #8c9090;
         border-right: 1px solid #8c9090;
         background: #fff;
+    }
+    .menu-list_last {
+        border-bottom: 1px solid #8c9090;
     }
     ul.menu_list li i {
         color: #2980b9 !important;
@@ -10201,6 +10217,8 @@ padding: 0;
         vertical-align: text-bottom;
     }
     ul.contact_list li:first-child a {
+        display: inline-block;
+        width: auto;
         padding: 10px;
         color: #444;
         border: 1px solid;
@@ -10319,7 +10337,6 @@ padding: 0;
     .sp_adminNav ul li a {
         display: block;
         width: 100%;
-        padding-left: 5px;
         color: #fff;
         transition: 0.3s all;
     }
@@ -10602,10 +10619,9 @@ width: 18rem;
 }
 
 @media only screen and (max-width:768px) {
-    .tab{
+    .tab {
         margin-top: 20px;
     }
-    
     .newsDetail_leftwrapper {
         max-width: 320px;
     }
@@ -10854,6 +10870,9 @@ width: 18rem;
 }
 
 @media only screen and (max-width:750px) {
+    .login_1, .login_2{
+        top: 0px;
+    }
     .pc-750 {
         display: none;
     }
@@ -10866,9 +10885,9 @@ width: 18rem;
     .pad-0-res {
         padding: 0px;
     }
-    .d-block {
+    /* .d-block {
         display: block !important;
-    }
+    } */
     .profile-tit {
         padding: 0px;
         margin: 0px;
@@ -11071,8 +11090,8 @@ width: 18rem;
         float: left;
     }
     .txt-box {
-        padding-left: 110px !important;
-        position: absolute;
+        /* padding-left: 110px !important;
+        position: absolute; */
     }
     .wrapper-3 {
         /* float: left;
@@ -11532,11 +11551,14 @@ background-image: none;
     .my-3 {
         margin-bottom: 2px !important;
     }
-    .brand_logo_container {
-        position: absolute;
-        height: 170px;
-        width: 170px;
-        top: -81px;
+    .brand_logo_container {       
+        height: auto;     
+    }
+    .brand_logo{
+        width: auto;
+        position: relative;
+        left: auto;
+        top: auto
     }
     .links_2 {
         top: 78px;
@@ -11552,10 +11574,8 @@ background-image: none;
         position: fixed;
         background: #fbfbfb;
     }
-    .login_top {
-        top: -123px;
-        margin-left: 15px;
-    }
+  
+    
     .p-l-162 {
         padding-left: 0px;
     }
@@ -11708,15 +11728,9 @@ background-image: none;
 }
 
 @media only screen and (max-width: 380px) {
-    .login_2 {
-        margin-left: -25px;
-    }
-    .login_1 {
-        margin-right: -7px;
-    }
-    .login_top {
-        top: -120px;
-    }
+   
+   
+    
     .loginwrapper {
         height: 105vh;
         padding: 10px 40px;
@@ -11724,6 +11738,7 @@ background-image: none;
         background: #fbfbfb;
         /* margin-left:-34px; */
     }
+    
     /*register*/
     .login_wp {
         height: 105vh;
@@ -11749,12 +11764,13 @@ background-image: none;
     .my-3 {
         margin-bottom: 7px !important;
     }
-    .brand_logo_container {
+    /* .brand_logo_container {
         position: absolute;
         height: 170px;
         width: 170px;
         top: -80px;
-    }
+        margin-left: -1px;
+    } */
     /*register*/
     .links {
         position: relative;
@@ -12028,7 +12044,7 @@ background-image: none;
     }
     #headerbar {
         display: block;
-        top: 76px;
+        top: 86px;
     }
     #headerbar li {
         display: inline-block;
@@ -12118,16 +12134,9 @@ strong {
     .set-date {
         text-indent: 0em;
     }
-    .login_2 {
-        margin-left: -53px;
-    }
-    .login_1 {
-        margin-right: -21px;
-    }
-    .login_top {
-        top: -111px;
-        margin-left: 22px;
-    }
+   
+   
+    
     .loginwrapper {
         padding: 10px 40px;
         position: fixed;

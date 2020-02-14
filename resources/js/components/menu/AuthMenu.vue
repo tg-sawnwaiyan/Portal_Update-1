@@ -12,10 +12,10 @@
                       <img src="/images/admin_logo1.png" style="width:230px;height:auto;" />
                     </a>
                     <div class="h-tel" v-if="visit == 'true'"><a class="tel" href="tel:03-1234-5678"><i class="fas fa-phone-alt"></i><span>03-1234-5678</span></a><br class="pc-1024"><a href="mailto:info@t-i-s.jp"><p class="sp-1024"><i class="fas fa-envelope"></i></p><span>info@t-i-s.jp</span></a></div>
-                    <ul class="sp_social d-none-380"  v-if="visit == 'true'">
+                    <!-- <ul class="sp_social d-none-380"  v-if="visit == 'true'">
                         <li class="social-link"><a href="https://twitter.com/login?lang=en"><i class="fab fa-twitter"></i></a></li>
                         <li class="social-link"><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>
-                    </ul>
+                    </ul> -->
                 </div>
                 <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -53,8 +53,8 @@
                         <li class="nav-item m-r-10" v-if="visit == 'true'">
                             <a class="nav-link pad-free d-flex h-100 align-items-center mt-0" @click="gotoDash()"><i class="fas fa-tachometer-alt mr-1"></i> 管理画面へ</a>
                         </li>
-                        <li class="social-link" v-if="!$auth.check()"><a href="https://twitter.com/login?lang=en"><i class="fab fa-twitter"></i></a></li>
-                        <li class="social-link" v-if="!$auth.check()"><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>
+                        <!-- <li class="social-link" v-if="!$auth.check()"><a href="https://twitter.com/login?lang=en"><i class="fab fa-twitter"></i></a></li>
+                        <li class="social-link" v-if="!$auth.check()"><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li> -->
 
 
                         <li class="userprofile-name pc" v-if="$auth.check()">
@@ -195,7 +195,10 @@
                                 </transition>
                             </li>
                             <li>
-                                <a href="#" @click.prevent="$auth.logout()" class="p-0"><i class="fa fa-lock"></i> ログアウト</a>
+                               <a href="/"><i class="fa fa-eye" aria-hidden="true"></i> サイトを表示</a>
+                            </li>
+                            <li>
+                                <a href="#" @click.prevent="$auth.logout()"><i class="fa fa-lock"></i> ログアウト</a>
                             </li>
                         </ul>
                         <ul class="sidebar_brand" v-if="visit == 'true'">
@@ -229,10 +232,10 @@
                                 <li><a href="tel::03-1234-5678"><i class="fas fa-phone-alt"></i><span>03-1234-5678</span></a></li>
                                 <li><a href="mailto:info@t-i-s.jp"><i class="fas fa-envelope"></i>info@t-i-s.jp</a></li>
                             </ul>
-                            <ul class="sp_social d-none-768">
+                            <!-- <ul class="sp_social d-none-768">
                             <li class="social-link"><a href="https://twitter.com/login?lang=en"><i class="fab fa-twitter"></i></a></li>
                             <li class="social-link"><a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a></li>
-                            </ul>
+                            </ul> -->
                             </li>
                         </ul>
                     </div>
@@ -261,7 +264,7 @@
                             <li  v-if="visit == 'true'">
                                 <a  @click="gotoDash()"><i class="fas fa-tachometer-alt"></i> 管理画面へ</a>
                             </li>
-                            <li>
+                            <li class="menu-list_last">
                                 <a href="#" @click.prevent="$auth.logout()"><i class="fa fa-lock"></i> ログアウト</a>
                             </li>
                             <li v-if="!$auth.check()">
@@ -276,10 +279,10 @@
                                 <li><a href="tel::03-1234-5678"><i class="fas fa-phone-alt"></i><span>03-1234-5678</span></a></li>
                                 <li><a href="mailto:info@t-i-s.jp"><i class="fas fa-envelope"></i>info@t-i-s.jp</a></li>
                             </ul>
-                            <ul class="sp_social d-none-768">
+                            <!-- <ul class="sp_social d-none-768">
                             <li class="social-link"><a href="https://twitter.com/login?lang=en"><i class="fab fa-twitter"></i></a></li>
                             <li class="social-link"><a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a></li>
-                            </ul>
+                            </ul> -->
                             </li>         
                         </ul>
                         </div>

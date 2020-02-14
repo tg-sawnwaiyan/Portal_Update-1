@@ -327,7 +327,7 @@ export default {
                         this.errors.title = "";
                     } else {
                         // console.log('null');
-                        this.errors.title = "口コミタイトルが必須です。";
+                        this.errors.title = "口コミタイトルは必須です。";
                     }
                     if (this.comments.email){
                         if(this.mail_reg.test(this.comments.email )){
@@ -336,17 +336,17 @@ export default {
                             this.errors.email = "※メールアドレスが正しくあ                                                                                                                                                                                                                           りません。もう一度入力してください。"
                         }
                     } else {
-                        this.errors.email = "メールアドレスが必須です。";
+                        this.errors.email = "メールアドレスは必須です。";
                     }
                     if (this.comments.name) {
                         this.errors.name = "";
                     } else {
-                        this.errors.name = "お名前が必須です。";
+                        this.errors.name = "お名前は必須です。";
                     }
                     if (this.comments.comment) {
                         this.errors.comment = "";
                     } else {
-                        this.errors.comment = "口コミが必須です。";
+                        this.errors.comment = "口コミは必須です。";
                     }
                     if (
                         !this.errors.title &&
