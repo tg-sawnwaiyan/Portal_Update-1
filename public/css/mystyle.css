@@ -916,6 +916,12 @@ border-radius: 3px;
     font-size: 14px;
 }
 
+.input-group .form-control:not(:first-child),
+.input-group .custom-select:not(:first-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
 .admin_user_card {
     background-color: #3791B9 !important;
     color: #fff;
@@ -936,6 +942,14 @@ border-radius: 3px;
 
 .admin_user_card .brand_logo_container {
     border: 10px solid #4399BF;
+}
+
+.admin_user_card .login_link a {
+    color: #fff !important;
+}
+
+.admin_user_card .login_txt {
+    color: #fff !important;
 }
 
 .customer_user_card {
@@ -1003,6 +1017,11 @@ border-radius: 3px;
 
 .form_content {
     padding: 70px 30px 60px 30px;
+}
+
+#psd_reset_form .reset_form,
+{
+    padding: 40px 30px;
 }
 
 .reg_title {
@@ -1100,31 +1119,28 @@ border-radius: 3px;
     html {
         background: #fbfbfb;
     }
-    .loginwrapper {
-        margin: 160px 0 0 0;
-    }
     .user_card {
         margin-bottom: 30px;
     }
-    #psd_reset.loginwrapper {
+    .loginwrapper {
+        margin: 40px 0 0 0;
+    }
+}
+
+@media only screen and (max-device-width: 820px) and (orientation: landscape) {
+    #login.loginwrapper {
+        margin: 160px 0 0 0;
+    }
+    .loginwrapper {
         margin: 114px 0 0 0;
     }
-    /* .logo_wrap {
-        position: unset;
-    }
-    .brand_logo_container {
-        height: auto;
-        width: auto;
-        border-radius: 0%;
-        border: 0 solid #ececec;
-    } */
 }
 
 @media only screen and (max-device-width: 576px) and (orientation: landscape) {
-    .loginwrapper {
+    #login.loginwrapper {
         margin: 200px 0 0 0;
     }
-    #psd_reset.loginwrapper {
+    .loginwrapper {
         margin: 140px 0 0 0;
     }
 }
