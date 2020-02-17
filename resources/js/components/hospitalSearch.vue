@@ -163,10 +163,10 @@
                             </td>
                         </tr>
                         <tr class="toBeToggled1 ShowHide1">
-                            <th class="pc-414-table sp-768-block">診療科目</th>
+                            <th class="pc-414-table sp-768-block">診療科目</th>       
                             <td class="sp-768-block sp-414-table" id="test-td">
                                 <div class="form-check form-check-inline row align-items-start innerwrapper" v-if="w_width >= 768">
-                                    <div v-for="(v,i) in array_len"  :key="i">                                     
+                                    <div v-for="(v,i) in array_len"  :key="i">                      
                                         <div class="hospital-subject"  v-for="(subject,index) in subjects.slice((i*3),((i*3)+3))"  :key="index" v-bind:class="{ lastblock: i==array_len-1 }">    
                                            <strong class="table-innertitle row col-12 m-b-10">{{subject.name}}</strong>                                                                      
                                             <div class="row col-md-12">                                                                                            
@@ -562,6 +562,7 @@ import bulcomponent from './bulcomponent.vue'
                     this.cities = response.data.city;
                     this.timetable = response.data.timetable;
                     this.specialfeatures = response.data.specialfeature;
+                    this.special_features = response.data.specialfeature;
                     this.getTownships = [];
                     this.subject = response.data.subject;
                     this.subjects = response.data.subjects;
@@ -575,7 +576,7 @@ import bulcomponent from './bulcomponent.vue'
                     }else{
                         this.norecord_msg = true;
                     }
-                
+                 this.array_len = ((this.subjects.length)%3)==0?((this.subjects.length)/3):Math.floor(((this.subjects.length)/3)+1);
                 
 
             });
