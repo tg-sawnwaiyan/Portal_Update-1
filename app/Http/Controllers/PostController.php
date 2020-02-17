@@ -248,7 +248,13 @@ class PostController extends Controller
 
         if(isset($request['selected_category'])) {
             $category_id = $request['selected_category'];
-            $query = $query->where('category_id', $category_id)->where('id','<>',$request['postid']);
+            if($request['postid'] != null){
+                $query = $query->where('category_id', $category_id)->where('id','<>',$request['postid']);
+            }
+            else{
+                $query = $query->where('category_id', $category_id);
+            }
+           
         }
 
         if(isset($request['search_word'])) {
