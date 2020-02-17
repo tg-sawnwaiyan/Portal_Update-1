@@ -1,48 +1,45 @@
 <template>
  <div id="login" class="loginwrapper">
-    <div class="user_card" id="altrole">
+    <div class="login_content">
       <div class="logo_wrap">
-        <div class="brand_logo_container logo_bk">
-          <img src="/images/login.png" class="brand_logo" alt="介護医療福祉の総合サイト[T-IS ティーズ] ">
+          <div class="brand_logo_container logo_bk">
+            <img src="/images/login.png" class="brand_logo" alt="介護医療福祉の総合サイト[T-IS ティーズ] ">
+          </div>
         </div>
-      </div>
-      <div class="login_link">
-        <a href="/" class="home_link">ホーム</a>
-        <router-link to="/register" class="reg_link  ml-auto">登録</router-link>      
-      </div>
-      <div class="form_content">
-        <h3 class="user_name">{{name}}</h3>
-        <form autocomplete="off" @submit.prevent="login" method="post">
-            <div class="input-group">
+      <div class="user_card" id="altrole">
+        <div class="login_link">
+          <a href="/" class="home_link">ホーム</a>
+          <router-link to="/register" class="reg_link  ml-auto">登録</router-link>      
+        </div>
+        <div class="form_content">
+          <h3 class="user_name">{{name}}</h3>
+          <form autocomplete="off" @submit.prevent="login" method="post">
+              <div class="input-group">
+                  <div class="input-group-append">
+                      <span class="input-group-text"><i class="fas fa-user"></i></span>
+                  </div>
+                  <input type="text" id="email" class="form-control input_user" placeholder="メール" v-model="email"  autofocus @keyup="focusMail"> 
+                  <span v-if="errors.email" class="error"><small>{{errors.email}}</small></span>
+              </div>
               
-                <div class="input-group-append">
-                    <span class="input-group-text"><i class="fas fa-user"></i></span>
-                </div>
-              <input type="text" id="email" class="form-control input_user" placeholder="メール" v-model="email"  autofocus @keyup="focusMail"> 
-             
-              <span v-if="errors.email" class="error"><small>{{errors.email}}</small></span>
-            </div>
-            
-            <div class="input-group">
-             
+              <div class="input-group">
                   <div class="input-group-append">
                       <span class="input-group-text"><i class="fas fa-key"></i></span>
                   </div>
                   <input type="password" class="form-control input_pass" name="password" value=""  id="password" v-model="password" placeholder="パスワード" @keyup="focusPassword" >
-             
                 <span v-if="errors.password" class="error"><small>{{errors.password}}</small></span>
-            </div>
-            <div class="d-flex justify-content-center mt-3">
-              <button type="submit" name="button" id="getUser" :class="btn_color">ログイン</button>
-            </div>
-           
-        </form>
-        <router-link :to="{name: 'reset'}" class="login_txt">パスワードをお忘れですか？</router-link>
-         <span class="alert alert-danger" v-if="has_error">パスワードが間違っています。</span>
+              </div>
+              <div class="d-flex justify-content-center mt-3">
+                <button type="submit" name="button" id="getUser" :class="btn_color">ログイン</button>
+              </div>
+            
+          </form>
+          <router-link :to="{name: 'reset'}" class="login_txt">パスワードをお忘れですか？</router-link>
+          <span class="alert alert-danger" v-if="has_error">パスワードが間違っています。</span>
+        </div>
       </div>
     </div>
   </div>
-
   <!-- <div class="loginwrapper">
 		<div class="d-flex justify-content-center h-100">
         <div class="user_card" id="altrole">

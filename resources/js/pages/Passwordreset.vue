@@ -1,36 +1,38 @@
 <template>
     <div class="loginwrapper" id="psd_reset">
-      <div class="user_card">
+      <div class="login_content">
         <div class="logo_wrap">
           <div class="brand_logo_container logo_bk">
             <img src="/images/login.png" class="brand_logo" alt="介護医療福祉の総合サイト[T-IS ティーズ] ">
           </div>
         </div>
-        <div class="login_link">
-          <a href="/" class="home_link">ホーム</a>
-          <router-link to="/register" class="reg_link  ml-auto">登録</router-link>      
+        <div class="user_card">
+          <div class="login_link">
+            <a href="/" class="home_link">ホーム</a>
+            <router-link to="/register" class="reg_link  ml-auto">登録</router-link>      
+          </div>
+            <form class="reset_form" autocomplete="off" @submit.prevent="resetPass" method="post">
+              <div class="mb-4  reset">
+                <div class="input-group">
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                    </div>
+                    <input type="text" class="form-control input_user" id="email" name="email" value="" v-model="email" @keyup="focusMail" autofocus placeholder="メール">
+                    <span class="invalid-feedback" role="alert">
+                        <strong></strong>
+                    </span>   
+                </div>
+                <span v-if="errors.email" class="error"><small>{{errors.email}}</small></span>
+              </div>                   
+                <div class="d-flex justify-content-center mt-3">
+                  <button type="submit" name="button" id="getUser" class="btn login_btn">送信</button>
+                </div>
+            </form>
+            <p class="reset_txt">
+              ※ ユーザ名(メールアドレス)を入力してください。<br/>
+              ※ メールアドレス宛にパスワード再設定用のリンクをお送りします。
+          </p>
         </div>
-          <form class="reset_form" autocomplete="off" @submit.prevent="resetPass" method="post">
-            <div class="mb-4  reset">
-              <div class="input-group">
-                  <div class="input-group-append">
-                      <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                  </div>
-                  <input type="text" class="form-control input_user" id="email" name="email" value="" v-model="email" @keyup="focusMail" autofocus placeholder="メール">
-                  <span class="invalid-feedback" role="alert">
-                      <strong></strong>
-                  </span>   
-              </div>
-              <span v-if="errors.email" class="error"><small>{{errors.email}}</small></span>
-            </div>                   
-              <div class="d-flex justify-content-center mt-3">
-                <button type="submit" name="button" id="getUser" class="btn login_btn">送信</button>
-              </div>
-          </form>
-          <p class="reset_txt">
-            ※ ユーザ名(メールアドレス)を入力してください。<br/>
-            ※ メールアドレス宛にパスワード再設定用のリンクをお送りします。
-        </p>
       </div>
     </div>
 </template>
