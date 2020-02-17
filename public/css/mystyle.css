@@ -1085,7 +1085,7 @@ border-radius: 3px;
 }
 
 .loginwrapper .input-group {
-    margin-bottom: 30px;
+    margin-bottom: 35px;
 }
 
 #register.loginwrapper .input-group {
@@ -1099,7 +1099,7 @@ border-radius: 3px;
 .loginwrapper .error {
     position: absolute;
     top: 38px;
-    margin-top: 2px;
+    margin-top: 1.5px;
     line-height: 0.9;
     background-color: #fff;
     padding: 2px 5px;
@@ -9699,6 +9699,7 @@ padding: 0;
 }
 
 @media only screen and (max-width:1024px) {
+   
     .cross-btn {
         right: 80px !important;
     }
@@ -10532,6 +10533,9 @@ width: 18rem;
 }
 
 @media only screen and (max-width:768px) {
+    .ads-slider{
+        top: 30px;
+    }
     .tab {
         margin-top: 20px;
     }

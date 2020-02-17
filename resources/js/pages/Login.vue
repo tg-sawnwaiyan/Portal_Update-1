@@ -14,22 +14,22 @@
         <h3 class="user_name">{{name}}</h3>
         <form autocomplete="off" @submit.prevent="login" method="post">
             <div class="input-group">
-              <div class="d-flex w-100">
+              
                 <div class="input-group-append">
                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                 </div>
               <input type="text" id="email" class="form-control input_user" placeholder="メール" v-model="email"  autofocus @keyup="focusMail"> 
-              </div>
+             
               <span v-if="errors.email" class="error"><small>{{errors.email}}</small></span>
             </div>
             
             <div class="input-group">
-              <div class="d-flex  w-100">
+             
                   <div class="input-group-append">
                       <span class="input-group-text"><i class="fas fa-key"></i></span>
                   </div>
                   <input type="password" class="form-control input_pass" name="password" value=""  id="password" v-model="password" placeholder="パスワード" @keyup="focusPassword" >
-              </div>
+             
                 <span v-if="errors.password" class="error"><small>{{errors.password}}</small></span>
             </div>
             <div class="d-flex justify-content-center mt-3">
