@@ -55,7 +55,7 @@
                         <span v-if="errors.main_point" class="error">{{errors.main_point}}</span>
                     </div>
                     <div class="form-group">
-                        <label>カテゴリー: hhhh <span class="error sp2">必須</span></label>
+                        <label>カテゴリー: <span class="error sp2">必須</span></label>
                             <select v-model="selectedValue" class="form-control" @change='getstates()'>
                                 <option v-bind:value="0">選択してください。</option>
                                 <option v-for="category in categories" :key="category.id" v-bind:value="category.id">
@@ -76,7 +76,7 @@
                                 <input type="hidden" v-model="old_photo" >
                                 <div class="d-sm-flex">
                                     <div class="d-flex align-items-center cat_box">
-                                         <label class="cat_lbl"> カテゴリー: ggg</label>
+                                         <label class="cat_lbl"> カテゴリー: </label>
                                         <select v-model="category_id_1" id="categories" class="form-control cat_select" @change='getPostsByCatId()'>
                                             <option v-for="category in categories" :key="category.id" v-bind:value="category.id">
                                                 {{category.name}}
