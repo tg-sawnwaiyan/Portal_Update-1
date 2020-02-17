@@ -223,7 +223,7 @@ label {
 
 .btn-file {
     border: 1px dashed #eee;
-    background: #ccc9c9ee;
+    background: #ccc9c9;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
@@ -323,7 +323,13 @@ span:hover::before {
     border-radius: 10px;
 }
 
-
+.unauth-page {
+    position: relative;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+}
 /********************************** End Common **********************************/
 
 
@@ -9674,8 +9680,7 @@ padding: 0;
     /*End Admin Sidebar  */
 }
 
-@media only screen and (max-width:1024px) {
-   
+@media only screen and (max-width:1024px) {    
     .cross-btn {
         right: 80px !important;
     }
@@ -9890,6 +9895,12 @@ padding: 0;
 }
 
 @media only screen and (max-width: 990px) {
+    .ads-slider{
+        top: 30px;
+    }
+    .tab {
+        margin-top: 20px;
+    }
     #myTabContent {
         margin-bottom: 10px;
     }
@@ -10509,6 +10520,9 @@ width: 18rem;
 }
 
 @media only screen and (max-width:768px) {
+    .title {        
+        padding-bottom: 0px;
+    }
     .ads-slider{
         top: 30px;
     }
@@ -11018,7 +11032,7 @@ width: 18rem;
     /*end create news */
 }
 
-@media only screen and (max-width:480px) {
+@media only screen and (max-width:480px) {    
     /*news*/
     .ads-slider{
         top: 10px;
