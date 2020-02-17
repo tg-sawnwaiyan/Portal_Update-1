@@ -26,9 +26,9 @@
                         <!-- </form> -->
 
 
-                       <!-- slier -->
+                       <!-- slider -->
                       
-                        <slick  v-if="latest_post_all_cats.length > 0" ref="slick" :options="categoryslider" class="cat-slider d-block d-sm-none">  
+                        <slick  v-if="latest_post_all_cats.length > 0 && status == '0'" ref="slick" :options="categoryslider" class="cat-slider d-block d-sm-none">  
                         
                             <div class="list-group-item adslist-card m-b-10"  v-for="latest_post_all_cat in latest_post_all_cats" :key="latest_post_all_cat.id">
                                  <router-link :to="{name:'newdetails', params: {id:latest_post_all_cat.id}}">
