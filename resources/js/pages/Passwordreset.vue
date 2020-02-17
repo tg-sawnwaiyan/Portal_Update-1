@@ -1,51 +1,37 @@
 <template>
-    <div class="loginwrapper">
-		<div class="d-flex justify-content-center h-100">
-        <div class="user_card">
-            <div class="links" style="top:-65px;">
-              <!-- <router-link to="/" class="mr-auto text-white">ホーム</router-link> -->
-              <router-link to="/login" class="ml-auto text login_3">ログイン</router-link>
-              <a href="/" class="mr-auto text-white login_4">ホーム</a>
-              <!-- <a href="/register" class="ml-auto text">登録</a> -->
-            </div>
-
-            <div class="d-flex justify-content-center">
-              <div class="brand_logo_container">
-                <img src="/images/login.png" class="brand_logo" alt="logo">
-              </div>
-            </div>            
-            <div class="d-flex justify-content-center">
-              <div class="row width">
-                <div class="col-12 m-t-40">   
-                  <!-- <div class="user_name">パスワードのリセット</div>                       -->
-                <form autocomplete="off" @submit.prevent="resetPass" method="post">
-                  <div class="mb-50  reset">
-                    <div class="input-group">
-                        <div class="input-group-append">
-                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                        </div>
-                        <input type="text" class="form-control input_user" id="email" name="email" value="" v-model="email" @keyup="focusMail" autofocus placeholder="ユーザー名">
-                        <span class="invalid-feedback" role="alert">
-                            <strong></strong>
-                        </span>   
-                    </div>
-                    <span v-if="errors.email" class="error"><small>{{errors.email}}</small></span>
-                  </div>
-                    
-                    
-                    <div class="d-flex justify-content-center mt-3">
-                      <button type="submit" name="button" id="getUser" class="btn login_btn">送信</button>
-                    </div>
-                </form>
-                </div>
-              </div>
-            </div>
-            <div style="text-align: justify;" class="m-t-20 d-flex">
-                ※ ユーザ名(メールアドレス)を入力してください。<br/>
-                ※ メールアドレス宛にパスワード再設定用のリンクをお送りします。
-            </div>
+    <div class="loginwrapper" id="psd_reset">
+      <div class="user_card">
+        <div class="logo_wrap">
+          <div class="brand_logo_container logo_bk">
+            <img src="/images/login.png" class="brand_logo" alt="介護医療福祉の総合サイト[T-IS ティーズ] ">
+          </div>
         </div>
-    </div>
+        <div class="login_link">
+          <a href="/" class="home_link">ホーム</a>
+          <router-link to="/register" class="reg_link  ml-auto">登録</router-link>      
+        </div>
+          <form class="reset_form" autocomplete="off" @submit.prevent="resetPass" method="post">
+            <div class="mb-4  reset">
+              <div class="input-group">
+                  <div class="input-group-append">
+                      <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                  </div>
+                  <input type="text" class="form-control input_user" id="email" name="email" value="" v-model="email" @keyup="focusMail" autofocus placeholder="メール">
+                  <span class="invalid-feedback" role="alert">
+                      <strong></strong>
+                  </span>   
+              </div>
+              <span v-if="errors.email" class="error"><small>{{errors.email}}</small></span>
+            </div>                   
+              <div class="d-flex justify-content-center mt-3">
+                <button type="submit" name="button" id="getUser" class="btn login_btn">送信</button>
+              </div>
+          </form>
+          <p class="reset_txt">
+            ※ ユーザ名(メールアドレス)を入力してください。<br/>
+            ※ メールアドレス宛にパスワード再設定用のリンクをお送りします。
+        </p>
+      </div>
     </div>
 </template>
 <script>
@@ -85,7 +71,7 @@
         if((this.email != '' && this.mail_reg.test(this.email))){        
             this.errors.email='';
         }else{        
-            this.errors.email ='※メールアドレスが正しくありません。もう一度入力してください。';         
+            this.errors.email ='※メールアドレスが必須です。';         
         }    
 
         if(this.errors.email == '')
@@ -131,13 +117,3 @@
       }
   }
 </script>
-
-<style>
-.reset{
-  margin-bottom:50px;
-  margin-top:30px;
-}
-.reset .error{
-  position: absolute;
-}
-</style>
