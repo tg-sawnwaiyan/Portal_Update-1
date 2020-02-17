@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
     <style>
-        .container {
+        .container-autho {
             position: relative;
             align-items: center;
             display: flex;
@@ -25,7 +25,7 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container-autho">
         <div class="content">
             <div class="title">
             <div class="col-12" style="margin:0 auto;margin-bottom: 30px;">
