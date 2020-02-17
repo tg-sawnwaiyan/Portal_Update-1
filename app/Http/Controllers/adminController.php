@@ -15,7 +15,7 @@ class adminController extends Controller
     {
 
             return view('auth.login');
-    }
+    }    
     public function getMap(Request $request){
 
         return response()->json($request);
