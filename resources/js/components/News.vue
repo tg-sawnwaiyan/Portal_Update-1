@@ -5,7 +5,7 @@
                 <div class="row m-lr-0">
                     <div class="col-md-12 m-lr-0 p-0">
                         <!-- <form class="col-lg-12 mb-2 pad-free"> -->
-                            <div class="row col-md-12 m-lr-0 p-0">
+                            <div class="row col-md-12 m-lr-0 p-0" v-if="latest_post != null">
                                 <div class="col-sm-12 col-md-3 col-lg-6">
                                     <div class="col-md-2 float-right">
                                         <!-- <span class="btn btn my-2 col-md-12 my-sm-0 danger-bg-color btn-danger" v-if="status == 1" @click="clearSearch()">X</span> -->
@@ -98,8 +98,7 @@
                         </slick>
                        <!-- slider -->
 
-
-                        <div class="row col-12 m-lr-0 p-0" v-if="status == '0'" id="view-1024">
+                        <div class="row col-12 m-lr-0 p-0" v-if="status == '0' && latest_post != null" id="view-1024">
                             <!-- category box -->
                             <div class="card col-md-12 col-lg-6 pad-new d-none d-sm-block first-child" style="border:0px!important;">
 
@@ -1103,7 +1102,7 @@
 
             posts: [],
 
-            latest_post: [],
+            latest_post: null,
 
             latest_post_all_cats: [],
 
@@ -1155,7 +1154,9 @@
 
     created() {
         this.$nextTick(() => {
-            this.cat_box_width = this.$refs.infoBox.clientWidth;
+            if(this.$refs.infoBox){
+                this.cat_box_width = this.$refs.infoBox.clientWidth;
+            }
         })  
         var today = new Date();
         var month =(String) (today.getMonth()+1);
@@ -1260,21 +1261,20 @@
             },
                   
             newsToggle(id)
+            {
+                var class_by_id = $('#newstogg'+id).attr('class');
+                if(class_by_id == "fas fa-sort-down animate rotate")
                 {
-
-                    var class_by_id = $('#newstogg'+id).attr('class');
-                    if(class_by_id == "fas fa-sort-down animate rotate")
-                    {
-                        $('#newstogg'+id).removeClass("fas fa-sort-down animate rotate");
-                        $('.newsChangeLink'+id).addClass("fas fa-sort-down");
-                        $('#newsChangeLink'+id).show('medium');
-                    }
-                    else {
-                        $('#newstogg'+id).removeClass("fas fa-sort-down");
-                        $('.newsChangeLink'+id).removeClass("fas fa-sort-down");
-                        $('#newstogg'+id).addClass("fas fa-sort-down animate rotate");
-                        $('#newsChangeLink'+id).hide('medium');
-                    }
+                    $('#newstogg'+id).removeClass("fas fa-sort-down animate rotate");
+                    $('.newsChangeLink'+id).addClass("fas fa-sort-down");
+                    $('#newsChangeLink'+id).show('medium');
+                }
+                else {
+                    $('#newstogg'+id).removeClass("fas fa-sort-down");
+                    $('.newsChangeLink'+id).removeClass("fas fa-sort-down");
+                    $('#newstogg'+id).addClass("fas fa-sort-down animate rotate");
+                    $('#newsChangeLink'+id).hide('medium');
+                }
 
             },
             log() {
@@ -1283,48 +1283,37 @@
             getAllCat: function() {
                 this.axios .get('/api/home') 
                 .then(response => {
-                        this.cats = response.data;
-                        var total_word = 0;
-                        $.each(this.cats, function(key,value) {
-                            total_word += value.name.length;
-                        });
+                this.cats = response.data;
+                var total_word = 0;
+                $.each(this.cats, function(key,value) {
+                    total_word += value.name.length;
+                });
 
-                        if(this.cat_box_width/total_word < 23){
-                            this.is_cat_overflow = true;
-                        }
+                if(this.cat_box_width/total_word < 23){
+                    this.is_cat_overflow = true;
+                }
 
-                        // if(total_word > 32) {
-                        //     this.is_cat_overflow = true;
-                        //     this.computed_width = '99%';
-                        // }
-                        // else{
-                        //       this.is_cat_overflow = false;
-                        // }
-
-                    });
-
+                // if(total_word > 32) {
+                //     this.is_cat_overflow = true;
+                //     this.computed_width = '99%';
+                // }
+                // else{
+                //       this.is_cat_overflow = false;
+                // }
+            });
             },
 
             groupBy(array, key) {
-
                 const result = {}
-
                 array.forEach(item => {
-
                     if (!result[item[key]]) {
-
                         result[item[key]] = []
-
                     }
-
                     result[item[key]].push(item)
-
                 })
-
                 return result
-
             },
-
+            // for pattern
             getLatestPostsByCatID: function() {
                 this.post_groups = [];
                 if (this.search_word == null || this.search_word == '' || this.search_word == 'null') {
@@ -1350,9 +1339,7 @@
                 });
 
             },
-
-
-
+            // category box list
             getPostByCatID: function(catId = 1) {
                 if ($('#search-free-word').val() != null) {
                     var search_word = $('#search-free-word').val();
@@ -1383,77 +1370,54 @@
                 });
 
             },
-
+            // categroy box first post
             getLatestPostByCatID: function(catId) {
-
                 if ($('#search-free-word').val()) {
-
                     var search_word = $('#search-free-word').val();
                 } else {
-
                     var search_word = null;
-
                 }
 
                 if (catId) {
-
                     var cat_id = catId;
-
                 } else {
-
                     var cat_id = 1;
-
                 }
 
                 let fd = new FormData();
-
                 fd.append('search_word', search_word)
-
                 fd.append('category_id', cat_id)
-
                 $('.search-item').css('display', 'none');
-
                 this.categoryId = cat_id;
-
                 this.axios.post("/api/get_latest_post" , fd)
-
                 .then(response => {
-
                     this.latest_post = response.data;
-                    // console.log(this.pattern);
+                    if(Object.keys(this.latest_post).length == 0){
+                        this.latest_post = null;
+                    }                  
+                    // console.log("l post",Object.keys(this.latest_post).length);
                 });
 
             },
-
+            // latest posts 14 (right box)
             getLatestPostFromAllCat: function() {
                 // this.$loading(true);
                 this.axios
-
-                    .get('/api/get_latest_post_all_cat')
-
-                    .then(response => {
-                    
-                        this.$loading(false);
-                        this.latest_post_all_cats = response.data;
-                    });
+                .get('/api/get_latest_post_all_cat')
+                .then(response => {                    
+                    this.$loading(false);
+                    this.latest_post_all_cats = response.data;
+                });
             },
 
             searchCategory() {
-
                 if ($('#search-free-word').val() == null || $('#search-free-word').val() == '' || $('#search-free-word').val() == 'null') {
-            console.log("statusBar",this.search_word);
                     this.clearSearch();
-
-                     console.log('null');
-
                 } else {
-
                     this.status = 1;
-
                     this.search_word = $('#search-free-word').val();
                     //console.log("word",this.search_word);
-                    this.getLatestPostsByCatID();                 
-
+                    this.getLatestPostsByCatID();    
                 }
             },
             clearSearch() {
