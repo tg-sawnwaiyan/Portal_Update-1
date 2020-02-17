@@ -323,7 +323,13 @@ span:hover::before {
     border-radius: 10px;
 }
 
-
+.unauth-page {
+    position: relative;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+}
 /********************************** End Common **********************************/
 
 

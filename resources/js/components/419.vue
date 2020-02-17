@@ -1,6 +1,6 @@
 <template>
     <!-- <div>Your Login session is Expired! <br/> <a href="#" @click.prevent="$auth.logout()">Please Login Again.</a></div> -->
-    <div class="container">
+    <div class="unauth-page">
         <div class="content">
             <div class="title">
             <div class="col-12" style="margin:0 auto;margin-bottom: 30px;">
