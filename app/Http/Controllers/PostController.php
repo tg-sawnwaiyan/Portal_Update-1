@@ -217,15 +217,23 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function delete($id)
+    public function delete($id,$cat_id)
     {
+     
         $post = Post::find($id);
         $file= $post->photo;
         $filename = './upload/news/'.$file;
         \File::delete($filename);
         $post->delete();
-
-        $posts = Post::orderBy('id', 'desc')->paginate(12);
+       
+        
+        if($cat_id == 0)
+        {
+           $posts = Post::orderBy('id', 'desc')->paginate(12);
+        }
+        else{
+            $posts = Post::where('category_id',$cat_id)->orderBy('id','desc')->paginate(12);
+        }
         return response()->json($posts);
     }
 

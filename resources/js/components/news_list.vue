@@ -140,6 +140,12 @@
             },
 
             deletePost(id) {
+                   var selected_category = document.getElementById("selectBox").value;
+                   if(selected_category == null || selected_category == '')
+                   {
+                       selected_category = 0;
+                   }
+              
                     this.$swal({
                         title: "確認",
                         text: "ニュースを削除してよろしいでしょうか。",
@@ -155,9 +161,10 @@
                         confirmButtonClass: "all-btn",
                         cancelButtonClass: "all-btn"
                     }).then(response => {
+                       
                        this.$loading(true);
                         this.axios
-                            .delete(`/api/new/delete/${id}`)
+                            .delete(`/api/new/delete/${id}`+'/'+selected_category)
                             .then(response => {
                                 this.news_list = response.data;
 

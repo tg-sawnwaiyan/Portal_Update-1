@@ -186,7 +186,7 @@ Route::group(['middleware' => ['auth:api']], function() {
         Route::post('add', 'PostController@add');
         Route::get('editPost/{id}', 'PostController@edit');
         Route::post('update/{id}', 'PostController@update');
-        Route::delete('delete/{id}', 'PostController@delete');
+        Route::delete('delete/{id}/{cat_id}', 'PostController@delete');
         // Route::post('getPostsByCatId', 'PostController@getPostById');
         Route::post('getPostsByCatId/{id}', 'PostController@getPostById');
     });
