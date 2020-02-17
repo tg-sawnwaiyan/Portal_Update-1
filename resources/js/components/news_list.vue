@@ -206,6 +206,7 @@
                     let fd = new FormData();
                     fd.append("search_word", search_word);
                     fd.append("selected_category", selected_category);
+                    fd.append("postid",null);
                     this.$loading(true);
                     $("html, body").animate({ scrollTop: 0 }, "slow");
                     this.axios.post("/api/news_list/search?page="+page, fd).then(response => {
