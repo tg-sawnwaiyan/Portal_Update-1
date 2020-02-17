@@ -1,7 +1,7 @@
 <template>
   <div>
       <h2 class="site_header">サイトポリシー</h2>
-      <div class="container">
+      <div class="container pad-free-750">
        <div class="sitepolicy_home">
             <span>このウェブサイトは株式会社ティーズ運営しております。</span>
             <br>

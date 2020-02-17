@@ -34,4 +34,9 @@
     color:#2980b9;
     text-shadow: 1px 1px 2px #393939;
 }
+@media only screen and (max-width:480px) {    
+   .w-h{
+        height: 380px;
+   }
+}
 </style>
