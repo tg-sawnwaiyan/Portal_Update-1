@@ -9699,6 +9699,7 @@ padding: 0;
 }
 
 @media only screen and (max-width:1024px) {
+   
     .cross-btn {
         right: 80px !important;
     }
@@ -10532,6 +10533,9 @@ width: 18rem;
 }
 
 @media only screen and (max-width:768px) {
+    .ads-slider{
+        top: 30px;
+    }
     .tab {
         margin-top: 20px;
     }
