@@ -11028,6 +11028,9 @@ width: 18rem;
 
 @media only screen and (max-width:480px) {
     /*news*/
+    .ads-slider{
+        top: 10px;
+    }
     .wrapper-4 img {
         width: 95px;
         float: left;
