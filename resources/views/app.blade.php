@@ -7,7 +7,7 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <meta name="user" content="Auth::user()">
 <title>{{ config('app.name', 'Healthcare Portal') }}</title>
-<link rel="shortcut icon" href="{{ asset('/images/favicon.png') }}">
+<link rel="shortcut icon" href="{{ asset('/images/icon1.ico') }}">
 <script src="{{ asset('js/manifest.js') }}" defer></script> 
 <script src="{{ asset('js/vendor.js') }}" defer></script>
 <script src="{{ asset('js/app.js') }}" defer></script>
@@ -103,7 +103,7 @@
 </style>
 
 </head>
-<body>
+<body class="c-app flex-row align-items-center">
 <div class="se-pre-con"></div>
 
 <div id="app">
