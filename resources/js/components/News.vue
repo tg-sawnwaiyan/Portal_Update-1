@@ -1552,7 +1552,7 @@
                 console.log('right');
               
 
-                this.computed_width = '96%';
+                this.computed_width = '95%';
 
             }           
 
@@ -1678,13 +1678,13 @@
 .left-arr-btn {
     position: relative;
     top: -10px;
-    left: -8px;
+    left: -6px;
 }
 
 .right-arr-btn {
     position: relative;
     top: -10px;
-    right: -20px;
+    right: -18px;
 }
 .left-arr-btn .fas, .right-arr-btn .fas {
     color:#828282;
