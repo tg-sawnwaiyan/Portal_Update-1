@@ -9699,7 +9699,12 @@ padding: 0;
 }
 
 @media only screen and (max-width:1024px) {
-   
+    .ads-slider{
+        top: 30px;
+    }
+    .tab {
+        margin-top: 20px;
+    }
     .cross-btn {
         right: 80px !important;
     }
