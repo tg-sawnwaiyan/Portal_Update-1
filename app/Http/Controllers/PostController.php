@@ -115,7 +115,7 @@ class PostController extends Controller
     }
     
     public function show_related($id) {
-
+    
         $related_news = Post::select('related_news','category_id')->where('id',$id)->get();
         if($related_news[0]["related_news"] != null) {
             $sql = "select * from posts where id in(".$related_news[0]["related_news"].")";

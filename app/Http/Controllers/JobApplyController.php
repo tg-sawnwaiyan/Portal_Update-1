@@ -32,22 +32,32 @@ class JobApplyController extends Controller
         return $jobapply;
     }
     public function jobapplicantlist(){
+      
+        
         if(auth()->user()->role == 2){
-            $query = "SELECT job_applies.* FROM job_applies LEFT JOIN jobs ON job_applies.job_id = jobs.id JOIN customers ON customers.id =jobs.customer_id";
-            $jobapplicant = DB::select($query);
+         
+            // $query = "SELECT job_applies.* FROM job_applies LEFT JOIN jobs ON job_applies.job_id = jobs.id JOIN customers ON customers.id =jobs.customer_id";
+            // $jobapplicant = DB::select($query);
 
             $jobapplicant = DB::table('job_applies')->leftjoin('jobs','jobs.id', '=', 'job_applies.job_id')
                                                     ->join('customers', 'customers.id', '=', 'jobs.customer_id')
                                                     ->select('job_applies.*')
                                                     ->orderBy('id', 'DESC')
                                                     ->paginate(12);
-            //return $jobapplicant;
+        
             return response()->json($jobapplicant);
+          
         }else{
-            $query = "SELECT job_applies.* FROM job_applies LEFT JOIN jobs ON job_applies.job_id = jobs.id JOIN customers ON customers.id =jobs.customer_id WHERE customers.id = ".auth()->user()->customer_id;
-            $jobapplicant = DB::select($query);
-            //return $jobapplicant;
+            $jobapplicant = DB::table('job_applies')->leftjoin('jobs','jobs.id','=','job_applies.job_id')
+                                                    ->join('customers','customers.id','=','jobs.customer_id')
+                                                    ->where('customers.id',auth()->user()->customer_id)
+                                                    ->select('job_applies.*')
+                                                    ->orderBy('id','DESC')
+                                                    ->paginate(12);
+          
+          
             return response()->json($jobapplicant);
+           
         }
     }
 

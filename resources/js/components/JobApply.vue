@@ -105,7 +105,7 @@
             </div>
         </div>
         <div class="form-group m-0 row bd">
-            <div class="col-md-3 col-sm-12 form-left"><strong>ご住所:</strong></div>
+            <div class="col-md-3 col-sm-12 form-left"><strong>ご住所</strong></div>
             <div class="col-md-9 col-sm-12 form-right">
                 <div class="form-group row pl-3">
                     <div class="col-md-12 "><label> 郵便番号 </label> </div>
