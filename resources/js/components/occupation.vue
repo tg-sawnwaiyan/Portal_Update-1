@@ -1,39 +1,37 @@
 <template>
 
-<div class="row o-r1 m-r-5">
-      <div class="col-12 o-r2">
-          <div class="card">
-              <div class="card-body">
-                  <div class="row">
-                      <div class="col-md-12">
-                            <h4 class="page-header header">{{ header }}</h4>
+<div>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="page-header header">{{ header }}</h4>
+                </div>
+                <div class="col-md-12">
+                    <form @submit.prevent ="add">
+                        <div class="form-group">
+                            <label>職種名 <span class="error sp2">必須</span></label>
+                            <input type="text" class="form-control"  v-model="occupation.name"  placeholder="職種名を入力してください。" >
+                            <span v-if="errors.name" class="error">{{errors.name}}</span>
                         </div>
-                        <div class="col-md-12">
-                            <form @submit.prevent ="add">
-                                <div class="form-group">
-                                    <label>職種名 <span class="error sp2">必須</span></label>
-                                    <input type="text" class="form-control"  v-model="occupation.name"  placeholder="職種名を入力してください。" >
-                                    <span v-if="errors.name" class="error">{{errors.name}}</span>
-                                </div>
-                                <div class="form-group">
-                                <label>ペアレント <span class="error sp2">必須</span></label>
-                                    <select v-model="selectedValue" class="form-control" @change='getOccupation()'>
-                                        <option value="0">選択してください。</option>
-                                        <option v-for="occupations in occupationList" :key="occupations.id" v-bind:value="occupations.id">
-                                            {{occupations.name}}
-                                        </option>
-                                    </select>
-                            </div><br/>
-                            <div class="form-group ">
-                                <span class="btn main-bg-color white all-btn" @click="checkValidate()">{{subtitle}}</span>
-                                <router-link class="btn btn-danger all-btn" to="/occupationlist" > キャンセル </router-link>
-                            </div>
-                            </form>
-                        </div>
-                  </div>
-              </div>
-          </div>
-      </div>
+                        <div class="form-group">
+                        <label>ペアレント <span class="error sp2">必須</span></label>
+                            <select v-model="selectedValue" class="form-control" @change='getOccupation()'>
+                                <option value="0">選択してください。</option>
+                                <option v-for="occupations in occupationList" :key="occupations.id" v-bind:value="occupations.id">
+                                    {{occupations.name}}
+                                </option>
+                            </select>
+                    </div><br/>
+                    <div class="form-group ">
+                        <span class="btn main-bg-color white all-btn" @click="checkValidate()">{{subtitle}}</span>
+                        <router-link class="btn btn-danger all-btn" to="/occupationlist" > キャンセル </router-link>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 </template>

@@ -33,8 +33,8 @@ class JobApplyController extends Controller
     }
     public function jobapplicantlist(){
         if(auth()->user()->role == 2){
-            $query = "SELECT job_applies.* FROM job_applies LEFT JOIN jobs ON job_applies.job_id = jobs.id JOIN customers ON customers.id =jobs.customer_id";
-            $jobapplicant = DB::select($query);
+            // $query = "SELECT job_applies.* FROM job_applies LEFT JOIN jobs ON job_applies.job_id = jobs.id JOIN customers ON customers.id =jobs.customer_id";
+            // $jobapplicant = DB::select($query);
 
             $jobapplicant = DB::table('job_applies')->leftjoin('jobs','jobs.id', '=', 'job_applies.job_id')
                                                     ->join('customers', 'customers.id', '=', 'jobs.customer_id')
