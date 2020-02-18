@@ -1546,6 +1546,8 @@
                 const content = this.$refs.content;
 
                 this.scrollTo(content, -300, 800);
+              
+
 
             },
 
@@ -1559,7 +1561,7 @@
                 console.log('right');
               
 
-                this.computed_width = '95%';
+                this.computed_width = '98%';
 
             }           
 
@@ -1663,13 +1665,15 @@
 }
 .cat-nav {
     padding-bottom: 0;
-    height: 40px;
+    /* height: 40px; */
+    display: flex;
+    padding-left: 1.65rem !important;
 }
 
 .card-header-tabs {
-    margin-right: -0.625rem;
-    margin-bottom: 0rem;
-    margin-left: -0.625rem;
+   margin-right: -1.65rem;
+    /* margin-bottom: 0rem; */
+    margin-left: -1.65rem;
     border-bottom: 0;
 }
 .arr-btn {
@@ -1683,17 +1687,20 @@
     /* padding-top: 5px;
     padding-bottom: 4px; */
 }
+.nav-tabs{
+    border-bottom: none;
+}
 
 .left-arr-btn {
-    position: relative;  
-    top: -10px;
-    left: -6px;
+    position: relative;     
+    left: -20px;
+    width: 4%;
 }
 
 .right-arr-btn {
-    position: relative;   
-    top: -10px; 
-    right: -18px;
+    position: relative;      
+    right: -40px;
+    width: 6%;
 }
 .left-arr-btn .fas, .right-arr-btn .fas {
     color:#828282;
@@ -1704,7 +1711,6 @@
     border-bottom-left-radius:0rem !important;
     border-top-left-radius:0rem !important;
     border-top-right-radius:0rem !important;
-
 }
 
 .cat-slider .adslist-card{  
