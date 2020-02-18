@@ -95,12 +95,12 @@
                             </li>
                             <li v-if="$auth.check(2)" class="admin_head admin_head02">
                                管理者画面
+                            </li>                            
+                            <li v-if="$auth.check(1)" @click="toggle">
+                                <router-link :to="{ name: 'profiledit' }"><i class="fa fa-map"></i>  プロファイル設定</router-link>
                             </li>
                             <li v-if="$auth.check(1)" @click="toggle">
                                 <router-link :to="{ name: 'accountlist' }"><i class="fa fa-user"></i>  施設一覧</router-link>
-                            </li>
-                            <li v-if="$auth.check(1)" @click="toggle">
-                                <router-link :to="{ name: 'profiledit' }"><i class="fa fa-map"></i>  プロファイル設定</router-link>
                             </li>
                             <li v-if="$auth.check(1)" @click="toggle">
                                 <router-link :to="{ name: 'profile' }"><i class="fa fa-map"></i>  マイページ編集</router-link>

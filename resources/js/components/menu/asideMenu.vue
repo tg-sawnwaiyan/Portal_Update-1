@@ -237,18 +237,18 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                     title: '事業者管理画面',
                     hidden: this.$auth.check(2),
                     hiddenOnCollapse: true
+                },                
+                {
+                    href: `/profiledit/${this.$auth.user().type_id == 2 ? 'hospital/': 'nursing/'}${this.$auth.user().customer_id}`,
+                    title: 'プロファイル設定',
+                    icon: 'fa fa-map',
+                    hidden: this.$auth.check(2)
                 },
                 {
                     href: `/accountlist/${this.$auth.user().type_id == 2 ? 'hospital/': 'nursing/'}${this.$auth.user().customer_id}`,
                     title: '施設一覧',
                     icon: 'fa fa-user',
                     hidden: this.$auth.check(2),
-                },
-                {
-                    href: `/profiledit/${this.$auth.user().type_id == 2 ? 'hospital/': 'nursing/'}${this.$auth.user().customer_id}`,
-                    title: 'プロファイル設定',
-                    icon: 'fa fa-map',
-                    hidden: this.$auth.check(2)
                 },
                 // {
                 //     href: '/profile',
