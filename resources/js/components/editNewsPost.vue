@@ -76,7 +76,7 @@
                                 <input type="hidden" v-model="old_photo" >
                                 <div class="d-sm-flex">
                                     <div class="d-flex align-items-center cat_box">
-                                         <label class="cat_lbl"> カテゴリー:</label>
+                                         <label class="cat_lbl"> カテゴリー: </label>
                                         <select v-model="category_id_1" id="categories" class="form-control cat_select" @change='getPostsByCatId()'>
                                             <option v-for="category in categories" :key="category.id" v-bind:value="category.id">
                                                 {{category.name}}
@@ -88,6 +88,7 @@
                                     </div>
                                 </div>
                                 <br>
+                            
 
                                 <div class="row m-0">
                                     <div class="related_post_box card card-default" v-for="r_news in related_news.data" :key="r_news.id">
@@ -190,9 +191,9 @@ import {quillEditor} from 'vue-quill-editor'
             created() {
                 this.noimage = 0;
                 this.getResults();
-            },
+            }, 
             mounted() {
-                this.axios.get('/api/category/category_list')
+                this.axios.get('/api/category/category_list/')
                 .then(function(response) {
                     this.categories = response.data;
                 }.bind(this));
@@ -207,6 +208,7 @@ import {quillEditor} from 'vue-quill-editor'
                             .get(`/api/new/editPost/${this.$route.params.id}`)
                             .then((response) => {
                                 this.news = response.data;
+                              
                                
                                this.noimage = 0;
                                 this.checkedNews = [];
@@ -378,7 +380,7 @@ import {quillEditor} from 'vue-quill-editor'
                         fd.append("cat_id", cat_id);
 
                         this.axios
-                        .post('/api/new/getPostsByCatId/page=' + page,fd)
+                        .post('/api/new/getPostsByCatId/page=' + page+"/"+`${this.$route.params.id}`,fd)
                         .then(response => {
                             this.related_news = response.data;
                             if(this.related_news.length > this.size) {
@@ -403,7 +405,8 @@ import {quillEditor} from 'vue-quill-editor'
                         let fd = new FormData();
                         fd.append("search_word", search_word);
                         fd.append("selected_category", cat_id);
-                        this.axios.post("/api/news_list/search?page=" + page,fd).then(response => {
+                        fd.append("postid",`${this.$route.params.id}`)
+                        this.axios.post("/api/news_list/search?page="+ page,fd).then(response => {
                             this.related_news = response.data;
                             this.check_head = true;
                             if(this.related_news.length > this.size) {
