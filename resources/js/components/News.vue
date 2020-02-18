@@ -1665,7 +1665,7 @@
 }
 .cat-nav {
     padding-bottom: 0;
-    /* height: 40px; */
+    height: 36px;
     display: flex;
     padding-left: 1.65rem !important;
 }
