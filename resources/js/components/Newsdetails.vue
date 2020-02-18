@@ -89,6 +89,7 @@
                   <h5 class="seemore_tit" >記事をもっと見る</h5>
                   <br />
                   <!-- 関連ニュース -->
+               
                   <div class="pad-free" v-for="latest_new in latest_news" :key="latest_new.id" style="display:inline;margin-right:10px;" >
                     <a :href="'/newsdetails/'+latest_new.id">
                       <span>{{ latest_new.main_point }} |</span>
@@ -132,8 +133,8 @@
             </div>
             </div> -->
 
-            <div class="row col-md-12 m-lr-0 m-t-15" >
-                <div class="row col-md-12 text-center m-lr-0 pad-free" style="border-top: 2px dashed #eee;" v-if="latest_post_all_cats">
+            <div class="row col-md-12 m-lr-0 m-t-15" >   
+                <div  class="row col-md-12 text-center m-lr-0 pad-free" style="border-top: 2px dashed #eee;" v-if="latest_post_all_cats.length != 0">
                   <h4 class="h4 next-title" style="border-left: 5px solid #2980b9;" >関連ニュース</h4>
                 </div>
                 <div class="related_content">
@@ -186,8 +187,6 @@ export default {
   },
   created() {
     this.noimage = false;
-     console.log("this.noimgae created",this.noimage);
-   
     //this.getLatestPostFromAllCat();
     if(this.$route.path.includes("/newsdetails") && this.$auth.check(2) && this.visit == 'false'){
         this.othersDetails = false;
@@ -233,7 +232,11 @@ export default {
       //     this.latest_post_all_cats= response.data;
       // });
       this.axios.get(`/api/relatednews/${pid}`).then(response => {
-        this.latest_post_all_cats = response.data.related_news;
+        if(response.data.related_news != null)
+        {
+          this.latest_post_all_cats = response.data.related_news;
+        }
+      
         this.latest_news = response.data.latest_news;
       });
     },
