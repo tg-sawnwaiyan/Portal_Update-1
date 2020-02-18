@@ -193,7 +193,7 @@ import {quillEditor} from 'vue-quill-editor'
                 this.getResults();
             }, 
             mounted() {
-                this.axios.get('/api/category/category_list/')
+                this.axios.get('/api/category/category_list')
                 .then(function(response) {
                     this.categories = response.data;
                 }.bind(this));
