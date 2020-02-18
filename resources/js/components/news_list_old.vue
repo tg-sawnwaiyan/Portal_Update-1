@@ -57,7 +57,7 @@
                                     </h5>
                                     <p class="mt-2">{{newsList.main_point}}</p>
                                     <div class="d-flex mt-4">
-                                        <router-link :to="{name: 'editPost', params: {id: newsList.id}}" class="btn edit-borderbtn">編集</router-link>
+                                        <router-link :to="{ path:'/editPost/'+ newsList.id}" class="btn edit-borderbtn">編集</router-link>
                                         <button class="btn delete-borderbtn ml-2" @click="deletePost(newsList.id)">削除</button>
                                     </div>
                                 </td>

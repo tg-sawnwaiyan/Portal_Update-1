@@ -142,6 +142,8 @@ class PostController extends Controller
     public function edit($id)
     {
         $posts = Post::find($id);
+      
+     
         return response()->json($posts);
     }
 
@@ -217,27 +219,42 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function delete($id)
+    public function delete($id,$cat_id)
     {
+     
         $post = Post::find($id);
         $file= $post->photo;
         $filename = './upload/news/'.$file;
         \File::delete($filename);
         $post->delete();
-
-        $posts = Post::orderBy('id', 'desc')->paginate(12);
+       
+        
+        if($cat_id == 0)
+        {
+           $posts = Post::orderBy('id', 'desc')->paginate(12);
+        }
+        else{
+            $posts = Post::where('category_id',$cat_id)->orderBy('id','desc')->paginate(12);
+        }
         return response()->json($posts);
     }
 
     public function search(Request $request)
     {
+      
         $request = $request->all();
 
         $query = Post::query();
 
         if(isset($request['selected_category'])) {
             $category_id = $request['selected_category'];
-            $query = $query->where('category_id', $category_id);
+            if($request['postid'] != null){
+                $query = $query->where('category_id', $category_id)->where('id','<>',$request['postid']);
+            }
+            else{
+                $query = $query->where('category_id', $category_id);
+            }
+           
         }
 
         if(isset($request['search_word'])) {
@@ -248,16 +265,16 @@ class PostController extends Controller
                                 ->orWhere('main_point', 'LIKE', "%{$search_word}%"); 
                         });
         }
-        $query = $query->orderBy('id','DESC')
+        $query = $query->orderBy('created_at','DESC')
                         ->paginate(12);
         return  response()->json($query);
         
     }
 
-    public function getPostById(Request $request) {
-        $request = $request->all();
+    public function getPostById(Request $request,$page,$postid) {
 
-        $posts = Post::where("category_id",$request['cat_id'])->orderBy('created_at','DESC')->paginate(12);
+        $request = $request->all();
+        $posts = Post::where('id','<>',$postid)->where("category_id",$request['cat_id'])->orderBy('created_at','DESC')->paginate(12);
         return response()->json($posts);
     }
 

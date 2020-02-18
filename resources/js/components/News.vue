@@ -5,7 +5,7 @@
                 <div class="row m-lr-0">
                     <div class="col-md-12 m-lr-0 p-0">
                         <!-- <form class="col-lg-12 mb-2 pad-free"> -->
-                            <div class="row col-md-12 m-lr-0 p-0">
+                            <div class="row col-md-12 m-lr-0 p-0" v-if="!latest_post_null">
                                 <div class="col-sm-12 col-md-3 col-lg-6">
                                     <div class="col-md-2 float-right">
                                         <!-- <span class="btn btn my-2 col-md-12 my-sm-0 danger-bg-color btn-danger" v-if="status == 1" @click="clearSearch()">X</span> -->
@@ -26,9 +26,9 @@
                         <!-- </form> -->
 
 
-                       <!-- slier -->
+                       <!-- slider -->
                       
-                        <slick  v-if="latest_post_all_cats.length > 0" ref="slick" :options="categoryslider" class="cat-slider d-block d-sm-none">  
+                        <slick  v-if="latest_post_all_cats.length > 0 && status == '0'" ref="slick" :options="categoryslider" class="cat-slider d-block d-sm-none">  
                         
                             <div class="list-group-item adslist-card m-b-10"  v-for="latest_post_all_cat in latest_post_all_cats" :key="latest_post_all_cat.id">
                                  <router-link :to="{name:'newdetails', params: {id:latest_post_all_cat.id}}">
@@ -98,8 +98,7 @@
                         </slick>
                        <!-- slider -->
 
-
-                        <div class="row col-12 m-lr-0 p-0" v-if="status == '0'" id="view-1024">
+                        <div class="row col-12 m-lr-0 p-0" v-if="status == '0' && !latest_post_null" id="view-1024">
                             <!-- category box -->
                             <div class="card col-md-12 col-lg-6 pad-new d-none d-sm-block first-child" style="border:0px!important;">
 
@@ -1104,6 +1103,7 @@
             posts: [],
 
             latest_post: [],
+            latest_post_null: false,
 
             latest_post_all_cats: [],
 
@@ -1155,7 +1155,9 @@
 
     created() {
         this.$nextTick(() => {
-            this.cat_box_width = this.$refs.infoBox.clientWidth;
+            if(this.$refs.infoBox){
+                this.cat_box_width = this.$refs.infoBox.clientWidth;
+            }            
         })  
         var today = new Date();
         var month =(String) (today.getMonth()+1);
@@ -1420,7 +1422,12 @@
                 .then(response => {
 
                     this.latest_post = response.data;
-                    // console.log(this.pattern);
+                    if(Object.keys(this.latest_post).length == 0){
+                        this.latest_post_null = true;
+                    }
+                    else{
+                        this.latest_post_null = false;
+                    }
                 });
 
             },
@@ -1552,7 +1559,7 @@
                 console.log('right');
               
 
-                this.computed_width = '96%';
+                this.computed_width = '95%';
 
             }           
 
@@ -1678,13 +1685,16 @@
 .left-arr-btn {
     position: relative;
     top: -10px;
-    left: -8px;
+    left: -6px;
 }
 
 .right-arr-btn {
     position: relative;
     top: -10px;
-    right: -26px;
+    right: -18px;
+}
+.left-arr-btn .fas, .right-arr-btn .fas {
+    color:#828282;
 }
 
 .cat-slider .list-group-item{

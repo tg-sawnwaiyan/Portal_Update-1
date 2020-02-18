@@ -59,7 +59,7 @@
                                     </h5>
                                     <p class="mt-2">{{newsList.main_point}}</p>
                                     <div class="d-flex mt-4">
-                                        <router-link :to="{name: 'editPost', params: {id: newsList.id}}" class="btn edit-borderbtn">編集</router-link>
+                                        <router-link :to="{ path:'/editPost/'+ newsList.id}" class="btn edit-borderbtn">編集</router-link>
                                         <button class="btn delete-borderbtn ml-2" @click="deletePost(newsList.id)">削除</button>
                                     </div>
                                 </td>
@@ -140,6 +140,12 @@
             },
 
             deletePost(id) {
+                   var selected_category = document.getElementById("selectBox").value;
+                   if(selected_category == null || selected_category == '')
+                   {
+                       selected_category = 0;
+                   }
+              
                     this.$swal({
                         title: "確認",
                         text: "ニュースを削除してよろしいでしょうか。",
@@ -155,9 +161,10 @@
                         confirmButtonClass: "all-btn",
                         cancelButtonClass: "all-btn"
                     }).then(response => {
+                       
                        this.$loading(true);
                         this.axios
-                            .delete(`/api/new/delete/${id}`)
+                            .delete(`/api/new/delete/${id}`+'/'+selected_category)
                             .then(response => {
                                 this.news_list = response.data;
 
@@ -199,6 +206,7 @@
                     let fd = new FormData();
                     fd.append("search_word", search_word);
                     fd.append("selected_category", selected_category);
+                    fd.append("postid",null);
                     this.$loading(true);
                     $("html, body").animate({ scrollTop: 0 }, "slow");
                     this.axios.post("/api/news_list/search?page="+page, fd).then(response => {

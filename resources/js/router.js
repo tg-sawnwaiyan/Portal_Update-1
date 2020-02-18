@@ -189,7 +189,7 @@ const routes = [
     },
     {
         name: "editPost",
-        path: "/editPost",
+        path: "/editPost/:id",
         component: editPost,
         meta: {
             auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }

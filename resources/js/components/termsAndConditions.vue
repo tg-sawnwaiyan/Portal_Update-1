@@ -1,7 +1,7 @@
 <template>
   <div>
       <h2 class="site_header">プライバシーポリシー</h2>
-      <div class="container">
+      <div class="container pad-free-750">
         <div class="title">
           <h5>個人情報保護方針</h5>
         </div>

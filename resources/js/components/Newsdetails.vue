@@ -19,7 +19,7 @@
           <!-- <span v-else>Back</span> -->
           <div v-else class="d-flex justify-content-end mb-4">
               <router-link to="/news_list" class="btn mr-2 all-btn submit" style="background:#ffc107;"><i class="fas fa-arrow-left"></i> 戻る</router-link>
-              <router-link v-if="getData" :to="{name: 'editPost', params: {id: newdetails[0].id}}" class="btn edit-borderbtn">編集</router-link>&nbsp;
+              <router-link v-if="getData"  :to="{ path:'/editPost/'+ newdetails[0].id}" class="btn edit-borderbtn">編集</router-link>&nbsp;
           </div>
           
         </div>

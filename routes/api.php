@@ -181,14 +181,14 @@ Route::group(['middleware' => ['auth:api']], function() {
 
     // News
     Route::post('news_list/search', 'PostController@search');
-    Route::get('news_list', 'PostController@index');
+Route::get('news_list', 'PostController@index');
     Route::group(['prefix' => 'new'], function () {
         Route::post('add', 'PostController@add');
         Route::get('editPost/{id}', 'PostController@edit');
         Route::post('update/{id}', 'PostController@update');
-        Route::delete('delete/{id}', 'PostController@delete');
+        Route::delete('delete/{id}/{cat_id}', 'PostController@delete');
         // Route::post('getPostsByCatId', 'PostController@getPostById');
-        Route::post('getPostsByCatId/{id}', 'PostController@getPostById');
+        Route::post('getPostsByCatId/{id}/{post_id}', 'PostController@getPostById');
     });
     // End News
 
