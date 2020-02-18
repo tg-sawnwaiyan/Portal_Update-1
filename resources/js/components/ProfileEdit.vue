@@ -109,19 +109,20 @@
                                             <div class="form-group" id="newcreate">
                                               
                                                 <span v-if="customer_info.type_id == 2" class="btn main-bg-color white all-btn"  @click="Save()">
-                                                    New Hospital Account Create
+                                                    新規病院施設作成
                                                 </span>
                                                 <span v-else class="btn main-bg-color white all-btn"  @click="Save()">
-                                                    New Nursing Account Create
+                                                    新規介護施設作成
                                                 </span>
                                             </div>
                                             <div id="nusNew">
                                                  <div class="form-group">
-                                                    <label>Name </label>
-                                                    <input type="text" class="form-control" v-model="nursing_data.name" placeholder="Enter  name...">
+                                                    <label>施設名 </label>
+                                                    <input type="text" class="form-control" v-model="nursing_data.name" placeholder="施設名を入力してください。">
                                                     <span v-if="errors.name" class="error">{{errors.name}}</span>
                                                 </div>
                                                 <div class="form-group" >
+                                                    <label>都道府県</label>
                                                     <select v-model="nursing_data.city_id" class="division form-control"  @change="getTownship()">
                                                             <option value="0">選択してください。</option>
                                                             <option v-for="cities in city_list" :key="cities.id" v-bind:value="cities.id">
@@ -131,8 +132,9 @@
                                                      <span v-if="errors.city" class="error">{{errors.city}}</span>
                                                 </div>
                                                 <div class="form-group" >
+                                                    <label>市区町村</label>
                                                     <select v-model="nursing_data.town_id" class="division form-control" @change="changeTownship()"  >
-                                                            <option value="0">市区町村を選択してください。</option>
+                                                            <option value="0">選択してください。</option>
                                                             <option v-for="tw in town_list" :key="tw.id" v-bind:value="tw.id">
                                                                 {{tw.township_name}}
                                                             </option>
@@ -140,11 +142,11 @@
                                                      <span v-if="errors.township" class="error">{{errors.township}}</span>
                                                 </div>
                                                 <div class="form-group">
-                                                     <span  class="btn btn-danger"  style="margin-left:700px;" @click="CancelNew()">
-                                                        Cancel
+                                                     <span  class="btn btn-danger"  style="margin-left:680px;" @click="CancelNew()">
+                                                        キャンセル
                                                     </span>
                                                     <span style="float:right" class="btn main-bg-color white all-btn"  @click="CreateNew()">
-                                                        Create
+                                                        作成
                                                     </span>
                                                 </div>
                                             </div>
@@ -254,7 +256,7 @@
                         this.errors.name = "";
                     }
                     else{
-                       this.errors.name = "Name is required";
+                       this.errors.name = "施設名は必須です";
                     }
                     if(this.nursing_data.city_id != 0 )
                     {
@@ -277,14 +279,18 @@
                                         .then((response) => {
                                             this.$swal({
                                             // title: "確認",
-                                            text: "Success",
+                                            text: "施設を作成しました。",
                                             type: "success",
                                             width: 350,
                                             height: 200,
                                             confirmButtonColor: "#6cb2eb",                       
-                                            confirmButtonText: "作成",
+                                            confirmButtonText: "閉じる",
                                             confirmButtonClass: "all-btn",
                                         
+                                }).then(response => { 
+                                     this.$router.push({
+                                    name: 'accountlist',
+                                     });
                                 });
 
                             document.getElementById('newcreate').style.display = "block";
