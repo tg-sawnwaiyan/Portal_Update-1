@@ -32,7 +32,10 @@ class JobApplyController extends Controller
         return $jobapply;
     }
     public function jobapplicantlist(){
+        return 'aa';
+        
         if(auth()->user()->role == 2){
+            return 'a';
             $query = "SELECT job_applies.* FROM job_applies LEFT JOIN jobs ON job_applies.job_id = jobs.id JOIN customers ON customers.id =jobs.customer_id";
             $jobapplicant = DB::select($query);
 
@@ -43,11 +46,14 @@ class JobApplyController extends Controller
                                                     ->paginate(12);
             //return $jobapplicant;
             return response()->json($jobapplicant);
+          
         }else{
+            return 'b';
             $query = "SELECT job_applies.* FROM job_applies LEFT JOIN jobs ON job_applies.job_id = jobs.id JOIN customers ON customers.id =jobs.customer_id WHERE customers.id = ".auth()->user()->customer_id;
             $jobapplicant = DB::select($query);
             //return $jobapplicant;
             return response()->json($jobapplicant);
+           
         }
     }
 
