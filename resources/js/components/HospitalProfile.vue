@@ -181,7 +181,7 @@
 
                             <div class="col-lg-6">
 
-                              <span>から:</span>
+                              <span>から</span>
 
                               <input
 
@@ -197,7 +197,7 @@
 
                             <div class="col-lg-6 m-t-768">
 
-                              <span>まで:</span>
+                              <span>まで</span>
 
                               <input
 
@@ -221,7 +221,7 @@
 
                             <div class="col-lg-6">
 
-                              <span>から:</span>
+                              <span>から</span>
 
                               <input
 
@@ -237,7 +237,7 @@
 
                             <div class="col-lg-6 m-t-768">
 
-                              <span>まで:</span>
+                              <span>まで</span>
 
                               <input
 
@@ -267,7 +267,7 @@
 
                             <div class="col-lg-6">
 
-                              <span>から:</span>
+                              <span>から</span>
 
                               <input
 
@@ -283,7 +283,7 @@
 
                             <div class="col-lg-6 m-t-768">
 
-                              <span>まで:</span>
+                              <span>まで</span>
 
                               <input
 
@@ -307,7 +307,7 @@
 
                             <div class="col-lg-6">
 
-                              <span>から:</span>
+                              <span>から</span>
 
                               <input
 
@@ -323,7 +323,7 @@
 
                             <div class="col-lg-6 m-t-768">
 
-                              <span>まで:</span>
+                              <span>まで</span>
 
                               <input
 
@@ -353,7 +353,7 @@
 
                             <div class="col-lg-6">
 
-                              <span>から:</span>
+                              <span>から</span>
 
                               <input
 
@@ -369,7 +369,7 @@
 
                             <div class="col-lg-6 m-t-768">
 
-                              <span>まで:</span>
+                              <span>まで</span>
 
                               <input
 
@@ -393,7 +393,7 @@
 
                             <div class="col-lg-6">
 
-                              <span>から:</span>
+                              <span>から</span>
 
                               <input
 
@@ -409,7 +409,7 @@
 
                             <div class="col-lg-6 m-t-768">
 
-                              <span>まで:</span>
+                              <span>まで</span>
 
                               <input
 
@@ -439,7 +439,7 @@
 
                             <div class="col-lg-6">
 
-                              <span>から:</span>
+                              <span>から</span>
 
                               <input
 
@@ -455,7 +455,7 @@
 
                             <div class="col-lg-6 m-t-768">
 
-                              <span>まで:</span>
+                              <span>まで</span>
 
                               <input
 
@@ -479,7 +479,7 @@
 
                             <div class="col-lg-6">
 
-                              <span>から:</span>
+                              <span>から</span>
 
                               <input
 
@@ -495,7 +495,7 @@
 
                             <div class="col-lg-6 m-t-768">
 
-                              <span>まで:</span>
+                              <span>まで</span>
 
                               <input
 
@@ -525,7 +525,7 @@
 
                             <div class="col-lg-6">
 
-                              <span>から:</span>
+                              <span>から</span>
 
                               <input
 
@@ -541,7 +541,7 @@
 
                             <div class="col-lg-6 m-t-768">
 
-                              <span>まで:</span>
+                              <span>まで</span>
 
                               <input
 
@@ -565,7 +565,7 @@
 
                             <div class="col-lg-6">
 
-                              <span>から:</span>
+                              <span>から</span>
 
                               <input
 
@@ -581,7 +581,7 @@
 
                             <div class="col-lg-6 m-t-768">
 
-                              <span>まで:</span>
+                              <span>まで</span>
 
                               <input
 
@@ -611,7 +611,7 @@
 
                             <div class="col-lg-6">
 
-                              <span>から:</span>
+                              <span>から</span>
 
                               <input
 
@@ -627,7 +627,7 @@
 
                             <div class="col-lg-6 m-t-768">
 
-                              <span>まで:</span>
+                              <span>まで</span>
 
                               <input
 
@@ -651,7 +651,7 @@
 
                             <div class="col-lg-6">
 
-                              <span>から:</span>
+                              <span>から</span>
 
                               <input
 
@@ -667,7 +667,7 @@
 
                             <div class="col-lg-6 m-t-768">
 
-                              <span>まで:</span>
+                              <span>まで</span>
 
                               <input
 
@@ -697,7 +697,7 @@
 
                             <div class="col-lg-6">
 
-                              <span>から:</span>
+                              <span>から</span>
 
                               <input
 
@@ -713,7 +713,7 @@
 
                             <div class="col-lg-6 m-t-768">
 
-                              <span>まで:</span>
+                              <span>まで</span>
 
                               <input
 
@@ -737,7 +737,7 @@
 
                             <div class="col-lg-6">
 
-                              <span>から:</span>
+                              <span>から</span>
 
                               <input
 
@@ -753,7 +753,7 @@
 
                             <div class="col-lg-6 m-t-768">
 
-                              <span>まで:</span>
+                              <span>まで</span>
 
                               <input
 
@@ -1144,9 +1144,9 @@
                     </div>
 
                     <div class="col-md-12">
-                        <label class="m-t-10">タイトル:</label>
+                        <label class="m-t-10">タイトル</label>
                         <input type="text" name="title" placeholder="タイトルを入力してください。" class="form-control m-b-15 title white-bg-color" v-model="img.title" />
-                        <label>コンテンツ:</label>
+                        <label>コンテンツ</label>
                         <textarea name="description" placeholder="コンテンツを入力してください。" class="form-control m-b-15 description white-bg-color" v-model="img.description" ></textarea>
 
                     </div>
@@ -1187,15 +1187,15 @@
               <div class="col-md-6 gallery-area-video p0-480" v-bind:id="'video'+indx" v-for="(video,indx) in video_arr" :key="video.id" >
 
                 <div class="col-md-12">
-                  <label>URL:</label>
+                  <label>URL</label>
                   <input type="text" name="url" placeholder="URLを入力してください。" class="form-control m-b-15 video-url white-bg-color" v-model="video.photo" />
                 
                 </div>
 
                 <div class="col-md-12">
-                  <label>タイトル:</label>
+                  <label>タイトル</label>
                   <input type="text" name="title" placeholder="タイトルを入力してください。" class="form-control m-b-15 title white-bg-color" v-model="video.title" />
-                  <label>コンテンツ:</label>
+                  <label>コンテンツ</label>
                   <textarea name="description" placeholder="コンテンツを入力してください。" class="form-control m-b-15 description white-bg-color" v-model="video.description" ></textarea>
 
                 </div>
