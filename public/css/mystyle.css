@@ -162,6 +162,21 @@ body::-webkit-scrollbar-thumb {
     border-radius: 0px !important;
 }
 
+input[placeholder] {
+    text-overflow: ellipsis;
+}
+
+::-moz-placeholder {
+    text-overflow: ellipsis;
+}
+
+
+/* firefox 19+ */
+
+input:-moz-placeholder {
+    text-overflow: ellipsis;
+}
+
 .info {
     width: 100%;
     height: 120px;
@@ -896,12 +911,13 @@ border-radius: 3px;
     display: flex;
     -ms-flex-direction: column;
     flex-direction: column;
-    height: 100vh;
     flex-direction: row!important;
     -ms-flex-align: center!important;
     align-items: center!important;
     justify-content: center;
     background: #FBFBFB;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
 }
 
 .user_card {
@@ -1090,6 +1106,14 @@ border-radius: 3px;
 
 .loginwrapper .input-group {
     margin-bottom: 35px;
+}
+
+#register.loginwrapper .input-group {
+    margin-bottom: 0;
+}
+
+#register.loginwrapper .form-group {
+    margin: 0 0 35px 0;
 }
 
 
@@ -1899,14 +1923,12 @@ border-top: 5px solid #e66527; */
     background: #ddd;
 }
 
-
-
 .no_search_data {
     width: 100%;
     margin: 0 auto;
     padding-top: 10%;
     padding-bottom: 10%;
-} 
+}
 
 
 /*end no data*/
@@ -9675,7 +9697,6 @@ padding: 0;
 }
 
 @media only screen and (max-width:1024px) {
-   
     .cross-btn {
         right: 80px !important;
     }
@@ -10509,7 +10530,7 @@ width: 18rem;
 }
 
 @media only screen and (max-width:768px) {
-    .ads-slider{
+    .ads-slider {
         top: 30px;
     }
     #register.loginwrapper {
@@ -11020,7 +11041,7 @@ width: 18rem;
 
 @media only screen and (max-width:480px) {
     /*news*/
-    .ads-slider{
+    .ads-slider {
         top: 10px;
     }
     .wrapper-4 img {
@@ -11662,6 +11683,9 @@ background-image: none;
         min-width: 50px;
         padding: 5px;
     }
+    .admin_header div span {
+        display: none;
+    }
 }
 
 @media only screen and (max-width: 380px) {
@@ -12104,9 +12128,6 @@ strong {
     }
     .postal {
         width: 100%;
-    }
-    .admin_header div span {
-        display: none;
     }
     #news_list .select_box {
         width: 70%;
