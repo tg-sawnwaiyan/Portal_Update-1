@@ -1674,7 +1674,9 @@
 }
 .arr-btn {
     cursor: pointer;
-    display: inline-block;
+    display: inline-flex;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flex;
     background:transparent;
     padding: 5px 1px 4px;
     font-size: 25px;
@@ -1683,14 +1685,14 @@
 }
 
 .left-arr-btn {
-    position: relative;
+    position: relative;  
     top: -10px;
     left: -6px;
 }
 
 .right-arr-btn {
-    position: relative;
-    top: -10px;
+    position: relative;   
+    top: -10px; 
     right: -18px;
 }
 .left-arr-btn .fas, .right-arr-btn .fas {
@@ -1729,7 +1731,9 @@
     background: #5f5f5f;
 }
 #myTab ul li {
-    display: inline-block;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    display: -webkit-inline-flex;
 }
 
 .nav {

@@ -907,7 +907,8 @@ border-radius: 3px;
     -ms-flex-align: center!important;
     align-items: center!important;
     justify-content: center;
-    background: #FBFBFB;
+    /* background: #FBFBFB; */
+    background: #f8f8f8;
 }
 
 .user_card {
@@ -3909,7 +3910,7 @@ ul.hospital-subject>li:before {
 }
 
 .searchNews {
-    width: 100%;
+    width: 80%;
     border: 3px solid #75b777;
     border-right: none;
     padding: 5px;
@@ -3949,7 +3950,7 @@ ul.hospital-subject>li:before {
 }
 
 .searchButtonNews {
-    width: 15%;
+    width: 20%;
     height: 40px;
     border: 1px solid #75b777;
     background: #75b777;
@@ -8939,8 +8940,8 @@ font-size: 18px; */
     background-color: #e2d9d96b;
     padding: 22px;
     border-radius: 10px;
-    max-width: 920px;
-    margin: auto;
+    max-width: 80%;
+    margin: 0 auto;
     background: url(https://www.sagasix.jp/images/support/consultation/bg_check.gif) repeat center top;
     border: 1px solid #dad3d2;
     border-radius: 7px;
@@ -8948,25 +8949,10 @@ font-size: 18px; */
     position: relative;
     overflow: visible;
 }
-
-
-/* nursingSearch */
-
 
 /*commentform*/
 
-.comform {
-    background-color: #e2d9d96b;
-    padding: 22px;
-    border-radius: 10px;
-    margin: auto;
-    background: url(https://www.sagasix.jp/images/support/consultation/bg_check.gif) repeat center top;
-    border: 1px solid #dad3d2;
-    border-radius: 7px;
-    padding: 30px;
-    position: relative;
-    overflow: visible;
-}
+
 
 .title_comment {
     margin-left: -15px;
@@ -10738,10 +10724,10 @@ width: 18rem;
         display: none;
     }
     .searchButton {
-        width: 13%;
+        width: 20%;
     }
     .searchTerm {
-        width: 87%;
+        width: 80%;
     }
     #pc-hos-fav-local,
     #pc-nus-fav-local,
