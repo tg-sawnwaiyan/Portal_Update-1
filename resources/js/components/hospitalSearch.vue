@@ -235,15 +235,8 @@
                                         <div class="col-md-10 col-sm-12">
                                         <h5 class="hos-title">
                                             <router-link :to="{ path:'/profile/hospital/'+ hos.hos_id}" class="pseudolink">{{hos.name}}</router-link>
-                                        </h5>
-                                     
-                                        <div class="clearfix d-flex m-t-10">
-                                        <span v-for="(sub,index) in subject" :key="index+'-'+sub.name+'-'+hos.hos_id">
-                                            <span v-if="sub.customer_id == hos.cus_id" class="job_status">
-                                              {{sub.name}}
-                                            </span>
-                                        </span>
-                                    </div>
+                                        </h5>                                     
+                                      
                                         </div>
                                         <div class="col-md-2 col-sm-12">
                                         <p class="float-right pc-768">
@@ -254,6 +247,15 @@
                                         <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == 'check'" :class="'done_pro_id'+hos.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',hos.hos_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                                         </p>
                                         </div>
+                                    </div>
+                                    <div class="row col-12">
+                                      <div class="clearfix">
+                                        <span v-for="(sub,index) in subject" :key="index+'-'+sub.name+'-'+hos.hos_id">
+                                            <span v-if="sub.customer_id == hos.cus_id" class="job_status">
+                                              {{sub.name}}
+                                            </span>
+                                        </span>
+                                      </div>
                                     </div>
                                     </div>
 
@@ -285,7 +287,7 @@
                                             <!--special feature and subject-->
                                             <h5 class="header m-t-10">こだわりの特長</h5>
                                             <span v-for="(spe,index) in specialfeatures" :key="index+'-'+spe.name+'-'+hos.hos_id">
-                                                <span v-if="spe.customer_id == hos.cus_id" class="feature_list">
+                                                <span v-if="spe.customer_id == hos.cus_id" class="hos_feature_list">
                                                 {{spe.name}}
                                                 </span>
                                             </span>
@@ -337,7 +339,7 @@
                                       <div class="col-md-6 col-sm-12 m-b-414">
                                         <span class="sp_hos_phone sp-768"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span><span class="phone-no"><a :href="`tel:${hos.phone}`">{{hos.phone}}</a></span></span>
                                       </div>
-                                      <div class="col-md-6 col-sm-12 m-t-10">
+                                      <div class="col-md-6 col-sm-12">
                                          <p class="sp-768">                                           
                                           <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == ''" :class="'view_pro_id'+hos.nursing_id" style="display:block;" @click="favAddFun('add',hos.hos_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                                           <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == 'check'" :class="'done_pro_id'+hos.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',hos.hos_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
@@ -877,13 +879,7 @@ import bulcomponent from './bulcomponent.vue'
     width: 140px;
     padding: 25px;
   }
-  
-.page-item.active_page .spanclass {
-  z-index: 1;
-  background-color: #ffbb99;
-    background-image: none;
-    border: 1px solid #8e3c15;
-}
+
 
   .hospital-tabColor .nav-link {
         background: #63b7ff !important;
@@ -896,9 +892,6 @@ import bulcomponent from './bulcomponent.vue'
 .tab-pane{
         padding: 10px;
     }
-.page-item .spanclass{
-  cursor: pointer;
-}
 .first-row{
     color: #fff;
     background-color: #a2a7a1;

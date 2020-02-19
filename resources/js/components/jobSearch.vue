@@ -312,7 +312,7 @@
                           <router-link :to="{name: 'job_details', params:{id:job.jobid}}">{{job.jrecord}}{{job.title}}</router-link>
                           </h5>
                         <div class="clearfix">
-                          <p class="job_status">{{job.employment_status}}</p>
+                          <span class="job_status">{{job.employment_status}}</span>
                           <p class="job_id search_jobid"><span>求人番号:</span>{{job.jobnum}}</p>
                         </div>
                       </div>
@@ -859,16 +859,6 @@ table > tbody > tr th{
   width: 500px !important;
   margin: 20px auto;
 }
-.page-item.active_page .spanclass {
-  z-index: 1;
-  background-color: #ffbb99;
-  background-image: none;
-  border: 1px solid #8e3c15;
-}
-.page-item .spanclass{
-  cursor: pointer;
-}
-
 /********/
 .container {
   padding: 1rem 2%;

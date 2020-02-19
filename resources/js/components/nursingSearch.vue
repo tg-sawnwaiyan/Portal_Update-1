@@ -619,10 +619,10 @@
                                                         <td>{{nus.moving_in}} </td>
                                                         </tr> -->
                                                     </table>
-                                                    <h5 class="header m-t-10">こだわりの特長</h5>
-
+                                                    <h5 class="header m-t-10">こだわりの特長</h5>                                              
                                                     <span v-for="(spe,index) in specialfeature" :key="index+'-'+spe.name+'-'+nus.id">
-                                                    <span v-if="spe.customer_id == nus.customer_id" class="feature_list">
+                                                        
+                                                    <span v-if="spe.profile_id == nus.customer_id" class="feature_list">
                                                         {{spe.name}}
                                                     </span>
                                                     </span>
@@ -2133,15 +2133,6 @@ div#holder {
 .offset{
   width: 500px !important;
   margin: 20px auto;
-}
-.page-item.active_page .spanclass {
-  z-index: 1;
-  background-color: #ffbb99;
-    background-image: none;
-    border: 1px solid #8e3c15;
-}
-.page-item .spanclass{
-  cursor: pointer;
 }
 .carousel-img{
     /* position: absolute; */
