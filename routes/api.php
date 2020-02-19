@@ -20,6 +20,7 @@ use App\HospitalProfile;
 // })->middleware('auth:api');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
+    $lat_lng = null;
 
     if($request->user()->type_id == 2){
         $lat_lng = HospitalProfile::select('id','latitude','longitude')->where('customer_id', $request->user()->customer_id)->get();
