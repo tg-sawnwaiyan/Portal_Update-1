@@ -55,7 +55,7 @@
                             </div>
                             <div class="form-group m-0 row bd">
                                 <div class="col-md-3 col-sm-12 form-left">
-                                    ふりがな
+                                    フリガナ
                                 </div>
                                 <div class="col-md-9 col-sm-12 form-right">
                                     <input type="text" name="outputfurigana" id="outputfurigana" class="mailbox" disabled v-model="comments.furigana" />
