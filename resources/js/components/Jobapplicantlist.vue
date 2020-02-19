@@ -87,15 +87,24 @@ export default {
                     items: [],
                     norecord: 0,
                     nosearch_msg: false,
+                    job_id:0,
                 };
 
             },
               created() {
-                     this.$loading(true);
-                    this.axios.get(`/api/jobapplicantlist/`).then(response => {
+                  if (this.$route.params.id) {
+                       this.job_id = this.$route.params.id;
+                  }
+                  else{
+                      this.job_id = 0;
+                  }
+                    this.$loading(true);
+                    this.axios.get(`/api/jobapplicantlist/`+this.job_id).then(response => {
                         this.$loading(false);
                         this.jobapplies = response.data;
-                        this.norecord = this.jobapplies.data.length;
+                       
+                        this.norecord = this.jobapplies.length;
+                      
                         if (this.norecord > this.size) {
                             this.pagination = true;
                         } else {
@@ -117,7 +126,8 @@ export default {
                         this.axios.post("/api/jobapplicant/search?page="+page, fd).then(response => {
                             this.$loading(false);
                             this.jobapplies = response.data;
-                            if(this.jobapplies.data.length != 0){
+                            console.log("this.jobappliessearch",this.jobapplies);
+                            if(this.jobapplies.length != 0){
                                 this.nosearch_msg = false;
                             }else{
                                 this.nosearch_msg = true;
