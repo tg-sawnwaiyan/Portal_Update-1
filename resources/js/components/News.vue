@@ -1340,6 +1340,7 @@
                 this.axios
                 .get('/api/get_latest_posts_by_catId/'+searchword)
                 .then(response => {
+                    this.$loading(false);
                     if(response.data.length>0) {
                         this.post_groups = this.groupBy(response.data, 'name');
                     } else {
@@ -1447,7 +1448,7 @@
             },
 
             searchCategory() {
-
+                this.$loading(true);
                 if ($('#search-free-word').val() == null || $('#search-free-word').val() == '' || $('#search-free-word').val() == 'null') {
             console.log("statusBar",this.search_word);
                     this.clearSearch();
