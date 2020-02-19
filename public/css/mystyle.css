@@ -921,7 +921,7 @@ border-radius: 3px;
     -ms-flex-align: center!important;
     align-items: center!important;
     justify-content: center;
-    background: #FBFBFB;
+    background: #f8f8f8;
     min-height: 100vh;
     min-height: -webkit-fill-available;
 }
@@ -1863,9 +1863,9 @@ border-top: 5px solid #e66527; */
 
 .nav-warp {
     position: relative;
-    max-width: 1535px;
+    max-width: 1620px;
     padding: 0;
-    width: 100%;
+    width: 80%;
 }
 
 #app .logo-text {
@@ -3931,7 +3931,7 @@ ul.hospital-subject>li:before {
 }
 
 .searchNews {
-    width: 100%;
+    width: 80%;
     border: 3px solid #75b777;
     border-right: none;
     padding: 5px;
@@ -3971,7 +3971,7 @@ ul.hospital-subject>li:before {
 }
 
 .searchButtonNews {
-    width: 15%;
+    width: 20%;
     height: 40px;
     border: 1px solid #75b777;
     background: #75b777;
@@ -5257,6 +5257,7 @@ li.userprofile-name>a {
     color: #fff;
     background-color: #828282 !important;
     border: none !important;
+    height: 36px;
 }
 
 .nav-link {
@@ -8961,8 +8962,8 @@ font-size: 18px; */
     background-color: #e2d9d96b;
     padding: 22px;
     border-radius: 10px;
-    max-width: 920px;
-    margin: auto;
+    max-width: 80%;
+    margin: 0 auto;
     background: url(https://www.sagasix.jp/images/support/consultation/bg_check.gif) repeat center top;
     border: 1px solid #dad3d2;
     border-radius: 7px;
@@ -8970,25 +8971,10 @@ font-size: 18px; */
     position: relative;
     overflow: visible;
 }
-
-
-/* nursingSearch */
-
 
 /*commentform*/
 
-.comform {
-    background-color: #e2d9d96b;
-    padding: 22px;
-    border-radius: 10px;
-    margin: auto;
-    background: url(https://www.sagasix.jp/images/support/consultation/bg_check.gif) repeat center top;
-    border: 1px solid #dad3d2;
-    border-radius: 7px;
-    padding: 30px;
-    position: relative;
-    overflow: visible;
-}
+
 
 .title_comment {
     margin-left: -15px;
@@ -9410,7 +9396,8 @@ padding: 11px;
         width: 100%;
     }
     .nav-warp {
-        max-width: 96%;
+        max-width: 100%;
+        width: 97%;
         padding: 0;
     }
     .fixed-ads-fluid {
@@ -10759,10 +10746,10 @@ width: 18rem;
         display: none;
     }
     .searchButton {
-        width: 13%;
+        width: 20%;
     }
     .searchTerm {
-        width: 87%;
+        width: 80%;
     }
     #pc-hos-fav-local,
     #pc-nus-fav-local,
@@ -12012,11 +11999,10 @@ background-image: none;
     #fav-hospital-page #fav-history-page .card-carousel {
         width: 1084px !important;
     }
-    .main-content {
-        width: 100%;
-    }
+    
     .nav-warp {
-        max-width: 96%;
+        max-width: 100%;
+        width: 97%;
         padding: 0;
     }
     .fixed-ads-fluid {

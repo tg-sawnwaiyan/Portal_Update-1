@@ -1,7 +1,7 @@
 <template>
     <layout>
         <div>
-            <div class="col-md-12" style="border-bottom: 1px dashed #2980b9;padding-bottom: 10px; margin-bottom: 20px;">
+            <div class="col-md-12" style="border-bottom: 1px dashed #ff9563;padding-bottom: 10px; margin-bottom: 20px;">
                 <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#ff9563;"></i>&nbsp;地図検索</h5>
             </div>
             <div class="search-map"  @mouseover="getStateHover">
@@ -206,7 +206,7 @@
                                                                 <div class="wd-in">
                                                                     <span class="type-name">{{items.type_name}}</span>
 
-                                                                    <div class="row" style="margin-top:10px;">
+                                                                    <div class="row m-t-10 m-b-10">
                                                                         <div class="col-5 col-lg-5 col-sm-6" style="padding-top:3px;">
                                                                             <div class="carousel-img">
                                                                             <img :src="'/upload/nursing_profile/'+items.logo" alt="image" class="img-fluid" @error="imgUrlAlt"/>
