@@ -1347,6 +1347,7 @@ export default {
         methods: {
             initialCall(){
               this.address_show = $('#address_show').val();
+           
                 this.axios
                 .get('/api/clinical-subject/'+this.pro_id)
                 .then(response=>{
@@ -1364,6 +1365,7 @@ export default {
                 .then(response=>{
                     this.hospital_info = response.data;
                     this.logo = '/upload/hospital_profile/'+ this.hospital_info.logo;
+                    this.address_show = this.hospital_info.address;
         
                     this.axios
                     .get('/api/nurscities/'+this.hospital_info.townships_id)
@@ -1526,7 +1528,7 @@ export default {
 
                 this.hospital_info.latitude = $('#new_lat').val();
                 this.hospital_info.longitude = $('#new_long').val();
-                this.hospital_info.address = $('#address_val').val();
+                this.hospital_info.address = $('#address_show').val();
                 this.address_show = $('#address_show').val();
 
                 this.hospital_info.townships_id = Number($('#gmaptownship').val());

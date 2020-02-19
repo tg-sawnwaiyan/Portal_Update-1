@@ -39,6 +39,10 @@ class ProfilePublishController extends Controller
              
         //for hospital map
         $hospital =  DB::table('hospital_profiles') ->select('hospital_profiles.*')->where('hospital_profiles.id','=',$cusid)->get();
+       
+        $query  = "SELECT cities.city_name,townships.township_name from townships join cities where townships.id =".$hospital[0]->townships_id;
+        $address = DB::select($query);
+  
         $facility_list = Facility::select('id','description')->get();
         $hosfacility= explode(',',$hospital[0]->facilities);
         $facility = Facility::whereIn('id',$hosfacility)->select('description','id')->get();
@@ -57,7 +61,7 @@ class ProfilePublishController extends Controller
             }
         }
 
-        return response()->json(array("hospital"=>$hospital,"images"=>$images,"videos"=>$videos,"facility_list"=>$facility_list,"facility"=>$facility));
+        return response()->json(array("hospital"=>$hospital,"images"=>$images,"videos"=>$videos,"facility_list"=>$facility_list,"facility"=>$facility,"address"=>$address));
     }
 
     public function nursingProfile($cusid)
@@ -66,6 +70,7 @@ class ProfilePublishController extends Controller
         // $feature = NursingProfile::select('feature')->where('id',$cusid)->get();
         // $method = NursingProfile::select('method')->where('id',$cusid)->get();
         $facility = NursingProfile::where('id',$cusid)->get(); 
+        
 
         $tmp = FacType::where('id', $facility[0]['fac_type'])->first();
         $facility[0]['fac_type'] = $tmp['description'];       
@@ -89,6 +94,9 @@ class ProfilePublishController extends Controller
         //                      ->where('nursing_profiles.id','=',$cusid)->get();
         $nurselatlong = NursingProfile::where('id',$cusid)->get(); 
 
+        $query  = "SELECT cities.city_name,townships.township_name from townships join cities where townships.id =".$nurselatlong[0]->townships_id;
+        $address = DB::select($query);
+
         //for image slide show
         $logo = NursingProfile::where('id',$cusid)->select('logo as photo')->get()->toArray(); // to change
 
@@ -108,7 +116,7 @@ class ProfilePublishController extends Controller
         }
 
         return response()->json(array("facility"=>$facility,"comedical"=>$comedical,"medicalacceptance"=>$medicalacceptance,
-        "staff"=>$staff, "nurselatlong"=>$nurselatlong,"cost"=>$cost,"medical"=>$medical,"images"=>$images,"panoimages"=>$panoimages,
+        "staff"=>$staff, "nurselatlong"=>$nurselatlong,"cost"=>$cost,"medical"=>$medical,"images"=>$images,"panoimages"=>$panoimages,"address"=>$address,
         "videos"=>$videos));
     }
 

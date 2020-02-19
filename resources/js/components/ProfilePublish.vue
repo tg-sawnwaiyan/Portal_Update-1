@@ -222,7 +222,7 @@
                                         </tr>
                                         <tr>
                                             <th  class="custom-bg-color">
-                                                <font>住所</font>
+                                                <font>住所 </font>
                                             </th>
                                             <td>
                                                 <font>{{(cust.address == '')?'-':cust.address}}</font>
@@ -842,7 +842,8 @@
             </div>
 
             <div class="row ele m-lr-0" id="element5">
-                <h5 class="profile_header col-md-12"> 地図</h5>
+         
+                <h5 class="profile_header col-md-12"> 地図 </h5>
                         <div class="col-lg-12 col-md-12 col-sm-12 pad-0-res">
                             <GmapMap id="googlemap" ref="map" :center="center" :zoom="10" >
                             <GmapMarker v-for="(m, index) in markers" :key="index" :position="m.position" :clickable="true" :draggable="false" @click="center=m.position" />
@@ -860,10 +861,10 @@
                                         <th class="custom-bg-color"> アクセス</th>
                                         <td v-if="m.access"><p v-html="m.access"></p></td> <td v-else> - </td>
                                     </tr>
-                                    <tr>
+                                    <!-- <tr>
                                         <th class="custom-bg-color">住所 </th>
                                         <td v-if="m.address">{{m.address}}</td> <td v-else> - </td>
-                                    </tr>
+                                    </tr> -->
                                     </tbody>
                                 </table>
                             </div>
@@ -1032,7 +1033,7 @@
                                 <table class="table table-bordered info_tbl">
                                     <tr>
                                         <th class="custom-bg-color">
-                                            <font>住所</font>
+                                            <font>住所 </font>
                                         </th>
                                         <td v-if="cust.address">
                                             <font>{{cust.address}}</font>
@@ -1237,6 +1238,7 @@
                     </GmapMap>
 
                 </div>
+              
                 <div  class="col-12 m-t-20 pad-free-750" v-for="m in google" :key="m.id" >
                              <table border="1" class="table table-bordered map_tbl" >
                                     <tbody>
@@ -1255,11 +1257,11 @@
                                         <td v-if="m.congestion">{{m.congestion}}</td>
                                         <td v-else> - </td>
                                     </tr>
-                                    <tr>
+                                    <!-- <tr>
                                         <th class="custom-bg-color">住所 </th>
                                         <td v-if="m.address">{{m.address}}</td>
                                         <td v-else> - </td>
-                                    </tr>
+                                    </tr> -->
                                     </tbody>
                                 </table>
                         </div>
@@ -1381,6 +1383,7 @@ export default {
                 subject:'',
                 subjects:[],
                 hospitals:[],
+                address:[],
                 nursing_profiles:[],
                 method_payment:[],
                 comments:[],
@@ -1587,13 +1590,25 @@ export default {
                         this.customer_name = response.data[0].name;
                     });
                     this.axios.get('/api/profile/nursing/'+this.pro_id) .then(response => {
-                        
-                        console.log('This is JSON value');
-                        console.log(response.data);
-
+                
                         // this.nursing_profiles = response.data.feature;
                         // this.nus_method= response.data.method;
                         this.nus_pro = response.data.nurselatlong[0];
+                        this.google = response.data.nurselatlong;
+                        if(this.nus_pro['address'] == null){
+                             this.nus_pro['address'] = '';
+                        }
+                        this.address = response.data.address;
+
+                       
+                        if(this.nus_pro['address'] == null){
+                             this.nus_pro['address'] = '';
+                        }
+
+                        this.customer[0]['address'] = this.address[0]['city_name'] + this.address[0]['township_name'] +this.nus_pro['address'];
+
+                        this.google[0]['address'] = this.address[0]['city_name'] + this.address[0]['township_name'] +this.nus_pro['address'];
+                      
                         this.nusfacilities = response.data.facility;
 
                         this.nursing_profiles = response.data.nurselatlong[0]['feature'];
@@ -1609,7 +1624,7 @@ export default {
 
                         this.staff = response.data.staff;
 
-                        this.google = response.data.nurselatlong;
+                       
 
                         this.markers[0]['position']['lat']  = response.data.nurselatlong[0]['latitude'];
 
@@ -1682,7 +1697,16 @@ export default {
                       
                         this.google = response.data.hospital;
 
+                        this.address = response.data.address;
+
                         this.hospitals = response.data.hospital;
+                        if(this.hospitals[0]['address'] == null){
+                             this.hospitals[0]['address'] = '';
+                        }
+
+                        this.customer[0]['address'] = this.address[0]['city_name'] + this.address[0]['township_name'] +this.hospitals[0]['address'];
+
+                        this.google[0]['address'] = this.address[0]['city_name'] + this.address[0]['township_name'] +this.hospitals[0]['address'];
 
                         this.hosfacilities=response.data.facility_list;
 
