@@ -132,7 +132,7 @@
                               <div class="form-group">
                                 <label for="skill">
                                     経験・スキル
-                                 
+                                    <span class="error sp2">必須</span>
                                 </label>
                                
                                 <textarea name="skills" class="form-control" cols="50" rows="5" v-model="joboffer.skills" placeholder="経験・スキルを入力してください。"></textarea>
