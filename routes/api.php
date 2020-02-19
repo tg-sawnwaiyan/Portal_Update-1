@@ -232,7 +232,7 @@ Route::group(['prefix' => 'profile'], function () {
     Route::get('nursing/{cusid}','ProfilePublishController@nursingProfile');
     Route::get('hospital/{cusid}','ProfilePublishController@hospitalProfile');
     Route::get('specialfeature/{type}/{proid}','ProfilePublishController@getSpecialfeature');
-    Route::get('comment/{cusid}','ProfilePublishController@getComment');
+    Route::get('comment/{cusid}/{type}','ProfilePublishController@getComment');
     Route::get('customer/{proid}/{type}','ProfilePublishController@getCustomer');
     Route::get('schedule/{cusid}','ProfilePublishController@getSchedule');
     // Route::get('hosfacility','ProfilePublishController@getHosfacilities');
