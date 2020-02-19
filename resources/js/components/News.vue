@@ -1154,6 +1154,7 @@
     },
 
     created() {
+        // console.log("role",this.$auth.user().customer_id)
         this.$nextTick(() => {
             if(this.$refs.infoBox){
                 this.cat_box_width = this.$refs.infoBox.clientWidth;

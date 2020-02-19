@@ -18,7 +18,7 @@
         <p style="text-align:left;margin:2px;color:#3e4348;font-size: 12px;">
             <span style="color: #000;font-weight:bold">お名前:</span>{{$getComment->name}}
             <br>
-            <span style="color: #000;font-weight:bold">ふりがな：</span>{{$getComment->furigana}}
+            <span style="color: #000;font-weight:bold">フリガナ：</span>{{$getComment->furigana}}
             <br>
             <span style="color: #000;font-weight:bold">生年月日：</span>{{$getComment->bdate}}
             <br>

@@ -1655,7 +1655,7 @@ export default {
 
                     });
 
-                    this.axios.get('/api/profile/comment/'+this.pro_id) .then(response => {
+                    this.axios.get('/api/profile/comment/'+this.pro_id+'/'+this.type) .then(response => {
 
                         this.comments = response.data;
                         if(this.comments.length > this.size){
@@ -1733,7 +1733,7 @@ export default {
 
                     });
 
-                    this.axios.get('/api/profile/comment/'+this.pro_id).then(response => {
+                    this.axios.get('/api/profile/comment/'+this.pro_id+'/'+this.type).then(response => {
 
                         this.comments = response.data;
                         if(this.comments.length > this.size){

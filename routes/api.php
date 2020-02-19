@@ -20,6 +20,7 @@ use App\HospitalProfile;
 // })->middleware('auth:api');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
+    $lat_lng = null;
 
     if($request->user()->type_id == 2){
         $lat_lng = HospitalProfile::select('id','latitude','longitude')->where('customer_id', $request->user()->customer_id)->get();
@@ -232,7 +233,7 @@ Route::group(['prefix' => 'profile'], function () {
     Route::get('nursing/{cusid}','ProfilePublishController@nursingProfile');
     Route::get('hospital/{cusid}','ProfilePublishController@hospitalProfile');
     Route::get('specialfeature/{type}/{proid}','ProfilePublishController@getSpecialfeature');
-    Route::get('comment/{cusid}','ProfilePublishController@getComment');
+    Route::get('comment/{cusid}/{type}','ProfilePublishController@getComment');
     Route::get('customer/{proid}/{type}','ProfilePublishController@getCustomer');
     Route::get('schedule/{cusid}','ProfilePublishController@getSchedule');
     // Route::get('hosfacility','ProfilePublishController@getHosfacilities');
@@ -400,7 +401,7 @@ Route::group(['prefix' => 'nurse'], function () {
 
 Route::get('cost','ProfilePublishController@getCost');
 Route::get('hospital','ProfilePublishController@hospital');
-Route::get('jobapplicantlist','JobApplyController@jobapplicantlist');
+Route::get('jobapplicantlist/{jobs_id}','JobApplyController@jobapplicantlist');
 Route::post('jobapplicant/search','JobApplyController@search');
 
 Route::group(['prefix' => 'main_admin'], function () {

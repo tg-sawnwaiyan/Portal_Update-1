@@ -26,7 +26,7 @@
                     <p style="text-align:left;margin:2px;font-size: 12px;">
                     お名前：{{$getComment->first_name}}
                     <br>
-                    ふりがな：{{$getComment->last_name}}
+                    フリガナ：{{$getComment->last_name}}
                     <br>
                     生年月日：{{$getComment->birthday}}
                     <br>

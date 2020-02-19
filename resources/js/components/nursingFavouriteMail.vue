@@ -43,11 +43,11 @@
                             </div>
                         </div>
                         <div class="form-group m-0 row bd">
-                            <div class="col-md-3 col-sm-12 form-left"> <label>ふりがな <span class="error sp1">必須</span></label></div>
+                            <div class="col-md-3 col-sm-12 form-left"> <label>フリガナ <span class="error sp1">必須</span></label></div>
                             <div class="col-md-9 col-sm-12 form-right">
                                 <div class="col-md-12 pad-free">
                                     <!-- <div class="col-md-9 pad-free"> -->
-                                        <input type="text" id="furigana" name="furigana" class="form-control float-left" placeholder="ふりがなを入力してください。" v-model="comments.furigana" @keyup="ChekChar"    @change="aggreBtn"/>
+                                        <input type="text" id="furigana" name="furigana" class="form-control float-left" placeholder="フリガナを入力してください。" v-model="comments.furigana" @keyup="ChekChar"    @change="aggreBtn"/>
                                     <!-- </div>
                                     <div class="col-md-3"> -->
                                          <span class="float-left eg-txt"> 例）サガシ　タロウ</span>

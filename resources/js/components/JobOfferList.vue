@@ -82,7 +82,7 @@
                                                     <router-link :to="{name: 'joboffercreate', params:{id:job.id}}" class="btn edit-borderbtn">編集</router-link>
                                                 </li>
                                                 <li>
-                                                    <router-link :to="{name: 'jobapplylist', params:{id:job.id,title:job.title}}" class="btn confirm-borderbtn confirmed">求人応募一覧ページへ</router-link>
+                                                    <router-link :to="{name: 'jobapplicantlist', params:{id:job.id,title:job.title}}" class="btn confirm-borderbtn confirmed">求人応募一覧ページへ</router-link>
                                                 </li>
                                                 <!-- <li><a class="btn text-success active-borderbtn">Disabled</a></li> -->
                                                 <li><a class="btn text-danger delete-borderbtn" @click="deleteJob(job.id)">削除</a></li>
@@ -150,7 +150,7 @@
                                         </li>                           
                                         <li><a class="btn text-danger delete-borderbtn" @click="deleteJob(job.id)">削除</a></li>
                                         <li class="mt-2">
-                                            <router-link :to="{name: 'jobapplylist', params:{id:job.id,title:job.title}}" class="btn confirm-borderbtn confirmed">求人応募一覧ページへ</router-link>
+                                            <router-link :to="{name: 'jobapplicantlist', params:{id:job.id,title:job.title}}" class="btn confirm-borderbtn confirmed">求人応募一覧ページへ</router-link>
                                         </li>
                                     </ul>
                                 </div>
@@ -336,7 +336,7 @@
                 //     }
 
                 // });
-                this.getAllJobs();
+                this.getAllJobs(); 
                 this.axios.get('/api/user').then(response => {
                 this.pro_id = response.data.lat_lng[0].id;
                 this.loginuser = true;

@@ -112,16 +112,27 @@ class ProfilePublishController extends Controller
         "videos"=>$videos));
     }
 
-    public function getComment($proid)
+    public function getComment($proid,$type)
     {
-        $sql = "SELECT comments.id,comments.title,comments.email,comments.year,comments.comment, comments.created_at from comments INNER JOIN nursing_profiles ON comments.profile_id= nursing_profiles.id WHERE comments.profile_id = $proid AND comments.status = 1";
-        $comments = DB::select($sql);
-        foreach ($comments as $cm) {
-            $splitTimeStamp = explode(" ",$cm->created_at);
-            $cm->created_date = $splitTimeStamp[0];
-            $cm->created_time = $splitTimeStamp[1];
+        if($type == 'nursing'){
+            $sql = "SELECT comments.id,comments.title,comments.email,comments.year,comments.comment, comments.created_at from comments INNER JOIN nursing_profiles ON comments.profile_id= nursing_profiles.id WHERE comments.profile_id = $proid AND comments.status = 1";
+            $comments = DB::select($sql);
+            foreach ($comments as $cm) {
+                $splitTimeStamp = explode(" ",$cm->created_at);
+                $cm->created_date = $splitTimeStamp[0];
+                $cm->created_time = $splitTimeStamp[1];
+            }
+            return $comments;
+        }else{
+            $sql = "SELECT comments.id,comments.title,comments.email,comments.year,comments.comment, comments.created_at from comments INNER JOIN hospital_profiles ON comments.profile_id= hospital_profiles.id WHERE comments.profile_id = $proid AND comments.status = 1";
+            $comments = DB::select($sql);
+            foreach ($comments as $cm) {
+                $splitTimeStamp = explode(" ",$cm->created_at);
+                $cm->created_date = $splitTimeStamp[0];
+                $cm->created_time = $splitTimeStamp[1];
+            }
+            return $comments;
         }
-        return $comments;
     }
 
 
