@@ -48,14 +48,14 @@
             <div class="col-md-3 col-sm-12 form-left">
                 <label for="furigana">
                     <strong>
-                  ふりがな
+                  フリガナ                  
                   <span class="error sp1">必須</span>
                 </strong>
                 </label>
             </div>
             <div class="col-md-9 col-sm-12 form-right">
                 <div class="col-md-12 pad-free">
-                    <input type="text" class="form-control float-left" id="furigana" placeholder="ふりがなを入力してください。" v-model="jobApply.last_name" @keyup="ChekChar"  @change="aggreBtn"/>
+                    <input type="text" class="form-control float-left" id="furigana" placeholder="フリガナを入力してください。" v-model="jobApply.last_name" @keyup="ChekChar"  @change="aggreBtn"/>
                     <span class="float-left eg-txt"> 例）サガシ　タロウ</span>
                     <!-- <span class="error m-l-30" v-if="focus_lname">※入力は必須です。</span> -->
                     <span class="error m-l-30" v-if="jobApply.furigana_focus   ">※入力は必須です。</span>
@@ -606,7 +606,7 @@ export default {
     //   if (this.jobApply.last_name) {
     //     this.errors.last_name = "";
     //   } else {
-    //     this.errors.last_name = "ふりがなは必須です。";
+    //     this.errors.last_name = "フリガナは必須です。";
     //   }
     //   if (this.jobApply.str_address) {
     //     this.errors.str_address = "";
