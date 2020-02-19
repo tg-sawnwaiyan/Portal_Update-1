@@ -31,34 +31,61 @@ class JobApplyController extends Controller
         $jobapply = DB::select($sql);
         return $jobapply;
     }
-    public function jobapplicantlist(){
-      
+ 
+    public function jobapplicantlist($jobs_id){
+        if($jobs_id == 0)
+        {
+            if(auth()->user()->role == 2){
         
-        if(auth()->user()->role == 2){
-         
-            // $query = "SELECT job_applies.* FROM job_applies LEFT JOIN jobs ON job_applies.job_id = jobs.id JOIN customers ON customers.id =jobs.customer_id";
-            // $jobapplicant = DB::select($query);
+                $jobapplicant = DB::table('job_applies')->leftjoin('jobs','jobs.id', '=', 'job_applies.job_id')
+                                                        ->join('customers', 'customers.id', '=', 'jobs.customer_id')
+                                                        ->select('job_applies.*')
+                                                        ->orderBy('id', 'DESC')
+                                                        ->paginate(12);
+            
+                return response()->json($jobapplicant);
+              
+            }else{
+                $jobapplicant = DB::table('job_applies')->leftjoin('jobs','jobs.id','=','job_applies.job_id')
+                                                        ->join('customers','customers.id','=','jobs.customer_id')
+                                                        ->where('customers.id',auth()->user()->customer_id)
+                                                        ->select('job_applies.*')
+                                                        ->orderBy('id','DESC')
+                                                        ->paginate(12);        
+                return response()->json($jobapplicant);
+               
+            }
 
-            $jobapplicant = DB::table('job_applies')->leftjoin('jobs','jobs.id', '=', 'job_applies.job_id')
-                                                    ->join('customers', 'customers.id', '=', 'jobs.customer_id')
-                                                    ->select('job_applies.*')
-                                                    ->orderBy('id', 'DESC')
-                                                    ->paginate(12);
-        
-            return response()->json($jobapplicant);
-          
-        }else{
-            $jobapplicant = DB::table('job_applies')->leftjoin('jobs','jobs.id','=','job_applies.job_id')
-                                                    ->join('customers','customers.id','=','jobs.customer_id')
-                                                    ->where('customers.id',auth()->user()->customer_id)
-                                                    ->select('job_applies.*')
-                                                    ->orderBy('id','DESC')
-                                                    ->paginate(12);
-          
-          
-            return response()->json($jobapplicant);
-           
         }
+        else{
+            if(auth()->user()->role == 2){
+        
+                $jobapplicant = DB::table('job_applies')->leftjoin('jobs','jobs.id', '=', 'job_applies.job_id')
+                                                        ->join('customers', 'customers.id', '=', 'jobs.customer_id')
+                                                        ->where('jobs.id','=',$jobs_id)
+                                                        ->select('job_applies.*')
+                                                        ->orderBy('id', 'DESC')
+                                                        ->paginate(12);
+            
+                return response()->json($jobapplicant);
+              
+            }else{
+                $jobapplicant = DB::table('job_applies')->leftjoin('jobs','jobs.id','=','job_applies.job_id')
+                                                        ->join('customers','customers.id','=','jobs.customer_id')
+                                                        ->where('customers.id',auth()->user()->customer_id)
+                                                        ->where('jobs.id','=',$jobs_id)
+                                                        ->select('job_applies.*')
+                                                        ->orderBy('id','DESC')
+                                                        ->paginate(12);
+              
+              
+                return response()->json($jobapplicant);
+               
+            }
+
+        }
+
+       
     }
 
     /**
@@ -242,7 +269,7 @@ class JobApplyController extends Controller
                                 ->orWhere('job_applies.last_name', 'LIKE', "%{$search_word}%")
                                 ->orWhere('job_applies.email', 'LIKE', "%{$search_word}%");
                         });
-        $query = $query->orderBy('job_applies.id','ASC')
+        $query = $query->orderBy('job_applies.id','DESC')
                         ->paginate(12);
         return response()->json($query);
      }else {
@@ -257,9 +284,9 @@ class JobApplyController extends Controller
                                 ->orWhere('job_applies.last_name', 'LIKE', "%{$search_word}%")
                                 ->orWhere('job_applies.email', 'LIKE', "%{$search_word}%");
                         });
-        $query = $query->orderBy('job_applies.id','ASC')
-                        ->get()
-                        ->toArray();
+        $query = $query->orderBy('job_applies.id','DESC')
+                       ->paginate(12);
+                        
         return $query;
      }
     }

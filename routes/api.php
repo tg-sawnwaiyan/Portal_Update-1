@@ -400,7 +400,7 @@ Route::group(['prefix' => 'nurse'], function () {
 
 Route::get('cost','ProfilePublishController@getCost');
 Route::get('hospital','ProfilePublishController@hospital');
-Route::get('jobapplicantlist','JobApplyController@jobapplicantlist');
+Route::get('jobapplicantlist/{jobs_id}','JobApplyController@jobapplicantlist');
 Route::post('jobapplicant/search','JobApplyController@search');
 
 Route::group(['prefix' => 'main_admin'], function () {
