@@ -892,7 +892,7 @@
                         </div>
                     </div>
                     <div class="m-b-20 text-right">
-                        <router-link :to="{ path:'/comment/nursing/'+ pro_id}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
+                        <router-link :to="{ path:'/comment/nursing/'+ pro_id}" class="comment-btn" v-if="show_comment"> <i class="far fa-comment"></i>
                         <span>口コミを投稿する</span>
                         </router-link>
                     </div>
@@ -902,7 +902,7 @@
 
                    <p class="no-data-color pb-3 no-data-size">口コミはありません。</p>
                    <div class="m-b-20 text-center">
-                        <router-link :to="{ path:'/comment/nursing/'+ pro_id}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
+                        <router-link :to="{ path:'/comment/nursing/'+ pro_id}" class="comment-btn" v-if="show_comment"> <i class="far fa-comment"></i>
                         <span>口コミを投稿する</span>
                         </router-link>
                     </div>
@@ -1285,7 +1285,7 @@
                         </div>
                     </div>
                     <div class="m-b-20 text-right">
-                        <router-link :to="{ path:'/comment/hospital/'+ pro_id}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
+                        <router-link :to="{ path:'/comment/hospital/'+ pro_id}" class="comment-btn" v-if="show_comment"> <i class="far fa-comment"></i>
                         <span>口コミを投稿する</span>
                         </router-link>
                     </div>
@@ -1294,7 +1294,7 @@
                    <p class="no-data-color pb-3 no-data-size">
                        口コミはありません。</p>
                     <div class="m-b-20 text-center">
-                        <router-link :to="{ path:'/comment/hospital/'+ pro_id}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
+                        <router-link :to="{ path:'/comment/hospital/'+ pro_id}" class="comment-btn" v-if="show_comment"> <i class="far fa-comment"></i>
                         <span>口コミを投稿する</span>
                         </router-link>
                     </div>                   
@@ -1434,7 +1434,8 @@ export default {
                 },
                 show : false,
                 isPano: false,
-                show_arr: []
+                show_arr: [],
+                show_comment: false,
             };
         },
 
@@ -1445,8 +1446,32 @@ export default {
         },
 
         created(){
+            // console.log('this.$auth.check',this.$auth.check());
+            // if(!this.$auth.check()){
+            //     this.show_comment = true;
+            // }else{
+            //     if(this.$auth.user().role == 2){
+            //         if(this.$auth.user().customer_id){
+
+            //         }
+            //     }
+            // }
             this.pro_id = this.$route.params.id;
+            console.log('wind',this.pro_id)
             this.type = this.$route.params.type;
+            if(!this.$auth.check()){
+                this.show_comment = true;
+            }else{
+                if(this.$auth.user().role == 2){
+                    this.show_comment = false;
+                }else{
+                    if(this.$auth.user().customer_id == this.pro_id){
+                        this.show_comment = false;
+                    }else{
+                        this.show_comment = true;
+                    }
+                }
+            }
                 //
                 this.axios.get("/api/advertisement/ads").then(response => {
                     this.ads_list = response.data;
