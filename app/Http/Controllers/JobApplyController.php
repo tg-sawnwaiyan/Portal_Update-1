@@ -190,9 +190,10 @@ class JobApplyController extends Controller
                 $jobapply->salary = $salary_type . " : " . number_format((int)($salary));
              }
 
-
              \Mail::to($customer_mail)->send(new jobApplyMailToCustomer($jobapply));
-             \Mail::to($jobapply->email)->send(new jobApplyMailToUser($jobapply));
+             if($jobapply->email != ''){
+                \Mail::to($jobapply->email)->send(new jobApplyMailToUser($jobapply));
+            }             
              \Mail::to($admin_email)->send(new jobApplyMailToAdmin($jobapply));
              return response()->json('Apply successfully ');
 
