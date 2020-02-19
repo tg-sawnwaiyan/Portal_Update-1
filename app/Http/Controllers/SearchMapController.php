@@ -29,7 +29,8 @@ class SearchMapController extends Controller
             $local = 0;
         }
 
-        $query = "SELECT '' as fav_check,'' as alphabet,n.id as nursing_id,n.id,n.latitude as lat ,n.longitude as lng, n.*,ci.city_name,t.township_name,ty.description AS type_name
+        $query = "SELECT '' as fav_check,'' as alphabet,n.id as nursing_id,n.id,n.latitude as lat ,n.longitude as lng, n.*,ci.city_name,t.township_name,
+                    ty.description AS type_name,ci.city_name,t.township_name
                     FROM nursing_profiles AS n
                     LEFT JOIN townships AS t  ON t.id = n.townships_id
                     LEFT JOIN cities AS ci ON t.city_id = ci.id
@@ -184,7 +185,15 @@ class SearchMapController extends Controller
               $local = 0;
           }
 
-          $query = "SELECT '' as fav_check,'' as alphabet, n.id as nursing_id,n.latitude as lat ,n.longitude as lng,n.*, ci.id as city_id, ci.city_eng,ci.city_name,t.township_name,f.description AS type_name from nursing_profiles as n left join townships as t on t.id = n.townships_id left join cities as ci on ci.id = t.city_id left join fac_types as f on f.id = n.fac_type left join special_features_junctions as spej on spej.profile_id = n.id left join special_features as spe on spe.id = spej.special_feature_id left join acceptance_transactions as acct on acct.profile_id = n.id left join medical_acceptance as med on med.id = acct.medical_acceptance_id where n.recordstatus=1";
+          $query = "SELECT '' as fav_check,'' as alphabet, n.id as nursing_id,n.latitude as lat ,n.longitude as lng,n.*, ci.id as city_id, 
+                    ci.city_eng,ci.city_name,t.township_name,f.description,ci.city_name,t.township_name AS type_name from nursing_profiles as n 
+                    left join townships as t on t.id = n.townships_id 
+                    left join cities as ci on ci.id = t.city_id 
+                    left join fac_types as f on f.id = n.fac_type 
+                    left join special_features_junctions as spej on spej.profile_id = n.id 
+                    left join special_features as spe on spe.id = spej.special_feature_id 
+                    left join acceptance_transactions as acct on acct.profile_id = n.id l
+                    eft join medical_acceptance as med on med.id = acct.medical_acceptance_id where n.recordstatus=1";
 
           if($id == -1)
           {
@@ -196,7 +205,8 @@ class SearchMapController extends Controller
              }
              else{
                  
-                $query = "SELECT '' as fav_check,'' as alphabet, n.id as nursing_id,n.latitude as lat ,n.longitude as lng,n.*, ci.id as city_id, ci.city_eng,ci.city_name,t.township_name,f.description AS type_name 
+                $query = "SELECT '' as fav_check,'' as alphabet, n.id as nursing_id,n.latitude as lat ,n.longitude as lng,n.*, ci.id as city_id,
+                          ci.city_eng,ci.city_name,t.township_name,f.description AS type_name,ci.city_name,t.township_name
                             from nursing_profiles as n  
                             left join townships as t on t.id = n.townships_id
                             left join cities as ci on ci.id = t.city_id
@@ -441,7 +451,7 @@ class SearchMapController extends Controller
           }
         
           
-          $query ="SELECT '' as fav_check,h.id as hos_id, h.*
+          $query ="SELECT '' as fav_check,h.id as hos_id, h.*,ci.city_name,t.township_name
                   from  hospital_profiles as h 
                   left join townships as t on t.id = h.townships_id  
                   left join cities as ci on ci.id = t.city_id
@@ -455,7 +465,7 @@ class SearchMapController extends Controller
         {
             if($searchword == "all")    
             {
-                $query ="SELECT '' as fav_check, h.id as hos_id, h.*
+                $query ="SELECT '' as fav_check, h.id as hos_id, h.*,ci.city_name,t.township_name
                         from  hospital_profiles as h     
                         left join townships as t on t.id = h.townships_id  
                         left join cities as ci on ci.id = t.city_id
@@ -713,13 +723,15 @@ class SearchMapController extends Controller
             $query .= " and (j.title like '%" . $searchword . "%' or ci.city_name like '%" . $searchword . "%' or t.township_name like '%".$searchword."%')";
           }
 
+          $query .=" group by j.id";
+
         
 
         }
          
         $job_data = DB::select($query);
 
-        $city = DB::table('cities')->get(    );
+        $city = DB::table('cities')->get();
 
 
         // $station = "SELECT * from"

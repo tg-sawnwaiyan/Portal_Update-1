@@ -275,7 +275,7 @@
                                                 </tr>
                                                 <tr>
                                                 <td style="width:30%;"><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>住所</td>
-                                                <td>{{hos.address}}</td>
+                                                <td>{{hos.city_name}}{{hos.township_name}}{{hos.address}}</td>
                                                 </tr>
                                                 <!-- <tr>
                                                 <td style="width:30%;"><span class="job_ico"><i class="fa fa-calendar-alt"></i></span>休業日</td>

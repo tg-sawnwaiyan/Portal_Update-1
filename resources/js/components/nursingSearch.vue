@@ -604,7 +604,7 @@
                                                         </tr> -->
                                                         <tr>
                                                         <td style="width:30%;"><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>住所</td>
-                                                        <td>{{nus.address}}</td>
+                                                        <td>{{nus.city_name}}{{nus.township_name}}{{nus.address}}</td>
                                                         </tr>
                                                         <tr>
                                                         <td style="width:30%;"><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>アクセス</td>

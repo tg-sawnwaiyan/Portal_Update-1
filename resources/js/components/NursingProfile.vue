@@ -779,7 +779,10 @@ export default {
                 this.axios
                 .get('/api/nursinginfo/'+this.pro_id)
                 .then(response=>{
+                  
                     this.nursing_info = response.data;
+                      this.address_show = this.nursing_info.address;
+                
                     this.profile_img = '/upload/nursing_profile/' +this.nursing_info.logo;
                     this.axios
                     .get('/api/nurscities/'+this.nursing_info.townships_id)
@@ -1132,7 +1135,7 @@ export default {
 
                 this.nursing_info.latitude = $('#new_lat').val();
                 this.nursing_info.longitude = $('#new_long').val();
-                this.nursing_info.address = $('#address_val').val();
+                this.nursing_info.address = $('#address_show').val();
                 this.address_show = $('#address_show').val();
 
                 this.nursing_info.townships_id = Number($('#gmaptownship').val());
