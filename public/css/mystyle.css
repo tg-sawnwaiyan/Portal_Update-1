@@ -286,7 +286,7 @@ label {
 /* end nursing and hospital accountlist */
 
 .lastblock {
-    display: block;
+    display: block !important;
 }
 
 .hospitalselect {
@@ -3844,7 +3844,7 @@ ul.hospital-subject>li:before {
 
 .map-wrap {
     max-width: 1600px !important;
-    padding: 20px;
+    padding: 20px 0px;
     background: #edf3f7;
     overflow: auto;
     scrollbar-width: thin;
