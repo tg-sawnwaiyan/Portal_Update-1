@@ -290,7 +290,7 @@
                   <td colspan='2' style="border:none;">
                     <button @click="ShowHide4" class="btn seemore-btn">
                       <i class="fa" aria-hidden="true"></i>
-                          <span id="close4"><i class="fas fa-arrow-circle-down"></i> 閉じる</span>
+                          <span id="close4"><i class="fas fa-arrow-circle-up"></i> 閉じる</span>
                     </button>
                   </td>
                 </tr>
@@ -605,14 +605,13 @@ export default {
         },
        ShowHide4() {
         this.toggleCheck_1 = !this.toggleCheck_1;
+        $(".ShowHide").toggle();
             if (this.toggleCheck_1 == true) {
-                $('#close4').empty();
-                $(".ShowHide").slideDown();
+                $('#close4').empty();                
                 $('#close4').append('<i class="fas fa-arrow-circle-up"></i> 閉じる');
 
             } else {
-                $('#close4').empty();
-                $(".ShowHide").slideUp();
+                $('#close4').empty();                
                 $('#close4').append('<i class="fas fa-arrow-circle-down"></i> もっと見る');
             }
         },

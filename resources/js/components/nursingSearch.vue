@@ -42,7 +42,7 @@
                                     </h3>
                                     <!--search input-->
                                     <div class="search nursing-search-box">
-                                        <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、施設名などを入力">
+                                        <input type="text" class="searchTerm" id="search-free-word-res" placeholder="地名、施設名などを入力">
                                         <button type="submit" class="searchButton" @click="searchfreeword">
                                             <i class="fas fa-search"></i> 検索
                                         </button>
@@ -864,6 +864,7 @@
             },            
 
             searchfreeword(){
+           
                 this.ci = true;
                 //clear all drop down
                 this.id = -1;
@@ -876,6 +877,11 @@
                     this.id = -1;
                     var search_word = $('#search-free-word').val();
                 }
+                else if($('#search-free-word-res').val() != '')
+                {
+                    this.id = -1;
+                    var search_word = $('#search-free-word-res').val();
+                }
                 else{
                     var search_word = 'all';
                 }
@@ -886,6 +892,7 @@
                 else{
                     this.locast = localStorage.getItem("nursing_fav");
                 }
+              
 
                 this.axios.get('/api/getnursingsearch/'+search_word,{
                 params:{
@@ -897,16 +904,17 @@
 
                 },
                 })
-                .then((response) => {
+                .then((response) => { 
                     $("#mymap").css({'display' : 'block','height' : '400px','width':'100%'});
                     $("#filtertable").css("display", "block");
                     $("#nursing-search").css("display", "block");
-
-                        if(response.data.nursing.length != 0){
+                    console.log(response.data.nursing);
+                    if(response.data.nursing.length != 0){
                         this.norecord_msg = false;
-                        this.changeMap(response);
+                        this.changeMap(response,1);
                     }else{
                         $("#mymap").css({'display' : 'none'});
+                        this.nus_data = [];
                         this.norecord_msg = true;
                     }
                 });
@@ -1020,6 +1028,7 @@
 
             // make infowindow, marker , google map
             changeMap(response,freewordornot){
+             
                 $('.select').removeClass('select');
                 $('#searchMap').addClass('select');
                 $('#showSearchMap').removeClass('select');
@@ -1062,16 +1071,21 @@
                     var lng = 140.8694;
                 }
                 if(this.map == null){ 
+                    console.log('null');
+                   
                     this.createMap(theCity,lat,lng)
                     if(freewordornot == 1)
                     {
+                  
                         this.infoWindow(item, mmarker,response);
                     }
                     else{
+                    
                         this.coordinates(theCity,lat,lng);
                         this.infoWindow(item, mmarker,response);
                     }
                 }else{
+                    console.log('not');
                     var map = this.map
                     var callback = function(feature) {
                         map.data.remove(feature);
@@ -1152,6 +1166,7 @@
                 
             },
             coordinates(theCity,lat,lng){
+              
                 // this.loading = false
                 let  coor =[];
                 var townshipName = [];
@@ -1194,7 +1209,6 @@
                 var jsonfile = theCity+".json";
                 // https://testikportal.management-partners.co.jp
                 this.axios.get("./json/cities/"+jsonfile).then(respon => {
-                    console.log(respon.data)
                     this.coordinate = respon.data.reduce((acc, val) => acc.concat(val), []);
                     this.boundariesGoogleMap(lat,lng,this.coordinate);  
                 }); 
@@ -1242,8 +1256,7 @@
                 fillOpacity: 0.1,
                 strokeWeight: 1
                 })
-                // console.log('geo',geo)
-                console.log('fit bounds',bounds)
+              
                 
                 if(this.boundsval == 'no marker'){
                     this.boundsval = bounds;
@@ -1252,7 +1265,8 @@
                 this.loading = false;
             },
 
-            infoWindow(item, mmarker,response){           
+            infoWindow(item, mmarker,response){    
+                      
                 var infoWindowContent = new Array();
                
                 if(item.length  && mmarker.length)
@@ -1595,7 +1609,7 @@
                     $(".fav-nursing-link-box>a").css({'cursor':'pointer','pointer-events':'auto'});
                 }
                 else{
-                    //  alert(status);
+              
                     this.nus_data[ind].fav_check = '';
 
                     var fav_arr = JSON.parse("[" + localStorage.getItem("nursing_fav") + "]");

@@ -213,6 +213,7 @@
     export default {
         methods: {
             getStateClick(e){
+              
                 this.$parent.$options.parent.$options.methods.parentGetStateClick(e,this.$parent.$options.parent);
             }
         }

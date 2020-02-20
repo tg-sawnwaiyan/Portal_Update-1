@@ -213,12 +213,12 @@
                             <td colspan="2" style="border:none;">
                             <button @click="ShowHide1" class="btn seemore-btn">
                                 <i class="fa" aria-hidden="true"></i>
-                                <span id="close2"><i class="fas fa-arrow-circle-down"></i> 閉じる</span>
+                                <span id="close2"><i class="fas fa-arrow-circle-up"></i> 閉じる</span>
                             </button>
                             </td>
                         </tr>
 
-                         <tr>
+                        <tr class="text-center">                         
                             <td colspan="2">
                             <button type="button" class="main-bg-color create-btn all-btn col-lg-2 col-md-4 col-sm-2" id="search" name="search" value="検索"  @click="search">
                             <i class="fas fa-search"></i>&nbsp; 検索
@@ -665,16 +665,13 @@ import bulcomponent from './bulcomponent.vue'
     },
     ShowHide1() {
         this.toggleCheck_1 = !this.toggleCheck_1;
+        $(".ShowHide1").toggle();
         if (this.toggleCheck_1 == true) {
-       
             $('#close2').empty();
-            $(".ShowHide1").slideDown();
             $('#close2').append('<i class="fas fa-arrow-circle-up"></i> 閉じる');
 
         } else {
-    
             $('#close2').empty();
-            $(".ShowHide1").slideUp();
             $('#close2').append('<i class="fas fa-arrow-circle-down"></i> もっと見る');
         }
      
