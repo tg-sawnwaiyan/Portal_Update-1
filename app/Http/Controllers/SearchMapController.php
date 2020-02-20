@@ -192,8 +192,8 @@ class SearchMapController extends Controller
                     left join fac_types as f on f.id = n.fac_type 
                     left join special_features_junctions as spej on spej.profile_id = n.id 
                     left join special_features as spe on spe.id = spej.special_feature_id 
-                    left join acceptance_transactions as acct on acct.profile_id = n.id l
-                    eft join medical_acceptance as med on med.id = acct.medical_acceptance_id where n.recordstatus=1";
+                    left join acceptance_transactions as acct on acct.profile_id = n.id 
+                    left join medical_acceptance as med on med.id = acct.medical_acceptance_id where n.recordstatus=1";
 
           if($id == -1)
           {
