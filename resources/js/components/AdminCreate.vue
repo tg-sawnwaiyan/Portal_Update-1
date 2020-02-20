@@ -25,20 +25,25 @@
                                         <div class="error" id="newpasswordlength" style="display: none;">パスワードは少なくとも6桁でなければなりません。</div>
                                     </div>
                                         <div class="form-group" v-if="show">
+                                            <label class="heading-lbl col-md-2 col-12 pad-free">パスワード設定</label>
+                                            <span class="btn all-btn main-bg-color nursing_toggle_responsive"  style="min-width: 0px;" @click="passwordToggleDiv()"><i class="fas fa-sort-down animate"  :class="{'rotate': isRotate}"></i></span>
+                                            <br>
+                                            <div class="password-setting pad-free" style="display:none;">
                                             <label class="old-pass">現在のパスワード:<span class="error">*</span></label>
                                             <input type="password" name="old_password" placeholder="現在のパスワードを入力してください。" v-model="old_password" class="form-control old-password">
-                                            <span v-if="errors.old_password" class="error">{{errors.old_password}}</span>
+                                            <!-- <span v-if="errors.old_password" class="error">{{errors.old_password}}</span> -->
                                             <br>
                                             <label class="old-pass">新しいパスワード:<span class="error">*</span></label>
                                             <input type="password" name="new_password" placeholder="新しいパスワードを入力してください。" v-model="new_password" class="form-control new-password">
-                                            <span v-if="errors.new_password" class="error">{{errors.new_password}}</span>
+                                            <!-- <span v-if="errors.new_password" class="error">{{errors.new_password}}</span> -->
                                             <div class="error" id="newpasswordlength" style="display: none;">パスワードは少なくとも6桁でなければなりません。</div>
                                             <br>
                                             <label class="old-pass">新しいパスワードをもう一度入力してください<span class="error">*</span></label>
                                             <input type="password" name="comfirm_password" class="form-control confirm-password" v-model="confirm_password" placeholder="新しいパスワードをもう一度入力してください" @keyup="password_validate()">
-                                            <span v-if="errors.old_password" class="error">{{errors.confirm_password}}</span>
+                                            <!-- <span v-if="errors.old_password" class="error">{{errors.confirm_password}}</span> -->
                                             <div class="col-md-12 pad-free">
                                                 <span v-if="errors.edit_password" class="error">{{errors.edit_password}}</span>
+                                            </div>
                                             </div>
                                             <br>
                                         </div>
@@ -82,11 +87,13 @@
                     new_password: '',
                     confirm_password: '',
                     admin_id: this.$route.params.id,
+                    isRotate: false,
                     mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
                 }
             },
             created() {
                 if(this.$route.params.id){
+                    console.log('rotate',this.isRotate)
                     this.show = true;
                   this.axios
                     .get(`/api/main_admin/edit/${this.$route.params.id}`)
@@ -125,22 +132,25 @@
                         } else {
                             this.errors.password = "パスワードは必須です。";
                         }
-                        if (this.old_password) {
-                            this.errors.old_password = "";
-                        }else{
-                            this.errors.old_password = "現在のパスワードは必須です。"
-                        }
-                        if (this.new_password) {
-                            this.errors.new_password = "";
-                        }else{
-                            this.errors.new_password = "新しいパスワードは必須です。"
-                        }
-                        if (this.confirm_password) {
-                            this.errors.confirm_password = "";
-                        }else{
-                            this.errors.confirm_password = "新しいパスワードをもう一度入力が必要です。"
-                        }
-                        if (!this.errors.name && !this.errors.email && (!(this.errors.password) || !(this.errors.old_password && this.errors.new_password && this.errors.confirm_password))) {
+                        // if (this.old_password) {
+                        //     this.errors.old_password = "";
+                        // }else{
+                        //     this.errors.old_password = "現在のパスワードは必須です。"
+                        // }
+                        // if (this.new_password) {
+                        //     this.errors.new_password = "";
+                        // }else{
+                        //     this.errors.new_password = "新しいパスワードは必須です。"
+                        // }
+                        // if (this.confirm_password) {
+                        //     this.errors.confirm_password = "";
+                        // }else{
+                        //     this.errors.confirm_password = "新しいパスワードをもう一度入力が必要です。"
+                        // }
+                        // if (!this.errors.name && !this.errors.email && (!(this.errors.password) || !(this.errors.old_password && this.errors.new_password && this.errors.confirm_password))) {
+                        //     this.add();
+                        // }
+                        if (!this.errors.name && !this.errors.email && !this.errors.password) {
                             this.add();
                         }
                         
@@ -293,6 +303,12 @@
                             window.pwd_same = true;
                         }
                     },
+                    passwordToggleDiv() {
+                $(".password-setting").toggle('medium');
+                this.isRotate = !this.isRotate;
+                console.log('rotatefff',this.isRotate)
+
+            },
     }
 }
 </script>

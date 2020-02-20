@@ -212,8 +212,8 @@
                                         <div class="form-group row">
                                             
                                             <div class="col-sm-12 text-center">
-                                                <span class="btn btn-danger white all-btn width17 pc-m-r-10" @click="editCmt()">入力画面へ戻る</span>
                                                 <span class="btn main-bg-color white all-btn" @click="add()">作成する</span>
+                                                <span class="btn btn-danger white all-btn width17 pc-m-r-10" @click="editCmt()">入力画面へ戻る</span>                                                
                                             </div>
                                             
                                         </div>
