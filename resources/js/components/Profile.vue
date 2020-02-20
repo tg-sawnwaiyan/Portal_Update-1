@@ -4,10 +4,10 @@
     <button @click="$router.go(-1)" v-if="login_person == 'admin' && visit == 'false'" class="btn btn-danger all-btn submit" style="float:right">戻る</button>
 
 
-    <span v-if="!loginuser || visit == 'true'">
+    <!-- <span v-if="!loginuser || visit == 'true'">
       <h4 v-if="type == 'nursing'" class="public-nurheader" style="background:transparent;"><i class="fas fa-user-md"></i> ページ</h4>
       <h4 v-if="type == 'hospital'" class="public-hosheader" style="background:transparent;"><i class="fas fa-briefcase-medical"></i> ページ</h4>
-    </span>
+    </span> -->
 
     <div>
 
@@ -51,9 +51,10 @@
 
 <style scoped>
 #Profile-page {
-  overflow: hidden;
+  /* overflow: hidden; */
   /* max-width: 1600px; */
   width: 100%;
+  margin-top: 10px;
 }
 </style>
 <script>

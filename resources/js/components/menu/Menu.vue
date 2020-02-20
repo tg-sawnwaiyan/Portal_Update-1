@@ -262,6 +262,7 @@
     border-radius: 5px;
     margin: 10px 0 0 15px;
     padding: 1px 10px;
+    cursor:pointer;
 }
 .fade-enter-active,
 .fade-leave-active {
