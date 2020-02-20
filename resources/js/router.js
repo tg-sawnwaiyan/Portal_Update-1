@@ -41,6 +41,7 @@ import nursingSearch from './components/nursingSearch';
 import jobSearch from './components/jobSearch';
 import News from './components/News';
 import Unauthorized from './components/419';
+import NotFound from './components/404';
 import Jobapplicantlist from './components/Jobapplicantlist'
 import adminlist from './components/AdminList'
 import admincreate from './components/AdminCreate'
@@ -57,6 +58,11 @@ const routes = [
         path: '/Unauthorized',
         name: 'Unauthorized',
         component: Unauthorized,
+    },
+    {
+        path: '/NotFound',
+        name: 'NotFound',
+        component: NotFound,
     },
 
 
