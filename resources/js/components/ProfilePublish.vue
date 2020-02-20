@@ -222,7 +222,7 @@
                                         </tr>
                                         <tr>
                                             <th  class="custom-bg-color">
-                                                <font>住所</font>
+                                                <font>住所 </font>
                                             </th>
                                             <td>
                                                 <font>{{(cust.address == '')?'-':cust.address}}</font>
@@ -842,7 +842,8 @@
             </div>
 
             <div class="row ele m-lr-0" id="element5">
-                <h5 class="profile_header col-md-12"> 地図</h5>
+         
+                <h5 class="profile_header col-md-12"> 地図 </h5>
                         <div class="col-lg-12 col-md-12 col-sm-12 pad-0-res">
                             <GmapMap id="googlemap" ref="map" :center="center" :zoom="10" >
                             <GmapMarker v-for="(m, index) in markers" :key="index" :position="m.position" :clickable="true" :draggable="false" @click="center=m.position" />
@@ -860,10 +861,10 @@
                                         <th class="custom-bg-color"> アクセス</th>
                                         <td v-if="m.access"><p v-html="m.access"></p></td> <td v-else> - </td>
                                     </tr>
-                                    <tr>
+                                    <!-- <tr>
                                         <th class="custom-bg-color">住所 </th>
                                         <td v-if="m.address">{{m.address}}</td> <td v-else> - </td>
-                                    </tr>
+                                    </tr> -->
                                     </tbody>
                                 </table>
                             </div>
@@ -891,7 +892,7 @@
                         </div>
                     </div>
                     <div class="m-b-20 text-right">
-                        <router-link :to="{ path:'/comment/nursing/'+ pro_id}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
+                        <router-link :to="{ path:'/comment/nursing/'+ pro_id}" class="comment-btn" v-if="show_comment"> <i class="far fa-comment"></i>
                         <span>口コミを投稿する</span>
                         </router-link>
                     </div>
@@ -901,7 +902,7 @@
 
                    <p class="no-data-color pb-3 no-data-size">口コミはありません。</p>
                    <div class="m-b-20 text-center">
-                        <router-link :to="{ path:'/comment/nursing/'+ pro_id}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
+                        <router-link :to="{ path:'/comment/nursing/'+ pro_id}" class="comment-btn" v-if="show_comment"> <i class="far fa-comment"></i>
                         <span>口コミを投稿する</span>
                         </router-link>
                     </div>
@@ -1032,7 +1033,7 @@
                                 <table class="table table-bordered info_tbl">
                                     <tr>
                                         <th class="custom-bg-color">
-                                            <font>住所</font>
+                                            <font>住所 </font>
                                         </th>
                                         <td v-if="cust.address">
                                             <font>{{cust.address}}</font>
@@ -1237,6 +1238,7 @@
                     </GmapMap>
 
                 </div>
+              
                 <div  class="col-12 m-t-20 pad-free-750" v-for="m in google" :key="m.id" >
                              <table border="1" class="table table-bordered map_tbl" >
                                     <tbody>
@@ -1255,11 +1257,11 @@
                                         <td v-if="m.congestion">{{m.congestion}}</td>
                                         <td v-else> - </td>
                                     </tr>
-                                    <tr>
+                                    <!-- <tr>
                                         <th class="custom-bg-color">住所 </th>
                                         <td v-if="m.address">{{m.address}}</td>
                                         <td v-else> - </td>
-                                    </tr>
+                                    </tr> -->
                                     </tbody>
                                 </table>
                         </div>
@@ -1283,7 +1285,7 @@
                         </div>
                     </div>
                     <div class="m-b-20 text-right">
-                        <router-link :to="{ path:'/comment/hospital/'+ pro_id}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
+                        <router-link :to="{ path:'/comment/hospital/'+ pro_id}" class="comment-btn" v-if="show_comment"> <i class="far fa-comment"></i>
                         <span>口コミを投稿する</span>
                         </router-link>
                     </div>
@@ -1292,7 +1294,7 @@
                    <p class="no-data-color pb-3 no-data-size">
                        口コミはありません。</p>
                     <div class="m-b-20 text-center">
-                        <router-link :to="{ path:'/comment/hospital/'+ pro_id}" class="comment-btn" v-if="!loginuser"> <i class="far fa-comment"></i>
+                        <router-link :to="{ path:'/comment/hospital/'+ pro_id}" class="comment-btn" v-if="show_comment"> <i class="far fa-comment"></i>
                         <span>口コミを投稿する</span>
                         </router-link>
                     </div>                   
@@ -1381,6 +1383,7 @@ export default {
                 subject:'',
                 subjects:[],
                 hospitals:[],
+                address:[],
                 nursing_profiles:[],
                 method_payment:[],
                 comments:[],
@@ -1431,7 +1434,8 @@ export default {
                 },
                 show : false,
                 isPano: false,
-                show_arr: []
+                show_arr: [],
+                show_comment: false,
             };
         },
 
@@ -1442,8 +1446,32 @@ export default {
         },
 
         created(){
+            // console.log('this.$auth.check',this.$auth.check());
+            // if(!this.$auth.check()){
+            //     this.show_comment = true;
+            // }else{
+            //     if(this.$auth.user().role == 2){
+            //         if(this.$auth.user().customer_id){
+
+            //         }
+            //     }
+            // }
             this.pro_id = this.$route.params.id;
+            console.log('wind',this.pro_id)
             this.type = this.$route.params.type;
+            if(!this.$auth.check()){
+                this.show_comment = true;
+            }else{
+                if(this.$auth.user().role == 2){
+                    this.show_comment = false;
+                }else{
+                    if(this.$auth.user().customer_id == this.pro_id){
+                        this.show_comment = false;
+                    }else{
+                        this.show_comment = true;
+                    }
+                }
+            }
                 //
                 this.axios.get("/api/advertisement/ads").then(response => {
                     this.ads_list = response.data;
@@ -1587,13 +1615,25 @@ export default {
                         this.customer_name = response.data[0].name;
                     });
                     this.axios.get('/api/profile/nursing/'+this.pro_id) .then(response => {
-                        
-                        console.log('This is JSON value');
-                        console.log(response.data);
-
+                
                         // this.nursing_profiles = response.data.feature;
                         // this.nus_method= response.data.method;
                         this.nus_pro = response.data.nurselatlong[0];
+                        this.google = response.data.nurselatlong;
+                        if(this.nus_pro['address'] == null){
+                             this.nus_pro['address'] = '';
+                        }
+                        this.address = response.data.address;
+
+                       
+                        if(this.nus_pro['address'] == null){
+                             this.nus_pro['address'] = '';
+                        }
+
+                        this.customer[0]['address'] = this.address[0]['city_name'] + this.address[0]['township_name'] +this.nus_pro['address'];
+
+                        this.google[0]['address'] = this.address[0]['city_name'] + this.address[0]['township_name'] +this.nus_pro['address'];
+                      
                         this.nusfacilities = response.data.facility;
 
                         this.nursing_profiles = response.data.nurselatlong[0]['feature'];
@@ -1609,7 +1649,7 @@ export default {
 
                         this.staff = response.data.staff;
 
-                        this.google = response.data.nurselatlong;
+                       
 
                         this.markers[0]['position']['lat']  = response.data.nurselatlong[0]['latitude'];
 
@@ -1682,7 +1722,16 @@ export default {
                       
                         this.google = response.data.hospital;
 
+                        this.address = response.data.address;
+
                         this.hospitals = response.data.hospital;
+                        if(this.hospitals[0]['address'] == null){
+                             this.hospitals[0]['address'] = '';
+                        }
+
+                        this.customer[0]['address'] = this.address[0]['city_name'] + this.address[0]['township_name'] +this.hospitals[0]['address'];
+
+                        this.google[0]['address'] = this.address[0]['city_name'] + this.address[0]['township_name'] +this.hospitals[0]['address'];
 
                         this.hosfacilities=response.data.facility_list;
 

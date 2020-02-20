@@ -277,7 +277,7 @@
                                                 </tr>
                                                 <tr>
                                                 <td style="width:30%;"><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>住所</td>
-                                                <td>{{hos.address}}</td>
+                                                <td>{{hos.city_name}}{{hos.township_name}}{{hos.address}}</td>
                                                 </tr>
                                                 <!-- <tr>
                                                 <td style="width:30%;"><span class="job_ico"><i class="fa fa-calendar-alt"></i></span>休業日</td>
@@ -287,7 +287,7 @@
                                             <!--special feature and subject-->
                                             <h5 class="header m-t-10">こだわりの特長</h5>
                                             <span v-for="(spe,index) in specialfeatures" :key="index+'-'+spe.name+'-'+hos.hos_id">
-                                                <span v-if="spe.customer_id == hos.cus_id" class="hos_feature_list">
+                                                <span v-if="spe.profile_id == hos.hos_id" class="hos_feature_list">
                                                 {{spe.name}}
                                                 </span>
                                             </span>

@@ -21,9 +21,11 @@ class ProfileController extends Controller
 
     public function movelatlng($id,Request $request)
     {
+     
 
-        $query = "SELECT latitude,longitude FROM cities  where id = " .$request->city_id ;
+        $query = "SELECT latitude,longitude,city_name FROM cities  where id = " .$request->city_id ;
         $citylatlng = DB::select($query);
+       
     
 
         $insert = array(
@@ -32,6 +34,7 @@ class ProfileController extends Controller
             'latitude' => $citylatlng[0]->latitude,
             'longitude' => $citylatlng[0]->longitude,
             'townships_id' => $request->town_id,
+           
 
         ); 
 

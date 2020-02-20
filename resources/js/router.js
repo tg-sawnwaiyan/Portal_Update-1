@@ -381,7 +381,7 @@ const routes = [
     path: '/comment/:type/:id',
     component: comment,
     meta: {
-        auth: false
+        auth: undefined
     }
   },
   {

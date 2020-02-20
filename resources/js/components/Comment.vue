@@ -139,7 +139,7 @@
                                         <div class="form-group row">                                            
                                             <div class="col-sm-12 text-center">
                                                 <span class="btn main-bg-color white all-btn" @click="checkValidate()">確認画面へ進む</span>
-                                                <router-link class="btn btn-danger all-btn" to="/profile" > キャンセル </router-link>
+                                                <span class="btn btn-danger all-btn" @click="$router.go(-1)" > キャンセル </span>
                                                  <!-- <button class="btn main-bg-color white all-btn"> 利用規約、個人情報の取り扱いについてに同意して確認する </button> -->
                                                  <!-- <button class="btn main-bg-color white all-btn"> 確認 </button> -->
                                                       <!-- <span :disabled="isDisabled" >確認画面へ進む</span> -->
@@ -361,6 +361,7 @@ export default {
                             width: 250,
                             height: 200,
                         })
+                        this.$router.go(-1);
 
                     //  this.$router.push({name: 'profile'});
                     }).catch(error=>{

@@ -37,14 +37,15 @@
                         </div>
                     </div>
                   <div class="form-group m-t-10 ">
-                    <label>番地（建物名）</label>
+                    <label>番地（建物名）</label> 
                     <div class="row">
                       <!-- <div class="col-md-12" v-if="status === '0'">
                         <input type="text" id="address_val" name="city" class="old-city form-control white-bg-color" placeholder="番地を入力してください。" v-model="address">
                       </div> -->
                       <div class="col-md-12 nursing-m-b-15">
+           
                         <input type="text" id="address_show" name="city" class="city form-control white-bg-color" placeholder="番地を入力してください。" v-model="address">
-                        <input type="text" id="address_val" class="hide form-control white-bg-color" v-model="address_val">
+                        <!-- <input type="text" id="address_val" class="hide form-control white-bg-color" v-model="address_val"> -->
                       </div>
                       <!-- <div class="col-md-2">
                         <span class="btn news-post-btn all-btn" @click="searchAddress()">番地検索</span>
@@ -52,7 +53,6 @@
                     </div>
                     <p class="m-l-768">例）丸の内1-9-1　グラントウキョウノースタワー40階</p>
                   </div>
-
                 </div>
                 <div class="form-group">
                   <h5 class="lbl-lat-lng">緯度経度の入力または地図のマーカを移動し施設の位置を指定してください。</h5>
@@ -121,7 +121,6 @@ export default {
     return {
       status:'0',
       markers: [],
-      addresses: [],
       places: [],
       center:{},
       selected: '',
@@ -134,7 +133,10 @@ export default {
       },
       address_btn: false,
       city_list: [],
-      address_val: ''
+      address_val: '',
+      test:'',
+ 
+
     //   selected_city:this.city,
     }
   },
@@ -151,14 +153,17 @@ export default {
 //       }
 //   },
   created() {
+  
     this.markers = [{
         position: {
           lat: Number(localStorage.getItem('lat_num')),
           lng: Number(localStorage.getItem('lng_num'))
         }
       }];
+     
     this.new_lat = Number(localStorage.getItem('lat_num'));
     this.new_long = Number(localStorage.getItem('lng_num'));
+
 
     this.center = { lat: Number(localStorage.getItem('lat_num')), lng: Number(localStorage.getItem('lng_num')) }
 
@@ -167,6 +172,7 @@ export default {
         .then(response => {
             this.city_list = response.data;
         });
+       
   },
   methods: {
       // callParent(){
@@ -245,6 +251,7 @@ export default {
 
     },
     getPostal: function(event) {
+      
                 this.status = 1;
                 if (this.comment.postal.length > 5) {
                     var postal = this.comment.postal;
@@ -256,15 +263,15 @@ export default {
                             if (length > 0) {
                                 var pref = post_data[0]['city_id'];
 
-                                this.address = post_data[0]['street'];
-                                this.address_val = post_data[0]['pref']+post_data[0]['city']+post_data[0]['street'];
+                                this.address =post_data[0]['street'];
+                                // this.address_val = post_data[0]['pref']+post_data[0]['city']+post_data[0]['street'];
                                 this.city = post_data[0]['city_id'];
                                 this.cityChange('postal','');
                                 this.township = response.data.township_id[0]['id'];
-                                console.log('jkljljkl',this.township)
+                            
                                 $('#jsErrorMessage').html('<div></div>');
                             }else {
-                                this.address = '';
+                                this.address ='';
                                 this.township = 0;
                                 this.city = 0;
                                 $('#jsErrorMessage').html('<div class="error">郵便番号の書式を確認してください。</div>');
@@ -294,7 +301,7 @@ export default {
                   if(status != 'postal'){
                     // this.comment.postal = '';
                     this.comment.city = this.city_list[event.target.options.selectedIndex].city_name;
-                    this.address = '';
+                    this.address ='';
                     this.township = 0;
                 }
                     this.township_list = response.data.townships;
@@ -305,7 +312,7 @@ export default {
                 });
             },
             // townshipChange(event) {
-            //     this.address = this.comment.city+this.township_list[event.target.options.selectedIndex].township_name;
+            //     this.address =this.comment.city+this.township_list[event.target.options.selectedIndex].township_name;
             // },
 
   }
