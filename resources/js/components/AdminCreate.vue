@@ -170,7 +170,7 @@
                                 this.$swal({
                                     title: "確認",
                                     text: "管理者を作成してよろしいでしょうか。",
-                                    type: "success",
+                                    type: "info",
                                     width: 350,
                                     height: 200,
                                     showCancelButton: true,

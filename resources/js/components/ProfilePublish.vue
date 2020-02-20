@@ -884,7 +884,8 @@
                             </div>
                             <div class="d-flex d-block">
                                 <p class="card-title font-weight-bold">{{comment.email}}</p>
-                                <p class="comment-age">{{ new Date().getFullYear() - comment.year}}年代</p>
+                                <p class="comment-age" v-if="comment.year != null">{{ new Date().getFullYear() - comment.year}}年代</p>
+                                <p class="comment-age" v-else></p>
                                 <p class="comment-date"><i class="fa fa-calendar" aria-hidden="true"></i> {{comment.created_date | moment("YYYY年MM月DD日") }}投稿 <span class="ml-2"><i class="fa fa-clock" aria-hidden="true"></i> {{comment.created_time}}</span></p>
                             </div>
                                 <read-more more-str="もっと見る" :text="comment.comment" :max-chars="160"></read-more><br>
@@ -1277,7 +1278,8 @@
                             </div>
                             <div class="d-flex">
                                 <p class="card-title font-weight-bold">{{comment.email}}</p>
-                                <p class="comment-age">{{ new Date().getFullYear() - comment.year}}年代</p>
+                                <p class="comment-age" v-if="comment.year != null">{{ new Date().getFullYear() - comment.year}}年代</p>
+                                <p class="comment-age" v-else></p>
                                 <p class="comment-date"><i class="fa fa-calendar" aria-hidden="true"></i> {{comment.created_date | moment("YYYY年MM月DD日") }}投稿 <span class="ml-2"><i class="fa fa-clock" aria-hidden="true"></i> {{comment.created_time}}</span></p>
                             </div>
                                 <read-more more-str="もっと見る" :text="comment.comment" :max-chars="160"></read-more><br>
@@ -1698,6 +1700,7 @@ export default {
                     this.axios.get('/api/profile/comment/'+this.pro_id+'/'+this.type) .then(response => {
 
                         this.comments = response.data;
+                        console.log(this.comments)
                         if(this.comments.length > this.size){
                             this.pagination = true;
                         }else{
