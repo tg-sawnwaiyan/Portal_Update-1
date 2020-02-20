@@ -155,6 +155,7 @@ class JobApplyController extends Controller
                 $salary_type = $info->salary_type;
                 $salary_remark = $info->salary_remark;
                 $salary = $info->salary;
+                // return $salary;
                 $job_working_hours = $info->working_hours;
                 $customer_mail = $info->email;
                 $customer_name = $info->cus_name;
@@ -184,15 +185,16 @@ class JobApplyController extends Controller
              $jobapply->townshipname = $request->townshipname;
              if($salary_remark != null || $salary_remark != '')
              {
-                $jobapply->salary = $salary_type . " : " . number_format((int)($salary)) . "(" + $salary_remark + ")";
+                $jobapply->salary = $salary_type . " : " . number_format((int)($salary)) . "(" . $salary_remark . ")";
              }
              else{
                 $jobapply->salary = $salary_type . " : " . number_format((int)($salary));
              }
 
-
              \Mail::to($customer_mail)->send(new jobApplyMailToCustomer($jobapply));
-             \Mail::to($jobapply->email)->send(new jobApplyMailToUser($jobapply));
+             if($jobapply->email != ''){
+                \Mail::to($jobapply->email)->send(new jobApplyMailToUser($jobapply));
+            }             
              \Mail::to($admin_email)->send(new jobApplyMailToAdmin($jobapply));
              return response()->json('Apply successfully ');
 
