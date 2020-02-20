@@ -20,7 +20,7 @@
                                        </div>
                                           <p class="acc_color"><strong>{{nursingprofiles.name}}</strong></p>
                                           <p v-if="nursingprofiles.email">{{nursingprofiles.email}}</p>
-                                          <router-link :to="{ path:'/profile/nursing/'+ nursingprofiles.id}" class="btn btn-success" style="font-weight:bold;">Edit</router-link>
+                                          <router-link :to="{ path:'/profile/nursing/'+ nursingprofiles.id}" class="btn btn-success" style="font-weight:bold;">編集</router-link>
                                    </div>
                                 </div>
                             </div>
