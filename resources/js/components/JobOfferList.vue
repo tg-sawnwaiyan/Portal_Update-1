@@ -101,15 +101,7 @@
                                     <div class="col-9">
                                         <div class="joboffer-tit clearfix">
                                             <router-link :to="{name: 'job_details', params:{id:job.id,loginuser:loginuser}}">{{job.title}} </router-link>
-                                            <div class="model-7">
-                                                <div class="checkbox">
-                                                    <input type='checkbox' v-if="job.recordstatus == 1" @click="confirm(job.id)" checked/>
-                                                    <input type='checkbox' v-if="job.recordstatus==0" @click="confirm(job.id)"  />
-                                                    <label for="checkbox"></label>
-                                                    <div v-if="job.recordstatus == 1" class="on">公開中</div>
-                                                    <div v-if="job.recordstatus == 0" class="on">非行化</div>
-                                                </div>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                     <div class="col-3  text-right">
@@ -117,9 +109,23 @@
                                         <i :id="'icon' + job.id" class="fa fa-angle-down"></i> 詳細</button>
                                     </div>
                                 </div>
-                                <p class="float-right">応募者数:
+                                <div class="row">
+                                    <div class="model-7 col-6">
+                                        <div class="checkbox">
+                                            <input type='checkbox' v-if="job.recordstatus == 1" @click="confirm(job.id)" checked/>
+                                            <input type='checkbox' v-if="job.recordstatus==0" @click="confirm(job.id)"  />
+                                            <label for="checkbox"></label>
+                                            <div v-if="job.recordstatus == 1" class="on">公開中</div>
+                                            <div v-if="job.recordstatus == 0" class="on">非行化</div>
+                                        </div>
+                                    </div>
+                                    <div class=" col-6">
+                                        <p class="float-right">応募者数:
                                             <span class="text-orange"><span class="job_count">{{job.count}}件</span></span>
-                                            </p>
+                                        </p>
+                                    </div>
+                                </div>
+                                
                                     <div class="collapse" :id="'changeLink' + job.id">
                                         <div class="d-flex mt-3 mb-2">
                                             <!-- <p class="">応募者数:
