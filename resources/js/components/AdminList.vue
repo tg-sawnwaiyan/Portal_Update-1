@@ -1,19 +1,16 @@
-<template>
-    <div class="loginwrapper">
+<template>   
         <div class="d-flex justify-content-center h-100">     
-            <div class="admin_card admin_registercard">
-                <div class="row m-b-10">
-                <div class="col-md-12">
+            <div class="admin_card admin_registercard admin-list-wrapper">
+                <div class="col-md-12 m-b-10">               
                     <router-link :to="{name:'news_list'}" class="btn btn-danger all-btn submit">管理者画面へ</router-link>
                     <router-link :to="{name:'admincreate'}" class="float-right main-bg-color create-btn all-btn">
                         <i class="fas fa-plus-circle"></i> 管理者新規作成
-                    </router-link>
-                </div>
+                    </router-link>                
             </div>
-                <div class="col-md-12 scrolldiv">
+                <div class="col-md-12 scrolldiv" style="background-color:transparent;">
                 <h6 class="header">管理者一覧</h6>
                 <table class="table table-hover custom-table">
-                    <thead style="background-color:rgb(183, 218, 210);">
+                    <thead>
                         <tr>
                             <th>管理者名</th>
                             <th>メールアドレス</th>
@@ -54,8 +51,7 @@
                         </nav>
                     </div>
             </div>
-        </div>
-    </div>
+        </div>    
 </template>
 <script>
 export default {
