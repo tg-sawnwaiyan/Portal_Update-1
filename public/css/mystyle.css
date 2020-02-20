@@ -8000,7 +8000,7 @@ border-bottom: none;
 }
 
 .job_status {
-    padding: 2px;
+    padding: 2px 4px;
     margin-right: 10px;
     background: #2980b9;
     font-size: 12px;

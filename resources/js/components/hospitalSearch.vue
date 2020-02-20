@@ -250,8 +250,9 @@
                                     </div>
                                     <div class="row col-12">
                                       <div class="clearfix">
+                                     
                                         <span v-for="(sub,index) in subject" :key="index+'-'+sub.name+'-'+hos.hos_id">
-                                            <span v-if="sub.customer_id == hos.cus_id" class="job_status">
+                                            <span v-if="sub.profile_id == hos.hos_id" class="job_status">
                                               {{sub.name}}
                                             </span>
                                         </span>
@@ -318,19 +319,19 @@
                                                 </thead>
                                                 <tbody>
                                                 <tr v-for="(time,index) in timetable" :key="index+'-'+time.id+'-'+hos.hos_id" class="text-center">
-                                                    <td class="second-hos-row" style="width:8%;" v-if="(hos.cus_id == time.customer_id && time.part == 'am' )">午前</td>
-                                                    <td class="second-hos-row" style="width:8%;" v-if="(hos.cus_id == time.customer_id && time.part == 'pm' )">午後</td>
-                                                    <td style="width:10%;" v-if="hos.cus_id == time.customer_id">{{time.mon}}</td>
-                                                    <td style="width:10%;" v-if="hos.cus_id == time.customer_id">{{time.tue}}</td>
-                                                    <td style="width:10%;" v-if="hos.cus_id == time.customer_id">{{time.wed}}</td>
-                                                    <td style="width:10%;" v-if="hos.cus_id == time.customer_id">{{time.thu}}</td>
-                                                    <td style="width:10%;" v-if="hos.cus_id == time.customer_id">{{time.fri}}</td>
-                                                    <td style="width:10%;" v-if="hos.cus_id == time.customer_id">{{time.sat}}</td>
-                                                    <td style="width:10%;" v-if="hos.cus_id == time.customer_id">{{time.sun}}</td>
+                                                    <td class="second-hos-row" style="width:8%;" v-if="(hos.hos_id == time.profile_id && time.part == 'am' )">午前</td>
+                                                    <td class="second-hos-row" style="width:8%;" v-if="(hos.hos_id == time.profile_id && time.part == 'pm' )">午後</td>
+                                                    <td style="width:10%;" v-if="hos.hos_id == time.profile_id">{{time.mon}}</td>
+                                                    <td style="width:10%;" v-if="hos.hos_id == time.profile_id">{{time.tue}}</td>
+                                                    <td style="width:10%;" v-if="hos.hos_id == time.profile_id">{{time.wed}}</td>
+                                                    <td style="width:10%;" v-if="hos.hos_id == time.profile_id">{{time.thu}}</td>
+                                                    <td style="width:10%;" v-if="hos.hos_id == time.profile_id">{{time.fri}}</td>
+                                                    <td style="width:10%;" v-if="hos.hos_id == time.profile_id">{{time.sat}}</td>
+                                                    <td style="width:10%;" v-if="hos.hos_id == time.profile_id">{{time.sun}}</td>
                                                 </tr>
                                                 </tbody>
                                             </table>
-                                            <span> <strong> 休診日：</strong>{{hos.closed_day}}</span>
+                                            <span v-if="hos.closed_day"> <strong> 休診日：</strong>{{hos.closed_day}}</span>
                                             <!-- <p><span style="color: red; font-weight: bold; font-size: 15px;">※</span>診療時間は、変更される事や、診療科によって異なる場合があるため、直接医療機関のホームページ等でご確認ください。</p> -->
                                             <!--end schedule-->
                                         </div>
