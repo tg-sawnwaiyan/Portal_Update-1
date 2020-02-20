@@ -117,12 +117,15 @@
                                         <i :id="'icon' + job.id" class="fa fa-angle-down"></i> 詳細</button>
                                     </div>
                                 </div>
-                                    <div class="collapse" :id="'changeLink' + job.id">
-                                        <div class="d-flex mt-3 mb-2">
-                                            <p class="">応募者数:
+                                <p class="float-right">応募者数:
                                             <span class="text-orange"><span class="job_count">{{job.count}}件</span></span>
                                             </p>
-                                            <p class="job_id mt-0 ml-auto  d-flex align-items-center">求人番号：{{job.jobid}}</p>
+                                    <div class="collapse" :id="'changeLink' + job.id">
+                                        <div class="d-flex mt-3 mb-2">
+                                            <!-- <p class="">応募者数:
+                                            <span class="text-orange"><span class="job_count">{{job.count}}件</span></span>
+                                            </p> -->
+                                            <p class="job_id mt-0  d-flex align-items-center">求人番号：{{job.jobid}}</p>
                                         </div>
                                     
                                     <table class="table table-bordered">
@@ -149,7 +152,7 @@
                                             <router-link :to="{name: 'joboffercreate', params:{id:job.id}}" class="btn edit-borderbtn">編集</router-link>
                                         </li>                           
                                         <li><a class="btn text-danger delete-borderbtn" @click="deleteJob(job.id)">削除</a></li>
-                                        <li class="mt-2">
+                                        <li class="mt-2" v-if="job.count">
                                             <router-link :to="{name: 'jobapplicantlist', params:{id:job.id,title:job.title}}" class="btn confirm-borderbtn confirmed">求人応募一覧ページへ</router-link>
                                         </li>
                                     </ul>
