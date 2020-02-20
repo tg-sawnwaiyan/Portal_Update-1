@@ -213,11 +213,12 @@
                             <td colspan="2" style="border:none;">
                             <button @click="ShowHide1" class="btn seemore-btn">
                                 <i class="fa" aria-hidden="true"></i>
-                                <span id="close2"><i class="fas fa-arrow-circle-down"></i> もっと見る</span>
+                                <span id="close2"><i class="fas fa-arrow-circle-up"></i> 閉じる</span>
                             </button>
                             </td>
                         </tr>
-                        <tr class="text-center">
+
+                        <tr class="text-center">                         
                             <td colspan="2">
                             <button type="button" class="main-bg-color create-btn all-btn col-lg-2 col-md-4 col-sm-2" id="search" name="search" value="検索"  @click="search">
                             <i class="fas fa-search"></i>&nbsp; 検索
@@ -435,12 +436,13 @@ import bulcomponent from './bulcomponent.vue'
           height: 0
         },
         w_width: $(window).width(),
+        showOne:true,
 
       }
     },
     created(){
-        
-       window.addEventListener('resize', this.handleResize);
+      
+        window.addEventListener('resize', this.handleResize);
         this.handleResize();
     },
     mounted() {
@@ -503,8 +505,9 @@ import bulcomponent from './bulcomponent.vue'
             local:this.locast
         },
         }).then((response)=>{
+        this.showOne = false;
         this.$loading(false);
-        console.log(response)
+      
         this.getTownships = response.data.township;
         this.hos_data = response.data.hospital;
         this.timetable = response.data.timetable;
@@ -512,8 +515,7 @@ import bulcomponent from './bulcomponent.vue'
         this.subject = response.data.subject;
         this.subjects = response.data.subjects;
         this.company = response.data.company;
-        // this.int = this.subjects.length
-        console.log(this.int)
+
         if(this.hos_data.length > this.size) {
             this.show_paginate = true;
         }else{
@@ -525,6 +527,7 @@ import bulcomponent from './bulcomponent.vue'
             this.norecord_msg = true;
         }
         })
+        this.ShowHide1();
     },
     searchfreeword(){
         //clear all checkbox
@@ -581,7 +584,7 @@ import bulcomponent from './bulcomponent.vue'
                     }
                  this.array_len = ((this.subjects.length)%3)==0?((this.subjects.length)/3):Math.floor(((this.subjects.length)/3)+1);
                 
-
+                this.ShowHide1();
             });
         },
 
@@ -662,17 +665,16 @@ import bulcomponent from './bulcomponent.vue'
     },
     ShowHide1() {
         this.toggleCheck_1 = !this.toggleCheck_1;
+        $(".ShowHide1").toggle();
         if (this.toggleCheck_1 == true) {
             $('#close2').empty();
-            $(".ShowHide1").slideDown();
             $('#close2').append('<i class="fas fa-arrow-circle-up"></i> 閉じる');
 
         } else {
             $('#close2').empty();
-            $(".ShowHide1").slideUp();
             $('#close2').append('<i class="fas fa-arrow-circle-down"></i> もっと見る');
         }
-        console.log($('#test-td').width() + "width")
+     
     },
     ChangeTownship(){
         this.townshipID = [];
@@ -694,7 +696,7 @@ import bulcomponent from './bulcomponent.vue'
         },
         })
         .then((response) => {
-            console.log(response)
+            this.showOne = false;
             $('.hospitalselect').removeClass('hospitalselect');
             this.cities = response.data.city
             this.getCity = response.data.getCity
@@ -750,7 +752,7 @@ import bulcomponent from './bulcomponent.vue'
         },
         })
         .then((response) => {
-            
+             this.showOne = false;
             _this.$loading(false);
             $('#hos_search').css("display","block");
             $('.hospitalselect').removeClass('hospitalselect');

@@ -290,7 +290,7 @@
                   <td colspan='2' style="border:none;">
                     <button @click="ShowHide4" class="btn seemore-btn">
                       <i class="fa" aria-hidden="true"></i>
-                          <span id="close4"><i class="fas fa-arrow-circle-down"></i> もっと見る</span>
+                          <span id="close4"><i class="fas fa-arrow-circle-up"></i> 閉じる</span>
                     </button>
                   </td>
                 </tr>
@@ -528,6 +528,7 @@ export default {
           }
 
         })
+        this.ShowHide4();
 
          // window.scrollTo({ top : 1000, behavior: 'smooth' });
     },
@@ -581,7 +582,7 @@ export default {
 
             });
 
-
+          this.ShowHide4();
 
         },
 
@@ -598,20 +599,19 @@ export default {
 
             } else {
                 $('#close6').empty();
-                $("#toBeToggled4").slideToggle();
+                $("#toBeToggled4").slideToggle(); 
                 $('#close6').append('<i class="fas fa-arrow-circle-down"></i> 市区町村エリアを開く');
             }
         },
        ShowHide4() {
         this.toggleCheck_1 = !this.toggleCheck_1;
+        $(".ShowHide").toggle();
             if (this.toggleCheck_1 == true) {
-                $('#close4').empty();
-                $(".ShowHide").slideDown();
+                $('#close4').empty();                
                 $('#close4').append('<i class="fas fa-arrow-circle-up"></i> 閉じる');
 
             } else {
-                $('#close4').empty();
-                $(".ShowHide").slideUp();
+                $('#close4').empty();                
                 $('#close4').append('<i class="fas fa-arrow-circle-down"></i> もっと見る');
             }
         },
