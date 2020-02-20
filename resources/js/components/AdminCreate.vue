@@ -9,36 +9,36 @@
                             <div class="col-md-12">
                                 <form @submit.prevent="add">
                                     <div class="form-group">
-                                        <label>管理者名 :<span class="error">*</span></label>
+                                        <label>管理者名 :<span class="error-star">*</span></label>
                                         <input type="text" class="form-control" v-model="adminData.name" placeholder="管理者名を入力してください。">
-                                        <span v-if="errors.name" class="error">{{errors.name}}</span>
+                                        <span v-if="errors.name" class="error-star">{{errors.name}}</span>
                                     </div>
                                     <div class="form-group">
-                                        <label>メールアドレス :<span class="error">*</span></label>
+                                        <label>メールアドレス :<span class="error-star">*</span></label>
                                         <input type="text" class="form-control" v-model="adminData.email" placeholder="メールアドレスを入力してください。">
-                                        <span v-if="errors.email" class="error">{{errors.email}}</span>
+                                        <span v-if="errors.email" class="error-star">{{errors.email}}</span>
                                     </div>
                                     <div class="form-group" v-if="!show">
-                                        <label>パスワード :<span class="error">*</span></label>
+                                        <label>パスワード :<span class="error-star">*</span></label>
                                         <input type="password" class="form-control" v-model="adminData.password" placeholder="パスワードを入力してください。">
-                                        <span v-if="errors.password" class="error">{{errors.password}}</span>
-                                        <div class="error" id="newpasswordlength" style="display: none;">パスワードは少なくとも6桁でなければなりません。</div>
+                                        <span v-if="errors.password" class="error-star">{{errors.password}}</span>
+                                        <div class="error-star" id="newpasswordlength" style="display: none;">パスワードは少なくとも6桁でなければなりません。</div>
                                     </div>
                                         <div class="form-group" v-if="show">
-                                            <label class="old-pass">現在のパスワード:<span class="error">*</span></label>
+                                            <label class="old-pass">現在のパスワード:<span class="error-star">*</span></label>
                                             <input type="password" name="old_password" placeholder="現在のパスワードを入力してください。" v-model="old_password" class="form-control old-password">
-                                            <span v-if="errors.old_password" class="error">{{errors.old_password}}</span>
+                                            <span v-if="errors.old_password" class="error-star">{{errors.old_password}}</span>
                                             <br>
-                                            <label class="old-pass">新しいパスワード:<span class="error">*</span></label>
+                                            <label class="old-pass">新しいパスワード:<span class="error-star">*</span></label>
                                             <input type="password" name="new_password" placeholder="新しいパスワードを入力してください。" v-model="new_password" class="form-control new-password">
-                                            <span v-if="errors.new_password" class="error">{{errors.new_password}}</span>
-                                            <div class="error" id="newpasswordlength" style="display: none;">パスワードは少なくとも6桁でなければなりません。</div>
+                                            <span v-if="errors.new_password" class="error-star">{{errors.new_password}}</span>
+                                            <div class="error-star" id="newpasswordlength" style="display: none;">パスワードは少なくとも6桁でなければなりません。</div>
                                             <br>
-                                            <label class="old-pass">新しいパスワードをもう一度入力してください<span class="error">*</span></label>
+                                            <label class="old-pass">新しいパスワードをもう一度入力してください<span class="error-star">*</span></label>
                                             <input type="password" name="comfirm_password" class="form-control confirm-password" v-model="confirm_password" placeholder="新しいパスワードをもう一度入力してください" @keyup="password_validate()">
-                                            <span v-if="errors.old_password" class="error">{{errors.confirm_password}}</span>
+                                            <span v-if="errors.old_password" class="error-star">{{errors.confirm_password}}</span>
                                             <div class="col-md-12 pad-free">
-                                                <span v-if="errors.edit_password" class="error">{{errors.edit_password}}</span>
+                                                <span v-if="errors.edit_password" class="error-star">{{errors.edit_password}}</span>
                                             </div>
                                             <br>
                                         </div>
@@ -296,3 +296,8 @@
     }
 }
 </script>
+<style>
+.error-star{
+    color: #ff0000;
+}
+</style>
