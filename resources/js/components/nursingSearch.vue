@@ -538,7 +538,7 @@
                                         <div class="nur-content">
                                             <div class="job-header">
                                                 <div class="row pad-free">
-                                                    <div class="col-lg-9 col-sm-12">
+                                                    <div class="col-lg-9 col-sm-9">
                                                     <h5 class="nur-tit">
                                                         <router-link :to="{ path:'/profile/nursing/'+ nus.nursing_id}" class="pseudolink" style="font-weight:bold;">{{nus.name}}</router-link>
                                                     </h5>
@@ -554,7 +554,7 @@
 
                                                     </div>
 
-                                                    <div class="col-lg-3 col-sm-12 text-right pc-768">
+                                                    <div class="col-lg-3 col-sm-3 text-right pc-768">
                                                     <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == ''" :class="'view_pro_id'+nus.nursing_id" style="display:block;" @click="favAddFun('add',nus.nursing_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                                                     <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == 'check'" :class="'done_pro_id'+nus.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',nus.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                                                     </div>

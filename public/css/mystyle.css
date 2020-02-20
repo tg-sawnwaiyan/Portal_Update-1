@@ -2520,7 +2520,7 @@ width: 18rem;
 .ads-slider h3 {
     /* width: 100px; */
     width: auto;
-    height: 60px;
+    height: 65px;
 }
 
 .ads-slider .ads-img {
@@ -11019,9 +11019,9 @@ width: 18rem;
         width: 100%;
     }
     .related_post_box .create_news img {
-        float: none !important;
-        margin-bottom: 10px;
-        max-width: 100%;
+        /* float: none !important;
+        margin-bottom: 10px; */
+        max-width: 40%;
     }
     #news_list .select_box {
         width: 75%;

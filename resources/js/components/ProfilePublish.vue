@@ -775,7 +775,7 @@
                                         <i v-if="ma.name === maccept.name && ma.accept_type === 'accept'" class="fas fa-check green"></i>
                                         <i v-if="ma.name === maccept.name && ma.accept_type === 'unaccept'" class="fas fa-times red"></i>
                                         <i v-if="ma.name === maccept.name && ma.accept_type === 'negotiate'" class="fas fa-adjust blue"></i>
-                                    </div>
+                                    </div>&nbsp;
                                     {{maccept.name}}
                                 </div>
                             </div>
@@ -1556,7 +1556,7 @@ export default {
                         } else {
                             $(document).scroll(function() {
 
-                                $(".fixed-nav").css({"position": "fixed","top":"125px"});
+                                $(".fixed-nav").css({"position": "fixed","top":"70px"});
                                 var cur_pos = $(this).scrollTop();
                                 console.log("cur",cur_pos)
 
@@ -2090,6 +2090,9 @@ h3 {
     border-top: 1px dashed #907b7b;
     padding: 0px 10px;
     box-shadow: 0 4px 5px rgba(0, 0, 0, 0.12);
+}
+.see-pano li{
+    list-style: none;
 }
 
 /*end test*/
