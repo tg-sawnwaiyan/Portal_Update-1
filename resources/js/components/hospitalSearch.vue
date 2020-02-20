@@ -213,11 +213,12 @@
                             <td colspan="2" style="border:none;">
                             <button @click="ShowHide1" class="btn seemore-btn">
                                 <i class="fa" aria-hidden="true"></i>
-                                <span id="close2"><i class="fas fa-arrow-circle-down"></i> もっと見る</span>
+                                <span id="close2"><i class="fas fa-arrow-circle-up"></i> 閉じる</span>
                             </button>
                             </td>
                         </tr>
-                        <tr class="text-center">
+
+                        <tr class="text-center">                         
                             <td colspan="2">
                             <button type="button" class="main-bg-color create-btn all-btn col-lg-2 col-md-4 col-sm-2" id="search" name="search" value="検索"  @click="search">
                             <i class="fas fa-search"></i>&nbsp; 検索
@@ -250,8 +251,9 @@
                                     </div>
                                     <div class="row col-12">
                                       <div class="clearfix">
+                                     
                                         <span v-for="(sub,index) in subject" :key="index+'-'+sub.name+'-'+hos.hos_id">
-                                            <span v-if="sub.customer_id == hos.cus_id" class="job_status">
+                                            <span v-if="sub.profile_id == hos.hos_id" class="job_status">
                                               {{sub.name}}
                                             </span>
                                         </span>
@@ -318,19 +320,19 @@
                                                 </thead>
                                                 <tbody>
                                                 <tr v-for="(time,index) in timetable" :key="index+'-'+time.id+'-'+hos.hos_id" class="text-center">
-                                                    <td class="second-hos-row" style="width:8%;" v-if="(hos.cus_id == time.customer_id && time.part == 'am' )">午前</td>
-                                                    <td class="second-hos-row" style="width:8%;" v-if="(hos.cus_id == time.customer_id && time.part == 'pm' )">午後</td>
-                                                    <td style="width:10%;" v-if="hos.cus_id == time.customer_id">{{time.mon}}</td>
-                                                    <td style="width:10%;" v-if="hos.cus_id == time.customer_id">{{time.tue}}</td>
-                                                    <td style="width:10%;" v-if="hos.cus_id == time.customer_id">{{time.wed}}</td>
-                                                    <td style="width:10%;" v-if="hos.cus_id == time.customer_id">{{time.thu}}</td>
-                                                    <td style="width:10%;" v-if="hos.cus_id == time.customer_id">{{time.fri}}</td>
-                                                    <td style="width:10%;" v-if="hos.cus_id == time.customer_id">{{time.sat}}</td>
-                                                    <td style="width:10%;" v-if="hos.cus_id == time.customer_id">{{time.sun}}</td>
+                                                    <td class="second-hos-row" style="width:8%;" v-if="(hos.hos_id == time.profile_id && time.part == 'am' )">午前</td>
+                                                    <td class="second-hos-row" style="width:8%;" v-if="(hos.hos_id == time.profile_id && time.part == 'pm' )">午後</td>
+                                                    <td style="width:10%;" v-if="hos.hos_id == time.profile_id">{{time.mon}}</td>
+                                                    <td style="width:10%;" v-if="hos.hos_id == time.profile_id">{{time.tue}}</td>
+                                                    <td style="width:10%;" v-if="hos.hos_id == time.profile_id">{{time.wed}}</td>
+                                                    <td style="width:10%;" v-if="hos.hos_id == time.profile_id">{{time.thu}}</td>
+                                                    <td style="width:10%;" v-if="hos.hos_id == time.profile_id">{{time.fri}}</td>
+                                                    <td style="width:10%;" v-if="hos.hos_id == time.profile_id">{{time.sat}}</td>
+                                                    <td style="width:10%;" v-if="hos.hos_id == time.profile_id">{{time.sun}}</td>
                                                 </tr>
                                                 </tbody>
                                             </table>
-                                            <span> <strong> 休診日：</strong>{{hos.closed_day}}</span>
+                                            <span v-if="hos.closed_day"> <strong> 休診日：</strong>{{hos.closed_day}}</span>
                                             <!-- <p><span style="color: red; font-weight: bold; font-size: 15px;">※</span>診療時間は、変更される事や、診療科によって異なる場合があるため、直接医療機関のホームページ等でご確認ください。</p> -->
                                             <!--end schedule-->
                                         </div>
@@ -434,12 +436,13 @@ import bulcomponent from './bulcomponent.vue'
           height: 0
         },
         w_width: $(window).width(),
+        showOne:true,
 
       }
     },
     created(){
-        
-       window.addEventListener('resize', this.handleResize);
+      
+        window.addEventListener('resize', this.handleResize);
         this.handleResize();
     },
     mounted() {
@@ -502,8 +505,9 @@ import bulcomponent from './bulcomponent.vue'
             local:this.locast
         },
         }).then((response)=>{
+        this.showOne = false;
         this.$loading(false);
-        console.log(response)
+      
         this.getTownships = response.data.township;
         this.hos_data = response.data.hospital;
         this.timetable = response.data.timetable;
@@ -511,8 +515,7 @@ import bulcomponent from './bulcomponent.vue'
         this.subject = response.data.subject;
         this.subjects = response.data.subjects;
         this.company = response.data.company;
-        // this.int = this.subjects.length
-        console.log(this.int)
+
         if(this.hos_data.length > this.size) {
             this.show_paginate = true;
         }else{
@@ -524,6 +527,7 @@ import bulcomponent from './bulcomponent.vue'
             this.norecord_msg = true;
         }
         })
+        this.ShowHide1();
     },
     searchfreeword(){
         //clear all checkbox
@@ -580,7 +584,7 @@ import bulcomponent from './bulcomponent.vue'
                     }
                  this.array_len = ((this.subjects.length)%3)==0?((this.subjects.length)/3):Math.floor(((this.subjects.length)/3)+1);
                 
-
+                this.ShowHide1();
             });
         },
 
@@ -661,17 +665,16 @@ import bulcomponent from './bulcomponent.vue'
     },
     ShowHide1() {
         this.toggleCheck_1 = !this.toggleCheck_1;
+        $(".ShowHide1").toggle();
         if (this.toggleCheck_1 == true) {
             $('#close2').empty();
-            $(".ShowHide1").slideDown();
             $('#close2').append('<i class="fas fa-arrow-circle-up"></i> 閉じる');
 
         } else {
             $('#close2').empty();
-            $(".ShowHide1").slideUp();
             $('#close2').append('<i class="fas fa-arrow-circle-down"></i> もっと見る');
         }
-        console.log($('#test-td').width() + "width")
+     
     },
     ChangeTownship(){
         this.townshipID = [];
@@ -693,7 +696,7 @@ import bulcomponent from './bulcomponent.vue'
         },
         })
         .then((response) => {
-            console.log(response)
+            this.showOne = false;
             $('.hospitalselect').removeClass('hospitalselect');
             this.cities = response.data.city
             this.getCity = response.data.getCity
@@ -749,7 +752,7 @@ import bulcomponent from './bulcomponent.vue'
         },
         })
         .then((response) => {
-            
+             this.showOne = false;
             _this.$loading(false);
             $('#hos_search').css("display","block");
             $('.hospitalselect').removeClass('hospitalselect');

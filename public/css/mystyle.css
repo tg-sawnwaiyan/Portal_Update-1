@@ -1739,7 +1739,7 @@ border-top: 5px solid #e66527; */
 }
 
 .gNav li a {
-    padding: 0px 20px;
+    padding: 0px 5px 0px 20px;
     font-size: 12px;
     color: #444;
 }
@@ -8013,7 +8013,7 @@ border-bottom: none;
 }
 
 .job_status {
-    padding: 2px;
+    padding: 2px 6px;
     margin-right: 10px;
     background: #2980b9;
     font-size: 12px;
@@ -8022,6 +8022,7 @@ border-bottom: none;
     /* margin-bottom: 10px; */
     position: relative;
     display: inline-flex;
+    margin-top: 7px;
 }
 
 .job_id {
@@ -9426,7 +9427,7 @@ padding: 11px;
         display: inline-block;
     }
     .gNav li a {
-        padding: 0px 20px;
+        padding: 0px 5px 0px 20px;
     }
     .navbar-expand-lg .navbar-nav .nav-link {
         padding-right: 5px;
@@ -10395,7 +10396,7 @@ padding: 0;
         margin-top: 5px;
     }
     .job_status {
-        margin-top: 10px;
+        margin-top: 7px;
         margin-right: 2%;
     }
     .form-wrap .form-left {
@@ -12048,7 +12049,7 @@ background-image: none;
         margin-left: 0%;
     }
     .gNav li a {
-        padding: 0 20px;
+        padding: 0px 5px 0px 20px;
     }
     .navbar-expand-lg .navbar-nav .nav-link {
         padding-right: 5px;

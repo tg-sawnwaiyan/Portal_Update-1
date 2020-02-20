@@ -1,57 +1,88 @@
 <template>
-            
-                <div class="d-flex justify-content-center h-100">
-                    <div class="admin_card admin_registercard admin-create-wrapper">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h4 class="page-header header">{{ header }}</h4>
-                            </div>
-                            <div class="col-md-12">
-                                <form @submit.prevent="add">
-                                    <div class="form-group">
-                                        <label>管理者名 :<span class="error-star">*</span></label>
-                                        <input type="text" class="form-control" v-model="adminData.name" placeholder="管理者名を入力してください。">
-                                        <span v-if="errors.name" class="error-star">{{errors.name}}</span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>メールアドレス :<span class="error-star">*</span></label>
-                                        <input type="text" class="form-control" v-model="adminData.email" placeholder="メールアドレスを入力してください。">
-                                        <span v-if="errors.email" class="error-star">{{errors.email}}</span>
-                                    </div>
-                                    <div class="form-group" v-if="!show">
-                                        <label>パスワード :<span class="error-star">*</span></label>
-                                        <input type="password" class="form-control" v-model="adminData.password" placeholder="パスワードを入力してください。">
-                                        <span v-if="errors.password" class="error-star">{{errors.password}}</span>
-                                        <div class="error-star" id="newpasswordlength" style="display: none;">パスワードは少なくとも6桁でなければなりません。</div>
-                                    </div>
-                                        <div class="form-group" v-if="show">
-                                            <label class="old-pass">現在のパスワード:<span class="error-star">*</span></label>
-                                            <input type="password" name="old_password" placeholder="現在のパスワードを入力してください。" v-model="old_password" class="form-control old-password">
-                                            <span v-if="errors.old_password" class="error-star">{{errors.old_password}}</span>
-                                            <br>
-                                            <label class="old-pass">新しいパスワード:<span class="error-star">*</span></label>
-                                            <input type="password" name="new_password" placeholder="新しいパスワードを入力してください。" v-model="new_password" class="form-control new-password">
-                                            <span v-if="errors.new_password" class="error-star">{{errors.new_password}}</span>
+
+    <div class="d-flex justify-content-center h-100">
+        <div class="admin_card admin_registercard admin-create-wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="page-header header">{{ header }} <router-link v-if="show" class="btn btn-danger all-btn float-right m-b-20" to="t_is_admin_register"> キャンセル </router-link></h4>
+                    
+
+                </div>
+                <!-- <div class="col-md-2"> -->
+                <!-- </div> -->
+                <div class="col-md-12">
+                    <form @submit.prevent="add">
+                        <div class="card card-default m-b-20 col-md-11">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12 m-t-8">
+                                        <div class="form-group">
+                                            <label>管理者名 :<span class="error-star">*</span></label>
+                                            <input type="text" class="form-control" v-model="adminData.name" placeholder="管理者名を入力してください。">
+                                            <span v-if="errors.name" class="error-star">{{errors.name}}</span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>メールアドレス :<span class="error-star">*</span></label>
+                                            <input type="text" class="form-control" v-model="adminData.email" placeholder="メールアドレスを入力してください。">
+                                            <span v-if="errors.email" class="error-star">{{errors.email}}</span>
+                                        </div>
+                                        <div class="form-group" v-if="!show">
+                                            <label>パスワード :<span class="error-star">*</span></label>
+                                            <input type="password" class="form-control" v-model="adminData.password" placeholder="パスワードを入力してください。">
+                                            <span v-if="errors.password" class="error-star">{{errors.password}}</span>
                                             <div class="error-star" id="newpasswordlength" style="display: none;">パスワードは少なくとも6桁でなければなりません。</div>
-                                            <br>
-                                            <label class="old-pass">新しいパスワードをもう一度入力してください<span class="error-star">*</span></label>
-                                            <input type="password" name="comfirm_password" class="form-control confirm-password" v-model="confirm_password" placeholder="新しいパスワードをもう一度入力してください" @keyup="password_validate()">
-                                            <span v-if="errors.old_password" class="error-star">{{errors.confirm_password}}</span>
-                                            <div class="col-md-12 pad-free">
-                                                <span v-if="errors.edit_password" class="error-star">{{errors.edit_password}}</span>
+                                        </div>
+                                        <div><span class="btn main-bg-color white all-btn" v-if="show" @click="nameMailChange()">変更</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" v-if="show">
+                            <div class="card card-default m-b-20 col-md-11">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12 m-t-8">
+                                            <div class="header2">
+                                                <label class="heading-lbl">パスワード設定</label>
+                                                <span class="btn all-btn main-bg-color nursing_toggle_responsive m-l-8" style="min-width: 0px;" @click="passwordToggleDiv()"><i class="fas fa-sort-down animate"  :class="{'rotate': !isRotate}"></i></span>
+                                            </div>
+
+                                            <!-- <label class="heading-lbl col-md-2 col-12 pad-free">パスワード設定</label> -->
+
+                                            <div class="password-setting">
+                                                <label class="old-pass">現在のパスワード:<span class="error-star">*</span></label>
+                                                <input type="password" name="old_password" placeholder="現在のパスワードを入力してください。" v-model="old_password" class="form-control old-password">
+                                                <span v-if="errors.old_password" class="error-star">{{errors.old_password}}</span>
+                                                <br>
+                                                <label class="old-pass">新しいパスワード:<span class="error-star">*</span></label>
+                                                <input type="password" name="new_password" placeholder="新しいパスワードを入力してください。" v-model="new_password" class="form-control new-password">
+                                                <span v-if="errors.new_password" class="error-star">{{errors.new_password}}</span>
+                                                <div class="error-star" id="newpasswordlength" style="display: none;">パスワードは少なくとも6桁でなければなりません。</div>
+                                                <br>
+                                                <label class="old-pass">新しいパスワードをもう一度入力してください<span class="error-star">*</span></label>
+                                                <input type="password" name="comfirm_password" class="form-control confirm-password" v-model="confirm_password" placeholder="新しいパスワードをもう一度入力してください" @keyup="password_validate()">
+                                                <span v-if="errors.old_password" class="error-star">{{errors.confirm_password}}</span>
+                                                <div class="col-md-12 pad-free">
+                                                    <span v-if="errors.edit_password" class="error-star">{{errors.edit_password}}</span>
+                                                </div>
+                                                <div><span class="btn main-bg-color white all-btn m-t-30" @click="passwordChange()">変更</span></div>
                                             </div>
                                             <br>
                                         </div>
-                                    <div class="form-group ">
-                                        <span class="btn main-bg-color white all-btn" @click="checkValidate()">{{subtitle}}</span>
-                                        <router-link class="btn btn-danger all-btn" to="t_is_admin_register"> キャンセル </router-link>
                                     </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="form-group " v-if="!show">
+                            <span class="btn main-bg-color white all-btn" @click="checkValidate()">{{subtitle}}</span>
+                            <router-link class="btn btn-danger all-btn" to="t_is_admin_register"> キャンセル </router-link>
+                        </div>
+                    </form>
                 </div>
-            
+            </div>
+        </div>
+    </div>
+
 </template>
 <script>
     export default {
@@ -77,31 +108,32 @@
                         confirm_password: '',
                     },
                     show: false,
-                  
+
                     old_password: '',
                     new_password: '',
                     confirm_password: '',
                     admin_id: this.$route.params.id,
+                    isRotate: false,
                     mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
                 }
             },
             created() {
-                if(this.$route.params.id){
+                if (this.$route.params.id) {
                     this.show = true;
-                  this.axios
-                    .get(`/api/main_admin/edit/${this.$route.params.id}`)
-                    .then((response) => {
+                    this.axios
+                        .get(`/api/main_admin/edit/${this.$route.params.id}`)
+                        .then((response) => {
 
-                    this.adminData= response.data;
-                      this.header = ' 管理者編集';
-                        this.subtitle = '保存';
-                        return this.header;
-                        return this.subtitle;
+                            this.adminData = response.data;
+                            this.header = ' 管理者編集';
+                            this.subtitle = '保存';
+                            return this.header;
+                            return this.subtitle;
 
-                });
-              }else {
-                  this.show = false;
-              }
+                        });
+                } else {
+                    this.show = false;
+                }
             },
             methods: {
                 checkValidate() {
@@ -111,12 +143,12 @@
                             this.errors.name = "管理者名は必須です。";
                         }
                         if (this.adminData.email) {
-                            if(this.mail_reg.test(this.adminData.email )){
+                            if (this.mail_reg.test(this.adminData.email)) {
                                 this.errors.email = "";
-                            }else{
+                            } else {
                                 this.errors.email = "※メールアドレスが正しくありません。もう一度入力してください。"
                             }
-                            
+
                         } else {
                             this.errors.email = "メールアドレスは必須です。";
                         }
@@ -125,38 +157,20 @@
                         } else {
                             this.errors.password = "パスワードは必須です。";
                         }
-                        if (this.old_password) {
-                            this.errors.old_password = "";
-                        }else{
-                            this.errors.old_password = "現在のパスワードは必須です。"
-                        }
-                        if (this.new_password) {
-                            this.errors.new_password = "";
-                        }else{
-                            this.errors.new_password = "新しいパスワードは必須です。"
-                        }
-                        if (this.confirm_password) {
-                            this.errors.confirm_password = "";
-                        }else{
-                            this.errors.confirm_password = "新しいパスワードをもう一度入力が必要です。"
-                        }
-                        if (!this.errors.name && !this.errors.email && (!(this.errors.password) || !(this.errors.old_password && this.errors.new_password && this.errors.confirm_password))) {
+                        if (!this.errors.name && !this.errors.email && !this.errors.password) {
                             this.add();
                         }
-                        
-
                     },
                     add() {
                         if (`${this.$route.params.id}` == "undefined") {
                             if (this.adminData.password.length < 6) {
-                            $('#newpasswordlength').css('display', 'block');
-                            return;
-                        }
-                            {
+                                $('#newpasswordlength').css('display', 'block');
+                                return;
+                            } {
                                 this.$swal({
                                     title: "確認",
                                     text: "管理者を作成してよろしいでしょうか。",
-                                    type: "success",
+                                    type: "info",
                                     width: 350,
                                     height: 200,
                                     showCancelButton: true,
@@ -175,14 +189,14 @@
                                             this.name = ''
                                             console.log(response);
                                             this.$swal({
-                                                    position: 'top-end',
-                                                    type: 'success',
-                                                    text: '管理者を作成しました。',
-                                                    confirmButtonText: "閉じる",
-                                                    confirmButtonColor: "#6cb2eb",
-                                                    width: 250,
-                                                    height: 200,
-                                                })
+                                                position: 'top-end',
+                                                type: 'success',
+                                                text: '管理者を作成しました。',
+                                                confirmButtonText: "閉じる",
+                                                confirmButtonColor: "#6cb2eb",
+                                                width: 250,
+                                                height: 200,
+                                            })
                                             this.$router.push({
                                                 name: 'adminlist'
                                             });
@@ -197,12 +211,97 @@
                                 })
 
                             }
-                        }else {
-                            
-                            this.updateAdmin();
+                        } 
+                    },
+                    password_validate() {
+                        window.pwd_same = false;
+                        if (this.new_password != this.confirm_password) {
+                            this.errors.edit_password = "※パスワードが一致しません。";
+                        } else {
+                            this.errors.edit_password = null;
+                            window.pwd_same = true;
                         }
                     },
-                    updateAdmin (){
+                    passwordToggleDiv() {
+                        $(".password-setting").toggle('medium');
+                        this.isRotate = !this.isRotate;
+                    },
+                    nameMailChange() {
+                        if (this.adminData.name) {
+                            this.errors.name = "";
+                        } else {
+                            this.errors.name = "管理者名は必須です。";
+                        }
+                        if (this.adminData.email) {
+                            if (this.mail_reg.test(this.adminData.email)) {
+                                this.errors.email = "";
+                            } else {
+                                this.errors.email = "※メールアドレスが正しくありません。もう一度入力してください。"
+                            }
+
+                        } else {
+                            this.errors.email = "メールアドレスは必須です。";
+                        }
+                        this.$swal({
+                            title: "確認",
+                            text: "管理者名とメールアドレスを更新してよろしいでしょうか。",
+                            type: "info",
+                            width: 350,
+                            height: 200,
+                            showCancelButton: true,
+                            confirmButtonColor: "#6cb2eb",
+                            cancelButtonColor: "#b1abab",
+                            cancelButtonTextColor: "#000",
+                            confirmButtonText: "はい",
+                            cancelButtonText: "キャンセル",
+                            confirmButtonClass: "all-btn",
+                            cancelButtonClass: "all-btn"
+                        }).then(response => {
+                            let arr = new FormData();
+                                arr.append('admin_id', this.admin_id)
+                                arr.append('name', this.adminData.name)
+                                arr.append('email', this.adminData.email)
+                                arr.append('old_pass', '')
+                            this.axios
+                                    .post(`/api/main_admin/update`, arr)
+                                    .then((response) => {
+                                       this.$swal({
+                                                position: 'top-end',
+                                                type: 'success',
+                                                title: '管理者を更新しました',
+                                                confirmButtonText: "閉じる",
+                                                confirmButtonColor: "#6cb2eb",
+                                                width: 250,
+                                                height: 200,
+                                            }) 
+                                            this.$router.push({
+                                                name: 'adminlist'
+                                            });
+                                    }).catch(error => {
+
+                                        if (error.response.status == 422) {
+                                            this.errors = error.response.data.errors
+                                        }
+                                    });
+                        });
+
+                    },
+                    passwordChange() {
+                        if (this.old_password) {
+                            this.errors.old_password = "";
+                        }else{
+                            this.errors.old_password = "現在のパスワードは必須です。"
+                        }
+                        if (this.new_password) {
+                            this.errors.new_password = "";
+                        }else{
+                            this.errors.new_password = "新しいパスワードは必須です。"
+                        }
+                        if (this.confirm_password) {
+                            this.errors.confirm_password = "";
+                        }else{
+                            this.errors.confirm_password = "新しいパスワードをもう一度入力が必要です。"
+                        }
                         this.$swal({
                             title: "確認",
                             text: "管理者を更新してよろしいでしょうか。",
@@ -218,55 +317,55 @@
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
                         }).then(response => {
-                        if (this.new_password.length < 6) {
-                            $('#newpasswordlength').css('display', 'block');
-                            return;
-                        }
-                        if ("'" + this.new_password + "'" === "'" + this.confirm_password + "'") {
-                            let arr = new FormData();
-                            arr.append('admin_id', this.admin_id)
-                            arr.append('name',this.adminData.name)
-                            arr.append('email',this.adminData.email)
-                            arr.append('old_pass', this.old_password)
-                            arr.append('new_pass', this.new_password)
-                            this.axios
-                                .post(`/api/main_admin/update`, arr)
-                                .then((response) => {
-                                    if (response.data == 'oldpasswordwrong') {
-                                        this.$swal({
-                                            position: 'top-end',
-                                            type: 'error',
-                                            title: '現在のパスワードが一致しません。',
-                                            confirmButtonText: "閉じる",
-                                            confirmButtonColor: "#6cb2eb",
-                                            width: 250,
-                                            height: 200,
-                                        })
-                                        return;
-                                    }else{
-                                        this.$swal({
-                                            position: 'top-end',
-                                            type: 'success',
-                                            title: '管理者を更新しました',
-                                            confirmButtonText: "閉じる",
-                                            confirmButtonColor: "#6cb2eb",
-                                            width: 250,
-                                            height: 200,
-                                        })
-                                        this.password_confirmation = null;
-                                        this.old_password = null;
-                                        this.$router.push({
+                            if (this.new_password.length < 6) {
+                                $('#newpasswordlength').css('display', 'block');
+                                return;
+                            }
+                            if ("'" + this.new_password + "'" === "'" + this.confirm_password + "'") {
+                                let arr = new FormData();
+                                arr.append('admin_id', this.admin_id)
+                                arr.append('name', this.adminData.name)
+                                arr.append('email', this.adminData.email)
+                                arr.append('old_pass', this.old_password)
+                                arr.append('new_pass', this.new_password)
+                                this.axios
+                                    .post(`/api/main_admin/update`, arr)
+                                    .then((response) => {
+                                        if (response.data == 'oldpasswordwrong') {
+                                            this.$swal({
+                                                position: 'top-end',
+                                                type: 'error',
+                                                title: '現在のパスワードが一致しません。',
+                                                confirmButtonText: "閉じる",
+                                                confirmButtonColor: "#6cb2eb",
+                                                width: 250,
+                                                height: 200,
+                                            })
+                                            return;
+                                        } else {
+                                            this.$swal({
+                                                position: 'top-end',
+                                                type: 'success',
+                                                title: '管理者を更新しました',
+                                                confirmButtonText: "閉じる",
+                                                confirmButtonColor: "#6cb2eb",
+                                                width: 250,
+                                                height: 200,
+                                            })
+                                            this.password_confirmation = null;
+                                            this.old_password = null;
+                                            this.$router.push({
                                                 name: 'adminlist'
                                             });
-                                    }
-                                }).catch(error => {
+                                        }
+                                    }).catch(error => {
 
-                                    if (error.response.status == 422) {
-                                        this.errors = error.response.data.errors
-                                    }
-                                });
-                        } else {
-                            this.$swal({
+                                        if (error.response.status == 422) {
+                                            this.errors = error.response.data.errors
+                                        }
+                                    });
+                            } else {
+                                this.$swal({
                                     title: "確認",
                                     text: "新しいパスワードと確認パスワードは同じでなければなりません。",
                                     type: "warning",
@@ -279,25 +378,19 @@
                                     confirmButtonText: "閉じる",
                                     confirmButtonClass: "all-btn",
                                 })
-                        }
-           
-             }) ;
-        },
-        password_validate() {
-                        window.pwd_same = false;
-                        if(this.new_password != this.confirm_password) {
-                            this.errors.edit_password = "※パスワードが一致しません。";
-                        }
-                        else {
-                            this.errors.edit_password = null;
-                            window.pwd_same = true;
-                        }
+                            }
+
+                        });                       
                     },
+            }
     }
-}
 </script>
 <style>
-.error-star{
-    color: #ff0000;
-}
+    .error-star {
+        color: #ff0000;
+    }
+    
+    .password-setting {
+        display: none;
+    }
 </style>

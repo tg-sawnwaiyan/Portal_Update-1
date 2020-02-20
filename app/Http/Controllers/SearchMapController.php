@@ -59,9 +59,9 @@ class SearchMapController extends Controller
             }
             else if ($id != null && $township_id != -1 && $moving_in != -1 && $per_month != -1){
                 $query .= " t.city_id=" . $id . " and t.id =".$township_id." and n.moving_in_to <= ".$moving_in." and n.per_month_to <= ".$per_month;
-            }
+            } 
             else if($id != null && $township_id != -1 && $moving_in != -1 && $per_month == -1){
-                $query .= " t.city_id=" . $id         . " and t.id =".$township_id." and n.moving_in_to <= ".$moving_in;
+                $query .= " t.city_id=" . $id . " and t.id =".$township_id." and n.moving_in_to <= ".$moving_in;
             }
             else if($id != null && $township_id != -1 && $moving_in == -1 && $per_month != -1){
                 $query .= " t.city_id=" . $id . " and t.id =".$township_id." and n.per_month_to <= ".$per_month;
@@ -192,8 +192,8 @@ class SearchMapController extends Controller
                     left join fac_types as f on f.id = n.fac_type 
                     left join special_features_junctions as spej on spej.profile_id = n.id 
                     left join special_features as spe on spe.id = spej.special_feature_id 
-                    left join acceptance_transactions as acct on acct.profile_id = n.id l
-                    eft join medical_acceptance as med on med.id = acct.medical_acceptance_id where n.recordstatus=1";
+                    left join acceptance_transactions as acct on acct.profile_id = n.id 
+                    left join medical_acceptance as med on med.id = acct.medical_acceptance_id where n.recordstatus=1";
 
           if($id == -1)
           {
@@ -639,13 +639,13 @@ class SearchMapController extends Controller
                         left Join nursing_profiles As n on n.customer_id = c.id 
                         left Join hospital_profiles As h on h.customer_id = c.id 
                         left Join townships as t on t.id = j.township_id   
-                        where  j.recordstatus=1 ";  
+                        where  j.recordstatus=1 group by j.id";  
                                
             }
             else{
              
 
-                $query .= " and (j.title like '%" . $searchword . "%' or ci.city_name like '%" . $searchword . "%' or t.township_name like '%".$searchword."%')";
+                $query .= " and (j.title like '%" . $searchword . "%' or ci.city_name like '%" . $searchword . "%' or t.township_name like '%".$searchword."%') group by j.id";
             }
            
         }

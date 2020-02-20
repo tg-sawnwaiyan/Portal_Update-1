@@ -283,19 +283,24 @@ class UserController extends Controller
         $input = $request->all();
         $adminId = $input['admin_id'];
         $admin = User::find($adminId);
-      
-        if(Hash::check($input['old_pass'] , $admin['password'])){
-        $admin->name = $input['name'];
+        if($input['old_pass'] == ''){
+            $admin->name = $input['name'];
         $admin->email = $input['email'];
-        $admin->password = Hash::make($request->input('new_pass'));
-        $admin->role = 2;
-        $admin->type_id = 1;
         $admin->save();
         return response()->json('The Admin successfully updated');
-    }else{
-        return response()->json('oldpasswordwrong');
-    }
-
+        }else{
+            if(Hash::check($input['old_pass'] , $admin['password'])){
+                $admin->name = $input['name'];
+                $admin->email = $input['email'];
+                $admin->password = Hash::make($request->input('new_pass'));
+                $admin->role = 2;
+                $admin->type_id = 1;
+                $admin->save();
+                return response()->json('The Admin successfully updated');
+            }else{
+                return response()->json('oldpasswordwrong');
+            }
+        }
     }
 
 
