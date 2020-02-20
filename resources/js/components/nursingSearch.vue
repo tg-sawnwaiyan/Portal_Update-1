@@ -549,7 +549,7 @@
                                                                 {{fac.description}}
                                                             </span>
                                                         </span>
-                                                        <span class="nur_date"><span style="font-weight:bold;color:green;">開設年月日 :</span> {{nus.date_of_establishment}}</span>
+                                                        <span v-if="nus.date_of_establishment" class="nur_date"><span style="font-weight:bold;color:green;">開設年月日 :</span> {{nus.date_of_establishment}}</span>
                                                     </div>
 
                                                     </div>
@@ -621,8 +621,8 @@
                                                     </table>
                                                     <h5 class="header m-t-10">こだわりの特長</h5>                                              
                                                     <span v-for="(spe,index) in specialfeature" :key="index+'-'+spe.name+'-'+nus.id">
-                                                        
-                                                    <span v-if="spe.profile_id == nus.customer_id" class="feature_list">
+                                              
+                                                    <span v-if="spe.profile_id == nus.nursing_id" class="feature_list">
                                                         {{spe.name}}
                                                     </span>
                                                     </span>
@@ -1061,7 +1061,7 @@
                     var lat = 38.2682;
                     var lng = 140.8694;
                 }
-                if(this.map == null){
+                if(this.map == null){ 
                     this.createMap(theCity,lat,lng)
                     if(freewordornot == 1)
                     {
