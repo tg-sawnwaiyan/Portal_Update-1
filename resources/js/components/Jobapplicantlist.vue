@@ -14,7 +14,55 @@
                 <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
                 <div v-else class="container-fuid">
 
-                    <div class="container-fuid scroll_responsive">
+
+                    <div class="card card-default m-b-20" v-for="jobapply in jobapplies.data" :key="jobapply.id">
+                            <div class="card-body p-3">
+                                <div class="row">
+                                    <div class="col-9">
+                                        <div class="joboffer-tit clearfix">
+                                        <p><span class="text-primary">姓:</span>{{jobapply.first_name}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-3  text-right">
+                                        <button :class="'btn btn all-btn main-bg-color changeLink'+jobapply.id"  @click="applicatnToggle(jobapply.id)">
+                                        <i :id="'icon' + jobapply.id" class="fa fa-angle-down"></i> 詳細</button>
+                                    </div>
+                                </div>
+                                <p><span class="text-primary">名:</span>{{jobapply.last_name}}
+                                            <!-- <span class="text-orange"><span class="job_count">{{job.count}}件</span></span> -->
+                                </p>
+                                <p><span class="text-primary">メールアドレス:</span><span>{{jobapply.email}}</span></p>
+                                <div class="collapse" :id="'changeLink' + jobapply.id">                                    
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <td  class="w-50">
+                                                    <p class="mb-2"><span class="text-orange"><span class="job_ico">&#xa5;</span>生年月日 :</span><span class=""> {{jobapply.birtdday}}</span></p>
+                                            </td>
+                                            <td class="w-50">
+                                                <p><span class="text-primary">性別:</span><span>{{jobapply.gender}}</span></p>  
+                                                
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td  class="w-50">
+                                                    <p class="mb-2"><span class="text-orange"><span class="job_ico">★</span> 郵便番号 :</span><span class=""> {{jobapply.postal}}</span></p>
+                                            </td>
+                                            <td  class="w-50">
+                                                    <p><span class="text-primary">街路住所:</span>{{jobapply.street_address}}</p> 
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td  class="w-50">
+                                                    <p class="mb-2"><span class="text-orange"><span class="job_ico">★</span> 電話番号 :</span><span class=""> {{jobapply.phone}}</span></p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                    
+                            </div>
+                        </div>
+
+                    <!-- <div class="container-fuid scroll_responsive">
                         <table class="table table-hover custom-table">
                             <thead>
                                 <tr>
@@ -28,17 +76,17 @@
 
                                     <th>郵便番号 </th>
 
-                                    <th>街路住所</th>
+                                    <th>街路住所</th> -->
 
                                     <!-- <th>自宅住所</th> -->
 
-                                    <th>電話番号</th>
+                                    <!-- <th>電話番号</th>
 
                                     <th style="width:115px;">メールアドレス</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr  v-for="jobapply in jobapplies.data" :key="jobapply.id">
+                            <tbody> -->
+                                <!-- <tr  v-for="jobapply in jobapplies.data" :key="jobapply.id">
                                     <td>{{jobapply.first_name}}</td>
 
                                     <td>{{jobapply.last_name}}</td>
@@ -49,17 +97,17 @@
 
                                     <td>{{jobapply.postal}}</td>
 
-                                    <td>{{jobapply.street_address}}</td>
+                                    <td>{{jobapply.street_address}}</td> -->
 
                                     <!-- <td>{{jobapply.home_address}}</td> -->
 
-                                    <td>{{jobapply.phone}}</td>
+                                    <!-- <td>{{jobapply.phone}}</td>
 
                                     <td>{{jobapply.email}}</td>
                                 </tr>
                             </tbody>
-                        </table>
-                    </div>
+                        </table> -->
+                    <!-- </div> -->
                     <!-- <pagination :data="jobapplies" @pagination-change-page="searchApplicantList"></pagination> -->
                     <pagination :data="jobapplies" @pagination-change-page="searchApplicantList" :limit="limitpc" class="mt-3">
                         <span slot="prev-nav"><i class="fas fa-angle-left"></i> 前へ</span>
@@ -134,6 +182,23 @@ export default {
                             }
                         });
                   },
+                  applicatnToggle(id) {
+                    console.log(id);
+                        var class_by_id = $('#icon' + id).attr('class');
+                        if (class_by_id == "fa fa-angle-down") {
+                            $('#icon' + id).removeClass("fa fa-angle-down");
+                            $('.changeLink' + id).removeClass("fa fa-angle-up");
+                            $('#icon' + id).addClass("fa fa-angle-up");
+                            $('#changeLink' + id).show('medium');
+                        } else {
+
+                            $('#icon' + id).removeClass("fa fa-angle-up");
+                            $('.changeLink' + id).removeClass("fa fa-angle-up");
+                            $('#icon' + id).addClass("fa fa-angle-down");
+                            $('#changeLink' + id).hide('medium');
+                        }
+
+                    },
               }
 }
 </script>
