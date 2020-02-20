@@ -1,7 +1,7 @@
 <template>
-            <div class="loginwrapper">
+            
                 <div class="d-flex justify-content-center h-100">
-                    <div class="admin_card admin_registercard">
+                    <div class="admin_card admin_registercard admin-create-wrapper">
                         <div class="row">
                             <div class="col-md-12">
                                 <h4 class="page-header header">{{ header }}</h4>
@@ -51,7 +51,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            
 </template>
 <script>
     export default {

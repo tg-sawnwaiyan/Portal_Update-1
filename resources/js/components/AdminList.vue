@@ -1,5 +1,4 @@
-<template>
-    <div class="">
+<template>   
         <div class="d-flex justify-content-center h-100">     
             <div class="admin_card admin_registercard admin-list-wrapper">
                 <div class="col-md-12 m-b-10">               
@@ -52,8 +51,7 @@
                         </nav>
                     </div>
             </div>
-        </div>
-    </div>
+        </div>    
 </template>
 <script>
 export default {
