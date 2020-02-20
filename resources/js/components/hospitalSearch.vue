@@ -218,7 +218,7 @@
                             </td>
                         </tr>
 
-                         
+                         <tr>
                             <td colspan="2">
                             <button type="button" class="main-bg-color create-btn all-btn col-lg-2 col-md-4 col-sm-2" id="search" name="search" value="検索"  @click="search">
                             <i class="fas fa-search"></i>&nbsp; 検索
