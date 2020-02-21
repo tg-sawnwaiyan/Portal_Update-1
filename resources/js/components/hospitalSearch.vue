@@ -2,10 +2,17 @@
   <layout>
 <div>
   <div class="col-md-12" style="border-bottom: 1px dashed #2980b9;padding-bottom: 10px; margin-bottom: 20px;">
-    <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#2980b9;"></i>&nbsp;地図検索</h5>
+    <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#2980b9;"></i>&nbsp;地図検索
+    <span v-if="hos_data.length && searchword == ''"> 「病院施設を <span class="result-span">{{hos_data[0].city_name}}</span> から探す<span class="result-span">{{hos_data.length}} 件」</span></span>
+     <span v-if="hos_data.length && searchword != '' && searchword == 'all' && id == '-1'"> 「病院施設を <span class="result-span">全国</span> から探す <span class="result-span">{{hos_data.length}} 件」</span> </span>
+     <span v-if="hos_data.length && searchword != '' && searchword != 'all' && id == '-1'"> 「病院施設を <span class="result-span">{{searchword}}</span> から探す <span class="result-span">{{hos_data.length}} 件」</span> </span>
+     <span v-if="hos_data.length && searchword != '' && searchword == 'all' && id != '-1'"> 「病院施設を <span class="result-span">全国 , {{hos_data[0].city_name}}</span> から探す <span class="result-span">{{hos_data.length}} 件」</span> </span>
+     <span v-if="hos_data.length && searchword != '' && searchword != 'all' && id != '-1'"> 「病院施設を <span class="result-span">{{searchword}} , {{hos_data[0].city_name}}</span> から探す <span class="result-span">{{hos_data.length}} 件」</span> </span>
+    </h5>   
+     
   </div>
   <div class="search-map card-body"  @mouseover="getStateHover">
-    <div class="row" id="hos">
+    <div class="row" id="hos">  
       <div class="col-md-12">
         <div>
           <!-- <div class="info-box"></div> -->
@@ -65,7 +72,7 @@
                 </span>
                 <div v-else>
                     <h5 class="profile_header m-t-10" style="border-left: 5px solid #63b7ff;">現在の検索条件</h5>
-
+                   
                     <table class="table table-bordered col-12">
                         <tbody>
                         <tr>
@@ -541,9 +548,11 @@ import bulcomponent from './bulcomponent.vue'
         {
 
             var search_word = $('#search-free-word').val();
+            this.searchword = search_word;
         }
         else{
                 var search_word = "all";
+                 this.searchword = search_word;
         }
             if(localStorage.getItem("hospital_fav") == null){
 
@@ -685,7 +694,7 @@ import bulcomponent from './bulcomponent.vue'
         else{
             this.locast = localStorage.getItem("hospital_fav");
         }
-
+      
         this.axios.get('api/getmap',{
             params:{
             id: this.id,
@@ -707,10 +716,10 @@ import bulcomponent from './bulcomponent.vue'
             
             //this.sub_child = response.data.sub_child;
             //console.log("aaa",this.subjects);
-            // this.id = id;
+            // this.id = id;  
 
         })
-            this.search();
+            // this.search();
     },
 
     parentGetStateClick(e,parentVue) {
@@ -741,6 +750,7 @@ import bulcomponent from './bulcomponent.vue'
         else{
             _this.locast = localStorage.getItem("hospital_fav");
         }
+        _this.searchword = '';
         _this.$loading(true);
         _this.axios.get('api/getmap',{
             params:{
@@ -870,7 +880,9 @@ import bulcomponent from './bulcomponent.vue'
 
 
 <style>
-
+    .result-span {
+        color: #23a2f5;
+    }
   .toBeToggled {
     display: block;
   }

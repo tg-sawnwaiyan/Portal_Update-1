@@ -648,7 +648,7 @@ export default {
          })
 
 
-        this.search();
+        // this.search();
         },
         // getStation(){
         //    this.axios.get('api/getstation/'+ this.id)

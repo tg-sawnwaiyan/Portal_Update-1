@@ -2,7 +2,12 @@
     <layout>
         <div>
             <div class="col-md-12" style="border-bottom: 1px dashed #ff9563;padding-bottom: 10px; margin-bottom: 20px;">
-                <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#ff9563;"></i>&nbsp;地図検索</h5>
+                <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#ff9563;"></i>&nbsp;地図検索 
+                <span v-if="nus_data.length && !ci">「 介護施設を <span class="result-span">{{nus_data[0].city_name}}</span> から探す <span class="result-span">{{nus_data.length}}</span> 件」</span>
+                <span v-if="nus_data.length && ci && searchword != 'all' && searchword != ''">「 介護施設を <span class="result-span">{{searchword}}</span> から探す <span class="result-span">{{nus_data.length}}</span> 件」</span>
+                <span v-if="nus_data.length && searchword == 'all'">「 介護施設を <span class="result-span">全国</span> から探す <span class="result-span">{{nus_data.length}}</span> 件」</span>
+                <!-- <h1 v-if="nus_data.length && searchword != 'all'"> 老人ホームを{{searchword}}から探す  {{nus_data.length}}</h1> -->
+                </h5>
             </div>
             <div class="search-map"  @mouseover="getStateHover">
                 <div class="row" id="hos">
@@ -42,7 +47,7 @@
                                     </h3>
                                     <!--search input-->
                                     <div class="search nursing-search-box">
-                                        <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、施設名などを入力">
+                                        <input type="text" class="searchTerm" id="search-free-word-res" placeholder="地名、施設名などを入力">
                                         <button type="submit" class="searchButton" @click="searchfreeword">
                                             <i class="fas fa-search"></i> 検索
                                         </button>
@@ -56,22 +61,23 @@
                             <div id="scroll-responsive">
                                 <div class="select" id="filter" style="justify-content:space-between">
                                    <h5 class="profile_header" style="border-left: 5px solid #ff9563;">現在の検索条件</h5>
+                                   
                                     <div class="row">
                                     <div class="col-lg-5 col-md-6 m-b-414">
                                         <div><p class="nurs-sub-heading">地域で絞り込む</p></div>                                    
                                         <div class="card search-border-dash">
                                             <div class="card-body">
                                                 <div class="row">
-                                                <div class="col-lg-6">
+                                                <div class="col-lg-6"> 
                                                 <select id="selectCity" class="form-control custom-select" @change="nursingSearchData(1);" style="background-color: #fff;" v-model="id">
                                                 <option value="-1" disabled>▼市区町村</option>
-                                                <option  :value="city.id" v-for="city in cities" :key="city.id">{{city.city_name}}</option>
+                                                <option  :value="city.id" v-for="(city,index) in cities" :key="index" >{{city.city_name}} </option>
                                                 </select>
                                                 </div>
                                                 <div class="col-lg-6">
                                                 <select id="selectTownship" class="form-control custom-select nus-town-m-t" style="background-color: #fff;" @change="nursingSearchData(2);" v-model="township_id">
                                                 <option value="-1" >▼市区町村</option>
-                                                <option  :value="selectTownship.id"  v-for="selectTownship in getTownships" :key="selectTownship.id">{{selectTownship.township_name}}</option>
+                                                <option  :value="selectTownship.id"  v-for="(selectTownship,index) in getTownships" :key="index">{{selectTownship.township_name}}</option>
                                                 </select>
                                                 </div>
                                                 </div>
@@ -129,7 +135,7 @@
                                         </div>
                                     </div>                                    
                                     <div class="col-lg-2 col-md-4 m-b-414 pc-768 align-self-center m-t-30">
-                                        <span class="btn seemore-btn select" style="width:100%;padding:20px 10px;" id="showSearchMap" @click="showSearchMap"><i class="fas fa-exchange-alt"></i>&nbsp;都道府県を再選択する</span>                                    
+                                        <span class="btn seemore-btn select" style="width:100%;padding:15px 10px;font-size:0.8em;" id="showSearchMap" @click="showSearchMap"><i class="fas fa-exchange-alt"></i>&nbsp;都道府県を再選択する</span>                                    
                                     </div>
                                     </div>
                                 </div>
@@ -761,7 +767,9 @@
                 cityArray: [],
                 allCity: [],
                 citynewArray:[],
-                boundsval: 'no marker'
+                boundsval: 'no marker',
+                searchword:'',
+                index:''
             }
         },
 
@@ -864,6 +872,7 @@
             },            
 
             searchfreeword(){
+           
                 this.ci = true;
                 //clear all drop down
                 this.id = -1;
@@ -875,9 +884,17 @@
                 {
                     this.id = -1;
                     var search_word = $('#search-free-word').val();
+                    this.searchword = search_word;
+                }
+                else if($('#search-free-word-res').val() != '')
+                {
+                    this.id = -1;
+                    var search_word = $('#search-free-word-res').val();
+                    this.searchword = search_word;
                 }
                 else{
                     var search_word = 'all';
+                    this.searchword = 'all';
                 }
 
                 if(localStorage.getItem("nursing_fav") == null){
@@ -886,6 +903,7 @@
                 else{
                     this.locast = localStorage.getItem("nursing_fav");
                 }
+              
 
                 this.axios.get('/api/getnursingsearch/'+search_word,{
                 params:{
@@ -897,16 +915,17 @@
 
                 },
                 })
-                .then((response) => {
+                .then((response) => { 
                     $("#mymap").css({'display' : 'block','height' : '400px','width':'100%'});
                     $("#filtertable").css("display", "block");
                     $("#nursing-search").css("display", "block");
-
-                        if(response.data.nursing.length != 0){
+                    console.log(response.data.nursing);
+                    if(response.data.nursing.length != 0){
                         this.norecord_msg = false;
-                        this.changeMap(response);
+                        this.changeMap(response,1);
                     }else{
                         $("#mymap").css({'display' : 'none'});
+                        this.nus_data = [];
                         this.norecord_msg = true;
                     }
                 });
@@ -963,6 +982,7 @@
 //  google map  function start========================================
 
             parentGetStateClick(e,parentVue) {
+               
                 var _this = parentVue;
                 $("#mymap").css({'display' : 'block','height' : '400px','width':'100%'});
                 $('.select').removeClass('select');
@@ -991,6 +1011,8 @@
                 else{
                     _this.locast = localStorage.getItem("nursing_fav");
                 }
+                _this.searchword = '';
+             
                 // _this.$loading(true);
                 
                 _this.axios.get('/api/getmap',{
@@ -1020,6 +1042,7 @@
 
             // make infowindow, marker , google map
             changeMap(response,freewordornot){
+             
                 $('.select').removeClass('select');
                 $('#searchMap').addClass('select');
                 $('#showSearchMap').removeClass('select');
@@ -1062,16 +1085,21 @@
                     var lng = 140.8694;
                 }
                 if(this.map == null){ 
+                 
+                   
                     this.createMap(theCity,lat,lng)
                     if(freewordornot == 1)
                     {
+                  
                         this.infoWindow(item, mmarker,response);
                     }
                     else{
+                    
                         this.coordinates(theCity,lat,lng);
                         this.infoWindow(item, mmarker,response);
                     }
                 }else{
+                 
                     var map = this.map
                     var callback = function(feature) {
                         map.data.remove(feature);
@@ -1081,11 +1109,14 @@
                     this.infoWindow(item, mmarker,response); 
                 }
             },
-            nursingSearchData(index,theCity,lat,lng,item, mmarker){
+            nursingSearchData(id){
+
+                this.searchword = '';
                 this.loading = true;
                 this.ci = false;
-                if(index == 1) //if choose city
+                if(id == 1) //if choose city
                 {
+               
                     this.township_id = -1;
                     this.townshipID = [];
                 }
@@ -1152,6 +1183,7 @@
                 
             },
             coordinates(theCity,lat,lng){
+              
                 // this.loading = false
                 let  coor =[];
                 var townshipName = [];
@@ -1193,8 +1225,7 @@
                 var newresult=[];
                 var jsonfile = theCity+".json";
                 // https://testikportal.management-partners.co.jp
-                this.axios.get("./json/cities/"+jsonfile).then(respon => {
-                    console.log(respon.data)
+                this.axios.get("https://testikportal.management-partners.co.jp/json/cities/"+jsonfile).then(respon => {
                     this.coordinate = respon.data.reduce((acc, val) => acc.concat(val), []);
                     this.boundariesGoogleMap(lat,lng,this.coordinate);  
                 }); 
@@ -1203,7 +1234,7 @@
                 else{
                     var jsonfile = theCity+".json";
                     jsonfile = jsonfile.toLowerCase();
-                    this.axios.get('./json/Townships/'+jsonfile).then(res => {
+                    this.axios.get('https://testikportal.management-partners.co.jp/json/Townships/'+jsonfile).then(res => {
                      var township_coor = []
                      for(var i = 0; i < res.data.features.length; i++)
                      {
@@ -1242,8 +1273,7 @@
                 fillOpacity: 0.1,
                 strokeWeight: 1
                 })
-                // console.log('geo',geo)
-                console.log('fit bounds',bounds)
+              
                 
                 if(this.boundsval == 'no marker'){
                     this.boundsval = bounds;
@@ -1252,7 +1282,8 @@
                 this.loading = false;
             },
 
-            infoWindow(item, mmarker,response){           
+            infoWindow(item, mmarker,response){    
+                      
                 var infoWindowContent = new Array();
                
                 if(item.length  && mmarker.length)
@@ -1464,6 +1495,8 @@
                     this.locast = localStorage.getItem("nursing_fav");
                 }
 
+                this.searchword = '';
+
 
                 this.axios.get('api/getnursingsearch/'+search_word,{
                 params:{
@@ -1595,7 +1628,7 @@
                     $(".fav-nursing-link-box>a").css({'cursor':'pointer','pointer-events':'auto'});
                 }
                 else{
-                    //  alert(status);
+              
                     this.nus_data[ind].fav_check = '';
 
                     var fav_arr = JSON.parse("[" + localStorage.getItem("nursing_fav") + "]");
@@ -1692,6 +1725,9 @@
 </script>
 
 <style scoped>
+.result-span {
+    color: #ff9563;
+}
 .lds-ripple {
   /* display: inline-block;
   position: absolute;

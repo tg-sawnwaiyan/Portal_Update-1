@@ -1,5 +1,5 @@
 <template>   
-        <div class="d-flex justify-content-center h-100">     
+        <div class="d-flex justify-content-center h-100 admin-list-container">      
             <div class="admin_card admin_registercard admin-list-wrapper">
                 <div class="col-md-12 m-b-10">               
                     <router-link :to="{name:'news_list'}" class="btn btn-danger all-btn submit">管理者画面へ</router-link>
@@ -7,8 +7,9 @@
                         <i class="fas fa-plus-circle"></i> 管理者新規作成
                     </router-link>                
             </div>
-                <div class="col-md-12 scrolldiv" style="background-color:transparent;">
-                <h6 class="d-flex header pb-3 admin_header">管理者一覧</h6>
+                <div class="col-md-12 admin-list">
+                <h6 class="page-header header" style="background:transparent;">管理者一覧</h6>
+                <div class="scroll_responsive admin-list-table">
                 <table class="table table-hover custom-table">
                     <thead>
                         <tr>
@@ -22,12 +23,13 @@
                             <td>{{admin.name}}</td>
                             <td >{{admin.email}}</td>
                             <td class="text-right">
-                                <router-link :to="{name: 'admincreate', params: { id: admin.id }}" class="btn edit-borderbtn">編集</router-link>
+                                <router-link :to="{path: '/admin/edit/'+admin.id}" class="btn edit-borderbtn">編集</router-link>
                                 <button class="btn text-danger delete-borderbtn" @click="deleteFeature(admin.id)">削除</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
+                </div>
                 </div>
                 <div class="col-12" v-if="pagination">
                         <nav aria-label="Page navigation example">
