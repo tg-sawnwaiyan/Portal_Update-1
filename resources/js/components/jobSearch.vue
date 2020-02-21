@@ -102,11 +102,11 @@
                     </div>
                     </div>
                     <div class="toBeToggled4" id="toBeToggled4">
-                      <div class="dropdown">
+                      <div class="dropdown search_rsp">
                           <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
                           市から探す
                           </button>
-                          <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768" @click.stop="stopTheEvent">
+                          <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 420" @click.stop="stopTheEvent">
                             <li>
                             <a data-value="option">
                               <div class="row">
@@ -121,7 +121,7 @@
                               </li>
                           </ul>
 
-                            <a v-if="w_width >= 768">
+                            <a v-if="w_width >= 420">
                               <div class="row">
                               <div class="col-lg-2 col-md-4 col-sm-4" v-for="township in getTownships" :key="township.id">
                                   <label class="checkbox form-check-label control control--checkbox">
@@ -159,7 +159,7 @@
                 <tr class="toBeToggled1 ShowHide">
                     <th class="pc-414-table sp-768-block">職種</th>
                     <td class="sp-768-block sp-414-table">
-                        <div class="form-check form-check-inline row align-items-start innerwrapper" v-if="w_width >= 768" >
+                        <div class="form-check form-check-inline row align-items-start innerwrapper" v-if="w_width >= 420" >
                             <div v-for="(v,i) in array_len" :key="i">
                                 <div class="hospital-subject" v-for="(occupation,index) in occupations.slice((i*3),((i*3)+3))" :key="index" v-bind:class="{ lastblock: i==array_len-1 }">       <!--v-bind:class="{ lastblock: i==array_len-1 }"-->
                                         <strong class="table-innertitle row col-12 m-b-10">{{occupation.name}}</strong>
@@ -177,12 +177,12 @@
                         </div>
 
                         <!--test-->
-                        <div>
+                        <div v-if="w_width <= 420">
                         <h5 class="font-weight-bold sp-414">職種</h5>
                         <div class="dropdown m-b-10" v-for="(v,i) in occupations" :key="i" >
                         <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
                         {{v.name}}
-                            <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMMenuButton" v-if="w_width <= 768"  @click.stop="stopTheEvent">
+                            <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMMenuButton"  @click.stop="stopTheEvent">
                             <li v-for="ch in v.child" :key="ch.id+1">
                             <a data-value="option" >
                                 <div class="row">
@@ -207,11 +207,11 @@
                   <th style="padding:10px;" class="pc-414-table sp-768-block">雇用形態</th>
                   <td class="sp-768-block">
                     <!--雇用形態から探す-->
-                    <div class="dropdown">
+                    <div class="dropdown search_rsp">
                         <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
                         雇用形態から探す
                         </button>
-                         <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768"  @click.stop="stopTheEvent">
+                         <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 420"  @click.stop="stopTheEvent">
                             <li>
                         <a>
                           <div class="row col-12">
@@ -248,7 +248,7 @@
                             </li>
                          </ul>
 
-                        <a v-if="w_width >= 768">
+                        <a v-if="w_width >= 420">
                           <div class="row">
                               <div class="col-lg-2 col-sm-4">
                               <label class="form-check-label control control--checkbox">
