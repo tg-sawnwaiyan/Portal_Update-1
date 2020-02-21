@@ -1176,6 +1176,11 @@ border-radius: 3px;
         margin-top: 0px !important;
         transform: none !important;        
     }
+    .admin-list-container > .admin_card{
+        margin-top: 0px;
+        transform: none;
+        top: 0px;
+    }
 }
 
 .login_btn:hover {
@@ -5973,7 +5978,7 @@ padding-bottom: 15px; */
 @media screen and (max-width: 480px) {
     .admin-list-container .admin_registercard{
         width: auto;
-        padding: 10px 0px;
+        /* padding: 10px 0px; */
     }
     .searchButtonNews {
         width: 25%;
