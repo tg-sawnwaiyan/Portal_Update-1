@@ -456,7 +456,7 @@
 
                         this.$swal({
                             title: "確認",
-                            text: "メールアドレスを変更しますか。",
+                            text: "メールアドレスを変更してよろしいでしょうか。",
                             type: "info",
                             width: 350,
                             height: 200,
@@ -476,7 +476,7 @@
                                     this.$swal({
                                             position: 'top-end',
                                             type: 'success',
-                                            title: 'メールが変更されました',
+                                            title: 'メールが変更しました',
                                             confirmButtonText: "閉じる",
                                             confirmButtonColor: "#6cb2eb",
                                             width: 250,
@@ -519,14 +519,14 @@
                         this.$swal({
                                 title: "確認",
                                 text: confirm_text,
-                                type: "info",
+                                type: "warning",
                                 width: 350,
                                 height: 200,
                                 showCancelButton: true,
-                                confirmButtonColor: "#6cb2eb",
+                                confirmButtonColor: "#dc3545",
                                 cancelButtonColor: "#b1abab",
                                 cancelButtonTextColor: "#000",
-                                confirmButtonText: "作成",
+                                confirmButtonText: "はい",
                                 cancelButtonText: "キャンセル",
                                 confirmButtonClass: "all-btn",
                                 cancelButtonClass: "all-btn"
@@ -539,7 +539,7 @@
                                         this.$swal({
                                                 position: 'top-end',
                                                 type: 'success',
-                                                title: '更新されました。',
+                                                title: '更新しました。',
                                                 confirmButtonText: "閉じる",
                                                 confirmButtonColor: "#6cb2eb",
                                                 width: 250,
