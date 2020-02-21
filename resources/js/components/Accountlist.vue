@@ -1,6 +1,18 @@
 <template>
+
     <div class="card">
-        <div class="row">
+        <div v-if="norecord_msg" class="card card-default card-wrap">
+                    <p class="record-ico">
+                        <i class="fa fa-exclamation"></i>
+                    </p>
+                    <p>OOPS!!</p>
+                    <p class="record-txt01">表示する施設ありません</p>
+                    <p>表示する施設ありません‼新しい施設を作成してください。</p>
+                    <router-link :to="{name:'profiledit'}" class="main-bg-color create-btn all-btn">
+                        <i class="fas fa-plus-circle"></i> 施設新規作成
+                    </router-link>
+                </div>
+        <div class="row" v-else>
             <div class="col-md-12">
                 <div class="card  text-dark">
                     <div class="card-body">
@@ -53,6 +65,7 @@ export default {
             nursingprofile:[],
             type:null,
             hospitalprofile:[],
+            norecord_msg: false,
              
        }
     },
@@ -64,12 +77,21 @@ export default {
                 this.axios.get(`/api/account_nursing/${this.cusid}`).then(response => {
                 //this.$loading(false);
                 this.nursingprofile = response.data;
-                console.log("aaa",this.nursingprofile);
+                if(this.nursingprofile.length != 0){
+                    this.norecord_msg = false;
+                }else{
+                    this.norecord_msg = true;
+                }
             });
             } else {
                 this.axios.get(`/api/account_hospital/${this.cusid}`).then(response => {
                     //this.$loading(false);
                     this.hospitalprofile = response.data;
+                    if(this.hospitalprofile.length != 0){
+                    this.norecord_msg = false;
+                }else{
+                    this.norecord_msg = true;
+                }
             });
             }
 

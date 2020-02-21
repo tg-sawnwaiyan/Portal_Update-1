@@ -515,7 +515,7 @@ const routes = [
   },
   {
     name:'adminedit',
-    path:'/admin/edit:id',
+    path:'/admin/edit/:id',
     component:admincreate,
     meta: {
         auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'},
