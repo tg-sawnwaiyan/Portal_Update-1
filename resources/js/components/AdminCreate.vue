@@ -301,7 +301,12 @@
                         }else{
                             this.errors.confirm_password = "新しいパスワードをもう一度入力が必要です。"
                         }
-                        this.$swal({
+                        if (this.new_password.length < 6) {
+                                $('#newpasswordlength').css('display', 'block');
+                                return;
+                        }
+                        if(!this.errors.old_password && !this.errors.new_password && !this.errors.confirm_password){
+                            this.$swal({
                             title: "確認",
                             text: "管理者を更新してよろしいでしょうか。",
                             type: "info",
@@ -316,10 +321,7 @@
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
                         }).then(response => {
-                            if (this.new_password.length < 6) {
-                                $('#newpasswordlength').css('display', 'block');
-                                return;
-                            }
+                            
                             if ("'" + this.new_password + "'" === "'" + this.confirm_password + "'") {
                                 let arr = new FormData();
                                 arr.append('admin_id', this.admin_id)
@@ -379,7 +381,8 @@
                                 })
                             }
 
-                        });                       
+                        });
+                        }                                               
                     },
             }
     }

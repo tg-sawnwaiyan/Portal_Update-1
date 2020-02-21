@@ -57,8 +57,8 @@
                                 <div class="select" id="filter" style="justify-content:space-between">
                                    <h5 class="profile_header" style="border-left: 5px solid #ff9563;">現在の検索条件</h5>
                                    <h1 v-if="nus_data.length && searchword == ''"> 老人ホームを{{nus_data[0].city_name}}から探す{{nus_data.length}}</h1>
-                                   <!-- <h1 v-else> Search Result for {{nus_data[0].city_name}} is 0 </h1> -->
-                                   <h1 v-if="nus_data.length && searchword"> 老人ホームを全国から探す  {{nus_data.length}}</h1>
+                                   <h1 v-if="nus_data.length && searchword == 'all'"> 老人ホームを全国から探す  {{nus_data.length}}</h1>
+                                   <h1 v-if="nus_data.length && searchword != 'all'"> 老人ホームを{{searchword}}から探す  {{nus_data.length}}</h1>
                                     <div class="row">
                                     <div class="col-lg-5 col-md-6 m-b-414">
                                         <div><p class="nurs-sub-heading">地域で絞り込む</p></div>                                    

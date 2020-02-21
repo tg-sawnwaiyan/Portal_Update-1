@@ -3,9 +3,15 @@
 <div>
   <div class="col-md-12" style="border-bottom: 1px dashed #2980b9;padding-bottom: 10px; margin-bottom: 20px;">
     <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#2980b9;"></i>&nbsp;地図検索</h5>
+    
+     <h1 v-if="hos_data.length && searchword == ''"> 老人ホームを{{hos_data[0].city_name}}から探す{{hos_data.length}}</h1>
+     <h1 v-if="hos_data.length && searchword != '' && searchword == 'all' && id == '-1'"> 老人ホームを全国から探す  {{hos_data.length}} </h1>
+     <h1 v-if="hos_data.length && searchword != '' && searchword != 'all' && id == '-1'"> 老人ホームを{{searchword}}から探す  {{hos_data.length}} </h1>
+     <h1 v-if="hos_data.length && searchword != '' && searchword == 'all' && id != '-1'"> 老人ホームを全国 , {{hos_data[0].city_name}}から探す {{hos_data.length}} </h1>
+     <h1 v-if="hos_data.length && searchword != '' && searchword != 'all' && id != '-1'"> 老人ホームを{{searchword}} , {{hos_data[0].city_name}}から探す {{hos_data.length}} </h1>
   </div>
   <div class="search-map card-body"  @mouseover="getStateHover">
-    <div class="row" id="hos">
+    <div class="row" id="hos">  
       <div class="col-md-12">
         <div>
           <!-- <div class="info-box"></div> -->
@@ -16,7 +22,7 @@
             <!--search input-->
               <div class="wrap">
                 <div class="search">
-                    <input type="text" id="search-free-word" class="searchTerm" placeholder="地名、施設名などを入力" style="border: 3px solid #63b7ff;">
+                    <input type="text" id="search-free-word" class="searchTerm" placeholder="地名、施設名、診療科目などを入力" style="border: 3px solid #63b7ff;">
                     <button type="submit" class="searchButton" style="border: 1px solid #63b7ff;background: #63b7ff;" @click="searchfreeword">
                       <i class="fas fa-search"></i> 検索
                   </button>
@@ -43,7 +49,7 @@
                 </h3>              
              <!--search input-->
                 <div class="search hospital-search-box">
-                    <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、施設名などを入力">
+                    <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、施設名、診療科目などを入力">
                     <button type="submit" class="searchButton" @click="searchfreeword">
                       <i class="fas fa-search"></i> 検索
                     </button>
@@ -65,7 +71,7 @@
                 </span>
                 <div v-else>
                     <h5 class="profile_header m-t-10" style="border-left: 5px solid #63b7ff;">現在の検索条件</h5>
-
+                   
                     <table class="table table-bordered col-12">
                         <tbody>
                         <tr>
@@ -87,11 +93,11 @@
                             </div>
                             </div>
                             <div class="toBeToggled" id="toBeToggled">
-                              <div class="dropdown">
+                              <div class="dropdown search_rsp">
                                   <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
                                   市から探す
                                   </button> 
-                                  <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768" @click.stop="stopTheEvent">
+                                  <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 420" @click.stop="stopTheEvent">
                                     <li>
                                     <a data-value="option">
                                       <div class="row">
@@ -106,7 +112,7 @@
                                     </a>
                                     </li>
                                   </ul>
-                                  <a v-if="w_width >= 768">
+                                  <a v-if="w_width >= 420">
                                     <div class="row">
                                         <div class="col-lg-2 col-md-4 col-sm-4" v-for="township in getTownships" :key="township.id">                                          
                                           <label class="form-check-label control control--checkbox">
@@ -125,11 +131,11 @@
                             <th class="pc-414-table sp-768-block">特長</th>
                             <td class="sp-768-block sp-414-table">
                               <!--特長から探す-->
-                              <div class="dropdown">
+                              <div class="dropdown search_rsp">
                                 <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
                                   特長から探す
                                 </button> 
-                                <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768" @click.stop="stopTheEvent">
+                                <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 420" @click.stop="stopTheEvent">
                                   <li>
                                   <a data-value="option">
                                       <div class="row">
@@ -145,7 +151,7 @@
                                   </a>
                                   </li>
                                 </ul>
-                                <a v-if="w_width >= 768">
+                                <a v-if="w_width >= 420">
                                       <div class="row">
                                       <div class="col-lg-2 col-md-4 col-sm-4" v-for="feature in special_features" :key="feature.id">
                                           <!-- <label class="form-check-label" > -->
@@ -165,7 +171,7 @@
                         <tr class="toBeToggled1 ShowHide1">
                             <th class="pc-414-table sp-768-block">診療科目</th>       
                             <td class="sp-768-block sp-414-table" id="test-td">
-                                <div class="form-check form-check-inline row align-items-start innerwrapper" v-if="w_width >= 768">
+                                <div class="form-check form-check-inline row align-items-start innerwrapper" v-if="w_width >= 420">
                                     <div v-for="(v,i) in array_len"  :key="i">                      
                                         <div class="hospital-subject"  v-for="(subject,index) in subjects.slice((i*3),((i*3)+3))"  :key="index" v-bind:class="{ lastblock: i==array_len-1 }">    
                                            <strong class="table-innertitle row col-12 m-b-10">{{subject.name}}</strong>                                                                      
@@ -182,12 +188,13 @@
                                     </div>    
                                 </div>   
                                 <!--test-->
-                                <div>
+                                <div v-if="w_width <= 420">
                                 <h5 class="font-weight-bold sp-414">診療科目</h5>
-                                <div class="dropdown m-b-10" v-for="(v,i) in subjects" :key="i" >                                 
+                                <div class="dropdown  m-b-10" v-for="(v,i) in subjects" :key="i">                                 
                                 <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
                                  {{v.name}}
-                                  <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMMenuButton" v-if="w_width <= 768"  @click.stop="stopTheEvent">
+                                 
+                                  <ul class="dropdown-menu dropdown-menu-form search_rsp" aria-labelledby="dropdownMMenuButton"  @click.stop="stopTheEvent">
                                   <li v-for="ch in v.child" :key="ch.id+1">                                 
                                   <a data-value="option" >
                                       <div class="row">
@@ -540,9 +547,11 @@ import bulcomponent from './bulcomponent.vue'
         {
 
             var search_word = $('#search-free-word').val();
+            this.searchword = search_word;
         }
         else{
                 var search_word = "all";
+                 this.searchword = search_word;
         }
             if(localStorage.getItem("hospital_fav") == null){
 
@@ -684,7 +693,7 @@ import bulcomponent from './bulcomponent.vue'
         else{
             this.locast = localStorage.getItem("hospital_fav");
         }
-
+      
         this.axios.get('api/getmap',{
             params:{
             id: this.id,
@@ -740,6 +749,7 @@ import bulcomponent from './bulcomponent.vue'
         else{
             _this.locast = localStorage.getItem("hospital_fav");
         }
+        _this.searchword = '';
         _this.$loading(true);
         _this.axios.get('api/getmap',{
             params:{
