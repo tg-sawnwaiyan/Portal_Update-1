@@ -513,6 +513,14 @@ const routes = [
         auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'},
     }
   },
+  {
+    name:'adminedit',
+    path:'/admin/edit:id',
+    component:admincreate,
+    meta: {
+        auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'},
+    }
+  },
 ]
 const router = new VueRouter({
     history: true,
