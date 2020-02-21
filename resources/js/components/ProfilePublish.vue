@@ -888,7 +888,7 @@
                                 <p class="comment-age" v-else></p>
                                 <p class="comment-date"><i class="fa fa-calendar" aria-hidden="true"></i> {{comment.created_date | moment("YYYY年MM月DD日") }}投稿 <span class="ml-2"><i class="fa fa-clock" aria-hidden="true"></i> {{comment.created_time}}</span></p>
                             </div>
-                                <read-more more-str="もっと見る" :text="comment.comment" :max-chars="160"></read-more><br>
+                                <read-more more-str="もっと見る" :text="comment.comment" :max-chars="160" class="m-t-comment"></read-more><br>
                                 <div>{{comment.customer}}</div>
                         </div>
                     </div>
@@ -1280,7 +1280,7 @@
                                 <p class="comment-age" v-else></p>
                                 <p class="comment-date"><i class="fa fa-calendar" aria-hidden="true"></i> {{comment.created_date | moment("YYYY年MM月DD日") }}投稿 <span class="ml-2"><i class="fa fa-clock" aria-hidden="true"></i> {{comment.created_time}}</span></p>
                             </div>
-                                <read-more more-str="もっと見る" :text="comment.comment" :max-chars="160"></read-more><br>
+                                <read-more more-str="もっと見る" :text="comment.comment" :max-chars="160" class="m-t-comment"></read-more><br>
                                 <div>{{comment.customer}}</div>
                         </div>
                     </div>
@@ -1422,7 +1422,7 @@ export default {
             fav_email : [],
             currentPage: 0,
             size: 5,
-            pageRange: 5,
+            pageRange: 4,
             items: [],
             pagination: false,
             data: {
@@ -2818,6 +2818,25 @@ h3 {
         margin: 0px;
     }
 }
+@media only screen and (max-width: 450px) and (min-width: 320px) {
+    .comment-age {
+       margin-top: 24px;    
+       float: left !important;
+       position: absolute;
+    }
+    .comment-date{
+            font-size: 12px;
+    /* color: #777; */
+    margin-top: 46px;
+    float: left !important;
+    position: absolute;
+}
+    .m-t-comment
+    {
+        margin-top: 34px;
+    }
+    }
+
 @media only screen and (max-width: 450px) and (min-width: 376px) {
   #pano-slider-page .card-carousel {
         width: 207px !important;
