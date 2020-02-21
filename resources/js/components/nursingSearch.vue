@@ -2,7 +2,12 @@
     <layout>
         <div>
             <div class="col-md-12" style="border-bottom: 1px dashed #ff9563;padding-bottom: 10px; margin-bottom: 20px;">
-                <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#ff9563;"></i>&nbsp;地図検索</h5>
+                <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#ff9563;"></i>&nbsp;地図検索 
+                <span v-if="nus_data.length && !ci">「 介護施設を <span class="result-span">{{nus_data[0].city_name}}</span> から探す <span class="result-span">{{nus_data.length}}</span> 件」</span>
+                <span v-if="nus_data.length && ci && searchword != 'all' && searchword != ''">「 介護施設を <span class="result-span">{{searchword}}</span> から探す <span class="result-span">{{nus_data.length}}</span> 件」</span>
+                <span v-if="nus_data.length && searchword == 'all'">「 介護施設を <span class="result-span">全国</span> から探す <span class="result-span">{{nus_data.length}}</span> 件」</span>
+                <!-- <h1 v-if="nus_data.length && searchword != 'all'"> 老人ホームを{{searchword}}から探す  {{nus_data.length}}</h1> -->
+                </h5>
             </div>
             <div class="search-map"  @mouseover="getStateHover">
                 <div class="row" id="hos">
@@ -56,9 +61,7 @@
                             <div id="scroll-responsive">
                                 <div class="select" id="filter" style="justify-content:space-between">
                                    <h5 class="profile_header" style="border-left: 5px solid #ff9563;">現在の検索条件</h5>
-                                   <h1 v-if="nus_data.length && searchword == ''"> 老人ホームを{{nus_data[0].city_name}}から探す{{nus_data.length}}</h1>
-                                   <h1 v-if="nus_data.length && searchword == 'all'"> 老人ホームを全国から探す  {{nus_data.length}}</h1>
-                                   <h1 v-if="nus_data.length && searchword != 'all'"> 老人ホームを{{searchword}}から探す  {{nus_data.length}}</h1>
+                                   
                                     <div class="row">
                                     <div class="col-lg-5 col-md-6 m-b-414">
                                         <div><p class="nurs-sub-heading">地域で絞り込む</p></div>                                    
@@ -132,7 +135,7 @@
                                         </div>
                                     </div>                                    
                                     <div class="col-lg-2 col-md-4 m-b-414 pc-768 align-self-center m-t-30">
-                                        <span class="btn seemore-btn select" style="width:100%;padding:20px 10px;" id="showSearchMap" @click="showSearchMap"><i class="fas fa-exchange-alt"></i>&nbsp;都道府県を再選択する</span>                                    
+                                        <span class="btn seemore-btn select" style="width:100%;padding:15px 10px;font-size:0.8em;" id="showSearchMap" @click="showSearchMap"><i class="fas fa-exchange-alt"></i>&nbsp;都道府県を再選択する</span>                                    
                                     </div>
                                     </div>
                                 </div>
@@ -1222,7 +1225,7 @@
                 var newresult=[];
                 var jsonfile = theCity+".json";
                 // https://testikportal.management-partners.co.jp
-                this.axios.get("./json/cities/"+jsonfile).then(respon => {
+                this.axios.get("https://testikportal.management-partners.co.jp/json/cities/"+jsonfile).then(respon => {
                     this.coordinate = respon.data.reduce((acc, val) => acc.concat(val), []);
                     this.boundariesGoogleMap(lat,lng,this.coordinate);  
                 }); 
@@ -1231,7 +1234,7 @@
                 else{
                     var jsonfile = theCity+".json";
                     jsonfile = jsonfile.toLowerCase();
-                    this.axios.get('./json/Townships/'+jsonfile).then(res => {
+                    this.axios.get('https://testikportal.management-partners.co.jp/json/Townships/'+jsonfile).then(res => {
                      var township_coor = []
                      for(var i = 0; i < res.data.features.length; i++)
                      {
@@ -1722,6 +1725,9 @@
 </script>
 
 <style scoped>
+.result-span {
+    color: #ff9563;
+}
 .lds-ripple {
   /* display: inline-block;
   position: absolute;
