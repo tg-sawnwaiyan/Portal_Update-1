@@ -103,7 +103,7 @@
 </style>
 
 </head>
-<body class="c-app flex-row align-items-center">
+<body class="c-app flex-row align-items-center all-bg" >
 <div class="se-pre-con"></div>
 
 <div id="app">

@@ -1,10 +1,10 @@
 <template>
-
-    <div class="d-flex justify-content-center h-100">
+    
+    <div class="d-flex justify-content-center h-100 admin-create-container">
         <div class="admin_card admin_registercard admin-create-wrapper">
             <div class="row">
                 <div class="col-md-12">
-                    <h4 class="page-header header">{{ header }} <span v-if="show" class="btn btn-danger all-btn float-right m-b-10" @click="$router.go(-1)">戻る</span></h4>
+                    <h4 class="page-header header" style="background:transparent;">{{ header }} <span v-if="show" class="btn btn-danger all-btn float-right m-b-10" @click="$router.go(-1)">戻る</span></h4>
                     
 
                 </div>
@@ -37,10 +37,10 @@
                             <div class="row">
                                 <div class="col-md-12 m-t-8">
                                     <div class="row">
-                                        <div class="col-md-9 col-sm-6">
+                                        <div class="col-md-9 col-6">
                                              <label class="font-weight-bold"><i class="fas fa-cogs"></i>&nbsp;パスワード設定</label>
                                         </div>
-                                        <div class="col-md-3 col-sm-6">
+                                        <div class="col-md-3 col-6">
                                             <span class="btn drop-bg-color m-l-8" style="min-width: 0px;" @click="passwordToggleDiv()">詳細&nbsp;<i class="fas fa-sort-down animate"  :class="{'rotate': !isRotate}"></i></span>
                                         </div>
                                     </div>
