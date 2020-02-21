@@ -16,7 +16,7 @@
             <!--search input-->
               <div class="wrap">
                 <div class="search">
-                    <input type="text" id="search-free-word" class="searchTerm" placeholder="地名、施設名などを入力" style="border: 3px solid #63b7ff;">
+                    <input type="text" id="search-free-word" class="searchTerm" placeholder="地名、施設名、診療科目などを入力" style="border: 3px solid #63b7ff;">
                     <button type="submit" class="searchButton" style="border: 1px solid #63b7ff;background: #63b7ff;" @click="searchfreeword">
                       <i class="fas fa-search"></i> 検索
                   </button>
@@ -43,7 +43,7 @@
                 </h3>              
              <!--search input-->
                 <div class="search hospital-search-box">
-                    <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、施設名などを入力">
+                    <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、施設名、診療科目などを入力">
                     <button type="submit" class="searchButton" @click="searchfreeword">
                       <i class="fas fa-search"></i> 検索
                     </button>

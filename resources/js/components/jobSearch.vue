@@ -21,7 +21,7 @@
               <!--search input-->
                 <div class="wrap">
                   <div class="search">
-                      <input type="text" class="searchTerm" style="border: 3px solid #828282;" id="search-free-word" placeholder="地名、施設名などを入力">
+                      <input type="text" class="searchTerm" style="border: 3px solid #828282;" id="search-free-word" placeholder="地名、施設名、職種などを入力">
                       <button type="submit" class="searchButton" style="border: 1px solid #828282;background: #828282;" @click="searchfreeword">
                         <i class="fas fa-search"></i> 検索
                     </button>
@@ -58,7 +58,7 @@
 
              <!--search input-->
                 <div class="search job-search-box">
-                    <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、施設名などを入力">
+                    <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、施設名、職種などを入力">
                     <button type="submit" class="searchButton" @click="searchfreeword">
                       <i class="fas fa-search"></i> 検索
                     </button>
