@@ -269,8 +269,8 @@
                                         <table class="table table-bordered col-12 box-wrap">
                                             <tbody>
                                                 <tr>
-                                                    <th class="pc-414-table sp-768-block">地域</th>
-                                                    <td class="sp-768-block sp-414-table">
+                                                    <th class="pc-414-table sp-768-block pc-rsp-table sp-rsp-block">地域</th>
+                                                    <td class="sp-768-block sp-414-table sp-rsp-block">
                                                     <div class="row mt-2 mb-2">
                                                     <div class="col-lg-9 col-md-8 col-sm-12">
                                                         <select id="selectCity" class="form-control custom-select" v-model="id" @change="ChangeTownship">
@@ -288,11 +288,11 @@
                                                     </div>
                                                     <div class="toBeToggled" id="toBeToggled">
                                                     <!--市から探す-->
-                                                    <div class="dropdown">
+                                                    <div class="dropdown search_rsp">
                                                         <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
                                                         市から探す
                                                         </button>
-                                                        <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768" @click.stop="stopTheEvent">
+                                                        <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 420" @click.stop="stopTheEvent">
                                                             <li>
                                                             <a data-value="option">
                                                             <div class="row">
@@ -307,7 +307,7 @@
                                                             </a>
                                                             </li>
                                                         </ul>
-                                                        <a v-if="w_width >= 768">
+                                                        <a v-if="w_width >= 420">
                                                             <div class="row">
                                                                 <div class="col-lg-2 col-md-4 col-sm-4" v-for="township in getTownships" :key="township.id">
                                                                 <label class="form-check-label control control--checkbox">
@@ -327,11 +327,11 @@
                                                     <th class="pc-414-table sp-768-block" v-if="showOne" style="padding:10px;">入居時の条件</th>
                                                     <td class="sp-768-block sp-414-table" v-if="showOne">
                                                         <!--入居時の条件から探す-->
-                                                        <div class="dropdown">
+                                                        <div class="dropdown search_rsp">
                                                             <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
                                                             入居時の条件から探す
                                                             </button>
-                                                            <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768" @click.stop="stopTheEvent">
+                                                            <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 420" @click.stop="stopTheEvent">
                                                             <li>
                                                             <a data-value="option">
                                                                 <div class="row">
@@ -360,23 +360,23 @@
                                                             </a>
                                                             </li>
                                                             </ul>
-                                                            <a v-if="w_width >= 768">
+                                                            <a v-if="w_width >= 420">
                                                                  <div class="row">
-                                                                    <div class="col-lg-2 col-md-4" id="customCheck1">
+                                                                    <div class="col-lg-2 col-md-4 search_wd" id="customCheck1">
                                                                     <label class="form-check-label control control--checkbox">
                                                                         <input class="form-check-input" :id="1" value="自立" v-model="MoveID" type="checkbox">
                                                                         自立
                                                                         <div class="control__indicator"></div>
                                                                     </label>
                                                                     </div>
-                                                                    <div class="col-lg-2 col-md-4" id="customCheck1">
+                                                                    <div class="col-lg-2 col-md-4 search_wd" id="customCheck1">
                                                                     <label class="form-check-label control control--checkbox">
                                                                         <input class="form-check-input" :id="2" value="要支援" v-model="MoveID" type="checkbox">
                                                                         要支援
                                                                         <div class="control__indicator"></div>
                                                                     </label>
                                                                     </div>
-                                                                    <div class="col-lg-2 col-md-4" id="customCheck1">
+                                                                    <div class="col-lg-2 col-md-4 search_wd" id="customCheck1">
                                                                     <label class="form-check-label control control--checkbox">
                                                                         <input class="form-check-input" :id="3" value="要介護" v-model="MoveID" type="checkbox">
                                                                         要介護
@@ -393,11 +393,11 @@
                                                     <th class="pc-414-table sp-768-block" v-if="showOne">特長</th>
                                                     <td class="sp-768-block sp-414-table" v-if="showOne">
                                                     <!--特長から探す-->
-                                                        <div class="dropdown">
+                                                        <div class="dropdown search_rsp">
                                                             <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
                                                             特長から探す
                                                             </button>
-                                                            <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768" @click.stop="stopTheEvent">
+                                                            <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 420" @click.stop="stopTheEvent">
                                                             <li>
                                                             <a data-value="option">
                                                                 <div class="row">
@@ -413,7 +413,7 @@
                                                             </a>
                                                             </li>
                                                             </ul>
-                                                            <a v-if="w_width >= 768">
+                                                            <a v-if="w_width >= 420">
                                                                 <div class="row">
                                                                 <div class="col-lg-2 col-md-4 col-sm-4" v-for="feature in special_features" :key="feature.id">
                                                                     <!-- <label class="form-check-label" > -->
@@ -435,11 +435,11 @@
                                                     <td class="sp-768-block sp-414-table" v-if="showOne">
 
                                                     <!--施設の種類から探す-->
-                                                    <div class="dropdown">
+                                                    <div class="dropdown search_rsp">
                                                     <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
                                                         施設の種類から探す
                                                     </button>
-                                                    <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768" @click.stop="stopTheEvent">
+                                                    <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 420" @click.stop="stopTheEvent">
                                                         <li>
                                                         <a data-value="option">
                                                             <div class="row">
@@ -454,7 +454,7 @@
                                                         </a>
                                                         </li>
                                                     </ul>
-                                                    <a v-if="w_width >= 768">
+                                                    <a v-if="w_width >= 420">
                                                             <div class="row">
                                                             <div class="col-lg-2 col-md-4 col-sm-4" v-for="fac_type in fac_types" :key="fac_type.id">
                                                                 <label class="form-check-label control control--checkbox">
@@ -473,11 +473,11 @@
                                                     <th class="pc-414-table sp-768-block" v-if="showOne">医療面・診療科目</th>
                                                     <td class="sp-768-block sp-414-table" v-if="showOne">
                                                         <!--医療面・診療科目から探す-->
-                                                        <div class="dropdown">
+                                                        <div class="dropdown search_rsp">
                                                             <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
                                                             医療面・診療科目から探す
                                                             </button>
-                                                            <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768" @click.stop="stopTheEvent">
+                                                            <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 420" @click.stop="stopTheEvent">
                                                             <li>
                                                             <a data-value="option">
                                                                  <div class="row">
@@ -492,7 +492,7 @@
                                                             </a>
                                                             </li>
                                                             </ul>
-                                                            <a v-if="w_width >= 768">
+                                                            <a v-if="w_width >= 420">
                                                                  <div class="row">
                                                                 <div class="col-lg-2 col-md-4 col-sm-4" v-for="medical in medical_acceptance" :key="medical.id">
                                                                     <label class="form-check-label control control--checkbox">
