@@ -2935,7 +2935,11 @@ ul.sub-ul li {
     background-color: #118063 !important;
 }
 .drop-bg-color{
-    background-color: #0080aa !important;
+    background-color: #fff !important;
+    float: right;
+    color: #000 !important;
+    border: none !important;
+    box-shadow: none !important;
 }
 .m-b-10 {
     margin-bottom: 10px;

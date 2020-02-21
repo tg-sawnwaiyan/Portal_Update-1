@@ -4,7 +4,7 @@
         <div class="admin_card admin_registercard admin-create-wrapper">
             <div class="row">
                 <div class="col-md-12">
-                    <h4 class="page-header header">{{ header }} <router-link v-if="show" class="btn btn-danger all-btn float-right m-b-20" to="t_is_admin_register"> キャンセル </router-link></h4>
+                    <h4 class="page-header header">{{ header }} <router-link v-if="show" class="btn btn-danger all-btn float-right m-b-10" to="t_is_admin_register">戻る</router-link></h4>
                     
 
                 </div>
@@ -36,9 +36,17 @@
                         <div class="form-group m-t-10 m-b-0" v-if="show">                           
                             <div class="row">
                                 <div class="col-md-12 m-t-8">
+                                    <div class="row">
+                                        <div class="col-md-9 col-sm-6">
+                                             <label class="font-weight-bold"><i class="fas fa-cogs"></i>&nbsp;パスワード設定</label>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <span class="btn drop-bg-color m-l-8" style="min-width: 0px;" @click="passwordToggleDiv()">詳細&nbsp;<i class="fas fa-sort-down animate"  :class="{'rotate': !isRotate}"></i></span>
+                                        </div>
+                                    </div>
                                     <div class="header2">
-                                        <label class="heading-lbl">パスワード設定</label>
-                                        <span class="btn all-btn drop-bg-color nursing_toggle_responsive m-l-8" style="min-width: 0px;" @click="passwordToggleDiv()">詳細&nbsp;<i class="fas fa-sort-down animate"  :class="{'rotate': !isRotate}"></i></span>
+                                       
+                                        
                                     </div>
 
                                     <!-- <label class="heading-lbl col-md-2 col-12 pad-free">パスワード設定</label> -->

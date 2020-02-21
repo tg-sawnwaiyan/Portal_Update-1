@@ -8,7 +8,7 @@
                     </router-link>                
             </div>
                 <div class="col-md-12 scrolldiv" style="background-color:transparent;">
-                <h6 class="header">管理者一覧</h6>
+                <h6 class="d-flex header pb-3 admin_header">管理者一覧</h6>
                 <table class="table table-hover custom-table">
                     <thead>
                         <tr>
