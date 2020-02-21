@@ -9363,6 +9363,9 @@ padding: 11px;
 .pc-414-table {
     display: table-cell;
 }
+.pc-rsp-table {
+    display: table-cell;
+}
 
 .pc-414-inline {
     display: inline-block;
@@ -9373,6 +9376,9 @@ padding: 11px;
 }
 
 .sp-768-block {
+    display: table-cell;
+}
+.sp-rsp-block {
     display: table-cell;
 }
 
@@ -10680,6 +10686,11 @@ width: 18rem;
         width: 100% !important;
         padding: 5px 10px !important;
     }
+    .sp-768-block {
+        display: block;
+        width: 100% !important;
+        padding: 5px 10px !important;
+    }
     .tab {
         max-width: 100% !important;
         flex: 100% !important;
@@ -11606,6 +11617,9 @@ background-image: none;
     .pc-414-table {
         display: none !important;
     }
+    .pc-rsp-table {
+        display: table-cell;
+    }
     .pc-414-inline {
         display: none !important;
     }
@@ -12229,3 +12243,31 @@ strong {
 
 
 /*comment*/
+
+/*nursing_search_dropdown*/
+@media (max-width: 767px) and (min-width: 420px) {
+    /* .dropdown > .sp-414{
+        display: block;
+    } */
+    .pc-rsp-table {
+        /* display: none !important; */
+    }
+    .sp-rsp-block {
+        display: block;
+        width: 100% !important;
+        padding: 5px 10px !important;
+    }
+    /* .sp-414 {
+        display: block;
+    } */
+    .search_wd{
+       width: auto;
+    }
+    .search_rsp{
+        width: 100%;
+        height: auto;
+        display: contents;
+    }
+ 
+}
+/*nursing_search_dropdown*/

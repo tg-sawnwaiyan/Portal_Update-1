@@ -752,7 +752,7 @@ export default {
         },
 
         created(){
-            this.pro_id = this.$route.params.id;
+            this.pro_id = Number(this.$route.params.id);
             this.type = this.$route.params.type;
             
             // if(this.type != undefined && this.pro_id!= undefined){

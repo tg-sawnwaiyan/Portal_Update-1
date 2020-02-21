@@ -101,15 +101,7 @@
                                     <div class="col-9">
                                         <div class="joboffer-tit clearfix">
                                             <router-link :to="{name: 'job_details', params:{id:job.id,loginuser:loginuser}}">{{job.title}} </router-link>
-                                            <div class="model-7">
-                                                <div class="checkbox">
-                                                    <input type='checkbox' v-if="job.recordstatus == 1" @click="confirm(job.id)" checked/>
-                                                    <input type='checkbox' v-if="job.recordstatus==0" @click="confirm(job.id)"  />
-                                                    <label for="checkbox"></label>
-                                                    <div v-if="job.recordstatus == 1" class="on">公開中</div>
-                                                    <div v-if="job.recordstatus == 0" class="on">非行化</div>
-                                                </div>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                     <div class="col-3  text-right">
@@ -117,12 +109,29 @@
                                         <i :id="'icon' + job.id" class="fa fa-angle-down"></i> 詳細</button>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="model-7 col-6">
+                                        <div class="checkbox">
+                                            <input type='checkbox' v-if="job.recordstatus == 1" @click="confirm(job.id)" checked/>
+                                            <input type='checkbox' v-if="job.recordstatus==0" @click="confirm(job.id)"  />
+                                            <label for="checkbox"></label>
+                                            <div v-if="job.recordstatus == 1" class="on">公開中</div>
+                                            <div v-if="job.recordstatus == 0" class="on">非行化</div>
+                                        </div>
+                                    </div>
+                                    <div class=" col-6">
+                                        <p class="float-right">応募者数:
+                                            <span class="text-orange"><span class="job_count">{{job.count}}件</span></span>
+                                        </p>
+                                    </div>
+                                </div>
+                                
                                     <div class="collapse" :id="'changeLink' + job.id">
                                         <div class="d-flex mt-3 mb-2">
-                                            <p class="">応募者数:
+                                            <!-- <p class="">応募者数:
                                             <span class="text-orange"><span class="job_count">{{job.count}}件</span></span>
-                                            </p>
-                                            <p class="job_id mt-0 ml-auto  d-flex align-items-center">求人番号：{{job.jobid}}</p>
+                                            </p> -->
+                                            <p class="job_id mt-0  d-flex align-items-center">求人番号：{{job.jobid}}</p>
                                         </div>
                                     
                                     <table class="table table-bordered">
@@ -149,7 +158,7 @@
                                             <router-link :to="{name: 'joboffercreate', params:{id:job.id}}" class="btn edit-borderbtn">編集</router-link>
                                         </li>                           
                                         <li><a class="btn text-danger delete-borderbtn" @click="deleteJob(job.id)">削除</a></li>
-                                        <li class="mt-2">
+                                        <li class="mt-2" v-if="job.count">
                                             <router-link :to="{name: 'jobapplicantlist', params:{id:job.id,title:job.title}}" class="btn confirm-borderbtn confirmed">求人応募一覧ページへ</router-link>
                                         </li>
                                     </ul>
