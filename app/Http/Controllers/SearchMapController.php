@@ -173,6 +173,7 @@ class SearchMapController extends Controller
 
           //for city
           $id = $_GET['id'];
+       
           $Moving_in = $_GET['Moving_in'];
           $Per_month = $_GET['Per_month'];
           $localst = $_GET['local'];

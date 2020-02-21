@@ -194,7 +194,7 @@
         console.log("aside "+this.$auth.check())
     console.log("aside visit "+this.visit)
     axios.interceptors.response.use((response) => {
-        // console.log(response.data)
+        console.log("status",response.data.status)
         if((response.data.status == "Token is Expired" || response.data.status == "Token is Invalid") && this.status == false ){
 
             this.status = true

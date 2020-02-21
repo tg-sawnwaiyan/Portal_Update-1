@@ -706,10 +706,10 @@ import bulcomponent from './bulcomponent.vue'
             
             //this.sub_child = response.data.sub_child;
             //console.log("aaa",this.subjects);
-            // this.id = id;
+            // this.id = id;  
 
         })
-            this.search();
+            // this.search();
     },
 
     parentGetStateClick(e,parentVue) {

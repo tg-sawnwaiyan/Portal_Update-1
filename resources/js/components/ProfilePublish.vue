@@ -884,7 +884,8 @@
                             </div>
                             <div class="d-flex d-block">
                                 <p class="card-title font-weight-bold">{{comment.email}}</p>
-                                <p class="comment-age">{{ new Date().getFullYear() - comment.year}}年代</p>
+                                <p class="comment-age" v-if="comment.year != null">{{ new Date().getFullYear() - comment.year}}年代</p>
+                                <p class="comment-age" v-else></p>
                                 <p class="comment-date"><i class="fa fa-calendar" aria-hidden="true"></i> {{comment.created_date | moment("YYYY年MM月DD日") }}投稿 <span class="ml-2"><i class="fa fa-clock" aria-hidden="true"></i> {{comment.created_time}}</span></p>
                             </div>
                                 <read-more more-str="もっと見る" :text="comment.comment" :max-chars="160"></read-more><br>
@@ -932,8 +933,6 @@
             </div>
 
     </div>
-
-
 
     <div v-if="type == 'hospital'" id="hospitalView">
             <h5 class="profile-tit"> {{customer_name}}</h5>
@@ -1277,7 +1276,8 @@
                             </div>
                             <div class="d-flex">
                                 <p class="card-title font-weight-bold">{{comment.email}}</p>
-                                <p class="comment-age">{{ new Date().getFullYear() - comment.year}}年代</p>
+                                <p class="comment-age" v-if="comment.year != null">{{ new Date().getFullYear() - comment.year}}年代</p>
+                                <p class="comment-age" v-else></p>
                                 <p class="comment-date"><i class="fa fa-calendar" aria-hidden="true"></i> {{comment.created_date | moment("YYYY年MM月DD日") }}投稿 <span class="ml-2"><i class="fa fa-clock" aria-hidden="true"></i> {{comment.created_time}}</span></p>
                             </div>
                                 <read-more more-str="もっと見る" :text="comment.comment" :max-chars="160"></read-more><br>
@@ -1328,6 +1328,8 @@
 
     </div>
 
+    <span class="btn fav-profile fav-item fav-color" v-if="!view_pro_id && !loginuser" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
+    <span class="btn fav-profile fav-item fav-color" style="color:#aaa;" v-if="view_pro_id && !loginuser" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
   </div>
 
 </template>
@@ -1347,766 +1349,820 @@ export default {
         Slick
     },
     data() {
+        var that = this;
+        return {
+            nus_pro:[],
+            ads_list: [],
+            profile_id: "",
+            url: '/upload/nursing_profile/Imagepanorama/',
+            isAutoRotationOn: true,
+            isOrientationOn: true,
+            markers: [
+                {  position: { lat: 0, lng: 0 }  },
+            ],
+            customer_name:'',
+            am_arr:[],
+            images:[],
+            videos:[],
+            pm_arr:[],
+            active_el:0,
+            width: '',
+            center: { lat: 0, lng: 0 },
+            address: '',
+            google:[],
+            customer:[],
+            hosfacilities:[],
+            specialfeature:[],
+            nusfacilities:[],
+            nus_method:[],
+            cooperate_medical:[],
+            medical_acceptance:[],
+            medical:[],
+            fac_list:[],
+            staff:[],
+            schedules:[],
+            subject:'',
+            subjects:[],
+            hospitals:[],
+            address:[],
+            nursing_profiles:[],
+            method_payment:[],
+            comments:[],
+            activeImage: 0,
+            activePanoImage: 0,
+            activeImageTitle:'',
+            activeImageDescription:'',
+            index: 0,
+            light_images:[],
+            thumbnailDir: '/upload/',
+            // cusid: 0,
+            // type: 0,
+            pageNum: 0,
+            opts: {
 
-            var that = this;
-            return {
-                nus_pro:[],
-                ads_list: [],
-                profile_id: "",
-                url: '/upload/nursing_profile/Imagepanorama/',
-                isAutoRotationOn: true,
-                isOrientationOn: true,
-                markers: [
-                    {  position: { lat: 0, lng: 0 }  },
-                ],
-                customer_name:'',
-                am_arr:[],
-                images:[],
-                videos:[],
-                pm_arr:[],
-                active_el:0,
-                width: '',
-                center: { lat: 0, lng: 0 },
-                address: '',
-                google:[],
-                customer:[],
-                hosfacilities:[],
-                specialfeature:[],
-                nusfacilities:[],
-                nus_method:[],
-                cooperate_medical:[],
-                medical_acceptance:[],
-                medical:[],
-                fac_list:[],
-                staff:[],
-                schedules:[],
-                subject:'',
-                subjects:[],
-                hospitals:[],
-                address:[],
-                nursing_profiles:[],
-                method_payment:[],
-                comments:[],
-                activeImage: 0,
-                activePanoImage: 0,
-                activeImageTitle:'',
-                activeImageDescription:'',
-                index: 0,
-                light_images:[],
-                thumbnailDir: '/upload/',
-                // cusid: 0,
-                // type: 0,
-                pageNum: 0,
-                opts: {
-
-                    start: 0,
-                    dir: 'v',
-                    loop: false,
-                    duration:500,
-                    beforeChange: function(ele, current, next) {
-                        that.index = next;
-                    },
-
-                    afterChange: function(ele, current) {
-                        that.index = current;
-                    }
+                start: 0,
+                dir: 'v',
+                loop: false,
+                duration:500,
+                beforeChange: function(ele, current, next) {
+                    that.index = next;
                 },
-                images: [],
-                // panoimages: ['examplepano.jpg','pano3.jpg','alma.jpg','examplepano.jpg','pano3.jpg','examplepano.jpg','examplepano.jpg','alma.jpg','pano3.jpg','examplepano.jpg','alma.jpg','examplepano.jpg',],
-                panoimages:[],
-                changelinktitle:'内容を見る',
-                panocurrentOffset: 0,
-                windowSize: 10,
-                paginationFactor:103,
-                fav_email : [],
-                currentPage: 0,
-                size: 5,
-                pageRange: 5,
-                items: [],
-                pagination: false,
-                data: {
-                    str:"Welcome to Canada!",
-                    substr: ""
-                },
-                window: {
-                    width: 0,
-                    height: 0
-                },
-                show : false,
-                isPano: false,
-                show_arr: [],
-                show_comment: false,
-            };
-        },
 
-        props:{
-                pro_id:Number,
-                type:String,
-                loginuser:Boolean,
-        },
+                afterChange: function(ele, current) {
+                    that.index = current;
+                }
+            },
+            images: [],
+            // panoimages: ['examplepano.jpg','pano3.jpg','alma.jpg','examplepano.jpg','pano3.jpg','examplepano.jpg','examplepano.jpg','alma.jpg','pano3.jpg','examplepano.jpg','alma.jpg','examplepano.jpg',],
+            panoimages:[],
+            changelinktitle:'内容を見る',
+            panocurrentOffset: 0,
+            windowSize: 10,
+            paginationFactor:103,
+            fav_email : [],
+            currentPage: 0,
+            size: 5,
+            pageRange: 5,
+            items: [],
+            pagination: false,
+            data: {
+                str:"Welcome to Canada!",
+                substr: ""
+            },
+            window: {
+                width: 0,
+                height: 0
+            },
+            show : false,
+            isPano: false,
+            show_arr: [],
+            show_comment: false,
+            view_pro_id: false,
+        };
+    },
 
-        created(){
-            // console.log('this.$auth.check',this.$auth.check());
-            // if(!this.$auth.check()){
-            //     this.show_comment = true;
-            // }else{
-            //     if(this.$auth.user().role == 2){
-            //         if(this.$auth.user().customer_id){
+    props:{
+        pro_id:Number,
+        type:String,
+        loginuser:Boolean,
+    },
 
-            //         }
-            //     }
-            // }
-            this.pro_id = this.$route.params.id;
-            console.log('wind',this.pro_id)
-            this.type = this.$route.params.type;
-            if(!this.$auth.check()){
-                this.show_comment = true;
+    created(){
+        // console.log('this.$auth.check',this.$auth.check());
+        // if(!this.$auth.check()){
+        //     this.show_comment = true;
+        // }else{
+        //     if(this.$auth.user().role == 2){
+        //         if(this.$auth.user().customer_id){
+
+        //         }
+        //     }
+        // }
+        this.pro_id = Number(this.$route.params.id);
+        this.type = this.$route.params.type;
+
+        if(this.type == 'hospital'){
+            if(localStorage.getItem("hospital_history")) {
+                var hos_his_arr = JSON.parse("[" + localStorage.getItem("hospital_history") + "]");
+                hos_his_arr.push(this.pro_id);
+                hos_his_arr = [...new Set(hos_his_arr)];
+                localStorage.setItem("hospital_history", hos_his_arr);
+                this.hosHis = hos_his_arr.length;
+            }
+            else{
+                var hos_his_arr = [this.pro_id];
+                localStorage.setItem("hospital_history", hos_his_arr);
+                this.hosHis = hos_his_arr.length;
+                $('.his-hospital-link-box>a').css({'cursor':'pointer','pointer-events':'auto'});
+            }
+            if(localStorage.getItem("hospital_fav")){
+                var nus_fav_arr = JSON.parse("[" + localStorage.getItem("hospital_fav") + "]");
+                this.view_pro_id = nus_fav_arr.includes(this.pro_id);
+                console.log("view_pro_id",this.view_pro_id)
+            }
+        }
+        else{
+            if(localStorage.getItem("nursing_history")) {
+                var nus_his_arr = JSON.parse("[" + localStorage.getItem("nursing_history") + "]");
+                nus_his_arr.push(this.pro_id);
+                nus_his_arr = [...new Set(nus_his_arr)];
+                localStorage.setItem("nursing_history", nus_his_arr);
+                this.nusHis = nus_his_arr.length;
+            }
+            else{
+                var nus_his_arr = [this.pro_id];
+                localStorage.setItem("nursing_history", nus_his_arr);
+                this.nusHis = nus_his_arr.length;
+                $('.his-nursing-link-box>a').css({'cursor':'pointer','pointer-events':'auto'});
+            }
+            if(localStorage.getItem("nursing_fav")){
+                var nus_fav_arr = JSON.parse("[" + localStorage.getItem("nursing_fav") + "]");
+                this.view_pro_id = nus_fav_arr.includes(this.pro_id);
+            }
+        }
+        if(!this.$auth.check()){
+            this.show_comment = true;
+        }else{
+            if(this.$auth.user().role == 2){
+                this.show_comment = false;
             }else{
-                if(this.$auth.user().role == 2){
+                if(this.$auth.user().customer_id == this.pro_id){
                     this.show_comment = false;
                 }else{
-                    if(this.$auth.user().customer_id == this.pro_id){
-                        this.show_comment = false;
-                    }else{
-                        this.show_comment = true;
-                    }
+                    this.show_comment = true;
                 }
             }
-                //
-                this.axios.get("/api/advertisement/ads").then(response => {
-                    this.ads_list = response.data;
-                });
-                //end
-                window.addEventListener('resize', this.handleResize);
-                this.handleResize();
-                console.log(this.window.width);
-                if(this.window.width >= 320 && this.window.width < 450) {
-                    this.windowSize = 1;
-                }
+        }
+        //
+        this.axios.get("/api/advertisement/ads").then(response => {
+            this.ads_list = response.data;
+        });
+        //end
+        window.addEventListener('resize', this.handleResize);
+        this.handleResize();
+        console.log(this.window.width);
+        if(this.window.width >= 320 && this.window.width < 450) {
+            this.windowSize = 1;
+        }
 
-                else if(this.window.width >= 450 && this.window.width < 768) {
-                    this.windowSize = 2;
-                }
-                else if(this.window.width >= 768 && this.window.width < 992) {
-                    this.windowSize = 4;
-                }
-                else if(this.window.width >= 992 && this.window.width < 1024) {
-                    this.windowSize = 7;
-                }
-                else if (this.window.width >= 1024 && this.window.width < 1280) {
-                    this.windowSize = 8;
-                    // console.log('1024');
-                }
-                else if (this.window.width >= 1280 && this.window.width < 1440) {
-                    this.windowSize = 9;
+        else if(this.window.width >= 450 && this.window.width < 768) {
+            this.windowSize = 2;
+        }
+        else if(this.window.width >= 768 && this.window.width < 992) {
+            this.windowSize = 4;
+        }
+        else if(this.window.width >= 992 && this.window.width < 1024) {
+            this.windowSize = 7;
+        }
+        else if (this.window.width >= 1024 && this.window.width < 1280) {
+            this.windowSize = 8;
+            // console.log('1024');
+        }
+        else if (this.window.width >= 1280 && this.window.width < 1440) {
+            this.windowSize = 9;
 
-                }
-                else if (this.window.width >= 1440 && this.window.width < 1880) {
-                    this.windowSize = 9;
-                    // console.log(this.paginationFactor);/
-                }
-                // else if( this.window.width > 1700) {
-                // }
+        }
+        else if (this.window.width >= 1440 && this.window.width < 1880) {
+            this.windowSize = 9;
+            // console.log(this.paginationFactor);/
+        }
+        // else if( this.window.width > 1700) {
+        // }
 
-                this.profile_id = this.pro_id;
-                this.activePanoImage = 0;
+        this.profile_id = this.pro_id;
+        this.activePanoImage = 0;
 
-                // if(this.type != undefined && this.pro_id!= undefined){
-                //     localStorage.setItem('cusType',this.type);
-                //     localStorage.setItem('cusId',this.pro_id);
-                // }
-                // this.type = localStorage.getItem('cusType');
-                // this.pro_id = Number(localStorage.getItem('cusId'));
-
-                //for responsive
-                    if(this.window.width > 768) {
-                        //greater than 768
-                        if(this.loginuser == true) {
-                            $(document).scroll(function() {
-                                 $(".fixed-nav").css({"position": "fixed","top":"70px"});
-                                var cur_pos = $(this).scrollTop();
-                                $('.ele').each(function(active_el){
-                                    if($(this).position().top <= (cur_pos+71)){
-                                        $('.top-fixed-btn.active').removeClass('active');
-                                        $('.top-fixed-btn').eq(active_el).addClass('active');
-                                    }
-                                });
-                                if (cur_pos >= 100) {
-                                    $(".fixed-nav").css({"position": "fixed","top":"70px"});
-                                } else {
-                                    $(".fixed-nav").css({"position": "unset", "top": "unset"});
-                                }
-                                //  $(".fixed-nav").css({"position": "unset","top":"unset"});
-                            });
-                        } else {
-                            $(document).scroll(function() {
-
-                                $(".fixed-nav").css({"position": "fixed","top":"100px"});
-                                var cur_pos = $(this).scrollTop();
-
-                                $('.ele').each(function(active_el){
-                                    if($(this).position().top <= (cur_pos+71)){
-                                        $('.top-fixed-btn.active').removeClass('active');
-                                        $('.top-fixed-btn').eq(active_el).addClass('active');
-                                    }
-                                });
-
-                                if (cur_pos >= 100) {
-                                    $(".fixed-nav").css({"position": "fixed","top":"90px"});
-                                } else {
-                                    $(".fixed-nav").css({"position": "unset", "top": "unset"});
-                                }
-                            });
-                        }
-                        //greater than 768
-                    }
-
-                    else {
-                       //less than 768
-                        if(this.loginuser == true) {
-                        $(document).scroll(function() {
-                             $(".fixed-nav").css({"position": "fixed","top":"70px"});
-                            var cur_pos = $(this).scrollTop();
-                            $('.ele').each(function(active_el){
-                                if($(this).position().top <= (cur_pos+71)){
-                                    $('.top-fixed-btn.active').removeClass('active');
-                                    $('.top-fixed-btn').eq(active_el).addClass('active');
-                                }
-                            });
-                            if (cur_pos >= 100) {
-                                $(".fixed-nav").css({"position": "fixed","top": admin_top ,"display": "inline-flex","width": "100%"});
-                            } else {
-                                $(".fixed-nav").css({"position": "unset", "top": "unset"});
+        //for responsive
+            if(this.window.width > 768) {
+                //greater than 768
+                if(this.loginuser == true) {
+                    $(document).scroll(function() {
+                            $(".fixed-nav").css({"position": "fixed","top":"70px"});
+                        var cur_pos = $(this).scrollTop();
+                        $('.ele').each(function(active_el){
+                            if($(this).position().top <= (cur_pos+71)){
+                                $('.top-fixed-btn.active').removeClass('active');
+                                $('.top-fixed-btn').eq(active_el).addClass('active');
                             }
-                            //  $(".fixed-nav").css({"position": "unset","top":"unset"});
+                        });
+                        if (cur_pos >= 100) {
+                            $(".fixed-nav").css({"position": "fixed","top":"70px"});
+                        } else {
+                            $(".fixed-nav").css({"position": "unset", "top": "unset"});
+                        }
+                        //  $(".fixed-nav").css({"position": "unset","top":"unset"});
+                    });
+                } else {
+                    $(document).scroll(function() {
+
+                        $(".fixed-nav").css({"position": "fixed","top":"100px"});
+                        var cur_pos = $(this).scrollTop();
+
+                        $('.ele').each(function(active_el){
+                            if($(this).position().top <= (cur_pos+71)){
+                                $('.top-fixed-btn.active').removeClass('active');
+                                $('.top-fixed-btn').eq(active_el).addClass('active');
+                            }
                         });
 
+                        if (cur_pos >= 100) {
+                            $(".fixed-nav").css({"position": "fixed","top":"90px"});
                         } else {
-                            $(document).scroll(function() {
-
-                                $(".fixed-nav").css({"position": "fixed","top":"70px"});
-                                var cur_pos = $(this).scrollTop();
-                                console.log("cur",cur_pos)
-
-                                $('.ele').each(function(active_el){
-                                    if($(this).position().top <= (cur_pos+71)){
-                                        $('.top-fixed-btn.active').removeClass('active');
-                                        $('.top-fixed-btn').eq(active_el).addClass('active');
-                                    }
-                                });
-
-                                if (cur_pos >= 100) {
-                                    $(".fixed-nav").css({"position": "fixed","top": main_top ,"display": "inline-flex","width": "100%"});
-                                } else {
-                                    $(".fixed-nav").css({"position": "unset", "top": "unset", "display": "none"});
-                                }
-                            });
+                            $(".fixed-nav").css({"position": "unset", "top": "unset"});
                         }
-                       //end less than 768
-                    }
-
-                    //for end responsive
-
-
-                if(this.type == "nursing")
-                {
-                    this.axios.get('/api/profile/customer/'+this.pro_id+'/'+this.type) .then(response => {
-                        this.customer = response.data;
-                        this.customer_name = response.data[0].name;
                     });
-                    this.axios.get('/api/profile/nursing/'+this.pro_id) .then(response => {
+                }
+                //greater than 768
+            }
+
+            else {
+                //less than 768
+                if(this.loginuser == true) {
+                $(document).scroll(function() {
+                        $(".fixed-nav").css({"position": "fixed","top":"70px"});
+                    var cur_pos = $(this).scrollTop();
+                    $('.ele').each(function(active_el){
+                        if($(this).position().top <= (cur_pos+71)){
+                            $('.top-fixed-btn.active').removeClass('active');
+                            $('.top-fixed-btn').eq(active_el).addClass('active');
+                        }
+                    });
+                    if (cur_pos >= 100) {
+                        $(".fixed-nav").css({"position": "fixed","top": admin_top ,"display": "inline-flex","width": "100%"});
+                    } else {
+                        $(".fixed-nav").css({"position": "unset", "top": "unset"});
+                    }
+                    //  $(".fixed-nav").css({"position": "unset","top":"unset"});
+                });
+
+                } else {
+                    $(document).scroll(function() {
+
+                        $(".fixed-nav").css({"position": "fixed","top":"70px"});
+                        var cur_pos = $(this).scrollTop();
+                        console.log("cur",cur_pos)
+
+                        $('.ele').each(function(active_el){
+                            if($(this).position().top <= (cur_pos+71)){
+                                $('.top-fixed-btn.active').removeClass('active');
+                                $('.top-fixed-btn').eq(active_el).addClass('active');
+                            }
+                        });
+
+                        if (cur_pos >= 100) {
+                            $(".fixed-nav").css({"position": "fixed","top": main_top ,"display": "inline-flex","width": "100%"});
+                        } else {
+                            $(".fixed-nav").css({"position": "unset", "top": "unset", "display": "none"});
+                        }
+                    });
+                }
+                //end less than 768
+            }
+            //for end responsive
+
+        if(this.type == "nursing")
+        {
+            this.axios.get('/api/profile/customer/'+this.pro_id+'/'+this.type) .then(response => {
+                this.customer = response.data;
+                this.customer_name = response.data[0].name;
+            });
+            this.axios.get('/api/profile/nursing/'+this.pro_id) .then(response => {
+        
+                // this.nursing_profiles = response.data.feature;
+                // this.nus_method= response.data.method;
+                this.nus_pro = response.data.nurselatlong[0];
+                this.google = response.data.nurselatlong;
+                if(this.nus_pro['address'] == null){
+                        this.nus_pro['address'] = '';
+                }
+                this.address = response.data.address;
+
                 
-                        // this.nursing_profiles = response.data.feature;
-                        // this.nus_method= response.data.method;
-                        this.nus_pro = response.data.nurselatlong[0];
-                        this.google = response.data.nurselatlong;
-                        if(this.nus_pro['address'] == null){
-                             this.nus_pro['address'] = '';
-                        }
-                        this.address = response.data.address;
-
-                       
-                        if(this.nus_pro['address'] == null){
-                             this.nus_pro['address'] = '';
-                        }
-
-                        this.customer[0]['address'] = this.address[0]['city_name'] + this.address[0]['township_name'] +this.nus_pro['address'];
-
-                        this.google[0]['address'] = this.address[0]['city_name'] + this.address[0]['township_name'] +this.nus_pro['address'];
-                      
-                        this.nusfacilities = response.data.facility;
-
-                        this.nursing_profiles = response.data.nurselatlong[0]['feature'];
-                        this.nus_method= response.data.nurselatlong[0]['method'];
-
-                        this.method_payment = response.data.cost;
-
-                        this.cooperate_medical = response.data.comedical;
-
-                        this.medical_acceptance = response.data.medicalacceptance;
-
-                        this.medical = response.data.medical;
-
-                        this.staff = response.data.staff;
-
-                       
-
-                        this.markers[0]['position']['lat']  = response.data.nurselatlong[0]['latitude'];
-
-                        this.markers[0]['position']['lng']  = response.data.nurselatlong[0]['longitude'];
-
-                        this.center['lat'] = response.data.nurselatlong[0]['latitude'];
-
-                        this.center['lng'] = response.data.nurselatlong[0]['longitude'];
-
-                        this.images = response.data.images;
-
-                        for(var i=0; i<this.images.length; i++){
-                            this.light_images.push({
-                                'name': this.images[i]['photo'],
-                                'description': this.images[i]['description'],
-                                'id': this.images[i]['id'],
-                                'title': this.images[i]['title']
-                            })
-                        }
-
-                        this.panoimages = response.data.panoimages;
-
-                        this.videos = response.data.videos;
-                        // console.log(this.panoimages);return;
-
-                        if(response.data.nurselatlong[0]['latitude'] == 0 && response.data.nurselatlong[0]['longitude'] == 0)
-                        {
-                            this.center['lat'] = 35.6803997;
-
-                            this.center['lng'] = 139.76901739;
-
-                            this.markers[0]['position']['lat']  = 35.6803997;
-
-                            this.markers[0]['position']['lng']  = 139.76901739;
-
-                        }
-                    });
-
-
-
-                    this.axios.get(`/api/profile/specialfeature/${this.type}/${this.pro_id}`) .then(response => {
-                        this.specialfeature = response.data;
-
-                    });
-
-                    this.axios.get('/api/profile/comment/'+this.pro_id+'/'+this.type) .then(response => {
-
-                        this.comments = response.data;
-                        if(this.comments.length > this.size){
-                            this.pagination = true;
-                        }else{
-                            this.pagination = false;
-                        }
-                        // for ( var index=0; index<response.data.length; index++ ) {
-
-                        //     data = { "created_date": "1", "created_time": "Valid" };
-                        //     this.comments.push(data);
-                        //         // tempData.push( data );
-                        // }
-                    });
-
+                if(this.nus_pro['address'] == null){
+                        this.nus_pro['address'] = '';
                 }
 
-                else{
-                    this.axios.get('/api/profile/customer/'+this.pro_id+'/'+this.type).then(response => {
-                        this.customer = response.data;
-                        this.customer_name = response.data[0].name;
-                    });
-                    this.axios.get('/api/profile/hospital/'+this.pro_id).then(response => {
-                      
-                        this.google = response.data.hospital;
+                this.customer[0]['address'] = this.address[0]['city_name'] + this.address[0]['township_name'] +this.nus_pro['address'];
 
-                        this.address = response.data.address;
+                this.google[0]['address'] = this.address[0]['city_name'] + this.address[0]['township_name'] +this.nus_pro['address'];
+                
+                this.nusfacilities = response.data.facility;
 
-                        this.hospitals = response.data.hospital;
-                        if(this.hospitals[0]['address'] == null){
-                             this.hospitals[0]['address'] = '';
-                        }
+                this.nursing_profiles = response.data.nurselatlong[0]['feature'];
+                this.nus_method= response.data.nurselatlong[0]['method'];
 
-                        this.customer[0]['address'] = this.address[0]['city_name'] + this.address[0]['township_name'] +this.hospitals[0]['address'];
+                this.method_payment = response.data.cost;
 
-                        this.google[0]['address'] = this.address[0]['city_name'] + this.address[0]['township_name'] +this.hospitals[0]['address'];
+                this.cooperate_medical = response.data.comedical;
 
-                        this.hosfacilities=response.data.facility_list;
+                this.medical_acceptance = response.data.medicalacceptance;
 
-                        this.fac_list = response.data.facility;
+                this.medical = response.data.medical;
 
-                        this.markers[0]['position']['lat']  = response.data.hospital[0]['latitude'];
+                this.staff = response.data.staff;
 
-                        this.markers[0]['position']['lng']  = response.data.hospital[0]['longitude'];
+                
 
-                        this.center['lat'] = response.data.hospital[0]['latitude'];
+                this.markers[0]['position']['lat']  = response.data.nurselatlong[0]['latitude'];
 
-                        this.center['lng'] = response.data.hospital[0]['longitude'];
+                this.markers[0]['position']['lng']  = response.data.nurselatlong[0]['longitude'];
 
-                        this.images = response.data.images;
+                this.center['lat'] = response.data.nurselatlong[0]['latitude'];
 
-                        for(var i=0; i<this.images.length; i++){
-                            this.light_images.push({
-                                'name': this.images[i]['photo'],
-                                'description': this.images[i]['description'],
-                                'id': this.images[i]['id'],
-                                'title': this.images[i]['title']
-                            })
-                        }
+                this.center['lng'] = response.data.nurselatlong[0]['longitude'];
 
-                        this.videos = response.data.videos;
+                this.images = response.data.images;
 
-                        // this.panoimages = response.data.panoimages;
-
-                        if(response.data.hospital[0]['latitude'] == 0 && response.data.hospital[0]['longitude'] == 0)
-
-                        {
-
-                            this.center['lat'] = 35.6803997;
-
-                            this.center['lng'] = 139.76901739;
-
-                            this.markers[0]['position']['lat']  = 35.6803997;
-
-                            this.markers[0]['position']['lng']  = 139.76901739;
-
-                        }
-
-                    });
-
-                    this.axios.get(`/api/profile/specialfeature/${this.type}/${this.pro_id}`).then(response => {
-
-                        this.specialfeature = response.data;
-
-                    });
-
-                    this.axios.get('/api/profile/comment/'+this.pro_id+'/'+this.type).then(response => {
-
-                        this.comments = response.data;
-                        if(this.comments.length > this.size){
-                            this.pagination = true;
-                        }else{
-                            this.pagination = false;
-                        }
-
-                    });
-
-                    this.axios.get('/api/profile/subject/'+this.pro_id).then(response => {
-                            this.subjects = response.data;
-                        for(var i=0; i< response.data.length; i++) {
-                            this.subject += response.data[i]['name'] + " , ";
-                        }
-
-                    });
-
-                    this.axios.get('/api/profile/schedule/'+this.pro_id) .then(response => {
-
-                            this.am_arr = response.data.am;
-                            this.pm_arr = response.data.pm;
-
-                    });
+                for(var i=0; i<this.images.length; i++){
+                    this.light_images.push({
+                        'name': this.images[i]['photo'],
+                        'description': this.images[i]['description'],
+                        'id': this.images[i]['id'],
+                        'title': this.images[i]['title']
+                    })
                 }
 
-                var new_width = $("#content-all").width();
+                this.panoimages = response.data.panoimages;
 
-                var fixed_width = new_width - 80;
+                this.videos = response.data.videos;
+                // console.log(this.panoimages);return;
 
-                this.width = fixed_width + "px";
+                if(response.data.nurselatlong[0]['latitude'] == 0 && response.data.nurselatlong[0]['longitude'] == 0)
+                {
+                    this.center['lat'] = 35.6803997;
 
-                // var new_width = $("#Profile-page").width();
-                // this.width = new_width + "px";
-                // console.log(new_width + "px");
+                    this.center['lng'] = 139.76901739;
 
+                    this.markers[0]['position']['lat']  = 35.6803997;
 
-                var main_header = $(".main-header").height();
-                 var main_top =  main_header  + "px" ;
+                    this.markers[0]['position']['lng']  = 139.76901739;
 
-                var admin_header = $(".admin-header").height();
-                 var admin_top = admin_header  + "px" ;
-
-
-            },
-
-          computed: {
-            atEndOfList() {
-                return this.panocurrentOffset <= (this.paginationFactor * -1) * (this.panoimages.length - this.windowSize);
-            },
-            atHeadOfList() {
-                return this.panocurrentOffset === 0;
-            },
-            currentPanoImage() {
-                if(this.panoimages.length > 0) {
-                    return this.panoimages[this.activePanoImage].photo;
                 }
-            },
-            currentImage() {
-                if(this.images) {
-                    if(this.images.length > 0) {
-                        this.activeImageTitle = this.images[this.activeImage].title;
-                        this.activeImageDescription = this.images[this.activeImage].description;
-                        return this.images[this.activeImage].photo;
-                    }
-                    else{
-                        return 'no-image-big.jpg';
-                    }
+            });
+
+            this.axios.get(`/api/profile/specialfeature/${this.type}/${this.pro_id}`) .then(response => {
+                this.specialfeature = response.data;
+            });
+
+            this.axios.get('/api/profile/comment/'+this.pro_id+'/'+this.type) .then(response => {
+
+                this.comments = response.data;
+                console.log(this.comments)
+                if(this.comments.length > this.size){
+                    this.pagination = true;
+                }else{
+                    this.pagination = false;
+                }
+                // for ( var index=0; index<response.data.length; index++ ) {
+
+                //     data = { "created_date": "1", "created_time": "Valid" };
+                //     this.comments.push(data);
+                //         // tempData.push( data );
+                // }
+            });
+
+        }
+
+        else{
+            this.axios.get('/api/profile/customer/'+this.pro_id+'/'+this.type).then(response => {
+                this.customer = response.data;
+                this.customer_name = response.data[0].name;
+            });
+            this.axios.get('/api/profile/hospital/'+this.pro_id).then(response => {                      
+                this.google = response.data.hospital;
+                this.address = response.data.address;
+                this.hospitals = response.data.hospital;
+                if(this.hospitals[0]['address'] == null){
+                    this.hospitals[0]['address'] = '';
+                }
+
+                this.customer[0]['address'] = this.address[0]['city_name'] + this.address[0]['township_name'] +this.hospitals[0]['address'];
+                this.google[0]['address'] = this.address[0]['city_name'] + this.address[0]['township_name'] +this.hospitals[0]['address'];
+                this.hosfacilities=response.data.facility_list;
+                this.fac_list = response.data.facility;
+                this.markers[0]['position']['lat']  = response.data.hospital[0]['latitude'];
+                this.markers[0]['position']['lng']  = response.data.hospital[0]['longitude'];
+                this.center['lat'] = response.data.hospital[0]['latitude'];
+                this.center['lng'] = response.data.hospital[0]['longitude'];
+                this.images = response.data.images;
+
+                for(var i=0; i<this.images.length; i++){
+                    this.light_images.push({
+                        'name': this.images[i]['photo'],
+                        'description': this.images[i]['description'],
+                        'id': this.images[i]['id'],
+                        'title': this.images[i]['title']
+                    })
+                }
+
+                this.videos = response.data.videos;
+                // this.panoimages = response.data.panoimages;
+
+                if(response.data.hospital[0]['latitude'] == 0 && response.data.hospital[0]['longitude'] == 0)
+                {
+                    this.center['lat'] = 35.6803997;
+                    this.center['lng'] = 139.76901739;
+                    this.markers[0]['position']['lat']  = 35.6803997;
+                    this.markers[0]['position']['lng']  = 139.76901739;
+                }
+
+            });
+
+            this.axios.get(`/api/profile/specialfeature/${this.type}/${this.pro_id}`).then(response => {
+
+                this.specialfeature = response.data;
+
+            });
+
+            this.axios.get('/api/profile/comment/'+this.pro_id+'/'+this.type).then(response => {
+
+                this.comments = response.data;
+                if(this.comments.length > this.size){
+                    this.pagination = true;
+                }else{
+                    this.pagination = false;
+                }
+
+            });
+
+            this.axios.get('/api/profile/subject/'+this.pro_id).then(response => {
+                this.subjects = response.data;
+                for(var i=0; i< response.data.length; i++) {
+                    this.subject += response.data[i]['name'] + " , ";
+                }
+            });
+
+            this.axios.get('/api/profile/schedule/'+this.pro_id) .then(response => {
+                this.am_arr = response.data.am;
+                this.pm_arr = response.data.pm;
+            });
+        }
+
+        var new_width = $("#content-all").width();
+        var fixed_width = new_width - 80;
+        this.width = fixed_width + "px";
+
+        // var new_width = $("#Profile-page").width();
+        // this.width = new_width + "px";
+        // console.log(new_width + "px");
+
+        var main_header = $(".main-header").height();
+        var main_top =  main_header  + "px" ;
+
+        var admin_header = $(".admin-header").height();
+        var admin_top = admin_header  + "px" ;
+    },
+
+    computed: {
+        atEndOfList() {
+            return this.panocurrentOffset <= (this.paginationFactor * -1) * (this.panoimages.length - this.windowSize);
+        },
+        atHeadOfList() {
+            return this.panocurrentOffset === 0;
+        },
+        currentPanoImage() {
+            if(this.panoimages.length > 0) {
+                return this.panoimages[this.activePanoImage].photo;
+            }
+        },
+        currentImage() {
+            if(this.images) {
+                if(this.images.length > 0) {
+                    this.activeImageTitle = this.images[this.activeImage].title;
+                    this.activeImageDescription = this.images[this.activeImage].description;
+                    return this.images[this.activeImage].photo;
                 }
                 else{
                     return 'no-image-big.jpg';
                 }
+            }
+            else{
+                return 'no-image-big.jpg';
+            }
+        },
+        pages() {
+                return Math.ceil(this.comments.length / this.size);
             },
-            pages() {
-                    return Math.ceil(this.comments.length / this.size);
-                },
-            displayPageRange() {
-                const half = Math.ceil(this.pageRange / 2);
-                const isEven = this.pageRange / 2 == 0;
-                const offset = isEven ? 1 : 2;
-                let start, end;
-                if (this.pages < this.pageRange) {
-                    start = 1;
-                    end = this.pages;
-                } else if (this.currentPage < half) {
-                    start = 1;
-                    end = start + this.pageRange - 1;
-                } else if (this.pages - half < this.currentPage) {
-                    end = this.pages;
-                    start = end - this.pageRange + 1;
-                } else {
-                    start = this.currentPage - half + offset;
-                    end = this.currentPage + half;
-                }
-                let indexes = [];
-                for (let i = start; i <= end; i++) {
-                    indexes.push(i);
-                }
-                return indexes;
-            },
-            displayItems() {
-                const head = this.currentPage * this.size;
-                return this.comments.slice(head, head + this.size);
-            },
-            isSelected(page) {
-                return page - 1 == this.currentPage;
-            },
-            slickOptions() {
-                return {
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                arrows: true,
-                fade: false,
-                adaptiveHeight: true,
-                }
-            },
-            slickOptions2() {
-                return {
-                slidesToShow: 7,
-                slidesToScroll: 1,
-                dots: false,
-                focusOnSelect: true,
-                responsive: [{
-                    breakpoint: 411,
-                        settings: {
-                            slidesToShow: 8.5,
-                            slidesToScroll: 1,
-                             focusOnSelect: true,
-                        }
-                    }, {
-                    breakpoint: 360,
-                        settings: {
-                            slidesToShow: 8,
-                            slidesToScroll: 1,
+        displayPageRange() {
+            const half = Math.ceil(this.pageRange / 2);
+            const isEven = this.pageRange / 2 == 0;
+            const offset = isEven ? 1 : 2;
+            let start, end;
+            if (this.pages < this.pageRange) {
+                start = 1;
+                end = this.pages;
+            } else if (this.currentPage < half) {
+                start = 1;
+                end = start + this.pageRange - 1;
+            } else if (this.pages - half < this.currentPage) {
+                end = this.pages;
+                start = end - this.pageRange + 1;
+            } else {
+                start = this.currentPage - half + offset;
+                end = this.currentPage + half;
+            }
+            let indexes = [];
+            for (let i = start; i <= end; i++) {
+                indexes.push(i);
+            }
+            return indexes;
+        },
+        displayItems() {
+            const head = this.currentPage * this.size;
+            return this.comments.slice(head, head + this.size);
+        },
+        isSelected(page) {
+            return page - 1 == this.currentPage;
+        },
+        slickOptions() {
+            return {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: true,
+            fade: false,
+            adaptiveHeight: true,
+            }
+        },
+        slickOptions2() {
+            return {
+            slidesToShow: 7,
+            slidesToScroll: 1,
+            dots: false,
+            focusOnSelect: true,
+            responsive: [{
+                breakpoint: 411,
+                    settings: {
+                        slidesToShow: 8.5,
+                        slidesToScroll: 1,
                             focusOnSelect: true,
-                        }
-                    }]
+                    }
+                }, {
+                breakpoint: 360,
+                    settings: {
+                        slidesToShow: 8,
+                        slidesToScroll: 1,
+                        focusOnSelect: true,
+                    }
+                }]
+            }
+        }
+    },
+    methods: {
+        next() {
+            this.$refs.slick.next();
+        },
+        prev() {
+            this.$refs.slick.prev();
+        },
+        reInit() {
+            // Helpful if you have to deal with v-for to update dynamic lists
+            this.$nextTick(() => {
+                this.$refs.slick.reSlick();
+            });
+        },
+        handleResize() {
+            this.window.width = window.innerWidth;
+            this.window.height = window.innerHeight;
+            console.log('hello');
+        },
+        showLightbox: function(imageName) {
+            this.$refs.lightbox.show(imageName);
+        },
+        moveCarousel(direction) {
+                    // Find a more elegant way to express the :style. consider using props to make it truly generic
+            if (direction === 1 && !this.atEndOfList) {
+                this.panocurrentOffset -= this.paginationFactor;
+            } else if (direction === -1 && !this.atHeadOfList) {
+                this.panocurrentOffset += this.paginationFactor;
+            }
+        },
+            activatePanoImage(imageIndex) {
+            this.activePanoImage = imageIndex;
+
+        },
+
+            moveTo: function(index) {
+
+            this.$refs.fullpage.$fullpage.moveTo(index, true);
+
+        },
+
+            nextImage() {
+
+            var active = this.activeImage + 1;
+
+            if(active >= this.images.length) {
+
+                active = 0;
+
+            }
+
+            this.activateImage(active);
+
+        },
+
+
+
+        prevImage() {
+
+            var active = this.activeImage - 1;
+
+            if(active < 0) {
+
+                active = this.images.length - 1;
+
+            }
+
+            this.activateImage(active);
+
+        },
+
+        activateImage(imageIndex) {
+
+            this.activeImage = imageIndex;
+
+            this.activeImageTitle = this.images[imageIndex].title;
+
+                this.activeImageDescription = this.images[imageIndex].description;
+        },
+            activate:function(el){
+            //  console.log(el)
+            //  this.active_el = el;
+            // console.log(this.active_el)
+            // if(el == 6){
+
+            //     $(".nav-item").on("click", function(e){
+            //     $("li.nav-item").removeClass("active");
+            //     $(this).addClass("active");
+            //                         });
+
+                // console.log('element6')
+
+                    // $('.top-fixed-btn.active').removeClass('active');
+                    //  $('.top-fixed-btn.active');
+
+
+                //    $('.top-fixed-btn2.active').css({'background':'red'});
+                //    $('.top-fixed-btn2').eq(active_el).addClass('active');
+                //    $('#top-fixed-btn2').css({'background':'green'});
+            //}
+            // else
+            // {
+
+            //     //   $('.top-fixed-btn').css({'color': '#000','width':'145px','cursor':' pointer','padding': '5px','border-radius': '5px','text-decoration': 'none','position': 'relative','box-shadow': '3px 5px 3px #ccc!important','background': '#fbaa84','border': '1px solid #ff9563;'});
+            //       $('.top-fixed-btn').eq(active_el).addClass('active');
+            // }
+
+
+        },
+
+        costConfirm(id,inx){
+
+            $('.changeLink').text("詳細はこちら");
+            $('.changeLink').removeClass("CloseBtn");
+            $('.changeLink'+id).text("選択中");
+            $('.changeLink'+id).addClass("CloseBtn");
+            $('.closeChangeLink').hide('medium');
+            $('#changeLink'+id).show('medium');
+            $('.closeLink').css({'display':'none'});
+            $('.closeLink'+id).css({'display':'inline'});
+
+            $('.main-cost-table td').css({'background':'transparent'});
+            $('.cost'+inx+' td').css({'background':'#ffe9df'});
+        },
+        costConfirmMini(id){
+            $('#changeLinkMini'+id).toggle('medium');
+        },
+        closeDetail(id,inx) {
+            $('.changeLink').text("詳細はこちら");
+            $('.changeLink').removeClass("CloseBtn");
+            $('.closeLink'+id).css({'display':'none'});
+            $('.closeChangeLink').hide('medium');    
+            $('.main-cost-table td').css({'background':'transparent'});
+            $('.cost'+inx+' td').css({'background':'transparent'});    
+        },
+        documentPost() {
+            localStorage.removeItem("item");
+            this.fav_email.push({
+                'id': this.customer[0]['id'],
+                'email': this.customer[0]['email'],
+                'name': this.customer[0]['name']
+                });
+            localStorage.setItem("item", JSON.stringify(this.fav_email));
+            this.$router.push({
+                name: 'nursingFavouriteMail',
+            });
+        },
+        imgUrlAlt(event) {
+                    event.target.src = "/images/noimage.jpg"
+        },
+        first() {
+            this.currentPage = 0;
+        },
+        last() {
+            this.currentPage = this.pages - 1;
+        },
+        prev() {
+            if (0 < this.currentPage) {
+                this.currentPage--;
+            }
+        },
+        next() {
+            if (this.currentPage < this.pages - 1) {
+                this.currentPage++;
+            }
+        },
+        pageSelect(index) {
+            // this.currentPage = index - 1;
+            // window.scrollTo(0,0);
+            if(0 < this.currentPage)
+            {
+                this.currentPage = index - 1;
+            }
+            else{
+                this.currentPage++;
+            }
+        },
+        favAddFun(status){
+            if(this.type == 'nursing'){
+                var locReplace = "nursing_fav";
+                var varReplace = "#nus-fav-local";
+                var linkBox = ".fav-nursing-link-box>a";
+            }
+            else{
+                var locReplace = "hospital_fav";
+                var varReplace = "#hos-fav-local";
+                var linkBox = ".fav-hospital-link-box>a";
+            }
+
+            if(status == 'add'){
+                if(localStorage.getItem(locReplace)){
+                    var fav_arr = JSON.parse("[" + localStorage.getItem(locReplace) + "]");
+                    fav_arr.push(this.pro_id);
+                    fav_arr = [...new Set(fav_arr)];
+                    localStorage.setItem(locReplace, fav_arr);
+                    if(this.type == 'nursing'){
+                        this.nusFav = fav_arr.length;
+                    }
+                    else{
+                        this.hosFav = fav_arr.length;
+                    }
+                }
+                else{
+                    var fav_arr = [this.pro_id];
+                    localStorage.setItem(locReplace, fav_arr);
+                    if(this.type == 'nursing'){
+                        this.nusFav = fav_arr.length;
+                    }
+                    else{
+                        this.hosFav = fav_arr.length;
+                    }
+                }
+                $(linkBox).css({'cursor':'pointer','pointer-events':'auto'});
+            }
+            else{
+                var fav_arr = JSON.parse("[" + localStorage.getItem(locReplace) + "]");
+                var index = fav_arr.indexOf(this.pro_id);
+                if (index > -1) {
+                    fav_arr.splice(index, 1);
+                    localStorage.setItem(locReplace, fav_arr);
+                }
+                if(this.type == 'nursing'){
+                    this.nusFav = fav_arr.length;
+                }
+                else{
+                    this.hosFav = fav_arr.length;
+                }
+
+                if(fav_arr.length == 0){
+                    $(linkBox).css({'cursor':'not-allowed','pointer-events':'none'})
+                }
+                else{
+                    $(linkBox).css({'cursor':'pointer','pointer-events':'auto'})
                 }
             }
         },
-        methods: {
-            next() {
-                this.$refs.slick.next();
-            },
-            prev() {
-                this.$refs.slick.prev();
-            },
-            reInit() {
-                // Helpful if you have to deal with v-for to update dynamic lists
-                this.$nextTick(() => {
-                    this.$refs.slick.reSlick();
-                });
-            },
-            handleResize() {
-                this.window.width = window.innerWidth;
-                this.window.height = window.innerHeight;
-                console.log('hello');
-            },
-            showLightbox: function(imageName) {
-                this.$refs.lightbox.show(imageName);
-            },
-            moveCarousel(direction) {
-                        // Find a more elegant way to express the :style. consider using props to make it truly generic
-                if (direction === 1 && !this.atEndOfList) {
-                    this.panocurrentOffset -= this.paginationFactor;
-                } else if (direction === -1 && !this.atHeadOfList) {
-                    this.panocurrentOffset += this.paginationFactor;
-                }
-            },
-              activatePanoImage(imageIndex) {
-                this.activePanoImage = imageIndex;
-
-            },
-
-              moveTo: function(index) {
-
-                this.$refs.fullpage.$fullpage.moveTo(index, true);
-
-            },
-
-              nextImage() {
-
-                var active = this.activeImage + 1;
-
-                if(active >= this.images.length) {
-
-                    active = 0;
-
-                }
-
-                this.activateImage(active);
-
-            },
-
-
-
-            prevImage() {
-
-                var active = this.activeImage - 1;
-
-                if(active < 0) {
-
-                    active = this.images.length - 1;
-
-                }
-
-                this.activateImage(active);
-
-            },
-
-            activateImage(imageIndex) {
-
-                this.activeImage = imageIndex;
-
-                this.activeImageTitle = this.images[imageIndex].title;
-
-                 this.activeImageDescription = this.images[imageIndex].description;
-            },
-
-
-
-             activate:function(el){
-                //  console.log(el)
-                //  this.active_el = el;
-                // console.log(this.active_el)
-                // if(el == 6){
-
-                //     $(".nav-item").on("click", function(e){
-                //     $("li.nav-item").removeClass("active");
-                //     $(this).addClass("active");
-                //                         });
-
-                    // console.log('element6')
-
-                        // $('.top-fixed-btn.active').removeClass('active');
-                        //  $('.top-fixed-btn.active');
-
-
-                    //    $('.top-fixed-btn2.active').css({'background':'red'});
-                    //    $('.top-fixed-btn2').eq(active_el).addClass('active');
-                    //    $('#top-fixed-btn2').css({'background':'green'});
-                //}
-                // else
-                // {
-
-                //     //   $('.top-fixed-btn').css({'color': '#000','width':'145px','cursor':' pointer','padding': '5px','border-radius': '5px','text-decoration': 'none','position': 'relative','box-shadow': '3px 5px 3px #ccc!important','background': '#fbaa84','border': '1px solid #ff9563;'});
-                //       $('.top-fixed-btn').eq(active_el).addClass('active');
-                // }
-
-
-            },
-
-
-
-    costConfirm(id,inx){
-
-        $('.changeLink').text("詳細はこちら");
-        $('.changeLink').removeClass("CloseBtn");
-        $('.changeLink'+id).text("選択中");
-        $('.changeLink'+id).addClass("CloseBtn");
-        $('.closeChangeLink').hide('medium');
-        $('#changeLink'+id).show('medium');
-        $('.closeLink').css({'display':'none'});
-        $('.closeLink'+id).css({'display':'inline'});
-
-        $('.main-cost-table td').css({'background':'transparent'});
-        $('.cost'+inx+' td').css({'background':'#ffe9df'});
-    },
-    costConfirmMini(id){
-        $('#changeLinkMini'+id).toggle('medium');
-    },
-    closeDetail(id,inx) {
-        $('.changeLink').text("詳細はこちら");
-        $('.changeLink').removeClass("CloseBtn");
-        $('.closeLink'+id).css({'display':'none'});
-        $('.closeChangeLink').hide('medium');    
-        $('.main-cost-table td').css({'background':'transparent'});
-        $('.cost'+inx+' td').css({'background':'transparent'});    
-    },
-    documentPost() {
-        localStorage.removeItem("item");
-        console.log("docPos");
-        console.log(this.customer[0]);
-        this.fav_email.push({
-            'id': this.customer[0]['id'],
-            'email': this.customer[0]['email'],
-            'name': this.customer[0]['name']
-            });
-        localStorage.setItem("item", JSON.stringify(this.fav_email));
-        this.$router.push({
-            name: 'nursingFavouriteMail',
-        });
-    },
-     imgUrlAlt(event) {
-                event.target.src = "/images/noimage.jpg"
-    },
-    first() {
-        this.currentPage = 0;
-    },
-    last() {
-        this.currentPage = this.pages - 1;
-    },
-    prev() {
-        if (0 < this.currentPage) {
-            this.currentPage--;
     }
-    },
-    next() {
-        if (this.currentPage < this.pages - 1) {
-            this.currentPage++;
-        }
-    },
-    pageSelect(index) {
-        // this.currentPage = index - 1;
-        // window.scrollTo(0,0);
-        if(0 < this.currentPage)
-        {
-            this.currentPage = index - 1;
-        }
-        else{
-            this.currentPage++;
-        }
-    },
-  }
 
  }
 
