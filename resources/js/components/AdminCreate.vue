@@ -4,7 +4,7 @@
         <div class="admin_card admin_registercard admin-create-wrapper">
             <div class="row">
                 <div class="col-md-12">
-                    <h4 class="page-header header">{{ header }} <router-link v-if="show" class="btn btn-danger all-btn float-right m-b-10" to="t_is_admin_register">戻る</router-link></h4>
+                    <h4 class="page-header header">{{ header }} <span v-if="show" class="btn btn-danger all-btn float-right m-b-10" @click="$router.go(-1)">戻る</span></h4>
                     
 
                 </div>
@@ -117,7 +117,7 @@
                 }
             },
             created() {
-                if (this.$route.params.id) {
+                if (this.$route.name == "adminedit") {
                     this.show = true;
                     this.axios
                         .get(`/api/main_admin/edit/${this.$route.params.id}`)
@@ -301,11 +301,11 @@
                         }else{
                             this.errors.confirm_password = "新しいパスワードをもう一度入力が必要です。"
                         }
-                        if (this.new_password.length < 6) {
+                        if(!this.errors.old_password && !this.errors.new_password && !this.errors.confirm_password){
+                            if (this.new_password.length < 6) {
                                 $('#newpasswordlength').css('display', 'block');
                                 return;
                         }
-                        if(!this.errors.old_password && !this.errors.new_password && !this.errors.confirm_password){
                             this.$swal({
                             title: "確認",
                             text: "管理者を更新してよろしいでしょうか。",

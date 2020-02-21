@@ -109,10 +109,10 @@
                                             <div class="form-group" id="newcreate">
                                               
                                                 <span v-if="customer_info.type_id == 2" class="btn main-bg-color white all-btn"  @click="Save()">
-                                                    新規病院施設作成
+                                                    病院施設新規作成
                                                 </span>
                                                 <span v-else class="btn main-bg-color white all-btn"  @click="Save()">
-                                                    新規介護施設作成
+                                                    介護施設新規作成
                                                 </span>
                                             </div>
                                             <div id="nusNew">

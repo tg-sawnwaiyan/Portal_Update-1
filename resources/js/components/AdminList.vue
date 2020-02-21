@@ -22,7 +22,7 @@
                             <td>{{admin.name}}</td>
                             <td >{{admin.email}}</td>
                             <td class="text-right">
-                                <router-link :to="{name: 'admincreate', params: { id: admin.id }}" class="btn edit-borderbtn">編集</router-link>
+                                <router-link :to="{path: '/admin/edit/'+admin.id}" class="btn edit-borderbtn">編集</router-link>
                                 <button class="btn text-danger delete-borderbtn" @click="deleteFeature(admin.id)">削除</button>
                             </td>
                         </tr>
