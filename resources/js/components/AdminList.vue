@@ -1,5 +1,5 @@
 <template>   
-        <div class="d-flex justify-content-center h-100">     
+        <div class="d-flex justify-content-center h-100">      
             <div class="admin_card admin_registercard admin-list-wrapper">
                 <div class="col-md-12 m-b-10">               
                     <router-link :to="{name:'news_list'}" class="btn btn-danger all-btn submit">管理者画面へ</router-link>
