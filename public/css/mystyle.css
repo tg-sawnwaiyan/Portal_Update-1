@@ -2934,7 +2934,13 @@ ul.sub-ul li {
 .main-bg-color {
     background-color: #118063 !important;
 }
-
+.drop-bg-color{
+    background-color: #fff !important;
+    float: right;
+    color: #000 !important;
+    border: none !important;
+    box-shadow: none !important;
+}
 .m-b-10 {
     margin-bottom: 10px;
 }
@@ -5956,6 +5962,9 @@ padding-bottom: 15px; */
     li.page-item {
         display: none;
     }
+    .pagination li.page-item{
+        display: block;
+    }
     .page-item:first-child,
     .page-item:nth-child( 2),
     /* .page-item:nth-child( 1 ), */
@@ -8519,7 +8528,7 @@ margin-right: auto; */
 .slick-dots {
     position: absolute;
     bottom: -25px;
-    display: none;
+    display: none !important;
     width: 100%;
     padding: 0;
     margin: 0;
@@ -11002,7 +11011,7 @@ width: 18rem;
         width: 48%;
     }
     .fixed-nav {
-        display: flex;
+        display: none;
         width: 100%;
     }
     /* new details */

@@ -4,16 +4,14 @@
         <div class="admin_card admin_registercard admin-create-wrapper">
             <div class="row">
                 <div class="col-md-12">
-                    <h4 class="page-header header">{{ header }} <router-link v-if="show" class="btn btn-danger all-btn float-right m-b-20" to="t_is_admin_register"> キャンセル </router-link></h4>
+                    <h4 class="page-header header">{{ header }} <router-link v-if="show" class="btn btn-danger all-btn float-right m-b-10" to="t_is_admin_register">戻る</router-link></h4>
                     
 
                 </div>
                 <!-- <div class="col-md-2"> -->
                 <!-- </div> -->
                 <div class="col-md-12">
-                    <form @submit.prevent="add">
-                        <div class="card card-default m-b-20 col-md-11">
-                            <div class="card-body">
+                    <form @submit.prevent="add">                       
                                 <div class="row">
                                     <div class="col-md-12 m-t-8">
                                         <div class="form-group">
@@ -34,44 +32,45 @@
                                         </div>
                                         <div><span class="btn main-bg-color white all-btn" v-if="show" @click="nameMailChange()">変更</span></div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group" v-if="show">
-                            <div class="card card-default m-b-20 col-md-11">
-                                <div class="card-body">
+                                </div>                         
+                        <div class="form-group m-t-10 m-b-0" v-if="show">                           
+                            <div class="row">
+                                <div class="col-md-12 m-t-8">
                                     <div class="row">
-                                        <div class="col-md-12 m-t-8">
-                                            <div class="header2">
-                                                <label class="heading-lbl">パスワード設定</label>
-                                                <span class="btn all-btn main-bg-color nursing_toggle_responsive m-l-8" style="min-width: 0px;" @click="passwordToggleDiv()"><i class="fas fa-sort-down animate"  :class="{'rotate': !isRotate}"></i></span>
-                                            </div>
-
-                                            <!-- <label class="heading-lbl col-md-2 col-12 pad-free">パスワード設定</label> -->
-
-                                            <div class="password-setting">
-                                                <label class="old-pass">現在のパスワード:<span class="error-star">*</span></label>
-                                                <input type="password" name="old_password" placeholder="現在のパスワードを入力してください。" v-model="old_password" class="form-control old-password">
-                                                <span v-if="errors.old_password" class="error-star">{{errors.old_password}}</span>
-                                                <br>
-                                                <label class="old-pass">新しいパスワード:<span class="error-star">*</span></label>
-                                                <input type="password" name="new_password" placeholder="新しいパスワードを入力してください。" v-model="new_password" class="form-control new-password">
-                                                <span v-if="errors.new_password" class="error-star">{{errors.new_password}}</span>
-                                                <div class="error-star" id="newpasswordlength" style="display: none;">パスワードは少なくとも6桁でなければなりません。</div>
-                                                <br>
-                                                <label class="old-pass">新しいパスワードをもう一度入力してください<span class="error-star">*</span></label>
-                                                <input type="password" name="comfirm_password" class="form-control confirm-password" v-model="confirm_password" placeholder="新しいパスワードをもう一度入力してください" @keyup="password_validate()">
-                                                <span v-if="errors.old_password" class="error-star">{{errors.confirm_password}}</span>
-                                                <div class="col-md-12 pad-free">
-                                                    <span v-if="errors.edit_password" class="error-star">{{errors.edit_password}}</span>
-                                                </div>
-                                                <div><span class="btn main-bg-color white all-btn m-t-30" @click="passwordChange()">変更</span></div>
-                                            </div>
-                                            <br>
+                                        <div class="col-md-9 col-sm-6">
+                                             <label class="font-weight-bold"><i class="fas fa-cogs"></i>&nbsp;パスワード設定</label>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <span class="btn drop-bg-color m-l-8" style="min-width: 0px;" @click="passwordToggleDiv()">詳細&nbsp;<i class="fas fa-sort-down animate"  :class="{'rotate': !isRotate}"></i></span>
                                         </div>
                                     </div>
+                                    <div class="header2">
+                                       
+                                        
+                                    </div>
+
+                                    <!-- <label class="heading-lbl col-md-2 col-12 pad-free">パスワード設定</label> -->
+
+                                    <div class="password-setting">
+                                        <label class="old-pass">現在のパスワード:<span class="error-star">*</span></label>
+                                        <input type="password" name="old_password" placeholder="現在のパスワードを入力してください。" v-model="old_password" class="form-control old-password">
+                                        <span v-if="errors.old_password" class="error-star">{{errors.old_password}}</span>
+                                        <br>
+                                        <label class="old-pass">新しいパスワード:<span class="error-star">*</span></label>
+                                        <input type="password" name="new_password" placeholder="新しいパスワードを入力してください。" v-model="new_password" class="form-control new-password">
+                                        <span v-if="errors.new_password" class="error-star">{{errors.new_password}}</span>
+                                        <div class="error-star" id="newpasswordlength" style="display: none;">パスワードは少なくとも6桁でなければなりません。</div>
+                                        <br>
+                                        <label class="old-pass">新しいパスワードをもう一度入力してください<span class="error-star">*</span></label>
+                                        <input type="password" name="comfirm_password" class="form-control confirm-password" v-model="confirm_password" placeholder="新しいパスワードをもう一度入力してください" @keyup="password_validate()">
+                                        <span v-if="errors.old_password" class="error-star">{{errors.confirm_password}}</span>
+                                        <div class="col-md-12 pad-free">
+                                            <span v-if="errors.edit_password" class="error-star">{{errors.edit_password}}</span>
+                                        </div>
+                                        <div><span class="btn main-bg-color white all-btn m-t-30" @click="passwordChange()">変更</span></div>
+                                    </div>                                    
                                 </div>
-                            </div>
+                            </div>                              
                         </div>
                         <div class="form-group " v-if="!show">
                             <span class="btn main-bg-color white all-btn" @click="checkValidate()">{{subtitle}}</span>
@@ -392,5 +391,10 @@
     
     .password-setting {
         display: none;
+    }
+    .password-setting{
+        padding: 10px;
+        border: 1px dashed #2980b9;
+        margin-top: 10px;
     }
 </style>
