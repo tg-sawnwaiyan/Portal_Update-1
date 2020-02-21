@@ -4,9 +4,7 @@
         <div class="admin_card admin_registercard admin-create-wrapper">
             <div class="row">
                 <div class="col-md-12">
-                    <h4 class="page-header header">{{ header }} <router-link v-if="show" class="btn btn-danger all-btn float-right m-b-10" to="t_is_admin_register">戻る</router-link></h4>
-                    
-
+                    <h4 class="page-header header" style="background:transparent;">{{ header }} <router-link v-if="show" class="btn btn-danger all-btn float-right m-b-10" to="t_is_admin_register">戻る</router-link></h4>
                 </div>
                 <!-- <div class="col-md-2"> -->
                 <!-- </div> -->
