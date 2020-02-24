@@ -1422,7 +1422,7 @@ export default {
             fav_email : [],
             currentPage: 0,
             size: 5,
-            pageRange: 4,
+            pageRange: 10,
             items: [],
             pagination: false,
             data: {
