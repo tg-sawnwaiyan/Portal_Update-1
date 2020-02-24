@@ -168,6 +168,7 @@
                     <th class="pc-414-table sp-768-block">職種</th>
                     <td class="sp-768-block sp-414-table">
                         <div class="form-check form-check-inline row align-items-start innerwrapper" v-if="w_width >= 420" >
+                          
                             <div v-for="(v,i) in array_len" :key="i">
                                 <div class="hospital-subject" v-for="(occupation,index) in occupations.slice((i*3),((i*3)+3))" :key="index" v-bind:class="{ lastblock: i==array_len-1 }">       <!--v-bind:class="{ lastblock: i==array_len-1 }"-->
                                         <strong class="table-innertitle row col-12 m-b-10">{{occupation.name}}</strong>
@@ -518,7 +519,10 @@ export default {
           },
         }).then((response)=>{
             this.job_data = response.data.job;
-            console.log("this.job_data",this.job_data);
+            this.occupations = response.data.occupations;
+            this.array_len = ((this.occupations.length)%3)==0?((this.occupations.length)/3):Math.floor(((this.occupations.length)/3)+1);
+            console.log("this.occupations",this.occupations);
+         
           if(this.job_data.length > 0)
           {
                $('#job_search').css("display","block");
@@ -575,8 +579,10 @@ export default {
                 $('.jobselect').removeClass('jobselect');
                 $('#job_search').css("display","block");
                 this.job_data = response.data.job;
-                this.cities = response.data.city
+                this.cities = response.data.city;
+                this.occupations = response.data.occupations;
                 this.getTownships = [];
+                this.array_len = ((this.occupations.length)%3)==0?((this.occupations.length)/3):Math.floor(((this.occupations.length)/3)+1);
 
                 if(this.job_data.length > this.size) {
                     this.show_paginate = true;
@@ -589,8 +595,6 @@ export default {
 
                     this.norecord_msg = true;
                 }
-
-
             });
 
           this.ShowHide4();

@@ -733,12 +733,22 @@ class SearchMapController extends Controller
         $job_data = DB::select($query);
 
         $city = DB::table('cities')->get();
+        $occupation = "SELECT *,'' as child from occupation where parent = " . 0 ." order by id";
+        $occupations = DB::select($occupation);
+
+        foreach($occupations as $occu)
+        {
+            $id = $occu->id;
+            $db_occ = "SELECT occupation.* from occupation where parent =". $id ." order by id";
+            $occuchild = DB::select($db_occ);
+            $occu->child = $occuchild;
+        }
 
 
         // $station = "SELECT * from"
 
      
-        return response()->json(array('job'=>$job_data,'city'=>$city));
+        return response()->json(array('job'=>$job_data,'city'=>$city,'occupations'=>$occupations));
     }
 
     // public function getJobStation($id)
