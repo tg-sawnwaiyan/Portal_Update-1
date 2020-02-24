@@ -453,7 +453,7 @@
                 .then(response => {
                     this.city_list = response.data;
                 });
-            if(this.comments.name != '' && this.comments.fav_mail != '' && this.comments.postal != '' && this.comments.selectedValue != 0 && this.comments.township != 0 && this.comments.city != '' && (this.comments.phone != '' || this.comments.mail != '')){
+            if(this.comments.name != '' && this.comments.fav_mail != '' && this.comments.selectedValue != 0 && this.comments.township != 0 && this.comments.city != '' && (this.comments.phone != '' || this.comments.mail != '')){
                     this.btn_disable=false;
                 }else{
                     this.btn_disable=true;
