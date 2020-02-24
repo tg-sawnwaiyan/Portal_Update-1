@@ -3,9 +3,9 @@
         <div>
             <div class="col-md-12" style="border-bottom: 1px dashed #ff9563;padding-bottom: 10px; margin-bottom: 20px;">
                 <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#ff9563;"></i>&nbsp;地図検索 
-                <span v-if="nus_data.length && !ci">「 介護施設を <span class="result-span">{{nus_data[0].city_name}}</span> から探す <span class="result-span">{{nus_data.length}}</span> 件」</span>
-                <span v-if="nus_data.length && ci && searchword != 'all' && searchword != ''">「 介護施設を <span class="result-span">{{searchword}}</span> から探す <span class="result-span">{{nus_data.length}}</span> 件」</span>
-                <span v-if="nus_data.length && searchword == 'all'">「 介護施設を <span class="result-span">全国</span> から探す <span class="result-span">{{nus_data.length}}</span> 件」</span>
+                <span v-if="nus_data.length && !ci">「<span class="result-span">{{nus_data[0].city_name}}</span>の介護施設 <span class="result-span">{{nus_data.length}}</span> 件」</span>
+                <span v-if="nus_data.length && ci && searchword != 'all' && searchword != ''">「<span class="result-span">{{searchword}}</span>の介護施設 <span class="result-span">{{nus_data.length}}</span> 件」</span>
+                <span v-if="nus_data.length && searchword == 'all'">「<span class="result-span">全国</span>の介護施設 <span class="result-span">{{nus_data.length}}</span> 件」</span>
                 <!-- <h1 v-if="nus_data.length && searchword != 'all'"> 老人ホームを{{searchword}}から探す  {{nus_data.length}}</h1> -->
                 </h5>
             </div>
