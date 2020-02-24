@@ -3,9 +3,9 @@
         <div>
             <div class="col-md-12" style="border-bottom: 1px dashed #ff9563;padding-bottom: 10px; margin-bottom: 20px;">
                 <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#ff9563;"></i>&nbsp;地図検索 
-                <span v-if="nus_data.length && !ci">「 介護施設を <span class="result-span">{{nus_data[0].city_name}}</span> から探す <span class="result-span">{{nus_data.length}}</span> 件」</span>
-                <span v-if="nus_data.length && ci && searchword != 'all' && searchword != ''">「 介護施設を <span class="result-span">{{searchword}}</span> から探す <span class="result-span">{{nus_data.length}}</span> 件」</span>
-                <span v-if="nus_data.length && searchword == 'all'">「 介護施設を <span class="result-span">全国</span> から探す <span class="result-span">{{nus_data.length}}</span> 件」</span>
+                <span v-if="nus_data.length && !ci">「<span class="result-span">{{nus_data[0].city_name}}</span>の介護施設 <span class="result-span">{{nus_data.length}}</span> 件」</span>
+                <span v-if="nus_data.length && ci && searchword != 'all' && searchword != ''">「<span class="result-span">{{searchword}}</span>の介護施設 <span class="result-span">{{nus_data.length}}</span> 件」</span>
+                <span v-if="nus_data.length && searchword == 'all'">「<span class="result-span">全国</span>の介護施設 <span class="result-span">{{nus_data.length}}</span> 件」</span>
                 <!-- <h1 v-if="nus_data.length && searchword != 'all'"> 老人ホームを{{searchword}}から探す  {{nus_data.length}}</h1> -->
                 </h5>
             </div>
@@ -285,7 +285,7 @@
                                                     <button @click="toggleContent" class="btn seemore-btn">
                                                         <i class="fa" aria-hidden="true"></i>
                                                         <!-- <em>{{city.city_name}}</em> -->
-                                                        <span id="close"><i class="fas fa-arrow-circle-up"></i> 市区町村エリアを閉じる</span>
+                                                        <span id="close"><i class="fas fa-arrow-circle-up"></i> 市区町村エリアを閉じる </span>
                                                     </button>
                                                     </div>
                                                     </div>
@@ -299,6 +299,7 @@
                                                             <li>
                                                             <a data-value="option">
                                                             <div class="row">
+                                                       
                                                                 <div class="col-lg-2 col-md-4 col-sm-4" v-for="township in getTownships" :key="township.id">
                                                                 <label class="form-check-label control control--checkbox">
                                                                     <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @click="check" >
@@ -311,6 +312,7 @@
                                                             </li>
                                                         </ul>
                                                         <a v-if="w_width >= 420">
+                                                      
                                                             <div class="row">
                                                                 <div class="col-lg-2 col-md-4 col-sm-4" v-for="township in getTownships" :key="township.id">
                                                                 <label class="form-check-label control control--checkbox">
@@ -923,6 +925,7 @@
                     if(response.data.nursing.length != 0){
                         this.norecord_msg = false;
                         this.changeMap(response,1);
+                        this.getTownships = [];
                     }else{
                         $("#mymap").css({'display' : 'none'});
                         this.nus_data = [];
@@ -1048,8 +1051,8 @@
                 $('#showSearchMap').removeClass('select');
                 $('#filter').removeClass('select');
                 this.cities = response.data.city
-                this.getCity = response.data.getCity
-                this.getTownships = response.data.getTownships
+                this.getCity = response.data.getCity       
+                this.getTownships = response.data.getTownships;
                 this.specialfeature = response.data.specialfeature;
                 this.special_features = response.data.special_features
                 this.fac_types = response.data.fac_types
@@ -1718,7 +1721,7 @@
                     //console.log("aaa",this.subjects);
                     // this.id = id;
                 })
-                    this.search();
+                    // this.search();
             },
         }
   };

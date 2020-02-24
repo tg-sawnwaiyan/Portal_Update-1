@@ -5,11 +5,11 @@
  
    <div class="col-md-12" style="border-bottom: 1px dashed #828282;padding-bottom: 10px; margin-bottom: 20px;">
      <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#828282;"></i>&nbsp;地図検索  
-        <span v-if="job_data.length && searchword == '' && job_data[0].city_name != ''"> 「求人を <span class="result-span">{{job_data[0].city_name}}</span> から探す<span class="result-span">{{job_data.length}} </span> 件」</span>
-        <span v-if="job_data.length && searchword != '' && searchword == 'all' && id == '-1'"> 「求人を <span class="result-span">全国</span> から探す <span class="result-span">{{job_data.length}}</span> 件」 </span>
-        <span v-if="job_data.length && searchword != '' && searchword != 'all' && id == '-1'"> 「求人を <span class="result-span">{{searchword}}</span> から探す <span class="result-span">{{job_data.length}} </span> 件」 </span>
-        <span v-if="job_data.length && searchword != '' && searchword == 'all' && id != '-1'"> 「求人を <span class="result-span">全国 , {{job_data[0].city_name}}</span> から探す <span class="result-span">{{job_data.length}}</span> 件」</span>
-        <span v-if="job_data.length && searchword != '' && searchword != 'all' && id != '-1'"> 「求人を <span class="result-span">{{searchword}} , {{job_data[0].city_name}}</span> から探す <span class="result-span">{{job_data.length}}</span> 件」 </span>
+        <span v-if="job_data.length && searchword == '' && job_data[0].city_name != ''"> 「<span class="result-span">{{job_data[0].city_name}}</span>の求人 <span class="result-span">{{job_data.length}} </span>件」</span>
+        <span v-if="job_data.length && searchword != '' && searchword == 'all' && id == '-1'"> 「<span class="result-span">全国</span>の求人  <span class="result-span">{{job_data.length}} </span>件」</span>
+        <span v-if="job_data.length && searchword != '' && searchword != 'all' && id == '-1'"> 「<span class="result-span">{{searchword}}</span>の求人  <span class="result-span">{{job_data.length}} </span>件」</span>
+        <span v-if="job_data.length && searchword != '' && searchword == 'all' && id != '-1'"> 「<span class="result-span">全国 , {{job_data[0].city_name}}</span>の求人  <span class="result-span">{{job_data.length}} </span>件」</span>
+        <span v-if="job_data.length && searchword != '' && searchword != 'all' && id != '-1'"> 「<span class="result-span">{{searchword}} , {{job_data[0].city_name}}</span>の求人  <span class="result-span">{{job_data.length}} </span>件」</span>
     </h5>
   </div>
   <div class="search-map card-body" @mouseover="getStateHover">
@@ -837,11 +837,9 @@ $(document).click(function(e) {
 
 
 <style scoped>
-
-   .result-span {
-        color: #828282;
-    }
-
+.result-span {
+    color: #23a2f5;
+}
 .jobselect {
   display: none;
 }
