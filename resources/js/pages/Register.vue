@@ -37,7 +37,7 @@
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" name="email" v-model="email"  placeholder="メールアドレスを入力してください。"  @keypress="focusMail"> 
+                                    <input type="text" class="form-control" name="email" v-model="email"  placeholder="メールアドレスを入力してください。" @focus="focusMail"  @keyup="focusMail"> 
                                     <span v-if="errors.email" class="error">{{errors.email}}</span>
                                 </div>
                             </div>
@@ -158,7 +158,7 @@
         ph_length:'',
         ph_num:'',
         Numbers:[],
-        mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
+        mail_reg:  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
       }
 
     },
@@ -228,8 +228,7 @@
           },
         }).then((response)=>{
           this.types = response.data.types
-          console.log("response.data types")
-          console.log(response.data.types)
+    
         })
       },
     // isNumberOnly(event) {
@@ -273,12 +272,13 @@
     },
 
        focusMail: function(event) {
-      
+     
+    
                 if((this.email != '' && this.mail_reg.test(this.email))){
-                 
+                
                     this.errors.email='';
                 }else{
-                   
+                  
                     this.errors.email ='※メールアドレスが正しくありません。もう一度入力してください。';
                   
                 }
