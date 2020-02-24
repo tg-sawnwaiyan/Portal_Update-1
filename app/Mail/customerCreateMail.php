@@ -30,6 +30,6 @@ class customerCreateMail extends Mailable
     public function build()
     {
         return $this->view('mail.customerCreateMail')
-                    ->subject("T-IS ティーズより資料請求がございました");
+                    ->subject("TIS ティーズより資料請求がございました");
     }
 }

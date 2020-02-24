@@ -184,15 +184,14 @@
                                 </label>
                                 <div class="row m-0">
                                     <div class="col-sm-6 col-12 pl-0 tel-input">
-                                        <input type="text" class="form-control box" id="postal" placeholder="165879" v-model="joboffer.postal" maxlength="7" />
+                                        <input type="text" class="form-control box" id="postal" placeholder="165879" v-model="joboffer.postal" v-on:keydown="postalNumber" maxlength="7" />
                                     </div>
                                     <div class="col-sm-6 col-12 tel-button">
                                       <span class="float-left submit1 btn main-bg-color continue all-btn submit" @click="getPostal">郵便番号より住所を検索</span>
                                         <span class="float-left eg-txt">例）1006740 (<a href="https://www.post.japanpost.jp/zipcode/" target="_blank">郵便番号検索</a>)</span>
                                     </div>
                                 </div>
-                                
-                                
+                                <span id="jsErrorMessage" class="m-t-8"></span>                                
                                 <!-- <span v-if="errors.includes('postal')" class="error">題名は必須です。(postal)</span> -->
                                  <!-- <span v-if="errors.postal" class="error">{{errors.postal}}</span> -->
                             </div>
@@ -778,6 +777,7 @@ import Autocomplete from 'vuejs-auto-complete'
                                 this.getTownship(1);
                                 this.joboffer.str_address = response.data.township_id[0]['id'];                               
                                 this.joboffer.location = post_data[0]["street"];
+                                $('#jsErrorMessage').html('<div></div>');
                             } else {
                                 this.joboffer.str_address = 0;
                                 this.joboffer.pref = 0;
@@ -1080,7 +1080,14 @@ import Autocomplete from 'vuejs-auto-complete'
                   getProfile(event){
                       console.log('event', event.target.value)
                       this.joboffer.profile_id = event.target.value;
-                  }
+                  },
+                  postalNumber: function(event) {
+                if(!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105) 
+                    && event.keyCode != 8 && event.keyCode != 46 && !(event.keyCode >= 37 && event.keyCode <= 40)) 
+                {
+                    event.preventDefault();
+                }
+            },
                 }
             };
 

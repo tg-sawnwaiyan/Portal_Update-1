@@ -29,8 +29,8 @@ return [
     |
     */
 
-    // 'host' => env('MAIL_HOST', 'mp-co.sakura.ne.jp'),
-    'host' => env('MAIL_HOST', 'smtp.mailtrap.io'),
+    'host' => env('MAIL_HOST', 'mp-co.sakura.ne.jp'),
+    // 'host' => env('MAIL_HOST', 'smtp.mailtrap.io'),
 
     /*
     |--------------------------------------------------------------------------
@@ -57,7 +57,7 @@ return [
     */
 
     'from' => [              
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'info@t-i-s.jp'),
         'name' => env('MAIL_FROM_NAME', 'TIS ティーズ'),
     ],
 

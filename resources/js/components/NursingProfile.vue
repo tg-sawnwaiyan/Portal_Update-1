@@ -558,7 +558,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <label class="m-t-10">タイトル</label>
-                                    <input type="text" name="title" placeholder="タイトル" class="form-control m-b-15 title white-bg-color" v-model="img.title">
+                                    <input type="text" name="title" placeholder="タイトル" class="form-control m-b-15 white-bg-color" v-model="img.title">
                                     <label>コンテンツ</label>
                                         <textarea name="description" placeholder="コンテンツ" class="form-control m-b-15 description white-bg-color" v-model="img.description"></textarea>
                                 </div>
@@ -585,7 +585,7 @@
                                                 </div>
                                                 <div class="col-md-12">
                                                     <label>タイトル</label>
-                                                    <input type="text" name="title" placeholder="タイトル" class="form-control m-b-15 title white-bg-color" v-model="video.title">
+                                                    <input type="text" name="title" placeholder="タイトル" class="form-control m-b-15 white-bg-color" v-model="video.title">
                                                     <label>コンテンツ</label>
                                                     <textarea name="description" placeholder="コンテンツ" class="form-control m-b-15 description white-bg-color" v-model="video.description"></textarea>
                                                 </div>
@@ -651,7 +651,7 @@
                     </tr>
                 </table>
                 <!-- end table 7 for 公式サイト -->
-                <div style="position:fixed;width:100%;background:rgba(0,0,0,.5);left:0;right:0;bottom:0;padding:0 0 10px 0;">
+                <div class="bottom-fixed-btn">
                     <div class="row col-2 col-offset-5 mx-auto">
                         <span class="btn secondary-bg-color col-8 offset-2 all-btn m-t-15 pad-10" @click="createProfile()" id="create-profile">保存</span>
                     </div>

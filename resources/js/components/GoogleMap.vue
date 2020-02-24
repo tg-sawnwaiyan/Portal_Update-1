@@ -6,8 +6,7 @@
                     <div class="form-group row pl-3">
                     <div class="col-md-12 "><label> 郵便番号 </label></div>
                     <div class="col-md-12 p-0">
-                    <input type="text" v-model="comment.postal" name="postal" class="form-control white-bg-color float-left postal" id="postal" placeholder="郵便番号を入力してください。" maxlength="7"/>
-                    
+                    <input type="text" v-model="comment.postal" v-on:keydown="postalNumber" name="postal" class="form-control white-bg-color float-left postal" id="postal" placeholder="郵便番号を入力してください。" maxlength="7"/>                    
                     <span class="float-left submit1 btn main-bg-color continue all-btn submit m-l-20  m-l-480" @click="getPostal">郵便番号より住所を検索</span>
                     <span class="float-left m-l-20 m-l-768">例）1006740 (<a href="https://www.post.japanpost.jp/zipcode/" target="_blank">郵便番号検索</a>)</span>
                     </div>
@@ -311,6 +310,13 @@ export default {
                     var move_lon = response.data.coordinate[0].longitude;
                     this.addressSelect(move_lat,move_lon);
                 });
+            },
+            postalNumber: function(event) {
+                if(!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105) 
+                    && event.keyCode != 8 && event.keyCode != 46 && !(event.keyCode >= 37 && event.keyCode <= 40)) 
+                {
+                    event.preventDefault();
+                }
             },
             // townshipChange(event) {
             //     this.address =this.comment.city+this.township_list[event.target.options.selectedIndex].township_name;

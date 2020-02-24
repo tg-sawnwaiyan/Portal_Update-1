@@ -347,6 +347,15 @@ span:hover::before {
     justify-content: center;
     height: 100vh;
 }
+.bottom-fixed-btn{
+    position:fixed;
+    width:100%;
+    background:rgba(0,0,0,.5);
+    left:0;
+    right:0;
+    bottom:0;
+    padding: 5px 0px;
+}
 /********************************** End Common **********************************/
 
 
@@ -2292,8 +2301,31 @@ textarea {
 .news-wrapper a:hover {
     text-decoration: none;
 }
-
-
+.bottom-mail-btn{
+    display: block;
+    cursor: pointer;
+    background-color: #0cc72c !important;
+    color: #fff;    
+    padding: 6px;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;   
+    font-size: 14.4px;
+    border: 1px solid #53c000;
+    z-index: 4;
+}
+.bottom-fav-btn{
+    display: block;
+    cursor: pointer;
+    background-color: #fff !important;
+    border: 1px solid #544e4e;
+    padding: 6px;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14.4px;  
+    z-index: 4;
+}
 /* .news-wrapper>ul>li.list-group-item {
 background-color: red !important;
 } */
@@ -5882,14 +5914,16 @@ color: #fff !important;
 .footer {
     font-size: 12px;
     /* padding-top: 15px;
-padding-bottom: 15px; */
+    padding-bottom: 15px; */
     background: transparent;
     text-align: center;
     line-height: 20px;
     padding: 10px;
-    width: 100%;
+    width: 100%;    
 }
-
+#footerPublish{
+    padding-bottom:100px;
+}
 
 /* listadmin .pagination */
 
@@ -10407,6 +10441,7 @@ padding: 0;
         width: 100%;
         border: 1px solid;
     }
+    
     /*End  profile publish */
     /* job details */
     .job_id {
@@ -11038,8 +11073,7 @@ width: 18rem;
         padding-right: 0;
     }
     /*End new details */
-    #myBtn {
-        bottom: 0px;
+    #myBtn {       
         right: 0px;
     }
 }

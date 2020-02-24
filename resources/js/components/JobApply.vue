@@ -110,11 +110,11 @@
                 <div class="form-group row pl-3">
                     <div class="col-md-12 "><label> 郵便番号 </label> </div>
                     <div class="col-md-12 p-0">
-                        <input type="text" class="form-control box float-left" id="postal" placeholder="郵便番号を入力してください。" v-model="jobApply.postal" maxlength="7" />
-                        <span id="jsErrorMessage" class="float-left eg-txt"></span>
+                        <input type="text" class="form-control box float-left" id="postal" placeholder="郵便番号を入力してください。" v-on:keydown="postalNumber" v-model="jobApply.postal" maxlength="7" />
                         <span class="float-left submit1 btn main-bg-color continue all-btn submit m-l-20" @click="getPostal">郵便番号より住所を検索</span>
                         <span class="float-left m-l-20">例）1006740 (<a href="https://www.post.japanpost.jp/zipcode/" target="_blank">郵便番号検索</a>)</span>
                     </div>
+                    <span id="jsErrorMessage" class="float-left eg-txt"></span>
                 </div>
 
                 <div class="form-group row pl-3">                                  
@@ -751,6 +751,13 @@ export default {
         }  
         this.aggreBtn();    
     },
+    postalNumber: function(event) {
+                if(!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105) 
+                    && event.keyCode != 8 && event.keyCode != 46 && !(event.keyCode >= 37 && event.keyCode <= 40)) 
+                {
+                    event.preventDefault();
+                }
+            },
 
     // focusFuri: function(event) {
     //     if(this.jobApply.last_name != ''){

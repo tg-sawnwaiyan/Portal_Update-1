@@ -87,7 +87,7 @@ export default {
         pro_id:0,
     };
   },
-  created() {
+  created() {    
     this.pro_id = Number(this.$route.params.id);
     this.type = this.$route.params.type;
     

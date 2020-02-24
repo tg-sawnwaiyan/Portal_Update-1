@@ -11,7 +11,7 @@
 
         <h5 style="color:#3e4348;font-size: 12px;margin-bottom: 30px;font-weight: bold;text-align: left;">
             {{$getComment->related_fav_name}}({{$getComment->related_fav_id}})&nbsp;&nbsp;様
-            <p style="margin-top:10px;">T-IS ティーズより資料請求がありました。</p>                    
+            <p style="margin-top:10px;">TIS ティーズより資料請求がありました。</p>                    
         </h5>
         <p style="text-align: left;margin: 0px;">****************************************</p>
         <p style="text-align:left;margin:2px;color:#3e4348;font-size: 16px;"><span style="color:#2980B9">◎</span>【資料請求された方について】</p>
@@ -51,7 +51,7 @@
             </p>
             <p style="text-align: left;margin: 0px;">****************************************</p>   
             <p style="font-size:12px;color:#807c7c;text-align:left;"> 
-                <span style="color:#000">[T-IS ティーズ] </span>
+                <span style="color:#000">[TIS ティーズ] </span>
                 <br/>
                 〒163-0713
                 <br/>                        
