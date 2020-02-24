@@ -3,7 +3,7 @@
     <div class="login_content">
       <div class="logo_wrap">
           <div class="brand_logo_container logo_bk">
-            <img src="/images/login.png" class="brand_logo" alt="介護医療福祉の総合サイト[T-IS ティーズ] ">
+            <img src="/images/login.png" class="brand_logo" alt="介護医療福祉の総合サイト[TIS ティーズ] ">
           </div>
         </div>
       <div class="user_card" id="altrole">

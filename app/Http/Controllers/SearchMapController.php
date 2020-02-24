@@ -618,7 +618,7 @@ class SearchMapController extends Controller
          $occupationID = $_GET['occupationID'];
          $empstatus = $_GET['empstatus'];
 
-        $query = "SELECT j.id as jobid,j.recordstatus as job_record, j.*,c.*,n.*,h.*,
+        $query = "SELECT j.id as jobid,j.recordstatus as job_record, j.*,c.*,n.*,h.*,ci.city_name,
                 (CASE c.type_id WHEN '2' THEN CONCAT((200000+j.customer_id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT((500000+j.customer_id),'-',LPAD(j.id, 4, '0')) END) as jobnum 
                 from  jobs as j              
                 join customers as c on c.id = j.customer_id
@@ -633,7 +633,7 @@ class SearchMapController extends Controller
 
             if($searchword == 'all')
             {
-                $query = "SELECT j.id as jobid,j.recordstatus as job_record, j.*,c.*,n.*,h.*,
+                $query = "SELECT j.id as jobid,j.recordstatus as job_record, j.*,c.*,n.*,h.*,'' as city_name,
                         (CASE c.type_id WHEN '2' THEN CONCAT((200000+j.customer_id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT((500000+j.customer_id),'-',LPAD(j.id, 4, '0')) END) as jobnum 
                         from  jobs as j
                         join customers as c on c.id = j.customer_id
@@ -733,12 +733,22 @@ class SearchMapController extends Controller
         $job_data = DB::select($query);
 
         $city = DB::table('cities')->get();
+        $occupation = "SELECT *,'' as child from occupation where parent = " . 0 ." order by id";
+        $occupations = DB::select($occupation);
+
+        foreach($occupations as $occu)
+        {
+            $id = $occu->id;
+            $db_occ = "SELECT occupation.* from occupation where parent =". $id ." order by id";
+            $occuchild = DB::select($db_occ);
+            $occu->child = $occuchild;
+        }
 
 
         // $station = "SELECT * from"
 
      
-        return response()->json(array('job'=>$job_data,'city'=>$city));
+        return response()->json(array('job'=>$job_data,'city'=>$city,'occupations'=>$occupations));
     }
 
     // public function getJobStation($id)

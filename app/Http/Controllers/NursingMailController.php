@@ -92,7 +92,7 @@ class NursingMailController extends Controller
 
         // $admin_email = 'thuzar.ts92@gmail.com';
         // $admin_email = 'susandiaung565@gmail.com';
-        $admin_email = 'zinko@management-partners.co.jp';
+        $admin_email = 'thuzar@management-partners.co.jp';
         // $admin_email = 'management.partner87@gmail.com ';
         // $admin_email = 'hero2012.zk@gmail.com ';
        

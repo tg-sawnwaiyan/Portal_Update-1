@@ -1,8 +1,16 @@
 <template>
 <layout>
 <div>
+  
+ 
    <div class="col-md-12" style="border-bottom: 1px dashed #828282;padding-bottom: 10px; margin-bottom: 20px;">
-     <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#828282;"></i>&nbsp;地図検索</h5>
+     <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#828282;"></i>&nbsp;地図検索  
+        <span v-if="job_data.length && searchword == '' && job_data[0].city_name != ''"> 「<span class="result-span">{{job_data[0].city_name}}</span>の求人 <span class="result-span">{{job_data.length}} </span>件」</span>
+        <span v-if="job_data.length && searchword != '' && searchword == 'all' && id == '-1'"> 「<span class="result-span">全国</span>の求人  <span class="result-span">{{job_data.length}} </span>件」</span>
+        <span v-if="job_data.length && searchword != '' && searchword != 'all' && id == '-1'"> 「<span class="result-span">{{searchword}}</span>の求人  <span class="result-span">{{job_data.length}} </span>件」</span>
+        <span v-if="job_data.length && searchword != '' && searchword == 'all' && id != '-1'"> 「<span class="result-span">全国 , {{job_data[0].city_name}}</span>の求人  <span class="result-span">{{job_data.length}} </span>件」</span>
+        <span v-if="job_data.length && searchword != '' && searchword != 'all' && id != '-1'"> 「<span class="result-span">{{searchword}} , {{job_data[0].city_name}}</span>の求人  <span class="result-span">{{job_data.length}} </span>件」</span>
+    </h5>
   </div>
   <div class="search-map card-body" @mouseover="getStateHover">
     <div class="row" id="hos">
@@ -160,6 +168,7 @@
                     <th class="pc-414-table sp-768-block">職種</th>
                     <td class="sp-768-block sp-414-table">
                         <div class="form-check form-check-inline row align-items-start innerwrapper" v-if="w_width >= 420" >
+                          
                             <div v-for="(v,i) in array_len" :key="i">
                                 <div class="hospital-subject" v-for="(occupation,index) in occupations.slice((i*3),((i*3)+3))" :key="index" v-bind:class="{ lastblock: i==array_len-1 }">       <!--v-bind:class="{ lastblock: i==array_len-1 }"-->
                                         <strong class="table-innertitle row col-12 m-b-10">{{occupation.name}}</strong>
@@ -434,7 +443,8 @@ export default {
         },
         w_width: $(window).width(),
        testclass:'',
-       array_len: 0
+       array_len: 0,
+       searchword:'',
       }
     },
     created() {
@@ -509,7 +519,10 @@ export default {
           },
         }).then((response)=>{
             this.job_data = response.data.job;
-            console.log("this.job_data",this.job_data);
+            this.occupations = response.data.occupations;
+            this.array_len = ((this.occupations.length)%3)==0?((this.occupations.length)/3):Math.floor(((this.occupations.length)/3)+1);
+            console.log("this.occupations",this.occupations);
+         
           if(this.job_data.length > 0)
           {
                $('#job_search').css("display","block");
@@ -541,12 +554,14 @@ export default {
             this.empstatus = [];
 
             if ($('#search-free-word').val() != '')
-            {
-
+            { 
+               
                 var search_word = $('#search-free-word').val();
+                this.searchword = search_word;
             }
             else{
                 var search_word = "all";
+                this.searchword = 'all';
             }
 
             this.axios.get('api/getjobsearch/'+ search_word,{
@@ -564,8 +579,10 @@ export default {
                 $('.jobselect').removeClass('jobselect');
                 $('#job_search').css("display","block");
                 this.job_data = response.data.job;
-                this.cities = response.data.city
+                this.cities = response.data.city;
+                this.occupations = response.data.occupations;
                 this.getTownships = [];
+                this.array_len = ((this.occupations.length)%3)==0?((this.occupations.length)/3):Math.floor(((this.occupations.length)/3)+1);
 
                 if(this.job_data.length > this.size) {
                     this.show_paginate = true;
@@ -578,8 +595,6 @@ export default {
 
                     this.norecord_msg = true;
                 }
-
-
             });
 
           this.ShowHide4();
@@ -676,6 +691,7 @@ export default {
             else{
                 _this.locast = localStorage.getItem("nursing_fav");
             }
+            _this.searchword = '';
             _this.$loading(true);
           _this.axios.get('api/getmap',{
             params:{
@@ -821,7 +837,9 @@ $(document).click(function(e) {
 
 
 <style scoped>
-
+.result-span {
+    color: #23a2f5;
+}
 .jobselect {
   display: none;
 }

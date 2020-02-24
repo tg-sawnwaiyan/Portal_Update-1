@@ -14,7 +14,7 @@
                 </span>                
                 
                 <h5 style="color:#3e4348;font-size: 12px;margin-bottom: 30px;font-weight: bold;text-align: left;">
-                T-IS ティーズ管理者&nbsp;&nbsp;様
+                TIS ティーズ管理者&nbsp;&nbsp;様
                     <p style="margin-top:10px;">口コミに投稿がありました。</p>                    
                 </h5>
                     <p style="text-align: left;margin: 0px;">
