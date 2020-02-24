@@ -79,7 +79,7 @@
                             <th class="pc-414-table sp-768-block">地域</th>
                             <td class="sp-768-block sp-414-table">
                             <div class="row mt-2 mb-2">
-                            <div class="col-lg-9 col-md-8 col-sm-12">
+                            <div class="col-lg-9 col-md-8 col-sm-12 m-b-8">
                             <select id="selectCity" class="form-control custom-select" v-model="id" @change="ChangeTownship">
                                 <option value="" disabled>▼市区町村</option>
                                 <option v-for="city in cities" :value="city.id" :key="city.id">{{city.city_name}}</option>
@@ -346,7 +346,7 @@
                                         </div>
                                     </div>
                                     <div class="row m-t-10">
-                                      <div class="col-md-6 col-sm-12 m-b-414">
+                                      <div class="col-md-6 col-sm-12 m-b-414 m-b-8">
                                         <span class="sp_hos_phone sp-768"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span><span class="phone-no"><a :href="`tel:${hos.phone}`">{{hos.phone}}</a></span></span>
                                       </div>
                                       <div class="col-md-6 col-sm-12">

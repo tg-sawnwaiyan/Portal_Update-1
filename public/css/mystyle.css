@@ -9042,7 +9042,7 @@ font-size: 18px; */
     border-radius: 10px;
     max-width: 80%;
     margin: 0 auto;
-    background: url(https://www.sagasix.jp/images/support/consultation/bg_check.gif) repeat center top;
+    background: url(/images/bg_check.gif) repeat center top;
     border: 1px solid #dad3d2;
     border-radius: 7px;
     padding: 30px;
@@ -11257,7 +11257,7 @@ transition: background-color .3s;
     .page-item:last-child .spanclass,
     .page-item:nth-child(2) .spanclass,
     .page-item:nth-last-child(2) .spanclass {
-        width: 30px;
+        width: 51px;
         height: 30px;
         transition: background-color .3s;
     }
