@@ -10,7 +10,7 @@
                 </span>
 	            
                 <h5 style="color:#3e4348;font-size: 12px;margin-bottom: 30px;font-weight: bold;text-align: left;">
-                    <p style="margin-top:10px;">T-IS ティーズより資料請求がございました。</p>                    
+                    <p style="margin-top:10px;">TIS ティーズより資料請求がございました。</p>                    
 	            </h5>
                 <p style="text-align: left;margin: 0px;">****************************************
                 </p>
@@ -64,7 +64,7 @@
                 <p style="text-align: left;margin: 0px;">
                  ****************************************</p>   
                 <p style="font-size:12px;color:#807c7c;text-align:left;"> 
-                    <span style="color:#000">[T-IS ティーズ] </span>
+                    <span style="color:#000">[TIS ティーズ] </span>
                     <br/>
                     〒163-0713
                     <br/>                        

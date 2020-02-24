@@ -10,7 +10,7 @@
                 </span>
 
 	            <h5 style="color:#3e4348;font-size: 12px;margin-bottom: 30px;font-weight: bold;text-align: left;">
-                    <p style="margin-top:10px;">【T-IS ティーズ】より求人への応募がありました。</p>                    
+                    <p style="margin-top:10px;">【TIS ティーズ】より求人への応募がありました。</p>                    
               </h5>
               <p style="text-align:left;margin:2px;color:#3e4348;font-size: 16px;font-weight:bold;"><span style="color:#2980B9">◎&nbsp;</span>{{$getComment->job_title}}</p>
                     <p style="text-align:left;margin:2px;color:#3e4348;font-size: 12px;padding-left:10px;"> 【求人番号: {{$getComment->jobnum}}】</p>
@@ -38,7 +38,7 @@
                     <br>
                     <p style="text-align: left;margin: 0px;">****************************************</p>
                     <p style="font-size:12px;color:#807c7c;text-align:left;"> 
-                       <span style="color:#000">[T-IS ティーズ] </span>
+                       <span style="color:#000">[TIS ティーズ] </span>
                         <br/>
                         〒163-0713
                         <br/>                        

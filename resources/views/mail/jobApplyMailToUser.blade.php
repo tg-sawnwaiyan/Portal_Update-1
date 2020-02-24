@@ -50,7 +50,7 @@
                     <p style="text-align: left;margin: 0px;">
                     ****************************************</p>   
                     <p style="font-size:12px;color:#807c7c;text-align:left;"> 
-                       <span style="color:#000">[T-IS ティーズ] </span>
+                       <span style="color:#000">[TIS ティーズ] </span>
                         <br/>
                         〒163-0713
                         <br/>                        
