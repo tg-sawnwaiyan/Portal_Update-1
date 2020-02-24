@@ -3,11 +3,11 @@
 <div>
   <div class="col-md-12" style="border-bottom: 1px dashed #2980b9;padding-bottom: 10px; margin-bottom: 20px;">
     <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#2980b9;"></i>&nbsp;地図検索
-    <span v-if="hos_data.length && searchword == ''"> 「病院施設を <span class="result-span">{{hos_data[0].city_name}}</span> から探す<span class="result-span">{{hos_data.length}} 件」</span></span>
-     <span v-if="hos_data.length && searchword != '' && searchword == 'all' && id == '-1'"> 「病院施設を <span class="result-span">全国</span> から探す <span class="result-span">{{hos_data.length}} 件」</span> </span>
-     <span v-if="hos_data.length && searchword != '' && searchword != 'all' && id == '-1'"> 「病院施設を <span class="result-span">{{searchword}}</span> から探す <span class="result-span">{{hos_data.length}} 件」</span> </span>
-     <span v-if="hos_data.length && searchword != '' && searchword == 'all' && id != '-1'"> 「病院施設を <span class="result-span">全国 , {{hos_data[0].city_name}}</span> から探す <span class="result-span">{{hos_data.length}} 件」</span> </span>
-     <span v-if="hos_data.length && searchword != '' && searchword != 'all' && id != '-1'"> 「病院施設を <span class="result-span">{{searchword}} , {{hos_data[0].city_name}}</span> から探す <span class="result-span">{{hos_data.length}} 件」</span> </span>
+    <span v-if="hos_data.length && searchword == ''"> 「病院施設を <span class="result-span">{{hos_data[0].city_name}}</span> から探す<span class="result-span">{{hos_data.length}}</span> 件」</span>
+     <span v-if="hos_data.length && searchword != '' && searchword == 'all' && id == '-1'"> 「病院施設を <span class="result-span">全国</span> から探す <span class="result-span">{{hos_data.length}}</span> 件」 </span>
+     <span v-if="hos_data.length && searchword != '' && searchword != 'all' && id == '-1'"> 「病院施設を <span class="result-span">{{searchword}}</span> から探す <span class="result-span">{{hos_data.length}}</span> 件」 </span>
+     <span v-if="hos_data.length && searchword != '' && searchword == 'all' && id != '-1'"> 「病院施設を <span class="result-span">全国 , {{hos_data[0].city_name}}</span> から探す <span class="result-span">{{hos_data.length}}</span> 件」 </span>
+     <span v-if="hos_data.length && searchword != '' && searchword != 'all' && id != '-1'"> 「病院施設を <span class="result-span">{{searchword}} , {{hos_data[0].city_name}}</span> から探す <span class="result-span">{{hos_data.length}}</span> 件」 </span>
     </h5>   
      
   </div>

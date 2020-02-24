@@ -919,7 +919,7 @@
                     $("#mymap").css({'display' : 'block','height' : '400px','width':'100%'});
                     $("#filtertable").css("display", "block");
                     $("#nursing-search").css("display", "block");
-                    console.log(response.data.nursing);
+    
                     if(response.data.nursing.length != 0){
                         this.norecord_msg = false;
                         this.changeMap(response,1);
