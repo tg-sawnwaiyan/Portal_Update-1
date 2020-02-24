@@ -8,9 +8,15 @@
                     <div class="row col-md-12 pad-free">
                         <div class="col-md-6">
                             <div class="form-group form-group-wrapper logo-area d-flex">
-                                <img :src="profile_img" id="thumbnil" class="profile_logo m-b-8" alt="Logo"  @error="imgUrlAlt" width="400px" >
-                                <br>
-                                <input type="file" name="" class ="customer-logo m-b-10" id="customer-logo" @change="preview_image($event,'0')">
+                                <img :src="profile_img" id="thumbnil" class="profile_logo m-b-8 img-fluid fit-image-profile" alt="Logo"  @error="imgUrlAlt">
+                                <p>
+                                     <span class="btn-file">画像を選択                     
+                                        <input type="file" name="" class ="customer-logo m-b-10" id="customer-logo" @change="preview_image($event,'0')">
+                                    </span> 
+                                </p>
+                                    <!-- <span id="imgname" class="pl-4">{{img_name}}</span>
+                                <br> -->
+                                
                             </div>
                         </div>
                         <div class="col-md-6">
