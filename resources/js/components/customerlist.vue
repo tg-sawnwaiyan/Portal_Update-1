@@ -36,8 +36,11 @@
                                                 <div class="col-lg-2 col-md-4 custom_title">
                                                     <strong >状態:</strong>
                                                 </div>
-                                                <div class="col-lg-10 col-md-8" v-if="customer.recordstatus == '1'">Activate</div>
-                                                <div class="col-lg-10 col-md-8" v-else>Deactivate</div>
+                                                <div class="col-lg-10 col-md-8" v-if="customer.status == 0">Pending</div>
+                                                <div v-else>
+                                                    <div class="col-lg-10 col-md-8" v-if="customer.recordstatus == '1'">Activate</div>
+                                                    <div class="col-lg-10 col-md-8" v-else>Deactivate</div>
+                                                </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-2 col-md-4 custom_title">
