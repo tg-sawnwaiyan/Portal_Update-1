@@ -94,11 +94,11 @@
                                 <div class="form-group row pl-3">
                                     <div class="col-md-12 "><label> 郵便番号 </label></div>
                                     <div class="col-md-12 p-0">
-                                        <input type="text" v-model="comments.postal" name="postal" class="postal form-control float-left" id="postal" placeholder="郵便番号を入力してください。" maxlength="7"/>
-                                        <div id="jsErrorMessage" class="float-left eg-txt"></div>
+                                        <input type="text" v-model="comments.postal" name="postal" v-on:keydown="postalNumber" class="postal form-control float-left" id="postal" placeholder="郵便番号を入力してください。" maxlength="7"/>                                        
                                         <span class="float-left submit1 btn main-bg-color continue all-btn submit m-l-20" @click="getPostal">郵便番号より住所を検索</span>
                                         <span class="float-left m-l-20">例）1006740 (<a href="https://www.post.japanpost.jp/zipcode/" target="_blank">郵便番号検索</a>)</span>
                                     </div>
+                                    <div id="jsErrorMessage" class="float-left eg-txt"></div>
                                 </div>
                                 <div class="form-group row pl-3">                                  
                                     <div class="col-md-12 "><label>  都道府県<span class="error sp1">必須</span></label></div>
@@ -655,10 +655,14 @@
                     this.ph_error = true;
                     // console.log('d')
                 }
-
-
-
-            }
+            },
+            postalNumber: function(event) {
+                if(!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105) 
+                    && event.keyCode != 8 && event.keyCode != 46 && !(event.keyCode >= 37 && event.keyCode <= 40)) 
+                {
+                    event.preventDefault();
+                }
+            },
         }
     }
 </script>
