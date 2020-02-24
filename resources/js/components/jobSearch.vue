@@ -1,8 +1,16 @@
 <template>
 <layout>
 <div>
+  
+ 
    <div class="col-md-12" style="border-bottom: 1px dashed #828282;padding-bottom: 10px; margin-bottom: 20px;">
-     <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#828282;"></i>&nbsp;地図検索</h5>
+     <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#828282;"></i>&nbsp;地図検索  
+        <span v-if="job_data.length && searchword == '' && job_data[0].city_name != ''"> 「求人を <span class="result-span">{{job_data[0].city_name}}</span> から探す<span class="result-span">{{job_data.length}} 件」</span></span>
+        <span v-if="job_data.length && searchword != '' && searchword == 'all' && id == '-1'"> 「求人を <span class="result-span">全国</span> から探す <span class="result-span">{{job_data.length}} 件」</span> </span>
+        <span v-if="job_data.length && searchword != '' && searchword != 'all' && id == '-1'"> 「求人を <span class="result-span">{{searchword}}</span> から探す <span class="result-span">{{job_data.length}} 件」</span> </span>
+        <span v-if="job_data.length && searchword != '' && searchword == 'all' && id != '-1'"> 「求人を <span class="result-span">全国 , {{job_data[0].city_name}}</span> から探す <span class="result-span">{{job_data.length}} 件」</span> </span>
+        <span v-if="job_data.length && searchword != '' && searchword != 'all' && id != '-1'"> 「求人を <span class="result-span">{{searchword}} , {{job_data[0].city_name}}</span> から探す <span class="result-span">{{job_data.length}} 件」</span> </span>
+    </h5>
   </div>
   <div class="search-map card-body" @mouseover="getStateHover">
     <div class="row" id="hos">
@@ -434,7 +442,8 @@ export default {
         },
         w_width: $(window).width(),
        testclass:'',
-       array_len: 0
+       array_len: 0,
+       searchword:'',
       }
     },
     created() {
@@ -541,12 +550,14 @@ export default {
             this.empstatus = [];
 
             if ($('#search-free-word').val() != '')
-            {
-
+            { 
+               
                 var search_word = $('#search-free-word').val();
+                this.searchword = search_word;
             }
             else{
                 var search_word = "all";
+                this.searchword = 'all';
             }
 
             this.axios.get('api/getjobsearch/'+ search_word,{
@@ -676,6 +687,7 @@ export default {
             else{
                 _this.locast = localStorage.getItem("nursing_fav");
             }
+            _this.searchword = '';
             _this.$loading(true);
           _this.axios.get('api/getmap',{
             params:{
