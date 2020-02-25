@@ -90,7 +90,7 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-lg-6">
-                                            <select name="" id="" class="form-control custom-select" style="background-color: #fff;" @change="nursingSearchData" v-model="moving_in">
+                                            <select name="" id="" class="form-control custom-select" style="background-color: #fff;" @change="nursingSearchData()" v-model="moving_in">
                                                 <option data-price-type="" value="-1" >▼入居一時金</option>
                                                 <!-- <option data-price-type="" value="0">一時金なし</option> -->
                                                 <option data-price-type="" value="500000">50万円以下</option>
@@ -110,7 +110,7 @@
                                             </select>
                                                 </div>
                                                 <div class="col-lg-6">
-                                            <select name="" id="" class="form-control custom-select nus-town-m-t" style="background-color: #fff;" @change="nursingSearchData" v-model="per_month">
+                                            <select name="" id="" class="form-control custom-select nus-town-m-t" style="background-color: #fff;" @change="nursingSearchData()" v-model="per_month">
                                                 <option data-price-type="" value="-1" >▼月額利用料</option>
                                                 <option data-price-type="" value="100000">10万円以下</option>
                                                 <option data-price-type="" value="120000">12万円以下</option>
@@ -962,10 +962,12 @@
                     $("#nursing-search").css("display", "block");
     
                     if(response.data.nursing.length != 0){
+                     
                         this.norecord_msg = false;
                         this.changeMap(response,1);
                         this.getTownships = [];
                     }else{
+                     
                         $("#mymap").css({'display' : 'none'});
                         this.nus_data = [];
                         this.norecord_msg = true;
@@ -1084,6 +1086,11 @@
 
             // make infowindow, marker , google map
             changeMap(response,freewordornot){
+              
+                if(this.id == -1 && freewordornot == 2)
+                {
+                    freewordornot = 1;
+                }
              
                 $('.select').removeClass('select');
                 $('#searchMap').addClass('select');
@@ -1128,11 +1135,11 @@
                 }
                 if(this.map == null){ 
                  
-                   
+              
                     this.createMap(theCity,lat,lng)
                     if(freewordornot == 1)
                     {
-                  
+               
                         this.infoWindow(item, mmarker,response);
                     }
                     else{
@@ -1141,14 +1148,23 @@
                         this.infoWindow(item, mmarker,response);
                     }
                 }else{
+
+                
+                        var map = this.map
+                        var callback = function(feature) {
+                            map.data.remove(feature);
+                        };
+                        map.data.forEach(callback);
+                        if(freewordornot != 1)
+                        {
+                            this.coordinates(theCity,lat,lng);
+                        }
+                        this.infoWindow(item, mmarker,response); 
+                        this.loading = false;
+                  
+                   
                  
-                    var map = this.map
-                    var callback = function(feature) {
-                        map.data.remove(feature);
-                    };
-                    map.data.forEach(callback);
-                    this.coordinates(theCity,lat,lng);
-                    this.infoWindow(item, mmarker,response); 
+                 
                 }
             },
             nursingSearchData(id){

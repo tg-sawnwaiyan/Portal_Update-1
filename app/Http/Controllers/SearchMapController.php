@@ -39,35 +39,28 @@ class SearchMapController extends Controller
                     LEFT JOIN special_features as spe on spe.id = spej.special_feature_id
                     LEFT JOIN acceptance_transactions as acct on acct.profile_id = n.id
                     LEFT JOIN medical_acceptance as med on med.id = acct.medical_acceptance_id
-                    WHERE n.recordstatus=1 and";
+                    WHERE n.recordstatus=1 ";
 
-      
-            if($id != null && $township_id == -1 && $moving_in == -1 && $per_month == -1 ){
-                $query .= " t.city_id=" . $id ;    
-            }
-            else if($id != null && $township_id != -1 && $moving_in == -1 && $per_month == -1){
-                $query .= " t.city_id=" . $id . " and t.id =".$township_id;
-            }
-            else if($id != null && $township_id == -1 && $moving_in != -1 && $per_month == -1){
-                $query .= " t.city_id=" . $id . " and n.moving_in_to <= ".$moving_in;
-            }
-            else if ($id != null && $township_id == -1 && $moving_in == -1 && $per_month != -1){
-                $query .= " t.city_id=" . $id . " and n.per_month_to <= ".$per_month;
-            }
-            else if ($id != null && $township_id == -1 && $moving_in != -1 && $per_month != -1){
-                $query .= " t.city_id=" . $id . " and n.per_month_to <= ".$per_month." and n.moving_in_to <= ".$moving_in;
-            }
-            else if ($id != null && $township_id != -1 && $moving_in != -1 && $per_month != -1){
-                $query .= " t.city_id=" . $id . " and t.id =".$township_id." and n.moving_in_to <= ".$moving_in." and n.per_month_to <= ".$per_month;
-            } 
-            else if($id != null && $township_id != -1 && $moving_in != -1 && $per_month == -1){
-                $query .= " t.city_id=" . $id . " and t.id =".$township_id." and n.moving_in_to <= ".$moving_in;
-            }
-            else if($id != null && $township_id != -1 && $moving_in == -1 && $per_month != -1){
-                $query .= " t.city_id=" . $id . " and t.id =".$township_id." and n.per_month_to <= ".$per_month;
-            }
+        if($id != -1)
+        {
+            $query .= " and t.city_id=" . $id ;    
+        }
+        if($township_id != -1)
+        {
+            $query .= " and t.id =".$township_id;
+        }
+        if($moving_in != -1)
+        {
+            $query .= " and n.moving_in_to <=".$moving_in;
+        }
+        if($per_month != -1)
+        {
+            $query .= " and n.per_month_to <=".$per_month;
+        }
 
-            $query .= " group by n.id order BY n.id ASC LIMIT 26";
+        $query .= " group by n.id order BY n.id ASC LIMIT 26";
+
+
     
         
           $nursing_profile = DB::select($query);
