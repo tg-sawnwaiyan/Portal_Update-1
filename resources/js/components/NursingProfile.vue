@@ -5,21 +5,19 @@
         <form class="col-md-12 form-class">
             <div class="col-md-12 pad-free">
                 <button v-scroll-to="{ el: '#btn'}" id="btn_click" hidden></button>
-                    <div class="row col-md-12 pad-free">
-                        <div class="col-md-6">
-                            <div class="form-group form-group-wrapper logo-area d-flex">
-                                <img :src="profile_img" id="thumbnil" class="profile_logo m-b-8 img-fluid fit-image-profile" alt="Logo"  @error="imgUrlAlt">
-                                <p>
-                                     <span class="btn-file">画像を選択                     
-                                        <input type="file" name="" class ="customer-logo m-b-10" id="customer-logo" @change="preview_image($event,'0')">
-                                    </span> 
-                                </p>
-                                    <!-- <span id="imgname" class="pl-4">{{img_name}}</span>
-                                <br> -->
-                                
+                    <div class="row ">
+                        <div class="col-md-4 pad-free-750">
+                            <div class="form-group form-group-wrapper logo-area">
+                                <img :src="profile_img" id="thumbnil" class="profile_logo m-b-8 img-fluid fit-image-profile" alt="Logo"  @error="imgUrlAlt">                              
+                                <div class="m-t-10">
+                                    <span class="btn-file">画像を選択                     
+                                    <input type="file" name="" class ="customer-logo m-b-10" id="customer-logo" @change="preview_image($event,'0')">                                      
+                                    </span>    
+                                    <span id="imgname">{{nursing_info.logo}}</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-8 pad-free-750">
                             <div class="form-group form-group-wrapper d-flex">
                                 <label class="heading-lbl col-md-2 col-12 pad-free">施設名称<span class="error">*</span></label>
                                 <input type="text" class="form-control customer-name col-md-10 col-12 nursing_input" id="btn" placeholder="施設名称を入力してください。" v-model="nursing_info.name">
@@ -125,7 +123,7 @@
                             <div class="form-group">
                                 <label class="heading-lbl col-lg-2 col-md-3 pad-free">タイプ</label>
                                 <div class="col-lg-10 col-md-12 float-right pad-free nursing-m-b-15">
-                                    <span class="nusing_btn1 btn all-btn main-bg-color" style="min-width: 0px;" @click="methodAdd(this)"><i class="fas fa-plus-circle"></i>追加</span>
+                                    <span class="nusing_btn1 btn all-btn main-bg-color" style="min-width: 0px;" @click="methodAdd(this)"><i class="fas fa-plus-circle"></i>&nbsp;追加</span>
                                     <div class="col-md-12 pad-free m-t-50 nursing-gallery" id="gallery-payment">
                                         <div class="pad-free col-md-12 gallery-area-payment" v-bind:id="'payments'+indx" v-for="(payment,indx) in payment_arr" :key="payment.id">
                                             <div class="col-md-12">
@@ -1301,29 +1299,29 @@ export default {
 
  <style>
 .panorama .col-md-3 {  
-       -webkit-box-flex: 0;   
-        flex: 0 0 10% !important;  
-       max-width: 10% !important;
-        }
+    /* -webkit-box-flex: 0;   
+    flex: 0 0 10% !important;  
+    max-width: 10% !important; */
+}
        
-       .panorama-old-img{   
-            height:80px; 
-            width: 130px;    
-        } 
+.panorama-old-img{   
+    height:80px; 
+    /* width: 130px;     */
+} 
              
-        .panorama-new-img{   
-           height:80px; 
-           width: 130px; 
-           
-        }  
+.panorama-new-img{   
+    height:80px; 
+    /* width: 130px;  */
+    
+}  
 
-        .quill-editor{ 
-           background-color: #fff; 
-         } 
+.quill-editor{ 
+    background-color: #fff; 
+} 
          
-        .panorama-box { 
-           padding: 10px 10px 20px 0px;  
-           margin: 0px;  
-          margin-bottom: 15px; 
-           }
+.panorama-box { 
+    padding: 10px 10px 20px 0px;  
+    margin: 0px;  
+    margin-bottom: 15px; 
+ }
  </style>

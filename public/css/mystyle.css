@@ -1665,11 +1665,8 @@ box-shadow: 0px 0px 5px rgb(212, 201, 201); */
     height: 300px;
     /* only if you want fixed height */
 }
-.fit-image-profile{  
-    width: 350px;
-    object-fit: cover;
-    height: 235px;
-
+.fit-image-profile{     
+    height: 210px;
 }
 .displaytext {
     display: none;
