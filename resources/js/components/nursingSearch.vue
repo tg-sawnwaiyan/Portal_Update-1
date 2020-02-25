@@ -271,7 +271,8 @@
                                     <div id="filtertable" class="col-12">
                                         <table class="table table-bordered col-12 box-wrap">
                                             <tbody>
-                                                <tr>
+                                                <!-- ------------------- -->
+                                                <!-- <tr>
                                                     <th class="pc-414-table sp-768-block pc-rsp-table sp-rsp-block">地域</th>
                                                     <td class="sp-768-block sp-414-table sp-rsp-block">
                                                     <div class="row mt-2 mb-2">
@@ -284,13 +285,13 @@
                                                     <div class="col-lg-3 col-md-4 col-sm-12 pc-414">
                                                     <button @click="toggleContent" class="btn seemore-btn">
                                                         <i class="fa" aria-hidden="true"></i>
-                                                        <!-- <em>{{city.city_name}}</em> -->
+                                                     
                                                         <span id="close"><i class="fas fa-arrow-circle-up"></i> 市区町村エリアを閉じる </span>
                                                     </button>
                                                     </div>
                                                     </div>
                                                     <div class="toBeToggled" id="toBeToggled">
-                                                    <!--市から探す-->
+                                              
                                                     <div class="dropdown search_rsp">
                                                         <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
                                                         市から探す
@@ -324,10 +325,11 @@
                                                             </div>
                                                         </a>
                                                     </div>
-                                                    <!--end 市から探す-->
+                                                
                                                     </div>
                                                     </td>
-                                                </tr>
+                                                </tr> -->
+                                                <!-- ------------- -->
                                                 <tr>
                                                     <th class="pc-414-table sp-768-block" v-if="showOne" style="padding:10px;">入居時の条件</th>
                                                     <td class="sp-768-block sp-414-table" v-if="showOne">
@@ -882,6 +884,27 @@
                 this.moving_in = -1;
                 this.per_month = -1;
 
+                if(this.townshipID == null || this.townshipID == '')
+                {
+                this.townshipID[0] = 0;
+                }
+                if(this.SpecialFeatureID == null || this.SpecialFeatureID == '')
+                {
+                this.SpecialFeatureID[0] = 0;
+                }
+                if(this.MedicalAcceptanceID == null || this.MedicalAcceptanceID == '')
+                {
+                this.MedicalAcceptanceID[0] = 0;
+                }
+                if(this.FacTypeID == null || this.FacTypeID == '')
+                {
+                this.FacTypeID[0] = 0;
+                }
+                if(this.MoveID == null || this.MoveID == '')
+                {
+                this.MoveID[0] = 0;
+                }
+
                 if ($('#search-free-word').val() != '')
                 {
                     this.id = -1;
@@ -905,6 +928,17 @@
                 else{
                     this.locast = localStorage.getItem("nursing_fav");
                 }
+
+                
+
+                //  params:{
+                //     id: this.id,
+                   
+                //     Moving_in:this.moving_in,
+                //     Per_month:this.per_month,
+                //     local:this.locast
+
+                // },
               
 
                 this.axios.get('/api/getnursingsearch/'+search_word,{
@@ -913,7 +947,12 @@
                 township_id:-1,
                 Moving_in:-1,
                 Per_month:-1,
-                local:this.locast
+                local:this.locast,
+                townshipID:this.townshipID,
+                SpecialFeatureID:this.SpecialFeatureID,
+                MedicalAcceptanceID:this.MedicalAcceptanceID,
+                FacTypeID:this.FacTypeID,
+                MoveID:this.MoveID,
 
                 },
                 })
@@ -1487,6 +1526,7 @@
                 {
                     this.id = -1;
                     var search_word = $('#search-free-word').val();
+                  
                 }
 
 
@@ -1499,9 +1539,10 @@
                 }
 
                 this.searchword = '';
-
-
-                this.axios.get('api/getnursingsearch/'+search_word,{
+                var  search_word= 'null';
+ 
+                 this.axios.get('api/getnursingsearch/'+search_word,{
+              
                 params:{
                     id: this.id,
                     townshipID:this.townshipID,
