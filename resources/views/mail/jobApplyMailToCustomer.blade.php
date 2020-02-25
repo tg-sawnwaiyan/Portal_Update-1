@@ -1,5 +1,5 @@
 <pre>
-T-IS
+TIS
 
 {{$getComment->cus_name}} ({{$getComment->cusnum}}) 様
 

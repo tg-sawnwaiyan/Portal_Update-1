@@ -1,5 +1,5 @@
 <pre>
-T-IS          
+TIS 
 
 {{$getCustomer->name}} 様
 

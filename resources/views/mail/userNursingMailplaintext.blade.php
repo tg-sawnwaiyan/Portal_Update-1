@@ -1,4 +1,4 @@
-T-IS
+TIS
                 
 {{$getComment->name}} 様
 

@@ -1,4 +1,4 @@
-T-IS
+TIS
 
 {{$getComment->related_fav_name}}({{$getComment->related_fav_id}}) 様
 

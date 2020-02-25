@@ -1,5 +1,5 @@
 <pre>
-T-IS
+TIS
 
 TIS ティーズ管理者 様
                     

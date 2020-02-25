@@ -1,4 +1,4 @@
-  T-IS
+ TIS
 
  【 Healthcare Portal | パスワードの再設定 】
                                   
