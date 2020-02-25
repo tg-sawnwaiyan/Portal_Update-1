@@ -1327,7 +1327,7 @@
             </div>
 
     </div>
-    <div class="bottom-fixed-btn ">
+    <div class="bottom-fixed-btn" v-if="!loginuser">
          <div class="row justify-content-center">
             <div class="col-6 col-md-3 col-lg-2">
                 <span class="bottom-fav-btn" v-if="!view_pro_id && !loginuser" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>

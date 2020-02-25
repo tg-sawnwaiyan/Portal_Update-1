@@ -57,7 +57,7 @@
                 </div>
               <!--end search input-->
             </div>  
-            <bulcomponent v-if="id == ''"></bulcomponent>                            
+            <bulcomponent></bulcomponent>                            
         </section>
         <div id="scroll-responsive">
             <div id="hos_search" class="col-12 hospitalselect pad-free m-b-10">

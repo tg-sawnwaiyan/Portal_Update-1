@@ -54,12 +54,12 @@
                                                 </div>
                                                 <div class="col-lg-10 col-md-8">{{customer.phone}}</div>
                                             </div>
-                                            <div class="row">
+                                            <!-- <div class="row">
                                                 <div class="col-lg-2 col-md-4 custom_title">
                                                     <strong>住所:</strong>
                                                 </div>
                                                 <div class="col-lg-10 col-md-8">{{customer.address}}</div>
-                                            </div>
+                                            </div> -->
                                             <!-- <div class="col-md-2 max-width13"><strong>Logo:</strong></div><div class="col-md-10">{{customer.logo}}</div> -->
                                             <div class="row mt-3">
                                                 <div class="col-md-12">
