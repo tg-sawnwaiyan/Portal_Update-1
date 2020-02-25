@@ -38,7 +38,7 @@
                             <div class="col-md-3 col-sm-12 form-left"><label>お名前 <span class="error sp1">必須</span></label></div>
                             <div class="col-md-9 col-sm-12 form-right">
                                 <input type="text" id="tbname" name="name" class="form-control float-left" placeholder="お名前を入力してください。" v-model="comments.name" @change="aggreBtn" @keyup="focusName"/>
-                                <span class="float-left eg-txt">例）探し 太郎</span>
+                                <span class="float-left eg-txt">例）探し太郎</span>
                                  <span class="error m-l-30" v-if="comment_focus">※入力は必須です。</span>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
                                         <input type="text" id="furigana" name="furigana" class="form-control float-left" placeholder="フリガナを入力してください。" v-model="comments.furigana" @keyup="ChekChar"    @change="aggreBtn"/>
                                     <!-- </div>
                                     <div class="col-md-3"> -->
-                                         <span class="float-left eg-txt"> 例）サガシ　タロウ</span>
+                                         <span class="float-left eg-txt"> 例）サガシタロウ</span>
                                         <span class="error m-l-30" v-if="furigana_focus " >※入力は必須です。</span>
 
                                     <!-- </div> -->
@@ -173,7 +173,7 @@
                             <div class="error">※未入力の必須項目がございます</div>
                         </div>
 
-                        <div class="btn-list mt-2  clearfix">
+                        <div class="btn-list mt-2 clearfix">
                             <ul>
                                 <li> <button type="button" :disabled="isdisable" class="submit1 btn main-bg-color continue all-btn submit" @click="add()">確認ページに進む</button></li>
                                 <li class="m-r-15"><a @click="$router.go(-1)" class="btn btn-danger all-btn submit">戻る</a></li>
@@ -184,25 +184,26 @@
                             <h5 class="form-tit">入居対象者様について</h5>
                             <div class="form-group m-0 row bd">
                                 <div class="col-md-3 col-sm-12 form-left">
-                                    <label>入居対象者様とのご関係</label></div>
+                                    <label>入居対象者様とのご関係</label>
+                                </div>
                                 <div class="col-md-9 col-sm-12 form-right">
                                     <select class="form-control" id="relation"  v-model="comments.relation">
-                                    <option value="">選択してください</option>
-                                    <option value="本人">本人</option>
-                                    <option value="家族">家族</option>
-                                    <option value="親族">親族</option>
-                                    <option value="友人">友人</option>
-                                    <option value="ケアマネージャー">ケアマネージャー</option>
-                                    <option value="ソーシャルワーカー">ソーシャルワーカー</option>
-                                    <option value="その他">その他</option>
-                                </select>
+                                        <option value="">選択してください</option>
+                                        <option value="本人">本人</option>
+                                        <option value="家族">家族</option>
+                                        <option value="親族">親族</option>
+                                        <option value="友人">友人</option>
+                                        <option value="ケアマネージャー">ケアマネージャー</option>
+                                        <option value="ソーシャルワーカー">ソーシャルワーカー</option>
+                                        <option value="その他">その他</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group m-0 row bd">
                                 <div class="col-md-3 col-sm-12 form-left"><label>お名前</label></div>
                                 <div class="col-md-9 col-sm-12 form-right">
                                     <input type="text" id="ttname" name="ttname" class="form-control float-left" placeholder="お名前を入力してください。"  v-model="comments.ttname">
-                                    <span class="eg-txt float-left">例）探し 太郎</span>
+                                    <span class="eg-txt float-left">例）探し太郎</span>
                                 </div>
                             </div>
                             <div class="form-group m-0 row bd">
@@ -356,7 +357,7 @@
                         <div class="mt-4 col-sm-3 submit txt-err" v-if="btn_disable">
                             <div class="error">※未入力の必須項目がございます</div>
                         </div>
-                        <div class="btn-list  clearfix">
+                        <div class="btn-list mt-2 clearfix">
                             <ul>
                                 <li> <button type="button" :disabled="isdisable" class="submit1 btn main-bg-color continue all-btn submit" @click="add()" >確認ページに進む</button></li>
                                 <li class="m-r-15">
