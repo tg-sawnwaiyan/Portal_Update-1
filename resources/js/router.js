@@ -521,6 +521,11 @@ const routes = [
         auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'},
     }
   },
+  { 
+    name: '404', 
+    path: "*", 
+    component: NotFound 
+  }
 ]
 const router = new VueRouter({
     history: true,

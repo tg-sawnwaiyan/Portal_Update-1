@@ -475,7 +475,7 @@ width: 100px; */
     margin-top: 15px;
     background: #f5f5f5;
     padding: 20px;
-    border: 1px dashed #b7dad2;
+    border: 1px dashed #a1cce8;
 }
 
 .gallery-area-photo img {
@@ -524,7 +524,7 @@ border: 1px solid #eee; */
 }
 
 .gallery-area-payment {
-    border: 1px dashed #b7dad2;
+    border: 1px dashed #a1cce8;
     margin-left: 3px;
     margin-top: 15px;
     padding-top: 10px;
@@ -1666,7 +1666,7 @@ box-shadow: 0px 0px 5px rgb(212, 201, 201); */
     /* only if you want fixed height */
 }
 .fit-image-profile{     
-    height: 210px;
+    height: 180px;
 }
 .displaytext {
     display: none;
@@ -9787,7 +9787,7 @@ padding: 0;
     }
     .heading-lbl1 {
         font-size: 1.05em;
-        flex: 0 0 27%;
+        flex: 0 0 17%;
         max-width: 125px;
     }
     .news-post-btn {

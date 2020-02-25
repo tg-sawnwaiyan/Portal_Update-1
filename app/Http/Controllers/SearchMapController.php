@@ -173,7 +173,6 @@ class SearchMapController extends Controller
 
           //for city
           $id = $_GET['id'];
-       
           $Moving_in = $_GET['Moving_in'];
           $Per_month = $_GET['Per_month'];
           $localst = $_GET['local'];
@@ -196,32 +195,33 @@ class SearchMapController extends Controller
                     left join acceptance_transactions as acct on acct.profile_id = n.id 
                     left join medical_acceptance as med on med.id = acct.medical_acceptance_id where n.recordstatus=1";
 
-          if($id == -1)
-          {
-             if($searchword != 'all')
+        //   if($id == -1)
+        //   {
+            //  if( $searchword != 'all')
+            if($searchword != 'null' && $searchword != 'all')
              {
-                // $query .= " and (n.method like '%" . $searchword . "%' or n.business_entity like '%".$searchword."%') group by c.id";
               
-                 $query .= " and (ci.city_name like '%" . $searchword . "%' or t.township_name like '%" . $searchword . "%' or n.name like '%".$searchword."%') group by n.id";
+                 $query .= " and (ci.city_name like '%" . $searchword . "%' or t.township_name like '%" . $searchword . "%' or n.name like '%".$searchword."%')";
              }
-             else{
+            //  else{
+               
                  
-                $query = "SELECT '' as fav_check,'' as alphabet, n.id as nursing_id,n.latitude as lat ,n.longitude as lng,n.*, ci.id as city_id,
-                          ci.city_eng,ci.city_name,t.township_name,f.description AS type_name,ci.city_name,t.township_name
-                            from nursing_profiles as n  
-                            left join townships as t on t.id = n.townships_id
-                            left join cities as ci on ci.id = t.city_id
-                            left join fac_types as f on f.id = n.fac_type 
-                            left join special_features_junctions as spej on spej.profile_id = n.id  
-                            left join special_features as spe on spe.id = spej.special_feature_id
-                            left join acceptance_transactions as acct on acct.profile_id = n.id
-                            left join medical_acceptance as med on med.id = acct.medical_acceptance_id 
-                            where n.recordstatus=1
-                            group by n.id ";
-             }
-          }
-          else
-          {
+                // $query = "SELECT '' as fav_check,'' as alphabet, n.id as nursing_id,n.latitude as lat ,n.longitude as lng,n.*, ci.id as city_id,
+                //           ci.city_eng,ci.city_name,t.township_name,f.description AS type_name,ci.city_name,t.township_name
+                //             from nursing_profiles as n  
+                //             left join townships as t on t.id = n.townships_id
+                //             left join cities as ci on ci.id = t.city_id
+                //             left join fac_types as f on f.id = n.fac_type 
+                //             left join special_features_junctions as spej on spej.profile_id = n.id  
+                //             left join special_features as spe on spe.id = spej.special_feature_id
+                //             left join acceptance_transactions as acct on acct.profile_id = n.id
+                //             left join medical_acceptance as med on med.id = acct.medical_acceptance_id 
+                //             where n.recordstatus=1
+                //             group by n.id ";
+            //  }
+        //   }
+        //   else
+        //   {
                 //to check if township is check or not 
                 $townshipID = $_GET['townshipID'];
                 if ($townshipID[0] == '0' && count($townshipID) == 1) //get param value of hospitalsearch.vue and if value is 0 and count =1 , this condition is "No Check"
@@ -285,8 +285,11 @@ class SearchMapController extends Controller
 
 
              
-
-                $query .= " and ci.id = ".$id;
+                if($id != -1)
+                {
+                    $query .= " and ci.id = ".$id;
+                }
+              
 
                 if($townshipID != 0 )
                 {
@@ -337,7 +340,7 @@ class SearchMapController extends Controller
 
 
                 $query .= " group by n.id";
-          }
+        //   }
 
 
             $nus_data = DB::select($query);
