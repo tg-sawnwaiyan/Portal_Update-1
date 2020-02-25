@@ -2660,7 +2660,7 @@ h3 {
     border: 1px solid #68ec37;
 }
 .closeLink {
-    color: #000;
+    color: #fff;
     font-weight: bold;
     cursor: pointer;
     border: 1px solid #ffc041;
@@ -2715,7 +2715,7 @@ h3 {
 
 .cash-lbl-mini {
     font-size: 1.4em !important;
-    color: #d2571c;
+    color: #ff6117;
     font-weight: bold;
 }
 .cash-lbl-respon {

@@ -3,14 +3,11 @@
   <div class="card profile m-t-22 " style="border:none;">
     <form class="col-md-12 form-class">
         <div class="col-md-12 pad-free">
-            <div class="form-group row">
-              
+            <div class="form-group row">              
                 <div class="col-lg-4 col-md-4">
                   <div class="card card-logo" >
                     <div class="card-body">  
                         <img :src="logo" class="profile-logo m-b-20 img-fluid"   @error="imgUrlAlt" >
-
-
                         <div class="d-flex align-items-center"><span class="btn-file d-inline-block">
                         画像を選択                     
                         <input type="file" name="img" class="pro-logo nursing-panorama" @change="logo_preview(this)">
@@ -1684,14 +1681,17 @@ export default {
         }
 
 </script>
-<style>
+<style scoped>
 .profile-logo{
-  max-height: 120px;
-  overflow: hidden;
-
+    max-height: 120px;
+    overflow: hidden;
 }
-
 .quill-editor{
-          background-color: #fff;
-  }
+    background-color: #fff;
+}
+ @media screen and (max-width:414px){
+     .d-flex{
+         display:  block !important;
+     }
+ }
 </style>

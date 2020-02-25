@@ -381,8 +381,7 @@ span:hover::before {
 }
 
 .nursing_map {
-    margin-top: 25px;
-    padding-left: 220px;
+    margin-top: 25px;   
 }
 
 .nursing_radiobtn {
@@ -2072,7 +2071,7 @@ border-top: 5px solid #e66527; */
 }
 
 .news-post-btn {
-    background-color: #2ebb60 !important;
+    background-color: #0cc72c  !important;
     color: white !important;
     position: relative;
     left: 15px;
@@ -7188,7 +7187,7 @@ color: green;
 
 .form-wrap .sp1,
 .sp2 {
-    margin: 0 10px;
+    margin: 0 5px;
     padding: 0 5px 0 5px;
     background: #F54336;
     font-size: 0.9em;
@@ -7999,9 +7998,12 @@ border-bottom: none;
 }
 
 .pseudolink {
-    color: blue;
+    color: #3490dc;
     text-decoration: underline;
     cursor: pointer;
+}
+.pseudolink:hover{
+    color: #3490dc;   
 }
 
 
@@ -9455,6 +9457,9 @@ padding: 11px;
 }
 
 @media only screen and (max-width:1440px) {
+    .fit-image-profile{
+        height: 200px;
+    }
     /* hos and nursing account */
     .img_title {
         height: 165px;
@@ -9462,10 +9467,7 @@ padding: 11px;
     /* end hos and nursing account */
     .hos_lbl {
         width: 165px;
-    }
-    .nursing_map {
-        padding-left: 70px;
-    }
+    }    
     .card_height {
         float: left;
         height: 170px;
@@ -9483,7 +9485,7 @@ padding: 11px;
     }
 }
 
-@media only screen and (max-width: 1400px) {
+@media only screen and (max-width: 1400px) {   
     .main-content {
         width: 100%;
     }
@@ -9589,10 +9591,8 @@ padding: 11px;
         width: 100%;
         background: #fbfbfb;
     } */
-    /* hospital and nursing profile */
-    .nursing_map {
-        padding-left: 40px;
-    }
+    /* hospital and nursing profile */   
+  
     .hos_lbl {
         width: 60%;
     }
@@ -10702,19 +10702,19 @@ width: 18rem;
     .heading-lbl {
         font-size: 1.05em;
         flex: 0 0 16%;
-        max-width: 125px;
+        /* max-width: 125px; */
     }
     .heading-lbl1 {
         font-size: 1.05em;
         flex: 0 0 20%;
-        max-width: 122px;
+        /* max-width: 122px; */
     }
     .nursing_btn {
         margin-top: 0px;
     }
     .nursing_btn span {
         margin-left: 121px;
-        margin-top: -45px;
+        /* margin-top: -45px; */
     }
     .nursing_input {
         flex: 0 0 85%;
