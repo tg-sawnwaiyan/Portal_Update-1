@@ -217,6 +217,7 @@
         //     }
         // })
         this.visit = 'true';
+        this.loginuser = false;
         localStorage.setItem('visit',this.visit);
         this.$router.push({name: 'Unauthorized'});
         }
@@ -306,6 +307,7 @@
         },
         onItemClick(event, item){
             if(item.title == 'ログアウト'){
+                this.loginuser = false;
                 this.$auth.logout();
             }
         },
