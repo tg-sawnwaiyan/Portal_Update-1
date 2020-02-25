@@ -33,7 +33,8 @@ export default {
             }
         },
         logout(){              
-            
+            this.loginuser = 'false';
+            localStorage.setItem('loginuser', this.loginuser);
             this.$auth.logout();
         }
     }
