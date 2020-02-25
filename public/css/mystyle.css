@@ -381,8 +381,7 @@ span:hover::before {
 }
 
 .nursing_map {
-    margin-top: 25px;
-    padding-left: 220px;
+    margin-top: 25px;   
 }
 
 .nursing_radiobtn {
@@ -479,7 +478,7 @@ width: 100px; */
     margin-top: 15px;
     background: #f5f5f5;
     padding: 20px;
-    border: 1px dashed #b7dad2;
+    border: 1px dashed #a1cce8;
 }
 
 .gallery-area-photo img {
@@ -528,7 +527,7 @@ border: 1px solid #eee; */
 }
 
 .gallery-area-payment {
-    border: 1px dashed #b7dad2;
+    border: 1px dashed #a1cce8;
     margin-left: 3px;
     margin-top: 15px;
     padding-top: 10px;
@@ -616,8 +615,8 @@ border: 1px solid #eee; */
 
 .img-close-btn {
     position: absolute;
-    top: 0px;
-    right: 0px;
+    /* top: 0px;
+    right: 0px; */
     font-weight: bold;
     cursor: pointer;
     border: 2px solid #aaa;
@@ -1669,7 +1668,9 @@ box-shadow: 0px 0px 5px rgb(212, 201, 201); */
     height: 300px;
     /* only if you want fixed height */
 }
-
+.fit-image-profile{     
+    height: 180px;
+}
 .displaytext {
     display: none;
 }
@@ -2070,7 +2071,7 @@ border-top: 5px solid #e66527; */
 }
 
 .news-post-btn {
-    background-color: #2ebb60 !important;
+    background-color: #0cc72c  !important;
     color: white !important;
     position: relative;
     left: 15px;
@@ -7186,7 +7187,7 @@ color: green;
 
 .form-wrap .sp1,
 .sp2 {
-    margin: 0 10px;
+    margin: 0 5px;
     padding: 0 5px 0 5px;
     background: #F54336;
     font-size: 0.9em;
@@ -7997,9 +7998,12 @@ border-bottom: none;
 }
 
 .pseudolink {
-    color: blue;
+    color: #3490dc;
     text-decoration: underline;
     cursor: pointer;
+}
+.pseudolink:hover{
+    color: #3490dc;   
 }
 
 
@@ -9453,6 +9457,9 @@ padding: 11px;
 }
 
 @media only screen and (max-width:1440px) {
+    .fit-image-profile{
+        height: 200px;
+    }
     /* hos and nursing account */
     .img_title {
         height: 165px;
@@ -9460,10 +9467,7 @@ padding: 11px;
     /* end hos and nursing account */
     .hos_lbl {
         width: 165px;
-    }
-    .nursing_map {
-        padding-left: 70px;
-    }
+    }    
     .card_height {
         float: left;
         height: 170px;
@@ -9481,7 +9485,7 @@ padding: 11px;
     }
 }
 
-@media only screen and (max-width: 1400px) {
+@media only screen and (max-width: 1400px) {   
     .main-content {
         width: 100%;
     }
@@ -9587,10 +9591,8 @@ padding: 11px;
         width: 100%;
         background: #fbfbfb;
     } */
-    /* hospital and nursing profile */
-    .nursing_map {
-        padding-left: 40px;
-    }
+    /* hospital and nursing profile */   
+  
     .hos_lbl {
         width: 60%;
     }
@@ -9789,7 +9791,7 @@ padding: 0;
     }
     .heading-lbl1 {
         font-size: 1.05em;
-        flex: 0 0 27%;
+        flex: 0 0 17%;
         max-width: 125px;
     }
     .news-post-btn {
@@ -10700,19 +10702,19 @@ width: 18rem;
     .heading-lbl {
         font-size: 1.05em;
         flex: 0 0 16%;
-        max-width: 125px;
+        /* max-width: 125px; */
     }
     .heading-lbl1 {
         font-size: 1.05em;
         flex: 0 0 20%;
-        max-width: 122px;
+        /* max-width: 122px; */
     }
     .nursing_btn {
         margin-top: 0px;
     }
     .nursing_btn span {
         margin-left: 121px;
-        margin-top: -45px;
+        /* margin-top: -45px; */
     }
     .nursing_input {
         flex: 0 0 85%;
