@@ -29,7 +29,7 @@ class jobApplyMailToCustomer extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.jobApplyMailToCustomer')
+        return $this->view(['mail.jobApplyMailToCustomer','mail.jobApplyMailToCustomerplaintext'])
                     ->subject("[TIS ティーズ] 求人への応募がありました");
     }
 }
