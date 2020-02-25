@@ -39,7 +39,7 @@
             </div>
             <div class="col-md-9 col-sm-12 form-right">
                 <input type="text" class="form-control float-left" id="first_name" placeholder="お名前を入力してください。" v-model="jobApply.first_name" @keyup="focusName" @change="aggreBtn"/>
-                <span class="float-left eg-txt">例）探し 太郎</span>
+                <span class="float-left eg-txt">例）探し太郎</span>
                 <span class="error m-l-30" v-if="focus_name">※入力は必須です。</span>
                 <!-- <div v-if="errors.first_name" class="text-danger mt-2 ml-4">{{ errors.first_name }}</div> -->
             </div>
@@ -56,7 +56,7 @@
             <div class="col-md-9 col-sm-12 form-right">
                 <div class="col-md-12 pad-free">
                     <input type="text" class="form-control float-left" id="furigana" placeholder="フリガナを入力してください。" v-model="jobApply.last_name" @keyup="ChekChar"  @change="aggreBtn"/>
-                    <span class="float-left eg-txt"> 例）サガシ　タロウ</span>
+                    <span class="float-left eg-txt"> 例）サガシタロウ</span>
                     <!-- <span class="error m-l-30" v-if="focus_lname">※入力は必須です。</span> -->
                     <span class="error m-l-30" v-if="jobApply.furigana_focus   ">※入力は必須です。</span>
                     <!-- <div v-if="errors.last_name" class="text-danger mt-2 ml-4">{{ errors.last_name }}</div> -->

@@ -109,21 +109,22 @@ export default {
     this.scrollTop();
 
     var new_width = $("#content-all").width();
-    var fixed_width = new_width - 49.5;
+    //var fixed_width = new_width - 49.5;
     this.width = fixed_width + "px";
 
   },
   methods: {
-    loginView(response){        
+    loginView(response){   
+        this.loginuser = true;     
         if(this.visit == 'false'){
             this.btntype = "create";
-            this.loginuser = true;
+            // this.loginuser = true;
             localStorage.setItem("lat_num", response.data.lat_lng[0].latitude==0?'35.6803997':response.data.lat_lng[0].latitude);
             localStorage.setItem("lng_num", response.data.lat_lng[0].longitude==0?'139.76901739':response.data.lat_lng[0].longitude);
         }
         else{
             this.btntype = "view";
-            this.loginuser = false;            
+            // this.loginuser = false;            
             this.axios.get(`/api/profile_view/${this.pro_id}/${this.type}`).then(response => {
                 localStorage.setItem("lat_num", response.data[0].latitude);
                 localStorage.setItem("lng_num", response.data[0].longitude);                

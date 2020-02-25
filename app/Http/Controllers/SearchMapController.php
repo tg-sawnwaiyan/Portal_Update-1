@@ -39,35 +39,28 @@ class SearchMapController extends Controller
                     LEFT JOIN special_features as spe on spe.id = spej.special_feature_id
                     LEFT JOIN acceptance_transactions as acct on acct.profile_id = n.id
                     LEFT JOIN medical_acceptance as med on med.id = acct.medical_acceptance_id
-                    WHERE n.recordstatus=1 and";
+                    WHERE n.recordstatus=1 ";
 
-      
-            if($id != null && $township_id == -1 && $moving_in == -1 && $per_month == -1 ){
-                $query .= " t.city_id=" . $id ;    
-            }
-            else if($id != null && $township_id != -1 && $moving_in == -1 && $per_month == -1){
-                $query .= " t.city_id=" . $id . " and t.id =".$township_id;
-            }
-            else if($id != null && $township_id == -1 && $moving_in != -1 && $per_month == -1){
-                $query .= " t.city_id=" . $id . " and n.moving_in_to <= ".$moving_in;
-            }
-            else if ($id != null && $township_id == -1 && $moving_in == -1 && $per_month != -1){
-                $query .= " t.city_id=" . $id . " and n.per_month_to <= ".$per_month;
-            }
-            else if ($id != null && $township_id == -1 && $moving_in != -1 && $per_month != -1){
-                $query .= " t.city_id=" . $id . " and n.per_month_to <= ".$per_month." and n.moving_in_to <= ".$moving_in;
-            }
-            else if ($id != null && $township_id != -1 && $moving_in != -1 && $per_month != -1){
-                $query .= " t.city_id=" . $id . " and t.id =".$township_id." and n.moving_in_to <= ".$moving_in." and n.per_month_to <= ".$per_month;
-            } 
-            else if($id != null && $township_id != -1 && $moving_in != -1 && $per_month == -1){
-                $query .= " t.city_id=" . $id . " and t.id =".$township_id." and n.moving_in_to <= ".$moving_in;
-            }
-            else if($id != null && $township_id != -1 && $moving_in == -1 && $per_month != -1){
-                $query .= " t.city_id=" . $id . " and t.id =".$township_id." and n.per_month_to <= ".$per_month;
-            }
+        if($id != -1)
+        {
+            $query .= " and t.city_id=" . $id ;    
+        }
+        if($township_id != -1)
+        {
+            $query .= " and t.id =".$township_id;
+        }
+        if($moving_in != -1)
+        {
+            $query .= " and n.moving_in_to <=".$moving_in;
+        }
+        if($per_month != -1)
+        {
+            $query .= " and n.per_month_to <=".$per_month;
+        }
 
-            $query .= " group by n.id order BY n.id ASC LIMIT 26";
+        $query .= " group by n.id order BY n.id ASC LIMIT 26";
+
+
     
         
           $nursing_profile = DB::select($query);
@@ -173,7 +166,6 @@ class SearchMapController extends Controller
 
           //for city
           $id = $_GET['id'];
-       
           $Moving_in = $_GET['Moving_in'];
           $Per_month = $_GET['Per_month'];
           $localst = $_GET['local'];
@@ -196,32 +188,33 @@ class SearchMapController extends Controller
                     left join acceptance_transactions as acct on acct.profile_id = n.id 
                     left join medical_acceptance as med on med.id = acct.medical_acceptance_id where n.recordstatus=1";
 
-          if($id == -1)
-          {
-             if($searchword != 'all')
+        //   if($id == -1)
+        //   {
+            //  if( $searchword != 'all')
+            if($searchword != 'null' && $searchword != 'all')
              {
-                // $query .= " and (n.method like '%" . $searchword . "%' or n.business_entity like '%".$searchword."%') group by c.id";
               
-                 $query .= " and (ci.city_name like '%" . $searchword . "%' or t.township_name like '%" . $searchword . "%' or n.name like '%".$searchword."%') group by n.id";
+                 $query .= " and (ci.city_name like '%" . $searchword . "%' or t.township_name like '%" . $searchword . "%' or n.name like '%".$searchword."%')";
              }
-             else{
+            //  else{
+               
                  
-                $query = "SELECT '' as fav_check,'' as alphabet, n.id as nursing_id,n.latitude as lat ,n.longitude as lng,n.*, ci.id as city_id,
-                          ci.city_eng,ci.city_name,t.township_name,f.description AS type_name,ci.city_name,t.township_name
-                            from nursing_profiles as n  
-                            left join townships as t on t.id = n.townships_id
-                            left join cities as ci on ci.id = t.city_id
-                            left join fac_types as f on f.id = n.fac_type 
-                            left join special_features_junctions as spej on spej.profile_id = n.id  
-                            left join special_features as spe on spe.id = spej.special_feature_id
-                            left join acceptance_transactions as acct on acct.profile_id = n.id
-                            left join medical_acceptance as med on med.id = acct.medical_acceptance_id 
-                            where n.recordstatus=1
-                            group by n.id ";
-             }
-          }
-          else
-          {
+                // $query = "SELECT '' as fav_check,'' as alphabet, n.id as nursing_id,n.latitude as lat ,n.longitude as lng,n.*, ci.id as city_id,
+                //           ci.city_eng,ci.city_name,t.township_name,f.description AS type_name,ci.city_name,t.township_name
+                //             from nursing_profiles as n  
+                //             left join townships as t on t.id = n.townships_id
+                //             left join cities as ci on ci.id = t.city_id
+                //             left join fac_types as f on f.id = n.fac_type 
+                //             left join special_features_junctions as spej on spej.profile_id = n.id  
+                //             left join special_features as spe on spe.id = spej.special_feature_id
+                //             left join acceptance_transactions as acct on acct.profile_id = n.id
+                //             left join medical_acceptance as med on med.id = acct.medical_acceptance_id 
+                //             where n.recordstatus=1
+                //             group by n.id ";
+            //  }
+        //   }
+        //   else
+        //   {
                 //to check if township is check or not 
                 $townshipID = $_GET['townshipID'];
                 if ($townshipID[0] == '0' && count($townshipID) == 1) //get param value of hospitalsearch.vue and if value is 0 and count =1 , this condition is "No Check"
@@ -285,8 +278,11 @@ class SearchMapController extends Controller
 
 
              
-
-                $query .= " and ci.id = ".$id;
+                if($id != -1)
+                {
+                    $query .= " and ci.id = ".$id;
+                }
+              
 
                 if($townshipID != 0 )
                 {
@@ -337,7 +333,7 @@ class SearchMapController extends Controller
 
 
                 $query .= " group by n.id";
-          }
+        //   }
 
 
             $nus_data = DB::select($query);
@@ -435,7 +431,7 @@ class SearchMapController extends Controller
 
     public function getHospitalSearch($searchword)
     {
-       
+    
         //for city
         $id = $_GET['id'];
         $townshipID = $_GET['townshipID'];
@@ -460,30 +456,34 @@ class SearchMapController extends Controller
                   left join special_features as spe on spe.id = spej.special_feature_id
                   left join subject_junctions as subj on subj.profile_id = h.id
                   left join subjects as sub on sub.id = subj.subject_id      
-                  where ";
+                  where h.recordstatus=1";
 
-        if($id == -1) 
-        {
-            if($searchword == "all")    
-            {
-                $query ="SELECT '' as fav_check, h.id as hos_id, h.*,ci.city_name,t.township_name
-                        from  hospital_profiles as h     
-                        left join townships as t on t.id = h.townships_id  
-                        left join cities as ci on ci.id = t.city_id
-                        left join special_features_junctions as spej on spej.profile_id = h.id 
-                        left join special_features as spe on spe.id = spej.special_feature_id
-                        left join subject_junctions as subj on subj.profile_id = h.id
-                        left join subjects as sub on sub.id = subj.subject_id
-                        group by h.id ";
-            }
-            else{
+        // if($id == -1) 
+        // {
+        //     if($searchword == "all")    
+        //     {
+                // $query ="SELECT '' as fav_check, h.id as hos_id, h.*,ci.city_name,t.township_name
+                //         from  hospital_profiles as h     
+                //         left join townships as t on t.id = h.townships_id  
+                //         left join cities as ci on ci.id = t.city_id
+                //         left join special_features_junctions as spej on spej.profile_id = h.id 
+                //         left join special_features as spe on spe.id = spej.special_feature_id
+                //         left join subject_junctions as subj on subj.profile_id = h.id
+                //         left join subjects as sub on sub.id = subj.subject_id
+                //         group by h.id ";
+            // }
+            // else{
+                if($searchword != 'null' && $searchword != 'all')
+                {
+                    $query .= " and (ci.city_name like '%" . $searchword . "%' or t.township_name like '%" . $searchword . "%' or h.name like '%".$searchword."%' or h.subject like '%".$searchword."%')";
+                }
 
-                $query .= " (ci.city_name like '%" . $searchword . "%' or t.township_name like '%" . $searchword . "%' or h.name like '%".$searchword."%' or h.subject like '%".$searchword."%') group by h.id";
-            }
+               
+            // }
            
-        }
-        else
-        {
+        // }
+        // else
+        // {
            
                //to check if township is check or not 
             if ($townshipID[0] == '0' && count($townshipID) == 1) //get param value of hospitalsearch.vue and if value is 0 and count =1 , this condition is "No Check"
@@ -519,45 +519,61 @@ class SearchMapController extends Controller
             } else {
                 $subjectID = implode(',', $subjectID); // this condition is when array[0] has no '0'
             }
-
+             
+            if($id != -1)
+            {
+                $query .= " and ci.id = " . $id ;
+            }
+            if($townshipID != '0')
+            {
+               $query .= " and  t.id in (" . $townshipID . ")";
+            }
+            if($specialfeatureID != '0')
+            {
+                $query .= " and spe.id in (" . $specialfeatureID . ")";
+            }
+            if($subjectID != '0')
+            {
+                $query .= " and sub.id in (" . $subjectID . ")";
+            }
       
                   
-            if ($townshipID == '0' && $specialfeatureID == '0' &&  $subjectID == '0') {
-                $query .= " ci.id = " . $id ;
+            // if ($townshipID == '0' && $specialfeatureID == '0' &&  $subjectID == '0') {
+            //     $query .= " ci.id = " . $id ;
 
-            } else if ($townshipID != '0' && $specialfeatureID == '0' &&  $subjectID == '0') {
-                $query .= "ci.id = " . $id . " and  t.id in (" . $townshipID . ")";
+            // } else if ($townshipID != '0' && $specialfeatureID == '0' &&  $subjectID == '0') {
+            //     $query .= "ci.id = " . $id . " and  t.id in (" . $townshipID . ")";
                 
-            } else if ($townshipID != '0' && $specialfeatureID != '0' &&  $subjectID == '0') {
-                $query .= "ci.id = " . $id . " and  t.id in (" . $townshipID . ") and spe.id in (" . $specialfeatureID . ")";
+            // } else if ($townshipID != '0' && $specialfeatureID != '0' &&  $subjectID == '0') {
+            //     $query .= "ci.id = " . $id . " and  t.id in (" . $townshipID . ") and spe.id in (" . $specialfeatureID . ")";
                 
-            } else if ($townshipID != '0' && $specialfeatureID == '0' &&  $subjectID != '0') {
-                $query .= "ci.id = " . $id . " and  t.id in (" . $townshipID . ") and sub.id in (" . $subjectID . ")";
+            // } else if ($townshipID != '0' && $specialfeatureID == '0' &&  $subjectID != '0') {
+            //     $query .= "ci.id = " . $id . " and  t.id in (" . $townshipID . ") and sub.id in (" . $subjectID . ")";
                 
-            } else if ($townshipID == '0' && $specialfeatureID != '0' &&  $subjectID == '0') {
-                $query .= "ci.id = " . $id . " and   spe.id in (" . $specialfeatureID . ")";
+            // } else if ($townshipID == '0' && $specialfeatureID != '0' &&  $subjectID == '0') {
+            //     $query .= "ci.id = " . $id . " and   spe.id in (" . $specialfeatureID . ")";
                 
-            } else if ($townshipID == '0' && $specialfeatureID == '0' &&  $subjectID != '0') {
-                $query .= "ci.id = " . $id . " and sub.id in (" . $subjectID . ")";
+            // } else if ($townshipID == '0' && $specialfeatureID == '0' &&  $subjectID != '0') {
+            //     $query .= "ci.id = " . $id . " and sub.id in (" . $subjectID . ")";
                 
-            } else if ($townshipID == '0' && $specialfeatureID != '0' &&  $subjectID != '0') {
-                $query .= "ci.id = " . $id . " and  spe.id in (" . $specialfeatureID . ")  and sub.id in (" . $subjectID . ")";
+            // } else if ($townshipID == '0' && $specialfeatureID != '0' &&  $subjectID != '0') {
+            //     $query .= "ci.id = " . $id . " and  spe.id in (" . $specialfeatureID . ")  and sub.id in (" . $subjectID . ")";
                 
-            } else if ($townshipID != '0' && $specialfeatureID != '0' &&  $subjectID != '0') {
-                $query .= "ci.id = " . $id . " and  t.id in (" . $townshipID . ") and spe.id in (" . $specialfeatureID . ")  and sub.id in (" . $subjectID . ")";
+            // } else if ($townshipID != '0' && $specialfeatureID != '0' &&  $subjectID != '0') {
+            //     $query .= "ci.id = " . $id . " and  t.id in (" . $townshipID . ") and spe.id in (" . $specialfeatureID . ")  and sub.id in (" . $subjectID . ")";
                 
-            }
+            // }
            
-            if($searchword != 'undefined')
-            {
+            // if($searchword != 'undefined')
+            // {
                
-                $query .= " and (ci.city_name like '%" . $searchword . "%' or t.township_name like '%" . $searchword . "%' or h.name like '%".$searchword."%' or h.subject like '%".$searchword."%')";
-            }
+            //     $query .= " and (ci.city_name like '%" . $searchword . "%' or t.township_name like '%" . $searchword . "%' or h.name like '%".$searchword."%' or h.subject like '%".$searchword."%')";
+            // }
            
             $query .=  " group by h.id";
         
            
-        }
+        // }
 
         
         $hos_data = DB::select($query);
