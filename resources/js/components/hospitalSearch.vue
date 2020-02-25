@@ -138,10 +138,11 @@
                                 </button> 
                                 <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 420" @click.stop="stopTheEvent">
                                   <li>
+                                 
                                   <a data-value="option">
                                       <div class="row">
                                       <div class="col-lg-2 col-md-4 col-sm-4" v-for="feature in special_features" :key="feature.id">
-                                          <!-- <label class="form-check-label" > -->
+                                        <!-- <label class="form-check-label" > -->
                                           <label class="form-check-label control control--checkbox">
                                           <input  class="form-check-input" type="checkbox" :id="feature.id" v-model="specialfeatureID" :value="feature.id" @click="features($event)" >
                                           {{feature.name}}
@@ -153,6 +154,7 @@
                                   </li>
                                 </ul>
                                 <a v-if="w_width >= 420">
+                                  
                                       <div class="row">
                                       <div class="col-lg-2 col-md-4 col-sm-4" v-for="feature in special_features" :key="feature.id">
                                           <!-- <label class="form-check-label" > -->
@@ -221,7 +223,7 @@
                             <td colspan="2" style="border:none;">
                             <button @click="ShowHide1" class="btn seemore-btn">
                                 <i class="fa" aria-hidden="true"></i>
-                                <span id="close2"><i class="fas fa-arrow-circle-up"></i> 閉じる</span>
+                                <span id="close2"><i class="fas fa-arrow-circle-up"></i> もっと見る</span>
                             </button>
                             </td>
                         </tr>
@@ -476,6 +478,7 @@ import bulcomponent from './bulcomponent.vue'
         //console.log('hello');
     },
     search(){
+        
         this.$loading(true);
         if(this.townshipID == null || this.townshipID == '')
         {
@@ -494,6 +497,9 @@ import bulcomponent from './bulcomponent.vue'
         {
 
             var search_word = $('#search-free-word').val();
+        }
+        else{
+          var search_word = 'null';
         }
         if(localStorage.getItem("hospital_fav") == null){
 
@@ -535,14 +541,29 @@ import bulcomponent from './bulcomponent.vue'
             this.norecord_msg = true;
         }
         })
-        this.ShowHide1();
+        // this.ShowHide1();
     },
     searchfreeword(){
+     
+     
         //clear all checkbox
         this.id = -1;
         this.townshipID = [];
         this.specialfeatureID = [];
         this.subjectID = [];
+
+        if(this.townshipID == null || this.townshipID == '')
+        {
+        this.townshipID[0] = 0;
+        }
+        if(this.specialfeatureID == null || this.specialfeatureID == '')
+        {
+        this.specialfeatureID[0] = 0;
+        }
+        if(this.subjectID == null || this.subjectID == '')
+        {
+        this.subjectID[0] = 0;
+        }
 
         if ($('#search-free-word').val() != '')
         {
@@ -564,11 +585,18 @@ import bulcomponent from './bulcomponent.vue'
 
         this.axios.get('api/gethospitalsearch/'+ search_word,{
         params:{
-            id: -1,
-            townshipID:-1,
-            specialfeatureID:-1,
-            subjectID:-1,
+            // id: -1,
+            // townshipID:-1,
+            // specialfeatureID:-1,
+            // subjectID:-1,
+            // local:this.locast
+           
+            id: this.id,
+            townshipID:this.townshipID,
+            specialfeatureID:this.specialfeatureID,
+            subjectID:this.subjectID,
             local:this.locast
+     
         },
         }).then((response)=>{
                 
@@ -592,10 +620,11 @@ import bulcomponent from './bulcomponent.vue'
                     }else{
                         this.norecord_msg = true;
                     }
-                 this.array_len = ((this.subjects.length)%3)==0?((this.subjects.length)/3):Math.floor(((this.subjects.length)/3)+1);
-                
-                this.ShowHide1();
+                  this.array_len = ((this.subjects.length)%3)==0?((this.subjects.length)/3):Math.floor(((this.subjects.length)/3)+1);
+                  // this.ShowHide1(); 
+              
             });
+         
         },
 
         favAddFun(status,index,ind){
@@ -674,7 +703,8 @@ import bulcomponent from './bulcomponent.vue'
         }
     },
     ShowHide1() {
-        this.toggleCheck_1 = !this.toggleCheck_1;
+   
+         this.toggleCheck_1 = !this.toggleCheck_1;
         $(".ShowHide1").toggle();
         if (this.toggleCheck_1 == true) {
             $('#close2').empty();
@@ -784,6 +814,7 @@ import bulcomponent from './bulcomponent.vue'
 
         document.getElementById('search-free-word').value = '';
         _this.search();
+        this.ShowHide1();
 
 
     },
