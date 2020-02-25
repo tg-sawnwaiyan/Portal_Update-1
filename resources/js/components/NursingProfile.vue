@@ -59,7 +59,7 @@
                                 </div>
                             </div>
                             <div class="row col-md-12 pad-free panorama panorama-box">
-                                <div class="col-sm-3 col-md-3 mt-2 gallery-area-panorama" v-bind:id="'x-panorama'+indx" v-for="(img,indx) in panorama_arr" :key="img.id">
+                                <div class="col-sm-3 col-md-2 mt-2 gallery-area-panorama" v-bind:id="'x-panorama'+indx" v-for="(img,indx) in panorama_arr" :key="img.id">
                                     <input type="hidden" class="already-panorama" v-model="img.photo">
                                     <span class='img-close-btn' v-on:click="DeleteArr(indx,'panorama',img.id,img.photo)">X</span>
                                     <img :src="'/upload/nursing_profile/Imagepanorama/'+ img.photo" class="img-fluid panorama-old-img" alt="profile" v-if="img.id!=null"  id="already-panorama">
@@ -1298,23 +1298,21 @@ export default {
 </script>
 
  <style>
-.panorama .col-md-3 {  
+.panorama .col-md-2 {  
     /* -webkit-box-flex: 0;   
     flex: 0 0 10% !important;  
     max-width: 10% !important; */
 }
        
 .panorama-old-img{   
-    height:80px; 
+    /* height:80px;  */
     /* width: 130px;     */
 } 
              
 .panorama-new-img{   
-    height:80px; 
-    /* width: 130px;  */
-    
+    /* height:80px;  */
+    /* width: 130px;  */    
 }  
-
 .quill-editor{ 
     background-color: #fff; 
 } 

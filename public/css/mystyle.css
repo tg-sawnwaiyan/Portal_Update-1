@@ -612,8 +612,8 @@ border: 1px solid #eee; */
 
 .img-close-btn {
     position: absolute;
-    top: 0px;
-    right: 0px;
+    /* top: 0px;
+    right: 0px; */
     font-weight: bold;
     cursor: pointer;
     border: 2px solid #aaa;
