@@ -517,16 +517,17 @@
                                                 <tr class="text-center">
                                                     <td colspan="2">
                                                         <button @click="showOne = !showOne" class="btn btn-link mt-2">
-                                                        <!-- <span v-show="showOne"><i class="fas fa-arrow-circle-up"></i>閉じる</span> -->
+                                                   
                                                         <button v-show="showOne" class="btn seemore-btn">
                                                         <i class="fa" aria-hidden="true"></i>
                                                             <span id="close4"><i class="fas fa-arrow-circle-up"></i> 閉じる</span>
                                                         </button>
-                                                        <!-- <span v-show="!showOne"><i class="fas fa-arrow-circle-down"></i>もっと見る</span> -->
+                                                   
                                                         <button v-show="!showOne" class="btn seemore-btn">
                                                         <i class="fa" aria-hidden="true"></i>
                                                             <span id="close4"><i class="fas fa-arrow-circle-down"></i> もっと見る</span>
                                                         </button>
+                                                        
                                                         </button>
                                                     </td>
                                                 </tr>
