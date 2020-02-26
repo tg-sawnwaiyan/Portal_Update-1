@@ -198,7 +198,7 @@
                                <a href="/"><i class="fa fa-eye" aria-hidden="true"></i> サイトを表示</a>
                             </li>
                             <li>
-                                <a href="#" @click.prevent="$auth.logout()"><i class="fa fa-lock"></i> ログアウト</a>
+                                <a href="#" @click.prevent="logout()"><i class="fa fa-lock"></i> ログアウト</a>
                             </li>
                         </ul>
                         <ul class="sidebar_brand" v-if="visit == 'true'">
@@ -218,7 +218,7 @@
                                 <a  @click="gotoDash()"><i class="fas fa-tachometer-alt"></i> 管理画面へ</a>
                             </li>
                             <li>
-                                <a href="#" @click.prevent="$auth.logout()"><i class="fa fa-lock"></i> ログアウト</a>
+                                <a href="#" @click.prevent="logout()"><i class="fa fa-lock"></i> ログアウト</a>
                             </li>
                             <li v-if="!$auth.check()">
                                 <router-link :to="{name: 'login'}" class="nav-link pad-free"><i class="fa fa-sign-in-alt"></i> 事業者 ログイン</router-link>
@@ -265,7 +265,7 @@
                                 <a  @click="gotoDash()"><i class="fas fa-tachometer-alt"></i> 管理画面へ</a>
                             </li>
                             <li class="menu-list_last">
-                                <a href="#" @click.prevent="$auth.logout()"><i class="fa fa-lock"></i> ログアウト</a>
+                                <a href="#" @click.prevent="logout()"><i class="fa fa-lock"></i> ログアウト</a>
                             </li>
                             <li v-if="!$auth.check()">
                                 <router-link :to="{name: 'login'}" class="nav-link pad-free"><i class="fa fa-sign-in-alt"></i> 事業者 ログイン</router-link>
@@ -432,6 +432,11 @@
                     this.isRotate = n;
                 }
                 this.isActive = n;
+        },
+        logout(){              
+            this.loginuser = 'false';
+            localStorage.setItem('loginuser', this.loginuser);
+            this.$auth.logout();
         }
     }
 }

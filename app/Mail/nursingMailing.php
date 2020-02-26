@@ -29,7 +29,7 @@ class nursingMailing extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.nursingMail')                    
+        return $this->view(['mail.nursingMail','mail.nursingMailplaintext'])                    
                     ->subject("[TIS ティーズ] 資料請求がありました");
                     // ->subject("TIS ティーズより資料請求がありました");
     }

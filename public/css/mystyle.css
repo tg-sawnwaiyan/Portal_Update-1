@@ -2998,6 +2998,12 @@ ul.sub-ul li {
     border: none !important;
     box-shadow: none !important;
 }
+.dropdown-arrow{
+    background-color: #fff !important;
+    color: #000 !important;
+    border: none !important;
+    box-shadow: none !important;
+}
 .bg-trans{
     background-color: transparent !important;
 }

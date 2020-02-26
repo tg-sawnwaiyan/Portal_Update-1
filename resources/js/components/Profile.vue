@@ -4,7 +4,7 @@
     <button @click="$router.go(-1)" v-if="login_person == 'admin' && visit == 'false'" class="btn btn-danger all-btn submit" style="float:right">戻る</button>
 
 
-    <!-- <span v-if="!loginuser || visit == 'true'">
+    <!-- <span v-if="loginuser=='false' || visit == 'true'">
       <h4 v-if="type == 'nursing'" class="public-nurheader" style="background:transparent;"><i class="fas fa-user-md"></i> ページ</h4>
       <h4 v-if="type == 'hospital'" class="public-hosheader" style="background:transparent;"><i class="fas fa-briefcase-medical"></i> ページ</h4>
     </span> -->
@@ -12,7 +12,7 @@
     <div>
 
       <ul class="nav nav-tabs" :class="type == 'nursing'? 'nursing-tabColor': 'hospital-tabColor'" role="tablist" id="profilenav" v-bind:style="{width:width}" >
-        <li role="presentation" class="subtab1 nav-item" v-if="loginuser">
+        <li role="presentation" class="subtab1 nav-item" v-if="loginuser=='true'">
           <label for="hospital" class="typelabel nav-link active" id="hospital-lbl">
             <i class="fa fa-edit"></i>
             <input type="radio" v-model="btntype" value="create" v-on:change="changeBtnType('hospital-lbl','nursing-lbl')" name="btntype" id="hospital" />
@@ -20,11 +20,11 @@
           </label>
         </li>
 
-        <li role="presentation" class="subtab2 nav-item" v-if="loginuser" >
+        <li role="presentation" class="subtab2 nav-item" v-if="loginuser=='true'" >
           <label for="nursing" class="typelabel nav-link" id="nursing-lbl">
             <input type="radio" v-model="btntype" value="view" v-on:change="changeBtnType('nursing-lbl','hospital-lbl')" name="btntype" id="nursing" />
             <span ><i class="fas fa-search" style="font-size:18px;"></i>&nbsp;プレビュー</span>
-            <!-- <span v-if="!loginuser"></span> -->
+            <!-- <span v-if="loginuser=='false'"></span> -->
           </label>
         </li>
 
@@ -115,7 +115,7 @@ export default {
   },
   methods: {
     loginView(response){   
-        this.loginuser = true;     
+        this.loginuser = 'true';     
         if(this.visit == 'false'){
             this.btntype = "create";
             // this.loginuser = true;
@@ -133,7 +133,7 @@ export default {
     },
     publicView(){
         this.btntype = "view";
-        this.loginuser = false;        
+        this.loginuser = 'false';        
         this.axios.get(`/api/profile_view/${this.pro_id}/${this.type}`).then(response => {
             localStorage.setItem("lat_num", response.data[0].latitude);
             localStorage.setItem("lng_num", response.data[0].longitude);            

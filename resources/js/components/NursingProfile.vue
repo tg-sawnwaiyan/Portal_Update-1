@@ -1,5 +1,4 @@
 <template>
-
     <div class="card profile m-t-22 " style="border:none;">
         <!-- <span style="position:fixed;right:50px;" class="btn secondary-bg-color all-btn" @click="createProfile()">作成</span> -->
         <form class="col-md-12 form-class pad-free-750">
@@ -131,7 +130,7 @@
                                                 <table class="table">
                                                     <tr>
                                                     <td colspan="2" class="text-right" style="border:none;!important">
-                                                        <span :class="'bg-trans btn drop-bg-color m-l-8 changeLinkpayment'+indx" style="min-width: 0px;" @click="mainToggle('payment',indx)">
+                                                        <span :class="'bg-trans btn dropdown-arrow m-l-8 changeLinkpayment'+indx" style="min-width: 0px;" @click="mainToggle('payment',indx)">
                                                             詳細 <i :id="'payment'+indx" v-bind:class="[payment.id != null? 'fas fa-sort-down animate rotate':'fas fa-sort-down']"></i>
                                                         </span>
                                                         <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,'payment')">
@@ -277,7 +276,7 @@
                     <tr>
                         <td style="border:none;">
                             <label class="heading-lbl col-md-2 col-12 pad-free">施設の概要</label>
-                            <span class="bg-trans btn drop-bg-color m-l-8 nursing_toggle_responsive" style="min-width: 0px;" @click="nurseFacToggleDiv()">詳細 <i class="fas fa-sort-down animate"  :class="{'rotate': isRotate1}"></i></span>
+                            <span class="bg-trans btn dropdown-arrow m-l-8 nursing_toggle_responsive" style="min-width: 0px;" @click="nurseFacToggleDiv()">詳細 <i class="fas fa-sort-down animate"  :class="{'rotate': isRotate1}"></i></span>
                             <!-- testtest -->
                             <div class="col-xl-10 col-md-12 col-12 pad-free float-right nurse-fac-toggle-div toggle-div m-t-10">
                                     <table class="table table-striped table-bordered nursing_table_title">
@@ -390,7 +389,7 @@
                                         <div class="col-md-12 m-t-30 m-b-20 gallery-area-cooperate" v-bind:id="'cooperated'+indx" v-for="(cooperate,indx) in cooperate_arr" :key="cooperate.id">
 
                                             <div class="clearfix" style="margin-bottom:30px;text-align:right">
-                                                <span :class="'bg-trans btn drop-bg-color m-l-8 changeLinkcooperate'+indx" style="min-width: 0px;" @click="mainToggle('cooperate',indx)">
+                                                <span :class="'bg-trans btn dropdown-arrow m-l-8 changeLinkcooperate'+indx" style="min-width: 0px;" @click="mainToggle('cooperate',indx)">
                                                         詳細 <i :id="'cooperate'+indx" class="fas fa-sort-down"></i>
                                                 </span>
                                                  <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,'cooperate')">
@@ -438,7 +437,7 @@
                         <td>
                             <div class="form-group">
                                 <label class="heading-lbl col-lg-2 col-md-3 pad-free">医療面の受入れ</label>
-                                <span class="bg-trans btn drop-bg-color m-l-8 nursing_toggle_responsive" style="min-width: 0px;" @click="acceptanceList()">詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate2}"></i></span>
+                                <span class="bg-trans btn dropdown-arrow m-l-8 nursing_toggle_responsive" style="min-width: 0px;" @click="acceptanceList()">詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate2}"></i></span>
                                 <div class="col-xl-10 col-md-12 float-right m-t-10 accept-toggle-div toggle-div pad-free">
                                     <label for="" class="m-r-15"><i class="fas fa-check green"></i> 受入れ可</label>
                                     <label for="" class="m-r-15"><i class="fas fa-times red"></i> 受入れ不可</label>
@@ -474,7 +473,7 @@
                     <tr>
                         <td>
                             <label class="heading-lbl col-md-2 col-12 pad-free">職員体制</label>
-                            <span class="bg-trans btn drop-bg-color m-l-8 nursing_toggle_responsive " style="min-width: 0px;" @click="staffToggleDiv()">詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate3}"></i></span>
+                            <span class="bg-trans btn dropdown-arrow m-l-8 nursing_toggle_responsive " style="min-width: 0px;" @click="staffToggleDiv()">詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate3}"></i></span>
 
                             <div class="col-xl-10 col-md-12 col-12 pad-free float-right staff-toggle-div toggle-div m-t-10">
                                 <table class="table table-striped table-bordered nursing_table_title">
@@ -519,7 +518,7 @@
                         <td>
                             <div class="form-group">
                                 <label  class="heading-lbl col-lg-2 col-md-3 pad-free">こだわりの特長</label>
-                                <span class="bg-trans btn drop-bg-color m-l-8 nursing_toggle_responsive" style="min-width: 0px;" @click="specialFeAdd()">詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate4}"></i></span>
+                                <span class="bg-trans btn dropdown-arrow m-l-8 nursing_toggle_responsive" style="min-width: 0px;" @click="specialFeAdd()">詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate4}"></i></span>
 
                                 <div class="col-xl-10 col-md-12 float-right special-feature-toggle-div toggle-div m-t-10">
                                     <div class="row">
@@ -545,7 +544,7 @@
                     <span class="galleryadd btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px" @click="galleryAdd()">
                         <i class="fas fa-plus-circle"></i> 追加
                     </span>
-                    <span class='changeLinkphoto bg-trans btn drop-bg-color m-l-8 nursing_toggle_responsive' style="min-width: 0px;" @click="mainToggle('photo',null)" >
+                    <span class='changeLinkphoto bg-trans btn dropdown-arrow m-l-8 nursing_toggle_responsive' style="min-width: 0px;" @click="mainToggle('photo',null)" >
                         詳細 <i id="photo" class="fas fa-sort-down"></i>
                     </span>
                     <div id="changeLinkphoto"  class="col-md-12">
@@ -578,7 +577,7 @@
                     <div class="form-group form-group-wrapper">
                             <label class="heading-lbl col-2 pad-free">動画</label> <span class="galleryvideo btn all-btn main-bg-color float-right nursing_add_responsive " style="min-width: 0px;" @click="galleryVideoAdd()">
                                     <i class="fas fa-plus-circle"></i> 追加</span>
-                                    <span class='changeLinkvideo  bg-trans btn drop-bg-color m-l-8 nursing_toggle_responsive ' style="min-width: 0px;" @click="mainToggle('video',null)">
+                                    <span class='changeLinkvideo  bg-trans btn dropdown-arrow m-l-8 nursing_toggle_responsive ' style="min-width: 0px;" @click="mainToggle('video',null)">
                                         詳細 <i id="video" class="fas fa-sort-down"></i>
                                    </span>
                             <div id="changeLinkvideo" class="col-md-12">
@@ -608,7 +607,7 @@
                     <tr>
                         <td>
                             <label class="heading-lbl col-2 pad-free">地図</label>
-                            <span class="bg-trans btn drop-bg-color m-l-8 nursing_toggle_responsive" style="min-width: 0px;" @click="maptogglediv()">詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
+                            <span class="bg-trans btn dropdown-arrow m-l-8 nursing_toggle_responsive" style="min-width: 0px;" @click="maptogglediv()">詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
                             <div class="col-xl-10 col-md-12 float-right m-t-10 map-toggle-div toggle-div pad-free">
                                 <div class="col-md-12">
                                     <div class="col-md-12 pad-free" id="mapbox">

@@ -348,9 +348,9 @@
                 this.getAllJobs(); 
                 this.axios.get('/api/user').then(response => {
                 this.pro_id = response.data.lat_lng[0].id;
-                this.loginuser = true;
+                this.loginuser = 'true';
                 }).catch((error) => {
-                    this.loginuser = false;
+                    this.loginuser = 'false';
                 })
 
                 // this.countJobapplylist(this.job_id);

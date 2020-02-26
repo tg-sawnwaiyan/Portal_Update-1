@@ -217,8 +217,9 @@
         //     }
         // })
         this.visit = 'true';
-        this.loginuser = false;
+        this.loginuser = 'false';
         localStorage.setItem('visit',this.visit);
+        localStorage.setItem('loginuser',this.loginuser);
         this.$router.push({name: 'Unauthorized'});
         }
         
@@ -239,6 +240,12 @@
         }
         else{
             localStorage.setItem('visit', this.visit);
+        }  
+        if(localStorage.getItem("loginuser")){
+            this.loginuser = localStorage.getItem("loginuser");       
+        }
+        else{
+            localStorage.setItem('loginuser', this.loginuser);
         }  
         if(localStorage.getItem("hospital_history")){
             // $("#hos-his-local").html(localStorage.getItem("hospital_history").split(",").length);
@@ -307,7 +314,8 @@
         },
         onItemClick(event, item){
             if(item.title == 'ログアウト'){
-                this.loginuser = false;
+                this.loginuser = 'false';
+                localStorage.setItem('loginuser', this.loginuser);
                 this.$auth.logout();
             }
         },
