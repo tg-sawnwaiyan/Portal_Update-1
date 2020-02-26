@@ -192,11 +192,11 @@
                                                                 <div class="wd-in">
                                                                     <p class="mb-2 clearfix"><span class="num-room">{{items.num_rooms}} </span><span class="float-right">{{items.date_of_establishment}}</span></p>
 
-                                                                    <p class="item-fav btn btn-sm" v-if="items.fav_check == ''" :class="'view_pro_id'+items.nursing_id" style="" @click="favAddFun('add',items.nursing_id,index);">
+                                                                    <p class="item-fav btn btn-sm" v-if="items.fav_check == '' && loginuser=='false'" :class="'view_pro_id'+items.nursing_id" style="" @click="favAddFun('add',items.nursing_id,index);">
                                                                         <i class="fas fa-plus-square" style="color:#c40000;"></i> お気に入りに追加 {{items.fav_check}}
                                                                     </p>
 
-                                                                    <p class="item-fav btn btn-sm" v-if="items.fav_check == 'check'" :class="'done_pro_id'+items.nursing_id" style="color:#aaa;" @click="favAddFun('remove',items.nursing_id,index);">
+                                                                    <p class="item-fav btn btn-sm" v-if="items.fav_check == 'check' && loginuser=='false'" :class="'done_pro_id'+items.nursing_id" style="color:#aaa;" @click="favAddFun('remove',items.nursing_id,index);">
                                                                         <i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み
                                                                     </p>
 
@@ -514,7 +514,7 @@
                                                         <!--end 医療面・診療科目から探す -->
                                                     </td>
                                                 </tr>
-                                                <tr class="text-center">
+                                                <!-- <tr class="text-center">
                                                     <td colspan="2">
                                                         <button @click="showOne = !showOne" class="btn btn-link mt-2">
                                                    
@@ -530,7 +530,7 @@
                                                         
                                                         </button>
                                                     </td>
-                                                </tr>
+                                                </tr> -->
                                                 <tr class="text-center">
                                                     <td colspan="2" style="border:none;">
                                                         <button class="main-bg-color create-btn all-btn col-lg-2 col-md-4 col-sm-2" id="search" @click="search"><i class="fas fa-search"></i>&nbsp; 検索 </button>
@@ -566,8 +566,8 @@
                                                     </div>
 
                                                     <div class="col-lg-3 col-sm-3 text-right pc-768">
-                                                    <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == ''" :class="'view_pro_id'+nus.nursing_id" style="display:block;" @click="favAddFun('add',nus.nursing_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
-                                                    <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == 'check'" :class="'done_pro_id'+nus.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',nus.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
+                                                    <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == '' && loginuser=='false'" :class="'view_pro_id'+nus.nursing_id" style="display:block;" @click="favAddFun('add',nus.nursing_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
+                                                    <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == 'check' && loginuser=='false'" :class="'done_pro_id'+nus.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',nus.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -646,8 +646,8 @@
                                                     </div>
                                                     <div class="col-md-6 col-sm-12 m-t-10">
                                                         <p class="sp-768">
-                                                            <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == ''" :class="'view_pro_id'+nus.nursing_id" style="display:block;" @click="favAddFun('add',nus.nursing_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
-                                                            <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == 'check'" :class="'done_pro_id'+nus.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',nus.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
+                                                            <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == '' && loginuser=='false'" :class="'view_pro_id'+nus.nursing_id" style="display:block;" @click="favAddFun('add',nus.nursing_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
+                                                            <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == 'check' && loginuser=='false'" :class="'done_pro_id'+nus.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',nus.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                                                         </p>
                                                     </div>
                                                 </div>
@@ -944,10 +944,14 @@
 
                 this.axios.get('/api/getnursingsearch/'+search_word,{
                 params:{
-                id: -1 ,
-                township_id:-1,
-                Moving_in:-1,
-                Per_month:-1,
+                // id: -1 ,
+                // township_id:-1,
+                // Moving_in:-1,
+                // Per_month:-1,
+                id: this.id,
+                townshipID:this.townshipID,
+                Moving_in:this.moving_in,
+                Per_month:this.per_month,
                 local:this.locast,
                 townshipID:this.townshipID,
                 SpecialFeatureID:this.SpecialFeatureID,
@@ -1536,8 +1540,8 @@
                     this.township_id = -1;
                 }
 
-                this.moving_in = -1;
-                this.per_month = -1;
+                // this.moving_in = -1;
+                // this.per_month = -1;
 
                 if ($('#search-free-word').val() != '')
                 {

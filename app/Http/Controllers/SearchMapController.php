@@ -335,7 +335,7 @@ class SearchMapController extends Controller
                 $query .= " group by n.id";
         //   }
 
-
+ 
             $nus_data = DB::select($query);
         
            
