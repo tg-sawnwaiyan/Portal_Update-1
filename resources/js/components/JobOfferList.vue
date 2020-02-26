@@ -105,8 +105,11 @@
                                         </div>
                                     </div>
                                     <div class="col-3  text-right">
-                                        <button :class="'btn btn all-btn main-bg-color changeLink'+job.id"  @click="jobToggle(job.id)">
-                                        <i :id="'icon' + job.id" class="fa fa-angle-down"></i> 詳細</button>
+                                        <!-- <button :class="'btn drop-bg-color changeLink'+job.id"  @click="jobToggle(job.id)">
+                                        <i :id="'icon' + job.id" class="fas fa-sort-down animate rotate"></i> 詳細</button> -->
+                                        <p class="float-right">応募者数:
+                                            <span class="text-orange"><span class="job_count">{{job.count}}件</span></span>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -120,9 +123,11 @@
                                         </div>
                                     </div>
                                     <div class=" col-6">
-                                        <p class="float-right">応募者数:
+                                        <button :class="'btn drop-bg-color changeLink'+job.id"  @click="jobToggle(job.id)">
+                                        詳細 <i :id="'icon' + job.id" class="fas fa-sort-down animate rotate"></i></button>
+                                        <!-- <p class="float-right">応募者数:
                                             <span class="text-orange"><span class="job_count">{{job.count}}件</span></span>
-                                        </p>
+                                        </p> -->
                                     </div>
                                 </div>
                                 
@@ -348,9 +353,9 @@
                 this.getAllJobs(); 
                 this.axios.get('/api/user').then(response => {
                 this.pro_id = response.data.lat_lng[0].id;
-                this.loginuser = true;
+                this.loginuser = 'true';
                 }).catch((error) => {
-                    this.loginuser = false;
+                    this.loginuser = 'false';
                 })
 
                 // this.countJobapplylist(this.job_id);
@@ -374,8 +379,8 @@
                 jobToggle(id) {
                     console.log(id);
                         var class_by_id = $('#icon' + id).attr('class');
-                        if (class_by_id == "fa fa-angle-down") {
-                            $('#icon' + id).removeClass("fa fa-angle-down");
+                        if (class_by_id == "fas fa-sort-down animate rotate") {
+                            $('#icon' + id).removeClass("fas fa-sort-down animate rotate");
                             $('.changeLink' + id).removeClass("fa fa-angle-up");
                             $('#icon' + id).addClass("fa fa-angle-up");
                             $('#changeLink' + id).show('medium');
@@ -383,7 +388,7 @@
 
                             $('#icon' + id).removeClass("fa fa-angle-up");
                             $('.changeLink' + id).removeClass("fa fa-angle-up");
-                            $('#icon' + id).addClass("fa fa-angle-down");
+                            $('#icon' + id).addClass("fas fa-sort-down animate rotate");
                             $('#changeLink' + id).hide('medium');
                         }
 

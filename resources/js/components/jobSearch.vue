@@ -451,9 +451,9 @@ export default {
 
         this.axios.get('/api/user').then(response => {
                 this.pro_id = response.data.lat_lng[0].id;
-                this.loginuser = true;
+                this.loginuser = 'true';
                 }).catch((error) => {
-                    this.loginuser = false;
+                    this.loginuser = 'false';
                 });
         this.open = !this.initOpen
 
@@ -508,6 +508,9 @@ export default {
 
           var search_word = $('#search-free-word').val();
         }
+        else{
+          var search_word = 'null';
+        }
 
         this.axios.get('api/getjobsearch/'+search_word,{
 
@@ -521,7 +524,7 @@ export default {
             this.job_data = response.data.job;
             this.occupations = response.data.occupations;
             this.array_len = ((this.occupations.length)%3)==0?((this.occupations.length)/3):Math.floor(((this.occupations.length)/3)+1);
-            console.log("this.occupations",this.occupations);
+           
          
           if(this.job_data.length > 0)
           {
@@ -553,6 +556,19 @@ export default {
             this.occupationID = [];
             this.empstatus = [];
 
+            if(this.townshipID == null || this.townshipID == '')
+            {
+              this.townshipID[0] = 0;
+            }
+            if(this.occupationID == null || this.occupationID == '')
+            {
+              this.occupationID[0] = 0;
+            }
+            if(this.empstatus == null || this.empstatus == '')
+            {
+              this.empstatus[0] = 0;
+            }
+
             if ($('#search-free-word').val() != '')
             { 
                
@@ -566,10 +582,14 @@ export default {
 
             this.axios.get('api/getjobsearch/'+ search_word,{
                params:{
-                    id: -1,
-                    townshipID:-1,
-                    occupationID:-1,
-                    empstatus:-1
+                    // id: -1,
+                    // townshipID:-1,
+                    // occupationID:-1,
+                    // empstatus:-1
+                    id: this.id,
+                    townshipID:this.townshipID,
+                    occupationID:this.occupationID,
+                    empstatus:this.empstatus
 
                 },
             })

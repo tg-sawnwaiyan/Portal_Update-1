@@ -184,8 +184,9 @@
             success: function() {
               this.$loading(false);
               this.visit = 'false';
-              this.loginuser = true;
+              this.loginuser = 'true';
               localStorage.setItem('visit', this.visit);
+              localStorage.setItem('loginuser', this.loginuser);
               // handle redirection
               const redirectTo = this.$auth.user().role === 2 ? 'news_list' : '/'
               this.$router.push({name: redirectTo})
@@ -207,7 +208,9 @@
             success: function() {
               this.$loading(false);
               this.visit = 'false';
+              this.loginuser = 'true';
               localStorage.setItem('visit', this.visit);
+              localStorage.setItem('loginuser', this.loginuser);
               // handle redirection
               const redirectTo = this.$auth.user().role === 1 ? (this.$auth.user().type_id == 2 ? '/accountlist/hospital/'+ this.$auth.user().customer_id : '/accountlist/nursing/'+ this.$auth.user().customer_id ) : '/news_list'
               this.$router.push({path: redirectTo})

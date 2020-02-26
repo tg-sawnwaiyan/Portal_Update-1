@@ -24,8 +24,8 @@
                                         </div>
                                     </div>
                                     <div class="col-3  text-right">
-                                        <button :class="'btn btn all-btn main-bg-color changeLink'+jobapply.id"  @click="applicatnToggle(jobapply.id)">
-                                        <i :id="'icon' + jobapply.id" class="fa fa-angle-down"></i> 詳細</button>
+                                        <button :class="'btn btn drop-bg-color changeLink'+jobapply.id"  @click="applicatnToggle(jobapply.id)">
+                                        詳細 <i :id="'icon' + jobapply.id" class="fas fa-sort-down animate rotate"></i></button>
                                     </div>
                                 </div>
                                 <p><span class="text-primary">名:</span>{{jobapply.last_name}}
@@ -185,8 +185,8 @@ export default {
                   applicatnToggle(id) {
                     console.log(id);
                         var class_by_id = $('#icon' + id).attr('class');
-                        if (class_by_id == "fa fa-angle-down") {
-                            $('#icon' + id).removeClass("fa fa-angle-down");
+                        if (class_by_id == "fas fa-sort-down animate rotate") {
+                            $('#icon' + id).removeClass("fas fa-sort-down animate rotate");
                             $('.changeLink' + id).removeClass("fa fa-angle-up");
                             $('#icon' + id).addClass("fa fa-angle-up");
                             $('#changeLink' + id).show('medium');
@@ -194,7 +194,7 @@ export default {
 
                             $('#icon' + id).removeClass("fa fa-angle-up");
                             $('.changeLink' + id).removeClass("fa fa-angle-up");
-                            $('#icon' + id).addClass("fa fa-angle-down");
+                            $('#icon' + id).addClass("fas fa-sort-down animate rotate");
                             $('#changeLink' + id).hide('medium');
                         }
 
