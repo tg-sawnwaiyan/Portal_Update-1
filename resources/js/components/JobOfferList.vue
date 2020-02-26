@@ -82,7 +82,7 @@
                                                     <router-link :to="{name: 'joboffercreate', params:{id:job.id}}" class="btn edit-borderbtn">編集</router-link>
                                                 </li>
                                                 <li>
-                                                    <router-link :to="{name: 'jobapplicantlist', params:{id:job.id,title:job.title}}" class="btn confirm-borderbtn confirmed">求人応募一覧ページへ</router-link>
+                                                    <router-link :to="{path: '/jobapplicantlist/'+job.id, params:{title:job.title}}" class="btn confirm-borderbtn confirmed">求人応募一覧ページへ</router-link>
                                                 </li>
                                                 <!-- <li><a class="btn text-success active-borderbtn">Disabled</a></li> -->
                                                 <li><a class="btn text-danger delete-borderbtn" @click="deleteJob(job.id)">削除</a></li>
@@ -105,8 +105,11 @@
                                         </div>
                                     </div>
                                     <div class="col-3  text-right">
-                                        <button :class="'btn btn all-btn main-bg-color changeLink'+job.id"  @click="jobToggle(job.id)">
-                                        <i :id="'icon' + job.id" class="fa fa-angle-down"></i> 詳細</button>
+                                        <!-- <button :class="'btn drop-bg-color changeLink'+job.id"  @click="jobToggle(job.id)">
+                                        <i :id="'icon' + job.id" class="fas fa-sort-down animate rotate"></i> 詳細</button> -->
+                                        <p class="float-right">応募者数:
+                                            <span class="text-orange"><span class="job_count">{{job.count}}件</span></span>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -120,9 +123,11 @@
                                         </div>
                                     </div>
                                     <div class=" col-6">
-                                        <p class="float-right">応募者数:
+                                        <button :class="'btn drop-bg-color changeLink'+job.id"  @click="jobToggle(job.id)">
+                                        詳細 <i :id="'icon' + job.id" class="fas fa-sort-down animate rotate"></i></button>
+                                        <!-- <p class="float-right">応募者数:
                                             <span class="text-orange"><span class="job_count">{{job.count}}件</span></span>
-                                        </p>
+                                        </p> -->
                                     </div>
                                 </div>
                                 
@@ -159,7 +164,7 @@
                                         </li>                           
                                         <li><a class="btn text-danger delete-borderbtn" @click="deleteJob(job.id)">削除</a></li>
                                         <li class="mt-2" v-if="job.count">
-                                            <router-link :to="{name: 'jobapplicantlist', params:{id:job.id,title:job.title}}" class="btn confirm-borderbtn confirmed">求人応募一覧ページへ</router-link>
+                                            <router-link :to="{path: '/jobapplicantlist/'+job.id, params:{title:job.title}}" class="btn confirm-borderbtn confirmed">求人応募一覧ページへ</router-link>
                                         </li>
                                     </ul>
                                 </div>
@@ -374,16 +379,16 @@
                 jobToggle(id) {
                     console.log(id);
                         var class_by_id = $('#icon' + id).attr('class');
-                        if (class_by_id == "fa fa-angle-down") {
-                            $('#icon' + id).removeClass("fa fa-angle-down");
-                            $('.changeLink' + id).removeClass("fa fa-angle-up");
-                            $('#icon' + id).addClass("fa fa-angle-up");
+                        if (class_by_id == "fas fa-sort-down animate rotate") {
+                            $('#icon' + id).removeClass("fas fa-sort-down animate rotate");
+                            $('.changeLink' + id).removeClass("fas fa-sort-down animate");
+                            $('#icon' + id).addClass("fas fa-sort-down animate");
                             $('#changeLink' + id).show('medium');
                         } else {
 
-                            $('#icon' + id).removeClass("fa fa-angle-up");
-                            $('.changeLink' + id).removeClass("fa fa-angle-up");
-                            $('#icon' + id).addClass("fa fa-angle-down");
+                            $('#icon' + id).removeClass("fas fa-sort-down animate");
+                            $('.changeLink' + id).removeClass("fas fa-sort-down animate");
+                            $('#icon' + id).addClass("fas fa-sort-down animate rotate");
                             $('#changeLink' + id).hide('medium');
                         }
 

@@ -68,9 +68,9 @@
                                 </div>
 
                                 <div class="col-3 text-right">
-                                    <!-- <button class="'btn btn all-btn main-bg-color changeLink'+payment.id" type="button" @click="commentToggle(comment.id)"><span  :id="'icon' + comment.id"  class="fa fa-angle-down"></span></button> -->
-                                    <button :class="'btn btn all-btn main-bg-color changeLink'+comment.id" style="min-width: 65px;font-size:13px;" @click="commentToggle(comment.id)">
-                                        <i :id="'icon' + comment.id" class="fa fa-angle-down"></i> 詳細</button>
+                                    <!-- <button class="'btn btn all-btn main-bg-color changeLink'+payment.id" type="button" @click="commentToggle(comment.id)"><span  :id="'icon' + comment.id"  class="fas fa-sort-down animate rotate"></span></button> -->
+                                    <button :class="'btn drop-bg-color changeLink'+comment.id" style="min-width: 65px;font-size:13px;" @click="commentToggle(comment.id)">
+                                         詳細 <i :id="'icon' + comment.id" class="fas fa-sort-down animate rotate"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -318,16 +318,16 @@
                     },
                     commentToggle(id) {
                         var class_by_id = $('#icon' + id).attr('class');
-                        if (class_by_id == "fa fa-angle-down") {
-                            $('#icon' + id).removeClass("fa fa-angle-down");
-                            $('.changeLink' + id).removeClass("fa fa-angle-up");
-                            $('#icon' + id).addClass("fa fa-angle-up");
+                        if (class_by_id == "fas fa-sort-down animate rotate") {
+                            $('#icon' + id).removeClass("fas fa-sort-down animate rotate");
+                            $('.changeLink' + id).removeClass("fas fa-sort-down animate");
+                            $('#icon' + id).addClass("fas fa-sort-down animate");
                             $('#changeLink' + id).show('medium');
                         } else {
 
-                            $('#icon' + id).removeClass("fa fa-angle-up");
-                            $('.changeLink' + id).removeClass("fa fa-angle-up");
-                            $('#icon' + id).addClass("fa fa-angle-down");
+                            $('#icon' + id).removeClass("fas fa-sort-down animate");
+                            $('.changeLink' + id).removeClass("fas fa-sort-down animate");
+                            $('#icon' + id).addClass("fas fa-sort-down animate rotate");
                             $('#changeLink' + id).hide('medium');
                         }
 
