@@ -57,7 +57,7 @@
                                         <span class="email">({{hospitalprofiles.email}})</span>
                                         </div>
                                         <div class="card-read-more">
-                                             <router-link :to="{ path:'/profile/hospital/'+ hospitalprofiles.id}" class="btn btn-success" style="font-weight:bold;">Edit</router-link>
+                                             <router-link :to="{ path:'/profile/hospital/'+ hospitalprofiles.id}" class="btn btn-success" style="font-weight:bold;">編集</router-link>
                                         </div>
                                     </div>
                                 </div>
