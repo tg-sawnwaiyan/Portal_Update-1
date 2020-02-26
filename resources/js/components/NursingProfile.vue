@@ -27,12 +27,11 @@
                                 <input type="text" class="form-control customer-email col-md-10 col-12 nursing_input" id="btn" v-model="nursing_info.email" placeholder="メールアドレスを入力してください。">
                             </div>
                             <div class="form-group form-group-wrapper d-flex">
-                                <label class="heading-lbl col-md-2 col-12 pad-free">電話番号</label>
-                                <div class="col-md-10 col-12 p-0">
-                                    <input type="text" class="form-control customer-phone  nursing_input" id="phone" placeholder="電話番号を入力してください。" v-model="nursing_info.phone" v-on:keyup="isNumberOnly" pattern="[0-9-]*" @focusout="focusPhone" title="Please enter number only." maxlength="14">
-                                    <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>
-                                    <span class="error" v-else></span>
-                                </div>
+                                <label class="heading-lbl col-md-2 col-12 pad-free">電話番号</label>                                
+                                <input type="text" class="form-control customer-phone col-md-10 col-12 nursing_input" id="phone" placeholder="電話番号を入力してください。" v-model="nursing_info.phone" v-on:keyup="isNumberOnly" pattern="[0-9-]*" @focusout="focusPhone" title="Please enter number only." maxlength="14">
+                                <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>
+                                <span class="error" v-else></span>
+                               
                             </div>
                         </div>
                     </div>
@@ -121,9 +120,11 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="heading-lbl col-lg-2 col-md-3 pad-free">タイプ</label>
-                                <div class="col-lg-10 col-md-12 float-right pad-free nursing-m-b-15">
+                                <label class="heading-lbl col-2 col-lg-2 col-md-3 pad-free">タイプ</label>
+                                <div class="col-10 col-lg-10 float-right p-0">
                                     <span class="nusing_btn1 btn all-btn main-bg-color" style="min-width: 0px;" @click="methodAdd(this)"><i class="fas fa-plus-circle"></i>&nbsp;追加</span>
+                                </div>
+                                <div class="col-lg-10 col-md-12 float-right pad-free nursing-m-b-15">                                    
                                     <div class="col-md-12 pad-free nursing-gallery" id="gallery-payment">
                                         <div class="pad-free col-md-12 gallery-area-payment" v-bind:id="'payments'+indx" v-for="(payment,indx) in payment_arr" :key="payment.id">
                                             <div class="col-md-12">
@@ -152,25 +153,25 @@
                                                         <h3 class="title-lbl">料金概要</h3>
                                                         <table class="table">
                                                             <tr>
-                                                            <th class="nursing_title_lbl">入居時にかかる費用</th>
+                                                            <th class="nursing_title_lbl font-weight-bold">入居時にかかる費用</th>
                                                             <th class="nursing_title_lbl">
                                                                 <input type="text" name="exp[]" class="form-control col-mdexpense-moving white-bg-color" v-model="payment.expense_moving">
                                                             </th>
                                                             </tr>
                                                             <tr>
-                                                            <th class="nursing_title_lbl">居室タイプ</th>
+                                                            <th class="nursing_title_lbl font-weight-bold">居室タイプ</th>
                                                             <th class="nursing_title_lbl">
                                                                 <input type="text" name="exp[]" class="form-control living-room-type white-bg-color" v-model="payment.living_room_type">
                                                             </th>
                                                             </tr>
                                                             <tr>
-                                                            <th class="nursing_title_lbl">月額利用料</th>
+                                                            <th class="nursing_title_lbl font-weight-bold">月額利用料</th>
                                                             <th class="nursing_title_lbl">
                                                                     <input type="text" name="exp[]" class="form-control monthly-fees white-bg-color" v-model="payment.monthly_fees">
                                                             </th>
                                                             </tr>
                                                             <tr>
-                                                            <th class="nursing_title_lbl">広さ</th>
+                                                            <th class="nursing_title_lbl font-weight-bold">広さ</th>
                                                             <th class="nursing_title_lbl">
                                                                     <input type="text" name="exp[]" class="form-control area white-bg-color" v-model="payment.area">
                                                             </th>
@@ -187,13 +188,13 @@
                                                         <th>&nbsp;</th>
                                                         </tr>
                                                         <tr>
-                                                        <th class="nursing_title_lbl">入居一時金または敷金</th>
+                                                        <th class="nursing_title_lbl font-weight-bold">入居一時金または敷金</th>
                                                         <th class="nursing_title_lbl">
                                                             <input type="text" name="breakdown[]" class="form-control deposit white-bg-color" v-model="payment.deposit">
                                                         </th>
                                                         </tr>
                                                         <tr>
-                                                        <th class="nursing_title_lbl">その他（使途）</th>
+                                                        <th class="nursing_title_lbl font-weight-bold">その他（使途）</th>
                                                         <th class="nursing_title_lbl">
                                                                 <input type="text" name="breakdown[]" class="form-control other-use white-bg-color" v-model="payment.other_use">
                                                         </th>
@@ -202,31 +203,31 @@
                                                         <th class="title-lbl"><span>月額費用</span></th><th>&nbsp;</th>
                                                         </tr>
                                                         <tr>
-                                                        <th class="nursing_title_lbl">賃料</th>
+                                                        <th class="nursing_title_lbl font-weight-bold">賃料</th>
                                                         <th class="nursing_title_lbl">
                                                             <input type="text" name="breakdown[]" class="form-control rent white-bg-color" v-model="payment.rent">
                                                         </th>
                                                         </tr>
                                                         <tr>
-                                                        <th class="nursing_title_lbl">管理費</th>
+                                                        <th class="nursing_title_lbl font-weight-bold">管理費</th>
                                                         <th class="nursing_title_lbl">
                                                             <input type="text" name="breakdown[]" class="form-control admin-expense white-bg-color" v-model="payment.admin_expense">
                                                         </th>
                                                         </tr>
                                                         <tr>
-                                                        <th class="nursing_title_lbl">食費</th>
+                                                        <th class="nursing_title_lbl font-weight-bold">食費</th>
                                                         <th class="nursing_title_lbl">
                                                             <input type="text" name="breakdown[]" class="form-control food-expense white-bg-color" v-model="payment.food_expense">
                                                         </th>
                                                         </tr>
                                                         <tr>
-                                                        <th class="nursing_title_lbl">介護上乗せ金（生活サービス費）</th>
+                                                        <th class="nursing_title_lbl font-weight-bold">介護上乗せ金（生活サービス費）</th>
                                                         <th class="nursing_title_lbl">
                                                                 <input type="text" name="breakdown[]" class="form-control nurse-care-surcharge white-bg-color" v-model="payment.nurse_care_surcharge">
                                                         </th>
                                                         </tr>
                                                         <tr>
-                                                        <th class="nursing_title_lbl">その他</th>
+                                                        <th class="nursing_title_lbl font-weight-bold">その他</th>
                                                         <th class="nursing_title_lbl">
                                                             <input type="text" name="breakdown[]" class="form-control other-monthly-cost white-bg-color" v-model="payment.other_monthly_cost">
                                                         </th>
@@ -236,25 +237,25 @@
                                                         <th>&nbsp;</th>
                                                         </tr>
                                                         <tr>
-                                                        <th class="nursing_title_lbl">返還制度</th>
+                                                        <th class="nursing_title_lbl font-weight-bold">返還制度</th>
                                                         <th class="nursing_title_lbl">
                                                                 <input type="text" name="breakdown[]" class="form-control refund-system white-bg-color" v-model="payment.refund_system">
                                                         </th>
                                                         </tr>
                                                         <tr>
-                                                        <th class="nursing_title_lbl">償却期間</th>
+                                                        <th class="nursing_title_lbl font-weight-bold">償却期間</th>
                                                         <th class="nursing_title_lbl">
                                                             <input type="text" name="breakdown[]" class="form-control depreciation-period white-bg-color" v-model="payment.depreciation_period">
                                                         </th>
                                                         </tr>
                                                         <tr>
-                                                        <th class="nursing_title_lbl">初期償却</th>
+                                                        <th class="nursing_title_lbl font-weight-bold">初期償却</th>
                                                         <th class="nursing_title_lbl">
                                                             <input type="text" name="breakdown[]" class="form-control initial-deprecration white-bg-color" v-model="payment.initial_deprecration">
                                                         </th>
                                                         </tr>
                                                         <tr>
-                                                        <th class="nursing_title_lbl">その他メッセージ</th>
+                                                        <th class="nursing_title_lbl font-weight-bold">その他メッセージ</th>
                                                         <th class="nursing_title_lbl">
                                                             <input type="text" name="breakdown[]" class="form-control other-message-refund white-bg-color" v-model="payment.other_message_refund">
                                                         </th>
@@ -386,7 +387,7 @@
 
                                     <div class="col-md-12 pad-free" id="gallery-cooperate">
                                         <!-- cooperation -->
-                                        <div class="col-md-12 m-t-30 m-b-20 gallery-area-cooperate" v-bind:id="'cooperated'+indx" v-for="(cooperate,indx) in cooperate_arr" :key="cooperate.id">
+                                        <div class="col-md-12 m-t-30 m-b-20 gallery-area-cooperate p-0" v-bind:id="'cooperated'+indx" v-for="(cooperate,indx) in cooperate_arr" :key="cooperate.id">
 
                                             <div class="clearfix" style="margin-bottom:30px;text-align:right">
                                                 <span :class="'bg-trans btn dropdown-arrow m-l-8 changeLinkcooperate'+indx" style="min-width: 0px;" @click="mainToggle('cooperate',indx)">
@@ -609,7 +610,7 @@
                             <label class="heading-lbl col-2 pad-free">地図</label>
                             <span class="bg-trans btn dropdown-arrow m-l-8 nursing_toggle_responsive" style="min-width: 0px;" @click="maptogglediv()">詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
                             <div class="col-xl-10 col-md-12 float-right m-t-10 map-toggle-div toggle-div pad-free">
-                                <div class="col-md-12">
+                                <div class="col-md-12 p-0">
                                     <div class="col-md-12 pad-free" id="mapbox">
                                         <GoogleMap :address="address_show" :township="nursing_info.townships_id" :city="city_id" :township_list="township_list" :lat_num='nursing_info.latitude' :lng_num='nursing_info.longitude'></GoogleMap>
                                     </div>
