@@ -81,7 +81,7 @@
                 </div>
             </div>
             <div id="sp_adminheader" v-if="visit == 'false'">
-                <div class="admin_menu"  @click="toggle" >
+                <div class="admin_menu"  @click="toggle('sub')" >
                     <span>メニュー</span>&nbsp;<i :class="!isNav? open : close"></i>
                 </div>
                 <div class="overlay_wrap"  v-if="isNav" v-on:click="isNav = !isNav">
@@ -97,22 +97,19 @@
                                管理者画面
                             </li>                            
                             <li v-if="$auth.check(1)" @click="toggle">
-                                <router-link :to="{ name: 'profiledit' }"><i class="fa fa-map"></i>  プロファイル設定</router-link>
+                                <router-link :to="{ path: `/profiledit/${this.$auth.user().type_id == 2 ? 'hospital/': 'nursing/'}${this.$auth.user().customer_id}` }"><i class="fa fa-map"></i>  プロファイル設定</router-link>
                             </li>
                             <li v-if="$auth.check(1)" @click="toggle">
-                                <router-link :to="{ name: 'accountlist' }"><i class="fa fa-user"></i>  施設一覧</router-link>
-                            </li>
-                            <li v-if="$auth.check(1)" @click="toggle">
-                                <router-link :to="{ name: 'profile' }"><i class="fa fa-map"></i>  マイページ編集</router-link>
+                                <router-link :to="{ path: `/accountlist/${this.$auth.user().type_id == 2 ? 'hospital/': 'nursing/'}${this.$auth.user().customer_id}` }"><i class="fa fa-user"></i>  施設一覧</router-link>
                             </li>
                             <li v-if="$auth.check(1)">
                                 <span @click="subMenu(0)" :class="{ active : isActive == 0 }"><i class="fas fa-users"></i>  求人 <i class="fas fa-angle-right" :class="{ down : isRotate == 0 }"></i></span>
                                 <transition name="slideup">
                                     <ul class="sub_menu" v-show="isSubmenu[0].show">
-                                        <li @click="toggle">
+                                        <li @click="toggle('sub')">
                                             <router-link :to="{ name: 'jobofferlist' }"><i class="fa fa-edit"></i>  求人編集</router-link>
                                         </li>
-                                        <li @click="toggle">
+                                        <li @click="toggle('sub')">
                                             <router-link :to="{ name: 'jobapplicantlist' }"><i class="fa fa-tasks"></i>  求人応募者一覧</router-link>
                                         </li>
                                     </ul>
@@ -128,13 +125,13 @@
                                 <span @click="subMenu(1)" :class="{ active : isActive == 1 }"><i class="fa fa-list-ul"></i>  ニュース <i class="fas fa-angle-right" :class="{ down : isRotate == 1 }"></i></span>
                                 <transition name="slideup">
                                     <ul class="sub_menu" v-show="isSubmenu[1].show">
-                                        <li  @click="toggle">
+                                        <li  @click="toggle('sub')">
                                             <router-link :to="{ name: 'news_list' }" ><i class="fa fa-file-alt"></i>  ニュース一覧</router-link>
                                         </li>
-                                        <li @click="toggle">
+                                        <li @click="toggle('sub')">
                                             <router-link :to="{ name: 'categorylist' }"><i class="fa fa-file-alt"></i>  カテゴリー設定</router-link>
                                         </li>
-                                        <li @click="toggle">
+                                        <li @click="toggle('sub')">
                                             <router-link :to="{ name: 'ads' }"><i class="fa fa-globe"></i>  広告</router-link>
                                         </li>
                                     </ul>
@@ -144,13 +141,13 @@
                                 <span @click="subMenu(2)" :class="{ active : isActive == 2 }"><i class="fa fa-user-md"></i>  介護施設 <i class="fas fa-angle-right" :class="{ down : isRotate == 2 }"></i></span>
                                 <transition name="slideup">
                                     <ul class="sub_menu" v-show="isSubmenu[2].show">
-                                        <li @click="toggle">
+                                        <li @click="toggle('sub')">
                                             <router-link :to="{ name: 'nuscustomerlist' }"><i class="fa fa-user"></i>  事業者一覧</router-link>
                                         </li>
-                                        <li @click="toggle">
+                                        <li @click="toggle('sub')">
                                             <router-link :to="{ name: 'nusfeaturelist' }"><i class="fa fa-file-alt"></i>  特徴設定</router-link>
                                         </li>
-                                        <li @click="toggle">
+                                        <li @click="toggle('sub')">
                                             <router-link :to="{ name: 'nuscommentlist' }"><i class="fa fa-list"></i>  コメント一覧</router-link>
                                         </li>
                                     </ul>
@@ -160,19 +157,19 @@
                                 <span @click="subMenu(3)" :class="{ active : isActive == 3 }"><i class="fas fa-briefcase-medical"></i>  病院 <i class="fas fa-angle-right" :class="{ down : isRotate == 3 }"></i></span>
                                 <transition name="slideup">
                                     <ul class="sub_menu" v-show="isSubmenu[3].show">
-                                        <li @click="toggle">
+                                        <li @click="toggle('sub')">
                                             <router-link :to="{ name: 'hoscustomerlist' }"><i class="fa fa-user"></i>  事業者一覧</router-link>
                                         </li>
-                                        <li @click="toggle">
+                                        <li @click="toggle('sub')">
                                             <router-link :to="{ name: 'facilitieslist' }"><i class="fa fa-sun"></i>  院内施設設定</router-link>
                                         </li>
-                                        <li @click="toggle">
+                                        <li @click="toggle('sub')">
                                             <router-link :to="{ name: 'hosfeaturelist' }"><i class="fa fa-list"></i>  特徴設定</router-link>
                                         </li>
-                                        <li @click="toggle">
+                                        <li @click="toggle('sub')">
                                             <router-link :to="{ name: 'subjectlist' }"><i class="fa fa-list"></i>  診療科目設定</router-link>
                                         </li>
-                                        <li @click="toggle">
+                                        <li @click="toggle('sub')">
                                             <router-link :to="{ name: 'hoscommentlist' }"><i class="fa fa-list"></i>  コメント一覧</router-link>
                                         </li>
                                     </ul>
@@ -182,13 +179,13 @@
                                 <span @click="subMenu(4)" :class="{ active : isActive == 4 }"><i class="fas fa-users"></i>  求人 <i class="fas fa-angle-right" :class="{ down : isRotate == 4 }"></i></span>
                                 <transition name="slideup">
                                     <ul class="sub_menu" v-show="isSubmenu[4].show">
-                                        <li @click="toggle">
+                                        <li @click="toggle('sub')">
                                             <router-link :to="{ name: 'occupationlist' }"><i class="fa fa-suitcase"></i>  求人職種設定</router-link>
                                         </li>
-                                        <li @click="toggle">
+                                        <li @click="toggle('sub')">
                                             <router-link :to="{ name: 'jobofferlist' }"><i class="fa fa-edit"></i>  求人編集</router-link>
                                         </li>
-                                        <li @click="toggle">
+                                        <li @click="toggle('sub')">
                                             <router-link :to="{ name: 'jobapplicantlist' }"><i class="fa fa-tasks"></i>  求人応募者一覧</router-link>
                                         </li>
                                     </ul>
@@ -386,18 +383,21 @@
         main_header : 'main-header',
         admin_header :'admin-header',
         container : 'container',
-        isSubmenu : [{show:true},{show:false},{show:false},{show:false},{show:false}],
-        isActive: 0,
-        isRotate : 0,
+        // isSubmenu : [{show:false},{show:false},{show:false},{show:false},{show:false}],
+        isSubmenu : localStorage.getItem("isSubmenu")? JSON.parse(localStorage.getItem("isSubmenu")):[{show:false},{show:false},{show:false},{show:false},{show:false}],
+        isActive: localStorage.getItem("isActive")? Number(localStorage.getItem("isActive")):null,
+        isRotate : localStorage.getItem("isRotate")? Number(localStorage.getItem("isRotate")):null,
       }
     },
 
     mounted() {
-        console.log("auth menu "+this.$auth.check())
-        console.log("auth visit "+this.visit)
+        console.log("or issubmenu",this.isSubmenu)
+        if(localStorage.getItem("isSubmenu")){
+            console.log("issubmenu",JSON.parse(localStorage.getItem("isSubmenu")))
+            // console.log("issubmenu",[JSON.parse(localStorage.getItem("isSubmenu"))])
+        }
         if(localStorage.getItem("visit")){
             this.visit = localStorage.getItem("visit");
-            console.log(this.visit)
         }
         else{
             if(this.$auth.check()){
@@ -416,22 +416,35 @@
             const redirectTo = this.$auth.user().role === 1 ? (this.$auth.user().type_id == 2 ? '/accountlist/hospital/'+ this.$auth.user().customer_id : '/accountlist/nursing/'+ this.$auth.user().customer_id ) : '/news_list'
             this.$router.push({path: redirectTo})
         },
-         toggle() {
+         toggle(para = null) {    
+            if(para != 'sub'){
+                this.isRotate = null;
+                this.isActive = null;
+                for(var i = 0; i < 5; i++) { 
+                    this.isSubmenu[i].show = false;              
+                }
+                localStorage.removeItem('isSubmenu');
+                localStorage.removeItem('isRotate');
+                localStorage.removeItem('isActive');
+            }       
             this.isNav = !this.isNav;
             // $(".content-all").css ({"opacity": "0.9","background":"#000015"});
         },
          subMenu: function (n) {   
-                 if(this.isSubmenu[n].show){
-                     this.isSubmenu[n].show = false;  
-                     this.isRotate = null;
-                 }else{
-                     for(var i = 0; i < 5; i++) { 
-                        this.isSubmenu[i].show = false;              
-                    }
-                    this.isSubmenu[n].show = true; 
-                    this.isRotate = n;
+            if(this.isSubmenu[n].show){
+                this.isSubmenu[n].show = false;  
+                this.isRotate = null;
+            }else{
+                for(var i = 0; i < 5; i++) { 
+                    this.isSubmenu[i].show = false;              
                 }
-                this.isActive = n;
+                this.isSubmenu[n].show = true; 
+                this.isRotate = n;
+            }
+            this.isActive = n;
+            localStorage.setItem('isSubmenu', JSON.stringify(this.isSubmenu));
+            localStorage.setItem('isRotate', this.isRotate);
+            localStorage.setItem('isActive', this.isActive);
         },
         logout(){              
             this.loginuser = 'false';

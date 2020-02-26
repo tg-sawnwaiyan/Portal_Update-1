@@ -20,17 +20,17 @@
                 </div>
                 <div class="col-lg-8 col-md-8">
                     <div class="form-group form-group-wrapper d-flex">
-                        <label class="heading-lbl col-md-2 col-12 pad-free">施設名称 <span class="error">*</span></label>
+                        <label class="heading-lbl col-md-2 col-12 pad-free">施設名称 <span class="error sp2">必須</span></label>
                         <input type="text" class="form-control customer-name col-md-10 col-12 nursing_input" placeholder="施設名称を入力してください。" v-model="hospital_info.name">
                     </div>
 
                     <div class="form-group form-group-wrapper d-flex">
-                            <label class="heading-lbl col-md-2 col-12 pad-free">メールアドレス <span class="error">*</span></label>
+                            <label class="heading-lbl col-md-2 col-12 pad-free">メールアドレス <span class="error sp2">必須</span></label>
                             <!-- <label class="col-md-10 col-12 customer-email"> {{hospital_info.email}} </label> -->
                             <input type="text" class="form-control customer-email col-md-10 col-12 nursing_input" placeholder="email" v-model="hospital_info.email">
                     </div>
                     <div class="form-group form-group-wrapper d-flex">
-                            <label class="heading-lbl col-md-2 col-12 pad-free">電話番号 <span class="error">*</span></label>
+                            <label class="heading-lbl col-md-2 col-12 pad-free">電話番号 </label>
                             <div class="col-md-10 col-12 row">
                                 <input type="text" class="form-control customer-phone col-md-10 col-12 nursing_input" id="phone" placeholder="Phone" v-model="hospital_info.phone" pattern="[0-9-]*"  @focusout="focusPhone"  maxlength="14" title="Please enter number only.">
                                 <!-- v-on:keyup="isNumberOnly" -->
@@ -104,11 +104,7 @@
         <div class="form-group form-group-wrapper row ml-0 mr-0">
 
             <label class="heading-lbl col-2 pad-free">
-
                 専門医
-
-                <span class="error sp2">必須</span>
-
             </label>
 
             <textarea name="specialist" class="form-control col-md-10 col-12 hos-768 specialist white-bg-color" v-model="hospital_info.specialist" ></textarea>
@@ -116,7 +112,7 @@
 
         <table class="table table-bordered table-wrapper">
             <tr>
-                <th class="nursing_table" style="border:none;"> <label class="heading-lbl hos_lbl pad-free">医院からのお知らせ <span class="error sp2">必須</span></label></th>
+                <th class="nursing_table" style="border:none;"> <label class="heading-lbl hos_lbl pad-free">医院からのお知らせ </label></th>
                 <td class="nursing_table1" style="border:none;">
                         <!-- <textarea name="feature" id="" cols="30" rows="10" ></textarea> -->
                         <quill-editor  ref="myQuilEditor" name="detailsinfo" class="details-info" @change="onDetailInfoEditorChange($event)" v-model="hospital_info.details_info" :options="editorOption"/>
@@ -853,11 +849,7 @@
               <div class="form-group">
 
                 <label class="heading-lbl hos_lbl1  col-2 pad-free ">
-
                   こだわりの特長
-
-                  <span class="error sp2">必須</span>
-
                 </label>
 
                 <span
@@ -1222,7 +1214,7 @@
                             <!-- <GoogleMap :address="hospital_info.address" :lat_num='35.6803997' :lng_num='139.76901739' v-if="hospital_info.latitude == 0"></GoogleMap> -->
 
                             <div class="form-group">
-                                <label>交通 / アクセス <span class="error sp2">必須</span></label>
+                                <label>交通 / アクセス</label>
                                 <!-- <textarea name="address" rows="10" class="form-control"></textarea> -->
                                 <quill-editor  ref="myQuilEditor" name="address" :options="editorOption" class="transporation-access" @change="onAccessEditorChange($event)" v-model="hospital_info.access"/>
                             </div>
