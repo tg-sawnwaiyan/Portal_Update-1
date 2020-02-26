@@ -187,13 +187,13 @@ export default {
                         var class_by_id = $('#icon' + id).attr('class');
                         if (class_by_id == "fas fa-sort-down animate rotate") {
                             $('#icon' + id).removeClass("fas fa-sort-down animate rotate");
-                            $('.changeLink' + id).removeClass("fa fa-angle-up");
-                            $('#icon' + id).addClass("fa fa-angle-up");
+                            $('.changeLink' + id).removeClass("fas fa-sort-down animate");
+                            $('#icon' + id).addClass("fas fa-sort-down animate");
                             $('#changeLink' + id).show('medium');
                         } else {
 
-                            $('#icon' + id).removeClass("fa fa-angle-up");
-                            $('.changeLink' + id).removeClass("fa fa-angle-up");
+                            $('#icon' + id).removeClass("fas fa-sort-down animate");
+                            $('.changeLink' + id).removeClass("fas fa-sort-down animate");
                             $('#icon' + id).addClass("fas fa-sort-down animate rotate");
                             $('#changeLink' + id).hide('medium');
                         }
