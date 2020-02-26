@@ -367,6 +367,9 @@ span:hover::before {
 
 
 /* Nursing & Hospital Profile */
+.displayFlex{
+    display: flex;
+}
 
 .heading-lbl {
     font-weight: bold;
@@ -10456,7 +10459,9 @@ padding: 0;
         width: 100%;
         border: 1px solid;
     }
-    
+    .displayFlex{
+        display: block;
+    }
     /*End  profile publish */
     /* job details */
     .job_id {
