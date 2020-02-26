@@ -210,7 +210,7 @@
                                                         <tr>
                                                             <td  v-for="items in nus_data" @mouseover="mouseover(items.alphabet)" @mouseleave="mouseleave(items.alphabet)" :id="items.alphabet" :key="items.nursing_id">
                                                                 <div class="wd-in">
-                                                                    <span class="type-name">{{items.type_name}}</span>
+                                                                    <span class="type-name" v-if="items.type_name">{{items.type_name}} </span>
 
                                                                     <div class="row m-t-10 m-b-10">
                                                                         <div class="col-5 col-lg-5 col-sm-6" style="padding-top:3px;">
@@ -1539,17 +1539,22 @@
 
                     this.township_id = -1;
                 }
+           
 
                 // this.moving_in = -1;
                 // this.per_month = -1;
-
-                if ($('#search-free-word').val() != '')
-                {
-                    this.id = -1;
-                    var search_word = $('#search-free-word').val();
+               
+             
+                // if ($('#search-free-word').val() != '')
+                // {
+                    // this.id = -1;
+                //     var search_word = $('#search-free-word').val();
                   
-                }
-
+                // }
+               
+               
+              
+                 var  search_word= 'null';
 
                 if(localStorage.getItem("nursing_fav") == null){
 
@@ -1559,9 +1564,8 @@
                     this.locast = localStorage.getItem("nursing_fav");
                 }
 
-                this.searchword = '';
-                var  search_word= 'null';
- 
+                 this.searchword = '';
+      
                  this.axios.get('api/getnursingsearch/'+search_word,{
               
                 params:{
