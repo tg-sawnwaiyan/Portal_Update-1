@@ -7,7 +7,6 @@
                     <span v-if="nus_data.length && ci && searchword != 'all' && searchword != '' && MoveID ==0  && SpecialFeatureID == 0 && FacTypeID == 0 && MedicalAcceptanceID == 0 && township_id == -1 && moving_in == -1  && per_month == -1" >「<span class="result-span">{{searchword}}</span>の介護施設 <span class="result-span">{{nus_data.length}}</span> 件」</span>
                     <span v-if="nus_data.length && searchword == 'all' && MoveID == 0 && SpecialFeatureID == 0 && FacTypeID == 0 && MedicalAcceptanceID == 0 && township_id == -1 && moving_in == -1  && per_month == -1">「<span class="result-span">全国</span>の介護施設 <span class="result-span">{{nus_data.length}}</span> 件」</span>
                     <span v-if="nus_data.length && ( MoveID != 0 || SpecialFeatureID != 0 || FacTypeID != 0 || MedicalAcceptanceID != 0 || township_id != -1 || moving_in != -1  || per_month != -1 )">「介護施設 <span class="result-span">{{nus_data.length}}</span> 件」</span>
-                   
                 </h5>   
             </div>
             <div class="search-map"  @mouseover="getStateHover">
