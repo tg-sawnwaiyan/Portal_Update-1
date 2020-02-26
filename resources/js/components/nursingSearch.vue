@@ -3,11 +3,12 @@
         <div>
             <div class="col-md-12" style="border-bottom: 1px dashed #ff9563;padding-bottom: 10px; margin-bottom: 20px;">
                 <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#ff9563;"></i>&nbsp;地図検索 
-                <span v-if="nus_data.length && !ci">「<span class="result-span">{{nus_data[0].city_name}}</span>の介護施設 <span class="result-span">{{nus_data.length}}</span> 件」</span>
-                <span v-if="nus_data.length && ci && searchword != 'all' && searchword != ''">「<span class="result-span">{{searchword}}</span>の介護施設 <span class="result-span">{{nus_data.length}}</span> 件」</span>
-                <span v-if="nus_data.length && searchword == 'all'">「<span class="result-span">全国</span>の介護施設 <span class="result-span">{{nus_data.length}}</span> 件」</span>
-                <!-- <h1 v-if="nus_data.length && searchword != 'all'"> 老人ホームを{{searchword}}から探す  {{nus_data.length}}</h1> -->
-                </h5>
+                    <span v-if="nus_data.length && !ci &&  MoveID == 0 &&  SpecialFeatureID ==0  && FacTypeID == 0 && MedicalAcceptanceID == 0 && township_id == -1 && moving_in == -1  && per_month == -1">「<span class="result-span">{{nus_data[0].city_name}}</span>の介護施設 <span class="result-span">{{nus_data.length}}</span> 件」</span>
+                    <span v-if="nus_data.length && ci && searchword != 'all' && searchword != '' && MoveID ==0  && SpecialFeatureID == 0 && FacTypeID == 0 && MedicalAcceptanceID == 0 && township_id == -1 && moving_in == -1  && per_month == -1" >「<span class="result-span">{{searchword}}</span>の介護施設 <span class="result-span">{{nus_data.length}}</span> 件」</span>
+                    <span v-if="nus_data.length && searchword == 'all' && MoveID == 0 && SpecialFeatureID == 0 && FacTypeID == 0 && MedicalAcceptanceID == 0 && township_id == -1 && moving_in == -1  && per_month == -1">「<span class="result-span">全国</span>の介護施設 <span class="result-span">{{nus_data.length}}</span> 件」</span>
+                    <span v-if="nus_data.length && ( MoveID != 0 || SpecialFeatureID != 0 || FacTypeID != 0 || MedicalAcceptanceID != 0 || township_id != -1 || moving_in != -1  || per_month != -1 )">「介護施設 <span class="result-span">{{nus_data.length}}</span> 件」</span>
+                    <span v-if="nus_data.length == 0 && count == true ">「介護施設 <span class="result-span"> 0 </span> 件」</span>
+                </h5>   
             </div>
             <div class="search-map"  @mouseover="getStateHover">
                 <div class="row" id="hos">
@@ -163,17 +164,9 @@
                             </section>
                             <!-- nursing list -->
                             <div id="nursing-search" >
-                                <span v-if="norecord_msg">
-                                    <div class="container-fuid m-t-20">
-                                        <p class="nosearch-icon">
-                                            <svg x="0px" y="0px" width="30" height="30" viewBox="0 0 172 172" style=" fill:red;"><g transform=""><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><path d="M0,172v-172h172v172z" fill="none"></path><path d="M3.44,168.56v-165.12h165.12v165.12z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><path d="M0,172v-172h172v172z" fill="none"></path><path d="M3.44,168.56v-165.12h165.12v165.12z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><g fill="#666666"><path d="M74.53333,17.2c-31.59643,0 -57.33333,25.73692 -57.33333,57.33333c0,31.59641 25.7369,57.33333 57.33333,57.33333c13.73998,0 26.35834,-4.87915 36.24766,-12.97839l34.23203,34.23203c1.43802,1.49778 3.5734,2.10113 5.5826,1.57735c2.0092,-0.52378 3.57826,-2.09284 4.10204,-4.10204c0.52378,-2.0092 -0.07957,-4.14458 -1.57735,-5.5826l-34.23203,-34.23203c8.09923,-9.88932 12.97839,-22.50768 12.97839,-36.24766c0,-31.59641 -25.7369,-57.33333 -57.33333,-57.33333zM74.53333,28.66667c25.39939,0 45.86667,20.46729 45.86667,45.86667c0,25.39937 -20.46728,45.86667 -45.86667,45.86667c-25.39939,0 -45.86667,-20.46729 -45.86667,-45.86667c0,-25.39937 20.46728,-45.86667 45.86667,-45.86667zM91.67734,51.52161c-1.51229,0.03575 -2.94918,0.66766 -3.99765,1.75807l-13.14636,13.14636l-13.14636,-13.14636c-1.07942,-1.10959 -2.56162,-1.73559 -4.10963,-1.73568c-2.33303,0.00061 -4.43306,1.41473 -5.31096,3.57628c-0.8779,2.16155 -0.3586,4.6395 1.31331,6.26669l13.14636,13.14636l-13.14636,13.14636c-1.49777,1.43802 -2.10111,3.5734 -1.57733,5.58259c0.52378,2.0092 2.09283,3.57825 4.10203,4.10203c2.0092,0.52378 4.14457,-0.07956 5.58259,-1.57733l13.14636,-13.14636l13.14636,13.14636c1.43802,1.49778 3.5734,2.10113 5.5826,1.57735c2.0092,-0.52378 3.57826,-2.09284 4.10204,-4.10204c0.52378,-2.0092 -0.07957,-4.14458 -1.57735,-5.5826l-13.14636,-13.14636l13.14636,-13.14636c1.70419,-1.63875 2.22781,-4.1555 1.31865,-6.33798c-0.90916,-2.18248 -3.06468,-3.58317 -5.42829,-3.52739z"></path></g></g></g></svg>
-                                        </p>
-                                        <p class="nosearch-data">お探しの条件に合う施設・物件は見つかりませんでした。</p>
-                                        <p class="nosearch">条件を変更を行うと該当施設が増える可能性がございますので、再度ご検索ください。</p>
-                                    </div>
-                                </span>
-                                <div class="row" v-if="nus_data.length > 0">
-                                    <div class="card-carousel-wrapper col-12">
+                               
+                                <div class="row" >
+                                    <div class="card-carousel-wrapper col-12" v-if="nus_data.length > 0">
                                         <div class="nav-box" @click="moveCarousel(-1)" :disabled="atHeadOfList">
                                         <div class="nav-content mr-2">
                                             <div class="card-carousel--nav__left"></div>
@@ -331,6 +324,7 @@
                                                 </tr> -->
                                                 <!-- ------------- -->
                                                 <tr>
+                                                   
                                                     <th class="pc-414-table sp-768-block" v-if="showOne" style="padding:10px;">入居時の条件</th>
                                                     <td class="sp-768-block sp-414-table" v-if="showOne">
                                                         <!--入居時の条件から探す-->
@@ -540,6 +534,15 @@
                                         </table>
                                     </div>
                                 </div>
+                                 <span v-if="norecord_msg">
+                                    <div class="container-fuid m-t-20">
+                                        <p class="nosearch-icon">
+                                            <svg x="0px" y="0px" width="30" height="30" viewBox="0 0 172 172" style=" fill:red;"><g transform=""><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><path d="M0,172v-172h172v172z" fill="none"></path><path d="M3.44,168.56v-165.12h165.12v165.12z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><path d="M0,172v-172h172v172z" fill="none"></path><path d="M3.44,168.56v-165.12h165.12v165.12z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><g fill="#666666"><path d="M74.53333,17.2c-31.59643,0 -57.33333,25.73692 -57.33333,57.33333c0,31.59641 25.7369,57.33333 57.33333,57.33333c13.73998,0 26.35834,-4.87915 36.24766,-12.97839l34.23203,34.23203c1.43802,1.49778 3.5734,2.10113 5.5826,1.57735c2.0092,-0.52378 3.57826,-2.09284 4.10204,-4.10204c0.52378,-2.0092 -0.07957,-4.14458 -1.57735,-5.5826l-34.23203,-34.23203c8.09923,-9.88932 12.97839,-22.50768 12.97839,-36.24766c0,-31.59641 -25.7369,-57.33333 -57.33333,-57.33333zM74.53333,28.66667c25.39939,0 45.86667,20.46729 45.86667,45.86667c0,25.39937 -20.46728,45.86667 -45.86667,45.86667c-25.39939,0 -45.86667,-20.46729 -45.86667,-45.86667c0,-25.39937 20.46728,-45.86667 45.86667,-45.86667zM91.67734,51.52161c-1.51229,0.03575 -2.94918,0.66766 -3.99765,1.75807l-13.14636,13.14636l-13.14636,-13.14636c-1.07942,-1.10959 -2.56162,-1.73559 -4.10963,-1.73568c-2.33303,0.00061 -4.43306,1.41473 -5.31096,3.57628c-0.8779,2.16155 -0.3586,4.6395 1.31331,6.26669l13.14636,13.14636l-13.14636,13.14636c-1.49777,1.43802 -2.10111,3.5734 -1.57733,5.58259c0.52378,2.0092 2.09283,3.57825 4.10203,4.10203c2.0092,0.52378 4.14457,-0.07956 5.58259,-1.57733l13.14636,-13.14636l13.14636,13.14636c1.43802,1.49778 3.5734,2.10113 5.5826,1.57735c2.0092,-0.52378 3.57826,-2.09284 4.10204,-4.10204c0.52378,-2.0092 -0.07957,-4.14458 -1.57735,-5.5826l-13.14636,-13.14636l13.14636,-13.14636c1.70419,-1.63875 2.22781,-4.1555 1.31865,-6.33798c-0.90916,-2.18248 -3.06468,-3.58317 -5.42829,-3.52739z"></path></g></g></g></svg>
+                                        </p>
+                                        <p class="nosearch-data">お探しの条件に合う施設・物件は見つかりませんでした。</p>
+                                        <p class="nosearch">条件を変更を行うと該当施設が増える可能性がございますので、再度ご検索ください。</p>
+                                    </div>
+                                </span>
                             </div>
                             <!--end search list-->
 
@@ -774,7 +777,8 @@
                 citynewArray:[],
                 boundsval: 'no marker',
                 searchword:'',
-                index:''
+                index:'',
+                count:false,
             }
         },
 
@@ -879,16 +883,17 @@
             searchfreeword(){
            
                 this.ci = true;
+                this.count = true;
                 //clear all drop down
                 this.id = -1;
                 this.township_id = -1;
                 this.moving_in = -1;
                 this.per_month = -1;
 
-                if(this.townshipID == null || this.townshipID == '')
-                {
-                this.townshipID[0] = 0;
-                }
+                // if(this.townshipID == null || this.townshipID == '')
+                // {
+                // this.townshipID[0] = 0;
+                // }
                 if(this.SpecialFeatureID == null || this.SpecialFeatureID == '')
                 {
                 this.SpecialFeatureID[0] = 0;
@@ -949,11 +954,11 @@
                 // Moving_in:-1,
                 // Per_month:-1,
                 id: this.id,
-                townshipID:this.townshipID,
+                townshipID:this.township_id,
                 Moving_in:this.moving_in,
                 Per_month:this.per_month,
                 local:this.locast,
-                townshipID:this.townshipID,
+                // townshipID:this.townshipID,
                 SpecialFeatureID:this.SpecialFeatureID,
                 MedicalAcceptanceID:this.MedicalAcceptanceID,
                 FacTypeID:this.FacTypeID,
@@ -995,6 +1000,7 @@
                 this.infoBoxOpen = false;
             },
             showSearchMap() {
+                this.count = false;
                 //clear all checkbox
                 this.id = [];
                 this.townshipID = [];
@@ -1031,6 +1037,7 @@
 //  google map  function start========================================
 
             parentGetStateClick(e,parentVue) {
+                 this.count = true;
                
                 var _this = parentVue;
                 $("#mymap").css({'display' : 'block','height' : '400px','width':'100%'});
@@ -1071,7 +1078,13 @@
                     moving_in:-1,
                     per_month:-1,
                     local:_this.locast,
-                    feature:'nursing'
+                    feature:'nursing',
+                    SpecialFeatureID:[0],
+                    MedicalAcceptanceID:[0],
+                    FacTypeID:[0],
+                    MoveID:[0],
+
+                   
                     },
                 })
                     .then((response) => {
@@ -1090,7 +1103,7 @@
             // map onclick function
 
             // make infowindow, marker , google map
-            changeMap(response,freewordornot){
+            changeMap(response,freewordornot){ 
               
                 if(this.id == -1 && freewordornot == 2)
                 {
@@ -1114,6 +1127,7 @@
                     this.norecord_msg = false;
                 }else{
                     this.norecord_msg = true;
+                   
                 }
                 if(this.nus_data.length > this.size) {
                   this.show_paginate = true;
@@ -1173,6 +1187,7 @@
                 }
             },
             nursingSearchData(id){
+               
 
                 this.searchword = '';
                 this.loading = true;
@@ -1188,11 +1203,28 @@
                 this.townshipID[0] = this.township_id;
                 }
 
+                 if(this.SpecialFeatureID == null || this.SpecialFeatureID == '')
+                {
+                this.SpecialFeatureID[0] = 0;
+                }
+                if(this.MedicalAcceptanceID == null || this.MedicalAcceptanceID == '')
+                {
+                this.MedicalAcceptanceID[0] = 0;
+                }
+                if(this.FacTypeID == null || this.FacTypeID == '')
+                {
+                this.FacTypeID[0] = 0;
+                }
+                if(this.MoveID == null || this.MoveID == '')
+                {
+                this.MoveID[0] = 0;
+                }
+
                 //if change dropdown , clear array
-                this.MoveID = [];
-                this.MedicalAcceptanceID = [];
-                this.FacTypeID = [];
-                this.SpecialFeatureID = [];
+                // this.MoveID = [];
+                // this.MedicalAcceptanceID = [];
+                // this.FacTypeID = [];
+                // this.SpecialFeatureID = [];
                 this.onchangeid = 1;
                 if(localStorage.getItem("nursing_fav") == null){
                     this.locast = 0;
@@ -1208,12 +1240,18 @@
                     moving_in:this.moving_in,
                     per_month:this.per_month,
                     local:this.locast,
-                    feature:'nursing'
+                    feature:'nursing',
+                    SpecialFeatureID:this.SpecialFeatureID,
+                    MedicalAcceptanceID:this.MedicalAcceptanceID,
+                    FacTypeID:this.FacTypeID,
+                    MoveID:this.MoveID,
+
                     },
 
                 })
                 .then((response) => {
                     this.changeMap(response,2)
+                  
                 })
             },
 
@@ -1503,11 +1541,13 @@
             },
 
             search(){
+              
 
-                if(this.townshipID == null || this.townshipID == '')
-                {
-                this.townshipID[0] = 0;
-                }
+                // if(this.townshipID == null || this.townshipID == '')
+                // {
+                // this.townshipID[0] = 0;
+                // }
+                
                 if(this.SpecialFeatureID == null || this.SpecialFeatureID == '')
                 {
                 this.SpecialFeatureID[0] = 0;
@@ -1524,21 +1564,21 @@
                 {
                 this.MoveID[0] = 0;
                 }
-                if(this.onchangeid == 1)
-                {
-                    if(this.township_id == -1)
-                    {
-                        this.townshipID[0] = 0;
-                    }
-                    else{
-                        this.townshipID[0] = this.township_id;
-                        this.township_id = -1;
-                    }
-                }
-                else{
+                // if(this.onchangeid == 1)
+                // {
+                //     if(this.township_id == -1)
+                //     {
+                //         this.townshipID[0] = 0;
+                //     }
+                //     else{
+                //         this.townshipID[0] = this.township_id;
+                //         this.township_id = -1;
+                //     }
+                // }
+                // else{
 
-                    this.township_id = -1;
-                }
+                //     this.township_id = -1;
+                // }
            
 
                 // this.moving_in = -1;
@@ -1570,7 +1610,8 @@
               
                 params:{
                     id: this.id,
-                    townshipID:this.townshipID,
+                    townshipID:this.township_id,
+                    // townshipID:this.townshipID,
                     SpecialFeatureID:this.SpecialFeatureID,
                     MedicalAcceptanceID:this.MedicalAcceptanceID,
                     FacTypeID:this.FacTypeID,
@@ -1758,12 +1799,29 @@
             },
 
             ChangeTownship(){
+                alert(this.SpecialFeatureID);
                 this.townshipID = [];
                 if(localStorage.getItem("nursing_fav") == null){
                     this.locast = 0;
                 }
                 else{
                     this.locast = localStorage.getItem("nursing_fav");
+                }
+                 if(this.SpecialFeatureID == null || this.SpecialFeatureID == '')
+                {
+                this.SpecialFeatureID[0] = 0;
+                }
+                if(this.MedicalAcceptanceID == null || this.MedicalAcceptanceID == '')
+                {
+                this.MedicalAcceptanceID[0] = 0;
+                }
+                if(this.FacTypeID == null || this.FacTypeID == '')
+                {
+                this.FacTypeID[0] = 0;
+                }
+                if(this.MoveID == null || this.MoveID == '')
+                {
+                this.MoveID[0] = 0;
                 }
 
                 this.axios.get('api/getmap',{
@@ -1773,7 +1831,14 @@
                         moving_in:-1,
                         per_month:-1,
                         local:this.locast,
-                        feature:'nursing'
+                        feature:'nursing',
+                        SpecialFeatureID:this.SpecialFeatureID,
+                        MedicalAcceptanceID:this.MedicalAcceptanceID,
+                        FacTypeID:this.FacTypeID,
+                        MoveID:this.MoveID,
+
+                    
+                  
                     },
                 })
                 .then((response) => {

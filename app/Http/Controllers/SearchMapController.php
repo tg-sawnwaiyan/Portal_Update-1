@@ -20,6 +20,54 @@ class SearchMapController extends Controller
         $per_month = $_GET['per_month'];
         $localst = $_GET['local'];
         $feature = $_GET['feature'];
+
+        $SpecialFeatureID = $_GET['SpecialFeatureID'];
+        if ($SpecialFeatureID[0] == '0' && count($SpecialFeatureID) == 1) //get param value of nursingsearch.vue and if value is 0 and count =1 , this condition is "No Check"
+        {
+            $SpecialFeatureID = '0';
+        } else if ($SpecialFeatureID[0] == '0' && count($SpecialFeatureID) > 1) { //if count > 1, this condition is  "Check and Remove an item of array [0] and implode array 
+            unset($SpecialFeatureID[0]);
+            $SpecialFeatureID = implode(',', $SpecialFeatureID);
+        } else {
+            $SpecialFeatureID = implode(',', $SpecialFeatureID); // this condition is when array[0] has no '0'
+        }
+
+        //to check if medicalacceptance is check or not 
+        $MedicalAcceptanceID = $_GET['MedicalAcceptanceID'];
+        if ($MedicalAcceptanceID[0] == '0' && count($MedicalAcceptanceID) == 1) //get param value of nursingsearch.vue and if value is 0 and count =1 , this condition is "No Check"
+        {
+            $MedicalAcceptanceID = '0';
+        } else if ($MedicalAcceptanceID[0] == '0' && count($MedicalAcceptanceID) > 1) { //if count > 1, this condition is  "Check and Remove an item of array [0] and implode array 
+            unset($MedicalAcceptanceID[0]);
+            $MedicalAcceptanceID = implode(',', $MedicalAcceptanceID);
+        } else 
+        {
+            $MedicalAcceptanceID = implode(',', $MedicalAcceptanceID); // this condition is when array[0] has no '0'
+        }
+
+        //to check if factype is check or not 
+        $FacTypeID = $_GET['FacTypeID'];
+        if ($FacTypeID[0] == '0' && count($FacTypeID) == 1) //get param value of nursingsearch.vue and if value is 0 and count =1 , this condition is "No Check"
+        {
+            $FacTypeID = '0';
+        } else if ($FacTypeID[0] == '0' && count($FacTypeID) > 1) { //if count > 1, this condition is  "Check and Remove an item of array [0] and implode array 
+            unset($FacTypeID[0]);
+            $FacTypeID = implode(',', $FacTypeID);
+        } else {
+            $FacTypeID = implode(',', $FacTypeID); // this condition is when array[0] has no '0'
+        }
+
+        //to check if movingin is check or not 
+        $MoveID = $_GET['MoveID'];
+        if ($MoveID[0] == '0' && count($MoveID) == 1) //get param value of nursingsearch.vue and if value is 0 and count =1 , this condition is "No Check"
+        {
+            $MoveID = '0';
+        } else if ($MoveID[0] == '0' && count($MoveID) > 1) { //if count > 1, this condition is  "Check and Remove an item of array [0] and implode array 
+            unset($MoveID[0]);
+            $MoveID = implode(',', $MoveID);
+        } else {
+            $MoveID = implode(',', $MoveID); // this condition is when array[0] has no '0'
+        }
         if($localst != 0)
         {
           $local = explode(',',$localst);
@@ -56,6 +104,40 @@ class SearchMapController extends Controller
         if($per_month != -1)
         {
             $query .= " and n.per_month_to <=".$per_month;
+        }
+
+        if($SpecialFeatureID != 0)
+        {
+            $query .= " and spe.id in (".$SpecialFeatureID.") ";
+        }
+        if($MedicalAcceptanceID != 0)
+        {
+            $query .= " and med.id in (".$MedicalAcceptanceID.")";
+        }
+        if($FacTypeID != 0)
+        {
+            $query .= " and f.id in (".$FacTypeID.")";
+        }
+        if($MoveID !== '0')
+        {
+            $MoveID = explode(',', $MoveID);
+            if(count($MoveID) == 3) 
+            {
+                $query .= " and ( n.occupancy_condition like '%".(String)$MoveID[0]."%'  or n.occupancy_condition like '%".$MoveID[1]."%'  or n.occupancy_condition like '%".$MoveID[2]."%' ) ";
+            
+            }  
+            else  if(count($MoveID) == 2)
+            {
+                
+                $query .= " and ( n.occupancy_condition like '%".(String)$MoveID[0]."%'  or n.occupancy_condition like '%".$MoveID[1]."%' )";
+                
+            }
+            else if(count($MoveID) ==1 )
+            {
+                
+                $query .= " and ( n.occupancy_condition like '%".(String)$MoveID[0]."%' ) ";
+                        
+            }
         }
 
         $query .= " group by n.id order BY n.id ASC LIMIT 26";
@@ -166,6 +248,7 @@ class SearchMapController extends Controller
 
           //for city
           $id = $_GET['id'];
+          $townshipID = $_GET['townshipID'];
           $Moving_in = $_GET['Moving_in'];
           $Per_month = $_GET['Per_month'];
           $localst = $_GET['local'];
@@ -216,16 +299,16 @@ class SearchMapController extends Controller
         //   else
         //   {
                 //to check if township is check or not 
-                $townshipID = $_GET['townshipID'];
-                if ($townshipID[0] == '0' && count($townshipID) == 1) //get param value of hospitalsearch.vue and if value is 0 and count =1 , this condition is "No Check"
-                {
-                    $townshipID = '0';
-                } else if ($townshipID[0] == '0' && count($townshipID) > 1) { //if count > 1, this condition is  "Check and Remove an item of array [0] and implode array 
-                    unset($townshipID[0]);
-                    $townshipID = implode(',', $townshipID);
-                } else {
-                    $townshipID = implode(',', $townshipID); // this condition is when array[0] has no '0'
-                }
+                // $townshipID = $_GET['townshipID'];
+                // if ($townshipID[0] == '0' && count($townshipID) == 1) //get param value of hospitalsearch.vue and if value is 0 and count =1 , this condition is "No Check"
+                // {
+                //     $townshipID = '0';
+                // } else if ($townshipID[0] == '0' && count($townshipID) > 1) { //if count > 1, this condition is  "Check and Remove an item of array [0] and implode array 
+                //     unset($townshipID[0]);
+                //     $townshipID = implode(',', $townshipID);
+                // } else {
+                //     $townshipID = implode(',', $townshipID); // this condition is when array[0] has no '0'
+                // }
 
                 //to check if specialfeature is check or not 
                 $SpecialFeatureID = $_GET['SpecialFeatureID'];
@@ -282,9 +365,7 @@ class SearchMapController extends Controller
                 {
                     $query .= " and ci.id = ".$id;
                 }
-              
-
-                if($townshipID != 0 )
+                if($townshipID != -1 )
                 {
                     $query .=   " and t.id in (".$townshipID.")";
                 }
