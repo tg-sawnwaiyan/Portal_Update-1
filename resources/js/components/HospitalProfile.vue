@@ -1222,7 +1222,7 @@
                             <!-- <GoogleMap :address="hospital_info.address" :lat_num='35.6803997' :lng_num='139.76901739' v-if="hospital_info.latitude == 0"></GoogleMap> -->
 
                             <div class="form-group">
-                                <label>交通 / アクセス <span class="error sp2">必須</span></label>
+                                <label>交通 / アクセス</label>
                                 <!-- <textarea name="address" rows="10" class="form-control"></textarea> -->
                                 <quill-editor  ref="myQuilEditor" name="address" :options="editorOption" class="transporation-access" @change="onAccessEditorChange($event)" v-model="hospital_info.access"/>
                             </div>
