@@ -78,7 +78,7 @@ export default {
         btntype: "",
         width: "",
         login_person : null,
-        loginuser: true,
+        // loginuser: true,
         l_storage_hos_history: [],
         l_storage_nus_history: [],
         l_storage_hos_fav: [],

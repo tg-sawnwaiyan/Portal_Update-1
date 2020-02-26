@@ -90,7 +90,7 @@
               <!-- <button type="button" class="btn btn-warning btn-width white">戻る</button> -->
               <!-- <span class="btn main-bg-color white all-btn" @click="jobApply()">確認画面へ進む</span> -->
               <router-link :to="{name: 'jobapply', params: { job_id: job_id }}"
-              class="btn job_detail_btn" v-if="!login_user">この案件に応募する</router-link>
+              class="btn job_detail_btn" v-if="loginuser == 'false'">この案件に応募する</router-link>
             </div>
           </div>
         </div>
@@ -110,7 +110,7 @@ export default {
     };
   },
   created() {
-      this.login_user = this.$route.params.loginuser;
+      // this.login_user = this.$route.params.loginuser;
     this.axios
       .get(`/api/job_details/${this.$route.params.id}`)
       .then(response => {

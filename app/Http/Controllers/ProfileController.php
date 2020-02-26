@@ -20,28 +20,25 @@ class ProfileController extends Controller
     }
 
     public function movelatlng($id,Request $request)
-    {
-     
-
+    {   
         $query = "SELECT latitude,longitude,city_name FROM cities  where id = " .$request->city_id ;
-        $citylatlng = DB::select($query);
-       
-    
+        $citylatlng = DB::select($query);   
+
+        $pro_num = 5;
 
         $insert = array(
             'customer_id' => $id,
             'name' => $request->name,
             'latitude' => $citylatlng[0]->latitude,
             'longitude' => $citylatlng[0]->longitude,
-            'townships_id' => $request->town_id,
-           
-
+            'townships_id' => $request->town_id,  
+            'pro_num' => 0,   
         ); 
 
         $type_id = DB::table('users')->select('type_id')->where('customer_id',$id)->value('type_id');
      
         if($type_id == 2){ 
-
+            $insert["pro_num"] = $pro_num;
             \DB::table('hospital_profiles')->insert($insert);
         }else{
 
