@@ -29,8 +29,7 @@
                                     <img :src="'/upload/nursing_profile/'+ nursingprofiles.logo" alt="aa" @error="imgUrlAlt" />
                                 </a>
                                     <div class="card-content">
-                                        <span class="card-title">
-                                       
+                                        <span class="card-title text-truncate">
                                             {{nursingprofiles.name}}
                                         </span>
                                        <span class="email">test@gmail.com</span>
@@ -41,7 +40,7 @@
                                     </div>
                                 </div>
                             </div>
-                         
+
 
 
                             </div>
@@ -135,17 +134,16 @@ img{
 }
 .email{
     color:#8e8c8c;
-    font-family: initial;
 }
 .card_1 {
     display: block; 
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     line-height: 1.42857143;
     background-color: #fff;
     border-radius: 2px;
-    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); 
+    box-shadow: 0 1px 3px 0 rgba(174, 174, 174, 0.16),0 1px 3px 0 rgba(0,0,0,0.12);
     transition: box-shadow .25s; 
-    height:330px;
+    height:311px;
 }
 
 .img-card {
@@ -169,8 +167,8 @@ img{
 }
 .card-title {
   margin-top:0px;
-  font-weight: 700;
-  font-size: 1.1em;
+  font-weight: 100;
+  font-size: 1.125rem;
   display: block;
   margin-bottom:0px !important;
 }
@@ -181,7 +179,7 @@ img{
 .card-read-more {
   /* border-top: 1px solid #D4D4D4; */
   padding:0px 0px 10px 10px;
-  top: 280px;
+  top: 260px;
    position: absolute;
 
 }
@@ -235,5 +233,9 @@ img{
         padding-left: 15px;
 
     }
+}
+.column{
+    padding-right: 7px;
+    padding-left: 7px;
 }
 </style>
