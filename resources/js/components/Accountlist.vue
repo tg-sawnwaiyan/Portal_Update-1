@@ -23,8 +23,8 @@
                             <div class="row col-12 m-lr-0 rl" v-if="type == 'nursing'">
 
 
-
-                            <div class="col-xs-4 col-sm-2 col-md-4 col-lg-2 col-xl-2 column" v-for="nursingprofiles in nursingprofile" :key="nursingprofiles.id">
+<!-- nursing -->
+                            <div class="col-xs-4 col-sm-3 col-md-4 col-lg-3 col-xl-3 column" v-for="nursingprofiles in nursingprofile" :key="nursingprofiles.id">
                                 <div class="card_1">                                    
                                     <img :src="'/upload/nursing_profile/'+ nursingprofiles.logo" alt="aa" @error="imgUrlAlt" />
                                 </a>
@@ -32,7 +32,7 @@
                                         <span class="card-title text-truncate">
                                             {{nursingprofiles.name}}
                                         </span>
-                                       <span class="email">test@gmail.com</span>
+                                       <span class="email">{{nursingprofiles.email}}</span>
                                     </div>
                                     <div class="card-read-more">
                                     <router-link :to="{ path:'/profile/nursing/'+ nursingprofiles.id}" class="main-bg-color btn btn-sm all-btn" style="font-weight:bold;">編集</router-link>
@@ -40,23 +40,30 @@
                                     </div>
                                 </div>
                             </div>
-
-
+                            
+<!-- nursing -->
+<!-- hospital -->
 
                             </div>
-                              <div class="row col-12 m-lr-0" v-else>
-                               <div class="col-md-3 m-b-10 nursing_responsive" v-for="hospitalprofiles in hospitalprofile" :key="hospitalprofiles.id">
-                                    <div class="card h-100">
-                                        <div class="card-body nus_account">
-                                            <div class="img_title">
-                                                <img :src="'/upload/hospital_profile/'+ hospitalprofiles.logo" @error="imgUrlAlt"/>
-                                            </div>
-                                            <p class="acc_color"><strong>{{hospitalprofiles.name}}</strong></p>
-                                            <p v-if="hospitalprofiles.email"> ({{hospitalprofiles.email}})</p>
-                                            <router-link :to="{ path:'/profile/hospital/'+ hospitalprofiles.id}" class="btn btn-success" style="font-weight:bold;">Edit</router-link>
+                              <div class="row col-12 m-lr-0  rl" v-else>
+                                <div class="col-xs-4 col-sm-3 col-md-4 col-lg-3 col-xl-3 column" v-for="hospitalprofiles in hospitalprofile" :key="hospitalprofiles.id">
+                                    <div class="card_1">                                    
+                                        <img :src="'/upload/hospital_profile/'+ hospitalprofiles.logo" @error="imgUrlAlt"/>
+                                    </a>
+                                        <div class="card-content">
+                                            <span class="card-title text-truncate">
+                                                {{hospitalprofiles.name}}
+                                            </span>
+                                        <span class="email">({{hospitalprofiles.email}})</span>
+                                        </div>
+                                        <div class="card-read-more">
+                                             <router-link :to="{ path:'/profile/hospital/'+ hospitalprofiles.id}" class="btn btn-success" style="font-weight:bold;">Edit</router-link>
                                         </div>
                                     </div>
                                 </div>
+
+<!-- hospital -->                        
+
                             </div>
                         </div>
                     </div>
@@ -93,6 +100,7 @@ export default {
                 this.axios.get(`/api/account_nursing/${this.cusid}`).then(response => {
                 //this.$loading(false);
                 this.nursingprofile = response.data;
+                console.log(this.nursingprofile)
                 if(this.nursingprofile.length != 0){
                     this.norecord_msg = false;
                 }else{
@@ -130,7 +138,7 @@ img{
     vertical-align: middle;
     border-style: none;
     width: 100%;
-    height: 170px;
+    height: 230px;
 }
 .email{
     color:#8e8c8c;
@@ -143,7 +151,7 @@ img{
     border-radius: 2px;
     box-shadow: 0 1px 3px 0 rgba(174, 174, 174, 0.16),0 1px 3px 0 rgba(0,0,0,0.12);
     transition: box-shadow .25s; 
-    height:311px;
+    height:385px;
 }
 
 .img-card {
@@ -179,7 +187,7 @@ img{
 .card-read-more {
   /* border-top: 1px solid #D4D4D4; */
   padding:0px 0px 10px 10px;
-  top: 260px;
+  top: 332px;
    position: absolute;
 
 }
