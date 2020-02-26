@@ -1,5 +1,4 @@
 <template>
-
     <div class="card profile m-t-22 " style="border:none;">
         <!-- <span style="position:fixed;right:50px;" class="btn secondary-bg-color all-btn" @click="createProfile()">作成</span> -->
         <form class="col-md-12 form-class pad-free-750">
@@ -20,20 +19,19 @@
                         </div>
                         <div class="col-lg-8 col-md-7">
                             <div class="form-group form-group-wrapper d-flex">
-                                <label class="heading-lbl col-md-2 col-12 pad-free">施設名称<span class="error">*</span></label>
+                                <label class="heading-lbl col-md-2 col-12 pad-free">施設名称<span class="error sp2">必須</span></label>
                                 <input type="text" class="form-control customer-name col-md-10 col-12 nursing_input" id="btn" placeholder="施設名称を入力してください。" v-model="nursing_info.name">
                             </div>
                             <div class="form-group form-group-wrapper d-flex">
-                                <label class="heading-lbl1 col-md-2 col-12 pad-free">メールアドレス<span class="error">*</span></label>
+                                <label class="heading-lbl col-md-2 col-12 pad-free">メールアドレス<span class="error sp2">必須</span></label>
                                 <input type="text" class="form-control customer-email col-md-10 col-12 nursing_input" id="btn" v-model="nursing_info.email" placeholder="メールアドレスを入力してください。">
                             </div>
                             <div class="form-group form-group-wrapper d-flex">
-                                <label class="heading-lbl col-md-2 col-12 pad-free">電話番号<span class="error">*</span></label>
-                                <div class="col-md-10 col-12 p-0">
-                                    <input type="text" class="form-control customer-phone  nursing_input" id="phone" placeholder="電話番号を入力してください。" v-model="nursing_info.phone" v-on:keyup="isNumberOnly" pattern="[0-9-]*" @focusout="focusPhone" title="Please enter number only." maxlength="14">
-                                    <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>
-                                    <span class="error" v-else></span>
-                                </div>
+                                <label class="heading-lbl col-md-2 col-12 pad-free">電話番号</label>                                
+                                <input type="text" class="form-control customer-phone col-md-10 col-12 nursing_input" id="phone" placeholder="電話番号を入力してください。" v-model="nursing_info.phone" v-on:keyup="isNumberOnly" pattern="[0-9-]*" @focusout="focusPhone" title="Please enter number only." maxlength="14">
+                                <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>
+                                <span class="error" v-else></span>
+                               
                             </div>
                         </div>
                     </div>
@@ -51,7 +49,7 @@
                     <div class="col-md-12 m-lr-0 pad-free">
                         <div class="form-group form-group-wrapper">
                             <div class="row m-0 mt-2 d-flex">
-                                <label class="heading-lbl col-md-2 col-12 pad-free">パノラマ <span class="error sp2">必須</span></label>
+                                <label class="heading-lbl col-md-2 col-12 pad-free">パノラマ</label>
                                 <div class="heading-lbl col-md-2 col-12 pad-free">
                                     <span class="btn-file d-inline-block font-weight-normal">画像を選択                     
                                         <input type="file" name="img" class="nursing-panorama m-b-10"  id="upload_panorama" @change="preview_panorama()" multiple>
@@ -60,7 +58,7 @@
                                 </div>
                             </div>
                             <div class="row col-md-12 pad-free panorama panorama-box">
-                                <div class="col-sm-3 col-md-1 mt-2 gallery-area-panorama pad-free" v-bind:id="'x-panorama'+indx" v-for="(img,indx) in panorama_arr" :key="img.id">
+                                <div class="col-sm-3 col-md-3 col-lg-1 mt-2 gallery-area-panorama pad-free" v-bind:id="'x-panorama'+indx" v-for="(img,indx) in panorama_arr" :key="img.id">
                                     <input type="hidden" class="already-panorama" v-model="img.photo">
                                     <span class='img-close-btn' v-on:click="DeleteArr(indx,'panorama',img.id,img.photo)">X</span>
                                     <img :src="'/upload/nursing_profile/Imagepanorama/'+ img.photo" class="img-fluid panorama-old-img" alt="profile" v-if="img.id!=null"  id="already-panorama">
@@ -72,8 +70,8 @@
                     <!-- end panoram area -->
                     <table class="table table-bordered table-wrapper">
                         <tr>
-                            <th class="nursing_table" style="border:none;"> <label class="heading-lbl pad-free">特長 <span class="error sp2">必須</span></label></th>
-                            <td  class="nursing_table1" style="border:none;">
+                            <th class="nursing_table pc-414-table sp-768-block" style="border:none;"> <label class="heading-lbl pad-free">特長</label></th>
+                            <td  class="nursing_table1 pc-414-table sp-768-block" style="border:none;">
                                 <!-- <textarea name="feature" id="" cols="30" rows="10" ></textarea> -->
                                 <quill-editor  ref="myQuilEditor" name="feature" class="feature" v-model="nursing_info.feature" @change="onFeatureEditorChange($event)" :options="editorOption" @blur="onEditorBlur($event)" @focus="onEditorFocus($event)"/>
                             </td>
@@ -88,7 +86,7 @@
                                 <label class="heading-lbl" style="border-left: 5px solid #f9793c;padding-left: 5px;">費用</label>
                             </div>
                             <div class="form-group">
-                                <label class="heading-lbl col-lg-2 col-md-3 pad-free">入居時費用 <span class="error sp2">必須</span></label>
+                                <label class="heading-lbl col-lg-2 col-md-3 pad-free">入居時費用</label>
                                 <div class="col-lg-10 col-md-12 float-right pad-free nursing-m-b-15 ">
                                     <div class="row">
                                         <div class="col-md-6 nursing_cost" style="font-weight:bold;font-size:1.5em;margin-bottom:7px;">
@@ -102,7 +100,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="heading-lbl col-lg-2 col-md-3 pad-free">月額費用 <span class="error sp2">必須</span></label>
+                                <label class="heading-lbl col-lg-2 col-md-3 pad-free">月額費用</label>
                                 <div class="col-lg-10 col-md-12 float-right pad-free nursing-m-b-15">
                                     <div class="row">
                                         <div class="col-md-6 nursing_cost" style="font-weight:bold;font-size:1.5em;margin-bottom:7px;">
@@ -116,23 +114,25 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="heading-lbl col-lg-2 col-md-3 pad-free">支払い方法 <span class="error sp2">必須</span></label>
+                                <label class="heading-lbl col-lg-2 col-md-3 pad-free">支払い方法</label>
                                 <div class="col-lg-10 col-md-12 float-right pad-free nursing-m-b-15">
                                     <input type="text"  class="form-control col-md-9 col-12 nursing-payment-method float-left white-bg-color" v-model="nursing_info.method">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="heading-lbl col-lg-2 col-md-3 pad-free">タイプ</label>
-                                <div class="col-lg-10 col-md-12 float-right pad-free nursing-m-b-15">
+                                <label class="heading-lbl col-2 col-lg-2 col-md-3 pad-free">タイプ</label>
+                                <div class="col-10 col-lg-10 float-right p-0">
                                     <span class="nusing_btn1 btn all-btn main-bg-color" style="min-width: 0px;" @click="methodAdd(this)"><i class="fas fa-plus-circle"></i>&nbsp;追加</span>
+                                </div>
+                                <div class="col-lg-10 col-md-12 float-right pad-free nursing-m-b-15">                                    
                                     <div class="col-md-12 pad-free nursing-gallery" id="gallery-payment">
                                         <div class="pad-free col-md-12 gallery-area-payment" v-bind:id="'payments'+indx" v-for="(payment,indx) in payment_arr" :key="payment.id">
                                             <div class="col-md-12">
                                                 <table class="table">
                                                     <tr>
                                                     <td colspan="2" class="text-right" style="border:none;!important">
-                                                        <span :class="'btn btn all-btn main-bg-color changeLinkpayment'+indx" style="min-width: 0px;" @click="mainToggle('payment',indx)">
-                                                            <i :id="'payment'+indx" v-bind:class="[payment.id != null? 'fas fa-sort-down animate rotate':'fas fa-sort-down']"></i>
+                                                        <span :class="'bg-trans btn dropdown-arrow m-l-8 changeLinkpayment'+indx" style="min-width: 0px;" @click="mainToggle('payment',indx)">
+                                                            詳細 <i :id="'payment'+indx" v-bind:class="[payment.id != null? 'fas fa-sort-down animate rotate':'fas fa-sort-down']"></i>
                                                         </span>
                                                         <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,'payment')">
                                                         <i class="fa fa-trash"></i> 削除</a>
@@ -153,25 +153,25 @@
                                                         <h3 class="title-lbl">料金概要</h3>
                                                         <table class="table">
                                                             <tr>
-                                                            <th class="nursing_title_lbl">入居時にかかる費用</th>
+                                                            <th class="nursing_title_lbl font-weight-bold">入居時にかかる費用</th>
                                                             <th class="nursing_title_lbl">
                                                                 <input type="text" name="exp[]" class="form-control col-mdexpense-moving white-bg-color" v-model="payment.expense_moving">
                                                             </th>
                                                             </tr>
                                                             <tr>
-                                                            <th class="nursing_title_lbl">居室タイプ</th>
+                                                            <th class="nursing_title_lbl font-weight-bold">居室タイプ</th>
                                                             <th class="nursing_title_lbl">
                                                                 <input type="text" name="exp[]" class="form-control living-room-type white-bg-color" v-model="payment.living_room_type">
                                                             </th>
                                                             </tr>
                                                             <tr>
-                                                            <th class="nursing_title_lbl">月額利用料</th>
+                                                            <th class="nursing_title_lbl font-weight-bold">月額利用料</th>
                                                             <th class="nursing_title_lbl">
                                                                     <input type="text" name="exp[]" class="form-control monthly-fees white-bg-color" v-model="payment.monthly_fees">
                                                             </th>
                                                             </tr>
                                                             <tr>
-                                                            <th class="nursing_title_lbl">広さ</th>
+                                                            <th class="nursing_title_lbl font-weight-bold">広さ</th>
                                                             <th class="nursing_title_lbl">
                                                                     <input type="text" name="exp[]" class="form-control area white-bg-color" v-model="payment.area">
                                                             </th>
@@ -188,13 +188,13 @@
                                                         <th>&nbsp;</th>
                                                         </tr>
                                                         <tr>
-                                                        <th class="nursing_title_lbl">入居一時金または敷金</th>
+                                                        <th class="nursing_title_lbl font-weight-bold">入居一時金または敷金</th>
                                                         <th class="nursing_title_lbl">
                                                             <input type="text" name="breakdown[]" class="form-control deposit white-bg-color" v-model="payment.deposit">
                                                         </th>
                                                         </tr>
                                                         <tr>
-                                                        <th class="nursing_title_lbl">その他（使途）</th>
+                                                        <th class="nursing_title_lbl font-weight-bold">その他（使途）</th>
                                                         <th class="nursing_title_lbl">
                                                                 <input type="text" name="breakdown[]" class="form-control other-use white-bg-color" v-model="payment.other_use">
                                                         </th>
@@ -203,31 +203,31 @@
                                                         <th class="title-lbl"><span>月額費用</span></th><th>&nbsp;</th>
                                                         </tr>
                                                         <tr>
-                                                        <th class="nursing_title_lbl">賃料</th>
+                                                        <th class="nursing_title_lbl font-weight-bold">賃料</th>
                                                         <th class="nursing_title_lbl">
                                                             <input type="text" name="breakdown[]" class="form-control rent white-bg-color" v-model="payment.rent">
                                                         </th>
                                                         </tr>
                                                         <tr>
-                                                        <th class="nursing_title_lbl">管理費</th>
+                                                        <th class="nursing_title_lbl font-weight-bold">管理費</th>
                                                         <th class="nursing_title_lbl">
                                                             <input type="text" name="breakdown[]" class="form-control admin-expense white-bg-color" v-model="payment.admin_expense">
                                                         </th>
                                                         </tr>
                                                         <tr>
-                                                        <th class="nursing_title_lbl">食費</th>
+                                                        <th class="nursing_title_lbl font-weight-bold">食費</th>
                                                         <th class="nursing_title_lbl">
                                                             <input type="text" name="breakdown[]" class="form-control food-expense white-bg-color" v-model="payment.food_expense">
                                                         </th>
                                                         </tr>
                                                         <tr>
-                                                        <th class="nursing_title_lbl">介護上乗せ金（生活サービス費）</th>
+                                                        <th class="nursing_title_lbl font-weight-bold">介護上乗せ金（生活サービス費）</th>
                                                         <th class="nursing_title_lbl">
                                                                 <input type="text" name="breakdown[]" class="form-control nurse-care-surcharge white-bg-color" v-model="payment.nurse_care_surcharge">
                                                         </th>
                                                         </tr>
                                                         <tr>
-                                                        <th class="nursing_title_lbl">その他</th>
+                                                        <th class="nursing_title_lbl font-weight-bold">その他</th>
                                                         <th class="nursing_title_lbl">
                                                             <input type="text" name="breakdown[]" class="form-control other-monthly-cost white-bg-color" v-model="payment.other_monthly_cost">
                                                         </th>
@@ -237,25 +237,25 @@
                                                         <th>&nbsp;</th>
                                                         </tr>
                                                         <tr>
-                                                        <th class="nursing_title_lbl">返還制度</th>
+                                                        <th class="nursing_title_lbl font-weight-bold">返還制度</th>
                                                         <th class="nursing_title_lbl">
                                                                 <input type="text" name="breakdown[]" class="form-control refund-system white-bg-color" v-model="payment.refund_system">
                                                         </th>
                                                         </tr>
                                                         <tr>
-                                                        <th class="nursing_title_lbl">償却期間</th>
+                                                        <th class="nursing_title_lbl font-weight-bold">償却期間</th>
                                                         <th class="nursing_title_lbl">
                                                             <input type="text" name="breakdown[]" class="form-control depreciation-period white-bg-color" v-model="payment.depreciation_period">
                                                         </th>
                                                         </tr>
                                                         <tr>
-                                                        <th class="nursing_title_lbl">初期償却</th>
+                                                        <th class="nursing_title_lbl font-weight-bold">初期償却</th>
                                                         <th class="nursing_title_lbl">
                                                             <input type="text" name="breakdown[]" class="form-control initial-deprecration white-bg-color" v-model="payment.initial_deprecration">
                                                         </th>
                                                         </tr>
                                                         <tr>
-                                                        <th class="nursing_title_lbl">その他メッセージ</th>
+                                                        <th class="nursing_title_lbl font-weight-bold">その他メッセージ</th>
                                                         <th class="nursing_title_lbl">
                                                             <input type="text" name="breakdown[]" class="form-control other-message-refund white-bg-color" v-model="payment.other_message_refund">
                                                         </th>
@@ -277,9 +277,9 @@
                     <tr>
                         <td style="border:none;">
                             <label class="heading-lbl col-md-2 col-12 pad-free">施設の概要</label>
-                            <span class="btn all-btn main-bg-color nursing_toggle_responsive"  style="min-width: 0px;" @click="nurseFacToggleDiv()"><i class="fas fa-sort-down animate"  :class="{'rotate': isRotate1}"></i></span>
+                            <span class="bg-trans btn dropdown-arrow m-l-8 nursing_toggle_responsive" style="min-width: 0px;" @click="nurseFacToggleDiv()">詳細 <i class="fas fa-sort-down animate"  :class="{'rotate': isRotate1}"></i></span>
                             <!-- testtest -->
-                            <div class="col-md-10 col-12 pad-free float-right nurse-fac-toggle-div toggle-div m-t-10">
+                            <div class="col-xl-10 col-md-12 col-12 pad-free float-right nurse-fac-toggle-div toggle-div m-t-10">
                                     <table class="table table-striped table-bordered nursing_table_title">
                                             <tr>
                                                     <td class="width15 title-bg font-weight-bold">事業主体</td>
@@ -291,7 +291,7 @@
                                                     <td class="width15 title-bg font-weight-bold">開設年月日</td>
 
                                                     <td >
-                                                        <date-picker class="box date-of-establishment" :lang="lang" v-model="nursing_info.date_of_establishment" id="datepickerbox" valueType="format" style="margin-left:11px;"></date-picker>
+                                                        <date-picker class="date-of-establishment" :lang="lang" v-model="nursing_info.date_of_establishment" id="datepickerbox" valueType="format"></date-picker>
                                                         <!-- <textarea class="form-control white-bg-color date-of-establishment" :options="editorOption" v-model="nursing_info.date_of_establishment"></textarea> -->
                                                     </td>
                                                         <!-- <td> <quill-editor  class="date-of-establishment" ref="myQuilEditor" :options="editorOption" v-model="nursing_info.date_of_establishment"/></td> -->
@@ -380,18 +380,18 @@
                     <tr>
                         <td style="border:none;">
                             <div class="form-group">
-                                <label class="heading-lbl col-lg-2 col-md-3 pad-free">協力医療機関 <span class="error sp2">必須</span></label>
-                                <div class="nursing_btn col-lg-10 col-md-9 pad-free float-right ">
+                                <label class="heading-lbl col-lg-2 col-md-3 pad-free">協力医療機関</label>
+                                <div class="nursing_btn col-xl-10 col-md-12 col-md-9 pad-free float-right ">
                                     <span class="btn all-btn main-bg-color" style="min-width: 0px;" @click="cooperateAdd()">
                                             <i class="fas fa-plus-circle"></i> 追加</span>
 
                                     <div class="col-md-12 pad-free" id="gallery-cooperate">
                                         <!-- cooperation -->
-                                        <div class="col-md-12 m-t-30 m-b-20 gallery-area-cooperate" v-bind:id="'cooperated'+indx" v-for="(cooperate,indx) in cooperate_arr" :key="cooperate.id">
+                                        <div class="col-md-12 m-t-30 m-b-20 gallery-area-cooperate p-0" v-bind:id="'cooperated'+indx" v-for="(cooperate,indx) in cooperate_arr" :key="cooperate.id">
 
                                             <div class="clearfix" style="margin-bottom:30px;text-align:right">
-                                                <span :class="'btn all-btn main-bg-color changeLinkcooperate'+indx" style="min-width: 0px;" @click="mainToggle('cooperate',indx)">
-                                                        <i :id="'cooperate'+indx" class="fas fa-sort-down"></i>
+                                                <span :class="'bg-trans btn dropdown-arrow m-l-8 changeLinkcooperate'+indx" style="min-width: 0px;" @click="mainToggle('cooperate',indx)">
+                                                        詳細 <i :id="'cooperate'+indx" class="fas fa-sort-down"></i>
                                                 </span>
                                                  <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,'cooperate')">
                                                 <i class="fa fa-trash"></i> 削除</a>
@@ -399,7 +399,7 @@
 
 
                                             <div class="form-group">
-                                                <label class="col-2 pad-free font-weight-bold">名前 </label>
+                                                <label class="col-2 pad-free font-weight-bold">名前 <span class="error sp2">必須</span></label>
                                                 <input type="text" class="form-control col-10 float-right cooperate-name white-bg-color" name="co-medical-header[]" v-model="cooperate.name">
                                             </div>
                                               <div :id="'changeLinkcooperate'+indx">
@@ -438,8 +438,8 @@
                         <td>
                             <div class="form-group">
                                 <label class="heading-lbl col-lg-2 col-md-3 pad-free">医療面の受入れ</label>
-                                <span class="btn all-btn main-bg-color nursing_toggle_responsive" style="min-width: 0px;" @click="acceptanceList()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate2}"></i></span>
-                                <div class="col-md-10 float-right m-t-10 accept-toggle-div toggle-div pad-free">
+                                <span class="bg-trans btn dropdown-arrow m-l-8 nursing_toggle_responsive" style="min-width: 0px;" @click="acceptanceList()">詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate2}"></i></span>
+                                <div class="col-xl-10 col-md-12 float-right m-t-10 accept-toggle-div toggle-div pad-free">
                                     <label for="" class="m-r-15"><i class="fas fa-check green"></i> 受入れ可</label>
                                     <label for="" class="m-r-15"><i class="fas fa-times red"></i> 受入れ不可</label>
                                     <label for="" class="m-r-15"><i class="fas fa-adjust blue"></i> 応相談</label>
@@ -474,9 +474,9 @@
                     <tr>
                         <td>
                             <label class="heading-lbl col-md-2 col-12 pad-free">職員体制</label>
-                            <span class="btn all-btn main-bg-color nursing_toggle_responsive " style="min-width: 0px;" @click="staffToggleDiv()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate3}"></i></span>
+                            <span class="bg-trans btn dropdown-arrow m-l-8 nursing_toggle_responsive " style="min-width: 0px;" @click="staffToggleDiv()">詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate3}"></i></span>
 
-                            <div class="col-md-10 col-12 pad-free float-right staff-toggle-div toggle-div m-t-10">
+                            <div class="col-xl-10 col-md-12 col-12 pad-free float-right staff-toggle-div toggle-div m-t-10">
                                 <table class="table table-striped table-bordered nursing_table_title">
                                     <tr>
                                         <td class="width15 title-bg font-weight-bold">介護に関わる職員体制（入居者：職員）</td>
@@ -519,11 +519,11 @@
                         <td>
                             <div class="form-group">
                                 <label  class="heading-lbl col-lg-2 col-md-3 pad-free">こだわりの特長</label>
-                                <span class="btn all-btn main-bg-color nursing_toggle_responsive" style="min-width: 0px;" @click="specialFeAdd()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate4}"></i></span>
+                                <span class="bg-trans btn dropdown-arrow m-l-8 nursing_toggle_responsive" style="min-width: 0px;" @click="specialFeAdd()">詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate4}"></i></span>
 
-                                <div class="col-md-10 float-right special-feature-toggle-div toggle-div m-t-10">
+                                <div class="col-xl-10 col-md-12 float-right special-feature-toggle-div toggle-div m-t-10">
                                     <div class="row">
-                                        <div v-for="feat in feature_list" :key="feat.id" class="form-check form-check-inline col-6 col-md-3">
+                                        <div v-for="feat in feature_list" :key="feat.id" class="form-check form-check-inline col-6 col-md-4 col-lg-3">
                                             <label  class="form-check-label control control--checkbox" style="padding-left:5px;">
                                                 <input type="checkbox" class="form-check-input"  name="special-features" v-bind:value="feat.id"  v-model="feat.checked">
                                                 {{feat.name}}
@@ -545,8 +545,8 @@
                     <span class="galleryadd btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px" @click="galleryAdd()">
                         <i class="fas fa-plus-circle"></i> 追加
                     </span>
-                    <span class='changeLinkphoto btn btn all-btn main-bg-color nursing_toggle_responsive' style="min-width: 0px;" @click="mainToggle('photo',null)" >
-                        <i id="photo" class="fas fa-sort-down"></i>
+                    <span class='changeLinkphoto bg-trans btn dropdown-arrow m-l-8 nursing_toggle_responsive' style="min-width: 0px;" @click="mainToggle('photo',null)" >
+                        詳細 <i id="photo" class="fas fa-sort-down"></i>
                     </span>
                     <div id="changeLinkphoto"  class="col-md-12">
                         <div class="row" id ="gallery-photo">
@@ -578,20 +578,20 @@
                     <div class="form-group form-group-wrapper">
                             <label class="heading-lbl col-2 pad-free">動画</label> <span class="galleryvideo btn all-btn main-bg-color float-right nursing_add_responsive " style="min-width: 0px;" @click="galleryVideoAdd()">
                                     <i class="fas fa-plus-circle"></i> 追加</span>
-                                    <span class='changeLinkvideo  btn btn all-btn main-bg-color nursing_toggle_responsive ' style="min-width: 0px;" @click="mainToggle('video',null)">
-                                        <i id="video" class="fas fa-sort-down"></i>
+                                    <span class='changeLinkvideo  bg-trans btn dropdown-arrow m-l-8 nursing_toggle_responsive ' style="min-width: 0px;" @click="mainToggle('video',null)">
+                                        詳細 <i id="video" class="fas fa-sort-down"></i>
                                    </span>
                             <div id="changeLinkvideo" class="col-md-12">
                                     <div class="row" id="gallery-video">
                                             <div class="col-md-6 gallery-area-video" v-bind:id="'video'+indx" v-for="(video,indx) in video_arr" :key="video.id">
                                                 <div class="col-md-12">
-                                                    <label>URL</label>
+                                                    <label class="font-weight-bold">URL</label>
                                                     <input type="text" name="url" placeholder="url" class="form-control m-b-15 video-url white-bg-color" v-model="video.photo">
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <label>タイトル</label>
+                                                    <label class="font-weight-bold">タイトル</label>
                                                     <input type="text" name="title" placeholder="タイトル" class="form-control m-b-15 white-bg-color" v-model="video.title">
-                                                    <label>コンテンツ</label>
+                                                    <label class="font-weight-bold">コンテンツ</label>
                                                     <textarea name="description" placeholder="コンテンツ" class="form-control m-b-15 description white-bg-color" v-model="video.description"></textarea>
                                                 </div>
                                                 <div class="col-md-12 text-right">
@@ -608,9 +608,9 @@
                     <tr>
                         <td>
                             <label class="heading-lbl col-2 pad-free">地図</label>
-                            <span class="btn all-btn main-bg-color nursing_toggle_responsive" style="min-width: 0px;" @click="maptogglediv()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
-                            <div class="col-md-10 float-right m-t-10 map-toggle-div toggle-div pad-free">
-                                <div class="col-md-12">
+                            <span class="bg-trans btn dropdown-arrow m-l-8 nursing_toggle_responsive" style="min-width: 0px;" @click="maptogglediv()">詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
+                            <div class="col-xl-10 col-md-12 float-right m-t-10 map-toggle-div toggle-div pad-free">
+                                <div class="col-md-12 p-0">
                                     <div class="col-md-12 pad-free" id="mapbox">
                                         <GoogleMap :address="address_show" :township="nursing_info.townships_id" :city="city_id" :township_list="township_list" :lat_num='nursing_info.latitude' :lng_num='nursing_info.longitude'></GoogleMap>
                                     </div>
@@ -645,7 +645,7 @@
                                     <!-- End Test Station Area -->
 
                                     <div class="form-group">
-                                            <label class="font-weight-bold">交通 / アクセス <span class="error sp2">必須</span></label>
+                                            <label class="font-weight-bold">交通 / アクセス</label>
                                             <!-- <textarea name="address" rows="10" class="form-control"></textarea> -->
                                             <quill-editor  ref="myQuilEditor" name="address" :options="editorOption" class="transporation-access" @change="onAccessEditorChange($event)" v-model="nursing_info.access"/>
                                     </div>
@@ -1304,9 +1304,17 @@ export default {
          display:  block !important;
      }
  }
-.panorama .col-md-1 {  
+.gallery-area-panorama {  
     background: #fbfbfb;;
     padding: 2px;
+}
+@media (min-width: 992px) {
+    .panorama-box .col-lg-1{
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 16.66666667%;
+        flex: 0 0 16.66666667%;
+        max-width: 16.66666667%;
+    }
 }
        
 .panorama-old-img{      

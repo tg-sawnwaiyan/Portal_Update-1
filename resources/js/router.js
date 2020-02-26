@@ -283,6 +283,14 @@ const routes = [
         }
     },
     {
+        name: "applicantlist",
+        path: "/jobapplicantlist/:id",
+        component: Jobapplicantlist,
+        meta: {
+            auth: true
+        }
+    },
+    {
         name: "jobapplicantlist",
         path: "/jobapplicantlist",
         component: Jobapplicantlist,

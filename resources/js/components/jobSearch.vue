@@ -102,7 +102,7 @@
                     </select>
                     </div>
                     <div class="col-lg-3 col-md-4 col-sm-12 pc-414">
-                      <button @click="toggleContent4" class="btn seemore-btn">
+                      <button @click="toggleContent4" class="btn seemore-btn" v-if="getTownships.length > 0">
                       <i class="fa" aria-hidden="true"></i>
                           <!-- <em>{{city.city_name}}</em> -->
                           <span id="close6"><i class="fas fa-arrow-circle-up"></i> 市区町村エリアを閉じる </span>

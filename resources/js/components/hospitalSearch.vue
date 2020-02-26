@@ -86,11 +86,12 @@
                             </select>
                             </div>
                             <div class="col-lg-3 col-md-4 col-sm-12 pc-414">
-                            <button @click="toggleContent" class="btn seemore-btn" v-if="getTownships.length > 0">
+                            <button @click="toggleContent" v-if="getTownships.length > 0" class="btn seemore-btn">
                                 <i class="fa" aria-hidden="true"></i>
                                 <!-- <em>{{city.city_name}}</em> -->
-                                <span id="close"><i class="fas fa-arrow-circle-up"></i> 市区町村エリアを閉じる</span>
+                                <span id="close"><i class="fas fa-arrow-circle-up"></i> 市区町村エリアを閉じる hh</span>
                             </button>
+                            
                             </div>
                             </div>
                             <div class="toBeToggled" id="toBeToggled">
@@ -544,8 +545,8 @@ import bulcomponent from './bulcomponent.vue'
         // this.ShowHide1();
     },
     searchfreeword(){
-     
-     
+    
+      
         //clear all checkbox
         this.id = -1;
         this.townshipID = [];
@@ -690,7 +691,9 @@ import bulcomponent from './bulcomponent.vue'
         return result
     },
     toggleContent() {
+     
         this.toggleCheck = !this.toggleCheck;
+        
         if (this.toggleCheck == true) {
             $('#close').empty();
             $("#toBeToggled").slideDown();
