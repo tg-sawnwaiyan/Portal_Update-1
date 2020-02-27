@@ -491,8 +491,8 @@
                                 });
                         })
                     },
-                     getTownship(){
-                         this.errors.city = '';
+                    getTownship(){
+                        this.errors.city = '';
                         this.nursing_data.town_id = 0;
                         this.axios.get('/api/auth/township',{
                         params:{
@@ -501,11 +501,10 @@
                         }).then((response)=>{
                             this.town_list = response.data.townships
                         })
-                  },
-                  changeTownship(){
+                    },
+                    changeTownship(){
                       this.errors.township = '';
-
-                  },
+                    },
                     AccountStatusChange(status) {
                         if(status == '1') {
                             var confirm_text = '事業者登録を解除しないですか。';
