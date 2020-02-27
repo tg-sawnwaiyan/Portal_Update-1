@@ -3,13 +3,11 @@
 <div>
   <div class="col-md-12" style="border-bottom: 1px dashed #2980b9;padding-bottom: 10px; margin-bottom: 20px;">
     <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#2980b9;"></i>&nbsp;地図検索
-
-        <span v-if="count == false && id == -1 && searchword == 'all' && hos_data.length  && changecount"> 「<span class="result-span">全国</span>の病院 <span class="result-span"> {{hos_data.length}} </span>件」a </span>
-        <span v-if="count == false && searchword != '' && searchword != 'all' && hos_data.length && changecount "> 「<span class="result-span">{{searchword}}</span>の病院 <span class="result-span"> {{hos_data.length}} </span>件」 b</span>
-        <span v-if="count == false && id != '-1' && hos_data.length && !changecount"> 「<span class="result-span">{{hos_data[0].city_name}}</span>の病院 <span class="result-span"> {{hos_data.length}} </span>件」c</span>
+        <span v-if="count == false && id == -1 && searchword == 'all' && hos_data.length "> 「<span class="result-span">全国</span>の病院 <span class="result-span"> {{hos_data.length}} </span>件」a </span>
+        <span v-if="count == false && searchword != '' && searchword != 'all' && hos_data.length  "> 「<span class="result-span">{{searchword}}</span>の病院 <span class="result-span"> {{hos_data.length}} </span>件」 b</span>
+        <span v-if="count == false   && id != '-1' && hos_data.length "> 「<span class="result-span">{{hos_data[0].city_name}}</span>の病院 <span class="result-span"> {{hos_data.length}} </span>件」c</span>
         <span v-if="count == true && hos_data.length ">「<span class="result-span">{{hos_data[0].city_name}}</span>の病院 <span class="result-span"> {{hos_data.length}} </span>件」e</span>
-
-    </h5>
+    </h5> 
   </div>
   <div class="search-map card-body"  @mouseover="getStateHover">
     <div class="row" id="hos">
@@ -556,8 +554,7 @@ import bulcomponent from './bulcomponent.vue'
     searchfreeword(){
        
         this.count = false;
-        this.changecount = true;
-        this.stateclick = false;
+        this.searchcount = true;
         //clear all checkbox
         this.id = -1;
         this.townshipID = [];
@@ -732,7 +729,6 @@ import bulcomponent from './bulcomponent.vue'
     },
     ChangeTownship(){
         this.count = false;
-        this.changecount = true;
         this.stateclick = false;
   
         this.townshipID = [];
