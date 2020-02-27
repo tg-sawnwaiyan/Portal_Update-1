@@ -127,8 +127,8 @@
                                 <div class="col-lg-10 col-md-12 float-right pad-free nursing-m-b-15">                                    
                                     <div class="col-md-12 pad-free nursing-gallery" id="gallery-payment">
                                         <div class="pad-free col-md-12 gallery-area-payment" v-bind:id="'payments'+indx" v-for="(payment,indx) in payment_arr" :key="payment.id">
-                                            <div class="col-md-12">
-                                                <table class="table">
+                                            <div class="col-md-12 p-0">
+                                                <table class="table m-b-0">
                                                     <tr>
                                                     <td colspan="2" class="text-right" style="border:none;!important">                                                        
                                                         <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,'payment')">
@@ -276,7 +276,7 @@
                 <table class="table table-bordered table-wrapper">
                     <tr>
                         <td style="border:none;">
-                            <label class="heading-lbl col-md-2 col-12 pad-free">施設の概要</label>
+                            <label class="heading-lbl col-2 col-lg-2 col-md-3 pad-free">施設の概要</label>
                             <span class="bg-trans btn dropdown-arrow nursing_toggle_responsive" style="min-width: 0px;" @click="nurseFacToggleDiv()">詳細 <i class="fas fa-sort-down animate"  :class="{'rotate': isRotate1}"></i></span>
                             <!-- testtest -->
                             <div class="col-xl-10 col-md-12 col-12 pad-free float-right nurse-fac-toggle-div toggle-div m-t-10">
@@ -389,9 +389,9 @@
                                 <div class="nursing_btn col-xl-10 col-md-12 col-md-9 pad-free float-right ">     
                                     <div class="col-md-12 pad-free" id="gallery-cooperate">
                                         <!-- cooperation -->
-                                        <div class="col-md-12 m-t-30 m-b-20 gallery-area-cooperate p-0" v-bind:id="'cooperated'+indx" v-for="(cooperate,indx) in cooperate_arr" :key="cooperate.id">
+                                        <div class="col-md-12 m-t-20 m-b-20 gallery-area-cooperate p-0" v-bind:id="'cooperated'+indx" v-for="(cooperate,indx) in cooperate_arr" :key="cooperate.id">
 
-                                            <div class="clearfix" style="margin-bottom:30px;text-align:right">                                                
+                                            <div class="clearfix margin-bottom750 m-b-30" style="text-align:right">                                                
                                                  <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,'cooperate')">
                                                 <i class="fa fa-trash"></i> 削除</a>
                                                 <span :class="'bg-trans btn dropdown-arrow changeLinkcooperate'+indx" style="min-width: 0px;" @click="mainToggle('cooperate',indx)">
@@ -439,7 +439,7 @@
                     <tr>
                         <td>
                             <div class="form-group">
-                                <label class="heading-lbl col-lg-2 col-md-3 pad-free">医療面の受入れ</label>
+                                <label class="heading-lbl col-2 col-lg-2 col-md-3 pad-free">医療面の受入れ</label>
                                 <span class="bg-trans btn dropdown-arrow nursing_toggle_responsive" style="min-width: 0px;" @click="acceptanceList()">詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate2}"></i></span>
                                 <div class="col-xl-10 col-md-12 float-right m-t-10 accept-toggle-div toggle-div pad-free">
                                     <label for="" class="m-r-15"><i class="fas fa-check green"></i> 受入れ可</label>
