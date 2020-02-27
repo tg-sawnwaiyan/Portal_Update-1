@@ -181,7 +181,7 @@ class JobApplyController extends Controller
              $jobapply->allowances = $allowances;
              $jobapply->insurance = $insurance;
              $jobapply->holidays = $holidays;
-             $jobapply->cityname = $request->selectedValue;
+             $jobapply->cityname = $request->selectedCity;
              $jobapply->townshipname = $request->townshipname;
              if($salary_remark != null || $salary_remark != '')
              {
