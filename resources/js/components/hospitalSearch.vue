@@ -2,11 +2,11 @@
   <layout>
 <div>
   <div class="col-md-12" style="border-bottom: 1px dashed #2980b9;padding-bottom: 10px; margin-bottom: 20px;">
-    <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#2980b9;"></i>&nbsp;地図検索
-        <span v-if="count == false && id == -1 && searchword == 'all' && hos_data.length "> 「<span class="result-span">全国</span>の病院 <span class="result-span"> {{hos_data.length}} </span>件」a </span>
-        <span v-if="count == false && searchword != '' && searchword != 'all' && hos_data.length  "> 「<span class="result-span">{{searchword}}</span>の病院 <span class="result-span"> {{hos_data.length}} </span>件」 b</span>
-        <span v-if="count == false   && id != '-1' && hos_data.length "> 「<span class="result-span">{{hos_data[0].city_name}}</span>の病院 <span class="result-span"> {{hos_data.length}} </span>件」c</span>
-        <span v-if="count == true && hos_data.length ">「<span class="result-span">{{hos_data[0].city_name}}</span>の病院 <span class="result-span"> {{hos_data.length}} </span>件」e</span>
+    <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#2980b9;"></i>&nbsp;地図検索 
+        <span v-if="count == false  && searchword != '' && searchword == 'all' && hos_data.length && !stateclick "> 「<span class="result-span">全国</span>の病院 <span class="result-span"> {{hos_data.length}} </span>件」 </span>
+        <span v-if="count == false && searchword != '' && searchword != 'all' && hos_data.length && !stateclick "> 「<span class="result-span">{{searchword}}</span>の病院 <span class="result-span"> {{hos_data.length}} </span>件」 </span>
+        <span v-if="count == false && id != '-1' && hos_data.length  && stateclick"> 「<span class="result-span">{{hos_data[0].city_name}}</span>の病院 <span class="result-span"> {{hos_data.length}} </span>件」</span>
+        <span v-if="count == true && hos_data.length ">「<span class="result-span">{{hos_data[0].city_name}}</span>の病院 <span class="result-span"> {{hos_data.length}} </span>件」</span>
     </h5> 
   </div>
   <div class="search-map card-body"  @mouseover="getStateHover">
@@ -21,7 +21,7 @@
             <!--search input-->
               <div class="wrap">
                 <div class="search">
-                    <input type="text" id="search-free-word" class="searchTerm" placeholder="地名、施設名、診療科目などを入力" style="border: 3px solid #63b7ff;">
+                    <input type="text" id="search-free-word" class="searchTerm" placeholder="地名、病院名、診療科目などを入力" style="border: 3px solid #63b7ff;">
                     <button type="submit" class="searchButton" style="border: 1px solid #63b7ff;background: #63b7ff;" @click="searchfreeword">
                       <i class="fas fa-search"></i> 検索
                   </button>
@@ -48,7 +48,7 @@
                 </h3>
              <!--search input-->
                 <div class="search hospital-search-box">
-                    <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、施設名、診療科目などを入力">
+                    <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、病院名、診療科目などを入力">
                     <button type="submit" class="searchButton" @click="searchfreeword">
                       <i class="fas fa-search"></i> 検索
                     </button>
@@ -449,8 +449,6 @@ import bulcomponent from './bulcomponent.vue'
         w_width: $(window).width(),
         showOne:true,
         count:false,
-        searchcount:false,
-        changecount:false,
         stateclick:false,
 
       }
@@ -484,7 +482,7 @@ import bulcomponent from './bulcomponent.vue'
     },
     search(){
         this.count = true;
-        this.searchcount = false;
+        this.changecount = false;
         this.$loading(true);
         if(this.townshipID == null || this.townshipID == '')
         {
@@ -554,7 +552,8 @@ import bulcomponent from './bulcomponent.vue'
     searchfreeword(){
        
         this.count = false;
-        this.searchcount = true;
+        this.changecount = false;
+        this.stateclick = false;
         //clear all checkbox
         this.id = -1;
         this.townshipID = [];
@@ -729,7 +728,7 @@ import bulcomponent from './bulcomponent.vue'
     },
     ChangeTownship(){
         this.count = false;
-        this.stateclick = false;
+      
   
         this.townshipID = [];
         if(localStorage.getItem("hospital_fav") == null){
@@ -772,8 +771,10 @@ import bulcomponent from './bulcomponent.vue'
 
     parentGetStateClick(e,parentVue) {
         this.count = false;
-        this.stateclick = true;
+        
+     
         var _this = parentVue;
+        _this.stateclick = true;
         console.log("parent",parentVue);
         localStorage.setItem('features', 'hospital');
         //clear all checkbox

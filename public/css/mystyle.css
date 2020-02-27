@@ -12303,6 +12303,11 @@ strong {
         margin-right: -15px;
         padding: 12px;
     }
+    .t-t
+    {
+        margin-left:5px;
+        margin-top: -45px;
+    }
 }
 
 @media only screen and (max-width:320px) {
@@ -12330,6 +12335,11 @@ strong {
         margin-left: -15px;
         margin-right: -15px;
         padding: 18px;
+    }
+    .t-t
+    {
+        margin-left:5px;
+        margin-top: -45px;
     }
 }
 
