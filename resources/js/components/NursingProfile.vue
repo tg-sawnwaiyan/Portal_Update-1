@@ -120,8 +120,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="heading-lbl col-2 col-lg-2 col-md-3 pad-free">タイプ</label>
-                                <div class="col-10 col-lg-10 float-right p-0">
+                                <label class="headinglbl col-6 col-lg-2 col-md-3 pad-free">タイプ</label>
+                                <div class="col-6 col-lg-10 float-right p-0">
                                     <span class="nusing_btn1 btn all-btn main-bg-color" style="min-width: 0px;" @click="methodAdd(this)"><i class="fas fa-plus-circle"></i>&nbsp;追加</span>
                                 </div>
                                 <div class="col-lg-10 col-md-12 float-right pad-free nursing-m-b-15">                                    
@@ -276,7 +276,7 @@
                 <table class="table table-bordered table-wrapper">
                     <tr>
                         <td style="border:none;">
-                            <label class="heading-lbl col-2 col-lg-2 col-md-3 pad-free">施設の概要</label>
+                            <label class="heading-lbl col-3 col-lg-2 col-md-3 pad-free">施設の概要</label>
                             <span class="bg-trans btn dropdown-arrow nursing_toggle_responsive" style="min-width: 0px;" @click="nurseFacToggleDiv()">詳細 <i class="fas fa-sort-down animate"  :class="{'rotate': isRotate1}"></i></span>
                             <!-- testtest -->
                             <div class="col-xl-10 col-md-12 col-12 pad-free float-right nurse-fac-toggle-div toggle-div m-t-10">
@@ -380,8 +380,8 @@
                     <tr>
                         <td style="border:none;">
                             <div class="form-group">
-                                <label class="heading-lbl col-lg-2 col-md-3 pad-free">協力医療機関</label>
-                                <div class="col-10 col-lg-10 float-right p-0">
+                                <label class="headinglbl col-3 col-lg-2 col-md-3 pad-free">協力医療機関</label>
+                                <div class="col-9 col-lg-10 float-right p-0">
                                      <span class="btn all-btn main-bg-color" style="min-width: 0px;" @click="cooperateAdd()">
                                     <i class="fas fa-plus-circle"></i> 追加</span>
                                 </div>
@@ -401,8 +401,8 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="col-2 pad-free font-weight-bold">名前 <span class="error sp2">必須</span></label>
-                                                <input type="text" class="form-control col-10 float-right cooperate-name white-bg-color" name="co-medical-header[]" v-model="cooperate.name">
+                                                <label class="col-3 col-md-2 pad-free font-weight-bold">名前 <span class="error sp2">必須</span></label>
+                                                <input type="text" class="form-control col-9 col-md-10 float-right cooperate-name white-bg-color" name="co-medical-header[]" v-model="cooperate.name">
                                             </div>
                                               <div :id="'changeLinkcooperate'+indx">
                                             <table class="table table-bordered nursing_table_title">
@@ -439,7 +439,7 @@
                     <tr>
                         <td>
                             <div class="form-group">
-                                <label class="heading-lbl col-2 col-lg-2 col-md-3 pad-free">医療面の受入れ</label>
+                                <label class="headinglbl col-4 col-md-2 pad-free">医療面の受入れ</label>
                                 <span class="bg-trans btn dropdown-arrow nursing_toggle_responsive" style="min-width: 0px;" @click="acceptanceList()">詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate2}"></i></span>
                                 <div class="col-xl-10 col-md-12 float-right m-t-10 accept-toggle-div toggle-div pad-free">
                                     <label for="" class="m-r-15"><i class="fas fa-check green"></i> 受入れ可</label>
@@ -520,7 +520,7 @@
                     <tr>
                         <td>
                             <div class="form-group">
-                                <label  class="heading-lbl col-lg-2 col-md-3 pad-free">こだわりの特長</label>
+                                <label  class="headinglbl col-4 col-md-2 pad-free">こだわりの特長</label>
                                 <span class="bg-trans btn dropdown-arrow nursing_toggle_responsive" style="min-width: 0px;" @click="specialFeAdd()">詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate4}"></i></span>
 
                                 <div class="col-xl-10 col-md-12 float-right special-feature-toggle-div toggle-div m-t-10">
@@ -543,7 +543,7 @@
 
                 <!-- start photo and video area -->
                 <div class="form-group form-group-wrapper">
-                    <label class="heading-lbl col-md-2 col-12 pad-free">フォトアルバム</label>
+                    <label class="headinglbl col-4 col-md-2 pad-free">フォトアルバム</label>
                     <span class="galleryadd btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px" @click="galleryAdd()">
                         <i class="fas fa-plus-circle"></i> 追加
                     </span>

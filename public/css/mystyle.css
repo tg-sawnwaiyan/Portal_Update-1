@@ -383,6 +383,10 @@ span:hover::before {
     font-size: 1.15em;
 }
 
+.headinglbl{
+    font-size: 1.05em;
+    font-weight: bold;       
+}
 .nursing_map {
     margin-top: 25px;   
 }
@@ -10720,7 +10724,7 @@ width: 18rem;
         font-size: 1.05em;
         flex: 0 0 20%;
         /* max-width: 122px; */
-    }
+    }   
     .nursing_btn {
         margin-top: 0px;
     }
@@ -11762,6 +11766,7 @@ background-image: none;
         flex: 0 0 100%;
         max-width: 100%;
     }
+    
     .nursing_btn {
         margin-top: 0px;
     }
@@ -12237,10 +12242,7 @@ strong {
         padding: 13px;
         left: -40px;
         /* width: 290px; */
-    }
-    .text-right {
-        text-align: left !important;
-    }
+    }   
     .fnumericzip {
         margin-bottom: 10px;
     }
