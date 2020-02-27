@@ -2810,8 +2810,8 @@ h3 {
     border-radius: 5px;
 }
  .circle_t{
-        border: 7px solid #dee2e6;
-        width: 5%;
+        border: 7px solid #346e90 ;
+        width: 0%;
         border-radius: 62%;
         margin: 0 auto;
         text-align: center;
