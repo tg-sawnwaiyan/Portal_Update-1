@@ -431,7 +431,7 @@ export default {
         pageRange: 5,
         items: [],
         show_paginate: false,
-        loginuser: true,
+        // loginuser: true,
         selected: undefined,
         locast:'',
         company:[],

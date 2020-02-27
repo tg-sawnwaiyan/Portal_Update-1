@@ -1113,6 +1113,7 @@
                 $('#searchMap').addClass('select');
                 $('#showSearchMap').removeClass('select');
                 $('#filter').removeClass('select');
+
                 this.cities = response.data.city
                 this.getCity = response.data.getCity       
                 this.getTownships = response.data.getTownships;
