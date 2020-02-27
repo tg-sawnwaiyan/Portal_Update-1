@@ -53,7 +53,7 @@
                                         </tr>
                                         <tr>
                                             <td  class="w-50">
-                                                    <p class="mb-2"><span class="text-orange"><span class="job_ico">★</span> 電話番号 :</span><span class=""> {{jobapply.phone}}</span></p>
+                                                    <p class="mb-2"><span class="text-orange"><span class="job_ico"><img src="/images/icons8-phone.png" width="75%"></span> 電話番号 :</span><span class=""> {{jobapply.phone}}</span></p>
                                             </td>
                                         </tr>
                                     </table>

@@ -1176,7 +1176,7 @@
                             <div class="fac-check-box" v-if="fac_list">
                                 <span v-if="fac_list.length>0">
                                     <p v-for="fac in fac_list" :key="fac.id">
-                                        <i v-if="fac.id === hosfacility.id">〇</i>
+                                        <i v-if="fac.id === hosfacility.id"><p class="circle_t"></p></i>
                                     </p>
                                 </span>
                                 <span v-else>
@@ -2809,6 +2809,13 @@ h3 {
     border: 1px solid #ffc041;
     border-radius: 5px;
 }
+ .circle_t{
+        border: 7px solid #346e90 ;
+        width: 0%;
+        border-radius: 62%;
+        margin: 0 auto;
+        text-align: center;
+    }
 
 
 @media only screen and (max-width: 375px) and (min-width: 320px) {
@@ -2849,6 +2856,7 @@ h3 {
     {
         margin-top: 34px;
     }
+   
     }
 
 @media only screen and (max-width: 450px) and (min-width: 376px) {
@@ -2866,6 +2874,7 @@ h3 {
     {
        margin-right: -35px;
     }
+
 }
 
 @media only screen and (max-width: 768px) and (min-width: 451px) {
