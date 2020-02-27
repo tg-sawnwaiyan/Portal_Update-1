@@ -669,6 +669,10 @@ export default {
               per_month:-1,
               local:this.locast,
               feature:'job',
+              SpecialFeatureID:[0],
+              MedicalAcceptanceID:[0],
+              FacTypeID:[0],
+              MoveID:[0],
           },
           })
           .then((response)=>{
@@ -720,7 +724,11 @@ export default {
               moving_in:-1,
               per_month:-1,
               local:_this.locast,
-              feature:'job'
+              feature:'job',
+              SpecialFeatureID:[0],
+              MedicalAcceptanceID:[0],
+              FacTypeID:[0],
+              MoveID:[0],
           },
           })
           .then((response)=>{
