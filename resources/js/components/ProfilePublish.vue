@@ -1567,7 +1567,7 @@ export default {
                 //greater than 768
                 if(this.loginuser == 'true') {
                     $(document).scroll(function() {
-                            $(".fixed-nav").css({"position": "fixed","top":"70px"});
+                            $(".fixed-nav").css({"position": "fixed","top":"65px"});
                         var cur_pos = $(this).scrollTop();
                         $('.ele').each(function(active_el){
                             if($(this).position().top <= (cur_pos+71)){
@@ -1576,7 +1576,7 @@ export default {
                             }
                         });
                         if (cur_pos >= 100) {
-                            $(".fixed-nav").css({"position": "fixed","top":"70px"});
+                            $(".fixed-nav").css({"position": "fixed","top":"65px"});
                         } else {
                             $(".fixed-nav").css({"position": "unset", "top": "unset"});
                         }
@@ -1584,17 +1584,14 @@ export default {
                     });
                 } else {
                     $(document).scroll(function() {
-
                         $(".fixed-nav").css({"position": "fixed","top":"100px"});
                         var cur_pos = $(this).scrollTop();
-
                         $('.ele').each(function(active_el){
                             if($(this).position().top <= (cur_pos+71)){
                                 $('.top-fixed-btn.active').removeClass('active');
                                 $('.top-fixed-btn').eq(active_el).addClass('active');
                             }
                         });
-
                         if (cur_pos >= 100) {
                             $(".fixed-nav").css({"position": "fixed","top":"90px"});
                         } else {
@@ -1604,12 +1601,11 @@ export default {
                 }
                 //greater than 768
             }
-
             else {
                 //less than 768
                 if(this.loginuser == 'true') {
                 $(document).scroll(function() {
-                        $(".fixed-nav").css({"position": "fixed","top":"70px"});
+                    $(".fixed-nav").css({"position": "fixed","top":"40px"});
                     var cur_pos = $(this).scrollTop();
                     $('.ele').each(function(active_el){
                         if($(this).position().top <= (cur_pos+71)){
@@ -1618,29 +1614,26 @@ export default {
                         }
                     });
                     if (cur_pos >= 100) {
-                        $(".fixed-nav").css({"position": "fixed","top": admin_top ,"display": "inline-flex","width": "100%"});
+                        // $(".fixed-nav").css({"position": "fixed","top": admin_top ,"display": "inline-flex","width": "100%"});
+                        $(".fixed-nav").css({"position": "fixed","top": "40px" ,"display": "inline-flex","width": "100%"});
                     } else {
                         $(".fixed-nav").css({"position": "unset", "top": "unset"});
                     }
                     //  $(".fixed-nav").css({"position": "unset","top":"unset"});
                 });
-
                 } else {
                     $(document).scroll(function() {
-
-                        $(".fixed-nav").css({"position": "fixed","top":"70px"});
+                        $(".fixed-nav").css({"position": "fixed","top":"77px"});
                         var cur_pos = $(this).scrollTop();
-                        console.log("cur",cur_pos)
-
                         $('.ele').each(function(active_el){
                             if($(this).position().top <= (cur_pos+71)){
                                 $('.top-fixed-btn.active').removeClass('active');
                                 $('.top-fixed-btn').eq(active_el).addClass('active');
                             }
                         });
-
                         if (cur_pos >= 100) {
                             $(".fixed-nav").css({"position": "fixed","top": main_top ,"display": "inline-flex","width": "100%"});
+                            // $(".fixed-nav").css({"position": "fixed","top": "41px" ,"display": "inline-flex","width": "100%"});
                         } else {
                             $(".fixed-nav").css({"position": "unset", "top": "unset", "display": "none"});
                         }
