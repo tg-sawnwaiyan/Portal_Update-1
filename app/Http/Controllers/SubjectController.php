@@ -159,7 +159,7 @@ class SubjectController extends Controller
     }
 
     public function getHospitalClinicalSubject($customer_id) {
-        $subject_list = Subject::all()->toArray();
+        $subject_list = Subject::where('parent','!=',0)->get()->toArray();
 
         $clinical_subject = SubjectJunctions::where('profile_id','=',$customer_id)->get()->toArray();
       
