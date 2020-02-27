@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use DB;
 use Illuminate\Http\Request;
+use App\NursingProfile;
+use App\HospitalProfile;
 
 class ProfileController extends Controller
 {
@@ -20,34 +22,31 @@ class ProfileController extends Controller
     }
 
     public function movelatlng($id,Request $request)
-    {
-     
-
+    {   
         $query = "SELECT latitude,longitude,city_name FROM cities  where id = " .$request->city_id ;
-        $citylatlng = DB::select($query);
-       
-    
-
+        $citylatlng = DB::select($query);   
+        
         $insert = array(
             'customer_id' => $id,
             'name' => $request->name,
             'latitude' => $citylatlng[0]->latitude,
             'longitude' => $citylatlng[0]->longitude,
-            'townships_id' => $request->town_id,
-           
-
+            'townships_id' => $request->town_id,  
+            'pro_num' => 0,   
         ); 
 
         $type_id = DB::table('users')->select('type_id')->where('customer_id',$id)->value('type_id');
      
         if($type_id == 2){ 
-
+            $pro_num = HospitalProfile::where('customer_id',$id)->count();
+            $insert["pro_num"] = intval($pro_num) + 1;
             \DB::table('hospital_profiles')->insert($insert);
         }else{
-
-             \DB::table('nursing_profiles')->insert($insert);
+            $pro_num = NursingProfile::where('customer_id',$id)->count();
+            $insert["pro_num"] = intval($pro_num) + 1;
+            \DB::table('nursing_profiles')->insert($insert);
         }  
-        return response()->json('success');
+        return response()->json($insert);
     }
 
     /**
