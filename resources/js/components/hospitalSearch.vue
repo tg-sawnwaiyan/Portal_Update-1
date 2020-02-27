@@ -2,14 +2,12 @@
   <layout>
 <div>
   <div class="col-md-12" style="border-bottom: 1px dashed #2980b9;padding-bottom: 10px; margin-bottom: 20px;">
-    <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#2980b9;"></i>&nbsp;地図検索
-
-        <span v-if="count == false && id == -1 && searchword == 'all' && hos_data.length  && changecount"> 「<span class="result-span">全国</span>の病院 <span class="result-span"> {{hos_data.length}} </span>件」 </span>
-        <span v-if="count == false && searchword != '' && searchword != 'all' && hos_data.length && changecount "> 「<span class="result-span">{{searchword}}</span>の病院 <span class="result-span"> {{hos_data.length}} </span>件」</span>
-        <span v-if="count == false && id != '-1' && hos_data.length && !changecount"> 「<span class="result-span">{{hos_data[0].city_name}}</span>の病院 <span class="result-span"> {{hos_data.length}} </span>件」</span>
+    <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#2980b9;"></i>&nbsp;地図検索 
+        <span v-if="count == false  && searchword != '' && searchword == 'all' && hos_data.length && !stateclick "> 「<span class="result-span">全国</span>の病院 <span class="result-span"> {{hos_data.length}} </span>件」 </span>
+        <span v-if="count == false && searchword != '' && searchword != 'all' && hos_data.length && !stateclick "> 「<span class="result-span">{{searchword}}</span>の病院 <span class="result-span"> {{hos_data.length}} </span>件」 </span>
+        <span v-if="count == false && id != '-1' && hos_data.length  && stateclick"> 「<span class="result-span">{{hos_data[0].city_name}}</span>の病院 <span class="result-span"> {{hos_data.length}} </span>件」</span>
         <span v-if="count == true && hos_data.length ">「<span class="result-span">{{hos_data[0].city_name}}</span>の病院 <span class="result-span"> {{hos_data.length}} </span>件」</span>
-
-    </h5>
+    </h5> 
   </div>
   <div class="search-map card-body"  @mouseover="getStateHover">
     <div class="row" id="hos">
@@ -451,8 +449,6 @@ import bulcomponent from './bulcomponent.vue'
         w_width: $(window).width(),
         showOne:true,
         count:false,
-        searchcount:false,
-        changecount:false,
         stateclick:false,
 
       }
@@ -486,7 +482,6 @@ import bulcomponent from './bulcomponent.vue'
     },
     search(){
         this.count = true;
-        this.searchcount = false;
         this.$loading(true);
         if(this.townshipID == null || this.townshipID == '')
         {
@@ -556,7 +551,6 @@ import bulcomponent from './bulcomponent.vue'
     searchfreeword(){
        
         this.count = false;
-        this.changecount = true;
         this.stateclick = false;
         //clear all checkbox
         this.id = -1;
@@ -732,8 +726,7 @@ import bulcomponent from './bulcomponent.vue'
     },
     ChangeTownship(){
         this.count = false;
-        this.changecount = true;
-        this.stateclick = false;
+      
   
         this.townshipID = [];
         if(localStorage.getItem("hospital_fav") == null){
@@ -776,8 +769,10 @@ import bulcomponent from './bulcomponent.vue'
 
     parentGetStateClick(e,parentVue) {
         this.count = false;
-        this.stateclick = true;
+        
+     
         var _this = parentVue;
+        _this.stateclick = true;
         console.log("parent",parentVue);
         localStorage.setItem('features', 'hospital');
         //clear all checkbox
