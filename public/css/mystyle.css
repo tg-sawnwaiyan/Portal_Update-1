@@ -3010,6 +3010,9 @@ ul.sub-ul li {
     border: none !important;
     box-shadow: none !important;
 }
+.dropdown-arrow:hover{
+    cursor: pointer;
+}
 .bg-trans{
     background-color: transparent !important;
 }
@@ -3809,21 +3812,6 @@ background: #ff9b53;  /
 #news_list .select_box {
     width: 65%;
 }
-
-
-/*footer*/
-
-.footer {
-    font-size: 12px;
-    /* padding-top: 15px;
-padding-bottom: 15px; */
-    background: transparent;
-    text-align: center;
-    line-height: 20px;
-    padding: 10px;
-    width: 100%;
-}
-
 
 /* Hospital Search */
 
@@ -10000,6 +9988,9 @@ padding: 0;
 }
 
 @media only screen and (max-width: 990px) {
+    .nursing_toggle_responsive{
+        float: right;
+    }
    
     .map-fa-icon{
         float: left;
@@ -11626,7 +11617,29 @@ background-image: none;
     }
 }
 
+@media only screen and (min-width: 414px) {
+    .date-witdh-410{
+        display:none;
+       
+     }
+}
 @media only screen and (max-width: 414px) {
+    .dateTime{
+        display:none;
+    }
+    .date-witdh-410{
+       display:block;
+       border:1px solid #DEE2E6;
+    }
+    .date-label{
+       border:1px solid #DEE2E6;
+       padding: 0.50rem;
+       font-weight: 700 !important;
+       background: #f5f5f5;
+    }
+    .datepicker{
+       border:1px solid #DEE2E6;
+    }
      /* create news */
      .related_post_box {
         -webkit-box-flex: 0;
@@ -11772,15 +11785,15 @@ background-image: none;
     }
     .nusing_btn1 {
         background-color: #0cc72c !important;
-        width: 68px;
+        min-width: 68px;
     }
-    .nursing_toggle_responsive {
+    /* .nursing_toggle_responsive {
         margin-top: -45px;
         margin-left: 127px;
-    }
-    .nursing_add_responsive {
+    } */
+    /* .nursing_add_responsive {
         margin-top: -27px;
-    }
+    } */
     .nursing_table {
         display: block;
         width: 100%;
@@ -12271,7 +12284,7 @@ strong {
     }
     .nursing_toggle_responsive {
         /* margin-top: -45px; */
-        margin-left: 115px;
+        /* margin-left: 115px; */
     }
     .nursing_btn span {
         margin-left: 0;
