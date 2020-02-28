@@ -39,8 +39,8 @@
                                                     <p class="mb-2"><span class="text-orange"><span class="job_ico">&#xa5;</span>生年月日 :</span><span class=""> {{jobapply.birtdday}}</span></p>
                                             </td>
                                             <td class="w-50">
-                                                <p><span class="text-primary">性別:</span><span>{{jobapply.gender}}</span></p>  
-                                                
+                                                <!-- <p><span class="text-primary">性別:</span><span>{{jobapply.gender}}</span></p>   -->
+                                                 <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-briefcase"></i></span> 性別 :</span><span class=""> {{jobapply.gender}}</span></p>
                                             </td>
                                         </tr>
                                         <tr>
@@ -48,7 +48,7 @@
                                                     <p class="mb-2"><span class="text-orange"><span class="job_ico">★</span> 郵便番号 :</span><span class=""> {{jobapply.postal}}</span></p>
                                             </td>
                                             <td  class="w-50">
-                                                    <p><span class="text-primary">街路住所:</span>{{jobapply.street_address}}</p> 
+                                                    <p><span class="text-primary"><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>街路住所:</span>{{jobapply.street_address}}</p> 
                                             </td>
                                         </tr>
                                         <tr>

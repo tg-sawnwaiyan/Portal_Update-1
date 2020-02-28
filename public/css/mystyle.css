@@ -3070,6 +3070,7 @@ ul.sub-ul li {
 
 .all-btn:hover {
     text-decoration: none;
+    opacity: 0.9;
 }
 
 .edit-borderbtn {
@@ -3106,6 +3107,7 @@ ul.sub-ul li {
 
 .btn:hover {
     cursor: pointer;
+    opacity: 0.9;
 }
 
 .confirm-borderbtn {
@@ -11242,6 +11244,7 @@ width: 18rem;
     .fav-update-btn {
         width: 35%;
         line-height: 25px;
+        margin:8px auto;
     }
     .fnt-title {
         font-size: 15px;
@@ -12031,7 +12034,7 @@ background-image: none;
         width: 272px !important;
     }
     #fav-hospital-page #fav-history-page .card-carousel-wrapper {
-        margin-left: -16px;
+        margin-left: -33px;
     }
 }
 
@@ -12046,7 +12049,7 @@ background-image: none;
         width: 272px !important;
     }
     #fav-hospital-page #fav-history-page .card-carousel-wrapper {
-        margin-left: -11px;
+        margin-left: -18px;
     }
 }
 
@@ -12381,6 +12384,7 @@ strong {
  
 }
 /*nursing_search_dropdown*/
+<<<<<<< HEAD
 
 /* checkbox */
 .checkbox {
@@ -12490,3 +12494,18 @@ strong {
   }  
   
 /* checkbox end */
+=======
+/*all_pages_btn_red*/
+.bt-red
+{
+color: #fff;
+background-color: #e3342f;
+border-color: #e3342f;
+}
+.bt-suc
+{   
+    color: #fff;
+    background-color: #0cc72c; 
+    border-color: #0cc72c;
+}
+>>>>>>> bc866073e2ecf642ec0a2bdfc2e8befc071889cd
