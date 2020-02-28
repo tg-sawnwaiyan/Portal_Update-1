@@ -1260,7 +1260,7 @@
                 if(this.township_id == -1){
                     var mapProp = {
                         center: new google.maps.LatLng(lat, lng),
-                        minZoom: 7,
+                        minZoom: 3,
                         maxZoom: 14,
                         zoom: 7,
                         mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -1326,7 +1326,7 @@
                 var newresult=[];
                 var jsonfile = theCity+".json";
                 // https://testikportal.management-partners.co.jp
-                this.axios.get("https://testikportal.management-partners.co.jp/json/cities/"+jsonfile).then(respon => {
+                this.axios.get("./json/cities/"+jsonfile).then(respon => {
                     this.coordinate = respon.data.reduce((acc, val) => acc.concat(val), []);
                     this.boundariesGoogleMap(lat,lng,this.coordinate);  
                 }); 
@@ -1335,7 +1335,7 @@
                 else{
                     var jsonfile = theCity+".json";
                     jsonfile = jsonfile.toLowerCase();
-                    this.axios.get('https://testikportal.management-partners.co.jp/json/Townships/'+jsonfile).then(res => {
+                    this.axios.get('./json/Townships/'+jsonfile).then(res => {
                      var township_coor = []
                      for(var i = 0; i < res.data.features.length; i++)
                      {
@@ -1618,8 +1618,7 @@
                     MoveID:this.MoveID,
                     Moving_in:this.moving_in,
                     Per_month:this.per_month,
-                    local:this.locast
-
+                    local:this.locast,
                 },
                 }).then((response)=>{
                 this.nus_data = response.data.nursing;
