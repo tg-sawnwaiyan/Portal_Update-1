@@ -6,6 +6,7 @@ use DB;
 use Illuminate\Http\Request;
 use App\NursingProfile;
 use App\HospitalProfile;
+use App\Customer;
 
 class ProfileController extends Controller
 {
@@ -23,6 +24,7 @@ class ProfileController extends Controller
 
     public function movelatlng($id,Request $request)
     {   
+       
         $query = "SELECT latitude,longitude,city_name FROM cities  where id = " .$request->city_id ;
         $citylatlng = DB::select($query);   
         
@@ -46,6 +48,10 @@ class ProfileController extends Controller
             $insert["pro_num"] = intval($pro_num) + 1;
             \DB::table('nursing_profiles')->insert($insert);
         }  
+
+        $cus = Customer::find($id);
+        $cus->pro_num = $insert["pro_num"];
+        $cus->save();
         return response()->json($insert);
     }
 
