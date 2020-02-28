@@ -1,69 +1,65 @@
 <template>
-<div>
-    <div class="card">
-        <div v-if="norecord_msg" class="card card-default card-wrap">
-                    <p class="record-ico">
-                        <i class="fa fa-exclamation"></i>
-                    </p>
-                    <p>OOPS!!</p>
-                    <p class="record-txt01">表示する施設ありません</p>
-                    <p>表示する施設ありません‼新しい施設を作成してください。</p>
-                    <router-link :to="{name:'profiledit'}" class="main-bg-color create-btn all-btn">
-                        <i class="fas fa-plus-circle"></i> 施設新規作成
-                    </router-link>
-        </div>
-        <div class="row" v-else>
-            <div class="col-md-12">
-                <div class="card  text-dark">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h4 class="page-header header">施設一覧</h4>
-                            </div>
-                            <div class="row col-12 m-lr-0 rl" v-if="type == 'nursing'">
-
-
-<!-- nursing -->
-                            <div class="col-xs-4 col-sm-3 col-md-4 col-lg-3 col-xl-3 column" v-for="nursingprofiles in nursingprofile" :key="nursingprofiles.id">
-                                <div class="card_1">                                    
-                                    <img :src="'/upload/nursing_profile/'+ nursingprofiles.logo" alt="aa" @error="imgUrlAlt" />
-                                </a>
-                                    <div class="card-content">
-                                        <span class="card-title text-truncate">
-                                            {{nursingprofiles.name}}
-                                        </span>
-                                       <span class="email">{{nursingprofiles.email}}</span>
-                                    </div>
-                                    <div class="card-read-more">
-                                    <router-link :to="{ path:'/profile/nursing/'+ nursingprofiles.id}" class="main-bg-color btn btn-sm all-btn" style="font-weight:bold;">編集</router-link>
-                                        
-                                    </div>
+    <div>
+        <div class="card">
+            <div v-if="norecord_msg" class="card card-default card-wrap">
+                <p class="record-ico">
+                    <i class="fa fa-exclamation"></i>
+                </p>
+                <p>OOPS!!</p>
+                <p class="record-txt01">表示する施設ありません</p>
+                <p>表示する施設ありません‼新しい施設を作成してください。</p>
+                <router-link :to="{name:'profiledit'}" class="main-bg-color create-btn all-btn">
+                    <i class="fas fa-plus-circle"></i> 施設新規作成
+                </router-link>
+            </div>
+            <div class="row" v-else>
+                <div class="col-md-12">
+                    <div class="card  text-dark">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4 class="page-header header">施設一覧</h4>
                                 </div>
-                            </div>
-                            
-<!-- nursing -->
-<!-- hospital -->
-
-                            </div>
-                              <div class="row col-12 m-lr-0  rl" v-else>
-                                <div class="col-xs-4 col-sm-3 col-md-4 col-lg-3 col-xl-3 column" v-for="hospitalprofiles in hospitalprofile" :key="hospitalprofiles.id">
-                                    <div class="card_1">                                    
-                                        <img :src="'/upload/hospital_profile/'+ hospitalprofiles.logo" @error="imgUrlAlt"/>
-                                    </a>
-                                        <div class="card-content">
-                                            <span class="card-title text-truncate">
-                                                {{hospitalprofiles.name}}
-                                            </span>
-                                        <span class="email">({{hospitalprofiles.email}})</span>
-                                        </div>
-                                        <div class="card-read-more">
-                                             <router-link :to="{ path:'/profile/hospital/'+ hospitalprofiles.id}" class="btn btn-success" style="font-weight:bold;">編集</router-link>
+                                <!-- nursing -->
+                                <div class="row col-12 m-lr-0 rl" v-if="type == 'nursing'">
+                                    <div class="col-xs-4 col-sm-3 col-md-4 col-lg-3 col-xl-3 column" v-for="nursingprofiles in nursingprofile" :key="nursingprofiles.id">
+                                        <div class="card_1">                                    
+                                            <img :src="'/upload/nursing_profile/'+ nursingprofiles.logo" alt="aa" @error="imgUrlAlt" />
+                                            <div class="card-content">
+                                                <span class="card-title text-truncate">
+                                                    {{nursingprofiles.name}}
+                                                </span>
+                                            <!-- <span class="email">{{nursingprofiles.email}}</span> -->
+                                            </div>
+                                            <div class="card-read-more">
+                                                <router-link :to="{ path:'/profile/nursing/'+ nursingprofiles.id}" class="main-bg-color btn btn-sm all-btn" style="font-weight:bold;">編集</router-link>
+                                                <router-link :to="{ path:'/profile/nursing/'+ nursingprofiles.id}" class="main-bg-color btn btn-sm all-btn" style="font-weight:bold;">求人編集</router-link>
+                                                <router-link :to="{ path:'/profile/nursing/'+ nursingprofiles.id}" class="main-bg-color btn btn-sm all-btn" style="font-weight:bold;">求人応募者一覧</router-link>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-
-<!-- hospital -->                        
-
+                                <!-- nursing -->
+                                <!-- hospital -->
+                                <div class="row col-12 m-lr-0  rl" v-else>
+                                    <div class="col-xs-4 col-sm-3 col-md-4 col-lg-3 col-xl-3 column" v-for="hospitalprofiles in hospitalprofile" :key="hospitalprofiles.id">
+                                        <div class="card_1">                                    
+                                            <img :src="'/upload/hospital_profile/'+ hospitalprofiles.logo" @error="imgUrlAlt"/>
+                                            <div class="card-content">
+                                                <span class="card-title text-truncate">
+                                                    {{hospitalprofiles.name}}
+                                                </span>
+                                                <!-- <span class="email">({{hospitalprofiles.email}})</span> -->
+                                            </div>
+                                            <div class="card-read-more">
+                                                <router-link :to="{ path:'/profile/hospital/'+ hospitalprofiles.id}" class="main-bg-color btn btn-sm all-btn" style="font-weight:bold;">編集</router-link>
+                                                <router-link :to="{ path:'/profile/hospital/'+ hospitalprofiles.id}" class="main-bg-color btn btn-sm all-btn" style="font-weight:bold;">求人編集</router-link>
+                                                <router-link :to="{ path:'/profile/hospital/'+ hospitalprofiles.id}" class="main-bg-color btn btn-sm all-btn" style="font-weight:bold;">求人応募者一覧</router-link>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- hospital -->
                             </div>
                         </div>
                     </div>
@@ -71,15 +67,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-</div>
 </template>
 <script>
 export default {
