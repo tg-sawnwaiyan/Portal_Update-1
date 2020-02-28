@@ -367,6 +367,9 @@ span:hover::before {
 
 
 /* Nursing & Hospital Profile */
+.displayFlex{
+    display: flex;
+}
 
 .heading-lbl {
     font-weight: bold;
@@ -380,6 +383,10 @@ span:hover::before {
     font-size: 1.15em;
 }
 
+.headinglbl{
+    font-size: 1.05em;
+    font-weight: bold;       
+}
 .nursing_map {
     margin-top: 25px;   
 }
@@ -533,7 +540,6 @@ border: 1px solid #eee; */
     padding-top: 10px;
     background: #f5f5f5;
 }
-
 .pro-heading h5 {
     position: relative;
     margin: 0 15px 15px 0;
@@ -1669,7 +1675,7 @@ box-shadow: 0px 0px 5px rgb(212, 201, 201); */
     /* only if you want fixed height */
 }
 .fit-image-profile{     
-    height: 180px;
+    height: 150px;
 }
 .displaytext {
     display: none;
@@ -5174,14 +5180,6 @@ margin-right: 2% !important;
     background: #fff;
     box-shadow: none !important;
     min-width: 70px;
-}
-
-.delete-borderbtn {
-    border: 1px solid #dc3545 !important;
-    color: #dc3545;
-    background: #fff;
-    box-shadow: none !important;
-    min-width: 60px;
 }
 
 .confirm-borderbtn {
@@ -10456,7 +10454,16 @@ padding: 0;
         width: 100%;
         border: 1px solid;
     }
-    
+    .displayFlex{
+        display: block;
+    }
+    .gallery-area-payment .delete-borderbtn, .gallery-area-cooperate .delete-borderbtn{
+        background-color: transparent;
+        border: none !important;
+    }
+    .gallery-area-payment .delete-borderbtn > i.fa, .gallery-area-cooperate .delete-borderbtn > i.fa{
+        display: none !important;
+    }
     /*End  profile publish */
     /* job details */
     .job_id {
@@ -10717,7 +10724,7 @@ width: 18rem;
         font-size: 1.05em;
         flex: 0 0 20%;
         /* max-width: 122px; */
-    }
+    }   
     .nursing_btn {
         margin-top: 0px;
     }
@@ -11002,6 +11009,9 @@ width: 18rem;
     .margin-free-750 {
         margin-left: 0px;
         margin-right: 0px;
+    }
+    .margin-bottom750{
+        margin-bottom: 0px !important;
     }
     .facility_tbl th,
     .cost_table th,
@@ -11757,6 +11767,7 @@ background-image: none;
         flex: 0 0 100%;
         max-width: 100%;
     }
+    
     .nursing_btn {
         margin-top: 0px;
     }
@@ -11791,7 +11802,7 @@ background-image: none;
     }
     .nursing_title_lbl {
         display: block;
-        margin-bottom: -20px;
+        /* margin-bottom: -20px; */
     }
     #gallery-payment table tr>th:first-child {
         /* width: 35%; */
@@ -11841,7 +11852,7 @@ background-image: none;
     }
 }
 
-@media only screen and (max-width: 380px) {
+@media only screen and (max-width: 380px) {   
     .searchButtonNews {
         width: 30%;
     }
@@ -12232,10 +12243,7 @@ strong {
         padding: 13px;
         left: -40px;
         /* width: 290px; */
-    }
-    .text-right {
-        text-align: left !important;
-    }
+    }   
     .fnumericzip {
         margin-bottom: 10px;
     }
