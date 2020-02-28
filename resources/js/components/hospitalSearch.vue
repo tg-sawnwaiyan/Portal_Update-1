@@ -119,7 +119,7 @@
                             </div>
                             </td>
                         </tr>
-                        <tr class="toBeToggled1 ShowHide1">
+                        <tr >
                             <th class="pc-414-table sp-768-block">特長</th>
                             <td class="sp-768-block sp-414-table">
                               <!--特長から探す-->
@@ -162,7 +162,7 @@
 
                             </td>
                         </tr>
-                        <tr class="toBeToggled1 ShowHide1">
+                        <tr >
                             <th class="pc-414-table sp-768-block">診療科目</th>
                             <td class="sp-768-block sp-414-table" id="test-td">
                                 <div class="form-check form-check-inline row align-items-start innerwrapper" v-if="w_width >= 420">
@@ -210,14 +210,14 @@
                             </td>
                         </tr>
 
-                        <tr class="text-center">
+                        <!-- <tr class="text-center">
                             <td colspan="2" style="border:none;">                        
                             <button @click="ShowHide1" class="btn seemore-btn">
                                 <i class="fa" aria-hidden="true"></i>
                                 <span id="close2"><i class="fas fa-arrow-circle-up"></i> 閉じる</span>
                             </button>
                             </td>
-                        </tr>
+                        </tr> -->
 
                         <tr class="text-center">
                             <td colspan="2" style="border:none;">
@@ -549,8 +549,7 @@ import bulcomponent from './bulcomponent.vue'
     },
     searchfreeword(){
 
-        this.toggleCheck_1 = false;
-        this.ShowHide1();
+      
         this.count = false;
         this.stateclick = false;
         //clear all checkbox
@@ -773,12 +772,9 @@ import bulcomponent from './bulcomponent.vue'
 
     parentGetStateClick(e,parentVue) {
         this.count = false;
-        
-     
         var _this = parentVue;
         _this.stateclick = true;
-        _this.toggleCheck_1 = true;
-        _this.ShowHide1();
+     
         console.log("parent",parentVue);
         localStorage.setItem('features', 'hospital');
         //clear all checkbox

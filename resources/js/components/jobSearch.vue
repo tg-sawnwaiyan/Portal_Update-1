@@ -161,7 +161,7 @@
                     </td>
                 </tr> -->
 
-                <tr class="toBeToggled1 ShowHide">
+                <tr >
                     <th class="pc-414-table sp-768-block">職種</th>
                     <td class="sp-768-block sp-414-table">
                         <div class="form-check form-check-inline row align-items-start innerwrapper" v-if="w_width >= 420" >
@@ -209,7 +209,7 @@
                     </td>
                 </tr>
 
-                <tr class="toBeToggled1 ShowHide">
+                <tr >
                   <th style="padding:10px;" class="pc-414-table sp-768-block">雇用形態</th>
                   <td class="sp-768-block">
                     <!--雇用形態から探す-->
@@ -291,19 +291,19 @@
                   </td>
                 </tr>
 
-                <tr class="text-center">
+                <!-- <tr class="text-center">
                   <td colspan='2' style="border:none;">
 
                      <button @click="ShowHide4" class="btn seemore-btn">
                                 <i class="fa" aria-hidden="true"></i>
                                 <span id="close4"><i class="fas fa-arrow-circle-up"></i> 閉じる</span>
-                            </button>
+                            </button> -->
                     <!-- <button @click="ShowHide4" class="btn seemore-btn">
                       <i class="fa" aria-hidden="true"></i>
                           <span id="close4"><i class="fas fa-arrow-circle-up"></i> 閉じる</span>
                     </button> -->
-                  </td>
-                </tr>
+                  <!-- </td>
+                </tr> -->
 
                 <tr class="text-center">
                   <td colspan="2" style="border:none;">
@@ -563,8 +563,7 @@ export default {
          // window.scrollTo({ top : 1000, behavior: 'smooth' });
     },
     searchfreeword(){
-          this.toggleCheck_1 = false;
-          this.ShowHide4();
+      
 
             //clear all checkbox
             this.id = -1;
@@ -720,8 +719,7 @@ export default {
 
       parentGetStateClick(e,parentVue) {
         var _this = parentVue;
-         _this.toggleCheck_1 = true;
-         _this.ShowHide4();
+      
             _this.stateclick = true;
             _this.count = false;
             _this.townshipID = [];
