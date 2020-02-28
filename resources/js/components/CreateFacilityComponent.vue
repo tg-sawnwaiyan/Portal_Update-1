@@ -17,7 +17,7 @@
                   
                       <div class="form-group">
                           <span class="btn main-bg-color white all-btn" @click="checkValidate()"> {{buttontext}}</span>
-                          <router-link to="/facilitieslist" class="btn btn-danger all-btn">キャンセル</router-link>    
+                          <router-link to="/facilitieslist" class="btn bt-red all-btn">キャンセル</router-link>    
                           <!-- <button class="btn news-post-btn all-btn" > 作成する </button> -->
                                                                     
                           <!-- <router-link to="/facilitieslist" class="btn news-post-btn all-btn">更新</router-link> -->

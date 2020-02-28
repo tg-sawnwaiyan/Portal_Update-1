@@ -126,7 +126,7 @@
                     <div class="form-group">
                         <span class="btn main-bg-color white all-btn" @click="checkValidate()" v-if='status == 1'> 保存</span>
                         <span class="btn main-bg-color white all-btn" @click="checkValidate()" v-if='status == 0'> 作成</span>
-                        <span @click="$router.go(-1)" :to="{name: 'news_list'}" class="btn btn-danger all-btn">キャンセル</span>
+                        <span @click="$router.go(-1)" :to="{name: 'news_list'}" class="btn bt-red all-btn">キャンセル</span>
                     </div>
                 </form>
             </div>
@@ -514,4 +514,16 @@ import {quillEditor} from 'vue-quill-editor'
  .quill-editor{
           background-color: #fff;
   }
+     .bt-red
+    {
+    color: #fff;
+    background-color: #e3342f;
+    border-color: #e3342f;
+    }
+    .bt-suc
+    {   
+        color: #fff;
+        background-color: #0cc72c; 
+        border-color: #0cc72c;
+    }
 </style>

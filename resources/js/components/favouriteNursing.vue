@@ -2,7 +2,7 @@
     <div>
         <div class="scrolldiv2 pb-5 tab-content" id="nursing">
             <div class="row m-0">
-                <div class="col-12 pl-0">
+                <div class="col-12 pad-free-750">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
@@ -12,8 +12,8 @@
                         </ol>
                     </nav>
                 </div>
-                <div class="col-md-12">
-                    <div class="col-md-12 fav-his-header">
+                <div class="col-md-12 pad-free-750">
+                    <div class="col-md-12 fav-his-header pad-free-750">
                         <svg x="0px" y="0px" width="24" height="24" viewBox="0 0 172 172" style=" fill:#000000;">
                             <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
                                 <path d="M0,172v-172h172v172z" fill="none"></path>
@@ -39,7 +39,7 @@
                 </div>
 
                 <!--compare box-->
-                <div class="col-12 mt-2 mb-4">
+                <div class="col-12 mt-2 mb-4 pad-free-750">
                     <div class="row m-0">
                         <div class="col-md-11 compare-wrap" @click="itemCompare()" data-toggle="modal" data-target=".bd-example-modal-lg">
                             <dl class="itemBox favnur" id="bd" v-if="!iscompare">
@@ -49,7 +49,7 @@
                             <dl class="itemBox favnur" id="bd" v-else>
                                 <dt class="pr-4">比較する項目</dt>
                                 <dd>
-                                    <ul class="item-compare">
+                                    <ul class="item-compare" style="padding:5px">
                                         <li v-if="address_check">住所</li>
                                         <li v-if="tran_check">交通手段</li>
                                         <li v-if="month_check">月額費用</li>
@@ -284,7 +284,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td v-for="nur_profile in fav_nursing" :key="nur_profile.id">
-                                                                    <span class="btn btn-danger all-btn hos-btn m-t-8" @click="deleteLocalSto(nur_profile.id)">お気に入りリストから削除</span>
+                                                                    <span class="btn bt-red all-btn hos-btn m-t-8" @click="deleteLocalSto(nur_profile.id)">お気に入りリストから削除</span>
                                                                     <label class="btn all-btn res-btn hos-btn control controlinner--checkbox p-l-30">
                                                                         <input type="checkbox" value="document_status[nur_profile.id]" name="documentation" class="checkbox2" v-model="document_status[nur_profile.id]" @change="checkSingle(nur_profile.id)">
                                                                         <span class="checkmark"></span>資料請求
@@ -389,7 +389,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-success col-sm-4 offset-sm-4 col-md-2 offset-md-5 m-b-10" @click="addingMail()" :disabled="isdisable">資料請求する</button>
+                    <button type="button" class="btn bt-suc col-sm-4 offset-sm-4 col-md-2 offset-md-5 m-b-10" @click="addingMail()" :disabled="isdisable">資料請求する</button>
                 </div>
                 <!--end compare box-->
                 <!--result-->
@@ -827,4 +827,3 @@
             }
     };
 </script>
-
