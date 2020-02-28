@@ -273,7 +273,7 @@
                 <!-- end table 1 for 費用--->
 
                 <!--table 2 for 施設の概要-->
-                <table class="table table-bordered table-wrapper">
+                <table class="table table-bordered table-wrapper m-b-0">
                     <tr>
                         <td style="border:none;">
                             <label class="headinglbl col-6 col-lg-2 col-md-3 pad-free">施設の概要</label>
@@ -479,7 +479,7 @@
                 <!-- end table 4 for 医療面の受入れ -->
 
                 <!-- table 5 for 職員体制 -->
-                <table class="table table-bordered table-wrapper">
+                <table class="table table-bordered table-wrapper m-b-0">
                     <tr>
                         <td>
                             <label class="headinglbl col-6 col-lg-2 col-md-3 pad-free">職員体制</label>

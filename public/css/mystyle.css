@@ -1678,7 +1678,7 @@ box-shadow: 0px 0px 5px rgb(212, 201, 201); */
     /* only if you want fixed height */
 }
 .fit-image-profile{     
-    height: 150px;
+    height: 135px;
 }
 .displaytext {
     display: none;
@@ -9458,7 +9458,7 @@ padding: 11px;
 
 @media only screen and (max-width:1440px) {
     .fit-image-profile{
-        height: 200px;
+        height: 165px;
     }
     /* hos and nursing account */
     .img_title {
