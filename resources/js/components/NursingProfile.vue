@@ -550,14 +550,14 @@
 
                 <!-- start photo and video area -->
                 <div class="form-group form-group-wrapper">
-                    <label class="headinglbl col-6 col-lg-2 pad-free">フォトアルバム</label>
-                    <span class="galleryadd btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px" @click="galleryAdd()">
-                        <i class="fas fa-plus-circle"></i> 追加
-                    </span>
+                    <label class="headinglbl col-6 col-lg-2 pad-free">フォトアルバム</label>                    
                     <span class='changeLinkphoto bg-trans btn dropdown-arrow nursing_toggle_responsive' style="" @click="mainToggle('photo',null)" >
                         詳細 <i id="photo" class="fas fa-sort-down"></i>                        
                     </span>
                     <div id="changeLinkphoto"  class="row col-md-12 pad-free-750 m-0">
+                    <span class="galleryadd btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px" @click="galleryAdd()">
+                    <i class="fas fa-plus-circle"></i> 追加
+                    </span>
                         <div id ="gallery-photo" class="row col-12">
                             <div class="col-12 col-md-6 gallery-area-photo" v-bind:id="'photo'+indx" v-for="(img,indx) in img_arr" :key="img.id">
                                 <div class="col-md-12">
@@ -585,14 +585,14 @@
                 </div>
 
                     <div class="form-group form-group-wrapper">
-                            <label class="headinglbl col-6 col-lg-2 col-md-3 pad-free">動画</label>    
-                            <span class="galleryvideo btn all-btn main-bg-color float-right nursing_add_responsive " style="min-width:0px;" @click="galleryVideoAdd()">
-                                <i class="fas fa-plus-circle"></i> 追加
-                            </span>                         
+                            <label class="headinglbl col-6 col-lg-2 col-md-3 pad-free">動画</label>                                                      
                             <span class='changeLinkvideo  bg-trans btn dropdown-arrow nursing_toggle_responsive' style="" @click="mainToggle('video',null)">
                                 詳細 <i id="video" class="fas fa-sort-down"></i>
                             </span>
                             <div id="changeLinkvideo" class="row col-md-12 pad-free-750 m-0">
+                                <span class="galleryvideo btn all-btn main-bg-color float-right nursing_add_responsive " style="min-width:0px;" @click="galleryVideoAdd()">
+                                <i class="fas fa-plus-circle"></i> 追加
+                            </span>   
                                     <div class="row col-12" id="gallery-video">
                                             <div class="col-12 col-md-6 gallery-area-video" v-bind:id="'video'+indx" v-for="(video,indx) in video_arr" :key="video.id">
                                                 <div class="col-md-12">
@@ -1127,6 +1127,7 @@ export default {
                 if(id == null) { id =''; }
 
                 var class_by_id = $('#'+type+id).attr('class');
+             
                 if(class_by_id == "fas fa-sort-down animate rotate")
                 {
                     $('#'+type+id).removeClass("fas fa-sort-down animate rotate");                   
