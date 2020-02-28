@@ -63,7 +63,7 @@
                 <div >
                     <h5 class="profile_header m-t-10" style="border-left: 5px solid #63b7ff;">現在の検索条件</h5>
 
-                    <table class="table table-bordered col-12">
+                    <table class="table table-bordered col-12" style="border:none;">
                         <tbody>
                         <tr>
                             <th class="pc-414-table sp-768-block">地域</th>
@@ -119,7 +119,7 @@
                             </div>
                             </td>
                         </tr>
-                        <tr class="toBeToggled1 ShowHide1">
+                        <tr >
                             <th class="pc-414-table sp-768-block">特長</th>
                             <td class="sp-768-block sp-414-table">
                               <!--特長から探す-->
@@ -162,7 +162,7 @@
 
                             </td>
                         </tr>
-                        <tr class="toBeToggled1 ShowHide1">
+                        <tr >
                             <th class="pc-414-table sp-768-block">診療科目</th>
                             <td class="sp-768-block sp-414-table" id="test-td">
                                 <div class="form-check form-check-inline row align-items-start innerwrapper" v-if="w_width >= 420">
@@ -210,17 +210,17 @@
                             </td>
                         </tr>
 
-                        <tr class="text-center">
-                            <td colspan="2" style="border:none;">
+                        <!-- <tr class="text-center">
+                            <td colspan="2" style="border:none;">                        
                             <button @click="ShowHide1" class="btn seemore-btn">
                                 <i class="fa" aria-hidden="true"></i>
-                                <span id="close2"><i class="fas fa-arrow-circle-up"></i> もっと見る</span>
+                                <span id="close2"><i class="fas fa-arrow-circle-up"></i> 閉じる</span>
                             </button>
                             </td>
-                        </tr>
+                        </tr> -->
 
                         <tr class="text-center">
-                            <td colspan="2">
+                            <td colspan="2" style="border:none;">
                             <button type="button" class="main-bg-color create-btn all-btn col-lg-2 col-md-4 col-sm-2" id="search" name="search" value="検索"  @click="search">
                             <i class="fas fa-search"></i>&nbsp; 検索
                             </button>
@@ -526,7 +526,6 @@ import bulcomponent from './bulcomponent.vue'
         }).then((response)=>{
         this.showOne = false;
         this.$loading(false);
-
         this.getTownships = response.data.township;
         this.hos_data = response.data.hospital;
         this.timetable = response.data.timetable;
@@ -546,10 +545,11 @@ import bulcomponent from './bulcomponent.vue'
             this.norecord_msg = true;
         }
         })
-        // this.ShowHide1();
+     
     },
     searchfreeword(){
-       
+
+      
         this.count = false;
         this.stateclick = false;
         //clear all checkbox
@@ -627,7 +627,7 @@ import bulcomponent from './bulcomponent.vue'
                         this.norecord_msg = true;
                     }
                   this.array_len = ((this.subjects.length)%3)==0?((this.subjects.length)/3):Math.floor(((this.subjects.length)/3)+1);
-                  // this.ShowHide1();
+               
 
             });
 
@@ -698,7 +698,6 @@ import bulcomponent from './bulcomponent.vue'
     toggleContent() {
 
         this.toggleCheck = !this.toggleCheck;
-
         if (this.toggleCheck == true) {
             $('#close').empty();
             $("#toBeToggled").slideDown();
@@ -713,13 +712,17 @@ import bulcomponent from './bulcomponent.vue'
     ShowHide1() {
 
          this.toggleCheck_1 = !this.toggleCheck_1;
-        $(".ShowHide1").toggle();
+      
         if (this.toggleCheck_1 == true) {
             $('#close2').empty();
+            // $(".ShowHide1").toggle("medium");
+             $(".ShowHide1").slideDown();
             $('#close2').append('<i class="fas fa-arrow-circle-up"></i> 閉じる');
 
         } else {
             $('#close2').empty();
+            // $(".ShowHide1").toggle("medium");
+            $(".ShowHide1").slideUp();
             $('#close2').append('<i class="fas fa-arrow-circle-down"></i> もっと見る');
         }
 
@@ -769,10 +772,9 @@ import bulcomponent from './bulcomponent.vue'
 
     parentGetStateClick(e,parentVue) {
         this.count = false;
-        
-     
         var _this = parentVue;
         _this.stateclick = true;
+     
         console.log("parent",parentVue);
         localStorage.setItem('features', 'hospital');
         //clear all checkbox
@@ -837,7 +839,7 @@ import bulcomponent from './bulcomponent.vue'
 
         document.getElementById('search-free-word').value = '';
         _this.search();
-        this.ShowHide1();
+     
 
 
     },

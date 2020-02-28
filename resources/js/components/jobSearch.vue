@@ -86,7 +86,7 @@
               
             <div class="col-12">
              <h5 class="profile_header m-t-10" style="border-left: 5px solid #828282;">現在の検索条件</h5>
-            <table class="table table-bordered col-12 ">
+            <table class="table table-bordered col-12" style="border:none;">
               <tbody>
                 <tr>
                   <th class="pc-414-table sp-768-block">地域</th>
@@ -161,7 +161,7 @@
                     </td>
                 </tr> -->
 
-                <tr class="toBeToggled1 ShowHide">
+                <tr >
                     <th class="pc-414-table sp-768-block">職種</th>
                     <td class="sp-768-block sp-414-table">
                         <div class="form-check form-check-inline row align-items-start innerwrapper" v-if="w_width >= 420" >
@@ -209,7 +209,7 @@
                     </td>
                 </tr>
 
-                <tr class="toBeToggled1 ShowHide">
+                <tr >
                   <th style="padding:10px;" class="pc-414-table sp-768-block">雇用形態</th>
                   <td class="sp-768-block">
                     <!--雇用形態から探す-->
@@ -291,14 +291,19 @@
                   </td>
                 </tr>
 
-                <tr class="text-center">
+                <!-- <tr class="text-center">
                   <td colspan='2' style="border:none;">
-                    <button @click="ShowHide4" class="btn seemore-btn">
+
+                     <button @click="ShowHide4" class="btn seemore-btn">
+                                <i class="fa" aria-hidden="true"></i>
+                                <span id="close4"><i class="fas fa-arrow-circle-up"></i> 閉じる</span>
+                            </button> -->
+                    <!-- <button @click="ShowHide4" class="btn seemore-btn">
                       <i class="fa" aria-hidden="true"></i>
                           <span id="close4"><i class="fas fa-arrow-circle-up"></i> 閉じる</span>
-                    </button>
-                  </td>
-                </tr>
+                    </button> -->
+                  <!-- </td>
+                </tr> -->
 
                 <tr class="text-center">
                   <td colspan="2" style="border:none;">
@@ -553,11 +558,12 @@ export default {
           }
 
         })
-        this.ShowHide4();
+    
 
          // window.scrollTo({ top : 1000, behavior: 'smooth' });
     },
     searchfreeword(){
+      
 
             //clear all checkbox
             this.id = -1;
@@ -628,7 +634,7 @@ export default {
                 }
             });
 
-          this.ShowHide4();
+        
 
         },
 
@@ -650,14 +656,17 @@ export default {
             }
         },
        ShowHide4() {
-        this.toggleCheck_1 = !this.toggleCheck_1;
-        $(".ShowHide").toggle();
+        
+            this.toggleCheck_1 = !this.toggleCheck_1;
+            // $(".ShowHide").toggle();
             if (this.toggleCheck_1 == true) {
-                $('#close4').empty();                
+                $('#close4').empty();  
+                $(".ShowHide").slideDown();       
                 $('#close4').append('<i class="fas fa-arrow-circle-up"></i> 閉じる');
 
             } else {
-                $('#close4').empty();                
+                $('#close4').empty(); 
+                 $(".ShowHide").slideUp();                  
                 $('#close4').append('<i class="fas fa-arrow-circle-down"></i> もっと見る');
             }
         },
@@ -710,6 +719,7 @@ export default {
 
       parentGetStateClick(e,parentVue) {
         var _this = parentVue;
+      
             _this.stateclick = true;
             _this.count = false;
             _this.townshipID = [];
