@@ -288,6 +288,7 @@
                                                 </tr> -->
                                             </table>
                                             <!--special feature and subject-->
+                                          
                                             <h5 class="header m-t-10">こだわりの特長</h5>
                                             <span v-for="(spe,index) in specialfeatures" :key="index+'-'+spe.name+'-'+hos.hos_id">
                                                 <span v-if="spe.profile_id == hos.hos_id" class="hos_feature_list">
@@ -612,7 +613,7 @@ import bulcomponent from './bulcomponent.vue'
                     this.cities = response.data.city;
                     this.timetable = response.data.timetable;
                     this.specialfeatures = response.data.specialfeature;
-                    this.special_features = response.data.specialfeature;
+                    this.special_features = response.data.special_feature;
                     this.getTownships = [];
                     this.subject = response.data.subject;
                     this.subjects = response.data.subjects;

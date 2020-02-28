@@ -87,7 +87,7 @@ class SearchMapController extends Controller
                     LEFT JOIN special_features as spe on spe.id = spej.special_feature_id
                     LEFT JOIN acceptance_transactions as acct on acct.profile_id = n.id
                     LEFT JOIN medical_acceptance as med on med.id = acct.medical_acceptance_id
-                    WHERE n.recordstatus=1 ";
+                    WHERE n.recordstatus=1 and n.activate = 1 ";
 
         if($id != -1)
         {
@@ -145,7 +145,7 @@ class SearchMapController extends Controller
 
     
         
-          $nursing_profile = DB::select($query);
+        $nursing_profile = DB::select($query);
 
           
 
@@ -199,7 +199,7 @@ class SearchMapController extends Controller
         $subs = "SELECT *,'' as child from subjects where parent = " . 0 ." order by id";
         $subjects = DB::select($subs);
 
-        $spe_query = "SELECT spe.*,spej.profile_id from  special_features as spe join special_features_junctions as spej on spe.id = spej.special_feature_id";
+        $spe_query = "SELECT spe.*,spej.profile_id from  special_features as spe join special_features_junctions as spej on spe.id = spej.special_feature_id where spe.type = 'nursing'";
         $specialfeature = DB::select($spe_query);
 
         foreach($subjects as $sub)
@@ -239,6 +239,8 @@ class SearchMapController extends Controller
             'alphabet' => $alphabet,
             'specialfeature'=>$specialfeature
         ]);
+
+
     }
 
     
@@ -269,7 +271,7 @@ class SearchMapController extends Controller
                     left join special_features_junctions as spej on spej.profile_id = n.id 
                     left join special_features as spe on spe.id = spej.special_feature_id 
                     left join acceptance_transactions as acct on acct.profile_id = n.id 
-                    left join medical_acceptance as med on med.id = acct.medical_acceptance_id where n.recordstatus=1";
+                    left join medical_acceptance as med on med.id = acct.medical_acceptance_id where n.recordstatus=1 and n.activate = 1 ";
 
         //   if($id == -1)
         //   {
@@ -454,7 +456,7 @@ class SearchMapController extends Controller
 
            
 
-            $spe_query = "SELECT spe.*,spej.profile_id from  special_features as spe join special_features_junctions as spej on spe.id = spej.special_feature_id";
+            $spe_query = "SELECT spe.*,spej.profile_id from  special_features as spe join special_features_junctions as spej on spe.id = spej.special_feature_id where spe.type = 'nursing'";
             $specialfeature = DB::select($spe_query);
 
             $med_query = "SELECT med.*,acc.profile_id from acceptance_transactions as acc join medical_acceptance as med on acc.medical_acceptance_id = med.id";
@@ -537,7 +539,7 @@ class SearchMapController extends Controller
                   left join special_features as spe on spe.id = spej.special_feature_id
                   left join subject_junctions as subj on subj.profile_id = h.id
                   left join subjects as sub on sub.id = subj.subject_id      
-                  where h.recordstatus=1";
+                  where h.recordstatus=1 and h.activate = 1 ";
 
         // if($id == -1) 
         // {
@@ -670,7 +672,7 @@ class SearchMapController extends Controller
         $sub_child = DB::table('subjects')->get();
         $city = DB::table('cities')->get();
         $getTownships  = DB::table('townships')->where('city_id', $id)->get();
-
+        $special_features   = DB::table('special_features')->where('type','hospital')->get();
 
         //to bind fav_hospital
         for($i = 0;$i<count($hos_data);$i++)
@@ -702,7 +704,7 @@ class SearchMapController extends Controller
             $sub->child = $subchild;
         }
         return response()->json(array("hospital" => $hos_data, "timetable" => $timetable, "specialfeature" => $specialfeature, 
-                                      "subject" => $subject,"subjects"=>$subjects,"sub_child"=>$sub_child,"city"=>$city,"township"=>$getTownships));
+                                      "subject" => $subject,"subjects"=>$subjects,"sub_child"=>$sub_child,"city"=>$city,"township"=>$getTownships,"special_feature"=>$special_features));
     }
 
 
@@ -723,7 +725,7 @@ class SearchMapController extends Controller
                 left Join nursing_profiles As n on n.customer_id = c.id 
                 left Join hospital_profiles As h on h.customer_id = c.id 
                 left Join cities as ci on ci.id = t.city_id   
-                where  j.recordstatus=1 ";
+                where  j.recordstatus=1 and c.recordstatus = 1 ";
 
         // if($id == -1)
         // {
