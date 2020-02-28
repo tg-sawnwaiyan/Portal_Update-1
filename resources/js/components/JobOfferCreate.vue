@@ -1059,7 +1059,7 @@ import Autocomplete from 'vuejs-auto-complete'
                     return result.name + '「' + result.email + '」';
                   },
                   getSelected(event){
-                      if(event.selectedObject.type_id == 2){
+                      if(event.selectedObject.type_id == 3){
                           this.table_name.profile = 'nursing_profiles';
                       }else {
                           this.table_name.profile = 'hospital_profiles';
@@ -1069,6 +1069,7 @@ import Autocomplete from 'vuejs-auto-complete'
                         this.axios.post(`/api/job/profileList/${this.joboffer.customer_id}`,this.table_name)
                     .then(response=> {
                     this.profileList = response.data;
+                    console.log('jjjj',this.profileList)
                     if(this.profileList != ''){
                         this.selectedValue = this.profileList[0].id;
                         this.joboffer.profile_id = this.profileList[0].id;
