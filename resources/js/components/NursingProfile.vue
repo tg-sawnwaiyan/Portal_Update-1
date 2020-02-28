@@ -121,7 +121,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="headinglbl col-6 col-lg-2 col-md-3 pad-free">タイプ</label>
-                                <div class="col-6 col-lg-10 float-right p-0">
+                                <div class="col-6 col-lg-10 float-right p-0 addbtn-right">
                                     <span class="nusing_btn1 btn all-btn main-bg-color" style="" @click="methodAdd(this)"><i class="fas fa-plus-circle"></i>&nbsp;追加</span>
                                 </div>
                                 <div class="col-lg-10 col-md-12 float-right pad-free nursing-m-b-15">                                    
@@ -388,8 +388,8 @@
                         <td style="border:none;">
                             <div class="form-group">
                                 <label class="headinglbl col-6 col-lg-2 col-md-3 pad-free">協力医療機関</label>
-                                <div class="col-6 col-lg-10 float-right p-0">
-                                     <span class="btn all-btn main-bg-color" style="" @click="cooperateAdd()">
+                                <div class="col-6 col-lg-10 float-right p-0 addbtn-right">
+                                     <span class="btn all-btn main-bg-color nusing_btn1" style="" @click="cooperateAdd()">
                                     <i class="fas fa-plus-circle"></i> 追加</span>
                                 </div>
                                
@@ -445,7 +445,7 @@
                 <table class="table table-bordered table-wrapper">
                     <tr>
                         <td>
-                            <div class="form-group">
+                            <div class="form-group m-b-0">
                                 <label class="headinglbl col-6 col-lg-2 col-md-3 pad-free">医療面の受入れ</label>
                                 <span class="bg-trans btn dropdown-arrow nursing_toggle_responsive" style="" @click="acceptanceList()">詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate2}"></i></span>
                                 <div class="col-xl-10 col-md-12 float-right m-t-10 accept-toggle-div toggle-div pad-free">
@@ -464,7 +464,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group m-b-0">
                                             <label for="" class="font-weight-bold">備考</label>
                                             <!-- <textarea name="" class="form-control"></textarea> -->
                                             <quill-editor  ref="myQuilEditor" :options="editorOption" @change="onAcceptanceEditorChange($event)" name="" class="acceptance-remark" v-model="nursing_info.acceptance_remark"/>
@@ -526,7 +526,7 @@
                 <table class="table table-bordered table-wrapper">
                     <tr>
                         <td>
-                            <div class="form-group">
+                            <div class="form-group m-b-0">
                                 <label  class="headinglbl col-6 col-lg-2 pad-free">こだわりの特長</label>
                                 <span class="bg-trans btn dropdown-arrow nursing_toggle_responsive" style="" @click="specialFeAdd()">詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate4}"></i></span>
 
@@ -555,9 +555,11 @@
                         詳細 <i id="photo" class="fas fa-sort-down"></i>                        
                     </span>
                     <div id="changeLinkphoto"  class="row col-md-12 pad-free-750 m-0">
-                    <span class="galleryadd btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px" @click="galleryAdd()">
-                    <i class="fas fa-plus-circle"></i> 追加
-                    </span>
+                    <div class="col-12 col-lg-12 float-right p-0">
+                        <span class="galleryadd btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px" @click="galleryAdd()">
+                        <i class="fas fa-plus-circle"></i> 追加
+                        </span>
+                    </div>                    
                         <div id ="gallery-photo" class="row col-12">
                             <div class="col-12 col-md-6 gallery-area-photo" v-bind:id="'photo'+indx" v-for="(img,indx) in img_arr" :key="img.id">
                                 <div class="col-md-12">
@@ -583,6 +585,7 @@
                         </div>
                     </div>
                 </div>
+                
 
                     <div class="form-group form-group-wrapper">
                             <label class="headinglbl col-6 col-lg-2 col-md-3 pad-free">動画</label>                                                      
@@ -590,10 +593,12 @@
                                 詳細 <i id="video" class="fas fa-sort-down"></i>
                             </span>
                             <div id="changeLinkvideo" class="row col-md-12 pad-free-750 m-0">
-                                <span class="galleryvideo btn all-btn main-bg-color float-right nursing_add_responsive " style="min-width:0px;" @click="galleryVideoAdd()">
-                                <i class="fas fa-plus-circle"></i> 追加
-                            </span>   
-                                    <div class="row col-12" id="gallery-video">
+                                <div class="col-12 col-lg-12 float-right p-0">
+                                    <span class="galleryadd btn all-btn main-bg-color float-right nursing_add_responsive " style="min-width:0px;" @click="galleryVideoAdd()">
+                                    <i class="fas fa-plus-circle"></i> 追加
+                                    </span>   
+                                </div>                               
+                                    <div id="gallery-video" class="row col-12" >
                                             <div class="col-12 col-md-6 gallery-area-video" v-bind:id="'video'+indx" v-for="(video,indx) in video_arr" :key="video.id">
                                                 <div class="col-md-12">
                                                     <label class="font-weight-bold">URL</label>
@@ -658,7 +663,7 @@
                                     </table> -->
                                     <!-- End Test Station Area -->
 
-                                    <div class="form-group">
+                                    <div class="form-group m-b-0">
                                             <label class="font-weight-bold">交通 / アクセス</label>
                                             <!-- <textarea name="address" rows="10" class="form-control"></textarea> -->
                                             <quill-editor  ref="myQuilEditor" name="address" :options="editorOption" class="transporation-access" @change="onAccessEditorChange($event)" v-model="nursing_info.access"/>
@@ -971,14 +976,36 @@ export default {
 
 
             DeltArr(indx,type) {
+                this.$swal({
+                        title: "確認",
+                        text: "職種を削除してよろしいでしょうか。",
+                        type: "warning",
+                        width: 350,
+                        height: 200,
+                        showCancelButton: true,
+                        confirmButtonColor: "#dc3545",
+                        cancelButtonColor: "#b1abab",
+                        cancelButtonTextColor: "#000",
+                        confirmButtonText: "削除",
+                        cancelButtonText: "キャンセル",
+                        confirmButtonClass: "all-btn",
+                        cancelButtonClass: "all-btn"
+                    }).then(response => {
+                         if(type == 'cooperate') {
+                            this.cooperate_arr.splice(indx,1);
+                        }
+                        if(type == 'payment') {
+                            this.payment_arr.splice(indx,1);
+                        }
+                    });
 
-                if(type == 'cooperate') {
-                    this.cooperate_arr.splice(indx,1);
-                }
+                // if(type == 'cooperate') {
+                //     this.cooperate_arr.splice(indx,1);
+                // }
 
-                if(type == 'payment') {
-                    this.payment_arr.splice(indx,1);
-                }
+                // if(type == 'payment') {
+                //     this.payment_arr.splice(indx,1);
+                // }
 
             },
             DeleteArr(indx,type,id,photo) {
@@ -1124,9 +1151,10 @@ export default {
             },
 
             mainToggle(type,id) {
+               
                 if(id == null) { id =''; }
 
-                var class_by_id = $('#'+type+id).attr('class');
+                var class_by_id = $('#'+type+id).attr('class');              
              
                 if(class_by_id == "fas fa-sort-down animate rotate")
                 {
@@ -1327,7 +1355,7 @@ export default {
     }
  }
 .gallery-area-panorama {  
-    background: #fbfbfb;;
+    background: #e6e6e6;;
     padding: 2px;
 }
 @media (min-width: 992px) {
@@ -1352,9 +1380,9 @@ export default {
     background-color: #fff; 
 } 
          
-.panorama-box { 
-    padding: 10px 10px 20px 0px;  
+.panorama-box {     
     margin: 0px;  
-    margin-bottom: 15px; 
+    /* padding: 10px 10px 20px 0px;  
+    margin-bottom: 15px;  */
  }
  </style>

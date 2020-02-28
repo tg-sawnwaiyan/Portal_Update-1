@@ -43,7 +43,7 @@ p {
 }
 
 .footer-margin{
-    margin-bottom: 50px!important;
+    margin-bottom: 46px!important;
 }
 
 .form1 {
@@ -360,6 +360,9 @@ span:hover::before {
     bottom:0;
     padding: 5px 0px;
 }
+.nusing_btn1{
+    min-width: 68px !important;
+}
 /********************************** End Common **********************************/
 
 
@@ -446,7 +449,7 @@ width: 100px; */
 }
 
 .form-class {
-    padding: 15px;
+    padding: 0px;
 }
 
 .form-class .form-group>input.form-control {
@@ -456,7 +459,7 @@ width: 100px; */
 
 .form-class .form-group-wrapper {
     background: #fbfbfb;
-    padding: 15px 10px;
+    padding: 10px 10px;
     border: 1px solid #dee2e6;
 }
 
@@ -9896,7 +9899,8 @@ padding: 0;
         width: 30px !important;
         height: 30px !important;
         line-height: 30px;
-    }
+    } 
+    
     /*End profile publish */
     .wd-in {
         width: 249px;
@@ -9990,9 +9994,11 @@ padding: 0;
 }
 
 @media only screen and (max-width: 990px) {
-    .nursing_toggle_responsive{
-        float: right;
+    .addbtn-right{
+        text-align: right;
     }
+    .nursing_toggle_responsive{
+        float: right;    }
    
     .map-fa-icon{
         float: left;
@@ -12397,7 +12403,6 @@ strong {
  
 }
 /*nursing_search_dropdown*/
-<<<<<<< HEAD
 
 /* checkbox */
 .checkbox {
@@ -12507,7 +12512,6 @@ strong {
   }  
   
 /* checkbox end */
-=======
 /*all_pages_btn_red*/
 .bt-red
 {
@@ -12521,4 +12525,3 @@ border-color: #e3342f;
     background-color: #0cc72c; 
     border-color: #0cc72c;
 }
->>>>>>> bc866073e2ecf642ec0a2bdfc2e8befc071889cd
