@@ -3070,6 +3070,7 @@ ul.sub-ul li {
 
 .all-btn:hover {
     text-decoration: none;
+    opacity: 0.9;
 }
 
 .edit-borderbtn {
@@ -3106,6 +3107,7 @@ ul.sub-ul li {
 
 .btn:hover {
     cursor: pointer;
+    opacity: 0.9;
 }
 
 .confirm-borderbtn {
