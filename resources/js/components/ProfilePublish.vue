@@ -2345,18 +2345,7 @@ h3 {
 .pannellum{
     height: 500px;
 }
-.first-row{
-    color: #fff;
-    background-color: #a2a7a1;
-    border-bottom: 1px solid #ccc;
-    border-right: 1px solid #ccc;
-    text-align: center;
-    padding: 10px;
-    font-size: 100%;
-}
-.second-row{
-    background-color: #eff7ec;
-}
+
 .cost_tb{
 
     /* border: 1px solid #ccc; */

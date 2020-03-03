@@ -17,7 +17,7 @@
               </div>            
               <div class="col-lg-8 col-md-7">
                   <div class="form-group form-group-wrapper d-flex">
-                      <label class="headinglbl col-md-2 col-12 pad-free">施設名称 <span class="error sp2">必須</span></label>
+                      <label class="heading-lbl col-md-2 col-12 pad-free">施設名称 <span class="error sp2">必須</span></label>
                       <input type="text" class="form-control customer-name col-md-10 col-12 nursing_input" placeholder="施設名称を入力してください。" v-model="hospital_info.name">
                   </div>
 
@@ -75,10 +75,11 @@
                 <td>
                     <div class="form-group">
                         <label  class="heading-lbl col-2 pad-free">診療科目 </label>
-                        <span class="btn all-btn main-bg-color nursing_toggle_responsive" style="min-width: 0px;" @click="toggleEvent('clinical-subject','1')"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate1}"></i></span>
+                        <span class="bg-trans btn dropdown-arrow" @click="toggleEvent('clinical-subject','1')">
+                            詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate1}"></i></span>
                         <div class="col-md-10 float-right clinical-subject-toggle-div toggle-div m-t-10">
                         
-                            <div class="row"> <div v-for="subj in clinical_subj" :key="subj.id" class="form-check form-check-inline col-sm-3">
+                            <div class="row"> <div v-for="subj in clinical_subj" :key="subj.id" class="form-check form-check-inline col-6 col-md-4 col-lg-3">
                                     <label class="form-check-label control control--checkbox" style="padding-left:5px;">
                                         <input type="checkbox" class="form-check-input"  name="subject" v-bind:value="subj.id" @click="subjectCheck(subj.id)" v-model="subj.checked">
                                           {{subj.name}}
@@ -94,22 +95,17 @@
         <!-- end -->
 
 
-
         <div class="form-group form-group-wrapper row ml-0 mr-0">
-
-            <label class="heading-lbl col-2 pad-free">
-                専門医
-            </label>
-
+            <label class="heading-lbl col-2 pad-free"> 専門医</label>
             <textarea name="specialist" class="form-control col-md-10 col-12 hos-768 specialist white-bg-color" v-model="hospital_info.specialist" ></textarea>
         </div>  
 
         <table class="table table-bordered table-wrapper">
             <tr>
-                <th class="nursing_table" style="border:none;"> <label class="heading-lbl hos_lbl pad-free">医院からのお知らせ </label></th>
-                <td class="nursing_table1" style="border:none;">
-                        <!-- <textarea name="feature" id="" cols="30" rows="10" ></textarea> -->
-                        <quill-editor  ref="myQuilEditor" name="detailsinfo" class="details-info" @change="onDetailInfoEditorChange($event)" v-model="hospital_info.details_info" :options="editorOption"/>
+                <th class="nursing_table pc-414-table sp-768-block" style="border:none;"> <label class="heading-lbl hos_lbl pad-free">医院からのお知らせ </label></th>
+                <td class="nursing_table1 pc-414-table sp-768-block" style="border:none;">
+                    <!-- <textarea name="feature" id="" cols="30" rows="10" ></textarea> -->
+                    <quill-editor  ref="myQuilEditor" name="detailsinfo" class="details-info" @change="onDetailInfoEditorChange($event)" v-model="hospital_info.details_info" :options="editorOption"/>
                 </td>
             </tr>
         </table>
@@ -119,162 +115,65 @@
         </div>-->
 
         <table class="table table-bordered table-wrapper">
-
           <tr>
-
             <td>
-
               <label class="heading-lbl col-2 pad-free">診療時間 </label>
-
-              <span
-
-                class="btn all-btn main-bg-color nursing_toggle_responsive"
-
-                style="min-width: 0px;"
-
-                @click="toggleEvent('schedule','2')"
-
-              >
-
+              <span  class="bg-trans btn dropdown-arrow nursing_toggle_responsive" @click="toggleEvent('schedule','2')">詳細
                 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate2}"></i>
-
               </span>
 
               <div class="col-md-10 hos_toggle float-right m-t-10 schedule-toggle-div toggle-div pad-free">
-
                 <div class="col-12">
-
                   <div class="row">
-
                     <table class="table table-striped table-bordered">
-
-                      <tr>
-
+                      <tr class="first-row"> 
                         <th>&nbsp;</th>
-
                         <th class="text-center">午前</th>
-
                         <th class="text-center">午後</th>
-
                       </tr>
 
                       <tr>
-
-                        <td >月</td>
-
+                        <td class="text-center font-weight-bold second-row">月</td>
                         <td>
-
                           <div class="row">
-
                             <div class="col-lg-6">
-
                               <span>から</span>
-
-                              <input
-
-                                type="text"
-
-                                class="form-control am-from0 white-bg-color" placeholder="0:00"
-
-                                v-model="schedule_arr.am_mon_from"
-
-                              />
-
+                              <input type="text" class="form-control am-from0 white-bg-color" placeholder="0:00" v-model="schedule_arr.am_mon_from"/>
                             </div>
 
                             <div class="col-lg-6 m-t-768">
-
                               <span>まで</span>
-
-                              <input
-
-                                type="text"
-
-                                class="form-control am-to0 white-bg-color" placeholder="0:00"
-
-                                v-model="schedule_arr.am_mon_to"
-
-                              />
-
+                              <input type="text" class="form-control am-to0 white-bg-color" placeholder="0:00" v-model="schedule_arr.am_mon_to"/>
                             </div>
-
                           </div>
-
                         </td>
 
                         <td>
-
                           <div class="row">
-
                             <div class="col-lg-6">
-
                               <span>から</span>
-
-                              <input
-
-                                type="text"
-
-                                class="form-control pm-from0 white-bg-color" placeholder="0:00"
-
-                                v-model="schedule_arr.pm_mon_from"
-
-                              />
-
+                              <input type="text" class="form-control pm-from0 white-bg-color" placeholder="0:00" v-model="schedule_arr.pm_mon_from"/>
                             </div>
 
                             <div class="col-lg-6 m-t-768">
-
                               <span>まで</span>
-
-                              <input
-
-                                type="text"
-
-                                class="form-control pm-to0 white-bg-color" placeholder="0:00"
-
-                                v-model="schedule_arr.pm_mon_to"
-
-                              />
-
+                              <input type="text" class="form-control pm-to0 white-bg-color" placeholder="0:00" v-model="schedule_arr.pm_mon_to"/>
                             </div>
-
                           </div>
-
                         </td>
-
                       </tr>
 
                       <tr>
-
-                        <td>火</td>
-
+                        <td class="text-center font-weight-bold second-row">火</td>
                         <td>
-
                           <div class="row">
-
                             <div class="col-lg-6">
-
                               <span>から</span>
-
-                              <input
-
-                                type="text"
-
-                                class="form-control am-from1 white-bg-color" placeholder="0:00"
-
-                                v-model="schedule_arr.am_tue_from"
-
-                              />
-
+                              <input type="text" class="form-control am-from1 white-bg-color" placeholder="0:00" v-model="schedule_arr.am_tue_from"/>
                             </div>
-
                             <div class="col-lg-6 m-t-768">
-
                               <span>まで</span>
-
-                              <input
-
-                                type="text"
+                              <input type="text"
 
                                 class="form-control am-to1 white-bg-color" placeholder="0:00"
 
@@ -332,7 +231,7 @@
 
                       <tr>
 
-                        <td>水</td>
+                        <td class="text-center font-weight-bold second-row">水</td>
 
                         <td>
 
@@ -418,7 +317,7 @@
 
                       <tr>
 
-                        <td>木</td>
+                        <td class="text-center font-weight-bold second-row">木</td>
 
                         <td>
 
@@ -504,7 +403,7 @@
 
                       <tr>
 
-                        <td>金</td>
+                        <td class="text-center font-weight-bold second-row">金</td>
 
                         <td>
 
@@ -590,7 +489,7 @@
 
                       <tr>
 
-                        <td>土</td>
+                        <td class="text-center font-weight-bold second-row">土</td>
 
                         <td>
 
@@ -676,7 +575,7 @@
 
                       <tr>
 
-                        <td>日</td>
+                        <td class="text-center font-weight-bold second-row">日</td>
 
                         <td>
 
@@ -777,125 +676,61 @@
 
 
         <div class="form-group form-group-wrapper row ml-0 mr-0">
-
           <label class="heading-lbl col-md-2 col-12 pad-free">休診日 </label>
-
           <textarea name="close-day" class="form-control white-bg-color close-day col-md-10 col-12 hos-768" v-model="hospital_info.closed_day" ></textarea>
-
         </div>
 
 
 
         <table class="table table-bordered table-wrapper">
-
           <tr>
-
             <td>
-
               <div class="form-group">
-
                 <label class="heading-lbl col-2 pad-free">施設情報 </label>
-
-                <span class="btn all-btn main-bg-color nursing_toggle_responsive" style="min-width: 0px;" @click="toggleEvent('hos-fac','3')" >
-
-                  <i class="fas fa-sort-down animate"  :class  ="{'rotate': isRotate3}"></i>
-
+                <span class="bg-trans btn dropdown-arrow nursing_toggle_responsive" @click="toggleEvent('hos-fac','3')" >詳細 
+                    <i class="fas fa-sort-down animate"  :class  ="{'rotate': isRotate3}"></i>
                 </span>
 
-
-
                 <div class="col-md-10 float-right hos-fac-toggle-div toggle-div m-t-10">
-
                   <div class="row">
-
                     <div v-for="fac in fac_list" :key="fac.id" class="form-check form-check-inline col-sm-3">
-
                       <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-
                         <input type="checkbox" class="form-check-input" name="facility" :class="'facility-'+fac.id" v-bind:value="fac.id" @click="facilityCheck(fac.id)" v-model="fac.checked" />
-
                         {{fac.description}}
                         <div class="control__indicator"></div>
                       </label>
-
                     </div>
-
                   </div>
-
                 </div>
-
               </div>
-
             </td>
-
           </tr>
-
         </table>
-
-
 
         <table class="table table-bordered table-wrapper">
-
           <tr>
-
             <td>
-
               <div class="form-group">
-
-                <label class="heading-lbl hos_lbl1  col-2 pad-free ">
-                  こだわりの特長
-                </label>
-
-                <span
-
-                  class="btn all-btn main-bg-color nursing_toggle_responsive btn-toggle"
-
-                  style="min-width: 0px;"
-
-                  @click="toggleEvent('special-feature','4')"
-
-                >
-
-                  <i class="fas fa-sort-down animate" :class="{rotate:isRotate4}"></i>
-
+                <label class="hos_lbl headinglbl col-6 col-lg-2 col-md-3 pad-free">こだわりの特長</label>
+                <span class="bg-trans btn dropdown-arrow nursing_toggle_responsive btn-toggle" @click="toggleEvent('special-feature','4')">
+                  詳細 <i class="fas fa-sort-down animate" :class="{rotate:isRotate4}"></i>
                 </span>
 
-
-
-                <div class="col-md-10 float-right special-feature-toggle-div toggle-div m-t-10">
-
+                <div class="col-xl-10 col-md-12 float-right special-feature-toggle-div toggle-div m-t-10">
                   <div class="row">
-
                     <div v-for="feat in feature_list" :key="feat.id" class="form-check form-check-inline col-sm-3">
-
                       <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-
                         <input type="checkbox" class="form-check-input" name="special-features" :class="'feature-'+feat.id" v-bind:value="feat.id" @click="featureCheck(feat.id)" v-model="feat.checked"/>
-
                         {{feat.name}}
                         <div class="control__indicator"></div>
-
                       </label>
-
                     </div>
-
                   </div>
-
                 </div>
-
               </div>
-
             </td>
-
           </tr>
-
         </table>
-
-
-
-        
-
-
 
         <!-- <div class="form-group form-group-wrapper">
           <label class="heading-lbl">地図</label>
@@ -1063,16 +898,9 @@
         <!-- End Test Station Area -->
 
         <div class="form-group form-group-wrapper">
-
-          <label class="heading-lbl col-md-2 col-12 pad-free">フォトアルバム</label>
-
-          <span class="galleryadd btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px;" @click="galleryAdd()">
-
-            <i class="fas fa-plus-circle"></i> 追加
-
-          </span>
-           <span class='changeGalleryLink btn btn all-btn main-bg-color nursing_toggle_responsive' style="min-width: 0px;" @click="toggleEvent('photo','6')" :class="{'rotate': isRotate6}" >
-                  <i id="gallery" class="fas fa-sort-down"></i>
+          <label class="heading-lbl col-md-2 col-12 pad-free">フォトアルバム</label>          
+           <span class='changeGalleryLink bg-trans btn dropdown-arrow nursing_toggle_responsive' @click="toggleEvent('photo','6')">
+              詳細 <i id="gallery" class="fas fa-sort-down" :class="{'rotate': isRotate6}"></i>
             </span>
 
           <!-- <div id="changeGalleryLink" class="col-md-12">
@@ -1097,18 +925,17 @@
           </div> -->
 
         <div id="changeGalleryLink" class="col-md-12 photo-toggle-div">
+          <div class="col-12 col-lg-12 float-right p-0">
+            <span class="galleryadd btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px;" @click="galleryAdd()">
+            <i class="fas fa-plus-circle"></i> 追加
+            </span>
+          </div>         
 
 
             <div class="row" id="gallery-photo">
-
-
-
               <div class="col-md-6 gallery-area-photo p0-990 p0-480" v-bind:id="'photo'+indx" v-for="(img,indx) in img_arr" :key="img.id" >
-
                     <div class="col-md-12 p0-990 p0-480">
-                          <!-- <input type="file" name class="hospital-photo m-b-15 p-t-10"  v-bind:class="'classname'+indx" id="upload_img" @change="preview_image($event,indx)" />
-                       
-                   
+                          <!-- <input type="file" name class="hospital-photo m-b-15 p-t-10"  v-bind:class="'classname'+indx" id="upload_img" @change="preview_image($event,indx)" />  
                         <div class="col-md-12" v-bind:class="img.id">
                             <input type="hidden" class="already-photo" v-model="img.photo" />
                             <div>
@@ -1123,7 +950,6 @@
                                 <input type="hidden" class="already-photo" v-model="img.photo">
                                 <img v-bind:src="img.src" class="img-fluid hospital-image" alt="profile" v-if="img.src!=null" @error="imgUrlAlt">
                             </div>
-
                     </div>
 
                     <div class="col-md-12">
@@ -1131,48 +957,35 @@
                         <input type="text" name="title" placeholder="タイトルを入力してください。" class="form-control m-b-15 white-bg-color" v-model="img.title" />
                         <label>コンテンツ</label>
                         <textarea name="description" placeholder="コンテンツを入力してください。" class="form-control m-b-15 description white-bg-color" v-model="img.description" ></textarea>
-
                     </div>
                     <div class="col-md-12 text-right hos-del">
                         <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,img.id,'photo')">
                             <i class="fa fa-trash"></i> 削除
                         </a>
                     </div>
-
               </div>
-
             </div>
-
           </div>
-
         </div>
 
         <div class="form-group form-group-wrapper">
+          <label class="heading-lbl col-2 pad-free">動画</label>         
 
-          <label class="heading-lbl col-2 pad-free">動画</label>
-
-          <span class="galleryvideo btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px;" @click="galleryVideoAdd()" >
-
-            <i class="fas fa-plus-circle"></i> 追加
-
-          </span>
-
-           <span class='changeGalleryVideoLink  btn btn all-btn main-bg-color nursing_toggle_responsive' style="min-width: 0px;" @click="toggleEvent('video','7')" :class="{'rotate': isRotate7}">
-                                        <i id="video" class="fas fa-sort-down"></i>
+           <span class='changeGalleryVideoLink bg-trans btn dropdown-arrow nursing_toggle_responsive' @click="toggleEvent('video','7')">
+           詳細 <i id="video" class="fas fa-sort-down" :class="{'rotate': isRotate7}"></i>
            </span>
 
           <div id="changeGalleryVideoLink" class="col-md-12 video-toggle-div">
-
+            <div class="col-12 col-lg-12 float-right p-0">
+              <span class="galleryvideo btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px;" @click="galleryVideoAdd()" >
+              <i class="fas fa-plus-circle"></i> 追加</span>
+            </div>
             <div class="row toggle-div" id="gallery-video">
-
               <!-- Add by + Button -->
-
               <div class="col-md-6 gallery-area-video p0-480" v-bind:id="'video'+indx" v-for="(video,indx) in video_arr" :key="video.id" >
-
                 <div class="col-md-12">
                   <label>URL</label>
-                  <input type="text" name="url" placeholder="URLを入力してください。" class="form-control m-b-15 video-url white-bg-color" v-model="video.photo" />
-                
+                  <input type="text" name="url" placeholder="URLを入力してください。" class="form-control m-b-15 video-url white-bg-color" v-model="video.photo" />                
                 </div>
 
                 <div class="col-md-12">
@@ -1184,16 +997,11 @@
                 </div>
                 <div class="col-md-12 text-right hos-del">
                   <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,video.id,'video')">
-
                   <i class="fa fa-trash"></i> 削除
-
                   </a>
                 </div>
-
               </div>
-
             </div>
-
           </div>
 
         </div>
@@ -1201,7 +1009,7 @@
             <tr>
                 <td>
                     <label class="heading-lbl col-2 pad-free">地図</label>
-                    <span class="btn all-btn main-bg-color nursing_toggle_responsive" style="min-width: 0px;" @click="toggleEvent('map','5')"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
+                    <span class="bg-trans btn dropdown-arrow nursing_toggle_responsive" @click="toggleEvent('map','5')">詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
                     <div class="col-md-10 hos_toggle float-right m-t-10 map-toggle-div toggle-div pad-free">
                         <div class="col-md-12">
                             <GoogleMap :address="address_show" :township="hospital_info.townships_id" :lat_num='hospital_info.latitude' :lng_num='hospital_info.longitude' :city="city_id" :township_list="township_list"></GoogleMap>
@@ -1216,49 +1024,17 @@
                     </div>
                 </td>
             </tr>
-        </table>
-        <!-- Consultation -->
-
-
-
-        <!-- End Consultation -->
-
-
-
-        <!-- Facilities -->
-
-
-
-        <!-- End Facilities -->
-
-
-
-        <!-- <hr class="hor-line m-t-30"> -->
-
-
-
-        <!-- <hr class="hor-line m-t-30"> -->
-
-
-
-        <!-- Map -->
-
-
-
-        <!-- End Map -->
-
-        <div style="position:fixed;width:100%;background:rgba(0,0,0,.5);left:0;right:0;bottom:0;padding:0 0 10px 0;">
-            <div class="row col-2 col-offset-5 mx-auto">
-                <span class="btn secondary-bg-color col-8 offset-2 all-btn m-t-15 pad-10" @click="Create_Profile()">保存</span>
+        </table>  
+        <div class="bottom-fixed-btn">
+            <div class="row justify-content-center">
+                <div class="col-8 col-md-3 col-lg-2">
+                    <span class="btn secondary-bg-color col-8 offset-2 all-btn" @click="Create_Profile()" id="create-profile">保存</span>
+                </div>                        
             </div>
-        </div>
-
+        </div>      
       </div>
-
     </form>
-
   </div>
-
 </template>
 
 
