@@ -724,7 +724,7 @@
                         </div>
                         <div class="row gallery-list m-0 pad-free-750" v-else>
                             <div v-for="(video) in  videos" :key="video.id" class="col-6  col-sm-4 col-md-4 col-lg-3 m-b-10">
-                                <div class="gallery-item">
+                                <div class="gallery-item" style="height:135px;">
                                     <iframe :src="'https://www.youtube.com/embed/'+video.photo" controls></iframe>
                                 </div>
                                 <span class="video_txt">{{video.title}}</span>
@@ -1210,7 +1210,7 @@
                     <h5 class="profile_subtit">動画</h5>
                     <div class="row m-0 gallery-list" v-if="videos.length>0">
                         <div v-for="(video) in  videos" :key="video.id" class="col-6 col-lg-3 col-md-4 col-sm-4 m-b-10">
-                            <div class=" gallery-item">
+                            <div class="gallery-item" style="height:135px;">
                                 <iframe :src="'https://www.youtube.com/embed/'+video.photo" controls></iframe>
                             </div>
                             <span class="video_txt">{{video.title}}</span><br>
@@ -1224,7 +1224,7 @@
                 </div>
             <!-- End -->
 
-            <div class="row ele m-lr-0" id="element2">
+            <div class="row m-lr-0" id="element2">
 
                  <h5 class="profile_header col-md-12"> 地図 </h5>
 
