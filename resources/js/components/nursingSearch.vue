@@ -458,9 +458,9 @@
                                                             <div class="row">
                                                             <div class="col-lg-2 col-md-4 col-sm-4" v-for="fac_type in fac_types" :key="fac_type.id">
                                                                 <label class="form-check-label control control--checkbox">
-                                                                <input class="form-check-input" type="checkbox" v-model="FacTypeID" :id="fac_type.id" :value="fac_type.id">
-                                                                {{fac_type.description}}
-                                                                <div class="control__indicator"></div>
+                                                                    <input class="form-check-input" type="checkbox" v-model="FacTypeID" :id="fac_type.id" :value="fac_type.id">
+                                                                    {{fac_type.description}}
+                                                                    <div class="control__indicator"></div>
                                                                 </label>
                                                             </div>
                                                             </div>
@@ -1260,7 +1260,7 @@
                 if(this.township_id == -1){
                     var mapProp = {
                         center: new google.maps.LatLng(lat, lng),
-                        minZoom: 7,
+                        minZoom: 3,
                         maxZoom: 14,
                         zoom: 7,
                         mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -1618,8 +1618,7 @@
                     MoveID:this.MoveID,
                     Moving_in:this.moving_in,
                     Per_month:this.per_month,
-                    local:this.locast
-
+                    local:this.locast,
                 },
                 }).then((response)=>{
                 this.nus_data = response.data.nursing;

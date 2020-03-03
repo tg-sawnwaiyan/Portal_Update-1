@@ -1,6 +1,6 @@
 <template>
     <div class="col-12 scrolldiv2 pb-3 tab-content" id="hospital">
-        <div class="col-12 pl-0">
+        <div class="col-12 pad-free-750">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
@@ -10,8 +10,8 @@
                 </ol>
             </nav>
         </div>
-        <div class="col-12">
-            <div class="col-md-12 fav-his-header">
+        <div class="col-12 pad-free-750">
+            <div class="col-md-12 fav-his-header pad-free-750">
                 <svg x="0px" y="0px" width="24" height="24" viewBox="0 0 172 172" style=" fill:#000000;">
                     <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
                         <path d="M0,172v-172h172v172z" fill="none"></path>
@@ -41,7 +41,7 @@
 
             <form class="col-md-12 pad-free" id="fav-hospital-page">
                 <div class="col-12"  id="fav-history-page">
-                    <div class="row justify-content-lg-center">
+                    <div class="justify-content-lg-center">
                         <div>
                             <label> {{message}} </label>
                         </div>

@@ -10,7 +10,7 @@
                     </div>
                 </div>
                 <hr />
-                <h5 class="header"> 求人応募者一覧</h5>
+                <h5 class="header"> 求人応募者一覧({{job_title}})</h5>
                 <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
                 <div v-else class="container-fuid">
 
@@ -39,8 +39,8 @@
                                                     <p class="mb-2"><span class="text-orange"><span class="job_ico">&#xa5;</span>生年月日 :</span><span class=""> {{jobapply.birtdday}}</span></p>
                                             </td>
                                             <td class="w-50">
-                                                <p><span class="text-primary">性別:</span><span>{{jobapply.gender}}</span></p>  
-                                                
+                                                <!-- <p><span class="text-primary">性別:</span><span>{{jobapply.gender}}</span></p>   -->
+                                                 <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-briefcase"></i></span> 性別 :</span><span class=""> {{jobapply.gender}}</span></p>
                                             </td>
                                         </tr>
                                         <tr>
@@ -48,7 +48,7 @@
                                                     <p class="mb-2"><span class="text-orange"><span class="job_ico">★</span> 郵便番号 :</span><span class=""> {{jobapply.postal}}</span></p>
                                             </td>
                                             <td  class="w-50">
-                                                    <p><span class="text-primary">街路住所:</span>{{jobapply.street_address}}</p> 
+                                                    <p><span class="text-primary"><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>街路住所:</span>{{jobapply.street_address}}</p> 
                                             </td>
                                         </tr>
                                         <tr>
@@ -124,7 +124,7 @@ export default {
       props:{
                 limitpc: {
                 type: Number,
-                default: 5
+                default: 5,
             },
         },
 
@@ -136,6 +136,7 @@ export default {
                     norecord: 0,
                     nosearch_msg: false,
                     job_id:0,
+                    job_title: ''
                 };
 
             },
@@ -150,7 +151,7 @@ export default {
                     this.axios.get(`/api/jobapplicantlist/`+this.job_id).then(response => {
                         this.$loading(false);
                         this.jobapplies = response.data;
-                       
+                        this.job_title = this.jobapplies.data[0].title;
                         this.norecord = this.jobapplies.length;
                       
                         if (this.norecord > this.size) {

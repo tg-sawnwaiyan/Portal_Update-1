@@ -703,7 +703,7 @@
 
                     </div>
 
-                    <div class="col-md-12">
+                    <div class="col-md-12 pad-free-750">
                         <h5 class="profile_subtit">フォトアルバム</h5>
                         <div class="row gallery-list m-0">
                             <div v-for="(image,index) in  light_images" :key="index" class="col-6 col-md-4 col-sm-4 col-lg-3 m-b-10 ">
@@ -717,7 +717,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-12">
+                    <div class="col-md-12 pad-free-750">
                         <h5 class="profile_subtit">動画</h5>
                         <div class="row m-0" v-if="videos == ''">
                             <div class="col-12 pad-free-750"> <p class="no-data-color">表示されるデータがありません。</p> </div>
@@ -733,7 +733,7 @@
                         </div>
                     </div>
 
-                    <div class="col-12">
+                    <div class="col-12 pad-free-750">
                         <h5 class="profile_subtit">協力医療機関</h5>
                         <div v-if="cooperate_medical.length>0" class="col-md-12 pad-free-750">
                                 <div v-for="comedical in cooperate_medical" :key="comedical.id" class="col-md-12 pad-free" >
@@ -766,7 +766,7 @@
                         <div class="col-12" v-else> <p class="no-data-color">表示されるデータがありません。</p> </div>
                     </div>
 
-                    <div class="col-12">
+                    <div class="col-12 pad-free-750">
                         <h5 class="profile_subtit"> 医療面の受入れ</h5>
                         <div class="row  m-0">
                             <div v-for="maccept in medical_acceptance" :key="maccept.id" class="col-md-4 col-sm-6  accept-wrap" >
@@ -791,7 +791,7 @@
                         </div>
                     </div>
 
-                    <div class=" col-12">
+                    <div class=" col-12 pad-free-750">
                         <h5  class="profile_subtit"> 職員体制</h5>
                         <div v-if="staff.length>0">
 
@@ -1561,7 +1561,8 @@ export default {
 
         this.profile_id = this.pro_id;
         this.activePanoImage = 0;
-
+            console.log('window.innerWidth',window.innerWidth)
+            console.log('window.innerWidth',window.innerHeight)
         //for responsive
             if(this.window.width > 768) {
                 //greater than 768
@@ -2182,7 +2183,7 @@ export default {
 }
 h2{
     background: #f0f0f0;
-    padding: 0px;
+    padding: 10px 0px;
 }
 h3 {
 	background: #f0f0f0;

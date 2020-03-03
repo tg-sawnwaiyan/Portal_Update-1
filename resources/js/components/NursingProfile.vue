@@ -121,8 +121,8 @@
                             </div>
                             <div class="form-group">
                                 <label class="headinglbl col-6 col-lg-2 col-md-3 pad-free">タイプ</label>
-                                <div class="col-6 col-lg-10 float-right p-0">
-                                    <span class="nusing_btn1 btn all-btn main-bg-color" style="min-width: 0px;" @click="methodAdd(this)"><i class="fas fa-plus-circle"></i>&nbsp;追加</span>
+                                <div class="col-6 col-lg-10 float-right p-0 addbtn-right">
+                                    <span class="nusing_btn1 btn all-btn main-bg-color" style="" @click="methodAdd(this)"><i class="fas fa-plus-circle"></i>&nbsp;追加</span>
                                 </div>
                                 <div class="col-lg-10 col-md-12 float-right pad-free nursing-m-b-15">                                    
                                     <div class="col-md-12 pad-free nursing-gallery" id="gallery-payment">
@@ -133,7 +133,7 @@
                                                     <td colspan="2" class="text-right" style="border:none;!important">                                                        
                                                         <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,'payment')">
                                                         <i class="fa fa-trash"></i> 削除</a>
-                                                        <span :class="'bg-trans btn dropdown-arrow changeLinkpayment'+indx" style="min-width: 0px;" @click="mainToggle('payment',indx)">
+                                                        <span :class="'bg-trans btn dropdown-arrow changeLinkpayment'+indx" style="" @click="mainToggle('payment',indx)">
                                                             詳細 <i :id="'payment'+indx" v-bind:class="[payment.id != null? 'fas fa-sort-down animate rotate':'fas fa-sort-down']"></i>
                                                         </span>
                                                     </td>
@@ -273,13 +273,20 @@
                 <!-- end table 1 for 費用--->
 
                 <!--table 2 for 施設の概要-->
-                <table class="table table-bordered table-wrapper">
+                <table class="table table-bordered table-wrapper m-b-0">
                     <tr>
                         <td style="border:none;">
-                            <label class="heading-lbl col-3 col-lg-2 col-md-3 pad-free">施設の概要</label>
-                            <span class="bg-trans btn dropdown-arrow nursing_toggle_responsive" style="min-width: 0px;" @click="nurseFacToggleDiv()">詳細 <i class="fas fa-sort-down animate"  :class="{'rotate': isRotate1}"></i></span>
+                            <label class="headinglbl col-6 col-lg-2 col-md-3 pad-free">施設の概要</label>
+                            <span class="bg-trans btn dropdown-arrow nursing_toggle_responsive" style="" @click="nurseFacToggleDiv()">詳細 <i class="fas fa-sort-down animate"  :class="{'rotate': isRotate1}"></i></span>
+                            
                             <!-- testtest -->
                             <div class="col-xl-10 col-md-12 col-12 pad-free float-right nurse-fac-toggle-div toggle-div m-t-10">
+                                <div class="date-witdh-410">
+                                    <div class="date-label">開設年月日</div>
+                                    <div class="datepicker">
+                                        <date-picker class="box date-of-establishment" :lang="lang" v-model="nursing_info.date_of_establishment" id="datepickerbox" valueType="format"></date-picker>
+                                    </div>
+                                </div>
                                     <table class="table table-striped table-bordered nursing_table_title">
                                             <tr>
                                                     <td class="width15 title-bg font-weight-bold">事業主体</td>
@@ -287,7 +294,7 @@
                                                         <!-- <td> <quill-editor class="business-entity" ref="myQuilEditor" :options="editorOption" v-model="nursing_info.business_entity"/></td> -->
 
                                             </tr>
-                                            <tr>
+                                            <tr class="dateTime">
                                                     <td class="width15 title-bg font-weight-bold">開設年月日</td>
 
                                                     <td >
@@ -380,9 +387,9 @@
                     <tr>
                         <td style="border:none;">
                             <div class="form-group">
-                                <label class="headinglbl col-3 col-lg-2 col-md-3 pad-free">協力医療機関</label>
-                                <div class="col-9 col-lg-10 float-right p-0">
-                                     <span class="btn all-btn main-bg-color" style="min-width: 0px;" @click="cooperateAdd()">
+                                <label class="headinglbl col-6 col-lg-2 col-md-3 pad-free">協力医療機関</label>
+                                <div class="col-6 col-lg-10 float-right p-0 addbtn-right">
+                                     <span class="btn all-btn main-bg-color nusing_btn1" style="" @click="cooperateAdd()">
                                     <i class="fas fa-plus-circle"></i> 追加</span>
                                 </div>
                                
@@ -394,7 +401,7 @@
                                             <div class="clearfix margin-bottom750 m-b-30" style="text-align:right">                                                
                                                  <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,'cooperate')">
                                                 <i class="fa fa-trash"></i> 削除</a>
-                                                <span :class="'bg-trans btn dropdown-arrow changeLinkcooperate'+indx" style="min-width: 0px;" @click="mainToggle('cooperate',indx)">
+                                                <span :class="'bg-trans btn dropdown-arrow changeLinkcooperate'+indx" style="" @click="mainToggle('cooperate',indx)">
                                                         詳細 
                                                         <i :id="'cooperate'+indx" class="fas fa-sort-down"></i>                                                        
                                                 </span>
@@ -438,9 +445,9 @@
                 <table class="table table-bordered table-wrapper">
                     <tr>
                         <td>
-                            <div class="form-group">
-                                <label class="headinglbl col-4 col-md-2 pad-free">医療面の受入れ</label>
-                                <span class="bg-trans btn dropdown-arrow nursing_toggle_responsive" style="min-width: 0px;" @click="acceptanceList()">詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate2}"></i></span>
+                            <div class="form-group m-b-0">
+                                <label class="headinglbl col-6 col-lg-2 col-md-3 pad-free">医療面の受入れ</label>
+                                <span class="bg-trans btn dropdown-arrow nursing_toggle_responsive" style="" @click="acceptanceList()">詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate2}"></i></span>
                                 <div class="col-xl-10 col-md-12 float-right m-t-10 accept-toggle-div toggle-div pad-free">
                                     <label for="" class="m-r-15"><i class="fas fa-check green"></i> 受入れ可</label>
                                     <label for="" class="m-r-15"><i class="fas fa-times red"></i> 受入れ不可</label>
@@ -457,7 +464,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group m-b-0">
                                             <label for="" class="font-weight-bold">備考</label>
                                             <!-- <textarea name="" class="form-control"></textarea> -->
                                             <quill-editor  ref="myQuilEditor" :options="editorOption" @change="onAcceptanceEditorChange($event)" name="" class="acceptance-remark" v-model="nursing_info.acceptance_remark"/>
@@ -472,11 +479,11 @@
                 <!-- end table 4 for 医療面の受入れ -->
 
                 <!-- table 5 for 職員体制 -->
-                <table class="table table-bordered table-wrapper">
+                <table class="table table-bordered table-wrapper m-b-0">
                     <tr>
                         <td>
-                            <label class="heading-lbl col-md-2 col-2 pad-free">職員体制</label>
-                            <span class="bg-trans btn dropdown-arrow nursing_toggle_responsive " style="min-width: 0px;" @click="staffToggleDiv()">詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate3}"></i></span>
+                            <label class="headinglbl col-6 col-lg-2 col-md-3 pad-free">職員体制</label>
+                            <span class="bg-trans btn dropdown-arrow nursing_toggle_responsive " style="" @click="staffToggleDiv()">詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate3}"></i></span>
 
                             <div class="col-xl-10 col-md-12 col-12 pad-free float-right staff-toggle-div toggle-div m-t-10">
                                 <table class="table table-striped table-bordered nursing_table_title">
@@ -519,9 +526,9 @@
                 <table class="table table-bordered table-wrapper">
                     <tr>
                         <td>
-                            <div class="form-group">
-                                <label  class="headinglbl col-4 col-md-2 pad-free">こだわりの特長</label>
-                                <span class="bg-trans btn dropdown-arrow nursing_toggle_responsive" style="min-width: 0px;" @click="specialFeAdd()">詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate4}"></i></span>
+                            <div class="form-group m-b-0">
+                                <label  class="headinglbl col-6 col-lg-2 pad-free">こだわりの特長</label>
+                                <span class="bg-trans btn dropdown-arrow nursing_toggle_responsive" style="" @click="specialFeAdd()">詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate4}"></i></span>
 
                                 <div class="col-xl-10 col-md-12 float-right special-feature-toggle-div toggle-div m-t-10">
                                     <div class="row">
@@ -543,18 +550,19 @@
 
                 <!-- start photo and video area -->
                 <div class="form-group form-group-wrapper">
-                    <label class="headinglbl col-4 col-md-2 pad-free">フォトアルバム</label>
-                    <span class="galleryadd btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px" @click="galleryAdd()">
+                    <label class="headinglbl col-6 col-lg-2 pad-free">フォトアルバム</label>                    
+                    <span class='changeLinkphoto bg-trans btn dropdown-arrow nursing_toggle_responsive' style="" @click="mainToggle('photo',null)" >
+                        詳細 <i id="photo" class="fas fa-sort-down"></i>                        
+                    </span>
+                    <div id="changeLinkphoto"  class="row col-md-12 pad-free-750 m-0">
+                    <div class="col-12 col-lg-12 float-right p-0">
+                        <span class="galleryadd btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px" @click="galleryAdd()">
                         <i class="fas fa-plus-circle"></i> 追加
-                    </span>
-                    <span class='changeLinkphoto bg-trans btn dropdown-arrow nursing_toggle_responsive' style="min-width: 0px;" @click="mainToggle('photo',null)" >
-                        詳細 <i id="photo" class="fas fa-sort-down"></i>
-                        
-                    </span>
-                    <div id="changeLinkphoto"  class="col-md-12">
-                        <div class="row" id ="gallery-photo">
-                            <div class="col-md-6 gallery-area-photo p0-480" v-bind:id="'photo'+indx" v-for="(img,indx) in img_arr" :key="img.id">
-                                <div class="col-md-12 p0-480">
+                        </span>
+                    </div>                    
+                        <div id ="gallery-photo" class="row col-12">
+                            <div class="col-12 col-md-6 gallery-area-photo" v-bind:id="'photo'+indx" v-for="(img,indx) in img_arr" :key="img.id">
+                                <div class="col-md-12">
                                     <span class="btn-file d-inline-block">画像を選択        
                                         <input type="file" name="" class="nursing-photo" v-bind:class="img.classname" id="upload_img" @change="preview_image($event,indx)">
                                     </span> 
@@ -577,18 +585,21 @@
                         </div>
                     </div>
                 </div>
+                
 
                     <div class="form-group form-group-wrapper">
-                            <label class="heading-lbl col-2 pad-free">動画</label>    
-                            <span class="galleryvideo btn all-btn main-bg-color float-right nursing_add_responsive " style="min-width: 0px;" @click="galleryVideoAdd()">
-                                <i class="fas fa-plus-circle"></i> 追加
-                            </span>                         
-                            <span class='changeLinkvideo  bg-trans btn dropdown-arrow nursing_toggle_responsive ' style="min-width: 0px;" @click="mainToggle('video',null)">
+                            <label class="headinglbl col-6 col-lg-2 col-md-3 pad-free">動画</label>                                                      
+                            <span class='changeLinkvideo  bg-trans btn dropdown-arrow nursing_toggle_responsive' style="" @click="mainToggle('video',null)">
                                 詳細 <i id="video" class="fas fa-sort-down"></i>
                             </span>
-                            <div id="changeLinkvideo" class="col-md-12">
-                                    <div class="row" id="gallery-video">
-                                            <div class="col-md-6 gallery-area-video" v-bind:id="'video'+indx" v-for="(video,indx) in video_arr" :key="video.id">
+                            <div id="changeLinkvideo" class="row col-md-12 pad-free-750 m-0">
+                                <div class="col-12 col-lg-12 float-right p-0">
+                                    <span class="galleryadd btn all-btn main-bg-color float-right nursing_add_responsive " style="min-width:0px;" @click="galleryVideoAdd()">
+                                    <i class="fas fa-plus-circle"></i> 追加
+                                    </span>   
+                                </div>                               
+                                    <div id="gallery-video" class="row col-12" >
+                                            <div class="col-12 col-md-6 gallery-area-video" v-bind:id="'video'+indx" v-for="(video,indx) in video_arr" :key="video.id">
                                                 <div class="col-md-12">
                                                     <label class="font-weight-bold">URL</label>
                                                     <input type="text" name="url" placeholder="url" class="form-control m-b-15 video-url white-bg-color" v-model="video.photo">
@@ -612,8 +623,11 @@
                 <table class="table table-bordered table-wrapper">
                     <tr>
                         <td>
-                            <label class="heading-lbl col-2 pad-free">地図</label>
-                            <span class="bg-trans btn dropdown-arrow nursing_toggle_responsive" style="min-width: 0px;" @click="maptogglediv()">詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
+                            <label class="headinglbl col-6 col-lg-2 col-md-3 pad-free">地図</label>
+                            <div class="col-6 col-lg-10 float-right p-0">
+                                <span class="bg-trans btn dropdown-arrow nursing_toggle_responsive" style="" @click="maptogglediv()">詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
+                            </div>
+                            
                             <div class="col-xl-10 col-md-12 float-right m-t-10 map-toggle-div toggle-div pad-free">
                                 <div class="col-md-12 p-0">
                                     <div class="col-md-12 pad-free" id="mapbox">
@@ -632,7 +646,7 @@
                                                     <td>
                                                             <div class="form-group">
                                                                     <label  class="heading-lbl col-2 pad-free">駅</label>
-                                                                    <span class="btn all-btn main-bg-color" style="min-width: 0px;" @click="StationAdd()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate4}"></i></span>
+                                                                    <span class="btn all-btn main-bg-color" style="" @click="StationAdd()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate4}"></i></span>
                                                                     <div class="col-md-10 float-right station-toggle-div toggle-div m-t-10">
                                                                             <div class="row">
                                                                                     <div v-for="stat in station_list" :key="stat.id" class="col-md-3 m-b-20">
@@ -649,7 +663,7 @@
                                     </table> -->
                                     <!-- End Test Station Area -->
 
-                                    <div class="form-group">
+                                    <div class="form-group m-b-0">
                                             <label class="font-weight-bold">交通 / アクセス</label>
                                             <!-- <textarea name="address" rows="10" class="form-control"></textarea> -->
                                             <quill-editor  ref="myQuilEditor" name="address" :options="editorOption" class="transporation-access" @change="onAccessEditorChange($event)" v-model="nursing_info.access"/>
@@ -662,8 +676,11 @@
                 </table>
                 <!-- end table 7 for 公式サイト -->
                 <div class="bottom-fixed-btn">
-                    <div class="row col-2 col-offset-5 mx-auto">
-                        <span class="btn secondary-bg-color col-8 offset-2 all-btn" @click="createProfile()" id="create-profile">保存</span>
+                    <div class="row justify-content-center">
+                        <div class="col-8 col-md-3 col-lg-2">
+                            <span class="btn secondary-bg-color col-8 offset-2 all-btn" @click="createProfile()" id="create-profile">保存</span>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -959,14 +976,36 @@ export default {
 
 
             DeltArr(indx,type) {
+                this.$swal({
+                        title: "確認",
+                        text: "職種を削除してよろしいでしょうか。",
+                        type: "warning",
+                        width: 350,
+                        height: 200,
+                        showCancelButton: true,
+                        confirmButtonColor: "#dc3545",
+                        cancelButtonColor: "#b1abab",
+                        cancelButtonTextColor: "#000",
+                        confirmButtonText: "削除",
+                        cancelButtonText: "キャンセル",
+                        confirmButtonClass: "all-btn",
+                        cancelButtonClass: "all-btn"
+                    }).then(response => {
+                         if(type == 'cooperate') {
+                            this.cooperate_arr.splice(indx,1);
+                        }
+                        if(type == 'payment') {
+                            this.payment_arr.splice(indx,1);
+                        }
+                    });
 
-                if(type == 'cooperate') {
-                    this.cooperate_arr.splice(indx,1);
-                }
+                // if(type == 'cooperate') {
+                //     this.cooperate_arr.splice(indx,1);
+                // }
 
-                if(type == 'payment') {
-                    this.payment_arr.splice(indx,1);
-                }
+                // if(type == 'payment') {
+                //     this.payment_arr.splice(indx,1);
+                // }
 
             },
             DeleteArr(indx,type,id,photo) {
@@ -1112,9 +1151,11 @@ export default {
             },
 
             mainToggle(type,id) {
+               
                 if(id == null) { id =''; }
 
-                var class_by_id = $('#'+type+id).attr('class');
+                var class_by_id = $('#'+type+id).attr('class');              
+             
                 if(class_by_id == "fas fa-sort-down animate rotate")
                 {
                     $('#'+type+id).removeClass("fas fa-sort-down animate rotate");                   
@@ -1305,12 +1346,16 @@ export default {
 
  <style scoped>
  @media screen and (max-width:580px){
-     .d-flex{
-         display:  block !important;
-     }
+    .d-flex{
+        display:  block !important;
+    }
+    .panorama-box { 
+        padding: 0px !important;  
+        margin: 0px !important;          
+    }
  }
 .gallery-area-panorama {  
-    background: #fbfbfb;;
+    background: #e6e6e6;;
     padding: 2px;
 }
 @media (min-width: 992px) {
@@ -1335,9 +1380,9 @@ export default {
     background-color: #fff; 
 } 
          
-.panorama-box { 
-    padding: 10px 10px 20px 0px;  
+.panorama-box {     
     margin: 0px;  
-    margin-bottom: 15px; 
+    /* padding: 10px 10px 20px 0px;  
+    margin-bottom: 15px;  */
  }
  </style>

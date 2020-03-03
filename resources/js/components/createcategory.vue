@@ -11,7 +11,7 @@
                 </div>
                 <div class="form-group"> 
                     <span class="btn main-bg-color white all-btn" @click="checkValidate()"> {{buttontext}}</span>
-                    <router-link class="btn btn-danger all-btn" to="/categorylist" > キャンセル </router-link>
+                    <router-link class="btn bt-red all-btn" to="/categorylist" > キャンセル </router-link>
                 </div>
             </form>  
         </div>
@@ -154,5 +154,6 @@ export default {
 
 }
 </script>
+
 
 

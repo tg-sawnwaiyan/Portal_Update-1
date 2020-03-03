@@ -6,6 +6,8 @@ use App\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMailable;
+use App\Mail\deleteSentMail;
+use App\Mail\deleteMail;
 use App\User;
 use App\NursingProfile;
 use App\HospitalProfile;
@@ -137,6 +139,7 @@ class CustomerController extends Controller
     {
         //
         $customer = Customer::find($id);
+        \Mail::to($customer->email)->send(new deleteSentMail($customer));
         $customer->delete();
 
         $user = User::where('customer_id',$id)->first();
@@ -240,22 +243,27 @@ class CustomerController extends Controller
        $request = $request->all();
     //    $user = User::find(auth('api')->user()->id);
        $cusId = $request['cus_id'];
-       if(auth()->user()->role == 2) {
-           $customer = Customer::find($cusId);
-           $user = User::find($customer['user_id']);
-       }else{
-           $user = User::find(auth('api')->user()->id);
-       }
+    //    if(auth()->user()->role == 2) {
+    //        $customer = Customer::find($cusId);
+    //        $user = User::find($customer['user_id']);
+    //    }else{
+    //        $user = User::find(auth('api')->user()->id);
+    //    }
 
-       $customer = Customer::find($user['customer_id']);
+    //    $customer = Customer::find($user['customer_id']);
+       $customer = Customer::find($cusId);
+       $table_name = $customer->type_id == 2 ? 'hospital_profiles': 'nursing_profiles';
 
         if($request['status'] == '1') {
-            $customer->recordstatus = '0'; }
+            $customer->recordstatus = '0';             
+        }
         if($request['status'] == '0') {
             $customer->recordstatus = '1';
         }
+        $customer->save();
 
-       $customer->save();
+        $sql = "UPDATE $table_name SET activate = 0 WHERE $table_name.customer_id = $cusId";
+        DB::update($sql);      
 
        return response()->json($customer);
    }

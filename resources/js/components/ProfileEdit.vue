@@ -6,7 +6,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <h4 class="page-header header">プロファイル設定 <a v-if="$auth.check(2)" @click="$router.go(-1)" class="btn btn-danger all-btn submit float-right">戻る</a></h4>
+                            <h4 class="page-header header">プロファイル設定 <a v-if="$auth.check(2)" @click="$router.go(-1)" class="btn bt-red all-btn submit float-right">戻る</a></h4>
                             <br>
                         </div>
                         <form class="col-md-8">
@@ -165,11 +165,7 @@
                                             <div class="form-group">
                                                 <!-- <button class="btn confirmed" v-if="customer_info.accout_status != 0" >{{accout_status}}</button>
                                                 <button class="btn confirm-borderbtn" v-else @click="AccountStatusChange(customer_info.recordstatus)">{{accout_status}}</button> -->
-                                                <span class="btn btn-danger all-btn"  v-if="customer_info.recordstatus ==1"  @click="AccountStatusChange(customer_info.recordstatus)">
-                                                    {{accout_status}}
-                                                </span>
-
-                                                <span class="btn btn-success all-btn" v-if="customer_info.recordstatus ==0" @click="AccountStatusChange(customer_info.recordstatus)">
+                                                <span :class="customer_info.recordstatus ==1?btnred:btnsuccess" class="btn all-btn" @click="AccountStatusChange(customer_info.recordstatus)">
                                                     {{accout_status}}
                                                 </span>
                                             </div>
@@ -194,6 +190,8 @@
     export default {
         data() {
                 return {
+                    btnred: 'bt-red',
+                    btnsuccess: 'bt-suc',
                     customer_info: [],
                     type: this.$route.params.type,
                     logo: '',
@@ -577,3 +575,4 @@
             }
     }
 </script>
+

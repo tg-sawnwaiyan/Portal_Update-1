@@ -456,7 +456,7 @@
 
                             <div class="form-group mt-3 pb-5">
                                 <span class="btn main-bg-color white all-btn"  @click="checkValidate()">{{subtitle}}</span>
-                                <router-link class="btn btn-danger all-btn" to="/jobofferlist">キャンセル</router-link>
+                                <router-link class="btn bt-red all-btn" to="/jobofferlist">キャンセル</router-link>
                             </div>
                         </form>
                     </div>
@@ -1059,7 +1059,7 @@ import Autocomplete from 'vuejs-auto-complete'
                     return result.name + '「' + result.email + '」';
                   },
                   getSelected(event){
-                      if(event.selectedObject.type_id == 2){
+                      if(event.selectedObject.type_id == 3){
                           this.table_name.profile = 'nursing_profiles';
                       }else {
                           this.table_name.profile = 'hospital_profiles';
@@ -1069,6 +1069,7 @@ import Autocomplete from 'vuejs-auto-complete'
                         this.axios.post(`/api/job/profileList/${this.joboffer.customer_id}`,this.table_name)
                     .then(response=> {
                     this.profileList = response.data;
+                    console.log('jjjj',this.profileList)
                     if(this.profileList != ''){
                         this.selectedValue = this.profileList[0].id;
                         this.joboffer.profile_id = this.profileList[0].id;
@@ -1092,3 +1093,18 @@ import Autocomplete from 'vuejs-auto-complete'
             };
 
 </script>
+
+<style scoped>
+    .bt-red
+    {
+    color: #fff;
+    background-color: #e3342f;
+    border-color: #e3342f;
+    }
+    .bt-suc
+    {   
+        color: #fff;
+        background-color: #0cc72c; 
+        border-color: #0cc72c;
+    }
+</style>

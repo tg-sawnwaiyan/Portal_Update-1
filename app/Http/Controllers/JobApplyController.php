@@ -37,7 +37,7 @@ class JobApplyController extends Controller
         {
             if(auth()->user()->role == 2){
         
-                $jobapplicant = DB::table('job_applies')->leftjoin('jobs','jobs.id', '=', 'job_applies.job_id')
+                $jobapplicant = DB::table('job_applies')->join('jobs','jobs.id', '=', 'job_applies.job_id')
                                                         ->join('customers', 'customers.id', '=', 'jobs.customer_id')
                                                         ->select('job_applies.*')
                                                         ->orderBy('id', 'DESC')
@@ -46,7 +46,7 @@ class JobApplyController extends Controller
                 return response()->json($jobapplicant);
               
             }else{
-                $jobapplicant = DB::table('job_applies')->leftjoin('jobs','jobs.id','=','job_applies.job_id')
+                $jobapplicant = DB::table('job_applies')->join('jobs','jobs.id','=','job_applies.job_id')
                                                         ->join('customers','customers.id','=','jobs.customer_id')
                                                         ->where('customers.id',auth()->user()->customer_id)
                                                         ->select('job_applies.*')
@@ -63,7 +63,7 @@ class JobApplyController extends Controller
                 $jobapplicant = DB::table('job_applies')->leftjoin('jobs','jobs.id', '=', 'job_applies.job_id')
                                                         ->join('customers', 'customers.id', '=', 'jobs.customer_id')
                                                         ->where('jobs.id','=',$jobs_id)
-                                                        ->select('job_applies.*')
+                                                        ->select('job_applies.*','jobs.title')
                                                         ->orderBy('id', 'DESC')
                                                         ->paginate(12);
             
@@ -74,7 +74,7 @@ class JobApplyController extends Controller
                                                         ->join('customers','customers.id','=','jobs.customer_id')
                                                         ->where('customers.id',auth()->user()->customer_id)
                                                         ->where('jobs.id','=',$jobs_id)
-                                                        ->select('job_applies.*')
+                                                        ->select('job_applies.*','jobs.title')
                                                         ->orderBy('id','DESC')
                                                         ->paginate(12);
               
@@ -181,7 +181,7 @@ class JobApplyController extends Controller
              $jobapply->allowances = $allowances;
              $jobapply->insurance = $insurance;
              $jobapply->holidays = $holidays;
-             $jobapply->cityname = $request->selectedValue;
+             $jobapply->cityname = $request->selectedCity;
              $jobapply->townshipname = $request->townshipname;
              if($salary_remark != null || $salary_remark != '')
              {
