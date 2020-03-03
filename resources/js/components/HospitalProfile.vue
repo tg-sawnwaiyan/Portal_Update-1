@@ -1,44 +1,40 @@
 <template>
-
   <div class="card profile m-t-22 " style="border:none;">
-    <form class="col-md-12 form-class">
+    <form class="col-md-12 form-class pad-free-750">
         <div class="col-md-12 pad-free">
-            <div class="form-group row">              
-                <div class="col-lg-4 col-md-4">
-                  <div class="card card-logo" >
-                    <div class="card-body">  
-                        <img :src="logo" class="profile-logo m-b-20 img-fluid"   @error="imgUrlAlt" >
-                        <div class="d-flex align-items-center"><span class="btn-file d-inline-block">
-                        画像を選択                     
-                        <input type="file" name="img" class="pro-logo nursing-panorama" @change="logo_preview(this)">
-                        </span>
-                        <span class="pl-4"></span> 
-                        </div>
-                        <span id="imgname" class="d-inline-block align-top pt-2 text-truncate" style="max-width:200px;">{{img_name}}</span>
-                    </div>
+            <div class="row">             
+               <div class="col-lg-4 col-md-5">
+                  <div class="form-group form-group-wrapper">
+                        <img :src="logo" class="profile_logo m-b-8 img-fluid fit-image-profile" @error="imgUrlAlt" >                             
+                      <div class="m-t-10">
+                          <span class="btn-file d-inline-block">画像を選択                     
+                          <input type="file" name="" class ="pro-logo m-b-10" @change="logo_preview(this)">                                      
+                          </span>     
+                          <span class="pl-4"></span>                                  
+                            <span id="imgname" class="d-inline-block align-top pl-2 text-truncate">{{img_name}}</span>
+                      </div>                      
                   </div>
-                </div>
-                <div class="col-lg-8 col-md-8">
-                    <div class="form-group form-group-wrapper d-flex">
-                        <label class="heading-lbl col-md-2 col-12 pad-free">施設名称 <span class="error sp2">必須</span></label>
-                        <input type="text" class="form-control customer-name col-md-10 col-12 nursing_input" placeholder="施設名称を入力してください。" v-model="hospital_info.name">
-                    </div>
+              </div>            
+              <div class="col-lg-8 col-md-7">
+                  <div class="form-group form-group-wrapper d-flex">
+                      <label class="headinglbl col-md-2 col-12 pad-free">施設名称 <span class="error sp2">必須</span></label>
+                      <input type="text" class="form-control customer-name col-md-10 col-12 nursing_input" placeholder="施設名称を入力してください。" v-model="hospital_info.name">
+                  </div>
 
-                    <div class="form-group form-group-wrapper d-flex">
-                            <label class="heading-lbl col-md-2 col-12 pad-free">メールアドレス <span class="error sp2">必須</span></label>
-                            <!-- <label class="col-md-10 col-12 customer-email"> {{hospital_info.email}} </label> -->
-                            <input type="text" class="form-control customer-email col-md-10 col-12 nursing_input" placeholder="email" v-model="hospital_info.email">
-                    </div>
-                    <div class="form-group form-group-wrapper d-flex">
-                            <label class="heading-lbl col-md-2 col-12 pad-free">電話番号 </label>
-                            <div class="col-md-10 col-12 row">
-                                <input type="text" class="form-control customer-phone col-md-10 col-12 nursing_input" id="phone" placeholder="Phone" v-model="hospital_info.phone" pattern="[0-9-]*"  @focusout="focusPhone"  maxlength="14" title="Please enter number only.">
-                                <!-- v-on:keyup="isNumberOnly" -->
-                                <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>
-                                <span class="error" v-else></span>
-                            </div>
-                    </div>
-                </div>
+                  <div class="form-group form-group-wrapper d-flex">
+                          <label class="heading-lbl col-md-2 col-12 pad-free">メールアドレス <span class="error sp2">必須</span></label>
+                          <!-- <label class="col-md-10 col-12 customer-email"> {{hospital_info.email}} </label> -->
+                          <input type="text" class="form-control customer-email col-md-10 col-12 nursing_input" placeholder="email" v-model="hospital_info.email">
+                  </div>
+                  <div class="form-group form-group-wrapper d-flex">
+                          <label class="heading-lbl col-md-2 col-12 pad-free">電話番号 </label>                            
+                          <input type="text" class="form-control customer-phone col-md-10 col-12 nursing_input" id="phone" placeholder="電話番号を入力してください。" v-model="hospital_info.phone" pattern="[0-9-]*"  @focusout="focusPhone"  maxlength="14" title="Please enter number only.">
+                          <!-- v-on:keyup="isNumberOnly" -->
+                          <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>
+                          <span class="error" v-else></span>
+                        
+                  </div>
+              </div>
             </div>
 
         
@@ -59,9 +55,7 @@
                 <div class="col-md-12">
                         <div class="row" id="image_preview"></div>
                 </div>
-        </div>-->
-
-        
+        </div>-->       
 
         <!-- <div class="form-group form-group-wrapper row ml-0 mr-0">
           <label class="heading-lbl col-2 pad-free">
