@@ -21,7 +21,7 @@
     <div class="row" id="hos">
       <div class="col-md-12">
         <div>
-          <!-- <div class="info-box"></div> -->
+          <!-- <div class="info-box"></div> --> 
           <!--start map-->
           <div class="row map-wrap" style="background-color:#ececec;">
 

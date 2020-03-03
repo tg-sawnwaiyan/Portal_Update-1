@@ -42,6 +42,9 @@ class JobApplyController extends Controller
                                                         ->select('job_applies.*')
                                                         ->orderBy('id', 'DESC')
                                                         ->paginate(12);
+                
+                // $jobapplicant = "SELECT * from jobs as j left join job_applies as"
+// (CASE c.type_id WHEN '2' THEN CONCAT((200000+j.customer_id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT((500000+j.customer_id),'-',LPAD(j.id, 4, '0')) END) as jobnum 
             
                 return response()->json($jobapplicant);
               

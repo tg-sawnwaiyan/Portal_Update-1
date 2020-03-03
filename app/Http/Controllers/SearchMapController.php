@@ -724,8 +724,8 @@ class SearchMapController extends Controller
                 left Join townships as t on t.id = j.township_id 
                 left Join nursing_profiles As n on n.customer_id = c.id 
                 left Join hospital_profiles As h on h.customer_id = c.id 
-                left Join cities as ci on ci.id = t.city_id   
-                where  j.recordstatus=1 and c.recordstatus = 1 ";
+            left Join cities as ci on ci.id = t.city_id   
+                where  j.recordstatus=1 and c.recordstatus = 1 ";  
 
         // if($id == -1)
         // {

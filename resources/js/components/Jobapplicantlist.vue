@@ -13,8 +13,6 @@
                 <h5 class="header"> 求人応募者一覧({{job_title}})</h5>
                 <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
                 <div v-else class="container-fuid">
-
-
                     <div class="card card-default m-b-20" v-for="jobapply in jobapplies.data" :key="jobapply.id">
                             <div class="card-body p-3">
                                 <div class="row">
