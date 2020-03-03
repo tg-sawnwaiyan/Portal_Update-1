@@ -1561,7 +1561,8 @@ export default {
 
         this.profile_id = this.pro_id;
         this.activePanoImage = 0;
-
+            console.log('window.innerWidth',window.innerWidth)
+            console.log('window.innerWidth',window.innerHeight)
         //for responsive
             if(this.window.width > 768) {
                 //greater than 768

@@ -6,6 +6,8 @@ use App\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMailable;
+use App\Mail\deleteSentMail;
+use App\Mail\deleteMail;
 use App\User;
 use App\NursingProfile;
 use App\HospitalProfile;
@@ -137,6 +139,7 @@ class CustomerController extends Controller
     {
         //
         $customer = Customer::find($id);
+        \Mail::to($customer->email)->send(new deleteSentMail($customer));
         $customer->delete();
 
         $user = User::where('customer_id',$id)->first();
