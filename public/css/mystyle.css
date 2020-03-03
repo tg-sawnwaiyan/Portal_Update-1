@@ -3010,6 +3010,9 @@ ul.sub-ul li {
     border: none !important;
     box-shadow: none !important;
 }
+.dropdown-arrow:hover{
+    cursor: pointer;
+}
 .bg-trans{
     background-color: transparent !important;
 }
@@ -3811,21 +3814,6 @@ background: #ff9b53;  /
 #news_list .select_box {
     width: 65%;
 }
-
-
-/*footer*/
-
-.footer {
-    font-size: 12px;
-    /* padding-top: 15px;
-padding-bottom: 15px; */
-    background: transparent;
-    text-align: center;
-    line-height: 20px;
-    padding: 10px;
-    width: 100%;
-}
-
 
 /* Hospital Search */
 
@@ -4892,6 +4880,52 @@ top: 66px; */
 
 
 /* Media Queries*/
+@media (max-width: 720px) and (min-width: 450px) {
+    .pad-free-75 {
+       margin-left: -14px;
+       /* background-color: red; */
+    }
+    .pad-free-74 {
+        margin-left: -14px;
+        /* background-color: red; */
+     }
+    .compare-wrap {
+        max-width: 100%;
+    }
+    /* .fav-update-wrap2 {
+        max-width: 100% !important;
+        flex: none !important;
+    }
+  */
+}
+@media (max-width:515px) and (min-width:470px) { 
+    .fav-update-wrap {
+        max-width: 100% !important;
+        flex: none !important;
+    }
+    .fav-update-wrap {
+        padding: 0;
+        background: #BCDDF3;
+        border: 1px solid #ddd;
+        text-align: center;
+    }
+    .compare-wrap {
+        max-width: 100% !important;
+        border: 1px solid #ccc;
+    }
+    .fav-update-btn {
+        width: 50% !important;
+        margin: 21px auto;
+        color: #48555a !important;
+        font-size: 13px;
+        border: 1px solid #bdc8ca !important;
+        text-shadow: 1px 1px 0 #fff, 1px 1px 1px #fff;
+        border-radius: 20px;
+        background: #fff;
+        padding: 3px 0;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12) !important;
+    }
+}
 
 @media (max-width: 1024px) and (min-width: 320px) {
     /* .loginwrapper {
@@ -7294,7 +7328,7 @@ color: green;
 
 .fav-update-wrap {
     padding: 0;
-    background: #eaeef0;
+    background: #BCDDF3;
     border: 1px solid #ddd;
     text-align: center;
 }
@@ -7306,7 +7340,7 @@ color: green;
     font-size: 13px;
     border: 1px solid #bdc8ca !important;
     text-shadow: 1px 1px 0 #fff, 1px 1px 1px #fff;
-    border-radius: 20px;
+    border-radius: 5px;
     background: #fff;
     padding: 3px 0;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12) !important;
@@ -10002,6 +10036,9 @@ padding: 0;
 }
 
 @media only screen and (max-width: 990px) {
+    .nursing_toggle_responsive{
+        float: right;
+    }
    
     .map-fa-icon{
         float: left;
@@ -11164,6 +11201,7 @@ width: 18rem;
     }
     /*end create news */
 }
+/*fav_slider*/
 
 @media only screen and (max-width:480px) {    
     /*news*/
@@ -11231,7 +11269,7 @@ width: 18rem;
     }
     .fav-update-wrap {
         padding: 0;
-        background: #eaeef0;
+        background: #BCDDF3;
         border: 1px solid #ddd;
         text-align: center;
     }
@@ -11629,7 +11667,29 @@ background-image: none;
     }
 }
 
+@media only screen and (min-width: 414px) {
+    .date-witdh-410{
+        display:none;
+       
+     }
+}
 @media only screen and (max-width: 414px) {
+    .dateTime{
+        display:none;
+    }
+    .date-witdh-410{
+       display:block;
+       border:1px solid #DEE2E6;
+    }
+    .date-label{
+       border:1px solid #DEE2E6;
+       padding: 0.50rem;
+       font-weight: 700 !important;
+       background: #f5f5f5;
+    }
+    .datepicker{
+       border:1px solid #DEE2E6;
+    }
      /* create news */
      .related_post_box {
         -webkit-box-flex: 0;
@@ -11775,15 +11835,15 @@ background-image: none;
     }
     .nusing_btn1 {
         background-color: #0cc72c !important;
-        width: 68px;
+        min-width: 68px;
     }
-    .nursing_toggle_responsive {
+    /* .nursing_toggle_responsive {
         margin-top: -45px;
         margin-left: 127px;
-    }
-    .nursing_add_responsive {
+    } */
+    /* .nursing_add_responsive {
         margin-top: -27px;
-    }
+    } */
     .nursing_table {
         display: block;
         width: 100%;
@@ -12034,7 +12094,11 @@ background-image: none;
         width: 272px !important;
     }
     #fav-hospital-page #fav-history-page .card-carousel-wrapper {
-        margin-left: -33px;
+        margin-left: -34px;
+    }
+    #fav-hospital-page #fav-history-page .card-carousel-wrapper.m-l-4
+    {
+        margin-left:-4px;
     }
 }
 
@@ -12051,6 +12115,7 @@ background-image: none;
     #fav-hospital-page #fav-history-page .card-carousel-wrapper {
         margin-left: -18px;
     }
+   
 }
 
 
@@ -12274,7 +12339,7 @@ strong {
     }
     .nursing_toggle_responsive {
         /* margin-top: -45px; */
-        margin-left: 115px;
+        /* margin-left: 115px; */
     }
     .nursing_btn span {
         margin-left: 0;
@@ -12384,7 +12449,6 @@ strong {
  
 }
 /*nursing_search_dropdown*/
-<<<<<<< HEAD
 
 /* checkbox */
 .checkbox {
@@ -12494,7 +12558,6 @@ strong {
   }  
   
 /* checkbox end */
-=======
 /*all_pages_btn_red*/
 .bt-red
 {
@@ -12508,4 +12571,3 @@ border-color: #e3342f;
     background-color: #0cc72c; 
     border-color: #0cc72c;
 }
->>>>>>> bc866073e2ecf642ec0a2bdfc2e8befc071889cd

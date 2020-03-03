@@ -2,7 +2,7 @@
     <div>
         <div class="scrolldiv2 pb-5 tab-content" id="nursing">
             <div class="row m-0">
-                <div class="col-12 pad-free-750">
+                <div class="col-12 pad-free-750 pad-free-75">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
@@ -63,7 +63,7 @@
                             </dl>
                         </div>
 
-                        <div class="col-md-1 fav-update-wrap">
+                        <div class="col-md-1 fav-update-wrap fav-update-wrap2">
                             <button class="fav-update-btn" @click="itemCompare()" data-toggle="modal" data-target=".bd-example-modal-lg">変更する</button>
                         </div>
 
@@ -232,9 +232,9 @@
                 <!--result-->
                 <div class="col-12">
                     <div class="clearfix">
-                        <div>
+                        <span>
                             <label><strong> {{message}} </strong></label>
-                        </div>
+                        </span>
                         <div class="float-right pc-480">
                             
                             <label class="btn my-2 my-sm-0 all-btn secondary-bg-color btn-secondary control controlinner--checkbox" style="width:300px;">
