@@ -1260,7 +1260,7 @@
                 if(this.township_id == -1){
                     var mapProp = {
                         center: new google.maps.LatLng(lat, lng),
-                        minZoom: 7,
+                        minZoom: 3,
                         maxZoom: 14,
                         zoom: 7,
                         mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -1618,8 +1618,7 @@
                     MoveID:this.MoveID,
                     Moving_in:this.moving_in,
                     Per_month:this.per_month,
-                    local:this.locast
-
+                    local:this.locast,
                 },
                 }).then((response)=>{
                 this.nus_data = response.data.nursing;

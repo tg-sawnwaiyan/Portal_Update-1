@@ -2,9 +2,9 @@
     <div>
         <div class="scrolldiv2 pb-5 tab-content" id="nursing">
             <div class="row m-0">
-                <div class="col-12 pad-free-750 pad-free-75">
+                <div class="col-12 pad-free pad-free-75">
                     <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
+                        <ol class="breadcrumb" style="padding-left:0px !important;padding-right:0px !important;">
                             <li class="breadcrumb-item">
                                 <router-link to="/">ホーム</router-link>
                             </li>
@@ -12,8 +12,8 @@
                         </ol>
                     </nav>
                 </div>
-                <div class="col-md-12 pad-free-750">
-                    <div class="col-md-12 fav-his-header pad-free-750">
+                <div class="col-md-12 pad-free">
+                    <div class="col-md-12 fav-his-header pad-free">
                         <svg x="0px" y="0px" width="24" height="24" viewBox="0 0 172 172" style=" fill:#000000;">
                             <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
                                 <path d="M0,172v-172h172v172z" fill="none"></path>
@@ -73,7 +73,7 @@
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLongTitle">比較する項目を選ぶ</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <button class="btn btn-secondary pc-480">閉じる&times;</button>
+                                            <button class="btn btn-secondary pc-480">&times;</button>
                                             <button class="btn btn-secondary close-480"><span>&times;</span></button>
                                         </button>
                                     </div>
@@ -149,7 +149,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="modal-footer text-center">
+                                    <div class="modal-footer text-center fav-update-wrap">
                                         <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <button class="btn btn-secondary" @click="compareBtn()">比較する</button>
                                         </button> -->
@@ -166,9 +166,13 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLongTitle">交通アクセス／{{custname}}</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <button class="btn btn-secondary">閉じる&times;</button>
+                                        </button> -->
+                                        <button type="button" data-dismiss="modal" aria-label="Close" class="close">
+                                            <button class="btn btn-secondary pc-480">×</button> <button class="btn btn-secondary close-480"><span>×</span>
                                         </button>
+                                            </button>
                                     </div>
                                     <div class="modal-body">
                                        
@@ -197,8 +201,12 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLongTitle">料金プラン</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <button class="btn btn-secondary">閉じる&times;</button>
+                                        </button> -->
+                                         <button type="button" data-dismiss="modal" aria-label="Close" class="close">
+                                            <button class="btn btn-secondary pc-480">×</button> <button class="btn btn-secondary close-480"><span>×</span>
+                                            </button>
                                         </button>
                                     </div>
                                     <div class="modal-body">
@@ -240,7 +248,7 @@
                             <label class="btn my-2 my-sm-0 all-btn secondary-bg-color btn-secondary control controlinner--checkbox" style="width:300px;">
                                 <input type="checkbox" @change="checkAll()" class="check-all-btn" v-model="checkallbtn" id="main-check-all"/>
                                 <span class="checkmark"></span>すべての資料請求にチェックを入れる
-                                <div class="controlinner__indicator" style="top:8px;left:7px;"></div>
+                                <div class="controlinner__indicator m-l-3" style="top:8px;left:7px;"></div>
                             </label>
                             <!-- <button type="button" class="btn btn-success all-btn float-right m-l-10" @click="addingMail()" :disabled="isdisable">資料請求する</button> -->
                         </div>
@@ -252,8 +260,8 @@
                             </label> -->
                             <label class="btn my-sm-0 all-btn secondary-bg-color btn-secondary control controlinner--checkbox fnt-check">
                                 <input type="checkbox" @change="checkAll()" class="check-all-btn" />
-                                <span class="checkmark"></span>すべてチェック
-                                <div class="controlinner__indicator" style="top:8px;left:3px;"></div>
+                                <span class="checkmark m-l-10"></span>すべてチェック
+                                <div class="controlinner__indicator" style="top:7px;left:3px;margin-left:5px;"></div>
                             </label>
                             <!-- <button type="button" class="btn btn-success all-btn float-right m-l-10 fnt-check" @click="addingMail()" :disabled="isdisable">資料請求する</button> -->
                         </div>
@@ -389,7 +397,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn bt-suc col-sm-4 offset-sm-4 col-md-2 offset-md-5 m-b-10" @click="addingMail()" :disabled="isdisable">資料請求する</button>
+                    <button type="button" class="btn all-btn bt-suc col-sm-4 offset-sm-4 col-md-2 offset-md-5 m-b-10" @click="addingMail()" :disabled="isdisable">資料請求する</button>
                 </div>
                 <!--end compare box-->
                 <!--result-->

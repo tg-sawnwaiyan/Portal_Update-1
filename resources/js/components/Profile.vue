@@ -12,7 +12,7 @@
     <div>
 
       <ul class="nav nav-tabs" :class="type == 'nursing'? 'nursing-tabColor': 'hospital-tabColor'" role="tablist" id="profilenav" v-bind:style="{width:width}" >
-        <li role="presentation" class="subtab1 nav-item" v-if="loginuser=='true'">
+        <li role="presentation" class="subtab1 nav-item" v-if="loginuser=='true' && visit == 'false'">
           <label for="hospital" class="typelabel nav-link active" id="hospital-lbl">
             <i class="fa fa-edit"></i>
             <input type="radio" v-model="btntype" value="create" v-on:change="changeBtnType('hospital-lbl','nursing-lbl')" name="btntype" id="hospital" />
@@ -20,7 +20,7 @@
           </label>
         </li>
 
-        <li role="presentation" class="subtab2 nav-item" v-if="loginuser=='true'" >
+        <li role="presentation" class="subtab2 nav-item" v-if="loginuser=='true' && visit == 'false'" >
           <label for="nursing" class="typelabel nav-link" id="nursing-lbl">
             <input type="radio" v-model="btntype" value="view" v-on:change="changeBtnType('nursing-lbl','hospital-lbl')" name="btntype" id="nursing" />
             <span ><i class="fas fa-search" style="font-size:18px;"></i>&nbsp;プレビュー</span>
@@ -52,7 +52,7 @@
   /* overflow: hidden; */
   /* max-width: 1600px; */
   width: 100%;
-  margin-top: 10px;
+  /* margin-top: 10px; */
 }
 </style>
 <script>
