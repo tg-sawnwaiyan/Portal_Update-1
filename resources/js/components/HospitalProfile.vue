@@ -11,7 +11,7 @@
                           <input type="file" name="" class ="pro-logo m-b-10" @change="logo_preview(this)">                                      
                           </span>     
                           <span class="pl-4"></span>                                  
-                            <span id="imgname" class="d-inline-block align-top pl-2 text-truncate">{{img_name}}</span>
+                            <span id="imgname" class="d-inline-block align-top pl-2">{{img_name}}</span>
                       </div>                      
                   </div>
               </div>            
@@ -69,15 +69,15 @@
           ></textarea>
         </div> -->
 
-        <!-- test -->
+        <!-- test -->        
         <table class="table table-bordered table-wrapper">
             <tr>
                 <td>
-                    <div class="form-group">
-                        <label  class="heading-lbl col-2 pad-free">診療科目 </label>
-                        <span class="bg-trans btn dropdown-arrow" @click="toggleEvent('clinical-subject','1')">
+                    <div class="form-group m-b-0">
+                        <label  class="headinglbl col-6 col-lg-2 col-md-3 pad-free">診療科目</label>
+                        <span class="bg-trans btn dropdown-arrow nursing_toggle_responsive" @click="toggleEvent('clinical-subject','1')">
                             詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate1}"></i></span>
-                        <div class="col-md-10 float-right clinical-subject-toggle-div toggle-div m-t-10">
+                        <div class="col-xl-10 col-md-12 float-right clinical-subject-toggle-div toggle-div m-t-10">
                         
                             <div class="row"> <div v-for="subj in clinical_subj" :key="subj.id" class="form-check form-check-inline col-6 col-md-4 col-lg-3">
                                     <label class="form-check-label control control--checkbox" style="padding-left:5px;">
@@ -117,7 +117,7 @@
         <table class="table table-bordered table-wrapper">
           <tr>
             <td>
-              <label class="heading-lbl col-2 pad-free">診療時間 </label>
+              <label class="headinglbl col-6 col-lg-2 col-md-3 pad-free">診療時間 </label>
               <span  class="bg-trans btn dropdown-arrow nursing_toggle_responsive" @click="toggleEvent('schedule','2')">詳細
                 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate2}"></i>
               </span>
@@ -685,15 +685,15 @@
         <table class="table table-bordered table-wrapper">
           <tr>
             <td>
-              <div class="form-group">
-                <label class="heading-lbl col-2 pad-free">施設情報 </label>
+              <div class="form-group m-b-0">
+                <label class="headinglbl col-6 col-lg-2 col-md-3 pad-free">施設情報 </label>
                 <span class="bg-trans btn dropdown-arrow nursing_toggle_responsive" @click="toggleEvent('hos-fac','3')" >詳細 
                     <i class="fas fa-sort-down animate"  :class  ="{'rotate': isRotate3}"></i>
                 </span>
 
-                <div class="col-md-10 float-right hos-fac-toggle-div toggle-div m-t-10">
+                <div class="col-xl-10 col-md-12 float-right hos-fac-toggle-div toggle-div m-t-10">
                   <div class="row">
-                    <div v-for="fac in fac_list" :key="fac.id" class="form-check form-check-inline col-sm-3">
+                    <div v-for="fac in fac_list" :key="fac.id" class="form-check form-check-inline col-6 col-md-4 col-lg-3">
                       <label class="form-check-label control control--checkbox" style="padding-left:5px;">
                         <input type="checkbox" class="form-check-input" name="facility" :class="'facility-'+fac.id" v-bind:value="fac.id" @click="facilityCheck(fac.id)" v-model="fac.checked" />
                         {{fac.description}}
@@ -710,7 +710,7 @@
         <table class="table table-bordered table-wrapper">
           <tr>
             <td>
-              <div class="form-group">
+              <div class="form-group m-b-0">
                 <label class="hos_lbl headinglbl col-6 col-lg-2 col-md-3 pad-free">こだわりの特長</label>
                 <span class="bg-trans btn dropdown-arrow nursing_toggle_responsive btn-toggle" @click="toggleEvent('special-feature','4')">
                   詳細 <i class="fas fa-sort-down animate" :class="{rotate:isRotate4}"></i>
@@ -718,7 +718,7 @@
 
                 <div class="col-xl-10 col-md-12 float-right special-feature-toggle-div toggle-div m-t-10">
                   <div class="row">
-                    <div v-for="feat in feature_list" :key="feat.id" class="form-check form-check-inline col-sm-3">
+                    <div v-for="feat in feature_list" :key="feat.id" class="form-check form-check-inline col-6 col-md-4 col-lg-3">
                       <label class="form-check-label control control--checkbox" style="padding-left:5px;">
                         <input type="checkbox" class="form-check-input" name="special-features" :class="'feature-'+feat.id" v-bind:value="feat.id" @click="featureCheck(feat.id)" v-model="feat.checked"/>
                         {{feat.name}}
@@ -898,7 +898,7 @@
         <!-- End Test Station Area -->
 
         <div class="form-group form-group-wrapper">
-          <label class="heading-lbl col-md-2 col-12 pad-free">フォトアルバム</label>          
+          <label class="headinglbl col-6 col-lg-2 pad-free">フォトアルバム</label>          
            <span class='changeGalleryLink bg-trans btn dropdown-arrow nursing_toggle_responsive' @click="toggleEvent('photo','6')">
               詳細 <i id="gallery" class="fas fa-sort-down" :class="{'rotate': isRotate6}"></i>
             </span>
@@ -924,15 +924,13 @@
                 </div>
           </div> -->
 
-        <div id="changeGalleryLink" class="col-md-12 photo-toggle-div">
+        <div id="changeGalleryLink" class="row col-md-12 pad-free-750 m-0 photo-toggle-div">
           <div class="col-12 col-lg-12 float-right p-0">
             <span class="galleryadd btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px;" @click="galleryAdd()">
             <i class="fas fa-plus-circle"></i> 追加
             </span>
-          </div>         
-
-
-            <div class="row" id="gallery-photo">
+          </div>      
+            <div class="row col-12" id="gallery-photo">
               <div class="col-md-6 gallery-area-photo p0-990 p0-480" v-bind:id="'photo'+indx" v-for="(img,indx) in img_arr" :key="img.id" >
                     <div class="col-md-12 p0-990 p0-480">
                           <!-- <input type="file" name class="hospital-photo m-b-15 p-t-10"  v-bind:class="'classname'+indx" id="upload_img" @change="preview_image($event,indx)" />  
@@ -953,9 +951,9 @@
                     </div>
 
                     <div class="col-md-12">
-                        <label class="m-t-10">タイトル</label>
+                        <label class="m-t-10 font-weight-bold">タイトル</label>
                         <input type="text" name="title" placeholder="タイトルを入力してください。" class="form-control m-b-15 white-bg-color" v-model="img.title" />
-                        <label>コンテンツ</label>
+                        <label class="font-weight-bold">コンテンツ</label>
                         <textarea name="description" placeholder="コンテンツを入力してください。" class="form-control m-b-15 description white-bg-color" v-model="img.description" ></textarea>
                     </div>
                     <div class="col-md-12 text-right hos-del">
@@ -969,29 +967,29 @@
         </div>
 
         <div class="form-group form-group-wrapper">
-          <label class="heading-lbl col-2 pad-free">動画</label>         
+          <label class="headinglbl col-6 col-lg-2 pad-free">動画</label>         
 
            <span class='changeGalleryVideoLink bg-trans btn dropdown-arrow nursing_toggle_responsive' @click="toggleEvent('video','7')">
            詳細 <i id="video" class="fas fa-sort-down" :class="{'rotate': isRotate7}"></i>
            </span>
 
-          <div id="changeGalleryVideoLink" class="col-md-12 video-toggle-div">
+          <div id="changeGalleryVideoLink" class="row col-md-12 pad-free-750 m-0 video-toggle-div">
             <div class="col-12 col-lg-12 float-right p-0">
               <span class="galleryvideo btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px;" @click="galleryVideoAdd()" >
               <i class="fas fa-plus-circle"></i> 追加</span>
             </div>
-            <div class="row toggle-div" id="gallery-video">
+            <div class="row col-12" id="gallery-video">
               <!-- Add by + Button -->
-              <div class="col-md-6 gallery-area-video p0-480" v-bind:id="'video'+indx" v-for="(video,indx) in video_arr" :key="video.id" >
+              <div class="col-md-6 gallery-area-photo p0-990 p0-480" v-bind:id="'video'+indx" v-for="(video,indx) in video_arr" :key="video.id" >
                 <div class="col-md-12">
-                  <label>URL</label>
+                  <label class="font-weight-bold">URL</label>
                   <input type="text" name="url" placeholder="URLを入力してください。" class="form-control m-b-15 video-url white-bg-color" v-model="video.photo" />                
                 </div>
 
                 <div class="col-md-12">
-                  <label>タイトル</label>
+                  <label class="font-weight-bold">タイトル</label>
                   <input type="text" name="title" placeholder="タイトルを入力してください。" class="form-control m-b-15 white-bg-color" v-model="video.title" />
-                  <label>コンテンツ</label>
+                  <label class="font-weight-bold">コンテンツ</label>
                   <textarea name="description" placeholder="コンテンツを入力してください。" class="form-control m-b-15 description white-bg-color" v-model="video.description" ></textarea>
 
                 </div>
@@ -1008,7 +1006,7 @@
         <table class="table table-bordered table-wrapper">
             <tr>
                 <td>
-                    <label class="heading-lbl col-2 pad-free">地図</label>
+                    <label class="headinglbl col-6 col-lg-2 pad-free">地図</label>
                     <span class="bg-trans btn dropdown-arrow nursing_toggle_responsive" @click="toggleEvent('map','5')">詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
                     <div class="col-md-10 hos_toggle float-right m-t-10 map-toggle-div toggle-div pad-free">
                         <div class="col-md-12">
