@@ -965,15 +965,7 @@ import bulcomponent from './bulcomponent.vue'
 .tab-pane{
         padding: 10px;
     }
-.first-row{
-    color: #fff;
-    background-color: #a2a7a1;
-    border-bottom: 1px solid #ccc;
-    border-right: 1px solid #ccc;
-    text-align: center;
-    padding: 10px;
-    font-size: 100%;
-}
+
 .nosearch-icon{
     border: 1px solid #b0abab;
     width: 60px;
