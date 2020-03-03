@@ -27,7 +27,7 @@ class CustomerController extends Controller
     }
     public function nusaccount($id) {
         $nuscustomer = NursingProfile::where(['nursing_profiles.customer_id'=>$id])->select('id','logo','name','phone','email')->get();
-        $status = NursingProfile::join('customers','customers.id','=','nursing_profiles.customer_id')->where(['customers.recordstatus'=>2])->count();
+        $status = NursingProfile::join('customers','customers.id','=','nursing_profiles.customer_id')->where(['customers.recordstatus'=>1])->count();
         return response()->json(array("nuscustomer"=>$nuscustomer,"status"=>$status));
     }
     public function hosaccount($id) {
