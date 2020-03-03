@@ -1,22 +1,33 @@
 <template>
     <div>
         <div class="card">
-            <div v-if="norecord_msg" class="card card-default card-wrap">
+            <div v-if="!acc_status" class="card card-default card-wrap">
                 <p class="record-ico">
                     <i class="fa fa-exclamation"></i>
                 </p>
                 <p>OOPS!!</p>
-                <p class="record-txt01">表示する施設ありません</p>
-                <p>表示する施設ありません‼新しい施設を作成してください。</p>
-                <router-link :to="{name:'profiledit'}" class="main-bg-color create-btn all-btn">
-                    <i class="fas fa-plus-circle"></i> 施設新規作成
+
+                <p v-if="!norecord_msg">Account is Deactivate!</p>
+                <router-link :to="{name:'profiledit'}" class="main-bg-color create-btn all-btn" v-if="!norecord_msg">
+                     Go To Activate
                 </router-link>
+
+                <p class="record-txt01" v-if="norecord_msg">表示する施設ありません</p>
+                <p v-if="norecord_msg">表示する施設ありません‼新しい施設を作成してください。</p>   
+                <span class="main-bg-color create-btn all-btn" v-if="norecord_msg">
+                    <i class="fas fa-plus-circle"></i> 施設新規作成
+                </span>             
+                <!-- <router-link :to="{name:'profiledit'}" class="main-bg-color create-btn all-btn" v-if="!norecord_msg">
+                    <i class="fas fa-plus-circle"></i> 施設新規作成
+                </router-link> -->
             </div>
             <div class="row" v-else>
-                <div class="col-md-12">
-                    <div class="card  text-dark">
-                        <div class="card-body">
-                            <div class="row">
+                <!-- Create account Area -->
+                <!-- End Create account Area -->
+                <div class="col-md-12">                    
+                    <div class="card  text-dark">                        
+                        <div class="card-body">                            
+                            <div class="row">                                
                                 <div class="col-md-12">
                                     <h4 class="page-header header">施設一覧</h4>
                                 </div>
@@ -76,7 +87,7 @@ export default {
             type:null,
             hospitalprofile:[],
             norecord_msg: false,
-             
+            acc_status: true,
        }
     },
     created(){
@@ -86,8 +97,15 @@ export default {
             if(this.type == "nursing") {
                 this.axios.get(`/api/account_nursing/${this.cusid}`).then(response => {
                 //this.$loading(false);
-                this.nursingprofile = response.data;
-                console.log(this.nursingprofile)
+                this.nursingprofile = response.data.nuscustomer;
+
+                if(response.data.status == 0) {
+                    this.acc_status = false;
+                }
+                else{
+                    this.acc_status = true;
+                }
+                
                 if(this.nursingprofile.length != 0){
                     this.norecord_msg = false;
                 }else{
@@ -97,12 +115,20 @@ export default {
             } else {
                 this.axios.get(`/api/account_hospital/${this.cusid}`).then(response => {
                     //this.$loading(false);
-                    this.hospitalprofile = response.data;
+                    this.hospitalprofile = response.data.hoscustomer;
+
+                    if(response.data.status == 0) {
+                        this.acc_status = false;
+                    }
+                    else{
+                        this.acc_status = true;
+                    }
+
                     if(this.hospitalprofile.length != 0){
-                    this.norecord_msg = false;
-                }else{
-                    this.norecord_msg = true;
-                }
+                        this.norecord_msg = false;
+                    }else{
+                        this.norecord_msg = true;
+                    }
             });
             }
 

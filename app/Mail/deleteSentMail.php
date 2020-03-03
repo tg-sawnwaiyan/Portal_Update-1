@@ -17,9 +17,9 @@ class deleteSentMail extends Mailable
      * @return void
      */
 
-    public function __construct($deleteSentMail)
+    public function __construct($deleteMail)
     {
-        $this->deleteSentMail = $deleteSentMail;
+        $this->deleteMail = $deleteMail;
     }
 
     /**
@@ -29,7 +29,7 @@ class deleteSentMail extends Mailable
      */
     public function build()
     {
-        return $this->view(['mail.deleteSentMail','mail.deleteSentMail'])
+        return $this->view(['mail.deleteSentMail','mail.deleteSentMailplaintext'])
                     ->subject("delete mail");
     }
 }

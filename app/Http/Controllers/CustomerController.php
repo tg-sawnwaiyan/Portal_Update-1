@@ -26,13 +26,15 @@ class CustomerController extends Controller
         return response()->json($customer);
     }
     public function nusaccount($id) {
-        $nuscustomer = NursingProfile::where('customer_id',$id)->select('id','logo','name','phone','email')->get();
-        return $nuscustomer;
+        $nuscustomer = NursingProfile::where(['nursing_profiles.customer_id'=>$id])->select('id','logo','name','phone','email')->get();
+        $status = NursingProfile::join('customers','customers.id','=','nursing_profiles.customer_id')->where(['customers.recordstatus'=>2])->count();
+        return response()->json(array("nuscustomer"=>$nuscustomer,"status"=>$status));
     }
     public function hosaccount($id) {
       
         $hoscustomer = HospitalProfile::where('customer_id',$id)->select('id','logo','name','phone','email')->get();
-        return $hoscustomer;
+        $status = HospitalProfile::join('customers','customers.id','=','hospital_profiles.customer_id')->where(['customers.recordstatus'=>1])->count();
+        return response()->json(array("hoscustomer"=>$hoscustomer,"status"=>$status));
     }
 
     public function uploadvideo(Request $request)
@@ -255,15 +257,16 @@ class CustomerController extends Controller
        $table_name = $customer->type_id == 2 ? 'hospital_profiles': 'nursing_profiles';
 
         if($request['status'] == '1') {
-            $customer->recordstatus = '0';             
+            $customer->recordstatus = '0';    
+            $sql = "UPDATE $table_name SET activate = (CASE activate WHEN 1 THEN 2 ELSE 0 END) WHERE $table_name.customer_id = $cusId";
+            DB::update($sql);           
         }
         if($request['status'] == '0') {
             $customer->recordstatus = '1';
+            $sql = "UPDATE $table_name SET activate = (CASE activate WHEN 2 THEN 1 ELSE 0 END) WHERE $table_name.customer_id = $cusId";
+            DB::update($sql);  
         }
-        $customer->save();
-
-        $sql = "UPDATE $table_name SET activate = 0 WHERE $table_name.customer_id = $cusId";
-        DB::update($sql);      
+        $customer->save();            
 
        return response()->json($customer);
    }
