@@ -1,9 +1,9 @@
 <template>
     <div>
         <div class="col-12 scrolldiv2 pb-3 tab-content" id="hospital">
-            <div class="col-12 pl-0">
+            <div class="col-12 pad-free pad-free-75">
                 <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
+                    <ol class="breadcrumb" style="padding-left:0px !important;padding-right:0px !important;">
                         <li class="breadcrumb-item">
                             <router-link to="/">ホーム</router-link>
                         </li>
@@ -11,8 +11,8 @@
                     </ol>
                 </nav>
             </div>
-            <div class="col-12">
-                <div class="col-md-12 fav-his-header">
+            <div class="col-12 pad-free">
+                <div class="col-md-12 fav-his-header pad-free">
                     <svg x="0px" y="0px" width="24" height="24" viewBox="0 0 172 172" style=" fill:#000000;">
                         <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
                             <path d="M0,172v-172h172v172z" fill="none"></path>
@@ -28,7 +28,7 @@
             <div id="fav-hospital-page">
             <div class="col-12" id="fav-history-page">
                 <div class="row justify-content-lg-center">
-                    <div class="card-carousel-wrapper">
+                    <div class="card-carousel-wrapper m-l-4">
 
                         <div class="nav-box" @click="moveCarousel(-1)" :disabled="atHeadOfList">
                             <div class="nav-content mr-2">
@@ -427,17 +427,5 @@
     };
 </script>
 <style>
-    .first-row {
-        color: #fff;
-        background-color: #a2a7a1;
-        border-bottom: 1px solid #ccc;
-        border-right: 1px solid #ccc;
-        text-align: center;
-        padding: 10px;
-        font-size: 100%;
-    }
-
-    .second-row {
-        background-color: #eff7ec;
-    }
+ 
 </style>

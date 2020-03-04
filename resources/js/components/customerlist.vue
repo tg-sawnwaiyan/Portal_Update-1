@@ -207,6 +207,7 @@
                     }
                 },
                 deleteCustomer(id) {
+                    this.$loading(true);
                         this.$swal({
                             title: "確認",
                             text: "事業者を削除してよろしいでしょうか。",
@@ -222,7 +223,9 @@
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn"
                         }).then(response => {
+                            
                             this.axios.delete(`/api/customer/delete/${id}`).then(response => {
+                                this.$loading(false);
                                 // this.customers = response.data.customers;
                                 this.initialCall();
                                 this.$swal({
@@ -243,6 +246,7 @@
                                 // this.customers.splice(a, 1);
 
                             });
+                            
                         });
                     },
                     comfirm(id) {

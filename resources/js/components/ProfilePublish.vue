@@ -1561,7 +1561,8 @@ export default {
 
         this.profile_id = this.pro_id;
         this.activePanoImage = 0;
-
+            console.log('window.innerWidth',window.innerWidth)
+            console.log('window.innerWidth',window.innerHeight)
         //for responsive
             if(this.window.width > 768) {
                 //greater than 768
@@ -2345,18 +2346,7 @@ h3 {
 .pannellum{
     height: 500px;
 }
-.first-row{
-    color: #fff;
-    background-color: #a2a7a1;
-    border-bottom: 1px solid #ccc;
-    border-right: 1px solid #ccc;
-    text-align: center;
-    padding: 10px;
-    font-size: 100%;
-}
-.second-row{
-    background-color: #eff7ec;
-}
+
 .cost_tb{
 
     /* border: 1px solid #ccc; */

@@ -12,7 +12,7 @@
                                     <span class="btn-file d-inline-block">画像を選択                     
                                     <input type="file" name="" class ="customer-logo m-b-10" id="customer-logo" @change="preview_image($event,'0')">                                      
                                     </span>                                      
-                                     <span id="imgname" class="d-inline-block align-top pl-2 text-truncate">{{nursing_info.logo}}</span>
+                                     <span id="imgname" class="d-inline-block align-top pl-2">{{nursing_info.logo}}</span>
                                 </div>
                                 
                             </div>
@@ -58,7 +58,7 @@
                                 </div>
                             </div>
                             <div class="row col-md-12 pad-free panorama panorama-box">
-                                <div class="col-sm-3 col-md-3 col-lg-1 mt-2 gallery-area-panorama pad-free" v-bind:id="'x-panorama'+indx" v-for="(img,indx) in panorama_arr" :key="img.id">
+                                <div class="col-4 col-sm-3 col-md-3 col-lg-1 mt-2 gallery-area-panorama pad-free" v-bind:id="'x-panorama'+indx" v-for="(img,indx) in panorama_arr" :key="img.id">
                                     <input type="hidden" class="already-panorama" v-model="img.photo">
                                     <span class='img-close-btn' v-on:click="DeleteArr(indx,'panorama',img.id,img.photo)">X</span>
                                     <img :src="'/upload/nursing_profile/Imagepanorama/'+ img.photo" class="img-fluid panorama-old-img" alt="profile" v-if="img.id!=null"  id="already-panorama">
@@ -273,7 +273,7 @@
                 <!-- end table 1 for 費用--->
 
                 <!--table 2 for 施設の概要-->
-                <table class="table table-bordered table-wrapper m-b-0">
+                <table class="table table-bordered table-wrapper">
                     <tr>
                         <td style="border:none;">
                             <label class="headinglbl col-6 col-lg-2 col-md-3 pad-free">施設の概要</label>
@@ -479,7 +479,7 @@
                 <!-- end table 4 for 医療面の受入れ -->
 
                 <!-- table 5 for 職員体制 -->
-                <table class="table table-bordered table-wrapper m-b-0">
+                <table class="table table-bordered table-wrapper">
                     <tr>
                         <td>
                             <label class="headinglbl col-6 col-lg-2 col-md-3 pad-free">職員体制</label>
@@ -1355,7 +1355,7 @@ export default {
     }
  }
 .gallery-area-panorama {  
-    background: #e6e6e6;;
+    /* background: #e6e6e6;; */
     padding: 2px;
 }
 @media (min-width: 992px) {
