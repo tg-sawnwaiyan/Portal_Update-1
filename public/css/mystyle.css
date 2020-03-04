@@ -12525,3 +12525,8 @@ border-color: #e3342f;
     background-color: #0cc72c; 
     border-color: #0cc72c;
 }
+
+.pro_num{
+    font-size: .9em;
+    color: #346e90;
+}

@@ -718,15 +718,15 @@ class SearchMapController extends Controller
          $empstatus = $_GET['empstatus'];
 
          $query = "SELECT j.id as jobid,j.recordstatus as job_record, j.*,c.*,n.*,h.*,ci.city_name,
-                (CASE c.type_id WHEN '2' THEN CONCAT((200000+j.customer_id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT((500000+j.customer_id),'-',LPAD(j.id, 4, '0')) END) as jobnum 
-                from  jobs as j              
-                join customers as c on c.id = j.customer_id
-                left Join townships as t on t.id = j.township_id 
-                left Join nursing_profiles As n on n.customer_id = c.id 
-                left Join hospital_profiles As h on h.customer_id = c.id 
-            left Join cities as ci on ci.id = t.city_id   
-                where  j.recordstatus=1 and c.recordstatus = 1 ";  
-
+                    (CASE c.type_id WHEN '2' THEN CONCAT((200000+j.customer_id),'-',LPAD(h.pro_num, 4, '0'),'-',LPAD(j.id, 4, '0')) ELSE CONCAT((500000+j.customer_id),'-',LPAD(n.pro_num, 4, '0'),'-',LPAD(j.id, 4, '0')) END) as jobnum 
+                    from  jobs as j              
+                    join customers as c on c.id = j.customer_id
+                    left Join townships as t on t.id = j.township_id 
+                    left Join nursing_profiles As n on n.id = j.profile_id 
+                    left Join hospital_profiles As h on h.id = j.profile_id 
+                    left Join cities as ci on ci.id = t.city_id   
+                    where j.recordstatus=1 and c.recordstatus = 1 and (CASE c.type_id WHEN 2 THEN h.activate = 1 ELSE n.activate = 1 END)";  
+              
         // if($id == -1)
         // {
 
@@ -829,7 +829,9 @@ class SearchMapController extends Controller
         //     $query .= " and (j.title like '%" . $searchword . "%' or ci.city_name like '%" . $searchword . "%' or t.township_name like '%".$searchword."%')";
         //   }
 
-          $query .=" group by j.id";
+          $query .=" group by j.id ";
+
+       
 
         // }
          
