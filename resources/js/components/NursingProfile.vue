@@ -10,7 +10,7 @@
                                 <img :src="profile_img" id="thumbnil" class="profile_logo m-b-8 img-fluid fit-image-profile" alt="Logo"  @error="imgUrlAlt">                              
                                 <div class="m-t-10">
                                     <span class="btn-file d-inline-block">画像を選択                     
-                                    <input type="file" name="" class ="customer-logo m-b-10" id="customer-logo" @change="preview_image($event,'0')">                                      
+                                    <input type="file" name="" class ="customer-logo m-b-10" id="customer-logo" @change="preview_image($event,'logo')">                                      
                                     </span>                                      
                                      <span id="imgname" class="d-inline-block align-top pl-2">{{nursing_info.logo}}</span>
                                 </div>
@@ -770,7 +770,8 @@ export default {
                 city_id: 0,
                 township_list: [],
                 address_show: '',
-                img_name:'',profile_img:''
+                img_name:'',profile_img:'',
+                pro_id: 0,
             }
         },
 
@@ -780,6 +781,7 @@ export default {
 
         created(){
             this.pro_id = Number(this.$route.params.id);
+            console.log("pro_id",this.pro_id)
             this.type = this.$route.params.type;
             
             // if(this.type != undefined && this.pro_id!= undefined){
@@ -933,7 +935,7 @@ export default {
                 this.isRotate3 = !this.isRotate3;
             },
             preview_image(event,indx) {
-                if(indx == '0') {
+                if(indx == 'logo') {
                     this.nursing_info.logo = event.target.files[0].name;
                     this.profile_img = URL.createObjectURL(event.target.files[0]);
                     $('#customer-logo').text(event.target.files[0].name);
