@@ -1148,7 +1148,7 @@ export default {
 
                 });
                 this.axios
-                .get('/api/hospital-vgallery/'+this.pro_id)
+                .get('/api/hospital-vgallery/'+this.pro_id+'/'+'hospital')
                 .then(response=>{
                         this.video_arr = response.data;
                 });

@@ -875,7 +875,7 @@ export default {
                 });
 
                 this.axios
-                .get('/api/nursing-vgallery/'+this.pro_id)
+                .get('/api/nursing-vgallery/'+this.pro_id+'/'+'nursing')
                 .then(response=>{
                     this.video_arr = response.data;
                 });
