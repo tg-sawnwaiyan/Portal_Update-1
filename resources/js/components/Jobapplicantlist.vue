@@ -57,6 +57,7 @@
                                             </td>
                                         </tr>
                                     </table>
+                                    <span class="btn btn-sm btn-outline-danger" @click="jobApplicantDelete(jobapply.id)">Delete</span>
                                 </div>
                                     
                             </div>
@@ -141,28 +142,7 @@ export default {
 
             },
               created() {
-                  if (this.$route.params.id) {
-                       this.job_id = this.$route.params.id;
-                  }
-                  else{
-                      this.job_id = 0;
-                  }
-                    this.$loading(true);
-                    this.axios.get(`/api/jobapplicantlist/`+this.job_id).then(response => {
-                        console.log("list",response.data)
-                        this.$loading(false);
-                        this.jobapplies = response.data;
-                        console.log("jobapplies",this.jobapplies)
-                        this.job_title = this.jobapplies.data[0].job_title;
-                        console.log("title",this.jobapplies.data[0]);
-                        this.norecord = this.jobapplies.length;
-                      
-                        if (this.norecord > this.size) {
-                            this.pagination = true;
-                        } else {
-                            this.pagination = false;
-                        }
-                    });
+                 this.getJobapplicantList();
               },
               methods: {
                   searchApplicantList(page) {
@@ -186,6 +166,27 @@ export default {
                             }
                         });
                   },
+                  getJobapplicantList(){
+                    if (this.$route.params.id) {
+                       this.job_id = this.$route.params.id;
+                  }
+                  else{
+                      this.job_id = 0;
+                  }
+                    this.$loading(true);
+                    this.axios.get(`/api/jobapplicantlist/`+this.job_id).then(response => {
+                        this.$loading(false);
+                        this.jobapplies = response.data;
+                        this.job_title = this.jobapplies.data[0].job_title;
+                        this.norecord = this.jobapplies.length;
+                      
+                        if (this.norecord > this.size) {
+                            this.pagination = true;
+                        } else {
+                            this.pagination = false;
+                        }
+                    });
+                  },
                   applicatnToggle(id) {
                     console.log(id);
                         var class_by_id = $('#icon' + id).attr('class');
@@ -203,6 +204,39 @@ export default {
                         }
 
                     },
+                    jobApplicantDelete(id){
+                        this.$swal({
+                            title: "---",
+                            text: "---",
+                            type: "warning",
+                            width: 350,
+                            height: 200,
+                            showCancelButton: true,
+                            confirmButtonColor: "#dc3545",
+                            cancelButtonColor: "#b1abab",
+                            cancelButtonTextColor: "#000",
+                            confirmButtonText: "はい",
+                            cancelButtonText: "キャンセル",
+                            confirmButtonClass: "all-btn",
+                            cancelButtonClass: "all-btn"
+                        }).then(response => {
+                            this.axios.delete(`/api/jobApplicantDelete/${id}`)
+                                      .then(res => {
+                                        this.getJobapplicantList();
+                                });
+                            this.$swal({
+                                text: "-----",
+                                type: "success",
+                                width: 350,
+                                height: 200,
+                                confirmButtonText: "閉じる",
+                                confirmButtonColor: "#dc3545"
+                            });
+                        });
+
+
+                       
+                    }
               }
 }
 </script>
