@@ -85,21 +85,25 @@ export default {
     }
 
     .nursing-tabColor .nav-link {
-        background: #ff9563 !important;
+        /* background: #ff9563 !important; */
+        background: #63b7ff !important;
         color: #fff;
         border-right: 1px solid #fff;
         border-bottom: 0px !important;
     }
     .nursing-tabColor li.subtab2 > .router-link-active{
         background: #fff!important;
-        color: #ff9563 !important;
+        /* color: #ff9563 !important; */
+        color: #63b7ff !important;
         border-bottom-color: transparent !important;
-        border-top: 3px solid #ff9563 !important;
+        /* border-top: 3px solid #ff9563 !important; */
+        border-top: 3px solid #63b7ff !important;
         border-bottom: 0px !important;
         /* border-left: 1px solid #ff9563 !important; */
     }
     .nursing-tabColor li.subtab2 > .router-link-exact-active>i.fa, .nursing-tabColor li.subtab2 > .router-link-active>i.fas {
-        color: #ff9563 !important;
+        /* color: #ff9563 !important; */
+        color: #63b7ff !important;
     }
 
 
@@ -135,7 +139,8 @@ export default {
     }
 
     .nursing-borderColor {
-        border: 1px solid #ff9563 !important;
+        /* border: 1px solid #ff9563 !important; */
+         border: 1px solid #63b7ff !important;
     }
     .tab-pane{
         padding: 10px;

@@ -1115,7 +1115,7 @@ border-radius: 3px;
 
 .login_txt {
     display: block;
-    margin: 20px 0 0 0;
+    /* margin: 20px 0 0 0; */
     color: #2C3E50 !important;
     font-weight: bold;
     text-align: center;
@@ -1549,7 +1549,8 @@ box-shadow: 0px 0px 5px rgb(212, 201, 201); */
 }
 
 #nursingView .profile_header {
-    border-left: 5px solid #ff9563;
+    /* border-left: 5px solid #ff9563; */
+    border-left: 5px solid #63b7ff;
 }
 
 .profile_header {
@@ -1587,7 +1588,8 @@ box-shadow: 0px 0px 5px rgb(212, 201, 201); */
 }
 
 #nursingView .profile_subtit:after {
-    background: #ff9563;
+    /* background: #ff9563; */
+    background: #63b7ff;
 }
 
 #profilenav .fav-profile {
@@ -1614,9 +1616,11 @@ box-shadow: 0px 0px 5px rgb(212, 201, 201); */
     margin: 10px 0 20px 0;
     font-weight: bold;
     font-size: 1.5rem;
-    color: #ff9563;
     border-radius: 1px;
-    border-bottom: 1px dashed #ff9563;
+    /* color: #ff9563;
+    border-bottom: 1px dashed #ff9563; */
+    color: #2981cc;
+    border-bottom: 1px dashed #2981cc;
 }
 
 #hospitalView .profile-tit {
@@ -1633,17 +1637,20 @@ box-shadow: 0px 0px 5px rgb(212, 201, 201); */
 }
 
 #nursingView .header {
-    color: #ec7338;
+    /* color: #ec7338; */
+    color: #2981cc;
 }
 
 .public-nurheader {
-    border-bottom: 3px solid #ff9563;
+    /* border-bottom: 3px solid #ff9563; */
+    border-bottom: 3px solid #2981cc;
     padding-bottom: 10px;
     margin-bottom: 20px;
 }
 
 .public-nurheader .fa-user-md {
-    color: #ff9563;
+    /* color: #ff9563; */
+    color: #2981cc;
 }
 
 .public-hosheader {
@@ -3931,10 +3938,12 @@ ul.hospital-subject>li:before {
     padding: 5px 10px;
     margin: 0 0 10px 3px;
     font-size: 13px;
-    color: #ff9563;
+    /* color: #ff9563; */
+    color: #63b7ff;
     text-align: center;
     border-radius: 20px;
-    border: 1px solid #ff9563;
+    /* border: 1px solid #ff9563; */
+    border: 1px solid #63b7ff;
 }
 
 .hos_feature_list {
@@ -3996,7 +4005,8 @@ ul.hospital-subject>li:before {
 }
 
 .nursing-map-header {
-    color: #9e3d0e!important;
+    /* color: #9e3d0e!important; */
+    color: #2c3e50 !important
 }
 
 .hospital-map-header {
@@ -4247,7 +4257,8 @@ ul.hokkaido-wrap {
 @media print,
 screen and (min-width: 750px) {
     #nursingView .top-fixed-btn:hover {
-        background: #fff9cb;
+        /* background: #fff9cb; */
+        background: #cbf3ff;
         color: #000;
     }
     #hospitalView .top-fixed-btn.active:hover {
@@ -5635,8 +5646,10 @@ a:hover {
     color: #ff9563 !important;
     font-weight: bold;
     background: #fff !important;
-    border-top: 3px solid #ff9563;
-    border-color: #ff9563 #fff #fff #fff !important;
+    /* border-top: 3px solid #ff9563;
+    border-color: #ff9563 #fff #fff #fff !important; */
+    border-top: 3px solid #63b7ff;
+    border-color: #63b7ff #fff #fff #fff !important;
 }
 
 .hospital-tabColor .nav-link.active {
@@ -5687,7 +5700,8 @@ a:hover {
 }
 
 .cash-lbl {
-    color: #ff6117;
+    /* color: #ff6117; */
+    color: #fd0e0e;
     font-weight: bold;
     font-size: 1.6em;
 }
@@ -6875,13 +6889,12 @@ button.confirmed {
 .fac_container li {
     padding: 5px 10px;
     font-size: 13px;
-    /* color: #0e775d; */
-    color: #ff9563;
+    color: #63b7ff;
+    /* color: #ff9563; */
     text-align: center;
     border-radius: 20px;
-    /* border: 2px solid #b7dad2; */
-    border: 2px solid #ff9563;
-    font-weight: bold;
+    /* border: 2px solid #ff9563; */
+    border: 2px solid #63b7ff;
 }
 
 .page-1 {
@@ -7177,8 +7190,10 @@ color: green;
 }
 
 #nursingView .top-fixed-btn {
-    background: #fbaa84;
-    border: 1px solid #ff9563;
+    /* background: #fbaa84;
+    border: 1px solid #ff9563; */
+    background: #85c7ff;
+    border: 1px solid #5c95c5;
 }
 
 .top-fixed-btn {
@@ -7198,8 +7213,10 @@ color: green;
 }
 
 #nursingView .top-fixed-btn.active {
-    background: #d2571c;
-    border: 1px solid #ff9563;
+    /* background: #d2571c;
+    border: 1px solid #ff9563; */
+    background: #2981cc;
+    border: 1px solid #5f97d0;
 }
 
 .top-fixed-btn.active {
@@ -7583,7 +7600,8 @@ color: green;
     float: left;
     padding: 0 5px;
     margin-right: 20px;
-    background: #ff9563;
+    /* background: #ff9563; */
+    background: #2980b9;
     font-size: 12px;
     color: #fff;
     border-radius: 3px;
@@ -7618,7 +7636,8 @@ color: green;
 
 .price-tbl td span {
     font-size: 20px;
-    color: #ff6117;
+    /* color: #ff6117; */
+    color: #fd0e0e;
     font-weight: bold;
 }
 
@@ -8120,19 +8139,22 @@ border-bottom: none;
 /*for see more btn*/
 
 .seemore-btn {
-    color: #000;
+    color: #fff;
     font-weight: bold;
     cursor: pointer;
-    border: 1px solid #ffc041;
     padding: 5px;
     border-radius: 5px;
-    background-color: #ffc;
-    /* width: 70%; */
+    /* border: 1px solid #ffc041;
+    background-color: #ffc; */
+    border: 1px solid #4d9fd0;
+    background-color: #63b7ff;
 }
 
 .seemore-btn:hover {
-    color: #f9793c;
-    border: 1px solid #68ec37;
+    /* color: #f9793c;
+    border: 1px solid #68ec37; */
+    color: #fff;
+    border: 1px solid #63b7ff;
 }
 
 
@@ -8397,7 +8419,8 @@ border-bottom: none;
     /* margin-bottom: 20px; */
     padding: 20px;
     height: 100%;
-    border: 1px solid #ff9563;
+    /* border: 1px solid #ff9563; */
+    border: 1px solid #63b7ff;
     border-radius: 5px;
 }
 
@@ -8408,7 +8431,8 @@ border-bottom: none;
 }
 
 .nur-tit a {
-    color: #ff9563;
+    /* color: #ff9563; */
+    color: #3490dc;
     letter-spacing: 1px;
     font-weight: bold;
 }
@@ -8421,7 +8445,8 @@ border-bottom: none;
 
 .nur-content .detail-btn .btn {
     width: 100%;
-    background: #ff9563;
+    /* background: #ff9563; */
+    background: #63b7ff;
     color: #fff;
     padding: 10px;
 }
@@ -10157,9 +10182,11 @@ padding: 0;
     }
     #sp_headerbar {
         display: block;
-        width: 96%;
+        width: 83%;
         margin: 0px auto;
-        background: #fff
+        background: #fff;
+        margin-left: 6px;
+        font-size: 12px;
     }
     #sp_headerbar .fav_his {
         float: left;
@@ -10193,6 +10220,21 @@ padding: 0;
         height: 30px;
         padding: 1px 5px;
         margin-left: 6px;
+        background: #2980b9;
+        font-size: 11px;
+        color: #fff;
+        border-radius: 50%;
+        line-height: 30px;
+        vertical-align: middle;
+    }
+    #sp_headerbar .count2 {
+        position: absolute;
+        top: -12px;
+        right: -7px;
+        width: 30px;
+        height: 30px;
+        padding: 1px 5px;
+        margin-right: -5px;
         background: #2980b9;
         font-size: 11px;
         color: #fff;
@@ -12656,4 +12698,43 @@ strong {
     color: #fff;
     background-color: #0cc72c;
     border-color: #0cc72c;
+}
+
+
+/*menu*/
+
+.wt-1 {
+    width: 98%;
+    margin-left: 15px;
+}
+
+.wt-2 {
+    margin-left: -29px;
+    position: absolute;
+}
+
+.wt-3 {
+    position: absolute;
+    margin-left: -40px;
+    margin-top: 19px;
+    font-size: 12px;
+}
+
+.wt-4 {
+    position: absolute;
+    right: 7px;
+    top: 55px;
+    font-size: 12px;
+}
+
+
+/*end_menu*/
+
+.admin_l1 {
+    display: none;
+}
+
+.pro-1 {
+    margin-top: -14px !important;
+    margin-bottom: 10px;
 }

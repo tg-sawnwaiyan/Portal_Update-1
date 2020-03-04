@@ -1904,7 +1904,7 @@ export default {
             slidesToScroll: 1,
             arrows: true,
             fade: false,
-            adaptiveHeight: true,
+            adaptiveHeight: true,           
             }
         },
         slickOptions2() {

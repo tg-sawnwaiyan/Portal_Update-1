@@ -160,7 +160,8 @@ export default {
         border-right: 1px solid #fff;
 }
 .nursing-tabColor .nav-link {
-        background: #ff9563 !important;
+        /* background: #ff9563 !important; */
+         background: #63b7ff !important;
         color: #fff !important;
         border-right: 1px solid #fff;
 }
@@ -168,6 +169,7 @@ export default {
         border: 1px solid #63b7ff !important;
 }
 .nursing-borderColor {
-        border: 1px solid #ff9563 !important;
+        /* border: 1px solid #ff9563 !important; */
+        border: 1px solid #63b7ff !important;
 }
 </style>

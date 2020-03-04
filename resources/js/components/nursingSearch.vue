@@ -1,8 +1,8 @@
 <template>
     <layout>
         <div>
-            <div class="col-md-12" style="border-bottom: 1px dashed #ff9563;padding-bottom: 10px; margin-bottom: 20px;">
-                <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#ff9563;"></i>&nbsp;地図検索 
+            <div class="col-md-12" style="border-bottom: 1px dashed #2980b9;padding-bottom: 10px; margin-bottom: 20px;">
+                <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#2980b9;"></i>&nbsp;地図検索 
                     <span v-if="nus_data.length && !ci &&  MoveID == 0 &&  SpecialFeatureID ==0  && FacTypeID == 0 && MedicalAcceptanceID == 0 && township_id == -1 && moving_in == -1  && per_month == -1">「<span class="result-span">{{nus_data[0].city_name}}</span>の介護施設 <span class="result-span">{{nus_data.length}}</span> 件」</span>
                     <span v-if="nus_data.length && ci && searchword != 'all' && searchword != '' && MoveID ==0  && SpecialFeatureID == 0 && FacTypeID == 0 && MedicalAcceptanceID == 0 && township_id == -1 && moving_in == -1  && per_month == -1" >「<span class="result-span">{{searchword}}</span>の介護施設 <span class="result-span">{{nus_data.length}}</span> 件」</span>
                     <span v-if="nus_data.length && searchword == 'all' && MoveID == 0 && SpecialFeatureID == 0 && FacTypeID == 0 && MedicalAcceptanceID == 0 && township_id == -1 && moving_in == -1  && per_month == -1">「<span class="result-span">全国</span>の介護施設 <span class="result-span">{{nus_data.length}}</span> 件」</span>
@@ -13,15 +13,15 @@
                 <div class="row" id="hos">
                     <div class="col-md-12" id="scrollMap">
                         <div>
-                            <div class="row map-wrap"  id="searchMap" style="background-color:#fdf3ef;">
+                            <div class="row map-wrap"  id="searchMap">
                                 <!-- search map and path -->
                                 <div class="col-lg-5 col-md-12 col-sm-12 float-left map-leftwrapper">
                                    <h2 class="map-header nursing-map-header">あなたらしい暮ら<br/>しができる。そん<br/>な老人ホームが見 <br/>つかります。</h2>
                                     <!--search input-->
                                     <div class="wrap">
                                         <div class="search">
-                                            <input type="text"  id="search-free-word" style="border: 3px solid #ff9563;" class="searchTerm" placeholder="地名、施設名などを入力"> 
-                                            <button class="searchButton" style="border: 1px solid #ff9563;background: #ff9563;" @click="searchfreeword">
+                                            <input type="text"  id="search-free-word" style="border: 3px solid #63b7ff;" class="searchTerm" placeholder="地名、施設名などを入力"> 
+                                            <button class="searchButton" style="border: 1px solid #63b7ff;background: #63b7ff;" @click="searchfreeword">
                                                 <i class="fas fa-search"></i> 検索
                                             </button>
                                         </div>                                        
@@ -60,7 +60,7 @@
                             
                             <div id="scroll-responsive">
                                 <div class="select" id="filter" style="justify-content:space-between">
-                                   <h5 class="profile_header" style="border-left: 5px solid #ff9563;">現在の検索条件</h5>
+                                   <h5 class="profile_header" style="border-left: 5px solid #63b7ff;">現在の検索条件</h5>
                                    
                                     <div class="row">
                                     <div class="col-lg-5 col-md-6 m-b-414">
@@ -193,7 +193,7 @@
                                                                     </p>
 
                                                                     <p class="item-name"><img :src="'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld='+items.alphabet+'|ff9563|000000'" alt="">
-                                                                        <router-link :to="{ path:'/profile/nursing/'+items.nursing_id}" class="pseudolink" style="font-weight:bold;color:#ff6117 !important">{{items.name}}</router-link>
+                                                                        <router-link :to="{ path:'/profile/nursing/'+items.nursing_id}" class="pseudolink" style="font-weight:bold;color:#63b7ff !important">{{items.name}}</router-link>
                                                                     </p>
                                                                     <p>{{items.city_name}} <i class="fas fa-angle-double-right" style="color:#b9b5b5;"></i> {{items.township_name}}</p>
                                                                 </div>
@@ -227,9 +227,9 @@
                                                                 <div class="wd-in">
                                                                     <table class="table table-bordered price-tbl text-center">
                                                                         <thead>
-                                                                            <tr style="background-color:#ffffcc">
-                                                                                <th class="text-center" style="background-color:#ffffcc">入居時費用</th>
-                                                                                <th class="text-center" style="background-color:#ffffcc">月額費用</th>
+                                                                            <tr style="background-color:#ecf8ff">
+                                                                                <th class="text-center" style="background-color:#ecf8ff">入居時費用</th>
+                                                                                <th class="text-center" style="background-color:#ecf8ff">月額費用</th>
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
@@ -1422,7 +1422,7 @@
                                 '<td colspan="2" style="padding-top:0px;">' +
                                     '<div class="">' +
                                     '<table class="table table-bordered price-tbl text-center" style="margin-bottom:0px">'+
-                                    '<thead><tr style="background-color:#ffffcc"><th class="text-center" style="background-color:#ffffcc">入居時費用</th><th class="text-center" style="background-color:#ffffcc">月額利用料</th></tr></thead>'+
+                                    '<thead><tr style="background-color:#ecf8ff"><th class="text-center" style="background-color:#ffffcc">入居時費用</th><th class="text-center" style="background-color:#ffffcc">月額利用料</th></tr></thead>'+
                                     '<tbody>'+
                                     '<tr><td><span>'+ (Number(item[i]['moving_in_to'])/10000).toLocaleString() + '</span>万円</td><td><span>'+ (Number(item[i]['per_month_to'])/10000).toLocaleString() + '</span>万円</td></tr>'+
                                     '</tbody>'+
@@ -1858,7 +1858,7 @@
 
 <style scoped>
 .result-span {
-    color: #ff9563;
+    color: #23a2f5;
 }
 .lds-ripple {
   /* display: inline-block;

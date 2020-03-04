@@ -9,11 +9,11 @@
       <div class="user_card" id="altrole">
         <div class="login_link">
           <a href="/" class="home_link">ホーム</a>
-          <router-link to="/register" class="reg_link  ml-auto">登録</router-link>      
+          <router-link to="/register" class="reg_link  ml-auto" :class="admin1" >登録</router-link>      
         </div>
         <div class="form_content">
           <h3 class="user_name">{{name}}</h3>
-          <form autocomplete="off" @submit.prevent="login" method="post">
+          <form autocomplete="off" @submit.prevent="login" method="post" class="m-b-20">
               <div class="input-group">
                   <div class="input-group-append">
                       <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -34,7 +34,7 @@
               </div>
             
           </form>
-          <router-link :to="{name: 'reset'}" class="login_txt">パスワードをお忘れですか？</router-link>
+          <router-link :to="{name: 'reset'}" class="login_txt" :class="admin1">パスワードをお忘れですか？</router-link>
           <span class="alert alert-danger" v-if="has_error">パスワードが間違っています。</span>
         </div>
       </div>
@@ -111,6 +111,8 @@
         has_error: false,
         name:'',
         btn_color:'',
+        admin1:'',
+        for_pass:'',
         mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
       }
     },
@@ -125,13 +127,15 @@
     created(){
        if(this.$route.path == "/admin_login"){
          this.name="管理者ログイン";
-         this.btn_color='btn login_btn_admin'
+         this.btn_color='btn login_btn_admin';
+        this.admin1='admin_l1';
+        this.for_pass='admin_l1'
         $('#altrole').addClass('admin_user_card');
          console.log('ADMIN LOGIN');
        }else {
          this.name ='事業者ログイン';
-         this.btn_color='btn login_btn'
-       }
+         this.btn_color='btn login_btn';
+        }
     },
     methods: {
        focusMail: function(event) {
@@ -230,3 +234,4 @@
     }
   }
 </script>
+

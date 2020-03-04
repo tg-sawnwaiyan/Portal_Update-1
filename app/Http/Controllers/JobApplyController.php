@@ -102,7 +102,12 @@ class JobApplyController extends Controller
 
         return response()->json($jobapplicant);
     }
-
+ public function jobApplicantDelete($id)
+ {
+     $jobId = JobApply::find($id);
+     $jobId->delete();
+    return response()->json('Successfully Delete!');
+}
     /**
      * Show the form for creating a new resource.
      *
