@@ -286,11 +286,11 @@ Route::get('facility/{type}/{id}','FacilityController@getFacilitybyProfileType')
 Route::get('clinical-subject/{id}','SubjectController@getHospitalClinicalSubject');
 Route::get('station/{id}','StationController@getStationbyCustomerId');
 
-Route::get('hospital-pgallery/{id}','GalleryController@getPhotobyCustomerId');
+Route::get('hospital-pgallery/{id}/{type}','GalleryController@getPhotobyCustomerId');
 Route::get('hospital-vgallery/{id}','GalleryController@getVideobyCustomerId');
 Route::post('delete-pgallery','GalleryController@deleteGallery');
 
-Route::get('nursing-pgallery/{id}','GalleryController@getPhotobyCustomerId');
+Route::get('nursing-pgallery/{id}/{type}','GalleryController@getPhotobyCustomerId');
 Route::get('nursing-vgallery/{id}','GalleryController@getVideobyCustomerId');
 Route::get('nursing-panorrama-gallery/{id}','GalleryController@getPanoramabyCustomerId');
 Route::post('nursing/movephoto','NursingProfileController@movePhoto');

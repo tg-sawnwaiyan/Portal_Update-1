@@ -186,9 +186,7 @@ class HospitalProfileController extends Controller
     }
 
     public function movePhoto(Request $request) {
-    
 
-        
         $request = $request->all();
         foreach ($request as $file){
             $destination = 'upload/hospital_profile/'.$file->getClientOriginalName();

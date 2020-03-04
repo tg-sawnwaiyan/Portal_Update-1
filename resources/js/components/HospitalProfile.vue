@@ -931,6 +931,7 @@
             </span>
           </div>      
             <div class="row col-12 pad-free m-0" id="gallery-photo">
+            
               <div class="col-md-6 gallery-area-photo p0-990" v-bind:id="'photo'+indx" v-for="(img,indx) in img_arr" :key="img.id" >
                     <div class="col-md-12">
                           <!-- <input type="file" name class="hospital-photo m-b-15 p-t-10"  v-bind:class="'classname'+indx" id="upload_img" @change="preview_image($event,indx)" />  
@@ -1141,7 +1142,7 @@ export default {
                     }
                 });
                 this.axios
-                .get('/api/hospital-pgallery/'+this.pro_id)
+                .get('/api/hospital-pgallery/'+this.pro_id + '/' + 'hospital')
                 .then(response=>{
                         this.img_arr = response.data;
 
@@ -1309,7 +1310,7 @@ export default {
                
                 let pt = new FormData();
                 var img = document.getElementsByClassName('gallery-area-photo');
-             
+           
                 for(var i =this.img_arr.length-1;i>=0;i--)
                 {
                     this.img_arr[i]['type'] = 'photo';
@@ -1318,10 +1319,15 @@ export default {
                         this.img_arr.splice(i,1);
                     }
                     var file = img[i].getElementsByClassName('hospital-photo')[0].files[0];
+                   
                     if(file) {
+                    
                         pt.append(i ,file )
                     }
+                  
                 }
+
+         
 
                 // if(logo){
                 //     this.hospital_info.logo = logo.name;
@@ -1337,6 +1343,8 @@ export default {
                     }
 
                 }
+
+            
                 this.axios.post('/api/hospital/movephoto', pt)
                     .then(response => {
                         }).catch(error=>{

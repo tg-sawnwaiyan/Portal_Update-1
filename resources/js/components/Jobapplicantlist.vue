@@ -153,7 +153,7 @@ export default {
                         this.$loading(false);
                         this.jobapplies = response.data;
                         console.log("jobapplies",this.jobapplies)
-                        this.job_title = this.jobapplies.data[0].title;
+                        this.job_title = this.jobapplies.data[0].job_title;
                         console.log("title",this.jobapplies.data[0]);
                         this.norecord = this.jobapplies.length;
                       
