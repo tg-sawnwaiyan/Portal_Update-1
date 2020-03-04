@@ -115,7 +115,7 @@
                                                 </p>
                                             </div>
                                             <div class="card-read-more">
-                                                <router-link :to="{ path:'/profile/nursing/'+ nursingprofiles.id}" class="btn btn-sm edit-borderbtn" style="font-weight:bold; float:inline-start;margin-left:10px">編集</router-link>
+                                                <router-link :to="{ path:'/profile/nursing/'+ nursingprofiles.id}" class="btn btn-sm edit-borderbtn" style="font-weight:bold; float:left;margin-left:10px">編集</router-link>
                                                 
                                                 <span class="btn btn-sm btn-outline-danger" @click="profileDelete(nursingprofiles.id)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</span>
                                             </div>
@@ -154,7 +154,7 @@
                                                 </p>
                                             </div>
                                             <div class="card-read-more">
-                                                <router-link :to="{ path:'/profile/hospital/'+ hospitalprofiles.id}" class="btn btn-sm edit-borderbtn" style="font-weight:bold; float:inline-start;margin-left:10px">編集</router-link>
+                                                <router-link :to="{ path:'/profile/hospital/'+ hospitalprofiles.id}" class="btn btn-sm edit-borderbtn" style="font-weight:bold; float:left;margin-left:10px">編集</router-link>
                                                 
                                                 <span class="btn btn-sm btn-outline-danger" @click="profileDelete(hospitalprofiles.id)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</span>
                                             </div>
