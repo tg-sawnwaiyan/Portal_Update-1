@@ -1115,7 +1115,7 @@ border-radius: 3px;
 
 .login_txt {
     display: block;
-    margin: 20px 0 0 0;
+    /* margin: 20px 0 0 0; */
     color: #2C3E50 !important;
     font-weight: bold;
     text-align: center;
@@ -10157,9 +10157,11 @@ padding: 0;
     }
     #sp_headerbar {
         display: block;
-        width: 96%;
+        width: 83%;
         margin: 0px auto;
-        background: #fff
+        background: #fff;
+        margin-left: 6px;
+        font-size: 12px;
     }
     #sp_headerbar .fav_his {
         float: left;
@@ -10193,6 +10195,21 @@ padding: 0;
         height: 30px;
         padding: 1px 5px;
         margin-left: 6px;
+        background: #2980b9;
+        font-size: 11px;
+        color: #fff;
+        border-radius: 50%;
+        line-height: 30px;
+        vertical-align: middle;
+    }
+    #sp_headerbar .count2 {
+        position: absolute;
+        top: -12px;
+        right: -7px;
+        width: 30px;
+        height: 30px;
+        padding: 1px 5px;
+        margin-right: -5px;
         background: #2980b9;
         font-size: 11px;
         color: #fff;
@@ -12655,4 +12672,41 @@ strong {
     color: #fff;
     background-color: #0cc72c;
     border-color: #0cc72c;
+}
+/*menu*/
+.wt-1
+{
+    width:98%;
+    margin-left:15px;
+}
+.wt-2
+{
+    margin-left:-29px;
+    position:absolute;
+
+}
+.wt-3
+{
+    position:absolute;
+    margin-left:-40px;
+    margin-top:19px;
+    font-size:12px;
+}
+.wt-4
+{
+    position:absolute;
+    right: 7px;
+    top:55px;
+    font-size: 12px;
+}
+/*end_menu*/
+
+ .admin_l1
+{
+    display: none;
+}
+.pro-1
+{
+    margin-top: -14px !important;
+    margin-bottom: 10px;
 }
