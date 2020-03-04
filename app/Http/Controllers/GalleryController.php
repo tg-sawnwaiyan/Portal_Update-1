@@ -14,17 +14,38 @@ class GalleryController extends Controller
        
     }
     
-    public function getPhotobyCustomerId($customer_id) {
-        $photo_list = DB::select("SELECT g.id,g.title,g.photo,g.description, (CASE c.type_id WHEN '2' THEN CONCAT('/upload/hospital_profile/',g.photo) ELSE CONCAT('/upload/nursing_profile/',g.photo) END) as src 
-        FROM galleries as g INNER JOIN customers as c ON g.profile_id = c.id WHERE g.type='photo' AND g.profile_id = ".$customer_id);
-        return $photo_list;
+    public function getPhotobyCustomerId($profile_id,$type) {
+        if($type == 'hospital')
+        {
+            $photo_list = DB::select("SELECT g.id,g.title,g.photo,g.description,  CONCAT('/upload/hospital_profile/',g.photo)  as src 
+                                    FROM galleries as g INNER JOIN hospital_profiles as h ON g.profile_id = h.id WHERE g.type='photo' AND g.profile_id = ".$profile_id);
+        
+        }
+        else{
+            $photo_list = DB::select("SELECT g.id,g.title,g.photo,g.description,  CONCAT('/upload/nursing_profile/',g.photo)  as src 
+                                FROM galleries as g INNER JOIN nursing_profiles as n ON g.profile_id = n.id WHERE g.type='photo' AND g.profile_id = ".$profile_id);
+        }
+        return $photo_list; 
+        
     }
 
-    public function getVideobyCustomerId($customer_id) {
-        $video_list = Gallery::where("profile_id",$customer_id)
-                            ->where('type','=', 'video')->select('id','title','photo','description')
+    public function getVideobyCustomerId($customer_id,$type) {
+        if($type == 'hospital')
+        {
+            $video_list = Gallery::where("galleries.profile_id",$customer_id)
+                        ->where('type','=', 'video')->select('galleries.id','galleries.title','galleries.photo','galleries.description')
+                        ->join('hospital_profiles','hospital_profiles.id','=','galleries.profile_id')
+                        ->get()
+                        ->toArray();
+        }
+        else{
+            $video_list = Gallery::where("galleries.profile_id",$customer_id)
+                            ->where('type','=', 'video')->select('galleries.id','galleries.title','galleries.photo','galleries.description')
+                            ->join('nursing_profiles','nursing_profiles.id','=','galleries.profile_id')
                             ->get()
                             ->toArray();
+        }
+        
         return $video_list;
     }
 

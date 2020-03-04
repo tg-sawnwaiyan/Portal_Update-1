@@ -6,6 +6,8 @@ use App\Job;
 use App\Occupations;
 use Illuminate\Http\Request;
 use DB;
+use \Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Input;
 
 class JobController extends Controller
 {
@@ -13,25 +15,19 @@ class JobController extends Controller
     public function index()
     {
         if( auth()->user()->role == 2){
-            // $query = "SELECT jobs.* ,customers.type_id,
-            // (CASE customers.type_id WHEN '2' THEN CONCAT((200000+customers.id),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(jobs.id, 4, '0')) END) as jobid
-            // FROM `jobs`
-            // JOIN customers ON jobs.customer_id = customers.id
-            // LEFT JOIN job_applies ON jobs.id = job_applies.job_id
-            // WHERE customers.recordstatus=1 GROUP BY jobs.id ORDER BY jobs.id DESC";
-            // $profilejob = DB::select($query);
 
-            $profilejob = DB::table('jobs')
-                    ->select('jobs.*','customers.type_id','customers.name',
-                    DB::raw('(CASE WHEN customers.type_id = "2" THEN CONCAT((200000+customers.id),"-",LPAD(jobs.id, 4, "0")) ELSE CONCAT((500000+customers.id),"-",LPAD(jobs.id, 4, "0")) END) as jobid'))
-                    ->join('customers','jobs.customer_id','=','customers.id')
-                    ->leftjoin('job_applies','jobs.id','=','job_applies.job_id')
-                    ->where('customers.recordstatus', '1')
-                    ->groupBy('jobs.id')
-                    ->orderBy('jobs.id', 'DESC')
-                    ->paginate(12);
+            $query = "SELECT  jobs.*,customers.type_id,customers.name,(CASE customers.type_id WHEN '2' THEN CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) END) as jobid 
+                           FROM  jobs join customers  on jobs.customer_id = customers.id 
+                           left join job_applies on jobs.id = job_applies.job_id
+                           left join hospital_profiles on hospital_profiles.id = jobs.profile_id
+                           left join nursing_profiles on nursing_profiles.id = jobs.profile_id
+                           where customers.recordstatus = 1 and jobs.recordstatus = 1 and (CASE  customers.type_id WHEN '2' THEN hospital_profiles.activate = 1 ELSE nursing_profiles.activate =1 END) 
+                           group by jobs.id order by jobs.id desc ";
 
-            foreach($profilejob as $jobs){
+            $projob = DB::select($query);
+
+            foreach($projob as $jobs){
+               
                 $job_id = $jobs->id;
                 $jobapplies =  DB::table('job_applies')->join('jobs','job_applies.job_id','=','jobs.id')
                             ->where('job_applies.job_id','=',$job_id)->count();
@@ -46,35 +42,44 @@ class JobController extends Controller
                 $profile_name = DB::table($profile_table)->select('id','name')->where($profile_table.'.id', '=' , $profile_id)->get();
                 $jobs->profile_name = $profile_name;
             }
-            return response()->json(array('profilejob'=>$profilejob));
+
+
+          
         }else{
-            // $query = "SELECT jobs.* ,customers.type_id,
-            // (CASE customers.type_id WHEN '2' THEN CONCAT((200000+customers.id),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(jobs.id, 4, '0')) END) as jobid
-            // FROM `jobs`
-            // JOIN customers ON jobs.customer_id = customers.id
-            // LEFT JOIN job_applies ON jobs.id = job_applies.job_id
-            // WHERE customers.recordstatus=1 and jobs.customer_id = ".auth()->user()->customer_id." GROUP BY jobs.id ORDER BY jobs.id DESC";
-            // $profilejob = DB::select($query);
+                $query = "SELECT  jobs.*,customers.type_id,customers.name,(CASE customers.type_id WHEN '2' THEN CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) END) as jobid 
+                            FROM  jobs join customers  on jobs.customer_id = customers.id 
+                            left join job_applies on jobs.id = job_applies.job_id
+                            left join hospital_profiles on hospital_profiles.id = jobs.profile_id
+                            left join nursing_profiles on nursing_profiles.id = jobs.profile_id
+                            where customers.recordstatus = 1 and jobs.recordstatus = 1 
+                            and jobs.customer_id = ".auth()->user()->customer_id." and (CASE  customers.type_id WHEN '2' THEN hospital_profiles.activate = 1 ELSE nursing_profiles.activate =1 END) 
+                            group by jobs.id order by jobs.id desc ";
 
-            $profilejob = DB::table('jobs')
-                    ->select('jobs.*','customers.type_id',
-                    DB::raw('(CASE WHEN customers.type_id = "2" THEN CONCAT((200000+customers.id),"-",LPAD(jobs.id, 4, "0")) ELSE CONCAT((500000+customers.id),"-",LPAD(jobs.id, 4, "0")) END) as jobid'))
-                    ->join('customers','jobs.customer_id','=','customers.id')
-                    ->leftjoin('job_applies','jobs.id','=','job_applies.job_id')
-                    ->where('customers.recordstatus', '1')
-                    ->where('jobs.customer_id',auth()->user()->customer_id)
-                    ->groupBy('jobs.id')
-                    ->orderBy('jobs.id', 'DESC')
-                    ->paginate(12);
+                $projob = DB::select($query);
 
-            foreach($profilejob as $jobs){
+
+            foreach($projob as $jobs){
                 $job_id = $jobs->id;
                 $jobapplies =  DB::table('job_applies')->join('jobs','job_applies.job_id','=','jobs.id')
                             ->where('job_applies.job_id','=',$job_id)->count();
                 $jobs->count = $jobapplies;
             }
-            return response()->json(array('profilejob'=>$profilejob));
+
+        
         }
+
+        $page = Input::get('page', 1);
+        $size = 12;
+        $data = collect($projob);
+
+        $profilejob = new LengthAwarePaginator(
+                                $data->forPage($page, $size),
+                                $data->count(), 
+                                $size, 
+                                $page
+                            );
+
+        return response()->json(array('profilejob'=>$profilejob));
     }
 
     public function create()
@@ -426,25 +431,20 @@ class JobController extends Controller
         $job = Job::find($id);
         $job->delete();
         if( auth()->user()->role == 2){
-            // $query = "SELECT jobs.* ,customers.type_id,
-            // (CASE customers.type_id WHEN '2' THEN CONCAT((200000+customers.id),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(jobs.id, 4, '0')) END) as jobid
-            // FROM `jobs`
-            // JOIN customers ON jobs.customer_id = customers.id
-            // LEFT JOIN job_applies ON jobs.id = job_applies.job_id
-            // WHERE customers.recordstatus=1 GROUP BY jobs.id ORDER BY jobs.id DESC";
-            // $profilejob = DB::select($query);
 
-            $profilejob = DB::table('jobs')
-                    ->select('jobs.*','customers.type_id','customers.name',
-                    DB::raw('(CASE WHEN customers.type_id = "2" THEN CONCAT((200000+customers.id),"-",LPAD(jobs.id, 4, "0")) ELSE CONCAT((500000+customers.id),"-",LPAD(jobs.id, 4, "0")) END) as jobid'))
-                    ->join('customers','jobs.customer_id','=','customers.id')
-                    ->leftjoin('job_applies','jobs.id','=','job_applies.job_id')
-                    ->where('customers.recordstatus', '1')
-                    ->groupBy('jobs.id')
-                    ->orderBy('jobs.id', 'DESC')
-                    ->paginate(12);
+            $query = "SELECT  jobs.*,customers.type_id,customers.name,(CASE customers.type_id WHEN '2' THEN CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) END) as jobid 
+                        FROM  jobs join customers  on jobs.customer_id = customers.id 
+                        left join job_applies on jobs.id = job_applies.job_id
+                        left join hospital_profiles on hospital_profiles.id = jobs.profile_id
+                        left join nursing_profiles on nursing_profiles.id = jobs.profile_id
+                        where customers.recordstatus = 1 and jobs.recordstatus = 1 and (CASE  customers.type_id WHEN '2' THEN hospital_profiles.activate = 1 ELSE nursing_profiles.activate =1 END) 
+                        group by jobs.id order by jobs.id desc ";
 
-            foreach($profilejob as $jobs){
+            $projob = DB::select($query);
+         
+         
+
+            foreach($projob as $jobs){
                 $job_id = $jobs->id;
                 $jobapplies =  DB::table('job_applies')->join('jobs','job_applies.job_id','=','jobs.id')
                             ->where('job_applies.job_id','=',$job_id)->count();
@@ -459,63 +459,76 @@ class JobController extends Controller
                 $profile_name = DB::table($profile_table)->select('id','name')->where($profile_table.'.id', '=' , $profile_id)->get();
                 $jobs->profile_name = $profile_name;
             }
-            return response()->json(array('profilejob'=>$profilejob));
+          
         }else{
-            // $query = "SELECT jobs.* ,customers.type_id,
-            // (CASE customers.type_id WHEN '2' THEN CONCAT((200000+customers.id),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(jobs.id, 4, '0')) END) as jobid
-            // FROM `jobs`
-            // JOIN customers ON jobs.customer_id = customers.id
-            // LEFT JOIN job_applies ON jobs.id = job_applies.job_id
-            // WHERE customers.recordstatus=1 and jobs.customer_id = ".auth()->user()->customer_id." GROUP BY jobs.id ORDER BY jobs.id DESC";
-            // $profilejob = DB::select($query);
 
-            $profilejob = DB::table('jobs')
-                    ->select('jobs.*','customers.type_id',
-                    DB::raw('(CASE WHEN customers.type_id = "2" THEN CONCAT((200000+customers.id),"-",LPAD(jobs.id, 4, "0")) ELSE CONCAT((500000+customers.id),"-",LPAD(jobs.id, 4, "0")) END) as jobid'))
-                    ->join('customers','jobs.customer_id','=','customers.id')
-                    ->leftjoin('job_applies','jobs.id','=','job_applies.job_id')
-                    ->where('customers.recordstatus', '1')
-                    ->where('jobs.customer_id',auth()->user()->customer_id)
-                    ->groupBy('jobs.id')
-                    ->orderBy('jobs.id', 'DESC')
-                    ->paginate(12);
+            $query = "SELECT  jobs.*,customers.type_id,customers.name,(CASE customers.type_id WHEN '2' THEN CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) END) as jobid 
+                        FROM  jobs join customers  on jobs.customer_id = customers.id 
+                        left join job_applies on jobs.id = job_applies.job_id
+                        left join hospital_profiles on hospital_profiles.id = jobs.profile_id
+                        left join nursing_profiles on nursing_profiles.id = jobs.profile_id
+                        where customers.recordstatus = 1 and jobs.recordstatus = 1 and jobs.customer_id = ".auth()->user()->customer_id." and  (CASE  customers.type_id WHEN '2' THEN hospital_profiles.activate = 1 ELSE nursing_profiles.activate =1 END) 
+                        group by jobs.id order by jobs.id desc ";
 
-            foreach($profilejob as $jobs){
+            $projob = DB::select($query);
+                    
+
+
+            foreach($projob as $jobs){
                 $job_id = $jobs->id;
                 $jobapplies =  DB::table('job_applies')->join('jobs','job_applies.job_id','=','jobs.id')
                             ->where('job_applies.job_id','=',$job_id)->count();
                 $jobs->count = $jobapplies;
             }
-            return response()->json(array('profilejob'=>$profilejob));
+           
         }
-        // return response()->json('The Job successfully deleted');
+
+        $page = 1;
+        $size = 12;
+        $data = collect($projob);
+
+        $profilejob = new LengthAwarePaginator(
+                               $data->forPage($page, $size),
+                               $data->count(), 
+                               $size, 
+                               $page
+                           );
+
+        return response()->json(array('profilejob'=>$profilejob));
+       
     }
     public function search(Request $request) {
-        $request = $request->all();
-        $search_word = $request['search_word'];
-        $customer_id = auth()->user()->customer_id;
 
-        // $query = Job::query();
-        // $query = "SELECT jobs.* ,customers.type_id,
-        //     (CASE customers.type_id WHEN '2' THEN CONCAT((200000+customers.id),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(jobs.id, 4, '0')) END) as jobid
-        //     FROM `jobs`
-        //     JOIN customers ON jobs.customer_id = customers.id
-        //     LEFT JOIN job_applies ON jobs.id = job_applies.job_id
-        //     WHERE jobs.title LIKE '%$search_word%' AND customers.recordstatus=1 GROUP BY jobs.id ORDER BY jobs.id DESC";
-        //     $jobsearch = DB::select($query);
 
-            $jobsearch = DB::table('jobs')
-                    ->select('jobs.*','customers.type_id','customers.name',
-                    DB::raw('(CASE WHEN customers.type_id = "2" THEN CONCAT((200000+customers.id),"-",LPAD(jobs.id, 4, "0")) ELSE CONCAT((500000+customers.id),"-",LPAD(jobs.id, 4, "0")) END) as jobid'))
-                    ->join('customers','jobs.customer_id','=','customers.id')
-                    ->leftjoin('job_applies','jobs.id','=','job_applies.job_id')
-                    ->where('jobs.title', 'LIKE', "%{$search_word}%")
-                    ->where('customers.recordstatus', '1')
-                    ->groupBy('jobs.id')
-                    ->orderBy('jobs.id', 'DESC')
-                    ->paginate(12);
+            $request = $request->all();
+            $search_word = $request['search_word'];
+            $customer_id = auth()->user()->customer_id;
+            if(auth()->user()->role == 2)
+            {
+                $query = "SELECT  jobs.*,customers.type_id,customers.name,(CASE customers.type_id WHEN '2' THEN CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) END) as jobid 
+                            FROM  jobs join customers  on jobs.customer_id = customers.id 
+                            left join job_applies on jobs.id = job_applies.job_id
+                            left join hospital_profiles on hospital_profiles.id = jobs.profile_id
+                            left join nursing_profiles on nursing_profiles.id = jobs.profile_id
+                            where customers.recordstatus = 1 and jobs.recordstatus = 1 and jobs.title like '%".$search_word."%' and (CASE  customers.type_id WHEN '2' THEN hospital_profiles.activate = 1 ELSE nursing_profiles.activate =1 END) 
+                            group by jobs.id order by jobs.id desc ";
+            }
+            else{
+                $query = "SELECT  jobs.*,customers.type_id,customers.name,(CASE customers.type_id WHEN '2' THEN CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) END) as jobid 
+                            FROM  jobs join customers  on jobs.customer_id = customers.id 
+                            left join job_applies on jobs.id = job_applies.job_id
+                            left join hospital_profiles on hospital_profiles.id = jobs.profile_id
+                            left join nursing_profiles on nursing_profiles.id = jobs.profile_id
+                            where customers.recordstatus = 1 and jobs.recordstatus = 1 and jobs.title like '%".$search_word."%' and (CASE  customers.type_id WHEN '2' THEN hospital_profiles.activate = 1 ELSE nursing_profiles.activate =1 END) 
+                            and customers.id = ".$customer_id." group by jobs.id order by jobs.id desc ";
+            }
 
-            foreach($jobsearch as $jobs){
+         
+
+            $jobsearchs = DB::select($query);
+
+
+            foreach($jobsearchs as $jobs){
                 $job_id = $jobs->id;
                 $jobapplies =  DB::table('job_applies')->join('jobs','job_applies.job_id','=','jobs.id')
                             ->where('job_applies.job_id','=',$job_id)->count();
@@ -530,21 +543,20 @@ class JobController extends Controller
                 $profile_name = DB::table($profile_table)->select('id','name')->where($profile_table.'.id', '=' , $profile_id)->get();
                 $jobs->profile_name = $profile_name;
             }
+
+            $page = Input::get('page', 1);
+            $size = 12;
+            $data = collect($jobsearchs);
+    
+            $jobsearch = new LengthAwarePaginator(
+                                    $data->forPage($page, $size),
+                                    $data->count(), 
+                                    $size, 
+                                    $page
+                                );
+    
             return response()->json(array('jobsearch'=>$jobsearch));
-        // $query = $query->where('job_id', $customer_id);
-        // $query = $query->where(function($qu) use ($search_word){
-        //                     $qu->where('title', 'LIKE', "%{$search_word}%")
-        //                         ->orWhere('description', 'LIKE', "%{$search_word}%");
-        //                 });
-        //                 foreach($query as $jobs){
-        //                     $job_id = $jobs->id;
-        //                     $jobapplies =  DB::table('job_applies')->join('jobs','job_applies.job_id','=','jobs.id')
-        //                                 ->where('job_applies.job_id','=',$job_id)->count();
-        //                     $jobs->count = $jobapplies;
-        //                 }
-        // $query = $query->orderBy('id','DESC')
-        //                 ->get()
-        //                 ->toArray();
+      
     }
 
 

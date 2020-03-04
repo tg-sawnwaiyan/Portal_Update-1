@@ -862,7 +862,7 @@ export default {
                 });
 
                 this.axios
-                .get('/api/nursing-pgallery/'+this.pro_id)
+                .get('/api/nursing-pgallery/'+this.pro_id+'/'+'nursing')
                 .then(response=>{
                     this.img_arr = response.data;
                 });
@@ -875,7 +875,7 @@ export default {
                 });
 
                 this.axios
-                .get('/api/nursing-vgallery/'+this.pro_id)
+                .get('/api/nursing-vgallery/'+this.pro_id+'/'+'nursing')
                 .then(response=>{
                     this.video_arr = response.data;
                 });
@@ -897,7 +897,7 @@ export default {
 
               var input_data = $('#phone').val();
 
-              if(input_data.length >= 10 && input_data.length <= 14 && input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-')
+              if(input_data.length == 0 || (input_data.length >= 10 && input_data.length <= 14 && input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-'))
               {
                   this.ph_num = false;
                   this.ph_length = false;

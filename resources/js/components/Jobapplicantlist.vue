@@ -10,11 +10,11 @@
                     </div>
                 </div>
                 <hr />
-                <h5 class="header"> 求人応募者一覧({{job_title}})</h5>
+                <h5 class="header"> 求人応募者一覧 <span v-if="this.$route.params.id"> 「{{job_title}} <span class="pro_num">({{jobapplies.data[0].jobid}})</span>」 </span></h5>
+
+
                 <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
                 <div v-else class="container-fuid">
-
-
                     <div class="card card-default m-b-20" v-for="jobapply in jobapplies.data" :key="jobapply.id">
                             <div class="card-body p-3">
                                 <div class="row">
@@ -149,9 +149,12 @@ export default {
                   }
                     this.$loading(true);
                     this.axios.get(`/api/jobapplicantlist/`+this.job_id).then(response => {
+                        console.log("list",response.data)
                         this.$loading(false);
                         this.jobapplies = response.data;
-                        this.job_title = this.jobapplies.data[0].title;
+                        console.log("jobapplies",this.jobapplies)
+                        this.job_title = this.jobapplies.data[0].job_title;
+                        console.log("title",this.jobapplies.data[0]);
                         this.norecord = this.jobapplies.length;
                       
                         if (this.norecord > this.size) {

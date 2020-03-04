@@ -28,7 +28,6 @@
 <link rel="stylesheet" href="{{ asset('css/pannellum.css') }}"/>
 <link rel="stylesheet" href="{{asset('css/nprogress.css')}}">
 <script src="{{asset('js/nprogress.js')}}"></script>
-
 <style>
 
    .loader {

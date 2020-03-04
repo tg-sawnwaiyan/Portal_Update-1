@@ -28,7 +28,7 @@
                   </div>
                   <div class="form-group form-group-wrapper d-flex">
                           <label class="heading-lbl col-md-2 col-12 pad-free">電話番号 </label>                            
-                          <input type="text" class="form-control customer-phone col-md-10 col-12 nursing_input" id="phone" placeholder="電話番号を入力してください。" v-model="hospital_info.phone" pattern="[0-9-]*"  @focusout="focusPhone"  maxlength="14" title="Please enter number only.">
+                          <input type="text" class="form-control customer-phone col-md-10 col-12 nursing_input" id="phone" placeholder="電話番号を入力してください。" v-model="hospital_info.phone" v-on:keyup="isNumberOnly" pattern="[0-9-]*"  @focusout="focusPhone"  maxlength="14" title="Please enter number only.">
                           <!-- v-on:keyup="isNumberOnly" -->
                           <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>
                           <span class="error" v-else></span>
@@ -931,6 +931,7 @@
             </span>
           </div>      
             <div class="row col-12 pad-free m-0" id="gallery-photo">
+            
               <div class="col-md-6 gallery-area-photo p0-990" v-bind:id="'photo'+indx" v-for="(img,indx) in img_arr" :key="img.id" >
                     <div class="col-md-12">
                           <!-- <input type="file" name class="hospital-photo m-b-15 p-t-10"  v-bind:class="'classname'+indx" id="upload_img" @change="preview_image($event,indx)" />  
@@ -1092,7 +1093,7 @@ export default {
             address_show:'',
             logo:'',
             img_name:'',
-       
+            pro_id: 0,
             }
         },
         created(){
@@ -1141,13 +1142,13 @@ export default {
                     }
                 });
                 this.axios
-                .get('/api/hospital-pgallery/'+this.pro_id)
+                .get('/api/hospital-pgallery/'+this.pro_id + '/' + 'hospital')
                 .then(response=>{
                         this.img_arr = response.data;
 
                 });
                 this.axios
-                .get('/api/hospital-vgallery/'+this.pro_id)
+                .get('/api/hospital-vgallery/'+this.pro_id+'/'+'hospital')
                 .then(response=>{
                         this.video_arr = response.data;
                 });
@@ -1309,7 +1310,7 @@ export default {
                
                 let pt = new FormData();
                 var img = document.getElementsByClassName('gallery-area-photo');
-             
+           
                 for(var i =this.img_arr.length-1;i>=0;i--)
                 {
                     this.img_arr[i]['type'] = 'photo';
@@ -1318,10 +1319,20 @@ export default {
                         this.img_arr.splice(i,1);
                     }
                     var file = img[i].getElementsByClassName('hospital-photo')[0].files[0];
+                   
                     if(file) {
+                    
                         pt.append(i ,file )
                     }
+                  
                 }
+
+         
+
+                // if(logo){
+                //     this.hospital_info.logo = logo.name;
+                //     pt.append('logo', logo)
+                // }
 
                 for(var i =this.video_arr.length-1;i>=0;i--)
                 {
@@ -1333,6 +1344,7 @@ export default {
 
                 }
 
+            
                 this.axios.post('/api/hospital/movephoto', pt)
                     .then(response => {
                         }).catch(error=>{
@@ -1426,7 +1438,9 @@ export default {
             },
             focusPhone(){
               var input_data = $('#phone').val();
-              if(input_data.length >= 10 && input_data.length <= 14 && input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-')
+              console.log("input_data",input_data);
+              console.log("input_data",input_data.length);
+              if(input_data.length == 0 || (input_data.length >= 10 && input_data.length <= 14 && input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-'))
               {
                   this.ph_num = false;
                   this.ph_length = false;
