@@ -90,39 +90,43 @@
                                     <h4 class="page-header header">施設一覧</h4>
                                 </div>
                                 <!-- nursing -->
-                                <div class="row col-12 m-lr-0 rl" v-if="type == 'nursing'">
-                                    <div class="col-xs-4 col-sm-3 col-md-4 col-lg-3 col-xl-3 column" v-for="nursingprofiles in nursingprofile" :key="nursingprofiles.id">
-                                        <div class="card_1">                                    
-                                            <img :src="'/upload/nursing_profile/'+ nursingprofiles.logo" alt="aa" @error="imgUrlAlt" />
-                                            <span class="card-title text-truncate">
-                                                    {{nursingprofiles.name}}
-                                            </span>
+                                <div class="row col-12 m-lr-0  rl" v-if="type == 'nursing'">
+                                    <div class="col-xs-12 col-sm-3 column" v-for="nursingprofiles in nursingprofile" :key="nursingprofiles.id">
+                                        <div class="card_1">
+                                          <img :src="'/upload/nursing_profile/'+ nursingprofiles.logo" alt="aa" @error="imgUrlAlt" />
                                             <div class="card-content">
+                                             <div class="title-toggle">
+                                                <span class="card-title">
+                                                    {{nursingprofiles.name}}
+                                                </span>
+                                                <span>
+                                                    <input type="checkbox" :id="nursingprofiles.id" class="switch-input" v-if="nursingprofiles.activate == 1" @click="changeActivate(nursingprofiles.id)" checked>
+                                                    <input type="checkbox" :id="nursingprofiles.id" class="switch-input" v-if="nursingprofiles.activate == 0" @click="changeActivate(nursingprofiles.id)">
+                                                    <label :for="nursingprofiles.id" class="switch-label">
+                                                        <span v-if="nursingprofiles.activate == 1">On</span>
+                                                        <span v-if="nursingprofiles.activate == 0">Off</span>
+                                                    </label>
+                                                </span>
+                                             </div>
                                                 
-                                                <div class="model-7">
-                                                            <div class="checkbox">
-                                                               
-                                                                <input type='checkbox'  v-if="nursingprofiles.activate == 1" @click="changeActivate(nursingprofiles.id)" checked/>
-                                                                <input type='checkbox' ref="myBtn"  v-if="nursingprofiles.activate == 0" @click="changeActivate(nursingprofiles.id)"/>
-                                                                <label for="checkbox"></label>
-                                                                <div  v-if="nursingprofiles.activate == 1" class="on">on</div>
-                                                                <div   v-if="nursingprofiles.activate == 0" class="on">off</div>
-                                                            </div>
-                                                        </div>
-                                                
-                                            <!-- <span class="email">{{nursingprofiles.email}}</span> -->
-                                                        
+                                                <p class="">
+                                                    <router-link :to="{ path:'/profile/nursing/'+ nursingprofiles.id}" class="main-bg-color btn btn-sm all-btn" style="font-weight:bold;">求人編集</router-link>
+                                                    <router-link :to="{ path:'/profile/nursing/'+ nursingprofiles.id}" class="main-bg-color btn btn-sm all-btn" style="font-weight:bold;">求人応募者一覧</router-link>
+                                                </p>
                                             </div>
                                             <div class="card-read-more">
-                                                <router-link :to="{ path:'/profile/nursing/'+ nursingprofiles.id}" class="main-bg-color btn btn-sm all-btn" style="font-weight:bold;">編集</router-link>
-                                                <router-link :to="{ path:'/profile/nursing/'+ nursingprofiles.id}" class="main-bg-color btn btn-sm all-btn" style="font-weight:bold;">求人編集</router-link>
-                                                <router-link :to="{ path:'/profile/nursing/'+ nursingprofiles.id}" class="main-bg-color btn btn-sm all-btn" style="font-weight:bold;">求人応募者一覧</router-link>
-                                                <span class="btn btn-sm btn-danger" @click="profileDelete(nursingprofiles.id)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete
-                                                </span>
+                                                <router-link :to="{ path:'/profile/nursing/'+ nursingprofiles.id}" class="btn btn-sm edit-borderbtn" style="font-weight:bold; float:inline-start;margin-left:10px">編集</router-link>
+                                                
+                                                <span class="btn btn-sm btn-outline-danger" @click="profileDelete(nursingprofiles.id)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</span>
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
+
+
+
+                           
                                 <!-- nursing -->
                                 <!-- hospital -->
                                 <div class="row col-12 m-lr-0  rl" v-else>
