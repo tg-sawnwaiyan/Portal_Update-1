@@ -10129,10 +10129,11 @@ padding: 0;
     }
     #sp_headerbar {
         display: block;
-        width: 96%;
+        width: 83%;
         margin: 0px auto;
         background: #fff;
-        margin-left: 34px;
+        margin-left: 6px;
+        font-size: 12px;
     }
     #sp_headerbar .fav_his {
         float: left;
@@ -12643,5 +12644,12 @@ border-color: #e3342f;
     margin-left:-40px;
     margin-top:19px;
     font-size:12px;
+}
+.wt-4
+{
+    position:absolute;
+    right: 7px;
+    top:55px;
+    font-size: 12px;
 }
 /*end_menu*/
