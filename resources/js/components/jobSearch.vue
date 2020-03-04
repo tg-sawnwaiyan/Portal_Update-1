@@ -71,7 +71,7 @@
 
              <!--search input-->
                 <div class="search job-search-box">
-                    <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、求人タイトルなどを入力">
+                    <input type="text" class="searchTerm" id="search-free-word-mob" placeholder="地名、求人タイトルなどを入力">
                     <button type="submit" class="searchButton" @click="searchfreeword">
                       <i class="fas fa-search"></i> 検索
                     </button>
@@ -79,7 +79,7 @@
               <!--end search input-->
             </div>
 
-            <bulcomponent></bulcomponent>
+            <bulcomponent v-if="!clicksearch && (!ci || (ci && job_data.length < 1))"></bulcomponent>
         </section>
         <div id="scroll-responsive">
           <div id="job_search" class="row jobselect">
@@ -457,7 +457,9 @@ export default {
        array_len: 0,
        searchword:'',
        stateclick:false,
-       count:false
+       count:false,
+       clicksearch: false,
+       ci: false,
       }
     },
     created() {
@@ -522,6 +524,11 @@ export default {
 
           var search_word = $('#search-free-word').val();
         }
+        else if ($('#search-free-word-mob').val() != '')
+        {
+
+          var search_word = $('#search-free-word-mob').val();
+        }
         else{
           var search_word = 'null';
         }
@@ -572,6 +579,7 @@ export default {
             this.townshipID = [];
             this.occupationID = [];
             this.empstatus = [];
+            this.ci = true;
 
             if(this.townshipID == null || this.townshipID == '')
             {
@@ -590,6 +598,12 @@ export default {
             { 
                
                 var search_word = $('#search-free-word').val();
+                this.searchword = search_word;
+            }
+            else if ($('#search-free-word-mob').val() != '')
+            { 
+               
+                var search_word = $('#search-free-word-mob').val();
                 this.searchword = search_word;
             }
             else{
@@ -719,7 +733,8 @@ export default {
 
       parentGetStateClick(e,parentVue) {
         var _this = parentVue;
-      
+        _this.clicksearch = true;
+        _this.ci = false;
             _this.stateclick = true;
             _this.count = false;
             _this.townshipID = [];
@@ -770,6 +785,7 @@ export default {
          })
 
         document.getElementById('search-free-word').value = '';
+        document.getElementById('search-free-word-mob').value = '';
         _this.search();
 
       },

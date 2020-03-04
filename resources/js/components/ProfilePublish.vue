@@ -724,7 +724,7 @@
                         </div>
                         <div class="row gallery-list m-0 pad-free-750" v-else>
                             <div v-for="(video) in  videos" :key="video.id" class="col-6  col-sm-4 col-md-4 col-lg-3 m-b-10">
-                                <div class="gallery-item">
+                                <div class="gallery-item" style="height:135px;">
                                     <iframe :src="'https://www.youtube.com/embed/'+video.photo" controls></iframe>
                                 </div>
                                 <span class="video_txt">{{video.title}}</span>
@@ -1210,7 +1210,7 @@
                     <h5 class="profile_subtit">動画</h5>
                     <div class="row m-0 gallery-list" v-if="videos.length>0">
                         <div v-for="(video) in  videos" :key="video.id" class="col-6 col-lg-3 col-md-4 col-sm-4 m-b-10">
-                            <div class=" gallery-item">
+                            <div class="gallery-item" style="height:135px;">
                                 <iframe :src="'https://www.youtube.com/embed/'+video.photo" controls></iframe>
                             </div>
                             <span class="video_txt">{{video.title}}</span><br>
@@ -1224,7 +1224,7 @@
                 </div>
             <!-- End -->
 
-            <div class="row ele m-lr-0" id="element2">
+            <div class="row m-lr-0" id="element2">
 
                  <h5 class="profile_header col-md-12"> 地図 </h5>
 
@@ -1329,11 +1329,11 @@
     </div>
     <div class="bottom-fixed-btn" v-if="loginuser=='false'">
          <div class="row justify-content-center">
-            <div class="col-8 col-md-3 col-lg-2">
+            <div class="col-8 col-md-3 col-lg-3 col-xl-2">
                 <span class="bottom-fav-btn" v-if="!view_pro_id && loginuser=='false'" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                 <span class="bottom-fav-btn" style="color:#aaa;" v-if="view_pro_id && loginuser=='false'" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
             </div>
-            <div class="col-6 col-md-3 col-lg-2 pc-414">       
+            <div class="col-8 col-md-3 col-lg-3 col-xl-2 pc-414">       
                 <span class="bottom-mail-btn" @click="documentPost()" v-if="loginuser=='false' && !$auth.check()"><i data-v-b65423c6="" class="far fa-envelope" style="color: #fff  !important;font-size: 15px;"></i>&nbsp;資料請求</span>
             </div>
         </div>       
