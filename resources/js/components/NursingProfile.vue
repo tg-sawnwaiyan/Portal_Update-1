@@ -554,7 +554,7 @@
                     <span class='changeLinkphoto bg-trans btn dropdown-arrow nursing_toggle_responsive' style="" @click="mainToggle('photo',null)" >
                         詳細 <i id="photo" class="fas fa-sort-down"></i>                        
                     </span>
-                    <div id="changeLinkphoto"  class="row col-12 m-0">
+                    <div id="changeLinkphoto"  class="row col-12 m-0 p-0">
                     <div class="col-12 col-lg-12 float-right p-0">
                         <span class="galleryadd btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px" @click="galleryAdd()">
                         <i class="fas fa-plus-circle"></i> 追加
@@ -592,7 +592,7 @@
                             <span class='changeLinkvideo  bg-trans btn dropdown-arrow nursing_toggle_responsive' style="" @click="mainToggle('video',null)">
                                 詳細 <i id="video" class="fas fa-sort-down"></i>
                             </span>
-                            <div id="changeLinkvideo" class="row col-12 m-0">
+                            <div id="changeLinkvideo" class="row col-12 m-0 p-0">
                                 <div class="col-12 col-lg-12 float-right p-0">
                                     <span class="galleryadd btn all-btn main-bg-color float-right nursing_add_responsive " style="min-width:0px;" @click="galleryVideoAdd()">
                                     <i class="fas fa-plus-circle"></i> 追加
