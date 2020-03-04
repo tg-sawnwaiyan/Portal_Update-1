@@ -48,14 +48,14 @@
                 </h3>
              <!--search input-->
                 <div class="search hospital-search-box">
-                    <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、病院名、診療科目などを入力">
+                    <input type="text" class="searchTerm" id="search-free-word-mob" placeholder="地名、病院名、診療科目などを入力">
                     <button type="submit" class="searchButton" @click="searchfreeword">
                       <i class="fas fa-search"></i> 検索
                     </button>
                 </div>
               <!--end search input-->
             </div>
-            <bulcomponent></bulcomponent>
+            <bulcomponent v-if="!clicksearch && (!ci || (ci && hos_data.length < 1))"></bulcomponent>
         </section>
         <div id="scroll-responsive">
             <div id="hos_search" class="col-12 hospitalselect pad-free m-b-10">
@@ -451,7 +451,8 @@ import bulcomponent from './bulcomponent.vue'
         showOne:true,
         count:false,
         stateclick:false,
-
+        clicksearch: false,
+        ci: false,
       }
     },
     created(){
@@ -503,6 +504,12 @@ import bulcomponent from './bulcomponent.vue'
             var search_word = $('#search-free-word').val();
             this.searchword = search_word;
         }
+        else if ($('#search-free-word-mob').val() != '')
+        {
+
+            var search_word = $('#search-free-word-mob').val();
+            this.searchword = search_word;
+        }
         else{
           var search_word = 'null';
           this.searchword = '';
@@ -550,7 +557,7 @@ import bulcomponent from './bulcomponent.vue'
     },
     searchfreeword(){
 
-      
+        this.ci = true;
         this.count = false;
         this.stateclick = false;
         //clear all checkbox
@@ -576,6 +583,12 @@ import bulcomponent from './bulcomponent.vue'
         {
 
             var search_word = $('#search-free-word').val();
+            this.searchword = search_word;
+        }
+        else if ($('#search-free-word-mob').val() != '')
+        {
+
+            var search_word = $('#search-free-word-mob').val();
             this.searchword = search_word;
         }
         else{
@@ -771,10 +784,12 @@ import bulcomponent from './bulcomponent.vue'
             // this.search();
     },
 
-    parentGetStateClick(e,parentVue) {
-        this.count = false;
+    parentGetStateClick(e,parentVue) {        
         var _this = parentVue;
+        _this.clicksearch = true;
         _this.stateclick = true;
+        _this.count = false;
+        _this.ci = false;
      
         console.log("parent",parentVue);
         localStorage.setItem('features', 'hospital');
@@ -839,6 +854,7 @@ import bulcomponent from './bulcomponent.vue'
         })
 
         document.getElementById('search-free-word').value = '';
+        document.getElementById('search-free-word-mob').value = '';
         _this.search();
      
 
@@ -965,15 +981,7 @@ import bulcomponent from './bulcomponent.vue'
 .tab-pane{
         padding: 10px;
     }
-.first-row{
-    color: #fff;
-    background-color: #a2a7a1;
-    border-bottom: 1px solid #ccc;
-    border-right: 1px solid #ccc;
-    text-align: center;
-    padding: 10px;
-    font-size: 100%;
-}
+
 .nosearch-icon{
     border: 1px solid #b0abab;
     width: 60px;

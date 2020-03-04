@@ -8,6 +8,8 @@ use App\Job;
 use App\Mail\jobApplyMailToUser;
 use App\Mail\jobApplyMailToCustomer;
 use App\Mail\jobApplyMailToAdmin;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Input;
 use DB;
 class JobApplyController extends Controller
 {
@@ -36,56 +38,69 @@ class JobApplyController extends Controller
         if($jobs_id == 0)
         {
             if(auth()->user()->role == 2){
-        
-                $jobapplicant = DB::table('job_applies')->join('jobs','jobs.id', '=', 'job_applies.job_id')
-                                                        ->join('customers', 'customers.id', '=', 'jobs.customer_id')
-                                                        ->select('job_applies.*')
-                                                        ->orderBy('id', 'DESC')
-                                                        ->paginate(12);
-            
-                return response()->json($jobapplicant);
+
+                $query = "SELECT job_applies.*,(CASE WHEN customers.type_id = '2' THEN CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) END) as jobid
+                          FROM job_applies join jobs on jobs.id = job_applies.job_id
+                          join customers on customers.id = jobs.customer_id
+                          left join hospital_profiles on hospital_profiles.id = jobs.profile_id
+                          left join nursing_profiles on nursing_profiles.id = jobs.profile_id
+                          where  jobs.recordstatus = 1 and customers.recordstatus = 1 and (CASE customers.type_id WHEN 2 THEN hospital_profiles.activate = 1 ELSE nursing_profiles.activate =1 END)
+                          group by job_applies.id order by job_applies.id desc ";
               
             }else{
-                $jobapplicant = DB::table('job_applies')->join('jobs','jobs.id','=','job_applies.job_id')
-                                                        ->join('customers','customers.id','=','jobs.customer_id')
-                                                        ->where('customers.id',auth()->user()->customer_id)
-                                                        ->select('job_applies.*')
-                                                        ->orderBy('id','DESC')
-                                                        ->paginate(12);        
-                return response()->json($jobapplicant);
-               
+
+                
+                $query = "SELECT job_applies.*,(CASE WHEN customers.type_id = '2' THEN CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) END) as jobid
+                          FROM job_applies join jobs on jobs.id = job_applies.job_id
+                          join customers on customers.id = jobs.customer_id
+                          left join hospital_profiles on hospital_profiles.id = jobs.profile_id
+                          left join nursing_profiles on nursing_profiles.id = jobs.profile_id
+                          where  jobs.recordstatus = 1 and customers.recordstatus = 1 and (CASE customers.type_id WHEN 2 THEN hospital_profiles.activate = 1 ELSE nursing_profiles.activate =1 END)
+                          and customers.id = ".auth()->user()->customer_id." group by job_applies.id order by job_applies.id desc ";
+
             }
 
         }
         else{
             if(auth()->user()->role == 2){
-        
-                $jobapplicant = DB::table('job_applies')->leftjoin('jobs','jobs.id', '=', 'job_applies.job_id')
-                                                        ->join('customers', 'customers.id', '=', 'jobs.customer_id')
-                                                        ->where('jobs.id','=',$jobs_id)
-                                                        ->select('job_applies.*','jobs.title')
-                                                        ->orderBy('id', 'DESC')
-                                                        ->paginate(12);
-            
-                return response()->json($jobapplicant);
+
+                $query = "SELECT job_applies.*,(CASE WHEN customers.type_id = '2' THEN CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) END) as jobid
+                            FROM job_applies join jobs on jobs.id = job_applies.job_id
+                            join customers on customers.id = jobs.customer_id
+                            left join hospital_profiles on hospital_profiles.id = jobs.profile_id
+                            left join nursing_profiles on nursing_profiles.id = jobs.profile_id
+                            where  jobs.recordstatus = 1 and customers.recordstatus = 1 and (CASE customers.type_id WHEN 2 THEN hospital_profiles.activate = 1 ELSE nursing_profiles.activate =1 END)
+                            and jobs.id = ".$jobs_id." group by job_applies.id order by job_applies.id desc ";
+
               
             }else{
-                $jobapplicant = DB::table('job_applies')->leftjoin('jobs','jobs.id','=','job_applies.job_id')
-                                                        ->join('customers','customers.id','=','jobs.customer_id')
-                                                        ->where('customers.id',auth()->user()->customer_id)
-                                                        ->where('jobs.id','=',$jobs_id)
-                                                        ->select('job_applies.*','jobs.title')
-                                                        ->orderBy('id','DESC')
-                                                        ->paginate(12);
-              
-              
-                return response()->json($jobapplicant);
-               
+
+                $query = "SELECT job_applies.*,(CASE WHEN customers.type_id = '2' THEN CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) END) as jobid
+                            FROM job_applies join jobs on jobs.id = job_applies.job_id
+                            join customers on customers.id = jobs.customer_id
+                            left join hospital_profiles on hospital_profiles.id = jobs.profile_id
+                            left join nursing_profiles on nursing_profiles.id = jobs.profile_id
+                            where  jobs.recordstatus = 1 and customers.recordstatus = 1 and (CASE customers.type_id WHEN 2 THEN hospital_profiles.activate = 1 ELSE nursing_profiles.activate =1 END)
+                            and customers.id = ".auth()->user()->customer_id." and jobs.id = ".$jobs_id." group by job_applies.id order by job_applies.id desc ";
+
             }
 
         }
 
-       
+        $jobapplicants = DB::select($query);
+
+        $page = Input::get('page', 1);
+        $size = 12;
+        $data = collect($jobapplicants);
+
+        $jobapplicant = new LengthAwarePaginator(
+                                $data->forPage($page, $size),
+                                $data->count(), 
+                                $size, 
+                                $page
+                            );
+
+        return response()->json($jobapplicant);
     }
 
     /**

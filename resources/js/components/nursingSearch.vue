@@ -54,7 +54,7 @@
                                     </div>
                                     <!--end search input-->
                                 </div>
-                                <bulcomponent></bulcomponent>
+                                <bulcomponent v-if="!clicksearch && (!ci || (ci && nus_data.length < 1))"></bulcomponent>
                             </section>
                             <!-- search city , township  -->
                             
@@ -777,7 +777,7 @@
                 boundsval: 'no marker',
                 searchword:'',
                 index:'',
-             
+                clicksearch: false,
             }
         },
 
@@ -1035,10 +1035,10 @@
 
 //  google map  function start========================================
 
-            parentGetStateClick(e,parentVue) {
-                 this.count = true;
+            parentGetStateClick(e,parentVue) {                
                
                 var _this = parentVue;
+                _this.clicksearch = true;
                 $("#mymap").css({'display' : 'block','height' : '400px','width':'100%'});
                 $('.select').removeClass('select');
                 $('#searchMap').addClass('select');
@@ -1540,8 +1540,7 @@
                 })
             },
 
-            search(){
-              
+            search(){              
 
                 // if(this.townshipID == null || this.townshipID == '')
                 // {

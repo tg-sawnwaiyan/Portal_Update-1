@@ -10,9 +10,9 @@
                                 <img :src="profile_img" id="thumbnil" class="profile_logo m-b-8 img-fluid fit-image-profile" alt="Logo"  @error="imgUrlAlt">                              
                                 <div class="m-t-10">
                                     <span class="btn-file d-inline-block">画像を選択                     
-                                    <input type="file" name="" class ="customer-logo m-b-10" id="customer-logo" @change="preview_image($event,'0')">                                      
+                                    <input type="file" name="" class ="customer-logo m-b-10" id="customer-logo" @change="preview_image($event,'logo')">                                      
                                     </span>                                      
-                                     <span id="imgname" class="d-inline-block align-top pl-2 text-truncate">{{nursing_info.logo}}</span>
+                                     <span id="imgname" class="d-inline-block align-top pl-2">{{nursing_info.logo}}</span>
                                 </div>
                                 
                             </div>
@@ -58,7 +58,7 @@
                                 </div>
                             </div>
                             <div class="row col-md-12 pad-free panorama panorama-box">
-                                <div class="col-sm-3 col-md-3 col-lg-1 mt-2 gallery-area-panorama pad-free" v-bind:id="'x-panorama'+indx" v-for="(img,indx) in panorama_arr" :key="img.id">
+                                <div class="col-4 col-sm-3 col-md-3 col-lg-1 mt-2 gallery-area-panorama pad-free" v-bind:id="'x-panorama'+indx" v-for="(img,indx) in panorama_arr" :key="img.id">
                                     <input type="hidden" class="already-panorama" v-model="img.photo">
                                     <span class='img-close-btn' v-on:click="DeleteArr(indx,'panorama',img.id,img.photo)">X</span>
                                     <img :src="'/upload/nursing_profile/Imagepanorama/'+ img.photo" class="img-fluid panorama-old-img" alt="profile" v-if="img.id!=null"  id="already-panorama">
@@ -273,7 +273,7 @@
                 <!-- end table 1 for 費用--->
 
                 <!--table 2 for 施設の概要-->
-                <table class="table table-bordered table-wrapper m-b-0">
+                <table class="table table-bordered table-wrapper">
                     <tr>
                         <td style="border:none;">
                             <label class="headinglbl col-6 col-lg-2 col-md-3 pad-free">施設の概要</label>
@@ -479,7 +479,7 @@
                 <!-- end table 4 for 医療面の受入れ -->
 
                 <!-- table 5 for 職員体制 -->
-                <table class="table table-bordered table-wrapper m-b-0">
+                <table class="table table-bordered table-wrapper">
                     <tr>
                         <td>
                             <label class="headinglbl col-6 col-lg-2 col-md-3 pad-free">職員体制</label>
@@ -554,13 +554,13 @@
                     <span class='changeLinkphoto bg-trans btn dropdown-arrow nursing_toggle_responsive' style="" @click="mainToggle('photo',null)" >
                         詳細 <i id="photo" class="fas fa-sort-down"></i>                        
                     </span>
-                    <div id="changeLinkphoto"  class="row col-md-12 pad-free-750 m-0">
+                    <div id="changeLinkphoto"  class="row col-12 m-0 p-0">
                     <div class="col-12 col-lg-12 float-right p-0">
                         <span class="galleryadd btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px" @click="galleryAdd()">
                         <i class="fas fa-plus-circle"></i> 追加
                         </span>
                     </div>                    
-                        <div id ="gallery-photo" class="row col-12">
+                        <div id ="gallery-photo" class="row col-12 pad-free m-0">
                             <div class="col-12 col-md-6 gallery-area-photo" v-bind:id="'photo'+indx" v-for="(img,indx) in img_arr" :key="img.id">
                                 <div class="col-md-12">
                                     <span class="btn-file d-inline-block">画像を選択        
@@ -592,13 +592,13 @@
                             <span class='changeLinkvideo  bg-trans btn dropdown-arrow nursing_toggle_responsive' style="" @click="mainToggle('video',null)">
                                 詳細 <i id="video" class="fas fa-sort-down"></i>
                             </span>
-                            <div id="changeLinkvideo" class="row col-md-12 pad-free-750 m-0">
+                            <div id="changeLinkvideo" class="row col-12 m-0 p-0">
                                 <div class="col-12 col-lg-12 float-right p-0">
                                     <span class="galleryadd btn all-btn main-bg-color float-right nursing_add_responsive " style="min-width:0px;" @click="galleryVideoAdd()">
                                     <i class="fas fa-plus-circle"></i> 追加
                                     </span>   
                                 </div>                               
-                                    <div id="gallery-video" class="row col-12" >
+                                    <div id="gallery-video" class="row col-12 pad-free m-0" >
                                             <div class="col-12 col-md-6 gallery-area-video" v-bind:id="'video'+indx" v-for="(video,indx) in video_arr" :key="video.id">
                                                 <div class="col-md-12">
                                                     <label class="font-weight-bold">URL</label>
@@ -770,7 +770,8 @@ export default {
                 city_id: 0,
                 township_list: [],
                 address_show: '',
-                img_name:'',profile_img:''
+                img_name:'',profile_img:'',
+                pro_id: 0,
             }
         },
 
@@ -780,6 +781,7 @@ export default {
 
         created(){
             this.pro_id = Number(this.$route.params.id);
+            console.log("pro_id",this.pro_id)
             this.type = this.$route.params.type;
             
             // if(this.type != undefined && this.pro_id!= undefined){
@@ -895,7 +897,7 @@ export default {
 
               var input_data = $('#phone').val();
 
-              if(input_data.length >= 10 && input_data.length <= 14 && input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-')
+              if(input_data.length == 0 || (input_data.length >= 10 && input_data.length <= 14 && input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-'))
               {
                   this.ph_num = false;
                   this.ph_length = false;
@@ -933,7 +935,7 @@ export default {
                 this.isRotate3 = !this.isRotate3;
             },
             preview_image(event,indx) {
-                if(indx == '0') {
+                if(indx == 'logo') {
                     this.nursing_info.logo = event.target.files[0].name;
                     this.profile_img = URL.createObjectURL(event.target.files[0]);
                     $('#customer-logo').text(event.target.files[0].name);
@@ -1355,7 +1357,7 @@ export default {
     }
  }
 .gallery-area-panorama {  
-    background: #e6e6e6;;
+    /* background: #e6e6e6;; */
     padding: 2px;
 }
 @media (min-width: 992px) {

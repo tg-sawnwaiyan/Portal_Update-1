@@ -30,6 +30,6 @@ class deleteSentMail extends Mailable
     public function build()
     {
         return $this->view(['mail.deleteSentMail','mail.deleteSentMailplaintext'])
-                    ->subject("delete mail");
+                    ->subject("[TIS ティーズ]事業者新規登録審査結果");
     }
 }
