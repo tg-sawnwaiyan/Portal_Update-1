@@ -1115,7 +1115,7 @@ border-radius: 3px;
 
 .login_txt {
     display: block;
-    margin: 20px 0 0 0;
+    /* margin: 20px 0 0 0; */
     color: #2C3E50 !important;
     font-weight: bold;
     text-align: center;
@@ -12700,3 +12700,8 @@ strong {
     font-size: 12px;
 }
 /*end_menu*/
+
+ .admin_l1
+{
+    display: none;
+}
