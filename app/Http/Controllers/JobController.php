@@ -71,7 +71,7 @@ class JobController extends Controller
         $page = Input::get('page', 1);
         $size = 12;
         $data = collect($projob);
-
+ 
         $profilejob = new LengthAwarePaginator(
                                 $data->forPage($page, $size),
                                 $data->count(), 
