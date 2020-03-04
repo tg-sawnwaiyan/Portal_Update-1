@@ -2455,7 +2455,7 @@ h3 {
 }
 .comment-title{
     background-size: 29px;
-    color: #3fc8d6;
+    color: #2980b9;
     display: block;
     font-size: 16px;
     font-weight: 700;
