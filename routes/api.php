@@ -286,12 +286,12 @@ Route::get('facility/{type}/{id}','FacilityController@getFacilitybyProfileType')
 Route::get('clinical-subject/{id}','SubjectController@getHospitalClinicalSubject');
 Route::get('station/{id}','StationController@getStationbyCustomerId');
 
-Route::get('hospital-pgallery/{id}','GalleryController@getPhotobyCustomerId');
-Route::get('hospital-vgallery/{id}','GalleryController@getVideobyCustomerId');
+Route::get('hospital-pgallery/{id}/{type}','GalleryController@getPhotobyCustomerId');
+Route::get('hospital-vgallery/{id}/{type}','GalleryController@getVideobyCustomerId');
 Route::post('delete-pgallery','GalleryController@deleteGallery');
 
-Route::get('nursing-pgallery/{id}','GalleryController@getPhotobyCustomerId');
-Route::get('nursing-vgallery/{id}','GalleryController@getVideobyCustomerId');
+Route::get('nursing-pgallery/{id}/{type}','GalleryController@getPhotobyCustomerId');
+Route::get('nursing-vgallery/{id}/{type}','GalleryController@getVideobyCustomerId');
 Route::get('nursing-panorrama-gallery/{id}','GalleryController@getPanoramabyCustomerId');
 Route::post('nursing/movephoto','NursingProfileController@movePhoto');
 Route::post('nursing/movelogo','NursingProfileController@moveLogo');
@@ -317,6 +317,10 @@ Route::get('staffinfo/{id}', 'ProfilePublishController@getStaffbyCustomerId');
 Route::post('hospital/galleryupdate/{id}', 'HospitalProfileController@galleryupdate');
 Route::get('account_nursing/{id}','CustomerController@nusaccount');
 Route::get('account_hospital/{id}','CustomerController@hosaccount');
+Route::get('changeActivateNus/{id}','CustomerController@changeActivateNus');
+Route::get('changeActivateHos/{id}','CustomerController@changeActivateHos');
+Route::delete('profileDeleteNus/{id}','CustomerController@profileDeleteNus');
+Route::delete('profileDeleteHos/{id}','CustomerController@profileDeleteHos');
 
 // Route::post('nursing/cooperate/{id}', 'NursingProfileController@cooperateupdate');
 // Route::post('nursing/paymentmethod/{id}', 'NursingProfileController@paymentupdate');

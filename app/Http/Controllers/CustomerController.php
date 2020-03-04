@@ -26,16 +26,61 @@ class CustomerController extends Controller
         return response()->json($customer);
     }
     public function nusaccount($id) {
-        $nuscustomer = NursingProfile::where(['nursing_profiles.customer_id'=>$id])->select('id','logo','name','phone','email')->get();
+        $nuscustomer = NursingProfile::where(['nursing_profiles.customer_id'=>$id])->select('id','logo','name','phone','email','activate')->get();
         $status = NursingProfile::join('customers','customers.id','=','nursing_profiles.customer_id')->where(['customers.recordstatus'=>1])->count();
         return response()->json(array("nuscustomer"=>$nuscustomer,"status"=>$status));
     }
     public function hosaccount($id) {
       
-        $hoscustomer = HospitalProfile::where('customer_id',$id)->select('id','logo','name','phone','email')->get();
+        $hoscustomer = HospitalProfile::where('customer_id',$id)->select('id','logo','name','phone','email','activate')->get();
         $status = HospitalProfile::join('customers','customers.id','=','hospital_profiles.customer_id')->where(['customers.recordstatus'=>1])->count();
         return response()->json(array("hoscustomer"=>$hoscustomer,"status"=>$status));
     }
+
+    public function changeActivateNus($id)
+    {
+        $changeActivate =  NursingProfile::find($id);
+        if($changeActivate->activate == 0 ) {
+            $changeActivate->activate =1;
+       }
+       else {
+            $changeActivate->activate =0;
+       }
+
+       $changeActivate->save();
+       $data = array("changeActivate"=> $changeActivate, "success");
+       return response()->json($data);
+    }
+    public function changeActivateHos($id)
+    {
+        $changeActivate =  HospitalProfile::find($id);
+        if($changeActivate->activate == 0 ) {
+            $changeActivate->activate =1;
+       }
+       else {
+            $changeActivate->activate =0;
+       }
+
+       $changeActivate->save();
+       $data = array("changeActivate"=> $changeActivate, "success");
+       return response()->json($data);
+    }
+
+    public function profileDeleteNus($id)
+    {   
+        $profileDelete =  NursingProfile::find($id);
+        $profileDelete->delete();
+        return response()->json('successfully Delete!');
+    }
+
+    public function profileDeleteHos($id)
+    {
+        $profileDelete =  HospitalProfile::find($id);
+        $profileDelete->delete();
+        return response()->json('successfully Delete!');
+    }
+
+
 
     public function uploadvideo(Request $request)
     {
