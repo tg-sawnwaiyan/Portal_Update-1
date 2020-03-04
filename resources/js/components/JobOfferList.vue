@@ -98,13 +98,13 @@
                         <div class="card card-default m-b-20" v-for="job in jobs.data" :key="job.id">
                             <div class="card-body p-3">
                                 <div class="row">
-                                    <div class="col-9">
+                                    <div class="col-7 col-md-9">
                                         <div class="joboffer-tit clearfix">
                                             <router-link :to="{name: 'job_details', params:{id:job.id,loginuser:loginuser}}">{{job.title}} </router-link>
                                             
                                         </div>
                                     </div>
-                                    <div class="col-3  text-right">
+                                    <div class="col-5 col-md-3 text-right">
                                         <!-- <button :class="'btn drop-bg-color changeLink'+job.id"  @click="jobToggle(job.id)">
                                         <i :id="'icon' + job.id" class="fas fa-sort-down animate rotate"></i> 詳細</button> -->
                                         <p class="float-right">応募者数:

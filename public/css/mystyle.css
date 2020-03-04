@@ -4787,7 +4787,7 @@ div.b {
 }
 
 #joboffer_list .all-btn {
-    min-width: 65px;
+    /* min-width: 65px; */
     font-size: 13px;
 }
 
@@ -11973,7 +11973,7 @@ background-image: none;
         width: 65%;
     }
     #joboffer_list .all-btn {
-        min-width: 50px;
+        /* min-width: 50px; */
         padding: 5px;
     }
     .admin_header div span {
@@ -12647,10 +12647,11 @@ strong {
     border-color: #e3342f;
 }
 
-.pro_num{
+.pro_num {
     font-size: .9em;
     color: #346e90;
 }
+
 .bt-suc {
     color: #fff;
     background-color: #0cc72c;
