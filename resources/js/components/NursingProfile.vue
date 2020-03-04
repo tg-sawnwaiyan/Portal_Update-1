@@ -862,7 +862,7 @@ export default {
                 });
 
                 this.axios
-                .get('/api/nursing-pgallery/'+this.pro_id)
+                .get('/api/nursing-pgallery/'+this.pro_id+'/'+'nursing')
                 .then(response=>{
                     this.img_arr = response.data;
                 });
@@ -875,7 +875,7 @@ export default {
                 });
 
                 this.axios
-                .get('/api/nursing-vgallery/'+this.pro_id)
+                .get('/api/nursing-vgallery/'+this.pro_id+'/'+'nursing')
                 .then(response=>{
                     this.video_arr = response.data;
                 });
