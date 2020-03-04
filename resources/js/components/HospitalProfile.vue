@@ -28,7 +28,7 @@
                   </div>
                   <div class="form-group form-group-wrapper d-flex">
                           <label class="heading-lbl col-md-2 col-12 pad-free">電話番号 </label>                            
-                          <input type="text" class="form-control customer-phone col-md-10 col-12 nursing_input" id="phone" placeholder="電話番号を入力してください。" v-model="hospital_info.phone" pattern="[0-9-]*"  @focusout="focusPhone"  maxlength="14" title="Please enter number only.">
+                          <input type="text" class="form-control customer-phone col-md-10 col-12 nursing_input" id="phone" placeholder="電話番号を入力してください。" v-model="hospital_info.phone" v-on:keyup="isNumberOnly" pattern="[0-9-]*"  @focusout="focusPhone"  maxlength="14" title="Please enter number only.">
                           <!-- v-on:keyup="isNumberOnly" -->
                           <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>
                           <span class="error" v-else></span>
@@ -924,15 +924,15 @@
                 </div>
           </div> -->
 
-        <div id="changeGalleryLink" class="row col-md-12 pad-free-750 m-0 photo-toggle-div">
+        <div id="changeGalleryLink" class="row col-12 m-0 photo-toggle-div pad-free">
           <div class="col-12 col-lg-12 float-right p-0">
             <span class="galleryadd btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px;" @click="galleryAdd()">
             <i class="fas fa-plus-circle"></i> 追加
             </span>
           </div>      
-            <div class="row col-12" id="gallery-photo">
-              <div class="col-md-6 gallery-area-photo p0-990 p0-480" v-bind:id="'photo'+indx" v-for="(img,indx) in img_arr" :key="img.id" >
-                    <div class="col-md-12 p0-990 p0-480">
+            <div class="row col-12 pad-free m-0" id="gallery-photo">
+              <div class="col-md-6 gallery-area-photo p0-990" v-bind:id="'photo'+indx" v-for="(img,indx) in img_arr" :key="img.id" >
+                    <div class="col-md-12">
                           <!-- <input type="file" name class="hospital-photo m-b-15 p-t-10"  v-bind:class="'classname'+indx" id="upload_img" @change="preview_image($event,indx)" />  
                         <div class="col-md-12" v-bind:class="img.id">
                             <input type="hidden" class="already-photo" v-model="img.photo" />
@@ -941,13 +941,13 @@
                             </div>
                         </div> -->
                          <span class="btn-file d-inline-block">画像を選択        
-                            <input type="file" name="" class="hospital-photo" v-bind:class="img.classname" id="upload_img" @change="preview_image($event,indx)">
-                            </span> 
-                            <span class="d-inline-block align-top pt-2" v-bind:id="'img_name'+indx"></span>
-                            <div class="col-md-12  p0-480" v-bind:class="img.id">
-                                <input type="hidden" class="already-photo" v-model="img.photo">
-                                <img v-bind:src="img.src" class="img-fluid hospital-image" alt="profile" v-if="img.src!=null" @error="imgUrlAlt">
-                            </div>
+                          <input type="file" name="" class="hospital-photo" v-bind:class="img.classname" id="upload_img" @change="preview_image($event,indx)">
+                          </span> 
+                          <span class="d-inline-block align-top pt-2" v-bind:id="'img_name'+indx"></span>
+                          <div class="col-md-12  p0-480" v-bind:class="img.id">
+                              <input type="hidden" class="already-photo" v-model="img.photo">
+                              <img v-bind:src="img.src" class="img-fluid hospital-image" alt="profile" v-if="img.src!=null" @error="imgUrlAlt">
+                          </div>
                     </div>
 
                     <div class="col-md-12">
@@ -973,12 +973,12 @@
            詳細 <i id="video" class="fas fa-sort-down" :class="{'rotate': isRotate7}"></i>
            </span>
 
-          <div id="changeGalleryVideoLink" class="row col-md-12 pad-free-750 m-0 video-toggle-div">
+          <div id="changeGalleryVideoLink" class="row col-12 m-0 p-0 video-toggle-div">
             <div class="col-12 col-lg-12 float-right p-0">
               <span class="galleryvideo btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px;" @click="galleryVideoAdd()" >
               <i class="fas fa-plus-circle"></i> 追加</span>
             </div>
-            <div class="row col-12" id="gallery-video">
+            <div class="row col-12 pad-free m-0" id="gallery-video">
               <!-- Add by + Button -->
               <div class="col-md-6 gallery-area-photo p0-990 p0-480" v-bind:id="'video'+indx" v-for="(video,indx) in video_arr" :key="video.id" >
                 <div class="col-md-12">
@@ -1092,7 +1092,7 @@ export default {
             address_show:'',
             logo:'',
             img_name:'',
-       
+            pro_id: 0,
             }
         },
         created(){
@@ -1323,6 +1323,11 @@ export default {
                     }
                 }
 
+                // if(logo){
+                //     this.hospital_info.logo = logo.name;
+                //     pt.append('logo', logo)
+                // }
+
                 for(var i =this.video_arr.length-1;i>=0;i--)
                 {
                     this.video_arr[i]['type'] = 'video';
@@ -1332,7 +1337,6 @@ export default {
                     }
 
                 }
-
                 this.axios.post('/api/hospital/movephoto', pt)
                     .then(response => {
                         }).catch(error=>{
@@ -1426,7 +1430,9 @@ export default {
             },
             focusPhone(){
               var input_data = $('#phone').val();
-              if(input_data.length >= 10 && input_data.length <= 14 && input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-')
+              console.log("input_data",input_data);
+              console.log("input_data",input_data.length);
+              if(input_data.length == 0 || (input_data.length >= 10 && input_data.length <= 14 && input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-'))
               {
                   this.ph_num = false;
                   this.ph_length = false;
