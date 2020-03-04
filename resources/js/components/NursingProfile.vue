@@ -554,13 +554,13 @@
                     <span class='changeLinkphoto bg-trans btn dropdown-arrow nursing_toggle_responsive' style="" @click="mainToggle('photo',null)" >
                         詳細 <i id="photo" class="fas fa-sort-down"></i>                        
                     </span>
-                    <div id="changeLinkphoto"  class="row col-md-12 pad-free-750 m-0">
+                    <div id="changeLinkphoto"  class="row col-12 m-0">
                     <div class="col-12 col-lg-12 float-right p-0">
                         <span class="galleryadd btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px" @click="galleryAdd()">
                         <i class="fas fa-plus-circle"></i> 追加
                         </span>
                     </div>                    
-                        <div id ="gallery-photo" class="row col-12">
+                        <div id ="gallery-photo" class="row col-12 pad-free m-0">
                             <div class="col-12 col-md-6 gallery-area-photo" v-bind:id="'photo'+indx" v-for="(img,indx) in img_arr" :key="img.id">
                                 <div class="col-md-12">
                                     <span class="btn-file d-inline-block">画像を選択        
@@ -592,13 +592,13 @@
                             <span class='changeLinkvideo  bg-trans btn dropdown-arrow nursing_toggle_responsive' style="" @click="mainToggle('video',null)">
                                 詳細 <i id="video" class="fas fa-sort-down"></i>
                             </span>
-                            <div id="changeLinkvideo" class="row col-md-12 pad-free-750 m-0">
+                            <div id="changeLinkvideo" class="row col-12 m-0">
                                 <div class="col-12 col-lg-12 float-right p-0">
                                     <span class="galleryadd btn all-btn main-bg-color float-right nursing_add_responsive " style="min-width:0px;" @click="galleryVideoAdd()">
                                     <i class="fas fa-plus-circle"></i> 追加
                                     </span>   
                                 </div>                               
-                                    <div id="gallery-video" class="row col-12" >
+                                    <div id="gallery-video" class="row col-12 pad-free m-0" >
                                             <div class="col-12 col-md-6 gallery-area-video" v-bind:id="'video'+indx" v-for="(video,indx) in video_arr" :key="video.id">
                                                 <div class="col-md-12">
                                                     <label class="font-weight-bold">URL</label>
