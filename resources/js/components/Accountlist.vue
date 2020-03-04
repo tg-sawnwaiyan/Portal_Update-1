@@ -294,6 +294,7 @@ export default {
         // this.type = this.$auth.user().type_id == 2?'hospital':'nursing';
             if(this.type == "nursing") {
                 this.axios.get(`/api/account_nursing/${this.cusid}`).then(response => {
+                    console.log("res",response.data)
                 //this.$loading(false);
                 this.nursingprofile = response.data.nuscustomer;
                 
@@ -331,8 +332,10 @@ export default {
             }
         },
         changeActivate(id, $event){
+            console.log("id",id);
             this.type = this.$route.params.type;
             if(this.type == "nursing") {
+                console.log("if",id);
                 this.$swal({
                             title: "---",
                             text: "---",
