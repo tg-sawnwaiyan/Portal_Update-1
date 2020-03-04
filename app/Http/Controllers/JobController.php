@@ -21,7 +21,7 @@ class JobController extends Controller
                            left join job_applies on jobs.id = job_applies.job_id
                            left join hospital_profiles on hospital_profiles.id = jobs.profile_id
                            left join nursing_profiles on nursing_profiles.id = jobs.profile_id
-                           where customers.recordstatus = 1 and jobs.recordstatus = 1 and (CASE  customers.type_id WHEN '2' THEN hospital_profiles.activate = 1 ELSE nursing_profiles.activate =1 END) 
+                           where customers.recordstatus = 1  and (CASE  customers.type_id WHEN '2' THEN hospital_profiles.activate = 1 ELSE nursing_profiles.activate =1 END) 
                            group by jobs.id order by jobs.id desc ";
 
             $projob = DB::select($query);
@@ -51,7 +51,7 @@ class JobController extends Controller
                             left join job_applies on jobs.id = job_applies.job_id
                             left join hospital_profiles on hospital_profiles.id = jobs.profile_id
                             left join nursing_profiles on nursing_profiles.id = jobs.profile_id
-                            where customers.recordstatus = 1 and jobs.recordstatus = 1 
+                            where customers.recordstatus = 1 
                             and jobs.customer_id = ".auth()->user()->customer_id." and (CASE  customers.type_id WHEN '2' THEN hospital_profiles.activate = 1 ELSE nursing_profiles.activate =1 END) 
                             group by jobs.id order by jobs.id desc ";
 
@@ -510,7 +510,7 @@ class JobController extends Controller
                             left join job_applies on jobs.id = job_applies.job_id
                             left join hospital_profiles on hospital_profiles.id = jobs.profile_id
                             left join nursing_profiles on nursing_profiles.id = jobs.profile_id
-                            where customers.recordstatus = 1 and jobs.recordstatus = 1 and jobs.title like '%".$search_word."%' and (CASE  customers.type_id WHEN '2' THEN hospital_profiles.activate = 1 ELSE nursing_profiles.activate =1 END) 
+                            where customers.recordstatus = 1  and jobs.title like '%".$search_word."%' and (CASE  customers.type_id WHEN '2' THEN hospital_profiles.activate = 1 ELSE nursing_profiles.activate =1 END) 
                             group by jobs.id order by jobs.id desc ";
             }
             else{
@@ -519,7 +519,7 @@ class JobController extends Controller
                             left join job_applies on jobs.id = job_applies.job_id
                             left join hospital_profiles on hospital_profiles.id = jobs.profile_id
                             left join nursing_profiles on nursing_profiles.id = jobs.profile_id
-                            where customers.recordstatus = 1 and jobs.recordstatus = 1 and jobs.title like '%".$search_word."%' and (CASE  customers.type_id WHEN '2' THEN hospital_profiles.activate = 1 ELSE nursing_profiles.activate =1 END) 
+                            where customers.recordstatus = 1  and jobs.title like '%".$search_word."%' and (CASE  customers.type_id WHEN '2' THEN hospital_profiles.activate = 1 ELSE nursing_profiles.activate =1 END) 
                             and customers.id = ".$customer_id." group by jobs.id order by jobs.id desc ";
             }
 
