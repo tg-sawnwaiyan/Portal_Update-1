@@ -897,7 +897,7 @@ export default {
 
               var input_data = $('#phone').val();
 
-              if(input_data.length >= 10 && input_data.length <= 14 && input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-')
+              if(input_data.length == 0 || (input_data.length >= 10 && input_data.length <= 14 && input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-'))
               {
                   this.ph_num = false;
                   this.ph_length = false;
