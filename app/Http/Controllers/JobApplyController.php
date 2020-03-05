@@ -34,8 +34,8 @@ class JobApplyController extends Controller
         return $jobapply;
     }
  
-    public function jobapplicantlist($jobs_id){
-        if($jobs_id == 0)
+    public function jobapplicantlist($search_id){
+        if($search_id == 0)
         {
             if(auth()->user()->role == 2){
 
@@ -70,7 +70,7 @@ class JobApplyController extends Controller
                             left join hospital_profiles on hospital_profiles.id = jobs.profile_id
                             left join nursing_profiles on nursing_profiles.id = jobs.profile_id
                             where  jobs.recordstatus = 1 and customers.recordstatus = 1 and (CASE customers.type_id WHEN 2 THEN hospital_profiles.activate = 1 ELSE nursing_profiles.activate =1 END)
-                            and jobs.id = ".$jobs_id." group by job_applies.id order by job_applies.id desc ";
+                            and jobs.id = ".$search_id." group by job_applies.id order by job_applies.id desc ";
 
               
             }else{
@@ -81,7 +81,7 @@ class JobApplyController extends Controller
                             left join hospital_profiles on hospital_profiles.id = jobs.profile_id
                             left join nursing_profiles on nursing_profiles.id = jobs.profile_id
                             where  jobs.recordstatus = 1 and customers.recordstatus = 1 and (CASE customers.type_id WHEN 2 THEN hospital_profiles.activate = 1 ELSE nursing_profiles.activate =1 END)
-                            and customers.id = ".auth()->user()->customer_id." and jobs.id = ".$jobs_id." group by job_applies.id order by job_applies.id desc ";
+                            and customers.id = ".auth()->user()->customer_id." and jobs.id = ".$search_id." group by job_applies.id order by job_applies.id desc ";
 
             }
 

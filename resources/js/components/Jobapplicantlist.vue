@@ -122,122 +122,124 @@
 <script>
 export default {
 
-      props:{
-                limitpc: {
-                type: Number,
-                default: 5,
-            },
+    props:{
+            limitpc: {
+            type: Number,
+            default: 5,
+        },
+    },
+
+    data() {
+        return {
+
+            jobapplies: [],
+            items: [],
+            norecord: 0,
+            nosearch_msg: false,
+            search_id:0,
+            job_title: ''
+        };
+
+    },
+    created() {
+        this.getJobapplicantList();
+    },
+
+    methods: {
+        searchApplicantList(page) {
+            if(typeof page === "undefined"){
+                page = 1;
+            }
+            var search_word = $("#search-item").val();
+
+            let fd = new FormData();
+            fd.append("search_word", search_word);
+            this.$loading(true);
+            $("html, body").animate({ scrollTop: 0 }, "slow");
+            this.axios.post("/api/jobapplicant/search?page="+page, fd).then(response => {
+                this.$loading(false);
+                this.jobapplies = response.data;
+                console.log("this.jobappliessearch",this.jobapplies);
+                if(this.jobapplies.length != 0){
+                    this.nosearch_msg = false;
+                }else{
+                    this.nosearch_msg = true;
+                }
+            });
+        },
+        
+        getJobapplicantList(){
+            if(this.$route.name == 'jobapplicantlist'){
+                this.search_id = 0;
+                this.type = 'admin';
+            }
+            else{                        
+                this.type = this.$route.params.type;
+                this.search_id = this.$route.params.id;                        
+            }
+            this.$loading(true);
+            this.axios.get("/api/jobapplicantlist/"+this.type+"/"+this.search_id).then(response => {
+                this.$loading(false);
+                this.jobapplies = response.data;
+                this.job_title = this.jobapplies.data[0].job_title;
+                this.norecord = this.jobapplies.length;
+            
+                if (this.norecord > this.size) {
+                    this.pagination = true;
+                } else {
+                    this.pagination = false;
+                }
+            });
         },
 
-   data() {
-         return {
+        applicatnToggle(id) {
+            var class_by_id = $('#icon' + id).attr('class');
+            if (class_by_id == "fas fa-sort-down animate rotate") {
+                $('#icon' + id).removeClass("fas fa-sort-down animate rotate");
+                $('.changeLink' + id).removeClass("fas fa-sort-down animate");
+                $('#icon' + id).addClass("fas fa-sort-down animate");
+                $('#changeLink' + id).show('medium');
+            } else {
 
-                    jobapplies: [],
-                    items: [],
-                    norecord: 0,
-                    nosearch_msg: false,
-                    job_id:0,
-                    job_title: ''
-                };
+                $('#icon' + id).removeClass("fas fa-sort-down animate");
+                $('.changeLink' + id).removeClass("fas fa-sort-down animate");
+                $('#icon' + id).addClass("fas fa-sort-down animate rotate");
+                $('#changeLink' + id).hide('medium');
+            }
 
-            },
-              created() {
-                 this.getJobapplicantList();
-              },
-              methods: {
-                  searchApplicantList(page) {
-                      if(typeof page === "undefined"){
-                          page = 1;
-                      }
-                      var search_word = $("#search-item").val();
+        },
 
-                      let fd = new FormData();
-                        fd.append("search_word", search_word);
-                        this.$loading(true);
-                        $("html, body").animate({ scrollTop: 0 }, "slow");
-                        this.axios.post("/api/jobapplicant/search?page="+page, fd).then(response => {
-                            this.$loading(false);
-                            this.jobapplies = response.data;
-                            console.log("this.jobappliessearch",this.jobapplies);
-                            if(this.jobapplies.length != 0){
-                                this.nosearch_msg = false;
-                            }else{
-                                this.nosearch_msg = true;
-                            }
-                        });
-                  },
-                  getJobapplicantList(){
-                    if (this.$route.params.id) {
-                       this.job_id = this.$route.params.id;
-                    }
-                    else{
-                        this.job_id = 0;
-                    }
-                        this.$loading(true);
-                        this.axios.get(`/api/jobapplicantlist/`+this.job_id).then(response => {
-                            this.$loading(false);
-                            this.jobapplies = response.data;
-                            this.job_title = this.jobapplies.data[0].job_title;
-                            this.norecord = this.jobapplies.length;
-                        
-                            if (this.norecord > this.size) {
-                                this.pagination = true;
-                            } else {
-                                this.pagination = false;
-                            }
-                        });
-                    },
-                  applicatnToggle(id) {
-                    console.log(id);
-                        var class_by_id = $('#icon' + id).attr('class');
-                        if (class_by_id == "fas fa-sort-down animate rotate") {
-                            $('#icon' + id).removeClass("fas fa-sort-down animate rotate");
-                            $('.changeLink' + id).removeClass("fas fa-sort-down animate");
-                            $('#icon' + id).addClass("fas fa-sort-down animate");
-                            $('#changeLink' + id).show('medium');
-                        } else {
-
-                            $('#icon' + id).removeClass("fas fa-sort-down animate");
-                            $('.changeLink' + id).removeClass("fas fa-sort-down animate");
-                            $('#icon' + id).addClass("fas fa-sort-down animate rotate");
-                            $('#changeLink' + id).hide('medium');
-                        }
-
-                    },
-                    jobApplicantDelete(id){
-                        this.$swal({
-                            title: "確認",
-                            text: " ~ を削除してよろしいでしょうか。",
-                            type: "warning",
-                            width: 350,
-                            height: 200,
-                            showCancelButton: true,
-                            confirmButtonColor: "#dc3545",
-                            cancelButtonColor: "#b1abab",
-                            cancelButtonTextColor: "#000",
-                            confirmButtonText: "はい",
-                            cancelButtonText: "キャンセル",
-                            confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
-                        }).then(response => {
-                            this.axios.delete(`/api/jobApplicantDelete/${id}`)
-                                    .then(res => {
-                                    this.getJobapplicantList();
-                                });
-                            this.$swal({
-                                text: " ~ を削除しました。",
-                                type: "success",
-                                width: 350,
-                                height: 200,
-                                confirmButtonText: "閉じる",
-                                confirmButtonColor: "#dc3545"
-                            });
-                        });
-
-
-                       
-                    }
-              }
+        jobApplicantDelete(id){
+            this.$swal({
+                title: "確認",
+                text: " ~ を削除してよろしいでしょうか。",
+                type: "warning",
+                width: 350,
+                height: 200,
+                showCancelButton: true,
+                confirmButtonColor: "#dc3545",
+                cancelButtonColor: "#b1abab",
+                cancelButtonTextColor: "#000",
+                confirmButtonText: "はい",
+                cancelButtonText: "キャンセル",
+                confirmButtonClass: "all-btn",
+                cancelButtonClass: "all-btn"
+            }).then(response => {
+                this.axios.delete(`/api/jobApplicantDelete/${id}`)
+                        .then(res => {
+                        this.getJobapplicantList();
+                    });
+                this.$swal({
+                    text: " ~ を削除しました。",
+                    type: "success",
+                    width: 350,
+                    height: 200,
+                    confirmButtonText: "閉じる",
+                    confirmButtonColor: "#dc3545"
+                });
+            });                       
+        }
+    }
 }
 </script>
 

@@ -334,7 +334,7 @@ export default {
             if(this.type == "nursing") {
                 this.$swal({
                     title: "確認",
-                    text: "Are you sure to change account status?",
+                    text: "Are you sure to Publish this account / Hide from public?",
                     type: "warning",
                     width: 350,
                     height: 200,
