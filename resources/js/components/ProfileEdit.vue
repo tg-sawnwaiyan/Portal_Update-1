@@ -53,7 +53,10 @@
                                                 <h5 class=" clearfix">パスワード設定</h5>
                                             </div>
                                             <div class="form-group">
+                                                <label class="old-pass">名称</label>
+                                                <input type="text" name="name" v-model="customer_info.name"  class="form-control old-password">
 
+                                                <br>
                                                 <label class="old-pass">現在のパスワード</label>
                                                 <input type="password" name="old_password" v-model="old_password" placeholder="現在のパスワードを入力してください。" class="form-control old-password">
                                                 <div class="error" id="oldpassword" style="display: none;">現在のパスワードが必要です。</div>
@@ -199,6 +202,7 @@
                     upload_img: null,
                     image: '',
                     accout_status:'',
+                    name:'',
                     password: '',
                     password_confirmation: '',
                     old_password: '',
@@ -369,6 +373,7 @@
 
                     },
                     passwordChange() {
+                       
                         if (this.old_password == '') {
                             $('#oldpassword').css('display', 'block');
                             return;
@@ -387,6 +392,7 @@
                         }
                         if ("'" + this.password + "'" === "'" + this.password_confirmation + "'") {
                             let arr = new FormData();
+                            arr.append('name', this.customer_info.name)
                             arr.append('old_pass', this.old_password)
                             arr.append('new_pass', this.password)
                             arr.append('cus_id', this.cusid)
@@ -405,6 +411,7 @@
                                         })
                                         // alert('Please Enter Correct Old Password!');
                                         return;
+                                        
                                     }else{
                                         this.$swal({
                                             position: 'top-end',
@@ -415,9 +422,15 @@
                                             width: 250,
                                             height: 200,
                                         })
+                                        this.name = null;
                                         this.password = null;
                                         this.password_confirmation = null;
                                         this.old_password = null;
+
+                                        setTimeout(function(){
+                                            location.reload();
+                                        },2000)
+                                       
                                     }
                                     // alert('Password is Successfully Changed!');
                                 }).catch(error => {

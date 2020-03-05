@@ -3890,7 +3890,8 @@ background: #ff9b53;  /
 
 .first-row {
     color: #fff !important;
-    background-color: #a2a7a1;
+    /* background-color: #a2a7a1; */
+    background-color: #80919a;
     border-bottom: 1px solid #ccc;
     border-right: 1px solid #ccc;
     text-align: center;
@@ -3899,7 +3900,8 @@ background: #ff9b53;  /
 }
 
 .second-row {
-    background-color: #eff7ec;
+    /* background-color: #eff7ec; */
+    background-color: #ecf8ff;
 }
 
 .innerwrapper {
@@ -5351,7 +5353,8 @@ margin-right: 2% !important;
 }
 
 .is-nur {
-    color: #ff9967;
+    /* color: #ff9967; */
+    color: #2981cc;
 }
 
 .no-data-color {
@@ -7365,20 +7368,24 @@ color: green;
 /* nursing */
 
 #nursing .pseudolink {
-    color: #ff9563;
+    /* color: #ff9563; */
+    color: #63b7ff;
     line-height: 10px;
     font-weight: bold;
 }
 
 #nursing .fac_container li {
-    border: 1px solid #ff9563;
-    color: #ff9563;
+    /* border: 1px solid #ff9563; */
+    border: 1px solid #63b7ff;
+    /* color: #ff9563; */
+    color: #63b7ff;
     font-weight: bold;
 }
 
 #nursing .res-btn {
     position: relative;
-    background: #ff9563;
+    /* background: #ff9563; */
+    background: #63b7ff;
 }
 
 #nursing .res-btn .checkbox2 {
@@ -7459,7 +7466,8 @@ color: green;
 .profile_price {
     width: 239px;
     font-size: large;
-    color: #ff6117;
+    /* color: #ff6117; */
+    color: #fd0e0e;
     line-height: 1;
 }
 
