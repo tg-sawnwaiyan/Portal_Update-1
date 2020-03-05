@@ -13,7 +13,7 @@
                             <div class="card card-default m-b-20 col-md-11">
                                 <div class="card-body">
                                     <!-- <div class="header2"> -->
-                                        <h5 class=" clearfix">事業者番号 <span style="color:orange;font-weight:bold">{{customer_info.cusnum}}</span></h5>
+                                        <h5 class=" clearfix">事業者番号 <span style="color:#2980B9;font-weight:bold">{{customer_info.cusnum}}</span></h5>
                                     <!-- </div> -->
                                 </div>
                             </div>
@@ -373,6 +373,7 @@
 
                     },
                     passwordChange() {
+                        
                         if (this.old_password == '') {
                             $('#oldpassword').css('display', 'block');
                             return;
@@ -410,6 +411,7 @@
                                         })
                                         // alert('Please Enter Correct Old Password!');
                                         return;
+                                        
                                     }else{
                                         this.$swal({
                                             position: 'top-end',
@@ -420,9 +422,15 @@
                                             width: 250,
                                             height: 200,
                                         })
+                                        this.name = null;
                                         this.password = null;
                                         this.password_confirmation = null;
                                         this.old_password = null;
+
+                                        setTimeout(function(){
+                                            location.reload();
+                                        },2000)
+                                       
                                     }
                                     // alert('Password is Successfully Changed!');
                                 }).catch(error => {

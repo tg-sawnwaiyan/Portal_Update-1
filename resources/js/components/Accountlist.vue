@@ -26,60 +26,58 @@
                 <!-- Create account Area -->
 
                 <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="col-md-12 m-t-8">
-                            <div class="form-group" id="newcreate">
-                                <span v-if="type == 'nursing'" class="btn main-bg-color white all-btn"  @click="ShowHideDiv()">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="col-md-12 m-t-8">
+                                <div class="form-group" id="newcreate">
+                                    <span v-if="type == 'nursing'" class="btn main-bg-color white all-btn"  @click="ShowHideDiv()">
 
-                                        介護施設新規作成
-                                </span>
-                                <span v-else class="btn main-bg-color white all-btn"  @click="ShowHideDiv()">
+                                            介護施設新規作成
+                                    </span>
+                                    <span v-else class="btn main-bg-color white all-btn"  @click="ShowHideDiv()">
 
-                                病院施設新規作成
-                                </span>
-                            </div>
-                            <div id="nusNew">
-                                <div class="form-group">
-                                    <label>施設名 </label>
-                                    <input type="text" class="form-control" v-model="nursing_data.name" placeholder="施設名を入力してください。">
-                                    <span v-if="errors.name" class="error">{{errors.name}}</span>
-                                </div>
-                                <div class="form-group" >
-                                    <label>都道府県</label>
-                                    <select v-model="nursing_data.city_id" class="division form-control custom-select"  @change="getTownship()">
-                                            <option value="0">選択してください。</option>
-                                            <option v-for="cities in city_list" :key="cities.id" v-bind:value="cities.id">
-                                                {{cities.city_name}}
-                                            </option>
-                                    </select>
-                                    <span v-if="errors.city" class="error">{{errors.city}}</span>
-                                </div>
-                                <div class="form-group" >
-                                    <label>市区町村</label>
-                                    <select v-model="nursing_data.town_id" class="division form-control custom-select" @change="changeTownship()"  >
-                                            <option value="0">選択してください。</option>
-                                            <option v-for="tw in town_list" :key="tw.id" v-bind:value="tw.id">
-                                                {{tw.township_name}}
-                                            </option>
-                                    </select>
-                                    <span v-if="errors.township" class="error">{{errors.township}}</span>
-                                </div>
-                                <div class="form-group">
-                                    <span  class="btn btn-danger"  style="margin-left:680px;" @click="CancelNew()">
-                                        キャンセル
+                                    病院施設新規作成
                                     </span>
-                                    <span style="float:right" class="btn main-bg-color white all-btn"  @click="CreateNew()">
-                                        作成
-                                    </span>
+                                </div>
+                                <div id="nusNew">
+                                    <div class="form-group">
+                                        <label>施設名 </label>
+                                        <input type="text" class="form-control" v-model="nursing_data.name" placeholder="施設名を入力してください。">
+                                        <span v-if="errors.name" class="error">{{errors.name}}</span>
+                                    </div>
+                                    <div class="form-group" >
+                                        <label>都道府県</label>
+                                        <select v-model="nursing_data.city_id" class="division form-control custom-select"  @change="getTownship()">
+                                                <option value="0">選択してください。</option>
+                                                <option v-for="cities in city_list" :key="cities.id" v-bind:value="cities.id">
+                                                    {{cities.city_name}}
+                                                </option>
+                                        </select>
+                                        <span v-if="errors.city" class="error">{{errors.city}}</span>
+                                    </div>
+                                    <div class="form-group" >
+                                        <label>市区町村</label>
+                                        <select v-model="nursing_data.town_id" class="division form-control custom-select" @change="changeTownship()"  >
+                                                <option value="0">選択してください。</option>
+                                                <option v-for="tw in town_list" :key="tw.id" v-bind:value="tw.id">
+                                                    {{tw.township_name}}
+                                                </option>
+                                        </select>
+                                        <span v-if="errors.township" class="error">{{errors.township}}</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <span  class="btn btn-danger"  style="margin-left:680px;" @click="CancelNew()">
+                                            キャンセル
+                                        </span>
+                                        <span style="float:right" class="btn main-bg-color white all-btn"  @click="CreateNew()">
+                                            作成
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                </div>
-
-
 
                 <!-- End Create account Area -->
                 <div class="col-md-12">                    
@@ -110,7 +108,7 @@
                                              </div>
                                                 
                                                 <p class="">
-                                                    <router-link :to="{ path:'/profile/nursing/'+ nursingprofiles.id}" class="main-bg-color btn btn-sm all-btn" style="font-weight:bold;">求人編集</router-link>
+                                                    <router-link :to="{ path:'/profilejobofferlist/nursing/'+ nursingprofiles.id}" class="main-bg-color btn btn-sm all-btn" style="font-weight:bold;">求人編集</router-link>
                                                     <router-link :to="{ path:'/profile/nursing/'+ nursingprofiles.id}" class="main-bg-color btn btn-sm all-btn" style="font-weight:bold;">求人応募者一覧</router-link>
                                                 </p>
                                             </div>

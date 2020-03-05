@@ -339,7 +339,7 @@
     .comment-title {
     background-size: 29px;
     /* background :#b6b4b4; */
-    color: #3fc8d6;
+    color: #2980b9;
     display: block;
     font-size: 16px;
     font-weight: 700;

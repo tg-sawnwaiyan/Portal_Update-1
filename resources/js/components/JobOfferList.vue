@@ -98,13 +98,13 @@
                         <div class="card card-default m-b-20" v-for="job in jobs.data" :key="job.id">
                             <div class="card-body p-3">
                                 <div class="row">
-                                    <div class="col-9">
+                                    <div class="col-7 col-md-9">
                                         <div class="joboffer-tit clearfix">
                                             <router-link :to="{name: 'job_details', params:{id:job.id,loginuser:loginuser}}">{{job.title}} </router-link>
                                             
                                         </div>
                                     </div>
-                                    <div class="col-3  text-right">
+                                    <div class="col-5 col-md-3 text-right">
                                         <!-- <button :class="'btn drop-bg-color changeLink'+job.id"  @click="jobToggle(job.id)">
                                         <i :id="'icon' + job.id" class="fas fa-sort-down animate rotate"></i> 詳細</button> -->
                                         <p class="float-right">応募者数:
@@ -333,7 +333,8 @@
                     loginuser: true,
                     norecord_msg: false,
                     nosearch_msg: false,
-                    subtitle: 'OFF'
+                    subtitle: 'OFF',
+                    pro_id: 0,
 
                 };
             },
@@ -350,9 +351,20 @@
                 //     }
 
                 // });
-                this.getAllJobs(); 
+                
+
+                if(this.$route.name == "profilejobofferlist"){
+                    this.pro_id = this.$route.params.id;
+                    this.type = this.$route.params.type;
+                }
+                else{
+                    this.pro_id = null;
+                    this.type = 'admin';
+                }
+                this.getAllJobs();
+                
                 this.axios.get('/api/user').then(response => {
-                this.pro_id = response.data.lat_lng[0].id;
+                // this.pro_id = response.data.lat_lng[0].id;
                 this.loginuser = 'true';
                 }).catch((error) => {
                     this.loginuser = 'false';
@@ -363,7 +375,7 @@
             methods: {
                    getAllJobs() {
                     this.$loading(true);
-                    this.axios.get("/api/job/index").then(response => {
+                    this.axios.get("/api/job/index/"+this.type+"/"+this.pro_id).then(response => {
                         this.$loading(false);
                         this.jobs = response.data.profilejob;
                         console.log('result',this.jobs)
