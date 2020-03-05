@@ -2455,7 +2455,7 @@ h3 {
 }
 .comment-title{
     background-size: 29px;
-    color: #3fc8d6;
+    color: #2980b9;
     display: block;
     font-size: 16px;
     font-weight: 700;
@@ -2531,7 +2531,8 @@ h3 {
 
 }
 .photocard-title{
-    min-height: 70px;
+    height: 79px;
+    overflow: hidden;
 }
 .progressbar {
     display: block;
@@ -2602,6 +2603,7 @@ h3 {
     display: block;
     margin: 0 auto;
     width: 100%;
+    height: 290px;
 }
 .actions {
     font-size: 1.5em;
