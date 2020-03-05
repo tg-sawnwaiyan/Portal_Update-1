@@ -26,7 +26,7 @@
                         <h5>院内施設一覧</h5>
                         <div class="ml-auto" v-if="!norecord_msg">
                             <router-link to="/createfacility" class="main-bg-color create-btn all-btn">
-                                <i class="fas fa-plus-circle"></i> <span class="first_txt">院内施設</span><span>新規作成</span>
+                                <i class="fas fa-plus-circle"></i> <span class="first_txt">院内施設</span><span class="dinone">新規作成</span>
                             </router-link>
                         </div>
                     </div>

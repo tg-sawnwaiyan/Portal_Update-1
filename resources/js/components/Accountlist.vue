@@ -80,31 +80,31 @@
                                 <h5>施設一覧</h5>
                                 <div class="ml-auto">
                                     <a class="" id="newcreate">
-                                        <span v-if="type == 'nursing'" class="btn main-bg-color white all-btn"  @click="ShowHideDiv()">
-                                            <i class="fas fa-plus-circle"></i> 介護施設新規作成
+                                        <span v-if="type == 'nursing'" class="main-bg-color create-btn all-btn"  @click="ShowHideDiv()">
+                                            <span><i class="fas fa-plus-circle"></i> <span class="dinone">介護施設新規作成</span></span>
                                         </span>
-                                        <span v-else class="btn main-bg-color white all-btn"  @click="ShowHideDiv()">
-                                        <i class="fas fa-plus-circle"></i> 病院施設新規作成
+                                        <span v-else class="main-bg-color create-btn all-btn"  @click="ShowHideDiv()">
+                                        <i class="fas fa-plus-circle"></i> <span class="dinone">病院施設新規作成</span>
                                         </span>
                                     </a>
                                 </div>
                             </div>
                             <!-- nursing -->
                             <div class="row col-12 m-lr-0  rl" v-if="type == 'nursing'">
-                                <div class="col-xs-12 col-sm-3 column" v-for="nursingprofiles in nursingprofile" :key="nursingprofiles.id">
+                                <div class="col-xs-12 col-md-6 col-lg-4 col-xl-3 column" v-for="nursingprofiles in nursingprofile" :key="nursingprofiles.id">
                                     <div class="card_1">
                                         <img :src="'/upload/nursing_profile/'+ nursingprofiles.logo" alt="aa" @error="imgUrlAlt" />
                                         <div class="card-content">
-                                            <div class="title-toggle">
-                                            <span class="card-title">
+                                            <div class="title-toggle" style="width:100%;">
+                                            <span class="d-inline-block text-truncate font-weight-bold card-title card-title-leftwrapper">
                                                 {{nursingprofiles.name}}
                                             </span>
-                                            <span>
+                                            <span class="card-title-rightwrapper">
                                                 <input type="checkbox" :id="nursingprofiles.id" class="switch-input" v-if="nursingprofiles.activate == 1" @click="changeActivate(nursingprofiles.id,nursingprofiles.activate)" checked>
                                                 <input type="checkbox" :id="nursingprofiles.id" class="switch-input" v-if="nursingprofiles.activate == 0" @click="changeActivate(nursingprofiles.id,nursingprofiles.activate)">
                                                 <label :for="nursingprofiles.id" class="switch-label">
                                                     <span v-if="nursingprofiles.activate == 1">公開中</span>
-                                                    <span v-if="nursingprofiles.activate == 0">閉まっている</span>
+                                                    <span v-if="nursingprofiles.activate == 0">非行化</span>
                                                 </label>
                                             </span>
                                             </div>
@@ -127,12 +127,12 @@
                             <!-- nursing -->
                             <!-- hospital -->
                             <div class="row col-12 m-lr-0  rl" v-else>
-                                <div class="col-xs-12 col-sm-3 column" v-for="hospitalprofiles in hospitalprofile" :key="hospitalprofiles.id">
+                                <div class="col-xs-12 col-md-6 col-lg-4 col-xl-3 column" v-for="hospitalprofiles in hospitalprofile" :key="hospitalprofiles.id">
                                     <div class="card_1">
                                         <img :src="'/upload/hospital_profile/'+ hospitalprofiles.logo" @error="imgUrlAlt" />
                                         <div class="card-content">
                                             <div class="title-toggle">
-                                            <span class="card-title">
+                                            <span class="d-inline-block text-truncate font-weight-bold card-title" style="max-width: 275px;">
                                                 {{hospitalprofiles.name}}
                                             </span>
                                             <span>
@@ -140,7 +140,7 @@
                                                 <input type="checkbox" :id="hospitalprofiles.id" class="switch-input" v-if="hospitalprofiles.activate == 0" @click="changeActivate(hospitalprofiles.id,hospitalprofiles.activate)">
                                                 <label :for="hospitalprofiles.id" class="switch-label">
                                                     <span v-if="hospitalprofiles.activate == 1">公開中</span>
-                                                    <span v-if="hospitalprofiles.activate == 0">閉まっている</span>
+                                                    <span v-if="hospitalprofiles.activate == 0">非行化</span>
                                                 </label>
                                             </span>
                                             </div>
@@ -445,40 +445,40 @@ img{
 }
 @media screen and (max-width: 1200px) and ( min-width:990px ) {
     .column{
-        -webkit-box-flex: 0;
+        /* -webkit-box-flex: 0;
         -ms-flex: 0 0 33.33333333%;
         flex: 0 0 33.33333333%;
         max-width: 33.33333333%;
         position: relative;
         width: 100%;
         padding-right: 15px;
-        padding-left: 15px;
+        padding-left: 15px; */
 
     }
 }
 @media screen and (max-width: 1683px) and ( min-width:1201px ) {
     .column{
-        -webkit-box-flex: 0;
+        /* -webkit-box-flex: 0;
         -ms-flex: 0 0 33.33333333%;
         flex: 0 0 33.33333333%;
         max-width: 33.33333333%;
         position: relative;
         width: 100%;
         padding-right: 15px;
-        padding-left: 15px;
+        padding-left: 15px; */
 
     }
 }
 @media screen and (max-width: 787px) and ( min-width:576px ) {
     .column{
-        -webkit-box-flex: 0;
+        /* -webkit-box-flex: 0;
         -ms-flex: 0 0 33.33333333%;
         flex: 0 0 33.33333333%;
         max-width: 33.33333333%;
         position: relative;
         width: 100%;
         padding-right: 15px;
-        padding-left: 15px;
+        padding-left: 15px; */
 
     }
 }
@@ -492,11 +492,6 @@ img{
 .checkbox{
     text-align:left;
 }
-.card-title{
-    display:unset;
-}
-
-
 
 .container-fostrap {
   display: table-cell;
@@ -565,10 +560,14 @@ h1.heading {
   padding:10px;
   text-align:left;
 }
-.card-title {
-  margin-top:0px;
-  font-weight: 600;
+.card-title { 
   font-size: 20px;
+}
+.card-title-leftwrapper{
+  width: 70%;
+}
+.card-title-rightwrapper{
+  width: 30%;
 }
 .card-title a {
   color: #000;
@@ -584,8 +583,6 @@ h1.heading {
   font-weight:600;
   text-transform: uppercase
 }
-
-
 
 
 /* toggle */
