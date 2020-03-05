@@ -128,7 +128,7 @@
        if(this.$route.path == "/admin_login"){
          this.name="管理者ログイン";
          this.btn_color='btn login_btn_admin';
-        this.cus = false;
+         this.cus = false;
         $('#altrole').addClass('admin_user_card');
          console.log('ADMIN LOGIN');
        }else {
