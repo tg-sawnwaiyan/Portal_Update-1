@@ -333,7 +333,8 @@
                     loginuser: true,
                     norecord_msg: false,
                     nosearch_msg: false,
-                    subtitle: 'OFF'
+                    subtitle: 'OFF',
+                    pro_id: 0,
 
                 };
             },
@@ -350,9 +351,20 @@
                 //     }
 
                 // });
-                this.getAllJobs(); 
+                
+
+                if(this.$route.name == "profilejobofferlist"){
+                    this.pro_id = this.$route.params.id;
+                    this.type = this.$route.params.type;
+                }
+                else{
+                    this.pro_id = null;
+                    this.type = 'admin';
+                }
+                this.getAllJobs();
+                
                 this.axios.get('/api/user').then(response => {
-                this.pro_id = response.data.lat_lng[0].id;
+                // this.pro_id = response.data.lat_lng[0].id;
                 this.loginuser = 'true';
                 }).catch((error) => {
                     this.loginuser = 'false';
@@ -363,7 +375,7 @@
             methods: {
                    getAllJobs() {
                     this.$loading(true);
-                    this.axios.get("/api/job/index").then(response => {
+                    this.axios.get("/api/job/index/"+this.type+"/"+this.pro_id).then(response => {
                         this.$loading(false);
                         this.jobs = response.data.profilejob;
                         console.log('result',this.jobs)
