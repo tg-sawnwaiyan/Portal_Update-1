@@ -14,7 +14,7 @@
             <span style="font-size:20px;">URLに間違いがないかご確認ください。</span>
 
                 <br><br>
-                <a href="#" @click.prevent="logout()" class="gohome" style="">
+                <a href="#" @click.prevent="logout()" class="gohome all-btn" style="">
                 ホームページに戻る
                 </a>
             </div>
