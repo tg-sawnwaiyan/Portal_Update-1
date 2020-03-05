@@ -20,12 +20,7 @@
                             </div>
                             <div v-else>
                             <label>事業者名</label>
-                            <autocomplete style="color:red"
-                            placeholder="事業者名を検索" 
-                            input-class="form-control" 
-                            :source=customerList 
-                            :results-display="formattedDisplay"
-                            @selected="getSelected($event)">
+                            <autocomplete placeholder="事業者名を検索" input-class="form-control" :source=customerList :results-display="formattedDisplay" @selected="getSelected($event)">
                             </autocomplete>
                             <br>
                             <label>施設名</label>
@@ -1107,16 +1102,4 @@ import Autocomplete from 'vuejs-auto-complete'
         background-color: #0cc72c; 
         border-color: #0cc72c;
     }
-    .autocomplete__box {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    background: red;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    padding: 0 5px;
-}
 </style>
