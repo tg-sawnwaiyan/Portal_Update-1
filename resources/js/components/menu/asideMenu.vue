@@ -210,7 +210,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                         {
                         href: '/facilitieslist',
                         title: '院内施設設定',
-                        icon: 'fa fa-sun'
+                        icon: 'fa fa-cog fa-fw'
                         },
                         {
                         href: '/hosfeaturelist',

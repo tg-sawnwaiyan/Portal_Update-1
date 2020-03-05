@@ -161,7 +161,7 @@
                                             <router-link :to="{ name: 'hoscustomerlist' }"><i class="fa fa-user"></i>  事業者一覧</router-link>
                                         </li>
                                         <li @click="toggle('sub')">
-                                            <router-link :to="{ name: 'facilitieslist' }"><i class="fa fa-sun"></i>  院内施設設定</router-link>
+                                            <router-link :to="{ name: 'facilitieslist' }"><i class="fa fa-cog fa-fw"></i>  院内施設設定</router-link>
                                         </li>
                                         <li @click="toggle('sub')">
                                             <router-link :to="{ name: 'hosfeaturelist' }"><i class="fa fa-list"></i>  特徴設定</router-link>
