@@ -57,7 +57,7 @@
                                             </td>
                                         </tr>
                                     </table>
-                                    <span class="btn btn-sm btn-outline-danger" @click="jobApplicantDelete(jobapply.id)">Delete</span>
+                                    <span class="btn btn-sm btn-outline-danger" @click="jobApplicantDelete(jobapply.id)">削除</span>
                                 </div>
                                     
                             </div>
@@ -169,24 +169,24 @@ export default {
                   getJobapplicantList(){
                     if (this.$route.params.id) {
                        this.job_id = this.$route.params.id;
-                  }
-                  else{
-                      this.job_id = 0;
-                  }
-                    this.$loading(true);
-                    this.axios.get(`/api/jobapplicantlist/`+this.job_id).then(response => {
-                        this.$loading(false);
-                        this.jobapplies = response.data;
-                        this.job_title = this.jobapplies.data[0].job_title;
-                        this.norecord = this.jobapplies.length;
-                      
-                        if (this.norecord > this.size) {
-                            this.pagination = true;
-                        } else {
-                            this.pagination = false;
-                        }
-                    });
-                  },
+                    }
+                    else{
+                        this.job_id = 0;
+                    }
+                        this.$loading(true);
+                        this.axios.get(`/api/jobapplicantlist/`+this.job_id).then(response => {
+                            this.$loading(false);
+                            this.jobapplies = response.data;
+                            this.job_title = this.jobapplies.data[0].job_title;
+                            this.norecord = this.jobapplies.length;
+                        
+                            if (this.norecord > this.size) {
+                                this.pagination = true;
+                            } else {
+                                this.pagination = false;
+                            }
+                        });
+                    },
                   applicatnToggle(id) {
                     console.log(id);
                         var class_by_id = $('#icon' + id).attr('class');
@@ -206,8 +206,8 @@ export default {
                     },
                     jobApplicantDelete(id){
                         this.$swal({
-                            title: "---",
-                            text: "---",
+                            title: "確認",
+                            text: " ~ を削除してよろしいでしょうか。",
                             type: "warning",
                             width: 350,
                             height: 200,
@@ -221,11 +221,11 @@ export default {
                             cancelButtonClass: "all-btn"
                         }).then(response => {
                             this.axios.delete(`/api/jobApplicantDelete/${id}`)
-                                      .then(res => {
-                                        this.getJobapplicantList();
+                                    .then(res => {
+                                    this.getJobapplicantList();
                                 });
                             this.$swal({
-                                text: "-----",
+                                text: " ~ を削除しました。",
                                 type: "success",
                                 width: 350,
                                 height: 200,

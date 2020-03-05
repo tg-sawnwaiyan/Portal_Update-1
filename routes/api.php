@@ -150,7 +150,7 @@ Route::group(['middleware' => ['auth:api']], function() {
         Route::get('edit/{id}', 'JobController@edit');
         Route::get('occupationlist', 'JobController@getOccupationList');
         Route::post('update/{id}', 'JobController@update');
-        Route::delete('delete/{id}', 'JobController@destroy');
+        Route::delete('delete/{id}/{type}/{pro_id}', 'JobController@destroy');
         Route::post('search', 'JobController@search');
         Route::get('customerList', 'JobController@getCustomerList');
         Route::post('profileList/{cId}', 'JobController@getProfileList');

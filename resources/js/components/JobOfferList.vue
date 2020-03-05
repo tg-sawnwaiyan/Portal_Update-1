@@ -82,7 +82,7 @@
                                                     <router-link :to="{name: 'joboffercreate', params:{id:job.id}}" class="btn edit-borderbtn">編集</router-link>
                                                 </li>
                                                 <li>
-                                                    <router-link :to="{path: '/jobapplicantlist/'+job.id, params:{title:job.title}}" class="btn confirm-borderbtn confirmed">求人応募一覧ページへ</router-link>
+                                                    <router-link :to="{path: '/jobapplicantlist/job/'+job.id, params:{title:job.title}}" class="btn confirm-borderbtn confirmed">求人応募一覧ページへ</router-link>
                                                 </li>
                                                 <!-- <li><a class="btn text-success active-borderbtn">Disabled</a></li> -->
                                                 <li><a class="btn text-danger delete-borderbtn" @click="deleteJob(job.id)">削除</a></li>
@@ -164,7 +164,7 @@
                                         </li>                           
                                         <li><a class="btn text-danger delete-borderbtn" @click="deleteJob(job.id)">削除</a></li>
                                         <li class="mt-2" v-if="job.count">
-                                            <router-link :to="{path: '/jobapplicantlist/'+job.id, params:{title:job.title}}" class="btn confirm-borderbtn confirmed">求人応募一覧ページへ</router-link>
+                                            <router-link :to="{path: '/jobapplicantlist/job/'+job.id, params:{title:job.title}}" class="btn confirm-borderbtn confirmed">求人応募一覧ページへ</router-link>
                                         </li>
                                     </ul>
                                 </div>
@@ -450,7 +450,7 @@
                             cancelButtonClass: "all-btn"
                         }).then(response => {
                             this.axios
-                                .delete(`/api/job/delete/${id}`)
+                                .delete(`/api/job/delete/${id}/`+this.type+"/"+this.pro_id)
                                 .then(response => {
                                     // let i = this.jobs.map(item => item.id).indexOf(id); // find index of your object
                                     // this.jobs.splice(i, 1);
@@ -483,6 +483,8 @@
 
                         let fd = new FormData();
                         fd.append("search_word", search_word);
+                        fd.append('type',this.type);
+                        fd.append('pro_id',this.pro_id);
                          this.$loading(true);
                          $("html, body").animate({ scrollTop: 0 }, "slow");
                         this.axios.post("/api/job/search?page="+page, fd).then(response => {
