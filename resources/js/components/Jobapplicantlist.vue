@@ -212,7 +212,7 @@ export default {
         jobApplicantDelete(id){
             this.$swal({
                 title: "確認",
-                text: " ~ を削除してよろしいでしょうか。",
+                text: "求人応募者を削除してよろしいでしょうか。",
                 type: "warning",
                 width: 350,
                 height: 200,
@@ -230,7 +230,7 @@ export default {
                         this.getJobapplicantList();
                     });
                 this.$swal({
-                    text: " ~ を削除しました。",
+                    text: "求人応募者を削除しました。",
                     type: "success",
                     width: 350,
                     height: 200,
