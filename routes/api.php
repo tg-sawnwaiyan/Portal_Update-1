@@ -317,8 +317,8 @@ Route::get('staffinfo/{id}', 'ProfilePublishController@getStaffbyCustomerId');
 Route::post('hospital/galleryupdate/{id}', 'HospitalProfileController@galleryupdate');
 Route::get('account_nursing/{id}','CustomerController@nusaccount');
 Route::get('account_hospital/{id}','CustomerController@hosaccount');
-Route::get('changeActivateNus/{id}','CustomerController@changeActivateNus');
-Route::get('changeActivateHos/{id}','CustomerController@changeActivateHos');
+Route::get('changeActivate/{id}/{type}','CustomerController@changeActivate');
+// Route::get('changeActivateHos/{id}','CustomerController@changeActivateHos');
 Route::delete('profileDeleteNus/{id}','CustomerController@profileDeleteNus');
 Route::delete('profileDeleteHos/{id}','CustomerController@profileDeleteHos');
 
