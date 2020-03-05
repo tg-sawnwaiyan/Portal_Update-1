@@ -319,8 +319,8 @@ Route::get('account_nursing/{id}','CustomerController@nusaccount');
 Route::get('account_hospital/{id}','CustomerController@hosaccount');
 Route::get('changeActivate/{id}/{type}','CustomerController@changeActivate');
 // Route::get('changeActivateHos/{id}','CustomerController@changeActivateHos');
-Route::delete('profileDeleteNus/{id}','CustomerController@profileDeleteNus');
-Route::delete('profileDeleteHos/{id}','CustomerController@profileDeleteHos');
+Route::delete('profileDelete/{id}/{type}','CustomerController@profileDelete');
+// Route::delete('profileDeleteHos/{id}','CustomerController@profileDeleteHos');
 
 // Route::post('nursing/cooperate/{id}', 'NursingProfileController@cooperateupdate');
 // Route::post('nursing/paymentmethod/{id}', 'NursingProfileController@paymentupdate');
