@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Facades\Input;
 use App\Customer;
 use DB;
 use Storage;
@@ -850,19 +848,6 @@ class SearchMapController extends Controller
             $occu->child = $occuchild;
         }
 
-
-        // $page = Input::get('page', 1);
-        // $size = 12;
-        // $data = collect($job_data);
- 
-        // $job_data = new LengthAwarePaginator(
-        //                         $data->forPage($page, $size),
-        //                         $data->count(), 
-        //                         $size, 
-        //                         $page
-        //                     );
-      
-     
         return response()->json(array('job'=>$job_data,'city'=>$city,'occupations'=>$occupations));
     }
 
