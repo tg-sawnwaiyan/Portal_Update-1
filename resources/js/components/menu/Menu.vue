@@ -327,10 +327,12 @@
         isMenu: false,
         open : 'fa fa-bars' , 
         close : 'fa fa-times',
+        cusName : '',
+        cusType :'',
       }
     },
     mounted() {
-        console.log("menu "+this.$auth.check())
+  
         if(localStorage.getItem("visit")){
             this.visit = localStorage.getItem("visit");
         }

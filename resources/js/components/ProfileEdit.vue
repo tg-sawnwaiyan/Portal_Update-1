@@ -53,7 +53,10 @@
                                                 <h5 class=" clearfix">パスワード設定</h5>
                                             </div>
                                             <div class="form-group">
+                                                <label class="old-pass">name</label>
+                                                <input type="text" name="name" v-model="name" placeholder="please enter name" class="form-control old-password">
 
+                                                <br>
                                                 <label class="old-pass">現在のパスワード</label>
                                                 <input type="password" name="old_password" v-model="old_password" placeholder="現在のパスワードを入力してください。" class="form-control old-password">
                                                 <div class="error" id="oldpassword" style="display: none;">現在のパスワードが必要です。</div>
@@ -199,6 +202,7 @@
                     upload_img: null,
                     image: '',
                     accout_status:'',
+                    name:'',
                     password: '',
                     password_confirmation: '',
                     old_password: '',
@@ -387,6 +391,7 @@
                         }
                         if ("'" + this.password + "'" === "'" + this.password_confirmation + "'") {
                             let arr = new FormData();
+                            arr.append('name', this.name)
                             arr.append('old_pass', this.old_password)
                             arr.append('new_pass', this.password)
                             arr.append('cus_id', this.cusid)
