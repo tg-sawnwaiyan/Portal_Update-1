@@ -192,7 +192,7 @@
                 $('#headerbar li').css('display','block');
                 $('#myBtn').css('display','block');
             } else {
-                $('#headerbar').css('top','86px');
+                $('#headerbar').css('top','135px');
                 $('#headerbar li').css('display','inline-block');
                 $('#myBtn').css('display','none');
             }
