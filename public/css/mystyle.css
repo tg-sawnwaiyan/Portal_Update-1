@@ -3612,8 +3612,8 @@ overflow-y: auto;
 }
 
 #Profile-page .nursing-tabColor .nav-link.active {
-    border-left: 1px solid #ff9563 !important;
-    border-right: 1px solid #ff9563 !important;
+    border-left: 1px solid #63b7ff !important;
+    border-right: 1px solid #63b7ff !important;
 }
 
 #Profile-page .hospital-tabColor .nav-link.active {
@@ -5646,7 +5646,7 @@ a:hover {
 }
 
 .nursing-tabColor .nav-link.active {
-    color: #ff9563 !important;
+    color: #63b7ff !important;
     font-weight: bold;
     background: #fff !important;
     /* border-top: 3px solid #ff9563;
@@ -8405,7 +8405,8 @@ border-bottom: none;
 }
 
 .second-hos-row {
-    background-color: #eff7ec !important;
+    /* background-color: #eff7ec !important; */
+    background-color: #ecf8ff !important;
 }
 
 .hos-content .detail-btn .btn {
