@@ -13,7 +13,7 @@
             ページの有効期限が切れています。
 
                 <br><br>
-                <a href="#" @click.prevent="logout()" class="gohome" style="">
+                <a href="#" @click.prevent="logout()" class="gohome all-btn" style="">
                 ホームページに戻る
                 </a>
             </div>

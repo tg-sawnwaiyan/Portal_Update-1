@@ -37,27 +37,37 @@ class CustomerController extends Controller
         return response()->json(array("hoscustomer"=>$hoscustomer,"status"=>$status));
     }
 
-    public function changeActivateNus($id)
-    {
-        $changeActivate =  NursingProfile::find($id);
-        if($changeActivate->activate == 0 ) {
-            $changeActivate->activate =1;
-       }
-       else {
-            $changeActivate->activate =0;
-       }
+    // public function changeActivateNus($id)
+    // {
+    //     $changeActivate =  NursingProfile::find($id);
+    //     if($changeActivate->activate == 0 ) {
+    //         $changeActivate->activate =1;
+    //    }
+    //    else {
+    //         $changeActivate->activate =0;
+    //    }
 
-       $changeActivate->save();
-       $data = array("changeActivate"=> $changeActivate, "success");
-       return response()->json($data);
-    }
-    public function changeActivateHos($id)
+    //    $changeActivate->save();
+    //    $data = array("changeActivate"=> $changeActivate, "success");
+    //    return response()->json($data);
+    // }
+    public function changeActivate($id,$type)
     {
-        $changeActivate =  HospitalProfile::find($id);
-        if($changeActivate->activate == 0 ) {
+       
+        if($type == "nursing")
+        {
+            $changeActivate =  NursingProfile::find($id);
+        }
+        else{
+            $changeActivate =  HospitalProfile::find($id);
+        }
+        
+       if($changeActivate->activate == 0 ) {
+
             $changeActivate->activate =1;
        }
        else {
+
             $changeActivate->activate =0;
        }
 
