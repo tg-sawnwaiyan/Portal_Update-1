@@ -5,17 +5,27 @@
                 <h4 class="main-color mb-3">求人応募者検索 <a @click="$router.go(-1)" v-if="$route.params.id" class="btn btn-danger all-btn submit float-right">戻る</a></h4>
                 <div class="row mb-4">
                     <div class="col-md-12">
-                        <input type="text" class="form-control" placeholder="検索" id="search-item"  @keyup="searchApplicantList" />
+                        <input type="text" class="form-control" placeholder="検索" id="search-item"  @keyup="searchApplicantList()" />
                         <input type="hidden" class="form-contrl" />
                     </div>
                 </div>
-                <hr />
-                <h5 class="header"> 求人応募者一覧 <span v-if="this.$route.params.id"> 「{{job_title}} <span class="pro_num">({{jobapplies.data[0].jobid}})</span>」 </span></h5>
+                <hr /> 
 
+               
 
+                <h5  class="header"> 求人応募者一覧 
+                    <span v-if="page == 'job'"> 
+                        「{{job_title}} <span class="pro_num">({{job_id}})</span>」
+                    </span>
+                    <span  class="pro_num" v-if="page == 'profile'">
+                        「{{proname}}」
+                    </span>
+                </h5>
+            
+                    
                 <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
                 <div v-else class="container-fuid">
-                    <div class="card card-default m-b-20" v-for="jobapply in jobapplies.data" :key="jobapply.id">
+                    <div class="card card-default m-b-20"  v-for="jobapply in jobapplies.data" :key="jobapply.id">
                             <div class="card-body p-3">
                                 <div class="row">
                                     <div class="col-9">
@@ -140,6 +150,8 @@ export default {
             job_title: '',
             type: null,
             page: null,
+            job_id:'',
+            proname:''
         };
 
     },
@@ -149,24 +161,40 @@ export default {
 
     methods: {
         searchApplicantList(page) {
+
             if(typeof page === "undefined"){
                 page = 1;
             }
+           
             var search_word = $("#search-item").val();
 
             let fd = new FormData();
             fd.append("search_word", search_word);
+            fd.append("search_id",this.search_id);
+            fd.append("pages",this.page);
+            fd.append("type",this.type);
             this.$loading(true);
             $("html, body").animate({ scrollTop: 0 }, "slow");
             this.axios.post("/api/jobapplicant/search?page="+page, fd).then(response => {
                 this.$loading(false);
                 this.jobapplies = response.data;
-                console.log("this.jobappliessearch",this.jobapplies);
-                if(this.jobapplies.length != 0){
-                    this.nosearch_msg = false;
-                }else{
-                    this.nosearch_msg = true;
+                if(this.page == 'job')
+                {
+                     this.job_id = this.jobapplies.data[0].jobid;
+                     this.job_title = this.jobapplies.data[0].job_title;
                 }
+                else if(this.page == 'profile'){
+                    this.proname = this.jobapplies.data[0].proname;
+                }
+
+                if(this.jobapplies.data.length != 0){
+                    
+                     this.nosearch_msg = false;
+                }
+                else{
+                     this.nosearch_msg = true;
+                }
+             
             });
         },
         
@@ -185,8 +213,26 @@ export default {
             this.axios.get("/api/jobapplicantlist/"+this.type+"/"+this.page+"/"+this.search_id).then(response => {
                 this.$loading(false);
                 this.jobapplies = response.data;
-                this.job_title = this.jobapplies.data[0].job_title;
-                this.norecord = this.jobapplies.length;
+                if(this.jobapplies.data.length != 0){
+                    
+                     this.nosearch_msg = false;
+                }
+                else{
+                     this.nosearch_msg = true;;
+                }
+             
+                if(this.page == 'job')
+                {
+                     this.job_id = this.jobapplies.data[0].jobid;
+                     this.job_title = this.jobapplies.data[0].job_title;
+                }
+                else if(this.page == 'profile'){
+                    this.proname = this.jobapplies.data[0].proname;
+                   
+                }
+                
+                this.norecord = this.jobapplies.data.length;
+              
             
                 if (this.norecord > this.size) {
                     this.pagination = true;
