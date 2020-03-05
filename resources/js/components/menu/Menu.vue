@@ -96,7 +96,7 @@
                                 <router-link to="/favouriteNursing">
                                     <div class="dropdown-item div1 fav-nursing-link-box">
                                         <i class="fa fa-chevron-circle-right is-nur"></i>
-                                        <span style="color:#d2571c;">
+                                        <span style="color:#2981cc;">
                                         介護&nbsp;<span id="pc-nus-fav-local">{{nusFav}}</span>&nbsp;<span style="color:#000;">件</span>
                                         </span>
                                     </div>
@@ -119,7 +119,7 @@
                                 <div class="dropdown-item div1 his-nursing-link-box">
                                 <router-link to="/nursing_history">
                                 <i class="fa fa-chevron-circle-right is-nur"></i>
-                                <span  style="color:#d2571c;">
+                                <span  style="color:#2981cc;">
                                 介護&nbsp;<span id="pc-nus-his-local">{{nusHis}}</span>&nbsp;<span style="color:#000;">件</span>
                                 </span>
                                 </router-link>
