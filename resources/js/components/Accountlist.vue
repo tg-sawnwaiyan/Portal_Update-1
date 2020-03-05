@@ -373,7 +373,6 @@ export default {
         },
         profileDelete(id){
             this.type = this.$route.params.type;
-            if(this.type == "nursing") {
 
                 this.$swal({
                     title: "確認",
@@ -390,7 +389,7 @@ export default {
                     confirmButtonClass: "all-btn",
                     cancelButtonClass: "all-btn"
                 }).then(response => {
-                    this.axios.delete(`/api/profileDeleteNus/${id}`)
+                    this.axios.delete(`/api/profileDelete/${id}/`+this.type)
                     .then(response => {
                         this.getAccountList();
                     });
@@ -403,38 +402,6 @@ export default {
                         confirmButtonColor: "#dc3545"
                     });
                 });
-               
-            }else{
-                this.$swal({
-                    title: "確認",
-                    text: "施設を削除してよろしいでしょうか。",
-                    type: "warning",
-                    width: 350,
-                    height: 200,
-                    showCancelButton: true,
-                    confirmButtonColor: "#dc3545",
-                    cancelButtonColor: "#b1abab",
-                    cancelButtonTextColor: "#000",
-                    confirmButtonText: "はい",
-                    cancelButtonText: "キャンセル",
-                    confirmButtonClass: "all-btn",
-                    cancelButtonClass: "all-btn"
-                }).then(response => {
-                    this.axios.delete(`/api/profileDeleteHos/${id}`)
-                                .then(response => {
-                                this.getAccountList();
-                        });
-                    this.$swal({
-                        text: "施設を削除しました。",
-                        type: "success",
-                        width: 350,
-                        height: 200,
-                        confirmButtonText: "閉じる",
-                        confirmButtonColor: "#dc3545"
-                    });
-                });
-                
-            }
         }
     }
 }
