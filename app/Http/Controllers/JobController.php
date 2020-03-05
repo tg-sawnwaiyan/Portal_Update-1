@@ -86,7 +86,7 @@ class JobController extends Controller
         }
 
         $page = Input::get('page', 1);
-        $size = 1;
+        $size = 10;
         $data = collect($projob);
  
         $profilejob = new LengthAwarePaginator(
@@ -593,7 +593,7 @@ class JobController extends Controller
             }
 
             $page = Input::get('page', 1);
-            $size = 1;
+            $size = 10;
             $data = collect($jobsearchs);
     
             $jobsearch = new LengthAwarePaginator(

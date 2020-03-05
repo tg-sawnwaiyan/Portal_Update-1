@@ -162,7 +162,7 @@
                                     <div class="row">
                                         <div class="col-md-12 m-t-8">
                                             <div class="header2">
-                                                <h5 class=" clearfix" v-if="accout_status == '解除'">事業者登録を{{accout_status}}します。</h5>
+                                                <h5 class=" clearfix" v-if="customer_info.recordstatus ==1">事業者登録を{{accout_status}}します。</h5>
                                                 <h5 class=" clearfix" v-else>事業者登録を{{accout_status}}。</h5>
                                             </div>
                                             <div class="form-group">
@@ -525,7 +525,6 @@
                         let fd = new FormData();
                             fd.append('status', status)
                             fd.append('cus_id',this.cusid)
-                            // console.log('fd',cusid)
                         this.$swal({
                                 title: "確認",
                                 text: confirm_text,
@@ -544,7 +543,7 @@
                                 this.axios
                                     .post('api/customer/account_update', fd)
                                     .then((response) => {
-                                        console.log(response);
+                                        console.log("update",response);
                                         this.customer_info = response.data;
                                         this.$swal({
                                                 position: 'top-end',

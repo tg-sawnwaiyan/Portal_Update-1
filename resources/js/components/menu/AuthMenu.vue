@@ -105,7 +105,7 @@
                             <li v-if="$auth.check(1)" @click="toggle">
                                 <router-link :to="{ path: `/accountlist/${this.$auth.user().type_id == 2 ? 'hospital/': 'nursing/'}${this.$auth.user().customer_id}` }"><i class="fa fa-user"></i>  施設一覧</router-link>
                             </li>
-                            <li v-if="$auth.check(1)">
+                            <!-- <li v-if="$auth.check(1)">
                                 <span @click="subMenu(0)" :class="{ active : isActive == 0 }"><i class="fas fa-users"></i>  求人 <i class="fas fa-angle-right" :class="{ down : isRotate == 0 }"></i></span>
                                 <transition name="slideup">
                                     <ul class="sub_menu" v-show="isSubmenu[0].show">
@@ -117,7 +117,7 @@
                                         </li>
                                     </ul>
                                 </transition>
-                            </li>
+                            </li> -->
                             <!-- <li v-if="$auth.check(1)" @click="toggle">
                                 <router-link :to="{ name: 'jobofferlist' }"><i class="fa fa-map"></i>  求人編集</router-link>
                             </li>
