@@ -34,7 +34,7 @@ class JobApplyController extends Controller
         return $jobapply;
     }
  
-    public function jobapplicantlist($search_id){
+    public function jobapplicantlist($search_id,$page,$type){
         if($search_id == 0)
         {
             if(auth()->user()->role == 2){

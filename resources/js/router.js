@@ -292,7 +292,7 @@ const routes = [
     },    
     {
         name: "applicantlist",
-        path: "/jobapplicantlist/:type/:id",
+        path: "/jobapplicantlist/:type/:page/:id",
         component: Jobapplicantlist,
         meta: {
             auth: true

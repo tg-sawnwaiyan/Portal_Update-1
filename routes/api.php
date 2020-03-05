@@ -405,7 +405,7 @@ Route::group(['prefix' => 'nurse'], function () {
 
 Route::get('cost','ProfilePublishController@getCost');
 Route::get('hospital','ProfilePublishController@hospital');
-Route::get('jobapplicantlist/{type}/{search_id}','JobApplyController@jobapplicantlist');
+Route::get('jobapplicantlist/{type}/{page}/{search_id}','JobApplyController@jobapplicantlist');
 Route::delete('jobApplicantDelete/{id}','JobApplyController@jobApplicantDelete');
 Route::post('jobapplicant/search','JobApplyController@search');
 

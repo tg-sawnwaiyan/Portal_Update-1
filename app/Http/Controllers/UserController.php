@@ -225,10 +225,18 @@ class UserController extends Controller
             $user = User::find(auth('api')->user()->id);
         }    
         if (Hash::check($request['old_pass'], $user['password'])) {
-            $customer->name = $request['name'];
-            $customer->password = Hash::make($request['new_pass']);
-            $user->name = $request['name'];
-            $user->password = Hash::make($request['new_pass']);
+            if ($request['name'] == null){
+                $customer->password = Hash::make($request['new_pass']);
+                $user->password = Hash::make($request['new_pass']);
+               
+            }else{
+                $customer->password = Hash::make($request['new_pass']);
+                $customer->name = $request['name'];
+                $user->password = Hash::make($request['new_pass']);
+                $user->name = $request['name'];
+                $user->password = Hash::make($request['new_pass']);
+            }
+            
             $customer->update();
             $user->save();
         } 
