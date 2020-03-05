@@ -905,7 +905,7 @@ $(document).click(function(e) {
 
 <style scoped>
 .result-span {
-    color: #23a2f5;
+    color: #828282;
 }
 .jobselect {
   display: none;
