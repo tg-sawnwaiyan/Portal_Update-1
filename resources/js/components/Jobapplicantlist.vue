@@ -137,7 +137,9 @@ export default {
             norecord: 0,
             nosearch_msg: false,
             search_id:0,
-            job_title: ''
+            job_title: '',
+            type: null,
+            page: null,
         };
 
     },
@@ -172,13 +174,15 @@ export default {
             if(this.$route.name == 'jobapplicantlist'){
                 this.search_id = 0;
                 this.type = 'admin';
+                this.page = null;  
             }
             else{                        
                 this.type = this.$route.params.type;
                 this.search_id = this.$route.params.id;                        
+                this.page = this.$route.params.page;                        
             }
             this.$loading(true);
-            this.axios.get("/api/jobapplicantlist/"+this.type+"/"+this.search_id).then(response => {
+            this.axios.get("/api/jobapplicantlist/"+this.type+"/"+this.page+"/"+this.search_id).then(response => {
                 this.$loading(false);
                 this.jobapplies = response.data;
                 this.job_title = this.jobapplies.data[0].job_title;

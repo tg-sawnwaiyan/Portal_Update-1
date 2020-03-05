@@ -109,7 +109,7 @@
                                                 
                                                 <p class="">
                                                     <router-link :to="{ path:'/profilejobofferlist/nursing/'+ nursingprofiles.id}" class="btn btn-sm all-btn" style="font-weight:bold;background:#23a2f5;">求人編集</router-link>
-                                                    <router-link :to="{ path:'/jobapplicantlist/profile/'+ nursingprofiles.id}" class="btn btn-sm all-btn" style="font-weight:bold;background:#23a2f5;">求人応募者一覧</router-link>
+                                                    <router-link :to="{ path:'/jobapplicantlist/nursing/profile/'+ nursingprofiles.id}" class="btn btn-sm all-btn" style="font-weight:bold;background:#23a2f5;">求人応募者一覧</router-link>
                                                 </p>
                                             </div>
                                             <div class="card-read-more">
@@ -147,8 +147,8 @@
                                              </div>
                                                 
                                                 <p class="">
-                                                    <router-link :to="{ path:'/profile/hospital/'+ hospitalprofiles.id}" class="btn btn-sm all-btn" style="font-weight:bold;background:#23a2f5;">求人編集</router-link>
-                                                    <router-link :to="{ path:'/profile/hospital/'+ hospitalprofiles.id}" class="btn btn-sm all-btn" style="font-weight:bold;background:#23a2f5;">求人応募者一覧</router-link>
+                                                    <router-link :to="{ path:'/profilejobofferlist/hospital/'+ hospitalprofiles.id}" class="btn btn-sm all-btn" style="font-weight:bold;background:#23a2f5;">求人編集</router-link>
+                                                    <router-link :to="{ path:'/jobapplicantlist/hospital/profile/'+ hospitalprofiles.id}" class="btn btn-sm all-btn" style="font-weight:bold;background:#23a2f5;">求人応募者一覧</router-link>
                                                 </p>
                                             </div>
                                             <div class="card-read-more">
