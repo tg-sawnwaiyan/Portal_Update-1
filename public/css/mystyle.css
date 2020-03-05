@@ -1464,7 +1464,8 @@ border-radius: 3px;
 }
 
 .nursing-map-addicon:before {
-    color: #ff9563!important;
+    /* color: #ff9563!important; */
+    color: #63b7ff!important;
 }
 
 .hospital-map-addicon:before {
@@ -1530,7 +1531,7 @@ box-shadow: 0px 0px 5px rgb(212, 201, 201); */
 }
 
 .map-fa-icon-nursing {
-    background: url(/images/map-responsive-nursing.png) center top no-repeat;
+    background: url(/images/map-responsive-hospital.png) center top no-repeat;
 }
 
 .map-fa-icon-hospital {
@@ -2717,15 +2718,18 @@ ul.sub-ul li {
 .autocomplete__inputs {
     padding: 0 !important;
 }
+
 .autocomplete__box {
     padding-left: 5px !important;
     background: #f5f5f5 !important;
 }
-.autocomplete__inputs input:focus{
+
+.autocomplete__inputs input:focus {
     background: #f5f5f5 !important;
     box-shadow: none !important;
 }
-.autocomplete--clear{
+
+.autocomplete--clear {
     width: 12px !important;
     height: 12px !important;
     position: absolute;
@@ -2733,11 +2737,13 @@ ul.sub-ul li {
     top: 7px;
 }
 
+
 /* .autocomplete__icon {
     height: 14px;
     width: 14px;
     display: none;
 } */
+
 .site_header {
     position: relative;
     margin: 30px 0;
@@ -4059,7 +4065,8 @@ ul.hospital-subject>li:before {
 }
 
 .nursing-search-box .searchTerm {
-    border: 3px solid rgb(255, 149, 99);
+    /* border: 3px solid rgb(255, 149, 99); */
+    border: 3px solid rgb(99, 183, 255);
 }
 
 .hospital-search-box .searchTerm {
@@ -4112,8 +4119,10 @@ ul.hospital-subject>li:before {
 }
 
 .nursing-search-box .searchButton {
-    border: 1px solid rgb(255, 149, 99);
-    background: rgb(255, 149, 99);
+    /* border: 1px solid rgb(255, 149, 99);
+    background: rgb(255, 149, 99); */
+    border: 1px solid rgb(99, 183, 255);
+    background: rgb(99, 183, 255);
 }
 
 .job-search-box .searchButton {
