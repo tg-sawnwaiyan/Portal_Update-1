@@ -89,7 +89,7 @@ class JobApplyController extends Controller
 
             $jobapplicants = DB::select($query);
             $page = Input::get('page', 1);
-            $size = 5;
+            $size = 12;
             $data = collect($jobapplicants);
 
             $jobapplicant = new LengthAwarePaginator(
@@ -342,7 +342,7 @@ class JobApplyController extends Controller
         $jobapplicants = DB::select($query);
        
         $page = Input::get('page', 1);
-        $size = 5;
+        $size = 12;
         $data = collect($jobapplicants);
      
 

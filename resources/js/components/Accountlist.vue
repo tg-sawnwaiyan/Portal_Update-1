@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="card">
+        <div class="">            
             <div v-if="!acc_status" class="card card-default card-wrap">
                 <p class="record-ico">
                     <i class="fa fa-exclamation"></i>
@@ -20,152 +20,153 @@
                 <!-- <router-link :to="{name:'profiledit'}" class="main-bg-color create-btn all-btn" v-if="!norecord_msg">
                     <i class="fas fa-plus-circle"></i> 施設新規作成
                 </router-link> -->
-            </div>
+            </div>  
 
-            <div class="row" v-else>
-                <!-- Create account Area -->
-
-                <div class="col-sm-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="col-md-12 m-t-8">
-                                <div class="form-group" id="newcreate">
-                                    <span v-if="type == 'nursing'" class="btn main-bg-color white all-btn"  @click="ShowHideDiv()">
-
-                                            介護施設新規作成
-                                    </span>
-                                    <span v-else class="btn main-bg-color white all-btn"  @click="ShowHideDiv()">
-
-                                    病院施設新規作成
-                                    </span>
-                                </div>
-                                <div id="nusNew">
-                                    <div class="form-group">
-                                        <label>施設名 </label>
-                                        <input type="text" class="form-control" v-model="nursing_data.name" placeholder="施設名を入力してください。">
-                                        <span v-if="errors.name" class="error">{{errors.name}}</span>
+            <!-- Create account Area --> 
+            <div v-else >
+                <div id="nusNew">
+                    <div class="col-md-12 pad-free">
+                        <div class="card text-dark">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h4 data-v-81a927b4="" class="page-header header">施設作成</h4>
                                     </div>
-                                    <div class="form-group" >
-                                        <label>都道府県</label>
-                                        <select v-model="nursing_data.city_id" class="division form-control custom-select"  @change="getTownship()">
-                                                <option value="0">選択してください。</option>
-                                                <option v-for="cities in city_list" :key="cities.id" v-bind:value="cities.id">
-                                                    {{cities.city_name}}
-                                                </option>
-                                        </select>
-                                        <span v-if="errors.city" class="error">{{errors.city}}</span>
-                                    </div>
-                                    <div class="form-group" >
-                                        <label>市区町村</label>
-                                        <select v-model="nursing_data.town_id" class="division form-control custom-select" @change="changeTownship()"  >
-                                                <option value="0">選択してください。</option>
-                                                <option v-for="tw in town_list" :key="tw.id" v-bind:value="tw.id">
-                                                    {{tw.township_name}}
-                                                </option>
-                                        </select>
-                                        <span v-if="errors.township" class="error">{{errors.township}}</span>
-                                    </div>
-                                    <div class="form-group">
-                                        <span  class="btn btn-danger"  style="margin-left:680px;" @click="CancelNew()">
-                                            キャンセル
-                                        </span>
-                                        <span style="float:right" class="btn main-bg-color white all-btn"  @click="CreateNew()">
-                                            作成
-                                        </span>
-                                    </div>
+                                    <div class="mt-2 pb-5 col-md-12">
+                                        <div class="form-group">
+                                                <label>施設名 </label>
+                                                <input type="text" class="form-control" v-model="nursing_data.name" placeholder="施設名を入力してください。">
+                                                <span v-if="errors.name" class="error">{{errors.name}}</span>
+                                            </div>
+                                            <div class="form-group" >
+                                                <label>都道府県</label>
+                                                <select v-model="nursing_data.city_id" class="division form-control custom-select"  @change="getTownship()">
+                                                        <option value="0">選択してください。</option>
+                                                        <option v-for="cities in city_list" :key="cities.id" v-bind:value="cities.id">
+                                                            {{cities.city_name}}
+                                                        </option>
+                                                </select>
+                                                <span v-if="errors.city" class="error">{{errors.city}}</span>
+                                            </div>
+                                            <div class="form-group" >
+                                                <label>市区町村</label>
+                                                <select v-model="nursing_data.town_id" class="division form-control custom-select" @change="changeTownship()"  >
+                                                        <option value="0">選択してください。</option>
+                                                        <option v-for="tw in town_list" :key="tw.id" v-bind:value="tw.id">
+                                                            {{tw.township_name}}
+                                                        </option>
+                                                </select>
+                                                <span v-if="errors.township" class="error">{{errors.township}}</span>
+                                            </div>
+                                            <div class="form-group">                                                
+                                                <span class="btn main-bg-color white all-btn"  @click="CreateNew()">
+                                                    作成
+                                                </span>
+                                                <span class="btn bt-red all-btn" @click="CancelNew()">
+                                                    キャンセル
+                                                </span>
+                                            </div>
+                                    </div>                                    
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>                    
                 </div>
-
-                <!-- End Create account Area -->
-                <div class="col-md-12">                    
-                    <div class="card  text-dark">                        
-                        <div class="card-body">                            
-                            <div class="row">                                
-                                <div class="col-md-12">
-                                    <h4 class="page-header header">施設一覧</h4>
+                <!-- End Create account Area --> 
+                <div class="col-12 tab-content" id="nusBlock">                        
+                    <div class="p-2 p0-480">                            
+                        <div class="container-fuid">                                
+                            <div class="col-md-12 d-flex header pb-3 admin_header">
+                                <h5>施設一覧</h5>
+                                <div class="ml-auto">
+                                    <a class="" id="newcreate">
+                                        <span v-if="type == 'nursing'" class="btn main-bg-color white all-btn"  @click="ShowHideDiv()">
+                                            <i class="fas fa-plus-circle"></i> 介護施設新規作成
+                                        </span>
+                                        <span v-else class="btn main-bg-color white all-btn"  @click="ShowHideDiv()">
+                                        <i class="fas fa-plus-circle"></i> 病院施設新規作成
+                                        </span>
+                                    </a>
                                 </div>
-                                <!-- nursing -->
-                                <div class="row col-12 m-lr-0  rl" v-if="type == 'nursing'">
-                                    <div class="col-xs-12 col-sm-3 column" v-for="nursingprofiles in nursingprofile" :key="nursingprofiles.id">
-                                        <div class="card_1">
-                                          <img :src="'/upload/nursing_profile/'+ nursingprofiles.logo" alt="aa" @error="imgUrlAlt" />
-                                            <div class="card-content">
-                                             <div class="title-toggle">
-                                                <span class="card-title">
-                                                    {{nursingprofiles.name}}
-                                                </span>
-                                                <span>
-                                                    <input type="checkbox" :id="nursingprofiles.id" class="switch-input" v-if="nursingprofiles.activate == 1" @click="changeActivate(nursingprofiles.id,nursingprofiles.activate)" checked> 
-                                                    <input type="checkbox" :id="nursingprofiles.id" class="switch-input" v-if="nursingprofiles.activate == 0" @click="changeActivate(nursingprofiles.id,nursingprofiles.activate)">
-                                                    <label :for="nursingprofiles.id" class="switch-label">
-                                                        <span v-if="nursingprofiles.activate == 1">On</span>
-                                                        <span v-if="nursingprofiles.activate == 0">Off</span>
-                                                    </label>
-                                                </span>
-                                             </div>
-                                                
-                                                <p class="">
-                                                    <router-link :to="{ path:'/profilejobofferlist/nursing/'+ nursingprofiles.id}" class="btn btn-sm all-btn" style="font-weight:bold;background:#23a2f5;">求人編集</router-link>
-                                                    <router-link :to="{ path:'/jobapplicantlist/nursing/profile/'+ nursingprofiles.id}" class="btn btn-sm all-btn" style="font-weight:bold;background:#23a2f5;">求人応募者一覧</router-link>
-                                                </p>
-                                            </div>
-                                            <div class="card-read-more">
-                                                <router-link :to="{ path:'/profile/nursing/'+ nursingprofiles.id}" class="btn btn-sm edit-borderbtn" style="font-weight:bold; float:left;margin-left:10px">編集</router-link>
-                                                
-                                                <span class="btn btn-sm btn-outline-danger" @click="profileDelete(nursingprofiles.id)" ><i class="fa fa-trash-o" aria-hidden="true"></i> 削除</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-
-
-                           
-                                <!-- nursing -->
-                                <!-- hospital -->
-                                <div class="row col-12 m-lr-0  rl" v-else>
-                                    <div class="col-xs-12 col-sm-3 column" v-for="hospitalprofiles in hospitalprofile" :key="hospitalprofiles.id">
-                                        <div class="card_1">
-                                          <img :src="'/upload/hospital_profile/'+ hospitalprofiles.logo" @error="imgUrlAlt" />
-                                            <div class="card-content">
-                                             <div class="title-toggle">
-                                                <span class="card-title">
-                                                    {{hospitalprofiles.name}}
-                                                </span>
-                                                <span>
-                                                    <input type="checkbox" :id="hospitalprofiles.id" class="switch-input" v-if="hospitalprofiles.activate == 1" @click="changeActivate(hospitalprofiles.id,hospitalprofiles.activate)" checked>
-                                                    <input type="checkbox" :id="hospitalprofiles.id" class="switch-input" v-if="hospitalprofiles.activate == 0" @click="changeActivate(hospitalprofiles.id,hospitalprofiles.activate)">
-                                                    <label :for="hospitalprofiles.id" class="switch-label">
-                                                        <span v-if="hospitalprofiles.activate == 1">On</span>
-                                                        <span v-if="hospitalprofiles.activate == 0">Off</span>
-                                                    </label>
-                                                </span>
-                                             </div>
-                                                
-                                                <p class="">
-                                                    <router-link :to="{ path:'/profilejobofferlist/hospital/'+ hospitalprofiles.id}" class="btn btn-sm all-btn" style="font-weight:bold;background:#23a2f5;">求人編集</router-link>
-                                                    <router-link :to="{ path:'/jobapplicantlist/hospital/profile/'+ hospitalprofiles.id}" class="btn btn-sm all-btn" style="font-weight:bold;background:#23a2f5;">求人応募者一覧</router-link>
-                                                </p>
-                                            </div>
-                                            <div class="card-read-more">
-                                                <router-link :to="{ path:'/profile/hospital/'+ hospitalprofiles.id}" class="btn btn-sm edit-borderbtn" style="font-weight:bold; float:left;margin-left:10px">編集</router-link>
-                                                 
-                                                <span class="btn btn-sm btn-outline-danger" @click="profileDelete(hospitalprofiles.id)" ><i class="fa fa-trash-o" aria-hidden="true"></i> 削除</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <!-- hospital -->
                             </div>
+                            <!-- nursing -->
+                            <div class="row col-12 m-lr-0  rl" v-if="type == 'nursing'">
+                                <div class="col-xs-12 col-sm-3 column" v-for="nursingprofiles in nursingprofile" :key="nursingprofiles.id">
+                                    <div class="card_1">
+                                        <img :src="'/upload/nursing_profile/'+ nursingprofiles.logo" alt="aa" @error="imgUrlAlt" />
+                                        <div class="card-content">
+                                            <div class="title-toggle">
+                                            <span class="card-title">
+                                                {{nursingprofiles.name}}
+                                            </span>
+                                            <span>
+                                                <input type="checkbox" :id="nursingprofiles.id" class="switch-input" v-if="nursingprofiles.activate == 1" @click="changeActivate(nursingprofiles.id,nursingprofiles.activate)" checked>
+                                                <input type="checkbox" :id="nursingprofiles.id" class="switch-input" v-if="nursingprofiles.activate == 0" @click="changeActivate(nursingprofiles.id,nursingprofiles.activate)">
+                                                <label :for="nursingprofiles.id" class="switch-label">
+                                                    <span v-if="nursingprofiles.activate == 1">公開中</span>
+                                                    <span v-if="nursingprofiles.activate == 0">閉まっている</span>
+                                                </label>
+                                            </span>
+                                            </div>
+                                            
+                                            <p class="">
+                                                <router-link :to="{ path:'/profilejobofferlist/nursing/'+ nursingprofiles.id}" style="font-weight:bold;text-decoration:underline;">
+                                                <i class="vsm--icon fa fa-edit fa-fw" style="color: #585858;"></i>求人編集</router-link>&nbsp;&nbsp;
+                                                <router-link :to="{ path:'/jobapplicantlist/nursing/profile/'+ nursingprofiles.id}" style="font-weight:bold;text-decoration:underline;">
+                                                <i class="vsm--icon fa fa-list" style="color: #7d7d7d;"></i>求人応募者一覧</router-link>
+                                            </p>
+                                        </div>
+                                        <div class="card-read-more">
+                                            <router-link :to="{ path:'/profile/nursing/'+ nursingprofiles.id}" class="btn edit-borderbtn" style="float:left;">編集</router-link>
+                                            
+                                            <span class="btn text-danger delete-borderbtn" @click="profileDelete(nursingprofiles.id)" ><i class="fa fa-trash-o" aria-hidden="true"></i>削除</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                           
+                            <!-- nursing -->
+                            <!-- hospital -->
+                            <div class="row col-12 m-lr-0  rl" v-else>
+                                <div class="col-xs-12 col-sm-3 column" v-for="hospitalprofiles in hospitalprofile" :key="hospitalprofiles.id">
+                                    <div class="card_1">
+                                        <img :src="'/upload/hospital_profile/'+ hospitalprofiles.logo" @error="imgUrlAlt" />
+                                        <div class="card-content">
+                                            <div class="title-toggle">
+                                            <span class="card-title">
+                                                {{hospitalprofiles.name}}
+                                            </span>
+                                            <span>
+                                                <input type="checkbox" :id="hospitalprofiles.id" class="switch-input" v-if="hospitalprofiles.activate == 1" @click="changeActivate(hospitalprofiles.id,hospitalprofiles.activate)" checked>
+                                                <input type="checkbox" :id="hospitalprofiles.id" class="switch-input" v-if="hospitalprofiles.activate == 0" @click="changeActivate(hospitalprofiles.id,hospitalprofiles.activate)">
+                                                <label :for="hospitalprofiles.id" class="switch-label">
+                                                    <span v-if="hospitalprofiles.activate == 1">公開中</span>
+                                                    <span v-if="hospitalprofiles.activate == 0">閉まっている</span>
+                                                </label>
+                                            </span>
+                                            </div>
+                                            
+                                            <p class="">
+                                                <router-link :to="{ path:'/profilejobofferlist/hospital/'+ hospitalprofiles.id}" class="" style="font-weight:bold;text-decoration:underline;">
+                                                    <i class="vsm--icon fa fa-edit fa-fw" style="color: #585858;"></i>求人編集</router-link>&nbsp;&nbsp;
+                                                <router-link :to="{ path:'/jobapplicantlist/hospital/profile/'+ hospitalprofiles.id}" class="" style="font-weight:bold;text-decoration:underline;">
+                                                    <i class="vsm--icon fa fa-list fa-fw" style="color: #585858;"></i>求人応募者一覧</router-link>
+                                            </p>
+                                        </div>
+                                        <div class="card-read-more">
+                                            <router-link :to="{ path:'/profile/hospital/'+ hospitalprofiles.id}" class="btn edit-borderbtn" style="float:left;">編集</router-link>
+                                                
+                                            <span class="btn text-danger delete-borderbtn" @click="profileDelete(hospitalprofiles.id)" ><i class="fa fa-trash-o" aria-hidden="true"></i>削除</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- hospital -->
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>               
+            
         </div>
     </div>
 </template>
@@ -213,9 +214,9 @@ export default {
                 });
         },
         ShowHideDiv(){
-
                 document.getElementById('newcreate').style.display = "none";
-                document.getElementById('nusNew').style.display = "block";
+                document.getElementById('nusNew').style.display = "block";   
+                document.getElementById('nusBlock').style.display = "none";             
                 
         },
         CreateNew(){
@@ -261,6 +262,7 @@ export default {
 
                     document.getElementById('newcreate').style.display = "block";
                     document.getElementById('nusNew').style.display = "none";
+                    document.getElementById('nusBlock').style.display = "block";
                     this.nursing_data.name = '';
                     this.nursing_data.town_id = 0;
                     this.nursing_data.city_id = 0;
@@ -270,6 +272,7 @@ export default {
         CancelNew(){
                 document.getElementById('newcreate').style.display = "block";
                 document.getElementById('nusNew').style.display = "none";
+                document.getElementById('nusBlock').style.display = "block";
                 this.nursing_data.city_id = 0;
                 this.nursing_data.town_id = 0;
                 this.errors.city = '';
@@ -361,7 +364,7 @@ export default {
                             this.getAccountList();
                     });
                 this.$swal({
-                    text: "Successfully Changed!",
+                    text: "正常に変更されました!",
                     type: "success",
                     width: 350,
                     height: 200,
@@ -437,10 +440,6 @@ img{
   object-fit:cover; 
   transition: all .25s ease;
 } 
-
-.all-btn{
-    min-width: 60px;
-}
 .rl{
     padding:0px;
 }
@@ -542,7 +541,8 @@ h1.heading {
     transition: box-shadow .25s; 
 }
 .card_1:hover {
-  box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  /* box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19); */
+  opacity: 0.9;
 }
 .img-card {
   width: 100%;
@@ -576,7 +576,7 @@ h1.heading {
 }
 .card-read-more {
   border-top: 1px solid #D4D4D4;
-  padding:10px 10px 10px 0px;
+  padding:10px 10px;
   text-align:right;
 }
 .card-read-more a {

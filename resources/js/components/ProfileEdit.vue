@@ -53,10 +53,7 @@
                                                 <h5 class=" clearfix">パスワード設定</h5>
                                             </div>
                                             <div class="form-group">
-                                                <label class="old-pass">名称</label>
-                                                <input type="text" name="name" v-model="customer_info.name"  class="form-control old-password">
-
-                                                <br>
+                                                
                                                 <label class="old-pass">現在のパスワード</label>
                                                 <input type="password" name="old_password" v-model="old_password" placeholder="現在のパスワードを入力してください。" class="form-control old-password">
                                                 <div class="error" id="oldpassword" style="display: none;">現在のパスワードが必要です。</div>
@@ -88,7 +85,11 @@
                                     <div class="row">
                                         <div class="col-md-12 m-t-8">
                                             <div class="header2">
-                                                <h5 class=" clearfix">メール設定</h5>
+                                                <h5 class=" clearfix">メールと名称設定</h5>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="old-pass">名称</label>
+                                                <input type="text" name="name" v-model="customer_info.name"  class="form-control old-password">
                                             </div>
                                             <div class="form-group">
                                                 <label class="email-address">メールアドレス</label>
@@ -104,7 +105,7 @@
                                 </div>
                             </div>
 
-                            <div class="card card-default m-b-20 col-md-11" >
+                            <!-- <div class="card card-default m-b-20 col-md-11" >
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-12 m-t-8">
@@ -156,13 +157,14 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
+
                             <div class="card card-default m-b-20 col-md-11">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-12 m-t-8">
                                             <div class="header2">
-                                                <h5 class=" clearfix" v-if="accout_status == '解除'">事業者登録を{{accout_status}}します。</h5>
+                                                <h5 class=" clearfix" v-if="customer_info.recordstatus ==1">事業者登録を{{accout_status}}します。</h5>
                                                 <h5 class=" clearfix" v-else>事業者登録を{{accout_status}}。</h5>
                                             </div>
                                             <div class="form-group">
@@ -391,8 +393,7 @@
                             return;
                         }
                         if ("'" + this.password + "'" === "'" + this.password_confirmation + "'") {
-                            let arr = new FormData();
-                            arr.append('name', this.customer_info.name)
+                            let arr = new FormData();                            
                             arr.append('old_pass', this.old_password)
                             arr.append('new_pass', this.password)
                             arr.append('cus_id', this.cusid)
@@ -425,11 +426,7 @@
                                         this.name = null;
                                         this.password = null;
                                         this.password_confirmation = null;
-                                        this.old_password = null;
-
-                                        setTimeout(function(){
-                                            location.reload();
-                                        },2000)
+                                        this.old_password = null;                                       
                                        
                                     }
                                     // alert('Password is Successfully Changed!');
@@ -462,6 +459,7 @@
                         var email = $('.email').val();
 
                         let arr = new FormData();
+                        arr.append('name', this.customer_info.name)
                         arr.append('email', email)
                         arr.append('cus_id', this.cusid)
 
@@ -483,6 +481,7 @@
                             this.axios
                                 .post(`/api/user/email-change`, arr)
                                 .then(response => {
+                                    this.customer_info = response.data;
                                     this.name = ''
                                     this.$swal({
                                             position: 'top-end',
@@ -493,6 +492,9 @@
                                             width: 250,
                                             height: 200,
                                         })
+                                        // setTimeout(function(){
+                                        //     location.reload();
+                                        // },2000)
                                         // alert('Email is Successfully Changed!');
                                 }).catch(error => {
 
@@ -525,7 +527,6 @@
                         let fd = new FormData();
                             fd.append('status', status)
                             fd.append('cus_id',this.cusid)
-                            // console.log('fd',cusid)
                         this.$swal({
                                 title: "確認",
                                 text: confirm_text,
@@ -544,7 +545,7 @@
                                 this.axios
                                     .post('api/customer/account_update', fd)
                                     .then((response) => {
-                                        console.log(response);
+                                        console.log("update",response);
                                         this.customer_info = response.data;
                                         this.$swal({
                                                 position: 'top-end',

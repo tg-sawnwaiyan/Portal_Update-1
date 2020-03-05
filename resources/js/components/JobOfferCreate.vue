@@ -20,12 +20,7 @@
                             </div>
                             <div v-else>
                             <label>事業者名</label>
-                            <autocomplete 
-                            placeholder="事業者名を検索" 
-                            input-class="form-control" 
-                            :source=customerList 
-                            :results-display="formattedDisplay"
-                            @selected="getSelected($event)">
+                            <autocomplete placeholder="事業者名を検索" input-class="form-control" :source=customerList :results-display="formattedDisplay" @selected="getSelected($event)">
                             </autocomplete>
                             <br>
                             <label>施設名</label>
