@@ -53,8 +53,8 @@
                                                 <h5 class=" clearfix">パスワード設定</h5>
                                             </div>
                                             <div class="form-group">
-                                                <label class="old-pass">name</label>
-                                                <input type="text" name="name" v-model="name" placeholder="please enter name" class="form-control old-password">
+                                                <label class="old-pass">名称</label>
+                                                <input type="text" name="name" v-model="customer_info.name"  class="form-control old-password">
 
                                                 <br>
                                                 <label class="old-pass">現在のパスワード</label>
@@ -373,7 +373,7 @@
 
                     },
                     passwordChange() {
-                        
+                       
                         if (this.old_password == '') {
                             $('#oldpassword').css('display', 'block');
                             return;
@@ -392,7 +392,7 @@
                         }
                         if ("'" + this.password + "'" === "'" + this.password_confirmation + "'") {
                             let arr = new FormData();
-                            arr.append('name', this.name)
+                            arr.append('name', this.customer_info.name)
                             arr.append('old_pass', this.old_password)
                             arr.append('new_pass', this.password)
                             arr.append('cus_id', this.cusid)
