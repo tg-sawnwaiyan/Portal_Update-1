@@ -225,19 +225,10 @@ class UserController extends Controller
             $user = User::find(auth('api')->user()->id);
         }    
         if (Hash::check($request['old_pass'], $user['password'])) {
-            if ($request['name'] == null){
-                $customer->password = Hash::make($request['new_pass']);
-                $user->password = Hash::make($request['new_pass']);
-               
-            }else{
-                $customer->password = Hash::make($request['new_pass']);
-                $customer->name = $request['name'];
-                $user->password = Hash::make($request['new_pass']);
-                $user->name = $request['name'];
-                $user->password = Hash::make($request['new_pass']);
-            }
+            $customer->password = Hash::make($request['new_pass']);
+            $user->password = Hash::make($request['new_pass']);
             
-            $customer->update();
+            $customer->save();
             $user->save();
         } 
         else {
@@ -248,20 +239,23 @@ class UserController extends Controller
     public function changeEmail(Request $request) {
         $request = $request->all();
         $cusId = $request['cus_id'];
-        if(auth()->user()->role == 2) {
-            $customer = Customer::find($cusId);
+        $customer = Customer::find($cusId);
+        if(auth()->user()->role == 2) {            
             $user = User::find($customer['user_id']);
         }else{
             $user = User::find(auth('api')->user()->id);
         } 
-        // $user = User::find(auth('api')->user()->id);
+        if ($request['name'] != null && $request['name'] != ''){
+            $user->name = $request['name'];
+            $customer->name = $request['name'];
+        }
+
         $user->email = $request['email'];
         $user->save();
-
-        $customer = Customer::find($user['customer_id']);
-        $customer->email = $request['email'];
+        
+        $customer->email = $request['email'];        
         $customer->save();
-      
+      return $customer;
     }
     public function getAdminList(Request $request) {
         $admin_list = User::where('role',2)->get();
