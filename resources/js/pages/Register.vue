@@ -287,6 +287,7 @@
             
   
       register() {
+        
           if(this.type == '')
           {
              this.errors.type = "事業者タイプを選択してください。";
@@ -343,7 +344,8 @@
 
         if(this.errors.email == '' && this.errors.username == '' && this.errors.password == '' && this.errors.type == '' && this.ph_num == false && this.ph_length == false)
         {
-             var app = this
+            
+            var app = this
             let fData = new FormData();
                         //fData.append('img', app.images)
                         fData.append('name', app.username)
@@ -354,49 +356,76 @@
                         //fData.append('township', app.township)
                         fData.append('types', app.type)
                         fData.append('phone', app.phone)
-            this.$loading(true);
-            this.axios.post('/api/register', fData).then(response =>{
+           
+            this.$swal({
+                title: 'Are you sure want to create account?',
+                text: 'You can\'t revert your action',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, Create it!',
+                cancelButtonText: 'Cancel!',
+                showCloseButton: true,
+                showLoaderOnConfirm: true
+                }).then((result) => {
+                if(result) {
+                    this.$loading(true);
+                    this.axios.post('/api/register', fData).then(response => {
                     this.$loading(false);
-                    this.$swal({
-                        position: 'top-end',
-                        type: 'success',
-                        title: 'メールを送付しました。',
-                        text: '確認のためしばらくお待ちください。',
-                        width: 350,
-                        height: 200,
-                        confirmButtonColor: "#6cb2eb",
-                        confirmButtonText: "閉じる",
-                        confirmButtonClass: "all-btn",
+                        this.$swal({
+                            position: 'top-end',
+                            type: 'success',
+                            title: 'メールを送付しました。',
+                            text: '確認のためしばらくお待ちください。',
+                            width: 350,
+                            height: 200,
+                            confirmButtonColor: "#6cb2eb",
+                            confirmButtonText: "閉じる",
+                            confirmButtonClass: "all-btn",
+                        })
+                        this.$router.push({
+                            name: 'News'
+                        });
+                    }).catch(error => {
+                        this.$loading(false);
+                        if(error.response.status == 422){
+                        
+                        this.errors = error.response.data.errors;
+                    
+                        if(this.errors.email)
+                        {
+                            this.errors.email = "このメールアドレスは既に存在します。";
+                        }
+                        else{
+                            this.errors.email = "";
+
+                        }
+                        if(this.errors.password)
+                        {
+                            this.errors.password = "パスワードは6桁以上必要です。"
+                        }
+                        else{
+                            this.errors.password = "";
+                        }
+                        // app.errors = error.response.data.message
+                        // this.$swal({
+                        // icon: 'error',
+                        // type: 'error',
+                        // title: 'Oops...',
+                        // text: 'This Email is already exist!',
+                        // })
+                    }
+                    
                     })
-                this.$router.push({
-                    name: 'News'
-                });
-          }).catch(error=>{
-            if(error.response.status == 422){
-             this.$loading(false);
-             this.errors = error.response.data.errors;
-               
-                if(this.errors.email)
-                {
-                    this.errors.email = "このメールアドレスは既に存在します。";
-                }
-                else{
-                    this.errors.email = "";
+                    
+                } 
+                })
+                // .catch(error =>{
 
+                //         this.$swal('Cancelled', 'Your file is still intact', 'info')
+                //     });
                 }
-                if(this.errors.password)
-                {
-                    this.errors.password = "パスワードは6桁以上必要です。"
-                }
-                else{
-                    this.errors.password = "";
-                }
-
-
-                // app.errors = error.response.data.message
-
-            }});
-        }
+             
+            
        
 
 
