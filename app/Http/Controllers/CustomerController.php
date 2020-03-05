@@ -37,13 +37,23 @@ class CustomerController extends Controller
         return response()->json(array("hoscustomer"=>$hoscustomer,"status"=>$status));
     }
 
-    public function changeActivateNus($id)
+    public function changeActivate($id,$type)
     {
-        $changeActivate =  NursingProfile::find($id);
-        if($changeActivate->activate == 0 ) {
+       
+        if($type == "nursing")
+        {
+            $changeActivate =  NursingProfile::find($id);
+        }
+        else{
+            $changeActivate =  HospitalProfile::find($id);
+        }
+        
+       if($changeActivate->activate == 0 ) {
+
             $changeActivate->activate =1;
        }
        else {
+
             $changeActivate->activate =0;
        }
 
@@ -51,31 +61,20 @@ class CustomerController extends Controller
        $data = array("changeActivate"=> $changeActivate, "success");
        return response()->json($data);
     }
-    public function changeActivateHos($id)
+
+
+
+    public function profileDelete($id,$type)
     {
-        $changeActivate =  HospitalProfile::find($id);
-        if($changeActivate->activate == 0 ) {
-            $changeActivate->activate =1;
-       }
-       else {
-            $changeActivate->activate =0;
-       }
-
-       $changeActivate->save();
-       $data = array("changeActivate"=> $changeActivate, "success");
-       return response()->json($data);
-    }
-
-    public function profileDeleteNus($id)
-    {   
-        $profileDelete =  NursingProfile::find($id);
-        $profileDelete->delete();
-        return response()->json('successfully Delete!');
-    }
-
-    public function profileDeleteHos($id)
-    {
-        $profileDelete =  HospitalProfile::find($id);
+        if($type == "nursing")
+        {
+            $profileDelete =  NursingProfile::find($id);
+        }
+        else
+        {
+            $profileDelete =  HospitalProfile::find($id);
+        }
+       
         $profileDelete->delete();
         return response()->json('successfully Delete!');
     }
