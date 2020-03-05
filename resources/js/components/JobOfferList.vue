@@ -35,7 +35,7 @@
                         <h5>求人一覧 <span v-if="type != 'admin'">({{jobs.data[0].profile_name}})</span></h5>
                         <div class="ml-auto" v-if="!norecord_msg">
                             <router-link to="/joboffercreate" class="main-bg-color create-btn all-btn">
-                                <i class="fas fa-plus-circle"></i> <span class="first_txt"> 求人</span><span>新規作成</span>
+                                <i class="fas fa-plus-circle"></i> <span class="first_txt"> 求人</span><span class="dinone">新規作成</span>
                             </router-link>
                         </div>
                     </div>
