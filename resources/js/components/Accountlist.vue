@@ -7,9 +7,9 @@
                 </p>
                 <p>OOPS!!</p>
 
-                <p v-if="!norecord_msg">Account is Deactivate!</p>
+                <p v-if="!norecord_msg">アカウントが無効になりました!</p>
                 <router-link :to="{name:'profiledit'}" class="main-bg-color create-btn all-btn" v-if="!norecord_msg">
-                     Go To Activate
+                    アクティベートへ
                 </router-link>
 
                 <p class="record-txt01" v-if="norecord_msg">表示する施設ありません</p>
@@ -98,8 +98,8 @@
                                                     {{nursingprofiles.name}}
                                                 </span>
                                                 <span>
-                                                    <input type="checkbox" :id="nursingprofiles.id" class="switch-input" v-if="nursingprofiles.activate == 1" @click="changeActivate(nursingprofiles.id)" checked>
-                                                    <input type="checkbox" :id="nursingprofiles.id" class="switch-input" v-if="nursingprofiles.activate == 0" @click="changeActivate(nursingprofiles.id)">
+                                                    <input type="checkbox" :id="nursingprofiles.id" class="switch-input" v-if="nursingprofiles.activate == 1" @click="changeActivate(nursingprofiles.id,nursingprofiles.activate)" checked> 
+                                                    <input type="checkbox" :id="nursingprofiles.id" class="switch-input" v-if="nursingprofiles.activate == 0" @click="changeActivate(nursingprofiles.id,nursingprofiles.activate)">
                                                     <label :for="nursingprofiles.id" class="switch-label">
                                                         <span v-if="nursingprofiles.activate == 1">On</span>
                                                         <span v-if="nursingprofiles.activate == 0">Off</span>
@@ -108,14 +108,14 @@
                                              </div>
                                                 
                                                 <p class="">
-                                                    <router-link :to="{ path:'/profilejobofferlist/nursing/'+ nursingprofiles.id}" class="main-bg-color btn btn-sm all-btn" style="font-weight:bold;">求人編集</router-link>
-                                                    <router-link :to="{ path:'/profile/nursing/'+ nursingprofiles.id}" class="main-bg-color btn btn-sm all-btn" style="font-weight:bold;">求人応募者一覧</router-link>
+                                                    <router-link :to="{ path:'/profilejobofferlist/nursing/'+ nursingprofiles.id}" class="btn btn-sm all-btn" style="font-weight:bold;background:#23a2f5;">求人編集</router-link>
+                                                    <router-link :to="{ path:'/jobapplicantlist/nursing/profile/'+ nursingprofiles.id}" class="btn btn-sm all-btn" style="font-weight:bold;background:#23a2f5;">求人応募者一覧</router-link>
                                                 </p>
                                             </div>
                                             <div class="card-read-more">
                                                 <router-link :to="{ path:'/profile/nursing/'+ nursingprofiles.id}" class="btn btn-sm edit-borderbtn" style="font-weight:bold; float:left;margin-left:10px">編集</router-link>
                                                 
-                                                <span class="btn btn-sm btn-outline-danger" @click="profileDelete(nursingprofiles.id)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</span>
+                                                <span class="btn btn-sm btn-outline-danger" @click="profileDelete(nursingprofiles.id)" ><i class="fa fa-trash-o" aria-hidden="true"></i> 削除</span>
                                             </div>
                                         </div>
                                     </div>
@@ -137,8 +137,8 @@
                                                     {{hospitalprofiles.name}}
                                                 </span>
                                                 <span>
-                                                    <input type="checkbox" :id="hospitalprofiles.id" class="switch-input" v-if="hospitalprofiles.activate == 1" @click="changeActivate(hospitalprofiles.id)" checked>
-                                                    <input type="checkbox" :id="hospitalprofiles.id" class="switch-input" v-if="hospitalprofiles.activate == 0" @click="changeActivate(hospitalprofiles.id)">
+                                                    <input type="checkbox" :id="hospitalprofiles.id" class="switch-input" v-if="hospitalprofiles.activate == 1" @click="changeActivate(hospitalprofiles.id,hospitalprofiles.activate)" checked>
+                                                    <input type="checkbox" :id="hospitalprofiles.id" class="switch-input" v-if="hospitalprofiles.activate == 0" @click="changeActivate(hospitalprofiles.id,hospitalprofiles.activate)">
                                                     <label :for="hospitalprofiles.id" class="switch-label">
                                                         <span v-if="hospitalprofiles.activate == 1">On</span>
                                                         <span v-if="hospitalprofiles.activate == 0">Off</span>
@@ -147,14 +147,14 @@
                                              </div>
                                                 
                                                 <p class="">
-                                                    <router-link :to="{ path:'/profile/hospital/'+ hospitalprofiles.id}" class="main-bg-color btn btn-sm all-btn" style="font-weight:bold;">求人編集</router-link>
-                                                    <router-link :to="{ path:'/profile/hospital/'+ hospitalprofiles.id}" class="main-bg-color btn btn-sm all-btn" style="font-weight:bold;">求人応募者一覧</router-link>
+                                                    <router-link :to="{ path:'/profilejobofferlist/hospital/'+ hospitalprofiles.id}" class="btn btn-sm all-btn" style="font-weight:bold;background:#23a2f5;">求人編集</router-link>
+                                                    <router-link :to="{ path:'/jobapplicantlist/hospital/profile/'+ hospitalprofiles.id}" class="btn btn-sm all-btn" style="font-weight:bold;background:#23a2f5;">求人応募者一覧</router-link>
                                                 </p>
                                             </div>
                                             <div class="card-read-more">
                                                 <router-link :to="{ path:'/profile/hospital/'+ hospitalprofiles.id}" class="btn btn-sm edit-borderbtn" style="font-weight:bold; float:left;margin-left:10px">編集</router-link>
                                                  
-                                                <span class="btn btn-sm btn-outline-danger" @click="profileDelete(hospitalprofiles.id)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</span>
+                                                <span class="btn btn-sm btn-outline-danger" @click="profileDelete(hospitalprofiles.id)" ><i class="fa fa-trash-o" aria-hidden="true"></i> 削除</span>
                                             </div>
                                         </div>
                                     </div>
@@ -191,6 +191,7 @@ export default {
                 city_id:'',
                 town_id:'',  
             },
+            activate_text:'',
        }
     },
     created(){
@@ -238,25 +239,25 @@ export default {
     
             }
             else{
-                    this.errors.township = "市区町村は必須です";
+                this.errors.township = "市区町村は必須です";
             }
             if(this.errors.city == ""  &&  this.errors.township == "" && this.errors.name == "")
                 {
                 this.axios.post(`/api/nursing/movelatlng/${this.cusid}`, this.nursing_data)
-                                .then((response) => {
-                                    this.$swal({
-                                    // title: "確認",
-                                    text: "施設を作成しました。",
-                                    type: "success",
-                                    width: 350,
-                                    height: 200,
-                                    confirmButtonColor: "#6cb2eb",                       
-                                    confirmButtonText: "閉じる",
-                                    confirmButtonClass: "all-btn",
-                                
-                        }).then(response => { 
-                            this.getAccountList();
-                        });
+                    .then((response) => {
+                        this.$swal({
+                        // title: "確認",
+                        text: "施設を作成しました。",
+                        type: "success",
+                        width: 350,
+                        height: 200,
+                        confirmButtonColor: "#6cb2eb",                       
+                        confirmButtonText: "閉じる",
+                        confirmButtonClass: "all-btn",
+                            
+                    }).then(response => { 
+                        this.getAccountList();
+                    });
 
                     document.getElementById('newcreate').style.display = "block";
                     document.getElementById('nusNew').style.display = "none";
@@ -289,7 +290,7 @@ export default {
          
             this.cusid = this.$route.params.id;
             this.type = this.$route.params.type;
-        // this.type = this.$auth.user().type_id == 2?'hospital':'nursing';
+           // this.type = this.$auth.user().type_id == 2?'hospital':'nursing';
             if(this.type == "nursing") {
                 this.axios.get(`/api/account_nursing/${this.cusid}`).then(response => {
                     console.log("res",response.data)
@@ -329,141 +330,109 @@ export default {
             });
             }
         },
-        changeActivate(id, $event){
-            console.log("id",id);
-            this.type = this.$route.params.type;
-            if(this.type == "nursing") {
-                console.log("if",id);
-                this.$swal({
-                            title: "---",
-                            text: "---",
-                            type: "warning",
-                            width: 350,
-                            height: 200,
-                            showCancelButton: true,
-                            confirmButtonColor: "#dc3545",
-                            cancelButtonColor: "#b1abab",
-                            cancelButtonTextColor: "#000",
-                            confirmButtonText: "はい",
-                            cancelButtonText: "キャンセル",
-                            confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
-                        }).then(response => {
-                            this.axios.get(`/api/changeActivateNus/${id}`)
-                                    .then(response => {
-                                        this.getAccountList();
-                                });
-                            this.$swal({
-                                text: "-----",
-                                type: "success",
-                                width: 350,
-                                height: 200,
-                                confirmButtonText: "閉じる",
-                                confirmButtonColor: "#dc3545"
-                            });
-                        });
-                
-            }else{
-
-                this.$swal({
-                            title: "----",
-                            text: "-----",
-                            type: "warning",
-                            width: 350,
-                            height: 200,
-                            showCancelButton: true,
-                            confirmButtonColor: "#dc3545",
-                            cancelButtonColor: "#b1abab",
-                            cancelButtonTextColor: "#000",
-                            confirmButtonText: "はい",
-                            cancelButtonText: "キャンセル",
-                            confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
-                        }).then(response => {
-                            this.axios.get(`/api/changeActivateHos/${id}`)
-                                    .then(response => {
-                                        this.getAccountList();
-                                });
-                            this.$swal({
-                                text: "-----",
-                                type: "success",
-                                width: 350,
-                                height: 200,
-                                confirmButtonText: "閉じる",
-                                confirmButtonColor: "#dc3545"
-                            });
-                        }).catch(error => {
-                            
-                            this.getAccountList();
-                           
-                          
-                        });
-                
+        changeActivate(id,activate, $event){
+            if(activate == 1)
+            {
+               this.activate_text = "施設を投稿しなくてよろしいでしょうか。";
             }
-            
+            else{
+                this.activate_text = "施設を投稿してよろしいでしょうか。";
+            }
+          
+            this.type = this.$route.params.type;
+        
+            this.$swal({
+                title: "確認",
+                text: this.activate_text,
+                type: "warning",
+                width: 350,
+                height: 200,
+                showCancelButton: true,
+                confirmButtonColor: "#dc3545",
+                cancelButtonColor: "#b1abab",
+                cancelButtonTextColor: "#000",
+                confirmButtonText: "はい",
+                cancelButtonText: "キャンセル",
+                confirmButtonClass: "all-btn",
+                cancelButtonClass: "all-btn"
+            }).then(response => {
+                this.axios.get(`/api/changeActivate/${id}/`+this.type)
+                        .then(response => {
+                            this.getAccountList();
+                    });
+                this.$swal({
+                    text: "Successfully Changed!",
+                    type: "success",
+                    width: 350,
+                    height: 200,
+                    confirmButtonText: "閉じる",
+                    confirmButtonColor: "#dc3545"
+                });
+            });
+
         },
         profileDelete(id){
             this.type = this.$route.params.type;
             if(this.type == "nursing") {
 
                 this.$swal({
-                            title: "------",
-                            text: "------",
-                            type: "warning",
-                            width: 350,
-                            height: 200,
-                            showCancelButton: true,
-                            confirmButtonColor: "#dc3545",
-                            cancelButtonColor: "#b1abab",
-                            cancelButtonTextColor: "#000",
-                            confirmButtonText: "はい",
-                            cancelButtonText: "キャンセル",
-                            confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
-                        }).then(response => {
-                            this.axios.delete(`/api/profileDeleteNus/${id}`)
-                                    .then(response => {
-                                        this.getAccountList();
-                        });
-                            this.$swal({
-                                    text: "-----",
-                                    type: "success",
-                                    width: 350,
-                                    height: 200,
-                                    confirmButtonText: "閉じる",
-                                    confirmButtonColor: "#dc3545"
-                                });
-                        });
+                    title: "確認",
+                    text: "施設を削除してよろしいでしょうか。",
+                    type: "warning",
+                    width: 350,
+                    height: 200,
+                    showCancelButton: true,
+                    confirmButtonColor: "#dc3545",
+                    cancelButtonColor: "#b1abab",
+                    cancelButtonTextColor: "#000",
+                    confirmButtonText: "はい",
+                    cancelButtonText: "キャンセル",
+                    confirmButtonClass: "all-btn",
+                    cancelButtonClass: "all-btn"
+                }).then(response => {
+                    this.axios.delete(`/api/profileDeleteNus/${id}`)
+                    .then(response => {
+                        this.getAccountList();
+                    });
+                    this.$swal({
+                        text: "施設を削除しました。",
+                        type: "success",
+                        width: 350,
+                        height: 200,
+                        confirmButtonText: "閉じる",
+                        confirmButtonColor: "#dc3545"
+                    });
+                });
                
             }else{
                 this.$swal({
-                            title: "----",
-                            text: "----",
-                            type: "warning",
-                            width: 350,
-                            height: 200,
-                            showCancelButton: true,
-                            confirmButtonColor: "#dc3545",
-                            cancelButtonColor: "#b1abab",
-                            cancelButtonTextColor: "#000",
-                            confirmButtonText: "はい",
-                            cancelButtonText: "キャンセル",
-                            confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
-                        }).then(response => {
-                            this.axios.delete(`/api/profileDeleteHos/${id}`)
-                                      .then(response => {
-                                        this.getAccountList();
-                                });
-                            this.$swal({
-                                text: "-----",
-                                type: "success",
-                                width: 350,
-                                height: 200,
-                                confirmButtonText: "閉じる",
-                                confirmButtonColor: "#dc3545"
-                            });
+                    title: "確認",
+                    text: "施設を削除してよろしいでしょうか。",
+                    type: "warning",
+                    width: 350,
+                    height: 200,
+                    showCancelButton: true,
+                    confirmButtonColor: "#dc3545",
+                    cancelButtonColor: "#b1abab",
+                    cancelButtonTextColor: "#000",
+                    confirmButtonText: "はい",
+                    cancelButtonText: "キャンセル",
+                    confirmButtonClass: "all-btn",
+                    cancelButtonClass: "all-btn"
+                }).then(response => {
+                    this.axios.delete(`/api/profileDeleteHos/${id}`)
+                                .then(response => {
+                                this.getAccountList();
                         });
+                    this.$swal({
+                        text: "施設を削除しました。",
+                        type: "success",
+                        width: 350,
+                        height: 200,
+                        confirmButtonText: "閉じる",
+                        confirmButtonColor: "#dc3545"
+                    });
+                });
                 
             }
         }

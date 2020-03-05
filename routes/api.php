@@ -150,7 +150,7 @@ Route::group(['middleware' => ['auth:api']], function() {
         Route::get('edit/{id}', 'JobController@edit');
         Route::get('occupationlist', 'JobController@getOccupationList');
         Route::post('update/{id}', 'JobController@update');
-        Route::delete('delete/{id}', 'JobController@destroy');
+        Route::delete('delete/{id}/{type}/{pro_id}', 'JobController@destroy');
         Route::post('search', 'JobController@search');
         Route::get('customerList', 'JobController@getCustomerList');
         Route::post('profileList/{cId}', 'JobController@getProfileList');
@@ -317,8 +317,8 @@ Route::get('staffinfo/{id}', 'ProfilePublishController@getStaffbyCustomerId');
 Route::post('hospital/galleryupdate/{id}', 'HospitalProfileController@galleryupdate');
 Route::get('account_nursing/{id}','CustomerController@nusaccount');
 Route::get('account_hospital/{id}','CustomerController@hosaccount');
-Route::get('changeActivateNus/{id}','CustomerController@changeActivateNus');
-Route::get('changeActivateHos/{id}','CustomerController@changeActivateHos');
+Route::get('changeActivate/{id}/{type}','CustomerController@changeActivate');
+// Route::get('changeActivateHos/{id}','CustomerController@changeActivateHos');
 Route::delete('profileDeleteNus/{id}','CustomerController@profileDeleteNus');
 Route::delete('profileDeleteHos/{id}','CustomerController@profileDeleteHos');
 
@@ -405,7 +405,7 @@ Route::group(['prefix' => 'nurse'], function () {
 
 Route::get('cost','ProfilePublishController@getCost');
 Route::get('hospital','ProfilePublishController@hospital');
-Route::get('jobapplicantlist/{jobs_id}','JobApplyController@jobapplicantlist');
+Route::get('jobapplicantlist/{type}/{page}/{search_id}','JobApplyController@jobapplicantlist');
 Route::delete('jobApplicantDelete/{id}','JobApplyController@jobApplicantDelete');
 Route::post('jobapplicant/search','JobApplyController@search');
 

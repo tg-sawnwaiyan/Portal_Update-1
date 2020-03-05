@@ -12,9 +12,11 @@ use Illuminate\Support\Facades\Input;
 class JobController extends Controller
 {
 
-    public function index()
+    public function index($type,$pro_id)
     {
-        if( auth()->user()->role == 2){
+        
+       
+        if( $type == "admin"){
 
             $query = "SELECT  jobs.*,customers.type_id,customers.name,(CASE customers.type_id WHEN '2' THEN CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) END) as jobid 
                            FROM  jobs join customers  on jobs.customer_id = customers.id 
@@ -46,32 +48,47 @@ class JobController extends Controller
 
           
         }else{
-                $query = "SELECT  jobs.*,customers.type_id,customers.name,(CASE customers.type_id WHEN '2' THEN CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) END) as jobid 
-                            FROM  jobs join customers  on jobs.customer_id = customers.id 
-                            left join job_applies on jobs.id = job_applies.job_id
-                            left join hospital_profiles on hospital_profiles.id = jobs.profile_id
-                            left join nursing_profiles on nursing_profiles.id = jobs.profile_id
-                            where customers.recordstatus = 1 
-                            and jobs.customer_id = ".auth()->user()->customer_id." and (CASE  customers.type_id WHEN '2' THEN hospital_profiles.activate = 1 ELSE nursing_profiles.activate =1 END) 
-                            group by jobs.id order by jobs.id desc ";
+            if($pro_id != null)
+            {
+                if($type == "nursing")
+                {
+                    $query = "SELECT  jobs.*,customers.type_id,customers.name,CONCAT((200000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0'))  as jobid 
+                                FROM  jobs join customers  on jobs.customer_id = customers.id 
+                                left join job_applies on jobs.id = job_applies.job_id
+                                left join nursing_profiles on nursing_profiles.id = jobs.profile_id
+                                where customers.recordstatus = 1 
+                                and nursing_profiles.id = ".$pro_id." and nursing_profiles.activate = 1
+                                group by jobs.id order by jobs.id desc ";
+                }
+                else{
+
+                    $query = "SELECT  jobs.*,customers.type_id,customers.name,CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0'))  as jobid 
+                                FROM  jobs join customers  on jobs.customer_id = customers.id 
+                                left join job_applies on jobs.id = job_applies.job_id
+                                left join hospital_profiles on hospital_profiles.id = jobs.profile_id
+                                where customers.recordstatus = 1 
+                                and hospital_profiles.id = ".$pro_id." and hospital_profiles.activate =1
+                                group by jobs.id order by jobs.id desc ";
+                }
+                
 
                 $projob = DB::select($query);
 
 
-            foreach($projob as $jobs){
-                $job_id = $jobs->id;
-                $jobapplies =  DB::table('job_applies')->join('jobs','job_applies.job_id','=','jobs.id')
-                            ->where('job_applies.job_id','=',$job_id)->count();
-                $jobs->count = $jobapplies;
+                foreach($projob as $jobs){
+                    $job_id = $jobs->id;
+                    $jobapplies =  DB::table('job_applies')->join('jobs','job_applies.job_id','=','jobs.id')
+                                ->where('job_applies.job_id','=',$job_id)->count();
+                    $jobs->count = $jobapplies;
+                }
             }
-
         
         }
 
         $page = Input::get('page', 1);
-        $size = 12;
+        $size = 1;
         $data = collect($projob);
-
+ 
         $profilejob = new LengthAwarePaginator(
                                 $data->forPage($page, $size),
                                 $data->count(), 
@@ -426,11 +443,11 @@ class JobController extends Controller
     }
 
 
-    public function destroy($id)
+    public function destroy($id,$type,$pro_id)
     {
         $job = Job::find($id);
         $job->delete();
-        if( auth()->user()->role == 2){
+        if( $type == "admin"){
 
             $query = "SELECT  jobs.*,customers.type_id,customers.name,(CASE customers.type_id WHEN '2' THEN CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) END) as jobid 
                         FROM  jobs join customers  on jobs.customer_id = customers.id 
@@ -461,14 +478,28 @@ class JobController extends Controller
             }
           
         }else{
+            if($pro_id != null)
+            {
+                if($type == "nursing")
+                {
+                    $query = "SELECT  jobs.*,customers.type_id,customers.name,CONCAT((200000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) as jobid 
+                                FROM  jobs join customers  on jobs.customer_id = customers.id 
+                                left join job_applies on jobs.id = job_applies.job_id
+                                left join nursing_profiles on nursing_profiles.id = jobs.profile_id
+                                where customers.recordstatus = 1 and jobs.recordstatus = 1 and nursing_profiles.id = ".$pro_id." and nursing_profiles.activate = 1
+                                group by jobs.id order by jobs.id desc ";
+                }
+                else{
+                    $query = "SELECT  jobs.*,customers.type_id,customers.name,CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) as jobid 
+                                FROM  jobs join customers  on jobs.customer_id = customers.id 
+                                left join job_applies on jobs.id = job_applies.job_id
+                                left join hospital_profiles on hospital_profiles.id = jobs.profile_id
+                                where customers.recordstatus = 1 and jobs.recordstatus = 1 and hospital_profiles.id = ".$pro_id." and hospital_profiles.activate = 1
+                                group by jobs.id order by jobs.id desc ";
+                }
+            }
 
-            $query = "SELECT  jobs.*,customers.type_id,customers.name,(CASE customers.type_id WHEN '2' THEN CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) END) as jobid 
-                        FROM  jobs join customers  on jobs.customer_id = customers.id 
-                        left join job_applies on jobs.id = job_applies.job_id
-                        left join hospital_profiles on hospital_profiles.id = jobs.profile_id
-                        left join nursing_profiles on nursing_profiles.id = jobs.profile_id
-                        where customers.recordstatus = 1 and jobs.recordstatus = 1 and jobs.customer_id = ".auth()->user()->customer_id." and  (CASE  customers.type_id WHEN '2' THEN hospital_profiles.activate = 1 ELSE nursing_profiles.activate =1 END) 
-                        group by jobs.id order by jobs.id desc ";
+           
 
             $projob = DB::select($query);
                     
@@ -484,7 +515,7 @@ class JobController extends Controller
         }
 
         $page = 1;
-        $size = 12;
+        $size = 1;
         $data = collect($projob);
 
         $profilejob = new LengthAwarePaginator(
@@ -499,11 +530,13 @@ class JobController extends Controller
     }
     public function search(Request $request) {
 
-
+          
             $request = $request->all();
             $search_word = $request['search_word'];
+            $type = $request['type'];
+            $pro_id = $request['pro_id'];
             $customer_id = auth()->user()->customer_id;
-            if(auth()->user()->role == 2)
+            if($type == "admin")
             {
                 $query = "SELECT  jobs.*,customers.type_id,customers.name,(CASE customers.type_id WHEN '2' THEN CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) END) as jobid 
                             FROM  jobs join customers  on jobs.customer_id = customers.id 
@@ -514,13 +547,28 @@ class JobController extends Controller
                             group by jobs.id order by jobs.id desc ";
             }
             else{
-                $query = "SELECT  jobs.*,customers.type_id,customers.name,(CASE customers.type_id WHEN '2' THEN CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) END) as jobid 
-                            FROM  jobs join customers  on jobs.customer_id = customers.id 
-                            left join job_applies on jobs.id = job_applies.job_id
-                            left join hospital_profiles on hospital_profiles.id = jobs.profile_id
-                            left join nursing_profiles on nursing_profiles.id = jobs.profile_id
-                            where customers.recordstatus = 1  and jobs.title like '%".$search_word."%' and (CASE  customers.type_id WHEN '2' THEN hospital_profiles.activate = 1 ELSE nursing_profiles.activate =1 END) 
-                            and customers.id = ".$customer_id." group by jobs.id order by jobs.id desc ";
+                if($pro_id != null)
+                {
+                    if($type == "nursing")
+                    {
+                        $query = "SELECT  jobs.*,customers.type_id,customers.name,CONCAT((200000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0'))  as jobid 
+                                    FROM  jobs join customers  on jobs.customer_id = customers.id 
+                                    left join job_applies on jobs.id = job_applies.job_id
+                                    left join nursing_profiles on nursing_profiles.id = jobs.profile_id
+                                    where customers.recordstatus = 1  and jobs.title like '%".$search_word."%' and  nursing_profiles.activate = 1 
+                                    and nursing_profiles.id = ".$pro_id." group by jobs.id order by jobs.id desc ";
+                    }
+                    else{
+                        $query = "SELECT  jobs.*,customers.type_id,customers.name,CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0'))  as jobid 
+                                    FROM  jobs join customers  on jobs.customer_id = customers.id 
+                                    left join job_applies on jobs.id = job_applies.job_id
+                                    left join hospital_profiles on hospital_profiles.id = jobs.profile_id
+                                    where customers.recordstatus = 1  and jobs.title like '%".$search_word."%' and  hospital_profiles.activate = 1 
+                                    and hospital_profiles.id = ".$pro_id." group by jobs.id order by jobs.id desc ";
+                    }
+                    
+                }
+               
             }
 
          
@@ -545,7 +593,7 @@ class JobController extends Controller
             }
 
             $page = Input::get('page', 1);
-            $size = 12;
+            $size = 1;
             $data = collect($jobsearchs);
     
             $jobsearch = new LengthAwarePaginator(

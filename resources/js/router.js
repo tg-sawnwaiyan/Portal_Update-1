@@ -289,10 +289,10 @@ const routes = [
         meta: {
             auth: true
         }
-    },
+    },    
     {
         name: "applicantlist",
-        path: "/jobapplicantlist/:id",
+        path: "/jobapplicantlist/:type/:page/:id",
         component: Jobapplicantlist,
         meta: {
             auth: true

@@ -710,7 +710,6 @@ class SearchMapController extends Controller
 
     public function getJobSearch($searchword)
     {
-
          //for city
          $id = $_GET['id'];
          $townshipID = $_GET['townshipID'];
@@ -849,10 +848,6 @@ class SearchMapController extends Controller
             $occu->child = $occuchild;
         }
 
-
-        // $station = "SELECT * from"
-
-     
         return response()->json(array('job'=>$job_data,'city'=>$city,'occupations'=>$occupations));
     }
 
