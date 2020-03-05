@@ -361,7 +361,7 @@ export default {
                             this.getAccountList();
                     });
                 this.$swal({
-                    text: "Successfully Changed!",
+                    text: "正常に変更されました!",
                     type: "success",
                     width: 350,
                     height: 200,
