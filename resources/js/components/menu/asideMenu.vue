@@ -241,7 +241,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                 {
                     href: `/profiledit/${this.$auth.user().type_id == 2 ? 'hospital/': 'nursing/'}${this.$auth.user().customer_id}`,
                     title: 'プロファイル設定',
-                    icon: 'fa fa-map',
+                    icon: 'fa fa-cog',
                     hidden: this.$auth.check(2)
                 },
                 {
