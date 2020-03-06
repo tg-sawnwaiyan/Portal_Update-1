@@ -23,7 +23,7 @@
                 </div>
 
                 <div v-else class="container-fuid">
-                    <h4 class="main-color mb-3">求人検索 <a @click="$router.go(-1)" v-if="$route.params.id" class="btn btn-danger all-btn submit float-right">戻る</a></h4>
+                    <h4 class="main-color mb-3">求人検索 <a @click="$router.go(-1)" v-if="$route.params.id" class="btn btn-danger all-btn submit float-right"><i class="fas fa-arrow-left"></i>&nbsp;戻る</a></h4>
                     <div class="row mb-4">
                         <div class="col-md-12">
                             <input type="text" class="form-control" placeholder="検索" id="search-item" @keyup="searchJobOffer()" />
@@ -75,8 +75,8 @@
 
                                         <div class="joboffer-body">
 
-                                            <p class="mb-2"><span class="text-orange"><span class="job_ico">&#xa5;</span>給料 :</span><span class=""> {{job.salary}}</span></p>
-                                            <p class="mb-2"><span class="text-orange"><span class="job_ico">★</span> スキル :</span><span class=""> {{job.skills}}</span></p>
+                                            <p class="mb-2"><span class="text-orange"><span class="job_ico">&#xa5;</span>給料:&nbsp;</span><span class=""> {{job.salary}}</span></p>
+                                            <p class="mb-2"><span class="text-orange"><span class="job_ico">★</span>スキル:&nbsp;</span><span class=""> {{job.skills}}</span></p>
                                             <ul class="btn-list mt-4">
                                                 <li>
                                                     <router-link :to="{path: '/jobedit/'+job.id }" class="btn edit-borderbtn">編集</router-link>
