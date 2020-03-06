@@ -14,10 +14,11 @@
                
 
                 <h5  class="header"> 求人応募者一覧 
-                    <span v-if="page == 'job'"> 
+                    <span v-if="page == 'job' && job_id != ''"> 
                         「{{job_title}} <span class="pro_num">({{job_id}})</span>」
                     </span>
-                    <span  class="pro_num" v-if="page == 'profile'">
+              
+                    <span  class="pro_num" v-if="page == 'profile' && proname != ''">
                         「{{proname}}」
                     </span>
                 </h5>
@@ -190,13 +191,10 @@ export default {
                      this.job_id = this.jobapplies.data[0].jobid;
                      this.job_title = this.jobapplies.data[0].job_title;
                 }
-                else if(this.page == 'profile'){
+                else if(this.jobapplies.data.length  && this.page == 'profile'){
                     this.proname = this.jobapplies.data[0].proname;
                 }
-              
-
-                
-             
+        
             });
         },
         
