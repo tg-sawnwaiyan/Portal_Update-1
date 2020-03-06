@@ -11,7 +11,7 @@
                         </div>
                         <form @submit.prevent="add" class="mt-2 pb-5 col-md-12">
                           <div class="form-group" v-if="this.$auth.check(2)">
-                            <div class="form-group" v-if="check">
+                            <div class="form-group" v-if="editcheck">
                               <label>事業者名</label>
                               <label>{{cusName}}</label>
                               <br>
@@ -542,7 +542,7 @@ import Autocomplete from 'vuejs-auto-complete'
                     email: "",
                     type_id: ""
                     },
-                    check: false,
+                    editcheck: false,
                     cusName: '',
                     profileList: {
                         id:"",
@@ -576,8 +576,8 @@ import Autocomplete from 'vuejs-auto-complete'
                 });
                 this.joboffer.employmentstatus = "ContractEmployee";
 
-                if (this.$route.params.id) {
-                    this.check = true;
+                if (this.$route.name == 'jobedit') {
+                    this.editcheck = true;
                     this.axios
 
                         .get(`/api/job/edit/${this.$route.params.id}`)
@@ -659,6 +659,7 @@ import Autocomplete from 'vuejs-auto-complete'
                           }
                           this.axios.post(`/api/job/profileName/${this.joboffer.profile_id}`,this.table_name)
                         .then(response=> {
+                          console.log("profilename",response.data)
                             for(var i=0; i<response.data.length; i++){
                                 if(this.joboffer.profile_id == response.data[i].id){
                                     this.profileName = response.data[i].name;
@@ -673,7 +674,7 @@ import Autocomplete from 'vuejs-auto-complete'
                         return this.subtitle;
                     });
                 }else{
-                  this.check = false;
+                  this.editcheck = false;
                 }
             },
 

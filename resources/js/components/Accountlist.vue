@@ -99,13 +99,14 @@
                                             <span class="d-inline-block text-truncate font-weight-bold card-title card-title-leftwrapper">
                                                 {{nursingprofiles.name}}
                                             </span>
-                                            <span class="card-title-rightwrapper">
-                                                <input type="checkbox" :id="nursingprofiles.id" class="switch-input" v-if="nursingprofiles.activate == 1" @click="changeActivate(nursingprofiles.id,nursingprofiles.activate)" checked>
-                                                <input type="checkbox" :id="nursingprofiles.id" class="switch-input" v-if="nursingprofiles.activate == 0" @click="changeActivate(nursingprofiles.id,nursingprofiles.activate)">
-                                                <label :for="nursingprofiles.id" class="switch-label">
-                                                    <span v-if="nursingprofiles.activate == 1">公開中</span>
-                                                    <span v-if="nursingprofiles.activate == 0">非行化</span>
-                                                </label>
+                                            <span class="card-title-rightwrapper model-7">                                                 
+                                                <div class="checkbox">
+                                                    <input type='checkbox' v-if="nursingprofiles.activate == 1" @click="changeActivate(nursingprofiles.id,nursingprofiles.activate)" checked/>
+                                                    <input type='checkbox' v-if="nursingprofiles.activate == 0" @click="changeActivate(nursingprofiles.id,nursingprofiles.activate)"  />
+                                                    <label for="checkbox"></label>
+                                                    <div  v-if="nursingprofiles.activate == 1" class="on">公開中</div>
+                                                    <div v-if="nursingprofiles.activate == 0" class="on">非行化</div>
+                                                </div>                                                                                             
                                             </span>
                                             </div>
                                             
@@ -132,16 +133,17 @@
                                         <img :src="'/upload/hospital_profile/'+ hospitalprofiles.logo" @error="imgUrlAlt" />
                                         <div class="card-content">
                                             <div class="title-toggle">
-                                            <span class="d-inline-block text-truncate font-weight-bold card-title" style="max-width: 275px;">
+                                            <span class="d-inline-block text-truncate font-weight-bold card-title card-title-leftwrapper">
                                                 {{hospitalprofiles.name}}
                                             </span>
-                                            <span>
-                                                <input type="checkbox" :id="hospitalprofiles.id" class="switch-input" v-if="hospitalprofiles.activate == 1" @click="changeActivate(hospitalprofiles.id,hospitalprofiles.activate)" checked>
-                                                <input type="checkbox" :id="hospitalprofiles.id" class="switch-input" v-if="hospitalprofiles.activate == 0" @click="changeActivate(hospitalprofiles.id,hospitalprofiles.activate)">
-                                                <label :for="hospitalprofiles.id" class="switch-label">
-                                                    <span v-if="hospitalprofiles.activate == 1">公開中</span>
-                                                    <span v-if="hospitalprofiles.activate == 0">非行化</span>
-                                                </label>
+                                            <span class="card-title-rightwrapper model-7">  
+                                                <div class="checkbox">
+                                                    <input type='checkbox' v-if="hospitalprofiles.activate == 1" @click="changeActivate(hospitalprofiles.id,hospitalprofiles.activate)" checked/>
+                                                    <input type='checkbox' v-if="hospitalprofiles.activate == 0" @click="changeActivate(hospitalprofiles.id,hospitalprofiles.activate)"  />
+                                                    <label for="checkbox"></label>
+                                                    <div   v-if="hospitalprofiles.activate == 1" class="on">公開中</div>
+                                                    <div v-if="hospitalprofiles.activate == 0" class="on">非行化</div>
+                                                </div>                                            
                                             </span>
                                             </div>
                                             
@@ -568,6 +570,9 @@ h1.heading {
 }
 .card-title-rightwrapper{
   width: 30%;
+}
+.card-title-rightwrapper .checkbox{
+    vertical-align: top;
 }
 .card-title a {
   color: #000;

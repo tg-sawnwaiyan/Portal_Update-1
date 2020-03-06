@@ -39,54 +39,46 @@ class JobApplyController extends Controller
 
             if($type == "admin")
             {
-                if($page == "null")
-                {
-                    
-                    $query = "SELECT jobs.title as job_title,job_applies.*,(CASE WHEN customers.type_id = '2' THEN CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) END) as jobid
+                $query = "SELECT jobs.title as job_title,job_applies.*,(CASE WHEN customers.type_id = '2' THEN CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) END) as jobid
                             FROM job_applies join jobs on jobs.id = job_applies.job_id
                             join customers on customers.id = jobs.customer_id
                             left join hospital_profiles on hospital_profiles.id = jobs.profile_id
                             left join nursing_profiles on nursing_profiles.id = jobs.profile_id
-                            where  jobs.recordstatus = 1 and customers.recordstatus = 1 and (CASE customers.type_id WHEN 2 THEN hospital_profiles.activate = 1 ELSE nursing_profiles.activate =1 END)
-                            group by job_applies.id order by job_applies.id desc ";
-
+                            where  jobs.recordstatus = 1 and customers.recordstatus = 1 and (CASE customers.type_id WHEN 2 THEN hospital_profiles.activate = 1 ELSE nursing_profiles.activate =1 END) ";
+               
+               if($page == "job"){ 
+                    $query .= " and jobs.id = ".$search_id ;
                 }
-               else{
-                
-                    $query = "SELECT jobs.title as job_title,job_applies.*,(CASE WHEN customers.type_id = '2' THEN hospital_profiles.name  ELSE nursing_profiles.name  END) as proname,(CASE WHEN customers.type_id = '2' THEN CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) END) as jobid
+
+                $query .= " group by job_applies.id order by job_applies.id desc ";              
+            }
+            else{
+
+                if($type == "nursing") { 
+                    $t = "nursing_profiles";
+                    $num = 500000;
+                }
+                else{ 
+                    $t = "hospital_profiles"; 
+                    $num = 200000;
+                }
+    
+                if($page == "profile"){
+                    $p = "$t.id = $search_id";
+                }
+                else{ 
+                    $p = "jobs.id = $search_id"; 
+                }
+
+                $query = "SELECT jobs.title as job_title,job_applies.*, ".$t.".name  as proname,CONCAT((".$num."+customers.id),'-',LPAD(".$t.".pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) as jobid
                             FROM job_applies join jobs on jobs.id = job_applies.job_id
                             join customers on customers.id = jobs.customer_id
-                            left join hospital_profiles on hospital_profiles.id = jobs.profile_id
-                            left join nursing_profiles on nursing_profiles.id = jobs.profile_id
-                            where  jobs.recordstatus = 1 and customers.recordstatus = 1 and (CASE customers.type_id WHEN 2 THEN hospital_profiles.activate = 1 ELSE nursing_profiles.activate =1 END)
-                            and jobs.id = ".$search_id." group by job_applies.id order by job_applies.id desc ";
-                }
-            
-                         
+                            left join ".$t." on ". $t.".id = jobs.profile_id
+                            where  jobs.recordstatus = 1 and customers.recordstatus = 1 and  ".$t.".activate = 1
+                            and ".$p." group by job_applies.id order by job_applies.id desc ";
             }
 
-            if($page == "profile")
-            {
-                if($type == "nursing")
-                {
-                    $query = "SELECT jobs.title as job_title,job_applies.*,(CASE WHEN customers.type_id = '2' THEN nursing_profiles.name  ELSE nursing_profiles.name  END) as proname,CONCAT((200000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) as jobid
-                                FROM job_applies join jobs on jobs.id = job_applies.job_id
-                                join customers on customers.id = jobs.customer_id
-                                left join nursing_profiles on nursing_profiles.id = jobs.profile_id
-                                where  jobs.recordstatus = 1 and customers.recordstatus = 1 and  nursing_profiles.activate = 1
-                                and nursing_profiles.id = ".$search_id." group by job_applies.id order by job_applies.id desc ";
-                }
-                else{
-                    $query = "SELECT jobs.title as job_title,job_applies.*,(CASE WHEN customers.type_id = '2' THEN hospital_profiles.name  ELSE nursing_profiles.name  END) as proname,CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) as jobid
-                                FROM job_applies join jobs on jobs.id = job_applies.job_id
-                                join customers on customers.id = jobs.customer_id
-                                left join hospital_profiles on hospital_profiles.id = jobs.profile_id
-                                where  jobs.recordstatus = 1 and customers.recordstatus = 1 and  hospital_profiles.activate = 1
-                                and hospital_profiles.id = ".$search_id." group by job_applies.id order by job_applies.id desc ";
-                }
-                        
-            }
-
+        
             $jobapplicants = DB::select($query);
             $page = Input::get('page', 1);
             $size = 12;
@@ -157,10 +149,28 @@ class JobApplyController extends Controller
             $jobapply->skill = $string;
             $jobapply->remark = $request->remark;
 
-             $query = "SELECT j.*,c.email,c.name as cus_name,ci.city_name as city_name,(CASE c.type_id WHEN '2' THEN CONCAT((200000+c.id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT((500000+c.id),'-',LPAD(j.id, 4, '0')) END) as jobnum,
-                       (CASE c.type_id WHEN '2' THEN CONCAT(200000+c.id) ELSE CONCAT(500000+c.id) END) as cusnum
-                        from customers as c join jobs as j on c.id = j.customer_id join townships as t on t.id = j.township_id join cities as ci on ci.id = t.city_id
-                        where c.recordstatus=1 and j.id = " . $jobapply->job_id;
+          
+            $tid = DB::table('jobs')->join('customers', 'customers.id', '=', 'jobs.customer_id') ->select('customers.type_id')->where('jobs.id',$jobapply->job_id)->get();
+            if($tid == '2')
+            {
+                $t = "hospital_profiles";
+                $num = 200000;
+            }
+            else{
+                $t = "nursing_profiles";
+                $num = 500000;
+            }
+
+   
+
+            $query = "SELECT j.*,$t.email,$t.name as cus_name,ci.city_name as city_name,
+                       (CASE c.type_id WHEN '2' THEN CONCAT(($num+c.id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT(($num+c.id),'-',LPAD($t.pro_num, 4, '0'),'-',LPAD(j.id, 4, '0')) END) as jobnum,
+                       (CASE c.type_id WHEN '2' THEN CONCAT(($num+c.id),'-',LPAD($t.pro_num, 4, '0')) ELSE CONCAT(($num+c.id),'-',LPAD($t.pro_num, 4, '0')) END) as cusnum 
+                        from customers as c 
+                        join jobs as j on c.id = j.customer_id 
+                        join townships as t on t.id = j.township_id 
+                        join cities as ci on ci.id = t.city_id
+                        join ".$t." on ".$t.".id = j.profile_id where c.recordstatus=1 and j.id = " . $jobapply->job_id;
 
             $infos = DB::select($query);
 
@@ -187,7 +197,7 @@ class JobApplyController extends Controller
                 $holidays = $info->holidays;
             }
 
-            $admin_email = 'thuzar@management-partners.co.jp';
+            $admin_email = 'admin@t-i-s.jp';
              $jobapply->save();
              $jobapply->job_title = $job_title;
              $jobapply->job_description = $job_description;
@@ -290,53 +300,47 @@ class JobApplyController extends Controller
 
         if($type == "admin")
         {
-            if($pages == "null")
-            {
-                
-                $query = "SELECT jobs.title as job_title,job_applies.*,(CASE WHEN customers.type_id = '2' THEN CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) END) as jobid
+            $query = "SELECT jobs.title as job_title,job_applies.*,(CASE WHEN customers.type_id = '2' THEN CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) END) as jobid
                         FROM job_applies join jobs on jobs.id = job_applies.job_id
                         join customers on customers.id = jobs.customer_id
                         left join hospital_profiles on hospital_profiles.id = jobs.profile_id
                         left join nursing_profiles on nursing_profiles.id = jobs.profile_id
-                        where (job_applies.first_name like '%".$search_word."%' or job_applies.last_name like '%".$search_word."%' or job_applies.email like '%".$search_word."%') and  jobs.recordstatus = 1 and customers.recordstatus = 1 and (CASE customers.type_id WHEN 2 THEN hospital_profiles.activate = 1 ELSE nursing_profiles.activate =1 END)
-                        group by job_applies.id order by job_applies.id desc ";
-
+                        where (job_applies.first_name like '%".$search_word."%' or job_applies.last_name like '%".$search_word."%' or job_applies.email like '%".$search_word."%') and  jobs.recordstatus = 1 and customers.recordstatus = 1 and (CASE customers.type_id WHEN 2 THEN hospital_profiles.activate = 1 ELSE nursing_profiles.activate =1 END)";
+          
+            if($pages == "job") { 
+                $query .= " and jobs.id = ".$search_id ; 
             }
-           else{
+
+            $query .= " group by job_applies.id order by job_applies.id desc ";              
+        }
+        else{
+
+            if($type == "nursing"){
+                 $t = "nursing_profiles"; 
+                 $num = 500000;
+            }
+            else{ 
+                $t = "hospital_profiles";
+                $num = 200000;
+            }
+    
+            if($pages == "profile"){ 
+                 $p = "$t.id = $search_id"; 
+            }
+            else{ 
+                $p = "jobs.id = $search_id"; 
+            }
+    
+            $query = "SELECT jobs.title as job_title,job_applies.*,(CASE WHEN customers.type_id = '2' THEN ".$t.".name  ELSE ".$t.".name  END) as proname,CONCAT((".$num."+customers.id),'-',LPAD(".$t.".pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) as jobid
+                        FROM job_applies join jobs on jobs.id = job_applies.job_id
+                        join customers on customers.id = jobs.customer_id
+                        left join ".$t." on ". $t.".id = jobs.profile_id
+                        where (job_applies.first_name like '%".$search_word."%' or job_applies.last_name like '%".$search_word."%' or job_applies.email like '%".$search_word."%') and jobs.recordstatus = 1 and customers.recordstatus = 1 and  ".$t.".activate = 1
+                        and ".$p." group by job_applies.id order by job_applies.id desc ";
             
-                $query = "SELECT jobs.title as job_title,job_applies.*,(CASE WHEN customers.type_id = '2' THEN nursing_profiles.name  ELSE nursing_profiles.name  END) as proname,(CASE WHEN customers.type_id = '2' THEN CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) END) as jobid
-                        FROM job_applies join jobs on jobs.id = job_applies.job_id
-                        join customers on customers.id = jobs.customer_id
-                        left join hospital_profiles on hospital_profiles.id = jobs.profile_id
-                        left join nursing_profiles on nursing_profiles.id = jobs.profile_id
-                        where (job_applies.first_name like '%".$search_word."%' or job_applies.last_name like '%".$search_word."%' or job_applies.email like '%".$search_word."%') and jobs.recordstatus = 1 and customers.recordstatus = 1 and (CASE customers.type_id WHEN 2 THEN hospital_profiles.activate = 1 ELSE nursing_profiles.activate =1 END)
-                        and jobs.id = ".$search_id." group by job_applies.id order by job_applies.id desc ";
-            }
-        
-                     
         }
 
-        if($pages == "profile")
-        {
-            if($type == "nursing")
-            {
-                $query = "SELECT jobs.title as job_title,job_applies.*,(CASE WHEN customers.type_id = '2' THEN nursing_profiles.name  ELSE nursing_profiles.name  END) as proname,CONCAT((200000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) as jobid
-                            FROM job_applies join jobs on jobs.id = job_applies.job_id
-                            join customers on customers.id = jobs.customer_id
-                            left join nursing_profiles on nursing_profiles.id = jobs.profile_id
-                            where (job_applies.first_name like '%".$search_word."%' or job_applies.last_name like '%".$search_word."%' or job_applies.email like '%".$search_word."%') and jobs.recordstatus = 1 and customers.recordstatus = 1 and  nursing_profiles.activate = 1
-                            and nursing_profiles.id = ".$search_id." group by job_applies.id order by job_applies.id desc ";
-            }
-            else{
-                $query = "SELECT jobs.title as job_title,job_applies.*,(CASE WHEN customers.type_id = '2' THEN nursing_profiles.name  ELSE nursing_profiles.name  END) as proname,CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) as jobid
-                            FROM job_applies join jobs on jobs.id = job_applies.job_id
-                            join customers on customers.id = jobs.customer_id
-                            left join hospital_profiles on hospital_profiles.id = jobs.profile_id
-                            where (job_applies.first_name like '%".$search_word."%' or job_applies.last_name like '%".$search_word."%' or job_applies.email like '%".$search_word."%') and jobs.recordstatus = 1 and customers.recordstatus = 1 and  hospital_profiles.activate = 1
-                            and hospital_profiles.id = ".$search_id." group by job_applies.id order by job_applies.id desc ";
-            }
-                    
-        }
+        
 
 
         $jobapplicants = DB::select($query);

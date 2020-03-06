@@ -378,7 +378,7 @@
                     <span class="spanclass" v-bind:class="isActive ? 'disable':'undisable'" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
                   </li>
                   <li class="page-item ">
-                    <span class="spanclass"><i class='fas fa-angle-left'></i> 前へ</span>
+                    <span class="spanclass" @click="prev()"><i class='fas fa-angle-left'></i> 前へ</span>
                   </li>
                   <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
                     <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
@@ -488,6 +488,7 @@ export default {
        clicksearch: false,
        ci: false,
        isActive: true,
+       isActivePreNext:true,
       }
     },
     created() {
@@ -839,7 +840,7 @@ export default {
         }
       },
       first() {
-      if(this.isActive = false){
+      if(this.isActive == false){
         this.currentPage = 0;
       }
   
@@ -855,7 +856,7 @@ export default {
     prev() {
       if(0<this.currentPage) {
         this.currentPage--;
-        this.isActivePreNext = true;
+
       }
     },
     next() {
@@ -1094,11 +1095,7 @@ table > tbody > tr th{
  cursor: not-allowed;
  background-color:gray;
 }
-.disable:hover{
- /* display:none; */
- cursor: not-allowed;
- background-color:gray !important;
-}
+
 .undisable{
   /* display:block; */
   cursor: pointer;
