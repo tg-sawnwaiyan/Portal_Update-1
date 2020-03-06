@@ -372,10 +372,10 @@
             <!-- <div class="offset-md-4 col-md-8 mt-3" v-if="show_paginate"> -->
             <div class="row">
             <div class="col-md-12 col-lg-12 col-sm-6" v-if="show_paginate">
-              <nav aria-label="Page navigation example">
-                <ul class="pagination">
+              <nav aria-label="Page navigation example" >
+                <ul class="pagination" >
                   <li class="page-item previous">
-                    <span class="spanclass" v-bind:class="isActive ? 'disable':'undisable'" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
+                    <span class="spanclass" id="paginate" v-bind:class="isActive ? 'disable':'undisable'" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
                   </li>
                   <li class="page-item ">
                     <span class="spanclass" @click="prev()"><i class='fas fa-angle-left'></i> 前へ</span>
@@ -387,7 +387,7 @@
                     <span class="spanclass" @click="next">次へ <i class='fas fa-angle-right'></i></span>
                   </li>
                   <li class="page-item next">
-                    <span class="spanclass" v-bind:class="isActive ? 'undisable':'disable'" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
+                    <span class="spanclass" id="paginate2" v-bind:class="isActive ? 'undisable':'disable'" @click="last()">最後 <i class='fas fa-angle-double-right'></i></span>
                   </li>
                 </ul>
               </nav>
@@ -465,7 +465,7 @@ export default {
         empstatus:[],
         job_data:[],
         currentPage: 0,
-        size: 20,
+        size: 5,
         pageRange: 5,
         items: [],
         show_paginate: false,
@@ -503,12 +503,16 @@ export default {
 
         window.addEventListener('resize', this.handleResize);
         this.handleResize();
+
+      
+        
     },
     mounted() {
             $('#navtab').removeClass('news-tabColor hospital-tabColor nursing-tabColor job-tabColor');
             $('#navtab').addClass('job-tabColor');
             $('.tab-content').removeClass('news-borderColor job-borderColor nursing-borderColor hospital-borderColor');
             $('#upper-tab').addClass('job-borderColor');
+            
         },
   methods:{
     stopTheEvent:function(e){
@@ -592,6 +596,7 @@ export default {
           }else{
               this.norecord_msg = true;
           }
+          
 
         })
     
@@ -663,7 +668,7 @@ export default {
                 this.occupations = response.data.occupations;
                 this.getTownships = [];
                 this.array_len = ((this.occupations.length)%3)==0?((this.occupations.length)/3):Math.floor(((this.occupations.length)/3)+1);
-
+             
                 if(this.job_data.length > this.size) {
                     this.show_paginate = true;
                 }else{
@@ -840,24 +845,22 @@ export default {
         }
       },
       first() {
-      if(this.isActive == false){
         this.currentPage = 0;
-      }
-  
-      this.isActive = true;
+
     },
-    last() {
-      if(this.isActive == true){
+    last(e) {
+      console.log(event.target.className)
+      if(event.target.className == 'disable'){
+        return;
+      }else{
         this.currentPage = this.pages - 1;
       }
-      this.isActive = false;
-
     },
     prev() {
       if(0<this.currentPage) {
         this.currentPage--;
-
       }
+
     },
     next() {
       if(this.currentPage < this.pages - 1) {
@@ -872,7 +875,23 @@ export default {
 
     },
     computed: {
-    pages() {
+    pages(e) {
+
+      if(this.currentPage == 0){
+        this.isActive = true;
+      }
+      if(this.currentPage > 0 && this.currentPage < this.size-1){
+        var element = document.getElementById("paginate");
+        var element2 = document.getElementById("paginate2");
+        element.classList.remove("disable");
+        element2.classList.remove("disable");
+        // this.isActive = !this.isActive;
+      }
+      console.log('this.cc',this.currentPage,'this.s',this.size, 'data',this.job_data.length)
+      if(this.currentPage == this.job_data.length - 1){
+        this.isActive = false;
+      }
+      
       return Math.ceil(this.job_data.length / this.size);
     },
     displayPageRange() {
