@@ -5736,7 +5736,7 @@ a:hover {
     /* color: #ff6117; */
     color: #fd0e0e;
     font-weight: bold;
-    font-size: 1.6em;
+    font-size: 1em;
 }
 
 
@@ -8408,7 +8408,8 @@ border-bottom: none;
 }
 
 .phone-no a {
-    color: #c40000;
+    /* color: #c40000; */
+    color: #2980b9;
 }
 
 .circle-phone {

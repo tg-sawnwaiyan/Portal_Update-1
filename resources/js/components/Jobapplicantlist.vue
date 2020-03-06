@@ -178,15 +178,6 @@ export default {
             this.axios.post("/api/jobapplicant/search?page="+page, fd).then(response => {
                 this.$loading(false);
                 this.jobapplies = response.data;
-                if(this.page == 'job')
-                {
-                     this.job_id = this.jobapplies.data[0].jobid;
-                     this.job_title = this.jobapplies.data[0].job_title;
-                }
-                else if(this.page == 'profile'){
-                    this.proname = this.jobapplies.data[0].proname;
-                }
-
                 if(this.jobapplies.data.length != 0){
                     
                      this.nosearch_msg = false;
@@ -194,6 +185,17 @@ export default {
                 else{
                      this.nosearch_msg = true;
                 }
+                if(this.jobapplies.data.length != 0 && this.page == 'job')
+                {
+                     this.job_id = this.jobapplies.data[0].jobid;
+                     this.job_title = this.jobapplies.data[0].job_title;
+                }
+                else if(this.page == 'profile'){
+                    this.proname = this.jobapplies.data[0].proname;
+                }
+              
+
+                
              
             });
         },
@@ -221,7 +223,7 @@ export default {
                      this.nosearch_msg = true;;
                 }
              
-                if(this.page == 'job')
+                if(this.jobapplies.data.length != 0 && this.page == 'job')
                 {
                      this.job_id = this.jobapplies.data[0].jobid;
                      this.job_title = this.jobapplies.data[0].job_title;
@@ -231,14 +233,14 @@ export default {
                    
                 }
                 
-                this.norecord = this.jobapplies.data.length;
+                // this.norecord = this.jobapplies.data.length;
               
             
-                if (this.norecord > this.size) {
-                    this.pagination = true;
-                } else {
-                    this.pagination = false;
-                }
+                // if (this.norecord > this.size) {
+                //     this.pagination = true;
+                // } else {
+                //     this.pagination = false;
+                // }
             });
         },
 

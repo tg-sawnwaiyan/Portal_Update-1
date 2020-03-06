@@ -1857,6 +1857,9 @@
 </script>
 
 <style scoped>
+.cash-lbl {
+    font-size: 1.4em;
+}
 .result-span {
     color: #23a2f5;
 }
