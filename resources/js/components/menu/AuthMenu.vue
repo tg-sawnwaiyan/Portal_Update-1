@@ -17,7 +17,7 @@
                         <p class="sp-1024"><i class="fas fa-envelope"></i></p><span>info@t-i-s.jp</span></a>
                     </div> -->
 
-                    <div v-if="visit == 'true'">
+                    <div class="h-tel" v-if="visit == 'true'">
                     <a class="tel" href="mailto:info@t-i-s.jp"><i class="fas fa-envelope"></i><span>info@t-i-s.jp</span></a>
                     <br class="pc-1024">
                     <!-- <span href="mailto:info@t-i-s.jp"><p class="sp-1024"><i class="fas fa-envelope"></i></p><span>info@t-i-s.jp</span></a> -->
@@ -110,7 +110,7 @@
                                管理者画面
                             </li>                            
                             <li v-if="$auth.check(1)" @click="toggle">
-                                <router-link :to="{ path: `/profiledit/${this.$auth.user().type_id == 2 ? 'hospital/': 'nursing/'}${this.$auth.user().customer_id}` }"><i class="fa fa-map"></i>  プロファイル設定</router-link>
+                                <router-link :to="{ path: `/profiledit/${this.$auth.user().type_id == 2 ? 'hospital/': 'nursing/'}${this.$auth.user().customer_id}` }"><i class="fa fa-cog"></i>  プロファイル設定</router-link>
                             </li>
                             <li v-if="$auth.check(1)" @click="toggle">
                                 <router-link :to="{ path: `/accountlist/${this.$auth.user().type_id == 2 ? 'hospital/': 'nursing/'}${this.$auth.user().customer_id}` }"><i class="fa fa-user"></i>  施設一覧</router-link>
@@ -174,7 +174,7 @@
                                             <router-link :to="{ name: 'hoscustomerlist' }"><i class="fa fa-user"></i>  事業者一覧</router-link>
                                         </li>
                                         <li @click="toggle('sub')">
-                                            <router-link :to="{ name: 'facilitieslist' }"><i class="fa fa-cog fa-fw"></i>  院内施設設定</router-link>
+                                            <router-link :to="{ name: 'facilitieslist' }"><i class="fa fa-list"></i>  院内施設設定</router-link>
                                         </li>
                                         <li @click="toggle('sub')">
                                             <router-link :to="{ name: 'hosfeaturelist' }"><i class="fa fa-list"></i>  特徴設定</router-link>
@@ -196,7 +196,7 @@
                                             <router-link :to="{ name: 'occupationlist' }"><i class="fa fa-suitcase"></i>  求人職種設定</router-link>
                                         </li>
                                         <li @click="toggle('sub')">
-                                            <router-link :to="{ name: 'jobofferlist' }"><i class="fa fa-edit"></i>  求人編集</router-link>
+                                            <router-link :to="{ name: 'jobofferlist' }"><i class="fa fa-tasks"></i>  求人編集</router-link>
                                         </li>
                                         <li @click="toggle('sub')">
                                             <router-link :to="{ name: 'jobapplicantlist' }"><i class="fa fa-tasks"></i>  求人応募者一覧</router-link>
