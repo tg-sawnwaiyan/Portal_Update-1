@@ -56,9 +56,11 @@ class JobApplyController extends Controller
 
                 if($type == "nursing") { 
                     $t = "nursing_profiles";
+                    $num = 500000;
                 }
                 else{ 
                     $t = "hospital_profiles"; 
+                    $num = 200000;
                 }
     
                 if($page == "profile"){
@@ -68,11 +70,11 @@ class JobApplyController extends Controller
                     $p = "jobs.id = $search_id"; 
                 }
 
-                $query = "SELECT jobs.title as job_title,job_applies.*, nursing_profiles.name  as proname,CONCAT((200000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) as jobid
+                $query = "SELECT jobs.title as job_title,job_applies.*, ".$t.".name  as proname,CONCAT((".$num."+customers.id),'-',LPAD(".$t.".pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) as jobid
                             FROM job_applies join jobs on jobs.id = job_applies.job_id
                             join customers on customers.id = jobs.customer_id
                             left join ".$t." on ". $t.".id = jobs.profile_id
-                            where  jobs.recordstatus = 1 and customers.recordstatus = 1 and  nursing_profiles.activate = 1
+                            where  jobs.recordstatus = 1 and customers.recordstatus = 1 and  ".$t.".activate = 1
                             and ".$p." group by job_applies.id order by job_applies.id desc ";
             }
 
@@ -177,7 +179,7 @@ class JobApplyController extends Controller
                 $holidays = $info->holidays;
             }
 
-            $admin_email = 'thuzar@management-partners.co.jp';
+            $admin_email = 'admin@t-i-s.jp';
              $jobapply->save();
              $jobapply->job_title = $job_title;
              $jobapply->job_description = $job_description;
@@ -297,9 +299,11 @@ class JobApplyController extends Controller
 
             if($type == "nursing"){
                  $t = "nursing_profiles"; 
+                 $num = 500000;
             }
             else{ 
                 $t = "hospital_profiles";
+                $num = 200000;
             }
     
             if($pages == "profile"){ 
@@ -309,11 +313,11 @@ class JobApplyController extends Controller
                 $p = "jobs.id = $search_id"; 
             }
     
-            $query = "SELECT jobs.title as job_title,job_applies.*,(CASE WHEN customers.type_id = '2' THEN nursing_profiles.name  ELSE nursing_profiles.name  END) as proname,CONCAT((200000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) as jobid
+            $query = "SELECT jobs.title as job_title,job_applies.*,(CASE WHEN customers.type_id = '2' THEN ".$t.".name  ELSE ".$t.".name  END) as proname,CONCAT((".$num."+customers.id),'-',LPAD(".$t.".pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) as jobid
                         FROM job_applies join jobs on jobs.id = job_applies.job_id
                         join customers on customers.id = jobs.customer_id
                         left join ".$t." on ". $t.".id = jobs.profile_id
-                        where (job_applies.first_name like '%".$search_word."%' or job_applies.last_name like '%".$search_word."%' or job_applies.email like '%".$search_word."%') and jobs.recordstatus = 1 and customers.recordstatus = 1 and  nursing_profiles.activate = 1
+                        where (job_applies.first_name like '%".$search_word."%' or job_applies.last_name like '%".$search_word."%' or job_applies.email like '%".$search_word."%') and jobs.recordstatus = 1 and customers.recordstatus = 1 and  ".$t.".activate = 1
                         and ".$p." group by job_applies.id order by job_applies.id desc ";
             
         }
