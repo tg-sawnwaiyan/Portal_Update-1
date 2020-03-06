@@ -316,6 +316,15 @@ const routes = [
         }
     },
     {
+        name: "jobedit",
+        path: "/jobedit/:id",
+        component: joboffercreate,
+        meta: {
+            // auth: { roles: 1, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
+            auth: true
+        }
+    },
+    {
         name: "profilejoboffercreate",
         path: "/profilejoboffercreate/:type/:id",
         component: joboffercreate,
