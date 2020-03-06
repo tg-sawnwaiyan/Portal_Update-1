@@ -164,8 +164,8 @@ class JobApplyController extends Controller
    
 
             $query = "SELECT j.*,$t.email,$t.name as cus_name,ci.city_name as city_name,
-                       (CASE c.type_id WHEN '2' THEN CONCAT(($num+c.id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT(($num+c.id),'-',LPAD(j.id, 4, '0')) END) as jobnum,
-                       (CASE c.type_id WHEN '2' THEN CONCAT(($num+c.id),'-',($num+$t.pro_num)) ELSE CONCAT(($num+c.id),'-',($num+$t.pro_num)) END) as cusnum 
+                       (CASE c.type_id WHEN '2' THEN CONCAT(($num+c.id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT(($num+c.id),'-',LPAD($t.pro_num, 4, '0'),'-',LPAD(j.id, 4, '0')) END) as jobnum,
+                       (CASE c.type_id WHEN '2' THEN CONCAT(($num+c.id),'-',LPAD($t.pro_num, 4, '0')) ELSE CONCAT(($num+c.id),'-',LPAD($t.pro_num, 4, '0')) END) as cusnum 
                         from customers as c 
                         join jobs as j on c.id = j.customer_id 
                         join townships as t on t.id = j.township_id 
