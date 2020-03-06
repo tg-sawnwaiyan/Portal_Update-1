@@ -185,18 +185,18 @@
     }, 
     created() {
        
-        $(document).scroll(function() {　　　　
-            var cur_pos = $(this).scrollTop();
-            if (cur_pos >= 100) {
-                $('#headerbar').css('top','135px');
-                $('#headerbar li').css('display','block');
-                $('#myBtn').css('display','block');
-            } else {
-                $('#headerbar').css('top','135px');
-                $('#headerbar li').css('display','inline-block');
-                $('#myBtn').css('display','none');
-            }
-        });
+        // $(document).scroll(function() {　　　　
+        //     var cur_pos = $(this).scrollTop();
+        //     if (cur_pos >= 100) {
+        //         $('#headerbar').css('top','135px');
+        //         $('#headerbar li').css('display','block');
+        //         $('#myBtn').css('display','block');
+        //     } else {
+        //         $('#headerbar').css('top','86px');
+        //         $('#headerbar li').css('display','inline-block');
+        //         $('#myBtn').css('display','none');
+        //     }
+        // });
         
         console.log("created")
         document.addEventListener('scroll', this.handleScroll);
