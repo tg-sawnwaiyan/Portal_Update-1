@@ -210,7 +210,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                         {
                         href: '/facilitieslist',
                         title: '院内施設設定',
-                        icon: 'fa fa-cog fa-fw'
+                        icon: 'fa fa-list'
                         },
                         {
                         href: '/hosfeaturelist',
@@ -269,7 +269,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                         {
                             href: '/jobofferlist',
                             title: '求人編集',
-                            icon: 'fa fa-edit',
+                            icon: 'fa fa-tasks',
                         },
                         {
                             href: '/jobapplicantlist',
