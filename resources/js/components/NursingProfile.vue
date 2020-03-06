@@ -27,7 +27,7 @@
                                 <input type="text" class="form-control customer-email col-md-10 col-12 nursing_input" id="btn" v-model="nursing_info.email" @change="aggreBtn" @keyup="focusMail" placeholder="メールアドレスを入力してください。">
                             </div>
                             <div class="pro-1">
-                             <span class="error" v-if="mail_focus && nursing_info.email !=''">※メールアドレスが正しくありません。もう一度入力してください。</span>
+                             <span class="error" v-if="mail_focus || nursing_info.email =='' || nursing_info.email.length == 0">※メールアドレスが正しくありません。もう一度入力してください。</span>
                              <!-- <span v-else-if="this.nursing_info.email">sssss</span> -->
                             </div>
                             <div class="form-group form-group-wrapper d-flex">
@@ -785,11 +785,11 @@ export default {
                 mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
             }
         },
-         computed: {
-            isdisable:function() {
-                return this.btn_disable;
-            }
-        },
+        //  computed: {
+        //     isdisable:function() {
+        //         return this.btn_disable;
+        //     }
+        // },
 
         mounted() {
            document.getElementById('btn_click').click();
@@ -912,7 +912,7 @@ export default {
                 this.$loading(false);
             },
              aggreBtn: function(){
-                if((this.mail_reg.test(this.nursing_info.email) ) ){
+                if((this.mail_reg.test(this.nursing_info.email)) && this.nursing_info.email != '' && this.nursing_info.email.length > 0){
                     this.btn_disable=false;
                 }else{
                     this.btn_disable=true;
@@ -1228,14 +1228,11 @@ export default {
                 type: "warning",
                 width: 350,
                 height: 200,
-                showCancelButton: true,
+                showCancelButton: false,
                 confirmButtonColor: "#dc3545",
-                cancelButtonColor: "#b1abab",
-                cancelButtonTextColor: "#000",
                 confirmButtonText: "はい",
-                cancelButtonText: "キャンセル",
                 confirmButtonClass: "all-btn",
-                cancelButtonClass: "all-btn"
+                
             })                    
                   
      
