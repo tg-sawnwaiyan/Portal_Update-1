@@ -11,7 +11,17 @@
                     <a class="" style="color:#fff;font-size:20px;width:230px;text-align:center;background: rgb(36, 84, 113);" href="/"  v-if="visit != 'true'">                     
                       <img src="/images/admin_logo1.png" style="width:230px;height:auto;" />
                     </a>
-                    <div class="h-tel" v-if="visit == 'true'"><a class="tel" href="tel:03-1234-5678"><i class="fas fa-phone-alt"></i><span>03-1234-5678</span></a><br class="pc-1024"><a href="mailto:info@t-i-s.jp"><p class="sp-1024"><i class="fas fa-envelope"></i></p><span>info@t-i-s.jp</span></a></div>
+                    <!-- <div class="h-tel" v-if="visit == 'true'">
+                        <a class="tel" href="tel:03-1234-5678"><i class="fas fa-phone-alt"></i><span>03-1234-5678</span></a>
+                        <br class="pc-1024"><a href="mailto:info@t-i-s.jp">
+                        <p class="sp-1024"><i class="fas fa-envelope"></i></p><span>info@t-i-s.jp</span></a>
+                    </div> -->
+
+                    <div v-if="visit == 'true'">
+                    <a class="tel" href="mailto:info@t-i-s.jp"><i class="fas fa-envelope"></i><span>info@t-i-s.jp</span></a>
+                    <br class="pc-1024">
+                    <!-- <span href="mailto:info@t-i-s.jp"><p class="sp-1024"><i class="fas fa-envelope"></i></p><span>info@t-i-s.jp</span></a> -->
+                    </div>
                     <!-- <ul class="sp_social d-none-380"  v-if="visit == 'true'">
                         <li class="social-link"><a href="https://twitter.com/login?lang=en"><i class="fab fa-twitter"></i></a></li>
                         <li class="social-link"><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>

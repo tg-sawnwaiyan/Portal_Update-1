@@ -1858,7 +1858,7 @@ border-top: 5px solid #e66527; */
     height: 25px;
     margin-right: 5px;
     font-size: 15px;
-    color: #c91616;
+    color: #2980b9;
     text-align: center;
     line-height: 25px;
     background: #eee;
@@ -1873,7 +1873,7 @@ border-top: 5px solid #e66527; */
 .h-tel .tel span {
     padding: 10px 0 0 0;
     line-height: 1.1;
-    font-size: 18px;
+    font-size: 14px;
     /* font-weight: bold; */
     color: #444;
 }
