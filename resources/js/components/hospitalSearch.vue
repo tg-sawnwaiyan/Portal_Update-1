@@ -357,11 +357,11 @@
                     </div>
                 </div>
             </div>
-            <div class="offset-md-4 col-md-8" v-if="show_paginate">
+            <!-- <div class="offset-md-4 col-md-8" v-if="show_paginate">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
                     <li class="page-item">
-                        <span class="spanclass pc-480" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
+                        <span class="spanclass pc-480" @click="first" v-bind:class="isActive ? 'disable':'undisable'"><i class='fas fa-angle-double-left'></i> 最初</span>
                     </li>
                     <li class="page-item">
                         <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i><span class="pc-paginate"> 前へ</span></span>
@@ -373,11 +373,38 @@
                         <span class="spanclass" @click="next"><span class="pc-paginate">次へ </span><i class='fas fa-angle-right'></i></span>
                     </li>
                     <li class="page-item">
-                        <span class="spanclass pc-480" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
+                        <span class="spanclass pc-480" @click="last" v-bind:class="isActive ? 'undisable':'disable'">最後 <i class='fas fa-angle-double-right'></i></span>
                     </li>
                     </ul>
                 </nav>
+            </div> -->
+           <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-6" v-if="show_paginate">
+              <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li class="page-item previous">
+                    <span class="spanclass" v-bind:class="isActive ? 'disable':'undisable'" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
+                  </li>
+                  <li class="page-item ">
+                    <span class="spanclass" @click="prev()"><i class='fas fa-angle-left'></i> 前へ</span>
+                  </li>
+                  <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
+                    <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
+                  </li>
+                  <li class="page-item ">
+                    <span class="spanclass" @click="next">次へ <i class='fas fa-angle-right'></i></span>
+                  </li>
+                  <li class="page-item next">
+                    <span class="spanclass" v-bind:class="isActive ? 'undisable':'disable'" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
+                  </li>
+                </ul>
+              </nav>
             </div>
+          </div>
+
+
+
+
 
             <span v-if="norecord_msg">
                     <div class="container-fuid m-t-20">
@@ -453,6 +480,7 @@ import bulcomponent from './bulcomponent.vue'
         stateclick:false,
         clicksearch: false,
         ci: false,
+        isActive: true,
       }
     },
     created(){
@@ -630,6 +658,7 @@ import bulcomponent from './bulcomponent.vue'
                     this.getTownships = [];
                     this.subject = response.data.subject;
                     this.subjects = response.data.subjects;
+                   
                     if(this.hos_data.length > this.size) {
                         this.show_paginate = true;
                     }else{
@@ -875,10 +904,17 @@ import bulcomponent from './bulcomponent.vue'
         }
     },
     first() {
-      this.currentPage = 0;
+      if(this.isActive == false){
+        this.currentPage = 0;
+      }
+      this.isActive = true;
+
     },
     last() {
-      this.currentPage = this.pages - 1;
+      if(this.isActive == true){
+        this.currentPage = this.pages - 1;
+      }
+      this.isActive = false;
     },
     prev() {
       if(0<this.currentPage) {
@@ -1039,6 +1075,37 @@ import bulcomponent from './bulcomponent.vue'
     border-bottom: 0;
     border-left: 0.3em solid transparent;
     margin-left: 94px;
+}
+
+
+
+.disable{
+ /* display:none; */
+ cursor: not-allowed !important;
+ background-color:gray;
+}
+
+.undisable{
+  /* display:block; */
+  cursor: pointer;
+}
+.pagination .spanclass:hover{
+  background-color:#2980b9 !important;
+}
+@media only screen and (max-width: 480px) {
+
+.previous span {
+  display:none;
+}
+
+.next span {
+  display:none;
+}
+}
+@media only screen and (max-width: 480px) {
+  .pagination .pages {
+    display: none;
+  }
 }
 
 </style>
