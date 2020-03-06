@@ -17,9 +17,9 @@
                     <p>OOPS!!</p>
                     <p class="record-txt01">表示するデータありません</p>
                     <p style="color:#a5a5a5;">表示するデータありません‼新しいデータを作成してください。</p>
-                    <a :href="hrefroute" class="main-bg-color create-btn all-btn">
+                    <router-link :to="hrefroute" class="main-bg-color create-btn all-btn">
                         <i cl ass="fas fa-plus-circle"></i> 求人新規作成
-                    </a>
+                    </router-link>
                 </div>
 
                 <div v-else class="container-fuid">
@@ -40,6 +40,7 @@
                         </div>
                     </div>
                     <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
+                   
                     <div v-if="$auth.check(1)" class="container-fuid">
                         <div class="card card-default m-b-20" v-for="job in jobs.data" :key="job.id">
                             <div class="card-body joboffer-body">
@@ -354,6 +355,7 @@
                 
 
                 if(this.$route.name == "profilejobofferlist"){
+                    
                     this.pro_id = this.$route.params.id;
                     this.type = this.$route.params.type;
                     this.hrefroute = "/profilejoboffercreate/"+this.type+"/"+this.pro_id;
