@@ -438,7 +438,7 @@ export default {
         empstatus:[],
         job_data:[],
         currentPage: 0,
-        size: 20,
+        size: 1,
         pageRange: 5,
         items: [],
         show_paginate: false,
