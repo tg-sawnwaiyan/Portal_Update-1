@@ -24,8 +24,9 @@
                             </div>
                             <div class="form-group form-group-wrapper d-flex">
                                 <label class="heading-lbl col-md-2 col-12 pad-free">メールアドレス<span class="error sp2">必須</span></label>
-                                <input type="text" class="form-control customer-email col-md-10 col-12 nursing_input" id="btn" v-model="nursing_info.email" placeholder="メールアドレスを入力してください。">
+                                <input type="text" class="form-control customer-email col-md-10 col-12 nursing_input" id="btn" v-model="nursing_info.email" @change="aggreBtn" @keyup="focusMail" placeholder="メールアドレスを入力してください。">
                             </div>
+                            <span class="error m-l-30" v-if="mail_focus && this.nursing_info.email !=''">※メールアドレスが正しくありません。もう一度入力してください。</span>
                             <div class="form-group form-group-wrapper d-flex">
                                 <label class="heading-lbl col-md-2 col-12 pad-free">電話番号</label>                                
                                 <input type="text" class="form-control customer-phone col-md-10 col-12 nursing_input" id="phone" placeholder="電話番号を入力してください。" v-model="nursing_info.phone" v-on:keyup="isNumberOnly" pattern="[0-9-]*" @focusout="focusPhone" title="Please enter number only." maxlength="14">
@@ -703,7 +704,11 @@ export default {
             // Button,
             // Input,
             // Select,
+            email:''
         },
+         errors: [],
+        
+         
 
        data() {
             return {
@@ -712,7 +717,6 @@ export default {
                 months: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
                 placeholder: {
                 date: new Date().toISOString().slice(0,10),
-
                 }
             },
                 isRotate1: false,
@@ -773,6 +777,14 @@ export default {
                 address_show: '',
                 img_name:'',profile_img:'',
                 pro_id: 0,
+                btn_disable: false,
+                mail_focus: false,
+                mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
+            }
+        },
+         computed: {
+            isdisable:function() {
+                return this.btn_disable;
             }
         },
 
@@ -863,7 +875,7 @@ export default {
                 });
 
                 this.axios
-                .get('/api/nursing-pgallery/'+this.pro_id)
+                .get('/api/pgallery/'+this.pro_id+'/nursing')
                 .then(response=>{
                     this.img_arr = response.data;
                 });
@@ -876,7 +888,7 @@ export default {
                 });
 
                 this.axios
-                .get('/api/nursing-vgallery/'+this.pro_id)
+                .get('/api/vgallery/'+this.pro_id+'/nursing')
                 .then(response=>{
                     this.video_arr = response.data;
                 });
@@ -893,6 +905,25 @@ export default {
                     this.payment_arr = response.data;
                 });
                 this.$loading(false);
+            },
+             aggreBtn: function(){
+                if((this.mail_reg.test(this.nursing_info.email) ) ){
+                    this.btn_disable=false;
+                }else{
+                    this.btn_disable=true;
+                }
+            },
+
+            focusMail: function(event) {
+
+                if((this.nursing_info.email != '' && this.mail_reg.test(this.nursing_info.email))){
+                    this.mail_focus=false;
+                }else{
+                    this.mail_focus=true;
+                   
+                }
+                this.aggreBtn();
+            
             },
             focusPhone(){
 
@@ -965,6 +996,7 @@ export default {
                             fd.append('type','panorama');
                             fd.append('photo',photo);
                             fd.append('customer_id',this.pro_id)
+                            fd.append('custype','nursing')
 
                             this.axios
                             .post('/api/delete-pgallery',fd)

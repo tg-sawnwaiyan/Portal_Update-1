@@ -1142,13 +1142,13 @@ export default {
                     }
                 });
                 this.axios
-                .get('/api/hospital-pgallery/'+this.pro_id + '/' + 'hospital')
+                .get('/api/pgallery/'+this.pro_id + '/hospital')
                 .then(response=>{
                         this.img_arr = response.data;
 
                 });
                 this.axios
-                .get('/api/hospital-vgallery/'+this.pro_id+'/'+'hospital')
+                .get('/api/vgallery/'+this.pro_id+'/hospital')
                 .then(response=>{
                         this.video_arr = response.data;
                 });
