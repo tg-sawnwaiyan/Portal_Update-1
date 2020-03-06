@@ -26,7 +26,10 @@
                                 <label class="heading-lbl col-md-2 col-12 pad-free">メールアドレス<span class="error sp2">必須</span></label>
                                 <input type="text" class="form-control customer-email col-md-10 col-12 nursing_input" id="btn" v-model="nursing_info.email" @change="aggreBtn" @keyup="focusMail" placeholder="メールアドレスを入力してください。">
                             </div>
-                            <span class="error m-l-30" v-if="mail_focus && this.nursing_info.email !=''">※メールアドレスが正しくありません。もう一度入力してください。</span>
+                            <div class="pro-1">
+                             <span class="error" v-if="mail_focus && nursing_info.email !=''">※メールアドレスが正しくありません。もう一度入力してください。</span>
+                             <!-- <span v-else-if="this.nursing_info.email">sssss</span> -->
+                            </div>
                             <div class="form-group form-group-wrapper d-flex">
                                 <label class="heading-lbl col-md-2 col-12 pad-free">電話番号</label>                                
                                 <input type="text" class="form-control customer-phone col-md-10 col-12 nursing_input" id="phone" placeholder="電話番号を入力してください。" v-model="nursing_info.phone" v-on:keyup="isNumberOnly" pattern="[0-9-]*" @focusout="focusPhone" title="Please enter number only." maxlength="14">
@@ -679,7 +682,7 @@
                 <!-- end table 7 for 公式サイト -->
                 <div class="bottom-fixed-btn">
                     <div class="row justify-content-center">
-                        <div class="col-8 col-md-3 col-lg-2">
+                        <div class="col-8 col-md-3 col-lg-2">                            
                             <span class="btn secondary-bg-color col-8 offset-2 all-btn" @click="createProfile()" id="create-profile">保存</span>
                         </div>
                         
@@ -841,6 +844,7 @@ export default {
                         localStorage.setItem('lat_num',this.nursing_info.latitude);
                         localStorage.setItem('lng_num',this.nursing_info.longitude);
                     }
+                    this.focusMail();
 
                 });
 
@@ -904,6 +908,7 @@ export default {
                 .then(response=>{
                     this.payment_arr = response.data;
                 });
+                
                 this.$loading(false);
             },
              aggreBtn: function(){
@@ -915,7 +920,6 @@ export default {
             },
 
             focusMail: function(event) {
-
                 if((this.nursing_info.email != '' && this.mail_reg.test(this.nursing_info.email))){
                     this.mail_focus=false;
                 }else{
@@ -1215,151 +1219,175 @@ export default {
             },
             createProfile() {
                 
-                this.$loading(true);
+             if(this.btn_disable){
+                    // console.log("mail");
+                   
+              this.$swal({
+                title: "確認",
+                text: "メールをチェックしてください",
+                type: "warning",
+                width: 350,
+                height: 200,
+                showCancelButton: true,
+                confirmButtonColor: "#dc3545",
+                cancelButtonColor: "#b1abab",
+                cancelButtonTextColor: "#000",
+                confirmButtonText: "はい",
+                cancelButtonText: "キャンセル",
+                confirmButtonClass: "all-btn",
+                cancelButtonClass: "all-btn"
+            })                    
+                  
+     
+                }
+                else{              
+                
+                    this.$loading(true);
 
-                this.profile_arr = [];
+                    this.profile_arr = [];
 
-                this.nursing_info.latitude = $('#new_lat').val();
-                this.nursing_info.longitude = $('#new_long').val();
-                this.nursing_info.address = $('#address_show').val();
-                this.address_show = $('#address_show').val();
+                    this.nursing_info.latitude = $('#new_lat').val();
+                    this.nursing_info.longitude = $('#new_long').val();
+                    this.nursing_info.address = $('#address_show').val();
+                    this.address_show = $('#address_show').val();
 
-                this.nursing_info.townships_id = Number($('#gmaptownship').val());
-                localStorage.setItem('lat_num',this.nursing_info.latitude);
-                localStorage.setItem('lng_num',this.nursing_info.longitude);
+                    this.nursing_info.townships_id = Number($('#gmaptownship').val());
+                    localStorage.setItem('lat_num',this.nursing_info.latitude);
+                    localStorage.setItem('lng_num',this.nursing_info.longitude);
 
-                // Photo
-                let pt = new FormData();
-                var img = document.getElementsByClassName('gallery-area-photo');
-                for(var i =this.img_arr.length-1;i>=0;i--)
-                {
-                    this.img_arr[i]['type'] = 'photo';
-                    if(this.img_arr[i]['photo'] == null || this.img_arr[i]['photo'] == '')
+                    // Photo
+                    let pt = new FormData();
+                    var img = document.getElementsByClassName('gallery-area-photo');
+                    for(var i =this.img_arr.length-1;i>=0;i--)
                     {
-                        this.img_arr.splice(i,1);
+                        this.img_arr[i]['type'] = 'photo';
+                        if(this.img_arr[i]['photo'] == null || this.img_arr[i]['photo'] == '')
+                        {
+                            this.img_arr.splice(i,1);
+                        }
+
+                        var file = img[i].getElementsByClassName('nursing-photo')[0].files[0];
+                        if(file) {
+                            pt.append(i ,file )
+                        }
                     }
 
-                    var file = img[i].getElementsByClassName('nursing-photo')[0].files[0];
-                    if(file) {
-                        pt.append(i ,file )
-                    }
-                }
-
-                this.axios.post('/api/nursing/movephoto', pt)
-                    .then(response => {
-                    }).catch(error=>{
-                        console.log(error);
-                    if(error.response.status == 422){
-                        this.errors = error.response.data.errors
-                    }
-                })
-
-                // Logo
-                let lg = new FormData();
-                if(document.getElementsByClassName('customer-logo')[0].files[0]) {
-                    var file = document.getElementsByClassName('customer-logo')[0].files[0];
-                    lg.append('logo',file);
-                    this.axios.post('/api/nursing/movelogo', lg)
-                    .then(response => {
-                    }).catch(error=>{
-                        console.log(error);
-                    if(error.response.status == 422){
-                        this.errors = error.response.data.errors
-                    }
-                     })
-                }
-
-                // Video
-                for(var i =this.video_arr.length-1;i>=0;i--){
-                    if(this.video_arr[i].photo == null || this.video_arr[i].photo == '' )
-                    {
-                        this.video_arr.splice(i,1);
-                    }
-                }
-
-                // Cooperate
-                for(var i =this.cooperate_arr.length-1;i>=0;i--){
-                    if(this.cooperate_arr[i].name == null || this.cooperate_arr[i].name == '')
-                    {
-                        this.cooperate_arr.splice(i,1);
-                    }
-                }
-
-                // Payment Method
-                for(var i =this.payment_arr.length-1;i>=0;i--){
-                    if(this.payment_arr[i].payment_name == null || this.payment_arr[i].payment_name == '')
-                    {
-                        this.payment_arr.splice(i,1);
-                    }
-                }
-
-               var s_features =[];
-               this.chek_feature = [];
-                    $.each($("input[name='special-features']:checked"), function(){
-                            s_features.push($(this).val());
-                    });
-                this.chek_feature.push({special_feature_id:s_features});
-                console.log(this.chek_feature)
-
-
-                var acceptance=[];
-                $.each($("input:radio.medical-acceptance:checked"), function(){
-                        var accept_val = $(this).val();
-                        var tmp_arr = accept_val.split('-');
-                        var type = tmp_arr[0];
-                        var id = tmp_arr[1];
-                        var type = tmp_arr[0];
-                        var acceptance_id = tmp_arr[1];
-                        acceptance.push({id:id,type:type});
-                });
-
-                // Panorama
-                let fd = new FormData();
-                for(var i = 0; i< this.panorama_arr.length; i++) {
-                    if(this.panorama_arr[i]['path']!=''){
-                        fd.append(i ,this.panorama_arr[i]["file"] )
-                    }
-                }
-
-                this.axios.post('/api/nursing/movepanorama', fd)
-                    .then(response => {
-                    }).catch(error=>{
-                        console.log(error);
+                    this.axios.post('/api/nursing/movephoto', pt)
+                        .then(response => {
+                        }).catch(error=>{
+                            console.log(error);
                         if(error.response.status == 422){
                             this.errors = error.response.data.errors
                         }
                     })
 
-                this.profile_arr.push({nursing_profile:this.nursing_info,staff_info:this.staff_info, cooperate_list:this.cooperate_arr,
-                                        payment_list:this.payment_arr, video:this.video_arr, image: this.img_arr, panorama: this.panorama_arr,
-                                        acceptance:acceptance,chek_feature:this.chek_feature
-                });
-
-                if(this.profile_arr.length > 0) {
-                    this.axios
-                        .post(`/api/nursing/profile/${this.pro_id}`,this.profile_arr)
-                        .then((response) => {
-                            this.initialCall();
-                            this.$swal({
-                                    position: 'top-end',
-                                    type: 'success',
-                                    title: '更新されました',
-                                    confirmButtonText: "閉じる",
-                                    confirmButtonColor: "#6cb2eb",
-                                    width: 250,
-                                    height: 200,
-                                })
-                        }).then(response => {
-                            this.img_name = '';
-                         })   
-                        .catch(error=>{
-                            this.$loading(false);
-                            if(error.response.status == 422){
-                            this.profile_arr = 'error';
+                    // Logo
+                    let lg = new FormData();
+                    if(document.getElementsByClassName('customer-logo')[0].files[0]) {
+                        var file = document.getElementsByClassName('customer-logo')[0].files[0];
+                        lg.append('logo',file);
+                        this.axios.post('/api/nursing/movelogo', lg)
+                        .then(response => {
+                        }).catch(error=>{
+                            console.log(error);
+                        if(error.response.status == 422){
                             this.errors = error.response.data.errors
-
                         }
-                    }) ;
+                        })
+                    }
+
+                    // Video
+                    for(var i =this.video_arr.length-1;i>=0;i--){
+                        if(this.video_arr[i].photo == null || this.video_arr[i].photo == '' )
+                        {
+                            this.video_arr.splice(i,1);
+                        }
+                    }
+
+                    // Cooperate
+                    for(var i =this.cooperate_arr.length-1;i>=0;i--){
+                        if(this.cooperate_arr[i].name == null || this.cooperate_arr[i].name == '')
+                        {
+                            this.cooperate_arr.splice(i,1);
+                        }
+                    }
+
+                    // Payment Method
+                    for(var i =this.payment_arr.length-1;i>=0;i--){
+                        if(this.payment_arr[i].payment_name == null || this.payment_arr[i].payment_name == '')
+                        {
+                            this.payment_arr.splice(i,1);
+                        }
+                    }
+
+                var s_features =[];
+                this.chek_feature = [];
+                        $.each($("input[name='special-features']:checked"), function(){
+                                s_features.push($(this).val());
+                        });
+                    this.chek_feature.push({special_feature_id:s_features});
+                    console.log(this.chek_feature)
+
+
+                    var acceptance=[];
+                    $.each($("input:radio.medical-acceptance:checked"), function(){
+                            var accept_val = $(this).val();
+                            var tmp_arr = accept_val.split('-');
+                            var type = tmp_arr[0];
+                            var id = tmp_arr[1];
+                            var type = tmp_arr[0];
+                            var acceptance_id = tmp_arr[1];
+                            acceptance.push({id:id,type:type});
+                    });
+
+                    // Panorama
+                    let fd = new FormData();
+                    for(var i = 0; i< this.panorama_arr.length; i++) {
+                        if(this.panorama_arr[i]['path']!=''){
+                            fd.append(i ,this.panorama_arr[i]["file"] )
+                        }
+                    }
+
+                    this.axios.post('/api/nursing/movepanorama', fd)
+                        .then(response => {
+                        }).catch(error=>{
+                            console.log(error);
+                            if(error.response.status == 422){
+                                this.errors = error.response.data.errors
+                            }
+                        })
+
+                    this.profile_arr.push({nursing_profile:this.nursing_info,staff_info:this.staff_info, cooperate_list:this.cooperate_arr,
+                                            payment_list:this.payment_arr, video:this.video_arr, image: this.img_arr, panorama: this.panorama_arr,
+                                            acceptance:acceptance,chek_feature:this.chek_feature
+                    });
+
+                    if(this.profile_arr.length > 0) {
+                        this.axios
+                            .post(`/api/nursing/profile/${this.pro_id}`,this.profile_arr)
+                            .then((response) => {
+                                this.initialCall();
+                                this.$swal({
+                                        position: 'top-end',
+                                        type: 'success',
+                                        title: '更新されました',
+                                        confirmButtonText: "閉じる",
+                                        confirmButtonColor: "#6cb2eb",
+                                        width: 250,
+                                        height: 200,
+                                    })
+                            }).then(response => {
+                                this.img_name = '';
+                            })   
+                            .catch(error=>{
+                                this.$loading(false);
+                                if(error.response.status == 422){
+                                this.profile_arr = 'error';
+                                this.errors = error.response.data.errors
+
+                            }
+                        }) ;
+                    }
                 }
             },
             isNumberOnly: function(event) {
