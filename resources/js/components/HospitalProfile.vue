@@ -1307,23 +1307,21 @@ export default {
                 if(this.btn_disable){
                     // console.log("mail");
                    
-              this.$swal({
-                title: "確認",
-                text: "メールをチェックしてください",
-                type: "warning",
-                width: 350,
-                height: 200,
-                showCancelButton: false,
-                confirmButtonColor: "#dc3545",
-                cancelButtonColor: "#b1abab",
-                cancelButtonTextColor: "#000",
-                confirmButtonText: "はい",
-                cancelButtonText: "キャンセル",
-                confirmButtonClass: "all-btn",
-                cancelButtonClass: "all-btn"
-            })                    
-                  
-     
+                    this.$swal({
+                        title: "確認",
+                        text: "メールをチェックしてください",
+                        type: "warning",
+                        width: 350,
+                        height: 200,
+                        showCancelButton: false,
+                        confirmButtonColor: "#dc3545",
+                        cancelButtonColor: "#b1abab",
+                        cancelButtonTextColor: "#000",
+                        confirmButtonText: "はい",
+                        cancelButtonText: "キャンセル",
+                        confirmButtonClass: "all-btn",
+                        cancelButtonClass: "all-btn"
+                    })                    
                 }
 
                 else {
