@@ -315,6 +315,15 @@ const routes = [
             auth: true
         }
     },
+    {
+        name: "profilejoboffercreate",
+        path: "/profilejoboffercreate/:type/:id",
+        component: joboffercreate,
+        meta: {
+            // auth: { roles: 1, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
+            auth: true
+        }
+    },
 
     {
         name: "hospital_history",
