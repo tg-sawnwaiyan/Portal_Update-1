@@ -10,27 +10,27 @@
                             <br />
                         </div>
                         <form @submit.prevent="add" class="mt-2 pb-5 col-md-12">
-                          <div class="form-group" v-if="this.$auth.check(2)">
-                            <div class="form-group" v-if="editcheck">
-                              <label>事業者名</label>
-                              <label>{{cusName}}</label>
-                              <br>
-                              <label>施設名</label>
-                              <label>{{profileName}}</label>
-                            </div>
-                            <div v-else>
-                            <label>事業者名</label>
-                            <autocomplete placeholder="事業者名を検索" input-class="form-control" :source=customerList :results-display="formattedDisplay" @selected="getSelected($event)">
-                            </autocomplete>
-                            <br>
-                            <label>施設名</label>
-                            <select v-model="selectedValue" class="division form-control" @change="getProfile($event)">
-                                <option value="0">選択してください。</option>
-                                <option v-for="profile in profileList" :key="profile.id" v-bind:value="profile.id">
-                                    {{profile.name}}
-                                </option>
-                            </select>
-                            </div>
+                          <div class="form-group" v-if="$auth.check(2)">
+                                <div class="form-group" v-if="editcheck">
+                                    <label>事業者名</label>
+                                    <label>{{cusName}}</label>
+                                    <br>
+                                    <label>施設名</label>
+                                    <label>{{profileName}}</label>
+                                </div>
+                                <div v-if="type == 'admin'">
+                                    <label>事業者名</label>
+                                    <autocomplete placeholder="事業者名を検索" input-class="form-control" :source=customerList :results-display="formattedDisplay" @selected="getSelected($event)">
+                                    </autocomplete>
+                                    <br>
+                                    <label>施設名</label>
+                                    <select v-model="selectedValue" class="division form-control" @change="getProfile($event)">
+                                        <option value="0">選択してください。</option>
+                                        <option v-for="profile in profileList" :key="profile.id" v-bind:value="profile.id">
+                                            {{profile.name}}
+                                        </option>
+                                    </select>
+                                </div>
                           </div>
                             <div class="form-group">
                                 <label for="title">
@@ -451,7 +451,7 @@
 
                             <div class="form-group mt-3 pb-5">
                                 <span class="btn main-bg-color white all-btn"  @click="checkValidate()">{{subtitle}}</span>
-                                <router-link class="btn bt-red all-btn" to="/jobofferlist">キャンセル</router-link>
+                                <span class="btn bt-red all-btn" @click="$router.go(-1)">キャンセル</span>
                             </div>
                         </form>
                     </div>
@@ -469,6 +469,7 @@ import Autocomplete from 'vuejs-auto-complete'
       },
         data() {
                 return {
+                type: '',
                 header: "求人作成",
                 subtitle: "作成",
                 errors: {
@@ -579,11 +580,8 @@ import Autocomplete from 'vuejs-auto-complete'
                 if (this.$route.name == 'jobedit') {
                     this.editcheck = true;
                     this.axios
-
-                        .get(`/api/job/edit/${this.$route.params.id}`)
-
+                    .get(`/api/job/edit/${this.$route.params.id}`)
                     .then(response => {
-                      console.log("response.data.job",response.data.job);
                         this.joboffer.title = response.data.job[0].title;
                         if(response.data.job[0].zip7_code == null){
                           this.joboffer.postal = "";
@@ -593,54 +591,26 @@ import Autocomplete from 'vuejs-auto-complete'
                           this.joboffer.postal = '0' + response.data.job[0].zip7_code;
                           this.joboffer.zipcode_id = response.data.job[0].zip_id;
                         }            
-                                         
-                    
-                        // this.joboffer.pref = response.data[0].cityname;
                         this.joboffer.pref = response.data.job[0].city_id;
                         this.getTownship(1);
                         this.joboffer.str_address = response.data.job[0].township_id;
-
                         this.joboffer.customer_id = response.data.job[0].customer_id;
-
                         this.selectedValue = response.data.job[0].occupation_id;
                         this.joboffer.occupation_id = response.data.job[0].occupation_id;
-
                         this.joboffer.description = response.data.job[0].description;
-
-                        // this.joboffer.fields.skills = response.data.job[0].skills;
                         this.joboffer.skills = response.data.job[0].skills;
-
-                        // let arr = [];
-
-                        // arr = this.joboffer.fields.skills.split(",");
-
-                        // this.createskill(arr);
-
                         this.joboffer.location = response.data.job[0].location;
-
                         this.joboffer.nearest_station = response.data.job[0].nearest_station;
-
                         this.joboffer.employmentstatus = response.data.job[0].employment_status;
-
-                        // this.ischeck = response.data.employment_status;
-
-                        // this.createCheck(this.ischeck);
                         this.joboffer.salary_type = response.data.job[0].salary_type;
                         this.joboffer.salary = response.data.job[0].salary;
                         this.joboffer.salary_remark = response.data.job[0].salary_remark;
-
                         this.joboffer.allowances = response.data.job[0].allowances;
-
                         this.joboffer.insurance = response.data.job[0].insurance;
-
                         this.joboffer.working_hours = response.data.job[0].working_hours;
-
                         this.joboffer.holidays = response.data.job[0].holidays;
-
                         this.joboffer.user_id = response.data.job[0].user_id;
-
                         this.joboffer.recordstatus = response.data.job[0].recordstatus;
-
                         this.joboffer.profile_id = response.data.job[0].profile_id;
                         this.header = " 求人編集";
                         this.subtitle = "保存";
@@ -657,15 +627,13 @@ import Autocomplete from 'vuejs-auto-complete'
                             }
                             }
                           }
-                          this.axios.post(`/api/job/profileName/${this.joboffer.profile_id}`,this.table_name)
+                        this.axios.post(`/api/job/profileName/${this.joboffer.profile_id}`,this.table_name)
                         .then(response=> {
-                          console.log("profilename",response.data)
                             for(var i=0; i<response.data.length; i++){
                                 if(this.joboffer.profile_id == response.data[i].id){
                                     this.profileName = response.data[i].name;
                                 }
                             }
-                            // this.profileName = response.data[0].name;
                         });
                           this.customerList = response.data;
                         });
@@ -673,8 +641,15 @@ import Autocomplete from 'vuejs-auto-complete'
                         return this.header;
                         return this.subtitle;
                     });
-                }else{
-                  this.editcheck = false;
+                }
+                else if(this.$route.name == 'profilejoboffercreate'){
+                    this.editcheck = true;
+                    this.joboffer.profile_id = this.$route.params.id;
+                    this.type = 'profile';
+                }
+                else{
+                    this.editcheck = false;
+                    this.type = 'admin';
                 }
             },
 
@@ -810,7 +785,7 @@ import Autocomplete from 'vuejs-auto-complete'
 
                 add() {
               
-                    if (this.$route.params.id) {
+                    if (this.$route.name == 'jobedit') {
                         this.updateJob();
                     } else {
                         this.$swal({
@@ -830,6 +805,7 @@ import Autocomplete from 'vuejs-auto-complete'
                            
                         }
                         ).then(response => {
+                            
                            this.$loading(true);
                             this.axios
                                 .post("/api/job/add", this.joboffer)
@@ -1006,7 +982,6 @@ import Autocomplete from 'vuejs-auto-complete'
                 // },
 
                 updateJob() {
-                      if (this.$route.params.id){
                         this.$swal({
                         title: "確認",
                         text: "求人を更新してよろしいでしょうか。",
@@ -1049,7 +1024,6 @@ import Autocomplete from 'vuejs-auto-complete'
                                 }
                             });
                         });
-                    }
                   },
                   formattedDisplay(result) {
                     return result.name + '「' + result.email + '」';
