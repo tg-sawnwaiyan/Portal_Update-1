@@ -5289,6 +5289,11 @@ margin-right: 2% !important;
 .m-b-10 {
     margin-bottom: 10px;
 }
+.cmt-1 
+{
+    margin-bottom: 10px;
+    left: 8px;
+}
 
 .secondary-bg-color {
     background-color: #0cc72c !important;
@@ -9682,8 +9687,11 @@ padding: 11px;
         width: 100%;
     }
     #headerbar {
+        /* display: block;
+        top: 86px; */
         display: block;
         top: 86px;
+        right: 20px;
     }
     #headerbar li {
         display: inline-block;
@@ -12545,7 +12553,7 @@ strong {
     .comment {
         padding: 7px;
         width: 323px;
-        left: -20px;
+        left: -7px;
     }
     .comform {
         max-width: none;
@@ -12812,6 +12820,6 @@ strong {
 }
 
 .pro-1 {
-    margin-top: -14px !important;
-    margin-bottom: 10px;
+   margin-top: -19px !important;
+   display: block;
 }

@@ -110,11 +110,17 @@
                                             </span>
                                             </div>
                                             
-                                            <p class="">
+                                            <p v-if="nursingprofiles.activate == 1">
                                                 <router-link :to="{ path:'/profilejobofferlist/nursing/'+ nursingprofiles.id}" style="font-weight:bold;text-decoration:underline;">
                                                 <i class="vsm--icon fa fa-edit fa-fw" style="color: #585858;"></i>求人編集</router-link>&nbsp;&nbsp;
                                                 <router-link :to="{ path:'/jobapplicantlist/nursing/profile/'+ nursingprofiles.id}" style="font-weight:bold;text-decoration:underline;">
-                                                <i class="vsm--icon fa fa-list" style="color: #7d7d7d;"></i>求人応募者一覧</router-link>
+                                                <i class="vsm--icon fa fa-list" style="color: #585858;"></i>求人応募者一覧</router-link>
+                                            </p>
+                                            <p v-else>
+                                                <a style="font-weight:bold;color:#ccc;">
+                                                <i class="vsm--icon fa fa-edit fa-fw" style="color: #ccc;"></i>求人編集</a>&nbsp;&nbsp;
+                                                <a style="font-weight:bold;color:#ccc;">
+                                                <i class="vsm--icon fa fa-list" style="color: #ccc;"></i>求人応募者一覧</a>
                                             </p>
                                         </div>
                                         <div class="card-read-more">
@@ -147,11 +153,17 @@
                                             </span>
                                             </div>
                                             
-                                            <p class="">
+                                            <p v-if="hospitalprofiles.activate == 1">
                                                 <router-link :to="{ path:'/profilejobofferlist/hospital/'+ hospitalprofiles.id}" class="" style="font-weight:bold;text-decoration:underline;">
                                                     <i class="vsm--icon fa fa-edit fa-fw" style="color: #585858;"></i>求人編集</router-link>&nbsp;&nbsp;
                                                 <router-link :to="{ path:'/jobapplicantlist/hospital/profile/'+ hospitalprofiles.id}" class="" style="font-weight:bold;text-decoration:underline;">
                                                     <i class="vsm--icon fa fa-list fa-fw" style="color: #585858;"></i>求人応募者一覧</router-link>
+                                            </p>
+                                            <p v-else>
+                                                <a style="font-weight:bold;color:#ccc;">
+                                                    <i class="vsm--icon fa fa-edit fa-fw" style="color: #ccc;"></i>求人編集</a>&nbsp;&nbsp;
+                                                <a style="font-weight:bold;color:#ccc;">
+                                                    <i class="vsm--icon fa fa-list fa-fw" style="color: #ccc;"></i>求人応募者一覧</a>
                                             </p>
                                         </div>
                                         <div class="card-read-more">

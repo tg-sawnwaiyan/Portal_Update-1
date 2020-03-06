@@ -660,7 +660,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12" v-if="show_paginate">
+                                <!-- <div class="col-12" v-if="show_paginate">
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination">
                                         <li class="page-item">/
@@ -680,6 +680,29 @@
                                         </li>
                                         </ul>
                                     </nav>
+                                </div> -->
+                                <div class="row mt-3">
+                                    <div class="col-md-12 col-lg-12 col-sm-6" v-if="show_paginate">
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination">
+                                        <li class="page-item previous">
+                                            <span class="spanclass" v-bind:class="isActive ? 'disable':'undisable'" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
+                                        </li>
+                                        <li class="page-item ">
+                                            <span class="spanclass" @click="prev()"><i class='fas fa-angle-left'></i> 前へ</span>
+                                        </li>
+                                        <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
+                                            <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
+                                        </li>
+                                        <li class="page-item ">
+                                            <span class="spanclass" @click="next">次へ <i class='fas fa-angle-right'></i></span>
+                                        </li>
+                                        <li class="page-item next">
+                                            <span class="spanclass" v-bind:class="isActive ? 'undisable':'disable'" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
+                                        </li>
+                                        </ul>
+                                    </nav>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -778,6 +801,7 @@
                 searchword:'',
                 index:'',
                 clicksearch: false,
+                isActive: true,
             }
         },
 
@@ -1311,7 +1335,7 @@
                 }
 
                var township_name = townshipName;
-            //    this.coordinate = [];
+            //    this.coordinate = []; 
             //    this.coordinate = [
             //        {"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"MultiPolygon"}}]}
             //    ]
@@ -1326,7 +1350,7 @@
                 var newresult=[];
                 var jsonfile = theCity+".json";
                 // https://testikportal.management-partners.co.jp
-                this.axios.get("./json/cities/"+jsonfile).then(respon => {
+                this.axios.get("https://testikportal.management-partners.co.jp/json/cities/"+jsonfile).then(respon => {
                     this.coordinate = respon.data.reduce((acc, val) => acc.concat(val), []);
                     this.boundariesGoogleMap(lat,lng,this.coordinate);  
                 }); 
@@ -1335,7 +1359,7 @@
                 else{
                     var jsonfile = theCity+".json";
                     jsonfile = jsonfile.toLowerCase();
-                    this.axios.get('./json/Townships/'+jsonfile).then(res => {
+                    this.axios.get('https://testikportal.management-partners.co.jp/json/Townships/'+jsonfile).then(res => {
                      var township_coor = []
                      for(var i = 0; i < res.data.features.length; i++)
                      {
@@ -1759,11 +1783,17 @@
             },
 
             first() {
-                this.currentPage = 0;
+                if(this.isActive == false){
+                        this.currentPage = 0;
+                    }
+                    this.isActive = true;
             },
 
             last() {
-                this.currentPage = this.pages - 1;
+                if(this.isActive == true){
+                    this.currentPage = this.pages - 1;
+                }
+                this.isActive = false;
             },
 
             prev() {
@@ -2473,5 +2503,34 @@ div#holder {
     .wd-in {
         width: 323px;
     }
+}
+
+.disable{
+ /* display:none; */
+ cursor: not-allowed !important;
+ background-color:gray;
+}
+
+.undisable{
+  /* display:block; */
+  cursor: pointer;
+}
+.pagination .spanclass:hover{
+  background-color:#2980b9 !important;
+}
+@media only screen and (max-width: 480px) {
+
+.previous span {
+  display:none;
+}
+
+.next span {
+  display:none;
+}
+}
+@media only screen and (max-width: 480px) {
+  .pagination .pages {
+    display: none;
+  }
 }
 </style>

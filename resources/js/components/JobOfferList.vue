@@ -160,7 +160,7 @@
                                     </table>
                                     <ul class="btn-list mt-4">
                                         <li>
-                                            <router-link :to="{name: 'joboffercreate', params:{id:job.id}}" class="btn edit-borderbtn">編集</router-link>
+                                            <router-link :to="{path: '/jobedit/'+job.id }" class="btn edit-borderbtn">編集</router-link>
                                         </li>                           
                                         <li><a class="btn text-danger delete-borderbtn" @click="deleteJob(job.id)">削除</a></li>
                                         <li class="mt-2" v-if="job.count">
