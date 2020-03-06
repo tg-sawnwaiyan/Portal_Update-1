@@ -1755,6 +1755,7 @@ box-shadow: 0px 0px 5px rgb(212, 201, 201); */
 
 .admin-header .userprofile-name label {
     color: #fff !important;
+    text-shadow: 2px 2px #51595f !important;
 }
 
 .admin-header .gNav li a {
@@ -5419,10 +5420,10 @@ li.userprofile-name>a {
 }
 
 .userprofile-img {
-    width: 40px;
-    height: 40px;
-    line-height: 40px !important;
-    font-size: 23px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px !important;
+    font-size: 17px;
     color: #2980b9;
     background: #ece1e1b3;
     text-align: center;
@@ -10686,9 +10687,9 @@ padding: 0;
     /*End  profile publish */
     /* job details */
     .job_id {
-        float: none;
+        float: none !important;
         display: block;
-        width: 185px;
+        /* width: 185px; */
         margin-top: 20px;
         text-align: center;
     }
