@@ -3,7 +3,7 @@
     <div>
         <div class="tab-content job-detail">
             <div class="row">
-                <div class="col-md-12 pad-free m-b-10">
+                <div class="col-md-12 pad-free m-b-10 cmt-1">
                     <nav aria-label="breadcrumb">
                         <!-- <ol class="breadcrumb">
                             <li class="breadcrumb-item"><span @click="changeRoute()" class="link-span">ホーム</span></li>

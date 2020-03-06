@@ -5285,6 +5285,11 @@ margin-right: 2% !important;
 .m-b-10 {
     margin-bottom: 10px;
 }
+.cmt-1 
+{
+    margin-bottom: 10px;
+    left: 8px;
+}
 
 .secondary-bg-color {
     background-color: #0cc72c !important;
