@@ -22,18 +22,17 @@
                   </div>
 
                   <div class="form-group form-group-wrapper d-flex">
-                          <label class="heading-lbl col-md-2 col-12 pad-free">メールアドレス <span class="error sp2">必須</span></label>
-                          <!-- <label class="col-md-10 col-12 customer-email"> {{hospital_info.email}} </label> -->
-                          <input type="text" class="form-control customer-email col-md-10 col-12 nursing_input" placeholder="email" v-model="hospital_info.email">
-                  </div>
+                      <label class="heading-lbl col-md-2 col-12 pad-free">メールアドレス <span class="error sp2">必須</span></label>
+                      <!-- <label class="col-md-10 col-12 customer-email"> {{hospital_info.email}} </label> -->
+                      <input type="text" class="form-control customer-email col-md-10 col-12 nursing_input" placeholder="email" v-model="hospital_info.email" @change="aggreBtn" @keyup="focusMail">
+                  </div>                          
+                    <span class="error pro-1" v-if="mail_focus && hospital_info.email !=''">※メールアドレスが正しくありません。もう一度入力してください。</span>                            
                   <div class="form-group form-group-wrapper d-flex">
-                          <label class="heading-lbl col-md-2 col-12 pad-free">電話番号 </label>                            
-                          <input type="text" class="form-control customer-phone col-md-10 col-12 nursing_input" id="phone" placeholder="電話番号を入力してください。" v-model="hospital_info.phone" v-on:keyup="isNumberOnly" pattern="[0-9-]*"  @focusout="focusPhone"  maxlength="14" title="Please enter number only.">
-                          <!-- v-on:keyup="isNumberOnly" -->
-                          <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>
-                          <span class="error" v-else></span>
-                        
-                  </div>
+                    <label class="heading-lbl col-md-2 col-12 pad-free">電話番号 </label>                            
+                    <input type="text" class="form-control customer-phone col-md-10 col-12 nursing_input" id="phone" placeholder="電話番号を入力してください。" v-model="hospital_info.phone" v-on:keyup="isNumberOnly" pattern="[0-9-]*"  @focusout="focusPhone"  maxlength="14" title="Please enter number only.">
+                    <!-- v-on:keyup="isNumberOnly" -->
+                  </div>                  
+                  <span class="error pro-1" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>          
               </div>
             </div>
 
@@ -1051,6 +1050,7 @@ export default {
                 // Button,
                 // Input,
                 // Select,
+                 email:''
         },
        data() {
             return {
@@ -1094,6 +1094,14 @@ export default {
             logo:'',
             img_name:'',
             pro_id: 0,
+            btn_disable: false,
+            mail_focus: false,
+            mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
+            }
+        },
+        computed: {
+            isdisable:function() {
+                return this.btn_disable;
             }
         },
         created(){
@@ -1140,6 +1148,7 @@ export default {
                         localStorage.setItem('lat_num',this.hospital_info.latitude);
                         localStorage.setItem('lng_num',this.hospital_info.longitude);
                     }
+                     this.focusMail();
                 });
                 this.axios
                 .get('/api/pgallery/'+this.pro_id + '/hospital')
@@ -1163,6 +1172,26 @@ export default {
                         this.fac_list = response.data;
                 });
             },
+            
+             aggreBtn: function(){
+                if((this.mail_reg.test(this.hospital_info.email) ) ){
+                    this.btn_disable=false;
+                }else{
+                    this.btn_disable=true;
+                }
+            },
+
+            focusMail: function(event) {
+                if((this.hospital_info.email != '' && this.mail_reg.test(this.hospital_info.email))){
+                    this.mail_focus=false;
+                }else{
+                    this.mail_focus=true;
+                   
+                }
+                this.aggreBtn();
+            
+            },
+
             imgUrlAlt(event) {
                 event.target.src = "/images/noimage.jpg"
             },
@@ -1274,6 +1303,31 @@ export default {
                 this.isRotate4 = !this.isRotate4;
             },
             Create_Profile () {
+
+                if(this.btn_disable){
+                    // console.log("mail");
+                   
+              this.$swal({
+                title: "確認",
+                text: "メールをチェックしてください",
+                type: "warning",
+                width: 350,
+                height: 200,
+                showCancelButton: true,
+                confirmButtonColor: "#dc3545",
+                cancelButtonColor: "#b1abab",
+                cancelButtonTextColor: "#000",
+                confirmButtonText: "はい",
+                cancelButtonText: "キャンセル",
+                confirmButtonClass: "all-btn",
+                cancelButtonClass: "all-btn"
+            })                    
+                  
+     
+                }
+
+                else {
+
                 var logo = document.getElementsByClassName('pro-logo')[0].files[0];
                
                 this.save_hospital_info = [];
@@ -1421,6 +1475,7 @@ export default {
                             this.errors = error.response.data.errors
                         }
                     }) ;
+                }
                 }
             },
               isNumberOnly: function(event) {

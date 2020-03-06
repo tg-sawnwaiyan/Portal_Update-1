@@ -9678,8 +9678,11 @@ padding: 11px;
         width: 100%;
     }
     #headerbar {
+        /* display: block;
+        top: 86px; */
         display: block;
         top: 86px;
+        right: 20px;
     }
     #headerbar li {
         display: inline-block;
@@ -12806,6 +12809,6 @@ strong {
 }
 
 .pro-1 {
-    margin-top: -14px !important;
-    margin-bottom: 10px;
+   margin-top: -19px !important;
+   display: block;
 }
