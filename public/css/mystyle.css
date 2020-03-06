@@ -368,6 +368,10 @@ span:hover::before {
     min-width: 68px !important;
 }
 
+ul.menu_list li i.fa-phone-alt {
+    color: #c91616 !important;
+}
+
 
 /********************************** End Common **********************************/
 
@@ -8409,8 +8413,8 @@ border-bottom: none;
 }
 
 .phone-no a {
-    /* color: #c40000; */
-    color: #2980b9;
+    color: #c40000;
+    /* color: #2980b9; */
 }
 
 .circle-phone {
@@ -10225,6 +10229,7 @@ padding: 0;
     /* common */
     ul li {
         list-style: none;
+        margin-right: 0px !important;
     }
     /*end common */
     /* header */
@@ -10434,6 +10439,7 @@ padding: 0;
         line-height: 1.1;
         font-size: 20px;
         font-weight: bold;
+        vertical-align: middle;
     }
     ul.contact_list i {
         width: 25px;
@@ -10445,9 +10451,9 @@ padding: 0;
         line-height: 25px;
         background: #ddd;
         border-radius: 50%;
-        vertical-align: text-bottom;
+        vertical-align: middle;
     }
-    ul.contact_list li:first-child a {
+    /* ul.contact_list li:first-child a {
         display: inline-block;
         width: auto;
         padding: 10px;
@@ -10458,7 +10464,7 @@ padding: 0;
     ul.contact_list li:first-child a:hover {
         text-decoration: none;
         opacity: 0.8;
-    }
+    } */
     .d-none-768 {
         display: none;
     }
