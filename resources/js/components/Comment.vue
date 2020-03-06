@@ -8,7 +8,7 @@
                        <div class="col-12 m-b-10 m-t-8 com-mt"><h4 class="comment-apply-color t-t" style="margin-left:5px;"><i class="fa fa-comments com_ic"></i> 口コミ投稿</h4></div>
                     <div class="card-body ">
                         <div class="row">
-                            <div class="col-sm-12 col-md-12" v-if="type == 'register'">
+                            <div class="col-sm-12 col-md-12 register_box" v-if="type == 'register'">
                                 <ul class="multi-step">
                                     <li class="active">1.<span>必要事項のご</span>入力</li>
                                     <li class="no-active">2.<span>内容のご</span>確認</li>

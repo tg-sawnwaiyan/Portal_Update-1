@@ -26,7 +26,7 @@
                       <!-- <label class="col-md-10 col-12 customer-email"> {{hospital_info.email}} </label> -->
                       <input type="text" class="form-control customer-email col-md-10 col-12 nursing_input" placeholder="email" v-model="hospital_info.email" @change="aggreBtn" @keyup="focusMail">
                   </div>                          
-                    <span class="error pro-1" v-if="mail_focus && hospital_info.email !=''">※メールアドレスが正しくありません。もう一度入力してください。</span>                            
+                    <span class="error pro-1" v-if="mail_focus || hospital_info.email =='' || hospital_info.email.length == 0">※メールアドレスが正しくありません。もう一度入力してください。</span>                            
                   <div class="form-group form-group-wrapper d-flex">
                     <label class="heading-lbl col-md-2 col-12 pad-free">電話番号 </label>                            
                     <input type="text" class="form-control customer-phone col-md-10 col-12 nursing_input" id="phone" placeholder="電話番号を入力してください。" v-model="hospital_info.phone" v-on:keyup="isNumberOnly" pattern="[0-9-]*"  @focusout="focusPhone"  maxlength="14" title="Please enter number only.">
@@ -1174,7 +1174,7 @@ export default {
             },
             
              aggreBtn: function(){
-                if((this.mail_reg.test(this.hospital_info.email) ) ){
+                if((this.mail_reg.test(this.hospital_info.email) )  && this.hospital_info.email != '' && this.hospital_info.email.length > 0 ){
                     this.btn_disable=false;
                 }else{
                     this.btn_disable=true;
@@ -1313,7 +1313,7 @@ export default {
                 type: "warning",
                 width: 350,
                 height: 200,
-                showCancelButton: true,
+                showCancelButton: false,
                 confirmButtonColor: "#dc3545",
                 cancelButtonColor: "#b1abab",
                 cancelButtonTextColor: "#000",
