@@ -370,26 +370,53 @@
                 </div>
               </div>
             <!-- <div class="offset-md-4 col-md-8 mt-3" v-if="show_paginate"> -->
-            <div class="col-12" v-if="show_paginate">
+            <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-6" v-if="show_paginate">
               <nav aria-label="Page navigation example">
                 <ul class="pagination">
-                  <li class="page-item">
-                    <span class="spanclass" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
+                  <li class="page-item previous">
+                    <span class="spanclass" v-bind:class="isActive ? 'disable':'undisable'" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
                   </li>
-                  <li class="page-item">
-                    <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i> 前へ</span>
+                  <li class="page-item ">
+                    <span class="spanclass" @click="prev()"><i class='fas fa-angle-left'></i> 前へ</span>
                   </li>
                   <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
                     <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
                   </li>
-                  <li class="page-item">
+                  <li class="page-item ">
                     <span class="spanclass" @click="next">次へ <i class='fas fa-angle-right'></i></span>
                   </li>
-                  <li class="page-item">
-                    <span class="spanclass" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
+                  <li class="page-item next">
+                    <span class="spanclass" v-bind:class="isActive ? 'undisable':'disable'" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
                   </li>
                 </ul>
               </nav>
+            </div>
+
+            <!-- <nav class="pagination" v-if="show_paginate">
+                <ul>
+                  <li>
+                      <span  @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
+                  </li>
+                </ul>
+                <ul class="previous">
+                    <li><span  @click="prev"><i class='fas fa-angle-left'></i> 前へ</span></li>
+                </ul>
+                <ul class="pages">
+                    <li v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
+                      <span  class="spanclass" @click="pageSelect(i)">{{i}}</span>
+                    </li>
+                </ul>
+                <ul class="next">
+                    <li><span  @click="next">次へ <i class='fas fa-angle-right'></i></span></li>
+                </ul>
+                <ul>
+                  <li>
+                      <span  @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
+                  </li>
+                </ul>
+              </nav> -->
+
             </div>
             </div>
         </div>
@@ -438,7 +465,7 @@ export default {
         empstatus:[],
         job_data:[],
         currentPage: 0,
-        size: 20,
+        size: 1,
         pageRange: 5,
         items: [],
         show_paginate: false,
@@ -460,6 +487,8 @@ export default {
        count:false,
        clicksearch: false,
        ci: false,
+       isActive: true,
+       isActivePreNext:true,
       }
     },
     created() {
@@ -811,20 +840,31 @@ export default {
         }
       },
       first() {
-      this.currentPage = 0;
+      if(this.isActive == false){
+        this.currentPage = 0;
+      }
+  
+      this.isActive = true;
     },
     last() {
-      this.currentPage = this.pages - 1;
+      if(this.isActive == true){
+        this.currentPage = this.pages - 1;
+      }
+      this.isActive = false;
+
     },
     prev() {
       if(0<this.currentPage) {
         this.currentPage--;
+
       }
     },
     next() {
       if(this.currentPage < this.pages - 1) {
         this.currentPage++;
+        
       }
+
     },
     pageSelect(index) {
       this.currentPage = index - 1;
@@ -1047,6 +1087,36 @@ table > tbody > tr th{
     border-bottom: 0;
     border-left: 0.3em solid transparent;
     margin-left: 94px;
+}
+
+
+.disable{
+ /* display:none; */
+ cursor: not-allowed;
+ background-color:gray;
+}
+
+.undisable{
+  /* display:block; */
+  cursor: pointer;
+}
+.pagination span:hover{
+  background-color:#2980b9 !important;
+}
+@media only screen and (max-width: 480px) {
+
+.previous span {
+  display:none;
+}
+
+.next span {
+  display:none;
+}
+}
+@media only screen and (max-width: 480px) {
+  .pagination .pages {
+    display: none;
+  }
 }
 
 </style>

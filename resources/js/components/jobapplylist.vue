@@ -6,22 +6,6 @@
 
             <div class="row m-b-10">
 
-                <!-- <div class="col-md-12">
-
-          <router-link
-
-            to="/joboffercreate"
-
-            class="float-right main-bg-color create-btn all-btn"
-
-            style="color: blue;">
-
-            <i class="fas fa-plus-circle"></i> 新しい投稿を作成
-
-          </router-link>
-
-        </div> -->
-
             </div>
 
             <div class="col-md-12 col-md-12 tab-content tab-content1 tabs pad-free border-style">

@@ -175,6 +175,11 @@
         footermargin: 'footer-margin',
         myBtnScroll: false,
         status:false,      
+        window:{
+                width: 0,
+                height: 0
+        },
+        w_width:$(window).width(),
       }
     },
     components: {
@@ -184,26 +189,27 @@
       adsslider
     }, 
     created() {
-       
-        $(document).scroll(function() {　　　　
-            var cur_pos = $(this).scrollTop();
-            if (cur_pos >= 100) {
-                $('#headerbar').css('top','135px');
-                $('#headerbar li').css('display','block');
-                $('#myBtn').css('display','block');
-            } else {
-                $('#headerbar').css('top','86px');
-                $('#headerbar li').css('display','inline-block');
-                $('#myBtn').css('display','none');
-            }
-        });
-        
+         window.addEventListener('resize', this.handleResize)
+        this.handleResize();
+        if(this.window.width <= 1440) {
+            $(document).scroll(function() {　　　　
+                var cur_pos = $(this).scrollTop();
+                if (cur_pos >= 100) {
+                    $('#headerbar').css('top','135px');
+                    $('#headerbar li').css('display','block');
+                    $('#myBtn').css('display','block');
+                } else {
+                    $('#headerbar').css('top','86px');
+                    $('#headerbar li').css('display','inline-block');
+                    $('#myBtn').css('display','none');
+                }
+            });                
+        }
         console.log("created")
         document.addEventListener('scroll', this.handleScroll);
-
         console.log("aside "+this.$auth.check())
-    console.log("aside visit "+this.visit)
-    axios.interceptors.response.use((response) => {
+        console.log("aside visit "+this.visit)
+        axios.interceptors.response.use((response) => {
         console.log("status",response.data.status)
         if((response.data.status == "Token is Expired" || response.data.status == "Token is Invalid") && this.status == false ){
 
@@ -306,6 +312,10 @@
     },
 
     methods: {
+        handleResize() {
+            this.window.width = window.innerWidth;
+            this.window.height = window.innerHeight;
+        },  
         menuToggle(){
             $("#admin-side-menu").toggle('medium');
             $("#menu-overlay").toggle('medium');

@@ -17,7 +17,7 @@
                     <p>OOPS!!</p>
                     <p class="record-txt01">表示するデータありません</p>
                     <p style="color:#a5a5a5;">表示するデータありません‼新しいデータを作成してください。</p>
-                    <a href="/joboffercreate" class="main-bg-color create-btn all-btn">
+                    <a :href="hrefroute" class="main-bg-color create-btn all-btn">
                         <i cl ass="fas fa-plus-circle"></i> 求人新規作成
                     </a>
                 </div>
@@ -34,7 +34,7 @@
                     <div class="d-flex header pb-3 admin_header">
                         <h5>求人一覧 <span v-if="type != 'admin'">({{jobs.data[0].profile_name}})</span></h5>
                         <div class="ml-auto" v-if="!norecord_msg">
-                            <router-link to="/joboffercreate" class="main-bg-color create-btn all-btn">
+                            <router-link :to="hrefroute" class="main-bg-color create-btn all-btn">
                                 <i class="fas fa-plus-circle"></i> <span class="first_txt"> 求人</span><span class="dinone">新規作成</span>
                             </router-link>
                         </div>
@@ -79,7 +79,7 @@
                                             <p class="mb-2"><span class="text-orange"><span class="job_ico">★</span> スキル :</span><span class=""> {{job.skills}}</span></p>
                                             <ul class="btn-list mt-4">
                                                 <li>
-                                                    <router-link :to="{name: 'joboffercreate', params:{id:job.id}}" class="btn edit-borderbtn">編集</router-link>
+                                                    <router-link :to="{path: '/jobedit/'+job.id }" class="btn edit-borderbtn">編集</router-link>
                                                 </li>
                                                 <li>
                                                     <router-link :to="{path: '/jobapplicantlist/'+type+'/job/'+job.id, params:{title:job.title}}" class="btn confirm-borderbtn confirmed">求人応募一覧ページへ</router-link>
@@ -335,7 +335,7 @@
                     nosearch_msg: false,
                     subtitle: 'OFF',
                     pro_id: 0,
-
+                    hrefroute: '',
                 };
             },
 
@@ -356,10 +356,12 @@
                 if(this.$route.name == "profilejobofferlist"){
                     this.pro_id = this.$route.params.id;
                     this.type = this.$route.params.type;
+                    this.hrefroute = "/profilejoboffercreate/"+this.type+"/"+this.pro_id;
                 }
                 else{
                     this.pro_id = null;
                     this.type = 'admin';
+                    this.hrefroute = "/joboffercreate";
                 }
                 this.getAllJobs();
                 
