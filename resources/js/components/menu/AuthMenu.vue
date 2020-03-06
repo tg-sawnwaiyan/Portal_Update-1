@@ -17,7 +17,7 @@
                         <p class="sp-1024"><i class="fas fa-envelope"></i></p><span>info@t-i-s.jp</span></a>
                     </div> -->
 
-                    <div v-if="visit == 'true'">
+                    <div class="h-tel" v-if="visit == 'true'">
                     <a class="tel" href="mailto:info@t-i-s.jp"><i class="fas fa-envelope"></i><span>info@t-i-s.jp</span></a>
                     <br class="pc-1024">
                     <!-- <span href="mailto:info@t-i-s.jp"><p class="sp-1024"><i class="fas fa-envelope"></i></p><span>info@t-i-s.jp</span></a> -->
