@@ -863,7 +863,7 @@ export default {
                 });
 
                 this.axios
-                .get('/api/nursing-pgallery/'+this.pro_id)
+                .get('/api/pgallery/'+this.pro_id+'/nursing')
                 .then(response=>{
                     this.img_arr = response.data;
                 });
@@ -876,7 +876,7 @@ export default {
                 });
 
                 this.axios
-                .get('/api/nursing-vgallery/'+this.pro_id)
+                .get('/api/vgallery/'+this.pro_id+'/nursing')
                 .then(response=>{
                     this.video_arr = response.data;
                 });
@@ -965,6 +965,7 @@ export default {
                             fd.append('type','panorama');
                             fd.append('photo',photo);
                             fd.append('customer_id',this.pro_id)
+                            fd.append('custype','nursing')
 
                             this.axios
                             .post('/api/delete-pgallery',fd)
