@@ -143,7 +143,7 @@
                  <div style="margin-left:10px;">
                      <i class="fas fa-arrow-left"></i> 
                 </div>
-                    <router-link :to="{ name: 'News' }">もどる</router-link> 
+                    <span style="color:#2980b9" @click="$router.go(-1);">もどる</span> 
                 </div>
                 
                 

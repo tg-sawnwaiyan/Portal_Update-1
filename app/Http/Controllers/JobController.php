@@ -20,7 +20,6 @@ class JobController extends Controller
 
             $query = "SELECT  jobs.*,customers.type_id,customers.name,(CASE customers.type_id WHEN '2' THEN CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) END) as jobid 
                            FROM  jobs join customers  on jobs.customer_id = customers.id 
-                           left join job_applies on jobs.id = job_applies.job_id
                            left join hospital_profiles on hospital_profiles.id = jobs.profile_id
                            left join nursing_profiles on nursing_profiles.id = jobs.profile_id
                            where customers.recordstatus = 1  and (CASE  customers.type_id WHEN '2' THEN hospital_profiles.activate = 1 ELSE nursing_profiles.activate =1 END) 
@@ -37,9 +36,9 @@ class JobController extends Controller
                 $type_id = $jobs->type_id;
                 $profile_id = $jobs->profile_id;
                 if($type_id == 2){
-                    $profile_table = 'nursing_profiles';
-                }else{
                     $profile_table = 'hospital_profiles';
+                }else{                    
+                    $profile_table = 'nursing_profiles';
                 }
                 $profile_name = DB::table($profile_table)->select('id','name')->where($profile_table.'.id', '=' , $profile_id)->get();
                 $jobs->profile_name = $profile_name;
@@ -52,9 +51,8 @@ class JobController extends Controller
             {
                 if($type == "nursing")
                 {
-                    $query = "SELECT  jobs.*,customers.type_id,customers.name,CONCAT((200000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0'))  as jobid 
+                    $query = "SELECT  jobs.*,customers.type_id,nursing_profiles.name as profile_name,customers.name,CONCAT((200000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0'))  as jobid 
                                 FROM  jobs join customers  on jobs.customer_id = customers.id 
-                                left join job_applies on jobs.id = job_applies.job_id
                                 left join nursing_profiles on nursing_profiles.id = jobs.profile_id
                                 where customers.recordstatus = 1 
                                 and nursing_profiles.id = ".$pro_id." and nursing_profiles.activate = 1
@@ -62,9 +60,8 @@ class JobController extends Controller
                 }
                 else{
 
-                    $query = "SELECT  jobs.*,customers.type_id,customers.name,CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0'))  as jobid 
+                    $query = "SELECT  jobs.*,customers.type_id,hospital_profiles.name as profile_name,customers.name,CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0'))  as jobid 
                                 FROM  jobs join customers  on jobs.customer_id = customers.id 
-                                left join job_applies on jobs.id = job_applies.job_id
                                 left join hospital_profiles on hospital_profiles.id = jobs.profile_id
                                 where customers.recordstatus = 1 
                                 and hospital_profiles.id = ".$pro_id." and hospital_profiles.activate =1
@@ -86,7 +83,7 @@ class JobController extends Controller
         }
 
         $page = Input::get('page', 1);
-        $size = 1;
+        $size = 12;
         $data = collect($projob);
  
         $profilejob = new LengthAwarePaginator(
@@ -515,7 +512,7 @@ class JobController extends Controller
         }
 
         $page = 1;
-        $size = 1;
+        $size = 5;
         $data = collect($projob);
 
         $profilejob = new LengthAwarePaginator(
@@ -593,7 +590,7 @@ class JobController extends Controller
             }
 
             $page = Input::get('page', 1);
-            $size = 1;
+            $size = 12;
             $data = collect($jobsearchs);
     
             $jobsearch = new LengthAwarePaginator(

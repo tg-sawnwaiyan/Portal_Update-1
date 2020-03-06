@@ -1464,7 +1464,8 @@ border-radius: 3px;
 }
 
 .nursing-map-addicon:before {
-    color: #ff9563!important;
+    /* color: #ff9563!important; */
+    color: #63b7ff!important;
 }
 
 .hospital-map-addicon:before {
@@ -1530,7 +1531,7 @@ box-shadow: 0px 0px 5px rgb(212, 201, 201); */
 }
 
 .map-fa-icon-nursing {
-    background: url(/images/map-responsive-nursing.png) center top no-repeat;
+    background: url(/images/map-responsive-hospital.png) center top no-repeat;
 }
 
 .map-fa-icon-hospital {
@@ -1685,9 +1686,14 @@ box-shadow: 0px 0px 5px rgb(212, 201, 201); */
     /* border-bottom: 1px solid #42b698; */
 }
 
-.admin_header h5 {
+
+/* .admin_header h5 {
     margin-bottom: -50px;
     line-height: 2.5;
+} */
+
+.admin_header h5 {
+    font-weight: bold;
 }
 
 .fit-image2 {
@@ -2717,15 +2723,18 @@ ul.sub-ul li {
 .autocomplete__inputs {
     padding: 0 !important;
 }
+
 .autocomplete__box {
     padding-left: 5px !important;
     background: #f5f5f5 !important;
 }
-.autocomplete__inputs input:focus{
+
+.autocomplete__inputs input:focus {
     background: #f5f5f5 !important;
     box-shadow: none !important;
 }
-.autocomplete--clear{
+
+.autocomplete--clear {
     width: 12px !important;
     height: 12px !important;
     position: absolute;
@@ -2733,11 +2742,13 @@ ul.sub-ul li {
     top: 7px;
 }
 
+
 /* .autocomplete__icon {
     height: 14px;
     width: 14px;
     display: none;
 } */
+
 .site_header {
     position: relative;
     margin: 30px 0;
@@ -3628,8 +3639,8 @@ overflow-y: auto;
 }
 
 #Profile-page .nursing-tabColor .nav-link.active {
-    border-left: 1px solid #ff9563 !important;
-    border-right: 1px solid #ff9563 !important;
+    border-left: 1px solid #63b7ff !important;
+    border-right: 1px solid #63b7ff !important;
 }
 
 #Profile-page .hospital-tabColor .nav-link.active {
@@ -4059,7 +4070,8 @@ ul.hospital-subject>li:before {
 }
 
 .nursing-search-box .searchTerm {
-    border: 3px solid rgb(255, 149, 99);
+    /* border: 3px solid rgb(255, 149, 99); */
+    border: 3px solid rgb(99, 183, 255);
 }
 
 .hospital-search-box .searchTerm {
@@ -4112,8 +4124,10 @@ ul.hospital-subject>li:before {
 }
 
 .nursing-search-box .searchButton {
-    border: 1px solid rgb(255, 149, 99);
-    background: rgb(255, 149, 99);
+    /* border: 1px solid rgb(255, 149, 99);
+    background: rgb(255, 149, 99); */
+    border: 1px solid rgb(99, 183, 255);
+    background: rgb(99, 183, 255);
 }
 
 .job-search-box .searchButton {
@@ -5662,7 +5676,7 @@ a:hover {
 }
 
 .nursing-tabColor .nav-link.active {
-    color: #ff9563 !important;
+    color: #63b7ff !important;
     font-weight: bold;
     background: #fff !important;
     /* border-top: 3px solid #ff9563;
@@ -7108,7 +7122,7 @@ color: green;
 }
 
 .card-wrap .create-btn {
-    width: 16%;
+    /* width: 16%; */
     margin: 30px auto;
 }
 
@@ -8421,7 +8435,8 @@ border-bottom: none;
 }
 
 .second-hos-row {
-    background-color: #eff7ec !important;
+    /* background-color: #eff7ec !important; */
+    background-color: #ecf8ff !important;
 }
 
 .hos-content .detail-btn .btn {
@@ -9820,6 +9835,12 @@ padding: 11px;
 }
 
 @media only screen and (max-width: 1240px) {
+    .card-title-leftwrapper {
+        width: 60% !important;
+    }
+    .card-title-rightwrapper {
+        width: 40% !important;
+    }
     .comform {
         width: 100%;
         max-width: 100%;
@@ -10149,6 +10170,12 @@ padding: 0;
 }
 
 @media only screen and (max-width: 990px) {
+    .card-title-leftwrapper {
+        width: 60%;
+    }
+    .card-title-rightwrapper {
+        width: 40%;
+    }
     .addbtn-right {
         text-align: right;
     }
@@ -12042,7 +12069,7 @@ background-image: none;
         /* min-width: 50px; */
         padding: 5px;
     }
-    .admin_header div span {
+    .admin_header div span.dinone {
         display: none;
     }
 }

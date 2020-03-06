@@ -23,7 +23,7 @@
                 </div>
 
                 <div v-else class="container-fuid">
-                    <h4 class="main-color mb-3">求人検索</h4>
+                    <h4 class="main-color mb-3">求人検索 <a @click="$router.go(-1)" v-if="$route.params.id" class="btn btn-danger all-btn submit float-right">戻る</a></h4>
                     <div class="row mb-4">
                         <div class="col-md-12">
                             <input type="text" class="form-control" placeholder="検索" id="search-item" @keyup="searchJobOffer()" />
@@ -32,10 +32,10 @@
                     </div>
                     <hr />
                     <div class="d-flex header pb-3 admin_header">
-                        <h5>求人一覧</h5>
+                        <h5>求人一覧 <span v-if="type != 'admin'">({{jobs.data[0].profile_name}})</span></h5>
                         <div class="ml-auto" v-if="!norecord_msg">
                             <router-link to="/joboffercreate" class="main-bg-color create-btn all-btn">
-                                <i class="fas fa-plus-circle"></i> <span class="first_txt"> 求人</span><span>新規作成</span>
+                                <i class="fas fa-plus-circle"></i> <span class="first_txt"> 求人</span><span class="dinone">新規作成</span>
                             </router-link>
                         </div>
                     </div>
@@ -82,7 +82,7 @@
                                                     <router-link :to="{name: 'joboffercreate', params:{id:job.id}}" class="btn edit-borderbtn">編集</router-link>
                                                 </li>
                                                 <li>
-                                                    <router-link :to="{path: '/jobapplicantlist/'+this.type+'/job/'+job.id, params:{title:job.title}}" class="btn confirm-borderbtn confirmed">求人応募一覧ページへ</router-link>
+                                                    <router-link :to="{path: '/jobapplicantlist/'+type+'/job/'+job.id, params:{title:job.title}}" class="btn confirm-borderbtn confirmed">求人応募一覧ページへ</router-link>
                                                 </li>
                                                 <!-- <li><a class="btn text-success active-borderbtn">Disabled</a></li> -->
                                                 <li><a class="btn text-danger delete-borderbtn" @click="deleteJob(job.id)">削除</a></li>
@@ -164,7 +164,7 @@
                                         </li>                           
                                         <li><a class="btn text-danger delete-borderbtn" @click="deleteJob(job.id)">削除</a></li>
                                         <li class="mt-2" v-if="job.count">
-                                            <router-link :to="{path: '/jobapplicantlist/'+this.type+'/job/'+job.id, params:{title:job.title}}" class="btn confirm-borderbtn confirmed">求人応募一覧ページへ</router-link>
+                                            <router-link :to="{path: '/jobapplicantlist/'+type+'/job/'+job.id, params:{title:job.title}}" class="btn confirm-borderbtn confirmed">求人応募一覧ページへ</router-link>
                                         </li>
                                     </ul>
                                 </div>
@@ -476,6 +476,7 @@
                         });
                     },
                     searchJobOffer(page) {
+                     
                         if(typeof page === "undefined"){
                             page = 1;
                         }
