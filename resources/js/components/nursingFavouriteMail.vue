@@ -25,9 +25,9 @@
                 </div>
                 <div class="col-md-12 register_box" v-if="type == 'register'">
                     <ul class="multi-step">
-                        <li class="active">1.お客様情報のご入力</li>
-                        <li class="no-active">2.入力内容のご確認</li>
-                        <li>3.送信完了</li>
+                        <li class="active">1.<span>お客様情報のご入力</span>入力</li>
+                        <li class="no-active">2.<span>入力内容のご確認</span>確認</li>
+                        <li>3.<span>送信完了</span>完了</li>
                     </ul>
                     <!--inputform-->
                     <form class="col-md-12 form-wrap">
