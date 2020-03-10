@@ -4,7 +4,7 @@
         <div class="admin_card admin_registercard admin-create-wrapper">
             <div class="row">
                 <div class="col-md-12">
-                    <h4 class="page-header header" style="background:transparent;">{{ header }} <span v-if="show" class="btn btn-danger all-btn float-right m-b-10" @click="$router.go(-1)">戻る</span></h4>
+                    <h4 class="page-header header" style="background:transparent;">{{ header }} <span v-if="show" class="btn btn-danger all-btn float-right m-b-10" @click="$router.go(-1)"><i class="fas fa-arrow-left"></i>&nbsp;戻る</span></h4>
                     
 
                 </div>
