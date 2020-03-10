@@ -161,7 +161,7 @@
 
                                                     <tr>
                                                     <td v-for="nur_profile in nur_profiles" :key="nur_profile.id">
-                                                        <div class="profile_wd"><span class="pseudolink" @click="googlemap(nur_profile.id)" data-toggle="modal" data-target=".bd-example-modal-google"><i class="fa fa-search"></i>地図・交通アクセス</span></div>
+                                                        <div class="profile_wd"><span class="pseudolink" @click="googlemap(nur_profile.id)" data-toggle="modal" data-target=".bd-example-modal-google" data-backdrop="static" data-keyboard="false"><i class="fa fa-search"></i>地図・交通アクセス</span></div>
                                                     </td>
                                                 </tr>
 
@@ -185,7 +185,7 @@
 
                                                 <tr>
                                                     <td v-for="nur_profile in nur_profiles" :key="nur_profile.id">
-                                                        <div class="profile_wd"><span class="pseudolink" @click="monthlyCost(nur_profile.id)" data-toggle="modal" data-target=".bd-example-modal-cost"><i class="fa fa-search"></i>料金プランの詳細</span></div>
+                                                        <div class="profile_wd"><span class="pseudolink" @click="monthlyCost(nur_profile.id)" data-toggle="modal" data-target=".bd-example-modal-cost" data-backdrop="static" data-keyboard="false"><i class="fa fa-search"></i>料金プランの詳細</span></div>
                                                     </td>
                                                 </tr>
 
@@ -374,8 +374,8 @@ export default {
         }
     },
    deleteLocalSto: function(id) {
-
             this.$swal({
+            allowOutsideClick: false,
             title: "確認",
             text: "削除よろしいでしょうか",
             type: "warning",
@@ -468,6 +468,7 @@ export default {
             } else {
                 this.his_nus = 0;
                 this.$swal({
+                    allowOutsideClick: false,
                     title: "確認",
                     text: "お気に入りの病院は既に本サイトに掲載されておりませんので、最近見た施設リストから削除しました。",
                     type: 'info',
