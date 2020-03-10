@@ -270,7 +270,7 @@
                                        this.$swal({
                                                 position: 'top-end',
                                                 type: 'success',
-                                                title: '管理者を更新しました',
+                                                text: '管理者を更新しました',
                                                 confirmButtonText: "閉じる",
                                                 confirmButtonColor: "#6cb2eb",
                                                 allowOutsideClick: false,
@@ -338,10 +338,10 @@
                                     .post(`/api/main_admin/update`, arr)
                                     .then((response) => {
                                         if (response.data == 'oldpasswordwrong') {
-                                            this.$swal({
+                                            this.$swal({                                               
                                                 position: 'top-end',
                                                 type: 'error',
-                                                title: '現在のパスワードが一致しません。',
+                                                text: '現在のパスワードが一致しません。',
                                                 confirmButtonText: "閉じる",
                                                 confirmButtonColor: "#6cb2eb",
                                                 allowOutsideClick: false,
@@ -353,7 +353,7 @@
                                             this.$swal({
                                                 position: 'top-end',
                                                 type: 'success',
-                                                title: '管理者を更新しました',
+                                                text: '管理者を更新しました',
                                                 confirmButtonText: "閉じる",
                                                 confirmButtonColor: "#6cb2eb",
                                                 width: 250,

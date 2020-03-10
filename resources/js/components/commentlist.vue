@@ -193,7 +193,8 @@
                             confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
                         }).then(response => {
                              if(this.$route.path == "/nuscommentlist"){
                                   this.type = "nursing";
@@ -225,7 +226,8 @@
                                         width: 350,
                                         height: 200,
                                         confirmButtonText: "閉じる",
-                                        confirmButtonColor: "#dc3545"
+                                        confirmButtonColor: "#dc3545",
+                                        allowOutsideClick: false,
                                     });
 
                                 })
@@ -249,7 +251,8 @@
                             confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
                         }).then(response => {
                             this.$loading(true);
                              if(this.$route.path == "/nuscommentlist"){
@@ -269,7 +272,8 @@
                                             width: 350,
                                             height: 200,
                                             confirmButtonText: "閉じる",
-                                            confirmButtonColor: "#6cb2eb"
+                                            confirmButtonColor: "#6cb2eb",
+                                            allowOutsideClick: false,
                                         })
                                         .catch(() => {
                                             this.$swal({
@@ -279,7 +283,8 @@
                                                 width: 350,
                                                 height: 200,
                                                 confirmButtonText: "閉じる",
-                                                confirmButtonColor: "#dc3545"
+                                                confirmButtonColor: "#dc3545",
+                                                allowOutsideClick: false,
                                             });
                                         });
                                 })

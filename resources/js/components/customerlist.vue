@@ -221,7 +221,9 @@
                             confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
+                            
                         }).then(response => {
                             
                             this.axios.delete(`/api/customer/delete/${id}`).then(response => {
@@ -229,13 +231,14 @@
                                 // this.customers = response.data.customers;
                                 this.initialCall();
                                 this.$swal({
-                                    // title: "削除済",
-                                    text: "事業者を削除しました。",
-                                    type: "success",
-                                    width: 350,
-                                    height: 200,
-                                    confirmButtonText: "閉じる",
-                                    confirmButtonColor: "#dc3545"
+                                // title: "削除済",
+                                text: "事業者を削除しました。",
+                                type: "success",
+                                width: 350,
+                                height: 200,
+                                confirmButtonText: "閉じる",
+                                confirmButtonColor: "#dc3545",
+                                allowOutsideClick: false,
                                 });
                                 if(this.norecord != 0){
                                     this.norecord_msg = false;
@@ -264,7 +267,8 @@
                                     width: 350,
                                     height: 200,
                                     confirmButtonText: "閉じる",
-                                    confirmButtonColor: "#dc3545"
+                                    confirmButtonColor: "#dc3545",
+                                    allowOutsideClick: false,
                                 });
                             } else {
                                 this.$swal({
@@ -274,7 +278,8 @@
                                     width: 350,
                                     height: 200,
                                     confirmButtonText: "閉じる",
-                                    confirmButtonColor: "#dc3545"
+                                    confirmButtonColor: "#dc3545",
+                                    allowOutsideClick: false,
                                 });
                             }
 

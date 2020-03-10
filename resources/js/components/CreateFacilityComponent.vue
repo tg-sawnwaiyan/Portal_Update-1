@@ -82,7 +82,8 @@ export default {
                             confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
                         }).then(response => {
                           this.$loading(true); 
                      this.axios.post("/api/facility/add", this.facility)
@@ -100,6 +101,7 @@ export default {
                             confirmButtonColor: "#6cb2eb",
                             width: 250,
                             height: 200,
+                            allowOutsideClick: false,
                         })
                         // alert('Successfully Created')
                      this.$router.push({ name: "facilitieslist" });
@@ -129,7 +131,7 @@ export default {
                         confirmButtonColor: "#6cb2eb",
                         width: 250,
                         height: 200,
-
+                        allowOutsideClick: false,
                       })
             // alert("Successfully Updated!");
             this.$router.push({ name: "facilitieslist" });
