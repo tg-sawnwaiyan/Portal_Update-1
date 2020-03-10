@@ -55,8 +55,8 @@
                                             </span>
                                             <span class="card-title-rightwrapper model-7">                                                 
                                                 <div class="checkbox">
-                                                    <input type='checkbox' v-if="nursingprofiles.activate == 1" @click="changeActivate(nursingprofiles.id,nursingprofiles.activate)" checked/>
-                                                    <input type='checkbox' v-if="nursingprofiles.activate == 0" @click="changeActivate(nursingprofiles.id,nursingprofiles.activate)"  />
+                                                    <input type='checkbox' :id="nursingprofiles.id" v-if="nursingprofiles.activate == 1" @click="changeActivate(nursingprofiles.id,nursingprofiles.activate)" checked/>
+                                                    <input type='checkbox' :id="nursingprofiles.id" v-if="nursingprofiles.activate == 0" @click="changeActivate(nursingprofiles.id,nursingprofiles.activate)"  />
                                                     <label for="checkbox"></label>
                                                     <div  v-if="nursingprofiles.activate == 1" class="on">公開中</div>
                                                     <div v-if="nursingprofiles.activate == 0" class="on">非行化</div>
