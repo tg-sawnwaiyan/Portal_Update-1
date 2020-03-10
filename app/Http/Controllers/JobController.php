@@ -67,7 +67,7 @@ class JobController extends Controller
                                 and hospital_profiles.id = ".$pro_id." and hospital_profiles.activate =1
                                 group by jobs.id order by jobs.id desc ";
                 }
-                return $query;
+                
 
                 $projob = DB::select($query);
 
@@ -515,7 +515,7 @@ class JobController extends Controller
         }
 
         $page = 1;
-        $size = 5;
+        $size = 12;
         $data = collect($projob);
 
         $profilejob = new LengthAwarePaginator(
@@ -626,17 +626,17 @@ class JobController extends Controller
 
    }
    public function getCustomerList(){
-        $query = "SELECT customers.id, customers.name, customers.email, customers.type_id FROM jobs
-                LEFT JOIN customers ON customers.id = jobs.customer_id WHERE customers.recordstatus = 1 GROUP BY jobs.customer_id";
+        $query = "SELECT customers.id, customers.name, customers.email, customers.type_id FROM customers
+               WHERE customers.recordstatus = 1 GROUP BY customers.id";
         $cus_list = DB::select($query);
         return $cus_list;
    }
    public function getProfileList($cId, Request $request){
-    $profile = $request->profile;
-    $query = "SELECT $profile.id, $profile.name FROM $profile
-              WHERE $profile.customer_id = $cId";
-     $profile_list = DB::select($query);
-     return $profile_list;
+        $profile = $request->profile;
+        $query = "SELECT $profile.id, $profile.name FROM $profile
+                  WHERE $profile.customer_id = $cId and $profile.activate = 1";
+        $profile_list = DB::select($query);
+        return $profile_list;
 }
 public function getProfileName($id, Request $request) {
    

@@ -239,7 +239,7 @@
                             <li>
 
                             <ul class="contact_list"  v-if="visit == 'true'">
-                                <li><a href="tel::03-1234-5678"><i class="fas fa-phone-alt"></i><span>03-1234-5678</span></a></li>
+                                <!-- <li><a href="tel::03-1234-5678"><i class="fas fa-phone-alt"></i><span>03-1234-5678</span></a></li> -->
                                 <li><a href="mailto:info@t-i-s.jp"><i class="fas fa-envelope"></i>info@t-i-s.jp</a></li>
                             </ul>
                             <!-- <ul class="sp_social d-none-768">
@@ -286,7 +286,7 @@
                             <li>
 
                             <ul class="contact_list"  v-if="visit == 'true'">
-                                <li><a href="tel::03-1234-5678"><i class="fas fa-phone-alt"></i><span>03-1234-5678</span></a></li>
+                                <!-- <li><a href="tel::03-1234-5678"><i class="fas fa-phone-alt"></i><span>03-1234-5678</span></a></li> -->
                                 <li><a href="mailto:info@t-i-s.jp"><i class="fas fa-envelope"></i>info@t-i-s.jp</a></li>
                             </ul>
                             <!-- <ul class="sp_social d-none-768">

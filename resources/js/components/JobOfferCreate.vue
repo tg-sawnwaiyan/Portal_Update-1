@@ -1048,9 +1048,7 @@ import Autocomplete from 'vuejs-auto-complete'
                                     confirmButtonColor: "#6cb2eb"
                                 });
 
-                                this.$router.push({
-                                    name: "jobofferlist"
-                                });
+                                this.$router.go(-1);
                             })
                             .catch(error => {
                                 if (error.response.status == 422) {
