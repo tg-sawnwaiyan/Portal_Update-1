@@ -857,7 +857,8 @@ import Autocomplete from 'vuejs-auto-complete'
                             confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
                            
                         }
                         ).then(response => {
@@ -879,6 +880,7 @@ import Autocomplete from 'vuejs-auto-complete'
                                         height: 200,
                                         confirmButtonText: "閉じる",
                                         confirmButtonColor: "#6cb2eb",
+                                        allowOutsideClick: false,
                                     });
 
                                     // alert('Successfully Created')
@@ -1052,7 +1054,8 @@ import Autocomplete from 'vuejs-auto-complete'
                         confirmButtonText: "はい",
                         cancelButtonText: "キャンセル",
                         confirmButtonClass:  "all-btn",
-                        cancelButtonClass: "all-btn"
+                        cancelButtonClass: "all-btn",
+                        allowOutsideClick: false,
                     }).then(response => {
                          this.$loading(true);
                         this.axios.post(`/api/job/update/${this.$route.params.id}`, this.joboffer)
@@ -1068,7 +1071,8 @@ import Autocomplete from 'vuejs-auto-complete'
                                     width: 350,
                                     height: 200,
                                     confirmButtonText: "閉じる",
-                                    confirmButtonColor: "#6cb2eb"
+                                    confirmButtonColor: "#6cb2eb",
+                                     allowOutsideClick: false,
                                 });
 
                                 this.$router.go(-1);

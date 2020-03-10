@@ -128,7 +128,8 @@ export default {
                             confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
                         }).then(response => {
                             this.axios
                                 .delete(`/api/main_admin/delete/${id}`)
@@ -141,7 +142,8 @@ export default {
                                         width: 350,
                                         height: 200,
                                         confirmButtonText: "閉じる",
-                                        confirmButtonColor: "#dc3545"
+                                        confirmButtonColor: "#dc3545",
+                                        allowOutsideClick: false,
                                     });
                                 })
                                 .catch(() => {

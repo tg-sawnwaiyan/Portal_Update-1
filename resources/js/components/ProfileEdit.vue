@@ -290,6 +290,7 @@
                                             confirmButtonColor: "#6cb2eb",                       
                                             confirmButtonText: "閉じる",
                                             confirmButtonClass: "all-btn",
+                                            allowOutsideClick: false,
                                         
                                 }).then(response => { 
                                      this.$router.push({
@@ -348,7 +349,8 @@
                                 confirmButtonText: "作成",
                                 cancelButtonText: "キャンセル",
                                 confirmButtonClass: "all-btn",
-                                cancelButtonClass: "all-btn"
+                                cancelButtonClass: "all-btn",
+                                allowOutsideClick: false,
                             }).then(response => {
                                 this.axios
                                     .post(`/api/customer/update/${this.cusid}`, arr)
@@ -356,11 +358,12 @@
                                         this.$swal({
                                                 position: 'top-end',
                                                 type: 'success',
-                                                title: '更新されました。',
+                                                text: '更新されました。',
                                                 confirmButtonText: "閉じる",
                                                 confirmButtonColor: "#6cb2eb",
                                                 width: 250,
                                                 height: 200,
+                                                allowOutsideClick: false,
                                             })
                                             // alert('Logo is Successfully Updated!');
                                     }).catch(error => {
@@ -404,11 +407,12 @@
                                         this.$swal({
                                             position: 'top-end',
                                             type: 'error',
-                                            title: '現在のパスワードが一致しません。',
+                                            text: '現在のパスワードが一致しません。',
                                             confirmButtonText: "閉じる",
                                             confirmButtonColor: "#6cb2eb",
                                             width: 250,
                                             height: 200,
+                                            allowOutsideClick: false,
                                         })
                                         // alert('Please Enter Correct Old Password!');
                                         return;
@@ -417,11 +421,12 @@
                                         this.$swal({
                                             position: 'top-end',
                                             type: 'success',
-                                            title: 'パスワードを変更しました',
+                                            text: 'パスワードを変更しました',
                                             confirmButtonText: "閉じる",
                                             confirmButtonColor: "#6cb2eb",
                                             width: 250,
                                             height: 200,
+                                            allowOutsideClick: false,
                                         })
                                         this.name = null;
                                         this.password = null;
@@ -450,6 +455,7 @@
                                     confirmButtonText: "閉じる",
                                     // cancelButtonText: "キャンセル",
                                     confirmButtonClass: "all-btn",
+                                    allowOutsideClick: false,
                                     // cancelButtonClass: "all-btn"
                                 })
                                 // alert('New-Password And Confirm-Password must be same!')
@@ -476,7 +482,8 @@
                             confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
                         }).then(response => {
                             this.axios
                                 .post(`/api/user/email-change`, arr)
@@ -486,11 +493,12 @@
                                     this.$swal({
                                             position: 'top-end',
                                             type: 'success',
-                                            title: 'メールが変更しました',
+                                            text: 'メールが変更しました',
                                             confirmButtonText: "閉じる",
                                             confirmButtonColor: "#6cb2eb",
                                             width: 250,
                                             height: 200,
+                                            allowOutsideClick: false,
                                         })
                                         // setTimeout(function(){
                                         //     location.reload();
@@ -540,7 +548,8 @@
                                 confirmButtonText: "はい",
                                 cancelButtonText: "キャンセル",
                                 confirmButtonClass: "all-btn",
-                                cancelButtonClass: "all-btn"
+                                cancelButtonClass: "all-btn",
+                                allowOutsideClick: false,
                             }).then(response => {
                                 this.axios
                                     .post('api/customer/account_update', fd)
@@ -550,11 +559,13 @@
                                         this.$swal({
                                                 position: 'top-end',
                                                 type: 'success',
-                                                title: '更新しました。',
+                                                text: '更新しました。',
                                                 confirmButtonText: "閉じる",
                                                 confirmButtonColor: "#6cb2eb",
                                                 width: 250,
                                                 height: 200,
+                                                allowOutsideClick: false,
+
                                             })
                                         if(this.customer_info.recordstatus == '1') {
                                             this.accout_status = '解除';

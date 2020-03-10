@@ -164,7 +164,8 @@ export default {
                     confirmButtonText: "はい",
                     cancelButtonText: "キャンセル",
                     confirmButtonClass: "all-btn",
-                    cancelButtonClass: "all-btn"
+                    cancelButtonClass: "all-btn",
+                    allowOutsideClick: false,
                 }).then(response => {
                         this.$swal({
                                 text: "画像を削除しました。",
@@ -172,7 +173,8 @@ export default {
                                 width: 350,
                                 height: 200,
                                 confirmButtonText: "閉じる",
-                                confirmButtonColor: "#dc3545"
+                                confirmButtonColor: "#dc3545",
+                                allowOutsideClick: false,
                             });
                     }).then(response => {
                         this.img_name = '';
@@ -228,7 +230,8 @@ export default {
                         confirmButtonText: "はい",
                         cancelButtonText: "キャンセル",
                         confirmButtonClass: "all-btn",
-                        cancelButtonClass: "all-btn"
+                        cancelButtonClass: "all-btn",
+                        allowOutsideClick: false,
                     }).then(response => {
                         this.errors = [];
                         let adsData = new FormData();
@@ -263,12 +266,12 @@ export default {
                             this.$swal({
                                 position: 'top-end',
                                 type: 'success',
-                                title: '広告を更新しました。',
-                             
+                                title: '広告を更新しました。',                             
                                 confirmButtonText: "閉じる",
                                 confirmButtonColor: "#6cb2eb",
                                 width: 250,
                                 height: 200,
+                                allowOutsideClick: false,
                             })
                             this.$router.push({name: 'ads'});
                         }).catch(error=>{
@@ -295,7 +298,8 @@ export default {
                             confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
                         }).then(response => { 
                              let adsData = new FormData();
                             adsData.append('title', this.advertisement.title)
@@ -317,7 +321,7 @@ export default {
                             confirmButtonColor: "#6cb2eb",
                             width: 250,
                             height: 200,
-
+                            allowOutsideClick: false,
                         })
                         this.$router.push({
                             name: 'ads'

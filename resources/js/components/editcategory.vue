@@ -60,6 +60,7 @@ export default {
                     confirmButtonColor: "#6cb2eb",
                     width: 300,
                     height: 200,
+                    allowOutsideClick: false,
                 })
                 this.$router.push({name: 'categorylist'});
             }).catch(error=>{
@@ -86,7 +87,8 @@ export default {
                 confirmButtonText: "はい",
                 cancelButtonText: "キャンセル",
                 confirmButtonClass: "all-btn",
-                cancelButtonClass: "all-btn"
+                cancelButtonClass: "all-btn",
+                allowOutsideClick: false,
             }).then(response => { 
             
                 this.errors.name = null;

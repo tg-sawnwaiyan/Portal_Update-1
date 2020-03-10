@@ -71,7 +71,8 @@ export default {
                             confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
                         }).then(response => { 
                             this.$loading(true);
                             this.axios.post('/api/category/add', this.category)
@@ -89,6 +90,7 @@ export default {
                             confirmButtonColor: "#6cb2eb",
                             width: 350,
                             height: 200,
+                            allowOutsideClick: false,
                         })
                         // alert('Successfully Created')
                      this.$router.push({name: 'categorylist'});
@@ -117,6 +119,7 @@ export default {
                             confirmButtonColor: "#6cb2eb",
                             width: 300,
                             height: 200,
+                            allowOutsideClick: false,
                         })
                         this.$router.push({name: 'categorylist'});
                     }).catch(error=>{

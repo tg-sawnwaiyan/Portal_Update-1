@@ -125,7 +125,9 @@ export default {
                             confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
+
                             }).then(response =>{
                                 this.$loading(true);
                                    this.axios.post('/api/subjects/add', this.Subject)
@@ -144,6 +146,7 @@ export default {
                             // timer: 1800,
                             width: 250,
                             height: 200,
+                            allowOutsideClick: false,
                         })
                         // alert('Successfully Created')
                         this.$router.push({name: 'subjectlist'});
@@ -183,7 +186,8 @@ export default {
                             confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
                         }).then(response => { 
                             this.$loading(true);
                              this.axios.post(`api/subjects/update/${this.$route.params.id}`, this.Subject)
@@ -199,6 +203,7 @@ export default {
                             confirmButtonColor: "#6cb2eb",
                             width: 250,
                             height: 200,
+                            allowOutsideClick: false,
                         })
                         // this.name = ''
                         //   alert('Successfully Updated!')

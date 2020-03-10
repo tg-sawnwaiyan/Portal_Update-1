@@ -104,7 +104,8 @@
                             confirmButtonText: "削除",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
                         }).then(response => {
                             this.axios.delete(`/api/subjects/delete/${id}`)
                                 .then(response => {
@@ -124,7 +125,8 @@
                                         width: 350,
                                         height: 200,
                                         confirmButtonText: "閉じる",
-                                        confirmButtonColor: "#dc3545"
+                                        confirmButtonColor: "#dc3545",
+                                        allowOutsideClick: false,
                                     });
                                 }).catch(error=>{
                                     if(error.response.status == 404){
@@ -136,7 +138,8 @@
                                             width: 350,
                                             height: 200,
                                             confirmButtonText: "閉じる",
-                                            confirmButtonColor: "#dc3545"
+                                            confirmButtonColor: "#dc3545",
+                                            allowOutsideClick: false,
                                         });
                                     }
                                 });
