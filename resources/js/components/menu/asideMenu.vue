@@ -44,7 +44,7 @@
                             </ul>
                         </li>
                         <li  v-if="$auth.check(2)"><router-link to="/ads" class="nav-link"><i class="fa fa-globe"></i>&nbsp;&nbsp;<span class="nav-txt" v-show="isClick">広告</span></router-link></li>
-                        <li v-if="$auth.check(1)"><router-link to="/profiledit" class="nav-link"><i class="fa fa-map" ></i>&nbsp;&nbsp;<span class="nav-txt">プロファイル編集</span></router-link></li>
+                        <li v-if="$auth.check(1)"><router-link to="/profiledit" class="nav-link"><i class="fa fa-map" ></i>&nbsp;&nbsp;<span class="nav-txt">プロフィール編集</span></router-link></li>
                         <li v-if="$auth.check(1)"><router-link to="/profile" class="nav-link"><i class="fa fa-map"></i>&nbsp;&nbsp;<span class="nav-txt">マイページ</span></router-link></li>
                         <li v-if="$auth.check(1)"><router-link to="/jobofferlist" class="nav-link"><i class="fa fa-edit" ></i>&nbsp;&nbsp;<span class="nav-txt">仕事一覧</span> </router-link></li>
                         <li v-if="$auth.check()">
@@ -240,7 +240,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                 },                
                 {
                     href: `/profiledit/${this.$auth.user().type_id == 2 ? 'hospital/': 'nursing/'}${this.$auth.user().customer_id}`,
-                    title: 'プロファイル設定',
+                    title: '事業者プロフィール設定',
                     icon: 'fa fa-cog',
                     hidden: this.$auth.check(2)
                 },

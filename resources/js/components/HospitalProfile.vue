@@ -1309,7 +1309,7 @@ export default {
                    
                     this.$swal({
                         title: "確認",
-                        text: "メールをチェックしてください",
+                        text: "To check チェックしてください",
                         type: "warning",
                         width: 350,
                         height: 200,
@@ -1439,7 +1439,7 @@ export default {
                 }
 
 
-                    this.save_hospital_info.push({ hospital_info:this.hospital_info,hospital_info:this.hospital_info,facilities:this.facilities,
+                    this.save_hospital_info.push({ hospital_info:this.hospital_info,facilities:this.facilities,
                     schedule_list:this.schedule_list,chek_feature:this.chek_feature, subjects:this.subjects, image:this.img_arr,video:this.video_arr
                 });
 

@@ -23,7 +23,7 @@
                 </div>
 
                 <div v-else class="container-fuid">
-                    <h4 class="main-color mb-3">求人検索 <a @click="$router.go(-1)" v-if="$route.params.id" class="btn btn-danger all-btn submit float-right">戻る</a></h4>
+                    <h4 class="main-color mb-3">求人検索 <a @click="$router.go(-1)" v-if="$route.params.id" class="btn btn-danger all-btn submit float-right"><i class="fas fa-arrow-left"></i>&nbsp;戻る</a></h4>
                     <div class="row mb-4">
                         <div class="col-md-12">
                             <input type="text" class="form-control" placeholder="検索" id="search-item" @keyup="searchJobOffer()" />
@@ -76,14 +76,14 @@
 
                                         <div class="joboffer-body">
 
-                                            <p class="mb-2"><span class="text-orange"><span class="job_ico">&#xa5;</span>給料 :</span><span class=""> {{job.salary}}</span></p>
-                                            <p class="mb-2"><span class="text-orange"><span class="job_ico">★</span> スキル :</span><span class=""> {{job.skills}}</span></p>
+                                            <p class="mb-2"><span class="text-orange"><span class="job_ico">&#xa5;</span>給料:&nbsp;</span><span class=""> {{job.salary}}</span></p>
+                                            <p class="mb-2"><span class="text-orange"><span class="job_ico">★</span>スキル:&nbsp;</span><span class=""> {{job.skills}}</span></p>
                                             <ul class="btn-list mt-4">
                                                 <li>
                                                     <router-link :to="{path: '/jobedit/'+job.id }" class="btn edit-borderbtn">編集</router-link>
                                                 </li>
                                                 <li>
-                                                    <router-link :to="{path: '/jobapplicantlist/'+type+'/job/'+job.id, params:{title:job.title}}" class="btn confirm-borderbtn confirmed">求人応募一覧<span class="pc-414-inline">ページへ</span></router-link>
+                                                    <router-link :to="{path: '/jobapplicantlist/'+type+'/job/'+job.id, params:{title:job.title}}" class="btn confirm-borderbtn confirmed"><i class="fa fa-list"></i>求人応募一覧<span class="pc-414-inline">ページへ</span></router-link>
                                                 </li>
                                                 <!-- <li><a class="btn text-success active-borderbtn">Disabled</a></li> -->
                                                 <li><a class="btn text-danger delete-borderbtn" @click="deleteJob(job.id)">削除</a></li>
@@ -146,7 +146,7 @@
                                                     <p class="mb-2"><span class="text-orange"><span class="job_ico">&#xa5;</span>給料 :</span><span class=""> {{job.salary}}</span></p>
                                             </td>
                                             <td class="w-50">
-                                                <p><span class="text-primary">事業者名:</span><span>{{job.name}}</span></p>  
+                                                <p><span class="text-primary"><span class="job_ico"><i class="fa fa-user"></i></span>事業者名:</span><span>{{job.name}}</span></p>  
                                                 
                                             </td>
                                         </tr>
@@ -155,7 +155,7 @@
                                                     <p class="mb-2"><span class="text-orange"><span class="job_ico">★</span> スキル :</span><span class=""> {{job.skills}}</span></p>
                                             </td>
                                             <td  class="w-50">
-                                                    <p><span class="text-primary">施設名:</span><span v-for="profile_name in job.profile_name" :key="profile_name.id">{{profile_name.name}}</span></p> 
+                                                    <p><span class="text-primary"><span class="job_ico"><i class="fa fa-list"></i></span>施設名:</span><span v-for="profile_name in job.profile_name" :key="profile_name.id">{{profile_name.name}}</span></p> 
                                             </td>
                                         </tr>
                                     </table>
@@ -165,7 +165,7 @@
                                         </li>                           
                                         <li><a class="btn text-danger delete-borderbtn" @click="deleteJob(job.id)">削除</a></li>
                                         <li class="mt-2" v-if="job.count">
-                                            <router-link :to="{path: '/jobapplicantlist/'+type+'/job/'+job.id, params:{title:job.title}}" class="btn confirm-borderbtn confirmed">求人応募一覧<span class="pc-414-inline ">ページへ</span></router-link>
+                                            <router-link :to="{path: '/jobapplicantlist/'+type+'/job/'+job.id, params:{title:job.title}}" class="btn confirm-borderbtn confirmed"><i class="fa fa-list"></i>求人応募一覧<span class="pc-414-inline ">ページへ</span></router-link>
                                         </li>
                                     </ul>
                                 </div>

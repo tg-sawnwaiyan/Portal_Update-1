@@ -102,12 +102,12 @@
                                             <div class="col-sm-4">
                                                 <label for ="zipcode"  ><strong> 郵便番号(半角数字)</strong>   </label>
                                             </div>
-                                             <div class="col-sm-6">
+                                             <div class="col-sm-5">
                                                  <input type="text" class="form-control box fnumericzip" value="firstzip" v-model="field.fzipcode" maxlength="7" v-on:keydown="isNumber">
                                               <span v-if="errors.fzipcode" class="error">{{errors.fzipcode[0]}}</span>
                                              </div>
-                                             <div class="col-sm-2">
-                                                 <label> 例）1006740 </label>
+                                             <div class="col-sm-3">
+                                                 <label> 例）1006740 (<a href="https://www.post.japanpost.jp/zipcode/" target="_blank" class="pseudolink">郵便番号検索</a>)</label>
                                              </div>                                             
                                         </div>
                                           <div class="form-group row">
@@ -131,7 +131,7 @@
                                             <div class="col-sm-4">
                                               <!-- <a href="#" ><strong> 利用規約 </strong></a>
                                               <a href="#" ><strong> 個人情報保護方針 </strong></a>      -->
-                                              <router-link to="/termsAndConditions" > <strong>「プライバシーポリシー」</strong></router-link>
+                                              <router-link to="/termsAndConditions" class="pseudolink"> <strong>「プライバシーポリシー」</strong></router-link>
                                             </div>
                                             <div class="col-sm-3"></div>
                                         </div>

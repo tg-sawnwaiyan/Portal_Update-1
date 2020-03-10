@@ -11,7 +11,7 @@
                     <p class="record-txt01">表示するデータありません</p>
                 </div>
                 <div v-else class="container-fuid">
-                    <h4 class="main-color mb-3">プロファイル名で検索</h4>
+                    <h4 class="main-color mb-3">プロフィール名で検索</h4>
                     <div class="row mb-4">
                         <div class="col-md-12">
                             <!-- <select  v-model="profileid" class="division form-control"  @change="getComment()">
@@ -73,8 +73,8 @@
                                     </table>
                                     <div class="d-inline-block mt-3">
                                         <button class="btn text-danger delete-borderbtn" @click="deleteComment(comment.id)">削除</button>
-                                        <button class="btn confirmed" v-if="comment.status != 0" >確認済み</button>
-                                        <button class="btn confirm-borderbtn" v-else @click="commentConfirm(comment.id)">新規口コミ承認</button>
+                                        <span class="mt-2" style="color: #81ad3b;font-weight: bold;display:block;" v-if="comment.status != 0" ><i class="fa fa-check-circle" aria-hidden="true"></i>&nbsp;確認済み</span>
+                                        <button class="btn confirm-borderbtn" v-else @click="commentConfirm(comment.id)"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;新規口コミ承認</button>
                                         
                                     </div>
                                 </div>

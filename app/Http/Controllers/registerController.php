@@ -184,6 +184,7 @@ class registerController extends Controller
     // regisert end
     public function reset(Request $request)
     {
+
         // return view('auth.passwordReset');
         $getEmail = $request->email;
 
@@ -196,6 +197,7 @@ class registerController extends Controller
             $data = array([
                 'email' => $getEmail,
                 'token' => $token,
+                'status'=>0,
                 'created_at' => $getTime,
             ]);
             DB::table('password_resets')->insert($data);
@@ -213,24 +215,34 @@ class registerController extends Controller
 
     public function resetpassword(Request $request)
     {
+       
+
         // return view('auth.passwordReset');
         $hashPass = bcrypt($request->password);
         $token = $request->token;
-        $checkmail = DB::select('SELECT email FROM password_resets WHERE token = "'.$token.'" AND created_at > DATE_SUB(CURDATE(), INTERVAL 2 DAY)');
-        if(!empty($checkmail)){
+        $checkmail = DB::select('SELECT email,status FROM password_resets WHERE token = "'.$token.'" AND created_at > DATE_SUB(CURDATE(), INTERVAL 2 DAY)');
+         
+        if(!empty($checkmail) && $checkmail[0]->status == 0){
             $getEmail = $checkmail[0]->email;
             $updatePass = array(
                 'password' => $hashPass
             );
+            $updateStatus = array('status' => 1);
             DB::table('users')->where('email',$getEmail)->update($updatePass);
             DB::table('customers')->where('email',$getEmail)->update($updatePass);
-            DB::table('password_resets')->where('email',$getEmail)->delete();
+            // DB::table('password_resets')->where('email',$getEmail)->delete();
+            DB::table('password_resets')->where('email',$getEmail)->update($updateStatus);
             return response()->json("success");
         }
         else{
-            DB::table('password_resets')->where('email',$getEmail)->delete();
+            // DB::table('password_resets')->where('email',$getEmail)->delete();
             return response()->json("Expired. Please reset mail send again.");
         }
+    }
+    public function getStatus($token)
+    {
+        $getStatus = DB::table('password_resets')->where('token',$token)->select('status','email')->first();
+        return response()->json($getStatus);
     }
 
     public function insertUesr(Request $request)

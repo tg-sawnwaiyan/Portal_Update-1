@@ -263,6 +263,7 @@ Route::group(['prefix' => 'customer'], function () {
 });
 
 Route::get('getReset','registerController@getReset');
+Route::get('getStatus/{token}','registerController@getStatus');
 Route::post('reset','registerController@reset');
 Route::post('resetpassword','registerController@resetpassword');
 Route::post('register','registerController@store');

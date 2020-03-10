@@ -9,7 +9,7 @@
             <div class="user_card" id="altrole">
                 <div class="login_link">
                     <a href="/" class="home_link">ホーム</a>
-                    <router-link to="/register" class="reg_link  ml-auto">登録</router-link>      
+                    <!-- <router-link to="/register" class="reg_link  ml-auto">登録</router-link>       -->
                 </div>
                 <div class="form_content">
                     <form autocomplete="off" @submit.prevent="resetPass" method="post" v-if="!has_success">
@@ -45,8 +45,13 @@
                             <button type="submit" name="button" id="changePass" class="btn login_btn" :disabled="is_disabled">変更</button>
                         </div>     
                     </form>
+                    <div v-else>
+                       <p class="alert alert-info">パスワードの再設定が完了しました</p>
+                        <span></span>
+                    </div>
                 </div>
-                <p class="alert alert-danger" v-if="has_error">{{error_text}}</p>
+                
+                
             </div>
        </div>
    </div>
@@ -71,6 +76,13 @@
     },
     created() {
         console.log(this.$route.query.code)
+        this.axios.get(`/api/getStatus/${this.$route.query.code}`).then(res => {
+            if(res.data.status == 1){
+                this.has_success = true;
+            }else{
+                this.has_success = false;
+            }
+        })
     },
     methods: {
         resetPass() {
@@ -99,13 +111,14 @@
 
             if(this.errors.password == '' && this.errors.confirmPassword == '' && this.error_text == '')
             {
+
                       // get the redirect object
                     var fData = new FormData();
                     fData.append('password', this.password);
                     fData.append('token', this.$route.query.code);
                     this.axios.post('/api/resetpassword',fData) 
                     .then(response => {
-                        console.log(response)
+                        console.log(response.data)
                         if(response.data == "success"){
                             this.has_success = true;
                         }
