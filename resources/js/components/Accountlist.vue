@@ -270,6 +270,7 @@ export default {
                     .then((response) => {
                         this.$swal({
                         // title: "確認",
+                        allowOutsideClick: false,
                         text: "施設を作成しました。",
                         type: "success",
                         width: 350,
@@ -369,6 +370,7 @@ export default {
             this.type = this.$route.params.type;
         
             this.$swal({
+                allowOutsideClick: false,
                 title: "確認",
                 text: this.activate_text,
                 type: "warning",
@@ -388,6 +390,7 @@ export default {
                             this.getAccountList();
                     });
                 this.$swal({
+                    allowOutsideClick: false,
                     text: "正常に変更されました!",
                     type: "success",
                     width: 350,
@@ -402,6 +405,7 @@ export default {
             this.type = this.$route.params.type;
 
                 this.$swal({
+                    allowOutsideClick: false,
                     title: "確認",
                     text: "施設を削除してよろしいでしょうか。",
                     type: "warning",
@@ -421,6 +425,7 @@ export default {
                         this.getAccountList();
                     });
                     this.$swal({
+                        allowOutsideClick: false,
                         text: "施設を削除しました。",
                         type: "success",
                         width: 350,
