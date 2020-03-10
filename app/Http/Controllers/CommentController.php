@@ -15,107 +15,91 @@ class CommentController extends Controller
     protected $zipcode;
     public function index($type)
     {
-        // $comment =Comment::all()->toArray();
-        // return array_reverse($comment);
-        // $sql = "SELECT comments.*,customers.name from comments JOIN customers ON comments.customer_id= customers.id WHERE customers.type_id=$type AND customers.status=1 ORDER BY id DESC";
-      
-        // $commentList = DB::table('comments')
-        //         ->join('customers','comments.customer_id','=','customers.id')
-        //         ->where('customers.type_id', $type)
-        //         ->where('customers.status', 1)
-        //         ->orderBy('comments.id','DESC')
-        //         ->paginate(1);
-
-       
+    
         if($type == 3)
         {
-            $commentList = DB::table('comments')
-            ->join('nursing_profiles','comments.profile_id','=','nursing_profiles.id')
-            ->select('comments.*')
-            ->where('nursing_profiles.recordstatus', 1)
-            ->where('comments.type','nursing')
-            ->orderBy('comments.id','DESC')
-            ->paginate(12);
-
-            $query = "select id,name from nursing_profiles where recordstatus = 1 and name is not null";
-            $profilelist = DB::select($query);
+            $p = "nursing_profiles";  
+            $t = 'nursing';
         }
         else{
-            $commentList = DB::table('comments')
-            ->join('hospital_profiles','comments.profile_id','=','hospital_profiles.id')
-            ->select('comments.*')
-            ->where('hospital_profiles.recordstatus', 1)
-            ->where('comments.type','hospital')
-            ->orderBy('comments.id','DESC')
-            ->paginate(12);
-
-            $query = "select id,name from hospital_profiles where recordstatus = 1 and name is not null";
-            $profilelist = DB::select($query);
+            $p = "hospital_profiles";
+            $t = 'hospital';
         }
+       
+        $commentList = DB::table('comments')
+        ->join($p,'comments.profile_id','=',$p.'.id')
+        ->select('comments.*')
+        ->where($p.'.recordstatus', 1)
+        ->where('comments.type',$t)
+        ->orderBy('comments.id','DESC')
+        ->paginate(12);
 
+        $query = "select id,name from $p where recordstatus = 1 and name is not null";
+        $profilelist = DB::select($query);
+        
 
-        // $commentList = DB::select($sql)->paginate(1);
         foreach ($commentList as $com) {
             $splitTimeStamp = explode(" ",$com->created_at);
             $com->created_date = $splitTimeStamp[0];
             $com->created_time = $splitTimeStamp[1];
         }
 
-     
-        // return $comments;
         return response()->json(array("commentlist"=>$commentList,"profilelist"=>$profilelist));
     }
 
     public function getCustomComment($type,$profileid)
     {
+    
         if($type == 3)
         {
-            if($profileid == 0)
-            {
-                $commentList = DB::table('comments')
-                ->join('nursing_profiles','comments.profile_id','=','nursing_profiles.id')
-                ->select('comments.*')
-                ->where('nursing_profiles.recordstatus', 1)
-                ->where('comments.type','nursing')
-                ->orderBy('comments.id','DESC')
-                ->paginate(12);
-            }
-            else{
-                $commentList = DB::table('comments')
-                ->join('nursing_profiles','comments.profile_id','=','nursing_profiles.id')
-                ->select('comments.*')
-                ->where('nursing_profiles.recordstatus', 1)
-                ->where('comments.type','nursing')
-                ->where('comments.profile_id',$profileid)
-                ->orderBy('comments.id','DESC')
-                ->paginate(12);
-            }
-           
+            $p = "nursing_profiles";
+            $t = "nursing";
         }
         else{
-            if($profileid == 0)
-            {
-                $commentList = DB::table('comments')
-                ->join('hospital_profiles','comments.profile_id','=','hospital_profiles.id')
-                ->select('comments.*')
-                ->where('hospital_profiles.recordstatus', 1)
-                ->where('comments.type','hospital')
-                ->orderBy('comments.id','DESC')
-                ->paginate(12);
-            }
-            else{
-                $commentList = DB::table('comments')
-                ->join('hospital_profiles','comments.profile_id','=','hospital_profiles.id')
-                ->select('comments.*')
-                ->where('hospital_profiles.recordstatus', 1)
-                ->where('comments.type','hospital')
-                ->where('comments.profile_id',$profileid)
-                ->orderBy('comments.id','DESC')
-                ->paginate(12);
-            }
+            $p = "hospital_profiles";
+            $t = "hospital";
+        }
+        if($profileid == 0)
+        {
+             $commentList = DB::table('comments')->join($p,'comments.profile_id','=',$p.'.id')->select('comments.*')->where($p.'.recordstatus', 1)
+                            ->where('comments.type','nursing')->orderBy('comments.id','DESC')->paginate(12);
+        }
+        else{
+            $commentList = DB::table('comments')
+            ->join($p,'comments.profile_id','=',$p.'.id')
+            ->select('comments.*')
+            ->where($p.'.recordstatus', 1)
+            ->where('comments.type',$t)
+            ->where('comments.profile_id',$profileid)
+            ->orderBy('comments.id','DESC')
+            ->paginate(12);
+        }
+           
+        // }
+        // else{
+        //     if($profileid == 0)
+        //     {
+        //         $commentList = DB::table('comments')
+        //         ->join('hospital_profiles','comments.profile_id','=','hospital_profiles.id')
+        //         ->select('comments.*')
+        //         ->where('hospital_profiles.recordstatus', 1)
+        //         ->where('comments.type','hospital')
+        //         ->orderBy('comments.id','DESC')
+        //         ->paginate(12);
+        //     }
+        //     else{
+        //         $commentList = DB::table('comments')
+        //         ->join('hospital_profiles','comments.profile_id','=','hospital_profiles.id')
+        //         ->select('comments.*')
+        //         ->where('hospital_profiles.recordstatus', 1)
+        //         ->where('comments.type','hospital')
+        //         ->where('comments.profile_id',$profileid)
+        //         ->orderBy('comments.id','DESC')
+        //         ->paginate(12);
+        //     }
            
         
-        }
+        // }
         return $commentList;
     }
 
@@ -298,53 +282,80 @@ class CommentController extends Controller
     public function search(Request $request) {
     
         $request = $request->all();
-        $search_word = $request['search_word'];
-      
-        if($search_word != 0)
+        $profileid = $request['search_word'];
+        $type =  $request['type'];
+
+        if($type == 'nursing')
         {
-            if($request['type'] == 'nursing')
-            {
-                $search_comment = DB::table('comments')
-                ->join('nursing_profiles','comments.profile_id','=','nursing_profiles.id')
-                ->where('nursing_profiles.id', $search_word)
-                ->where('nursing_profiles.recordstatus',1)
-                ->where('comments.type','nursing')
-                ->select('comments.*')
-                ->orderBy('comments.id','DESC')
-                ->paginate(12);
-            }
-            else{
-                $search_comment = DB::table('comments')
-                ->join('hospital_profiles','comments.profile_id','=','hospital_profiles.id')
-                ->where('hospital_profiles.id', $search_word)
-                ->where('hospital_profiles.recordstatus',1)
-                ->where('comments.type','hospital')
-                ->select('comments.*')
-                ->orderBy('comments.id','DESC')
-                ->paginate(12);
-            }
+            $p = "nursing_profiles";
+            $t = "nursing";
         }
         else{
-            if($request['type'] == 'nursing')
-            {
-                $search_comment = DB::table('comments')
-                ->join('nursing_profiles','comments.profile_id','=','nursing_profiles.id')
-                ->where('nursing_profiles.recordstatus',1)
-                ->where('comments.type','nursing')
-                ->select('comments.*')
-                ->orderBy('comments.id','DESC')
-                ->paginate(12);
-            }
-            else{
-                $search_comment = DB::table('comments')
-                ->join('hospital_profiles','comments.profile_id','=','hospital_profiles.id')
-                ->where('hospital_profiles.recordstatus',1)
-                ->where('comments.type','hospital')
-                ->select('comments.*')
-                ->orderBy('comments.id','DESC')
-                ->paginate(12);
-            }
+            $p = "hospital_profiles";
+            $t = "hospital";
         }
+
+        if($profileid == 0)
+        {
+             $commentList = DB::table('comments')->join($p,'comments.profile_id','=',$p.'.id')->select('comments.*')->where($p.'.recordstatus', 1)
+                            ->where('comments.type','nursing')->orderBy('comments.id','DESC')->paginate(12);
+        }
+        else{
+            $commentList = DB::table('comments')
+            ->join($p,'comments.profile_id','=',$p.'.id')
+            ->select('comments.*')
+            ->where($p.'.recordstatus', 1)
+            ->where('comments.type',$t)
+            ->where('comments.profile_id',$profileid)
+            ->orderBy('comments.id','DESC')
+            ->paginate(12);
+        }
+      
+        // if($search_word != 0)
+        // {
+        //     if($request['type'] == 'nursing')
+        //     {
+        //         $search_comment = DB::table('comments')
+        //         ->join('nursing_profiles','comments.profile_id','=','nursing_profiles.id')
+        //         ->where('nursing_profiles.id', $search_word)
+        //         ->where('nursing_profiles.recordstatus',1)
+        //         ->where('comments.type','nursing')
+        //         ->select('comments.*')
+        //         ->orderBy('comments.id','DESC')
+        //         ->paginate(12);
+        //     }
+        //     else{
+        //         $search_comment = DB::table('comments')
+        //         ->join('hospital_profiles','comments.profile_id','=','hospital_profiles.id')
+        //         ->where('hospital_profiles.id', $search_word)
+        //         ->where('hospital_profiles.recordstatus',1)
+        //         ->where('comments.type','hospital')
+        //         ->select('comments.*')
+        //         ->orderBy('comments.id','DESC')
+        //         ->paginate(12);
+        //     }
+        // }
+        // else{
+        //     if($request['type'] == 'nursing')
+        //     {
+        //         $search_comment = DB::table('comments')
+        //         ->join('nursing_profiles','comments.profile_id','=','nursing_profiles.id')
+        //         ->where('nursing_profiles.recordstatus',1)
+        //         ->where('comments.type','nursing')
+        //         ->select('comments.*')
+        //         ->orderBy('comments.id','DESC')
+        //         ->paginate(12);
+        //     }
+        //     else{
+        //         $search_comment = DB::table('comments')
+        //         ->join('hospital_profiles','comments.profile_id','=','hospital_profiles.id')
+        //         ->where('hospital_profiles.recordstatus',1)
+        //         ->where('comments.type','hospital')
+        //         ->select('comments.*')
+        //         ->orderBy('comments.id','DESC')
+        //         ->paginate(12);
+        //     }
+        // }
        
 
         // $search_comment = DB::table('comments')
@@ -354,7 +365,7 @@ class CommentController extends Controller
         //                     ->paginate(1);
 
        
-        return response()->json($search_comment);
+        return response()->json($commentList);
 
     }
 
