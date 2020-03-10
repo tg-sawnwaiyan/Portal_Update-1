@@ -115,7 +115,8 @@ export default {
           cancelButtonText: "キャンセル",
           confirmButtonText: "作成",
           confirmButtonClass: "all-btn",
-          cancelButtonClass: "all-btn"
+          cancelButtonClass: "all-btn",
+          allowOutsideClick: false,
         }).then(response => {
           this.axios
             .post("/api/types/add", this.Type)
@@ -131,7 +132,8 @@ export default {
                 width: 350,
                 height: 200,
                 confirmButtonText: "はい",
-                confirmButtonColor: "#6cb2eb"
+                confirmButtonColor: "#6cb2eb",
+                allowOutsideClick: false,
               });
               // alert('Successfully Created')
               this.$router.push({ name: "typelist" });
@@ -161,7 +163,8 @@ export default {
         cancelButtonText: "キャンセル",
         confirmButtonText: "更新",
         confirmButtonClass: "all-btn",
-        cancelButtonClass: "all-btn"
+        cancelButtonClass: "all-btn",
+        allowOutsideClick: false,
       }).then(response => {
         this.axios
           .post(`/api/types/update/${this.$route.params.id}`, this.Type)
@@ -175,7 +178,8 @@ export default {
               width: 350,
               height: 200,
               confirmButtonText: "はい",
-              confirmButtonColor: "#6cb2eb"
+              confirmButtonColor: "#6cb2eb",
+              allowOutsideClick: false,
             });
             this.$router.push({ name: "typelist" });
           })

@@ -93,6 +93,7 @@
                           confirmButtonColor: "#6cb2eb",                         
                           confirmButtonText: "閉じる",
                           confirmButtonClass: "all-btn",
+                          allowOutsideClick: false,
                       
                       }).then(response => { 
                           this.$router.push({name: 'login'});
@@ -110,6 +111,7 @@
                                 confirmButtonColor: "#6cb2eb",                         
                                 confirmButtonText: "閉じる",
                                 confirmButtonClass: "all-btn",
+                                allowOutsideClick: false,
                             
                             })
                 }});

@@ -343,6 +343,7 @@
                                             confirmButtonText: "閉じる",
                                             // cancelButtonText: "キャンセル",
                                             confirmButtonClass: "all-btn",
+                                            allowOutsideClick: false,
                                             // cancelButtonClass: "all-btn"
                                         }).then(response => {
                                             localStorage.setItem('hospital_history','');
@@ -371,7 +372,9 @@
                             confirmButtonText: "削除",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
+
                         }).then(response => { 
                             var l_sto = this.local_sto;
                             var l_sto_arr = l_sto.split(",");
