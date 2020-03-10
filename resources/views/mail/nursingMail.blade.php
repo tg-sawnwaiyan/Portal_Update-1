@@ -1,6 +1,4 @@
 <pre>
-TIS
-
 {{$getComment->related_fav_name}}({{$getComment->related_fav_id}}) 様
 
 TIS ティーズより資料請求がありました。                    

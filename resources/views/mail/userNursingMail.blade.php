@@ -1,6 +1,4 @@
 <pre>
-TIS
-                
 {{$getComment->name}} 様
 
 TIS ティーズへの資料請求が完了しました                    

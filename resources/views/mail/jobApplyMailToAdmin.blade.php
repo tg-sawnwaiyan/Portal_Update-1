@@ -1,9 +1,7 @@
 <pre>
-TIS
-
 【TIS ティーズ】より求人への応募がありました。                 
               
-◎{{$getComment->job_title}}
+ ◎{{$getComment->job_title}}
               
 【求人番号: {{$getComment->jobnum}}】
                 
