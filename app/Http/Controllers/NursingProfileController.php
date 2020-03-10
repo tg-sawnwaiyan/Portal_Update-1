@@ -38,6 +38,11 @@ class NursingProfileController extends Controller
         foreach ($request as $file){
             $destination = 'upload/nursing_profile/Imagepanorama/'.$file->getClientOriginalName();
             $upload_img = move_uploaded_file($file, $destination);
+
+            // $imageName = $file->getClientOriginalName();
+            // $imageName = str_replace(' ', '', $imageName);
+            // $request->photo->move('upload/nursing_profile/Imagepanorama/', $imageName);
+            
         }
     }
     public function movePhoto(Request $request) {

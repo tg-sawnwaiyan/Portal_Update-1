@@ -26,18 +26,18 @@
                                 <label class="heading-lbl col-md-2 col-12 pad-free">メールアドレス<span class="error sp2">必須</span></label>
                                 <input type="text" class="form-control customer-email col-md-10 col-12 nursing_input" id="btn" v-model="nursing_info.email" @change="aggreBtn" @keyup="focusMail" placeholder="メールアドレスを入力してください。">
                             </div>
-                            <div class="pro-1">
-                             <span class="error" v-if="mail_focus || nursing_info.email =='' || nursing_info.email.length == 0">※メールアドレスが正しくありません。もう一度入力してください。</span>
+                           
+                             <span class="error pro-1" v-if="mail_focus || nursing_info.email =='' || nursing_info.email.length == 0">※メールアドレスが正しくありません。もう一度入力してください。</span>
                              <!-- <span v-else-if="this.nursing_info.email">sssss</span> -->
-                            </div>
+                           
                             <div class="form-group form-group-wrapper d-flex">
                                 <label class="heading-lbl col-md-2 col-12 pad-free">電話番号</label>                                
                                 <input type="text" class="form-control customer-phone col-md-10 col-12 nursing_input" id="phone" placeholder="電話番号を入力してください。" v-model="nursing_info.phone" v-on:keyup="isNumberOnly" pattern="[0-9-]*" @focusout="focusPhone" title="Please enter number only." maxlength="14">
                             </div>
-                            <div class="pro-1">
-                                <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>
-                                <span class="error" v-else></span>
-                            </div>
+                           
+                            <span class="error pro-1" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>
+                                
+                            
                         </div>
                     </div>
 

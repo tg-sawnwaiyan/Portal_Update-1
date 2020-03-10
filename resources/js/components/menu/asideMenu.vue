@@ -77,7 +77,7 @@
                         </div>
                     </div>
                     <div class="container-fluid footer footer-div">
-                            <span>Copyright©Trust Growth Co,Ltd.All Rights Reserved. </span>
+                            <span>Copyright©TRUST-ESTATE Co,Ltd.All Rights Reserved. </span>
                     </div>
                 </section>
             </div>
@@ -234,7 +234,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                 
                 {
                     header: true,
-                    title: '事業者管理画面',
+                    title: `事業者管理画面${this.$auth.user().type_id == 2 ? ' (病院)': ' (介護施設)'}`,
                     hidden: this.$auth.check(2),
                     hiddenOnCollapse: true
                 },                
