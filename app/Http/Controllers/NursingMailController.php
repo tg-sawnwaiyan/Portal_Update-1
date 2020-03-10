@@ -63,7 +63,7 @@ class NursingMailController extends Controller
         $favourite_name = $request->fav_name;
        
         $fav_documentation = $request->arr_document;
-       
+        // return $request;
      
          for($i = 1; $i<count($favourite_id); $i++){
             
