@@ -20,7 +20,7 @@
                                 </div>
                                 <div v-if="type == 'admin'">
                                     <label>事業者名 : </label>
-                                    <autocomplete placeholder="事業者名を検索" input-class="form-control" :source=customerList :results-display="formattedDisplay" @selected="getSelected($event)">
+                                    <autocomplete placeholder="事業者名を検索" input-class="form-control" :source=customerList :results-display="formattedDisplay" @clear="cleartext()" @selected="getSelected($event)">
                                     </autocomplete>
                                     <br>
                                     <label>施設名 : </label>
@@ -488,6 +488,7 @@ import Autocomplete from 'vuejs-auto-complete'
                     id: "",
                     name: ""
                 },
+               
 
                     joboffer: {
                         title: "",
@@ -570,7 +571,7 @@ import Autocomplete from 'vuejs-auto-complete'
                 .then(response => {
                     this.city_list = response.data;
                 });
-                this.axios.get('/api/job/customerList')
+                this.axios.get('/api/job/customerList/'+'job')
                 .then(response=> {
                   this.customerList = response.data;
                   this.formattedDisplay(this.customerList);
@@ -1060,6 +1061,9 @@ import Autocomplete from 'vuejs-auto-complete'
                   formattedDisplay(result) {
                     return result.name + '「' + result.email + '」';
                   },
+                  cleartext(){
+                      this.selectedValue = 0;
+                  },
                   getSelected(event){
                       if(event.selectedObject.type_id == 3){
                           this.table_name.profile = 'nursing_profiles';
@@ -1071,7 +1075,7 @@ import Autocomplete from 'vuejs-auto-complete'
                         this.axios.post(`/api/job/profileList/${this.joboffer.customer_id}`,this.table_name)
                     .then(response=> {
                     this.profileList = response.data;
-                    console.log('jjjj',this.profileList)
+                 
                     if(this.profileList != ''){
                         this.selectedValue = this.profileList[0].id;
                         this.joboffer.profile_id = this.profileList[0].id;
