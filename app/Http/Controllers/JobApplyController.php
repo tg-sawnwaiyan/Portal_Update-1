@@ -117,8 +117,8 @@ class JobApplyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+        public function store(Request $request)
+        {
 
             $string = '';
             $count = count($request->skills);
@@ -160,9 +160,7 @@ class JobApplyController extends Controller
                 $t = "nursing_profiles";
                 $num = 500000;
             }
-
    
-
             $query = "SELECT j.*,$t.email,$t.name as cus_name,ci.city_name as city_name,
                        (CASE c.type_id WHEN '2' THEN CONCAT(($num+c.id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT(($num+c.id),'-',LPAD($t.pro_num, 4, '0'),'-',LPAD(j.id, 4, '0')) END) as jobnum,
                        (CASE c.type_id WHEN '2' THEN CONCAT(($num+c.id),'-',LPAD($t.pro_num, 4, '0')) ELSE CONCAT(($num+c.id),'-',LPAD($t.pro_num, 4, '0')) END) as cusnum 

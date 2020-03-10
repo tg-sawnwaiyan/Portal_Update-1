@@ -358,12 +358,11 @@
                         fData.append('phone', app.phone)
            
             this.$swal({
-                title: 'Are you sure want to create account?',
-                text: 'You can\'t revert your action',
+                title: '作成しますか',                
                 type: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Yes, Create it!',
-                cancelButtonText: 'Cancel!',
+                confirmButtonText: 'はい',
+                cancelButtonText: 'いいえ',
                 showCloseButton: true,
                 showLoaderOnConfirm: true
                 }).then((result) => {

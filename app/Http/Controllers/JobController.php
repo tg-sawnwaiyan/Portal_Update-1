@@ -14,7 +14,7 @@ class JobController extends Controller
 
     public function index($type,$pro_id)
     {
-        
+   
        
         if( $type == "admin"){
 
@@ -228,13 +228,16 @@ class JobController extends Controller
         // }else{
         //     $job->occupation_id = 0;
         // }
+
         $job->occupation_id = $request->occupation_id;
         $job->title =$request->input('title');
+       
         if(isset($request->customer_id)){
             $job->customer_id= $request->customer_id;
         }else{
             $job->customer_id= auth()->user()->customer_id;
         }
+      
         $job->description = $request->input('description');
         $job->skills = $request->input('skills');
         // $job->city_id = $request->input('city_id');
@@ -256,9 +259,9 @@ class JobController extends Controller
         if($request->profile_id == 0){
             $job->profile_id = null;
         }else{
-        $job->profile_id = $request->input('profile_id');
+            $job->profile_id = $request->input('profile_id');
         }
-
+     
         // $query = "SELECT townships.id FROM `townships` INNER JOIN zipcode on townships.township_name = zipcode.city
         //     WHERE zipcode.id = " . $request->input('zipcode_id');
         // $tid = DB::select($query);
@@ -512,7 +515,7 @@ class JobController extends Controller
         }
 
         $page = 1;
-        $size = 5;
+        $size = 12;
         $data = collect($projob);
 
         $profilejob = new LengthAwarePaginator(
@@ -623,23 +626,29 @@ class JobController extends Controller
 
    }
    public function getCustomerList(){
-        $query = "SELECT customers.id, customers.name, customers.email, customers.type_id FROM jobs
-                LEFT JOIN customers ON customers.id = jobs.customer_id WHERE customers.recordstatus = 1 GROUP BY jobs.customer_id";
+        $query = "SELECT customers.id, customers.name, customers.email, customers.type_id FROM customers
+               WHERE customers.recordstatus = 1 GROUP BY customers.id";
         $cus_list = DB::select($query);
         return $cus_list;
    }
    public function getProfileList($cId, Request $request){
-    $profile = $request->profile;
-    $query = "SELECT $profile.id, $profile.name FROM $profile
-              WHERE $profile.customer_id = $cId";
-     $profile_list = DB::select($query);
-     return $profile_list;
+        $profile = $request->profile;
+        $query = "SELECT $profile.id, $profile.name FROM $profile
+                  WHERE $profile.customer_id = $cId and $profile.activate = 1";
+        $profile_list = DB::select($query);
+        return $profile_list;
 }
 public function getProfileName($id, Request $request) {
+   
     $profile = $request->profile;
-    $query = "SELECT $profile.id, $profile.name FROM $profile
+    $query = "SELECT customers.id as cus_id,customers.name as cus_name,customers.email as cus_email, $profile.id, $profile.name FROM $profile 
+              join customers on customers.id = $profile.customer_id
              WHERE $profile.id = $id";
+       
+          
      $profile_name = DB::select($query);
+ 
+    
      return $profile_name;
 }
 }

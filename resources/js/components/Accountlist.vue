@@ -7,24 +7,134 @@
                 </p>
                 <p>OOPS!!</p>
 
-                <p v-if="!norecord_msg">アカウントが無効になりました!</p>
-                <router-link :to="{name:'profiledit'}" class="main-bg-color create-btn all-btn" v-if="!norecord_msg">
+                <p>アカウントが無効になりました!</p>
+                <router-link :to="{name:'profiledit'}" class="main-bg-color create-btn all-btn">
                     アクティベートへ
                 </router-link>
 
-                <p class="record-txt01" v-if="norecord_msg">表示する施設ありません</p>
-                <p v-if="norecord_msg">表示する施設ありません‼新しい施設を作成してください。</p>   
-                <span class="main-bg-color create-btn all-btn" v-if="norecord_msg">
-                    <i class="fas fa-plus-circle"></i> 施設新規作成
-                </span>             
-                <!-- <router-link :to="{name:'profiledit'}" class="main-bg-color create-btn all-btn" v-if="!norecord_msg">
-                    <i class="fas fa-plus-circle"></i> 施設新規作成
-                </router-link> -->
-            </div>  
+            </div>
 
             <!-- Create account Area --> 
             <div v-else >
-                <div id="nusNew">
+                <div v-if="norecord_msg && !createNew" class="card card-default card-wrap">
+                    <p class="record-ico">
+                        <i class="fa fa-exclamation"></i>
+                    </p>
+                    <p>OOPS!!</p>
+                    <p class="record-txt01" v-if="norecord_msg">表示する施設ありません</p>
+                    <p v-if="norecord_msg">表示する施設ありません‼新しい施設を作成してください。</p>   
+                    <span class="main-bg-color create-btn all-btn" v-if="norecord_msg" @click="ShowHideDiv()">
+                        <i class="fas fa-plus-circle"></i> 施設新規作成
+                    </span> 
+                </div>
+                <div v-if="!createNew && !norecord_msg" class="col-12 tab-content" id="nusBlock">                        
+                    <div class="p-2 p0-480">                            
+                        <div class="container-fuid">                                
+                            <div class="col-md-12 d-flex header pb-3 admin_header">
+                                <h5>施設一覧</h5>
+                                <div class="ml-auto">
+                                    <a class="" id="newcreate">
+                                        <span v-if="type == 'nursing'" class="main-bg-color create-btn all-btn"  @click="ShowHideDiv()">
+                                            <span><i class="fas fa-plus-circle"></i> <span class="dinone">介護施設新規作成</span></span>
+                                        </span>
+                                        <span v-else class="main-bg-color create-btn all-btn"  @click="ShowHideDiv()">
+                                        <i class="fas fa-plus-circle"></i> <span class="dinone">病院施設新規作成</span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- nursing -->
+                            <div class="row col-12 m-lr-0  rl" v-if="type == 'nursing'">
+                                <div class="col-xs-12 col-md-6 col-lg-4 col-xl-3 column" v-for="nursingprofiles in nursingprofile" :key="nursingprofiles.id">
+                                    <div class="card_1">
+                                        <img :src="'/upload/nursing_profile/'+ nursingprofiles.logo" alt="aa" @error="imgUrlAlt" />
+                                        <div class="card-content">
+                                            <div class="title-toggle" style="width:100%;">
+                                            <span class="d-inline-block text-truncate font-weight-bold card-title card-title-leftwrapper">
+                                                {{nursingprofiles.name}}
+                                            </span>
+                                            <span class="card-title-rightwrapper model-7">                                                 
+                                                <div class="checkbox">
+                                                    <input type='checkbox' v-if="nursingprofiles.activate == 1" @click="changeActivate(nursingprofiles.id,nursingprofiles.activate)" checked/>
+                                                    <input type='checkbox' v-if="nursingprofiles.activate == 0" @click="changeActivate(nursingprofiles.id,nursingprofiles.activate)"  />
+                                                    <label for="checkbox"></label>
+                                                    <div  v-if="nursingprofiles.activate == 1" class="on">公開中</div>
+                                                    <div v-if="nursingprofiles.activate == 0" class="on">非行化</div>
+                                                </div>                                                                                             
+                                            </span>
+                                            </div>
+                                            
+                                            <p v-if="nursingprofiles.activate == 1">
+                                                <router-link :to="{ path:'/profilejobofferlist/nursing/'+ nursingprofiles.id}" style="font-weight:bold;text-decoration:underline;">
+                                                <i class="vsm--icon fa fa-edit fa-fw" style="color: #585858;"></i>求人編集</router-link>&nbsp;&nbsp;
+                                                <router-link :to="{ path:'/jobapplicantlist/nursing/profile/'+ nursingprofiles.id}" style="font-weight:bold;text-decoration:underline;">
+                                                <i class="vsm--icon fa fa-list" style="color: #585858;"></i>求人応募者一覧</router-link>
+                                            </p>
+                                            <p v-else>
+                                                <a style="font-weight:bold;color:#ccc;">
+                                                <i class="vsm--icon fa fa-edit fa-fw" style="color: #ccc;"></i>求人編集</a>&nbsp;&nbsp;
+                                                <a style="font-weight:bold;color:#ccc;">
+                                                <i class="vsm--icon fa fa-list" style="color: #ccc;"></i>求人応募者一覧</a>
+                                            </p>
+                                        </div>
+                                        <div class="card-read-more">
+                                            <router-link :to="{ path:'/profile/nursing/'+ nursingprofiles.id}" class="btn edit-borderbtn" style="float:left;">編集</router-link>
+                                            
+                                            <span class="btn text-danger delete-borderbtn" @click="profileDelete(nursingprofiles.id)" ><i class="fa fa-trash-o" aria-hidden="true"></i>削除</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                           
+                            <!-- nursing -->
+                            <!-- hospital -->
+                            <div class="row col-12 m-lr-0  rl" v-else>
+                                <div class="col-xs-12 col-md-6 col-lg-4 col-xl-3 column" v-for="hospitalprofiles in hospitalprofile" :key="hospitalprofiles.id">
+                                    <div class="card_1">
+                                        <img :src="'/upload/hospital_profile/'+ hospitalprofiles.logo" @error="imgUrlAlt" />
+                                        <div class="card-content">
+                                            <div class="title-toggle">
+                                            <span class="d-inline-block text-truncate font-weight-bold card-title card-title-leftwrapper">
+                                                {{hospitalprofiles.name}}
+                                            </span>
+                                            <span class="card-title-rightwrapper model-7">  
+                                                <div class="checkbox">
+                                                    <input type='checkbox' v-if="hospitalprofiles.activate == 1" @click="changeActivate(hospitalprofiles.id,hospitalprofiles.activate)" checked/>
+                                                    <input type='checkbox' v-if="hospitalprofiles.activate == 0" @click="changeActivate(hospitalprofiles.id,hospitalprofiles.activate)"  />
+                                                    <label for="checkbox"></label>
+                                                    <div   v-if="hospitalprofiles.activate == 1" class="on">公開中</div>
+                                                    <div v-if="hospitalprofiles.activate == 0" class="on">非行化</div>
+                                                </div>                                            
+                                            </span>
+                                            </div>
+                                            
+                                            <p v-if="hospitalprofiles.activate == 1">
+                                                <router-link :to="{ path:'/profilejobofferlist/hospital/'+ hospitalprofiles.id}" class="" style="font-weight:bold;text-decoration:underline;">
+                                                    <i class="vsm--icon fa fa-edit fa-fw" style="color: #585858;"></i>求人編集</router-link>&nbsp;&nbsp;
+                                                <router-link :to="{ path:'/jobapplicantlist/hospital/profile/'+ hospitalprofiles.id}" class="" style="font-weight:bold;text-decoration:underline;">
+                                                    <i class="vsm--icon fa fa-list fa-fw" style="color: #585858;"></i>求人応募者一覧</router-link>
+                                            </p>
+                                            <p v-else>
+                                                <a style="font-weight:bold;color:#ccc;">
+                                                    <i class="vsm--icon fa fa-edit fa-fw" style="color: #ccc;"></i>求人編集</a>&nbsp;&nbsp;
+                                                <a style="font-weight:bold;color:#ccc;">
+                                                    <i class="vsm--icon fa fa-list fa-fw" style="color: #ccc;"></i>求人応募者一覧</a>
+                                            </p>
+                                        </div>
+                                        <div class="card-read-more">
+                                            <router-link :to="{ path:'/profile/hospital/'+ hospitalprofiles.id}" class="btn edit-borderbtn" style="float:left;">編集</router-link>
+                                                
+                                            <span class="btn text-danger delete-borderbtn" @click="profileDelete(hospitalprofiles.id)" ><i class="fa fa-trash-o" aria-hidden="true"></i>削除</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- hospital -->
+                        </div>
+                    </div>
+                </div>
+
+                <div v-if="createNew">
                     <div class="col-md-12 pad-free">
                         <div class="card text-dark">
                             <div class="card-body">
@@ -73,100 +183,7 @@
                     </div>                    
                 </div>
                 <!-- End Create account Area --> 
-                <div class="col-12 tab-content" id="nusBlock">                        
-                    <div class="p-2 p0-480">                            
-                        <div class="container-fuid">                                
-                            <div class="col-md-12 d-flex header pb-3 admin_header">
-                                <h5>施設一覧</h5>
-                                <div class="ml-auto">
-                                    <a class="" id="newcreate">
-                                        <span v-if="type == 'nursing'" class="main-bg-color create-btn all-btn"  @click="ShowHideDiv()">
-                                            <span><i class="fas fa-plus-circle"></i> <span class="dinone">介護施設新規作成</span></span>
-                                        </span>
-                                        <span v-else class="main-bg-color create-btn all-btn"  @click="ShowHideDiv()">
-                                        <i class="fas fa-plus-circle"></i> <span class="dinone">病院施設新規作成</span>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- nursing -->
-                            <div class="row col-12 m-lr-0  rl" v-if="type == 'nursing'">
-                                <div class="col-xs-12 col-md-6 col-lg-4 col-xl-3 column" v-for="nursingprofiles in nursingprofile" :key="nursingprofiles.id">
-                                    <div class="card_1">
-                                        <img :src="'/upload/nursing_profile/'+ nursingprofiles.logo" alt="aa" @error="imgUrlAlt" />
-                                        <div class="card-content">
-                                            <div class="title-toggle" style="width:100%;">
-                                            <span class="d-inline-block text-truncate font-weight-bold card-title card-title-leftwrapper">
-                                                {{nursingprofiles.name}}
-                                            </span>
-                                            <span class="card-title-rightwrapper model-7">                                                 
-                                                <div class="checkbox">
-                                                    <input type='checkbox' v-if="nursingprofiles.activate == 1" @click="changeActivate(nursingprofiles.id,nursingprofiles.activate)" checked/>
-                                                    <input type='checkbox' v-if="nursingprofiles.activate == 0" @click="changeActivate(nursingprofiles.id,nursingprofiles.activate)"  />
-                                                    <label for="checkbox"></label>
-                                                    <div  v-if="nursingprofiles.activate == 1" class="on">公開中</div>
-                                                    <div v-if="nursingprofiles.activate == 0" class="on">非行化</div>
-                                                </div>                                                                                             
-                                            </span>
-                                            </div>
-                                            
-                                            <p class="">
-                                                <router-link :to="{ path:'/profilejobofferlist/nursing/'+ nursingprofiles.id}" style="font-weight:bold;text-decoration:underline;">
-                                                <i class="vsm--icon fa fa-edit fa-fw" style="color: #585858;"></i>求人編集</router-link>&nbsp;&nbsp;
-                                                <router-link :to="{ path:'/jobapplicantlist/nursing/profile/'+ nursingprofiles.id}" style="font-weight:bold;text-decoration:underline;">
-                                                <i class="vsm--icon fa fa-list" style="color: #7d7d7d;"></i>求人応募者一覧</router-link>
-                                            </p>
-                                        </div>
-                                        <div class="card-read-more">
-                                            <router-link :to="{ path:'/profile/nursing/'+ nursingprofiles.id}" class="btn edit-borderbtn" style="float:left;">編集</router-link>
-                                            
-                                            <span class="btn text-danger delete-borderbtn" @click="profileDelete(nursingprofiles.id)" ><i class="fa fa-trash-o" aria-hidden="true"></i>削除</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>                           
-                            <!-- nursing -->
-                            <!-- hospital -->
-                            <div class="row col-12 m-lr-0  rl" v-else>
-                                <div class="col-xs-12 col-md-6 col-lg-4 col-xl-3 column" v-for="hospitalprofiles in hospitalprofile" :key="hospitalprofiles.id">
-                                    <div class="card_1">
-                                        <img :src="'/upload/hospital_profile/'+ hospitalprofiles.logo" @error="imgUrlAlt" />
-                                        <div class="card-content">
-                                            <div class="title-toggle">
-                                            <span class="d-inline-block text-truncate font-weight-bold card-title card-title-leftwrapper">
-                                                {{hospitalprofiles.name}}
-                                            </span>
-                                            <span class="card-title-rightwrapper model-7">  
-                                                <div class="checkbox">
-                                                    <input type='checkbox' v-if="hospitalprofiles.activate == 1" @click="changeActivate(hospitalprofiles.id,hospitalprofiles.activate)" checked/>
-                                                    <input type='checkbox' v-if="hospitalprofiles.activate == 0" @click="changeActivate(hospitalprofiles.id,hospitalprofiles.activate)"  />
-                                                    <label for="checkbox"></label>
-                                                    <div   v-if="hospitalprofiles.activate == 1" class="on">公開中</div>
-                                                    <div v-if="hospitalprofiles.activate == 0" class="on">非行化</div>
-                                                </div>                                            
-                                            </span>
-                                            </div>
-                                            
-                                            <p class="">
-                                                <router-link :to="{ path:'/profilejobofferlist/hospital/'+ hospitalprofiles.id}" class="" style="font-weight:bold;text-decoration:underline;">
-                                                    <i class="vsm--icon fa fa-edit fa-fw" style="color: #585858;"></i>求人編集</router-link>&nbsp;&nbsp;
-                                                <router-link :to="{ path:'/jobapplicantlist/hospital/profile/'+ hospitalprofiles.id}" class="" style="font-weight:bold;text-decoration:underline;">
-                                                    <i class="vsm--icon fa fa-list fa-fw" style="color: #585858;"></i>求人応募者一覧</router-link>
-                                            </p>
-                                        </div>
-                                        <div class="card-read-more">
-                                            <router-link :to="{ path:'/profile/hospital/'+ hospitalprofiles.id}" class="btn edit-borderbtn" style="float:left;">編集</router-link>
-                                                
-                                            <span class="btn text-danger delete-borderbtn" @click="profileDelete(hospitalprofiles.id)" ><i class="fa fa-trash-o" aria-hidden="true"></i>削除</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <!-- hospital -->
-                        </div>
-                    </div>
-                </div>
+                
             </div>               
             
         </div>
@@ -176,6 +193,7 @@
 export default {
     data() {
        return{
+           createNew: false,
             nursingprofile:[],
             type:null,
             hospitalprofile:[],
@@ -216,12 +234,14 @@ export default {
                 });
         },
         ShowHideDiv(){
-                document.getElementById('newcreate').style.display = "none";
-                document.getElementById('nusNew').style.display = "block";   
-                document.getElementById('nusBlock').style.display = "none";             
+            this.createNew = true;
+                // document.getElementById('newcreate').style.display = "none";
+                // document.getElementById('nusNew').style.display = "block";   
+                // document.getElementById('nusBlock').style.display = "none";             
                 
         },
         CreateNew(){
+
             if(this.nursing_data.name != '' )
             {
                 this.errors.name = "";
@@ -259,12 +279,13 @@ export default {
                         confirmButtonClass: "all-btn",
                             
                     }).then(response => { 
+                        this.createNew = false;
                         this.getAccountList();
                     });
 
-                    document.getElementById('newcreate').style.display = "block";
-                    document.getElementById('nusNew').style.display = "none";
-                    document.getElementById('nusBlock').style.display = "block";
+                    // document.getElementById('newcreate').style.display = "block";
+                    // document.getElementById('nusNew').style.display = "none";
+                    // document.getElementById('nusBlock').style.display = "block";
                     this.nursing_data.name = '';
                     this.nursing_data.town_id = 0;
                     this.nursing_data.city_id = 0;
@@ -272,9 +293,10 @@ export default {
             }  
         },
         CancelNew(){
-                document.getElementById('newcreate').style.display = "block";
-                document.getElementById('nusNew').style.display = "none";
-                document.getElementById('nusBlock').style.display = "block";
+            this.createNew = false;
+                // document.getElementById('newcreate').style.display = "block";
+                // document.getElementById('nusNew').style.display = "none";
+                // document.getElementById('nusBlock').style.display = "block";
                 this.nursing_data.city_id = 0;
                 this.nursing_data.town_id = 0;
                 this.errors.city = '';
