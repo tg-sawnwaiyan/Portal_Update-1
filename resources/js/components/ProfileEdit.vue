@@ -6,7 +6,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <h4 class="page-header header">プロファイル設定 <a v-if="$auth.check(2)" @click="$router.go(-1)" class="btn bt-red all-btn submit float-right">戻る</a></h4>
+                            <h4 class="page-header header">事業者プロフィール設定 <a v-if="$auth.check(2)" @click="$router.go(-1)" class="btn bt-red all-btn submit float-right">戻る</a></h4>
                             <br>
                         </div>
                         <form class="col-md-8">
@@ -85,10 +85,10 @@
                                     <div class="row">
                                         <div class="col-md-12 m-t-8">
                                             <div class="header2">
-                                                <h5 class=" clearfix">メールと名称設定</h5>
+                                                <h5 class=" clearfix">メールアドレスと運営事業者名設定</h5>
                                             </div>
                                             <div class="form-group">
-                                                <label class="old-pass">名称</label>
+                                                <label class="old-pass">運営事業者名</label>
                                                 <input type="text" name="name" v-model="customer_info.name"  class="form-control old-password">
                                             </div>
                                             <div class="form-group">

@@ -11,7 +11,7 @@
                     <p class="record-txt01">表示するデータありません</p>
                 </div>
                 <div v-else class="container-fuid">
-                    <h4 class="main-color mb-3">プロファイル名で検索</h4>
+                    <h4 class="main-color mb-3">プロフィール名で検索</h4>
                     <div class="row mb-4">
                         <div class="col-md-12">
                             <!-- <input type="text" class="form-control" placeholder="検索" id="search-item" @keyup="searchcomment()" /> -->
