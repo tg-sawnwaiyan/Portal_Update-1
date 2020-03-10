@@ -74,7 +74,7 @@ class NursingMailController extends Controller
             if(isset($fav_documentation[$favourite_id[$i]])){
            
                 if ($fav_documentation[$favourite_id[$i]] == true ) {
-                   $name_arr[] = $request->fav_name[$favourite_id[$i]];
+                   $name_arr[] = $request->fav_name[$i];
                 
                    $request->fav_name_copy = $name_arr;
                  
