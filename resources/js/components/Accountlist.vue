@@ -7,73 +7,27 @@
                 </p>
                 <p>OOPS!!</p>
 
-                <p v-if="!norecord_msg">アカウントが無効になりました!</p>
-                <router-link :to="{name:'profiledit'}" class="main-bg-color create-btn all-btn" v-if="!norecord_msg">
+                <p>アカウントが無効になりました!</p>
+                <router-link :to="{name:'profiledit'}" class="main-bg-color create-btn all-btn">
                     アクティベートへ
                 </router-link>
 
-                <p class="record-txt01" v-if="norecord_msg">表示する施設ありません</p>
-                <p v-if="norecord_msg">表示する施設ありません‼新しい施設を作成してください。</p>   
-                <span class="main-bg-color create-btn all-btn" v-if="norecord_msg">
-                    <i class="fas fa-plus-circle"></i> 施設新規作成
-                </span>             
-                <!-- <router-link :to="{name:'profiledit'}" class="main-bg-color create-btn all-btn" v-if="!norecord_msg">
-                    <i class="fas fa-plus-circle"></i> 施設新規作成
-                </router-link> -->
-            </div>  
+            </div>
 
             <!-- Create account Area --> 
             <div v-else >
-                <div id="nusNew">
-                    <div class="col-md-12 pad-free">
-                        <div class="card text-dark">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <h4 data-v-81a927b4="" class="page-header header">施設作成</h4>
-                                    </div>
-                                    <div class="mt-2 pb-5 col-md-12">
-                                        <div class="form-group">
-                                                <label>施設名 </label>
-                                                <input type="text" class="form-control" v-model="nursing_data.name" placeholder="施設名を入力してください。">
-                                                <span v-if="errors.name" class="error">{{errors.name}}</span>
-                                            </div>
-                                            <div class="form-group" >
-                                                <label>都道府県</label>
-                                                <select v-model="nursing_data.city_id" class="division form-control custom-select"  @change="getTownship()">
-                                                        <option value="0">選択してください。</option>
-                                                        <option v-for="cities in city_list" :key="cities.id" v-bind:value="cities.id">
-                                                            {{cities.city_name}}
-                                                        </option>
-                                                </select>
-                                                <span v-if="errors.city" class="error">{{errors.city}}</span>
-                                            </div>
-                                            <div class="form-group" >
-                                                <label>市区町村</label>
-                                                <select v-model="nursing_data.town_id" class="division form-control custom-select" @change="changeTownship()"  >
-                                                        <option value="0">選択してください。</option>
-                                                        <option v-for="tw in town_list" :key="tw.id" v-bind:value="tw.id">
-                                                            {{tw.township_name}}
-                                                        </option>
-                                                </select>
-                                                <span v-if="errors.township" class="error">{{errors.township}}</span>
-                                            </div>
-                                            <div class="form-group">                                                
-                                                <span class="btn main-bg-color white all-btn"  @click="CreateNew()">
-                                                    作成
-                                                </span>
-                                                <span class="btn bt-red all-btn" @click="CancelNew()">
-                                                    キャンセル
-                                                </span>
-                                            </div>
-                                    </div>                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>                    
+                <div v-if="norecord_msg && !createNew" class="card card-default card-wrap">
+                    <p class="record-ico">
+                        <i class="fa fa-exclamation"></i>
+                    </p>
+                    <p>OOPS!!</p>
+                    <p class="record-txt01" v-if="norecord_msg">表示する施設ありません</p>
+                    <p v-if="norecord_msg">表示する施設ありません‼新しい施設を作成してください。</p>   
+                    <span class="main-bg-color create-btn all-btn" v-if="norecord_msg" @click="ShowHideDiv()">
+                        <i class="fas fa-plus-circle"></i> 施設新規作成
+                    </span> 
                 </div>
-                <!-- End Create account Area --> 
-                <div class="col-12 tab-content" id="nusBlock">                        
+                <div v-if="!createNew && !norecord_msg" class="col-12 tab-content" id="nusBlock">                        
                     <div class="p-2 p0-480">                            
                         <div class="container-fuid">                                
                             <div class="col-md-12 d-flex header pb-3 admin_header">
@@ -179,6 +133,57 @@
                         </div>
                     </div>
                 </div>
+
+                <div v-if="createNew">
+                    <div class="col-md-12 pad-free">
+                        <div class="card text-dark">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h4 data-v-81a927b4="" class="page-header header">施設作成</h4>
+                                    </div>
+                                    <div class="mt-2 pb-5 col-md-12">
+                                        <div class="form-group">
+                                                <label>施設名 </label>
+                                                <input type="text" class="form-control" v-model="nursing_data.name" placeholder="施設名を入力してください。">
+                                                <span v-if="errors.name" class="error">{{errors.name}}</span>
+                                            </div>
+                                            <div class="form-group" >
+                                                <label>都道府県</label>
+                                                <select v-model="nursing_data.city_id" class="division form-control custom-select"  @change="getTownship()">
+                                                        <option value="0">選択してください。</option>
+                                                        <option v-for="cities in city_list" :key="cities.id" v-bind:value="cities.id">
+                                                            {{cities.city_name}}
+                                                        </option>
+                                                </select>
+                                                <span v-if="errors.city" class="error">{{errors.city}}</span>
+                                            </div>
+                                            <div class="form-group" >
+                                                <label>市区町村</label>
+                                                <select v-model="nursing_data.town_id" class="division form-control custom-select" @change="changeTownship()"  >
+                                                        <option value="0">選択してください。</option>
+                                                        <option v-for="tw in town_list" :key="tw.id" v-bind:value="tw.id">
+                                                            {{tw.township_name}}
+                                                        </option>
+                                                </select>
+                                                <span v-if="errors.township" class="error">{{errors.township}}</span>
+                                            </div>
+                                            <div class="form-group">                                                
+                                                <span class="btn main-bg-color white all-btn"  @click="CreateNew()">
+                                                    作成
+                                                </span>
+                                                <span class="btn bt-red all-btn" @click="CancelNew()">
+                                                    キャンセル
+                                                </span>
+                                            </div>
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+                <!-- End Create account Area --> 
+                
             </div>               
             
         </div>
@@ -188,6 +193,7 @@
 export default {
     data() {
        return{
+           createNew: false,
             nursingprofile:[],
             type:null,
             hospitalprofile:[],
@@ -228,12 +234,14 @@ export default {
                 });
         },
         ShowHideDiv(){
-                document.getElementById('newcreate').style.display = "none";
-                document.getElementById('nusNew').style.display = "block";   
-                document.getElementById('nusBlock').style.display = "none";             
+            this.createNew = true;
+                // document.getElementById('newcreate').style.display = "none";
+                // document.getElementById('nusNew').style.display = "block";   
+                // document.getElementById('nusBlock').style.display = "none";             
                 
         },
         CreateNew(){
+
             if(this.nursing_data.name != '' )
             {
                 this.errors.name = "";
@@ -271,12 +279,13 @@ export default {
                         confirmButtonClass: "all-btn",
                             
                     }).then(response => { 
+                        this.createNew = false;
                         this.getAccountList();
                     });
 
-                    document.getElementById('newcreate').style.display = "block";
-                    document.getElementById('nusNew').style.display = "none";
-                    document.getElementById('nusBlock').style.display = "block";
+                    // document.getElementById('newcreate').style.display = "block";
+                    // document.getElementById('nusNew').style.display = "none";
+                    // document.getElementById('nusBlock').style.display = "block";
                     this.nursing_data.name = '';
                     this.nursing_data.town_id = 0;
                     this.nursing_data.city_id = 0;
@@ -284,9 +293,10 @@ export default {
             }  
         },
         CancelNew(){
-                document.getElementById('newcreate').style.display = "block";
-                document.getElementById('nusNew').style.display = "none";
-                document.getElementById('nusBlock').style.display = "block";
+            this.createNew = false;
+                // document.getElementById('newcreate').style.display = "block";
+                // document.getElementById('nusNew').style.display = "none";
+                // document.getElementById('nusBlock').style.display = "block";
                 this.nursing_data.city_id = 0;
                 this.nursing_data.town_id = 0;
                 this.errors.city = '';
