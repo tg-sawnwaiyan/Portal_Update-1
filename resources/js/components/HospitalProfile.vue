@@ -1343,6 +1343,7 @@ export default {
                         allowOutsideClick: false,
                     })                    
                 } 
+
                   
             else {
                 var logo = document.getElementsByClassName('pro-logo')[0].files[0];               
