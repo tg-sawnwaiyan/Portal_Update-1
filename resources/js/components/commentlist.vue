@@ -59,7 +59,7 @@
                                     <strong>メールアドレス:</strong>{{comment.email}} -->
                                     <table class="commentlist_tbl">
                                         <tr>
-                                            <td class="align-top custom_title">タイトル :</td>
+                                            <td class="align-top custom_title font-weight-bold">タイトル :</td>
                                             <td> {{comment.title}}</td>
                                         </tr>
                                         <!-- <tr>
@@ -67,11 +67,11 @@
                                             <td> {{comment.name}} </td>
                                         </tr> -->
                                          <tr>
-                                            <td class="align-top custom_title">事業者名 :</td>
+                                            <td class="align-top custom_title font-weight-bold">事業者名 :</td>
                                             <td> {{comment.cus_name}} </td>
                                         </tr>
                                          <tr>
-                                            <td class="align-top custom_title">施設名 :</td>
+                                            <td class="align-top custom_title font-weight-bold">施設名 :</td>
                                             <td> {{comment.pro_name}} </td>
                                         </tr>
                                          
