@@ -766,13 +766,12 @@ import Autocomplete from 'vuejs-auto-complete'
                             this.errors.working_hours = "";
                         }
 
-                        if (this.joboffer.occupation_id == '-1') {
+                        if (this.joboffer.occupation_id == '-1' || this.joboffer.occupation_id == '') {
                             this.errors.occupation_id = " 職種は必須です。";
                         }
                         else {
                             this.errors.occupation_id = null;
                         }
-                        alert(this.errors.profile_id);
 
                         if (
                             !this.errors.title &&
