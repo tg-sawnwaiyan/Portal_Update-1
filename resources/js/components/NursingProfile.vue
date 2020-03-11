@@ -1221,6 +1221,13 @@ export default {
                 }
             },
             createProfile() {
+                if($('#new_lat').val() == "" || $('#new_long').val() == "" || $('#gmaptownship').val() == 0 || this.mail_focus == true || this.ph_num == true )
+                {
+                    this.btn_disable = true;
+                }
+                else{
+                    this.btn_disable = false;
+                }
                 
              if(this.btn_disable){
                     // console.log("mail");

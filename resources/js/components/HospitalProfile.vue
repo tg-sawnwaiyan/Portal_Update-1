@@ -1315,14 +1315,7 @@ export default {
             },
             Create_Profile () {
                
-                this.hospital_info.latitude = $('#new_lat').val();
-                this.hospital_info.longitude = $('#new_long').val();
-                this.hospital_info.address = $('#address_show').val();
-                this.address_show = $('#address_show').val();
-
-                this.hospital_info.townships_id = Number($('#gmaptownship').val());
-                localStorage.setItem('lat_num',this.hospital_info.latitude);
-                localStorage.setItem('lng_num',this.hospital_info.longitude);
+                
                
 
               if($('#new_lat').val() == "" || $('#new_long').val() == "" || $('#gmaptownship').val() == 0 || this.mail_focus == true || this.ph_num == true )
@@ -1353,6 +1346,7 @@ export default {
                         allowOutsideClick: false,
                     })                    
                 } 
+
                   
             else {
                 var logo = document.getElementsByClassName('pro-logo')[0].files[0];
@@ -1366,6 +1360,14 @@ export default {
                 }
 
                
+                this.hospital_info.latitude = $('#new_lat').val();
+                this.hospital_info.longitude = $('#new_long').val();
+                this.hospital_info.address = $('#address_show').val();
+                this.address_show = $('#address_show').val();
+
+                this.hospital_info.townships_id = Number($('#gmaptownship').val());
+                localStorage.setItem('lat_num',this.hospital_info.latitude);
+                localStorage.setItem('lng_num',this.hospital_info.longitude);
 
                 if(logo)
                 {
