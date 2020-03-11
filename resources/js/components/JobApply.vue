@@ -208,7 +208,7 @@
             </div>
             <div class="col-md-9 col-sm-12 form-right" style="cursor:pointer;">
                 <label for class="ml-4">
-                    <router-link to="/termsAndConditions" target="_blank">「プライバシーポリシー」</router-link>をご確認いただき、よろしければ「同意する」にチェックをして、内容を送信してください。
+                    <router-link to="/termsAndConditions" target="_blank" class="pseudolink">「プライバシーポリシー」</router-link>をご確認いただき、よろしければ「同意する」にチェックをして、内容を送信してください。
                 </label>
                 <br />
                 <label class="ml-4 control control--checkbox">
