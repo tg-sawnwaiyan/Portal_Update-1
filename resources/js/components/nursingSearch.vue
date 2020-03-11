@@ -192,7 +192,7 @@
                                                                         <i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み
                                                                     </p>
 
-                                                                    <p class="item-name"><img :src="'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld='+items.alphabet+'|ff9563|000000'" alt="">
+                                                                    <p class="item-name"><img :src="'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld='+items.alphabet+'|fd0e0e|ffffff'" alt="">
                                                                         <router-link :to="{ path:'/profile/nursing/'+items.nursing_id}" class="pseudolink" style="font-weight:bold;color:#63b7ff !important">{{items.name}}</router-link>
                                                                     </p>
                                                                     <p>{{items.city_name}} <i class="fas fa-angle-double-right" style="color:#b9b5b5;"></i> {{items.township_name}}</p>
@@ -1429,7 +1429,7 @@
                                 '<tbody>' +
                                     '<tr>' +
                                     '<td colspan="2" class="text-left" style="padding-bottom:0px;">' +
-                                    '<img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld='+item[i]['alphabet']+'|ff9563|000000" alt="" style="margin-right:10px;">' +
+                                    '<img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld='+item[i]['alphabet']+'|fd0e0e|ffffff" alt="" style="margin-right:10px;">' +
                                     '<span class="item-name">' + item[i]['name'] + '</span> <br>' +
                                     '</td>' +
                                 '</tr>' +
@@ -1497,7 +1497,7 @@
                             map: this.map,
                             animation: google.maps.Animation.DROP,
                             zoom:5,
-                            icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' + img + '|ff9563|000000',
+                            icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' + img + '|fd0e0e|ffffff',
                             title: this.markers[i]['name'],
                             options: {
                             gestureHandling: 'greedy'

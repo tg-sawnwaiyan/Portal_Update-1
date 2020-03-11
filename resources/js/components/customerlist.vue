@@ -11,10 +11,21 @@
                     <p>表示するデータありません‼新しいデータを作成してください。</p>
                 </div>
                 <div v-else class="container-fuid">
-                    <h4 class="main-color mb-3">事業者検索</h4>
+                    <h4 class="main-color mb-3">事業者検索 </h4>
                     <div class="row mb-4">
                         <div class="col-md-12">
-                            <input type="text" class="form-control" placeholder="事業者検索" id="search-word" @keyup="searchCustomer()" />
+                            <input type="text" class="form-control" placeholder="事業者検索" id="search-word" v-model="searchkeyword" @keyup="searchCustomer()" />
+                        </div>
+                    </div>
+                     <div class="row mb-4">
+                        <div class="col-md-12">
+                              <select  v-model="status" id="selectBox" class="form-control select_box" @change="searchCustomer()">
+                                    <option selected="selected" value>choose item</option>
+                                    <option value="1"> Activate </option>
+                                    <option value="0"> Deactivate </option>
+                                    <option value="2"> Pending </option>
+                                 
+                                </select>
                         </div>
                     </div>
                     <hr />
@@ -151,7 +162,9 @@
 </template>
 
 <script>
+
     export default {
+
          props:{
             limitpc: {
                 type: Number,
@@ -167,6 +180,8 @@
                     nosearch_msg: false,
                     title: '',
                     type: null,
+                    status:'',
+                    searchkeyword:''
                 };
             },
             created() {
@@ -176,6 +191,7 @@
 
             },
             methods: {
+               
                 initialCall(){
                     if(this.$route.path == "/nuscustomerlist"){
                         this.type = "nursing";
@@ -290,12 +306,14 @@
                     },
 
                     searchCustomer(page) {
+                     
                         if(typeof page === "undefined"){
                             page = 1;
                         }
                         var search_word = $("#search-word").val();
                         let fd = new FormData();
                         fd.append("search_word", search_word);
+                        fd.append("status",this.status)
                         this.$loading(true);
                         $("html, body").animate({ scrollTop: 0 }, "slow");
                         this.axios.post("/api/customer/search?page="+page, fd).then(response => {

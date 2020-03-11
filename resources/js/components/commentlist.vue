@@ -14,15 +14,27 @@
                     <h4 class="main-color mb-3">プロフィール名で検索</h4>
                     <div class="row mb-4">
                         <div class="col-md-12">
-                            <!-- <input type="text" class="form-control" placeholder="検索" id="search-item" @keyup="searchcomment()" /> -->
-                            <select  v-model="profileid" class="division form-control"  @change="getComment()">
+                            <!-- <select  v-model="profileid" class="division form-control"  @change="getComment()">
                                 <option value="0">選択してください。</option>
                                 <option  id="search-item" v-for="pro in profilelist" :key="pro.id" v-bind:value="pro.id">
                                     {{pro.name}}
                                 </option>
-                        </select>
+                            </select> -->
+                            <label>事業者名 : </label>
+                            <autocomplete id="cusname"  placeholder="事業者名を検索" input-class="form-control" :source=customerList :results-display="formattedDisplay" @clear="cleartext()"  @selected="getSelected($event)">
+                            </autocomplete>
                         </div>
-
+                        <div class="col-md-12">
+                            <label>施設名 : </label>
+                         
+                            <select v-model="selectedValue" class="division form-control" @change="getComment()">
+                                <option value="0">選択してください。</option>
+                                <option v-for="profile in profileList" :key="profile.id" v-bind:value="profile.id">
+                                    {{profile.name}}
+                                </option>
+                            </select>
+                              
+                        </div>
                     </div>
                     <hr />
                      <!-- <div class="form-group" >
@@ -47,15 +59,15 @@
                                     <strong>メールアドレス:</strong>{{comment.email}} -->
                                     <table class="commentlist_tbl">
                                         <tr>
-                                            <td class="align-top custom_title">タイトル :</td>
+                                            <td class="align-top custom_title font-weight-bold">タイトル :</td>
                                             <td> {{comment.title}}</td>
                                         </tr>
                                         <tr>
-                                            <td class="align-top custom_title">顧客名 :</td>
+                                            <td class="align-top custom_title font-weight-bold">顧客名 :</td>
                                             <td> {{comment.name}} </td>
                                         </tr>
                                             <tr>
-                                            <td class="align-top custom_title">メールアドレス: </td>
+                                            <td class="align-top custom_title font-weight-bold">メールアドレス: </td>
                                             <td> {{comment.email}} </td>
                                         </tr>
                                     </table>
@@ -102,7 +114,14 @@
 </template>
 
 <script>
+
+     import Autocomplete from 'vuejs-auto-complete'
     export default {
+       
+        components: {
+            Autocomplete,
+        },
+    
          props:{
             limitpc: {
                 type: Number,
@@ -112,28 +131,40 @@
         data() {
                return {
                     comments: [],
-                    profilelist:[],
+                    profileList:[],
                     norecord: 0,
                     items: [],
                     norecord_msg: false,
                     nosearch_msg: false,
                     title: '',
                     type:'',
-                    profileid:''
+                    profileid:'',
+                    customerList:'',
+                    cusid:'',
+                    proid:'',
+                    table_name: {
+                        profile: ''
+                    },
+                    cusname:'',
+                    selectedValue:0
+
                 }
 
             },
             created() {
-                 this.profileid = 0;
+                this.selectedValue = 0;
+                this.profileid = 0;
                 this.$loading(true);
                 if(this.$route.path == "/nuscommentlist"){
+                     this.type = "nursing";
                     this.title = "コメント一覧";
                     this.axios
                     .get('/api/comments/comment/3')
                     .then(response => {
                         this.$loading(false);
                         this.comments = response.data.commentlist;
-                        this.profilelist = response.data.profilelist;
+                        
+                        // this.profilelist = response.data.profilelist;
                         this.norecord = this.comments.data.length;                   
                         if(this.norecord != 0) {
                             this.norecord_msg = false;
@@ -143,14 +174,14 @@
                     });
                 }
                 else if(this.$route.path == "/hoscommentlist"){
+                     this.type = "hospital";
                     this.title = "コメント一覧";
                     this.axios
                     .get('/api/comments/comment/2')
                     .then(response => {
                         this.$loading(false);
                         this.comments = response.data.commentlist;
-                        console.log('this.comments',this.comments);
-                        this.profilelist = response.data.profilelist;
+                        // this.profilelist = response.data.profilelist;
                         this.norecord = this.comments.data.length;
                         if(this.norecord != 0) {
                             this.norecord_msg = false;
@@ -159,25 +190,64 @@
                         }
                     });
                 }
+
+                 this.axios.get('/api/job/customerList/'+this.type).then(response=> {
+                    this.customerList = response.data;
+                });
             },
             methods: {
-                getComment()
+              getComment()
                 {
-                    console.log(this.profileid);
+
                     this.$loading(true);
                     if(this.$route.path == "/nuscommentlist"){ 
-                        this.axios.get('/api/comments/getCustomComment/3/'+this.profileid).then(response => {
+                        this.axios.get('/api/comments/getCustomComment/3/'+this.selectedValue).then(response => {
                             this.$loading(false);
                             this.comments = response.data;
+                            if(this.comments.data.length == 0)
+                            {
+                                this.nosearch_msg = true;
+                            }
+                            else{
+                                this.nosearch_msg = false;
+                            }
                         });
                     }
                     else if(this.$route.path == "/hoscommentlist"){
-                        this.axios.get('/api/comments/getCustomComment/2/'+this.profileid).then(response => {
+                        this.axios.get('/api/comments/getCustomComment/2/'+this.selectedValue).then(response => {
                             this.$loading(false);
                                 this.comments = response.data;
+                                if(this.comments.data.length == 0)
+                                {
+                                    this.nosearch_msg = true;
+                                }
+                                else{
+                                    this.nosearch_msg = false;
+                                }
                                                     
                          });
                     }
+                },
+                cleartext(){
+                
+                  this.selectedValue = 0;
+                  console.log("this.selectedValue",this.selectedValue);
+                   
+                },
+                getSelected(event){
+                  
+                    if(this.type == "nursing"){
+                        this.table_name.profile = 'nursing_profiles';
+                    }else {
+                        this.table_name.profile = 'hospital_profiles';
+                    }
+
+                    this.cusid = event.value;
+                    this.axios.post(`/api/job/profileList/${this.cusid}`,this.table_name).then(response=> {
+                    this.profileList = response.data;
+                    this.selectedValue = 0;
+                   
+                });
                 },
                 deleteComment(id) {
                         this.$swal({
@@ -292,20 +362,18 @@
                         });
                     },
                     searchcomment(page) {
-                          if(this.$route.path == "/nuscommentlist"){
-                                  this.type = "nursing";
-                              }
-                              else{  
-                                  this.type = "hospital"
-                              }
+                        if(this.$route.path == "/nuscommentlist"){
+                            this.type = "nursing";
+                        }
+                        else
+                        {  
+                            this.type = "hospital"
+                        }
                         if(typeof page === "undefined"){
                             page = 1;
                         }
                                
-                        // var search_word = $("#search-item").val();
-                        var search_word = this.profileid;
-                        console.log("serch_word",search_word);
-                       
+                        var search_word = this.selectedValue;
                         let fd = new FormData();
                         fd.append("search_word", search_word);
                         fd.append("type",this.type);
@@ -314,12 +382,12 @@
                         this.axios.post("/api/comments/search?page="+page, fd).then(response => {
                             this.$loading(false);
                             this.comments = response.data;
-                            if(this.comments.data.length != 0){
-                                this.nosearch_msg = false;
-                            }else{
+                            if(this.comments.data.length == 0){
                                 this.nosearch_msg = true;
+                            }else{
+                                this.nosearch_msg = false;
                             }
-                            });
+                         });
                     },
                     commentToggle(id) {
                         var class_by_id = $('#icon' + id).attr('class');

@@ -55,8 +55,8 @@
                                             </span>
                                             <span class="card-title-rightwrapper model-7">                                                 
                                                 <div class="checkbox">
-                                                    <input type='checkbox' v-if="nursingprofiles.activate == 1" @click="changeActivate(nursingprofiles.id,nursingprofiles.activate)" checked/>
-                                                    <input type='checkbox' v-if="nursingprofiles.activate == 0" @click="changeActivate(nursingprofiles.id,nursingprofiles.activate)"  />
+                                                    <input type='checkbox' :id="nursingprofiles.id" v-if="nursingprofiles.activate == 1" @click="changeActivate(nursingprofiles.id,nursingprofiles.activate)" checked/>
+                                                    <input type='checkbox' :id="nursingprofiles.id" v-if="nursingprofiles.activate == 0" @click="changeActivate(nursingprofiles.id,nursingprofiles.activate)"  />
                                                     <label for="checkbox"></label>
                                                     <div  v-if="nursingprofiles.activate == 1" class="on">公開中</div>
                                                     <div v-if="nursingprofiles.activate == 0" class="on">非行化</div>
@@ -98,8 +98,8 @@
                                             </span>
                                             <span class="card-title-rightwrapper model-7">  
                                                 <div class="checkbox">
-                                                    <input type='checkbox' v-if="hospitalprofiles.activate == 1" @click="changeActivate(hospitalprofiles.id,hospitalprofiles.activate)" checked/>
-                                                    <input type='checkbox' v-if="hospitalprofiles.activate == 0" @click="changeActivate(hospitalprofiles.id,hospitalprofiles.activate)"  />
+                                                    <input type='checkbox' :id="hospitalprofiles.id" v-if="hospitalprofiles.activate == 1" @click="changeActivate(hospitalprofiles.id,hospitalprofiles.activate)" checked/>
+                                                    <input type='checkbox' :id="hospitalprofiles.id" v-if="hospitalprofiles.activate == 0" @click="changeActivate(hospitalprofiles.id,hospitalprofiles.activate)"  />
                                                     <label for="checkbox"></label>
                                                     <div   v-if="hospitalprofiles.activate == 1" class="on">公開中</div>
                                                     <div v-if="hospitalprofiles.activate == 0" class="on">非行化</div>
@@ -398,6 +398,13 @@ export default {
                     confirmButtonText: "閉じる",
                     confirmButtonColor: "#dc3545"
                 });
+            }).catch(error =>{
+                if(activate == 1){
+                    $("#"+id).prop("checked", true);
+                }else{
+                    $("#"+id).prop("checked", false);
+                }
+                
             });
 
         },

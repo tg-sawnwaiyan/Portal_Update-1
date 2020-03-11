@@ -31,7 +31,7 @@
                                 <div class="row">
                                     <div class="col-9">
                                         <div class="joboffer-tit clearfix">
-                                        <p><span class="text-primary">姓:&nbsp;</span>{{jobapply.first_name}}</p>
+                                        <p><span class="font-weight-bold">姓:&nbsp;</span>{{jobapply.first_name}}</p>
                                         </div>
                                     </div>
                                     <div class="col-3  text-right">
@@ -39,10 +39,10 @@
                                         詳細 <i :id="'icon' + jobapply.id" class="fas fa-sort-down animate rotate"></i></button>
                                     </div>
                                 </div>
-                                <p><span class="text-primary">名:&nbsp; </span>{{jobapply.last_name}}
+                                <p><span class="font-weight-bold">名:&nbsp; </span>{{jobapply.last_name}}
                                             <!-- <span class="text-orange"><span class="job_count">{{job.count}}件</span></span> -->
                                 </p>
-                                <p><span class="text-primary">メールアドレス:&nbsp;</span><span>{{jobapply.email}}</span></p>
+                                <p><span class="font-weight-bold">メールアドレス:&nbsp;</span><span>{{jobapply.email}}</span></p>
                                 <div class="collapse" :id="'changeLink' + jobapply.id">                                    
                                     <table class="table table-bordered">
                                         <tr>
@@ -50,7 +50,7 @@
                                                     <p class="mb-2"><span class="text-orange"><span class="job_ico">&#xa5;</span>生年月日:&nbsp;</span><span class=""> {{jobapply.birthday}}</span></p>
                                             </td>
                                             <td class="w-50">
-                                                <!-- <p><span class="text-primary">性別:</span><span>{{jobapply.gender}}</span></p>   -->
+                                                <!-- <p><span class="font-weight-bold">性別:</span><span>{{jobapply.gender}}</span></p>   -->
                                                  <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-user"></i></span> 性別:&nbsp;</span><span class=""> {{jobapply.gender}}</span></p>
                                             </td>
                                         </tr>
@@ -59,7 +59,7 @@
                                                     <p class="mb-2"><span class="text-orange"><span class="job_ico">★</span> 郵便番号:&nbsp;</span><span class=""> {{jobapply.postal}}</span></p>
                                             </td>
                                             <td  class="w-50">
-                                                    <p><span class="text-primary"><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>街路住所:&nbsp;</span>{{jobapply.street_address}}</p> 
+                                                    <p><span class="font-weight-bold"><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>街路住所:&nbsp;</span>{{jobapply.street_address}}</p> 
                                             </td>
                                         </tr>
                                         <tr>

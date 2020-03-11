@@ -9,15 +9,16 @@
         <div class="user_card">
           <div class="login_link">
             <a href="/" class="home_link">ホーム</a>
-            <router-link to="/register" class="reg_link  ml-auto">登録</router-link>      
+            <!-- <router-link to="/register" class="reg_link  ml-auto">登録</router-link>       -->
           </div>
             <form class="reset_form" autocomplete="off" @submit.prevent="resetPass" method="post">
+                <h3 for="" class="user_name" style="margin: 0px 0px 30px 0px;">事業者パスワード再設定</h3>
               <div class="mb-4  reset">
                 <div class="input-group">
                     <div class="input-group-append">
                         <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                     </div>
-                    <input type="text" class="form-control input_user" id="email" name="email" value="" v-model="email" @keyup="focusMail" autofocus placeholder="メール">
+                    <input type="text" class="form-control input_user" id="email" name="email" value="" v-model="email" @keyup="focusMail" autofocus placeholder="メールアドレス">
                     <span class="invalid-feedback" role="alert">
                         <strong></strong>
                     </span>   
