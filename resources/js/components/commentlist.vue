@@ -59,15 +59,15 @@
                                     <strong>メールアドレス:</strong>{{comment.email}} -->
                                     <table class="commentlist_tbl">
                                         <tr>
-                                            <td class="align-top custom_title">タイトル :</td>
+                                            <td class="align-top custom_title font-weight-bold">タイトル :</td>
                                             <td> {{comment.title}}</td>
                                         </tr>
                                         <tr>
-                                            <td class="align-top custom_title">顧客名 :</td>
+                                            <td class="align-top custom_title font-weight-bold">顧客名 :</td>
                                             <td> {{comment.name}} </td>
                                         </tr>
                                             <tr>
-                                            <td class="align-top custom_title">メールアドレス: </td>
+                                            <td class="align-top custom_title font-weight-bold">メールアドレス: </td>
                                             <td> {{comment.email}} </td>
                                         </tr>
                                     </table>
