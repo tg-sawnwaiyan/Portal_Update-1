@@ -39,7 +39,15 @@
                             </router-link>
                         </div>
                     </div>
-                    <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
+                    
+                    <!-- <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div> -->
+
+                    <div v-if="nosearch_msg" class="card card-default card-wrap">
+                        <p class="record-ico">
+                            <i class="fa fa-exclamation"></i>
+                        </p>
+                        <p class="record-txt01">検索したデータ見つかりません</p>
+                    </div>
                    
                     <div v-if="$auth.check(1)" class="container-fuid">
                         <div class="card card-default m-b-20" v-for="job in jobs.data" :key="job.id">

@@ -30,7 +30,16 @@
                     </div>
                     <hr />
                     <h5 class="header">{{title}}</h5>
-                    <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデタが消える。</div>
+                    
+                    <!-- <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデタが消える。</div> -->
+                    
+                    <div v-if="nosearch_msg" class="card card-default card-wrap">
+                    <p class="record-ico">
+                        <i class="fa fa-exclamation"></i>
+                    </p>
+                     <p class="record-txt01">検索したデータ見つかりません</p>
+                    </div>
+                    
                     <div v-else class="container-fuid">
                         <table class="table table-bordered">
                             <tr v-for="customer in customers.data" :key="customer.id">
