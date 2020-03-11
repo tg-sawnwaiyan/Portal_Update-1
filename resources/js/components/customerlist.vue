@@ -15,19 +15,17 @@
                     <div class="row mb-4">
                         <div class="col-md-6">
                             <input type="text" class="form-control" placeholder="事業者検索" id="search-word" v-model="searchkeyword" @keyup="searchCustomer()" />
-                        </div>
-                  
+                        </div>                  
                         <div class="col-md-6 choose-item">
-                              <select  v-model="status" id="selectBox" class="form-control select_box" @change="searchCustomer()">
-                                    <option selected="selected" value>choose item</option>
-                                    <option value="1"> Activate </option>
-                                    <option value="0"> Deactivate </option>
-                                    <option value="2"> Pending </option>
-                                 
-                                </select>
+                        <select  v-model="status" id="selectBox" class="form-control select_box" @change="searchCustomer()">
+                            <option selected="selected" value>状態を選択してください。</option>
+                            <option value="1"> 公開中 </option>
+                            <option value="0"> 非公開 </option>
+                            <option value="2"> Pending </option>                                 
+                        </select>
                         </div>
                     </div>
-                    <hr />
+                    <hr/>
                     <h5 class="header">{{title}}</h5>
                     <!-- <div v-if="nosearch_msg" class="container-fuid no_search_data"> -->
                     <div v-if="nosearch_msg" class="card card-default card-wrap no_search_data">
