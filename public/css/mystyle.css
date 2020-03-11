@@ -372,6 +372,10 @@ ul.menu_list li i.fa-phone-alt {
     color: #c91616 !important;
 }
 
+.commentContainer {
+    background: url(/images/bg_check.gif) repeat center top;
+}
+
 
 /********************************** End Common **********************************/
 
@@ -542,7 +546,7 @@ border: 1px solid #eee; */
 
 #gallery-payment h3 {
     font-size: 16px;
-    background: linear-gradient(45deg, #ffbe9f, transparent);
+    background: linear-gradient(45deg, #68a7d0, transparent);
     color: #444 !important;
     padding: 10px 15px;
     margin-top: 10px;
