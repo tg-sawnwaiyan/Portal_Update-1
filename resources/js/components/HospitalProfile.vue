@@ -1328,7 +1328,7 @@ export default {
                     // console.log("mail");
                     this.$swal({
                         title: "確認",
-                        text: "To check チェックしてください",
+                        text: "チェックしてください",
                         type: "warning",
                         width: 350,
                         height: 200,

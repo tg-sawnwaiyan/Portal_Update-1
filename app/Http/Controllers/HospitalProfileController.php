@@ -279,10 +279,11 @@ class HospitalProfileController extends Controller
 
          // Gallary 
          if(count($request[0]["video"]) > 0){
-            $del_gallery = Gallery::where(['profile_id'=> $id,'type'=>'video'])->delete(); 
+            $del_gallery = Gallery::where(['profile_id'=> $id,'type'=>'video', 'profile_type'=>'hospital'])->delete(); 
             for($i=0; $i<count($request[0]["video"]); $i++) {
                 $gallery = new Gallery;
                 $gallery->profile_id = $id;
+                $gallery->profile_type = 'hospital';
                 $gallery->type = $request[0]["video"][$i]['type'];
                 $gallery->photo = $request[0]["video"][$i]['photo'];
                 $gallery->title = $request[0]["video"][$i]['title'];
@@ -292,10 +293,11 @@ class HospitalProfileController extends Controller
             }
         }
         if(count($request[0]["image"]) > 0){
-            $del_gallery = Gallery::where(['profile_id'=> $id,'type'=>'photo'])->delete(); 
+            $del_gallery = Gallery::where(['profile_id'=> $id,'type'=>'photo', 'profile_type'=>'hospital'])->delete(); 
             for($i=0; $i<count($request[0]["image"]); $i++) {
                 $gallery = new Gallery;
                 $gallery->profile_id = $id;
+                $gallery->profile_type = 'hospital';
                 $gallery->type = $request[0]["image"][$i]['type'];
                 $gallery->photo = $request[0]["image"][$i]['photo'];
                 $gallery->title = $request[0]["image"][$i]['title'];
