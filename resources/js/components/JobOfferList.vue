@@ -14,11 +14,11 @@
                     <p class="record-ico">
                         <i class="fa fa-exclamation"></i>
                     </p>
-                    <p>OOPS!!</p>
-                    <p class="record-txt01">表示するデータありません</p>
-                    <p style="color:#a5a5a5;">表示するデータありません‼新しいデータを作成してください。</p>
+                    <!-- <p>OOPS!!</p> -->
+                    <p class="record-txt01">求人が登録されていません</p>
+                    <!-- <p style="color:#a5a5a5;">表示するデータありません‼新しいデータを作成してください。</p> -->
                     <router-link :to="hrefroute" class="main-bg-color create-btn all-btn">
-                        <i cl ass="fas fa-plus-circle"></i> 求人新規作成
+                        <i class="fas fa-plus-circle"></i> 求人新規作成
                     </router-link>
                 </div>
 

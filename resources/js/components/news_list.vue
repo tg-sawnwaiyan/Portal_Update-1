@@ -2,17 +2,15 @@
     <!-- Page Content  -->
     <div id="news_list">       
         <div class="col-12  tab-content">
-            <div class="p-2 p0-480">
+            <div class="p-2 p0-480">                
                 <div v-if="norecord_msg" class="card card-default card-wrap">
                     <p class="record-ico">
                         <i class="fa fa-exclamation"></i>
                     </p>
-                    <p>OOPS!!</p>
-                    <p class="record-txt01">表示するデータありません</p>
-                    <p>表示するデータありません‼新しいデータを作成してください。</p>
-                    <a href="/create_news" class="main-bg-color create-btn alt-btn">
+                    <p class="record-txt01">ニュースが登録されていません</p>
+                    <router-link to="/create_news" class="main-bg-color create-btn all-btn">
                         <i class="fas fa-plus-circle"></i> ニュース新規作成
-                    </a>
+                    </router-link>
                 </div>
                 <div v-else class="container-fuid">
                     <h4 class="main-color mb-3">ニュース検索</h4>
@@ -86,9 +84,8 @@
     export default {
         components: {
         },
-           props:{
-          
-          limitpc: {
+        props:{        
+            limitpc: {
                 type: Number,
                 default: 5
             },
@@ -97,7 +94,6 @@
         data() {
             return {
                 news_list: [],
-
                 norecord: 0,
                 norecord_msg: false,
                 nosearch_msg: false,
@@ -111,20 +107,18 @@
             };
         },
         created() {
-
             this.$loading(true);
             this.getResults();
 
         },
         methods: {
             getResults() {
-
                 this.$http.get('/api/news_list')
                     .then(response => {
 
                         this.news_list = response.data.news;
                         this.categories = response.data.category;
-                        this.norecord = this.news_list.length
+                        this.norecord = this.news_list.data.length                       
                         // if(this.norecord > this.size) {
                         //     this.pagination = true;
                         // } else {
@@ -135,7 +129,6 @@
                         }else{
                             this.norecord_msg = true;
                         }
-
                         this.$loading(false);
                     });
             },

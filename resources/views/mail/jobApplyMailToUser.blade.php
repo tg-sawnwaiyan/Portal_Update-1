@@ -5,12 +5,8 @@
 
 ◎ {{$getComment->job_title}}
             
-【求人番号: {{$getComment->jobnum}}】
+求人番号: {{$getComment->jobnum}}
                 
- ****************************************
- 
- ◎【ご応募された方の情報】
-                    
  仕事内容 ：{{$getComment->job_description}}                 
  経験・スキル ：{{$getComment->skill}}                   
  勤務地  ：{{$getComment->job_location}}                    
@@ -26,7 +22,7 @@
                   
  ****************************************
                    
- [TIS ティーズ]                      
+ TIS ティーズ                    
  
  運営会社　株式会社 TRUST-ESTATE               
  〒164-0003　東京都中野区東中野1-59-9　リックビル2階                                         

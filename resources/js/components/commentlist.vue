@@ -7,8 +7,8 @@
                     <p class="record-ico">
                     <i class="fa fa-exclamation"></i>
                     </p>
-                    <p>OOPS!!</p>
-                    <p class="record-txt01">表示するデータありません</p>
+                    <!-- <p>OOPS!!</p> -->
+                    <p class="record-txt01">口コミが登録されていません</p>
                 </div>
                 <div v-else class="container-fuid">
                     <h4 class="main-color mb-3">口コミ検索</h4>
@@ -82,7 +82,7 @@
                                     </table>
                                     <div class="d-inline-block mt-3">
                                         <button class="btn text-danger delete-borderbtn" @click="deleteComment(comment.id)">削除</button>
-                                        <span class="mt-2" style="color: #81ad3b;font-weight: bold;display:block;" v-if="comment.status != 0" ><i class="fa fa-check-circle" aria-hidden="true"></i>&nbsp;確認済み</span>
+                                        <span class="mt-2" style="color: #81ad3b;font-weight: bold;" v-if="comment.status != 0" ><i class="fa fa-check-circle" aria-hidden="true"></i>&nbsp;確認済み</span>
                                         <button class="btn confirm-borderbtn" v-else @click="commentConfirm(comment.id)"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;新規口コミ承認</button>
                                         
                                     </div>
@@ -95,21 +95,31 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="collapse card-body" :id="'changeLink' + comment.id">
+                        <div class="collapse card-body commentContainer" :id="'changeLink' + comment.id">
                             <div class="commentWrap">
 
                                 <div class="d-flex ">
-                                    <p class="comment-underline comment-title p-b-0">{{comment.name}} <span style="font-size:12px;color:#a7a2a2ee;">({{comment.email}})</span>  
-                                     <p class="comment-date"><i class="fa fa-calendar" aria-hidden="true"></i> {{comment.created_date | moment("YYYY年MM月DD日") }}投稿 <span class="ml-2"><i class="fa fa-clock" aria-hidden="true"></i> {{comment.created_time}}</span></p>
+                                    <p class="comment-underline comment-title p-b-0">{{comment.name}} <span style="font-size:12px;color:#a7a2a2ee;">
+                                        |&nbsp;{{comment.email}}|&nbsp;
+                                        <span>{{comment.year}}年</span>
+                                        </span>  
+                                     <p class="comment-date">
+                                        <i class="fa fa-star" aria-hidden="true"></i> {{comment.zipcode}}<span class="ml-2">
+                                        <i class="fa fa-calendar" aria-hidden="true"></i> {{comment.created_date | moment("YYYY年MM月DD日") }}投稿 
+                                        </span>
+                                        <span class="ml-2">
+                                        <i class="fa fa-clock" aria-hidden="true"></i> {{comment.created_time}}
+                                        </span>
+                                    </p>
 
                                 </div>
                           
                             </div> 
                               
-                                <div name="exp[]" class="col-md-12 m-t-20"><p style="color:#736e6e;">{{comment.comment}}</p></div>
+                                <div name="exp[]" class="col-md-12 p-0"><p style="color:#736e6e;">{{comment.comment}}</p></div>
                                 <!-- <div  class="col-md-12 m-t-20"><p style="color:#736e6e;">{{comment.email}}</p></div> -->
-                                <div  class="col-md-12 m-t-20"><p style="color:#736e6e;">{{comment.year}}</p></div>
-                                <div  class="col-md-12 m-t-20" v-if="comment.zipcode"><span class="text-orange"><span class="job_ico">★</span></span><p style="color:#736e6e;">{{comment.zipcode}}</p></div>
+                                <!-- <div  class="col-md-12 m-t-20"><p style="color:#736e6e;">{{comment.year}}</p></div> -->
+                                <!-- <div  class="col-md-12 m-t-20" v-if="comment.zipcode"><span class="text-orange"><span class="job_ico">★</span></span><p style="color:#736e6e;">{{comment.zipcode}}</p></div> -->
                               
                         </div>
                     </div>

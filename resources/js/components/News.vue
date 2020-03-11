@@ -1344,17 +1344,15 @@
                     if(response.data.length>0) {
                         this.post_groups = this.groupBy(response.data, 'name');
                     } else {
-                        this.post_groups = [];
-                    }
+                        this.post_groups = [];                         
+                    }                  
                     if(this.post_groups.length != 0){
                         this.norecord_msg = false;
                     }else{
-                        this.norecord_msg = true;
+                        this.norecord_msg = true;                        
                     }
                 });
-
             },
-
 
 
             getPostByCatID: function(catId = 1) {
