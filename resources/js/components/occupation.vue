@@ -119,7 +119,8 @@ export default {
                             confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
                             }).then(response =>{
                                 this.$loading(true);
                                   this.axios.post('/api/occupation/add', this.occupation)
@@ -138,6 +139,7 @@ export default {
                             // timer: 1800,
                             width: 250,
                             height: 200,
+                            allowOutsideClick: false,
                         })
                         // alert('Successfully Created')
                         this.$router.push({name: 'occupationlist'});
@@ -176,7 +178,8 @@ export default {
                             confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
                         }).then(response => {
                             this.$loading(true);
                             this.axios.post(`/api/occupation/update/${this.$route.params.id}`, this.occupation)
@@ -192,6 +195,7 @@ export default {
                             confirmButtonColor: "#6cb2eb",
                             width: 250,
                             height: 200,
+                            allowOutsideClick: false,
                         })
                         this.$router.push({name: 'occupationlist'});
                     }).catch(error=>{

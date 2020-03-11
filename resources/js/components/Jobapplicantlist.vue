@@ -2,7 +2,7 @@
     <div id="job_apply">
         <div class="col-12  tab-content">
             <div class="p-2 p0-480">
-                <h4 class="main-color mb-3">求人応募者検索 <a @click="$router.go(-1)" v-if="$route.params.id" class="btn btn-danger all-btn submit float-right">戻る</a></h4>
+                <h4 class="main-color mb-3">求人応募者検索 <a @click="$router.go(-1)" v-if="$route.params.id" class="btn btn-danger all-btn submit float-right"><i class="fas fa-arrow-left"></i>&nbsp;戻る</a></h4>
                 <div class="row mb-4">
                     <div class="col-md-12">
                         <input type="text" class="form-control" placeholder="検索" id="search-item"  @keyup="searchApplicantList()" />
@@ -273,7 +273,8 @@ export default {
                 confirmButtonText: "はい",
                 cancelButtonText: "キャンセル",
                 confirmButtonClass: "all-btn",
-                cancelButtonClass: "all-btn"
+                cancelButtonClass: "all-btn",
+                allowOutsideClick: false,
             }).then(response => {
                 this.axios.delete(`/api/jobApplicantDelete/${id}`)
                         .then(res => {
@@ -285,7 +286,8 @@ export default {
                     width: 350,
                     height: 200,
                     confirmButtonText: "閉じる",
-                    confirmButtonColor: "#dc3545"
+                    confirmButtonColor: "#dc3545",
+                    allowOutsideClick: false,
                 });
             });                       
         }

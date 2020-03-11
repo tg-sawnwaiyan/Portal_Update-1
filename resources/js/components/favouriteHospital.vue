@@ -336,7 +336,9 @@
                             confirmButtonText: "削除",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
+                            
                         }).then(response => { 
                             var l_sto = this.local_sto;
                             var l_sto_arr = l_sto.split(",");
@@ -423,6 +425,7 @@
                                     confirmButtonText: "閉じる",
                                     width: 250,
                                     height: 200,
+                                    allowOutsideClick: false,
                                     }).then(response => {
                                         localStorage.setItem('hospital_fav','');
                                         this.local_sto = localStorage.getItem("hospital_fav");

@@ -387,7 +387,7 @@ ul.menu_list li i.fa-phone-alt {
 
 .heading-lbl {
     font-weight: bold;
-    font-size: 1.15em;
+    font-size: 1.05em;
 }
 
 .heading-lbl1 {
@@ -5289,8 +5289,8 @@ margin-right: 2% !important;
 .m-b-10 {
     margin-bottom: 10px;
 }
-.cmt-1 
-{
+
+.cmt-1 {
     margin-bottom: 10px;
     left: 8px;
 }
@@ -5332,8 +5332,8 @@ margin-right: 2% !important;
 }
 
 .confirm-orangebtn {
-    border: 1px solid #ff9563 !important;
-    color: #ff9563;
+    border: 1px solid #6cb2eb !important;
+    color: #6cb2eb;
     background: #fff;
     box-shadow: none !important;
     min-width: 60px;
@@ -5448,6 +5448,7 @@ li.userprofile-name>a {
 
 .upper-tab {
     border: 1px solid #75b777;
+    background: #fff;
 }
 
 .tab-content1 {
@@ -5746,7 +5747,7 @@ a:hover {
     /* color: #ff6117; */
     color: #fd0e0e;
     font-weight: bold;
-    font-size: 1em;
+    font-size: 1.4em;
 }
 
 
@@ -7816,7 +7817,7 @@ font-weight: bold;
 }
 
 .custom-table thead {
-    background-color: #7F8C8E;
+    background-color: #80919a;
 }
 
 .custom-table thead th {
@@ -7845,7 +7846,7 @@ font-weight: bold;
 
 .custom-table>tbody tr:hover {
     color: #212529;
-    background-color: #dfe7e8 !important;
+    background-color: #ecf8ff !important;
 }
 
 .custom-table p {
@@ -12820,6 +12821,6 @@ strong {
 }
 
 .pro-1 {
-   margin-top: -19px !important;
-   display: block;
+    margin-top: -19px !important;
+    display: block;
 }

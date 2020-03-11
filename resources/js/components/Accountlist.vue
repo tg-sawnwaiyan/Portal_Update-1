@@ -55,8 +55,8 @@
                                             </span>
                                             <span class="card-title-rightwrapper model-7">                                                 
                                                 <div class="checkbox">
-                                                    <input type='checkbox' v-if="nursingprofiles.activate == 1" @click="changeActivate(nursingprofiles.id,nursingprofiles.activate)" checked/>
-                                                    <input type='checkbox' v-if="nursingprofiles.activate == 0" @click="changeActivate(nursingprofiles.id,nursingprofiles.activate)"  />
+                                                    <input type='checkbox' :id="nursingprofiles.id" v-if="nursingprofiles.activate == 1" @click="changeActivate(nursingprofiles.id,nursingprofiles.activate)" checked/>
+                                                    <input type='checkbox' :id="nursingprofiles.id" v-if="nursingprofiles.activate == 0" @click="changeActivate(nursingprofiles.id,nursingprofiles.activate)"  />
                                                     <label for="checkbox"></label>
                                                     <div  v-if="nursingprofiles.activate == 1" class="on">公開中</div>
                                                     <div v-if="nursingprofiles.activate == 0" class="on">非行化</div>
@@ -98,8 +98,8 @@
                                             </span>
                                             <span class="card-title-rightwrapper model-7">  
                                                 <div class="checkbox">
-                                                    <input type='checkbox' v-if="hospitalprofiles.activate == 1" @click="changeActivate(hospitalprofiles.id,hospitalprofiles.activate)" checked/>
-                                                    <input type='checkbox' v-if="hospitalprofiles.activate == 0" @click="changeActivate(hospitalprofiles.id,hospitalprofiles.activate)"  />
+                                                    <input type='checkbox' :id="hospitalprofiles.id" v-if="hospitalprofiles.activate == 1" @click="changeActivate(hospitalprofiles.id,hospitalprofiles.activate)" checked/>
+                                                    <input type='checkbox' :id="hospitalprofiles.id" v-if="hospitalprofiles.activate == 0" @click="changeActivate(hospitalprofiles.id,hospitalprofiles.activate)"  />
                                                     <label for="checkbox"></label>
                                                     <div   v-if="hospitalprofiles.activate == 1" class="on">公開中</div>
                                                     <div v-if="hospitalprofiles.activate == 0" class="on">非行化</div>
@@ -270,6 +270,7 @@ export default {
                     .then((response) => {
                         this.$swal({
                         // title: "確認",
+                        allowOutsideClick: false,
                         text: "施設を作成しました。",
                         type: "success",
                         width: 350,
@@ -369,6 +370,7 @@ export default {
             this.type = this.$route.params.type;
         
             this.$swal({
+                allowOutsideClick: false,
                 title: "確認",
                 text: this.activate_text,
                 type: "warning",
@@ -388,6 +390,7 @@ export default {
                             this.getAccountList();
                     });
                 this.$swal({
+                    allowOutsideClick: false,
                     text: "正常に変更されました!",
                     type: "success",
                     width: 350,
@@ -395,6 +398,13 @@ export default {
                     confirmButtonText: "閉じる",
                     confirmButtonColor: "#dc3545"
                 });
+            }).catch(error =>{
+                if(activate == 1){
+                    $("#"+id).prop("checked", true);
+                }else{
+                    $("#"+id).prop("checked", false);
+                }
+                
             });
 
         },
@@ -402,6 +412,7 @@ export default {
             this.type = this.$route.params.type;
 
                 this.$swal({
+                    allowOutsideClick: false,
                     title: "確認",
                     text: "施設を削除してよろしいでしょうか。",
                     type: "warning",
@@ -421,6 +432,7 @@ export default {
                         this.getAccountList();
                     });
                     this.$swal({
+                        allowOutsideClick: false,
                         text: "施設を削除しました。",
                         type: "success",
                         width: 350,

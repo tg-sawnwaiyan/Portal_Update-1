@@ -8,7 +8,7 @@
         <div class="col-12 detail_profile_left pad-free"  v-if="currentPanoImage">
             <h4 class="profile-tit">{{customer_name}}</h4>
 
-            <div class="thumbnail-img pc-414" style="padding:0px;border:none;">
+            <div class="thumbnail-img pc-414" style="padding:0px;border:none;">0
                 <div class="card-carousel" style="background:#fff;">
                 <div class="card-img">
                     <Pannellum :src="'/upload/nursing_profile/Imagepanorama/' + currentPanoImage" class="pannellum" :auto-load="true" :show-zoom="true" :show-fullscreen="true" :auto-rotate="isAutoRotationOn" :orientation="isOrientationOn" :compass="true" :hfov= "120" :draggable="true"></Pannellum>

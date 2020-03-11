@@ -1238,7 +1238,9 @@ export default {
                         confirmButtonText: "削除",
                         cancelButtonText: "キャンセル",
                         confirmButtonClass: "all-btn",
-                        cancelButtonClass: "all-btn"
+                        cancelButtonClass: "all-btn",
+                        allowOutsideClick: false,
+
                     }).then(response => {
                         console.log(type+"/"+id)
                         if(type == 'photo') {
@@ -1261,7 +1263,8 @@ export default {
                                         width: 350,
                                         height: 200,
                                         confirmButtonText: "閉じる",
-                                        confirmButtonColor: "#dc3545"
+                                        confirmButtonColor: "#dc3545",
+                                         allowOutsideClick: false,
                                     });
                                 })
                                 .catch(error=>{
@@ -1309,7 +1312,7 @@ export default {
                    
                     this.$swal({
                         title: "確認",
-                        text: "メールをチェックしてください",
+                        text: "To check チェックしてください",
                         type: "warning",
                         width: 350,
                         height: 200,
@@ -1320,7 +1323,8 @@ export default {
                         confirmButtonText: "はい",
                         cancelButtonText: "キャンセル",
                         confirmButtonClass: "all-btn",
-                        cancelButtonClass: "all-btn"
+                        cancelButtonClass: "all-btn",
+                        allowOutsideClick: false,
                     })                    
                 }
 
@@ -1439,7 +1443,7 @@ export default {
                 }
 
 
-                    this.save_hospital_info.push({ hospital_info:this.hospital_info,hospital_info:this.hospital_info,facilities:this.facilities,
+                    this.save_hospital_info.push({ hospital_info:this.hospital_info,facilities:this.facilities,
                     schedule_list:this.schedule_list,chek_feature:this.chek_feature, subjects:this.subjects, image:this.img_arr,video:this.video_arr
                 });
 
@@ -1458,11 +1462,12 @@ export default {
                         this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            title: '更新されました',
+                            text: '更新されました',
                             confirmButtonText: "閉じる",
                             confirmButtonColor: "#6cb2eb",
                             width: 250,
                             height: 200,
+                            allowOutsideClick: false,
                         })
                         this.$loading(false);
                     }).catch(error=>{
