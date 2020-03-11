@@ -155,7 +155,9 @@
                                                     <p class="mb-2"><span class="text-orange"><span class="job_ico">★</span> スキル :</span><span class=""> {{job.skills}}</span></p>
                                             </td>
                                             <td  class="w-50">
-                                                    <p><span class="text-primary"><span class="job_ico"><i class="fa fa-list"></i></span>施設名:</span><span v-for="profile_name in job.profile_name" :key="profile_name.id">{{profile_name.name}}</span></p> 
+                                               
+                                          
+                                                    <p><span class="text-primary"><span class="job_ico"><i class="fa fa-list"></i></span>施設名:</span><span>{{job.profile_name}}</span></p> 
                                             </td>
                                         </tr>
                                     </table>
