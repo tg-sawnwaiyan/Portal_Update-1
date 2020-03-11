@@ -1333,7 +1333,7 @@ export default {
                 this.btn_disable = false;
               }
             
-             if(this.btn_disable){
+                if(this.btn_disable){
            
                     // console.log("mail");
                     this.$swal({
@@ -1354,7 +1354,7 @@ export default {
                     })                    
                 } 
                   
-                else {
+            else {
                 var logo = document.getElementsByClassName('pro-logo')[0].files[0];
                
                 this.save_hospital_info = [];

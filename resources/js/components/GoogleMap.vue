@@ -305,9 +305,10 @@ export default {
                 }
                     this.township_list = response.data.townships;
                     // this.township = this.township_list[0].id;
-                    var move_lat = response.data.coordinate[0].latitude;
-                    var move_lon = response.data.coordinate[0].longitude;
-                    this.addressSelect(move_lat,move_lon);
+                    
+                    this.new_lat = response.data.coordinate[0].latitude;
+                    this.new_long = response.data.coordinate[0].longitude;
+                    this.addressSelect(this.new_lat,this.new_long);
                 });
             },
             postalNumber: function(event) {
