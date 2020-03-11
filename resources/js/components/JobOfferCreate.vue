@@ -619,7 +619,7 @@ import Autocomplete from 'vuejs-auto-complete'
                         this.joboffer.profile_id = response.data.job[0].profile_id;
                         this.header = " 求人編集";
                         this.subtitle = "保存";
-                        this.axios.get('/api/job/customerList')
+                        this.axios.get('/api/job/customerList/job')
                         .then(response=> {
                           var cus_list = response.data;
                           for(var i=0; i<cus_list.length; i++){
@@ -641,6 +641,7 @@ import Autocomplete from 'vuejs-auto-complete'
                                 if(this.joboffer.profile_id == response.data[i].id){
                                   
                                     this.profileName = response.data[i].name;
+                                    this.selectedValue = -1;
                                    
                                 }
                             }
@@ -700,7 +701,8 @@ import Autocomplete from 'vuejs-auto-complete'
                         else{
                           this.errors.customer_id = "";
                         }
-                        if(this.selectedValue == 0 )
+                
+                        if((this.selectedValue == -1 && this.profileName == '') || ( this.selectedValue == 0) )
                         {
                           this.errors.profile_id = "施設名は必須です。";
                         }
@@ -770,6 +772,7 @@ import Autocomplete from 'vuejs-auto-complete'
                         else {
                             this.errors.occupation_id = null;
                         }
+                        alert(this.errors.profile_id);
 
                         if (
                             !this.errors.title &&
