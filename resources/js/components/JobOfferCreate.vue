@@ -450,6 +450,8 @@
                             <div class="form- group row">
                                 <div class="col-sm-3"></div>
                             </div>
+                            <div v-if="errors.checkallerror" class="error">{{errors.checkallerror}}
+                            </div>
 
                             <div class="form-group mt-3 pb-5">
                                 <span class="btn main-bg-color white all-btn"  @click="checkValidate()">{{subtitle}}</span>
@@ -486,7 +488,8 @@ import Autocomplete from 'vuejs-auto-complete'
                   working_hours:'',
                   occupation_id: '',
                   customer_id:'',
-                  profile_id:''
+                  profile_id:'',
+                  checkallerror:''
                 },
                 OccupationList: {
                     id: "",
@@ -788,8 +791,11 @@ import Autocomplete from 'vuejs-auto-complete'
                             !this.errors.profile_id
 
                         ) {
-
+                            this.errors.checkallerror = "";
                             this.add();
+                        }
+                        else{
+                          this.errors.checkallerror = "please fill all the blank in above."
                         }
                   },
                 getPostal: function(event) {
