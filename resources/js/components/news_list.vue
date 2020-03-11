@@ -2,14 +2,12 @@
     <!-- Page Content  -->
     <div id="news_list">       
         <div class="col-12  tab-content">
-            <div class="p-2 p0-480">
+            <div class="p-2 p0-480">                
                 <div v-if="norecord_msg" class="card card-default card-wrap">
                     <p class="record-ico">
                         <i class="fa fa-exclamation"></i>
                     </p>
-                    <p>OOPS!!</p>
-                    <p class="record-txt01">表示するデータありません</p>
-                    <p>表示するデータありません‼新しいデータを作成してください。</p>
+                    <p class="record-txt01">ニュースが登録されていません</p>
                     <router-link to="/create_news" class="main-bg-color create-btn all-btn">
                         <i class="fas fa-plus-circle"></i> ニュース新規作成
                     </router-link>

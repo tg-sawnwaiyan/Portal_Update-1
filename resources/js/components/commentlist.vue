@@ -7,8 +7,8 @@
                     <p class="record-ico">
                     <i class="fa fa-exclamation"></i>
                     </p>
-                    <p>OOPS!!</p>
-                    <p class="record-txt01">表示するデータありません</p>
+                    <!-- <p>OOPS!!</p> -->
+                    <p class="record-txt01">口コミが登録されていません</p>
                 </div>
                 <div v-else class="container-fuid">
                     <h4 class="main-color mb-3">口コミ検索</h4>
