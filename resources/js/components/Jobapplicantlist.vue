@@ -47,7 +47,7 @@
                                     <table class="table table-bordered">
                                         <tr>
                                             <td  class="w-50">
-                                                    <p class="mb-2"><span class="text-orange"><span class="job_ico">&#xa5;</span>生年月日:&nbsp;</span><span class=""> {{jobapply.birthday}}</span></p>
+                                                    <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-calendar" aria-hidden="true"></i></span>生年月日:&nbsp;</span><span class=""> {{jobapply.birthday}}</span></p>
                                             </td>
                                             <td class="w-50">
                                                 <!-- <p><span class="font-weight-bold">性別:</span><span>{{jobapply.gender}}</span></p>   -->
