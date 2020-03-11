@@ -11,6 +11,9 @@ use App\Mail\deleteMail;
 use App\User;
 use App\NursingProfile;
 use App\HospitalProfile;
+use App\SubjectJunctions;
+use App\SpecialFeaturesJunctions;
+use App\Schedule;
 use DB;
 use Auth;
 class CustomerController extends Controller
@@ -73,10 +76,18 @@ class CustomerController extends Controller
         }
         else
         {
+
+            
+            $SubjectJunctions = SubjectJunctions::where('profile_id',$id)->delete();
+            $SpecialFeaturesJunctions = SpecialFeaturesJunctions::where('profile_id',$id,'and')->where('type',$type)->delete();
+            $Schedule = Schedule::where('profile_id',$id)->delete();
             $profileDelete =  HospitalProfile::find($id);
+
+
         }
-       
+
         $profileDelete->delete();
+        
         return response()->json('successfully Delete!');
     }
 
