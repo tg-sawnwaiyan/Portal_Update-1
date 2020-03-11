@@ -77,8 +77,8 @@ class CommentController extends Controller
                                                 ->where($p.'.recordstatus', 1)
                                                 ->where('comments.type',$t)
                                                 ->where('comments.profile_id',$profileid)
-                                                ->order By('comments.id','DESC')
-                                                ->paginate(12);
+                                                ->orderBy('comments.id','DESC')
+                                                 ->paginate(12);
         }
            
         // }
