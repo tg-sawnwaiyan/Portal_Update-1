@@ -64,18 +64,18 @@
                                             </span>
                                             </div>
                                             
-                                            <p v-if="nursingprofiles.activate == 1">
+                                            <p>
                                                 <router-link :to="{ path:'/profilejobofferlist/nursing/'+ nursingprofiles.id}" style="font-weight:bold;text-decoration:underline;">
                                                 <i class="vsm--icon fa fa-edit fa-fw" style="color: #585858;"></i>求人編集</router-link>&nbsp;&nbsp;
                                                 <router-link :to="{ path:'/jobapplicantlist/nursing/profile/'+ nursingprofiles.id}" style="font-weight:bold;text-decoration:underline;">
                                                 <i class="vsm--icon fa fa-list" style="color: #585858;"></i>求人応募者一覧</router-link>
                                             </p>
-                                            <p v-else>
+                                            <!-- <p v-else>
                                                 <a style="font-weight:bold;color:#ccc;">
                                                 <i class="vsm--icon fa fa-edit fa-fw" style="color: #ccc;"></i>求人編集</a>&nbsp;&nbsp;
                                                 <a style="font-weight:bold;color:#ccc;">
                                                 <i class="vsm--icon fa fa-list" style="color: #ccc;"></i>求人応募者一覧</a>
-                                            </p>
+                                            </p> -->
                                         </div>
                                         <div class="card-read-more">
                                             <router-link :to="{ path:'/profile/nursing/'+ nursingprofiles.id}" class="btn edit-borderbtn" style="float:left;">編集</router-link>
@@ -107,18 +107,18 @@
                                             </span>
                                             </div>
                                             
-                                            <p v-if="hospitalprofiles.activate == 1">
+                                            <p>
                                                 <router-link :to="{ path:'/profilejobofferlist/hospital/'+ hospitalprofiles.id}" class="" style="font-weight:bold;text-decoration:underline;">
                                                     <i class="vsm--icon fa fa-edit fa-fw" style="color: #585858;"></i>求人編集</router-link>&nbsp;&nbsp;
                                                 <router-link :to="{ path:'/jobapplicantlist/hospital/profile/'+ hospitalprofiles.id}" class="" style="font-weight:bold;text-decoration:underline;">
                                                     <i class="vsm--icon fa fa-list fa-fw" style="color: #585858;"></i>求人応募者一覧</router-link>
                                             </p>
-                                            <p v-else>
+                                            <!-- <p v-else>
                                                 <a style="font-weight:bold;color:#ccc;">
                                                     <i class="vsm--icon fa fa-edit fa-fw" style="color: #ccc;"></i>求人編集</a>&nbsp;&nbsp;
                                                 <a style="font-weight:bold;color:#ccc;">
                                                     <i class="vsm--icon fa fa-list fa-fw" style="color: #ccc;"></i>求人応募者一覧</a>
-                                            </p>
+                                            </p> -->
                                         </div>
                                         <div class="card-read-more">
                                             <router-link :to="{ path:'/profile/hospital/'+ hospitalprofiles.id}" class="btn edit-borderbtn" style="float:left;">編集</router-link>
@@ -389,15 +389,15 @@ export default {
                         .then(response => {
                             this.getAccountList();
                     });
-                this.$swal({
-                    allowOutsideClick: false,
-                    text: "正常に変更されました!",
-                    type: "success",
-                    width: 350,
-                    height: 200,
-                    confirmButtonText: "閉じる",
-                    confirmButtonColor: "#dc3545"
-                });
+                // this.$swal({
+                //     allowOutsideClick: false,
+                //     text: "正常に変更されました!",
+                //     type: "success",
+                //     width: 350,
+                //     height: 200,
+                //     confirmButtonText: "閉じる",
+                //     confirmButtonColor: "#dc3545"
+                // });
             }).catch(error =>{
                 if(activate == 1){
                     $("#"+id).prop("checked", true);
@@ -427,19 +427,21 @@ export default {
                     confirmButtonClass: "all-btn",
                     cancelButtonClass: "all-btn"
                 }).then(response => {
+                    this.$loading(true);
                     this.axios.delete(`/api/profileDelete/${id}/`+this.type)
                     .then(response => {
+                        this.$loading(false);
                         this.getAccountList();
                     });
-                    this.$swal({
-                        allowOutsideClick: false,
-                        text: "施設を削除しました。",
-                        type: "success",
-                        width: 350,
-                        height: 200,
-                        confirmButtonText: "閉じる",
-                        confirmButtonColor: "#dc3545"
-                    });
+                    // this.$swal({
+                    //     allowOutsideClick: false,
+                    //     text: "施設を削除しました。",
+                    //     type: "success",
+                    //     width: 350,
+                    //     height: 200,
+                    //     confirmButtonText: "閉じる",
+                    //     confirmButtonColor: "#dc3545"
+                    // });
                 });
         }
     }

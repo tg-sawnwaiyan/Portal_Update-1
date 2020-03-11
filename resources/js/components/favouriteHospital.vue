@@ -76,7 +76,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td v-for="hos_profile in fav_hospital" :key="hos_profile.id" style="word-wrap: break-word;">
-                                                            <div class="profile_wd"> <a :href="hos_profile.website" target="_blank" class="profile_wd">{{hos_profile.website}}</a></div>
+                                                            <div class="profile_wd"> <a :href="hos_profile.website" target="_blank" class="profile_wd pseudolink">{{hos_profile.website}}</a></div>
                                                         </td>
                                                     </tr>
                                                     <tr>

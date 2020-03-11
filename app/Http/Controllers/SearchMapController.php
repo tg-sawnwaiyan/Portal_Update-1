@@ -724,7 +724,7 @@ class SearchMapController extends Controller
                     left Join nursing_profiles As n on n.id = j.profile_id 
                     left Join hospital_profiles As h on h.id = j.profile_id 
                     left Join cities as ci on ci.id = t.city_id   
-                    where j.recordstatus=1 and c.recordstatus = 1 and (CASE c.type_id WHEN 2 THEN h.activate = 1 ELSE n.activate = 1 END)";  
+                    where j.recordstatus=1 and c.recordstatus = 1 ";  
               
         // if($id == -1)
         // {

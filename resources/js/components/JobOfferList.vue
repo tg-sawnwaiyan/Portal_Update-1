@@ -360,7 +360,6 @@
                 //     } else {
                 //         this.pagination = false;
                 //     }
-
                 // });
                 
 
@@ -371,6 +370,7 @@
                     this.hrefroute = "/profilejoboffercreate/"+this.type+"/"+this.pro_id;
                 }
                 else{
+                    
                     this.pro_id = null;
                     this.type = 'admin';
                     this.hrefroute = "/joboffercreate";

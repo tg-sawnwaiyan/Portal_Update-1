@@ -80,7 +80,7 @@
           </div>
           <div class="form-group m-0 row bd-all">
             <div class="col-md-2 col-sm-12 form-left">
-              <label><span class="job_ico"><i class="fa fa-user"></i></span>事業者名</label>
+              <label><span class="job_ico"><i class="fa fa-building"></i></span>施設名</label>
             </div>
             <div class="col-md-10 col-sm-12 form-right">{{jobDetail.cusname}}</div>
           </div>

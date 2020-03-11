@@ -233,7 +233,7 @@ scrollbar-width: thin;*/
 }
 
 #search-word {
-    border: 1px solid #a7a3a3;
+    border: 1px solid #ced4da;
 }
 
 .form-group {
@@ -3341,10 +3341,10 @@ a:hover {
 }
 
 .nav-tabs .nav-link.active {
-    border-top: 3px solid #ff9563 !important;
+    /* border-top: 3px solid #ff9563 !important;
     border-right: 0px solid #ff9563 !important;
     border-bottom: 0px solid #ff9563 !important;
-    border-left: 0px solid #ff9563 !important;
+    border-left: 0px solid #ff9563 !important; */
 }
 
 div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
@@ -5697,7 +5697,8 @@ a:hover {
     /* border-top: 3px solid #ff9563;
     border-color: #ff9563 #fff #fff #fff !important; */
     border-top: 3px solid #63b7ff;
-    border-color: #63b7ff #fff #fff #fff !important;
+    /* border-color: #63b7ff #fff #fff #fff !important; */
+    border-color: #63b7ff #63b7ff #fff #63b7ff !important;
 }
 
 .hospital-tabColor .nav-link.active {
@@ -5705,7 +5706,7 @@ a:hover {
     font-weight: bold;
     background: #fff !important;
     border-top: 3px solid #63b7ff;
-    border-color: #63b7ff #fff #fff #fff !important;
+    border-color: #63b7ff #63b7ff #fff #63b7ff !important;
 }
 
 .job-tabColor .nav-link.active {
@@ -10880,6 +10881,9 @@ width: 18rem;
 }
 
 @media only screen and (max-width:768px) {
+    .choose-item {
+        margin-top: 10px;
+    }
     .title {
         padding-bottom: 0px;
     }

@@ -19,29 +19,32 @@ use App\HospitalProfile;
 //    return $request;
 // })->middleware('auth:api');
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    $lat_lng = null;
+Route::middleware('auth:api')->get('/user','UserController@checkuser');
+Route::middleware('auth:api')->get('/getprofile/{proid}/{type}','UserController@checkprofile');
 
-    if($request->user()->type_id == 2){
-        $lat_lng = HospitalProfile::select('id','latitude','longitude')->where('customer_id', $request->user()->customer_id)->get();
-    }
-    else if($request->user()->type_id > 2) {
-        $lat_lng = NursingProfile::select('id','latitude','longitude')->where('customer_id', $request->user()->customer_id)->get();
-    }
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     $lat_lng = null;
 
-    return response()->json(array("user"=>$request->user(), "lat_lng"=>$lat_lng));
-});
+//     if($request->user()->type_id == 2){
+//         $lat_lng = HospitalProfile::select('id','latitude','longitude')->where('customer_id', $request->user()->customer_id)->get();
+//     }
+//     else if($request->user()->type_id > 2) {
+//         $lat_lng = NursingProfile::select('id','latitude','longitude')->where('customer_id', $request->user()->customer_id)->get();
+//     }
 
-Route::middleware('auth:api')->get('/getprofile/{proid}/{type}', function ($proid, $type, Request $request) {
-    if($type == 'hospital'){
-        $lat_lng = HospitalProfile::select('id','latitude','longitude')->where('id', $proid)->get();
-    }
-    else if($type == 'nursing') {
-        $lat_lng = NursingProfile::select('id','latitude','longitude')->where('id', $proid)->get();
-    }
+//     return response()->json(array("user"=>$request->user(), "lat_lng"=>$lat_lng));
+// });
 
-    return response()->json(array("user"=>$request->user(), "lat_lng"=>$lat_lng));
-});
+// Route::middleware('auth:api')->get('/getprofile/{proid}/{type}', function ($proid, $type, Request $request) {
+//     if($type == 'hospital'){
+//         $lat_lng = HospitalProfile::select('id','latitude','longitude')->where('id', $proid)->get();
+//     }
+//     else if($type == 'nursing') {
+//         $lat_lng = NursingProfile::select('id','latitude','longitude')->where('id', $proid)->get();
+//     }
+
+//     return response()->json(array("user"=>$request->user(), "lat_lng"=>$lat_lng));
+// });
 
 Route::group(['middleware' => ['auth']], function() {
 
