@@ -623,7 +623,6 @@ class JobController extends Controller
    public function getCustomerList($type){
           if($type == "nursing") 
           {
-             
               $t = "customers.type_id = 3 and ";
           }
           else if($type == "hospital"){

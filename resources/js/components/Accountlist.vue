@@ -59,7 +59,7 @@
                                                     <input type='checkbox' :id="nursingprofiles.id" v-if="nursingprofiles.activate == 0" @click="changeActivate(nursingprofiles.id,nursingprofiles.activate)"  />
                                                     <label for="checkbox"></label>
                                                     <div  v-if="nursingprofiles.activate == 1" class="on">公開中</div>
-                                                    <div v-if="nursingprofiles.activate == 0" class="on">非行化</div>
+                                                    <div v-if="nursingprofiles.activate == 0" class="on">非公開</div>
                                                 </div>                                                                                             
                                             </span>
                                             </div>
@@ -102,7 +102,7 @@
                                                     <input type='checkbox' :id="hospitalprofiles.id" v-if="hospitalprofiles.activate == 0" @click="changeActivate(hospitalprofiles.id,hospitalprofiles.activate)"  />
                                                     <label for="checkbox"></label>
                                                     <div   v-if="hospitalprofiles.activate == 1" class="on">公開中</div>
-                                                    <div v-if="hospitalprofiles.activate == 0" class="on">非行化</div>
+                                                    <div v-if="hospitalprofiles.activate == 0" class="on">非公開</div>
                                                 </div>                                            
                                             </span>
                                             </div>
