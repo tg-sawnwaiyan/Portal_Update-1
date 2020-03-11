@@ -1090,6 +1090,7 @@ import Autocomplete from 'vuejs-auto-complete'
                   cleartext(){
                       this.selectedValue = 0;
                       this.joboffer.customer_id = '';
+                      this.profileList = [];
                   },
                   getSelected(event){
                       this.errors.customer_id = "";

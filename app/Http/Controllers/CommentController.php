@@ -27,12 +27,13 @@ class CommentController extends Controller
         }
        
         $commentList = DB::table('comments')
-        ->join($p,'comments.profile_id','=',$p.'.id')
-        ->select('comments.*')
-        ->where($p.'.recordstatus', 1)
-        ->where('comments.type',$t)
-        ->orderBy('comments.id','DESC')
-        ->paginate(12);
+                    ->join($p,'comments.profile_id','=',$p.'.id')
+                    ->join('customers','customers.id','=',$p.'.customer_id')
+                    ->select('comments.*',$p.'.name as pro_name','customers.name as cus_name')
+                    ->where($p.'.recordstatus', 1)
+                    ->where('comments.type',$t)
+                    ->orderBy('comments.id','DESC')
+                    ->paginate(12);
 
         $query = "select id,name from $p where recordstatus = 1 and name is not null";
         $profilelist = DB::select($query);
@@ -61,18 +62,23 @@ class CommentController extends Controller
         }
         if($profileid == 0)
         {
-             $commentList = DB::table('comments')->join($p,'comments.profile_id','=',$p.'.id')->select('comments.*')->where($p.'.recordstatus', 1)
-                            ->where('comments.type','nursing')->orderBy('comments.id','DESC')->paginate(12);
+             $commentList = DB::table('comments')->join($p,'comments.profile_id','=',$p.'.id')
+                                                 ->join('customers','customers.id','=',$p.'.customer_id')
+                                                 ->select('comments.*',$p.'.name as pro_name','customers.name as cus_name')
+                                                 ->where($p.'.recordstatus', 1)
+                                                 ->where('comments.type',$t)
+                                                 ->orderBy('comments.id','DESC')
+                                                 ->paginate(12);
         }
         else{
-            $commentList = DB::table('comments')
-            ->join($p,'comments.profile_id','=',$p.'.id')
-            ->select('comments.*')
-            ->where($p.'.recordstatus', 1)
-            ->where('comments.type',$t)
-            ->where('comments.profile_id',$profileid)
-            ->orderBy('comments.id','DESC')
-            ->paginate(12);
+            $commentList = DB::table('comments')->join($p,'comments.profile_id','=',$p.'.id')
+                                                ->join('customers','customers.id','=',$p.'.customer_id')
+                                                ->select('comments.*',$p.'.name as pro_name','customers.name as cus_name')
+                                                ->where($p.'.recordstatus', 1)
+                                                ->where('comments.type',$t)
+                                                ->where('comments.profile_id',$profileid)
+                                                ->order By('comments.id','DESC')
+                                                ->paginate(12);
         }
            
         // }
@@ -221,7 +227,8 @@ class CommentController extends Controller
         {
             $commentList = DB::table('comments')
             ->join('nursing_profiles','comments.profile_id','=','nursing_profiles.id')
-            ->select('comments.*')
+            ->join('customers','customers.id','=','nursing_profiles.customer_id')
+            ->select('comments.*','nursing_profiles.name as pro_name','customers.name as cus_name')
             ->where('nursing_profiles.recordstatus', 1)
             ->where('comments.type','nursing')
             ->orderBy('comments.id','DESC')
@@ -230,7 +237,8 @@ class CommentController extends Controller
         else{
             $commentList = DB::table('comments')
             ->join('hospital_profiles','comments.profile_id','=','hospital_profiles.id')
-            ->select('comments.*')
+            ->join('customers','customers.id','=','hospital_profiles.customer_id')
+            ->select('comments.*','hospital_profiles.name as pro_name','customers.name as cus_name')
             ->where('hospital_profiles.recordstatus', 1)
             ->where('comments.type','hospital')
             ->orderBy('comments.id','DESC')
@@ -238,6 +246,7 @@ class CommentController extends Controller
         }
         return response()->json($commentList);
     }
+    
     public function confirm($id,$type)
      {
             $comment =Comment::find($id);
@@ -249,7 +258,8 @@ class CommentController extends Controller
             {
                 $commentList = DB::table('comments')
                 ->join('nursing_profiles','comments.profile_id','=','nursing_profiles.id')
-                ->select('comments.*')
+                ->join('customers','customers.id','=','nursing_profiles.customer_id')
+                ->select('comments.*','nursing_profiles.name as pro_name','customers.name as cus_name')
                 ->where('nursing_profiles.recordstatus', 1)
                 ->where('comments.type','nursing')
                 ->orderBy('comments.id','DESC')
@@ -258,7 +268,8 @@ class CommentController extends Controller
             else{
                 $commentList = DB::table('comments')
                 ->join('hospital_profiles','comments.profile_id','=','hospital_profiles.id')
-                ->select('comments.*')
+                ->join('customers','customers.id','=','hospital_profiles.customer_id')
+                ->select('comments.*','hospital_profiles.name as pro_name','customers.name as cus_name')
                 ->where('hospital_profiles.recordstatus', 1)
                 ->where('comments.type','hospital')
                 ->orderBy('comments.id','DESC')
@@ -297,18 +308,23 @@ class CommentController extends Controller
 
         if($profileid == 0)
         {
-             $commentList = DB::table('comments')->join($p,'comments.profile_id','=',$p.'.id')->select('comments.*')->where($p.'.recordstatus', 1)
-                            ->where('comments.type','nursing')->orderBy('comments.id','DESC')->paginate(12);
+             $commentList = DB::table('comments')->join($p,'comments.profile_id','=',$p.'.id')
+                                                 ->join('customers','customers.id','=',$p.'.customer_id')
+                                                 ->select('comments.*',$p.'.name as pro_name','customers.name as cus_name')
+                                                 ->where($p.'.recordstatus', 1)
+                                                 ->where('comments.type','nursing')
+                                                 ->orderBy('comments.id','DESC')
+                                                 ->paginate(12);
         }
         else{
-            $commentList = DB::table('comments')
-            ->join($p,'comments.profile_id','=',$p.'.id')
-            ->select('comments.*')
-            ->where($p.'.recordstatus', 1)
-            ->where('comments.type',$t)
-            ->where('comments.profile_id',$profileid)
-            ->orderBy('comments.id','DESC')
-            ->paginate(12);
+            $commentList = DB::table('comments')->join($p,'comments.profile_id','=',$p.'.id')
+                                                ->join('customers','customers.id','=',$p.'.customer_id')
+                                                ->select('comments.*',$p.'.name as pro_name','customers.name as cus_name')
+                                                ->where($p.'.recordstatus', 1)
+                                                ->where('comments.type',$t)
+                                                ->where('comments.profile_id',$profileid)
+                                                ->orderBy('comments.id','DESC')
+                                                ->paginate(12);
         }
       
         // if($search_word != 0)
