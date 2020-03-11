@@ -1,6 +1,5 @@
 <template>
         <div class="col-md-12 pad-free m-b-10">
-
               <div class="col-md-12 pad-free nursing-m-b-15">
                 <div class="col-md-12 pad-free postal-search">
                     <div class="form-group row pl-3">
@@ -29,7 +28,7 @@
                             <div class="col-md-12 p-r-0 nursing_p-l-2">
                                 <select v-model="township" class="division form-control" id="gmaptownship">
                                   <option value="0">選択してください。</option>
-                                    <option v-for="townships in township_list" :key="townships.id" v-bind:value="townships.id">
+                                    <option v-for="townships in township_list" :key="townships.id" v-bind:value="townships.id" ref="township">
                                         {{townships.township_name}}
                                     </option>
                                 </select>
@@ -59,11 +58,11 @@
                     <div class="row">
                       <div class="col-lg-4 col-md-12 hos_map_lbl">
                         <label class="font-weight-bold">緯度 <span class="error sp2">必須</span></label>
-                        <input type="text" class="form-control white-bg-color" name="new_lat" v-model="new_lat" id="new_lat">
+                        <input type="text" class="form-control white-bg-color" name="new_lat" v-model="new_lat" id="new_lat" ref="new_lat">
                       </div>
                       <div class="col-lg-4 col-md-12">
                         <label class="font-weight-bold">経度 <span class="error sp2">必須</span></label>
-                        <input type="text" class="form-control white-bg-color" name="new_long" v-model="new_long" id="new_long">
+                        <input type="text" class="form-control white-bg-color" name="new_long" v-model="new_long" id="new_long" ref="new_long">
                       </div>
                       <div class="nursing_map col-lg-4 col-md-12">
                         <span class="btn news-post-btn all-btn" @click="addressSelect(Number(new_lat),Number(new_long))">緯度経度から地図を検索</span>
@@ -153,7 +152,7 @@ export default {
 //       }
 //   },
   created() {
-  
+    
     this.markers = [{
         position: {
           lat: Number(localStorage.getItem('lat_num')),
@@ -306,9 +305,10 @@ export default {
                 }
                     this.township_list = response.data.townships;
                     // this.township = this.township_list[0].id;
-                    var move_lat = response.data.coordinate[0].latitude;
-                    var move_lon = response.data.coordinate[0].longitude;
-                    this.addressSelect(move_lat,move_lon);
+                    
+                    this.new_lat = response.data.coordinate[0].latitude;
+                    this.new_long = response.data.coordinate[0].longitude;
+                    this.addressSelect(this.new_lat,this.new_long);
                 });
             },
             postalNumber: function(event) {
