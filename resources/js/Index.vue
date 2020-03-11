@@ -36,7 +36,7 @@
                                     </div>
                                 </div>
                                 <div class="container-fluid footer footer-div">
-                                    <span>Copyright©Trust Growth Co,Ltd.All Rights Reserved. </span>
+                                    <span>Copyright©TRUST-ESTATE Co,Ltd.All Rights Reserved. </span>
                                 </div>
                             </section>
                         </div>

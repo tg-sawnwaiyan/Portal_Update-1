@@ -60,7 +60,7 @@
         <div id="scroll-responsive">
             <div id="hos_search" class="col-12 hospitalselect pad-free m-b-10">
 
-                <div >
+                <div>
                     <h5 class="profile_header m-t-10" style="border-left: 5px solid #63b7ff;">現在の検索条件</h5>
 
                     <table class="table table-bordered col-12" style="border:none;">
@@ -1107,5 +1107,4 @@ import bulcomponent from './bulcomponent.vue'
     display: none;
   }
 }
-
 </style>
