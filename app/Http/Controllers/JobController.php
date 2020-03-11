@@ -625,9 +625,22 @@ class JobController extends Controller
            return response()->json($data);
 
    }
-   public function getCustomerList(){
-        $query = "SELECT customers.id, customers.name, customers.email, customers.type_id FROM customers
-               WHERE customers.recordstatus = 1 GROUP BY customers.id";
+   public function getCustomerList($type){
+          if($type == "nursing") 
+          {
+             
+              $t = "customers.type_id = 3 and ";
+          }
+          else if($type == "hospital"){
+
+              $t = "customers.type_id = 2 and ";
+          }
+          else {
+              $t = "";
+          }
+     
+        $query = "SELECT customers.id, customers.name, customers.email, customers.type_id FROM customers WHERE $t customers.recordstatus = 1 GROUP BY customers.id";
+  
         $cus_list = DB::select($query);
         return $cus_list;
    }

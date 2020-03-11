@@ -355,11 +355,13 @@ export default {
                             position: 'top-end',
                             type: 'success',
                             // title: '作成されました',
-                            title: '確認のためもうちょっとしばらくお待ちください。',
+                            text: '確認のためもうちょっとしばらくお待ちください。',
                             showConfirmButton: false,
                             timer: 1800,
                             width: 250,
                             height: 200,
+                            allowOutsideClick: false,
+                            
                         })
                         this.$router.go(-1);
 

@@ -18,7 +18,7 @@
                   <div class="input-group-append">
                       <span class="input-group-text"><i class="fas fa-user"></i></span>
                   </div>
-                  <input type="text" id="email" class="form-control input_user" placeholder="メール" v-model="email"  autofocus @keyup="focusMail"> 
+                  <input type="text" id="email" class="form-control input_user" placeholder="メールアドレス" v-model="email"  autofocus @keyup="focusMail"> 
                   <span v-if="errors.email" class="error"><small>{{errors.email}}</small></span>
               </div>
               

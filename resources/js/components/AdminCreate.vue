@@ -179,7 +179,8 @@
                                     confirmButtonText: "はい",
                                     cancelButtonText: "キャンセル",
                                     confirmButtonClass: "all-btn",
-                                    cancelButtonClass: "all-btn"
+                                    cancelButtonClass: "all-btn",
+                                    allowOutsideClick: false,
                                 }).then(response => {
                                     this.$loading(true);
                                     this.axios.post('/api/main_admin/add', this.adminData)
@@ -195,6 +196,7 @@
                                                 confirmButtonColor: "#6cb2eb",
                                                 width: 250,
                                                 height: 200,
+                                                allowOutsideClick: false,
                                             })
                                             this.$router.push({
                                                 name: 'adminlist'
@@ -254,7 +256,8 @@
                             confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
                         }).then(response => {
                             let arr = new FormData();
                                 arr.append('admin_id', this.admin_id)
@@ -267,9 +270,10 @@
                                        this.$swal({
                                                 position: 'top-end',
                                                 type: 'success',
-                                                title: '管理者を更新しました',
+                                                text: '管理者を更新しました',
                                                 confirmButtonText: "閉じる",
                                                 confirmButtonColor: "#6cb2eb",
+                                                allowOutsideClick: false,
                                                 width: 250,
                                                 height: 200,
                                             }) 
@@ -319,7 +323,8 @@
                             confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
                         }).then(response => {
                             
                             if ("'" + this.new_password + "'" === "'" + this.confirm_password + "'") {
@@ -333,12 +338,13 @@
                                     .post(`/api/main_admin/update`, arr)
                                     .then((response) => {
                                         if (response.data == 'oldpasswordwrong') {
-                                            this.$swal({
+                                            this.$swal({                                               
                                                 position: 'top-end',
                                                 type: 'error',
-                                                title: '現在のパスワードが一致しません。',
+                                                text: '現在のパスワードが一致しません。',
                                                 confirmButtonText: "閉じる",
                                                 confirmButtonColor: "#6cb2eb",
+                                                allowOutsideClick: false,
                                                 width: 250,
                                                 height: 200,
                                             })
@@ -347,11 +353,12 @@
                                             this.$swal({
                                                 position: 'top-end',
                                                 type: 'success',
-                                                title: '管理者を更新しました',
+                                                text: '管理者を更新しました',
                                                 confirmButtonText: "閉じる",
                                                 confirmButtonColor: "#6cb2eb",
                                                 width: 250,
                                                 height: 200,
+                                                allowOutsideClick: false,
                                             })
                                             this.password_confirmation = null;
                                             this.old_password = null;
@@ -378,6 +385,7 @@
                                     cancelButtonTextColor: "#000",
                                     confirmButtonText: "閉じる",
                                     confirmButtonClass: "all-btn",
+                                    allowOutsideClick: false,
                                 })
                             }
 

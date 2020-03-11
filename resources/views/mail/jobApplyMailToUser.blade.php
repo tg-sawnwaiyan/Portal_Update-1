@@ -1,6 +1,4 @@
 <pre>
-TIS
-
 {{$getComment->first_name}} 様
 
 以下の求人へ応募が完了いたしました。                

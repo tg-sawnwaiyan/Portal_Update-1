@@ -1028,7 +1028,8 @@ export default {
                         confirmButtonText: "削除",
                         cancelButtonText: "キャンセル",
                         confirmButtonClass: "all-btn",
-                        cancelButtonClass: "all-btn"
+                        cancelButtonClass: "all-btn",
+                        allowOutsideClick: false,
                     }).then(response => {
                          if(type == 'cooperate') {
                             this.cooperate_arr.splice(indx,1);
@@ -1061,7 +1062,8 @@ export default {
                         confirmButtonText: "削除",
                         cancelButtonText: "キャンセル",
                         confirmButtonClass: "all-btn",
-                        cancelButtonClass: "all-btn"
+                        cancelButtonClass: "all-btn",
+                        allowOutsideClick: false,
                     }).then(response => {
 
                     if(type == 'photo' || type == 'panorama') {
@@ -1089,7 +1091,8 @@ export default {
                                     width: 350,
                                     height: 200,
                                     confirmButtonText: "閉じる",
-                                    confirmButtonColor: "#dc3545"
+                                    confirmButtonColor: "#dc3545",
+                                    allowOutsideClick: false,
                                 });
                             })
                             .catch(error=>{
@@ -1232,6 +1235,7 @@ export default {
                 confirmButtonColor: "#dc3545",
                 confirmButtonText: "はい",
                 confirmButtonClass: "all-btn",
+                allowOutsideClick: false,
                 
             })                    
                   
@@ -1372,6 +1376,7 @@ export default {
                                         confirmButtonColor: "#6cb2eb",
                                         width: 250,
                                         height: 200,
+                                        allowOutsideClick: false,
                                     })
                             }).then(response => {
                                 this.img_name = '';

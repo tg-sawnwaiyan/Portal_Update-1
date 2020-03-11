@@ -46,7 +46,7 @@
                         </div>     
                     </form>
                     <div v-else>
-                       <p class="alert alert-info">パスワードの再設定が完了しました</p>
+                       <p class="alert alert-info">パスワードの再設定が完了しました。</p>
                         <span></span>
                     </div>
                 </div>
@@ -111,13 +111,14 @@
 
             if(this.errors.password == '' && this.errors.confirmPassword == '' && this.error_text == '')
             {
-
+                this.$loading(true);
                       // get the redirect object
                     var fData = new FormData();
                     fData.append('password', this.password);
                     fData.append('token', this.$route.query.code);
                     this.axios.post('/api/resetpassword',fData) 
                     .then(response => {
+                        this.$loading(false);
                         console.log(response.data)
                         if(response.data == "success"){
                             this.has_success = true;

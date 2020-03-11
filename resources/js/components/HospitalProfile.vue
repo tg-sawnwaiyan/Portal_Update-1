@@ -1245,7 +1245,9 @@ export default {
                         confirmButtonText: "削除",
                         cancelButtonText: "キャンセル",
                         confirmButtonClass: "all-btn",
-                        cancelButtonClass: "all-btn"
+                        cancelButtonClass: "all-btn",
+                        allowOutsideClick: false,
+
                     }).then(response => {
                         console.log(type+"/"+id)
                         if(type == 'photo') {
@@ -1268,7 +1270,8 @@ export default {
                                         width: 350,
                                         height: 200,
                                         confirmButtonText: "閉じる",
-                                        confirmButtonColor: "#dc3545"
+                                        confirmButtonColor: "#dc3545",
+                                         allowOutsideClick: false,
                                     });
                                 })
                                 .catch(error=>{
@@ -1338,7 +1341,8 @@ export default {
                         confirmButtonText: "はい",
                         cancelButtonText: "キャンセル",
                         confirmButtonClass: "all-btn",
-                        cancelButtonClass: "all-btn"
+                        cancelButtonClass: "all-btn",
+                        allowOutsideClick: false,
                     })                    
                 }   
                 else {
@@ -1475,11 +1479,12 @@ export default {
                         this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            title: '更新されました',
+                            text: '更新されました',
                             confirmButtonText: "閉じる",
                             confirmButtonColor: "#6cb2eb",
                             width: 250,
                             height: 200,
+                            allowOutsideClick: false,
                         })
                         this.$loading(false);
                     }).catch(error=>{

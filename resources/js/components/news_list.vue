@@ -159,7 +159,8 @@
                         confirmButtonText: "はい",
                         cancelButtonText: "キャンセル",
                         confirmButtonClass: "all-btn",
-                        cancelButtonClass: "all-btn"
+                        cancelButtonClass: "all-btn",
+                        allowOutsideClick: false,
                     }).then(response => {
                        
                        this.$loading(true);
@@ -187,7 +188,8 @@
                                     width: 350,
                                     height: 200,
                                     confirmButtonText: "閉じる",
-                                    confirmButtonColor: "#dc3545"
+                                    confirmButtonColor: "#dc3545",
+                                     allowOutsideClick: false,
                                 });
                             })
                             .catch(() => {

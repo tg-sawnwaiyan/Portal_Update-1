@@ -251,7 +251,8 @@ import {quillEditor} from 'vue-quill-editor'
                             confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
                         }).then(response => {
                                 this.$swal({
                                         text: "画像を削除しました。",
@@ -259,7 +260,9 @@ import {quillEditor} from 'vue-quill-editor'
                                         width: 350,
                                         height: 200,
                                         confirmButtonText: "閉じる",
-                                        confirmButtonColor: "#dc3545"
+                                        confirmButtonColor: "#dc3545",
+                                        allowOutsideClick: false,
+                                       
                                     });
                            }).then(response => {
                             this.img_name = '';
@@ -290,7 +293,9 @@ import {quillEditor} from 'vue-quill-editor'
                             confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
+                           
                         }).then(response => {
                             let fData = new FormData();
                             fData.append('photo', this.news.photo)
@@ -311,6 +316,7 @@ import {quillEditor} from 'vue-quill-editor'
                                     confirmButtonColor: "#6cb2eb",
                                     width: 250,
                                     height: 200,
+                                    allowOutsideClick: false,                                   
                                 })
 
                                 this.$router.go(-1);
@@ -336,7 +342,8 @@ import {quillEditor} from 'vue-quill-editor'
                             confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,                         
                         }).then(response => {
                         let fData = new FormData();
                             fData.append('photo', this.news.photo)
@@ -358,6 +365,7 @@ import {quillEditor} from 'vue-quill-editor'
                             confirmButtonColor: "#6cb2eb",
                             width: 270,
                             height: 200,
+                            allowOutsideClick: false,
                         })
                             this.$router.push({
                                 name: 'news_list'
@@ -433,7 +441,8 @@ import {quillEditor} from 'vue-quill-editor'
                             confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
                             }).then(response =>{
                             var image_x = document.getElementById('x-image');
                             image_x.parentNode.removeChild(image_x);
@@ -445,7 +454,8 @@ import {quillEditor} from 'vue-quill-editor'
                                         width: 350,
                                         height: 200,
                                         confirmButtonText: "閉じる",
-                                        confirmButtonColor: "#dc3545"
+                                        confirmButtonColor: "#dc3545",
+                                        allowOutsideClick: false,
                                     });
                                     this.old_photo = old_photo;
                                     this.getPostsByCatId;

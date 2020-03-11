@@ -20,8 +20,9 @@
                                 </div>
                                 <div v-if="type == 'admin'">
                                     <label>事業者名 : </label>
-                                    <autocomplete placeholder="事業者名を検索" input-class="form-control" :source=customerList :results-display="formattedDisplay" @selected="getSelected($event)">
+                                    <autocomplete placeholder="事業者名を検索" input-class="form-control" :source=customerList :results-display="formattedDisplay" @clear="cleartext()" @selected="getSelected($event)">
                                     </autocomplete>
+                                     <span v-if="errors.customer_id" class="error">{{errors.customer_id}}</span>
                                     <br>
                                     <label>施設名 : </label>
                                     <select v-model="selectedValue" class="division form-control" @change="getProfile($event)">
@@ -30,6 +31,7 @@
                                             {{profile.name}}
                                         </option>
                                     </select>
+                                    <span v-if="errors.profile_id" class="error">{{errors.profile_id}}</span>
                                 </div>
                           </div>
                             <div class="form-group">
@@ -482,12 +484,15 @@ import Autocomplete from 'vuejs-auto-complete'
                   salary_type:'',
                   salary:'',
                   working_hours:'',
-                  occupation_id: ''
+                  occupation_id: '',
+                  customer_id:'',
+                  profile_id:''
                 },
                 OccupationList: {
                     id: "",
                     name: ""
                 },
+               
 
                     joboffer: {
                         title: "",
@@ -570,7 +575,7 @@ import Autocomplete from 'vuejs-auto-complete'
                 .then(response => {
                     this.city_list = response.data;
                 });
-                this.axios.get('/api/job/customerList')
+                this.axios.get('/api/job/customerList/'+'job')
                 .then(response=> {
                   this.customerList = response.data;
                   this.formattedDisplay(this.customerList);
@@ -688,7 +693,22 @@ import Autocomplete from 'vuejs-auto-complete'
             methods: {
               checkValidate() {
 
-                         if (this.joboffer.title == '') {
+                        if(this.joboffer.customer_id == "")
+                        {
+                          this.errors.customer_id = "事業者名は必須です。";
+                        }
+                        else{
+                          this.errors.customer_id = "";
+                        }
+                        if(this.selectedValue == 0 )
+                        {
+                          this.errors.profile_id = "施設名は必須です。";
+                        }
+                        else{
+                          this.errors.profile_id = "";
+                        }
+
+                        if (this.joboffer.title == '') {
                             this.errors.title = '施設種別名は必須です。';
                         } else {
                             this.errors.title = "";
@@ -699,6 +719,7 @@ import Autocomplete from 'vuejs-auto-complete'
                         } else {
                             this.errors.description = "";
                         }
+                        
 
                         // if (this.joboffer.postal == '') {
                         //     this.errors.postal = '郵便番号は必須です。';
@@ -760,7 +781,9 @@ import Autocomplete from 'vuejs-auto-complete'
                             !this.errors.salary_type &&
                             !this.errors.salary &&
                             !this.errors.working_hours&&
-                            !this.errors.occupation_id
+                            !this.errors.occupation_id && 
+                            !this.errors.customer_id && 
+                            !this.errors.profile_id
 
                         ) {
 
@@ -834,15 +857,16 @@ import Autocomplete from 'vuejs-auto-complete'
                             confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
                            
                         }
                         ).then(response => {
                          
-                       
+                    
                            this.$loading(true);
-                            this.axios
-                                .post("/api/job/add", this.joboffer)
+                         
+                             this.axios.post("/api/job/add", this.joboffer)
 
                             .then(response => {
                                this.$loading(false);
@@ -856,6 +880,7 @@ import Autocomplete from 'vuejs-auto-complete'
                                         height: 200,
                                         confirmButtonText: "閉じる",
                                         confirmButtonColor: "#6cb2eb",
+                                        allowOutsideClick: false,
                                     });
 
                                     // alert('Successfully Created')
@@ -1029,7 +1054,8 @@ import Autocomplete from 'vuejs-auto-complete'
                         confirmButtonText: "はい",
                         cancelButtonText: "キャンセル",
                         confirmButtonClass:  "all-btn",
-                        cancelButtonClass: "all-btn"
+                        cancelButtonClass: "all-btn",
+                        allowOutsideClick: false,
                     }).then(response => {
                          this.$loading(true);
                         this.axios.post(`/api/job/update/${this.$route.params.id}`, this.joboffer)
@@ -1045,7 +1071,8 @@ import Autocomplete from 'vuejs-auto-complete'
                                     width: 350,
                                     height: 200,
                                     confirmButtonText: "閉じる",
-                                    confirmButtonColor: "#6cb2eb"
+                                    confirmButtonColor: "#6cb2eb",
+                                     allowOutsideClick: false,
                                 });
 
                                 this.$router.go(-1);
@@ -1060,7 +1087,13 @@ import Autocomplete from 'vuejs-auto-complete'
                   formattedDisplay(result) {
                     return result.name + '「' + result.email + '」';
                   },
+                  cleartext(){
+                      this.selectedValue = 0;
+                      this.joboffer.customer_id = '';
+                  },
                   getSelected(event){
+                      this.errors.customer_id = "";
+       
                       if(event.selectedObject.type_id == 3){
                           this.table_name.profile = 'nursing_profiles';
                       }else {
@@ -1071,7 +1104,7 @@ import Autocomplete from 'vuejs-auto-complete'
                         this.axios.post(`/api/job/profileList/${this.joboffer.customer_id}`,this.table_name)
                     .then(response=> {
                     this.profileList = response.data;
-                    console.log('jjjj',this.profileList)
+                 
                     if(this.profileList != ''){
                         this.selectedValue = this.profileList[0].id;
                         this.joboffer.profile_id = this.profileList[0].id;
@@ -1082,6 +1115,10 @@ import Autocomplete from 'vuejs-auto-complete'
                   },
                   getProfile(event){
                       this.joboffer.profile_id = event.target.value;
+                      if(this.joboffer.profile_id != 0)
+                      {
+                        this.errors.profile_id = "";
+                      }
                   },
                   postalNumber: function(event) {
                 if(!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105) 

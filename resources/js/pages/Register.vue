@@ -364,7 +364,8 @@
                 confirmButtonText: 'はい',
                 cancelButtonText: 'いいえ',
                 showCloseButton: true,
-                showLoaderOnConfirm: true
+                showLoaderOnConfirm: true,
+                allowOutsideClick: false,
                 }).then((result) => {
                 if(result) {
                     this.$loading(true);
@@ -380,6 +381,7 @@
                             confirmButtonColor: "#6cb2eb",
                             confirmButtonText: "閉じる",
                             confirmButtonClass: "all-btn",
+                            allowOutsideClick: false,
                         })
                         this.$router.push({
                             name: 'News'

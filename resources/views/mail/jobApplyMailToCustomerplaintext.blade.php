@@ -1,5 +1,3 @@
-TIS
-
 {{$getComment->cus_name}} ({{$getComment->cusnum}}) 様
 
 【TIS ティーズ】より求人への応募がありました。             
