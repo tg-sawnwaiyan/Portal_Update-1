@@ -6,9 +6,9 @@
                     <p class="record-ico">
                         <i class="fa fa-exclamation"></i>
                     </p>
-                    <p>OOPS!!</p>
-                    <p class="record-txt01">表示するデータありません</p>
-                    <p>表示するデータありません‼新しいデータを作成してください。</p>
+                    <!-- <p>OOPS!!</p> -->
+                    <p class="record-txt01">求人職種が登録されていません</p>
+                    <!-- <p>表示するデータありません‼新しいデータを作成してください。</p> -->
                     <a href="/occupation" class="main-bg-color create-btn all-btn">
                         <i class="fas fa-plus-circle"></i> 職種新規作成
                     </a>

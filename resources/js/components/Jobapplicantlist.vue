@@ -24,7 +24,13 @@
                 </h5>
             
                     
-                <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
+                <!-- <div v-if="nosearch_msg" class="container-fuid no_search_data">求人応募者が登録されていません</div> -->
+                  <div v-if="nosearch_msg" class="card card-default card-wrap">
+                    <p class="record-ico">
+                    <i class="fa fa-exclamation"></i>
+                    </p>                   
+                    <p class="record-txt01">求人応募者が登録されていません</p>
+                </div>
                 <div v-else class="container-fuid">
                     <div class="card card-default m-b-20"  v-for="jobapply in jobapplies.data" :key="jobapply.id">
                             <div class="card-body p-3">

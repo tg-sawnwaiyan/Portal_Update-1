@@ -361,10 +361,10 @@ export default {
         changeActivate(id,activate, $event){
             if(activate == 1)
             {
-               this.activate_text = "施設を投稿しなくてよろしいでしょうか。";
+               this.activate_text = "施設を非公開にしてよろしいでしょうか。";
             }
             else{
-                this.activate_text = "施設を投稿してよろしいでしょうか。";
+                this.activate_text = "施設を公開してよろしいでしょうか。";
             }
           
             this.type = this.$route.params.type;
