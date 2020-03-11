@@ -499,6 +499,7 @@
                         this.axios.post("/api/job/search?page="+page, fd).then(response => {
                             this.$loading(false);
                             this.jobs = response.data.jobsearch;
+                           
                             if(this.jobs.data.length != 0){
                                 this.nosearch_msg = false;
                             }else{
