@@ -11,7 +11,7 @@
                     <p class="record-txt01">表示するデータありません</p>
                 </div>
                 <div v-else class="container-fuid">
-                    <h4 class="main-color mb-3">プロフィール名で検索</h4>
+                    <h4 class="main-color mb-3">口コミ検索</h4>
                     <div class="row mb-4">
                         <div class="col-md-12">
                             <!-- <select  v-model="profileid" class="division form-control"  @change="getComment()">
@@ -157,7 +157,7 @@
                 this.$loading(true);
                 if(this.$route.path == "/nuscommentlist"){
                      this.type = "nursing";
-                    this.title = "コメント一覧";
+                    this.title = "口コミ一覧";
                     this.axios
                     .get('/api/comments/comment/3')
                     .then(response => {
@@ -175,7 +175,7 @@
                 }
                 else if(this.$route.path == "/hoscommentlist"){
                      this.type = "hospital";
-                    this.title = "コメント一覧";
+                    this.title = "口コミ一覧";
                     this.axios
                     .get('/api/comments/comment/2')
                     .then(response => {

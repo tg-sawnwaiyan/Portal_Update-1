@@ -29,7 +29,7 @@
                                 <li v-if="$auth.check(2)"><router-link to="/nuscustomerlist" class="nav-link"><i class="fa fa-user"></i>&nbsp;<span>事業者</span></router-link></li>
                                 <li v-if="$auth.check(2)"><router-link to="/nusfeaturelist" class="nav-link" ><i class="fa fa-list"></i>&nbsp;&nbsp;<span class="nav-txt">特徴設定</span></router-link></li>
                                 <li v-if="$auth.check(2)"><router-link to="/occupationlist" class="nav-link"><i class="fa fa-suitcase"></i>&nbsp;&nbsp;<span class="nav-txt">職種設定</span></router-link></li>
-                                <li v-if="$auth.check(2)"><router-link to="/nuscommentlist" class="nav-link"><i class="fa fa-list"></i>&nbsp;<span>コメント一覧</span></router-link></li>
+                                <li v-if="$auth.check(2)"><router-link to="/nuscommentlist" class="nav-link"><i class="fa fa-list"></i>&nbsp;<span>口コミ一覧</span></router-link></li>
                             </ul>
                         </li>
                         <li v-if="$auth.check(2)">
@@ -40,7 +40,7 @@
                                 <li v-if="$auth.check(2)"><router-link to="/facilitieslist" class="nav-link" ><i class="fa fa-sun"></i>&nbsp;<span class="nav-txt">院内施設設定</span></router-link></li>
                                 <li v-if="$auth.check(2)"><router-link to="/hosfeaturelist" class="nav-link" ><i class="fa fa-list"></i>&nbsp;&nbsp;<span class="nav-txt">特徴設定</span></router-link></li>
                                 <li v-if="$auth.check(2)"><router-link to="/subjectlist" class="nav-link"><i class="fa fa-user-md"></i>&nbsp;&nbsp;<span class="nav-txt">診察科目設定</span></router-link></li>
-                                <li v-if="$auth.check(2)"><router-link to="/hoscommentlist" class="nav-link"><i class="fa fa-list"></i>&nbsp;<span>コメント一覧</span></router-link></li>
+                                <li v-if="$auth.check(2)"><router-link to="/hoscommentlist" class="nav-link"><i class="fa fa-list"></i>&nbsp;<span>口コミ一覧</span></router-link></li>
                             </ul>
                         </li>
                         <li  v-if="$auth.check(2)"><router-link to="/ads" class="nav-link"><i class="fa fa-globe"></i>&nbsp;&nbsp;<span class="nav-txt" v-show="isClick">広告</span></router-link></li>
@@ -192,7 +192,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                         },
                         {
                         href: '/nuscommentlist',
-                        title: 'コメント一覧',
+                        title: '口コミ一覧',
                         icon: 'fa fa-list'
                         }
                     ]
@@ -224,7 +224,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                         },
                         {
                         href: '/hoscommentlist',
-                        title: 'コメント一覧',
+                        title: '口コミ一覧',
                         icon: 'fa fa-list'
                         }
                     ]
