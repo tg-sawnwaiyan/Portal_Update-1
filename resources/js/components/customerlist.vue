@@ -19,7 +19,7 @@
                   
                         <div class="col-md-6 choose-item">
                               <select  v-model="status" id="selectBox" class="form-control select_box" @change="searchCustomer()">
-                                    <option selected="selected" value>choose item</option>
+                                    <option selected="selected" value>選択してください</option>
                                     <option value="1"> Activate </option>
                                     <option value="0"> Deactivate </option>
                                     <option value="2"> Pending </option>
