@@ -55,6 +55,7 @@
                                     <h5>
                                         <router-link
                                             :to="{name: 'newdetails', params:{id:newsList.id}}"
+                                            class="pseudolink"
                                         >{{newsList.title}}</router-link>
                                     </h5>
                                     <p class="mt-2">{{newsList.main_point}}</p>

@@ -1011,7 +1011,7 @@
                     <span class="bg-trans btn dropdown-arrow nursing_toggle_responsive" @click="toggleEvent('map','5')">詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
                     <div class="col-md-10 hos_toggle float-right m-t-10 map-toggle-div toggle-div pad-free">
                         <div class="col-md-12">
-                        <span class="btn btn-sm btn-danger" @click="onChildClick"> click</span>
+                        
                             <GoogleMap  :address="address_show" :township="hospital_info.townships_id" :lat_num='hospital_info.latitude' :lng_num='hospital_info.longitude' :city="city_id" :township_list="township_list"></GoogleMap>
                             <!-- <GoogleMap :address="hospital_info.address" :lat_num='35.6803997' :lng_num='139.76901739' v-if="hospital_info.latitude == 0"></GoogleMap> -->
 
@@ -1115,9 +1115,7 @@ export default {
             this.initialCall();
         },
         methods: {
-          onChildClick(){
-            console.log('GoogleMap.data().city;',GoogleMap.props())
-          },
+
             initialCall(){
               this.address_show = $('#address_show').val();
            
@@ -1189,9 +1187,12 @@ export default {
             },
 
             focusMail: function(event) {
+
                 if((this.hospital_info.email != '' && this.mail_reg.test(this.hospital_info.email))){
                     this.mail_focus=false;
+                   
                 }else{
+                 
                     this.mail_focus=true;
                    
                 }
@@ -1314,19 +1315,26 @@ export default {
             },
             Create_Profile () {
                
+                this.hospital_info.latitude = $('#new_lat').val();
+                this.hospital_info.longitude = $('#new_long').val();
+                this.hospital_info.address = $('#address_show').val();
+                this.address_show = $('#address_show').val();
 
-                console.log('refs',this.hos)
-              if($('#new_lat').val() == ""){
-                this.btn_disable = true
-              }
-              if($('#new_long').val() == ""){
-                this.btn_disable = true
-              }
-              if($('#gmaptownship').val() == 0){
-                this.btn_disable = true
-              }
+                this.hospital_info.townships_id = Number($('#gmaptownship').val());
+                localStorage.setItem('lat_num',this.hospital_info.latitude);
+                localStorage.setItem('lng_num',this.hospital_info.longitude);
+               
 
+              if($('#new_lat').val() == "" || $('#new_long').val() == "" || $('#gmaptownship').val() == 0 || this.mail_focus == true || this.ph_num == true )
+              {
+                this.btn_disable = true;
+              }
+              else{
+                this.btn_disable = false;
+              }
+            
              if(this.btn_disable){
+           
                     // console.log("mail");
                     this.$swal({
                         title: "確認",
@@ -1344,9 +1352,9 @@ export default {
                         cancelButtonClass: "all-btn",
                         allowOutsideClick: false,
                     })                    
-                }   
+                } 
+                  
                 else {
-                this.btn_disable = false
                 var logo = document.getElementsByClassName('pro-logo')[0].files[0];
                
                 this.save_hospital_info = [];
@@ -1357,14 +1365,7 @@ export default {
                   this.hospital_info.details_info = "";
                 }
 
-                this.hospital_info.latitude = $('#new_lat').val();
-                this.hospital_info.longitude = $('#new_long').val();
-                this.hospital_info.address = $('#address_show').val();
-                this.address_show = $('#address_show').val();
-
-                this.hospital_info.townships_id = Number($('#gmaptownship').val());
-                localStorage.setItem('lat_num',this.hospital_info.latitude);
-                localStorage.setItem('lng_num',this.hospital_info.longitude);
+               
 
                 if(logo)
                 {
