@@ -44,6 +44,35 @@ class UserController extends Controller
 
     }
 
+    public function checkuser(Request $request)
+
+    {
+        $lat_lng = null;
+
+        if($request->user()->type_id == 2){
+            $lat_lng = HospitalProfile::select('id','latitude','longitude')->where('customer_id', $request->user()->customer_id)->get();
+        }
+        else if($request->user()->type_id > 2) {
+            $lat_lng = NursingProfile::select('id','latitude','longitude')->where('customer_id', $request->user()->customer_id)->get();
+        }
+
+        return response()->json(array("user"=>$request->user(), "lat_lng"=>$lat_lng));
+
+    }
+    public function checkprofile(Request $request,$type,$proid)
+
+    {
+        if($type == 'hospital'){
+            $lat_lng = HospitalProfile::select('id','latitude','longitude')->where('id', $proid)->get();
+        }
+        else if($type == 'nursing') {
+            $lat_lng = NursingProfile::select('id','latitude','longitude')->where('id', $proid)->get();
+        }
+    
+        return response()->json(array("user"=>$request->user(), "lat_lng"=>$lat_lng));
+
+    }
+
 
     /**
 

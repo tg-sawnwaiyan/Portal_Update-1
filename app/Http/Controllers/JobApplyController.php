@@ -44,7 +44,7 @@ class JobApplyController extends Controller
                             join customers on customers.id = jobs.customer_id
                             left join hospital_profiles on hospital_profiles.id = jobs.profile_id
                             left join nursing_profiles on nursing_profiles.id = jobs.profile_id
-                            where  jobs.recordstatus = 1 and customers.recordstatus = 1 and (CASE customers.type_id WHEN 2 THEN hospital_profiles.activate = 1 ELSE nursing_profiles.activate =1 END) ";
+                            where  jobs.recordstatus = 1 and customers.recordstatus = 1 ";
                
                if($page == "job"){ 
                     $query .= " and jobs.id = ".$search_id ;
@@ -74,7 +74,7 @@ class JobApplyController extends Controller
                             FROM job_applies join jobs on jobs.id = job_applies.job_id
                             join customers on customers.id = jobs.customer_id
                             left join ".$t." on ". $t.".id = jobs.profile_id
-                            where  jobs.recordstatus = 1 and customers.recordstatus = 1 and  ".$t.".activate = 1
+                            where  jobs.recordstatus = 1 and customers.recordstatus = 1
                             and ".$p." group by job_applies.id order by job_applies.id desc ";
             }
 
@@ -303,7 +303,7 @@ class JobApplyController extends Controller
                         join customers on customers.id = jobs.customer_id
                         left join hospital_profiles on hospital_profiles.id = jobs.profile_id
                         left join nursing_profiles on nursing_profiles.id = jobs.profile_id
-                        where (job_applies.first_name like '%".$search_word."%' or job_applies.last_name like '%".$search_word."%' or job_applies.email like '%".$search_word."%') and  jobs.recordstatus = 1 and customers.recordstatus = 1 and (CASE customers.type_id WHEN 2 THEN hospital_profiles.activate = 1 ELSE nursing_profiles.activate =1 END)";
+                        where (job_applies.first_name like '%".$search_word."%' or job_applies.last_name like '%".$search_word."%' or job_applies.email like '%".$search_word."%') and  jobs.recordstatus = 1 and customers.recordstatus = 1 ";
           
             if($pages == "job") { 
                 $query .= " and jobs.id = ".$search_id ; 
@@ -333,7 +333,7 @@ class JobApplyController extends Controller
                         FROM job_applies join jobs on jobs.id = job_applies.job_id
                         join customers on customers.id = jobs.customer_id
                         left join ".$t." on ". $t.".id = jobs.profile_id
-                        where (job_applies.first_name like '%".$search_word."%' or job_applies.last_name like '%".$search_word."%' or job_applies.email like '%".$search_word."%') and jobs.recordstatus = 1 and customers.recordstatus = 1 and  ".$t.".activate = 1
+                        where (job_applies.first_name like '%".$search_word."%' or job_applies.last_name like '%".$search_word."%' or job_applies.email like '%".$search_word."%') and jobs.recordstatus = 1 and customers.recordstatus = 1 
                         and ".$p." group by job_applies.id order by job_applies.id desc ";
             
         }

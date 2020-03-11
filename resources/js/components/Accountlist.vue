@@ -59,7 +59,7 @@
                                                     <input type='checkbox' :id="nursingprofiles.id" v-if="nursingprofiles.activate == 0" @click="changeActivate(nursingprofiles.id,nursingprofiles.activate)"  />
                                                     <label for="checkbox"></label>
                                                     <div  v-if="nursingprofiles.activate == 1" class="on">公開中</div>
-                                                    <div v-if="nursingprofiles.activate == 0" class="on">非行化</div>
+                                                    <div v-if="nursingprofiles.activate == 0" class="on">非公開</div>
                                                 </div>                                                                                             
                                             </span>
                                             </div>
@@ -102,7 +102,7 @@
                                                     <input type='checkbox' :id="hospitalprofiles.id" v-if="hospitalprofiles.activate == 0" @click="changeActivate(hospitalprofiles.id,hospitalprofiles.activate)"  />
                                                     <label for="checkbox"></label>
                                                     <div   v-if="hospitalprofiles.activate == 1" class="on">公開中</div>
-                                                    <div v-if="hospitalprofiles.activate == 0" class="on">非行化</div>
+                                                    <div v-if="hospitalprofiles.activate == 0" class="on">非公開</div>
                                                 </div>                                            
                                             </span>
                                             </div>
@@ -389,15 +389,15 @@ export default {
                         .then(response => {
                             this.getAccountList();
                     });
-                this.$swal({
-                    allowOutsideClick: false,
-                    text: "正常に変更されました!",
-                    type: "success",
-                    width: 350,
-                    height: 200,
-                    confirmButtonText: "閉じる",
-                    confirmButtonColor: "#dc3545"
-                });
+                // this.$swal({
+                //     allowOutsideClick: false,
+                //     text: "正常に変更されました!",
+                //     type: "success",
+                //     width: 350,
+                //     height: 200,
+                //     confirmButtonText: "閉じる",
+                //     confirmButtonColor: "#dc3545"
+                // });
             }).catch(error =>{
                 if(activate == 1){
                     $("#"+id).prop("checked", true);
@@ -431,15 +431,15 @@ export default {
                     .then(response => {
                         this.getAccountList();
                     });
-                    this.$swal({
-                        allowOutsideClick: false,
-                        text: "施設を削除しました。",
-                        type: "success",
-                        width: 350,
-                        height: 200,
-                        confirmButtonText: "閉じる",
-                        confirmButtonColor: "#dc3545"
-                    });
+                    // this.$swal({
+                    //     allowOutsideClick: false,
+                    //     text: "施設を削除しました。",
+                    //     type: "success",
+                    //     width: 350,
+                    //     height: 200,
+                    //     confirmButtonText: "閉じる",
+                    //     confirmButtonColor: "#dc3545"
+                    // });
                 });
         }
     }

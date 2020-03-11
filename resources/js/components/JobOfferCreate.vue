@@ -450,6 +450,8 @@
                             <div class="form- group row">
                                 <div class="col-sm-3"></div>
                             </div>
+                            <div v-if="errors.checkallerror" class="error">{{errors.checkallerror}}
+                            </div>
 
                             <div class="form-group mt-3 pb-5">
                                 <span class="btn main-bg-color white all-btn"  @click="checkValidate()">{{subtitle}}</span>
@@ -486,7 +488,8 @@ import Autocomplete from 'vuejs-auto-complete'
                   working_hours:'',
                   occupation_id: '',
                   customer_id:'',
-                  profile_id:''
+                  profile_id:'',
+                  checkallerror:''
                 },
                 OccupationList: {
                     id: "",
@@ -619,7 +622,7 @@ import Autocomplete from 'vuejs-auto-complete'
                         this.joboffer.profile_id = response.data.job[0].profile_id;
                         this.header = " 求人編集";
                         this.subtitle = "保存";
-                        this.axios.get('/api/job/customerList')
+                        this.axios.get('/api/job/customerList/job')
                         .then(response=> {
                           var cus_list = response.data;
                           for(var i=0; i<cus_list.length; i++){
@@ -641,6 +644,7 @@ import Autocomplete from 'vuejs-auto-complete'
                                 if(this.joboffer.profile_id == response.data[i].id){
                                   
                                     this.profileName = response.data[i].name;
+                                    this.selectedValue = -1;
                                    
                                 }
                             }
@@ -700,7 +704,8 @@ import Autocomplete from 'vuejs-auto-complete'
                         else{
                           this.errors.customer_id = "";
                         }
-                        if(this.selectedValue == 0 )
+                
+                        if((this.selectedValue == -1 && this.profileName == '') || ( this.selectedValue == 0) )
                         {
                           this.errors.profile_id = "施設名は必須です。";
                         }
@@ -764,7 +769,7 @@ import Autocomplete from 'vuejs-auto-complete'
                             this.errors.working_hours = "";
                         }
 
-                        if (this.joboffer.occupation_id == '-1') {
+                        if (this.joboffer.occupation_id == '-1' || this.joboffer.occupation_id == '') {
                             this.errors.occupation_id = " 職種は必須です。";
                         }
                         else {
@@ -786,8 +791,11 @@ import Autocomplete from 'vuejs-auto-complete'
                             !this.errors.profile_id
 
                         ) {
-
+                            this.errors.checkallerror = "";
                             this.add();
+                        }
+                        else{
+                          this.errors.checkallerror = "please fill all the blank in above."
                         }
                   },
                 getPostal: function(event) {

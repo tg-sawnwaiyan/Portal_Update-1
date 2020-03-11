@@ -208,7 +208,7 @@ class registerController extends Controller
         }
         else{
 
-            return response()->json(['error' => 'error'], 404);
+            return response()->json(['error' => 'Token Expired']);
             // return back()->with('reset','Email Not Exist.');
         }
     }
@@ -220,9 +220,9 @@ class registerController extends Controller
         // return view('auth.passwordReset');
         $hashPass = bcrypt($request->password);
         $token = $request->token;
-        $checkmail = DB::select('SELECT email,status FROM password_resets WHERE token = "'.$token.'" AND created_at > DATE_SUB(CURDATE(), INTERVAL 2 DAY)');
-         
+        $checkmail = DB::select('SELECT email,status FROM password_resets WHERE token = "'.$token.'" AND created_at > DATE_SUB(CURDATE(), INTERVAL 1 DAY)');
         if(!empty($checkmail) && $checkmail[0]->status == 0){
+
             $getEmail = $checkmail[0]->email;
             $updatePass = array(
                 'password' => $hashPass
@@ -235,8 +235,10 @@ class registerController extends Controller
             return response()->json("success");
         }
         else{
-            // DB::table('password_resets')->where('email',$getEmail)->delete();
-            return response()->json("Expired. Please reset mail send again.");
+            $checkmail = DB::table('password_resets')->where('token',$token)->select('email')->value('email');
+            $updateStatus = array('status' => 2);
+            DB::table('password_resets')->where('email',$checkmail)->update($updateStatus);
+            return response()->json(['error'=>'Expired. Please reset mail send again.']);
         }
     }
     public function getStatus($token)

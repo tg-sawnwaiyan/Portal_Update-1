@@ -22,8 +22,7 @@ class JobController extends Controller
                            FROM  jobs join customers  on jobs.customer_id = customers.id 
                            left join hospital_profiles on hospital_profiles.id = jobs.profile_id
                            left join nursing_profiles on nursing_profiles.id = jobs.profile_id
-                           where customers.recordstatus = 1  and (CASE  customers.type_id WHEN '2' THEN hospital_profiles.activate = 1 ELSE nursing_profiles.activate =1 END) 
-                           group by jobs.id order by jobs.id desc ";
+                           where customers.recordstatus = 1  group by jobs.id order by jobs.id desc ";
 
             $projob = DB::select($query);
 
@@ -49,8 +48,7 @@ class JobController extends Controller
                                 FROM  jobs join customers  on jobs.customer_id = customers.id 
                                 left join nursing_profiles on nursing_profiles.id = jobs.profile_id
                                 where customers.recordstatus = 1 
-                                and nursing_profiles.id = ".$pro_id." and nursing_profiles.activate = 1
-                                group by jobs.id order by jobs.id desc ";
+                                and nursing_profiles.id = ".$pro_id." group by jobs.id order by jobs.id desc ";
                 }
                 else{
 
@@ -58,8 +56,7 @@ class JobController extends Controller
                                 FROM  jobs join customers  on jobs.customer_id = customers.id 
                                 left join hospital_profiles on hospital_profiles.id = jobs.profile_id
                                 where customers.recordstatus = 1 
-                                and hospital_profiles.id = ".$pro_id." and hospital_profiles.activate =1
-                                group by jobs.id order by jobs.id desc ";
+                                and hospital_profiles.id = ".$pro_id."  group by jobs.id order by jobs.id desc ";
                 }
                 
 
@@ -447,8 +444,7 @@ class JobController extends Controller
                         FROM  jobs join customers  on jobs.customer_id = customers.id 
                         left join hospital_profiles on hospital_profiles.id = jobs.profile_id
                         left join nursing_profiles on nursing_profiles.id = jobs.profile_id
-                        where customers.recordstatus = 1 and jobs.recordstatus = 1 and (CASE  customers.type_id WHEN '2' THEN hospital_profiles.activate = 1 ELSE nursing_profiles.activate =1 END) 
-                        group by jobs.id order by jobs.id desc ";
+                        where customers.recordstatus = 1 and jobs.recordstatus = 1 group by jobs.id order by jobs.id desc ";
 
             $projob = DB::select($query);
          
@@ -479,7 +475,7 @@ class JobController extends Controller
                                 FROM  jobs join customers  on jobs.customer_id = customers.id 
                                 left join job_applies on jobs.id = job_applies.job_id
                                 left join nursing_profiles on nursing_profiles.id = jobs.profile_id
-                                where customers.recordstatus = 1 and jobs.recordstatus = 1 and nursing_profiles.id = ".$pro_id." and nursing_profiles.activate = 1
+                                where customers.recordstatus = 1 and jobs.recordstatus = 1 and nursing_profiles.id = ".$pro_id." 
                                 group by jobs.id order by jobs.id desc ";
                 }
                 else{
@@ -487,7 +483,7 @@ class JobController extends Controller
                                 FROM  jobs join customers  on jobs.customer_id = customers.id 
                                 left join job_applies on jobs.id = job_applies.job_id
                                 left join hospital_profiles on hospital_profiles.id = jobs.profile_id
-                                where customers.recordstatus = 1 and jobs.recordstatus = 1 and hospital_profiles.id = ".$pro_id." and hospital_profiles.activate = 1
+                                where customers.recordstatus = 1 and jobs.recordstatus = 1 and hospital_profiles.id = ".$pro_id." 
                                 group by jobs.id order by jobs.id desc ";
                 }
             }
@@ -535,7 +531,7 @@ class JobController extends Controller
                             FROM  jobs join customers  on jobs.customer_id = customers.id 
                             left join hospital_profiles on hospital_profiles.id = jobs.profile_id
                             left join nursing_profiles on nursing_profiles.id = jobs.profile_id
-                            where customers.recordstatus = 1  and jobs.title like '%".$search_word."%' and (CASE  customers.type_id WHEN '2' THEN hospital_profiles.activate = 1 ELSE nursing_profiles.activate =1 END) 
+                            where customers.recordstatus = 1  and jobs.title like '%".$search_word."%' 
                             group by jobs.id order by jobs.id desc ";
                 $jobsearchs = DB::select($query);
 
@@ -559,7 +555,7 @@ class JobController extends Controller
                                     FROM  jobs join customers  on jobs.customer_id = customers.id 
                                     left join job_applies on jobs.id = job_applies.job_id
                                     left join nursing_profiles on nursing_profiles.id = jobs.profile_id
-                                    where customers.recordstatus = 1  and jobs.title like '%".$search_word."%' and  nursing_profiles.activate = 1 
+                                    where customers.recordstatus = 1  and jobs.title like '%".$search_word."%' 
                                     and nursing_profiles.id = ".$pro_id." group by jobs.id order by jobs.id desc ";
                     }
                     else{
@@ -567,7 +563,7 @@ class JobController extends Controller
                                     FROM  jobs join customers  on jobs.customer_id = customers.id 
                                     left join job_applies on jobs.id = job_applies.job_id
                                     left join hospital_profiles on hospital_profiles.id = jobs.profile_id
-                                    where customers.recordstatus = 1  and jobs.title like '%".$search_word."%' and  hospital_profiles.activate = 1 
+                                    where customers.recordstatus = 1  and jobs.title like '%".$search_word."%' 
                                     and hospital_profiles.id = ".$pro_id." group by jobs.id order by jobs.id desc ";
                     }
                     
@@ -623,7 +619,6 @@ class JobController extends Controller
    public function getCustomerList($type){
           if($type == "nursing") 
           {
-             
               $t = "customers.type_id = 3 and ";
           }
           else if($type == "hospital"){
@@ -642,7 +637,7 @@ class JobController extends Controller
    public function getProfileList($cId, Request $request){
         $profile = $request->profile;
         $query = "SELECT $profile.id, $profile.name FROM $profile
-                  WHERE $profile.customer_id = $cId and $profile.activate = 1";
+                  WHERE $profile.customer_id = $cId ";
         $profile_list = DB::select($query);
         return $profile_list;
 }

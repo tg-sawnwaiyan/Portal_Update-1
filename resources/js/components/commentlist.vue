@@ -13,7 +13,7 @@
                 <div v-else class="container-fuid">
                     <h4 class="main-color mb-3">口コミ検索</h4>
                     <div class="row mb-4">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <!-- <select  v-model="profileid" class="division form-control"  @change="getComment()">
                                 <option value="0">選択してください。</option>
                                 <option  id="search-item" v-for="pro in profilelist" :key="pro.id" v-bind:value="pro.id">
@@ -24,7 +24,7 @@
                             <autocomplete id="cusname"  placeholder="事業者名を検索" input-class="form-control" :source=customerList :results-display="formattedDisplay" @clear="cleartext()"  @selected="getSelected($event)">
                             </autocomplete>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-6 choose-item">
                             <label>施設名 : </label>
                          
                             <select v-model="selectedValue" class="division form-control" @change="getComment()">
@@ -48,7 +48,16 @@
                      </div> -->
                         
                     <h5 class="header">{{title}}</h5>
-                    <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
+                    
+                    <!-- <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div> -->
+
+                    <div v-if="nosearch_msg" class="card card-default card-wrap">
+                        <p class="record-ico">
+                            <i class="fa fa-exclamation"></i>
+                        </p>
+                        <p class="record-txt01">検索したデータ見つかりません</p>
+                    </div>
+                    
                     <div v-else class="container-fuid">
                     <div class="card card-default m-b-20" v-for="comment in comments.data" :key="comment.id">
                         <div class="card-body">
