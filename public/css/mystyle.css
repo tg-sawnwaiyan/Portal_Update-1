@@ -233,7 +233,7 @@ scrollbar-width: thin;*/
 }
 
 #search-word {
-    border: 1px solid #a7a3a3;
+    border: 1px solid #ced4da;
 }
 
 .form-group {
@@ -10881,6 +10881,9 @@ width: 18rem;
 }
 
 @media only screen and (max-width:768px) {
+    .choose-item {
+        margin-top: 10px;
+    }
     .title {
         padding-bottom: 0px;
     }
