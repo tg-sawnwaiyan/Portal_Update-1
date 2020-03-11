@@ -287,12 +287,14 @@ class CustomerController extends Controller
             {
                 $s = "recordstatus";
                 $v = $status;
+                $search_customer = Customer::query()->where("$s",'=',$v)->where('status',1)->where('name', 'LIKE' , "%{$search_word}%")->orderBy('created_at', 'desc')->paginate(12);
             }
             else{
                 $s = "status";
                 $v = 0;
+                $search_customer = Customer::query()->where("$s",'=',$v)->where('name', 'LIKE' , "%{$search_word}%")->orderBy('created_at', 'desc')->paginate(12);
             }
-            $search_customer = Customer::query()->where("$s",'=',$v)->where('name', 'LIKE' , "%{$search_word}%")->orderBy('created_at', 'desc')->paginate(12);
+            
         }
      
         
