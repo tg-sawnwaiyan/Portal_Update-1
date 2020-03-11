@@ -48,7 +48,7 @@
                                     <div class="col-md-12 m-t-8">
                                         <div class="joboffer-header">
                                             <h5 class="joboffer-tit clearfix">
-                                                <router-link :to="{name: 'job_details', params:{id:job.id,loginuser:loginuser}}">{{job.title}} </router-link>
+                                                <router-link class="pseudolink" :to="{name: 'job_details', params:{id:job.id,loginuser:loginuser}}">{{job.title}} </router-link>
                                                 <!-- <span class="job_id">jobapplylistcount{{job.count}}</span> -->
                                                 <span class="float-right">応募者数:
                                                 <span class="text-orange"><span class="job_count">{{job.count}}件</span></span>
@@ -101,7 +101,7 @@
                                 <div class="row">
                                     <div class="col-7 col-md-9">
                                         <div class="joboffer-tit clearfix">
-                                            <router-link :to="{name: 'job_details', params:{id:job.id,loginuser:loginuser}}">{{job.title}} </router-link>
+                                            <router-link class="pseudolink" :to="{name: 'job_details', params:{id:job.id,loginuser:loginuser}}">{{job.title}} </router-link>
                                             
                                         </div>
                                     </div>
@@ -155,7 +155,9 @@
                                                     <p class="mb-2"><span class="text-orange"><span class="job_ico">★</span> スキル :</span><span class=""> {{job.skills}}</span></p>
                                             </td>
                                             <td  class="w-50">
-                                                    <p><span class="text-primary"><span class="job_ico"><i class="fa fa-list"></i></span>施設名:</span><span v-for="profile_name in job.profile_name" :key="profile_name.id">{{profile_name.name}}</span></p> 
+                                               
+                                          
+                                                    <p><span class="text-primary"><span class="job_ico"><i class="fa fa-list"></i></span>施設名:</span><span>{{job.profile_name}}</span></p> 
                                             </td>
                                         </tr>
                                     </table>

@@ -254,6 +254,7 @@ const routes = [
         name: "profile",
         path: "/profile/:type/:id",
         component: Profile,
+        props: true,
         meta: {
             auth: undefined,
         }

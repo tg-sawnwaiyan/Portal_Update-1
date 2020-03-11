@@ -322,7 +322,7 @@
                                                             </tr>
                                                             <tr v-if="address_show || tran_show">
                                                                 <td v-for="nur_profile in fav_nursing" :key="nur_profile.id">
-                                                                    <div v-if="tran_show || address_show" class="profile_wd"><span class="pseudolink" @click="googlemap(nur_profile.id)" data-toggle="modal" data-target=".bd-example-modal-google"><i class="fa fa-search"></i> 地図・交通アクセス</span></div>
+                                                                    <div v-if="tran_show || address_show" class="profile_wd"><span class="pseudolink" @click="googlemap(nur_profile.id)" data-toggle="modal" data-target=".bd-example-modal-google"><i class="fa fa-search m-r-5"></i> 地図・交通アクセス</span></div>
                                                                 </td>
                                                             </tr>
                                                             <tr v-if="entry_show">
@@ -343,7 +343,7 @@
                                                             </tr>
                                                             <tr v-if="month_show || entry_show">
                                                                 <td v-for="nur_profile in fav_nursing" :key="nur_profile.id">
-                                                                    <div class="profile_wd"><span class="pseudolink" @click="monthlyCost(nur_profile.id)" data-toggle="modal" data-target=".bd-example-modal-cost"><i class="fa fa-search"></i> 料金プランの詳細</span></div>
+                                                                    <div class="profile_wd"><span class="pseudolink" @click="monthlyCost(nur_profile.id)" data-toggle="modal" data-target=".bd-example-modal-cost"><i class="fa fa-search m-r-5"></i> 料金プランの詳細</span></div>
                                                                 </td>
                                                             </tr>
                                                             <tr v-if="condition_show">

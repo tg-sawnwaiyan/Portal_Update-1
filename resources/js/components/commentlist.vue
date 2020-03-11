@@ -59,17 +59,26 @@
                                     <strong>メールアドレス:</strong>{{comment.email}} -->
                                     <table class="commentlist_tbl">
                                         <tr>
-                                            <td class="align-top custom_title">タイトル :</td>
+                                            <td class="align-top custom_title font-weight-bold">タイトル :</td>
                                             <td> {{comment.title}}</td>
                                         </tr>
-                                        <tr>
-                                            <td class="align-top custom_title">顧客名 :</td>
+                                        <!-- <tr>
+                                            <td class="align-top custom_title">お名前 :</td>
                                             <td> {{comment.name}} </td>
+                                        </tr> -->
+                                         <tr>
+                                            <td class="align-top custom_title font-weight-bold">事業者名 :</td>
+                                            <td> {{comment.cus_name}} </td>
                                         </tr>
-                                            <tr>
+                                         <tr>
+                                            <td class="align-top custom_title font-weight-bold">施設名 :</td>
+                                            <td> {{comment.pro_name}} </td>
+                                        </tr>
+                                         
+                                            <!-- <tr>
                                             <td class="align-top custom_title">メールアドレス: </td>
                                             <td> {{comment.email}} </td>
-                                        </tr>
+                                        </tr> -->
                                     </table>
                                     <div class="d-inline-block mt-3">
                                         <button class="btn text-danger delete-borderbtn" @click="deleteComment(comment.id)">削除</button>
@@ -90,12 +99,18 @@
                             <div class="commentWrap">
 
                                 <div class="d-flex ">
-                                    <p class="comment-underline comment-title p-b-0">{{comment.title}} <span style="font-size:12px;color:#a7a2a2ee;">(コメント)</span>   <p class="comment-date"><i class="fa fa-calendar" aria-hidden="true"></i> {{comment.created_date | moment("YYYY年MM月DD日") }}投稿 <span class="ml-2"><i class="fa fa-clock" aria-hidden="true"></i> {{comment.created_time}}</span></p>
+                                    <p class="comment-underline comment-title p-b-0">{{comment.name}} <span style="font-size:12px;color:#a7a2a2ee;">({{comment.email}})</span>  
+                                     <p class="comment-date"><i class="fa fa-calendar" aria-hidden="true"></i> {{comment.created_date | moment("YYYY年MM月DD日") }}投稿 <span class="ml-2"><i class="fa fa-clock" aria-hidden="true"></i> {{comment.created_time}}</span></p>
 
                                 </div>
-                                <!-- <h5 style="background:linear-gradient(45deg, #ffbe9f, transparent);padding:8px;">{{comment.title}} <span style="font-size:14px;">(コメント)</span></h5> -->
-                            </div>
+                          
+                            </div> 
+                              
                                 <div name="exp[]" class="col-md-12 m-t-20"><p style="color:#736e6e;">{{comment.comment}}</p></div>
+                                <!-- <div  class="col-md-12 m-t-20"><p style="color:#736e6e;">{{comment.email}}</p></div> -->
+                                <div  class="col-md-12 m-t-20"><p style="color:#736e6e;">{{comment.year}}</p></div>
+                                <div  class="col-md-12 m-t-20" v-if="comment.zipcode"><span class="text-orange"><span class="job_ico">★</span></span><p style="color:#736e6e;">{{comment.zipcode}}</p></div>
+                              
                         </div>
                     </div>
                 </div>
@@ -230,9 +245,10 @@
                 },
                 cleartext(){
                 
-                  this.selectedValue = 0;
-                  console.log("this.selectedValue",this.selectedValue);
-                   
+                    this.selectedValue = 0;
+                    this.profileList = [];
+                    this.getComment();
+
                 },
                 getSelected(event){
                   

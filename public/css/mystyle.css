@@ -8565,7 +8565,7 @@ ul.nur-caro-card>li.list-group-item {
 
 .backwrapper {
     padding: 10px;
-    background: #f7f0ed;
+    background: #f8fdff;
 }
 
 .slick-list:focus {
@@ -9179,7 +9179,8 @@ font-size: 18px; */
 }
 
 .mx-panel-date td.today {
-    color: #c1470c !important;
+    color: #009bf9 !important;
+    font-weight: bold;
 }
 
 .mx-calendar-content .cell {
@@ -12187,7 +12188,7 @@ background-image: none;
     }
     .backwrapper {
         padding: 10px;
-        background: #f7f0ed;
+        background: #f8fdff;
     }
     .d-none-768 {
         display: block;

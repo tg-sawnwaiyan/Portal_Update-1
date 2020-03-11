@@ -7,7 +7,8 @@
                   <div class="form-group form-group-wrapper">
                         <img :src="logo" class="profile_logo m-b-8 img-fluid fit-image-profile" @error="imgUrlAlt" >                             
                       <div class="m-t-10">
-                          <span class="btn-file d-inline-block">画像を選択                     
+                     
+                          <span class="btn-file d-inline-block">画像を選択          
                           <input type="file" name="" class ="pro-logo m-b-10" @change="logo_preview(this)">                                      
                           </span>     
                           <span class="pl-4"></span>                                  
@@ -1010,7 +1011,8 @@
                     <span class="bg-trans btn dropdown-arrow nursing_toggle_responsive" @click="toggleEvent('map','5')">詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
                     <div class="col-md-10 hos_toggle float-right m-t-10 map-toggle-div toggle-div pad-free">
                         <div class="col-md-12">
-                            <GoogleMap :address="address_show" :township="hospital_info.townships_id" :lat_num='hospital_info.latitude' :lng_num='hospital_info.longitude' :city="city_id" :township_list="township_list"></GoogleMap>
+                        
+                            <GoogleMap  :address="address_show" :township="hospital_info.townships_id" :lat_num='hospital_info.latitude' :lng_num='hospital_info.longitude' :city="city_id" :township_list="township_list"></GoogleMap>
                             <!-- <GoogleMap :address="hospital_info.address" :lat_num='35.6803997' :lng_num='139.76901739' v-if="hospital_info.latitude == 0"></GoogleMap> -->
 
                             <div class="form-group">
@@ -1105,12 +1107,15 @@ export default {
             }
         },
         created(){
+
+          
             this.pro_id = Number(this.$route.params.id);
             this.type = this.$route.params.type;
 
             this.initialCall();
         },
         methods: {
+
             initialCall(){
               this.address_show = $('#address_show').val();
            
@@ -1182,9 +1187,12 @@ export default {
             },
 
             focusMail: function(event) {
+
                 if((this.hospital_info.email != '' && this.mail_reg.test(this.hospital_info.email))){
                     this.mail_focus=false;
+                   
                 }else{
+                 
                     this.mail_focus=true;
                    
                 }
@@ -1305,11 +1313,19 @@ export default {
                 $(".station-toggle-div").toggle('medium');
                 this.isRotate4 = !this.isRotate4;
             },
-            Create_Profile () {
+            Create_Profile () {           
 
+              if($('#new_lat').val() == "" || $('#new_long').val() == "" || $('#gmaptownship').val() == 0 || this.mail_focus == true || this.ph_num == true )
+              {
+                this.btn_disable = true;
+              }
+              else{
+                this.btn_disable = false;
+              }
+            
                 if(this.btn_disable){
+           
                     // console.log("mail");
-                   
                     this.$swal({
                         title: "確認",
                         text: "To check チェックしてください",
@@ -1326,12 +1342,11 @@ export default {
                         cancelButtonClass: "all-btn",
                         allowOutsideClick: false,
                     })                    
-                }
+                } 
 
-                else {
-
-                var logo = document.getElementsByClassName('pro-logo')[0].files[0];
-               
+                  
+            else {
+                var logo = document.getElementsByClassName('pro-logo')[0].files[0];               
                 this.save_hospital_info = [];
                 this.$loading(true);
 

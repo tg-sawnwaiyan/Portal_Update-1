@@ -88,7 +88,7 @@
                     <tr>
                         <td style="border:none;">
                             <div class="form-group">
-                                <label class="heading-lbl" style="border-left: 5px solid #f9793c;padding-left: 5px;">費用</label>
+                                <label class="heading-lbl" style="border-left: 5px solid #63b7ff;padding-left: 5px;">費用</label>
                             </div>
                             <div class="form-group displayFlex m-b-0">
                                 <label class="heading-lbl col-lg-2 col-md-2 pad-free">入居時費用</label>
@@ -1221,6 +1221,13 @@ export default {
                 }
             },
             createProfile() {
+                if($('#new_lat').val() == "" || $('#new_long').val() == "" || $('#gmaptownship').val() == 0 || this.mail_focus == true || this.ph_num == true )
+                {
+                    this.btn_disable = true;
+                }
+                else{
+                    this.btn_disable = false;
+                }
                 
              if(this.btn_disable){
                     // console.log("mail");
