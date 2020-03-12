@@ -205,13 +205,18 @@ class CustomerController extends Controller
 
             $nursing = NursingProfile::where('customer_id',$id)->first();
             if($nursing !== null){
+                $SpecialFeaturesJunctions = SpecialFeaturesJunctions::where('profile_id',$nursing->id,'and')->where('type','nursing')->delete();
                 $nursing->delete();
             }
 
             $hospital = HospitalProfile::where('customer_id',$id)->first();
             if($hospital !== null){
+                $SubjectJunctions = SubjectJunctions::where('profile_id',$hospital->id)->delete();
+                $SpecialFeaturesJunctions = SpecialFeaturesJunctions::where('profile_id',$hospital->id,'and')->where('type','hospital')->delete();
+                $Schedule = Schedule::where('profile_id',$hospital->id)->delete();
                 $hospital->delete();
             }
+            
         }
         else{
             \Mail::to($customer->email)->send(new deleteSentMail($customer));            
