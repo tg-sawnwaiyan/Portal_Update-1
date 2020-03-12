@@ -77,7 +77,7 @@
                                         <span class="input-group-text"><i class="fas fa-list"></i></span>
                                     </div>
                                     <select id="type" class="form-control custom-select" name="types" :value="type.id" v-model="type" @change="focusType" >
-                                        <option value="">事業者のタイプを選択してください(介護又は病院)。</option>
+                                        <option value="">事業者のタイプを選択してください(介護又は病院)</option>
                                         <option value="3">介護</option>
                                         <option value="2">病院</option>
                                     </select>
@@ -356,119 +356,65 @@
             //fData.append('township', app.township)
             fData.append('types', app.type)
             fData.append('phone', app.phone)
-            this.$loading(true);
-            this.axios.post('/api/register', fData).then(response => {
-                this.$loading(false);
-                this.$swal({
-                    position: 'top-end',
-                    type: 'success',
-                    title: 'メールを送付しました。',
-                    text: '確認のためしばらくお待ちください。',
-                    width: 350,
-                    height: 200,
-                    confirmButtonColor: "#6cb2eb",
-                    confirmButtonText: "閉じる",
-                    confirmButtonClass: "all-btn",
-                    allowOutsideClick: false,
-                })
-                this.$router.push({
-                    name: 'News'
-                });
-            }).catch(error => {
-                this.$loading(false);
-                if(error.response.status == 422){
-                
-                this.errors = error.response.data.errors;
-            
-                if(this.errors.email)
-                {
-                    this.errors.email = "このメールアドレスは既に存在します。";
-                }
-                else{
-                    this.errors.email = "";
-
-                }
-                if(this.errors.password)
-                {
-                    this.errors.password = "パスワードは6桁以上必要です。"
-                }
-                else{
-                    this.errors.password = "";
-                }
-                // app.errors = error.response.data.message
-                // this.$swal({
-                // icon: 'error',
-                // type: 'error',
-                // title: 'Oops...',
-                // text: 'This Email is already exist!',
-                // })
-            }
-            
-            })
+            var seltype = app.type == 2 ? '病院': '介護';
            
-            // this.$swal({
-            //     title: '作成しますか',                
-            //     type: 'warning',
-            //     showCancelButton: true,
-            //     confirmButtonText: 'はい',
-            //     cancelButtonText: 'いいえ',
-            //     showCloseButton: true,
-            //     showLoaderOnConfirm: true,
-            //     allowOutsideClick: false,
-            //     }).then((result) => {
-            //     if(result) {
-            //         this.$loading(true);
-            //         this.axios.post('/api/register', fData).then(response => {
-            //         this.$loading(false);
-            //             this.$swal({
-            //                 position: 'top-end',
-            //                 type: 'success',
-            //                 title: 'メールを送付しました。',
-            //                 text: '確認のためしばらくお待ちください。',
-            //                 width: 350,
-            //                 height: 200,
-            //                 confirmButtonColor: "#6cb2eb",
-            //                 confirmButtonText: "閉じる",
-            //                 confirmButtonClass: "all-btn",
-            //                 allowOutsideClick: false,
-            //             })
-            //             this.$router.push({
-            //                 name: 'News'
-            //             });
-            //         }).catch(error => {
-            //             this.$loading(false);
-            //             if(error.response.status == 422){
+            this.$swal({
+                title: 'この内容で登録しますか。',  
+                text: '事業者名:'+app.username+'<br/>メールアドレス:'+app.email+'<br/>事業者タイプ:'+seltype+'<br/>電話番号:'+app.phone,              
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'はい',
+                cancelButtonText: 'いいえ',
+                showCloseButton: true,
+                showLoaderOnConfirm: true,
+                allowOutsideClick: false,
+                }).then((result) => {
+                    if(result) {
+                        this.$loading(true);
+                        this.axios.post('/api/register', fData).then(response => {
+                        this.$loading(false);
+                            this.$swal({
+                                position: 'top-end',
+                                type: 'success',
+                                title: 'メールを送付しました。',
+                                text: '確認のためしばらくお待ちください。',
+                                width: 350,
+                                height: 200,
+                                confirmButtonColor: "#6cb2eb",
+                                confirmButtonText: "閉じる",
+                                confirmButtonClass: "all-btn",
+                                allowOutsideClick: false,
+                            })
+                            this.$router.push({
+                                name: 'News'
+                            });
+                        }).catch(error => {
+                            this.$loading(false);
+                            if(error.response.status == 422){
+                            
+                            this.errors = error.response.data.errors;
                         
-            //             this.errors = error.response.data.errors;
-                    
-            //             if(this.errors.email)
-            //             {
-            //                 this.errors.email = "このメールアドレスは既に存在します。";
-            //             }
-            //             else{
-            //                 this.errors.email = "";
+                            if(this.errors.email)
+                            {
+                                this.errors.email = "このメールアドレスは既に存在します。";
+                            }
+                            else{
+                                this.errors.email = "";
 
-            //             }
-            //             if(this.errors.password)
-            //             {
-            //                 this.errors.password = "パスワードは6桁以上必要です。"
-            //             }
-            //             else{
-            //                 this.errors.password = "";
-            //             }
-            //             // app.errors = error.response.data.message
-            //             // this.$swal({
-            //             // icon: 'error',
-            //             // type: 'error',
-            //             // title: 'Oops...',
-            //             // text: 'This Email is already exist!',
-            //             // })
-            //         }
-                    
-            //         })
-                    
-            //     } 
-            //     })
+                            }
+                            if(this.errors.password)
+                            {
+                                this.errors.password = "パスワードは6桁以上必要です。"
+                            }
+                            else{
+                                this.errors.password = "";
+                            }
+                        }
+                        
+                        })
+                        
+                    } 
+                })
                 // .catch(error =>{
 
                 //         this.$swal('Cancelled', 'Your file is still intact', 'info')
