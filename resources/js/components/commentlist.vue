@@ -91,7 +91,7 @@
                                     </table>
                                     <div class="d-inline-block mt-3">
                                         <button class="btn text-danger delete-borderbtn" @click="deleteComment(comment.id)">削除</button>
-                                        <span class="mt-2" style="color: #81ad3b;font-weight: bold;" v-if="comment.status != 0" ><i class="fa fa-check-circle" aria-hidden="true"></i>&nbsp;確認済み</span>
+                                        <span class="mt-2" style="color: #81ad3b;font-weight: bold;" v-if="comment.status != 0" ><i class="fa fa-check-circle" aria-hidden="true"></i>&nbsp;承認済み</span>
                                         <button class="btn confirm-borderbtn" v-else @click="commentConfirm(comment.id)"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;新規口コミ承認</button>
                                         
                                     </div>
