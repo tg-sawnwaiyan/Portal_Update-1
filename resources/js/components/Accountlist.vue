@@ -4,10 +4,8 @@
             <div v-if="!acc_status" class="card card-default card-wrap">
                 <p class="record-ico">
                     <i class="fa fa-exclamation"></i>
-                </p>
-                <!-- <p>OOPS!!</p> -->
-
-                <p>アカウントが無効になりました</p>
+                </p>  
+                <p>アカウントが無効になりました。</p>
                 <router-link :to="{name:'profiledit'}" class="main-bg-color create-btn all-btn">
                     アクティベートへ
                 </router-link>
@@ -19,9 +17,8 @@
                 <div v-if="norecord_msg && !createNew" class="card card-default card-wrap">
                     <p class="record-ico">
                         <i class="fa fa-exclamation"></i>
-                    </p>
-                    <!-- <p>OOPS!!</p> -->
-                    <p class="record-txt01" v-if="norecord_msg">表示する施設ありません</p>
+                    </p>                    
+                    <p class="record-txt01" v-if="norecord_msg">表示する施設ありません。</p>
                     <p v-if="norecord_msg">表示する施設ありません‼新しい施設を作成してください。</p>   
                     <span class="main-bg-color create-btn all-btn" v-if="norecord_msg" @click="ShowHideDiv()">
                         <i class="fas fa-plus-circle"></i> 施設新規作成

@@ -6,12 +6,12 @@
                     <p class="record-ico">
                         <i class="fa fa-exclamation"></i>
                     </p>
-                    <!-- <p>OOPS!!</p> -->
-                    <p class="record-txt01">診療科目が登録されていません</p>
-                    <!-- <p>表示するデータありません‼新しいデータを作成してください。</p> -->
-                    <a href="/subject" class="main-bg-color create-btn all-btn">
+                    
+                    <p class="record-txt01">診療科目が登録されていません。</p>
+                   
+                    <router-link to="/subject" class="main-bg-color create-btn all-btn">
                         <i class="fas fa-plus-circle"></i> 診療科目新規作成
-                    </a>
+                    </router-link>
                 </div>
                 <div v-else class="container-fuid">
                     <h4 class="main-color mb-3">診療科目検索</h4>
@@ -39,7 +39,7 @@
                         <p class="record-ico">
                             <i class="fa fa-exclamation"></i>
                         </p>
-                        <p class="record-txt01">検索したデータ見つかりません</p>
+                        <p class="record-txt01">検索したデータ見つかりません。</p>
                     </div>
                     
                     <div v-else class="container-fuid">

@@ -11,13 +11,12 @@
                 <div v-if="norecord_msg" class="card card-default card-wrap">
                     <p class="record-ico">
                         <i class="fa fa-exclamation"></i>
-                    </p>
-                    <p>OOPS!!</p>
-                    <p class="record-txt01">表示するデータありません</p>
+                    </p>                
+                    <p class="record-txt01">表示するデータありません。</p>
                     <p>表示するデータありません‼新しいデータを作成してください。</p>
-                    <a href="/create_news" class="main-bg-color create-btn alt-btn">
+                    <router-link to="/create_news" class="main-bg-color create-btn alt-btn">
                         <i class="fas fa-plus-circle"></i> 新しいデータ作成
-                    </a>
+                    </router-link>
                 </div>
                 <div v-else class="container-fuid">
                     <h4 class="main-color m-b-10">ニュース検索</h4>
