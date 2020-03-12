@@ -34,63 +34,62 @@ class JobApplyController extends Controller
         return $jobapply;
     }
  
-    public function jobapplicantlist($type,$page,$search_id){
-      
+    public function jobapplicantlist($type,$page,$search_id){      
 
-            if($type == "admin")
-            {
-                $query = "SELECT jobs.title as job_title,job_applies.*,(CASE WHEN customers.type_id = '2' THEN CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) END) as jobid
-                            FROM job_applies join jobs on jobs.id = job_applies.job_id
-                            join customers on customers.id = jobs.customer_id
-                            left join hospital_profiles on hospital_profiles.id = jobs.profile_id
-                            left join nursing_profiles on nursing_profiles.id = jobs.profile_id
-                            where  jobs.recordstatus = 1 and customers.recordstatus = 1 ";
-               
-               if($page == "job"){ 
-                    $query .= " and jobs.id = ".$search_id ;
-                }
-
-                $query .= " group by job_applies.id order by job_applies.id desc ";              
+        if($type == "admin")
+        {
+            $query = "SELECT jobs.title as job_title,job_applies.*,(CASE WHEN customers.type_id = '2' THEN CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) END) as jobid
+                        FROM job_applies join jobs on jobs.id = job_applies.job_id
+                        join customers on customers.id = jobs.customer_id
+                        left join hospital_profiles on hospital_profiles.id = jobs.profile_id
+                        left join nursing_profiles on nursing_profiles.id = jobs.profile_id
+                        where  jobs.recordstatus = 1 and customers.recordstatus = 1 ";
+            
+            if($page == "job"){ 
+                $query .= " and jobs.id = ".$search_id ;
             }
-            else{
 
-                if($type == "nursing") { 
-                    $t = "nursing_profiles";
-                    $num = 500000;
-                }
-                else{ 
-                    $t = "hospital_profiles"; 
-                    $num = 200000;
-                }
+            $query .= " group by job_applies.id order by job_applies.id desc ";              
+        }
+        else{
+
+            if($type == "nursing") { 
+                $t = "nursing_profiles";
+                $num = 500000;
+            }
+            else{ 
+                $t = "hospital_profiles"; 
+                $num = 200000;
+            }
+
+            if($page == "profile"){
+                $p = "$t.id = $search_id";
+            }
+            else{ 
+                $p = "jobs.id = $search_id"; 
+            }
+
+            $query = "SELECT jobs.title as job_title,job_applies.*, ".$t.".name  as proname,CONCAT((".$num."+customers.id),'-',LPAD(".$t.".pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) as jobid
+                        FROM job_applies join jobs on jobs.id = job_applies.job_id
+                        join customers on customers.id = jobs.customer_id
+                        left join ".$t." on ". $t.".id = jobs.profile_id
+                        where  jobs.recordstatus = 1 and customers.recordstatus = 1
+                        and ".$p." group by job_applies.id order by job_applies.id desc ";
+        }
+
     
-                if($page == "profile"){
-                    $p = "$t.id = $search_id";
-                }
-                else{ 
-                    $p = "jobs.id = $search_id"; 
-                }
+        $jobapplicants = DB::select($query);
+        $page = Input::get('page', 1);
+        $size = 12;
+        $data = collect($jobapplicants);
 
-                $query = "SELECT jobs.title as job_title,job_applies.*, ".$t.".name  as proname,CONCAT((".$num."+customers.id),'-',LPAD(".$t.".pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) as jobid
-                            FROM job_applies join jobs on jobs.id = job_applies.job_id
-                            join customers on customers.id = jobs.customer_id
-                            left join ".$t." on ". $t.".id = jobs.profile_id
-                            where  jobs.recordstatus = 1 and customers.recordstatus = 1
-                            and ".$p." group by job_applies.id order by job_applies.id desc ";
-            }
-
-        
-            $jobapplicants = DB::select($query);
-            $page = Input::get('page', 1);
-            $size = 12;
-            $data = collect($jobapplicants);
-
-            $jobapplicant = new LengthAwarePaginator(
-                                    $data->forPage($page, $size),
-                                    $data->count(), 
-                                    $size, 
-                                    $page
-                                );
-            return response()->json($jobapplicant);
+        $jobapplicant = new LengthAwarePaginator(
+                                $data->forPage($page, $size),
+                                $data->count(), 
+                                $size, 
+                                $page
+                            );
+        return response()->json($jobapplicant);
         
         
     }
