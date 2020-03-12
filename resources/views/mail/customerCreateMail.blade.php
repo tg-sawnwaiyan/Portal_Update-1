@@ -5,10 +5,10 @@ TIS ティーズに事業者の登録申請がありました。
 管理画面にログイン後承認をお願いします。
 
 【申請のあった事業者情報】
-事業者名:{{$getComment->name}}                  
-メールアドレス:{{$getComment->email}}                   
-タイプを選択:{{$getComment->type}}                 
-電話番号:{{$getComment->phone}}
+事業者名：{{$getComment->name}}                  
+メールアドレス：{{$getComment->email}}                   
+タイプを選択：{{$getComment->type}}                 
+電話番号：{{$getComment->phone}}
 
 ************************************************
 TIS ティーズ

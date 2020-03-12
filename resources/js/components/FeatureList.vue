@@ -8,17 +8,17 @@
                         <i class="fa fa-exclamation"></i>
                     </p>
                   
-                    <p class="record-txt01">特徴が登録されていません。</p>
+                    <p class="record-txt01">特長が登録されていません。</p>
                    
                     <router-link to="/specialfeature" class="main-bg-color create-btn all-btn">
-                        <i class="fas fa-plus-circle"></i> 特徴新規作成
+                        <i class="fas fa-plus-circle"></i> 特長新規作成
                     </router-link>
                 </div>
                 <div v-else class="container-fuid">
-                    <h4 class="main-color mb-3">特徴検索</h4>
+                    <h4 class="main-color mb-3">特長検索</h4>
                     <div class="row mb-4">
                         <div class="col-md-12">
-                            <input type="text" class="form-control" placeholder="特徴検索" id="search-item" @keyup="searchFeature()" />
+                            <input type="text" class="form-control" placeholder="特長検索" id="search-item" @keyup="searchFeature()" />
                         </div>
                     </div>
                     <hr />
@@ -26,7 +26,7 @@
                         <h5>{{title}}</h5>
                         <div class="ml-auto" v-if="!norecord_msg">
                             <router-link to="/specialfeature" class="main-bg-color create-btn all-btn">
-                                <i class="fas fa-plus-circle"></i> <span class="first_txt">特徴</span><span class="dinone">新規作成</span>
+                                <i class="fas fa-plus-circle"></i> <span class="first_txt">特長</span><span class="dinone">新規作成</span>
                             </router-link>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                             <table class="table table-hover custom-table">
                                 <thead>
                                     <tr>
-                                        <th>特徴名</th>
+                                        <th>特長名</th>
                                         <th>略語</th>
                                         <!-- <th>カテゴリー</th> -->
                                         <th></th>
@@ -105,7 +105,7 @@
                 this.$loading(true);
                 if(this.$route.path == "/nusfeaturelist"){
                     this.type = 'nursing';
-                    this.title = "特徴一覧";
+                    this.title = "特長一覧";
                     this.axios.get("/api/feature/featurelist/nursing").then(response => {
                         this.$loading(false);
                         this.features = response.data;
@@ -119,7 +119,7 @@
                 }
                 else if(this.$route.path == "/hosfeaturelist"){
                     this.type = 'hospital';
-                    this.title = "特徴一覧";
+                    this.title = "特長一覧";
                     this.axios.get("/api/feature/featurelist/hospital").then(response => {
                         this.$loading(false);
                         this.features = response.data;
@@ -137,7 +137,7 @@
                 deleteFeature(id,type) {
                         this.$swal({
                             title: "確認",
-                            text: "特徴を削除してよろしいでしょうか。",
+                            text: "特長を削除してよろしいでしょうか。",
                             type: "warning",
                             width: 350,
                             height: 200,
@@ -168,7 +168,7 @@
                                     }
                                     this.$swal({
                                         // title: "削除済",
-                                        text: "特徴を削除しました。",
+                                        text: "特長を削除しました。",
                                         type: "success",
                                         width: 350,
                                         height: 200,
@@ -182,7 +182,7 @@
                                         // this.$swal("このカテゴリーに関連するニュースがあるため、削除できません。");
                                         this.$swal({
                                             title: "削除に失敗しました",
-                                            text: "削除に失敗しました この特徴の施設が存在するため削除できません。 ",
+                                            text: "削除に失敗しました この特長の施設が存在するため削除できません。 ",
                                             type: "error",
                                             width: 350,
                                             height: 200,

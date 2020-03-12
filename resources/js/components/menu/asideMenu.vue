@@ -187,7 +187,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                         },
                         {
                         href: '/nusfeaturelist',
-                        title: '特徴設定',
+                        title: '特長設定',
                         icon: 'fa fa-list'
                         },
                         {
@@ -214,7 +214,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                         },
                         {
                         href: '/hosfeaturelist',
-                        title: '特徴設定',
+                        title: '特長設定',
                         icon: 'fa fa-list'
                         },
                         {

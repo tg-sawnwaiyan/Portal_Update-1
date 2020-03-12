@@ -1,4 +1,4 @@
-{{$checkmail[0]['name']}} 様     
+{{$checkmail[0]['name']}}({{$checkmail[0]['cusnum']}}) 様     
           
 以下のリンクからパスワード再設定手続きにお進みください。    
                                     

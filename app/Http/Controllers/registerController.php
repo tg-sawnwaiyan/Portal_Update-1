@@ -189,6 +189,14 @@ class registerController extends Controller
         $getEmail = $request->email;
 
         $checkmail = User::where('email',$getEmail)->select('*')->get();
+        if($checkmail[0]['type_id'] == 2)
+        {
+            $checkmail[0]['cusnum'] = 200000 +$checkmail[0]['customer_id'];
+        }
+        else{
+            $checkmail[0]['cusnum'] = 500000 + $checkmail[0]['customer_id'];
+        }
+
 
         if(!$checkmail->isEmpty()){
 
