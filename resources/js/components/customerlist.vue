@@ -19,9 +19,9 @@
                         <div class="col-md-6 choose-item">
                         <select  v-model="status" id="selectBox" class="form-control select_box" @change="searchCustomer()">
                             <option selected="selected" value>状態を選択してください。</option>
-                            <option value="1"> Activate </option>                            
-                            <option value="0"> Deactivate </option>   
-                            <option value="2"> Pending </option>                              
+                            <option value="1"> 有効 </option>                            
+                            <option value="0"> 無効 </option>   
+                            <option value="2"> 登録承認審査中 </option>                              
                         </select>
                         </div>
                     </div>
@@ -44,6 +44,12 @@
                                         <div class="col-sm-12 p-0">
                                             <div class="row">
                                                 <div class="col-lg-2 col-md-4 custom_title">
+                                                    <strong>事業者番号:</strong>
+                                                </div>
+                                                <div class="col-lg-10 col-md-8">{{customer.cusnum}}</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-2 col-md-4 custom_title">
                                                     <strong>事業者名:</strong>
                                                 </div>
                                                 <div class="col-lg-10 col-md-8">{{customer.name}}</div>
@@ -52,10 +58,10 @@
                                                 <div class="col-lg-2 col-md-4 custom_title">
                                                     <strong >状態:</strong>
                                                 </div>
-                                                <div class="col-lg-10 col-md-8" v-if="customer.status == 0">Pending</div>
-                                                <div v-else>
-                                                    <div class="col-lg-10 col-md-8" v-if="customer.recordstatus == '1'">Activate</div>
-                                                    <div class="col-lg-10 col-md-8" v-else>Deactivate</div>
+                                                <div class="col-lg-10 col-md-8" v-if="customer.status == 0" >登録承認審査中</div>
+                                                <div class="col-lg-10 col-md-8" v-else>
+                                                    <span v-if="customer.recordstatus == '1'" >有効</span>
+                                                    <span v-else >無効</span>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -204,6 +210,7 @@
                         this.title = "介護施設事業者一覧";
                         this.axios.get("/api/customers/3").then(response => {
                             this.$loading(false);
+                            console.log(response.data)
                             this.customers = response.data;
                             this.norecord = this.customers.data.length;
                             if(this.norecord != 0){
@@ -344,6 +351,12 @@
                         let fd = new FormData();
                         fd.append("search_word", search_word);
                         fd.append("status",this.status)
+                        if(this.$route.path == "/nuscustomerlist"){
+                            fd.append("type",3)
+                        }
+                        else{
+                            fd.append("type",2)
+                        }
                         this.$loading(true);
                         $("html, body").animate({ scrollTop: 0 }, "slow");
                         this.axios.post("/api/customer/search?page="+page, fd).then(response => {

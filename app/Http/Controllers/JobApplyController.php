@@ -161,7 +161,7 @@ class JobApplyController extends Controller
                 $num = 500000;
             }
    
-            $query = "SELECT j.*,$t.email,$t.name as cus_name,ci.city_name as city_name,
+            $query = "SELECT j.*,$t.email,$t.name as pro_name,c.name as cus_name,ci.city_name as city_name,
                        (CASE c.type_id WHEN '2' THEN CONCAT(($num+c.id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT(($num+c.id),'-',LPAD($t.pro_num, 4, '0'),'-',LPAD(j.id, 4, '0')) END) as jobnum,
                        (CASE c.type_id WHEN '2' THEN CONCAT(($num+c.id),'-',LPAD($t.pro_num, 4, '0')) ELSE CONCAT(($num+c.id),'-',LPAD($t.pro_num, 4, '0')) END) as cusnum 
                         from customers as c 
@@ -193,9 +193,11 @@ class JobApplyController extends Controller
                 $allowances = $info->allowances;
                 $insurance = $info->insurance;
                 $holidays = $info->holidays;
+                $pro_name = $info->pro_name;
             }
 
-            $admin_email = 'admin@t-i-s.jp';
+            //  $admin_email = 'admin@t-i-s.jp';
+            $admin_email = 'wutmone@management-partners.co.jp';
              $jobapply->save();
              $jobapply->job_title = $job_title;
              $jobapply->job_description = $job_description;
@@ -211,19 +213,23 @@ class JobApplyController extends Controller
              $jobapply->holidays = $holidays;
              $jobapply->cityname = $request->selectedCity;
              $jobapply->townshipname = $request->townshipname;
+             $jobapply->pro_name = $pro_name;
              if($salary_remark != null || $salary_remark != '')
              {
-                $jobapply->salary = $salary_type . " : " . number_format((int)($salary)) . "(" . $salary_remark . ")";
+                $jobapply->salary = $salary_type . ":" . number_format((int)($salary)) . "(" . $salary_remark . ")";
              }
              else{
-                $jobapply->salary = $salary_type . " : " . number_format((int)($salary));
+                $jobapply->salary = $salary_type . ":" . number_format((int)($salary));
              }
 
-             \Mail::to($customer_mail)->send(new jobApplyMailToCustomer($jobapply));
-             if($jobapply->email != ''){
-                \Mail::to($jobapply->email)->send(new jobApplyMailToUser($jobapply));
+           
+
+              \Mail::to($customer_mail)->send(new jobApplyMailToCustomer($jobapply));
+
+            if($jobapply->email != ''){
+              \Mail::to($jobapply['email'])->send(new jobApplyMailToUser($jobapply));
             }             
-             \Mail::to($admin_email)->send(new jobApplyMailToAdmin($jobapply));
+              \Mail::to($admin_email)->send(new jobApplyMailToAdmin($jobapply));
              return response()->json('Apply successfully ');
 
     }
