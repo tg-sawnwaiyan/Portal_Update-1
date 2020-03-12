@@ -9,20 +9,22 @@
                 </div>
                 <div class="col-md-12">
                     <form @submit.prevent ="add">
+                       
                         <div class="form-group">
-                            <label>職種名 <span class="error sp2">必須</span></label>
-                            <input type="text" class="form-control"  v-model="occupation.name"  placeholder="職種名を入力してください。" >
-                            <span v-if="errors.name" class="error">{{errors.name}}</span>
-                        </div>
-                        <div class="form-group">
-                        <label>ペアレント <span class="error sp2">必須</span></label>
+                        <label>職種大項目<span class="error sp2">必須</span></label>
                             <select v-model="selectedValue" class="form-control" @change='getOccupation()'>
                                 <option value="0">選択してください。</option>
                                 <option v-for="occupations in occupationList" :key="occupations.id" v-bind:value="occupations.id">
                                     {{occupations.name}}
                                 </option>
                             </select>
-                    </div><br/>
+                    </div>
+                    <div class="form-group">
+                            <label>職種<span class="error sp2">必須</span></label>
+                            <input type="text" class="form-control"  v-model="occupation.name"  placeholder="職種名を入力してください。" >
+                            <span v-if="errors.name" class="error">{{errors.name}}</span>
+                        </div><br/>
+
                     <div class="form-group ">
                         <span class="btn main-bg-color white all-btn" @click="checkValidate()">{{subtitle}}</span>
                         <router-link class="btn bt-red all-btn" to="/occupationlist" > キャンセル </router-link>

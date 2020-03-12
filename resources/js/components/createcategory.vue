@@ -37,8 +37,8 @@ export default {
         },
           created() {
               if(this.$route.name == "editcategory"){
-                    this.title = "カテゴリー編集";
-                    this.label = "カテゴリー名 ";
+                    this.title = "ニュースカテゴリー編集";
+                    this.label = "ニュースカテゴリー名 ";
                     this.placeholder = "カテゴリー名を入力してください。";
                     this.buttontext = "保存";
                     this.axios
