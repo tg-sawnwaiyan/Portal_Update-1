@@ -1446,7 +1446,7 @@
                                 '<td colspan="2" style="padding-top:0px;">' +
                                     '<div class="">' +
                                     '<table class="table table-bordered price-tbl text-center" style="margin-bottom:0px">'+
-                                    '<thead><tr style="background-color:#ecf8ff"><th class="text-center" style="background-color:#ffffcc">入居時費用</th><th class="text-center" style="background-color:#ffffcc">月額利用料</th></tr></thead>'+
+                                    '<thead><tr style="background-color:#ecf8ff"><th class="text-center" style="background-color:#ecf8ff">入居時費用</th><th class="text-center" style="background-color:#ecf8ff">月額利用料</th></tr></thead>'+
                                     '<tbody>'+
                                     '<tr><td><span>'+ (Number(item[i]['moving_in_to'])/10000).toLocaleString() + '</span>万円</td><td><span>'+ (Number(item[i]['per_month_to'])/10000).toLocaleString() + '</span>万円</td></tr>'+
                                     '</tbody>'+

@@ -2675,7 +2675,7 @@ h3 {
     border-radius: 0;
     border-top: 1px solid #eeeeee;
     border-bottom: 1px solid #eeeeee;
-    background: linear-gradient(to bottom,#f6f6ea 0,#ffffcc 100%);
+    background: linear-gradient(to bottom,#f6f6ea 0,#ecf8ff 100%);
 }
 .CloseBtn {
     border: none !important;
