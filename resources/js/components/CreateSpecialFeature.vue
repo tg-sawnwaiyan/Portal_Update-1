@@ -17,14 +17,14 @@
                 </div> <br/>
 
                 <div class="form-group">
-                    <label>特徴 <span class="error sp2">必須</span></label>
-                    <input type="text" class="form-control"  v-model="feature.name"  placeholder="特徴を入力してください。" >
+                    <label>特長 <span class="error sp2">必須</span></label>
+                    <input type="text" class="form-control"  v-model="feature.name"  placeholder="特長を入力してください。" >
                     <!-- <span v-if="errors.name" class="error">{{errors.name[0]}}</span> -->
                         <span v-if="errors.name" class="error">{{errors.name}}</span>
                 </div>
                 <div class="form-group">
-                    <label>特徴の略語 <span class="error sp2">必須</span></label>
-                    <input type="text" class="form-control" v-model="feature.short_name"  placeholder="特徴の略語を入力してください。" >
+                    <label>特長の略語 <span class="error sp2">必須</span></label>
+                    <input type="text" class="form-control" v-model="feature.short_name"  placeholder="特長の略語を入力してください。" >
                         <!-- <span v-if="errors.short_name" class="error">{{errors.short_name[0]}}</span> -->
                         <span v-if="errors.short_name" class="error">{{errors.short_name}}</span>
                 </div>
@@ -60,7 +60,7 @@ export default {
                         nurse:""
                     },
                     selectedValue:0,
-                    header: '特徴新規作成',
+                    header: '特長新規作成',
                     subtitle: '作成'
             }
         },
@@ -83,7 +83,7 @@ export default {
                     // else if (this.feature.type == '介護') {
                     //     this.feature.type = '介護';
                     // }
-                      this.header = ' 特徴編集';
+                      this.header = ' 特長編集';
                         this.subtitle = '保存';
                         return this.header;
                         return this.subtitle;
@@ -100,7 +100,7 @@ export default {
                         this.errors.name = "";
                     } else {
                         // console.log('null');
-                        this.errors.name = " 特徴は必須です。";
+                        this.errors.name = " 特長は必須です。";
                     }
 
                     if (this.feature.short_name) {
@@ -108,7 +108,7 @@ export default {
                         this.errors.short_name = "";
                     } else {
                         // console.log('null');
-                        this.errors.short_name = " 特徴の略語は必須です。";
+                        this.errors.short_name = " 特長の略語は必須です。";
                     }
                     
 
@@ -138,7 +138,7 @@ export default {
                     // console.log('this.$route.params.id');
                     this.$swal({
                             title: "確認",
-                            text: "特徴を投稿してよろしいでしょうか。",
+                            text: "特長を投稿してよろしいでしょうか。",
                             type: "info",
                             width: 350,
                             height: 200,
@@ -162,7 +162,7 @@ export default {
                             position: 'top-end',
                             type: 'success',
                             // title:'確認済',
-                            text: '特徴を投稿しました。',
+                            text: '特長を投稿しました。',
                             confirmButtonText: "閉じる",
                             confirmButtonColor: "#6cb2eb",
                             // showConfirmButton: false,
@@ -201,7 +201,7 @@ export default {
             updateFeature() {
                  this.$swal({
                             title: "確認",
-                            text: "特徴を更新してよろしいでしょうか。",
+                            text: "特長を更新してよろしいでしょうか。",
                             type: "info",
                             width: 350,
                             height: 200,
@@ -222,7 +222,7 @@ export default {
                     this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            text: '特徴を更新しました。',
+                            text: '特長を更新しました。',
                             confirmButtonText: "閉じる",
                             confirmButtonColor: "#6cb2eb",
                             width: 250,

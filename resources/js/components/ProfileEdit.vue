@@ -164,8 +164,8 @@
                                     <div class="row">
                                         <div class="col-md-12 m-t-8">
                                             <div class="header2">
-                                                <h5 class=" clearfix" v-if="customer_info.recordstatus ==1">事業者登録を{{accout_status}}します。</h5>
-                                                <h5 class=" clearfix" v-else>事業者登録を{{accout_status}}。</h5>
+                                                <h5 class=" clearfix" v-if="customer_info.recordstatus ==1">事業者登録の{{accout_status}}</h5>
+                                                <h5 class=" clearfix" v-else>事業者登録の{{accout_status}}</h5>
                                             </div>
                                             <div class="form-group">
                                                 <!-- <button class="btn confirmed" v-if="customer_info.accout_status != 0" >{{accout_status}}</button>
@@ -238,9 +238,9 @@
                         this.customer_info = response.data;
                         console.log(this.customer_info);
                         if(this.customer_info.recordstatus == '1') {
-                            this.accout_status = '解除';
+                            this.accout_status = '無効にする';
                         } else {
-                            this.accout_status = '解除しない';
+                            this.accout_status = '有効にする';
                         }
                         if (this.customer_info.type_id == '2') {
                             this.logo = '/upload/hospital_profile/' + response.data.logo;
@@ -528,9 +528,9 @@
                     },
                     AccountStatusChange(status) {
                         if(status == '1') {
-                            var confirm_text = '事業者登録を解除しないですか。';
+                            var confirm_text = '事業者登録を無効にしますか。';
                         } else {
-                            var confirm_text = '事業者登録を解除しますか。';
+                            var confirm_text = '事業者登録を有効にしますか。';
                         }
                         let fd = new FormData();
                             fd.append('status', status)
@@ -555,21 +555,31 @@
                                     .post('api/customer/account_update', fd)
                                     .then((response) => {
                                         console.log("update",response);
-                                        this.customer_info = response.data;
-                                        this.$swal({
+                                        this.customer_info = response.data;                                       
+                                        if(this.customer_info.recordstatus == '1') {
+                                            this.accout_status = '無効にする';
+                                             this.$swal({
                                                 position: 'top-end',
                                                 type: 'success',
-                                                text: '更新しました。',
+                                                text: '事業者登録を有効にしました。',
+                                                confirmButtonText: "閉じる",
+                                                confirmButtonColor: "#6cb2eb",
+                                                width: 250,
+                                                height: 200,
+                                                allowOutsideClick: false,
+                                            });
+                                        } else {
+                                            this.accout_status = '有効にする';
+                                             this.$swal({
+                                                position: 'top-end',
+                                                type: 'success',
+                                                text: '事業者登録を無効にしました。',
                                                 confirmButtonText: "閉じる",
                                                 confirmButtonColor: "#6cb2eb",
                                                 width: 250,
                                                 height: 200,
                                                 allowOutsideClick: false,
                                             })
-                                        if(this.customer_info.recordstatus == '1') {
-                                            this.accout_status = '解除';
-                                        } else {
-                                            this.accout_status = '解除しない';
                                         }
                                         if (this.customer_info.type_id == '2') {
                                             this.logo = '/upload/hospital_profile/' + response.data.logo;
