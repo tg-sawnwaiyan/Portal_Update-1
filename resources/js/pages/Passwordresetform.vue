@@ -51,7 +51,7 @@
        </div>      
    </div>
     <div v-else class="container-fluid successful-resetpwd">   
-        <div style="margin: 0 auto;">
+        <div class="resetpwd-img">
             <img src="/images/login.png" class="" alt="介護医療福祉の総合サイト[TIS ティーズ] "> 
         </div>       
         <div>            

@@ -1443,6 +1443,15 @@ border-radius: 3px;
     border-bottom: 5px solid #cbd9e2;
 }
 
+.resetpwd-img {
+    height: 170px;
+    width: 170px;
+    margin: 0 auto;
+    border-radius: 50%;
+    padding: 10px;
+    text-align: center;
+}
+
 
 /******************************** end no search data ****************************************/
 
@@ -10903,6 +10912,9 @@ width: 18rem;
 }
 
 @media only screen and (max-width:768px) {
+    .successful-resetpwd {
+        width: 100% !important;
+    }
     .choose-item {
         margin-top: 10px;
     }
@@ -11433,6 +11445,11 @@ width: 18rem;
 /*fav_slider*/
 
 @media only screen and (max-width:480px) {
+    .successful-resetpwd {
+        background-color: #fff;
+        margin-top: 0px;
+        border: none;
+    }
     /*news*/
     .ads-slider {
         top: 10px;
