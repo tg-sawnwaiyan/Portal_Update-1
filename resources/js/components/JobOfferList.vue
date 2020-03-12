@@ -32,14 +32,22 @@
                     </div>
                     <hr />
                     <div class="d-flex header pb-3 admin_header">
-                        <h5>求人一覧 <span v-if="type != 'admin'">({{jobs.data[0].profile_name}})</span></h5>
+                        <h5>求人一覧 <span v-if="type != 'admin' && jobs.data.length">({{jobs.data[0].profile_name}})</span></h5>
                         <div class="ml-auto" v-if="!norecord_msg">
                             <router-link :to="hrefroute" class="main-bg-color create-btn all-btn">
                                 <i class="fas fa-plus-circle"></i> <span class="first_txt"> 求人</span><span class="dinone">新規作成</span>
                             </router-link>
                         </div>
                     </div>
-                    <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div>
+                    
+                    <!-- <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div> -->
+
+                    <div v-if="nosearch_msg" class="card card-default card-wrap">
+                        <p class="record-ico">
+                            <i class="fa fa-exclamation"></i>
+                        </p>
+                        <p class="record-txt01">検索したデータ見つかりません</p>
+                    </div>
                    
                     <div v-if="$auth.check(1)" class="container-fuid">
                         <div class="card card-default m-b-20" v-for="job in jobs.data" :key="job.id">
@@ -498,6 +506,7 @@
                          $("html, body").animate({ scrollTop: 0 }, "slow");
                         this.axios.post("/api/job/search?page="+page, fd).then(response => {
                             this.$loading(false);
+                            console.log("response.data.jobsearch",response.data.jobsearch);
                             this.jobs = response.data.jobsearch;
                            
                             if(this.jobs.data.length != 0){

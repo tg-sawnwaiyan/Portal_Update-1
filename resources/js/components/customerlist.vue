@@ -13,12 +13,11 @@
                 <div v-else class="container-fuid">
                     <h4 class="main-color mb-3">事業者検索 </h4>
                     <div class="row mb-4">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <input type="text" class="form-control" placeholder="事業者検索" id="search-word" v-model="searchkeyword" @keyup="searchCustomer()" />
                         </div>
-                    </div>
-                     <div class="row mb-4">
-                        <div class="col-md-12">
+                  
+                        <div class="col-md-6 choose-item">
                               <select  v-model="status" id="selectBox" class="form-control select_box" @change="searchCustomer()">
                                     <option selected="selected" value>選択してください</option>
                                     <option value="1"> Activate </option>
@@ -30,7 +29,15 @@
                     </div>
                     <hr />
                     <h5 class="header">{{title}}</h5>
-                    <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデタが消える。</div>
+                    <!-- <div v-if="nosearch_msg" class="container-fuid no_search_data"> -->
+                    <div v-if="nosearch_msg" class="card card-default card-wrap no_search_data">
+                        <p class="record-ico">
+                            <i class="fa fa-exclamation"></i>
+                        </p>
+                        <p class="record-txt01"> 検索したデータ見つかりません。</p>
+                        
+                    </div>                        
+                       
                     <div v-else class="container-fuid">
                         <table class="table table-bordered">
                             <tr v-for="customer in customers.data" :key="customer.id">

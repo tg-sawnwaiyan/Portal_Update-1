@@ -84,7 +84,7 @@
         </div>
 
 
-            <div class="row m-lr-0 ele pt-2"   id="element1">
+            <div class="row m-lr-0 ele pt-2"  id="element1">
                  <div class="row col-12 list-wrap m-lr-0 white-bg-color" v-for="cust in customer" :key="cust.id">
                     <!--for slideimage-->
                     <div class="col-md-5 detail_profile_left col-slg-12 pad-free-750">

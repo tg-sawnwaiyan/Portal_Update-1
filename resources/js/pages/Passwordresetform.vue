@@ -46,9 +46,9 @@
                         </div>     
                     </form>
                     <div v-else>
-                       <p class="alert alert-info">パスワードの再設定が完了しました。</p>
-                        <span></span>
+                       <p class="alert alert-info">{{error_text}}</p>
                     </div>
+
                 </div>
                 
                 
@@ -68,7 +68,9 @@
         errors:{
             password:'',
             confirmPassword:''
-        }
+        },
+        error_texts:'',
+        toke_expire:false
       }
     },
     mounted() {
@@ -77,11 +79,20 @@
     created() {
         console.log(this.$route.query.code)
         this.axios.get(`/api/getStatus/${this.$route.query.code}`).then(res => {
+            console.log(res.data)
             if(res.data.status == 1){
+              
                 this.has_success = true;
+                this.error_text = "パスワードの再設定が完了しました。";
+            }
+            else if(res.data.status == 2){
+
+                this.has_success = true;
+                this.error_text = "このパスワード再設定用URLま無効です。";
             }else{
                 this.has_success = false;
             }
+           
         })
     },
     methods: {
@@ -119,16 +130,18 @@
                     this.axios.post('/api/resetpassword',fData) 
                     .then(response => {
                         this.$loading(false);
-                        console.log(response.data)
+                        console.log(response.data) 
                         if(response.data == "success"){
                             this.has_success = true;
                         }
                         else{
-                            this.has_error = true;
-                            this.error_text = "Token Expired. Send Mail again.";
-                            this.is_disabled = true;
-                            $("#changePass").css('cursor','not-allowed')
+                            this.has_success = true;
+                            this.error_text = "このパスワード再設定用URLま無効です。";
+                            // this.error_text = "Token Expired. Send Mail again.";
+                            // this.is_disabled = true;
+                            // $("#changePass").css('cursor','not-allowed')
                         }
+                      
                     })
             }
             

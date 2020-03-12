@@ -31,7 +31,16 @@
                         </div>
                     </div>
                     <div class="col-md-12 pad-free scrolldiv p0-480">
-                        <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデタが消える。</div>
+                        
+                        <!-- <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデタが消える。</div> -->
+
+                    <div v-if="nosearch_msg" class="card card-default card-wrap">
+                        <p class="record-ico">
+                        <i class="fa fa-exclamation"></i>
+                        </p>
+                        <p class="record-txt01">検索したデータ見つかりません</p>
+                    </div>
+                        
                         <div v-else class="container-fuid scroll_responsive">
                             <table class="table table-hover custom-table">
                                 <thead>
