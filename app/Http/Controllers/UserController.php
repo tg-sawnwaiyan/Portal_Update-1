@@ -62,6 +62,8 @@ class UserController extends Controller
     public function checkprofile(Request $request,$type,$proid)
 
     {
+        $lat_lng = null;
+        
         if($type == 'hospital'){
             $lat_lng = HospitalProfile::select('id','latitude','longitude')->where('id', $proid)->get();
         }

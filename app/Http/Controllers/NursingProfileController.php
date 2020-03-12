@@ -201,11 +201,12 @@ class NursingProfileController extends Controller
         // End
 
         // Gallary 
-        $del_gallery = Gallery::where(['profile_id'=> $id,'type'=>'video'])->delete(); 
+        $del_gallery = Gallery::where(['profile_id'=> $id,'type'=>'video', 'profile_type'=>'nursing'])->delete(); 
         if(count($request[0]["video"]) > 0){
             for($i=0; $i<count($request[0]["video"]); $i++) {
                 $gallery = new Gallery;
                 $gallery->profile_id = $id;
+                $gallery->profile_type = 'nursing';
                 $gallery->type = 'video';
                 $gallery->photo = $request[0]["video"][$i]['photo'];
                 $gallery->title = $request[0]["video"][$i]['title'];
@@ -215,11 +216,12 @@ class NursingProfileController extends Controller
             }
         }
 
-        $del_gallery = Gallery::where(['profile_id'=> $id,'type'=>'photo'])->delete(); 
+        $del_gallery = Gallery::where(['profile_id'=> $id,'type'=>'photo', 'profile_type'=>'nursing'])->delete(); 
         if(count($request[0]["image"]) > 0){
             for($i=0; $i<count($request[0]["image"]); $i++) {
                 $gallery = new Gallery;
                 $gallery->profile_id = $id;
+                $gallery->profile_type = 'nursing';
                 $gallery->type = 'photo';
                 $gallery->photo = $request[0]["image"][$i]['photo'];
                 $gallery->title = $request[0]["image"][$i]['title'];
@@ -229,11 +231,12 @@ class NursingProfileController extends Controller
             }
         }
 
-        $del_gallery = Gallery::where(['profile_id'=> $id,'type'=>'panorama'])->delete(); 
+        $del_gallery = Gallery::where(['profile_id'=> $id,'type'=>'panorama', 'profile_type'=>'nursing'])->delete(); 
         if(count($request[0]["panorama"]) > 0){
             for($i=0; $i<count($request[0]["panorama"]); $i++) {
                 $gallery = new Gallery;
                 $gallery->profile_id = $id;
+                $gallery->profile_type = 'nursing';
                 $gallery->type = 'panorama';
                 $gallery->photo = $request[0]["panorama"][$i]['photo'];
                 $gallery->title = $request[0]["panorama"][$i]['title'];
