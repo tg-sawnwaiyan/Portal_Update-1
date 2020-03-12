@@ -179,7 +179,7 @@ Route::group(['middleware' => ['auth:api']], function() {
         Route::get('edit/{id}', 'CustomerController@edit');
         Route::post('update/{id}','CustomerController@update');
         Route::post('account_update','CustomerController@accountStatusUpdate');
-        Route::delete('delete/{id}','CustomerController@destroy');
+        Route::delete('delete/{id}/{type}','CustomerController@destroy');
     });
     // End Customer
 

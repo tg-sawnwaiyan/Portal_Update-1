@@ -7,8 +7,8 @@
                     <p class="record-ico">
                     <i class="fa fa-exclamation"></i>
                     </p>
-                    <!-- <p>OOPS!!</p> -->
-                    <p class="record-txt01">口コミが登録されていません</p>
+                  
+                    <p class="record-txt01">口コミが登録されていません。</p>
                 </div>
                 <div v-else class="container-fuid">
                     <h4 class="main-color mb-3">口コミ検索</h4>
@@ -55,7 +55,7 @@
                         <p class="record-ico">
                             <i class="fa fa-exclamation"></i>
                         </p>
-                        <p class="record-txt01">検索したデータ見つかりません</p>
+                        <p class="record-txt01">検索したデータ見つかりません。</p>
                     </div>
                     
                     <div v-else class="container-fuid">
@@ -287,7 +287,7 @@
                 deleteComment(id) {
                         this.$swal({
                             title: "確認",
-                            text: "コメントを削除してよろしいでしょうか。",
+                            text: "口コミを削除してよろしいでしょうか。",
                             type: "warning",
                             width: 350,
                             height: 200,
@@ -326,7 +326,7 @@
                                     // this.categories.splice(i, 1);
                                     this.$swal({
                                         // title: "削除済",
-                                        text: "コメントを削除しました。",
+                                        text: "口コミを削除しました。",
                                         type: "success",
                                         width: 350,
                                         height: 200,
