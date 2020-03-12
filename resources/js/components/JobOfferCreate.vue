@@ -680,7 +680,7 @@ import Autocomplete from 'vuejs-auto-complete'
                                   
                                     this.profileName = response.data[i].name;
                                     this.cusName = response.data[i].cus_name + '「 ' +response.data[i].cus_email+ ' 」';
-                                   
+                                    this.selectedValue = -1;
                                     
                                    
                                 }
@@ -704,7 +704,7 @@ import Autocomplete from 'vuejs-auto-complete'
                         else{
                           this.errors.customer_id = "";
                         }
-                
+                console.log(this.selectedValue);
                         if((this.selectedValue == -1 && this.profileName == '') || ( this.selectedValue == 0) )
                         {
                           this.errors.profile_id = "施設名は必須です。";
@@ -712,6 +712,9 @@ import Autocomplete from 'vuejs-auto-complete'
                         else{
                           this.errors.profile_id = "";
                         }
+
+                        console.log(this.errors.customer_id);
+                        console.log(this.errors.profile_id);
 
                         if (this.joboffer.title == '') {
                             this.errors.title = '施設種別名は必須です。';
@@ -791,10 +794,12 @@ import Autocomplete from 'vuejs-auto-complete'
                             !this.errors.profile_id
 
                         ) {
+                          console.log('null');
                             this.errors.checkallerror = "";
                             this.add();
                         }
                         else{
+                          console.log('not');
                           this.errors.checkallerror = "please fill all the blank in above."
                         }
                   },

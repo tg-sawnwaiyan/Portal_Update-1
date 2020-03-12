@@ -16,9 +16,7 @@ TIS ティーズ より求人への応募がありました。
 各種保険：{{$getComment->insurance}}
 就業時間：{{$getComment->job_working_hours}}
 休日休暇：{{$getComment->holidays}}
-事業者名：{{$getComment->cus_name}}
 施設名：{{$getComment->pro_name}}
-ご希望等：
 
 【ご応募された方の情報】   
 お名前：{{$getComment->first_name}}
