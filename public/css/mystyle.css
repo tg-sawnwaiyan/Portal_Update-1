@@ -1444,7 +1444,7 @@ border-radius: 3px;
 }
 
 .resetpwd-img {
-    height: 170px;
+    height: 87px;
     width: 170px;
     margin: 0 auto;
     border-radius: 50%;
@@ -10912,8 +10912,12 @@ width: 18rem;
 }
 
 @media only screen and (max-width:768px) {
+    
     .successful-resetpwd {
         width: 100% !important;
+        margin-top: 34px;
+        background-color: #f8f8f8;
+        border: none;
     }
     .choose-item {
         margin-top: 10px;
@@ -11445,6 +11449,11 @@ width: 18rem;
 /*fav_slider*/
 
 @media only screen and (max-width:480px) {
+    .data-success {
+      
+        font-size: 16px;
+     
+    }
     .successful-resetpwd {
         background-color: #fff;
         margin-top: 0px;
