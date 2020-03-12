@@ -13,19 +13,19 @@
                 <div v-else class="container-fuid">
                     <h4 class="main-color mb-3">口コミ検索</h4>
                     <div class="row mb-4">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <!-- <select  v-model="profileid" class="division form-control"  @change="getComment()">
                                 <option value="0">選択してください。</option>
                                 <option  id="search-item" v-for="pro in profilelist" :key="pro.id" v-bind:value="pro.id">
                                     {{pro.name}}
                                 </option>
                             </select> -->
-                            <label>事業者名 : </label>
+                            <label>事業者名</label>
                             <autocomplete id="cusname"  placeholder="事業者名を検索" input-class="form-control" :source=customerList :results-display="formattedDisplay" @clear="cleartext()"  @selected="getSelected($event)">
                             </autocomplete>
                         </div>
-                        <div class="col-md-12">
-                            <label>施設名 : </label>
+                        <div class="col-md-6 choose-item">
+                            <label>施設名</label>
                          
                             <select v-model="selectedValue" class="division form-control" @change="getComment()">
                                 <option value="0">選択してください。</option>
