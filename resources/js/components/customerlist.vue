@@ -44,6 +44,12 @@
                                         <div class="col-sm-12 p-0">
                                             <div class="row">
                                                 <div class="col-lg-2 col-md-4 custom_title">
+                                                    <strong>事業者番号:</strong>
+                                                </div>
+                                                <div class="col-lg-10 col-md-8">{{customer.cusnum}}</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-2 col-md-4 custom_title">
                                                     <strong>事業者名:</strong>
                                                 </div>
                                                 <div class="col-lg-10 col-md-8">{{customer.name}}</div>
@@ -204,6 +210,7 @@
                         this.title = "介護施設事業者一覧";
                         this.axios.get("/api/customers/3").then(response => {
                             this.$loading(false);
+                            console.log(response.data)
                             this.customers = response.data;
                             this.norecord = this.customers.data.length;
                             if(this.norecord != 0){
@@ -344,6 +351,12 @@
                         let fd = new FormData();
                         fd.append("search_word", search_word);
                         fd.append("status",this.status)
+                        if(this.$route.path == "/nuscustomerlist"){
+                            fd.append("type",3)
+                        }
+                        else{
+                            fd.append("type",2)
+                        }
                         this.$loading(true);
                         $("html, body").animate({ scrollTop: 0 }, "slow");
                         this.axios.post("/api/customer/search?page="+page, fd).then(response => {

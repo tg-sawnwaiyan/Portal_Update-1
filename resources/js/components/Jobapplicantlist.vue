@@ -13,14 +13,9 @@
 
                
 
-                <h5  class="header"> 求人応募者一覧 
-                    <span v-if="page == 'job' && job_id != ''"> 
-                        {{job_title}} <span class="pro_num">({{job_id}})</span>
-                    </span>
-              
-                    <span  class="pro_num" v-if="page == 'profile' && proname != ''">
-                        「{{proname}}」
-                    </span>
+                <h5  class="header"> 求人応募者一覧
+                    <span v-if="page == 'job' && job_id != ''" style="font-size: 0.9em; font-weight: normal; color: #333;"><br/>{{job_title}}<span class="pro_num">({{job_id}})</span> </span>
+                    <span  class="pro_num" v-if="page == 'profile' && proname != ''">「{{proname}}」</span>
                 </h5>
             
                     
@@ -41,7 +36,7 @@
                                              <h5  class="font-weight-bold">{{jobapply.job_title}} <span class="pro_num">({{jobapply.jobid}})</span></h5>
                                         </div>
                                     </div> 
-                                    <div class="col-3  text-right">
+                                    <div class="col-3 text-right">
                                         <button :class="'btn btn drop-bg-color changeLink'+jobapply.id"  @click="applicatnToggle(jobapply.id)">
                                         詳細 <i :id="'icon' + jobapply.id" class="fas fa-sort-down animate rotate"></i></button>
                                     </div>
@@ -181,7 +176,8 @@ export default {
             type: null,
             page: null,
             job_id:'',
-            proname:''
+            proname:'',
+            colnum: 'col-3',
         };
 
     },
@@ -232,11 +228,13 @@ export default {
                 this.search_id = 0;
                 this.type = 'admin';
                 this.page = null;  
+                this.colnum = 'col-3';
             }
             else{                        
                 this.type = this.$route.params.type;
                 this.search_id = this.$route.params.id;                        
-                this.page = this.$route.params.page;                        
+                this.page = this.$route.params.page;    
+                this.colnum = 'col-12';                    
             }
             this.$loading(true);
             this.axios.get("/api/jobapplicantlist/"+this.type+"/"+this.page+"/"+this.search_id).then(response => {

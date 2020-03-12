@@ -25,7 +25,7 @@ class CustomerController extends Controller
      */
     public function index($type)
     {
-        $customer =Customer::where('type_id',$type)->orderBy('created_at', 'desc')->paginate(12);
+        $customer =Customer::select("*",DB::raw("(CASE type_id WHEN '2' THEN CONCAT((200000+id)) ELSE CONCAT((500000+id)) END) as cusnum"))->where('type_id',$type)->orderBy('created_at', 'desc')->paginate(12);
         return response()->json($customer);
     }
     public function nusaccount($id) {
@@ -292,28 +292,25 @@ class CustomerController extends Controller
         $request = $request->all();
         $search_word = $request['search_word'];
         $status = $request['status'];
+        
         if($request['status'] == null)
         {
-            $search_customer = Customer::query()->where('name', 'LIKE' , "%{$search_word}%")->orderBy('created_at', 'desc')->paginate(12);
+            $search_customer = Customer::select("*",DB::raw("(CASE type_id WHEN '2' THEN CONCAT((200000+id)) ELSE CONCAT((500000+id)) END) as cusnum"))->where('name', 'LIKE' , "%{$search_word}%")->where('type_id',$request['type'])->orderBy('created_at', 'desc')->paginate(12);
         }
         else{
             if($status == 0 || $status == 1)
             {
                 $s = "recordstatus";
                 $v = $status;
-                $search_customer = Customer::query()->where("$s",'=',$v)->where('status',1)->where('name', 'LIKE' , "%{$search_word}%")->orderBy('created_at', 'desc')->paginate(12);
+                $search_customer = Customer::select("*",DB::raw("(CASE type_id WHEN '2' THEN CONCAT((200000+id)) ELSE CONCAT((500000+id)) END) as cusnum"))->where("$s",'=',$v)->where(['status'=>1,'type_id'=>$request['type']])->where('name', 'LIKE' , "%{$search_word}%")->orderBy('created_at', 'desc')->paginate(12);
             }
             else{
                 $s = "status";
                 $v = 0;
-                $search_customer = Customer::query()->where("$s",'=',$v)->where('name', 'LIKE' , "%{$search_word}%")->orderBy('created_at', 'desc')->paginate(12);
+                $search_customer = Customer::select("*",DB::raw("(CASE type_id WHEN '2' THEN CONCAT((200000+id)) ELSE CONCAT((500000+id)) END) as cusnum"))->where("$s",'=',$v)->where('name', 'LIKE' , "%{$search_word}%")->where('type_id',$request['type'])->orderBy('created_at', 'desc')->paginate(12);
             }
             
-        }
-     
-        
-
-        
+        }        
         return response()->json($search_customer);
     }
 
