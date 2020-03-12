@@ -21,7 +21,7 @@
                             <option selected="selected" value>状態を選択してください。</option>
                             <option value="1"> 公開中 </option>
                             <option value="0"> 非公開 </option>
-                            <option value="2"> Pending </option>                                 
+                            <option value="2"> 保留中 </option>                                 
                         </select>
                         </div>
                     </div>

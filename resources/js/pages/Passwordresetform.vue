@@ -1,6 +1,7 @@
 <template>
-   <div id="psd_reset_form" class="loginwrapper">
-       <div class="login_content">
+<div>
+   <div id="psd_reset_form" class="loginwrapper" v-if="!has_success">
+       <div class="login_content" >
            <div class="logo_wrap">
                 <div class="brand_logo_container logo_bk">
                 <img src="/images/login.png" class="brand_logo" alt="介護医療福祉の総合サイト[TIS ティーズ] ">
@@ -12,7 +13,7 @@
                     <!-- <router-link to="/register" class="reg_link  ml-auto">登録</router-link>       -->
                 </div>
                 <div class="form_content">
-                    <form autocomplete="off" @submit.prevent="resetPass" method="post" v-if="!has_success">
+                    <form autocomplete="off" @submit.prevent="resetPass" method="post">
                         <div class="mb-3 position-relative">
                         <div class="input-group">
                             <div class="input-group-append">
@@ -44,17 +45,27 @@
                         <div class="d-flex justify-content-center mt-3">
                             <button type="submit" name="button" id="changePass" class="btn login_btn" :disabled="is_disabled">変更</button>
                         </div>     
-                    </form>
-                    <div v-else>
-                       <p class="alert alert-info">{{error_text}}</p>
-                    </div>
-
-                </div>
-                
-                
+                    </form>                   
+                </div>       
             </div>
-       </div>
+       </div>      
    </div>
+    <div v-else class="container-fluid successful-resetpwd">   
+        <div style="margin: 0 auto;">
+            <img src="/images/login.png" class="" alt="介護医療福祉の総合サイト[TIS ティーズ] "> 
+        </div>       
+        <div>            
+            <p class="data-success">{{error_text}}</p>   
+            <div class="form-group col-12 text-center">
+                 <a href="/" class="btn register_btn login_btn all-btn">
+                ホーム
+            </a>  
+            </div>
+           
+        </div>
+                                
+        </div>
+</div>
 </template>
 <script>
   export default {
@@ -133,6 +144,7 @@
                         console.log(response.data) 
                         if(response.data == "success"){
                             this.has_success = true;
+                            this.error_text = "パスワードの再設定が完了しました。";
                         }
                         else{
                             this.has_success = true;
