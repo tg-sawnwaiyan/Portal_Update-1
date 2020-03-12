@@ -571,7 +571,7 @@ class JobController extends Controller
 
                 $jobsearchs = DB::select($query);
 
-                foreach($projob as $jobs){
+                foreach($jobsearchs as $jobs){
                     $job_id = $jobs->id;
                     $jobapplies =  DB::table('job_applies')->join('jobs','job_applies.job_id','=','jobs.id')
                                 ->where('job_applies.job_id','=',$job_id)->count();

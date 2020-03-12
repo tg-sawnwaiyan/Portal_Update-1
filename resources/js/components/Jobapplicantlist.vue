@@ -15,7 +15,7 @@
 
                 <h5  class="header"> 求人応募者一覧 
                     <span v-if="page == 'job' && job_id != ''"> 
-                        「{{job_title}} <span class="pro_num">({{job_id}})</span>」
+                        {{job_title}} <span class="pro_num">({{job_id}})</span>
                     </span>
               
                     <span  class="pro_num" v-if="page == 'profile' && proname != ''">
@@ -29,26 +29,45 @@
                     <p class="record-ico">
                     <i class="fa fa-exclamation"></i>
                     </p>                   
-                    <p class="record-txt01">求人応募者が登録されていません</p>
+                    <p class="record-txt01">求人応募者が登録されていません。</p>
                 </div>
                 <div v-else class="container-fuid">
                     <div class="card card-default m-b-20"  v-for="jobapply in jobapplies.data" :key="jobapply.id">
                             <div class="card-body p-3">
-                                <div class="row">
+                              
+                                <div class="row"  v-if="page == null || page == 'profile' ">
                                     <div class="col-9">
                                         <div class="joboffer-tit clearfix">
-                                        <p><span class="font-weight-bold">姓:&nbsp;</span>{{jobapply.first_name}}</p>
+                                             <h5  class="font-weight-bold">{{jobapply.job_title}} <span class="pro_num">({{jobapply.jobid}})</span></h5>
                                         </div>
-                                    </div>
+                                    </div> 
                                     <div class="col-3  text-right">
                                         <button :class="'btn btn drop-bg-color changeLink'+jobapply.id"  @click="applicatnToggle(jobapply.id)">
                                         詳細 <i :id="'icon' + jobapply.id" class="fas fa-sort-down animate rotate"></i></button>
                                     </div>
                                 </div>
-                                <p><span class="font-weight-bold">名:&nbsp; </span>{{jobapply.last_name}}
-                                            <!-- <span class="text-orange"><span class="job_count">{{job.count}}件</span></span> -->
-                                </p>
-                                <p><span class="font-weight-bold">メールアドレス:&nbsp;</span><span>{{jobapply.email}}</span></p>
+                                <div v-else>
+                                     <div class="col-12  text-right">
+                                        <button :class="'btn btn drop-bg-color changeLink'+jobapply.id"  @click="applicatnToggle(jobapply.id)">
+                                        詳細 <i :id="'icon' + jobapply.id" class="fas fa-sort-down animate rotate"></i></button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="joboffer-tit clearfix">
+                                        <p><span class="font-weight-bold">お名前:&nbsp;</span>{{jobapply.first_name}}</p>
+                                        </div>
+                                    </div>                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="joboffer-tit clearfix">
+                                             <p><span class="font-weight-bold">フリガナ:&nbsp; </span>{{jobapply.last_name}} </p>
+                                        </div>
+                                    </div>
+                                </div>
+                               <!-- <p><span class="font-weight-bold">メールアドレス:&nbsp;</span><span>{{jobapply.email}}</span></p> -->
+                                
                                 <div class="collapse" :id="'changeLink' + jobapply.id">                                    
                                     <table class="table table-bordered">
                                         <tr>
@@ -57,18 +76,22 @@
                                             </td>
                                             <td class="w-50">
                                                 <!-- <p><span class="font-weight-bold">性別:</span><span>{{jobapply.gender}}</span></p>   -->
-                                                 <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-user"></i></span> 性別:&nbsp;</span><span class=""> {{jobapply.gender}}</span></p>
+                                                <p class="mb-2"><span class="text-orange"><span class="job_ico">★</span> 郵便番号:&nbsp;</span><span class=""> {{jobapply.postal}}</span></p>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td  class="w-50">
-                                                    <p class="mb-2"><span class="text-orange"><span class="job_ico">★</span> 郵便番号:&nbsp;</span><span class=""> {{jobapply.postal}}</span></p>
+                                                <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-user"></i></span> 性別:&nbsp;</span><span class=""> {{jobapply.gender}}</span></p>
+                                                   
                                             </td>
                                             <td  class="w-50">
-                                                    <p><span class="font-weight-bold"><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>街路住所:&nbsp;</span>{{jobapply.street_address}}</p> 
+                                                    <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>住所:&nbsp;</span>{{jobapply.street_address}}</p> 
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td class="w-50">
+                                                <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-user"></i></span> メールアドレス:&nbsp;</span><span class=""> {{jobapply.email}}</span></p>
+                                            </td>
                                             <td  class="w-50">
                                                     <p class="mb-2"><span class="text-orange"><span class="job_ico"><img src="/images/icons8-phone.png" width="75%"></span> 電話番号:&nbsp;</span><span class=""> {{jobapply.phone}}</span></p>
                                             </td>
@@ -224,18 +247,21 @@ export default {
                      this.nosearch_msg = false;
                 }
                 else{
-                     this.nosearch_msg = true;;
+                     this.nosearch_msg = true;
                 }
              
                 if(this.jobapplies.data.length != 0 && this.page == 'job')
                 {
+                  
                      this.job_id = this.jobapplies.data[0].jobid;
                      this.job_title = this.jobapplies.data[0].job_title;
                 }
                 else if(this.page == 'profile'){
+                    
                     this.proname = this.jobapplies.data[0].proname;
                    
                 }
+               
                 
                 // this.norecord = this.jobapplies.data.length;
               

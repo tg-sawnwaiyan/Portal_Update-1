@@ -8,7 +8,7 @@
                             <i class="fa fa-exclamation"></i>
                         </p>
                    
-                        <p class="record-txt01">ニュースカテゴリーが登録されていません</p>
+                        <p class="record-txt01">ニュースカテゴリーが登録されていません。</p>
                        
                         <router-link to="/createcategory" class="main-bg-color create-btn all-btn">
                             <i class="fas fa-plus-circle"></i> カテゴリー新規作成
@@ -40,7 +40,7 @@
                                 <p class="record-ico">
                                     <i class="fa fa-exclamation"></i>
                                 </p>
-                                <p class="record-txt01">検索したデータ見つかりません</p>
+                                <p class="record-txt01">検索したデータ見つかりません。</p>
                             </div>
                         
                         <div v-else class="container-fuid">

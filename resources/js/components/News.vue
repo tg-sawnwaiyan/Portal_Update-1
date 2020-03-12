@@ -1341,6 +1341,7 @@
                 .get('/api/get_latest_posts_by_catId/'+searchword)
                 .then(response => {
                     this.$loading(false);
+                    console.log("response.data.length",response.data.length);
                     if(response.data.length>0) {
                         this.post_groups = this.groupBy(response.data, 'name');
                     } else {
