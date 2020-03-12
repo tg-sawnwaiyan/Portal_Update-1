@@ -5,6 +5,17 @@
             <h4 class="page-header header">{{ header }}</h4>
             <br>
             <form @submit.prevent="add">
+                <div class="form_group">
+                    <label> 施設種別 <span class="error sp2">必須</span></label>
+                    <select v-model="feature.type" name="type" class="form-control">
+                            <option v-bind:value='-1'>選択してください。 </option>
+                            <option value="nursing">介護</option>
+                            <option value="hospital" >病院</option>
+                    </select>
+                    <span v-if="errors.type" class="error">{{errors.type}}</span>
+                        <!-- <span v-if="errors.nur" class="error">{{errors.nur}}</span> -->
+                </div> <br/>
+
                 <div class="form-group">
                     <label>特徴 <span class="error sp2">必須</span></label>
                     <input type="text" class="form-control"  v-model="feature.name"  placeholder="特徴を入力してください。" >
@@ -17,16 +28,7 @@
                         <!-- <span v-if="errors.short_name" class="error">{{errors.short_name[0]}}</span> -->
                         <span v-if="errors.short_name" class="error">{{errors.short_name}}</span>
                 </div>
-                <div class="form_group">
-                    <label> カテゴリー <span class="error sp2">必須</span></label>
-                    <select v-model="feature.type" name="type" class="form-control">
-                            <option v-bind:value='-1'>選択してください。 </option>
-                            <option value="nursing">介護</option>
-                            <option value="hospital" >病院</option>
-                    </select>
-                    <span v-if="errors.type" class="error">{{errors.type}}</span>
-                        <!-- <span v-if="errors.nur" class="error">{{errors.nur}}</span> -->
-                </div> <br/>
+                
 
                 <div class="form-group ">
                         <span class="btn main-bg-color white all-btn" @click="checkValidate()"> {{subtitle}}</span>
