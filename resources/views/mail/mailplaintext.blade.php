@@ -1,4 +1,4 @@
-{{$getCustomer->name}} 様
+{{$getCustomer->name}}({{$getCustomer->cusnum}}) 様
 
 T-ISティーズへの登録が承認されました。
           

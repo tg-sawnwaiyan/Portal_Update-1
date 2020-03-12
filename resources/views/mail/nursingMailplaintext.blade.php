@@ -3,7 +3,7 @@
 TIS ティーズより資料請求がありました。
 
 【資料請求された方について】       
-お名前:{{$getComment->name}}          
+お名前：{{$getComment->name}}          
 フリガナ：{{$getComment->furigana}}           
 生年月日：{{$getComment->bdate}}          
 性別：{{$getComment->sex1}}            

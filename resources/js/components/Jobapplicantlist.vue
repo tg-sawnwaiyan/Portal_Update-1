@@ -24,7 +24,7 @@
                     <p class="record-ico">
                     <i class="fa fa-exclamation"></i>
                     </p>                   
-                    <p class="record-txt01">求人応募者が登録されていません。</p>
+                    <p class="record-txt01">求人応募者が存在しません。</p>
                 </div>
                 <div v-else class="container-fuid">
                     <div class="card card-default m-b-20"  v-for="jobapply in jobapplies.data" :key="jobapply.id">

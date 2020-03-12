@@ -227,16 +227,16 @@ class CustomerController extends Controller
     {
 
         $getCustomer = Customer::findOrFail($id);
-
-        // $query = "SELECT c.latitude,c.longitude FROM cities as c
-        //                left join  townships as t on t.city_id = c.id
-        //                left join customers as cu on cu.townships_id = t.id
-        //                where cu.id = " .$id. " group by c.id";
-
-        // $citylatlng = DB::select($query);
+        if($getCustomer->type_id == 3)
+        {
+            $getCustomer->cusnum = 500000 + $getCustomer->id;
+        }
+        else{
+            $getCustomer->cusnum = 200000 + $getCustomer->id;
+        }
 
         $checkUser = User::where('email',$getCustomer->email)->select('email')->value('email');
-        // $getUserId = User::where('email',$getCustomer->email)->value('id');
+    
         $comfirmUser =  auth('api')->user()->id;
         if(!empty($checkUser)){
             return response()->json('already');
@@ -252,12 +252,7 @@ class CustomerController extends Controller
                 'customer_id' =>$getCustomer->id
             );
             DB::table('users')->insert($data);
-            // $insert = array(
-            //     'customer_id' => $getCustomer->id,
-            //     'latitude' => $citylatlng[0]->latitude,
-            //     'longitude' => $citylatlng[0]->longitude,
-
-            //    );
+           
             $lastid = User::where('email',$getCustomer->email)->select('id')->value('id'); //user table last id
             $model_has_roles = array(
                 'role_id'=>2,
@@ -265,13 +260,7 @@ class CustomerController extends Controller
                 'model_id'=> $lastid,
             );
 
-            // if($getCustomer->type_id == 2){
-
-            //     \DB::table('hospital_profiles')->insert($insert);
-            // }else{
-
-            //     \DB::table('nursing_profiles')->insert($insert);
-            // }
+           
            DB::table('model_has_roles')->insert($model_has_roles);
 
             $cus = Customer::find($id);
