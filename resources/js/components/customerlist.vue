@@ -6,28 +6,26 @@
                     <p class="record-ico">
                         <i class="fa fa-exclamation"></i>
                     </p>
-                    <!-- <p>OOPS!!</p> -->
-                    <p class="record-txt01">介護施設事業者が登録されていません</p>
-                    <!-- <p>表示するデータありません‼新しいデータを作成してください。</p> -->
+                   
+                    <p class="record-txt01">介護施設事業者が登録されていません。</p>
+                 
                 </div>
                 <div v-else class="container-fuid">
                     <h4 class="main-color mb-3">事業者検索 </h4>
                     <div class="row mb-4">
                         <div class="col-md-6">
                             <input type="text" class="form-control" placeholder="事業者検索" id="search-word" v-model="searchkeyword" @keyup="searchCustomer()" />
-                        </div>
-                  
+                        </div>                  
                         <div class="col-md-6 choose-item">
-                              <select  v-model="status" id="selectBox" class="form-control select_box" @change="searchCustomer()">
-                                    <option selected="selected" value>選択してください</option>
-                                    <option value="1"> Activate </option>
-                                    <option value="0"> Deactivate </option>
-                                    <option value="2"> Pending </option>
-                                 
-                                </select>
+                        <select  v-model="status" id="selectBox" class="form-control select_box" @change="searchCustomer()">
+                            <option selected="selected" value>状態を選択してください。</option>
+                            <option value="1"> Activate </option>                            
+                            <option value="0"> Deactivate </option>   
+                            <option value="2"> Pending </option>                              
+                        </select>
                         </div>
                     </div>
-                    <hr />
+                    <hr/>
                     <h5 class="header">{{title}}</h5>
                     <!-- <div v-if="nosearch_msg" class="container-fuid no_search_data"> -->
                     <div v-if="nosearch_msg" class="card card-default card-wrap no_search_data">
@@ -81,7 +79,8 @@
                                             <!-- <div class="col-md-2 max-width13"><strong>Logo:</strong></div><div class="col-md-10">{{customer.logo}}</div> -->
                                             <div class="row mt-3">
                                                 <div class="col-md-12">
-                                                    <button class="btn delete-borderbtn mr-2 mb-2" @click="deleteCustomer(customer.id)">削除</button>
+                                                    <!-- <button class="btn delete-borderbtn mr-2 mb-2" @click="deleteCustomer(customer.id,'delete')">削除</button> -->
+                                                    <button class="btn delete-borderbtn mr-2 mb-2" v-if="customer.status == 0" @click="deleteCustomer(customer.id,'denied')">新規登録承認しない</button>
                                                     <!-- <router-link :to="{name:'custedit',params:{id:customer.id}}" class="btn main-bg-color all-btn white">Edit</router-link> -->
                                                     <!-- <button class="btn confirm-borderbtn" v-if="customer.status == 0">確認済</button> -->
 
@@ -229,11 +228,17 @@
                         });
                     }
                 },
-                deleteCustomer(id) {
-                    this.$loading(true);
+                deleteCustomer(id,type) {
+                    if(type == 'delete'){
+                        var textval = '事業者を削除してよろしいでしょうか。';
+                    }
+                    else{
+                        var textval = '承認しない場合事業者情報が削除されます。';
+                    }
+                    
                         this.$swal({
                             title: "確認",
-                            text: "事業者を削除してよろしいでしょうか。",
+                            text: textval,
                             type: "warning",
                             width: 350,
                             height: 200,
@@ -248,21 +253,21 @@
                             allowOutsideClick: false,
                             
                         }).then(response => {
-                            
-                            this.axios.delete(`/api/customer/delete/${id}`).then(response => {
+                            this.$loading(true);
+                            this.axios.delete(`/api/customer/delete/${id}/${type}`).then(response => {
                                 this.$loading(false);
                                 // this.customers = response.data.customers;
                                 this.initialCall();
-                                this.$swal({
-                                // title: "削除済",
-                                text: "事業者を削除しました。",
-                                type: "success",
-                                width: 350,
-                                height: 200,
-                                confirmButtonText: "閉じる",
-                                confirmButtonColor: "#dc3545",
-                                allowOutsideClick: false,
-                                });
+                                // this.$swal({
+                                // // title: "削除済",
+                                // text: "事業者を削除しました。",
+                                // type: "success",
+                                // width: 350,
+                                // height: 200,
+                                // confirmButtonText: "閉じる",
+                                // confirmButtonColor: "#dc3545",
+                                // allowOutsideClick: false,
+                                // });
                                 if(this.norecord != 0){
                                     this.norecord_msg = false;
                                 }else{
@@ -273,43 +278,61 @@
 
                             });
                             
+                        }).catch(error => {
+                            this.$loading(false);
                         });
                     },
                     comfirm(id) {
-                        this.$loading(true);
-                        this.axios.get(`/api/confirm/${id}`).then(response => {
-                            console.log(response.data)
-                            // this.customers = response.data.customers;
-                            this.initialCall();
-                            // this.displayItems();
-                            if (response.data.status == 'success') {
-                                this.$swal({
-                                    title: "新規登録承認",
-                                    text: "事業者にメールを送信しました",
-                                    type: "success",
-                                    width: 350,
-                                    height: 200,
-                                    confirmButtonText: "閉じる",
-                                    confirmButtonColor: "#dc3545",
-                                    allowOutsideClick: false,
-                                });
-                            } else {
-                                this.$swal({
-                                    title: "新規登録承認",
-                                    text: "顧客はすでに確認されています。",
-                                    type: "warning",
-                                    width: 350,
-                                    height: 200,
-                                    confirmButtonText: "閉じる",
-                                    confirmButtonColor: "#dc3545",
-                                    allowOutsideClick: false,
-                                });
-                            }
-
+                        this.$swal({
+                            title: "確認",
+                            text: "本当に承認しなくてよろしいでしょうか。",
+                            type: "warning",
+                            width: 350,
+                            height: 200,
+                            showCancelButton: true,
+                            confirmButtonColor: "#dc3545",
+                            cancelButtonColor: "#b1abab",
+                            cancelButtonTextColor: "#000",
+                            confirmButtonText: "はい",
+                            cancelButtonText: "キャンセル",
+                            confirmButtonClass: "all-btn",
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
+                            
+                        }).then(response => {
+                            this.$loading(true);
+                            this.axios.get(`/api/confirm/${id}`).then(response => {
+                                this.initialCall();
+                                // this.displayItems();
+                                if (response.data.status == 'success') {
+                                    this.$swal({
+                                        title: "新規登録承認",
+                                        text: "事業者にメールを送信しました",
+                                        type: "success",
+                                        width: 350,
+                                        height: 200,
+                                        confirmButtonText: "閉じる",
+                                        confirmButtonColor: "#dc3545",
+                                        allowOutsideClick: false,
+                                    });
+                                } else {
+                                    this.$swal({
+                                        title: "新規登録承認",
+                                        text: "顧客はすでに確認されています。",
+                                        type: "warning",
+                                        width: 350,
+                                        height: 200,
+                                        confirmButtonText: "閉じる",
+                                        confirmButtonColor: "#dc3545",
+                                        allowOutsideClick: false,
+                                    });
+                                }
+                                this.$loading(false);
+                            });
+                        }).catch(error => {
                             this.$loading(false);
-
-                            // $('#confirm-btn' + id).css('display', 'none');
-                        });
+                        })
+                        
                     },
 
                     searchCustomer(page) {

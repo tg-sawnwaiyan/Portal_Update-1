@@ -1421,6 +1421,37 @@ border-radius: 3px;
     text-align: center;
 }
 
+.data-success {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    font-size: 25px;
+    color: #03426b;
+    font-weight: bold;
+}
+
+.successful-resetpwd {
+    width: 864px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: left;
+    background-color: #fff;
+    margin-top: 18%;
+    border: 1px solid #cbd9e2;
+    border-radius: 2px;
+    border-bottom: 5px solid #cbd9e2;
+}
+
+.resetpwd-img {
+    height: 170px;
+    width: 170px;
+    margin: 0 auto;
+    border-radius: 50%;
+    padding: 10px;
+    text-align: center;
+}
+
 
 /******************************** end no search data ****************************************/
 
@@ -7087,7 +7118,7 @@ color: green;
 
 .card-wrap {
     height: 550px;
-    padding-top: 90px;
+    padding-top: 150px;
     text-align: center;
 }
 
@@ -10881,6 +10912,9 @@ width: 18rem;
 }
 
 @media only screen and (max-width:768px) {
+    .successful-resetpwd {
+        width: 100% !important;
+    }
     .choose-item {
         margin-top: 10px;
     }
@@ -11411,6 +11445,11 @@ width: 18rem;
 /*fav_slider*/
 
 @media only screen and (max-width:480px) {
+    .successful-resetpwd {
+        background-color: #fff;
+        margin-top: 0px;
+        border: none;
+    }
     /*news*/
     .ads-slider {
         top: 10px;
@@ -12767,7 +12806,7 @@ strong {
 
 .on {
     margin-left: 56px;
-    margin-top: -32px;
+    margin-top: -28px;
     font-size: 15px;
     font-weight: bold;
 }

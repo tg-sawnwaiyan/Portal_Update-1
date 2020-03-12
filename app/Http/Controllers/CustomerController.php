@@ -11,6 +11,9 @@ use App\Mail\deleteMail;
 use App\User;
 use App\NursingProfile;
 use App\HospitalProfile;
+use App\SubjectJunctions;
+use App\SpecialFeaturesJunctions;
+use App\Schedule;
 use DB;
 use Auth;
 class CustomerController extends Controller
@@ -73,10 +76,18 @@ class CustomerController extends Controller
         }
         else
         {
+
+            
+            $SubjectJunctions = SubjectJunctions::where('profile_id',$id)->delete();
+            $SpecialFeaturesJunctions = SpecialFeaturesJunctions::where('profile_id',$id,'and')->where('type',$type)->delete();
+            $Schedule = Schedule::where('profile_id',$id)->delete();
             $profileDelete =  HospitalProfile::find($id);
+
+
         }
-       
+
         $profileDelete->delete();
+        
         return response()->json('successfully Delete!');
     }
 
@@ -182,27 +193,30 @@ class CustomerController extends Controller
     }
 
 
-    public function destroy($id)
+    public function destroy($id,$type)
     {
         //
         $customer = Customer::find($id);
-        \Mail::to($customer->email)->send(new deleteSentMail($customer));
-        $customer->delete();
+        if($type == 'delete'){
+            $user = User::where('customer_id',$id)->first();
+            if($user !== null){
+                $user->delete();
+            }
 
-        $user = User::where('customer_id',$id)->first();
-        if($user !== null){
-            $user->delete();
-        }
+            $nursing = NursingProfile::where('customer_id',$id)->first();
+            if($nursing !== null){
+                $nursing->delete();
+            }
 
-        $nursing = NursingProfile::where('customer_id',$id)->first();
-        if($nursing !== null){
-            $nursing->delete();
+            $hospital = HospitalProfile::where('customer_id',$id)->first();
+            if($hospital !== null){
+                $hospital->delete();
+            }
         }
-
-        $hospital = HospitalProfile::where('customer_id',$id)->first();
-        if($hospital !== null){
-            $hospital->delete();
-        }
+        else{
+            \Mail::to($customer->email)->send(new deleteSentMail($customer));            
+        }   
+        $customer->delete(); 
 
         $customers = Customer::all();
         $data = array("status"=>"deleted", "customers"=>$customers);
