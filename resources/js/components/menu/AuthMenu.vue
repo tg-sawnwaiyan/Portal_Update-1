@@ -158,7 +158,7 @@
                                             <router-link :to="{ name: 'nuscustomerlist' }"><i class="fa fa-user"></i>  事業者一覧</router-link>
                                         </li>
                                         <li @click="toggle('sub')">
-                                            <router-link :to="{ name: 'nusfeaturelist' }"><i class="fa fa-file-alt"></i>  特徴設定</router-link>
+                                            <router-link :to="{ name: 'nusfeaturelist' }"><i class="fa fa-file-alt"></i>  特長設定</router-link>
                                         </li>
                                         <li @click="toggle('sub')">
                                             <router-link :to="{ name: 'nuscommentlist' }"><i class="fa fa-list"></i>  口コミ一覧</router-link>
@@ -177,7 +177,7 @@
                                             <router-link :to="{ name: 'facilitieslist' }"><i class="fa fa-list"></i>  院内施設設定</router-link>
                                         </li>
                                         <li @click="toggle('sub')">
-                                            <router-link :to="{ name: 'hosfeaturelist' }"><i class="fa fa-list"></i>  特徴設定</router-link>
+                                            <router-link :to="{ name: 'hosfeaturelist' }"><i class="fa fa-list"></i>  特長設定</router-link>
                                         </li>
                                         <li @click="toggle('sub')">
                                             <router-link :to="{ name: 'subjectlist' }"><i class="fa fa-list"></i>  診療科目設定</router-link>
