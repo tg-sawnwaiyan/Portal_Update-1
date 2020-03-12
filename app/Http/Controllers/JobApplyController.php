@@ -11,6 +11,7 @@ use App\Mail\jobApplyMailToAdmin;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Input;
 use DB;
+use App\jobApplyLog;
 class JobApplyController extends Controller
 {
     /**
@@ -96,8 +97,10 @@ class JobApplyController extends Controller
  public function jobApplicantDelete($id)
  {
      $jobId = JobApply::find($id);
+     $getJobId = JobApply::where('id',$id)->get()->toarray();
+     jobApplyLog::insert($getJobId);
      $jobId->delete();
-    return response()->json('Successfully Delete!');
+     return response()->json('Successfully Delete!');
 }
     /**
      * Show the form for creating a new resource.

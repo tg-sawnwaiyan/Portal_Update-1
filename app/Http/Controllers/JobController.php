@@ -6,6 +6,9 @@ use App\Job;
 use App\Occupations;
 use Illuminate\Http\Request;
 use DB;
+use App\jobs_log;
+use App\JobApply;
+use App\jobApplyLog;
 use \Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Input;
 
@@ -437,7 +440,13 @@ class JobController extends Controller
     public function destroy($id,$type,$pro_id)
     {
         $job = Job::find($id);
+        $getJob = Job::where('id',$id)->get()->toarray();
+        $getJobApply= JobApply::where('job_id',$id)->get()->toarray();
+        jobApplyLog::insert($getJobApply);
+        jobs_log::insert($getJob);
+        JobApply::where('job_id',$id)->delete();
         $job->delete();
+
         if( $type == "admin"){
 
             $query = "SELECT  jobs.*,customers.type_id,customers.name,(CASE customers.type_id WHEN '2' THEN hospital_profiles.name  ELSE nursing_profiles.name END)as profile_name,(CASE customers.type_id WHEN '2' THEN CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) END) as jobid 
