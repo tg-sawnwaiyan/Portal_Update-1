@@ -32,7 +32,7 @@
                     </div>
                     <hr />
                     <div class="d-flex header pb-3 admin_header">
-                        <h5>求人一覧 <span v-if="type != 'admin'">({{jobs.data[0].profile_name}})</span></h5>
+                        <h5>求人一覧 <span v-if="type != 'admin' && jobs.data.length">({{jobs.data[0].profile_name}})</span></h5>
                         <div class="ml-auto" v-if="!norecord_msg">
                             <router-link :to="hrefroute" class="main-bg-color create-btn all-btn">
                                 <i class="fas fa-plus-circle"></i> <span class="first_txt"> 求人</span><span class="dinone">新規作成</span>
@@ -506,7 +506,9 @@
                          $("html, body").animate({ scrollTop: 0 }, "slow");
                         this.axios.post("/api/job/search?page="+page, fd).then(response => {
                             this.$loading(false);
+                            console.log("response.data.jobsearch",response.data.jobsearch);
                             this.jobs = response.data.jobsearch;
+                           
                             if(this.jobs.data.length != 0){
                                 this.nosearch_msg = false;
                             }else{
