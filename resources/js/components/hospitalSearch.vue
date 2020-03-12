@@ -383,7 +383,7 @@
               <nav aria-label="Page navigation example">
                 <ul class="pagination">
                   <li class="page-item previous">
-                    <span class="spanclass" v-bind:class="isActive ? 'disable':'undisable'" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
+                    <span class="spanclass el" v-bind:class="isActive ? 'disable':'undisable'" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
                   </li>
                   <li class="page-item ">
                     <span class="spanclass" @click="prev()"><i class='fas fa-angle-left'></i> 前へ</span>
@@ -395,7 +395,7 @@
                     <span class="spanclass" @click="next">次へ <i class='fas fa-angle-right'></i></span>
                   </li>
                   <li class="page-item next">
-                    <span class="spanclass" v-bind:class="isActive ? 'undisable':'disable'" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
+                    <span class="spanclass el" v-bind:class="isActive ? 'undisable':'disable'" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
                   </li>
                 </ul>
               </nav>
@@ -461,7 +461,7 @@ import bulcomponent from './bulcomponent.vue'
         toggleCheck: true,
         toggleCheck_1: false,
         currentPage: 0,
-        size: 20,
+        size: 1,
         pageRange: 5,
         items: [],
         show_paginate: false,
@@ -904,17 +904,14 @@ import bulcomponent from './bulcomponent.vue'
         }
     },
     first() {
-      if(this.isActive == false){
-        this.currentPage = 0;
-      }
-      this.isActive = true;
+      this.currentPage = 0;
+      
+      
 
     },
     last() {
-      if(this.isActive == true){
-        this.currentPage = this.pages - 1;
-      }
-      this.isActive = false;
+      this.currentPage = this.pages - 1;
+      
     },
     prev() {
       if(0<this.currentPage) {
@@ -934,7 +931,28 @@ import bulcomponent from './bulcomponent.vue'
     }
     },
     computed: {
+     
     pages() {
+      const page = Math.ceil(this.hos_data.length / this.size);
+      const currentPage = this.currentPage + 1;
+      
+      if(currentPage == 1){
+
+        this.isActive = true;
+
+      }
+      if(currentPage > 1 && currentPage < page){
+        let disable = document.querySelector('.el');
+         
+         disable.classList.remove('disable');
+         disable.classList.remove('undisable');
+         console.log(disable.classList)
+        //  this.isActive = false;
+      }
+      if(currentPage == page){
+        this.isActive = false;
+
+      }
       return Math.ceil(this.hos_data.length / this.size);
     },
     displayPageRange() {
