@@ -85,7 +85,7 @@
                                             <!-- <div class="col-md-2 max-width13"><strong>Logo:</strong></div><div class="col-md-10">{{customer.logo}}</div> -->
                                             <div class="row mt-3">
                                                 <div class="col-md-12">
-                                                    <!-- <button class="btn delete-borderbtn mr-2 mb-2" @click="deleteCustomer(customer.id,'delete')">削除</button> -->
+                                                    <button class="btn delete-borderbtn mr-2 mb-2" v-if="customer.status != 0" @click="deleteCustomer(customer.id,'delete')">削除</button>
                                                     <button class="btn delete-borderbtn mr-2 mb-2" v-if="customer.status == 0" @click="deleteCustomer(customer.id,'denied')">新規登録承認しない</button>
                                                     <!-- <router-link :to="{name:'custedit',params:{id:customer.id}}" class="btn main-bg-color all-btn white">Edit</router-link> -->
                                                     <!-- <button class="btn confirm-borderbtn" v-if="customer.status == 0">確認済</button> -->
