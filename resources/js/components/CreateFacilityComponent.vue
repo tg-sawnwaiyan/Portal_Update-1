@@ -48,9 +48,9 @@ export default {
   },
     created() {
         if(this.$route.name == "editfacility"){
-            this.title = "施設編集";
-            this.label = "施設の種類:";
-            this.placeholder = "施設の種類を入力してください。";
+            this.title = "院内施設編集";
+            this.label = "院内施設:";
+            this.placeholder = "院内施設名を入力してください。";
             this.buttontext = "保存";
             this.axios
               .get(`/api/facility/edit/${this.$route.params.id}`)
@@ -60,8 +60,8 @@ export default {
           }
           else{
             this.title = "院内施設新規作成";
-            this.label = "施設の種類:";
-            this.placeholder = "施設の種類を入力してください。";
+            this.label = "院内施設:";
+            this.placeholder = "院内施設名を入力してください。";
             this.buttontext = "作成";
           }
         },
