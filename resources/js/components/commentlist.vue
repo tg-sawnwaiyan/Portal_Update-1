@@ -75,14 +75,14 @@
                                             <td class="align-top custom_title">お名前 :</td>
                                             <td> {{comment.name}} </td>
                                         </tr> -->
-                                         <tr>
+                                         <!-- <tr>
                                             <td class="align-top custom_title font-weight-bold">事業者名 :</td>
                                             <td> {{comment.cus_name}} </td>
                                         </tr>
                                          <tr>
                                             <td class="align-top custom_title font-weight-bold">施設名 :</td>
                                             <td> {{comment.pro_name}} </td>
-                                        </tr>
+                                        </tr> -->
                                          
                                             <!-- <tr>
                                             <td class="align-top custom_title">メールアドレス: </td>
