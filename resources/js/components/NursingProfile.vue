@@ -6,7 +6,7 @@
                 <button v-scroll-to="{ el: '#btn'}" id="btn_click" hidden></button>
                     <div class="row ">
                         <div class="col-lg-4 col-md-5">
-                            <div class="form-group form-group-wrapper logo-area">
+                            <div class="form-group form-group-wrapper logo-area" style="height:91%;">
                                 <img :src="profile_img" id="thumbnil" class="profile_logo m-b-8 img-fluid fit-image-profile" alt="Logo"  @error="imgUrlAlt">                              
                                 <div class="m-t-10">
                                     <span class="btn-file d-inline-block">画像を選択                     
@@ -19,11 +19,11 @@
                         </div>
                         <div class="col-lg-8 col-md-7">
                             <div class="form-group form-group-wrapper d-flex">
-                                <label class="heading-lbl col-md-2 col-12 pad-free">施設名称<span class="error sp2">必須</span></label>
+                                <label class="heading-lbl col-md-2 col-12 pad-free">施設名称<p class="error sp3 sp-t">必須</p></label>
                                 <input type="text" class="form-control customer-name col-md-10 col-12 nursing_input" id="btn" placeholder="施設名称を入力してください。" v-model="nursing_info.name">
                             </div>
                             <div class="form-group form-group-wrapper d-flex">
-                                <label class="heading-lbl col-md-2 col-12 pad-free">メールアドレス<span class="error sp2">必須</span></label>
+                                <label class="heading-lbl col-md-2 col-12 pad-free">メールアドレス<p class="error sp3 sp-t2">必須</p></label>
                                 <input type="text" class="form-control customer-email col-md-10 col-12 nursing_input" id="btn" v-model="nursing_info.email" @change="aggreBtn" @keyup="focusMail" placeholder="メールアドレスを入力してください。">
                             </div>
                            
@@ -1457,4 +1457,17 @@ export default {
     /* padding: 10px 10px 20px 0px;  
     margin-bottom: 15px;  */
  }
+ .form-wrap .sp1,
+.sp3 {
+    margin: 0 5px;
+    padding: 0 5px 0 5px;
+    background: #F54336;
+    font-size: 12px;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 3px;
+    vertical-align: text-top;
+    width: 35px;
+}
+
  </style>
