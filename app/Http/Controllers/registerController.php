@@ -228,8 +228,9 @@ class registerController extends Controller
         // return view('auth.passwordReset');
         $hashPass = bcrypt($request->password);
         $token = $request->token;
-        $checkmail = DB::select('SELECT email,status FROM password_resets WHERE token = "'.$token.'" AND created_at > DATE_SUB(CURDATE(), INTERVAL 1 DAY)');
-        if(!empty($checkmail) && $checkmail[0]->status == 0){
+        // $checkmail = DB::select('SELECT email,status FROM password_resets WHERE token = "'.$token.'" AND created_at >= DATE_SUB(CURDATE(), INTERVAL 1 DAY)');
+        $checkmail = DB::table('password_resets')->where('token',$token)->get();
+        if($checkmail[0]->status == 0){
 
             $getEmail = $checkmail[0]->email;
             $updatePass = array(
@@ -243,6 +244,7 @@ class registerController extends Controller
             return response()->json("success");
         }
         else{
+
             $checkmail = DB::table('password_resets')->where('token',$token)->select('email')->value('email');
             $updateStatus = array('status' => 2);
             DB::table('password_resets')->where('email',$checkmail)->update($updateStatus);
@@ -251,8 +253,16 @@ class registerController extends Controller
     }
     public function getStatus($token)
     {
-        $getStatus = DB::table('password_resets')->where('token',$token)->select('status','email')->first();
-        return response()->json($getStatus);
+        $checkExpire = DB::select('SELECT email,status FROM password_resets WHERE token = "'.$token.'" AND created_at < DATE_SUB(CURDATE(), INTERVAL 1 DAY)');
+        $date =  DB::select('SELECT  TIMEDIFF(NOW(), created_at) AS date, status,created_at FROM password_resets WHERE token = "'.$token.'"');
+        $dates =  explode(':',$date[0]->date);
+        $getStatus = DB::table('password_resets')->where('token',$token)->get();
+        if(($getStatus[0]->status == 0 && $dates[0] > 24) || ($getStatus[0]->status == 1 && $dates[0] > 24) || ($getStatus[0]->status == 1 && $dates[0] < 24) ){
+            $updateStatus = array('status' => 2);
+            DB::table('password_resets')->where('token',$token)->update($updateStatus);
+        }
+        $updateGetStatus = DB::table('password_resets')->where('token',$token)->first();
+        return response()->json($updateGetStatus);
     }
 
     public function insertUesr(Request $request)
