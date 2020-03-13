@@ -11936,6 +11936,14 @@ background-image: none;
 }
 
 @media only screen and (max-width: 414px) {
+    .sp-t{
+        margin-left: 73px !important;
+        margin-top: -23px !important;
+    }
+    .sp-t2{
+    margin-left: 114px !important;
+    margin-top: -23px !important;
+    }
     .dateTime {
         display: none;
     }
