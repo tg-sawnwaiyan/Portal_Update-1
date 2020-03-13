@@ -75,15 +75,11 @@ class CustomerController extends Controller
             $profileDelete =  NursingProfile::find($id);
         }
         else
-        {
-
-            
+        {            
             $SubjectJunctions = SubjectJunctions::where('profile_id',$id)->delete();
             $SpecialFeaturesJunctions = SpecialFeaturesJunctions::where('profile_id',$id,'and')->where('type',$type)->delete();
             $Schedule = Schedule::where('profile_id',$id)->delete();
             $profileDelete =  HospitalProfile::find($id);
-
-
         }
 
         $profileDelete->delete();

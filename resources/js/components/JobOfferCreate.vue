@@ -800,7 +800,7 @@ import Autocomplete from 'vuejs-auto-complete'
                         }
                         else{
                           console.log('not');
-                          this.errors.checkallerror = "please fill all the blank in above."
+                          this.errors.checkallerror = "保存できません。必須項目を確認してください。"
                         }
                   },
                 getPostal: function(event) {
