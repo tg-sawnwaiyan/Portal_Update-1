@@ -8238,7 +8238,7 @@ border-bottom: none;
 }
 
 .pseudolink {
-    color: #3490dc;
+    color: #3490dc !important;
     text-decoration: underline;
     cursor: pointer;
 }
@@ -8350,6 +8350,36 @@ border-bottom: none;
     border-radius: 12px;
     font-size: 12px;
 }
+
+.job_title {
+    float: left;
+    padding: 2px 10px;
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+
+.job_id_1 {
+    float: left;
+    padding: 2px 10px;
+    font-weight: bold;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 12px;
+
+}
+
+.job_title_1 {
+    float: left;
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+
+
+
 
 .job-img img {
     max-width: 100%;

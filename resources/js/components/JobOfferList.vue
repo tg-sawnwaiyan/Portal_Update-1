@@ -26,7 +26,7 @@
                     <h4 class="main-color mb-3">求人検索 <a @click="$router.go(-1)" v-if="$route.params.id" class="btn btn-danger all-btn submit float-right"><i class="fas fa-arrow-left"></i>&nbsp;戻る</a></h4>
                     <div class="row mb-4">
                         <div class="col-md-12">
-                            <input type="text" class="form-control" placeholder="検索" id="search-item" @keyup="searchJobOffer()" />
+                            <input type="text" class="form-control" placeholder="求人タイトルで検索" id="search-item" @keyup="searchJobOffer()" />
                             <input type="hidden" class="form-contrl" id="customer-id" v-model="customer_id" />                               
                         </div>
                     </div>
@@ -54,19 +54,28 @@
                         <div class="card card-default m-b-20" v-for="job in jobs.data" :key="job.id">
                             <div class="card-body p-3">
                                 <div class="row">
-                                    <div class="col-7 col-md-9">
-                                        <div class="joboffer-tit clearfix">
-                                            <router-link class="pseudolink" :to="{name: 'job_details', params:{id:job.id,loginuser:loginuser}}">{{job.title}} </router-link>
-                                            
+                                    <div class="col-9">
+                                         <div class="d-flex mt-3 mb-2">
+                                            <!-- <p class="">応募者数:
+                                            <span class="text-orange"><span class="job_count">{{job.count}}件</span></span>
+                                            </p> -->
+                                            <p class="job_id_1 mt-0  d-flex align-items-center">求人番号：{{job.jobid}}</p>
                                         </div>
                                     </div>
-                                    <div class="col-5 col-md-3 text-right">
+                                     <div class="col-5 col-md-3 text-right">
                                         <!-- <button :class="'btn drop-bg-color changeLink'+job.id"  @click="jobToggle(job.id)">
                                         <i :id="'icon' + job.id" class="fas fa-sort-down animate rotate"></i> 詳細</button> -->
                                         <p class="float-right">応募者数:
                                             <span class="text-orange"><span class="job_count">{{job.count}}件</span></span>
                                         </p>
                                     </div>
+                                    <div class="col-7 col-md-12">
+                                        <div class="joboffer-tit clearfix">
+                                            <router-link class="pseudolink" :to="{name: 'job_details', params:{id:job.id,loginuser:loginuser}}">{{job.title}} </router-link>
+                                            
+                                        </div>
+                                    </div>
+                                   
                                 </div>
                                 <div class="row">
                                     <div class="model-7 col-6">
@@ -88,12 +97,7 @@
                                 </div>
                                 
                                     <div class="collapse" :id="'changeLink' + job.id">
-                                        <div class="d-flex mt-3 mb-2">
-                                            <!-- <p class="">応募者数:
-                                            <span class="text-orange"><span class="job_count">{{job.count}}件</span></span>
-                                            </p> -->
-                                            <p class="job_id mt-0  d-flex align-items-center">求人番号：{{job.jobid}}</p>
-                                        </div>
+                                       
                                     
                                     <table class="table table-bordered">
                                         <tr>
