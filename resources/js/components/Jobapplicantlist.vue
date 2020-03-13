@@ -21,7 +21,7 @@
 
                 <h5  class="header"> 求人応募者一覧
                     <span  v-if="page == 'job' && job_id != ''" style="font-size: 0.9em; font-weight: normal; color: #333;"><br/>
-                    <router-link class="job_title" :to="{name: 'job_details', params:{id:jobapplies.data[0]['job_id'],loginuser:loginuser}}">{{job_title}} </router-link>
+                    <router-link class="job_title pseudolink" :to="{name: 'job_details', params:{id:jobapplies.data[0]['job_id'],loginuser:loginuser}}">{{job_title}} </router-link>
                         <!-- <p class="job_title"> {{job_title}} </p> -->
                         <p class="job_id"><span>求人番号:</span>{{job_id}}</p>  
                     </span>
@@ -43,7 +43,7 @@
                                 <div class="row"  v-if="page == null || page == 'profile' ">
                                     <div class="col-9">
                                         <div class="joboffer-tit clearfix">
-                                             <router-link class="job_title_1" :to="{name: 'job_details', params:{id:jobapply.job_id,loginuser:loginuser}}">{{jobapply.job_title}} </router-link>
+                                             <router-link class="job_title_1 pseudolink" :to="{name: 'job_details', params:{id:jobapply.job_id,loginuser:loginuser}}">{{jobapply.job_title}} </router-link>
                                            
                                                  <span class="job_id_1"><span>求人番号:</span>{{jobapply.jobid}}</span>
                                             

@@ -8214,7 +8214,7 @@ border-bottom: none;
 }
 
 .pseudolink {
-    color: #3490dc;
+    color: #3490dc !important;
     text-decoration: underline;
     cursor: pointer;
 }
