@@ -1378,7 +1378,7 @@ export default {
                                 this.$swal({
                                         position: 'top-end',
                                         type: 'success',
-                                        title: '更新されました',
+                                        title: '保存されました。',
                                         confirmButtonText: "閉じる",
                                         confirmButtonColor: "#6cb2eb",
                                         width: 250,

@@ -173,7 +173,7 @@
                                                 <button class="btn confirm-borderbtn" v-else @click="AccountStatusChange(customer_info.recordstatus)">{{accout_status}}</button> -->
                                                 <span :class="customer_info.recordstatus ==1?btnred:btnsuccess" class="btn all-btn" @click="AccountStatusChange(customer_info.recordstatus)">
                                                     {{accout_status}}
-                                                </span> {{accout_status2}}
+                                                </span> &nbsp;&nbsp;<span class="acc-status" style="color:#346e90;">{{accout_status2}}</span>
                                             </div>   
                                         </div>
                                     </div>
