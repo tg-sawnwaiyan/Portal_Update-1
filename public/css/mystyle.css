@@ -376,6 +376,26 @@ ul.menu_list li i.fa-phone-alt {
     background: url(/images/bg_check.gif) repeat center top;
 }
 
+.text-bold label {
+    font-weight: bold;
+}
+
+.subtitle {
+    position: relative;
+}
+
+.subtitle::before {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    display: inline-block;
+    width: 40px;
+    height: 3px;
+    left: 0;
+    background-color: #2980b9;
+    border-radius: 2px;
+}
+
 
 /********************************** End Common **********************************/
 
@@ -7827,7 +7847,7 @@ font-weight: bold;
 
 .form-wrap .mailbox {
     width: 30%;
-    margin-left: 20px;
+    margin-left: 0px;
     padding: 5px 15px;
     background: transparent;
 }

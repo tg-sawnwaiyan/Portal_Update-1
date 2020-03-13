@@ -27,7 +27,7 @@
                             </p>
                             <div class="form-group m-0 row bd">
                                 <div class="col-md-3 col-sm-12 form-left">
-                                    お名前
+                                   <strong> お名前</strong>
                                 </div>
                                 <div class="col-md-9 col-sm-12 form-right">
                                     <input type="text" name="outputSpan" id="outputSpan" class="mailbox" v-model="comments.name" disabled />
@@ -35,7 +35,7 @@
                             </div>
                             <div class="form-group m-0 row bd">
                                 <div class="col-md-3 col-sm-12 form-left">
-                                    フリガナ
+                                    <strong>フリガナ</strong>
                                 </div>
                                 <div class="col-md-9 col-sm-12 form-right">
                                     <input type="text" name="outputfurigana" id="outputfurigana" class="mailbox" disabled v-model="comments.furigana" />
@@ -43,7 +43,7 @@
                             </div>
                             <div class="form-group m-0 row bd">
                                 <div class="col-md-3 col-sm-12 form-left">
-                                    生年月日
+                                    <strong>生年月日</strong>
                                 </div>
                                 <div class="col-md-9 col-sm-12 form-right">
                                     <input type="text" name="outputbdate" id="outputbdate" class="mailbox" disabled v-model="comments.bdate" />
@@ -51,7 +51,7 @@
                             </div>
                             <div class="form-group m-0 row bd">
                                 <div class="col-md-3 col-sm-12 form-left">
-                                    性別
+                                   <strong> 性別</strong>
                                 </div>
                                 <div class="col-md-9 col-sm-12 form-right">
                                     <input type="text" name="outputsex1" id="outputsex1" class="mailbox" disabled v-model="comments.sex1" />
@@ -61,12 +61,12 @@
                                 <div class="col-md-3 col-sm-12 form-left">                                   
                                 <div class="row col-12">
                                 <div class="col-3 p-0">
-                                    <label>ご住所</label>
+                                     <label class="subtitle"><strong>ご住所</strong></label>
                                 </div>               
-                                <div class="col-9 p-0">                                                                   
-                                        <div class="text-right form-left pc-768"><label> 郵便番号 </label></div>
-                                        <div class="text-right form-left pc-768"><label>  都道府県</label></div>
-                                        <div class="text-right form-left pc-768"><label>  市区町村</label></div>
+                                <div class="col-9 p-0 text-bold">                                                                   
+                                        <div class="text-right form-left pc-768"><label>郵便番号 </label></div>
+                                        <div class="text-right form-left pc-768"><label>都道府県</label></div>
+                                        <div class="text-right form-left pc-768"><label>市区町村</label></div>
                                         <div class="text-right form-left pc-768"><label>番地（建物名)</label></div>
                                     
                                 </div>           
@@ -75,45 +75,45 @@
                                 <div class="col-md-9 col-sm-12 form-right">
                                     <div class="form-group row pl-4 mb-0">
                                         <div class="col-md-3 sp-768">
-                                            郵便番号 
+                                            <strong>郵便番号 </strong>
                                         </div>
                                         <div class="col-md-9 p-0">
                                           <!-- <input type="text" name="outputpostal" id="outputpostal" class="mailbox m-b-10" disabled v-model="comments.postal" /> -->
-                                          <label class="mailbox">{{comments.postal}}</label>
+                                          <label class="mailbox pl-2">{{comments.postal}}</label>
                                         </div>
                                     </div>
                                     <div class="form-group row pl-4 mb-0">
                                         <div class="col-md-3 sp-768">
-                                            都道府県
+                                             <strong>都道府県</strong>
                                         </div>
                                         <div class="col-md-9 p-0">
                                             <!-- <input type="text" name="outputdivision" id="outputdivision" class="mailbox m-b-15" disabled v-model="comments.division" /> -->
-                                            <label class="mailbox">{{comments.division}}</label>
+                                            <label class="mailbox pl-2">{{comments.division}}</label>
                                         </div>
                                     </div>
                                     <div class="form-group row pl-4 mb-0">
                                         <div class="col-md-3  sp-768">
-                                            市区町村
+                                             <strong>市区町村</strong>
                                         </div>
                                         <div class="col-md-9 p-0">
                                             <!-- <input type="text" name="outputcity" id="outputcity" class="mailbox" disabled v-model="comments.city" /> -->
-                                            <label class="mailbox">{{comments.townshipname}}</label>
+                                            <label class="mailbox pl-2">{{comments.townshipname}}</label>
                                         </div>
                                     </div>
                                     <div class="form-group row pl-4 mb-0">
                                         <div class="col-md-3 sp-768">
-                                            番地（建物名）
+                                             <strong>番地（建物名）</strong>
                                         </div>
                                         <div class="col-md-9 p-0">
                                             <!-- <input type="text" name="outputcity" id="outputcity" class="mailbox" disabled v-model="comments.city" /> -->
-                                            <label class="mailbox">{{comments.city}}</label>
+                                            <label class="mailbox pl-2">{{comments.city}}</label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group m-0 row bd">
                                 <div class="col-md-3 col-sm-12 form-left">
-                                    電話番号
+                                    <strong>電話番号</strong>
                                 </div>
                                 <div class="col-md-9 col-sm-12 form-right">
                                     <input type="number" name="outputphone" id="outputphone" class="mailbox" disabled v-model="comments.phone" />
@@ -121,7 +121,7 @@
                             </div>
                             <div class="form-group m-0 row bd-all">
                                 <div class="col-md-3 col-sm-12 form-left">
-                                    メールアドレス
+                                   <strong> メールアドレス</strong>
                                 </div>
                                 <div class="col-md-9 col-sm-12 form-right">
                                     <input type="email" name="outputmail" id="outputmail" class="mailbox" disabled v-model="comments.mail" />
@@ -147,7 +147,7 @@
                             <h3 class="form-tit" v-if="type !== 'completed'">入居対象者様について</h3>
                             <div class="form-group m-0 row bd">
                                 <div class="col-md-3 col-sm-12 form-left">
-                                    入居対象者様とのご関係
+                                    <strong>入居対象者様とのご関係</strong>
                                 </div>
                                 <div class="col-md-9 col-sm-12 form-right">
                                     <input type="text" name="outputrelation" id="outputrelation" class="mailbox" v-model="comments.relation" disabled />
@@ -155,7 +155,7 @@
                             </div>
                             <div class="form-group m-0 row bd">
                                 <div class="col-md-3 col-sm-12 form-left">
-                                    お名前
+                                    <strong>お名前</strong>
                                 </div>
                                 <div class="col-md-9 col-sm-12 form-right">
                                     <input type="text" name="outputttname" id="outputttname" class="mailbox" v-model="comments.ttname" disabled />
@@ -163,7 +163,7 @@
                             </div>
                             <div class="form-group m-0 row bd">
                                 <div class="col-md-3 col-sm-12 form-left">
-                                    性別
+                                   <strong> 性別</strong>
                                 </div>
                                 <div class="col-md-9 col-sm-12 form-right">
                                     <input type="text" name="outputsex" id="outputsex" class="mailbox" disabled v-model="comments.sex" />
@@ -171,7 +171,7 @@
                             </div>
                             <div class="form-group m-0 row bd">
                                 <div class="col-md-3 col-sm-12 form-left">
-                                    年齢
+                                    <strong>年齢</strong>
                                 </div>
                                 <div class="col-md-9 col-sm-12 form-right">
                                     <input type="text" name="outputyears" id="outputyears" class="mailbox" disabled v-model="comments.years" />
@@ -179,7 +179,7 @@
                             </div>
                             <div class="form-group m-0 row bd">
                                 <div class="col-md-3 col-sm-12 form-left">
-                                    介護度
+                                   <strong>介護度</strong> 
                                 </div>
                                 <div class="col-md-9 col-sm-12 form-right">
                                     <input type="text" name="outputnursing" id="outputnursing" class="mailbox" disabled v-model="comments.nursing" />
@@ -187,7 +187,7 @@
                             </div>
                             <div class="form-group m-0 row bd">
                                 <div class="col-md-3 col-sm-12 form-left">
-                                    認知症
+                                    <strong>認知症</strong>
                                 </div>
                                 <div class="col-md-9 col-sm-12 form-right">
                                     <input type="text" name="outputfect" id="outputfect" class="mailbox" disabled v-model="comments.fect" />
@@ -195,7 +195,7 @@
                             </div>
                             <div class="form-group m-0 row bd-all">
                                 <div class="col-md-3 col-sm-12 form-left">
-                                    ご要望や、お困りごと、その他お問い合わせ
+                                    <strong> ご要望や、お困りごと、その他お問い合わせ</strong>
                                 </div>
                                 <div class="col-md-9 col-sm-12 form-right">
                                     <input type="text" name="outputhope" id="outputhope" class="mailbox" disabled v-model="comments.hope" />
