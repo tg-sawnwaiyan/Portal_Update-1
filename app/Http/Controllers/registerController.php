@@ -253,7 +253,7 @@ class registerController extends Controller
     }
     public function getStatus($token)
     {
-        $checkExpire = DB::select('SELECT email,status FROM password_resets WHERE token = "'.$token.'" AND created_at < DATE_SUB(CURDATE(), INTERVAL 1 DAY)');
+        // $checkExpire = DB::select('SELECT email,status FROM password_resets WHERE token = "'.$token.'" AND created_at < DATE_SUB(CURDATE(), INTERVAL 1 DAY)');
         $date =  DB::select('SELECT  TIMEDIFF(NOW(), created_at) AS date, status,created_at FROM password_resets WHERE token = "'.$token.'"');
         $dates =  explode(':',$date[0]->date);
         $getStatus = DB::table('password_resets')->where('token',$token)->get();
