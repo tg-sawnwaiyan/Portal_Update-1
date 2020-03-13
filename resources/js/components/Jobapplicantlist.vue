@@ -6,28 +6,23 @@
                 <div class="row mb-4">
                     <div class="col-md-12">
                         <input type="text" class="form-control" placeholder="求人タイトルで検索" id="search-item"  @keyup="searchApplicantList()" />
-                        <input type="hidden" class="form-contrl" />
+                        <input type="hidden" class="form-contrl"/>
                     </div>
                 </div>
-                <hr /> 
-
-               
-
-                <!-- <h5  class="header"> 求人応募者一覧
-                    <span v-if="page == 'job' && job_id != ''" style="font-size: 0.9em; font-weight: normal; color: #333;"><br/>{{job_title}}<span class="pro_num">({{job_id}})</span> </span>
-                    <span  class="pro_num" v-if="page == 'profile' && proname != ''">「{{proname}}」</span>
-                </h5> -->
+                <hr />    
               
-
-                <h5  class="header"> 求人応募者一覧
-                    <span  v-if="page == 'job' && job_id != ''" style="font-size: 0.9em; font-weight: normal; color: #333;"><br/>
-                    <router-link class="job_title pseudolink" :to="{name: 'job_details', params:{id:jobapplies.data[0]['job_id'],loginuser:loginuser}}">{{job_title}} </router-link>
-                        <!-- <p class="job_title"> {{job_title}} </p> -->
-                        <p class="job_id"><span>求人番号 :</span>{{job_id}}</p>  
-                    </span>
-                    <span  class="pro_num" v-if="page == 'profile' && proname != ''">「{{proname}}」</span>
-                </h5>
-            
+                <h5 class="header"> 求人応募者一覧</h5>     
+                <div class="row m-b-10">
+                    <div class="m-l-20" v-if="job_id != ''">
+                        <p class="job_id"><span>求人番号 :</span>{{job_id}}</p>
+                    </div> 
+                    <div class="col-12">
+                    <p  v-if="page == 'job' && job_id != ''" style="font-size: 0.9em; font-weight: normal; color: #333;">
+                        <router-link class="job_title pseudolink" :to="{name: 'job_details', params:{id:jobapplies.data[0]['job_id'],loginuser:loginuser}}">{{job_title}} </router-link>
+                    </p>
+                    <span  class="pro_num" v-if="page == 'profile' && proname != ''">「{{proname}}」</span>    
+                </div>
+                </div>      
                     
                 <!-- <div v-if="nosearch_msg" class="container-fuid no_search_data">求人応募者が登録されていません</div> -->
                   <div v-if="nosearch_msg" class="card card-default card-wrap">
