@@ -79,8 +79,9 @@
                                                 <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-user"></i></span> 性別:&nbsp;</span><span class=""> {{jobapply.gender}}</span></p>
                                                    
                                             </td>
+                                         
                                             <td  class="w-50">
-                                                    <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>住所:&nbsp;</span>{{jobapply.street_address}}</p> 
+                                                    <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>住所:&nbsp;</span>{{jobapply.city_name}}{{jobapply.township_name}}{{jobapply.street_address}}</p> 
                                             </td>
                                         </tr>
                                         <tr>
