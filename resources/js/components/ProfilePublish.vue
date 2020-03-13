@@ -1169,7 +1169,7 @@
                 </div>
 
                 <div class="col-12 pad-free-750">
-                    <h5 class="profile_subtit">施設情報 </h5>
+                    <h5 class="profile_subtit">院内施設情報 </h5>
                     <div class="row col-md-12 m-0">
                         <div class="col-md-2 fac-name-box" v-for="hosfacility in hosfacilities " :key="hosfacility.id">
                             <h4>{{hosfacility.description}}</h4>

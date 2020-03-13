@@ -10,7 +10,7 @@
                   <div class="col-md-12">
                         <form>
                       <div class="form-group">
-                          <label>施設の種類 <span class="error sp2">必須</span></label>
+                          <label>院内施設 <span class="error sp2">必須</span></label>
                           <input type="text" class="form-control"  v-model="facility.description"  :placeholder='[[placeholder]]' >
                                 <span v-if="errors.description" class="error">{{errors.description}}</span>
                       </div>
@@ -124,7 +124,7 @@ export default {
             this.$swal({
                         position: 'top-end',
                         type: 'success',
-                        text: '施設を更新しました。',
+                        text: '院内施設を更新しました。',
                         // showConfirmButton: false,
                         // timer: 1500,
                         confirmButtonText: "閉じる",

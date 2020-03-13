@@ -216,7 +216,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="location">
-                                        番地（建物名)
+                                        <!-- 番地（建物名) -->市区町村
                                         <span class="error sp2">必須</span>
                                     </label>
                                 

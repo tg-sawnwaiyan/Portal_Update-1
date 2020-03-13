@@ -5,7 +5,8 @@
                 <p class="record-ico">
                     <i class="fa fa-exclamation"></i>
                 </p>  
-                <p>アカウントが無効になりました。</p>
+                <p class="record-txt01">アカウントが無効になりました。</p>
+                
                 <router-link :to="{name:'profiledit'}" class="main-bg-color create-btn all-btn">
                     アクティベートへ
                 </router-link>
