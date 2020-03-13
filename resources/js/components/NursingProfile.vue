@@ -47,7 +47,7 @@
                     </div>
                     <div class="form-group form-group-wrapper d-flex">
                             <label class="heading-lbl col-md-2 col-12 pad-free">運営事業者</label>
-                            <input type="text" class="form-control customer-name col-md-10 col-12 nursing_input" id="btn" v-model="nursing_info.operator" placeholder="運営事業者を入力してください。">
+                            <input type="text" class="form-control customer-name col-md-10 col-12 nursing_input" id="btn" disabled v-model="nursing_info.cusname" placeholder="運営事業者を入力してください。">
                     </div>
 
                     <!-- start panorama area -->
