@@ -138,8 +138,9 @@
 
                                         <div class="form-group row">                                            
                                             <div class="col-sm-12 text-center">
-                                                <span class="btn main-bg-color white all-btn" @click="checkValidate()">確認画面へ進む</span>
                                                 <span class="btn btn-danger all-btn" @click="$router.go(-1)" > キャンセル </span>
+                                                <span class="btn main-bg-color white all-btn" @click="checkValidate()">確認画面へ進む</span>
+                                                
                                                  <!-- <button class="btn main-bg-color white all-btn"> 利用規約、個人情報の取り扱いについてに同意して確認する </button> -->
                                                  <!-- <button class="btn main-bg-color white all-btn"> 確認 </button> -->
                                                       <!-- <span :disabled="isDisabled" >確認画面へ進む</span> -->
@@ -212,8 +213,8 @@
                                         <div class="form-group row">
                                             
                                             <div class="col-sm-12 text-center">
-                                                <span class="btn main-bg-color white all-btn" @click="add()">作成する</span>
                                                 <span class="btn btn-danger white all-btn width17 pc-m-r-10" @click="editCmt()">入力画面へ戻る</span>                                                
+                                                <span class="btn main-bg-color white all-btn" @click="add()">投稿する</span>
                                             </div>
                                             
                                         </div>
@@ -345,25 +346,24 @@ export default {
             },
             add() {
                   this.$loading(true);
-                  console.log(this.comments);
                   this.axios.post('/api/comments/add', this.comments)
                     .then((response) => {
                         this.$loading(false);
                         this.type="completed";
                         this.name = ''
-                        this.$swal({
-                            position: 'top-end',
-                            type: 'success',
-                            // title: '作成されました',
-                            text: '確認のためもうちょっとしばらくお待ちください。',
-                            showConfirmButton: false,
-                            timer: 1800,
-                            width: 250,
-                            height: 200,
-                            allowOutsideClick: false,
+                        // this.$swal({
+                        //     position: 'top-end',
+                        //     type: 'success',
+                        //     // title: '作成されました',
+                        //     text: '確認のためもうちょっとしばらくお待ちください。',
+                        //     showConfirmButton: false,
+                        //     timer: 1800,
+                        //     width: 250,
+                        //     height: 200,
+                        //     allowOutsideClick: false,
                             
-                        })
-                        this.$router.go(-1);
+                        // })
+                        // this.$router.go(-1);
 
                     //  this.$router.push({name: 'profile'});
                     }).catch(error=>{

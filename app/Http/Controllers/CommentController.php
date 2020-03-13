@@ -194,9 +194,7 @@ class CommentController extends Controller
     
         $admin_email = 'admin@t-i-s.jp';
        
-        \Mail::to($admin_email)->send(new SendMailComment($getComment));
-
-     
+        \Mail::to($admin_email)->send(new SendMailComment($getComment));    
 
     }
 

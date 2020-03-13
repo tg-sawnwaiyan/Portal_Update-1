@@ -1327,8 +1327,7 @@ export default {
            
                     // console.log("mail");
                     this.$swal({
-                        title: "確認",
-                        text: "チェックしてください",
+                        html: "保存できません。<br/>必須項目を確認してください。",
                         type: "warning",
                         width: 350,
                         height: 200,

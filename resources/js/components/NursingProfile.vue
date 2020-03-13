@@ -47,7 +47,7 @@
                     </div>
                     <div class="form-group form-group-wrapper d-flex">
                             <label class="heading-lbl col-md-2 col-12 pad-free">運営事業者</label>
-                            <input type="text" class="form-control customer-name col-md-10 col-12 nursing_input" id="btn" v-model="nursing_info.operator" placeholder="運営事業者を入力してください。">
+                            <input type="text" class="form-control customer-name col-md-10 col-12 nursing_input" id="btn" disabled v-model="nursing_info.cusname" placeholder="運営事業者を入力してください。">
                     </div>
 
                     <!-- start panorama area -->
@@ -1233,8 +1233,8 @@ export default {
                     // console.log("mail");
                    
               this.$swal({
-                title: "確認",
-                text: "保存できません。必須項目を確認してください。",
+                // title: "確認",
+                html: "保存できません。<br/>必須項目を確認してください。",
                 type: "warning",
                 width: 370,
                 height: 200,
@@ -1378,7 +1378,7 @@ export default {
                                 this.$swal({
                                         position: 'top-end',
                                         type: 'success',
-                                        title: '更新されました',
+                                        title: '保存されました。',
                                         confirmButtonText: "閉じる",
                                         confirmButtonColor: "#6cb2eb",
                                         width: 250,

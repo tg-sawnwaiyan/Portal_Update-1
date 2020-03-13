@@ -49,61 +49,8 @@
                         <p class="record-txt01">検索したデータ見つかりません。</p>
                     </div>
                    
-                    <div v-if="$auth.check(1)" class="container-fuid">
-                        <div class="card card-default m-b-20" v-for="job in jobs.data" :key="job.id">
-                            <div class="card-body joboffer-body">
-                                <div class="row">
-                                    <div class="col-md-12 m-t-8">
-                                        <div class="joboffer-header">
-                                            <h5 class="joboffer-tit clearfix">
-                                                <router-link class="pseudolink" :to="{name: 'job_details', params:{id:job.id,loginuser:loginuser}}">{{job.title}} </router-link>
-                                                <!-- <span class="job_id">jobapplylistcount{{job.count}}</span> -->
-                                                <span class="float-right">応募者数:
-                                                <span class="text-orange"><span class="job_count">{{job.count}}件</span></span>
-                                                </span>
-                                                <!-- <label class="switch">
-                                                    <input type="checkbox" v-if="job.recordstatus != 1" >
-                                                    <input type="checkbox" v-else @click="confirm(job.id)">
-                                                    <span class="slider round"></span>
-                                                </label> -->
-                                                <div class="model-7">
-                                                    <div class="checkbox">
-                                                            <input type='checkbox' v-if="job.recordstatus == 1" @click="confirm(job.id)" checked/>
-                                                            <input type='checkbox' v-if="job.recordstatus==0" @click="confirm(job.id)"  />
-                                                            <label for="checkbox"></label>
-                                                            <div v-if="job.recordstatus == 1" class="on">公開中</div>
-                                                            <div v-if="job.recordstatus == 0" class="on">非行化</div>
 
-                                                            <!-- <span>OFF</span>  -->
-
-                                                        </div>
-                                                </div>
-                                                <span class="job_id">求人番号：{{job.jobid}}</span>
-                                            </h5>
-                                        </div>
-
-                                        <div class="joboffer-body">
-
-                                            <p class="mb-2"><span class="text-orange"><span class="job_ico">&#xa5;</span>給料:&nbsp;</span><span class=""> {{job.salary}}</span></p>
-                                            <p class="mb-2"><span class="text-orange"><span class="job_ico">★</span>スキル:&nbsp;</span><span class=""> {{job.skills}}</span></p>
-                                            <ul class="btn-list mt-4">
-                                                <li>
-                                                    <router-link :to="{path: '/jobedit/'+job.id }" class="btn edit-borderbtn">編集</router-link>
-                                                </li>
-                                                <li>
-                                                    <router-link :to="{path: '/jobapplicantlist/'+type+'/job/'+job.id, params:{title:job.title}}" class="btn confirm-borderbtn confirmed"><i class="fa fa-list"></i>求人応募一覧<span class="pc-414-inline">ページへ</span></router-link>
-                                                </li>
-                                                <!-- <li><a class="btn text-success active-borderbtn">Disabled</a></li> -->
-                                                <li><a class="btn text-danger delete-borderbtn" @click="deleteJob(job.id)">削除</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="container-fuid" v-if="$auth.check(2)">
+                    <div class="container-fuid">
                         <div class="card card-default m-b-20" v-for="job in jobs.data" :key="job.id">
                             <div class="card-body p-3">
                                 <div class="row">
@@ -232,7 +179,7 @@
                     </div>
                     <!-- <pagination :data="jobs" @pagination-change-page="searchJobOffer"></pagination> -->
                     <div>
-                            <pagination :data="jobs" @pagination-change-page="searchJobOffer" :limit="limitpc">
+                        <pagination :data="jobs" @pagination-change-page="searchJobOffer" :limit="limitpc">
                             <span slot="prev-nav"><i class="fas fa-angle-left"></i> 前へ</span>
                             <span slot="next-nav">次へ <i class="fas fa-angle-right"></i></span>
                         </pagination>

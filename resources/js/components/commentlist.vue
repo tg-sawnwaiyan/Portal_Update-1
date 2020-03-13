@@ -110,7 +110,7 @@
                                 <div class="d-flex ">
                                     <p class="comment-underline comment-title p-b-0">{{comment.name}} <span style="font-size:12px;color:#a7a2a2ee;">
                                         |&nbsp;{{comment.email}}|&nbsp;
-                                        <span>{{comment.year}} 年生まれ</span>
+                                        <span v-if="comment.year != '' && comment.year != null">{{comment.year}} 年生まれ</span>
                                         </span>  
                                      <p class="comment-date">
                                         <i class="fa fa-star" aria-hidden="true"></i> {{comment.zipcode}}<span class="ml-2">

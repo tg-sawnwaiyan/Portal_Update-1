@@ -28,8 +28,7 @@ class NursingProfileController extends Controller
 
     public function edit($id) {
 
-        $nursing = NursingProfile::where('id', $id)
-                    ->first();
+        $nursing = NursingProfile::select('nursing_profiles.*','customers.name as cusname')->join('customers','nursing_profiles.customer_id','=','customers.id')->where('nursing_profiles.id', $id)->first();
         return $nursing;
     }
 
