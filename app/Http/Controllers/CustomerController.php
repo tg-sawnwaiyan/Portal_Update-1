@@ -16,6 +16,16 @@ use App\SpecialFeaturesJunctions;
 use App\Schedule;
 use DB;
 use Auth;
+use App\Job;
+use App\JobApply;
+use App\jobApplyLog;
+use App\jobs_log;
+use App\Gallery;
+use App\Comment;
+use App\Cooperate_Medical;
+use App\acceptance_transactions;
+use App\method_payment;
+use App\Staff;
 class CustomerController extends Controller
 {
     /**
@@ -70,23 +80,60 @@ class CustomerController extends Controller
 
     public function profileDelete($id,$type)
     {
+
         if($type == "nursing")
         {
+               $getjob = Job::where('profile_id',$id)->get()->toarray();
+               $getJob = DB::table('jobs')->join('customers','jobs.customer_id','=','customers.id')->where('jobs.profile_id',$id)->where('customers.type_id',3)->get()->toarray();
+             if($getJob != null){
+                
+               foreach ($getJob as $getJobs) {
+                
+                $getJobApply= JobApply::where('job_id',$getJobs->id)->get()->toarray();
+                jobApplyLog::insert($getJobApply);
+                JobApply::where('job_id',$getJobs->id)->delete();  
+               }
+               jobs_log::insert($getjob);
+               Job::where('profile_id',$id)->delete();
+                
+            }
+
+            $Cooperate_Medical = Cooperate_Medical::where('profile_id',$id)->delete();
+            $acceptance_transactions  = acceptance_transactions::where('profile_id',$id)->delete();
+            $method_payment = method_payment::where('profile_id',$id)->delete();
+            $Staff =  Staff::where('profile_id',$id)->delete();
+            $SpecialFeaturesJunctions = SpecialFeaturesJunctions::where('profile_id',$id)->where('type',$type)->delete();
+            $Gallery = Gallery::where('profile_id',$id)->where('profile_type',$type)->delete();
+            $Comment = Comment::where('profile_id',$id)->where('type',$type)->delete();
+
             $profileDelete =  NursingProfile::find($id);
         }
         else
         {
-
-            
+      
+            $getjob = Job::where('profile_id',$id)->get()->toarray();
+            $getJob = DB::table('jobs')->join('customers','jobs.customer_id','=','customers.id')->where('jobs.profile_id',$id)->where('customers.type_id',2)->get()->toarray();
+            if($getJob != null){
+                
+               foreach ($getJob as $getJobs) {
+                $getJobApply= JobApply::where('job_id',$getJobs->id)->get()->toarray();
+                jobApplyLog::insert($getJobApply);
+                JobApply::where('job_id',$getJobs->id)->delete();  
+               }
+               jobs_log::insert($getjob);
+               Job::where('profile_id',$id)->delete();
+                
+            }
+           
             $SubjectJunctions = SubjectJunctions::where('profile_id',$id)->delete();
-            $SpecialFeaturesJunctions = SpecialFeaturesJunctions::where('profile_id',$id,'and')->where('type',$type)->delete();
+            $SpecialFeaturesJunctions = SpecialFeaturesJunctions::where('profile_id',$id)->where('type',$type)->delete();
             $Schedule = Schedule::where('profile_id',$id)->delete();
+            $Gallery = Gallery::where('profile_id',$id)->where('profile_type',$type)->delete();
+            $Comment = Comment::where('profile_id',$id)->where('type',$type)->delete();
             $profileDelete =  HospitalProfile::find($id);
-
-
         }
 
-        $profileDelete->delete();
+            $profileDelete->delete();
         
         return response()->json('successfully Delete!');
     }
