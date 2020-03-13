@@ -8337,14 +8337,13 @@ border-bottom: none;
 
 
 .job_id_1 {
-   
+    float: left;
     padding: 2px 10px;
     font-weight: bold;
     border: 1px solid #ddd;
     border-radius: 12px;
     font-size: 12px;
-    position: absolute;
-    margin: 5px 0px 0px 6px;
+
 }
 
 .job_title_1 {
@@ -8353,6 +8352,7 @@ border-bottom: none;
     font-weight: bold;
     font-size: 16px;
 }
+
 
 
 
