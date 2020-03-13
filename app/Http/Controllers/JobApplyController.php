@@ -39,9 +39,11 @@ class JobApplyController extends Controller
 
         if($type == "admin")
         {
-            $query = "SELECT jobs.title as job_title,job_applies.*,(CASE WHEN customers.type_id = '2' THEN CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) END) as jobid
+            $query = "SELECT townships.township_name , cities.city_name,jobs.title as job_title,job_applies.*,(CASE WHEN customers.type_id = '2' THEN CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) END) as jobid
                         FROM job_applies join jobs on jobs.id = job_applies.job_id
                         join customers on customers.id = jobs.customer_id
+                        left join townships on townships.id = job_applies.township_id
+                        left join cities on cities.id = townships.city_id
                         left join hospital_profiles on hospital_profiles.id = jobs.profile_id
                         left join nursing_profiles on nursing_profiles.id = jobs.profile_id
                         where  jobs.recordstatus = 1 and customers.recordstatus = 1 ";
@@ -70,9 +72,11 @@ class JobApplyController extends Controller
                 $p = "jobs.id = $search_id"; 
             }
 
-            $query = "SELECT jobs.title as job_title,job_applies.*, ".$t.".name  as proname,CONCAT((".$num."+customers.id),'-',LPAD(".$t.".pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) as jobid
+            $query = "SELECT  cities.city_name,townships.township_name,jobs.title as job_title,job_applies.*, ".$t.".name  as proname,CONCAT((".$num."+customers.id),'-',LPAD(".$t.".pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) as jobid
                         FROM job_applies join jobs on jobs.id = job_applies.job_id
                         join customers on customers.id = jobs.customer_id
+                        left join townships on townships.id = job_applies.township_id
+                        left join cities on cities.id = townships.city_id
                         left join ".$t." on ". $t.".id = jobs.profile_id
                         where  jobs.recordstatus = 1 and customers.recordstatus = 1
                         and ".$p." group by job_applies.id order by job_applies.id desc ";
@@ -306,9 +310,11 @@ class JobApplyController extends Controller
 
         if($type == "admin")
         {
-            $query = "SELECT jobs.title as job_title,job_applies.*,(CASE WHEN customers.type_id = '2' THEN CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) END) as jobid
+            $query = "SELECT townships.township_name,cities.city_name,jobs.title as job_title,job_applies.*,(CASE WHEN customers.type_id = '2' THEN CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) ELSE CONCAT((500000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) END) as jobid
                         FROM job_applies join jobs on jobs.id = job_applies.job_id
                         join customers on customers.id = jobs.customer_id
+                        left join townships on townships.id = job_applies.township_id
+                        left join cities on cities.id = townships.city_id
                         left join hospital_profiles on hospital_profiles.id = jobs.profile_id
                         left join nursing_profiles on nursing_profiles.id = jobs.profile_id
                         where (job_applies.first_name like '%".$search_word."%' or job_applies.last_name like '%".$search_word."%' or job_applies.email like '%".$search_word."%') and  jobs.recordstatus = 1 and customers.recordstatus = 1 ";
@@ -337,9 +343,11 @@ class JobApplyController extends Controller
                 $p = "jobs.id = $search_id"; 
             }
     
-            $query = "SELECT jobs.title as job_title,job_applies.*,(CASE WHEN customers.type_id = '2' THEN ".$t.".name  ELSE ".$t.".name  END) as proname,CONCAT((".$num."+customers.id),'-',LPAD(".$t.".pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) as jobid
+            $query = "SELECT  cities.city_name,townships.township_name,jobs.title as job_title,job_applies.*,(CASE WHEN customers.type_id = '2' THEN ".$t.".name  ELSE ".$t.".name  END) as proname,CONCAT((".$num."+customers.id),'-',LPAD(".$t.".pro_num, 4, '0'),'-',LPAD(jobs.id, 4, '0')) as jobid
                         FROM job_applies join jobs on jobs.id = job_applies.job_id
                         join customers on customers.id = jobs.customer_id
+                        left join townships on townships.id = job_applies.township_id
+                        left join cities on cities.id = townships.city_id
                         left join ".$t." on ". $t.".id = jobs.profile_id
                         where (job_applies.first_name like '%".$search_word."%' or job_applies.last_name like '%".$search_word."%' or job_applies.email like '%".$search_word."%') and jobs.recordstatus = 1 and customers.recordstatus = 1 
                         and ".$p." group by job_applies.id order by job_applies.id desc ";

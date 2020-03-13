@@ -77,9 +77,10 @@ class SearchMapController extends Controller
             $local = 0;
         }
 
-        $query = "SELECT '' as fav_check,'' as alphabet,n.id as nursing_id,n.id,n.latitude as lat ,n.longitude as lng, n.*,ci.city_name,t.township_name,
+        $query = "SELECT '' as fav_check,c.name as cus_name,'' as alphabet,n.id as nursing_id,n.id,n.latitude as lat ,n.longitude as lng, n.*,ci.city_name,t.township_name,
                     ty.description AS type_name,ci.city_name,t.township_name
                     FROM nursing_profiles AS n
+                    join customers as c on c.id = n.customer_id
                     LEFT JOIN townships AS t  ON t.id = n.townships_id
                     LEFT JOIN cities AS ci ON t.city_id = ci.id
                     LEFT JOIN fac_types AS ty ON n.fac_type = ty.id
@@ -263,8 +264,9 @@ class SearchMapController extends Controller
               $local = 0;
           }
 
-          $query = "SELECT '' as fav_check,'' as alphabet, n.id as nursing_id,n.latitude as lat ,n.longitude as lng,n.*, ci.id as city_id, 
+          $query = "SELECT '' as fav_check,c.name as cus_name,'' as alphabet, n.id as nursing_id,n.latitude as lat ,n.longitude as lng,n.*, ci.id as city_id, 
                     ci.city_eng,ci.city_name,t.township_name,f.description,ci.city_name,f.description AS type_name from nursing_profiles as n 
+                    join customers as c on c.id = n.customer_id
                     left join townships as t on t.id = n.townships_id 
                     left join cities as ci on ci.id = t.city_id 
                     left join fac_types as f on f.id = n.fac_type 
