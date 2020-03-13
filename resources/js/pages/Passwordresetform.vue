@@ -91,12 +91,12 @@
         console.log(this.$route.query.code)
         this.axios.get(`/api/getStatus/${this.$route.query.code}`).then(res => {
             console.log(res.data)
-            if(res.data.status == 1){
+            // if(res.data.status == 1){
               
-                this.has_success = true;
-                this.error_text = "パスワードの再設定が完了しました。";
-            }
-            else if(res.data.status == 2){
+            //     this.has_success = true;
+            //     this.error_text = "パスワードの再設定が完了しました。";
+            // }
+             if(res.data.status == 2){
 
                 this.has_success = true;
                 this.error_text = "このパスワード再設定用URLま無効です。";

@@ -175,7 +175,7 @@
             株式会社 TRUST-ESTATE
             <br />〒164-0003　東京都中野区東中野1-59-9　リックビル2階
             <br />電話：03-6279-1951
-            <br />Email: info@t-i-s.jp
+            <br />メールアドレス: info@t-i-s.jp
           </p>
         </div>
         <br />
