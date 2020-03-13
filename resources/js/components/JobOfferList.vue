@@ -63,6 +63,7 @@
                                         </div>
                                     </div>
                                      <div class="col-5 col-md-3 text-right">
+                                         {{job.id}}
                                         <!-- <button :class="'btn drop-bg-color changeLink'+job.id"  @click="jobToggle(job.id)">
                                         <i :id="'icon' + job.id" class="fas fa-sort-down animate rotate"></i> 詳細</button> -->
                                         <p class="float-right">応募者数:
