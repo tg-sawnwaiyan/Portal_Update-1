@@ -2959,6 +2959,10 @@ ul.sub-ul li {
     margin-top: 20px;
 }
 
+.m-t-25 {
+    margin-top: 25px;
+}
+
 .m-t-30 {
     margin-top: 30px;
 }
@@ -10246,6 +10250,11 @@ padding: 0;
 }
 
 @media only screen and (max-width: 990px) {
+    .form-wrap .mailbox {
+        width: 100%;
+        margin-left: 0px;
+        padding: 0px;
+    }
     .successful-resetpwd {
         width: 100% !important;
         margin-top: 34px;

@@ -1,41 +1,21 @@
 <template>
     <div>
         <div class="tab-content job-detail">
-            <div class="row">
-                <!-- <div class="col-12 text-center p-3 jt1 mb-4">
-          <h4>入力内容のご確認</h4>
-        </div> -->
-                <!-- <div class="col-12 m-b-10">
-            <h4 class="job-apply-color">入力内容のご確認</h4>
-        </div> -->
+            <div class="row">               
                 <div class="col-12 pad-free m-b-10">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item">
-                                <!-- <router-link to="/">ホーム</router-link> -->
-                                <router-link to="/">ホーム</router-link>
-                            </li>
-                            <!-- <li class="breadcrumb-item active" aria-current="page">rrr</li> -->
-                            <li class="breadcrumb-item"><span>介護のお気に入り</span></li>
-                        </ol>
-                        <!-- <ol class="breadcrumb">
-              <li class="breadcrumb-item">
-                <span @click="changeRoute()" class="link-span">介護のお気に入り</span>
-              </li>
-              <li class="breadcrumb-item">
-                <a href="/">必要項目のご入力</a>
-              </li>
-              <li class="breadcrumb-item active" aria-current="page">入力内容のご確認</li>
-            </ol> -->
+                            <li class="breadcrumb-item"><router-link to="/">ホーム</router-link></li>                         
+                            <li class="breadcrumb-item"><span>介護施設資料請求</span></li>
+                        </ol>                        
                     </nav>
-                </div>
-                
+                </div>                
                 <div class="col-md-12 confirm_box" v-if="type == 'confirm'">
                     <div id="loader"></div>
                     <ul class="multi-step">
-                        <li class="active">1.お客様情報のご入力</li>
-                        <li class="active">2.入力内容のご確認</li>
-                        <li>3.送信完了</li>
+                        <li class="active">1.<span>お客様情報のご入力</span>入力</li>
+                        <li class="active">2.<span>入力内容のご確認</span>確認</li>
+                        <li>3.<span>送信完了</span>完了</li>
                     </ul>
                     <form class="col-md-12 form-wrap" @submit.prevent="add" method="post">
                         <h4 class="form-tit">資料請求される方について</h4>
@@ -77,45 +57,56 @@
                                     <input type="text" name="outputsex1" id="outputsex1" class="mailbox" disabled v-model="comments.sex1" />
                                 </div>
                             </div>
-                            <div class="form-group m-0 row bd">
-                                <div class="col-md-3 col-sm-12 form-left">
-                                    ご住所
+                            <div class="form-group m-0 row bd">                               
+                                <div class="col-md-3 col-sm-12 form-left">                                   
+                                <div class="row col-12">
+                                <div class="col-3 p-0">
+                                    <label>ご住所</label>
+                                </div>               
+                                <div class="col-9 p-0">                                                                   
+                                        <div class="text-right form-left pc-768"><label> 郵便番号 </label></div>
+                                        <div class="text-right form-left pc-768"><label>  都道府県</label></div>
+                                        <div class="text-right form-left pc-768"><label>  市区町村</label></div>
+                                        <div class="text-right form-left pc-768"><label>番地（建物名)</label></div>
+                                    
+                                </div>           
+                            </div>    
                                 </div>
                                 <div class="col-md-9 col-sm-12 form-right">
                                     <div class="form-group row pl-4 mb-0">
-                                        <div class="col-md-3 font-weight-bold">
+                                        <div class="col-md-3 sp-768">
                                             郵便番号 
                                         </div>
                                         <div class="col-md-9 p-0">
                                           <!-- <input type="text" name="outputpostal" id="outputpostal" class="mailbox m-b-10" disabled v-model="comments.postal" /> -->
-                                          <label>{{comments.postal}}</label>
+                                          <label class="mailbox">{{comments.postal}}</label>
                                         </div>
                                     </div>
                                     <div class="form-group row pl-4 mb-0">
-                                        <div class="col-md-3 font-weight-bold">
+                                        <div class="col-md-3 sp-768">
                                             都道府県
                                         </div>
                                         <div class="col-md-9 p-0">
                                             <!-- <input type="text" name="outputdivision" id="outputdivision" class="mailbox m-b-15" disabled v-model="comments.division" /> -->
-                                            <label>{{comments.division}}</label>
+                                            <label class="mailbox">{{comments.division}}</label>
                                         </div>
                                     </div>
                                     <div class="form-group row pl-4 mb-0">
-                                        <div class="col-md-3 font-weight-bold">
+                                        <div class="col-md-3  sp-768">
                                             市区町村
                                         </div>
                                         <div class="col-md-9 p-0">
                                             <!-- <input type="text" name="outputcity" id="outputcity" class="mailbox" disabled v-model="comments.city" /> -->
-                                            <label>{{comments.townshipname}}</label>
+                                            <label class="mailbox">{{comments.townshipname}}</label>
                                         </div>
                                     </div>
                                     <div class="form-group row pl-4 mb-0">
-                                        <div class="col-md-3 font-weight-bold">
+                                        <div class="col-md-3 sp-768">
                                             番地（建物名）
                                         </div>
                                         <div class="col-md-9 p-0">
                                             <!-- <input type="text" name="outputcity" id="outputcity" class="mailbox" disabled v-model="comments.city" /> -->
-                                            <label>{{comments.city}}</label>
+                                            <label class="mailbox">{{comments.city}}</label>
                                         </div>
                                     </div>
                                 </div>
@@ -211,9 +202,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="text-center">
-                            <button class="btn main-bg-color all-btn m-t-15 m-l-10 m-b-15 submit-button" id="myButton">上記内容を送信する</button>&nbsp;
+                        <div class="text-center">                            
                             <router-link :to="{name: 'nursingFavouriteMail', params: {input_data: this.comments, bk_postal: this.comments.selectedValue}, props: true}" class="btn btn-danger all-btn m-r-8">入力画面に戻る</router-link>
+                            <button class="btn main-bg-color all-btn m-t-15 m-l-10 m-b-15 submit-button" id="myButton">上記内容を送信する</button>
                         </div>
                     </form>
                 </div>
