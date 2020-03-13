@@ -883,9 +883,9 @@
                                 <i class="fas fa-comment"></i>{{comment.title}}
                             </div>
                             <div class="d-flex d-block">
-                                <p class="card-title font-weight-bold">{{comment.email}}</p>
+                                <!-- <p class="card-title font-weight-bold">{{comment.email}}</p>
                                 <p class="comment-age" v-if="comment.year != null">{{ new Date().getFullYear() - comment.year}}年代</p>
-                                <p class="comment-age" v-else></p>
+                                <p class="comment-age" v-else></p> -->
                                 <p class="comment-date"><i class="fa fa-calendar" aria-hidden="true"></i> {{comment.created_date | moment("YYYY年MM月DD日") }}投稿 <span class="ml-2"><i class="fa fa-clock" aria-hidden="true"></i> {{comment.created_time}}</span></p>
                             </div>
                                 <read-more more-str="もっと見る" :text="comment.comment" :max-chars="160" class="m-t-comment"></read-more><br>
@@ -1169,7 +1169,7 @@
                 </div>
 
                 <div class="col-12 pad-free-750">
-                    <h5 class="profile_subtit">施設情報 </h5>
+                    <h5 class="profile_subtit">院内施設情報 </h5>
                     <div class="row col-md-12 m-0">
                         <div class="col-md-2 fac-name-box" v-for="hosfacility in hosfacilities " :key="hosfacility.id">
                             <h4>{{hosfacility.description}}</h4>
@@ -1275,9 +1275,9 @@
                                 <i class="fas fa-comment"></i>{{comment.title}}
                             </div>
                             <div class="d-flex">
-                                <p class="card-title font-weight-bold">{{comment.email}}</p>
+                                <!-- <p class="card-title font-weight-bold">{{comment.email}}</p>
                                 <p class="comment-age" v-if="comment.year != null">{{ new Date().getFullYear() - comment.year}}年代</p>
-                                <p class="comment-age" v-else></p>
+                                <p class="comment-age" v-else></p> -->
                                 <p class="comment-date"><i class="fa fa-calendar" aria-hidden="true"></i> {{comment.created_date | moment("YYYY年MM月DD日") }}投稿 <span class="ml-2"><i class="fa fa-clock" aria-hidden="true"></i> {{comment.created_time}}</span></p>
                             </div>
                                 <read-more more-str="もっと見る" :text="comment.comment" :max-chars="160" class="m-t-comment"></read-more><br>

@@ -686,7 +686,7 @@
           <tr>
             <td>
               <div class="form-group m-b-0">
-                <label class="headinglbl col-6 col-lg-2 col-md-3 pad-free">施設情報 </label>
+                <label class="headinglbl col-6 col-lg-2 col-md-3 pad-free">院内施設情報 </label>
                 <span class="bg-trans btn dropdown-arrow nursing_toggle_responsive" @click="toggleEvent('hos-fac','3')" >詳細 
                     <i class="fas fa-sort-down animate"  :class  ="{'rotate': isRotate3}"></i>
                 </span>

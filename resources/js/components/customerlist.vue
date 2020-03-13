@@ -32,7 +32,7 @@
                         <p class="record-ico">
                             <i class="fa fa-exclamation"></i>
                         </p>
-                        <p class="record-txt01"> 検索したデータ見つかりません。</p>
+                        <p class="record-txt01"> 検索キーワードに該当する事業者は存在しません。</p>
                         
                     </div>                        
                        
@@ -85,7 +85,7 @@
                                             <!-- <div class="col-md-2 max-width13"><strong>Logo:</strong></div><div class="col-md-10">{{customer.logo}}</div> -->
                                             <div class="row mt-3">
                                                 <div class="col-md-12">
-                                                    <!-- <button class="btn delete-borderbtn mr-2 mb-2" @click="deleteCustomer(customer.id,'delete')">削除</button> -->
+                                                    <button class="btn delete-borderbtn mr-2 mb-2" v-if="customer.status != 0" @click="deleteCustomer(customer.id,'delete')">削除</button>
                                                     <button class="btn delete-borderbtn mr-2 mb-2" v-if="customer.status == 0" @click="deleteCustomer(customer.id,'denied')">新規登録承認しない</button>
                                                     <!-- <router-link :to="{name:'custedit',params:{id:customer.id}}" class="btn main-bg-color all-btn white">Edit</router-link> -->
                                                     <!-- <button class="btn confirm-borderbtn" v-if="customer.status == 0">確認済</button> -->

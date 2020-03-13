@@ -19,8 +19,7 @@
                     <p class="record-ico">
                         <i class="fa fa-exclamation"></i>
                     </p>                    
-                    <p class="record-txt01" v-if="norecord_msg">表示する施設ありません。</p>
-                    <p v-if="norecord_msg">表示する施設ありません‼新しい施設を作成してください。</p>   
+                    <p class="record-txt01" v-if="norecord_msg">施設が登録されていません。</p>
                     <span class="main-bg-color create-btn all-btn" v-if="norecord_msg" @click="ShowHideDiv()">
                         <i class="fas fa-plus-circle"></i> 施設新規作成
                     </span> 

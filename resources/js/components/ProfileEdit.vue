@@ -164,16 +164,17 @@
                                     <div class="row">
                                         <div class="col-md-12 m-t-8">
                                             <div class="header2">
-                                                <h5 class=" clearfix" v-if="customer_info.recordstatus ==1">事業者登録の{{accout_status}}</h5>
-                                                <h5 class=" clearfix" v-else>事業者登録の{{accout_status}}</h5>
+                                                <h5 class="clearfix">事業者登録の有効/無効</h5>
+                                                <!-- <h5 class=" clearfix" v-if="customer_info.recordstatus ==1">事業者登録の{{accout_status}}</h5> -->
+                                                <!-- <h5 class=" clearfix" v-else>事業者登録の{{accout_status}}</h5> -->
                                             </div>
                                             <div class="form-group">
                                                 <!-- <button class="btn confirmed" v-if="customer_info.accout_status != 0" >{{accout_status}}</button>
                                                 <button class="btn confirm-borderbtn" v-else @click="AccountStatusChange(customer_info.recordstatus)">{{accout_status}}</button> -->
                                                 <span :class="customer_info.recordstatus ==1?btnred:btnsuccess" class="btn all-btn" @click="AccountStatusChange(customer_info.recordstatus)">
                                                     {{accout_status}}
-                                                </span>
-                                            </div>
+                                                </span> {{accout_status2}}
+                                            </div>   
                                         </div>
                                     </div>
                                 </div>
@@ -204,6 +205,7 @@
                     upload_img: null,
                     image: '',
                     accout_status:'',
+                    accout_status2:'',
                     name:'',
                     password: '',
                     password_confirmation: '',
@@ -239,8 +241,10 @@
                         console.log(this.customer_info);
                         if(this.customer_info.recordstatus == '1') {
                             this.accout_status = '無効にする';
+                            this.accout_status2 = '現在有効';
                         } else {
                             this.accout_status = '有効にする';
+                            this.accout_status2 = '現在無効';
                         }
                         if (this.customer_info.type_id == '2') {
                             this.logo = '/upload/hospital_profile/' + response.data.logo;
@@ -558,6 +562,7 @@
                                         this.customer_info = response.data;                                       
                                         if(this.customer_info.recordstatus == '1') {
                                             this.accout_status = '無効にする';
+                                            this.accout_status2 = '現在有効';
                                              this.$swal({
                                                 position: 'top-end',
                                                 type: 'success',
@@ -570,6 +575,7 @@
                                             });
                                         } else {
                                             this.accout_status = '有効にする';
+                                            this.accout_status2 = '現在無効';
                                              this.$swal({
                                                 position: 'top-end',
                                                 type: 'success',

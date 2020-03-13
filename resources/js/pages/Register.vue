@@ -360,7 +360,7 @@
            
             this.$swal({
                 title: 'この内容で登録しますか。',  
-                text: '事業者名:'+app.username+'<br/>メールアドレス:'+app.email+'<br/>事業者タイプ:'+seltype+'<br/>電話番号:'+app.phone,              
+                html: "事業者名:"+app.username+"<br/>メールアドレス:"+app.email+"<br/>事業者タイプ:"+seltype+"<br/>電話番号:"+app.phone,              
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'はい',
@@ -376,8 +376,8 @@
                             this.$swal({
                                 position: 'top-end',
                                 type: 'success',
-                                title: 'メールを送付しました。',
-                                text: '確認のためしばらくお待ちください。',
+                                title: 'サイト管理者に登録情報を通知いたしました。',
+                                html: "登録審査後、事業者様にメールにてお知らせいたします。<br/>しばらくおまちください。",
                                 width: 350,
                                 height: 200,
                                 confirmButtonColor: "#6cb2eb",

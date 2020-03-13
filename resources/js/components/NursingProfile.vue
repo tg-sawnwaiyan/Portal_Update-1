@@ -1234,9 +1234,9 @@ export default {
                    
               this.$swal({
                 title: "確認",
-                text: "メールをチェックしてください",
+                text: "保存できません。必須項目を確認してください。",
                 type: "warning",
-                width: 350,
+                width: 370,
                 height: 200,
                 showCancelButton: false,
                 confirmButtonColor: "#dc3545",
