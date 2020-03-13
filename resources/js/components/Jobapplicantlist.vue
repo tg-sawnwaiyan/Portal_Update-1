@@ -13,8 +13,18 @@
 
                
 
-                <h5  class="header"> 求人応募者一覧
+                <!-- <h5  class="header"> 求人応募者一覧
                     <span v-if="page == 'job' && job_id != ''" style="font-size: 0.9em; font-weight: normal; color: #333;"><br/>{{job_title}}<span class="pro_num">({{job_id}})</span> </span>
+                    <span  class="pro_num" v-if="page == 'profile' && proname != ''">「{{proname}}」</span>
+                </h5> -->
+              
+
+                <h5  class="header"> 求人応募者一覧
+                    <span  v-if="page == 'job' && job_id != ''" style="font-size: 0.9em; font-weight: normal; color: #333;"><br/>
+                    <router-link class="job_title" :to="{name: 'job_details', params:{id:jobapplies.data[0]['job_id'],loginuser:loginuser}}">{{job_title}} </router-link>
+                        <!-- <p class="job_title"> {{job_title}} </p> -->
+                        <p class="job_id"><span>求人番号:</span>{{job_id}}</p>  
+                    </span>
                     <span  class="pro_num" v-if="page == 'profile' && proname != ''">「{{proname}}」</span>
                 </h5>
             
@@ -33,7 +43,10 @@
                                 <div class="row"  v-if="page == null || page == 'profile' ">
                                     <div class="col-9">
                                         <div class="joboffer-tit clearfix">
-                                             <h5  class="font-weight-bold">{{jobapply.job_title}} <span class="pro_num">({{jobapply.jobid}})</span></h5>
+                                             <router-link class="job_title_1" :to="{name: 'job_details', params:{id:jobapply.job_id,loginuser:loginuser}}">{{jobapply.job_title}} </router-link>
+                                           
+                                                 <span class="job_id_1"><span>求人番号:</span>{{jobapply.jobid}}</span>
+                                            
                                         </div>
                                     </div> 
                                     <div class="col-3 text-right">
@@ -179,11 +192,18 @@ export default {
             job_id:'',
             proname:'',
             colnum: 'col-3',
+            loginuser:true
         };
 
     },
     created() {
         this.getJobapplicantList();
+        this.axios.get('/api/user').then(response => {
+        
+        this.loginuser = 'true';
+        }).catch((error) => {
+            this.loginuser = 'false';
+        })
     },
 
     methods: {
