@@ -442,6 +442,7 @@ class JobController extends Controller
         $job = Job::find($id);
         $getJob = Job::where('id',$id)->get()->toarray();
         $getJobApply= JobApply::where('job_id',$id)->get()->toarray();
+
         jobApplyLog::insert($getJobApply);
         jobs_log::insert($getJob);
         JobApply::where('job_id',$id)->delete();

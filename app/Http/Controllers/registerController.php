@@ -252,6 +252,11 @@ class registerController extends Controller
     public function getStatus($token)
     {
         $getStatus = DB::table('password_resets')->where('token',$token)->select('status','email')->first();
+        $status = $getStatus->status;
+        if($status == 1){
+            $updateStatus = array('status' => 2);
+            DB::table('password_resets')->where('token',$token)->update($updateStatus);
+        }
         return response()->json($getStatus);
     }
 
