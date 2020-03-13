@@ -103,61 +103,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <!-- <div class="card card-default m-b-20 col-md-11" >
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-12 m-t-8">
-                                            
-                                            <div class="form-group" id="newcreate">
-                                              
-                                                <span v-if="customer_info.type_id == 2" class="btn main-bg-color white all-btn"  @click="Save()">
-                                                    病院施設新規作成
-                                                </span>
-                                                <span v-else class="btn main-bg-color white all-btn"  @click="Save()">
-                                                    介護施設新規作成
-                                                </span>
-                                            </div>
-                                            <div id="nusNew">
-                                                 <div class="form-group">
-                                                    <label>施設名 </label>
-                                                    <input type="text" class="form-control" v-model="nursing_data.name" placeholder="施設名を入力してください。">
-                                                    <span v-if="errors.name" class="error">{{errors.name}}</span>
-                                                </div>
-                                                <div class="form-group" >
-                                                    <label>都道府県</label>
-                                                    <select v-model="nursing_data.city_id" class="division form-control"  @change="getTownship()">
-                                                            <option value="0">選択してください。</option>
-                                                            <option v-for="cities in city_list" :key="cities.id" v-bind:value="cities.id">
-                                                                {{cities.city_name}}
-                                                            </option>
-                                                    </select>
-                                                     <span v-if="errors.city" class="error">{{errors.city}}</span>
-                                                </div>
-                                                <div class="form-group" >
-                                                    <label>市区町村</label>
-                                                    <select v-model="nursing_data.town_id" class="division form-control" @change="changeTownship()"  >
-                                                            <option value="0">選択してください。</option>
-                                                            <option v-for="tw in town_list" :key="tw.id" v-bind:value="tw.id">
-                                                                {{tw.township_name}}
-                                                            </option>
-                                                    </select>
-                                                     <span v-if="errors.township" class="error">{{errors.township}}</span>
-                                                </div>
-                                                <div class="form-group">
-                                                     <span  class="btn btn-danger"  style="margin-left:680px;" @click="CancelNew()">
-                                                        キャンセル
-                                                    </span>
-                                                    <span style="float:right" class="btn main-bg-color white all-btn"  @click="CreateNew()">
-                                                        作成
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
+                            </div>                            
 
                             <div class="card card-default m-b-20 col-md-11">
                                 <div class="card-body">
@@ -258,66 +204,7 @@
                     document.getElementById('newcreate').style.display = "none";
                     document.getElementById('nusNew').style.display = "block";
                 },
-                CreateNew(){
-                    if(this.nursing_data.name != '' )
-                    {
-                        this.errors.name = "";
-                    }
-                    else{
-                       this.errors.name = "施設名は必須です";
-                    }
-                    if(this.nursing_data.city_id != 0 )
-                    {
-                        this.errors.city = "";
-                    }
-                    else{
-                       this.errors.city = "都道府県は必須です";
-                    }
-                    if(this.nursing_data.town_id != 0)
-                    {
-                        this.errors.township = "";
-            
-                    }
-                    else{
-                         this.errors.township = "市区町村は必須です";
-                    }
-                    if(this.errors.city == ""  &&  this.errors.township == "" && this.errors.name == "")
-                    {
-                        this.axios.post(`/api/nursing/movelatlng/${this.cusid}`, this.nursing_data)
-                                        .then((response) => {
-                                            this.$swal({
-                                            // title: "確認",
-                                            text: "施設を作成しました。",
-                                            type: "success",
-                                            width: 350,
-                                            height: 200,
-                                            confirmButtonColor: "#6cb2eb",                       
-                                            confirmButtonText: "閉じる",
-                                            confirmButtonClass: "all-btn",
-                                            allowOutsideClick: false,
-                                        
-                                }).then(response => { 
-                                     this.$router.push({
-                                    name: 'accountlist',
-                                     });
-                                });
-
-                            document.getElementById('newcreate').style.display = "block";
-                            document.getElementById('nusNew').style.display = "none";
-                            this.nursing_data.name = '';
-                            this.nursing_data.town_id = 0;
-                            this.nursing_data.city_id = 0;
-                        });
-                    }  
-                },
-                CancelNew(){
-                     document.getElementById('newcreate').style.display = "block";
-                     document.getElementById('nusNew').style.display = "none";
-                     this.nursing_data.city_id = 0;
-                     this.nursing_data.town_id = 0;
-                     this.errors.city = '';
-                     this.errors.township = '';
-                },
+                
                 imgUrlAlt(event) {
                     event.target.src = "/images/noimage.jpg"
                 },
