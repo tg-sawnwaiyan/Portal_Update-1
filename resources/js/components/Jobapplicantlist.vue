@@ -67,7 +67,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="joboffer-tit clearfix">
-                                             <p><span class="font-weight-bold">フリガナ:&nbsp; </span>{{jobapply.last_name}} {{jobapply.id}}</p>
+                                             <p><span class="font-weight-bold">フリガナ:&nbsp; </span>{{jobapply.last_name}} </p>
                                         </div>
                                     </div>
                                 </div>

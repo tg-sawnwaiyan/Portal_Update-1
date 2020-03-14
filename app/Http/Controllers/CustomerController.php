@@ -81,22 +81,9 @@ class CustomerController extends Controller
 
     public function profileDelete($id,$type)
     {
-
         if($type == "nursing")
         {
-               $getjob = Job::select('jobs.*')->join('customers','jobs.customer_id','=','customers.id')->where(['jobs.profile_id'=>$id,'customers.type_id'=>3])->get()->toarray();
-               $getJob = DB::table('jobs')->select('*')->join('customers','jobs.customer_id','=','customers.id')->where(['jobs.profile_id'=>$id,'customers.type_id'=>3])->get()->toarray();
-             if($getJob != null){
-                
-               foreach ($getJob as $getJobs) {                
-                $getJobApply= JobApply::where('job_id',$getJobs->id)->get()->toarray();
-                jobApplyLog::insert($getJobApply);
-                JobApply::where('job_id',$getJobs->id)->delete();  
-               }
-               jobs_log::insert($getjob);
-               Job::join('customers','jobs.customer_id','=','customers.id')->where(['jobs.profile_id'=>$id,'customers.type_id'=>3])->delete();                
-            }
-
+            $t_id = 3;        
             $Cooperate_Medical = Cooperate_Medical::where('profile_id',$id)->delete();
             $acceptance_transactions  = acceptance_transactions::where('profile_id',$id)->delete();
             $method_payment = method_payment::where('profile_id',$id)->delete();
@@ -104,26 +91,11 @@ class CustomerController extends Controller
             $SpecialFeaturesJunctions = SpecialFeaturesJunctions::where('profile_id',$id)->where('type',$type)->delete();
             $Gallery = Gallery::where('profile_id',$id)->where('profile_type',$type)->delete();
             $Comment = Comment::where('profile_id',$id)->where('type',$type)->delete();
-
             $profileDelete =  NursingProfile::find($id);
         }
         else
         {
-      
-            $getjob = Job::select('jobs.*')->join('customers','jobs.customer_id','=','customers.id')->where(['jobs.profile_id'=>$id,'customers.type_id'=>2])->get()->toarray();
-            $getJob = DB::table('jobs')->join('customers','jobs.customer_id','=','customers.id')->where('jobs.profile_id',$id)->where('customers.type_id',2)->get()->toarray();
-            if($getJob != null){
-                
-               foreach ($getJob as $getJobs) {
-                $getJobApply= JobApply::where('job_id',$getJobs->id)->get()->toarray();
-                jobApplyLog::insert($getJobApply);
-                JobApply::where('job_id',$getJobs->id)->delete();  
-               }
-               jobs_log::insert($getjob);
-               Job::join('customers','jobs.customer_id','=','customers.id')->where(['jobs.profile_id'=>$id,'customers.type_id'=>2])->delete();
-                
-            }
-           
+            $t_id = 2;                       
             $SubjectJunctions = SubjectJunctions::where('profile_id',$id)->delete();
             $SpecialFeaturesJunctions = SpecialFeaturesJunctions::where('profile_id',$id)->where('type',$type)->delete();
             $Schedule = Schedule::where('profile_id',$id)->delete();
@@ -132,12 +104,23 @@ class CustomerController extends Controller
             $profileDelete = HospitalProfile::find($id);
         }
 
-            $profileDelete->delete();
+        $getJob = DB::table('jobs')->select('jobs.*')->join('customers','jobs.customer_id','=','customers.id')->where(['jobs.profile_id'=>$id,'customers.type_id'=>$t_id])->get();
+        $getjobarr = $getJob->toarray();
+        
+        if(count($getJob) > 0){                
+            foreach ($getJob as $getJobs) {     
+                $getJobApply= JobApply::where('job_id',$getJobs->id)->get()->toarray();
+                jobApplyLog::insert($getJobApply);
+                JobApply::where('job_id',$getJobs->id)->delete();  
+            }
+            jobs_log::insert($getjobarr);
+            Job::join('customers','jobs.customer_id','=','customers.id')->where(['jobs.profile_id'=>$id,'customers.type_id'=>$t_id])->delete();                
+        }
+
+        $profileDelete->delete();
         
         return response()->json('successfully Delete!');
     }
-
-
 
     public function uploadvideo(Request $request)
     {
@@ -251,16 +234,37 @@ class CustomerController extends Controller
 
             $nursing = NursingProfile::where('customer_id',$id)->first();
             if($nursing !== null){
+                $Cooperate_Medical = Cooperate_Medical::where('profile_id',$nursing->id)->delete();
+                $acceptance_transactions  = acceptance_transactions::where('profile_id',$nursing->id)->delete();
+                $method_payment = method_payment::where('profile_id',$nursing->id)->delete();
+                $Staff =  Staff::where('profile_id',$nursing->id)->delete();
                 $SpecialFeaturesJunctions = SpecialFeaturesJunctions::where('profile_id',$nursing->id,'and')->where('type','nursing')->delete();
+                $Gallery = Gallery::where('profile_id',$nursing->id)->where('profile_type',$type)->delete();
+                $Comment = Comment::where('profile_id',$nursing->id)->where('type',$type)->delete();
                 $nursing->delete();
             }
 
             $hospital = HospitalProfile::where('customer_id',$id)->first();
             if($hospital !== null){
                 $SubjectJunctions = SubjectJunctions::where('profile_id',$hospital->id)->delete();
-                $SpecialFeaturesJunctions = SpecialFeaturesJunctions::where('profile_id',$hospital->id,'and')->where('type','hospital')->delete();
+                $SpecialFeaturesJunctions = SpecialFeaturesJunctions::where('profile_id',$hospital->id)->where('type','hospital')->delete();
                 $Schedule = Schedule::where('profile_id',$hospital->id)->delete();
+                $Gallery = Gallery::where('profile_id',$hospital->id)->where('profile_type','hospital')->delete();
+                $Comment = Comment::where('profile_id',$hospital->id)->where('type','hospital')->delete();
                 $hospital->delete();
+            }
+
+            $getJob = Job::select('*')->where('customer_id',$id)->get();
+            $getjobarr = $getJob->toarray();
+
+            if(count($getJob) > 0){                 
+                foreach ($getJob as $getJobs) {
+                    $getJobApply= JobApply::where('job_id',$getJobs->id)->get()->toarray();
+                    jobApplyLog::insert($getJobApply);
+                    JobApply::where('job_id',$getJobs->id)->delete();  
+                }
+                jobs_log::insert($getjobarr);
+                Job::where(['customer_id'=>$id])->delete();
             }
             
         }

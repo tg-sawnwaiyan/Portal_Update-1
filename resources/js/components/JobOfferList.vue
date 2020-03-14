@@ -345,11 +345,16 @@
                         this.jobs = response.data.profilejob;
                         console.log('result',this.jobs)
                         this.customer_id = response.data.user;
-                        if(this.jobs.data.length != 0){
-                            this.norecord_msg = false;
+                        if(this.jobs.data){
+                            if(this.jobs.data.length != 0){
+                                this.norecord_msg = false;
+                            }else{
+                                this.norecord_msg = true;
+                            }
                         }else{
                             this.norecord_msg = true;
                         }
+                        
 
                     });
                 },
