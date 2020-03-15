@@ -410,10 +410,10 @@
           <li class="active">3.<span>送信</span>完了</li>
         </ul>
         <div class="text-center">
-          <h3>入力内容は送信されました。</h3>
+          <h3>求人への応募が完了しました。</h3>
           <br />
-          <p>ご登録頂き、ありがとうございます。</p>
-          <p>今後ともどうぞよろしくお願い申し上げます。</p>
+          <p>担当者より連絡があるまでしばらくおまちください。</p>
+          
           <br />
           <br />
           <router-link class="btn btn-info all-btn width17" to="/">ホームへ戻る</router-link>

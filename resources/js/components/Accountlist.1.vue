@@ -165,13 +165,13 @@
                                                 </select>
                                                 <span v-if="errors.township" class="error">{{errors.township}}</span>
                                             </div>
-                                            <div class="form-group">                                                
-                                                <span class="btn main-bg-color white all-btn"  @click="CreateNew()">
-                                                    作成
-                                                </span>
+                                            <div class="form-group"> 
                                                 <span class="btn bt-red all-btn" @click="CancelNew()">
                                                     キャンセル
-                                                </span>
+                                                </span>                                               
+                                                <span class="btn main-bg-color white all-btn"  @click="CreateNew()">
+                                                    作成
+                                                </span>                                                
                                             </div>
                                     </div>                                    
                                 </div>

@@ -26,8 +26,8 @@
                         </div><br/>
 
                     <div class="form-group ">
-                        <span class="btn main-bg-color white all-btn" @click="checkValidate()">{{subtitle}}</span>
                         <router-link class="btn bt-red all-btn" to="/occupationlist" > キャンセル </router-link>
+                        <span class="btn main-bg-color white all-btn" @click="checkValidate()">{{subtitle}}</span>
                     </div>
                     </form>
                 </div>

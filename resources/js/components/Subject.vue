@@ -24,8 +24,8 @@
                             </select>
                     </div><br/>
                             <div class="form-group">
-                                <span class="btn main-bg-color white all-btn" @click="checkValidate()">{{subtitle}}</span>
                                 <router-link class="btn btn-danger all-btn" to="/subjectlist" > キャンセル </router-link>
+                                <span class="btn main-bg-color white all-btn" @click="checkValidate()">{{subtitle}}</span>
                                     <!-- <button class="btn news-post-btn all-btn">{{subtitle}}</button> -->
                                 
                         </div>
