@@ -14,7 +14,7 @@
                     <h4 class="main-color mb-3">事業者検索 </h4>
                     <div class="row mb-4">
                         <div class="col-md-6">
-                            <input type="text" class="form-control" placeholder="事業者検索" id="search-word" v-model="searchkeyword" @keyup="searchCustomer()" />
+                            <input type="text" class="form-control" placeholder="事業者名で検索" id="search-word" v-model="searchkeyword" @keyup="searchCustomer()" />
                         </div>                  
                         <div class="col-md-6 choose-item">
                         <select  v-model="status" id="selectBox" class="form-control select_box" @change="searchCustomer()">
