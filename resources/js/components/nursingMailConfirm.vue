@@ -60,29 +60,29 @@
                             <div class="form-group m-0 row bd">                               
                                 <div class="col-md-3 col-sm-12 form-left">                                   
                                 <div class="row col-12">
-                                <div class="col-3 p-0">
+                                <div class="col-sm-3 col-md-6 p-0">
                                      <label class="subtitle"><strong>ご住所</strong></label>
                                 </div>               
-                                <div class="col-9 p-0 text-bold">                                                                   
-                                        <div class="text-right form-left pc-768"><label>郵便番号 </label></div>
-                                        <div class="text-right form-left pc-768"><label>都道府県</label></div>
-                                        <div class="text-right form-left pc-768"><label>市区町村</label></div>
-                                        <div class="text-right form-left pc-768"><label>番地（建物名)</label></div>
+                                <div class="col-sm-9 col-md-6 p-0 text-bold">                                                                   
+                                        <div class="text-left form-left pc-768"><label>郵便番号 </label></div>
+                                        <div class="text-left form-left pc-768"><label>都道府県</label></div>
+                                        <div class="text-left form-left pc-768"><label>市区町村</label></div>
+                                        <div class="text-left form-left pc-768"><label>番地（建物名)</label></div>
                                     
                                 </div>           
                             </div>    
                                 </div>
-                                <div class="col-md-9 col-sm-12 form-right">
-                                    <div class="form-group row pl-4 mb-0">
+                                <div class="col-md-9 col-sm-12 form-right stepper-result-form">
+                                    <div class="row pl-4">
                                         <div class="col-md-3 sp-768">
                                             <strong>郵便番号 </strong>
                                         </div>
                                         <div class="col-md-9 p-0">
                                           <!-- <input type="text" name="outputpostal" id="outputpostal" class="mailbox m-b-10" disabled v-model="comments.postal" /> -->
-                                          <label class="mailbox pl-2">{{comments.postal}}</label>
+                                          <label class="mailbox pl-2 p-t-10">{{comments.postal}}</label>
                                         </div>
                                     </div>
-                                    <div class="form-group row pl-4 mb-0">
+                                    <div class="form-group row pl-4">
                                         <div class="col-md-3 sp-768">
                                              <strong>都道府県</strong>
                                         </div>
@@ -91,7 +91,7 @@
                                             <label class="mailbox pl-2">{{comments.division}}</label>
                                         </div>
                                     </div>
-                                    <div class="form-group row pl-4 mb-0">
+                                    <div class="form-group row pl-4">
                                         <div class="col-md-3  sp-768">
                                              <strong>市区町村</strong>
                                         </div>
@@ -214,19 +214,17 @@
                         <li class="active">2.内容のご確認</li>
                         <li class="active">3.送信完了</li>
                     </ul>
-                    <div class="text-center">
-                        <h3>資料請求が完了いたしました。</h3>
-                        <br />
-                        <p>この度は「TIS ティーズ」をご利用いただきましてありがとうございました。</p>
-                        <p>お申込みいただいた資料の送付およびお問い合わせいただいた内容につきましては、各施設よりご対応させていただきます。</p>
-                        <p>今後ともどうぞよろしくお願い申し上げます。</p>
-                        <br />
-                        <br />
-                        <router-link class="btn btn-info all-btn width17" to="/">ホームへ戻る</router-link>
+                    <div class="col-md-12 form-wrap">
+                        <h4 class="form-tit">資料請求が完了いたしました。</h4>    
                     </div>
-
-                    <br />
-                    <br />
+                    <div class="row col-12 stepper-success-form">                       
+                        <p>この度は「TIS ティーズ」をご利用いただきましてありがとうございました。</p><br/>
+                        <p>お申込みいただいた資料の送付およびお問い合わせいただいた内容につきましては、各施設よりご対応させていただきます。</p><br/>
+                        <p>今後ともどうぞよろしくお願い申し上げます。</p>                        
+                    </div>               
+                    <div class="multi-step mt-5">
+                         <router-link class="btn btn-info all-btn width17" to="/">ホームへ戻る</router-link>
+                    </div>    
                 </div>
             </div>
         </div>
