@@ -352,7 +352,7 @@
                             </tr>
                             <tr>
                               <td><span class="job_ico">時</span>就業時間/休日休暇</td>
-                              <td> {{job.working_hours}} / {{job.holidays}}  </td>
+                              <td> {{job.working_hours}} <span v-if="job.holidays!='' && job.holidays!=null">/</span> {{job.holidays}}  </td>
                             </tr>
                             <tr>
                               <td><span class="job_ico"><i class="fa fa-briefcase"></i></span>特別な条件</td>
