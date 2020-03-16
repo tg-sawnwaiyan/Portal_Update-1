@@ -32,13 +32,18 @@
                     </div>
                     <hr />
                     <div class="d-flex header pb-3 admin_header">
-                        <h5>求人一覧 <span v-if="type != 'admin' && jobs.data.length">({{jobs.data[0].profile_name}})</span></h5>
+                        <h5>求人一覧  </h5>                       
                         <div class="ml-auto" v-if="!norecord_msg">
                             <router-link :to="hrefroute" class="main-bg-color create-btn all-btn">
                                 <i class="fas fa-plus-circle"></i> <span class="first_txt"> 求人</span><span class="dinone">新規作成</span>
                             </router-link>
                         </div>
                     </div>
+                     <div class="admin-user-title">
+                            <h5>
+                                <span v-if="type != 'admin' && jobs.data.length">{{jobs.data[0].profile_name}}</span>
+                            </h5>
+                        </div>
                     
                     <!-- <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div> -->
 

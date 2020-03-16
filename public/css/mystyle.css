@@ -669,6 +669,19 @@ border: 1px solid #eee; */
 
 /********************************** Common Admin And User Panel **********************************/
 
+.admin-user-title {
+    font-size: 36px;
+    /* padding: 20px; */
+    color: #3490dc;
+}
+
+.admin-user-title h5 {
+    padding-left: 5px;
+    margin-bottom: 15px;
+    border-left: 3px solid #2980b9;
+    font-weight: 700;
+}
+
 .show-img {
     width: 100%;
     margin: 15px 0px;
@@ -7440,6 +7453,7 @@ color: green;
     font-weight: bold;
     border-radius: 3px;
     vertical-align: text-top;
+    display: inline-block;
 }
 
 .form-wrap .bd {
