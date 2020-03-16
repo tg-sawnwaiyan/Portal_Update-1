@@ -40,9 +40,11 @@
                         </div>
                     </div>
                      <div class="col-12 m-b-15 p-0">                        
-                            <h5>
-                                 <label for="" class="subtitle"><strong>施設名:</strong> </label>
-                                <span v-if="type != 'admin' && jobs.data.length">{{jobs.data[0].profile_name}}</span>
+                            <h5>                                 
+                                <span v-if="type != 'admin' && jobs.data.length">
+                                    <label for="" class="subtitle"><strong>施設名:</strong> </label>
+                                    {{jobs.data[0].profile_name}}
+                                </span>
                             </h5>
                         </div>
                     

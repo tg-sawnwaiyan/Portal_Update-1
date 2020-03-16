@@ -207,6 +207,7 @@ class JobApplyController extends Controller
             $admin_email = 'admin@t-i-s.jp';
              $jobapply->save();
              $jobapply->job_title = $job_title;
+             $jobapply->skills = $skills;
              $jobapply->job_description = $job_description;
              $jobapply->job_location = $job_location;
              $jobapply->job_nearest_station = $job_nearest_station;
