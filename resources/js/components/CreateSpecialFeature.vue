@@ -138,7 +138,7 @@ export default {
                     // console.log('this.$route.params.id');
                     this.$swal({
                             title: "確認",
-                            text: "特長を投稿してよろしいでしょうか。",
+                            text: "特長を投稿してよろしいでしょうか",
                             type: "info",
                             width: 350,
                             height: 200,
@@ -162,7 +162,7 @@ export default {
                             position: 'top-end',
                             type: 'success',
                             // title:'確認済',
-                            text: '特長を投稿しました。',
+                            text: '特長を投稿しました',
                             confirmButtonText: "閉じる",
                             confirmButtonColor: "#6cb2eb",
                             // showConfirmButton: false,
@@ -201,7 +201,7 @@ export default {
             updateFeature() {
                  this.$swal({
                             title: "確認",
-                            text: "特長を更新してよろしいでしょうか。",
+                            text: "特長を更新してよろしいでしょうか",
                             type: "info",
                             width: 350,
                             height: 200,
@@ -222,7 +222,7 @@ export default {
                     this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            text: '特長を更新しました。',
+                            text: '特長を更新しました',
                             confirmButtonText: "閉じる",
                             confirmButtonColor: "#6cb2eb",
                             width: 250,

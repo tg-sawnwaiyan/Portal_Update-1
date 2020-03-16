@@ -1236,7 +1236,7 @@ export default {
 
               this.$swal({
                         title: "確認",
-                        text: "職種を削除してよろしいでしょうか。",
+                        text: "職種を削除してよろしいでしょうか",
                         type: "warning",
                         width: 350,
                         height: 200,
@@ -1267,7 +1267,7 @@ export default {
                                 .then(response=>{
 
                                     this.$swal({
-                                        text: "職種を削除しました。",
+                                        text: "職種を削除しました",
                                         type: "success",
                                         width: 350,
                                         height: 200,
@@ -1346,7 +1346,7 @@ export default {
            
                     // console.log("mail");
                     this.$swal({
-                        html: "保存できません。<br/>必須項目を確認してください。",
+                        html: "保存できません。<br/>必須項目を確認してください",
                         type: "warning",
                         width: 350,
                         height: 200,

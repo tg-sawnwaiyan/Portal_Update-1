@@ -89,12 +89,7 @@
                                             <td> {{comment.email}} </td>
                                         </tr> -->
                                     </table>
-                                    <div class="d-inline-block mt-3">
-                                        <button class="btn text-danger delete-borderbtn" @click="deleteComment(comment.id)">削除</button>
-                                        <span class="mt-2" style="color: #81ad3b;font-weight: bold;" v-if="comment.status != 0" ><i class="fa fa-check-circle" aria-hidden="true"></i>&nbsp;承認済み</span>
-                                        <button class="btn confirm-borderbtn" v-else @click="commentConfirm(comment.id)"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;新規口コミ承認</button>
-                                        
-                                    </div>
+                                   
                                 </div>
 
                                 <div class="col-3 text-right">
@@ -103,6 +98,45 @@
                                          詳細 <i :id="'icon' + comment.id" class="fas fa-sort-down animate rotate"></i></button>
                                 </div>
                             </div>
+                             <!--don't-->
+                                <div class="collapse" :id="'changeLink' + comment.id">   
+                                    <div class="cmt"><span><i class="fa fa-calendar"></i>&nbsp;{{comment.created_date | moment("YYYY年MM月DD日") }}投稿</span> <span><i class="fa fa-clock"></i>&nbsp;{{comment.created_time}}</span></div>                               
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <td  class="w-50">
+                                                    <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-envelope" aria-hidden="true"></i></span>メールアドレス:&nbsp;</span><span class=""> {{comment.email}}</span></p>
+                                            </td>
+                                            <td  class="w-50">
+                                                    <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-user" aria-hidden="true"></i></span>お名前:&nbsp;</span><span class=""> {{comment.name}}</span></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td  class="w-50">
+                                                   <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-calendar" aria-hidden="true"></i></span>生年月日:&nbsp;</span><span class="" v-if="comment.year != '' && comment.year != null"> {{comment.year}} 年生まれ</span></p> 
+        
+                                            <td  class="w-50">
+                                                    <p class="mb-2"><span class="text-orange"><span class="job_ico">〒<i aria-hidden="true"></i></span>郵便番号:&nbsp;</span><span class=""> {{comment.zipcode}}</span></p>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td  class="w-50" colspan="2">
+                                                    <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="far fa-comment" aria-hidden="true"></i></span>口コミ内容:&nbsp;</span><span class=""> {{comment.comment}}</span></p>
+                                            </td>
+                                        </tr>
+                                         
+                                  
+                                    </table>
+                                    <div class="d-inline-block mt-2">
+                                        <button class="btn text-danger delete-borderbtn" @click="deleteComment(comment.id)">削除</button>
+                                        <span class="mt-2" style="color: #81ad3b;font-weight: bold;" v-if="comment.status != 0" ><i class="fa fa-check-circle" aria-hidden="true"></i>&nbsp;承認済み</span>
+                                        <button class="btn confirm-borderbtn" v-else @click="commentConfirm(comment.id)"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;新規口コミ承認</button>
+                                        
+                                    </div>
+                                </div>
+
+
+                              <!--don't-->
                         </div>
                         <!--don't-->
                         <!-- <div class="collapse card-body commentContainer" :id="'changeLink' + comment.id">
@@ -132,47 +166,7 @@
                                 <!-- <div  class="col-md-12 m-t-20" v-if="comment.zipcode"><span class="text-orange"><span class="job_ico">★</span></span><p style="color:#736e6e;">{{comment.zipcode}}</p></div> -->
                               
                         <!-- </div> -->
-                          <!--don't-->
-                                <div class="collapse p-17" :id="'changeLink' + comment.id">   
-                                    <div class="cmt"><span><i class="fa fa-calendar"></i>&nbsp;{{comment.created_date | moment("YYYY年MM月DD日") }}投稿</span> <span><i class="fa fa-clock"></i>&nbsp;{{comment.created_time}}</span></div>                               
-                                    <table class="table table-bordered">
-                                        <tr>
-                                            <td  class="w-50">
-                                                    <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-envelope" aria-hidden="true"></i></span>メールアドレス:&nbsp;</span><span class=""> {{comment.email}}</span></p>
-                                            </td>
-                                            <td  class="w-50">
-                                                    <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-user" aria-hidden="true"></i></span>お名前:&nbsp;</span><span class=""> {{comment.name}}</span></p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td  class="w-50">
-                                                   <p class="mb-2"><span class="text-orange"><span v-if="comment.year != '' && comment.year != null" class="job_ico"><i class="fa fa-calendar" aria-hidden="true"></i></span>生年月日:&nbsp;</span><span class=""> {{comment.year}} 年生まれ</span></p> 
-                                            </td>
-                                            <td  class="w-50">
-                                                    <p class="mb-2"><span class="text-orange"><span class="job_ico">〒<i aria-hidden="true"></i></span>郵便番号:&nbsp;</span><span class=""> {{comment.zipcode}}</span></p>
-                                            </td>
-                                        </tr>
-                                        <!-- <tr>
-                                            <td  class="w-50">
-                                                    <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-calendar" aria-hidden="true"></i></span>作成された投稿日:&nbsp;</span><span class=""> {{comment.created_date | moment("YYYY年MM月DD日") }}投稿</span></p>
-                                            </td>
-                                            <td  class="w-50">
-                                                    <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-calendar" aria-hidden="true"></i></span>作成された投稿時間:&nbsp;</span><span class=""> {{comment.created_time}}</span></p>
-                                            </td>
-                                        </tr> -->
-                                        <tr>
-                                            <td  class="w-50">
-                                                    <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-list" aria-hidden="true"></i></span>口コミ内容:&nbsp;</span><span class=""> {{comment.comment}}</span></p>
-                                            </td>
-                                        </tr>
-                                         
-                                  
-                                    </table>
-                                   
-                                </div>
-
-
-                              <!--don't-->
+                         
                     </div>
                 </div>
                 <!-- <pagination :data="comments" @pagination-change-page="searchcomment"></pagination> -->
@@ -330,7 +324,7 @@
                 deleteComment(id) {
                         this.$swal({
                             title: "確認",
-                            text: "口コミを削除してよろしいでしょうか。",
+                            text: "口コミを削除してよろしいでしょうか",
                             type: "warning",
                             width: 350,
                             height: 200,
@@ -369,7 +363,7 @@
                                     // this.categories.splice(i, 1);
                                     this.$swal({
                                         // title: "削除済",
-                                        text: "口コミを削除しました。",
+                                        text: "口コミを削除しました",
                                         type: "success",
                                         width: 350,
                                         height: 200,
@@ -388,7 +382,7 @@
                     commentConfirm(id) {
                         this.$swal({
                             title: "確認",
-                            text: "口コミを投稿してよろしいでしょうか。",
+                            text: "口コミを投稿してよろしいでしょうか",
                             type: "info",
                             width: 350,
                             height: 200,
@@ -415,7 +409,7 @@
                                     this.comments = response.data.comments;
                                     this.$swal({
                                             title: "確認済",
-                                            text: "口コミを投稿しました。",
+                                            text: "口コミを投稿しました",
                                             type: "success",
                                             width: 350,
                                             height: 200,

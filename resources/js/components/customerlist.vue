@@ -284,7 +284,7 @@
                 
                 deleteCustomer(id,type) {
                     if(type == 'delete'){
-                        var textval = '事業者を削除してよろしいでしょうか。';
+                        var textval = '事業者を削除してよろしいでしょうか';
                     }
                     else{
                         // var textval = '承認しない場合事業者情報が削除されます。';
@@ -340,7 +340,7 @@
                     comfirm(id) {
                         this.$swal({
                             title: "確認",
-                            text: "本当に承認しなくてよろしいでしょうか。",
+                            text: "本当に承認しなくてよろしいでしょうか",
                             type: "warning",
                             width: 350,
                             height: 200,
@@ -373,7 +373,7 @@
                                 } else {
                                     this.$swal({
                                         title: "新規登録承認",
-                                        text: "顧客はすでに確認されています。",
+                                        text: "顧客はすでに確認されています",
                                         type: "warning",
                                         width: 350,
                                         height: 200,

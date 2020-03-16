@@ -149,7 +149,7 @@
               
                     this.$swal({
                         title: "確認",
-                        text: "ニュースを削除してよろしいでしょうか。",
+                        text: "ニュースを削除してよろしいでしょうか",
                         type: "warning",
                         width: 350,
                         height: 200,
@@ -184,7 +184,7 @@
                                  this.$loading(false);
 
                                 this.$swal({
-                                    text: "ニュースを削除しました。",
+                                    text: "ニュースを削除しました",
                                     type: "success",
                                     width: 350,
                                     height: 200,

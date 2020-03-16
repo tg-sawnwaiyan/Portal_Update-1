@@ -110,7 +110,7 @@ export default {
                 {
                     this.$swal({
                              title: "確認",
-                            text: "職種を投稿してよろしいでしょうか。",
+                            text: "職種を投稿してよろしいでしょうか",
                             type: "info",
                             width: 350,
                             height: 200,
@@ -134,7 +134,7 @@ export default {
                             position: 'top-end',
                             type: 'success',
                             // title:'確認済',
-                            text: '求人職種を投稿しました。',
+                            text: '求人職種を投稿しました',
                             confirmButtonText: "閉じる",
                             confirmButtonColor: "#6cb2eb",
                             // showConfirmButton: false,
@@ -169,7 +169,7 @@ export default {
               updateType() {
                   this.$swal({
                             title: "確認",
-                            text: "求人職種を更新してよろしいでしょうか。",
+                            text: "求人職種を更新してよろしいでしょうか",
                             type: "info",
                             width: 350,
                             height: 200,
@@ -192,7 +192,7 @@ export default {
                         this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            text: '求人職種を更新しました。',
+                            text: '求人職種を更新しました',
                             confirmButtonText: "閉じる",
                             confirmButtonColor: "#6cb2eb",
                             width: 250,

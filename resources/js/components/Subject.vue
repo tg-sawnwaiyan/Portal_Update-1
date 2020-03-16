@@ -114,7 +114,7 @@ export default {
                 {
                     this.$swal({
                             title: "確認",
-                            text: "診療科目を投稿してよろしいでしょうか。",
+                            text: "診療科目を投稿してよろしいでしょうか",
                             type: "info",
                             width: 350,
                             height: 200,
@@ -139,7 +139,7 @@ export default {
                             position: 'top-end',
                             type: 'success',
                             // title:'確認済',
-                            text: '診療科目投稿しました。',
+                            text: '診療科目投稿しました',
                             confirmButtonText: "閉じる",
                             confirmButtonColor: "#6cb2eb",
                             // showConfirmButton: false,
@@ -175,7 +175,7 @@ export default {
 
                 this.$swal({
                           title: "確認",
-                            text: "診療科目を更新してよろしいでしょうか。",
+                            text: "診療科目を更新してよろしいでしょうか",
                             type: "info",
                             width: 350,
                             height: 200,
@@ -196,7 +196,7 @@ export default {
                         this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            text: '診療科目を更新しました。',
+                            text: '診療科目を更新しました',
                             // showConfirmButton: false,
                             // timer: 1800,
                             confirmButtonText: "閉じる",

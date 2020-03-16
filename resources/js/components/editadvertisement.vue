@@ -168,7 +168,7 @@ export default {
                     allowOutsideClick: false,
                 }).then(response => {
                         this.$swal({
-                                text: "画像を削除しました。",
+                                text: "画像を削除しました",
                                 type: "success",
                                 width: 350,
                                 height: 200,
@@ -266,7 +266,7 @@ export default {
                             this.$swal({
                                 position: 'top-end',
                                 type: 'success',
-                                title: '広告を更新しました。',                             
+                                text: '広告を更新しました',                             
                                 confirmButtonText: "閉じる",
                                 confirmButtonColor: "#6cb2eb",
                                 width: 250,
@@ -287,7 +287,7 @@ export default {
                   this.advertisement.location = "topbar";
                   this.$swal({
                             title: "確認",
-                            text: "広告を投稿してよろしいでしょうか。",
+                            text: "広告を投稿してよろしいでしょうか",
                             type: "info",
                             width: 350,
                             height: 200,
@@ -316,7 +316,7 @@ export default {
                             position: 'top-end',
                             type: 'success',
                             // title:'確認済',
-                            text: '広告を投稿しました。',
+                            text: '広告を投稿しました',
                             confirmButtonText: "閉じる",
                             confirmButtonColor: "#6cb2eb",
                             width: 250,
