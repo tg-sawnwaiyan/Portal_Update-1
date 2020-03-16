@@ -49,7 +49,7 @@
                                     <!-- </div> -->
 
                                 </div>
-                                 <span class="float-left text-danger p-l-30" v-if="charErr">※カタカナで入力してください。</span>
+                                 <span class="float-left error p-l-30" v-if="charErr">※カタカナで入力してください。</span>
 
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                             <div class="col-md-3 col-sm-12 form-left"> <label><strong>生年月日</strong> </label></div>
                             <div class="col-md-9 col-sm-12 form-right">
                                 <!-- <input type="text" id="bdate" name="bdate" class="form-control float-left" placeholder="生年月日を入力してください。" v-model="comments.bdate" @change="aggreBtn" @focusout="focusbdate"/> -->
-                                <date-picker class="box" :lang="lang" valueType="format" v-model="comments.bdate" style="margin-left: 11px;"></date-picker>
+                                <date-picker class="" :lang="lang" valueType="format" v-model="comments.bdate" style="margin-left: 20px;"></date-picker>
                                 <!-- <span class="error m-l-30" v-if="bdate_focus">※入力は必須です。</span> -->
                             </div>
                         </div>
@@ -83,22 +83,20 @@
                             </div>
                         <div class="form-group m-0 row bd">
                             <div class="col-md-3 col-sm-12 form-left"> 
-                            <div class="row col-12">
-                                <div class="col-3 p-0">
+                            <div class="row col-12 m-0 p-0">
+                                <div class="col-sm-3 col-md-6 p-0">
                                     <label class="subtitle"><strong>ご住所</strong></label>
                                 </div>               
-                                <div class="col-9 p-0">                                                                   
-                                        <div class="text-right form-left form-group pc-768"><label> <strong>郵便番号 </strong></label></div>
-                                        <div class="text-right form-left form-group pc-768"><label><strong>都道府県</strong><span class="error sp1">必須</span></label></div>
-                                        <div class="text-right form-left form-group pc-768"><label><strong>市区町村</strong> <span class="error sp1">必須</span></label></div>
-                                        <div class="text-right form-left form-group pc-768"><label><strong>番地（建物名)</strong><span class="error sp1">必須</span></label></div>
-                                    
+                                <div class="col-sm-9 col-md-6 p-0 stepper-form">                                                                   
+                                    <div class="form-left form-group pc-768"><label> <strong>郵便番号 </strong></label></div>
+                                    <div class="form-left form-group pc-768"><label><strong>都道府県</strong><span class="error sp1">必須</span></label></div>
+                                    <div class="form-left form-group pc-768"><label><strong>市区町村</strong> <span class="error sp1">必須</span></label></div>
+                                    <div class="form-left form-group pc-768"><label><strong>番地（建物名)</strong><span class="error sp1">必須</span></label></div>                                    
                                 </div>           
-                            </div>     
-                                
-                            </div>
-                            <div class="col-md-9 col-sm-12 form-right">
-                                <div class="form-group row pl-3">
+                            </div>    
+                            </div>                           
+                            <div class="col-md-9 col-sm-12 form-right stepper-form">
+                                <div class="form-group  row pl-3">
                                     <div class="col-md-12 sp-768"><label> <strong>郵便番号 </strong></label></div>
                                     <div class="col-md-12 p-0">
                                         <input type="text" v-model="comments.postal" name="postal" v-on:keydown="postalNumber" class="postal form-control float-left" id="postal" placeholder="郵便番号を入力してください。" maxlength="7"/>                                        
@@ -132,7 +130,7 @@
                                         <!-- <span v-if="errors.division" class="error">{{errors.division[0]}}</span> -->
                                     </div>  
                                 </div>
-                                <div class="form-group row pl-3">
+                                <div class="form-group row pl-3 m-b-0">
                                     <div class="col-md-12 sp-768"><label><strong>番地（建物名)</strong><span class="error sp1">必須</span></label></div>
                                     <div class="col-md-12 p-0">
                                          <input type="text" id="city" name="city" class="city form-control float-left" placeholder="番地を入力してください。" v-model="comments.city" @change="aggreBtn" @keyup="focusCity">
@@ -143,8 +141,8 @@
                         </div>
                         <div class="form-group m-0 row bd-all">
                             <div class="col-md-3 col-sm-12 form-left"><br/><label><strong>電話番号</strong></label></div>
-                            <div class="col-md-9 col-sm-12 form-right">
-                            <div class="form-group row pl-3">
+                            <div class="col-md-9 col-sm-12 form-right p-b-0">
+                            <div class="row pl-3">
                                     <div class="col-md-12 p-0">
                                         <label class="col-md-12">※ 電話番号またはメールアドレス必須 <span class="error sp1">必須</span></label>
                                         <input type="text" id="phone" name="number" class="form-control float-left" placeholder="電話番号を入力してください。" v-model="comments.phone" pattern="[0-9-]*" @keyup="focusPhone" @change="aggreBtn" maxlength="14" title="Please enter number only.">
@@ -160,7 +158,7 @@
                             <div class="form-group m-0 row bd-all"> -->
                             <div class="col-md-3 col-sm-12 form-left"><label><strong>メールアドレス </strong></label></div>
                             <div class="col-md-9 col-sm-12 form-right">
-                            <div class="form-group row pl-3">
+                            <div class="row pl-3">
                                 <div class="col-md-12 p-0">
                                         <input type="email" id="mail" name="mail" class="form-control float-left" placeholder="メールアドレスを入力してください。" v-model="comments.mail" @change="aggreBtn" @keyup="focusMail">                          
                                         <span class="float-left eg-txt"> 例）abc@example.jp （半角）</span>
@@ -176,11 +174,12 @@
                                 <input type="checkbox" id="present"  name="present" value="早分かり用語集」プレゼントを希望する" v-model="comments.present" @change="aggreBtn">「早分かり用語集」プレゼントを希望する
                             </div>
                         </div> -->
-                        <div class="mt-4 submit txt-err" v-if="btn_disable">
+                       
+
+                        <div class="btn-list mt-5 clearfix">
+                             <div class="mt-1 submit txt-err" v-if="btn_disable">
                             <div class="error">※未入力の必須項目がございます。</div>
                         </div>
-
-                        <div class="btn-list mt-2 clearfix">
                             <ul>
                                 <!-- <li class="m-r-15"><a @click="$router.go(-1)" class="btn btn-danger all-btn submit">戻る</a></li> -->
                                 <li> <button type="button" :disabled="isdisable" class="submit1 btn main-bg-color continue all-btn submit" @click="add()">確認ページに進む</button></li>
@@ -362,10 +361,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-4 col-sm-3 submit txt-err" v-if="btn_disable">
+                        
+                        <div class="btn-list mt-5 clearfix">
+                            <div class="mt-1 col-sm-3 submit txt-err" v-if="btn_disable">
                             <div class="error">※未入力の必須項目がございます。</div>
-                        </div>
-                        <div class="btn-list mt-2 clearfix">
+                            </div>
                             <ul>
                                 <!-- <li class="m-r-15"> -->
                                 <!-- <router-link :to="{name: 'favouriteNursing'}"  class="btn btn-danger all-btn submit">戻る</router-link> -->
