@@ -73,10 +73,10 @@
                                             <router-link class="pseudolink" :to="{name: 'job_details', params:{id:job.id,loginuser:loginuser}}">{{job.title}} </router-link>                                            
                                         </div>
                                     </div>
-                                    <div class="col-7 col-md-7">
+                                    <!-- <div class="col-7 col-md-7">
                                         <button :class="'btn drop-bg-color changeLink'+job.id"  @click="jobToggle(job.id)">
                                         詳細 <i :id="'icon' + job.id" class="fas fa-sort-down animate rotate"></i></button>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="row">
                                     <div class="model-7 col-6">
@@ -87,6 +87,16 @@
                                             <div v-if="job.recordstatus == 1" class="on">公開中</div>
                                             <div v-if="job.recordstatus == 0" class="on">非行化</div>
                                         </div>
+                                         <ul class="btn-list mt-4">
+                                             <li><a class="btn text-danger delete-borderbtn" @click="deleteJob(job.id)">削除</a></li>
+                                        <li>
+                                            <router-link :to="{path: '/jobedit/'+job.id }" class="btn edit-borderbtn">編集</router-link>
+                                        </li>                           
+                                        
+                                        <li class="mt-2" v-if="job.count">
+                                            <router-link :to="{path: '/jobapplicantlist/'+type+'/job/'+job.id, params:{title:job.title}}" class="btn confirm-borderbtn confirmed"><i class="fa fa-list"></i>求人応募一覧<span class="pc-414-inline ">ページへ</span></router-link>
+                                        </li>
+                                    </ul>
                                     </div>
                                     <div class=" col-6">
                                         
@@ -96,7 +106,7 @@
                                     </div>
                                 </div>
                                 
-                                    <div class="collapse" :id="'changeLink' + job.id">
+                                    <!-- <div class="collapse" :id="'changeLink' + job.id">
                                        
                                     
                                     <table class="table table-bordered">
@@ -120,16 +130,8 @@
                                             </td>
                                         </tr>
                                     </table>
-                                    <ul class="btn-list mt-4">
-                                        <li>
-                                            <router-link :to="{path: '/jobedit/'+job.id }" class="btn edit-borderbtn">編集</router-link>
-                                        </li>                           
-                                        <li><a class="btn text-danger delete-borderbtn" @click="deleteJob(job.id)">削除</a></li>
-                                        <li class="mt-2" v-if="job.count">
-                                            <router-link :to="{path: '/jobapplicantlist/'+type+'/job/'+job.id, params:{title:job.title}}" class="btn confirm-borderbtn confirmed"><i class="fa fa-list"></i>求人応募一覧<span class="pc-414-inline ">ページへ</span></router-link>
-                                        </li>
-                                    </ul>
-                                </div>
+                                   
+                                </div> -->
                             </div>
                         </div>
                         <!-- <table class="table table-hover custom-table">
