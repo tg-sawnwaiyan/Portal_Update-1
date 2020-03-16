@@ -426,11 +426,11 @@
 
 
       },
-      focusPhone(){
+      focusPhone: function(e) {
 
         var input_data = $('#phone').val();
-
-        if(input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-' && input_data.length >= 10 && input_data.length <= 14)
+    
+        if(((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105)) && input_data.charAt(0) != '-' && input_data.charAt(input_data.length -1 ) != '-' && (input_data.length >= 10 && input_data.length <= 14 ) )
         {
             this.ph_num = false;
             this.ph_length = false;
@@ -439,8 +439,51 @@
             this.ph_num = true;
             this.ph_length = true;
         }
+         
+         
+        //  if(keysAllowed.includes(e.keyCode)){
+        //      alert('a');
+        //         this.ph_num = false;
+        //        this.ph_length = false;
+        //  }
+        //  else{
+        //         this.ph_num = true;
+        //   this.ph_length = true;
+        //  }
 
-      }
+        //   if(keysAllowed.includes(e.keyCode) && input_data.charAt(0) != '-' && input_data.charAt(input_data.length -1 ) != '-' && (input_data.length >= 10 && input_data.length <= 14 ))
+        //   {
+        //      console.log('false');
+        //         this.ph_num = false;
+        //         this.ph_length = false;
+             
+        //   }
+        //   else{
+       
+        //        console.log('true');
+        //        this.ph_num = true;
+        //        this.ph_length = true;
+        //   }
+     
+        },
+
+    //   focusPhone($event){
+
+    //     var input_data = $('#phone').val();
+    //     alert($event.keyCode);
+    //     if(input_data.keyCode)
+
+    //     if(input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-' && input_data.length >= 10 && input_data.length <= 14)
+    //     {
+    //         this.ph_num = false;
+    //         this.ph_length = false;
+    //     }
+    //     else{
+    //         this.ph_num = true;
+    //         this.ph_length = true;
+    //     }
+
+    //   }
 
     },
     created(){
