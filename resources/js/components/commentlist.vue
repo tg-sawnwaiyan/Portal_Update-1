@@ -98,7 +98,7 @@
                                          詳細 <i :id="'icon' + comment.id" class="fas fa-sort-down animate rotate"></i></button>
                                 </div>
                             </div>
-                             <!--don't-->
+                             <!--comment-->
                                 <div class="collapse" :id="'changeLink' + comment.id">   
                                     <div class="cmt"><span><i class="fa fa-calendar"></i>&nbsp;{{comment.created_date | moment("YYYY年MM月DD日") }}投稿</span> <span><i class="fa fa-clock"></i>&nbsp;{{comment.created_time}}</span></div>                               
                                     <table class="table table-bordered">
@@ -134,9 +134,7 @@
                                         
                                     </div>
                                 </div>
-
-
-                              <!--don't-->
+                          <!--comment-->
                         </div>
                         <!--don't-->
                         <!-- <div class="collapse card-body commentContainer" :id="'changeLink' + comment.id">
