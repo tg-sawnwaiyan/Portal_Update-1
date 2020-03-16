@@ -99,7 +99,7 @@
              if(res.data.status == 2){
 
                 this.has_success = true;
-                this.error_text = "このパスワード再設定用URLま無効です。";
+                this.error_text = "このパスワード再設定用URLは無効です。";
             }else{
                 this.has_success = false;
             }

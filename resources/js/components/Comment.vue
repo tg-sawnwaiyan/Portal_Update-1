@@ -229,8 +229,8 @@
                                 <div class="text-center">
                                 <h3>入力内容は送信されました。</h3>
                                 <br />
-                                <p>ご登録頂き、ありがとうございます。</p>
-                                <p>今後ともどうぞよろしくお願い申し上げます。</p>
+                                <p>口コミの投稿ありがとうございました。</p>
+                                <p>サイト管理者による承認後、口コミが公開されます。</p>
                                 <br />
                                 <br />
                                 <router-link class="btn btn-info all-btn width17" to="/">ホームへ戻る</router-link>

@@ -181,7 +181,7 @@
                                 </label>
                                 <div class="row m-0">
                                     <div class="col-sm-6 col-12 pl-0 tel-input">
-                                        <input type="text" class="form-control box" id="postal" placeholder="165879" v-model="joboffer.postal" v-on:keydown="postalNumber" maxlength="7" />
+                                        <input type="text" class="form-control box" id="postal" placeholder="1006740" v-model="joboffer.postal" v-on:keydown="postalNumber" maxlength="7" />
                                     </div>
                                     <div class="col-sm-6 col-12 tel-button">
                                       <span class="float-left submit1 btn main-bg-color continue all-btn submit" @click="getPostal">郵便番号より住所を検索</span>
@@ -454,8 +454,8 @@
                             </div>
 
                             <div class="form-group mt-3 pb-5">
-                                <span class="btn main-bg-color white all-btn"  @click="checkValidate()">{{subtitle}}</span>
                                 <span class="btn bt-red all-btn" @click="$router.go(-1)">キャンセル</span>
+                                <span class="btn main-bg-color white all-btn"  @click="checkValidate()">{{subtitle}}</span>
                             </div>
                         </form>
                     </div>

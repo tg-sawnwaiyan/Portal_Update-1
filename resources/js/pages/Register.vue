@@ -361,7 +361,7 @@
             this.$swal({
                 title: 'この内容で登録しますか。',  
                 // html: "事業者名:"+app.username+"<br/>メールアドレス:"+app.email+"<br/>事業者タイプ:"+seltype+"<br/>電話番号:"+app.phone, 
-                html:"<table style='margin:auto;'><tr><td class='tl'>事業者名 : </td><td class='tl'>"+app.username+"</td></tr><tr class='tl'><td class='tl'>メールアドレス : </td><td class='tl'>"+app.email+"</td></tr><tr class='tl'><td class='tl'>事業者タイプ : </td><td class='tl'>"+seltype+"</td></tr><tr class='tl'><td class='tl'>電話番号 : </td><td class='tl'>"+app.phone+"</td></tr></table>",             
+                html:"<table style='margin:auto;'><tr><td class='tl'>事業者名</td><td class='tl'>: "+app.username+"</td></tr><tr class='tl'><td class='tl'>メールアドレス</td><td class='tl'>: "+app.email+"</td></tr><tr class='tl'><td class='tl'>事業者タイプ</td><td class='tl'>: "+seltype+"</td></tr><tr class='tl'><td class='tl'>電話番号</td><td class='tl'>: "+app.phone+"</td></tr></table>",             
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'はい',
@@ -377,8 +377,8 @@
                             this.$swal({
                                 position: 'top-end',
                                 type: 'success',
-                                // title: 'サイト管理者に登録情報を通知いたしました。',
-                                html: "サイト管理者に登録情報を通知いたしました。<br/>登録審査後、事業者様にメールにてお知らせいたします。<br/>しばらくおまちください。",
+                                title: 'サイト管理者に登録情報を通知いたしました。',
+                                html: "登録審査後、事業者様にメールにてお知らせいたします。しばらくおまちください。",
                                 width: 350,
                                 height: 200,
                                 confirmButtonColor: "#6cb2eb",

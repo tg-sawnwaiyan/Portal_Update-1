@@ -636,6 +636,7 @@
                             <div class="col-xl-10 col-md-12 float-right m-t-10 map-toggle-div toggle-div pad-free">
                                 <div class="col-md-12 p-0">
                                     <div class="col-md-12 pad-free" id="mapbox">
+                                        <span class="error pro-1" style="margin-top:0px!important;margin-bottom:10px;" v-if="loc == true">※Please Fill Location.</span>
                                         <GoogleMap :address="address_show" :township="nursing_info.townships_id" :city="city_id" :township_list="township_list" :lat_num='nursing_info.latitude' :lng_num='nursing_info.longitude'></GoogleMap>
                                     </div>
 
@@ -782,6 +783,7 @@ export default {
                 pro_id: 0,
                 btn_disable: false,
                 mail_focus: false,
+                loc: false,
                 mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
             }
         },
@@ -1221,13 +1223,31 @@ export default {
                 }
             },
             createProfile() {
-                if($('#new_lat').val() == "" || $('#new_long').val() == "" || $('#gmaptownship').val() == 0 || this.mail_focus == true || this.ph_num == true )
-                {
+                if($('#new_lat').val() == "" || $('#new_long').val() == "" || $('#gmaptownship').val() == 0){
+                    this.loc = true;
                     this.btn_disable = true;
                 }
                 else{
-                    this.btn_disable = false;
+                    this.loc = false;
+                    this.nursing_info.townships_id = $('#gmaptownship').val();
+                    this.nursing_info.latitude = $('#new_lat').val();
+                    this.nursing_info.longitude = $('#new_long').val();
+                    this.city_id = $('#division').val();
+                    this.township_list = JSON.parse(localStorage.getItem("townshiplist"));
+                    if(this.mail_focus != true && this.ph_num != true){
+                        this.btn_disable = false;
+                    }
+                    else{
+                        this.btn_disable = true;
+                    }
                 }
+                // if( this.loc == true || this.mail_focus == true || this.ph_num == true )
+                // {
+                //     this.btn_disable = true;
+                // }
+                // else{
+                //     this.btn_disable = false;
+                // }
                 
              if(this.btn_disable){
                     // console.log("mail");

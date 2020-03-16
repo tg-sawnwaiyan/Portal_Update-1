@@ -49,7 +49,7 @@
                                     <!-- </div> -->
 
                                 </div>
-                                 <span class="float-left text-danger p-l-30" v-if="charErr">※カタカナで入力してください!</span>
+                                 <span class="float-left text-danger p-l-30" v-if="charErr">※カタカナで入力してください。</span>
 
                             </div>
                         </div>
@@ -182,7 +182,7 @@
 
                         <div class="btn-list mt-2 clearfix">
                             <ul>
-                                <li class="m-r-15"><a @click="$router.go(-1)" class="btn btn-danger all-btn submit">戻る</a></li>
+                                <!-- <li class="m-r-15"><a @click="$router.go(-1)" class="btn btn-danger all-btn submit">戻る</a></li> -->
                                 <li> <button type="button" :disabled="isdisable" class="submit1 btn main-bg-color continue all-btn submit" @click="add()">確認ページに進む</button></li>
                                 
                             </ul>
@@ -367,10 +367,10 @@
                         </div>
                         <div class="btn-list mt-2 clearfix">
                             <ul>
-                                <li class="m-r-15">
+                                <!-- <li class="m-r-15"> -->
                                 <!-- <router-link :to="{name: 'favouriteNursing'}"  class="btn btn-danger all-btn submit">戻る</router-link> -->
-                                <a @click="$router.go(-1)" class="btn btn-danger all-btn submit">戻る</a>
-                                </li>
+                                <!-- <a @click="$router.go(-1)" class="btn btn-danger all-btn submit">戻る</a>
+                                </li> -->
                                 <li> <button type="button" :disabled="isdisable" class="submit1 btn main-bg-color continue all-btn submit" @click="add()" >確認ページに進む</button></li>
                                
                             </ul>
