@@ -1011,7 +1011,7 @@
                     <span class="bg-trans btn dropdown-arrow nursing_toggle_responsive" @click="toggleEvent('map','5')">詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
                     <div class="col-md-10 hos_toggle float-right m-t-10 map-toggle-div toggle-div pad-free">
                         <div class="col-md-12">
-                        <span class="error pro-1" style="margin-top:0px!important;margin-bottom:10px;" v-if="loc == true">※Please Fill Location.</span>
+                        <span class="error pro-1" style="margin-top:0px!important;margin-bottom:10px;" v-if="loc == true">※都道府県と市区町村をを入力してください。</span>
                             <GoogleMap  :address="address_show" :township="hospital_info.townships_id" :lat_num='hospital_info.latitude' :lng_num='hospital_info.longitude' :city="city_id" :township_list="township_list"></GoogleMap>
                             <!-- <GoogleMap :address="hospital_info.address" :lat_num='35.6803997' :lng_num='139.76901739' v-if="hospital_info.latitude == 0"></GoogleMap> -->
 
