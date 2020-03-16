@@ -340,7 +340,7 @@
                     comfirm(id) {
                         this.$swal({
                             title: "確認",
-                            text: "本当に承認しなくてよろしいでしょうか。",
+                            text: "本当に承認してよろしいでしょうか。",
                             type: "warning",
                             width: 350,
                             height: 200,
