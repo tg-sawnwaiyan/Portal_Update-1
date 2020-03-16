@@ -276,6 +276,7 @@
                     }else {
                         this.table_name.profile = 'hospital_profiles';
                     }
+                     alert(event.value);
 
                     this.cusid = event.value;
                     this.axios.post(`/api/job/profileList/${this.cusid}`,this.table_name).then(response=> {
