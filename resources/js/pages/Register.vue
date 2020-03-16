@@ -102,7 +102,7 @@
                                         <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
                                     </div>
                                     <input class="form-control" id="phone" name="phone" pattern="[0-9-]*" v-model="phone"  placeholder="電話番号を入力してください。" @keyup="focusPhone" title="Please enter number only." maxlength="14">
-                                    <span class="error" v-if="ph_length || ph_num">※電話番号が必須です。</span>
+                                    <span class="error" v-if="ph_num">※電話番号が必須です。</span>
                                 </div>
                             </div>
                         </div>
@@ -140,6 +140,7 @@
         password_confirmation: '',
         passerr: false,
         has_error: false,
+        errorarray: [],
         error: '',
         errors: {
             img:"",
@@ -434,23 +435,38 @@
     
     //    e.keyCode = 8 //backspace
         this.arr.push(e.keyCode) ;
-        for (var i = 0; i < this.arr.length; i++) {
+        // this.errorarray = [];
+        // for (var i = 0; i < this.arr.length; i++) {
           
-            if(((this.arr[i]  >= 48 && this.arr[i]  <= 57) || (this.arr[i]  >= 96 && this.arr[i]  <= 105)) && input_data.charAt(0) != '-' && input_data.charAt(input_data.length -1 ) != '-'  && (input_data.length >= 10 && input_data.length <= 14))
-            {
+        //     if(((this.arr[i]  >= 48 && this.arr[i]  <= 57) || (this.arr[i]  >= 96 && this.arr[i]  <= 105) || (this.arr[i]  == 8) || (this.arr[i]  == 35) || (this.arr[i]  == 36) || (this.arr[i]  == 37) || (this.arr[i]  == 39) || (this.arr[i]  == 46)))
+        //     {             
+        //         this.errorarray[i] = false;
+        //         console.log('fa',this.arr[i])
+        //         // this.ph_length = false;              
+        //     }
+        //     else{  
+        //         this.errorarray[i] = true;
+        //         console.log('',this.arr[i])
+
+        //         // this.ph_num = true;
+        //         // this.ph_length = true;
+        //     }
+            // if(((this.arr[i]  >= 48 && this.arr[i]  <= 57) || (this.arr[i]  >= 96 && this.arr[i]  <= 105)) && input_data.charAt(0) != '-' && input_data.charAt(input_data.length -1 ) != '-'  && (input_data.length >= 10 && input_data.length <= 14))
+            // {
              
-                    this.ph_num = false;
-                    this.ph_length = false;
+            //         this.ph_num = false;
+            //         this.ph_length = false;
                 
                 
-            }
-            else{
+            // }
+            // else{
                     
-                    this.ph_num = true;
-                    this.ph_length = true;
-            }
-        
-        } 
+            //         this.ph_num = true;
+            //         this.ph_length = true;
+            // }
+        // console.log(this.errorarray)
+        // console.log(input_data)
+        // } 
        
         
         

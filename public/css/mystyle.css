@@ -413,7 +413,9 @@ ul.menu_list li i.fa-phone-alt {
     border-radius: 2px;
 }
 
-
+input::-ms-clear {
+    display: none;
+}
 /********************************** End Common **********************************/
 
 

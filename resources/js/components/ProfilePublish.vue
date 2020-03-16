@@ -292,9 +292,9 @@
                         <span v-if="nursing_profiles != null">
                             <p v-html="nursing_profiles"></p>
                         </span>
-                        <!-- <span v-else>
+                        <span v-else>
                             <p class="no-data-color">表示されるデータがありません。</p>
-                        </span> -->
+                        </span>
                     </div>
 
             </div>

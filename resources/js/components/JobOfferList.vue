@@ -91,7 +91,7 @@
                                             <input type='checkbox' v-if="job.recordstatus==0" @click="confirm(job.id)"  />
                                             <label for="checkbox"></label>
                                             <div v-if="job.recordstatus == 1" class="on">公開中</div>
-                                            <div v-if="job.recordstatus == 0" class="on">非行化</div>
+                                            <div v-if="job.recordstatus == 0" class="on">非公開</div>
                                         </div>
                                          <ul class="btn-list mt-4">
                                              <li><a class="btn text-danger delete-borderbtn" @click="deleteJob(job.id)">削除</a></li>
