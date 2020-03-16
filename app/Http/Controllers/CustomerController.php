@@ -334,8 +334,9 @@ class CustomerController extends Controller
     public function search(Request $request)
     {
         $request = $request->all();
-        $search_word = $request['search_word'];
+        $search_word = $request['cusid'];
         $status = $request['status'];
+        
         
         if($request['status'] == null)
         {

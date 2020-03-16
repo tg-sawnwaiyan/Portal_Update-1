@@ -14,8 +14,8 @@
                     <h4 class="main-color mb-3">事業者検索 </h4>
                     <div class="row mb-4">
                         <div class="col-md-6">
-                          
-                            <autocomplete id="cusname"  placeholder="事業者名を検索"  input-class="form-control" :source=customerList :results-display="formattedDisplay"   @selected="getselected($event)">
+                      
+                            <autocomplete id="cusname"  placeholder="事業者名を検索"  input-class="form-control" :source=customerList :results-display="formattedDisplay" @clear="clearcustomer()"  @selected="getselected($event)">
                             </autocomplete>
                            
                         </div> 
@@ -272,8 +272,13 @@
                     }
                 },
                 getselected($event){
-                        this.cusid = $event.value;
-                        this.searchCustomer();
+                  
+                    this.cusid = $event.display;
+                    this.searchCustomer();
+                },
+                clearcustomer(){
+                    this.cusid = '';
+                    this.searchCustomer();
                 },
 
                 
@@ -390,11 +395,11 @@
                         if(typeof page === "undefined"){
                             page = 1;
                         }
-                        var search_word = $("#search-word").val();
+                        // var search_word = $("#search-word").val();
                         let fd = new FormData();
-                        fd.append("search_word", search_word);
+                        // fd.append("search_word", search_word);
                         fd.append("status",this.status);
-                        fd.append("pro_id",this.selectedValue);
+                        fd.append("cusid",this.cusid);
                       
                         if(this.$route.path == "/nuscustomerlist"){
                             fd.append("type",3)
