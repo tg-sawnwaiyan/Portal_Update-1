@@ -10,6 +10,8 @@ use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
 use App\Customer;
+use App\NursingProfile;
+use App\HospitalProfile;
 
 class UserController extends Controller
 
