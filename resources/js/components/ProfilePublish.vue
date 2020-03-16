@@ -708,7 +708,7 @@
                         <div class="row gallery-list m-0">
                             <div v-for="(image,index) in  light_images" :key="index" class="col-6 col-md-4 col-sm-4 col-lg-3 m-b-10 ">
                                     <div class="gallery-item">
-                                        <img  :src ="'/upload/nursing_profile/' + image.name"  class="img-fluid" @click="showLightbox(image.name)" @error="imgUrlAlt" >
+                                        <img :src ="'/upload/nursing_profile/' + image.name"  class="img-fluid" @click="showLightbox(image.name)"  @error="imgUrlAlt">
                                     </div>
                                     <span class="img_txt">{{image.title}}</span>
                                 <!-- <span>{{image.photo}}</span> -->
@@ -1195,7 +1195,7 @@
                 <div class="row m-0 gallery-list">
                     <div v-for="(image,index) in  light_images" :key="index" class="col-6 col-lg-3 col-md-4 col-sm-4 m-b-10">
                         <div class=" gallery-item">
-                            <img  :src ="'/upload/hospital_profile/' + image.name"  class="img-fluid" @click="showLightbox(image.name)" @error="imgUrlAlt" >
+                            <img :src ="'/upload/hospital_profile/' + image.name" class="img-fluid" @click="showLightbox(image.name)" @error="imgUrlAlt" >
                         </div>
                         <span class="img_txt">{{image.title}}</span><br>
 
@@ -1334,7 +1334,7 @@
                 <span class="bottom-fav-btn" style="color:#aaa;" v-if="view_pro_id && loginuser=='false'" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
             </div>
             <div class="col-8 col-md-3 col-lg-3 col-xl-2 pc-414">       
-                <span class="bottom-mail-btn" @click="documentPost()" v-if="loginuser=='false' && !$auth.check()"><i data-v-b65423c6="" class="far fa-envelope" style="color: #fff  !important;font-size: 15px;"></i>&nbsp;資料請求</span>
+                <span class="bottom-mail-btn" @click="documentPost()" v-if="loginuser=='false' && !$auth.check() && type == 'nursing'"><i data-v-b65423c6="" class="far fa-envelope" style="color: #fff  !important;font-size: 15px;"></i>&nbsp;資料請求</span>
             </div>
         </div>       
     </div>
@@ -2079,7 +2079,10 @@ export default {
             });
         },
         imgUrlAlt(event) {
-                    event.target.src = "/images/noimage.jpg"
+            event.target.src = "/images/noimage.jpg"
+        },
+        imgUrlAlthide(index) {
+            this['gallery-img-'+index] = null;
         },
         first() {
             this.currentPage = 0;
@@ -2675,7 +2678,7 @@ h3 {
     border-radius: 0;
     border-top: 1px solid #eeeeee;
     border-bottom: 1px solid #eeeeee;
-    background: linear-gradient(to bottom,#f6f6ea 0,#ffffcc 100%);
+    background: linear-gradient(to bottom,#f6f6ea 0,#ecf8ff 100%);
 }
 .CloseBtn {
     border: none !important;
@@ -2939,5 +2942,7 @@ h3 {
     }
 }
 
-
+.hideimg{
+    display: none!important;
+}
 </style>

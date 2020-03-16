@@ -155,8 +155,9 @@
         success: false,
         show: true,
         url: '',
-        ph_length:'',
-        ph_num:'',
+        ph_length:false,
+        ph_num:false,
+        arr:[],
         Numbers:[],
         mail_reg:  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
       }
@@ -360,7 +361,8 @@
            
             this.$swal({
                 title: 'この内容で登録しますか。',  
-                html: "事業者名:"+app.username+"<br/>メールアドレス:"+app.email+"<br/>事業者タイプ:"+seltype+"<br/>電話番号:"+app.phone,              
+                // html: "事業者名:"+app.username+"<br/>メールアドレス:"+app.email+"<br/>事業者タイプ:"+seltype+"<br/>電話番号:"+app.phone, 
+                html:"<table style='margin:auto;'><tr><td class='tl'>事業者名 : </td><td class='tl'>"+app.username+"</td></tr><tr class='tl'><td class='tl'>メールアドレス : </td><td class='tl'>"+app.email+"</td></tr><tr class='tl'><td class='tl'>事業者タイプ : </td><td class='tl'>"+seltype+"</td></tr><tr class='tl'><td class='tl'>電話番号 : </td><td class='tl'>"+app.phone+"</td></tr></table>",             
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'はい',
@@ -376,8 +378,8 @@
                             this.$swal({
                                 position: 'top-end',
                                 type: 'success',
-                                // title: 'サイト管理者に登録情報を通知いたしました。',
-                                html: "サイト管理者に登録情報を通知いたしました。<br/>登録審査後、事業者様にメールにてお知らせいたします。<br/>しばらくおまちください。",
+                                title: 'サイト管理者に登録情報を通知いたしました。',
+                                html: "登録審査後、事業者様にメールにてお知らせいたします。しばらくおまちください。",
                                 width: 350,
                                 height: 200,
                                 confirmButtonColor: "#6cb2eb",
@@ -430,15 +432,30 @@
 
         var input_data = $('#phone').val();
     
-        if(((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105)) && input_data.charAt(0) != '-' && input_data.charAt(input_data.length -1 ) != '-' && (input_data.length >= 10 && input_data.length <= 14 ) )
-        {
-            this.ph_num = false;
-            this.ph_length = false;
-        }
-        else{
-            this.ph_num = true;
-            this.ph_length = true;
-        }
+    //    e.keyCode = 8 //backspace
+        this.arr.push(e.keyCode) ;
+        for (var i = 0; i < this.arr.length; i++) {
+          
+            if(((this.arr[i]  >= 48 && this.arr[i]  <= 57) || (this.arr[i]  >= 96 && this.arr[i]  <= 105)) && input_data.charAt(0) != '-' && input_data.charAt(input_data.length -1 ) != '-'  && (input_data.length >= 10 && input_data.length <= 14))
+            {
+             
+                    this.ph_num = false;
+                    this.ph_length = false;
+                
+                
+            }
+            else{
+                    
+                    this.ph_num = true;
+                    this.ph_length = true;
+            }
+        
+        } 
+       
+        
+        
+    
+       
          
          
         //  if(keysAllowed.includes(e.keyCode)){
@@ -501,5 +518,8 @@
     width:200px;
     height:200px;
   }
-
+.tl
+{
+    text-align: left;
+}
 </style>

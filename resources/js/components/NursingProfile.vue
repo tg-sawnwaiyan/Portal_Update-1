@@ -6,7 +6,7 @@
                 <button v-scroll-to="{ el: '#btn'}" id="btn_click" hidden></button>
                     <div class="row ">
                         <div class="col-lg-4 col-md-5">
-                            <div class="form-group form-group-wrapper logo-area">
+                            <div class="form-group form-group-wrapper logo-area" style="height:91%;">
                                 <img :src="profile_img" id="thumbnil" class="profile_logo m-b-8 img-fluid fit-image-profile" alt="Logo"  @error="imgUrlAlt">                              
                                 <div class="m-t-10">
                                     <span class="btn-file d-inline-block">画像を選択                     
@@ -19,11 +19,11 @@
                         </div>
                         <div class="col-lg-8 col-md-7">
                             <div class="form-group form-group-wrapper d-flex">
-                                <label class="heading-lbl col-md-2 col-12 pad-free">施設名称<span class="error sp2">必須</span></label>
+                                <label class="heading-lbl col-md-2 col-12 pad-free">施設名称<p class="error sp3 sp-t">必須</p></label>
                                 <input type="text" class="form-control customer-name col-md-10 col-12 nursing_input" id="btn" placeholder="施設名称を入力してください。" v-model="nursing_info.name">
                             </div>
                             <div class="form-group form-group-wrapper d-flex">
-                                <label class="heading-lbl col-md-2 col-12 pad-free">メールアドレス<span class="error sp2">必須</span></label>
+                                <label class="heading-lbl col-md-2 col-12 pad-free">メールアドレス<p class="error sp3 sp-t2">必須</p></label>
                                 <input type="text" class="form-control customer-email col-md-10 col-12 nursing_input" id="btn" v-model="nursing_info.email" @change="aggreBtn" @keyup="focusMail" placeholder="メールアドレスを入力してください。">
                             </div>
                            
@@ -636,6 +636,7 @@
                             <div class="col-xl-10 col-md-12 float-right m-t-10 map-toggle-div toggle-div pad-free">
                                 <div class="col-md-12 p-0">
                                     <div class="col-md-12 pad-free" id="mapbox">
+                                        <span class="error pro-1" style="margin-top:0px!important;margin-bottom:10px;" v-if="loc == true">※Please Fill Location.</span>
                                         <GoogleMap :address="address_show" :township="nursing_info.townships_id" :city="city_id" :township_list="township_list" :lat_num='nursing_info.latitude' :lng_num='nursing_info.longitude'></GoogleMap>
                                     </div>
 
@@ -782,6 +783,7 @@ export default {
                 pro_id: 0,
                 btn_disable: false,
                 mail_focus: false,
+                loc: false,
                 mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
             }
         },
@@ -1221,13 +1223,31 @@ export default {
                 }
             },
             createProfile() {
-                if($('#new_lat').val() == "" || $('#new_long').val() == "" || $('#gmaptownship').val() == 0 || this.mail_focus == true || this.ph_num == true )
-                {
+                if($('#new_lat').val() == "" || $('#new_long').val() == "" || $('#gmaptownship').val() == 0){
+                    this.loc = true;
                     this.btn_disable = true;
                 }
                 else{
-                    this.btn_disable = false;
+                    this.loc = false;
+                    this.nursing_info.townships_id = $('#gmaptownship').val();
+                    this.nursing_info.latitude = $('#new_lat').val();
+                    this.nursing_info.longitude = $('#new_long').val();
+                    this.city_id = $('#division').val();
+                    this.township_list = JSON.parse(localStorage.getItem("townshiplist"));
+                    if(this.mail_focus != true && this.ph_num != true){
+                        this.btn_disable = false;
+                    }
+                    else{
+                        this.btn_disable = true;
+                    }
                 }
+                // if( this.loc == true || this.mail_focus == true || this.ph_num == true )
+                // {
+                //     this.btn_disable = true;
+                // }
+                // else{
+                //     this.btn_disable = false;
+                // }
                 
              if(this.btn_disable){
                     // console.log("mail");
@@ -1457,4 +1477,17 @@ export default {
     /* padding: 10px 10px 20px 0px;  
     margin-bottom: 15px;  */
  }
+ .form-wrap .sp1,
+.sp3 {
+    /* margin: 0 5px; */
+    padding: 0 5px 0 5px;
+    background: #F54336;
+    font-size: 12px;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 3px;
+    vertical-align: text-top;
+    width: 35px;
+}
+
  </style>

@@ -73,8 +73,8 @@
                             </div>                              
                         </div>
                         <div class="form-group " v-if="!show">
-                            <span class="btn main-bg-color white all-btn" @click="checkValidate()">{{subtitle}}</span>
                             <router-link class="btn btn-danger all-btn" to="t_is_admin_register"> キャンセル </router-link>
+                            <span class="btn main-bg-color white all-btn" @click="checkValidate()">{{subtitle}}</span>
                         </div>
                     </form>
                 </div>

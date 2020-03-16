@@ -130,56 +130,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div v-if="createNew">
-                    <div class="col-md-12 pad-free">
-                        <div class="card text-dark">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <h4 data-v-81a927b4="" class="page-header header">施設作成</h4>
-                                    </div>
-                                    <div class="mt-2 pb-5 col-md-12">
-                                        <div class="form-group">
-                                                <label>施設名 </label>
-                                                <input type="text" class="form-control" v-model="nursing_data.name" placeholder="施設名を入力してください。">
-                                                <span v-if="errors.name" class="error">{{errors.name}}</span>
-                                            </div>
-                                            <div class="form-group" >
-                                                <label>都道府県</label>
-                                                <select v-model="nursing_data.city_id" class="division form-control custom-select"  @change="getTownship()">
-                                                        <option value="0">選択してください。</option>
-                                                        <option v-for="cities in city_list" :key="cities.id" v-bind:value="cities.id">
-                                                            {{cities.city_name}}
-                                                        </option>
-                                                </select>
-                                                <span v-if="errors.city" class="error">{{errors.city}}</span>
-                                            </div>
-                                            <div class="form-group" >
-                                                <label>市区町村</label>
-                                                <select v-model="nursing_data.town_id" class="division form-control custom-select" @change="changeTownship()"  >
-                                                        <option value="0">選択してください。</option>
-                                                        <option v-for="tw in town_list" :key="tw.id" v-bind:value="tw.id">
-                                                            {{tw.township_name}}
-                                                        </option>
-                                                </select>
-                                                <span v-if="errors.township" class="error">{{errors.township}}</span>
-                                            </div>
-                                            <div class="form-group">                                                
-                                                <span class="btn main-bg-color white all-btn"  @click="CreateNew()">
-                                                    作成
-                                                </span>
-                                                <span class="btn bt-red all-btn" @click="CancelNew()">
-                                                    キャンセル
-                                                </span>
-                                            </div>
-                                    </div>                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>                    
-                </div>
-                <!-- End Create account Area --> 
                 
             </div>               
             
@@ -202,40 +152,39 @@ export default {
                 city:'',
                 township:''
             },
-            city_list:[],
-            town_list:[],
-            nursing_data:{
-                name:'',
-                city_id:'',
-                town_id:'',  
-            },
+
             activate_text:'',
        }
     },
     created(){
         this.getAccountList();
-        this.getCity();
+        // this.getCity();
     },
 
     methods: {
         imgUrlAlt(event) { 
             event.target.src = "/images/noimage.jpg"
         },
-        getCity(){
-                this.nursing_data.city_id = 0;
-                this.nursing_data.town_id= 0;
-                this.axios.get('/api/hospital/citiesList').then(response => {
+        // getCity(){
+        //         this.nursing_data.city_id = 0;
+        //         this.nursing_data.town_id= 0;
+        //         this.axios.get('/api/hospital/citiesList').then(response => {
 
-                            this.city_list = response.data;
+        //                     this.city_list = response.data;
 
-                });
-        },
+        //         });
+        // },
         ShowHideDiv(){
-            this.createNew = true;
+            // this.createNew = true;
                 // document.getElementById('newcreate').style.display = "none";
                 // document.getElementById('nusNew').style.display = "block";   
                 // document.getElementById('nusBlock').style.display = "none";             
-                
+            this.axios.post(`/api/nursing/movelatlng/${this.cusid}`)
+            .then((response) => {
+                var pro_id = Number(response.data);
+                //need get profile id
+                this.$router.push({ path: '/profile/'+this.type+'/'+ pro_id });
+            })    
         },
         CreateNew(){
 

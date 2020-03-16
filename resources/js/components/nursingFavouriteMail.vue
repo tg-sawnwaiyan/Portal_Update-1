@@ -4,18 +4,11 @@
         <div class="tab-content job-detail">
             <div class="row">
                 <div class="col-md-12 pad-free m-b-10 cmt-1">
-                    <nav aria-label="breadcrumb">
-                        <!-- <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><span @click="changeRoute()" class="link-span">ホーム</span></li>
-                            <li class="breadcrumb-item"><a href="/">介護のお気に入り一覧</a></li>
-                            <li class="breadcrumb-item active">資料請求</li>
-                        </ol> -->
+                    <nav aria-label="breadcrumb">                       
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item">
-                                <!-- <router-link to="/">ホーム</router-link> -->
+                            <li class="breadcrumb-item">                                
                                 <router-link to="/" >ホーム</router-link>
-                            </li>
-                            <!-- <li class="breadcrumb-item active" aria-current="page">rrr</li> -->
+                            </li>                          
                            <li class="breadcrumb-item"><span>介護施設資料請求</span></li>
                         </ol>
                     </nav>
@@ -35,7 +28,7 @@
                         <!-- <h4 class="nursing-info">資料請求される方について</h4> -->
                         <p class="require-txt"><span class="error sp1" style="margin-left:0px;">必須</span> のついた項目は全て入力してくださいますようお願いいたします。</p>
                         <div class="form-group m-0 row bd">
-                            <div class="col-md-3 col-sm-12 form-left"><label>お名前 <span class="error sp1">必須</span></label></div>
+                            <div class="col-md-3 col-sm-12 form-left"><label><strong>お名前 </strong><span class="error sp1">必須</span></label></div>
                             <div class="col-md-9 col-sm-12 form-right">
                                 <input type="text" id="tbname" name="name" class="form-control float-left" placeholder="お名前を入力してください。" v-model="comments.name" @change="aggreBtn" @keyup="focusName"/>
                                 <span class="float-left eg-txt">例）探し太郎</span>
@@ -43,7 +36,7 @@
                             </div>
                         </div>
                         <div class="form-group m-0 row bd">
-                            <div class="col-md-3 col-sm-12 form-left"> <label>フリガナ <span class="error sp1">必須</span></label></div>
+                            <div class="col-md-3 col-sm-12 form-left"> <label><strong>フリガナ </strong><span class="error sp1">必須</span></label></div>
                             <div class="col-md-9 col-sm-12 form-right">
                                 <div class="col-md-12 pad-free">
                                     <!-- <div class="col-md-9 pad-free"> -->
@@ -56,12 +49,12 @@
                                     <!-- </div> -->
 
                                 </div>
-                                 <span class="float-left text-danger p-l-30" v-if="charErr">※カタカナで入力してください!</span>
+                                 <span class="float-left text-danger p-l-30" v-if="charErr">※カタカナで入力してください。</span>
 
                             </div>
                         </div>
                         <div class="form-group m-0 row bd">
-                            <div class="col-md-3 col-sm-12 form-left"> <label>生年月日 </label></div>
+                            <div class="col-md-3 col-sm-12 form-left"> <label><strong>生年月日</strong> </label></div>
                             <div class="col-md-9 col-sm-12 form-right">
                                 <!-- <input type="text" id="bdate" name="bdate" class="form-control float-left" placeholder="生年月日を入力してください。" v-model="comments.bdate" @change="aggreBtn" @focusout="focusbdate"/> -->
                                 <date-picker class="box" :lang="lang" valueType="format" v-model="comments.bdate" style="margin-left: 11px;"></date-picker>
@@ -69,7 +62,7 @@
                             </div>
                         </div>
                         <div class="form-group m-0 row bd">
-                                <div class="col-md-3 col-sm-12 form-left"><label>性別 </label></div>
+                                <div class="col-md-3 col-sm-12 form-left"><label><strong>性別</strong> </label></div>
                                 <div class="col-md-9 col-sm-12 form-right pl-4">
                                     <label class="control control--radio">
                                         <input type="radio" class="custom-radio" id="sex1" name="sex1" value="男性"  v-model="comments.sex1">&nbsp;男性&nbsp;&nbsp;&nbsp;&nbsp;
@@ -89,10 +82,24 @@
                                 </div>
                             </div>
                         <div class="form-group m-0 row bd">
-                            <div class="col-md-3 col-sm-12 form-left"><label>ご住所</label></div>
+                            <div class="col-md-3 col-sm-12 form-left"> 
+                            <div class="row col-12">
+                                <div class="col-3 p-0">
+                                    <label class="subtitle"><strong>ご住所</strong></label>
+                                </div>               
+                                <div class="col-9 p-0">                                                                   
+                                        <div class="text-right form-left form-group pc-768"><label> <strong>郵便番号 </strong></label></div>
+                                        <div class="text-right form-left form-group pc-768"><label><strong>都道府県</strong><span class="error sp1">必須</span></label></div>
+                                        <div class="text-right form-left form-group pc-768"><label><strong>市区町村</strong> <span class="error sp1">必須</span></label></div>
+                                        <div class="text-right form-left form-group pc-768"><label><strong>番地（建物名)</strong><span class="error sp1">必須</span></label></div>
+                                    
+                                </div>           
+                            </div>     
+                                
+                            </div>
                             <div class="col-md-9 col-sm-12 form-right">
                                 <div class="form-group row pl-3">
-                                    <div class="col-md-12 "><label> 郵便番号 </label></div>
+                                    <div class="col-md-12 sp-768"><label> <strong>郵便番号 </strong></label></div>
                                     <div class="col-md-12 p-0">
                                         <input type="text" v-model="comments.postal" name="postal" v-on:keydown="postalNumber" class="postal form-control float-left" id="postal" placeholder="郵便番号を入力してください。" maxlength="7"/>                                        
                                         <span class="float-left submit1 btn main-bg-color continue all-btn submit m-l-20" @click="getPostal">郵便番号より住所を検索</span>
@@ -101,7 +108,7 @@
                                     <div id="jsErrorMessage" class="float-left eg-txt"></div>
                                 </div>
                                 <div class="form-group row pl-3">                                  
-                                    <div class="col-md-12 "><label>  都道府県<span class="error sp1">必須</span></label></div>
+                                    <div class="col-md-12 sp-768"><label> <strong> 都道府県</strong><span class="error sp1">必須</span></label></div>
                                     <div class="col-md-12 p-0">
                                         <select v-model="comments.selectedValue" class="division form-control" id="division" @change="getTownship(2)">
                                             <option value="0">選択してください。</option>
@@ -114,7 +121,7 @@
                                 </div>
 
                                  <div class="form-group row pl-3">                             
-                                    <div class="col-md-12 "><label>  市区町村 <span class="error sp1">必須</span></label></div>
+                                    <div class="col-md-12 sp-768"><label>  <strong>市区町村 </strong><span class="error sp1">必須</span></label></div>
                                     <div class="col-md-12 p-0">
                                         <select v-model="comments.township" class="division form-control" id="division" @change="aggreBtn">
                                             <option value="0">選択してください。</option>
@@ -126,7 +133,7 @@
                                     </div>  
                                 </div>
                                 <div class="form-group row pl-3">
-                                    <div class="col-md-12 "><label>番地（建物名)<span class="error sp1">必須</span></label></div>
+                                    <div class="col-md-12 sp-768"><label><strong>番地（建物名)</strong><span class="error sp1">必須</span></label></div>
                                     <div class="col-md-12 p-0">
                                          <input type="text" id="city" name="city" class="city form-control float-left" placeholder="番地を入力してください。" v-model="comments.city" @change="aggreBtn" @keyup="focusCity">
                                         <span class="float-left eg-txt">例）区丸の内1-9-1 グラントウキョウノースタワー40階</span>
@@ -135,7 +142,7 @@
                             </div>
                         </div>
                         <div class="form-group m-0 row bd-all">
-                            <div class="col-md-3 col-sm-12 form-left"><br/><label>電話番号</label></div>
+                            <div class="col-md-3 col-sm-12 form-left"><br/><label><strong>電話番号</strong></label></div>
                             <div class="col-md-9 col-sm-12 form-right">
                             <div class="form-group row pl-3">
                                     <div class="col-md-12 p-0">
@@ -151,7 +158,7 @@
                             </div>
                             <!-- </div>
                             <div class="form-group m-0 row bd-all"> -->
-                            <div class="col-md-3 col-sm-12 form-left"><label>メールアドレス </label></div>
+                            <div class="col-md-3 col-sm-12 form-left"><label><strong>メールアドレス </strong></label></div>
                             <div class="col-md-9 col-sm-12 form-right">
                             <div class="form-group row pl-3">
                                 <div class="col-md-12 p-0">
@@ -170,13 +177,14 @@
                             </div>
                         </div> -->
                         <div class="mt-4 submit txt-err" v-if="btn_disable">
-                            <div class="error">※未入力の必須項目がございます</div>
+                            <div class="error">※未入力の必須項目がございます。</div>
                         </div>
 
                         <div class="btn-list mt-2 clearfix">
                             <ul>
+                                <!-- <li class="m-r-15"><a @click="$router.go(-1)" class="btn btn-danger all-btn submit">戻る</a></li> -->
                                 <li> <button type="button" :disabled="isdisable" class="submit1 btn main-bg-color continue all-btn submit" @click="add()">確認ページに進む</button></li>
-                                <li class="m-r-15"><a @click="$router.go(-1)" class="btn btn-danger all-btn submit">戻る</a></li>
+                                
                             </ul>
                         </div>
                         <!--next_form-->
@@ -184,7 +192,7 @@
                             <h5 class="form-tit">入居対象者様について</h5>
                             <div class="form-group m-0 row bd">
                                 <div class="col-md-3 col-sm-12 form-left">
-                                    <label>入居対象者様とのご関係</label>
+                                    <label><strong>入居対象者様とのご関係</strong></label>
                                 </div>
                                 <div class="col-md-9 col-sm-12 form-right">
                                     <select class="form-control" id="relation"  v-model="comments.relation">
@@ -200,14 +208,14 @@
                                 </div>
                             </div>
                             <div class="form-group m-0 row bd">
-                                <div class="col-md-3 col-sm-12 form-left"><label>お名前</label></div>
+                                <div class="col-md-3 col-sm-12 form-left"><label><strong>お名前</strong></label></div>
                                 <div class="col-md-9 col-sm-12 form-right">
                                     <input type="text" id="ttname" name="ttname" class="form-control float-left" placeholder="お名前を入力してください。"  v-model="comments.ttname">
                                     <span class="eg-txt float-left">例）探し太郎</span>
                                 </div>
                             </div>
                             <div class="form-group m-0 row bd">
-                                <div class="col-md-3 col-sm-12 form-left"><label>性別</label></div>
+                                <div class="col-md-3 col-sm-12 form-left"><label><strong>性別</strong></label></div>
                                 <div class="col-md-9 col-sm-12 form-right pl-4">
                                      <label class=" control control--radio">
                                         <input type="radio" class="custom-radio" id="sex" name="sex" value="男性"  v-model="comments.sex">&nbsp;男性&nbsp;&nbsp;&nbsp;&nbsp;
@@ -225,7 +233,7 @@
                                 </div>
                             </div>
                             <div class="form-group m-0 row bd">
-                                <div class="col-md-3 col-sm-12 form-left"><label>年齢</label></div>
+                                <div class="col-md-3 col-sm-12 form-left"><label><strong>年齢</strong></label></div>
                                 <div class="col-md-9 col-sm-12 form-right">
                                     <select class="form-control" id="years"  v-model="comments.years">
                                         <option value="">選択してください</option>
@@ -306,7 +314,7 @@
                                 </div>
                             </div>
                             <div class="form-group m-0 row bd">
-                                <div class="col-md-3 col-sm-12 form-left"><label>介護度</label></div>
+                                <div class="col-md-3 col-sm-12 form-left"><label><strong>介護度</strong></label></div>
                                 <div class="col-md-9 col-sm-12 form-right">
                                     <select class="form-control" id="nursing"  v-model="comments.nursing">
                                         <option value="">選択してください</option>
@@ -321,7 +329,7 @@
                                 </div>
                             </div>
                             <div class="form-group m-0 row bd">
-                                <div class="col-md-3 col-sm-12 form-left"><label>認知症</label></div>
+                                <div class="col-md-3 col-sm-12 form-left"><label><strong>認知症</strong></label></div>
                                 <div class="col-md-9 col-sm-12 form-right pl-4">
                                     <label class="control control--radio">
                                         <input type="radio" class="custom-radio" id="fect" name="fect" value="あり"  v-model="comments.fect">&nbsp;あり&nbsp;&nbsp;&nbsp;&nbsp;
@@ -348,22 +356,23 @@
                                 </div>
                             </div> -->
                             <div class="form-group m-0 row bd-all">
-                                <div class="col-md-3 col-sm-12 form-left"><label>ご要望や、お困りごと、その他お問い合わせ</label></div>
+                                <div class="col-md-3 col-sm-12 form-left"><label><strong>ご要望や、お困りごと、その他お問い合わせ</strong></label></div>
                                 <div class="col-md-9 col-sm-12 form-right pl-4">
                                     <textarea name="hope" id="hope" class="form-control m-0"   v-model="comments.hope" ></textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="mt-4 col-sm-3 submit txt-err" v-if="btn_disable">
-                            <div class="error">※未入力の必須項目がございます</div>
+                            <div class="error">※未入力の必須項目がございます。</div>
                         </div>
                         <div class="btn-list mt-2 clearfix">
                             <ul>
-                                <li> <button type="button" :disabled="isdisable" class="submit1 btn main-bg-color continue all-btn submit" @click="add()" >確認ページに進む</button></li>
-                                <li class="m-r-15">
+                                <!-- <li class="m-r-15"> -->
                                 <!-- <router-link :to="{name: 'favouriteNursing'}"  class="btn btn-danger all-btn submit">戻る</router-link> -->
-                                <a @click="$router.go(-1)" class="btn btn-danger all-btn submit">戻る</a>
-                                </li>
+                                <!-- <a @click="$router.go(-1)" class="btn btn-danger all-btn submit">戻る</a>
+                                </li> -->
+                                <li> <button type="button" :disabled="isdisable" class="submit1 btn main-bg-color continue all-btn submit" @click="add()" >確認ページに進む</button></li>
+                               
                             </ul>
                         </div>
                     </form>

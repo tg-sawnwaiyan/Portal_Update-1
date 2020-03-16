@@ -14,8 +14,8 @@
               </div>
 
               <div class="form-group">
-                <button class="btn main-bg-color white all-btn" @click="clickValidation()">保存</button>
-                <router-link to="/categorylist" class="btn btn-danger all-btn">キャンセル</router-link>
+                    <router-link to="/categorylist" class="btn btn-danger all-btn">キャンセル</router-link>
+                    <button class="btn main-bg-color white all-btn" @click="clickValidation()">保存</button>
               </div>
             </form>
         </div>

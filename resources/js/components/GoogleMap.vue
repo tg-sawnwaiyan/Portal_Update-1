@@ -304,6 +304,8 @@ export default {
                     this.township = 0;
                 }
                     this.township_list = response.data.townships;
+                    localStorage.removeItem('townshiplist');
+                    localStorage.setItem('townshiplist',JSON.stringify(this.township_list));
                     // this.township = this.township_list[0].id;
                     
                     this.new_lat = response.data.coordinate[0].latitude;

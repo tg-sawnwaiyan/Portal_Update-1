@@ -376,6 +376,26 @@ ul.menu_list li i.fa-phone-alt {
     background: url(/images/bg_check.gif) repeat center top;
 }
 
+.text-bold label {
+    font-weight: bold;
+}
+
+.subtitle {
+    position: relative;
+}
+
+.subtitle::before {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    display: inline-block;
+    width: 40px;
+    height: 3px;
+    left: 0;
+    background-color: #2980b9;
+    border-radius: 2px;
+}
+
 
 /********************************** End Common **********************************/
 
@@ -2957,6 +2977,10 @@ ul.sub-ul li {
 
 .m-t-20 {
     margin-top: 20px;
+}
+
+.m-t-25 {
+    margin-top: 25px;
 }
 
 .m-t-30 {
@@ -7823,7 +7847,7 @@ font-weight: bold;
 
 .form-wrap .mailbox {
     width: 30%;
-    margin-left: 20px;
+    margin-left: 0px;
     padding: 5px 15px;
     background: transparent;
 }
@@ -10276,6 +10300,11 @@ padding: 0;
 }
 
 @media only screen and (max-width: 990px) {
+    .form-wrap .mailbox {
+        width: 100%;
+        margin-left: 0px;
+        padding: 0px;
+    }
     .successful-resetpwd {
         width: 100% !important;
         margin-top: 34px;
@@ -11966,6 +11995,14 @@ background-image: none;
 }
 
 @media only screen and (max-width: 414px) {
+    .sp-t{
+        margin-left: 73px !important;
+        margin-top: -23px !important;
+    }
+    .sp-t2{
+    margin-left: 114px !important;
+    margin-top: -23px !important;
+    }
     .dateTime {
         display: none;
     }

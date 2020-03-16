@@ -23,7 +23,7 @@
                   </div>
 
                   <div class="form-group form-group-wrapper d-flex">
-                      <label class="heading-lbl col-md-2 col-12 pad-free">メールアドレス <span class="error sp2">必須</span></label>
+                      <label class="heading-lbl col-md-2 col-12 pad-free">メールアドレス <p class="error sp3">必須</p></label>
                       <!-- <label class="col-md-10 col-12 customer-email"> {{hospital_info.email}} </label> -->
                       <input type="text" class="form-control customer-email col-md-10 col-12 nursing_input" placeholder="メールアドレスを入力してください。" v-model="hospital_info.email" @change="aggreBtn" @keyup="focusMail">
                   </div>                          
@@ -1011,7 +1011,7 @@
                     <span class="bg-trans btn dropdown-arrow nursing_toggle_responsive" @click="toggleEvent('map','5')">詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
                     <div class="col-md-10 hos_toggle float-right m-t-10 map-toggle-div toggle-div pad-free">
                         <div class="col-md-12">
-                        
+                        <span class="error pro-1" style="margin-top:0px!important;margin-bottom:10px;" v-if="loc == true">※Please Fill Location.</span>
                             <GoogleMap  :address="address_show" :township="hospital_info.townships_id" :lat_num='hospital_info.latitude' :lng_num='hospital_info.longitude' :city="city_id" :township_list="township_list"></GoogleMap>
                             <!-- <GoogleMap :address="hospital_info.address" :lat_num='35.6803997' :lng_num='139.76901739' v-if="hospital_info.latitude == 0"></GoogleMap> -->
 
@@ -1098,6 +1098,7 @@ export default {
             pro_id: 0,
             btn_disable: false,
             mail_focus: false,
+            loc: false,
             mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
             }
         },
@@ -1313,15 +1314,33 @@ export default {
                 $(".station-toggle-div").toggle('medium');
                 this.isRotate4 = !this.isRotate4;
             },
-            Create_Profile () {           
+            Create_Profile () {    
+              if($('#new_lat').val() == "" || $('#new_long').val() == "" || $('#gmaptownship').val() == 0){
+                    this.loc = true;
+                    this.btn_disable = true;
+                }
+                else{
+                    this.loc = false;
+                    this.hospital_info.townships_id = $('#gmaptownship').val();
+                    this.hospital_info.latitude = $('#new_lat').val();
+                    this.hospital_info.longitude = $('#new_long').val();
+                    this.city_id = $('#division').val();
+                    this.township_list = JSON.parse(localStorage.getItem("townshiplist"));
+                    if(this.mail_focus != true && this.ph_num != true){
+                        this.btn_disable = false;
+                    }
+                    else{
+                        this.btn_disable = true;
+                    }
+                }       
 
-              if($('#new_lat').val() == "" || $('#new_long').val() == "" || $('#gmaptownship').val() == 0 || this.mail_focus == true || this.ph_num == true )
-              {
-                this.btn_disable = true;
-              }
-              else{
-                this.btn_disable = false;
-              }
+            //   if($('#new_lat').val() == "" || $('#new_long').val() == "" || $('#gmaptownship').val() == 0 || this.mail_focus == true || this.ph_num == true )
+            //   {
+            //     this.btn_disable = true;
+            //   }
+            //   else{
+            //     this.btn_disable = false;
+            //   }
             
                 if(this.btn_disable){
            
@@ -1540,4 +1559,17 @@ export default {
          display:  block !important;
      }
  }
+
+ .form-wrap .sp1,
+.sp3 {
+    /* margin: 0 5px; */
+    padding: 0 5px 0 5px;
+    background: #F54336;
+    font-size: 12px;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 3px;
+    vertical-align: text-top;
+    width: 35px;
+}
 </style>

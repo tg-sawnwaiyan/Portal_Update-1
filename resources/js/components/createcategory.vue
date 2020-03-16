@@ -10,8 +10,8 @@
                         <span v-if="errors.name" class="error">{{errors.name}}</span>
                 </div>
                 <div class="form-group"> 
-                    <span class="btn main-bg-color white all-btn" @click="checkValidate()"> {{buttontext}}</span>
                     <router-link class="btn bt-red all-btn" to="/categorylist" > キャンセル </router-link>
+                    <span class="btn main-bg-color white all-btn" @click="checkValidate()"> {{buttontext}}</span>
                 </div>
             </form>  
         </div>
