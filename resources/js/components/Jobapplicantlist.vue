@@ -20,10 +20,8 @@
                     <p  v-if="page == 'job' && job_id != ''" style="font-size: 0.9em; font-weight: normal; color: #333;">
                         <router-link class="job_title pseudolink" :to="{name: 'job_details', params:{id:jobapplies.data[0]['job_id'],loginuser:loginuser}}">{{job_title}} </router-link>
                     </p>
-                    <div  class="admin-user-title" v-if="page == 'profile' && proname != ''">
-                        <h5>
-                            {{proname}}                        
-                        </h5>
+                    <div  class="col-12 m-b-15 p-0" v-if="page == 'profile' && proname != ''">                        
+                        <h5 class="subtitle" style=""><strong>施設名:</strong> {{proname}} </h5>                                         
                     </div>    
                 </div>
                 </div>      

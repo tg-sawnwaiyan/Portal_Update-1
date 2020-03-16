@@ -238,7 +238,7 @@
                             <div class="form-check form-check-inline col-sm-2">
                               <label class="form-check-label control control--checkbox" style="padding-left:5px;">
                               <input class="form-check-input" value="非常勤" v-model="empstatus" type="checkbox">
-                              非常勤。パート
+                              非常勤/パート
                               <div class="control__indicator"></div>
                               </label>
                             </div>
@@ -273,7 +273,7 @@
                             <div class="col-lg-2 col-sm-4">
                               <label class="form-check-label control control--checkbox">
                               <input class="form-check-input" value="非常勤" v-model="empstatus" type="checkbox">
-                              非常勤。パート
+                              非常勤/パート
                               <div class="control__indicator"></div>
                               </label>
                             </div>
@@ -348,10 +348,10 @@
                             </tr>
                             <tr>
                               <td><span class="job_ico">&#xa5;</span>給料</td>
-                              <td>{{job.salary_type}} : {{(Number(job.salary)).toLocaleString()}} ¥ </td>
+                              <td>{{job.salary_type}} : {{(Number(job.salary)).toLocaleString()}} 円  <span v-if="job.salary_remark"> ( {{ job.salary_remark }} ) </span> </td>
                             </tr>
                             <tr>
-                              <td><span class="job_ico">時</span>勤務時間/日/休日の詳細</td>
+                              <td><span class="job_ico">時</span>就業時間/休日休暇</td>
                               <td> {{job.working_hours}} / {{job.holidays}}  </td>
                             </tr>
                             <tr>

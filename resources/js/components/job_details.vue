@@ -7,8 +7,14 @@
           <li aria-current="page" class="breadcrumb-item active">仕事詳細</li>
         </ol>
       </nav>
+     
     </div>
+      <div class="col-12 m-b-15">
+        <h5 class="subtitle" style=""><strong>施設名:</strong> {{job_details[0].cusname}} </h5>
+      </div>
+    
     <div class="row m-0" v-for="jobDetail in job_details" :key="jobDetail.id">
+     
       <div class="col-12 p0-480">
         <h4 class="job-title-color">{{jobDetail.title}} <label class="job_id" style="color:#000;">求人番号: {{jobDetail.jobid}}</label></h4>
 
