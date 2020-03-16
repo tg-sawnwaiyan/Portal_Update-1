@@ -14,17 +14,36 @@
                     <h4 class="main-color mb-3">事業者検索 </h4>
                     <div class="row mb-4">
                         <div class="col-md-6">
-                            <input type="text" class="form-control" placeholder="事業者名で検索" id="search-word" v-model="searchkeyword" @keyup="searchCustomer()" />
-                        </div>                  
-                        <div class="col-md-6 choose-item">
-                        <select  v-model="status" id="selectBox" class="form-control select_box" @change="searchCustomer()">
-                            <option selected="selected" value>状態を選択してください。</option>
-                            <option value="1"> 有効 </option>                            
-                            <option value="0"> 無効 </option>   
-                            <option value="2"> 登録承認審査中 </option>                              
-                        </select>
-                        </div>
+                          
+                            <autocomplete id="cusname"  placeholder="事業者名を検索"  input-class="form-control" :source=customerList :results-display="formattedDisplay"   @selected="getselected($event)">
+                            </autocomplete>
+                           
+                        </div> 
+                         <div class="col-md-6 choose-item">
+                              <select  v-model="status" id="selectBox" class="form-control select_box" @change="searchCustomer()">
+                                <option selected="selected" value>状態を選択してください。</option>
+                                <option value="1"> 有効 </option>                            
+                                <option value="0"> 無効 </option>   
+                                <option value="2"> 登録承認審査中 </option>                              
+                            </select>
+                              
+                        </div>                 
+                        
                     </div>
+                    <!-- <div class="row mb-4">
+                        <div class="col-md-6">
+                             <input type="text" class="form-control" placeholder="事業者名で検索" id="search-word" v-model="searchkeyword" @keyup="searchCustomer()" />
+                        </div>
+                        <div class="col-md-6 choose-item">
+                            <select  v-model="status" id="selectBox" class="form-control select_box" @change="searchCustomer()">
+                                <option selected="selected" value>状態を選択してください。</option>
+                                <option value="1"> 有効 </option>                            
+                                <option value="0"> 無効 </option>   
+                                <option value="2"> 登録承認審査中 </option>                              
+                            </select>
+                        </div>
+                    </div> -->
+                    
                     <hr/>
                     <h5 class="header">{{title}}</h5>
                     <!-- <div v-if="nosearch_msg" class="container-fuid no_search_data"> -->
@@ -174,8 +193,13 @@
 </template>
 
 <script>
+  import Autocomplete from 'vuejs-auto-complete'
+
 
     export default {
+         components: {
+            Autocomplete,
+        },
 
          props:{
             limitpc: {
@@ -193,13 +217,25 @@
                     title: '',
                     type: null,
                     status:'',
-                    searchkeyword:''
+                    searchkeyword:'',
+                    customerList:'',
+                    profileList:[],
+                    selectedValue:0,
+                     table_name: {
+                        profile: ''
+                    },
+                    cusid:'',
+                  
                 };
             },
             created() {
 
                 this.$loading(true);
                 this.initialCall();
+                this.selectedValue = 0;
+                  this.axios.get('/api/job/customerList/'+this.type).then(response=> {
+                    this.customerList = response.data;
+                });
 
             },
             methods: {
@@ -235,6 +271,12 @@
                         });
                     }
                 },
+                getselected($event){
+                        this.cusid = $event.value;
+                        this.searchCustomer();
+                },
+
+                
                 deleteCustomer(id,type) {
                     if(type == 'delete'){
                         var textval = '事業者を削除してよろしいでしょうか。';
@@ -344,14 +386,16 @@
                     },
 
                     searchCustomer(page) {
-                     
+
                         if(typeof page === "undefined"){
                             page = 1;
                         }
                         var search_word = $("#search-word").val();
                         let fd = new FormData();
                         fd.append("search_word", search_word);
-                        fd.append("status",this.status)
+                        fd.append("status",this.status);
+                        fd.append("pro_id",this.selectedValue);
+                      
                         if(this.$route.path == "/nuscustomerlist"){
                             fd.append("type",3)
                         }
