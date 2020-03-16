@@ -31,8 +31,8 @@
                 
 
                 <div class="form-group ">
-                        <span class="btn main-bg-color white all-btn" @click="checkValidate()"> {{subtitle}}</span>
                     <span class="btn bt-red all-btn" @click="$router.go(-1)" > キャンセル </span>
+                    <span class="btn main-bg-color white all-btn" @click="checkValidate()"> {{subtitle}}</span>
                 </div>
             </form>
         </div>

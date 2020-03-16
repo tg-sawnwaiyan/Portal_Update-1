@@ -74,7 +74,8 @@
         if((this.email != '' && this.mail_reg.test(this.email))){        
             this.errors.email='';
         }else{        
-            this.errors.email ='※メールアドレスが必須です。';         
+            this.errors.email ='※メールアドレスを入力してください。';         
+            // this.errors.email ='※メールアドレスが必須です。';         
         }    
 
         if(this.errors.email == '')

@@ -719,11 +719,14 @@
                         localStorage.removeItem("item");
                         localStorage.setItem("item", JSON.stringify(this.fav_email));
                       
-                        this.$router.push({
-                            name: 'nursingFavouriteMail',
-                            // params: { favmail: this.fav_email},
-                            // props: true
-                        });
+                        // this.$router.push({
+                        //     name: 'nursingFavouriteMail',
+                        //     // params: { favmail: this.fav_email},
+                        //     // props: true
+                        // });
+
+                        let routeData = this.$router.resolve({name: 'nursingFavouriteMail',});
+                        window.open(routeData.href, '_blank');
                     },
                     checkAll() {
                         this.disableBtn = '';
