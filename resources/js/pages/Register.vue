@@ -378,8 +378,8 @@
                             this.$swal({
                                 position: 'top-end',
                                 type: 'success',
-                                title: 'サイト管理者に登録情報を通知いたしました。',
-                                html: "登録審査後、事業者様にメールにてお知らせいたします。しばらくおまちください。",
+                                title: '<p style="text-align:left;font-weight:bold;">サイト管理者に登録情報を通知いたしました</p>',
+                                html: "<p style='text-align:left;'>登録審査後、事業者様にメールにてお知らせいたします。しばらくおまちください。</p>",
                                 width: 350,
                                 height: 200,
                                 confirmButtonColor: "#6cb2eb",
