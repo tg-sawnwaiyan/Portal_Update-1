@@ -81,7 +81,7 @@
                                             </td>
                                             <td class="w-50">
                                                 <!-- <p><span class="font-weight-bold">性別:</span><span>{{jobapply.gender}}</span></p>   -->
-                                                <p class="mb-2"><span class="text-orange"><span class="job_ico">★</span> 郵便番号:&nbsp;</span><span class=""> {{jobapply.postal}}</span></p>
+                                                <p class="mb-2"><span class="text-orange"><span class="job_ico">〒</span> 郵便番号:&nbsp;</span><span class=""> {{jobapply.postal}}</span></p>
                                             </td>
                                         </tr>
                                         <tr>
@@ -96,7 +96,7 @@
                                         </tr>
                                         <tr>
                                             <td class="w-50">
-                                                <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-user"></i></span> メールアドレス:&nbsp;</span><span class=""> {{jobapply.email}}</span></p>
+                                                <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-envelope"></i></span> メールアドレス:&nbsp;</span><span class=""> {{jobapply.email}}</span></p>
                                             </td>
                                             <td  class="w-50">
                                                     <p class="mb-2"><span class="text-orange"><span class="job_ico"><img src="/images/icons8-phone.png" width="75%"></span> 電話番号:&nbsp;</span><span class=""> {{jobapply.phone}}</span></p>

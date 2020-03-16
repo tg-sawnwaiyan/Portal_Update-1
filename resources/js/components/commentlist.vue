@@ -104,7 +104,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="collapse card-body commentContainer" :id="'changeLink' + comment.id">
+                        <!--don't-->
+                        <!-- <div class="collapse card-body commentContainer" :id="'changeLink' + comment.id">
                             <div class="commentWrap">
 
                                 <div class="d-flex ">
@@ -124,13 +125,54 @@
                                 </div>
                           
                             </div> 
-                              
-                                <div name="exp[]" class="col-md-12 p-0"><p style="color:#736e6e;">{{comment.comment}}</p></div>
+                               --> 
+                                <!-- <div name="exp[]" class="col-md-12 p-0"><p style="color:#736e6e;">{{comment.comment}}</p></div> -->
                                 <!-- <div  class="col-md-12 m-t-20"><p style="color:#736e6e;">{{comment.email}}</p></div> -->
                                 <!-- <div  class="col-md-12 m-t-20"><p style="color:#736e6e;">{{comment.year}}</p></div> -->
                                 <!-- <div  class="col-md-12 m-t-20" v-if="comment.zipcode"><span class="text-orange"><span class="job_ico">★</span></span><p style="color:#736e6e;">{{comment.zipcode}}</p></div> -->
                               
-                        </div>
+                        <!-- </div> -->
+                          <!--don't-->
+                                <div class="collapse p-17" :id="'changeLink' + comment.id">   
+                                    <div class="cmt"><span><i class="fa fa-calendar"></i>&nbsp;{{comment.created_date | moment("YYYY年MM月DD日") }}投稿</span> <span><i class="fa fa-clock"></i>&nbsp;{{comment.created_time}}</span></div>                               
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <td  class="w-50">
+                                                    <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-envelope" aria-hidden="true"></i></span>メールアドレス:&nbsp;</span><span class=""> {{comment.email}}</span></p>
+                                            </td>
+                                            <td  class="w-50">
+                                                    <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-user" aria-hidden="true"></i></span>お名前:&nbsp;</span><span class=""> {{comment.name}}</span></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td  class="w-50">
+                                                   <p class="mb-2"><span class="text-orange"><span v-if="comment.year != '' && comment.year != null" class="job_ico"><i class="fa fa-calendar" aria-hidden="true"></i></span>生年月日:&nbsp;</span><span class=""> {{comment.year}} 年生まれ</span></p> 
+                                            </td>
+                                            <td  class="w-50">
+                                                    <p class="mb-2"><span class="text-orange"><span class="job_ico">〒<i aria-hidden="true"></i></span>郵便番号:&nbsp;</span><span class=""> {{comment.zipcode}}</span></p>
+                                            </td>
+                                        </tr>
+                                        <!-- <tr>
+                                            <td  class="w-50">
+                                                    <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-calendar" aria-hidden="true"></i></span>作成された投稿日:&nbsp;</span><span class=""> {{comment.created_date | moment("YYYY年MM月DD日") }}投稿</span></p>
+                                            </td>
+                                            <td  class="w-50">
+                                                    <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-calendar" aria-hidden="true"></i></span>作成された投稿時間:&nbsp;</span><span class=""> {{comment.created_time}}</span></p>
+                                            </td>
+                                        </tr> -->
+                                        <tr>
+                                            <td  class="w-50">
+                                                    <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-list" aria-hidden="true"></i></span>口コミ内容:&nbsp;</span><span class=""> {{comment.comment}}</span></p>
+                                            </td>
+                                        </tr>
+                                         
+                                  
+                                    </table>
+                                   
+                                </div>
+
+
+                              <!--don't-->
                     </div>
                 </div>
                 <!-- <pagination :data="comments" @pagination-change-page="searchcomment"></pagination> -->

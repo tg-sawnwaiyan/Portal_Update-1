@@ -18,12 +18,12 @@
               </div>            
               <div class="col-lg-8 col-md-7">
                   <div class="form-group form-group-wrapper d-flex">
-                      <label class="heading-lbl col-md-2 col-12 pad-free">施設名称 <span class="error sp2">必須</span></label>
+                      <label class="heading-lbl col-md-2 col-12 pad-free">施設名称 <p class="error sp3 sp-t">必須</p></label>
                       <input type="text" class="form-control customer-name col-md-10 col-12 nursing_input" placeholder="施設名称を入力してください。" v-model="hospital_info.name">
                   </div>
 
                   <div class="form-group form-group-wrapper d-flex">
-                      <label class="heading-lbl col-md-2 col-12 pad-free">メールアドレス <p class="error sp3">必須</p></label>
+                      <label class="heading-lbl col-md-2 col-12 pad-free">メールアドレス<p class="error sp3 sp-t2">必須</p></label>
                       <!-- <label class="col-md-10 col-12 customer-email"> {{hospital_info.email}} </label> -->
                       <input type="text" class="form-control customer-email col-md-10 col-12 nursing_input" placeholder="メールアドレスを入力してください。" v-model="hospital_info.email" @change="aggreBtn" @keyup="focusMail">
                   </div>                          
