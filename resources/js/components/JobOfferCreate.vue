@@ -902,7 +902,7 @@ import Autocomplete from 'vuejs-auto-complete'
                                     //     name: "jobofferlist"
                                     // });
 
-                                    this.$route.params.id = null;
+                                    // this.$route.params.id = null;
                                 })
                                 .catch(error => {
                                    this.$loading(false);
