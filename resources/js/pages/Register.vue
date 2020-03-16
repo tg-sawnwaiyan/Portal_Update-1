@@ -430,6 +430,25 @@
 
       },
       focusPhone: function(e) {
+                 
+                // new Vue({
+                //     el:'#demo',
+                //     data:{
+                //         oldNum:0    
+                //     },
+                //     computed:{
+                //         inpNum:{
+                //             get:function(){
+                //                 return this.oldNum;
+                            
+                //             },
+                //             set:function(newValue){
+                //                 this.oldNum=newValue.replace(/[^\d]/g,'');
+                //             }
+                //         }
+                //     }
+                    
+                // })
 
         var input_data = $('#phone').val();
     
