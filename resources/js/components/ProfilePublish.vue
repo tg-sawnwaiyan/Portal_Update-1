@@ -707,8 +707,8 @@
                         <h5 class="profile_subtit">フォトアルバム</h5>
                         <div class="row gallery-list m-0">
                             <div v-for="(image,index) in  light_images" :key="index" class="col-6 col-md-4 col-sm-4 col-lg-3 m-b-10 ">
-                                    <div class="gallery-item" v-if="'gallery-img-'+index != true" >
-                                        <img  :src ="'/upload/nursing_profile/' + image.name"  class="img-fluid" @click="showLightbox(image.name)"  @error="imgUrlAlthide(index)">
+                                    <div class="gallery-item">
+                                        <img :src ="'/upload/nursing_profile/' + image.name"  class="img-fluid" @click="showLightbox(image.name)"  @error="imgUrlAlt">
                                     </div>
                                     <span class="img_txt">{{image.title}}</span>
                                 <!-- <span>{{image.photo}}</span> -->
@@ -1194,8 +1194,8 @@
                 <h5 class="profile_subtit">フォトアルバム</h5>
                 <div class="row m-0 gallery-list">
                     <div v-for="(image,index) in  light_images" :key="index" class="col-6 col-lg-3 col-md-4 col-sm-4 m-b-10">
-                        <div class=" gallery-item" v-if="'gallery-img-'+index == ''" >
-                            <img  :src ="'/upload/hospital_profile/' + image.name" class="img-fluid" @click="showLightbox(image.name)" @error="imgUrlAlthide(index)" >
+                        <div class=" gallery-item">
+                            <img :src ="'/upload/hospital_profile/' + image.name" class="img-fluid" @click="showLightbox(image.name)" @error="imgUrlAlt" >
                         </div>
                         <span class="img_txt">{{image.title}}</span><br>
 
@@ -2082,7 +2082,7 @@ export default {
             event.target.src = "/images/noimage.jpg"
         },
         imgUrlAlthide(index) {
-            this['gallery-img-'+index] = true;
+            this['gallery-img-'+index] = null;
         },
         first() {
             this.currentPage = 0;
@@ -2942,5 +2942,7 @@ h3 {
     }
 }
 
-
+.hideimg{
+    display: none!important;
+}
 </style>
