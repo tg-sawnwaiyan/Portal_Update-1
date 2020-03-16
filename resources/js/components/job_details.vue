@@ -10,7 +10,7 @@
      
     </div>
       <div class="col-12 m-b-15">
-        <h6 style="font-size:15px;"><strong style="color:#2980b9;">施設名:</strong> {{job_details[0].cusname}} </h6>
+        <h5 class="subtitle" style=""><strong>施設名:</strong> {{job_details[0].cusname}} </h5>
       </div>
     
     <div class="row m-0" v-for="jobDetail in job_details" :key="jobDetail.id">
