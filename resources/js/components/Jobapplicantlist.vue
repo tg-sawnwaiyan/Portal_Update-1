@@ -5,7 +5,7 @@
                 <h4 class="main-color mb-3">求人応募者検索 <a @click="$router.go(-1)" v-if="$route.params.id" class="btn btn-danger all-btn submit float-right"><i class="fas fa-arrow-left"></i>&nbsp;戻る</a></h4>
                 <div class="row mb-4">
                     <div class="col-md-12">
-                        <input type="text" class="form-control" placeholder="検索" id="search-item"  @keyup="searchApplicantList()" />
+                        <input type="text" class="form-control" placeholder="求人タイトルで検索" id="search-item"  @keyup="searchApplicantList()" />
                         <input type="hidden" class="form-contrl" />
                     </div>
                 </div>
@@ -13,8 +13,18 @@
 
                
 
-                <h5  class="header"> 求人応募者一覧
+                <!-- <h5  class="header"> 求人応募者一覧
                     <span v-if="page == 'job' && job_id != ''" style="font-size: 0.9em; font-weight: normal; color: #333;"><br/>{{job_title}}<span class="pro_num">({{job_id}})</span> </span>
+                    <span  class="pro_num" v-if="page == 'profile' && proname != ''">「{{proname}}」</span>
+                </h5> -->
+              
+
+                <h5  class="header"> 求人応募者一覧
+                    <span  v-if="page == 'job' && job_id != ''" style="font-size: 0.9em; font-weight: normal; color: #333;"><br/>
+                    <router-link class="job_title pseudolink" :to="{name: 'job_details', params:{id:jobapplies.data[0]['job_id'],loginuser:loginuser}}">{{job_title}} </router-link>
+                        <!-- <p class="job_title"> {{job_title}} </p> -->
+                        <p class="job_id"><span>求人番号 :</span>{{job_id}}</p>  
+                    </span>
                     <span  class="pro_num" v-if="page == 'profile' && proname != ''">「{{proname}}」</span>
                 </h5>
             
@@ -32,14 +42,19 @@
                               
                                 <div class="row"  v-if="page == null || page == 'profile' ">
                                     <div class="col-9">
+                                         <span class="job_id_1"><span>求人番号 :</span>{{jobapply.jobid}}</span>
+                                    </div>
+                                     <div class="col-3 text-right">
+                                        <button :class="'btn btn drop-bg-color changeLink'+jobapply.id"  @click="applicatnToggle(jobapply.id)">
+                                        詳細  <i :id="'icon' + jobapply.id" class="fas fa-sort-down animate rotate"></i></button>
+                                    </div>
+                                    <div class="col-12">
                                         <div class="joboffer-tit clearfix">
-                                             <h5  class="font-weight-bold">{{jobapply.job_title}} <span class="pro_num">({{jobapply.jobid}})</span></h5>
+                                              <!-- <span class="job_id_1"><span>求人番号 :</span>{{jobapply.jobid}}</span> -->
+                                             <router-link class="job_title_1 pseudolink" :to="{name: 'job_details', params:{id:jobapply.job_id,loginuser:loginuser}}">{{jobapply.job_title}} </router-link>
                                         </div>
                                     </div> 
-                                    <div class="col-3 text-right">
-                                        <button :class="'btn btn drop-bg-color changeLink'+jobapply.id"  @click="applicatnToggle(jobapply.id)">
-                                        詳細 <i :id="'icon' + jobapply.id" class="fas fa-sort-down animate rotate"></i></button>
-                                    </div>
+                                   
                                 </div>
                                 <div v-else>
                                      <div class="col-12  text-right">
@@ -179,11 +194,18 @@ export default {
             job_id:'',
             proname:'',
             colnum: 'col-3',
+            loginuser:true
         };
 
     },
     created() {
         this.getJobapplicantList();
+        this.axios.get('/api/user').then(response => {
+        
+        this.loginuser = 'true';
+        }).catch((error) => {
+            this.loginuser = 'false';
+        })
     },
 
     methods: {
@@ -325,4 +347,13 @@ export default {
     }
 }
 </script>
+<style scoped>
 
+.collapse .table-bordered{
+    margin:13px auto 15px auto !important;
+
+}
+.joboffer-tit .font-weight-bold{
+    line-height: 2em !important;
+}
+</style>

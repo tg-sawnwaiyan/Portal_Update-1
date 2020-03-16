@@ -1459,7 +1459,7 @@ export default {
  }
  .form-wrap .sp1,
 .sp3 {
-    margin: 0 5px;
+    /* margin: 0 5px; */
     padding: 0 5px 0 5px;
     background: #F54336;
     font-size: 12px;
