@@ -13,7 +13,7 @@
                   </div>
                     <div class="col-md-12 row p-0 m-0">
                         <div class="col-md-6 pad-free nursing-m-b-15 ">
-                            <div class="col-md-12 p-l-0 "><label class="font-weight-bold">  都道府県</label></div>
+                            <div class="col-md-12 p-l-0 "><label class="font-weight-bold">  都道府県 <span class="error sp2">必須</span></label></div>
                             <div class="col-md-12 p-l-0 nursing_p-r-2">
                                 <select v-model="city" class="division form-control" id="division" @change="cityChange('city',$event)">
                                   <option value="0">選択してください。</option>
@@ -24,7 +24,7 @@
                             </div>
                         </div>
                         <div class="col-md-6 pad-free nursing-m-b-15">
-                            <div class="col-md-12 p-r-0"><label class="font-weight-bold">  市区町村</label></div>
+                            <div class="col-md-12 p-r-0"><label class="font-weight-bold">  市区町村 <span class="error sp2">必須</span></label></div>
                             <div class="col-md-12 p-r-0 nursing_p-l-2">
                                 <select v-model="township" class="division form-control" id="gmaptownship">
                                   <option value="0">選択してください。</option>

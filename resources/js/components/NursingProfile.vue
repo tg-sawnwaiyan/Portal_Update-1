@@ -27,7 +27,7 @@
                                 <input type="text" class="form-control customer-email col-md-10 col-12 nursing_input" id="btn" v-model="nursing_info.email" @change="aggreBtn" @keyup="focusMail" placeholder="メールアドレスを入力してください。">
                             </div>
                            
-                             <span class="error pro-1" v-if="mail_focus || nursing_info.email =='' || nursing_info.email.length == 0">※メールアドレスが正しくありません。もう一度入力してください。</span>
+                             <span class="error pro-1" v-if="mail_focus || nursing_info.email =='' || nursing_info.email.length == 0">※メールアドレスが正しくありません。</span>
                              <!-- <span v-else-if="this.nursing_info.email">sssss</span> -->
                            
                             <div class="form-group form-group-wrapper d-flex">
@@ -45,10 +45,10 @@
                             <label class="heading-lbl col-md-2 col-12 pad-free">公式サイト</label>
                             <input type="text" name="official-website" class="form-control website col-md-10 col-12 nursing_input" v-model="nursing_info.website">
                     </div>
-                    <div class="form-group form-group-wrapper d-flex">
+                    <!-- <div class="form-group form-group-wrapper d-flex">
                             <label class="heading-lbl col-md-2 col-12 pad-free">運営事業者</label>
                             <input type="text" class="form-control customer-name col-md-10 col-12 nursing_input" id="btn" disabled v-model="nursing_info.cusname" placeholder="運営事業者を入力してください。">
-                    </div>
+                    </div> -->
 
                     <!-- start panorama area -->
                     <div class="col-md-12 m-lr-0 pad-free">
@@ -636,7 +636,7 @@
                             <div class="col-xl-10 col-md-12 float-right m-t-10 map-toggle-div toggle-div pad-free">
                                 <div class="col-md-12 p-0">
                                     <div class="col-md-12 pad-free" id="mapbox">
-                                        <span class="error pro-1" style="margin-top:0px!important;margin-bottom:10px;" v-if="loc == true">※Please Fill Location.</span>
+                                        <span class="error pro-1" style="margin-top:0px!important;margin-bottom:10px;" v-if="loc == true">※都道府県と市区町村をを入力してください。</span>
                                         <GoogleMap :address="address_show" :township="nursing_info.townships_id" :city="city_id" :township_list="township_list" :lat_num='nursing_info.latitude' :lng_num='nursing_info.longitude'></GoogleMap>
                                     </div>
 

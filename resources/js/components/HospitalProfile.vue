@@ -27,7 +27,7 @@
                       <!-- <label class="col-md-10 col-12 customer-email"> {{hospital_info.email}} </label> -->
                       <input type="text" class="form-control customer-email col-md-10 col-12 nursing_input" placeholder="メールアドレスを入力してください。" v-model="hospital_info.email" @change="aggreBtn" @keyup="focusMail">
                   </div>                          
-                    <span class="error pro-1" v-if="mail_focus || hospital_info.email =='' || hospital_info.email.length == 0">※メールアドレスが正しくありません。もう一度入力してください。</span>                            
+                    <span class="error pro-1" v-if="mail_focus || hospital_info.email =='' || hospital_info.email.length == 0">※メールアドレスが正しくありません。</span>                            
                   <div class="form-group form-group-wrapper d-flex">
                     <label class="heading-lbl col-md-2 col-12 pad-free">電話番号 </label>                            
                     <input type="text" class="form-control customer-phone col-md-10 col-12 nursing_input" id="phone" placeholder="電話番号を入力してください。" v-model="hospital_info.phone" v-on:keyup="isNumberOnly" pattern="[0-9-]*"  @focusout="focusPhone"  maxlength="14" title="Please enter number only.">
@@ -1011,7 +1011,7 @@
                     <span class="bg-trans btn dropdown-arrow nursing_toggle_responsive" @click="toggleEvent('map','5')">詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
                     <div class="col-md-10 hos_toggle float-right m-t-10 map-toggle-div toggle-div pad-free">
                         <div class="col-md-12">
-                        <span class="error pro-1" style="margin-top:0px!important;margin-bottom:10px;" v-if="loc == true">※Please Fill Location.</span>
+                        <span class="error pro-1" style="margin-top:0px!important;margin-bottom:10px;" v-if="loc == true">※都道府県と市区町村をを入力してください。</span>
                             <GoogleMap  :address="address_show" :township="hospital_info.townships_id" :lat_num='hospital_info.latitude' :lng_num='hospital_info.longitude' :city="city_id" :township_list="township_list"></GoogleMap>
                             <!-- <GoogleMap :address="hospital_info.address" :lat_num='35.6803997' :lng_num='139.76901739' v-if="hospital_info.latitude == 0"></GoogleMap> -->
 
