@@ -375,7 +375,7 @@
               <nav aria-label="Page navigation example">
                 <ul class="pagination">
                   <li class="page-item previous">
-                    <span class="spanclass" v-bind:class="isActive ? 'disable':'undisable'" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
+                    <span class="spanclass el1 disabled" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
                   </li>
                   <li class="page-item ">
                     <span class="spanclass" @click="prev()"><i class='fas fa-angle-left'></i> 前へ</span>
@@ -387,7 +387,7 @@
                     <span class="spanclass" @click="next">次へ <i class='fas fa-angle-right'></i></span>
                   </li>
                   <li class="page-item next">
-                    <span class="spanclass" v-bind:class="isActive ? 'undisable':'disable'" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
+                    <span class="spanclass el2" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
                   </li>
                 </ul>
               </nav>
@@ -840,17 +840,26 @@ export default {
         }
       },
       first() {
-      if(this.isActive == false){
         this.currentPage = 0;
-      }
-  
-      this.isActive = true;
+        const page = Math.ceil(this.job_data.length / this.size);
+        const currentPage = this.currentPage + 1; 
+        if(currentPage == 1){
+          let el1 = document.querySelector('.el1');
+          let el2 = document.querySelector('.el2');
+          el1.classList.add('disabled');
+          el2.classList.remove('disabled');
+        }
     },
     last() {
-      if(this.isActive == true){
-        this.currentPage = this.pages - 1;
+      this.currentPage = this.pages - 1;
+      const page = Math.ceil(this.job_data.length / this.size);
+      const currentPage = this.currentPage + 1; 
+       if(currentPage == page){
+        let el1 = document.querySelector('.el1');
+        let el2 = document.querySelector('.el2');
+        el1.classList.remove('disabled');
+        el2.classList.add('disabled');
       }
-      this.isActive = false;
 
     },
     prev() {
@@ -858,16 +867,77 @@ export default {
         this.currentPage--;
 
       }
+      const page = Math.ceil(this.job_data.length / this.size);
+       const currentPage = this.currentPage + 1; 
+       if(currentPage > 1 && currentPage < page){
+        let el1 = document.querySelector('.el1');
+        let el2 = document.querySelector('.el2');
+        el1.classList.remove('disabled');
+        el2.classList.remove('disabled');
+      }
+      else if(currentPage == page){
+        let el1 = document.querySelector('.el1');
+        let el2 = document.querySelector('.el2');
+        el1.classList.remove('disabled');
+        el2.classList.add('disabled');
+      }
+      else if(currentPage == 1){
+        let el1 = document.querySelector('.el1');
+        let el2 = document.querySelector('.el2');
+        el1.classList.add('disabled');
+        el2.classList.remove('disabled');
+      }
     },
     next() {
       if(this.currentPage < this.pages - 1) {
         this.currentPage++;
         
       }
+      const page = Math.ceil(this.job_data.length / this.size);
+       const currentPage = this.currentPage + 1; 
+       if(currentPage > 1 && currentPage < page){
+        let el1 = document.querySelector('.el1');
+        let el2 = document.querySelector('.el2');
+        el1.classList.remove('disabled');
+        el2.classList.remove('disabled');
+      }
+       else if(currentPage == page){
+        let el1 = document.querySelector('.el1');
+        let el2 = document.querySelector('.el2');
+        el1.classList.remove('disabled');
+        el2.classList.add('disabled');
+      }
+       else if(currentPage == 1){
+        let el1 = document.querySelector('.el1');
+        let el2 = document.querySelector('.el2');
+        el1.classList.add('disabled');
+        el2.classList.remove('disabled');
+      }
+
 
     },
     pageSelect(index) {
       this.currentPage = index - 1;
+      const page = Math.ceil(this.job_data.length / this.size);
+        const currentPage = this.currentPage + 1; 
+        if(currentPage > 1 && currentPage < page){
+          let el1 = document.querySelector('.el1');
+          let el2 = document.querySelector('.el2');
+          el1.classList.remove('disabled');
+          el2.classList.remove('disabled');
+        }
+        else if(currentPage == page){
+          let el1 = document.querySelector('.el1');
+          let el2 = document.querySelector('.el2');
+          el1.classList.remove('disabled');
+          el2.classList.add('disabled');
+        }
+        else if(currentPage == 1){
+          let el1 = document.querySelector('.el1');
+          let el2 = document.querySelector('.el2');
+          el1.classList.add('disabled');
+          el2.classList.remove('disabled');
+        }
     },
 
     },
@@ -1118,5 +1188,8 @@ table > tbody > tr th{
     display: none;
   }
 }
-
+.disabled{
+ cursor: not-allowed !important;
+ background-color:gray;
+}
 </style>

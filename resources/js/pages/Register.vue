@@ -431,26 +431,73 @@
       focusPhone: function(e) {
 
         var input_data = $('#phone').val();
-    
-    //    e.keyCode = 8 //backspace
-        this.arr.push(e.keyCode) ;
-        for (var i = 0; i < this.arr.length; i++) {
-          
-            if(((this.arr[i]  >= 48 && this.arr[i]  <= 57) || (this.arr[i]  >= 96 && this.arr[i]  <= 105)) && input_data.charAt(0) != '-' && input_data.charAt(input_data.length -1 ) != '-'  && (input_data.length >= 10 && input_data.length <= 14))
-            {
-             
-                    this.ph_num = false;
-                    this.ph_length = false;
-                
-                
-            }
-            else{
-                    
-                    this.ph_num = true;
-                    this.ph_length = true;
-            }
+        var data = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+        var phoneRe = /^[2-9]\d{2}[2-9]\d{2}\d{4}$/;
+        var p1 ;
+        var digits = input_data.replace(/\D/g, "");
+         console.log()
+        if(p1.test(digits)){
+            console.log('if')
+            this.ph_num = false;
+            this.ph_length = false;
+        }else{
+            console.log('else')
+            this.ph_num = true;
+            this.ph_length = true;
+        }
+       // console.log('input_data.charAt()',input_data.charAt(0))
+       
+        //    e.keyCode = 8 //backspace
+        // - = 173 109
+       // console.log(input_data.charAt(input_data.length -1 ))
+
+        // if(/\D/.test(input_data) || !/^[--]/.test(input_data)){
+        //     alert('2222')
+        // }
         
-        } 
+        // this.arr.push(e.keyCode) ;
+        // var dot = 0;
+        // var subtract = 0;
+        // var dush = 0;
+        // for (var i = 0; i < this.arr.length; i++) {
+        // //  console.log('this.arrrrrr',this.arr[i])
+           
+        //     if(
+        //         ((this.arr[i]  >= 48 && this.arr[i]  <= 57) || (this.arr[i]  >= 96 && this.arr[i]  <= 105)) 
+        //         && 
+        //         (input_data.charAt(0) != '-')
+        //         && 
+        //         (input_data.charAt(input_data.length -1 ) != '-') 
+        //         && 
+        //         (input_data.length >= 10 && input_data.length <= 14 )
+                
+        //      )
+        //     {
+              
+        //             this.ph_num = false;
+        //             this.ph_length = false;
+        //     }
+        //     if(input_data.length <= 10  && this.arr[i] == 8){
+        //         console.log('aaaaa')
+        //     }
+            // if((this.arr[i] == 190 || this.arr[i] ==  109 || this.arr[i] == 173)&& (input_data.length >= 10 && input_data.length <= 14 )){
+                
+            //     dot++;
+            //     subtract++;
+            //     dush++;
+            //     if(dot >= 2 || subtract >= 2 || dush >= 2 && (input_data.length >= 10 && input_data.length <= 14 )){
+            //         console.log('aa')
+            //         this.ph_num = true;
+            //         this.ph_length = true;
+            //     }
+            // }
+            // else{
+
+            //         this.ph_num = true;
+            //         this.ph_length = true;
+            // }
+        
+        // } 
        
         
         
