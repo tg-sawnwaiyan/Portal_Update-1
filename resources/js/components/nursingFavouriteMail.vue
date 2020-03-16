@@ -140,7 +140,7 @@
                             </div>
                         </div>
                         <div class="form-group m-0 row bd-all">
-                            <div class="col-md-3 col-sm-12 form-left"><br/><label><strong>電話番号</strong></label></div>
+                            <div class="col-md-3 col-sm-12 form-left pt-4"><label class="form-left pl-0"><strong>電話番号</strong></label></div>
                             <div class="col-md-9 col-sm-12 form-right p-b-0">
                             <div class="row pl-3">
                                     <div class="col-md-12 p-0">
@@ -156,7 +156,7 @@
                             </div>
                             <!-- </div>
                             <div class="form-group m-0 row bd-all"> -->
-                            <div class="col-md-3 col-sm-12 form-left"><label><strong>メールアドレス </strong></label></div>
+                            <div class="col-md-3 col-sm-12 form-left"><label class="form-left pl-0"><strong>メールアドレス </strong></label></div>
                             <div class="col-md-9 col-sm-12 form-right">
                             <div class="row pl-3">
                                 <div class="col-md-12 p-0">

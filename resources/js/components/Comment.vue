@@ -228,12 +228,13 @@
                                 </ul>
                                 <div class="text-center">
                                 <h3>入力内容は送信されました。</h3>
-                                <br />
-                                <p>口コミの投稿ありがとうございました。</p>
-                                <p>サイト管理者による承認後、口コミが公開されます。</p>
-                                <br />
-                                <br />
+                                <div class="row col-12 stepper-success-form">     
+                                    <p>口コミの投稿ありがとうございました。</p>
+                                    <p>サイト管理者による承認後、口コミが公開されます。</p>
+                                </div>
+                               <div class="multi-step mt-5">
                                 <router-link class="btn btn-info all-btn width17" to="/">ホームへ戻る</router-link>
+                               </div>
                                 </div>                               
                             </div>
                             <div class="col-sm-2"></div>

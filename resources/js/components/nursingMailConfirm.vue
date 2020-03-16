@@ -214,8 +214,8 @@
                         <li class="active">2.内容のご確認</li>
                         <li class="active">3.送信完了</li>
                     </ul>
-                    <div class="col-md-12 form-wrap">
-                        <h4 class="form-tit">資料請求が完了いたしました。</h4>    
+                    <div class="col-md-12 form-wrap text-center">
+                        <h4 class="">資料請求が完了いたしました。</h4>    
                     </div>
                     <div class="row col-12 stepper-success-form">                       
                         <p>この度は「TIS ティーズ」をご利用いただきましてありがとうございました。</p><br/>

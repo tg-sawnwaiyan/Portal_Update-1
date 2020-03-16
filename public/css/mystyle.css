@@ -249,11 +249,12 @@ scrollbar-width: thin;*/
 }
 
 .stepper-success-form {
-    width: 80%;
+    width: 40%;
     margin: 0 auto;
     margin-top: 10px;
     display: block;
     line-height: 3.2px;
+    text-align: left;
 }
 
 label {
