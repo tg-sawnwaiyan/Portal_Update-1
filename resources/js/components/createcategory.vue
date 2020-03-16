@@ -60,7 +60,7 @@ export default {
             add() {
                  this.$swal({
                             title: "確認",
-                            text: "ニュースカテゴリーを作成してよろしいでしょうか。",
+                            text: "ニュースカテゴリーを作成してよろしいでしょうか",
                             type: "info",
                             width: 390,
                             height: 200,
@@ -83,7 +83,7 @@ export default {
                             position: 'top-end',
                             type: 'success',
                             // title:'確認済',
-                            text: 'ニュースカテゴリーを作成しました。',
+                            text: 'ニュースカテゴリーを作成しました',
                             // showConfirmButton: false,
                             // timer: 1800,
                             confirmButtonText: "閉じる",
@@ -114,7 +114,7 @@ export default {
                         this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            text: 'カテゴリーを更新しました。',
+                            text: 'カテゴリーを更新しました',
                             confirmButtonText: "閉じる",
                             confirmButtonColor: "#6cb2eb",
                             width: 300,

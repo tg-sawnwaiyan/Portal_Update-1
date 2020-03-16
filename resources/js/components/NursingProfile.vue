@@ -1019,7 +1019,7 @@ export default {
             DeltArr(indx,type) {
                 this.$swal({
                         title: "確認",
-                        text: "職種を削除してよろしいでしょうか。",
+                        text: "職種を削除してよろしいでしょうか",
                         type: "warning",
                         width: 350,
                         height: 200,
@@ -1053,7 +1053,7 @@ export default {
             DeleteArr(indx,type,id,photo) {
                 this.$swal({
                         title: "確認",
-                        text: "職種を削除してよろしいでしょうか。",
+                        text: "職種を削除してよろしいでしょうか",
                         type: "warning",
                         width: 350,
                         height: 200,
@@ -1088,7 +1088,7 @@ export default {
                             .post('/api/delete-pgallery',fd)
                             .then(response=>{
                                 this.$swal({
-                                    text: "職種を削除しました。",
+                                    text: "職種を削除しました",
                                     type: "success",
                                     width: 350,
                                     height: 200,
@@ -1254,7 +1254,7 @@ export default {
                    
               this.$swal({
                 // title: "確認",
-                html: "保存できません。<br/>必須項目を確認してください。",
+                html: "保存できません。<br/>必須項目を確認してください",
                 type: "warning",
                 width: 370,
                 height: 200,
@@ -1398,7 +1398,7 @@ export default {
                                 this.$swal({
                                         position: 'top-end',
                                         type: 'success',
-                                        title: '保存されました。',
+                                        text: '保存されました',
                                         confirmButtonText: "閉じる",
                                         confirmButtonColor: "#6cb2eb",
                                         width: 250,

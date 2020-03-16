@@ -408,7 +408,7 @@
                 deleteJob(id) {
                         this.$swal({
                             title: "確認",
-                            text: "求人を削除してよろしいでしょうか。",
+                            text: "求人を削除してよろしいでしょうか",
                             type: "warning",
                             width: 350,
                             height: 200,
@@ -435,7 +435,7 @@
                                         this.norecord_msg = true;
                                     }
                                     this.$swal({
-                                        text: "求人を削除しました。",
+                                        text: "求人を削除しました",
                                         type: "success",
                                         width: 350,
                                         height: 200,

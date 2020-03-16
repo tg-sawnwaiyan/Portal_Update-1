@@ -51,7 +51,7 @@ export default {
         if(this.$route.name == "editfacility"){
             this.title = "院内施設編集";
             this.label = "院内施設:";
-            this.placeholder = "院内施設名を入力してください。";
+            this.placeholder = "院内施設名を入力してください";
             this.buttontext = "保存";
             this.axios
               .get(`/api/facility/edit/${this.$route.params.id}`)
@@ -62,7 +62,7 @@ export default {
           else{
             this.title = "院内施設新規作成";
             this.label = "院内施設:";
-            this.placeholder = "院内施設名を入力してください。";
+            this.placeholder = "院内施設名を入力してください";
             this.buttontext = "作成";
           }
         },
@@ -72,7 +72,7 @@ export default {
     add() {
      this.$swal({
                             title: "確認",
-                            text: "院内施設を投稿してよろしいでしょうか。",
+                            text: "院内施設を投稿してよろしいでしょうか",
                             type: "info",
                             width: 350,
                             height: 200,
@@ -95,7 +95,7 @@ export default {
                             position: 'top-end',
                             type: 'success',
                             // title:'確認済',
-                            text: '院内施設を投稿しました。',
+                            text: '院内施設を投稿しました',
                             // showConfirmButton: false,
                             // timer: 1800,
                             confirmButtonText: "閉じる",
@@ -125,7 +125,7 @@ export default {
             this.$swal({
                         position: 'top-end',
                         type: 'success',
-                        text: '院内施設を更新しました。',
+                        text: '院内施設を更新しました',
                         // showConfirmButton: false,
                         // timer: 1500,
                         confirmButtonText: "閉じる",

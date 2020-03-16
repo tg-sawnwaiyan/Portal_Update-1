@@ -106,7 +106,7 @@
                 deleteCategory(id) {
                         this.$swal({
                             title: "確認",
-                            text: "ニュースカテゴリーを削除してよろしいでしょうか。",
+                            text: "ニュースカテゴリーを削除してよろしいでしょうか",
                             type: "warning",
                             width: 380,
                             height: 200,
@@ -139,7 +139,7 @@
                                     // this.categories.splice(i, 1);
                                     this.$swal({
                                         // title: "削除済",
-                                        text: "ニュースカテゴリーを削除しました。",
+                                        text: "ニュースカテゴリーを削除しました",
                                         type: "success",
                                         width: 350,
                                         height: 200,
@@ -155,7 +155,7 @@
                                         // this.$swal("このカテゴリーに関連するニュースがあるため、削除できません。");
                                         this.$swal({
                                             title: "削除に失敗しました",
-                                            text: "削除に失敗しました このカテゴリーのニュースが存在するため削除できません。 ",
+                                            text: "削除に失敗しました このカテゴリーのニュースが存在するため削除できません",
                                             type: "error",
                                             width: 350,
                                             height: 200,

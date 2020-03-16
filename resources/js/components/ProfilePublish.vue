@@ -1333,8 +1333,8 @@
                 <span class="bottom-fav-btn" v-if="!view_pro_id && loginuser=='false'" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                 <span class="bottom-fav-btn" style="color:#aaa;" v-if="view_pro_id && loginuser=='false'" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
             </div>
-            <div class="col-8 col-md-3 col-lg-3 col-xl-2 pc-414">       
-                <span class="bottom-mail-btn" @click="documentPost()" v-if="loginuser=='false' && !$auth.check() && type == 'nursing'"><i data-v-b65423c6="" class="far fa-envelope" style="color: #fff  !important;font-size: 15px;"></i>&nbsp;資料請求</span>
+            <div class="col-8 col-md-3 col-lg-3 col-xl-2 pc-414" v-if="loginuser=='false' && !$auth.check() && type == 'nursing'">       
+                <span class="bottom-mail-btn" @click="documentPost()"><i data-v-b65423c6="" class="far fa-envelope" style="color: #fff  !important;font-size: 15px;"></i>&nbsp;資料請求</span>
             </div>
         </div>       
     </div>
