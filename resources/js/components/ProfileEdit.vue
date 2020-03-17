@@ -305,7 +305,6 @@
                                             height: 200,
                                             allowOutsideClick: false,
                                         })
-                                        // alert('Please Enter Correct Old Password!');
                                         return;
                                         
                                     }else{
