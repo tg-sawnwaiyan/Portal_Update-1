@@ -1899,7 +1899,7 @@
             },
 
             ChangeTownship(){
-                alert(this.SpecialFeatureID);
+              
                 this.townshipID = [];
                 if(localStorage.getItem("nursing_fav") == null){
                     this.locast = 0;

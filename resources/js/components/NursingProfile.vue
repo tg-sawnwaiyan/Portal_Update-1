@@ -1163,7 +1163,7 @@ export default {
             },
             createFile(file) {
                 if (!file.type.match('image.*')) {
-                alert('Select an image');
+              
                 return;
                 }
                 var img = new Image();
