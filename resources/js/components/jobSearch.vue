@@ -6,10 +6,10 @@
    <div class="col-md-12" style="border-bottom: 1px dashed #828282;padding-bottom: 10px; margin-bottom: 20px;">
      <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#828282;"></i>&nbsp;地図検索  
 
-        <span v-if="count == false  && searchword != '' && searchword == 'all' && job_data.length && !stateclick "> 「<span class="result-span">求人</span>の病院 <span class="result-span"> {{job_data.length}} </span>件」 </span>
-        <span v-if="count == false && searchword != '' && searchword != 'all' && job_data.length && !stateclick "> 「<span class="result-span">{{searchword}}</span>の病院 <span class="result-span"> {{job_data.length}} </span>件」 </span>
-        <span v-if="count == false && id != '-1' && job_data.length  && stateclick"> 「<span class="result-span">{{job_data[0].city_name}}</span>の病院 <span class="result-span"> {{job_data.length}} </span>件」</span>
-        <span v-if="count == true && job_data.length ">「<span class="result-span">{{job_data[0].city_name}}</span>の病院 <span class="result-span"> {{job_data.length}} </span>件」</span>
+        <span v-if="count == false  && searchword != '' && searchword == 'all' && job_data.length && !stateclick "> 「<span class="result-span">全国</span>の求人 <span class="result-span"> {{job_data.length}} </span>件」 </span>
+        <span v-if="count == false && searchword != '' && searchword != 'all' && job_data.length && !stateclick "> 「<span class="result-span">{{searchword}}</span>の求人 <span class="result-span"> {{job_data.length}} </span>件」 </span>
+        <span v-if="count == false && id != '-1' && job_data.length  && stateclick"> 「<span class="result-span">{{job_data[0].city_name}}</span>の求人 <span class="result-span"> {{job_data.length}} </span>件」</span>
+        <span v-if="count == true && job_data.length ">「<span class="result-span">{{job_data[0].city_name}}</span>の求人 <span class="result-span"> {{job_data.length}} </span>件」</span>
         <!-- <span v-if="job_data.length && searchword == '' && job_data[0].city_name != ''"> 「<span class="result-span">{{job_data[0].city_name}}</span>の求人 <span class="result-span">{{job_data.length}} </span>件」</span>
         <span v-if="job_data.length && searchword != '' && searchword == 'all' && id == '-1'"> 「<span class="result-span">求人</span>の求人  <span class="result-span">{{job_data.length}} </span>件」</span>
         <span v-if="job_data.length && searchword != '' && searchword != 'all' && id == '-1'"> 「<span class="result-span">{{searchword}}</span>の求人  <span class="result-span">{{job_data.length}} </span>件」</span>
@@ -348,8 +348,9 @@
                             </tr>
                             <tr>
                               <td><span class="job_ico">&#xa5;</span>給料</td>
-                              <td>{{job.salary_type}} : {{(Number(job.salary)).toLocaleString()}} 円  <span v-if="job.salary_remark"> ( {{ job.salary_remark }} ) </span> </td>
+                              <td> {{job.salary}} <span v-if="job.salary_remark"> ( {{ job.salary_remark }} ) </span> </td>
                             </tr>
+                            <!-- {{job.salary_type}} : {{(Number(job.salary)).toLocaleString()}} 円 -->
                             <tr>
                               <td><span class="job_ico">時</span>就業時間/休日休暇</td>
                               <td> {{job.working_hours}} <span v-if="job.holidays!='' && job.holidays!=null">/</span> {{job.holidays}}  </td>

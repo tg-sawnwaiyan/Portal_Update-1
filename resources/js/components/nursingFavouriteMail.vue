@@ -30,7 +30,7 @@
                         <div class="form-group m-0 row bd">
                             <div class="col-md-3 col-sm-12 form-left"><label><strong>お名前 </strong><span class="error sp1">必須</span></label></div>
                             <div class="col-md-9 col-sm-12 form-right">
-                                <input type="text" id="tbname" name="name" class="form-control float-left" placeholder="お名前を入力してください。" v-model="comments.name" @change="aggreBtn" @keyup="focusName"/>
+                                <input type="text" id="tbname" name="name" class="form-control float-left" placeholder="お名前を入力してください。" v-model="comments.name" @change="aggreBtn" @focusout="focusName" @keyup="focusName"/>
                                 <span class="float-left eg-txt">例）探し太郎</span>
                                  <span class="error m-l-30" v-if="comment_focus">※入力は必須です。</span>
                             </div>
@@ -40,7 +40,7 @@
                             <div class="col-md-9 col-sm-12 form-right">
                                 <div class="col-md-12 pad-free">
                                     <!-- <div class="col-md-9 pad-free"> -->
-                                        <input type="text" id="furigana" name="furigana" class="form-control float-left" placeholder="フリガナを入力してください。" v-model="comments.furigana" @keyup="ChekChar"    @change="aggreBtn"/>
+                                        <input type="text" id="furigana" name="furigana" class="form-control float-left" placeholder="フリガナを入力してください。" v-model="comments.furigana" @keyup="ChekChar" @focusout="ChekChar" @change="aggreBtn"/>
                                     <!-- </div>
                                     <div class="col-md-3"> -->
                                          <span class="float-left eg-txt"> 例）サガシタロウ</span>
@@ -145,7 +145,7 @@
                             <div class="row pl-3">
                                     <div class="col-md-12 p-0">
                                         <label class="col-md-12">※ 電話番号またはメールアドレス必須 <span class="error sp1">必須</span></label>
-                                        <input type="text" id="phone" name="number" class="form-control float-left" placeholder="電話番号を入力してください。" v-model="comments.phone" pattern="[0-9-]*" @keyup="focusPhone" @change="aggreBtn" maxlength="13">
+                                        <input type="text" id="phone" name="number" class="form-control float-left" placeholder="電話番号を入力してください。" v-model="comments.phone" pattern="[0-9-]*" @focusout="focusPhone" @keyup="focusPhone" @change="aggreBtn" maxlength="13">
                                         <!-- v-on:keyup="isNumberOnly" -->
                                                                                
                                         <span class="float-left eg-txt">例）0312345678（半角）</span>
