@@ -133,7 +133,7 @@
                                 </label>
                                
                                 <textarea name="skills" class="form-control" cols="50" rows="5" v-model="joboffer.skills" placeholder="経験・スキルを入力してください。"></textarea>
-                            
+                                <span v-if="errors.skills" class="error">{{errors.skills}}</span>
                              
                             </div>
 
@@ -400,7 +400,7 @@
                                       <p v-if="errors.salary" class="error">{{errors.salary}}</p>
                                     </div>
                                     <!-- <span v-if="errors.includes('salary')" class="error">題名は必須です。(salary)</span> -->
-                                    <span class="text-danger pt-1 pl-1"><small>例：時給1000～2000円</small></span>
+                                    <span class="pt-1 pl-1">例：時給1000～2000円</span>
                                 </div>
                             </div>
 
@@ -494,7 +494,8 @@ import Autocomplete from 'vuejs-auto-complete'
                   occupation_id: '',
                   customer_id:'',
                   profile_id:'',
-                  checkallerror:''
+                  checkallerror:'',
+                  skills:'',
                 },
                 OccupationList: {
                     id: "",
@@ -733,6 +734,7 @@ import Autocomplete from 'vuejs-auto-complete'
                             this.errors.description = "";
                         }
                         
+                        
 
                         // if (this.joboffer.postal == '') {
                         //     this.errors.postal = '郵便番号は必須です。';
@@ -770,11 +772,16 @@ import Autocomplete from 'vuejs-auto-complete'
                         } else {
                             this.errors.salary = "";
                         }
-
+             
                         if (this.joboffer.working_hours == '') {
                             this.errors.working_hours = '就業時間は必須です。';
                         } else {
                             this.errors.working_hours = "";
+                        }
+                        if (this.joboffer.skills == '') {
+                            this.errors.skills = '経験・スキルは必必須です。';
+                        } else {
+                            this.errors.skills = "";
                         }
 
                         if (this.joboffer.occupation_id == '-1' || this.joboffer.occupation_id == '') {

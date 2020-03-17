@@ -115,7 +115,7 @@ export default {
                 {
                     this.$swal({
                             title: "確認",
-                            text: "診療科目を投稿してよろしいでしょうか",
+                            text: "診療科目を作成してよろしいでしょうか",
                             type: "info",
                             width: 350,
                             height: 200,
@@ -176,7 +176,7 @@ export default {
 
                 this.$swal({
                           title: "確認",
-                            text: "診療科目を更新してよろしいでしょうか",
+                            text: "診療科目を登録してよろしいでしょうか",
                             type: "info",
                             width: 350,
                             height: 200,

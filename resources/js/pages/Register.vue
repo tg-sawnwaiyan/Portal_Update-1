@@ -385,6 +385,7 @@
             }
         }
         else{
+            // e.preventDefault();
             this.phone = this.correctVal;
 
             if(this.phone.length >= 10 && this.phone.length < 14 && this.phone.charAt(this.phone.length -1 ) != '-'){
@@ -400,6 +401,45 @@
         }
      
     },   
+    // focusPhone: function(e) {
+      
+    //     var input_data = $('#phone').val();
+    //     if(((e.keyCode  >= 48 && e.keyCode  <= 57) || (e.keyCode  >= 96 && e.keyCode  <= 105) || (e.keyCode  == 8) || (e.keyCode  == 35) || (e.keyCode  == 36) || (e.keyCode  == 37) || (e.keyCode  == 39) || (e.keyCode  == 46) || (e.keyCode  == 109) || (e.keyCode  == 189)) && input_data.charAt(0) != '-' && !input_data.includes('--'))
+    //     {
+    //         this.correctVal = input_data;
+    //         if(input_data.length >= 10 && input_data.length < 14 && input_data.charAt(input_data.length -1 ) != '-')
+    //         {
+    //             this.ph_num = false;
+    //             this.ph_length = false;
+    //         } else {
+    //             if(this.phone == '' || this.phone == null){
+    //                 this.ph_num = true;
+    //                 this.ph_length = false;
+    //             }
+    //             else{
+    //                 this.ph_length = true;
+    //                 this.ph_num = false;
+    //             }
+                
+    //             return;
+    //         }
+    //     }
+    //     else{
+    //         this.phone = this.correctVal;
+
+    //         if(this.phone.length >= 10 && this.phone.length < 14 && this.phone.charAt(this.phone.length -1 ) != '-'){
+    //           this.ph_length = false;
+    //           this.ph_error = false;
+    //         }
+    //         else{
+    //             this.ph_length = true;
+    //             this.ph_error = false;
+    //             this.btn_disable = true;
+              
+    //         }
+    //     }
+     
+    // },   
 
     },
 

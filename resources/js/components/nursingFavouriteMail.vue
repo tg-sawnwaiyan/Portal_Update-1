@@ -625,6 +625,7 @@
                     }
                 }
                 else{
+                    // e.preventDefault();
                     this.comments.phone = this.correctVal;
                     if(this.comments.phone.length >= 10 && this.comments.phone.length < 14 && this.comments.phone.charAt(this.comments.phone.length -1 ) != '-'){
                     this.ph_length = false;
