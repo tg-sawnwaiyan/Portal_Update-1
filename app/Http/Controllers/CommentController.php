@@ -106,6 +106,12 @@ class CommentController extends Controller
            
         
         // }
+        foreach ($commentList as $com) {
+            $splitTimeStamp = explode(" ",$com->created_at);
+            $com->created_date = $splitTimeStamp[0];
+            $com->created_time = $splitTimeStamp[1];
+        }
+        
         return $commentList;
     }
 

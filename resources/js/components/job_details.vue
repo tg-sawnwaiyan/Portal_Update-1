@@ -2,11 +2,11 @@
   <div class="tab-content job-detail">
     <div class="col-md-12 pad-free m-b-20">
       <nav aria-label="breadcrumb">
-        <!-- <ol class="breadcrumb" v-if="loginuser == 'false'">
+        <ol class="breadcrumb" v-if="loginuser == 'false'">
           <li class="breadcrumb-item"><a href="/" class="router-link-active">ホーム</a></li>
-          <li aria-current="page" class="breadcrumb-item active">仕事詳細</li>
-        </ol> -->
-        <a @click="$router.go(-1)" v-if="$route.params.id" class="btn btn-danger all-btn submit float-right"><i class="fas fa-arrow-left"></i>&nbsp;戻る</a>
+          <li aria-current="page" class="breadcrumb-item active">求人詳細</li>
+        </ol>
+        <a @click="$router.go(-1)" v-if="$route.params.id && loginuser == 'false'" class="btn btn-danger all-btn submit float-right"><i class="fas fa-arrow-left"></i>&nbsp;戻る</a>
       </nav>
       
      

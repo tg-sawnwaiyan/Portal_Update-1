@@ -297,7 +297,7 @@ class CustomerController extends Controller
         if(!empty($checkUser)){
             return response()->json('already');
         }else{
-            // \Mail::to($getCustomer->email)->send(new SendMailable($getCustomer));
+            \Mail::to($getCustomer->email)->send(new SendMailable($getCustomer));
 
             $data = array(
                 'name'=>$getCustomer->name,

@@ -82,7 +82,7 @@
                                             <td> {{comment.title}} </td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3" class="align-top custom_title"><span style="text-align:right;color:#777;font-size:0.9em;"><span><i class="fa fa-calendar"></i>&nbsp;{{comment.created_date | moment("YYYY年MM月DD日") }}</span> <span><i class="fa fa-clock"></i>&nbsp;{{comment.created_time}} 投稿</span></span></td>
+                                            <!-- <td colspan="3" class="align-top custom_title"><span style="text-align:right;color:#777;font-size:0.9em;"><span><i class="fa fa-calendar"></i>&nbsp;{{comment.created_date | moment("YYYY年MM月DD日") }}</span> <span><i class="fa fa-clock"></i>&nbsp;{{comment.created_time}} 投稿</span></span></td> -->
                                             <!-- <td> {{comment.title}} </td> -->
                                         </tr>
                                         <!-- <tr>
@@ -96,7 +96,7 @@
                                             <td> {{comment.email}} </td>
                                         </tr> -->
                                     </table>
-                                   
+                                                                    
                                 </div>
 
                                 <div class="col-3 text-right">
@@ -105,6 +105,7 @@
                                          詳細 <i :id="'icon' + comment.id" class="fas fa-sort-down animate rotate"></i></button>
                                 </div>
                             </div>
+                            <div class="cmt"><span><i class="fa fa-calendar"></i>&nbsp;{{comment.created_date | moment("YYYY年MM月DD日") }}</span> <span><i class="fa fa-clock"></i>&nbsp;{{comment.created_time}}&nbsp;投稿</span></div>
                              <!--comment-->
                                 <div class="collapse" :id="'changeLink' + comment.id">   
                                     <!-- <div class="cmt"><span><i class="fa fa-calendar"></i>&nbsp;{{comment.created_date | moment("YYYY年MM月DD日") }}投稿</span> <span><i class="fa fa-clock"></i>&nbsp;{{comment.created_time}}</span></div>                                -->
