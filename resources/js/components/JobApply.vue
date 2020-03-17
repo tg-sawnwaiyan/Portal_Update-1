@@ -404,8 +404,8 @@
           <li class="active">3.<span>送信</span>完了</li>
         </ul>
         
-          <h4 class="text-center">求人への応募が完了しました。</h4>
-           <div class="row col-12 stepper-success-form">   
+          <h4 class="text-center">求人への応募が完了しました</h4>
+           <div class="row col-12 stepper-success-form text-center">   
               <p>担当者より連絡があるまでしばらくおまちください。</p> 
            </div>
            <div class="multi-step mt-5">          

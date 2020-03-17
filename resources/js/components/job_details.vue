@@ -2,11 +2,13 @@
   <div class="tab-content job-detail">
     <div class="col-md-12 pad-free m-b-20">
       <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
+        <!-- <ol class="breadcrumb" v-if="loginuser == 'false'">
           <li class="breadcrumb-item"><a href="/" class="router-link-active">ホーム</a></li>
           <li aria-current="page" class="breadcrumb-item active">仕事詳細</li>
-        </ol>
+        </ol> -->
+        <a @click="$router.go(-1)" v-if="$route.params.id" class="btn btn-danger all-btn submit float-right"><i class="fas fa-arrow-left"></i>&nbsp;戻る</a>
       </nav>
+      
      
     </div>
       <div class="col-12 m-b-15">
@@ -64,7 +66,7 @@
             <div class="col-md-2 col-sm-12 form-left">
               <label><span class="job_ico"><i class="fa fa-briefcase"></i></span>特別な条件</label>
             </div>
-            <div class="col-md-10 col-sm-12 form-right">{{jobDetail.allowances}}</div>
+            <div class="col-md-10 col-sm-12 form-right"><pre>{{jobDetail.allowances}}</pre></div>
           </div>
           <div class="form-group m-0 row bd">
             <div class="col-md-2 col-sm-12 form-left">
