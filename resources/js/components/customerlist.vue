@@ -19,15 +19,29 @@
                             </autocomplete>
                            
                         </div> 
-                         <div class="col-md-6 choose-item">
+                        <div class="card">
+                            <div class="col-md-6 card-body">
+                                <div class=" form-check form-check-inline col-sm-2">
+                              <label class="form-check-label control control--checkbox" style="padding-left:5px;">
+                              <input class="form-check-input" value="1"  type="checkbox">
+                              Activate
+                              <div class="control__indicator"></div>
+                              </label>
+                            </div>
+                           </div>
+                        </div>
+                          
+                           
+
+                        
+                         <!-- <div class="col-md-6 choose-item">
                               <select  v-model="status" id="selectBox" class="form-control select_box" @change="searchCustomer()">
                                 <option selected="selected" value>状態を選択してください。</option>
                                 <option value="1"> 有効 </option>                            
                                 <option value="0"> 無効 </option>   
                                 <option value="2"> 登録承認審査中 </option>                              
-                            </select>
-                              
-                        </div>                 
+                            </select> 
+                        </div>                  -->
                         
                     </div>
                     <!-- <div class="row mb-4">
