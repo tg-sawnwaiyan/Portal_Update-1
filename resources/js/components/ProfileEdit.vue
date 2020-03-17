@@ -249,7 +249,7 @@
                                         this.$swal({
                                                 position: 'top-end',
                                                 type: 'success',
-                                                text: '更新されました。',
+                                                text: '更新されました',
                                                 confirmButtonText: "閉じる",
                                                 confirmButtonColor: "#6cb2eb",
                                                 width: 250,
@@ -298,7 +298,7 @@
                                         this.$swal({
                                             position: 'top-end',
                                             type: 'error',
-                                            text: '現在のパスワードが一致しません。',
+                                            text: '現在のパスワードが一致しません',
                                             confirmButtonText: "閉じる",
                                             confirmButtonColor: "#6cb2eb",
                                             width: 250,
@@ -335,7 +335,7 @@
                         } else {
                             this.$swal({
                                     title: "確認",
-                                    text: "新しいパスワードと確認パスワードは同じでなければなりません。",
+                                    text: "新しいパスワードと確認パスワードは同じでなければなりません",
                                     type: "warning",
                                     width: 350,
                                     height: 200,
@@ -362,7 +362,7 @@
 
                         this.$swal({
                             title: "確認",
-                            text: "メールアドレスと運営事業者名を変更してよろしいでしょうか。",
+                            text: "メールアドレスと運営事業者名を変更してよろしいでしょうか",
                             // text: "メールアドレスを変更してよろしいでしょうか。",
                             type: "info",
                             width: 350,
@@ -385,7 +385,7 @@
                                     this.$swal({
                                             position: 'top-end',
                                             type: 'success',
-                                            text: 'メールアドレスと運営事業者名を変更しました。',
+                                            text: 'メールアドレスと運営事業者名を変更しました',
                                             confirmButtonText: "閉じる",
                                             confirmButtonColor: "#6cb2eb",
                                             width: 250,
@@ -420,9 +420,9 @@
                     },
                     AccountStatusChange(status) {
                         if(status == '1') {
-                            var confirm_text = '事業者登録を無効にしますか。';
+                            var confirm_text = '事業者登録を無効にしますか';
                         } else {
-                            var confirm_text = '事業者登録を有効にしますか。';
+                            var confirm_text = '事業者登録を有効にしますか';
                         }
                         let fd = new FormData();
                             fd.append('status', status)
@@ -454,7 +454,7 @@
                                              this.$swal({
                                                 position: 'top-end',
                                                 type: 'success',
-                                                text: '事業者登録を有効にしました。',
+                                                text: '事業者登録を有効にしました',
                                                 confirmButtonText: "閉じる",
                                                 confirmButtonColor: "#6cb2eb",
                                                 width: 250,
@@ -467,7 +467,7 @@
                                              this.$swal({
                                                 position: 'top-end',
                                                 type: 'success',
-                                                text: '事業者登録を無効にしました。',
+                                                text: '事業者登録を無効にしました',
                                                 confirmButtonText: "閉じる",
                                                 confirmButtonColor: "#6cb2eb",
                                                 width: 250,

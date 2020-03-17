@@ -70,7 +70,7 @@
                                             </div>
                                              <div class="col-sm-8">
                                                 <select id="dob" class="form-control"  v-model="selectedValue" @change="getYear()">
-                                                    <option value="0">選択してください:</option>
+                                                    <option value="0">選択してください</option>
                                                     <option v-for="year in years" :key="year.id"  :value="year">{{ year }}</option>
                                                 </select>
                                              </div>
@@ -228,12 +228,13 @@
                                 </ul>
                                 <div class="text-center">
                                 <h3>入力内容は送信されました。</h3>
-                                <br />
-                                <p>口コミの投稿ありがとうございました。</p>
-                                <p>サイト管理者による承認後、口コミが公開されます。</p>
-                                <br />
-                                <br />
+                                <div class="row col-12 stepper-success-form">     
+                                    <p>口コミの投稿ありがとうございました。</p>
+                                    <p>サイト管理者による承認後、口コミが公開されます。</p>
+                                </div>
+                               <div class="multi-step mt-5">
                                 <router-link class="btn btn-info all-btn width17" to="/">ホームへ戻る</router-link>
+                               </div>
                                 </div>                               
                             </div>
                             <div class="col-sm-2"></div>

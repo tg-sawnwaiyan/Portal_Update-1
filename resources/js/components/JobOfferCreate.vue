@@ -859,7 +859,7 @@ import Autocomplete from 'vuejs-auto-complete'
                     } else {
                         this.$swal({
                             title: "確認",
-                            text: "求人を作成してよろしいでしょうか。",
+                            text: "求人を作成してよろしいでしょうか",
                             type: "info",
                             width: 350,
                             height: 200,
@@ -886,7 +886,7 @@ import Autocomplete from 'vuejs-auto-complete'
                                     this.$swal({
                                         position: "top-end",
                                         type: "success",
-                                        title: "求人を作成しました。",
+                                        title: "求人を作成しました",
                                         // text: "ファイルが作成されました。",
                                         // type: "success",
                                         width: 350,
@@ -1056,7 +1056,7 @@ import Autocomplete from 'vuejs-auto-complete'
                 updateJob() {
                         this.$swal({
                         title: "確認",
-                        text: "求人を更新してよろしいでしょうか。",
+                        text: "求人を更新してよろしいでしょうか",
                         type: "info",
                         width: 350,
                         height: 200,
@@ -1078,8 +1078,9 @@ import Autocomplete from 'vuejs-auto-complete'
                            this.$loading(false);
                         
                                 this.$swal({
-                                    title: "求人を更新しました。",
+                                    // title: "求人を更新しました",
                                     // text: "ファイルが更新されました。",
+                                    text:"求人を更新しました",
                                     type: "success",
                                     width: 350,
                                     height: 200,
@@ -1115,6 +1116,7 @@ import Autocomplete from 'vuejs-auto-complete'
                       }
 
                         this.joboffer.customer_id = event.value;
+                     
                         this.axios.post(`/api/job/profileList/${this.joboffer.customer_id}`,this.table_name)
                     .then(response=> {
                     this.profileList = response.data;

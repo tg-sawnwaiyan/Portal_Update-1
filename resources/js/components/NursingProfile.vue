@@ -636,7 +636,7 @@
                             <div class="col-xl-10 col-md-12 float-right m-t-10 map-toggle-div toggle-div pad-free">
                                 <div class="col-md-12 p-0">
                                     <div class="col-md-12 pad-free" id="mapbox">
-                                        <span class="error pro-1" style="margin-top:0px!important;margin-bottom:10px;" v-if="loc == true">※Please Fill Location.</span>
+                                        <span class="error pro-1" style="margin-top:0px!important;margin-bottom:10px;" v-if="loc == true">※都道府県と市区町村をを入力してください。</span>
                                         <GoogleMap :address="address_show" :township="nursing_info.townships_id" :city="city_id" :township_list="township_list" :lat_num='nursing_info.latitude' :lng_num='nursing_info.longitude'></GoogleMap>
                                     </div>
 
@@ -1019,7 +1019,7 @@ export default {
             DeltArr(indx,type) {
                 this.$swal({
                         title: "確認",
-                        text: "職種を削除してよろしいでしょうか。",
+                        text: "職種を削除してよろしいでしょうか",
                         type: "warning",
                         width: 350,
                         height: 200,
@@ -1053,7 +1053,7 @@ export default {
             DeleteArr(indx,type,id,photo) {
                 this.$swal({
                         title: "確認",
-                        text: "職種を削除してよろしいでしょうか。",
+                        text: "職種を削除してよろしいでしょうか",
                         type: "warning",
                         width: 350,
                         height: 200,
@@ -1088,7 +1088,7 @@ export default {
                             .post('/api/delete-pgallery',fd)
                             .then(response=>{
                                 this.$swal({
-                                    text: "職種を削除しました。",
+                                    text: "職種を削除しました",
                                     type: "success",
                                     width: 350,
                                     height: 200,
@@ -1163,7 +1163,7 @@ export default {
             },
             createFile(file) {
                 if (!file.type.match('image.*')) {
-                alert('Select an image');
+              
                 return;
                 }
                 var img = new Image();
@@ -1254,7 +1254,7 @@ export default {
                    
               this.$swal({
                 // title: "確認",
-                html: "保存できません。<br/>必須項目を確認してください。",
+                html: "保存できません。<br/>必須項目を確認してください",
                 type: "warning",
                 width: 370,
                 height: 200,
@@ -1398,7 +1398,7 @@ export default {
                                 this.$swal({
                                         position: 'top-end',
                                         type: 'success',
-                                        title: '保存されました。',
+                                        text: '保存されました',
                                         confirmButtonText: "閉じる",
                                         confirmButtonColor: "#6cb2eb",
                                         width: 250,

@@ -183,6 +183,7 @@ class JobApplyController extends Controller
             foreach($infos as $info) {
                 $job_title = $info->title;
                 $job_description = $info->description;
+                $skills = $info->skills;
                 $job_location = $info->location;
                 $job_nearest_station = $info->nearest_station;
                 $job_employment_status = $info->employment_status;
@@ -196,16 +197,16 @@ class JobApplyController extends Controller
                 $jobnum = $info->jobnum;
                 $cusnum = $info->cusnum;
                 $city_name = $info->city_name;
-                $allowances = $info->allowances;
+                $allowances = str_replace("\n","",$info->allowances);
                 $insurance = $info->insurance;
                 $holidays = $info->holidays;
                 $pro_name = $info->pro_name;
             }
 
-            //  $admin_email = 'admin@t-i-s.jp';
-            $admin_email = 'admin@t-i-s.jp';
+             $admin_email = 'admin@t-i-s.jp';
              $jobapply->save();
              $jobapply->job_title = $job_title;
+             $jobapply->skills = $skills;
              $jobapply->job_description = $job_description;
              $jobapply->job_location = $job_location;
              $jobapply->job_nearest_station = $job_nearest_station;

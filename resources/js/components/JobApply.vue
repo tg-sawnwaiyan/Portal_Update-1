@@ -26,7 +26,7 @@
           <li>3.<span>送信</span>完了</li>
         </ul>
 <!-- test date-picker -->
-    <form class="col-md-12 form-wrap p0-480">
+    <form class="col-md-12 form-wrap p-0">
         <div class="form-group m-0 row bd">
 
             <div class="col-md-3 col-sm-12 form-left">
@@ -73,15 +73,7 @@
                 </label>
             </div>
             <div class="col-md-9 col-sm-12 form-right">
-                <!-- <input
-                type="text"
-                class="form-control box"
-                placeholder="○○日○○月○○○○年"
-                id="birthday"
-                v-model="jobApply.birthday"
-              /> -->
-
-                <date-picker class="box date-of-establishment" :lang="lang" v-model="jobApply.birthday" id="datepickerbox" valueType="format" style="margin-left: 11px;"></date-picker>
+                <date-picker class="" :lang="lang" v-model="jobApply.birthday" id="datepickerbox" valueType="format" style="margin-left: 20px;"></date-picker>
 
             </div>
         </div>
@@ -106,20 +98,20 @@
         </div>
         <div class="form-group m-0 row bd">
             <div class="col-md-3 col-sm-12 form-left">              
-              <div class="row col-12">
-                  <div class="col-3 p-0">
+              <div class="row col-12 m-0 p-0">
+                  <div class="col-sm-3 col-md-6 p-0">
                       <label class="subtitle"><strong>ご住所</strong></label>
                   </div>               
-                  <div class="col-9 p-0 text-bold">                                                                   
-                          <div class="text-right form-left form-group pc-768"><label> 郵便番号 </label></div>
-                          <div class="text-right form-left form-group pc-768"><label>  都道府県<span class="error sp1">必須</span></label></div>
-                          <div class="text-right form-left form-group pc-768"><label>  市区町村 <span class="error sp1">必須</span></label></div>
-                          <div class="text-right form-left form-group pc-768"><label>番地（建物名)<span class="error sp1">必須</span></label></div>
+                  <div class="col-sm-9 col-md-6 p-0 stepper-form">                                                                   
+                          <div class="form-group form-left pc-768 font-weight-bold"><label>郵便番号 </label></div>
+                          <div class="form-group form-left pc-768 font-weight-bold"><label>都道府県<span class="error sp1">必須</span></label></div>
+                          <div class="form-group form-left pc-768 font-weight-bold"><label>市区町村 <span class="error sp1">必須</span></label></div>
+                          <div class="form-group form-left pc-768 font-weight-bold"><label>番地（建物名)<span class="error sp1">必須</span></label></div>
                       
                   </div>           
               </div>     
             </div>
-            <div class="col-md-9 col-sm-12 form-right">
+            <div class="col-md-9 col-sm-12 form-right stepper-form">
                 <div class="form-group row pl-3">
                     <!-- <div class="col-md-12 "><label> 郵便番号 </label> </div> -->
                     <div class="col-md-12 p-0">
@@ -156,7 +148,7 @@
                     </div>  
                 </div>
 
-                <div class="form-group row pl-3">
+                <div class="form-group row pl-3 m-b-0">
                     <!-- <div class="col-md-12 "><label>番地（建物名)<span class="error sp1">必須</span></label></div> -->
                     <div class="col-md-12 p-0">
                         <input type="text" class="city form-control float-left" id="str_address" v-model="jobApply.str_address" placeholder="番地を入力してください。" @keyup="focusCity" @change="aggreBtn"/>
@@ -171,11 +163,11 @@
 
         <div class="form-group m-0 row bd">
             <div class="col-md-3 col-sm-12 form-left"><br/><strong>電話番号</strong></div>
-            <div class="col-md-9 col-sm-12 form-right">
-            <div class="form-group row pl-3">
+            <div class="col-md-9 col-sm-12 form-right p-b-0">
+            <div class="row pl-3">
                     <div class="col-md-12 p-0">
                         <label class="col-md-12">※ 電話番号またはメールアドレス必須 <span class="error sp1">必須</span></label>
-                        <input type="text" class="form-control float-left" id="phone" v-model="jobApply.phone" placeholder="電話番号を入力してください。" @keyup="focusPhone" @change="aggreBtn" pattern="[0-9-]*" title="Please enter number only." maxlength="14"/>
+                        <input type="text" class="form-control float-left" id="phone" v-model="jobApply.phone" placeholder="電話番号を入力してください。" @keyup="focusPhone" @change="aggreBtn" pattern="[0-9-]*" title="Please enter number only." maxlength="13"/>
                         <!-- <span class="error m-l-30" v-if="focus_mail">※入力は必須です。</span> -->
                         <span class="float-left eg-txt">例）0312345678（半角）</span>
                         <!-- <span class="error m-l-30" v-if="mail_focus">※入力は必須です。</span>                                        -->
@@ -187,12 +179,13 @@
             <div class="form-group m-0 row bd-all"> -->
             <div class="col-md-3 col-sm-12 form-left"><strong>メールアドレス </strong></div>
             <div class="col-md-9 col-sm-12 form-right">
-            <div class="form-group row pl-3">
-                <div class="col-md-12 p-0">
+                <div class="row pl-3">
+                    <div class="col-md-12 p-0">
                         <input type="text" class="form-control float-left" id="email" placeholder="メールアドレスを入力してください。" v-model="jobApply.email" @keyup="focusMail"  @change="aggreBtn"/>
                         <span class="float-left eg-txt"> 例）abc@example.jp （半角）</span>
-                        <span class="error m-l-30" v-if="focus_mail && this.jobApply.email !=''">※メールアドレスが正しくありません。もう一度入力してください。</span>
+                        
                     </div>
+                    <span class="error m-l-30" v-if="focus_mail && this.jobApply.email !=''">※メールアドレスが正しくありません。もう一度入力してください。</span>
                 </div>
             </div>
         </div>
@@ -231,10 +224,11 @@
                 <div v-if="errors.terms" class="text-danger ml-4">{{ errors.terms }}</div>
             </div>
         </div>
-        <div class="mt-4 col-sm-3 submit txt-err" v-if="btn_disable">
-            <div class="error">※未入力の必須項目がございます。</div>
-        </div>
-        <div class="text-center mt-2 pb-5">
+       
+        <div class="text-center mt-5 pb-5">
+           <div class="mt-1 col-sm-3 submit txt-err" v-if="btn_disable">
+              <div class="error">※未入力の必須項目がございます。</div>
+            </div>
             <button type="button" :disabled="isdisable" class="btn main-bg-color white all-btn width17" @click="checkValidate()">確認画面へ進む</button>
         </div>
 </form>
@@ -250,7 +244,7 @@
           <li class="active">2.<span>内容のご</span>確認</li>
           <li>3.<span>送信</span>完了</li>
         </ul>
-        <form class="col-md-10 offset-md-1 form-wrap">
+        <form class="col-md-12 form-wrap p-0">
           <div class="form-group m-0 row bd">
             <div class="col-sm-3 form-left">
               <label for="first_name">
@@ -384,7 +378,7 @@
             </div>
           </div>
 
-          <div class="ml-auto mt-4 pb-5 form-group row pc-m-0-10">
+          <div class="ml-auto row pc-m-0-10 mt-5">
             <div class="col-sm-2 col-md-2"></div>
             <div class="col-sm-8 col-md-8 text-center">
                 <span class="btn btn-danger white all-btn pc-m-r-10" @click="editUserInfo()">入力画面へ戻る</span> 
@@ -409,15 +403,14 @@
           <li class="active">2.<span>内容のご</span>確認</li>
           <li class="active">3.<span>送信</span>完了</li>
         </ul>
-        <div class="text-center">
-          <h3>求人への応募が完了しました。</h3>
-          <br />
-          <p>担当者より連絡があるまでしばらくおまちください。</p>
-          
-          <br />
-          <br />
-          <router-link class="btn btn-info all-btn width17" to="/">ホームへ戻る</router-link>
-        </div>
+        
+          <h4 class="text-center">求人への応募が完了しました。</h4>
+           <div class="row col-12 stepper-success-form">   
+              <p>担当者より連絡があるまでしばらくおまちください。</p> 
+           </div>
+           <div class="multi-step mt-5">          
+            <router-link class="btn btn-info all-btn width17" to="/">ホームへ戻る</router-link>
+           </div>
 
         <br />
         <br />
@@ -497,6 +490,7 @@ export default {
     ph_length: false,
     ph_error: false,
     charErr: false,
+    correctVal: null,
     mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
     }
   },
@@ -608,8 +602,6 @@ export default {
       this.jobApply.skills.push(job);
     },
     checkValidate() {
-      console.log('this.error');
-      console.log(this.errors);
 
     //   if (this.jobApply.first_name) {
     //     this.errors.first_name = "";
@@ -692,37 +684,61 @@ export default {
             this.btn_disable = true;
         }
     },
-    focusPhone(){
 
-    //   var input_data = $('#phone').val(); 
-    //   console.log(input_data.length)
-        
-        if(this.jobApply.phone.charAt(this.jobApply.phone.length - 1) != '-' && this.jobApply.phone.charAt(0) != '-' && ((this.jobApply.phone.length >= 10 && this.jobApply.phone.length <= 14) || this.jobApply.phone.length == 0))
-        {  
-            this.ph_num = false;
-            this.ph_length = false; 
-             this.aggreBtn();    
+    focusPhone: function(e) {
+        var input_data = this.jobApply.phone;
+        if(((e.keyCode  >= 48 && e.keyCode  <= 57) || (e.keyCode  >= 96 && e.keyCode  <= 105) || (e.keyCode  == 8) || (e.keyCode  == 35) || (e.keyCode  == 36) || (e.keyCode  == 37) || (e.keyCode  == 39) || (e.keyCode  == 46) || (e.keyCode  == 109) || (e.keyCode  == 189)) && input_data.charAt(0) != '-' && !input_data.includes('--'))
+        {
+            this.correctVal = input_data;
+            if(input_data.length >= 10 && input_data.length < 14 && input_data.charAt(input_data.length -1 ) != '-'){
+              this.ph_error = false;
+              this.ph_length = false;
+              this.aggreBtn(); 
+            }
+            else{
+              if(input_data.length == 0){
+                this.ph_error = false;
+                this.ph_length = false;
+                this.aggreBtn(); 
+              }
+              else{
+                    this.ph_error = true;
+                    this.btn_disable = true;
+              }
+              
+            }
         }
         else{
-            this.ph_num = true;
-            this.ph_length = true;
-            this.btn_disable = true;
+            this.jobApply.phone = this.correctVal;
+            if(this.jobApply.phone.length >= 10 && this.jobApply.phone.length < 14 && this.jobApply.phone.charAt(this.jobApply.phone.length -1 ) != '-'){
+              this.ph_length = false;
+              this.ph_error = false;
+              this.aggreBtn(); 
+            }
+            else{
+                if(this.jobApply.phone.length == 0){
+                    this.ph_error = false;
+                    this.ph_length = false;
+                    this.aggreBtn(); 
+                }
+                else{
+                    this.ph_length = true;
+                    this.ph_error = false;
+                    this.btn_disable = true;
+                }
+              
+            }
         }
-             
+     
     },
+    
     focusMail: function(event) {
-
         if((this.jobApply.email != '' && this.mail_reg.test(this.jobApply.email))){
             this.focus_mail=false;
         }else{
             this.focus_mail=true;
         }
         this.aggreBtn();
-        // if(this.jobApply.phone.length >= 10 && this.jobApply.phone.length <= 14) {
-        //     this.ph_length = false;
-        // }else{
-        //     this.ph_length = true;
-        // }
     },
     aggreBtn: function(){
         if(($('#furigana').val().length > 0 && !this.charErr) && this.jobApply.first_name != '' && this.jobApply.last_name != '' && this.jobApply.selectedValue != 0 && this.jobApply.township != 0 && this.jobApply.city != '' && this.jobApply.str_address != '' && this.jobApply.terms == true && (this.mail_reg.test(this.jobApply.email) || (!this.ph_length && !this.ph_num && this.jobApply.phone.length > 0 ))){
@@ -765,50 +781,13 @@ export default {
         this.aggreBtn();    
     },
     postalNumber: function(event) {
-                if(!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105) 
-                    && event.keyCode != 8 && event.keyCode != 46 && !(event.keyCode >= 37 && event.keyCode <= 40)) 
-                {
-                    event.preventDefault();
-                }
-            },
+        if(!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105) 
+            && event.keyCode != 8 && event.keyCode != 46 && !(event.keyCode >= 37 && event.keyCode <= 40)) 
+        {
+            event.preventDefault();
+        }
+    },
 
-    // focusFuri: function(event) {
-    //     if(this.jobApply.last_name != ''){
-    //         this.jobApply.furigana_focus=false;
-    //         this.aggreBtn();
-    //     }else{
-    //         this.jobApply.furigana_focus=true;　
-    //         this.btn_disable = true;
-    //     }
-    // },
-
-
-    // isNumberOnly: function(event) {
-    //     var input_data = $('#phone').val();
-    //     var code = 0;
-    //     code = input_data.charCodeAt();
-    //     if(this.jobApply.phone.length >= 9 && this.jobApply.phone.length <= 14) {
-    //         this.ph_length = false;
-    //     }else{
-    //         this.ph_length = true;
-    //     }
-    //     if((48 <= code && code <= 57)){
-    //         this.ph_error = false;
-    //     }else{
-    //         this.ph_error = true;
-    //     }
-
-                // if(!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105)
-                //     && event.keyCode != 8 && event.keyCode != 46 && !(event.keyCode >= 37 && event.keyCode <= 40))
-                // {
-                //     // event.preventDefault();
-                //     this.ph_error = true;
-                // }
-                // else{
-                //     this.ph_error = false;
-
-                // }
-           // }
   }
 };
 </script>

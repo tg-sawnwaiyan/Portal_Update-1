@@ -32,13 +32,21 @@
                     </div>
                     <hr />
                     <div class="d-flex header pb-3 admin_header">
-                        <h5>求人一覧 <span v-if="type != 'admin' && jobs.data.length">({{jobs.data[0].profile_name}})</span></h5>
+                        <h5>求人一覧  </h5>                       
                         <div class="ml-auto" v-if="!norecord_msg">
                             <router-link :to="hrefroute" class="main-bg-color create-btn all-btn">
                                 <i class="fas fa-plus-circle"></i> <span class="first_txt"> 求人</span><span class="dinone">新規作成</span>
                             </router-link>
                         </div>
                     </div>
+                     <div class="col-12 m-b-15 p-0">                        
+                            <h5>                                 
+                                <span v-if="type != 'admin' && jobs.data.length">
+                                    <label for="" class="subtitle"><strong>施設名:</strong> </label>
+                                    {{jobs.data[0].profile_name}}
+                                </span>
+                            </h5>
+                        </div>
                     
                     <!-- <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div> -->
 
@@ -85,7 +93,7 @@
                                             <input type='checkbox' v-if="job.recordstatus==0" @click="confirm(job.id)"  />
                                             <label for="checkbox"></label>
                                             <div v-if="job.recordstatus == 1" class="on">公開中</div>
-                                            <div v-if="job.recordstatus == 0" class="on">非行化</div>
+                                            <div v-if="job.recordstatus == 0" class="on">非公開</div>
                                         </div>
                                          <ul class="btn-list mt-4">
                                              <li><a class="btn text-danger delete-borderbtn" @click="deleteJob(job.id)">削除</a></li>
@@ -408,7 +416,7 @@
                 deleteJob(id) {
                         this.$swal({
                             title: "確認",
-                            text: "求人を削除してよろしいでしょうか。",
+                            text: "求人を削除してよろしいでしょうか",
                             type: "warning",
                             width: 350,
                             height: 200,
@@ -435,7 +443,7 @@
                                         this.norecord_msg = true;
                                     }
                                     this.$swal({
-                                        text: "求人を削除しました。",
+                                        text: "求人を削除しました",
                                         type: "success",
                                         width: 350,
                                         height: 200,

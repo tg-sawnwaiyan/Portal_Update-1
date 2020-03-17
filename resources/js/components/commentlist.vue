@@ -13,26 +13,28 @@
                 <div v-else class="container-fuid">
                     <h4 class="main-color mb-3">口コミ検索</h4>
                     <div class="row mb-4">
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6"> -->
                             <!-- <select  v-model="profileid" class="division form-control"  @change="getComment()">
                                 <option value="0">選択してください。</option>
                                 <option  id="search-item" v-for="pro in profilelist" :key="pro.id" v-bind:value="pro.id">
                                     {{pro.name}}
                                 </option>
                             </select> -->
-                            <label>事業者名</label>
+                            <!-- <label>事業者名</label>
                             <autocomplete id="cusname"  placeholder="事業者名を検索" input-class="form-control" :source=customerList :results-display="formattedDisplay" @clear="cleartext()"  @selected="getSelected($event)">
-                            </autocomplete>
-                        </div>
-                        <div class="col-md-6 choose-item">
-                            <label>施設名</label>
+                            </autocomplete> -->
+                        <!-- </div> -->
+                        <div class="col-md-12 choose-item">
+                             <autocomplete id="cusname"  placeholder="施設名で検索" input-class="form-control" :source=profileList :results-display="formattedDisplay" @clear="cleartext()"  @selected="getProfile($event)">
+                            </autocomplete> 
+                            <!-- <label>施設名</label>
                          
                             <select v-model="selectedValue" class="division form-control" @change="getComment()">
                                 <option value="0">選択してください。</option>
                                 <option v-for="profile in profileList" :key="profile.id" v-bind:value="profile.id">
                                     {{profile.name}}
                                 </option>
-                            </select>
+                            </select> -->
                               
                         </div>
                     </div>
@@ -68,33 +70,33 @@
                                     <strong>メールアドレス:</strong>{{comment.email}} -->
                                     <table class="commentlist_tbl">
                                         <tr>
-                                            <td class="align-top custom_title font-weight-bold">タイトル :</td>
-                                            <td> {{comment.title}}</td>
+                                            <td class="align-top custom_title font-weight-bold">事業者名 </td><td style="width:5px;">:</td>
+                                            <td> {{comment.cus_name}} </td>
+                                        </tr>
+                                         <tr>
+                                            <td class="align-top custom_title font-weight-bold">施設名 </td><td style="width:5px;">:</td>
+                                            <td> {{comment.pro_name}} </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="align-top custom_title font-weight-bold">タイトル </td><td style="width:5px;">:</td>
+                                            <td> {{comment.title}} </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" class="align-top custom_title"><span style="text-align:right;color:#777;font-size:0.9em;"><span><i class="fa fa-calendar"></i>&nbsp;{{comment.created_date | moment("YYYY年MM月DD日") }}投稿</span> <span><i class="fa fa-clock"></i>&nbsp;{{comment.created_time}}</span></span></td>
+                                            <!-- <td> {{comment.title}} </td> -->
                                         </tr>
                                         <!-- <tr>
                                             <td class="align-top custom_title">お名前 :</td>
                                             <td> {{comment.name}} </td>
                                         </tr> -->
-                                         <!-- <tr>
-                                            <td class="align-top custom_title font-weight-bold">事業者名 :</td>
-                                            <td> {{comment.cus_name}} </td>
-                                        </tr>
-                                         <tr>
-                                            <td class="align-top custom_title font-weight-bold">施設名 :</td>
-                                            <td> {{comment.pro_name}} </td>
-                                        </tr> -->
+                                         
                                          
                                             <!-- <tr>
                                             <td class="align-top custom_title">メールアドレス: </td>
                                             <td> {{comment.email}} </td>
                                         </tr> -->
                                     </table>
-                                    <div class="d-inline-block mt-3">
-                                        <button class="btn text-danger delete-borderbtn" @click="deleteComment(comment.id)">削除</button>
-                                        <span class="mt-2" style="color: #81ad3b;font-weight: bold;" v-if="comment.status != 0" ><i class="fa fa-check-circle" aria-hidden="true"></i>&nbsp;承認済み</span>
-                                        <button class="btn confirm-borderbtn" v-else @click="commentConfirm(comment.id)"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;新規口コミ承認</button>
-                                        
-                                    </div>
+                                   
                                 </div>
 
                                 <div class="col-3 text-right">
@@ -103,8 +105,46 @@
                                          詳細 <i :id="'icon' + comment.id" class="fas fa-sort-down animate rotate"></i></button>
                                 </div>
                             </div>
+                             <!--comment-->
+                                <div class="collapse" :id="'changeLink' + comment.id">   
+                                    <!-- <div class="cmt"><span><i class="fa fa-calendar"></i>&nbsp;{{comment.created_date | moment("YYYY年MM月DD日") }}投稿</span> <span><i class="fa fa-clock"></i>&nbsp;{{comment.created_time}}</span></div>                                -->
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <td  class="w-50">
+                                                    <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-envelope" aria-hidden="true"></i></span>メールアドレス:&nbsp;</span><span class=""> {{comment.email}}</span></p>
+                                            </td>
+                                            <td  class="w-50">
+                                                    <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-user" aria-hidden="true"></i></span>お名前:&nbsp;</span><span class=""> {{comment.name}}</span></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td  class="w-50">
+                                                   <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-calendar" aria-hidden="true"></i></span>生年月日:&nbsp;</span><span class="" v-if="comment.year != '' && comment.year != null"> {{comment.year}} 年生まれ</span></p> 
+        
+                                            <td  class="w-50">
+                                                    <p class="mb-2"><span class="text-orange"><span class="job_ico">〒<i aria-hidden="true"></i></span>郵便番号:&nbsp;</span><span class=""> {{comment.zipcode}}</span></p>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td  class="w-50" colspan="2">
+                                                    <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="far fa-comment" aria-hidden="true"></i></span>口コミ内容:&nbsp;</span><span class=""> {{comment.comment}}</span></p>
+                                            </td>
+                                        </tr>
+                                         
+                                  
+                                    </table>
+                                    <div class="d-inline-block mt-2">
+                                        <button class="btn text-danger delete-borderbtn" @click="deleteComment(comment.id)">削除</button>
+                                        <span class="mt-2" style="color: #81ad3b;font-weight: bold;" v-if="comment.status != 0" ><i class="fa fa-check-circle" aria-hidden="true"></i>&nbsp;承認済み</span>
+                                        <button class="btn confirm-borderbtn" v-else @click="commentConfirm(comment.id)"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;新規口コミ承認</button>
+                                        
+                                    </div>
+                                </div>
+                          <!--comment-->
                         </div>
-                        <div class="collapse card-body commentContainer" :id="'changeLink' + comment.id">
+                        <!--don't-->
+                        <!-- <div class="collapse card-body commentContainer" :id="'changeLink' + comment.id">
                             <div class="commentWrap">
 
                                 <div class="d-flex ">
@@ -124,13 +164,14 @@
                                 </div>
                           
                             </div> 
-                              
-                                <div name="exp[]" class="col-md-12 p-0"><p style="color:#736e6e;">{{comment.comment}}</p></div>
+                               --> 
+                                <!-- <div name="exp[]" class="col-md-12 p-0"><p style="color:#736e6e;">{{comment.comment}}</p></div> -->
                                 <!-- <div  class="col-md-12 m-t-20"><p style="color:#736e6e;">{{comment.email}}</p></div> -->
                                 <!-- <div  class="col-md-12 m-t-20"><p style="color:#736e6e;">{{comment.year}}</p></div> -->
                                 <!-- <div  class="col-md-12 m-t-20" v-if="comment.zipcode"><span class="text-orange"><span class="job_ico">★</span></span><p style="color:#736e6e;">{{comment.zipcode}}</p></div> -->
                               
-                        </div>
+                        <!-- </div> -->
+                         
                     </div>
                 </div>
                 <!-- <pagination :data="comments" @pagination-change-page="searchcomment"></pagination> -->
@@ -225,14 +266,24 @@
                     });
                 }
 
-                 this.axios.get('/api/job/customerList/'+this.type).then(response=> {
-                    this.customerList = response.data;
-                });
+                    if(this.type == "nursing"){
+                        this.table_name.profile = 'nursing_profiles';
+                    }else {
+                        this.table_name.profile = 'hospital_profiles';
+                    }
+
+                    this.axios.post(`/api/job/profileList/`+ 0,this.table_name).then(response=> {
+                        this.profileList = response.data;
+                    });
+
+                //  this.axios.get('/api/job/customerList/'+this.type).then(response=> {
+                //     this.customerList = response.data;
+                // });
             },
             methods: {
               getComment()
                 {
-
+                  
                     this.$loading(true);
                     if(this.$route.path == "/nuscommentlist"){ 
                         this.axios.get('/api/comments/getCustomComment/3/'+this.selectedValue).then(response => {
@@ -262,33 +313,36 @@
                          });
                     }
                 },
-                cleartext(){
-                
-                    this.selectedValue = 0;
-                    this.profileList = [];
+                getProfile($event)
+                {
+                    this.selectedValue = $event.value;
                     this.getComment();
-
                 },
-                getSelected(event){
-                  
-                    if(this.type == "nursing"){
-                        this.table_name.profile = 'nursing_profiles';
-                    }else {
-                        this.table_name.profile = 'hospital_profiles';
-                    }
-                     alert(event.value);
-
-                    this.cusid = event.value;
-                    this.axios.post(`/api/job/profileList/${this.cusid}`,this.table_name).then(response=> {
-                    this.profileList = response.data;
+                cleartext(){
                     this.selectedValue = 0;
-                   
-                });
+                    this.getComment();
                 },
+    
+                // getSelected(event){
+                  
+                //     if(this.type == "nursing"){
+                //         this.table_name.profile = 'nursing_profiles';
+                //     }else {
+                //         this.table_name.profile = 'hospital_profiles';
+                //     }
+                   
+
+                //     this.cusid = event.value;
+                //     this.axios.post(`/api/job/profileList/${this.cusid}`,this.table_name).then(response=> {
+                //     this.profileList = response.data;
+                //     this.selectedValue = 0;
+                   
+                // });
+                // },
                 deleteComment(id) {
                         this.$swal({
                             title: "確認",
-                            text: "口コミを削除してよろしいでしょうか。",
+                            text: "口コミを削除してよろしいでしょうか",
                             type: "warning",
                             width: 350,
                             height: 200,
@@ -309,7 +363,7 @@
                                   this.type = "hospital"
                               }
                             this.axios
-                                .delete(`/api/comments/delete/${id}`+'/'+this.type)
+                                .delete(`/api/comments/delete/${id}`+'/'+this.type+"/"+this.selectedValue)
                                 .then(response => {
                                     this.comments = response.data;
                                    this.norecord = this.comments.data.length;
@@ -327,7 +381,7 @@
                                     // this.categories.splice(i, 1);
                                     this.$swal({
                                         // title: "削除済",
-                                        text: "口コミを削除しました。",
+                                        text: "口コミを削除しました",
                                         type: "success",
                                         width: 350,
                                         height: 200,
@@ -346,7 +400,7 @@
                     commentConfirm(id) {
                         this.$swal({
                             title: "確認",
-                            text: "口コミを投稿してよろしいでしょうか。",
+                            text: "口コミを投稿してよろしいでしょうか",
                             type: "info",
                             width: 350,
                             height: 200,
@@ -367,13 +421,13 @@
                               else{
                                   this.type = "hospital"
                               }
-                            this.axios.get(`/api/comments/confirm/${id}`+'/'+this.type)
+                            this.axios.get(`/api/comments/confirm/${id}`+'/'+this.type+'/'+this.selectedValue)
                                 .then(response => {
                                     this.$loading(false);
                                     this.comments = response.data.comments;
                                     this.$swal({
                                             title: "確認済",
-                                            text: "口コミを投稿しました。",
+                                            text: "口コミを投稿しました",
                                             type: "success",
                                             width: 350,
                                             height: 200,

@@ -18,12 +18,12 @@
               </div>            
               <div class="col-lg-8 col-md-7">
                   <div class="form-group form-group-wrapper d-flex">
-                      <label class="heading-lbl col-md-2 col-12 pad-free">施設名称 <span class="error sp2">必須</span></label>
+                      <label class="heading-lbl col-md-2 col-12 pad-free">施設名称 <p class="error sp3 sp-t">必須</p></label>
                       <input type="text" class="form-control customer-name col-md-10 col-12 nursing_input" placeholder="施設名称を入力してください。" v-model="hospital_info.name">
                   </div>
 
                   <div class="form-group form-group-wrapper d-flex">
-                      <label class="heading-lbl col-md-2 col-12 pad-free">メールアドレス <p class="error sp3">必須</p></label>
+                      <label class="heading-lbl col-md-2 col-12 pad-free">メールアドレス<p class="error sp3 sp-t2">必須</p></label>
                       <!-- <label class="col-md-10 col-12 customer-email"> {{hospital_info.email}} </label> -->
                       <input type="text" class="form-control customer-email col-md-10 col-12 nursing_input" placeholder="メールアドレスを入力してください。" v-model="hospital_info.email" @change="aggreBtn" @keyup="focusMail">
                   </div>                          
@@ -1011,7 +1011,7 @@
                     <span class="bg-trans btn dropdown-arrow nursing_toggle_responsive" @click="toggleEvent('map','5')">詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
                     <div class="col-md-10 hos_toggle float-right m-t-10 map-toggle-div toggle-div pad-free">
                         <div class="col-md-12">
-                        <span class="error pro-1" style="margin-top:0px!important;margin-bottom:10px;" v-if="loc == true">※Please Fill Location.</span>
+                        <span class="error pro-1" style="margin-top:0px!important;margin-bottom:10px;" v-if="loc == true">※都道府県と市区町村をを入力してください。</span>
                             <GoogleMap  :address="address_show" :township="hospital_info.townships_id" :lat_num='hospital_info.latitude' :lng_num='hospital_info.longitude' :city="city_id" :township_list="township_list"></GoogleMap>
                             <!-- <GoogleMap :address="hospital_info.address" :lat_num='35.6803997' :lng_num='139.76901739' v-if="hospital_info.latitude == 0"></GoogleMap> -->
 
@@ -1236,7 +1236,7 @@ export default {
 
               this.$swal({
                         title: "確認",
-                        text: "職種を削除してよろしいでしょうか。",
+                        text: "職種を削除してよろしいでしょうか",
                         type: "warning",
                         width: 350,
                         height: 200,
@@ -1267,7 +1267,7 @@ export default {
                                 .then(response=>{
 
                                     this.$swal({
-                                        text: "職種を削除しました。",
+                                        text: "職種を削除しました",
                                         type: "success",
                                         width: 350,
                                         height: 200,
@@ -1346,7 +1346,7 @@ export default {
            
                     // console.log("mail");
                     this.$swal({
-                        html: "保存できません。<br/>必須項目を確認してください。",
+                        html: "保存できません。<br/>必須項目を確認してください",
                         type: "warning",
                         width: 350,
                         height: 200,

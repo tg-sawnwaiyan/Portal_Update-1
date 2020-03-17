@@ -20,7 +20,9 @@
                     <p  v-if="page == 'job' && job_id != ''" style="font-size: 0.9em; font-weight: normal; color: #333;">
                         <router-link class="job_title pseudolink" :to="{name: 'job_details', params:{id:jobapplies.data[0]['job_id'],loginuser:loginuser}}">{{job_title}} </router-link>
                     </p>
-                    <span  class="pro_num" v-if="page == 'profile' && proname != ''">「{{proname}}」</span>    
+                    <div  class="col-12 m-b-15 p-0" v-if="page == 'profile' && proname != ''">                        
+                        <h5 class="subtitle" style=""><strong>施設名:</strong> {{proname}} </h5>                                         
+                    </div>    
                 </div>
                 </div>      
                     
@@ -81,7 +83,7 @@
                                             </td>
                                             <td class="w-50">
                                                 <!-- <p><span class="font-weight-bold">性別:</span><span>{{jobapply.gender}}</span></p>   -->
-                                                <p class="mb-2"><span class="text-orange"><span class="job_ico">★</span> 郵便番号:&nbsp;</span><span class=""> {{jobapply.postal}}</span></p>
+                                                <p class="mb-2"><span class="text-orange"><span class="job_ico">〒</span> 郵便番号:&nbsp;</span><span class=""> {{jobapply.postal}}</span></p>
                                             </td>
                                         </tr>
                                         <tr>
@@ -96,7 +98,7 @@
                                         </tr>
                                         <tr>
                                             <td class="w-50">
-                                                <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-user"></i></span> メールアドレス:&nbsp;</span><span class=""> {{jobapply.email}}</span></p>
+                                                <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-envelope"></i></span> メールアドレス:&nbsp;</span><span class=""> {{jobapply.email}}</span></p>
                                             </td>
                                             <td  class="w-50">
                                                     <p class="mb-2"><span class="text-orange"><span class="job_ico"><img src="/images/icons8-phone.png" width="75%"></span> 電話番号:&nbsp;</span><span class=""> {{jobapply.phone}}</span></p>
@@ -310,7 +312,7 @@ export default {
         jobApplicantDelete(id){
             this.$swal({
                 title: "確認",
-                text: "求人応募者を削除してよろしいでしょうか。",
+                text: "求人応募者を削除してよろしいでしょうか",
                 type: "warning",
                 width: 350,
                 height: 200,
@@ -329,7 +331,7 @@ export default {
                         this.getJobapplicantList();
                     });
                 this.$swal({
-                    text: "求人応募者を削除しました。",
+                    text: "求人応募者を削除しました",
                     type: "success",
                     width: 350,
                     height: 200,
