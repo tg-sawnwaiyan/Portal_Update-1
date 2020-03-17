@@ -779,7 +779,7 @@ import Autocomplete from 'vuejs-auto-complete'
                             this.errors.working_hours = "";
                         }
                         if (this.joboffer.skills == '') {
-                            this.errors.skills = '経験とスキルが必必須です。';
+                            this.errors.skills = '経験・スキルは必必須です。';
                         } else {
                             this.errors.skills = "";
                         }
