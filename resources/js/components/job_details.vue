@@ -39,6 +39,18 @@
           </div>
           <div class="form-group m-0 row bd">
             <div class="col-md-2 col-sm-12 form-left">
+              <label><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>都道府県</label>
+            </div>
+            <div class="col-md-10 col-sm-12 form-right">{{jobDetail.city_name}}</div>
+          </div>
+          <div class="form-group m-0 row bd">
+            <div class="col-md-2 col-sm-12 form-left">
+              <label><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>市区町村</label>
+            </div>
+            <div class="col-md-10 col-sm-12 form-right">{{jobDetail.township_name}}</div>
+          </div>
+          <div class="form-group m-0 row bd">
+            <div class="col-md-2 col-sm-12 form-left">
               <label><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>勤務地</label>
             </div>
             <div class="col-md-10 col-sm-12 form-right">{{jobDetail.location}}</div>

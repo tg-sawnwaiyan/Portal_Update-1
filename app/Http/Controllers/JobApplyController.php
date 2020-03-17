@@ -168,7 +168,7 @@ class JobApplyController extends Controller
                 $num = 500000;
             }
    
-            $query = "SELECT j.*,$t.email,$t.name as pro_name,c.name as cus_name,ci.city_name as city_name,
+            $query = "SELECT j.*,$t.email,$t.name as pro_name,c.name as cus_name,ci.city_name as city_name,t.township_name,
                        (CASE c.type_id WHEN '2' THEN CONCAT(($num+c.id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT(($num+c.id),'-',LPAD($t.pro_num, 4, '0'),'-',LPAD(j.id, 4, '0')) END) as jobnum,
                        (CASE c.type_id WHEN '2' THEN CONCAT(($num+c.id),'-',LPAD($t.pro_num, 4, '0')) ELSE CONCAT(($num+c.id),'-',LPAD($t.pro_num, 4, '0')) END) as cusnum 
                         from customers as c 
@@ -198,14 +198,14 @@ class JobApplyController extends Controller
                 $jobnum = $info->jobnum;
                 $cusnum = $info->cusnum;
                 $city_name = $info->city_name;
+                $township_name = $info->township_name;
                 $allowances = str_replace("\n","",$info->allowances);
                 $insurance = $info->insurance;
                 $holidays = $info->holidays;
                 $pro_name = $info->pro_name;
             }
 
-            //  $admin_email = 'admin@t-i-s.jp';
-             $admin_email = 'yanlynn@mp-co.sakura.ne.jp';
+             $admin_email = 'admin@t-i-s.jp';
              $jobapply->save();
 
              $jobapply->job_title = $job_title;
@@ -224,6 +224,8 @@ class JobApplyController extends Controller
              $jobapply->cityname = $request->selectedCity;
              $jobapply->townshipname = $request->townshipname;
              $jobapply->pro_name = $pro_name;
+             $jobapply->city_name = $city_name;
+             $jobapply->township_name = $township_name;
              if($salary_remark != null || $salary_remark != '')
              {
                 $jobapply->salary  = $salary. "(" . $salary_remark . ")";
