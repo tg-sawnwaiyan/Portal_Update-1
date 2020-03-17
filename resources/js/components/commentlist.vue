@@ -68,21 +68,26 @@
                                     <strong>メールアドレス:</strong>{{comment.email}} -->
                                     <table class="commentlist_tbl">
                                         <tr>
-                                            <td class="align-top custom_title font-weight-bold">タイトル :</td>
-                                            <td> {{comment.title}}</td>
+                                            <td class="align-top custom_title font-weight-bold">事業者名 </td><td style="width:5px;">:</td>
+                                            <td> {{comment.cus_name}} </td>
+                                        </tr>
+                                         <tr>
+                                            <td class="align-top custom_title font-weight-bold">施設名 </td><td style="width:5px;">:</td>
+                                            <td> {{comment.pro_name}} </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="align-top custom_title font-weight-bold">タイトル </td><td style="width:5px;">:</td>
+                                            <td> {{comment.title}} </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" class="align-top custom_title"><span style="text-align:right;color:#777;font-size:0.9em;"><span><i class="fa fa-calendar"></i>&nbsp;{{comment.created_date | moment("YYYY年MM月DD日") }}投稿</span> <span><i class="fa fa-clock"></i>&nbsp;{{comment.created_time}}</span></span></td>
+                                            <!-- <td> {{comment.title}} </td> -->
                                         </tr>
                                         <!-- <tr>
                                             <td class="align-top custom_title">お名前 :</td>
                                             <td> {{comment.name}} </td>
                                         </tr> -->
-                                         <!-- <tr>
-                                            <td class="align-top custom_title font-weight-bold">事業者名 :</td>
-                                            <td> {{comment.cus_name}} </td>
-                                        </tr>
-                                         <tr>
-                                            <td class="align-top custom_title font-weight-bold">施設名 :</td>
-                                            <td> {{comment.pro_name}} </td>
-                                        </tr> -->
+                                         
                                          
                                             <!-- <tr>
                                             <td class="align-top custom_title">メールアドレス: </td>
@@ -100,7 +105,7 @@
                             </div>
                              <!--comment-->
                                 <div class="collapse" :id="'changeLink' + comment.id">   
-                                    <div class="cmt"><span><i class="fa fa-calendar"></i>&nbsp;{{comment.created_date | moment("YYYY年MM月DD日") }}投稿</span> <span><i class="fa fa-clock"></i>&nbsp;{{comment.created_time}}</span></div>                               
+                                    <!-- <div class="cmt"><span><i class="fa fa-calendar"></i>&nbsp;{{comment.created_date | moment("YYYY年MM月DD日") }}投稿</span> <span><i class="fa fa-clock"></i>&nbsp;{{comment.created_time}}</span></div>                                -->
                                     <table class="table table-bordered">
                                         <tr>
                                             <td  class="w-50">

@@ -70,7 +70,7 @@
                                             </div>
                                              <div class="col-sm-8">
                                                 <select id="dob" class="form-control"  v-model="selectedValue" @change="getYear()">
-                                                    <option value="0">選択してください:</option>
+                                                    <option value="0">選択してください</option>
                                                     <option v-for="year in years" :key="year.id"  :value="year">{{ year }}</option>
                                                 </select>
                                              </div>

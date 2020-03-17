@@ -101,18 +101,17 @@
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
                                     </div>
-                                    <input class="form-control" id="phone" name="phone" pattern="[0-9-]*" v-model="phone"  placeholder="電話番号を入力してください。" @keyup="focusPhone" title="Please enter number only." maxlength="14">
-                                    <span class="error" v-if="ph_length || ph_num">※電話番号が必須です。</span>
+                                    <input class="form-control" id="phone" name="phone" pattern="[0-9-]*" v-model="phone"  placeholder="電話番号を入力してください。" @keyup="focusPhone" maxlength="13">
+                                    <span class="error" v-if="ph_length">※電話番号を確認してください。</span>
+                                    <span class="error" v-if="ph_num">※電話番号が必須です。</span>
                                 </div>
                             </div>
                         </div>
                         <!-- <div id="jsErrorMessage" class="error"></div> -->
 
-                            <div class="form-group col-12 text-center">
-                                    <button type="submit" class="btn register_btn login_btn" id="sub_btn">作成</button>
-                            </div>
-
-
+                        <div class="form-group col-12 text-center">
+                            <button type="submit" class="btn register_btn login_btn" id="sub_btn">作成</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -140,6 +139,8 @@
         password_confirmation: '',
         passerr: false,
         has_error: false,
+        correctVal: null,
+        tempVal: null,
         error: '',
         errors: {
             img:"",
@@ -165,81 +166,18 @@
     },
 
     methods: {
-        // isNumberOnly: function(event) {
-
-        //   var input_data = $('#phone').val();
-
-
-        //     if(input_data == '')
-        //     {
-        //         this.Numbers = [];
-        //     }
-        //     var code = 0;
-        //     code = String.fromCharCode(event.keyCode).charCodeAt();
-
-        //     if(event.key == "Backspace")
-        //     {
-        //        this.Numbers.splice(this.Numbers.length-1);
-        //     }
-        //     else{
-
-        //         if(this.Numbers.length < 14 )
-        //          {
-        //             this.Numbers.push(code);
-        //          }
-
-        //     }
-        //  console.log(this.Numbers);
-
-        //     if((this.phone.length >= 10 && this.phone.length <= 14) ){
-
-        //         this.ph_num = false;
-        //         this.ph_length = false;
-        //     }else{
-
-        //         this.ph_num = true;
-        //         this.ph_length = true;
-        //     }
-
-        // },
-    //   getCities() {
-    //      this.axios.get('/api/auth/getCities')
-    //      .then(function (response) {
-    //          console.log("getCities")
-    //          console.log(response)
-    //       this.cities = response.data.cities;
-    //       }.bind(this));
-    //   },
-    //   getTownship(){
-    //     this.show = false;
-    //     this.axios.get('/api/auth/township',{
-    //       params:{
-    //         city:this.city
-    //       },
-    //     }).then((response)=>{
-    //         console.log("townships")
-    //         console.log(response.data.townships)
-    //       this.townships = response.data.townships
-    //     })
-    //   },
-      getType(){
+        
+    getType(){
         this.axios.get('/api/auth/getTypes',{
-          params:{
+            params:{
             type:this.type
-          },
+            },
         }).then((response)=>{
-          this.types = response.data.types
-    
+            this.types = response.data.types
+
         })
-      },
-    // isNumberOnly(event) {
-    //     console.log('numbers');
-    //     if(!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105)
-    //         && event.keyCode != 8 && event.keyCode != 46 && !(event.keyCode >= 37 && event.keyCode <= 40))
-    //     {
-    //         event.preventDefault();
-    //     }
-    // },
+    },
+    
     password_validate() {
         // var pwd = $('#pwd').val();
         // var confirm_pwd = $('#confirm_pwd').val();
@@ -272,56 +210,49 @@
         }
     },
 
-       focusMail: function(event) {
-     
-    
-                if((this.email != '' && this.mail_reg.test(this.email))){
-                
-                    this.errors.email='';
-                }else{
-                  
-                    this.errors.email ='※メールアドレスが正しくありません。もう一度入力してください。';
-                  
-                }
-             
-            },
+    focusMail: function(event) {
+        if((this.email != '' && this.mail_reg.test(this.email))){
+            this.errors.email='';
+        }else{
+            this.errors.email ='※メールアドレスが正しくありません。もう一度入力してください。';
+        }
+    },
             
   
-      register() {
-        
-          if(this.type == '')
-          {
-             this.errors.type = "事業者タイプを選択してください。";
-          }
-          else{
-              this.errors.type = '';
-          }
-    
-          if(this.username == null || this.username == '')
-          {
-              this.errors.username = "事業者名が必須です。";
-          }
-          else
-          {
-              this.errors.username = "";
-          }
+    register() {
+        if(this.type == '')
+        {
+            this.errors.type = "事業者タイプを選択してください。";
+        }
+        else{
+            this.errors.type = '';
+        }
 
-          if(this.email == null || this.email == '')
-          {
-              this.errors.email = "メールアドレスが必須です。";
-          }
-          else
-          {
-              this.errors.email = "";
-          }
+        if(this.username == null || this.username == '')
+        {
+            this.errors.username = "事業者名が必須です。";
+        }
+        else
+        {
+            this.errors.username = "";
+        }
 
-          if(this.password_confirmation == null || this.password_confirmation == '' || this.password == null || this.password == '')
-          {
-             this.errors.password = "パスワードが必須です。";
-          }
-          else{
-               this.errors.password = '';
-          }
+        if(this.email == null || this.email == '')
+        {
+            this.errors.email = "メールアドレスが必須です。";
+        }
+        else
+        {
+            this.errors.email = "";
+        }
+
+        if(this.password_confirmation == null || this.password_confirmation == '' || this.password == null || this.password == '')
+        {
+            this.errors.password = "パスワードが必須です。";
+        }
+        else{
+            this.errors.password = '';
+        }
 
         if((this.email != '' && this.mail_reg.test(this.email))){
                 
@@ -333,17 +264,24 @@
         }
 
         var input_data = $('#phone').val();
-        if(input_data.length >= 10 && input_data.length <= 14)
+        if(input_data.length >= 10 && input_data.length < 14 && input_data.charAt(input_data.length -1 ) != '-')
         {
             this.ph_num = false;
             this.ph_length = false;
         } else {
-            this.ph_num = true;
-            this.ph_length = true;
+            if(this.phone == '' || this.phone == null){
+                this.ph_num = true;
+                this.ph_length = false;
+            }
+            else{
+                this.ph_length = true;
+                this.ph_num = false;
+            }
+            
             return;
         }
 
-        if(this.errors.email == '' && this.errors.username == '' && this.errors.password == '' && this.errors.type == '' && this.ph_num == false && this.ph_length == false)
+        if(this.errors.email == '' && this.errors.username == '' && this.errors.password == '' && this.errors.type == '' &&  this.ph_length == false && this.ph_num == false)
         {
             
             var app = this
@@ -358,7 +296,7 @@
             fData.append('types', app.type)
             fData.append('phone', app.phone)
             var seltype = app.type == 2 ? '病院': '介護';
-           
+            
             this.$swal({
                 title: 'この内容で登録しますか。',  
                 // html: "事業者名:"+app.username+"<br/>メールアドレス:"+app.email+"<br/>事業者タイプ:"+seltype+"<br/>電話番号:"+app.phone, 
@@ -370,30 +308,30 @@
                 showCloseButton: true,
                 showLoaderOnConfirm: true,
                 allowOutsideClick: false,
-                }).then((result) => {
-                    if(result) {
-                        this.$loading(true);
-                        this.axios.post('/api/register', fData).then(response => {
+            }).then((result) => {
+                if(result) {
+                    this.$loading(true);
+                    this.axios.post('/api/register', fData).then(response => {
                         this.$loading(false);
-                            this.$swal({
-                                position: 'top-end',
-                                type: 'success',
-                                title: '<p style="font-weight:bold;">サイト管理者に登録情報を通知いたしました</p>',
-                                html: "<p style='text-align:left;'>登録審査後、事業者様にメールにてお知らせいたします。しばらくおまちください。</p>",
-                                width: 350,
-                                height: 200,
-                                confirmButtonColor: "#6cb2eb",
-                                confirmButtonText: "閉じる",
-                                confirmButtonClass: "all-btn",
-                                allowOutsideClick: false,
-                            })
-                            this.$router.push({
-                                name: 'News'
-                            });
-                        }).catch(error => {
-                            this.$loading(false);
-                            if(error.response.status == 422){
-                            
+                        this.$swal({
+                            position: 'top-end',
+                            type: 'success',
+                            title: '<p style="font-weight:bold;">サイト管理者に登録情報を通知いたしました</p>',
+                            html: "<p style='text-align:left;'>登録審査後、事業者様にメールにてお知らせいたします。しばらくおまちください。</p>",
+                            width: 350,
+                            height: 200,
+                            confirmButtonColor: "#6cb2eb",
+                            confirmButtonText: "閉じる",
+                            confirmButtonClass: "all-btn",
+                            allowOutsideClick: false,
+                        })
+                        this.$router.push({
+                            name: 'News'
+                        });
+                    }).catch(error => {
+                        this.$loading(false);
+                        if(error.response.status == 422){
+                        
                             this.errors = error.response.data.errors;
                         
                             if(this.errors.email)
@@ -412,100 +350,57 @@
                                 this.errors.password = "";
                             }
                         }
-                        
-                        })
-                        
-                    } 
-                })
-                // .catch(error =>{
+                    
+                    })                        
+                } 
+            })
+            // .catch(error =>{
 
-                //         this.$swal('Cancelled', 'Your file is still intact', 'info')
-                //     });
-                }
-             
-            
-       
+            //         this.$swal('Cancelled', 'Your file is still intact', 'info')
+            //     });
+        }
+    },
 
-
-      },
-      focusPhone: function(e) {
-
+    focusPhone: function(e) {
         var input_data = $('#phone').val();
-    
-    //    e.keyCode = 8 //backspace
-        this.arr.push(e.keyCode) ;
-        for (var i = 0; i < this.arr.length; i++) {
-          
-            if(((this.arr[i]  >= 48 && this.arr[i]  <= 57) || (this.arr[i]  >= 96 && this.arr[i]  <= 105)) && input_data.charAt(0) != '-' && input_data.charAt(input_data.length -1 ) != '-'  && (input_data.length >= 10 && input_data.length <= 14))
+        if(((e.keyCode  >= 48 && e.keyCode  <= 57) || (e.keyCode  >= 96 && e.keyCode  <= 105) || (e.keyCode  == 8) || (e.keyCode  == 35) || (e.keyCode  == 36) || (e.keyCode  == 37) || (e.keyCode  == 39) || (e.keyCode  == 46) || (e.keyCode  == 109) || (e.keyCode  == 189)) && input_data.charAt(0) != '-' && !input_data.includes('--'))
+        {
+            this.correctVal = input_data;
+            if(input_data.length >= 10 && input_data.length < 14 && input_data.charAt(input_data.length -1 ) != '-')
             {
-             
-                    this.ph_num = false;
+                this.ph_num = false;
+                this.ph_length = false;
+            } else {
+                if(this.phone == '' || this.phone == null){
+                    this.ph_num = true;
                     this.ph_length = false;
+                }
+                else{
+                    this.ph_length = true;
+                    this.ph_num = false;
+                }
                 
-                
+                return;
+            }
+        }
+        else{
+            this.phone = this.correctVal;
+
+            if(this.phone.length >= 10 && this.phone.length < 14 && this.phone.charAt(this.phone.length -1 ) != '-'){
+              this.ph_length = false;
+              this.ph_error = false;
             }
             else{
-                    
-                    this.ph_num = true;
-                    this.ph_length = true;
+                this.ph_length = true;
+                this.ph_error = false;
+                this.btn_disable = true;
+              
             }
-        
-        } 
-       
-        
-        
-    
-       
-         
-         
-        //  if(keysAllowed.includes(e.keyCode)){
-        //      alert('a');
-        //         this.ph_num = false;
-        //        this.ph_length = false;
-        //  }
-        //  else{
-        //         this.ph_num = true;
-        //   this.ph_length = true;
-        //  }
-
-        //   if(keysAllowed.includes(e.keyCode) && input_data.charAt(0) != '-' && input_data.charAt(input_data.length -1 ) != '-' && (input_data.length >= 10 && input_data.length <= 14 ))
-        //   {
-        //      console.log('false');
-        //         this.ph_num = false;
-        //         this.ph_length = false;
-             
-        //   }
-        //   else{
-       
-        //        console.log('true');
-        //        this.ph_num = true;
-        //        this.ph_length = true;
-        //   }
+        }
      
-        },
-
-    //   focusPhone($event){
-
-    //     var input_data = $('#phone').val();
-    //     alert($event.keyCode);
-    //     if(input_data.keyCode)
-
-    //     if(input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-' && input_data.length >= 10 && input_data.length <= 14)
-    //     {
-    //         this.ph_num = false;
-    //         this.ph_length = false;
-    //     }
-    //     else{
-    //         this.ph_num = true;
-    //         this.ph_length = true;
-    //     }
-
-    //   }
+    },   
 
     },
-    created(){
-      //this.getCities()
-    }
 
   }
 </script>
