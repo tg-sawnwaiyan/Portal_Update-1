@@ -17,7 +17,7 @@
     
     <div class="row m-0" v-for="jobDetail in job_details" :key="jobDetail.id">
      
-      <div class="col-12 p0-480"> 
+      <div class="col-12 p0-480">
         <h4 class="job-title-color">{{jobDetail.title}} <label class="job_id" style="color:#000;">求人番号: {{jobDetail.jobid}}</label></h4>
 
       </div>
@@ -60,7 +60,8 @@
             <div class="col-md-2 col-sm-12 form-left">
               <label><span class="job_ico">&#xa5;</span>給料</label>
             </div>
-            <div class="col-md-10 col-sm-12 form-right"> {{jobDetail.salary_type}} : {{(Number(jobDetail.salary)).toLocaleString()}} 円  <span v-if="jobDetail.salary_remark"> ( {{ jobDetail.salary_remark }} ) </span></div>
+            <div class="col-md-10 col-sm-12 form-right"> {{jobDetail.salary}}  <span v-if="jobDetail.salary_remark"> ( {{ jobDetail.salary_remark }} ) </span></div>
+            <!-- {{jobDetail.salary_type}} : {{(Number(jobDetail.salary)).toLocaleString()}} 円 -->
           </div>
           <div class="form-group m-0 row bd">
             <div class="col-md-2 col-sm-12 form-left">

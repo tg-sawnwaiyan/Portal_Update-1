@@ -1116,7 +1116,6 @@ import Autocomplete from 'vuejs-auto-complete'
                       }
 
                         this.joboffer.customer_id = event.value;
-                     
                         this.axios.post(`/api/job/profileList/${this.joboffer.customer_id}`,this.table_name)
                     .then(response=> {
                     this.profileList = response.data;
