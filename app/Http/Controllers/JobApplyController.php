@@ -126,6 +126,7 @@ class JobApplyController extends Controller
         public function store(Request $request)
         {
 
+
             $string = '';
             $count = count($request->skills);
 
@@ -203,8 +204,10 @@ class JobApplyController extends Controller
                 $pro_name = $info->pro_name;
             }
 
-             $admin_email = 'admin@t-i-s.jp';
+            //  $admin_email = 'admin@t-i-s.jp';
+             $admin_email = 'yanlynn@mp-co.sakura.ne.jp';
              $jobapply->save();
+
              $jobapply->job_title = $job_title;
              $jobapply->skills = $skills;
              $jobapply->job_description = $job_description;
@@ -223,11 +226,20 @@ class JobApplyController extends Controller
              $jobapply->pro_name = $pro_name;
              if($salary_remark != null || $salary_remark != '')
              {
-                $jobapply->salary = $salary_type . ":" . number_format((int)($salary)) . "(" . $salary_remark . ")";
+                $jobapply->salary  = $salary. "(" . $salary_remark . ")";
              }
              else{
-                $jobapply->salary = $salary_type . ":" . number_format((int)($salary));
+                $jobapply->salary  = $salary;
              }
+           
+
+            //  if($salary_remark != null || $salary_remark != '')
+            //  {
+            //     $jobapply->salary = $salary_type . ":" . number_format((int)($salary)) . "(" . $salary_remark . ")";
+            //  }
+            //  else{
+            //     $jobapply->salary = $salary_type . ":" . number_format((int)($salary));
+            //  }
 
        
 

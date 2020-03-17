@@ -119,6 +119,7 @@ class JobController extends Controller
 
     public function store(Request $request)
     {
+
         // $request->validate([
         //     'title' => 'required',
         //     'description' =>'required',
@@ -239,7 +240,7 @@ class JobController extends Controller
         $job->location = $request->input('location');
         $job->nearest_station = $request->input('nearest_station');
         $job->employment_status = $request->employmentstatus;
-        $job->salary_type = $request->input('salary_type');
+        // $job->salary_type = $request->input('salary_type');
         $job->salary = $request->input('salary');
         $job->salary_remark = $request->input('salary_remark');
         $job->allowances = $request->input('allowances');
