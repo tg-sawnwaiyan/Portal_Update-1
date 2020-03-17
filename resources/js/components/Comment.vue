@@ -227,8 +227,8 @@
                                 <li class="active">3.<span>送信</span>完了</li>
                                 </ul>
                                 <div class="text-center">
-                                <h3>入力内容は送信されました。</h3>
-                                <div class="row col-12 stepper-success-form">     
+                                <h3>入力内容は送信されました</h3>
+                                <div class="row col-12 stepper-success-form text-center">     
                                     <p>口コミの投稿ありがとうございました。</p>
                                     <p>サイト管理者による承認後、口コミが公開されます。</p>
                                 </div>
