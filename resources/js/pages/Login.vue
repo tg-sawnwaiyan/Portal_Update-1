@@ -35,7 +35,7 @@
             
           </form>
           <router-link :to="{name: 'reset'}" class="login_txt" v-if="cus">パスワードをお忘れですか？</router-link>
-          <span class="alert alert-danger" v-if="has_error">パスワードが間違っています。</span>
+          <span class="alert alert-danger" v-if="has_error">入力された情報に誤りがあります。</span>
         </div>
       </div>
     </div>

@@ -288,7 +288,7 @@
                     }
                     else{
                         // var textval = '承認しない場合事業者情報が削除されます。';
-                        var textval = '本当に承認しなくてよろしいでしょうか<br/>承認しない場合事業者情報が削除されます';
+                        var textval = '本当に承認しなくてよろしいでしょうか。<br/>承認しない場合事業者情報が削除されます。';
                     }
                     
                         this.$swal({
@@ -340,7 +340,7 @@
                     comfirm(id) {
                         this.$swal({
                             title: "確認",
-                            text: "本当に承認してよろしいでしょうか",
+                            text: "本当に承認してよろしいでしょうか。",
                             type: "warning",
                             width: 350,
                             height: 200,

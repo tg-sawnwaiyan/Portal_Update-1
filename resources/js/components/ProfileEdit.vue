@@ -362,7 +362,7 @@
 
                         this.$swal({
                             title: "確認",
-                            text: "メールアドレスと運営事業者名を変更してよろしいでしょうか",
+                            text: "メールアドレスと運営事業者名を変更してよろしいでしょうか。",
                             // text: "メールアドレスを変更してよろしいでしょうか。",
                             type: "info",
                             width: 350,
@@ -385,7 +385,7 @@
                                     this.$swal({
                                             position: 'top-end',
                                             type: 'success',
-                                            text: 'メールアドレスと運営事業者名を変更しました',
+                                            text: 'メールアドレスと運営事業者名を変更しました。',
                                             confirmButtonText: "閉じる",
                                             confirmButtonColor: "#6cb2eb",
                                             width: 250,
