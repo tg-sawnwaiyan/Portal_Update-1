@@ -382,7 +382,7 @@
                                     // this.categories.splice(i, 1);
                                     this.$swal({
                                         // title: "削除済",
-                                        text: "口コミを削除しました",
+                                        text: "口コミを削除しました。",
                                         type: "success",
                                         width: 350,
                                         height: 200,
@@ -428,7 +428,7 @@
                                     this.comments = response.data.comments;
                                     this.$swal({
                                             title: "確認済",
-                                            text: "口コミを投稿しました",
+                                            text: "口コミが投稿されました。",
                                             type: "success",
                                             width: 350,
                                             height: 200,

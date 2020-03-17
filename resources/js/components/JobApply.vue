@@ -2,14 +2,14 @@
   <div>
     <div class="tab-content job-detail">
       <div class="col-md-12 pad-free m-b-20">
-      <nav aria-label="breadcrumb">
+      <!-- <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
               <router-link to="/" class="router-link-active">ホーム</router-link>
           </li>
           <li aria-current="page" class="breadcrumb-item active">求人応募</li>
         </ol>
-      </nav>
+      </nav> -->
     </div>
 
         <!-- <div class="col-12 text-center p-3 jt1 mb-4">

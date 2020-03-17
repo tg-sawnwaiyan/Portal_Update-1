@@ -395,12 +395,12 @@
                                       <p v-if="errors.salary" class="error">{{errors.salary}}</p>
                                     </div> -->
 
-                                    <div class="ml-0 joboffer-salary">
+                                    <div class="ml-0 joboffer-salary col-6" style="padding-left:0px;">
                                       <input type="text" class="form-control" v-model="joboffer.salary" name="salary" placeholder="給与を入力してください。"/>
                                       <p v-if="errors.salary" class="error">{{errors.salary}}</p>
                                     </div>
                                     <!-- <span v-if="errors.includes('salary')" class="error">題名は必須です。(salary)</span> -->
-                                    <span class="pt-1 pl-1">例：時給1000～2000円</span>
+                                    <span class="pt-1 pl-1 col-6">例：時給1000～2000円</span>
                                 </div>
                             </div>
 
