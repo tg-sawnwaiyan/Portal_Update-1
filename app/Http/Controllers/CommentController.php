@@ -251,8 +251,12 @@ class CommentController extends Controller
                         ->paginate(12);
         }
 
+        foreach ($commentList as $com) {
+            $splitTimeStamp = explode(" ",$com->created_at);
+            $com->created_date = $splitTimeStamp[0];
+            $com->created_time = $splitTimeStamp[1];
+        }
         
-
 
        
         return response()->json($commentList);
@@ -295,6 +299,11 @@ class CommentController extends Controller
                                 ->paginate(12);
             }
 
+            foreach ($commentList as $com) {
+                $splitTimeStamp = explode(" ",$com->created_at);
+                $com->created_date = $splitTimeStamp[0];
+                $com->created_time = $splitTimeStamp[1];
+            }
 
   
             return response()->json(array("comments"=> $commentList, "success"=>"success", "comment"=>"Comment successfully confirmed"));
@@ -399,7 +408,11 @@ class CommentController extends Controller
         //                     ->where('customers.name', 'LIKE', "%{$search_word}%")
         //                     ->orderBy('comments.id','DESC')
         //                     ->paginate(1);
-
+        foreach ($commentList as $com) {
+            $splitTimeStamp = explode(" ",$com->created_at);
+            $com->created_date = $splitTimeStamp[0];
+            $com->created_time = $splitTimeStamp[1];
+        }
        
         return response()->json($commentList);
 
