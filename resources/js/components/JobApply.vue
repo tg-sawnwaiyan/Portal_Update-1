@@ -7,7 +7,7 @@
           <li class="breadcrumb-item">
               <router-link to="/" class="router-link-active">ホーム</router-link>
           </li>
-          <li aria-current="page" class="breadcrumb-item active">仕事詳細</li>
+          <li aria-current="page" class="breadcrumb-item active">求人応募</li>
         </ol>
       </nav>
     </div>
