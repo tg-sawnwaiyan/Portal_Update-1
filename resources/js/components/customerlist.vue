@@ -113,8 +113,9 @@
                                                     <!-- <span class="btn confirm-borderbtn" style="border-color: #ccc!important; color: #ccc!important;cursor:not-allowed;" :id="'confirm-btn'+customer.id" v-else>登録承認済</span>     -->
                                                     <span v-else class="">                                                  
                                             <!-- <button class="btn confirm-orangebtn">プロフィール設定</button> -->
-                                            <router-link :to="{ path:'/accountlist/'+ type +'/'+ customer.id}" v-if="customer.status == 1" class="btn confirm-orangebtn mr-2 mb-2"><i class="fa fa-list"></i> 施設一覧</router-link>
-                                             <router-link :to="{ path:'/profiledit/'+ type +'/'+ customer.id}" v-if="customer.status == 1" class="btn confirm-orangebtn mb-2"><i class="fa fa-edit"></i> プロフィール設定</router-link>
+                                            <span v-if="customer.status == 1 && customer.recordstatus == 0" class="btn confirm-disable-orangebtn mr-2 mb-2"><i class="fa fa-list"></i> 施設一覧</span>
+                                            <router-link :to="{ path:'/accountlist/'+ type +'/'+ customer.id}" v-if="customer.status == 1 && customer.recordstatus == 1" class="btn confirm-orangebtn mr-2 mb-2"><i class="fa fa-list"></i> 施設一覧</router-link>
+                                            <router-link :to="{ path:'/profiledit/'+ type +'/'+ customer.id}" v-if="customer.status == 1" class="btn confirm-orangebtn mb-2"><i class="fa fa-edit"></i> プロフィール設定</router-link>
                                             <p class="mt-2" style="color: #81ad3b;font-weight: bold;"><i class="fa fa-check-circle" aria-hidden="true"></i>&nbsp;この事業者は登録承認済です。</p>
                                                     </span>
                                                     

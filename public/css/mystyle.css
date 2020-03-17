@@ -416,6 +416,11 @@ ul.menu_list li i.fa-phone-alt {
 input::-ms-clear {
     display: none;
 }
+
+.disablefun{
+    cursor:'not-allowed'!important;
+    pointer-events:'none'!important;
+}
 /********************************** End Common **********************************/
 
 
@@ -5438,6 +5443,18 @@ margin-right: 2% !important;
     background: #fff;
     box-shadow: none !important;
     min-width: 60px;
+}
+
+.confirm-disable-orangebtn{
+    cursor: not-allowed!important;
+    color: #bbb;
+    border: 1px solid #bbb !important;
+    background: #fff;
+    box-shadow: none !important;
+    min-width: 60px;
+}
+.confirm-disable-orangebtn:hover{
+    color:#bbb;
 }
 
 .border-style {

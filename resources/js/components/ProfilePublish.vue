@@ -273,7 +273,7 @@
                         </div>
 
                         <div class="row m-lr-0" v-else>
-                            <p class="no-data-color">表示されるデータがありません。</p>
+                            <p class="no-data-color">データがありません。</p>
                         </div>
 
                     </div>
@@ -293,7 +293,7 @@
                             <p v-html="nursing_profiles"></p>
                         </span>
                         <span v-else>
-                            <p class="no-data-color">表示されるデータがありません。</p>
+                            <p class="no-data-color">データがありません。</p>
                         </span>
                     </div>
 
@@ -720,7 +720,7 @@
                     <div class="col-md-12 pad-free-750">
                         <h5 class="profile_subtit">動画</h5>
                         <div class="row m-0" v-if="videos == ''">
-                            <div class="col-12 pad-free-750"> <p class="no-data-color">表示されるデータがありません。</p> </div>
+                            <div class="col-12 pad-free-750"> <p class="no-data-color">データがありません。</p> </div>
                         </div>
                         <div class="row gallery-list m-0 pad-free-750" v-else>
                             <div v-for="(video) in  videos" :key="video.id" class="col-6  col-sm-4 col-md-4 col-lg-3 m-b-10">
@@ -763,7 +763,7 @@
 
                                 </div>
                         </div>
-                        <div class="col-12" v-else> <p class="no-data-color">表示されるデータがありません。</p> </div>
+                        <div class="col-12" v-else> <p class="no-data-color">データがありません。</p> </div>
                     </div>
 
                     <div class="col-12 pad-free-750">
@@ -835,7 +835,7 @@
                             </div>
 
                         </div>
-                        <div v-else class="col-12"> <p class="no-data-color">表示されるデータがありません。</p> </div>
+                        <div v-else class="col-12"> <p class="no-data-color">データがありません。</p> </div>
 
                     </div>
 
@@ -1080,7 +1080,7 @@
                                 <li>{{special.short_name}}</li>
                             </ul>
                         </div>
-                        <div class="row m-lr-0" v-else> <p class="no-data-color">表示されるデータがありません。</p> </div>
+                        <div class="row m-lr-0" v-else> <p class="no-data-color">データがありません。</p> </div>
 
                        
                     </div>
@@ -1104,7 +1104,7 @@
 
                     <p v-for="hospital in hospitals" :key="hospital.id" class="col-12">
                         <span v-if="hospital.details_info"><p v-html="hospital.details_info"></p></span>
-                        <span v-else><p class="no-data-color">表示されるデータがありません。</p></span>
+                        <span v-else><p class="no-data-color">データがありません。</p></span>
                     </p>
                 </div>
                 <div class="col-12 m-b-20 pad-free-750">
@@ -1158,7 +1158,7 @@
 
                                 <p><strong class="font-weight-bold">休診日: </strong>
                                     <span v-if="hospital.closed_day"><font>{{hospital.closed_day}}</font></span>
-                                    <span v-else> <p class="no-data-color">表示されるデータがありません。</p> </span>
+                                    <span v-else> <p class="no-data-color">データがありません。</p> </span>
                                 </p>
 
                             </div>
@@ -1218,7 +1218,7 @@
                     </div>
                     <div class="row m-0" v-else>
                         <div class="col-12">
-                            <span> <p class="no-data-color">表示されるデータがありません。</p> </span>
+                            <span> <p class="no-data-color">データがありません。</p> </span>
                         </div>
                     </div>
                 </div>
