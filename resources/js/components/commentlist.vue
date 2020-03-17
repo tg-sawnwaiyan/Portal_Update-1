@@ -13,26 +13,28 @@
                 <div v-else class="container-fuid">
                     <h4 class="main-color mb-3">口コミ検索</h4>
                     <div class="row mb-4">
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6"> -->
                             <!-- <select  v-model="profileid" class="division form-control"  @change="getComment()">
                                 <option value="0">選択してください。</option>
                                 <option  id="search-item" v-for="pro in profilelist" :key="pro.id" v-bind:value="pro.id">
                                     {{pro.name}}
                                 </option>
                             </select> -->
-                            <label>事業者名</label>
+                            <!-- <label>事業者名</label>
                             <autocomplete id="cusname"  placeholder="事業者名を検索" input-class="form-control" :source=customerList :results-display="formattedDisplay" @clear="cleartext()"  @selected="getSelected($event)">
-                            </autocomplete>
-                        </div>
-                        <div class="col-md-6 choose-item">
-                            <label>施設名</label>
+                            </autocomplete> -->
+                        <!-- </div> -->
+                        <div class="col-md-12 choose-item">
+                             <autocomplete id="cusname"  placeholder="施設名で検索" input-class="form-control" :source=profileList :results-display="formattedDisplay" @clear="cleartext()"  @selected="getProfile($event)">
+                            </autocomplete> 
+                            <!-- <label>施設名</label>
                          
                             <select v-model="selectedValue" class="division form-control" @change="getComment()">
                                 <option value="0">選択してください。</option>
                                 <option v-for="profile in profileList" :key="profile.id" v-bind:value="profile.id">
                                     {{profile.name}}
                                 </option>
-                            </select>
+                            </select> -->
                               
                         </div>
                     </div>
@@ -264,14 +266,24 @@
                     });
                 }
 
-                 this.axios.get('/api/job/customerList/'+this.type).then(response=> {
-                    this.customerList = response.data;
-                });
+                    if(this.type == "nursing"){
+                        this.table_name.profile = 'nursing_profiles';
+                    }else {
+                        this.table_name.profile = 'hospital_profiles';
+                    }
+
+                    this.axios.post(`/api/job/profileList/`+ 0,this.table_name).then(response=> {
+                        this.profileList = response.data;
+                    });
+
+                //  this.axios.get('/api/job/customerList/'+this.type).then(response=> {
+                //     this.customerList = response.data;
+                // });
             },
             methods: {
               getComment()
                 {
-
+                  
                     this.$loading(true);
                     if(this.$route.path == "/nuscommentlist"){ 
                         this.axios.get('/api/comments/getCustomComment/3/'+this.selectedValue).then(response => {
@@ -301,29 +313,32 @@
                          });
                     }
                 },
-                cleartext(){
-                
-                    this.selectedValue = 0;
-                    this.profileList = [];
+                getProfile($event)
+                {
+                    this.selectedValue = $event.value;
                     this.getComment();
-
                 },
-                getSelected(event){
-                  
-                    if(this.type == "nursing"){
-                        this.table_name.profile = 'nursing_profiles';
-                    }else {
-                        this.table_name.profile = 'hospital_profiles';
-                    }
-                     alert(event.value);
-
-                    this.cusid = event.value;
-                    this.axios.post(`/api/job/profileList/${this.cusid}`,this.table_name).then(response=> {
-                    this.profileList = response.data;
+                cleartext(){
                     this.selectedValue = 0;
-                   
-                });
+                    this.getComment();
                 },
+    
+                // getSelected(event){
+                  
+                //     if(this.type == "nursing"){
+                //         this.table_name.profile = 'nursing_profiles';
+                //     }else {
+                //         this.table_name.profile = 'hospital_profiles';
+                //     }
+                   
+
+                //     this.cusid = event.value;
+                //     this.axios.post(`/api/job/profileList/${this.cusid}`,this.table_name).then(response=> {
+                //     this.profileList = response.data;
+                //     this.selectedValue = 0;
+                   
+                // });
+                // },
                 deleteComment(id) {
                         this.$swal({
                             title: "確認",
@@ -348,7 +363,7 @@
                                   this.type = "hospital"
                               }
                             this.axios
-                                .delete(`/api/comments/delete/${id}`+'/'+this.type)
+                                .delete(`/api/comments/delete/${id}`+'/'+this.type+"/"+this.selectedValue)
                                 .then(response => {
                                     this.comments = response.data;
                                    this.norecord = this.comments.data.length;
@@ -406,7 +421,7 @@
                               else{
                                   this.type = "hospital"
                               }
-                            this.axios.get(`/api/comments/confirm/${id}`+'/'+this.type)
+                            this.axios.get(`/api/comments/confirm/${id}`+'/'+this.type+'/'+this.selectedValue)
                                 .then(response => {
                                     this.$loading(false);
                                     this.comments = response.data.comments;

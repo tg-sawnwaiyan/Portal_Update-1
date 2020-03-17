@@ -645,9 +645,18 @@ class JobController extends Controller
         return $cus_list;
    }
    public function getProfileList($cId, Request $request){
+       
         $profile = $request->profile;
-        $query = "SELECT $profile.id, $profile.name FROM $profile
-                  WHERE $profile.customer_id = $cId ";
+        if($cId == 0)
+        {
+            $query = "SELECT $profile.id, $profile.name FROM $profile";
+ 
+        }
+        else{
+            $query = "SELECT $profile.id, $profile.name FROM $profile
+            WHERE $profile.customer_id = $cId ";
+        }
+
         $profile_list = DB::select($query);
         return $profile_list;
 }

@@ -167,7 +167,7 @@
             <div class="row pl-3">
                     <div class="col-md-12 p-0">
                         <label class="col-md-12">※ 電話番号またはメールアドレス必須 <span class="error sp1">必須</span></label>
-                        <input type="text" class="form-control float-left" id="phone" v-model="jobApply.phone" placeholder="電話番号を入力してください。" @keyup="focusPhone" @change="aggreBtn" pattern="[0-9-]*" title="Please enter number only." maxlength="13"/>
+                        <input type="text" class="form-control float-left" id="phone" v-model="jobApply.phone" placeholder="電話番号を入力してください。" @keyup="focusPhone" @change="aggreBtn" pattern="[0-9-]*" maxlength="13"/>
                         <!-- <span class="error m-l-30" v-if="focus_mail">※入力は必須です。</span> -->
                         <span class="float-left eg-txt">例）0312345678（半角）</span>
                         <!-- <span class="error m-l-30" v-if="mail_focus">※入力は必須です。</span>                                        -->
@@ -404,8 +404,8 @@
           <li class="active">3.<span>送信</span>完了</li>
         </ul>
         
-          <h4 class="text-center">求人への応募が完了しました。</h4>
-           <div class="row col-12 stepper-success-form">   
+          <h4 class="text-center">求人への応募が完了しました</h4>
+           <div class="row col-12 stepper-success-form text-center">   
               <p>担当者より連絡があるまでしばらくおまちください。</p> 
            </div>
            <div class="multi-step mt-5">          

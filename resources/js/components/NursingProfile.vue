@@ -32,7 +32,7 @@
                            
                             <div class="form-group form-group-wrapper d-flex">
                                 <label class="heading-lbl col-md-2 col-12 pad-free">電話番号</label>                                
-                                <input type="text" class="form-control customer-phone col-md-10 col-12 nursing_input" id="phone" placeholder="電話番号を入力してください。" v-model="nursing_info.phone" v-on:keyup="isNumberOnly" pattern="[0-9-]*" @focusout="focusPhone" title="Please enter number only." maxlength="14">
+                                <input type="text" class="form-control customer-phone col-md-10 col-12 nursing_input" id="phone" placeholder="電話番号を入力してください。" v-model="nursing_info.phone" v-on:keyup="isNumberOnly" pattern="[0-9-]*" @focusout="focusPhone" maxlength="13">
                             </div>
                            
                             <span class="error pro-1" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>
@@ -1163,7 +1163,7 @@ export default {
             },
             createFile(file) {
                 if (!file.type.match('image.*')) {
-                alert('Select an image');
+              
                 return;
                 }
                 var img = new Image();

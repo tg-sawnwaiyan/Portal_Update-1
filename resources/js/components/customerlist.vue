@@ -15,7 +15,7 @@
                     <div class="row mb-4">
                         <div class="col-md-6">
                       
-                            <autocomplete id="cusname"  placeholder="事業者名を検索"  input-class="form-control" :source=customerList :results-display="formattedDisplay" @clear="clearcustomer()"  @selected="getselected($event)">
+                            <autocomplete id="cusname"  placeholder="事業者名で検索"  input-class="form-control" :source=customerList :results-display="formattedDisplay" @clear="clearcustomer()"  @selected="getselected($event)">
                             </autocomplete>
                            
                         </div> 

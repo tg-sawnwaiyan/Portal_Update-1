@@ -362,6 +362,7 @@
     },
 
     focusPhone: function(e) {
+      
         var input_data = $('#phone').val();
         if(((e.keyCode  >= 48 && e.keyCode  <= 57) || (e.keyCode  >= 96 && e.keyCode  <= 105) || (e.keyCode  == 8) || (e.keyCode  == 35) || (e.keyCode  == 36) || (e.keyCode  == 37) || (e.keyCode  == 39) || (e.keyCode  == 46) || (e.keyCode  == 109) || (e.keyCode  == 189)) && input_data.charAt(0) != '-' && !input_data.includes('--'))
         {

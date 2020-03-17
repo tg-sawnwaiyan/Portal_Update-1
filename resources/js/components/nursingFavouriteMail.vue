@@ -145,7 +145,7 @@
                             <div class="row pl-3">
                                     <div class="col-md-12 p-0">
                                         <label class="col-md-12">※ 電話番号またはメールアドレス必須 <span class="error sp1">必須</span></label>
-                                        <input type="text" id="phone" name="number" class="form-control float-left" placeholder="電話番号を入力してください。" v-model="comments.phone" pattern="[0-9-]*" @keyup="focusPhone" @change="aggreBtn" maxlength="13" title="Please enter number only.">
+                                        <input type="text" id="phone" name="number" class="form-control float-left" placeholder="電話番号を入力してください。" v-model="comments.phone" pattern="[0-9-]*" @keyup="focusPhone" @change="aggreBtn" maxlength="13">
                                         <!-- v-on:keyup="isNumberOnly" -->
                                                                                
                                         <span class="float-left eg-txt">例）0312345678（半角）</span>
