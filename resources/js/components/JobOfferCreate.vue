@@ -898,7 +898,7 @@ import Autocomplete from 'vuejs-auto-complete'
                                     this.$swal({
                                         position: "top-end",
                                         type: "success",
-                                        title: "求人を作成しました",
+                                        text: "求人を作成しました",
                                         // text: "ファイルが作成されました。",
                                         // type: "success",
                                         width: 350,
