@@ -37,9 +37,9 @@
                                 <div class="freeword-responsive">
                                     <h3 class="map-resicon">
                                     <div class="map-text-wrapper">
-                                        <div>
+                                        <!-- <div>
                                         <i class="fa icon map-fa-icon map-fa-icon-nursing"></i>
-                                        </div>
+                                        </div> -->
                                         <div>
                                         <p class="text-left nursing-map-header"> &nbsp;あなたらしい暮らしができる。そん<br class="pc-768"/>な老人ホームが見つかります。</p>
                                         </div>
@@ -135,7 +135,7 @@
                                         </div>
                                     </div>                                    
                                     <div class="col-lg-2 col-md-4 m-b-414 pc-768 align-self-center m-t-30">
-                                        <span class="btn seemore-btn select" style="width:100%;padding:15px 10px;font-size:0.8em;" id="showSearchMap" @click="showSearchMap"><i class="fas fa-exchange-alt"></i>&nbsp;都道府県を再選択する</span>                                    
+                                        <span class="btn seemore-btn select all-btn" style="width:100%;padding:15px 10px;font-size:0.8em;" id="showSearchMap" @click="showSearchMap"><i class="fas fa-exchange-alt"></i>&nbsp;都道府県を再選択する</span>                                    
                                     </div>
                                     </div>
                                 </div>
@@ -647,7 +647,7 @@
                                                     <div class="col-md-6 col-sm-12 m-b-414">
                                                         <p class="sp_hos_phone sp-768" v-if="nus.phone"><span class="circle-phone" ><i class="fa fa-phone-alt"></i></span><span class="phone-no"><a :href="`tel:${nus.phone}`">{{nus.phone}}</a></span></p>
                                                     </div>
-                                                    <div class="col-md-6 col-sm-12 m-t-10">
+                                                    <div class="col-md-6 col-sm-12 m-t-768">
                                                         <p class="sp-768">
                                                             <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == '' && loginuser=='false'" :class="'view_pro_id'+nus.nursing_id" style="display:block;" @click="favAddFun('add',nus.nursing_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                                                             <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == 'check' && loginuser=='false'" :class="'done_pro_id'+nus.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',nus.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>

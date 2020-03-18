@@ -58,10 +58,10 @@
             <div class="freeword-responsive">
                 <h3 class="map-resicon">
                   <div class="map-text-wrapper">
-                    <div>
-                      <!-- <img src="/images/map-responsive1.png" alt="" class="img-responsive"> -->
+                    <!-- <div>
+                     <img src="/images/map-responsive1.png" alt="" class="img-responsive"> 
                       <i class="fa icon map-fa-icon map-fa-icon-job"></i>
-                    </div>
+                    </div> -->
                     <div>
                       <p class="text-left job-map-header"> &nbsp;あなたのやさしい 手を求めてる老人<br class="pc-768"/>ホーム・病院が見つかります。</p>
                     </div>

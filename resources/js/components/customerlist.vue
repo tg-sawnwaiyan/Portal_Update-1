@@ -5,44 +5,35 @@
                 <div v-if="norecord_msg" class="card card-default card-wrap">
                     <p class="record-ico">
                         <i class="fa fa-exclamation"></i>
-                    </p>
-                   
-                    <p class="record-txt01">介護施設事業者が登録されていません。</p>
-                 
+                    </p>                   
+                    <p class="record-txt01">介護施設事業者が登録されていません。</p>                 
                 </div>
                 <div v-else class="container-fuid">
                     <h4 class="main-color mb-3">事業者検索 </h4>
-                    <div class="row mb-4">
-                        <div class="col-md-6">
-                      
+                    <div class="row mb-4 advanced-search">
+                        <div class="col-xl-8 col-md-7">                      
                             <autocomplete id="cusname"  placeholder="事業者名で検索" input-class="form-control" :source=customerList :results-display="formattedDisplay" @clear="clearcustomer()"  @selected="getselected($event)">
-                            </autocomplete>
-                           
+                            </autocomplete>                           
                         </div> 
                        
-                        <div class="col-md-6 form-check form-check-inline">
-                          
+                        <div class="col-xl-4 col-md-5 p-t-768 form-check form-check-inline choose-item">                          
                             <label class="form-check-label control control--checkbox"  style="padding-left:5px;">
                             <input type="checkbox" class="form-check-input" value="1"   v-model="recordstatus" @change="searchCustomer()">
                             有効
                             <div class="control__indicator"></div>
                             </label>
-
                             <label class="form-check-label control control--checkbox" style="padding-left:5px;" @change="searchCustomer()">
                             <input type="checkbox" class="form-check-input" value="0" v-model="recordstatus"  >
                                 無効
                             <div class="control__indicator"></div>
                             </label>
-
                             <label class="form-check-label control control--checkbox" style="padding-left:5px;" @change="searchCustomer()">
                             <input  type="checkbox" class="form-check-input" value="2" v-model="status" >
                             登録承認審査中
                             <div class="control__indicator"></div>
-                            </label>
-                            
+                            </label>                            
                         </div>
-                    </div>
-                        
+                    </div>                        
                       <!-- <div class="col-md-6 choose-item">
                         <div class="col-md-6 choose-item">
                               <select  v-model="status" id="selectBox" class="form-control select_box" @change="searchCustomer()">
@@ -51,8 +42,7 @@
                                 <option value="0"> 無効 </option>   
                                 <option value="2"> 登録承認審査中 </option>                              
                             </select>                              
-                        </div>                         
-                        
+                        </div> 
                     </div>
                                         
                     <hr/>
@@ -62,8 +52,7 @@
                         <p class="record-ico">
                             <i class="fa fa-exclamation"></i>
                         </p>
-                        <p class="record-txt01"> 検索キーワードに該当する事業者は存在しません。</p>
-                        
+                        <p class="record-txt01"> 検索キーワードに該当する事業者は存在しません。</p>                        
                     </div>                        
                        
                     <div v-else class="container-fuid">
