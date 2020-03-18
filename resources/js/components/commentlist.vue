@@ -25,7 +25,8 @@
                             </autocomplete> -->
                         <!-- </div> -->
                         <div class="col-md-12 choose-item">
-                             <autocomplete id="cusname"  placeholder="施設名で検索" input-class="form-control" :source=profileList :results-display="formattedDisplay" @clear="cleartext()"  @selected="getProfile($event)">
+                    
+                             <autocomplete id="cusname"  placeholder="施設名で検索" input-class="form-control" :source=profileList :results-display="formattedDisplay" @clear="cleartext()"   @selected="getProfile($event)">
                             </autocomplete> 
                             <!-- <label>施設名</label>
                          
@@ -191,7 +192,7 @@
 
 <script>
 
-     import Autocomplete from 'vuejs-auto-complete'
+     import Autocomplete from 'vuejs-auto-complete';
     export default {
        
         components: {
@@ -240,7 +241,7 @@
                         this.$loading(false);
                         this.comments = response.data.commentlist;
                         
-                        // this.profilelist = response.data.profilelist;
+                       // this.profilelist = response.data.profilelist;
                         this.norecord = this.comments.data.length;                   
                         if(this.norecord != 0) {
                             this.norecord_msg = false;
@@ -342,13 +343,13 @@
                 // },
                 deleteComment(id) {
                         this.$swal({
-                            title: "確認",
+                            // title: "確認",
                             text: "口コミを削除してよろしいでしょうか。",
                             type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#dc3545",
+                            confirmButtonColor: "#eea025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
                             confirmButtonText: "はい",
@@ -387,7 +388,7 @@
                                         width: 350,
                                         height: 200,
                                         confirmButtonText: "閉じる",
-                                        confirmButtonColor: "#dc3545",
+                                        confirmButtonColor: "#31cd38",
                                         allowOutsideClick: false,
                                     });
 
@@ -400,13 +401,13 @@
                     },
                     commentConfirm(id) {
                         this.$swal({
-                            title: "確認",
-                            text: "口コミを投稿してよろしいでしょうか。",
-                            type: "info",
+                            // title: "確認",
+                            text: "口コミを承認してよろしいでしょうか。",
+                            type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#6cb2eb",
+                            confirmButtonColor: "#eea025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
                             confirmButtonText: "はい",
@@ -427,13 +428,13 @@
                                     this.$loading(false);
                                     this.comments = response.data.comments;
                                     this.$swal({
-                                            title: "確認済",
-                                            text: "口コミが投稿されました。",
+                                            // title: "確認済",
+                                            text: "口コミを承認しました。",
                                             type: "success",
                                             width: 350,
                                             height: 200,
                                             confirmButtonText: "閉じる",
-                                            confirmButtonColor: "#6cb2eb",
+                                            confirmButtonColor: "#31cd38",
                                             allowOutsideClick: false,
                                         })
                                         .catch(() => {

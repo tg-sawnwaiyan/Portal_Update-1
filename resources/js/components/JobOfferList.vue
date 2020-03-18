@@ -415,13 +415,13 @@
                     },
                 deleteJob(id) {
                         this.$swal({
-                            title: "確認",
+                            // title: "確認",
                             text: "求人を削除してよろしいでしょうか。",
                             type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#dc3545",
+                            confirmButtonColor: "#eea025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
                             confirmButtonText: "はい",
@@ -443,12 +443,12 @@
                                         this.norecord_msg = true;
                                     }
                                     this.$swal({
-                                        text: "求人を削除しました",
+                                        text: "求人を削除しました。",
                                         type: "success",
                                         width: 350,
                                         height: 200,
                                         confirmButtonText: "閉じる",
-                                        confirmButtonColor: "#dc3545",
+                                        confirmButtonColor: "#31cd38",
                                         allowOutsideClick: false,
                                     });
                                 })
