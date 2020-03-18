@@ -106,7 +106,7 @@
                 deleteCategory(id) {
                         this.$swal({
                             title: "確認",
-                            text: "ニュースカテゴリーを削除してよろしいでしょうか",
+                            text: "ニュースカテゴリーを削除してよろしいでしょうか。",
                             type: "warning",
                             width: 380,
                             height: 200,

@@ -871,7 +871,7 @@ import Autocomplete from 'vuejs-auto-complete'
                     } else {
                         this.$swal({
                             title: "確認",
-                            text: "求人を作成してよろしいでしょうか",
+                            text: "求人を作成してよろしいでしょうか。",
                             type: "info",
                             width: 350,
                             height: 200,
@@ -1068,7 +1068,7 @@ import Autocomplete from 'vuejs-auto-complete'
                 updateJob() {
                         this.$swal({
                         title: "確認",
-                        text: "求人を更新してよろしいでしょうか",
+                        text: "求人を更新してよろしいでしょうか。",
                         type: "info",
                         width: 350,
                         height: 200,

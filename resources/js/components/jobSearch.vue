@@ -534,6 +534,8 @@ export default {
     },
     search()
     {
+     
+    
         this.count = true;
       
         if(this.townshipID == null || this.townshipID == '')

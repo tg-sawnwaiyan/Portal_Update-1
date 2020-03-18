@@ -138,7 +138,7 @@ export default {
                     // console.log('this.$route.params.id');
                     this.$swal({
                             title: "確認",
-                            text: "特長を投稿してよろしいでしょうか",
+                            text: "特長を投稿してよろしいでしょうか。",
                             type: "info",
                             width: 350,
                             height: 200,
@@ -201,7 +201,7 @@ export default {
             updateFeature() {
                  this.$swal({
                             title: "確認",
-                            text: "特長を更新してよろしいでしょうか",
+                            text: "特長を更新してよろしいでしょうか。",
                             type: "info",
                             width: 350,
                             height: 200,

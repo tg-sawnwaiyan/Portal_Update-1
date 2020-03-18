@@ -129,7 +129,7 @@
                 deleteAds(id) {
                         this.$swal({
                             title: "確認",
-                            text: "広告を削除してよろしいでしょうか",
+                            text: "広告を削除してよろしいでしょうか。",
                             type: "warning",
                             width: 350,
                             height: 200,

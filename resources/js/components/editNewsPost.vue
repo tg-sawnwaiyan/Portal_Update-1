@@ -282,7 +282,7 @@ import {quillEditor} from 'vue-quill-editor'
                     updatepost() {
                         this.$swal({
                             title:"確認",
-                            text: "ニュースを更新してよろしいでしょうか",
+                            text: "ニュースを更新してよろしいでしょうか。",
                             type: "info",
                             width: 350,
                             height: 200,
@@ -331,7 +331,7 @@ import {quillEditor} from 'vue-quill-editor'
                     add() {
                             this.$swal({
                             title: "確認",
-                            text: "ニュースを投稿してよろしいでしょうか",
+                            text: "ニュースを投稿してよろしいでしょうか。",
                             type: "info",
                             width: 350,
                             height: 200,
