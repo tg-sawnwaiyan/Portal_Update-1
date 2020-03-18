@@ -318,13 +318,13 @@ export default {
         
             this.$swal({
                 allowOutsideClick: false,
-                title: "確認",
+                // title: "確認",
                 text: this.activate_text,
                 type: "warning",
                 width: 350,
                 height: 200,
                 showCancelButton: true,
-                confirmButtonColor: "#dc3545",
+                confirmButtonColor: "#eea025",
                 cancelButtonColor: "#b1abab",
                 cancelButtonTextColor: "#000",
                 confirmButtonText: "はい",
