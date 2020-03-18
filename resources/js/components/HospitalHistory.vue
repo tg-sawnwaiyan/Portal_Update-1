@@ -314,7 +314,7 @@
                                     this.hos_profiles = response.data;
                                     if(response.data.length<this.his_hos && response.data.length > 0) { 
                                         var hos_id = '';
-                                        this.message = "現在本サイトに掲載されていない病院については最近見た施設リストから削除しました。";
+                                        // this.message = "現在本サイトに掲載されていない病院については最近見た施設リストから削除しました。";
                                         for(var i= 0;i<this.hos_profiles.length;i++) {
                                             if(i== this.hos_profiles.length-1) {
                                                 hos_id += this.hos_profiles[i]['id'];
@@ -330,10 +330,9 @@
                                     } else if(response.data.length == 0){
                                         this.his_hos = 0;
                                         this.$swal({
-                                            // title: "確認",
-                                            text: "お気に入りの病院は既に本サイトに掲載されておりませんので、最近見た施設リストから削除しました。",
+                                            text: "すでに掲載されていない施設をリストから削除しました。",
                                             type: 'info',
-                                            width: 350,
+                                            width: 400,
                                             height: 200,
                                             // showCancelButton: true,
                                             showConfirmButton: true,
@@ -360,16 +359,15 @@
                     deleteLocalSto: function(id) {
 
                             this.$swal({
-                            title: "確認",
-                            text: "削除よろしいでしょうか",
+                            text: "最近見た施設から削除してよろしいでしょうか 。",
                             type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#dc3545",
+                            confirmButtonColor: "#EEA025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
-                            confirmButtonText: "削除",
+                            confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn",
@@ -393,15 +391,7 @@
                                 var new_local = l_sto_arr.toString();
                                 localStorage.setItem('hospital_history', new_local);
                                 this.local_sto = localStorage.getItem("hospital_history");
-                                // this.$swal({
-                                // title: "削除された",
-                                // text: "ファイルが削除されました。",
-                                // type: "success",
-                                // width: 350,
-                                // height: 200,
-                                // confirmButtonText: "はい",
-                                // confirmButtonColor: "#dc3545"
-                                // });
+                                
                                 if (this.local_sto) {
                                     this.getAllCustomer(this.local_sto);
                                 } else {

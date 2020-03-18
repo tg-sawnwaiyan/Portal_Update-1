@@ -324,16 +324,15 @@
                     deleteLocalSto: function(id) {
 
                             this.$swal({
-                            title: "確認",
-                            text: "削除よろしいでしょうか",
+                            text: "お気に入りから削除してよろしいでしょうか 。",
                             type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#dc3545",
+                            confirmButtonColor: "#EEA025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
-                            confirmButtonText: "削除",
+                            confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn",
@@ -357,15 +356,7 @@
                                 var new_local = l_sto_arr.toString();
                                 localStorage.setItem('hospital_fav', new_local);
                                 this.local_sto = localStorage.getItem("hospital_fav");
-                                // this.$swal({
-                                // title: "削除された",
-                                // text: "ファイルが削除されました。",
-                                // type: "success",
-                                // width: 350,
-                                // height: 200,
-                                // confirmButtonText: "はい",
-                                // confirmButtonColor: "#dc3545"
-                                // });
+                                
                                 if (this.local_sto) {
                                     this.getAllFavourite(this.local_sto);
                                 } else {
@@ -397,9 +388,19 @@
                             
                                 if(this.fav_hospital.length < this.fav_hos && this.fav_hospital.length > 0)
                                 {
-                                  var hos_id = '';
-                                  this.message = "現在本サイトに掲載されていない病院についてはお気に入りリストから削除しました。"
-                                   for(var i= 0;i<this.fav_hospital.length;i++)
+                                    this.$swal({
+                                    position: 'top-end',
+                                    type: 'info',
+                                    text: 'すでに掲載されていない施設をリストから削除しました。',
+                                    showConfirmButton: true,
+                                    confirmButtonText: "閉じる",
+                                    width: 400,
+                                    height: 200,
+                                    allowOutsideClick: false,
+                                    });
+                                    var hos_id = '';
+                                //   this.message = "現在本サイトに掲載されていない病院についてはお気に入りリストから削除しました。"
+                                    for(var i= 0;i<this.fav_hospital.length;i++)
                                      {
                                          if(i== this.fav_hospital.length-1)
                                          {
@@ -419,11 +420,10 @@
                                     this.$swal({
                                     position: 'top-end',
                                     type: 'info',
-                                    // title: '作成されました',
-                                    text: 'お気に入りの病院は既に本サイトに掲載されておりませんので、お気に入りリストから削除しました。',
+                                    text: 'すでに掲載されていない施設をリストから削除しました。',
                                     showConfirmButton: true,
                                     confirmButtonText: "閉じる",
-                                    width: 250,
+                                    width: 400,
                                     height: 200,
                                     allowOutsideClick: false,
                                     }).then(response => {
