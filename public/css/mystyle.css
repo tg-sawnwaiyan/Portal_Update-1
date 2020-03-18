@@ -17,10 +17,17 @@ dd {
 }
 
 body {
-    font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+    font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif !important;
     /* background: #dfdfde; */
     background: #fff;
     scrollbar-width: thin;
+}
+
+pre,
+code,
+kbd,
+samp {
+    font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif !important;
 }
 
 body.all-bg {
@@ -249,7 +256,7 @@ scrollbar-width: thin;*/
 }
 
 .stepper-success-form {
-    width: 40%;
+    /* width: 40%; */
     margin: 0 auto;
     margin-top: 10px;
     display: block;
@@ -411,6 +418,15 @@ ul.menu_list li i.fa-phone-alt {
     left: 0px;
     background-color: #2980b9;
     border-radius: 2px;
+}
+
+input::-ms-clear {
+    display: none;
+}
+
+.disablefun {
+    cursor: 'not-allowed'!important;
+    pointer-events: 'none'!important;
 }
 
 
@@ -1604,7 +1620,7 @@ box-shadow: 0px 0px 5px rgb(212, 201, 201); */
 }
 
 .freeword-responsive {
-    margin: 20px 0px;
+    margin: 0px 0px 20px 0px;
 }
 
 .freeword-responsive h3 {
@@ -5393,10 +5409,16 @@ margin-right: 2% !important;
     margin-bottom: 10px;
 }
 
+
+/*comment*/
+
 .cmt-1 {
     margin-bottom: 10px;
     left: 8px;
 }
+
+
+/*comment*/
 
 .secondary-bg-color {
     background-color: #0cc72c !important;
@@ -5440,6 +5462,19 @@ margin-right: 2% !important;
     background: #fff;
     box-shadow: none !important;
     min-width: 60px;
+}
+
+.confirm-disable-orangebtn {
+    cursor: not-allowed!important;
+    color: #bbb;
+    border: 1px solid #bbb !important;
+    background: #fff;
+    box-shadow: none !important;
+    min-width: 60px;
+}
+
+.confirm-disable-orangebtn:hover {
+    color: #bbb;
 }
 
 .border-style {
@@ -6959,12 +6994,19 @@ display: block !important;
     padding: 17px;
 }
 
+
+/*comment*/
+
 .cmt {
     text-align: right;
     margin-right: 4px;
     font-size: 12px;
     color: #777;
+    margin-top: -20px;
 }
+
+
+/*comment*/
 
 button.confirmed {
     opacity: 0.5;
@@ -10344,6 +10386,14 @@ padding: 0;
 }
 
 @media only screen and (max-width: 990px) {
+    /*comment*/
+    .cmt {
+        text-align: left;
+        font-size: 12px;
+        color: #777;
+        margin-top: 3px;
+    }
+    /*comment*/
     .form-wrap .mailbox {
         width: 100%;
         margin-left: 0px;
@@ -10997,6 +11047,14 @@ width: 18rem;
 
 @media screen and (max-width: 1024px) and (min-width: 768px) {
     /*fav nursing*/
+    /*comment*/
+    .cmt {
+        font-size: 12px;
+        color: #777;
+        text-align: right;
+        margin-top: -21px;
+    }
+    /*comment*/
     .lbl-size {
         width: 355px;
     }
@@ -11027,6 +11085,9 @@ width: 18rem;
 }
 
 @media only screen and (max-width:768px) {
+    .m-t-768 {
+        margin-top: 0px;
+    }
     .successful-resetpwd {
         width: 100% !important;
         margin-top: 34px;

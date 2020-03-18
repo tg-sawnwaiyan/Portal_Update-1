@@ -48,7 +48,8 @@ class CustomerController extends Controller
     public function hosaccount($id) {
         HospitalProfile::where(['email'=>NULL,'townships_id'=>0])->where('customer_id',$id)->delete();  
         $hoscustomer = HospitalProfile::where('customer_id',$id)->select('id','logo','name','phone','email','activate')->get();
-        $status = HospitalProfile::join('customers','customers.id','=','hospital_profiles.customer_id')->where(['customers.recordstatus'=>1,'hospital_profiles.customer_id'=>$id])->count();
+        $status = Customer::where(['recordstatus'=>1,'id'=>$id])->count();
+        // $status = HospitalProfile::join('customers','customers.id','=','hospital_profiles.customer_id')->where(['customers.recordstatus'=>1,'hospital_profiles.customer_id'=>$id])->count();
         return response()->json(array("hoscustomer"=>$hoscustomer,"status"=>$status));
     }
 

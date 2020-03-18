@@ -15,35 +15,21 @@
                     <div class="row mb-4">
                         <div class="col-md-6">
                       
-                            <autocomplete id="cusname"  placeholder="事業者名を検索"  input-class="form-control" :source=customerList :results-display="formattedDisplay" @clear="clearcustomer()"  @selected="getselected($event)">
+                            <autocomplete id="cusname"  placeholder="事業者名で検索" input-class="form-control" :source=customerList :results-display="formattedDisplay" @clear="clearcustomer()"  @selected="getselected($event)">
                             </autocomplete>
                            
                         </div> 
-                         <div class="col-md-6 choose-item">
+                        <div class="col-md-6 choose-item">
                               <select  v-model="status" id="selectBox" class="form-control select_box" @change="searchCustomer()">
                                 <option selected="selected" value>状態を選択してください。</option>
                                 <option value="1"> 有効 </option>                            
                                 <option value="0"> 無効 </option>   
                                 <option value="2"> 登録承認審査中 </option>                              
-                            </select>
-                              
-                        </div>                 
+                            </select>                              
+                        </div>                         
                         
                     </div>
-                    <!-- <div class="row mb-4">
-                        <div class="col-md-6">
-                             <input type="text" class="form-control" placeholder="事業者名で検索" id="search-word" v-model="searchkeyword" @keyup="searchCustomer()" />
-                        </div>
-                        <div class="col-md-6 choose-item">
-                            <select  v-model="status" id="selectBox" class="form-control select_box" @change="searchCustomer()">
-                                <option selected="selected" value>状態を選択してください。</option>
-                                <option value="1"> 有効 </option>                            
-                                <option value="0"> 無効 </option>   
-                                <option value="2"> 登録承認審査中 </option>                              
-                            </select>
-                        </div>
-                    </div> -->
-                    
+                                        
                     <hr/>
                     <h5 class="header">{{title}}</h5>
                     <!-- <div v-if="nosearch_msg" class="container-fuid no_search_data"> -->
@@ -113,8 +99,9 @@
                                                     <!-- <span class="btn confirm-borderbtn" style="border-color: #ccc!important; color: #ccc!important;cursor:not-allowed;" :id="'confirm-btn'+customer.id" v-else>登録承認済</span>     -->
                                                     <span v-else class="">                                                  
                                             <!-- <button class="btn confirm-orangebtn">プロフィール設定</button> -->
-                                            <router-link :to="{ path:'/accountlist/'+ type +'/'+ customer.id}" v-if="customer.status == 1" class="btn confirm-orangebtn mr-2 mb-2"><i class="fa fa-list"></i> 施設一覧</router-link>
-                                             <router-link :to="{ path:'/profiledit/'+ type +'/'+ customer.id}" v-if="customer.status == 1" class="btn confirm-orangebtn mb-2"><i class="fa fa-edit"></i> プロフィール設定</router-link>
+                                            <span v-if="customer.status == 1 && customer.recordstatus == 0" class="btn confirm-disable-orangebtn mr-2 mb-2"><i class="fa fa-list"></i> 施設一覧</span>
+                                            <router-link :to="{ path:'/accountlist/'+ type +'/'+ customer.id}" v-if="customer.status == 1 && customer.recordstatus == 1" class="btn confirm-orangebtn mr-2 mb-2"><i class="fa fa-list"></i> 施設一覧</router-link>
+                                            <router-link :to="{ path:'/profiledit/'+ type +'/'+ customer.id}" v-if="customer.status == 1" class="btn confirm-orangebtn mb-2"><i class="fa fa-edit"></i> プロフィール設定</router-link>
                                             <p class="mt-2" style="color: #81ad3b;font-weight: bold;"><i class="fa fa-check-circle" aria-hidden="true"></i>&nbsp;この事業者は登録承認済です。</p>
                                                     </span>
                                                     
@@ -288,7 +275,7 @@
                     }
                     else{
                         // var textval = '承認しない場合事業者情報が削除されます。';
-                        var textval = '本当に承認しなくてよろしいでしょうか<br/>承認しない場合事業者情報が削除されます';
+                        var textval = '本当に承認しなくてよろしいでしょうか。<br/>承認しない場合事業者情報が削除されます。';
                     }
                     
                         this.$swal({
@@ -340,7 +327,7 @@
                     comfirm(id) {
                         this.$swal({
                             title: "確認",
-                            text: "本当に承認してよろしいでしょうか",
+                            text: "本当に承認してよろしいでしょうか。",
                             type: "warning",
                             width: 350,
                             height: 200,

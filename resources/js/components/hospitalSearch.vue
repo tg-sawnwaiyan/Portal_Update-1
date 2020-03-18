@@ -37,10 +37,10 @@
             <div class="freeword-responsive">
                 <h3 class="map-resicon">
                   <div class="map-text-wrapper">
-                    <div>
-                      <!-- <img src="/images/map-responsive1.png" alt="" class="img-responsive"> -->
+                    <!-- <div>
+                      <img src="/images/map-responsive1.png" alt="" class="img-responsive"> 
                       <i class="fa icon map-fa-icon map-fa-icon-hospital"></i>
-                    </div>
+                    </div> -->
                     <div>
                       <p class="text-left hospital-map-header"> &nbsp;赤ちゃんからおとなまでみんなで通<br class="pc-768"/>える街の名医が見つかります。 </p>
                     </div>
@@ -401,11 +401,6 @@
               </nav>
             </div>
           </div>
-
-
-
-
-
             <span v-if="norecord_msg">
                     <div class="container-fuid m-t-20">
                         <p class="nosearch-icon">
@@ -461,7 +456,7 @@ import bulcomponent from './bulcomponent.vue'
         toggleCheck: true,
         toggleCheck_1: false,
         currentPage: 0,
-        size: 1,
+        size: 20,
         pageRange: 5,
         items: [],
         show_paginate: false,
@@ -904,26 +899,77 @@ import bulcomponent from './bulcomponent.vue'
         }
     },
     first() {
-      if(this.isActive == false){
-        this.currentPage = 0;
+       this.currentPage = 0;
+       const page = Math.ceil(this.hos_data.length / this.size);
+       const currentPage = this.currentPage + 1; 
+       if(currentPage == 1){
+        let el1 = document.querySelector('.el1');
+        let el2 = document.querySelector('.el2');
+        el1.classList.add('disabled');
+        el2.classList.remove('disabled');
       }
-      this.isActive = true;
 
     },
     last() {
-      if(this.isActive == true){
-        this.currentPage = this.pages - 1;
+      this.currentPage = this.pages - 1;
+      const page = Math.ceil(this.hos_data.length / this.size);
+      const currentPage = this.currentPage + 1; 
+       if(currentPage == page){
+        let el1 = document.querySelector('.el1');
+        let el2 = document.querySelector('.el2');
+        el1.classList.remove('disabled');
+        el2.classList.add('disabled');
       }
-      this.isActive = false;
     },
     prev() {
       if(0<this.currentPage) {
         this.currentPage--;
       }
+       const page = Math.ceil(this.hos_data.length / this.size);
+       const currentPage = this.currentPage + 1; 
+       if(currentPage > 1 && currentPage < page){
+        let el1 = document.querySelector('.el1');
+        let el2 = document.querySelector('.el2');
+        el1.classList.remove('disabled');
+        el2.classList.remove('disabled');
+      }
+      else if(currentPage == page){
+        let el1 = document.querySelector('.el1');
+        let el2 = document.querySelector('.el2');
+        el1.classList.remove('disabled');
+        el2.classList.add('disabled');
+      }
+      else if(currentPage == 1){
+        let el1 = document.querySelector('.el1');
+        let el2 = document.querySelector('.el2');
+        el1.classList.add('disabled');
+        el2.classList.remove('disabled');
+      }
+
     },
     next() {
       if(this.currentPage < this.pages - 1) {
         this.currentPage++;
+      }
+      const page = Math.ceil(this.hos_data.length / this.size);
+       const currentPage = this.currentPage + 1; 
+       if(currentPage > 1 && currentPage < page){
+        let el1 = document.querySelector('.el1');
+        let el2 = document.querySelector('.el2');
+        el1.classList.remove('disabled');
+        el2.classList.remove('disabled');
+      }
+       else if(currentPage == page){
+        let el1 = document.querySelector('.el1');
+        let el2 = document.querySelector('.el2');
+        el1.classList.remove('disabled');
+        el2.classList.add('disabled');
+      }
+       else if(currentPage == 1){
+        let el1 = document.querySelector('.el1');
+        let el2 = document.querySelector('.el2');
+        el1.classList.add('disabled');
+        el2.classList.remove('disabled');
       }
     },
     imgUrlAlt(event) {
@@ -931,28 +977,30 @@ import bulcomponent from './bulcomponent.vue'
     },
     pageSelect(index) {
         this.currentPage = index - 1;
+        const page = Math.ceil(this.hos_data.length / this.size);
+        const currentPage = this.currentPage + 1; 
+        if(currentPage > 1 && currentPage < page){
+          let el1 = document.querySelector('.el1');
+          let el2 = document.querySelector('.el2');
+          el1.classList.remove('disabled');
+          el2.classList.remove('disabled');
+        }
+        else if(currentPage == page){
+          let el1 = document.querySelector('.el1');
+          let el2 = document.querySelector('.el2');
+          el1.classList.remove('disabled');
+          el2.classList.add('disabled');
+        }
+        else if(currentPage == 1){
+          let el1 = document.querySelector('.el1');
+          let el2 = document.querySelector('.el2');
+          el1.classList.add('disabled');
+          el2.classList.remove('disabled');
+        }
     }
     },
     computed: {
     pages() {
-
-      const page = Math.ceil(this.hos_data.length / this.size);
-      const currentPage = this.currentPage + 1;
-
-      if(currentPage == 1){
-       let disabled = document.querySelector('.el1');
-       console.log(disabled)
-      }
-      if(currentPage > 1 && currentPage < page){
-        let disabled = document.querySelector('.el1');
-        disabled.classList.remove('disabled');
-      }
-      if(currentPage == page){
-        let disabled = document.querySelector('.el1');
-        console.log(disabled)
-      }
-
-
       return Math.ceil(this.hos_data.length / this.size);
     },
     displayPageRange() {

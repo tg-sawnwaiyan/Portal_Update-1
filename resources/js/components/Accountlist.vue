@@ -75,7 +75,7 @@
                                             </p> -->
                                         </div>
                                         <div class="card-read-more">
-                                            <router-link :to="{ path:'/profile/nursing/'+ nursingprofiles.id}" class="btn edit-borderbtn" style="float:left;">編集</router-link>
+                                            <router-link :to="{ path:'/profile/nursing/'+ nursingprofiles.id}" class="btn edit-borderbtn" style="float:left;">施設情報編集</router-link>
                                             
                                             <span class="btn text-danger delete-borderbtn" @click="profileDelete(nursingprofiles.id)" ><i class="fa fa-trash-o" aria-hidden="true"></i>削除</span>
                                         </div>
@@ -118,7 +118,7 @@
                                             </p> -->
                                         </div>
                                         <div class="card-read-more">
-                                            <router-link :to="{ path:'/profile/hospital/'+ hospitalprofiles.id}" class="btn edit-borderbtn" style="float:left;">編集</router-link>
+                                            <router-link :to="{ path:'/profile/hospital/'+ hospitalprofiles.id}" class="btn edit-borderbtn" style="float:left;">施設情報編集</router-link>
                                                 
                                             <span class="btn text-danger delete-borderbtn" @click="profileDelete(hospitalprofiles.id)" ><i class="fa fa-trash-o" aria-hidden="true"></i>削除</span>
                                         </div>
@@ -286,6 +286,7 @@ export default {
             });
             } else {
                 this.axios.get(`/api/account_hospital/${this.cusid}`).then(response => {
+                    console.log(response)
                     //this.$loading(false);
                     this.hospitalprofile = response.data.hoscustomer;
 

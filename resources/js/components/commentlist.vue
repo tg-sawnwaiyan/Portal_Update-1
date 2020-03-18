@@ -13,26 +13,28 @@
                 <div v-else class="container-fuid">
                     <h4 class="main-color mb-3">口コミ検索</h4>
                     <div class="row mb-4">
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6"> -->
                             <!-- <select  v-model="profileid" class="division form-control"  @change="getComment()">
                                 <option value="0">選択してください。</option>
                                 <option  id="search-item" v-for="pro in profilelist" :key="pro.id" v-bind:value="pro.id">
                                     {{pro.name}}
                                 </option>
                             </select> -->
-                            <label>事業者名</label>
+                            <!-- <label>事業者名</label>
                             <autocomplete id="cusname"  placeholder="事業者名を検索" input-class="form-control" :source=customerList :results-display="formattedDisplay" @clear="cleartext()"  @selected="getSelected($event)">
-                            </autocomplete>
-                        </div>
-                        <div class="col-md-6 choose-item">
-                            <label>施設名</label>
+                            </autocomplete> -->
+                        <!-- </div> -->
+                        <div class="col-md-12 choose-item">
+                             <autocomplete id="cusname"  placeholder="施設名で検索" input-class="form-control" :source=profileList :results-display="formattedDisplay" @clear="cleartext()"  @selected="getProfile($event)">
+                            </autocomplete> 
+                            <!-- <label>施設名</label>
                          
                             <select v-model="selectedValue" class="division form-control" @change="getComment()">
                                 <option value="0">選択してください。</option>
                                 <option v-for="profile in profileList" :key="profile.id" v-bind:value="profile.id">
                                     {{profile.name}}
                                 </option>
-                            </select>
+                            </select> -->
                               
                         </div>
                     </div>
@@ -68,28 +70,33 @@
                                     <strong>メールアドレス:</strong>{{comment.email}} -->
                                     <table class="commentlist_tbl">
                                         <tr>
-                                            <td class="align-top custom_title font-weight-bold">タイトル :</td>
-                                            <td> {{comment.title}}</td>
+                                            <td class="align-top custom_title font-weight-bold">事業者名 </td><td style="width:5px;">:</td>
+                                            <td> {{comment.cus_name}} </td>
+                                        </tr>
+                                         <tr>
+                                            <td class="align-top custom_title font-weight-bold">施設名 </td><td style="width:5px;">:</td>
+                                            <td> {{comment.pro_name}} </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="align-top custom_title font-weight-bold">タイトル </td><td style="width:5px;">:</td>
+                                            <td> {{comment.title}} </td>
+                                        </tr>
+                                        <tr>
+                                            <!-- <td colspan="3" class="align-top custom_title"><span style="text-align:right;color:#777;font-size:0.9em;"><span><i class="fa fa-calendar"></i>&nbsp;{{comment.created_date | moment("YYYY年MM月DD日") }}</span> <span><i class="fa fa-clock"></i>&nbsp;{{comment.created_time}} 投稿</span></span></td> -->
+                                            <!-- <td> {{comment.title}} </td> -->
                                         </tr>
                                         <!-- <tr>
                                             <td class="align-top custom_title">お名前 :</td>
                                             <td> {{comment.name}} </td>
                                         </tr> -->
-                                         <!-- <tr>
-                                            <td class="align-top custom_title font-weight-bold">事業者名 :</td>
-                                            <td> {{comment.cus_name}} </td>
-                                        </tr>
-                                         <tr>
-                                            <td class="align-top custom_title font-weight-bold">施設名 :</td>
-                                            <td> {{comment.pro_name}} </td>
-                                        </tr> -->
+                                         
                                          
                                             <!-- <tr>
                                             <td class="align-top custom_title">メールアドレス: </td>
                                             <td> {{comment.email}} </td>
                                         </tr> -->
                                     </table>
-                                   
+                                                                    
                                 </div>
 
                                 <div class="col-3 text-right">
@@ -98,9 +105,10 @@
                                          詳細 <i :id="'icon' + comment.id" class="fas fa-sort-down animate rotate"></i></button>
                                 </div>
                             </div>
+                            <div class="cmt"><span><i class="fa fa-calendar"></i>&nbsp;{{comment.created_date | moment("YYYY年MM月DD日") }}</span> <span><i class="fa fa-clock"></i>&nbsp;{{comment.created_time}}&nbsp;投稿</span></div>
                              <!--comment-->
-                                <div class="collapse" :id="'changeLink' + comment.id">   
-                                    <div class="cmt"><span><i class="fa fa-calendar"></i>&nbsp;{{comment.created_date | moment("YYYY年MM月DD日") }}投稿</span> <span><i class="fa fa-clock"></i>&nbsp;{{comment.created_time}}</span></div>                               
+                                <div class="collapse" :id="'changeLink' + comment.id" style="margin-top:15px;">   
+                                    <!-- <div class="cmt"><span><i class="fa fa-calendar"></i>&nbsp;{{comment.created_date | moment("YYYY年MM月DD日") }}投稿</span> <span><i class="fa fa-clock"></i>&nbsp;{{comment.created_time}}</span></div>                                -->
                                     <table class="table table-bordered">
                                         <tr>
                                             <td  class="w-50">
@@ -259,14 +267,24 @@
                     });
                 }
 
-                 this.axios.get('/api/job/customerList/'+this.type).then(response=> {
-                    this.customerList = response.data;
-                });
+                    if(this.type == "nursing"){
+                        this.table_name.profile = 'nursing_profiles';
+                    }else {
+                        this.table_name.profile = 'hospital_profiles';
+                    }
+
+                    this.axios.post(`/api/job/profileList/`+ 0,this.table_name).then(response=> {
+                        this.profileList = response.data;
+                    });
+
+                //  this.axios.get('/api/job/customerList/'+this.type).then(response=> {
+                //     this.customerList = response.data;
+                // });
             },
             methods: {
               getComment()
                 {
-
+                  
                     this.$loading(true);
                     if(this.$route.path == "/nuscommentlist"){ 
                         this.axios.get('/api/comments/getCustomComment/3/'+this.selectedValue).then(response => {
@@ -296,29 +314,32 @@
                          });
                     }
                 },
-                cleartext(){
-                
-                    this.selectedValue = 0;
-                    this.profileList = [];
+                getProfile($event)
+                {
+                    this.selectedValue = $event.value;
                     this.getComment();
-
                 },
-                getSelected(event){
-                  
-                    if(this.type == "nursing"){
-                        this.table_name.profile = 'nursing_profiles';
-                    }else {
-                        this.table_name.profile = 'hospital_profiles';
-                    }
-                     alert(event.value);
-
-                    this.cusid = event.value;
-                    this.axios.post(`/api/job/profileList/${this.cusid}`,this.table_name).then(response=> {
-                    this.profileList = response.data;
+                cleartext(){
                     this.selectedValue = 0;
-                   
-                });
+                    this.getComment();
                 },
+    
+                // getSelected(event){
+                  
+                //     if(this.type == "nursing"){
+                //         this.table_name.profile = 'nursing_profiles';
+                //     }else {
+                //         this.table_name.profile = 'hospital_profiles';
+                //     }
+                   
+
+                //     this.cusid = event.value;
+                //     this.axios.post(`/api/job/profileList/${this.cusid}`,this.table_name).then(response=> {
+                //     this.profileList = response.data;
+                //     this.selectedValue = 0;
+                   
+                // });
+                // },
                 deleteComment(id) {
                         this.$swal({
                             title: "確認",
@@ -343,7 +364,7 @@
                                   this.type = "hospital"
                               }
                             this.axios
-                                .delete(`/api/comments/delete/${id}`+'/'+this.type)
+                                .delete(`/api/comments/delete/${id}`+'/'+this.type+"/"+this.selectedValue)
                                 .then(response => {
                                     this.comments = response.data;
                                    this.norecord = this.comments.data.length;
@@ -361,7 +382,7 @@
                                     // this.categories.splice(i, 1);
                                     this.$swal({
                                         // title: "削除済",
-                                        text: "口コミを削除しました",
+                                        text: "口コミを削除しました。",
                                         type: "success",
                                         width: 350,
                                         height: 200,
@@ -401,13 +422,13 @@
                               else{
                                   this.type = "hospital"
                               }
-                            this.axios.get(`/api/comments/confirm/${id}`+'/'+this.type)
+                            this.axios.get(`/api/comments/confirm/${id}`+'/'+this.type+'/'+this.selectedValue)
                                 .then(response => {
                                     this.$loading(false);
                                     this.comments = response.data.comments;
                                     this.$swal({
                                             title: "確認済",
-                                            text: "口コミを投稿しました",
+                                            text: "口コミが投稿されました。",
                                             type: "success",
                                             width: 350,
                                             height: 200,

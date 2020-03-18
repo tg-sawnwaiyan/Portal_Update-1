@@ -119,6 +119,7 @@ class JobController extends Controller
 
     public function store(Request $request)
     {
+
         // $request->validate([
         //     'title' => 'required',
         //     'description' =>'required',
@@ -239,7 +240,7 @@ class JobController extends Controller
         $job->location = $request->input('location');
         $job->nearest_station = $request->input('nearest_station');
         $job->employment_status = $request->employmentstatus;
-        $job->salary_type = $request->input('salary_type');
+        // $job->salary_type = $request->input('salary_type');
         $job->salary = $request->input('salary');
         $job->salary_remark = $request->input('salary_remark');
         $job->allowances = $request->input('allowances');
@@ -645,9 +646,18 @@ class JobController extends Controller
         return $cus_list;
    }
    public function getProfileList($cId, Request $request){
+       
         $profile = $request->profile;
-        $query = "SELECT $profile.id, $profile.name FROM $profile
-                  WHERE $profile.customer_id = $cId ";
+        if($cId == 0)
+        {
+            $query = "SELECT $profile.id, $profile.name FROM $profile";
+ 
+        }
+        else{
+            $query = "SELECT $profile.id, $profile.name FROM $profile
+            WHERE $profile.customer_id = $cId ";
+        }
+
         $profile_list = DB::select($query);
         return $profile_list;
 }

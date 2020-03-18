@@ -81,10 +81,8 @@ class NursingMailController extends Controller
                     \Mail::to($favourite_mail[$i])->send(new nursingMailing($request));
                 } 
               
-            } 
-        
+            }     
      
-        // \Mail::to('hero2012.zk@gmail.com')->send(new nursingMailing($request));
     
     }      
 

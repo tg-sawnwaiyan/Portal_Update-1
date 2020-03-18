@@ -106,6 +106,12 @@ class CommentController extends Controller
            
         
         // }
+        foreach ($commentList as $com) {
+            $splitTimeStamp = explode(" ",$com->created_at);
+            $com->created_date = $splitTimeStamp[0];
+            $com->created_time = $splitTimeStamp[1];
+        }
+        
         return $commentList;
     }
 
@@ -215,65 +221,96 @@ class CommentController extends Controller
     }
 
 
-    public function destroy($id,$type)
+    public function destroy($id,$type,$pro_id)
     {
         //
 
         $comment = Comment::find($id);
         $comment->delete();
-        if($type == 'nursing')
+        if($type == "nursing")
+        {
+            $p = 'nursing_profiles';
+        }
+        else{
+            $p = 'hospital_profiles';
+        }
+        if($pro_id == 0)
         {
             $commentList = DB::table('comments')
-            ->join('nursing_profiles','comments.profile_id','=','nursing_profiles.id')
-            ->join('customers','customers.id','=','nursing_profiles.customer_id')
-            ->select('comments.*','nursing_profiles.name as pro_name','customers.name as cus_name')
-            ->where('nursing_profiles.recordstatus', 1)
-            ->where('comments.type','nursing')
-            ->orderBy('comments.id','DESC')
-            ->paginate(12);
+                        ->join("$p",'comments.profile_id','=',"$p.id")
+                        ->join('customers','customers.id','=',"$p.customer_id")
+                        ->select('comments.*',"$p.name as pro_name",'customers.name as cus_name')
+                        ->where("$p.recordstatus", 1)
+                        ->where('comments.type',$type)
+                        ->orderBy('comments.id','DESC')
+                        ->paginate(12);
         }
         else{
             $commentList = DB::table('comments')
-            ->join('hospital_profiles','comments.profile_id','=','hospital_profiles.id')
-            ->join('customers','customers.id','=','hospital_profiles.customer_id')
-            ->select('comments.*','hospital_profiles.name as pro_name','customers.name as cus_name')
-            ->where('hospital_profiles.recordstatus', 1)
-            ->where('comments.type','hospital')
-            ->orderBy('comments.id','DESC')
-            ->paginate(12);
+                        ->join("$p",'comments.profile_id','=',"$p.id")
+                        ->join('customers','customers.id','=',"$p.customer_id")
+                        ->select('comments.*',"$p.name as pro_name",'customers.name as cus_name')
+                        ->where("$p.recordstatus", 1)
+                        ->where('comments.type',$type)
+                        ->where("$p.id",'=',$pro_id)
+                        ->orderBy('comments.id','DESC')
+                        ->paginate(12);
         }
+
+        foreach ($commentList as $com) {
+            $splitTimeStamp = explode(" ",$com->created_at);
+            $com->created_date = $splitTimeStamp[0];
+            $com->created_time = $splitTimeStamp[1];
+        }
+        
+
+       
         return response()->json($commentList);
     }
     
-    public function confirm($id,$type)
+    public function confirm($id,$type,$pro_id)
      {
             $comment =Comment::find($id);
             $comment->status =1;
             $comment->save();
-
-           
             if($type == 'nursing')
             {
+                $p = 'nursing_profiles';
+               
+            }
+            else{
+                $p = 'hospital_profiles';
+            }
+
+            if($pro_id == 0)
+            {
                 $commentList = DB::table('comments')
-                ->join('nursing_profiles','comments.profile_id','=','nursing_profiles.id')
-                ->join('customers','customers.id','=','nursing_profiles.customer_id')
-                ->select('comments.*','nursing_profiles.name as pro_name','customers.name as cus_name')
-                ->where('nursing_profiles.recordstatus', 1)
-                ->where('comments.type','nursing')
-                ->orderBy('comments.id','DESC')
-                ->paginate(12);
+                                ->join("$p","comments.profile_id",'=',"$p.id")
+                                ->join("customers","customers.id","=","$p.customer_id")
+                                ->select('comments.*',"$p.name as pro_name",'customers.name as cus_name')
+                                ->where("$p.recordstatus", 1)
+                                ->where('comments.type',$type)
+                                ->orderBy('comments.id','DESC')
+                                ->paginate(12);
             }
             else{
                 $commentList = DB::table('comments')
-                ->join('hospital_profiles','comments.profile_id','=','hospital_profiles.id')
-                ->join('customers','customers.id','=','hospital_profiles.customer_id')
-                ->select('comments.*','hospital_profiles.name as pro_name','customers.name as cus_name')
-                ->where('hospital_profiles.recordstatus', 1)
-                ->where('comments.type','hospital')
-                ->orderBy('comments.id','DESC')
-                ->paginate(12);
+                                ->join("$p","comments.profile_id",'=',"$p.id")
+                                ->join("customers","customers.id","=","$p.customer_id")
+                                ->select('comments.*',"$p.name as pro_name",'customers.name as cus_name')
+                                ->where("$p.recordstatus", 1)
+                                ->where('comments.type',$type)
+                                ->where("$p.id","=",$pro_id)
+                                ->orderBy('comments.id','DESC')
+                                ->paginate(12);
             }
-    
+
+            foreach ($commentList as $com) {
+                $splitTimeStamp = explode(" ",$com->created_at);
+                $com->created_date = $splitTimeStamp[0];
+                $com->created_time = $splitTimeStamp[1];
+            }
+
   
             return response()->json(array("comments"=> $commentList, "success"=>"success", "comment"=>"Comment successfully confirmed"));
 
@@ -377,7 +414,11 @@ class CommentController extends Controller
         //                     ->where('customers.name', 'LIKE', "%{$search_word}%")
         //                     ->orderBy('comments.id','DESC')
         //                     ->paginate(1);
-
+        foreach ($commentList as $com) {
+            $splitTimeStamp = explode(" ",$com->created_at);
+            $com->created_date = $splitTimeStamp[0];
+            $com->created_time = $splitTimeStamp[1];
+        }
        
         return response()->json($commentList);
 

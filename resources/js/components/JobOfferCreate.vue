@@ -133,7 +133,7 @@
                                 </label>
                                
                                 <textarea name="skills" class="form-control" cols="50" rows="5" v-model="joboffer.skills" placeholder="経験・スキルを入力してください。"></textarea>
-                            
+                                <span v-if="errors.skills" class="error">{{errors.skills}}</span>
                              
                             </div>
 
@@ -380,7 +380,7 @@
                                     <span class="error sp2">必須</span>
                                 </label>
                                 <div class="row m-0">
-                                  <div class="col-sm-4 pl-0 col-12 joboffer-salary-type">
+                                  <!-- <div class="col-sm-4 pl-0 col-12 joboffer-salary-type">
                                     <select v-model="joboffer.salary_type" class="form-control">
                                         <option v-bind:value='-1'>選択 </option>
                                         <option value='時給'>時給</option>
@@ -388,14 +388,19 @@
                                         <option value="月給">月給</option>
                                     </select>
                                       <p v-if="errors.salary_type" class="error">{{errors.salary_type}}</p>
-                                    </div>
+                                    </div> -->
                                        <!-- <span v-if="errors.includes('salary_type')" class="error">題名は必須です。(salary_type)</span> -->
-                                    <div class="col-sm-4 col-12 joboffer-salary">
+                                    <!-- <div class="col-sm-4 col-12 joboffer-salary">
                                       <input type="text" class="form-control" v-model="joboffer.salary" name="salary" placeholder="給与を入力してください。" v-on:keydown="isNumber" />
+                                      <p v-if="errors.salary" class="error">{{errors.salary}}</p>
+                                    </div> -->
+
+                                    <div class="ml-0 joboffer-salary col-6" style="padding-left:0px;">
+                                      <input type="text" class="form-control" v-model="joboffer.salary" name="salary" placeholder="給与を入力してください。"/>
                                       <p v-if="errors.salary" class="error">{{errors.salary}}</p>
                                     </div>
                                     <!-- <span v-if="errors.includes('salary')" class="error">題名は必須です。(salary)</span> -->
-
+                                    <span class="pt-1 pl-1 col-6">例：時給1000～2000円</span>
                                 </div>
                             </div>
 
@@ -489,7 +494,8 @@ import Autocomplete from 'vuejs-auto-complete'
                   occupation_id: '',
                   customer_id:'',
                   profile_id:'',
-                  checkallerror:''
+                  checkallerror:'',
+                  skills:'',
                 },
                 OccupationList: {
                     id: "",
@@ -704,7 +710,7 @@ import Autocomplete from 'vuejs-auto-complete'
                         else{
                           this.errors.customer_id = "";
                         }
-                console.log(this.selectedValue);
+                        console.log(this.selectedValue);
                         if((this.selectedValue == -1 && this.profileName == '') || ( this.selectedValue == 0) )
                         {
                           this.errors.profile_id = "施設名は必須です。";
@@ -727,6 +733,7 @@ import Autocomplete from 'vuejs-auto-complete'
                         } else {
                             this.errors.description = "";
                         }
+                        
                         
 
                         // if (this.joboffer.postal == '') {
@@ -753,23 +760,28 @@ import Autocomplete from 'vuejs-auto-complete'
                             this.errors.location = "";
                         }
 
-                        if (this.joboffer.salary_type == '-1') {
-                            this.errors.salary_type = " 給与タイプは必須です。";
-                        }
-                        else {
-                            this.errors.salary_type = null;
-                        }
+                        // if (this.joboffer.salary_type == '-1') {
+                        //     this.errors.salary_type = " 給与タイプは必須です。";
+                        // }
+                        // else {
+                        //     this.errors.salary_type = null;
+                        // }
 
                         if (this.joboffer.salary == '') {
                             this.errors.salary = '給与は必須です。';
                         } else {
                             this.errors.salary = "";
                         }
-
+             
                         if (this.joboffer.working_hours == '') {
                             this.errors.working_hours = '就業時間は必須です。';
                         } else {
                             this.errors.working_hours = "";
+                        }
+                        if (this.joboffer.skills == '') {
+                            this.errors.skills = '経験・スキルは必必須です。';
+                        } else {
+                            this.errors.skills = "";
                         }
 
                         if (this.joboffer.occupation_id == '-1' || this.joboffer.occupation_id == '') {
@@ -886,7 +898,7 @@ import Autocomplete from 'vuejs-auto-complete'
                                     this.$swal({
                                         position: "top-end",
                                         type: "success",
-                                        title: "求人を作成しました",
+                                        text: "求人を作成しました",
                                         // text: "ファイルが作成されました。",
                                         // type: "success",
                                         width: 350,
@@ -990,11 +1002,11 @@ import Autocomplete from 'vuejs-auto-complete'
                     }
                 },
 
-                isNumber: function(event) {
-                    if (!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105) && event.keyCode != 8 && event.keyCode != 46 && !(event.keyCode >= 37 && event.keyCode <= 40)) {
-                        event.preventDefault();
-                    }
-                },
+                // isNumber: function(event) {
+                //     if (!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105) && event.keyCode != 8 && event.keyCode != 46 && !(event.keyCode >= 37 && event.keyCode <= 40)) {
+                //         event.preventDefault();
+                //     }
+                // },
 
                 // onBlurNumber(e) {
                 //   this.joboffer.salary = this.thousandSeprator(this.joboffer.salary);

@@ -30,7 +30,7 @@
                         <div class="form-group m-0 row bd">
                             <div class="col-md-3 col-sm-12 form-left"><label><strong>お名前 </strong><span class="error sp1">必須</span></label></div>
                             <div class="col-md-9 col-sm-12 form-right">
-                                <input type="text" id="tbname" name="name" class="form-control float-left" placeholder="お名前を入力してください。" v-model="comments.name" @change="aggreBtn" @keyup="focusName"/>
+                                <input type="text" id="tbname" name="name" class="form-control float-left" placeholder="お名前を入力してください。" v-model="comments.name" @change="aggreBtn" @focusout="focusName" @keyup="focusName"/>
                                 <span class="float-left eg-txt">例）探し太郎</span>
                                  <span class="error m-l-30" v-if="comment_focus">※入力は必須です。</span>
                             </div>
@@ -40,7 +40,7 @@
                             <div class="col-md-9 col-sm-12 form-right">
                                 <div class="col-md-12 pad-free">
                                     <!-- <div class="col-md-9 pad-free"> -->
-                                        <input type="text" id="furigana" name="furigana" class="form-control float-left" placeholder="フリガナを入力してください。" v-model="comments.furigana" @keyup="ChekChar"    @change="aggreBtn"/>
+                                        <input type="text" id="furigana" name="furigana" class="form-control float-left" placeholder="フリガナを入力してください。" v-model="comments.furigana" @keyup="ChekChar" @focusout="ChekChar" @change="aggreBtn"/>
                                     <!-- </div>
                                     <div class="col-md-3"> -->
                                          <span class="float-left eg-txt"> 例）サガシタロウ</span>
@@ -145,7 +145,7 @@
                             <div class="row pl-3">
                                     <div class="col-md-12 p-0">
                                         <label class="col-md-12">※ 電話番号またはメールアドレス必須 <span class="error sp1">必須</span></label>
-                                        <input type="text" id="phone" name="number" class="form-control float-left" placeholder="電話番号を入力してください。" v-model="comments.phone" pattern="[0-9-]*" @keyup="focusPhone" @change="aggreBtn" maxlength="14" title="Please enter number only.">
+                                        <input type="text" id="phone" name="number" class="form-control float-left" placeholder="電話番号を入力してください。" v-model="comments.phone" pattern="[0-9-]*" @focusout="focusPhone" @keyup="focusPhone" @change="aggreBtn" maxlength="13">
                                         <!-- v-on:keyup="isNumberOnly" -->
                                                                                
                                         <span class="float-left eg-txt">例）0312345678（半角）</span>
@@ -444,6 +444,7 @@
                 ph_length: false,
                 ph_error: false,
                 charErr:false,
+                correctVal: null,
                 mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
             }
         },
@@ -599,24 +600,73 @@
                 // }
 
             },
-            focusPhone(){
 
-            //   var input_data = $('#phone').val(); 
-            //   console.log(input_data.length)
-                
-              if(this.comments.phone.charAt(this.comments.phone.length - 1) != '-' && this.comments.phone.charAt(0) != '-' && ((this.comments.phone.length >= 10 && this.comments.phone.length <= 14) || this.comments.phone.length == 0))
-              {  
-                  this.ph_num = false;
-                  this.ph_length = false; 
-                  this.aggreBtn();    
-              }
-              else{
-                  this.ph_num = true;
-                  this.ph_length = true;
-                  this.btn_disable = true;
-              }
+            focusPhone: function(e) {
+                var input_data = this.comments.phone;
+                if(((e.keyCode  >= 48 && e.keyCode  <= 57) || (e.keyCode  >= 96 && e.keyCode  <= 105) || (e.keyCode  == 8) || (e.keyCode  == 35) || (e.keyCode  == 36) || (e.keyCode  == 37) || (e.keyCode  == 39) || (e.keyCode  == 46) || (e.keyCode  == 109) || (e.keyCode  == 189)) && input_data.charAt(0) != '-' && !input_data.includes('--'))
+                {
+                    this.correctVal = input_data;
+                    if(input_data.length >= 10 && input_data.length < 14 && input_data.charAt(input_data.length -1 ) != '-'){
+                    this.ph_error = false;
+                    this.ph_length = false;
+                    this.aggreBtn(); 
+                    }
+                    else{
+                    if(input_data.length == 0){
+                        this.ph_error = false;
+                        this.ph_length = false;
+                        this.aggreBtn(); 
+                    }
+                    else{
+                            this.ph_error = true;
+                            this.btn_disable = true;
+                    }
                     
+                    }
+                }
+                else{
+                    // e.preventDefault();
+                    this.comments.phone = this.correctVal;
+                    if(this.comments.phone.length >= 10 && this.comments.phone.length < 14 && this.comments.phone.charAt(this.comments.phone.length -1 ) != '-'){
+                    this.ph_length = false;
+                    this.ph_error = false;
+                    this.aggreBtn(); 
+                    }
+                    else{
+                        if(this.comments.phone.length == 0){
+                            this.ph_error = false;
+                            this.ph_length = false;
+                            this.aggreBtn(); 
+                        }
+                        else{
+                            this.ph_length = true;
+                            this.ph_error = false;
+                            this.btn_disable = true;
+                        }
+                    
+                    }
+                }
+            
             },
+
+            // focusPhone(){
+
+            // //   var input_data = $('#phone').val(); 
+            // //   console.log(input_data.length)
+                
+            //   if(this.comments.phone.charAt(this.comments.phone.length - 1) != '-' && this.comments.phone.charAt(0) != '-' && ((this.comments.phone.length >= 10 && this.comments.phone.length <= 14) || this.comments.phone.length == 0))
+            //   {  
+            //       this.ph_num = false;
+            //       this.ph_length = false; 
+            //       this.aggreBtn();    
+            //   }
+            //   else{
+            //       this.ph_num = true;
+            //       this.ph_length = true;
+            //       this.btn_disable = true;
+            //   }
+                    
+            // },
             ChekChar: function(event) {
                 var _this = this;
                // $('.char-err').text('');

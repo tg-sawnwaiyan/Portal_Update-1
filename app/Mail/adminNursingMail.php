@@ -30,7 +30,7 @@ class adminNursingMail extends Mailable
     public function build()
     {
         return $this->view(['mail.adminNursingMail','mail.adminNursingMailplaintext'])
-                    ->subject("[TIS ティーズ] 資料請求がありました");
+                    ->subject("[TIS ティーズ]資料請求がありました");
                     // ->subject("TIS ティーズより資料請求がございました");
     }
 }

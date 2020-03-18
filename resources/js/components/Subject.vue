@@ -9,20 +9,21 @@
                 </div>
                         <div class="col-md-12">
                             <form @submit.prevent ="add">
-                        <div class="form-group">
-                            <label>科目 <span class="error sp2">必須</span></label>
-                            <input type="text" class="form-control"  v-model="Subject.name"  placeholder="科目を入力してください。" >
-                            <span v-if="errors.name" class="error">{{errors.name}}</span>
-                        </div>
-                        <div class="form-group">
-                        <label>ペアレント <span class="error sp2">必須</span></label>
+                    <div class="form-group">
+                        <label>科目カテゴリー <span class="error sp2">必須</span></label>
                             <select v-model="selectedValue" class="form-control" @change='getParent()'>
                                 <option value="0">選択してください。</option>
                                 <option v-for="Subjectlist in SubjectList" :key="Subjectlist.id" v-bind:value="Subjectlist.id">
                                     {{Subjectlist.name}}
                                 </option>
                             </select>
-                    </div><br/>
+                    </div>
+                        <div class="form-group">
+                            <label>科目 <span class="error sp2">必須</span></label>
+                            <input type="text" class="form-control"  v-model="Subject.name"  placeholder="科目を入力してください。" >
+                            <span v-if="errors.name" class="error">{{errors.name}}</span>
+                        </div>
+                        <br/>
                             <div class="form-group">
                                 <router-link class="btn btn-danger all-btn" to="/subjectlist" > キャンセル </router-link>
                                 <span class="btn main-bg-color white all-btn" @click="checkValidate()">{{subtitle}}</span>
@@ -114,7 +115,7 @@ export default {
                 {
                     this.$swal({
                             title: "確認",
-                            text: "診療科目を投稿してよろしいでしょうか",
+                            text: "診療科目を作成してよろしいでしょうか",
                             type: "info",
                             width: 350,
                             height: 200,
@@ -175,7 +176,7 @@ export default {
 
                 this.$swal({
                           title: "確認",
-                            text: "診療科目を更新してよろしいでしょうか",
+                            text: "診療科目を登録してよろしいでしょうか",
                             type: "info",
                             width: 350,
                             height: 200,

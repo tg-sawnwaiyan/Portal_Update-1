@@ -6,10 +6,10 @@
    <div class="col-md-12" style="border-bottom: 1px dashed #828282;padding-bottom: 10px; margin-bottom: 20px;">
      <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#828282;"></i>&nbsp;地図検索  
 
-        <span v-if="count == false  && searchword != '' && searchword == 'all' && job_data.length && !stateclick "> 「<span class="result-span">求人</span>の病院 <span class="result-span"> {{job_data.length}} </span>件」 </span>
-        <span v-if="count == false && searchword != '' && searchword != 'all' && job_data.length && !stateclick "> 「<span class="result-span">{{searchword}}</span>の病院 <span class="result-span"> {{job_data.length}} </span>件」 </span>
-        <span v-if="count == false && id != '-1' && job_data.length  && stateclick"> 「<span class="result-span">{{job_data[0].city_name}}</span>の病院 <span class="result-span"> {{job_data.length}} </span>件」</span>
-        <span v-if="count == true && job_data.length ">「<span class="result-span">{{job_data[0].city_name}}</span>の病院 <span class="result-span"> {{job_data.length}} </span>件」</span>
+        <span v-if="count == false  && searchword != '' && searchword == 'all' && job_data.length && !stateclick "> 「<span class="result-span">全国</span>の求人 <span class="result-span"> {{job_data.length}} </span>件」 </span>
+        <span v-if="count == false && searchword != '' && searchword != 'all' && job_data.length && !stateclick "> 「<span class="result-span">{{searchword}}</span>の求人 <span class="result-span"> {{job_data.length}} </span>件」 </span>
+        <span v-if="count == false && id != '-1' && job_data.length  && stateclick"> 「<span class="result-span">{{job_data[0].city_name}}</span>の求人 <span class="result-span"> {{job_data.length}} </span>件」</span>
+        <span v-if="count == true && job_data.length ">「<span class="result-span">{{job_data[0].city_name}}</span>の求人 <span class="result-span"> {{job_data.length}} </span>件」</span>
         <!-- <span v-if="job_data.length && searchword == '' && job_data[0].city_name != ''"> 「<span class="result-span">{{job_data[0].city_name}}</span>の求人 <span class="result-span">{{job_data.length}} </span>件」</span>
         <span v-if="job_data.length && searchword != '' && searchword == 'all' && id == '-1'"> 「<span class="result-span">求人</span>の求人  <span class="result-span">{{job_data.length}} </span>件」</span>
         <span v-if="job_data.length && searchword != '' && searchword != 'all' && id == '-1'"> 「<span class="result-span">{{searchword}}</span>の求人  <span class="result-span">{{job_data.length}} </span>件」</span>
@@ -58,10 +58,10 @@
             <div class="freeword-responsive">
                 <h3 class="map-resicon">
                   <div class="map-text-wrapper">
-                    <div>
-                      <!-- <img src="/images/map-responsive1.png" alt="" class="img-responsive"> -->
+                    <!-- <div>
+                     <img src="/images/map-responsive1.png" alt="" class="img-responsive"> 
                       <i class="fa icon map-fa-icon map-fa-icon-job"></i>
-                    </div>
+                    </div> -->
                     <div>
                       <p class="text-left job-map-header"> &nbsp;あなたのやさしい 手を求めてる老人<br class="pc-768"/>ホーム・病院が見つかります。</p>
                     </div>
@@ -348,8 +348,9 @@
                             </tr>
                             <tr>
                               <td><span class="job_ico">&#xa5;</span>給料</td>
-                              <td>{{job.salary_type}} : {{(Number(job.salary)).toLocaleString()}} 円  <span v-if="job.salary_remark"> ( {{ job.salary_remark }} ) </span> </td>
+                              <td> {{job.salary}} <span v-if="job.salary_remark"> ( {{ job.salary_remark }} ) </span> </td>
                             </tr>
+                            <!-- {{job.salary_type}} : {{(Number(job.salary)).toLocaleString()}} 円 -->
                             <tr>
                               <td><span class="job_ico">時</span>就業時間/休日休暇</td>
                               <td> {{job.working_hours}} <span v-if="job.holidays!='' && job.holidays!=null">/</span> {{job.holidays}}  </td>
@@ -375,7 +376,7 @@
               <nav aria-label="Page navigation example">
                 <ul class="pagination">
                   <li class="page-item previous">
-                    <span class="spanclass" v-bind:class="isActive ? 'disable':'undisable'" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
+                    <span class="spanclass el1 disabled" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
                   </li>
                   <li class="page-item ">
                     <span class="spanclass" @click="prev()"><i class='fas fa-angle-left'></i> 前へ</span>
@@ -387,7 +388,7 @@
                     <span class="spanclass" @click="next">次へ <i class='fas fa-angle-right'></i></span>
                   </li>
                   <li class="page-item next">
-                    <span class="spanclass" v-bind:class="isActive ? 'undisable':'disable'" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
+                    <span class="spanclass el2" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
                   </li>
                 </ul>
               </nav>
@@ -840,17 +841,26 @@ export default {
         }
       },
       first() {
-      if(this.isActive == false){
         this.currentPage = 0;
-      }
-  
-      this.isActive = true;
+        const page = Math.ceil(this.job_data.length / this.size);
+        const currentPage = this.currentPage + 1; 
+        if(currentPage == 1){
+          let el1 = document.querySelector('.el1');
+          let el2 = document.querySelector('.el2');
+          el1.classList.add('disabled');
+          el2.classList.remove('disabled');
+        }
     },
     last() {
-      if(this.isActive == true){
-        this.currentPage = this.pages - 1;
+      this.currentPage = this.pages - 1;
+      const page = Math.ceil(this.job_data.length / this.size);
+      const currentPage = this.currentPage + 1; 
+       if(currentPage == page){
+        let el1 = document.querySelector('.el1');
+        let el2 = document.querySelector('.el2');
+        el1.classList.remove('disabled');
+        el2.classList.add('disabled');
       }
-      this.isActive = false;
 
     },
     prev() {
@@ -858,16 +868,77 @@ export default {
         this.currentPage--;
 
       }
+      const page = Math.ceil(this.job_data.length / this.size);
+       const currentPage = this.currentPage + 1; 
+       if(currentPage > 1 && currentPage < page){
+        let el1 = document.querySelector('.el1');
+        let el2 = document.querySelector('.el2');
+        el1.classList.remove('disabled');
+        el2.classList.remove('disabled');
+      }
+      else if(currentPage == page){
+        let el1 = document.querySelector('.el1');
+        let el2 = document.querySelector('.el2');
+        el1.classList.remove('disabled');
+        el2.classList.add('disabled');
+      }
+      else if(currentPage == 1){
+        let el1 = document.querySelector('.el1');
+        let el2 = document.querySelector('.el2');
+        el1.classList.add('disabled');
+        el2.classList.remove('disabled');
+      }
     },
     next() {
       if(this.currentPage < this.pages - 1) {
         this.currentPage++;
         
       }
+      const page = Math.ceil(this.job_data.length / this.size);
+       const currentPage = this.currentPage + 1; 
+       if(currentPage > 1 && currentPage < page){
+        let el1 = document.querySelector('.el1');
+        let el2 = document.querySelector('.el2');
+        el1.classList.remove('disabled');
+        el2.classList.remove('disabled');
+      }
+       else if(currentPage == page){
+        let el1 = document.querySelector('.el1');
+        let el2 = document.querySelector('.el2');
+        el1.classList.remove('disabled');
+        el2.classList.add('disabled');
+      }
+       else if(currentPage == 1){
+        let el1 = document.querySelector('.el1');
+        let el2 = document.querySelector('.el2');
+        el1.classList.add('disabled');
+        el2.classList.remove('disabled');
+      }
+
 
     },
     pageSelect(index) {
       this.currentPage = index - 1;
+      const page = Math.ceil(this.job_data.length / this.size);
+        const currentPage = this.currentPage + 1; 
+        if(currentPage > 1 && currentPage < page){
+          let el1 = document.querySelector('.el1');
+          let el2 = document.querySelector('.el2');
+          el1.classList.remove('disabled');
+          el2.classList.remove('disabled');
+        }
+        else if(currentPage == page){
+          let el1 = document.querySelector('.el1');
+          let el2 = document.querySelector('.el2');
+          el1.classList.remove('disabled');
+          el2.classList.add('disabled');
+        }
+        else if(currentPage == 1){
+          let el1 = document.querySelector('.el1');
+          let el2 = document.querySelector('.el2');
+          el1.classList.add('disabled');
+          el2.classList.remove('disabled');
+        }
     },
 
     },
@@ -1118,5 +1189,8 @@ table > tbody > tr th{
     display: none;
   }
 }
-
+.disabled{
+ cursor: not-allowed !important;
+ background-color:gray;
+}
 </style>

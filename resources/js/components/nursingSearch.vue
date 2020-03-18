@@ -37,9 +37,9 @@
                                 <div class="freeword-responsive">
                                     <h3 class="map-resicon">
                                     <div class="map-text-wrapper">
-                                        <div>
+                                        <!-- <div>
                                         <i class="fa icon map-fa-icon map-fa-icon-nursing"></i>
-                                        </div>
+                                        </div> -->
                                         <div>
                                         <p class="text-left nursing-map-header"> &nbsp;あなたらしい暮らしができる。そん<br class="pc-768"/>な老人ホームが見つかります。</p>
                                         </div>
@@ -135,7 +135,7 @@
                                         </div>
                                     </div>                                    
                                     <div class="col-lg-2 col-md-4 m-b-414 pc-768 align-self-center m-t-30">
-                                        <span class="btn seemore-btn select" style="width:100%;padding:15px 10px;font-size:0.8em;" id="showSearchMap" @click="showSearchMap"><i class="fas fa-exchange-alt"></i>&nbsp;都道府県を再選択する</span>                                    
+                                        <span class="btn seemore-btn select all-btn" style="width:100%;padding:15px 10px;font-size:0.8em;" id="showSearchMap" @click="showSearchMap"><i class="fas fa-exchange-alt"></i>&nbsp;都道府県を再選択する</span>                                    
                                     </div>
                                     </div>
                                 </div>
@@ -647,7 +647,7 @@
                                                     <div class="col-md-6 col-sm-12 m-b-414">
                                                         <p class="sp_hos_phone sp-768" v-if="nus.phone"><span class="circle-phone" ><i class="fa fa-phone-alt"></i></span><span class="phone-no"><a :href="`tel:${nus.phone}`">{{nus.phone}}</a></span></p>
                                                     </div>
-                                                    <div class="col-md-6 col-sm-12 m-t-10">
+                                                    <div class="col-md-6 col-sm-12 m-t-768">
                                                         <p class="sp-768">
                                                             <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == '' && loginuser=='false'" :class="'view_pro_id'+nus.nursing_id" style="display:block;" @click="favAddFun('add',nus.nursing_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                                                             <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == 'check' && loginuser=='false'" :class="'done_pro_id'+nus.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',nus.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
@@ -687,7 +687,7 @@
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination">
                                         <li class="page-item previous">
-                                            <span class="spanclass" v-bind:class="isActive ? 'disable':'undisable'" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
+                                            <span class="spanclass el1 disabled"  @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
                                         </li>
                                         <li class="page-item ">
                                             <span class="spanclass" @click="prev()"><i class='fas fa-angle-left'></i> 前へ</span>
@@ -699,7 +699,7 @@
                                             <span class="spanclass" @click="next">次へ <i class='fas fa-angle-right'></i></span>
                                         </li>
                                         <li class="page-item next">
-                                            <span class="spanclass" v-bind:class="isActive ? 'undisable':'disable'" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
+                                            <span class="spanclass el2"  @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
                                         </li>
                                         </ul>
                                     </nav>
@@ -1784,34 +1784,105 @@
             },
 
             first() {
-                if(this.isActive == false){
-                        this.currentPage = 0;
+                this.currentPage = 0;
+                const page = Math.ceil(this.nus_data.length / this.size);
+                const currentPage = this.currentPage + 1; 
+                console.log('currentPage',currentPage)
+                if(currentPage == 1){
+                    let el1 = document.querySelector('.el1');
+                    let el2 = document.querySelector('.el2');
+                    el1.classList.add('disabled');
+                    el2.classList.remove('disabled');
                     }
-                    this.isActive = true;
-            },
+                },
 
-            last() {
-                if(this.isActive == true){
+                last() {
                     this.currentPage = this.pages - 1;
-                }
-                this.isActive = false;
-            },
+                    const page = Math.ceil(this.nus_data.length / this.size);
+                    const currentPage = this.currentPage + 1; 
+                    if(currentPage == page){
+                        let el1 = document.querySelector('.el1');
+                        let el2 = document.querySelector('.el2');
+                        el1.classList.remove('disabled');
+                        el2.classList.add('disabled');
+                    }
+                },
 
-            prev() {
-                if(0<this.currentPage) {
-                    this.currentPage--;
-                }
-            },
+                prev() {
+                    if(0<this.currentPage) {
+                        this.currentPage--;
+                    }
+                    const page = Math.ceil(this.nus_data.length / this.size);
+                    const currentPage = this.currentPage + 1; 
+                    if(currentPage > 1 && currentPage < page){
+                        let el1 = document.querySelector('.el1');
+                        let el2 = document.querySelector('.el2');
+                        el1.classList.remove('disabled');
+                        el2.classList.remove('disabled');
+                    }
+                    else if(currentPage == page){
+                        let el1 = document.querySelector('.el1');
+                        let el2 = document.querySelector('.el2');
+                        el1.classList.remove('disabled');
+                        el2.classList.add('disabled');
+                    }
+                    else if(currentPage == 1){
+                        let el1 = document.querySelector('.el1');
+                        let el2 = document.querySelector('.el2');
+                        el1.classList.add('disabled');
+                        el2.classList.remove('disabled');
+                    }
+                },
 
-            next() {
-                if(this.currentPage < this.pages - 1) {
-                    this.currentPage++;
-                }
-            },
+                next() {
+                    if(this.currentPage < this.pages - 1) {
+                        this.currentPage++;
+                    }
+                    const page = Math.ceil(this.nus_data.length / this.size);
+                    const currentPage = this.currentPage + 1; 
+                    if(currentPage > 1 && currentPage < page){
+                        let el1 = document.querySelector('.el1');
+                        let el2 = document.querySelector('.el2');
+                        el1.classList.remove('disabled');
+                        el2.classList.remove('disabled');
+                    }
+                    else if(currentPage == page){
+                        let el1 = document.querySelector('.el1');
+                        let el2 = document.querySelector('.el2');
+                        el1.classList.remove('disabled');
+                        el2.classList.add('disabled');
+                    }
+                    else if(currentPage == 1){
+                        let el1 = document.querySelector('.el1');
+                        let el2 = document.querySelector('.el2');
+                        el1.classList.add('disabled');
+                        el2.classList.remove('disabled');
+                    }
+                },
 
-            pageSelect(index) {
-                this.currentPage = index - 1;
-            },
+                pageSelect(index) {
+                    this.currentPage = index - 1;
+                    const page = Math.ceil(this.nus_data.length / this.size);
+                    const currentPage = this.currentPage + 1; 
+                    if(currentPage > 1 && currentPage < page){
+                    let el1 = document.querySelector('.el1');
+                    let el2 = document.querySelector('.el2');
+                    el1.classList.remove('disabled');
+                    el2.classList.remove('disabled');
+                    }
+                    else if(currentPage == page){
+                    let el1 = document.querySelector('.el1');
+                    let el2 = document.querySelector('.el2');
+                    el1.classList.remove('disabled');
+                    el2.classList.add('disabled');
+                    }
+                    else if(currentPage == 1){
+                    let el1 = document.querySelector('.el1');
+                    let el2 = document.querySelector('.el2');
+                    el1.classList.add('disabled');
+                    el2.classList.remove('disabled');
+                    }
+                },
 
             toggleContent() {
                 this.toggleCheck = !this.toggleCheck;
@@ -1828,7 +1899,7 @@
             },
 
             ChangeTownship(){
-                alert(this.SpecialFeatureID);
+              
                 this.townshipID = [];
                 if(localStorage.getItem("nursing_fav") == null){
                     this.locast = 0;
@@ -2533,5 +2604,10 @@ div#holder {
   .pagination .pages {
     display: none;
   }
+}
+
+.disabled{
+ cursor: not-allowed !important;
+ background-color:gray;
 }
 </style>
