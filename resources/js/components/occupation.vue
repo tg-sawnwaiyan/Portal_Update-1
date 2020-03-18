@@ -23,7 +23,7 @@
                             <label>職種<span class="error sp2">必須</span></label>
                             <input type="text" class="form-control"  v-model="occupation.name"  placeholder="職種名を入力してください。" >
                             <span v-if="errors.name" class="error">{{errors.name}}</span>
-                        </div><br/>
+                        </div>
 
                     <div class="form-group ">
                         <router-link class="btn bt-red all-btn" to="/occupationlist" > キャンセル </router-link>
