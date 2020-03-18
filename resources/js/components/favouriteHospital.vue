@@ -358,6 +358,7 @@
                                 this.local_sto = localStorage.getItem("hospital_fav");
                                 
                                 if (this.local_sto) {
+                                    this.fav_hos =this.local_sto.split(",").length;
                                     this.getAllFavourite(this.local_sto);
                                 } else {
                                     // window.location.reload();

@@ -32,7 +32,7 @@ class HospitalProfileController extends Controller
         LEFT JOIN cities ON townships.city_id = cities.id
         LEFT JOIN special_features_junctions ON special_features_junctions.profile_id = hospital_profiles.id
         LEFT JOIN subject_junctions ON subject_junctions.profile_id = hospital_profiles.id
-        WHERE hospital_profiles.id IN (" . $local_sto . ") group by hospital_profiles.id";
+        WHERE hospital_profiles.activate=1 AND hospital_profiles.id IN (" . $local_sto . ") group by hospital_profiles.id";
         $fav_hospital = DB::select($query);
         foreach($fav_hospital as $fav) {
             $sfeature = $fav->special;
@@ -63,7 +63,7 @@ class HospitalProfileController extends Controller
         LEFT JOIN townships ON townships.id = nursing_profiles.townships_id
         LEFT JOIN cities ON townships.city_id = cities.id
         LEFT JOIN special_features_junctions ON special_features_junctions.profile_id = nursing_profiles.id
-        WHERE nursing_profiles.id IN (" . $local_sto . ") group by nursing_profiles.id";
+        WHERE nursing_profiles.activate=1 AND nursing_profiles.id IN (" . $local_sto . ") group by nursing_profiles.id";
         $fav_nursing = DB::select($query);
         foreach($fav_nursing as $nur) {
             if($nur->special != null){

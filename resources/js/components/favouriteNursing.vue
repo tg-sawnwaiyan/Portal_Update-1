@@ -621,6 +621,7 @@
                                 //     confirmButtonColor: "#dc3545"
                                 //     });
                                 if (this.local_sto) {
+                                    this.fav_nus = this.local_sto.split(",").length;
                                     this.getAllFavourite(this.local_sto);
                                 } else {
                                     // window.location.reload();
@@ -641,6 +642,8 @@
                         }
                     },
                     getAllFavourite: function(local_storage) {
+                        console.log("fav_nus",local_storage);
+                        console.log("fav_nus",this.fav_nus);
                         this.axios
                             .post('/api/nursing_fav/' + local_storage)
                             .then(response => {
@@ -648,7 +651,17 @@
                                 console.log("this.fav_nursing",this.fav_nursing);
                               
                                 if(this.fav_nursing.length < this.fav_nus && this.fav_nursing.length > 0)
-                                {      
+                                {   
+                                    this.$swal({
+                                        position: 'top-end',
+                                        type: 'info',
+                                        text: 'すでに掲載されていない施設をリストから削除しました。',
+                                        showConfirmButton: true,
+                                        confirmButtonText: "閉じる",
+                                        width: 400,
+                                        height: 200,
+                                        allowOutsideClick: false,
+                                    });   
                                      var nus_id = '';
                                     //  this.message = "現在本サイトに掲載されていない介護施設についてはお気に入りリストから削除しました。";
                                      for(var i= 0;i<this.fav_nursing.length;i++)
