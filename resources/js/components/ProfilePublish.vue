@@ -188,7 +188,7 @@
                     <!--end for slide image-->
                     <!--for address-->
                      <div class="col-md-7 detail_profile_right col-slg-12 pad-free-750">
-                         <span class="top-mail-btn-res btn sp-414" @click="documentPost()" v-if="loginuser=='false' && !$auth.check()"><i data-v-b65423c6="" class="far fa-envelope" style="color: rgb(196, 0, 0)!important;font-size: 15px;font-weight: bold;;"></i>&nbsp;資料請求</span>
+                         <span class="top-mail-btn-res btn sp-414" @click="documentPost()" v-if="loginuser=='false' && !$auth.check()"><i data-v-b65423c6="" class="far fa-envelope" style="font-size: 15px;font-weight: bold;;"></i>&nbsp;資料請求</span>
                         <div class="row m-lr-0 pro-heading">
                              <div class="col-12 pad-free pc-1024">
                                 <h5 class="profile_header">介護情報</h5>
@@ -1332,11 +1332,11 @@
     </div>
     <div class="bottom-fixed-btn" v-if="loginuser=='false'">
          <div class="row justify-content-center">
-            <div class="col-8 col-md-3 col-lg-3 col-xl-2">
+            <div class="col-6 col-md-3 col-lg-3 col-xl-2">
                 <span class="bottom-fav-btn" v-if="!view_pro_id && loginuser=='false'" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                 <span class="bottom-fav-btn" style="color:#aaa;" v-if="view_pro_id && loginuser=='false'" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
             </div>
-            <div class="col-8 col-md-3 col-lg-3 col-xl-2 pc-414" v-if="loginuser=='false' && !$auth.check() && type == 'nursing'">       
+            <div class="col-6 col-md-3 col-lg-3 col-xl-2 pc-414" v-if="loginuser=='false' && !$auth.check() && type == 'nursing'">       
                 <span class="bottom-mail-btn" @click="documentPost()"><i data-v-b65423c6="" class="far fa-envelope" style="color: #fff  !important;font-size: 15px;"></i>&nbsp;資料請求</span>
             </div>
         </div>       
