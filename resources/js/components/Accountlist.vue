@@ -550,6 +550,7 @@ h1.heading {
 }
 .card-title-leftwrapper{
   width: 70%;
+    min-height: 30px;
 }
 .card-title-rightwrapper{
   width: 30%;

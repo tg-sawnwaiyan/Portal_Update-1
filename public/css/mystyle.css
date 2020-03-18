@@ -428,9 +428,12 @@ input::-ms-clear {
     cursor: 'not-allowed'!important;
     pointer-events: 'none'!important;
 }
-button:focus{
+
+button:focus {
     outline: none;
 }
+
+
 /********************************** End Common **********************************/
 
 
@@ -7169,10 +7172,14 @@ button.confirmed {
 
 
 /* modal dialgo*/
+
+
 /*error*/
+
 .swal2-icon.swal2-error {
     border-color: #FF5462 !important;
 }
+
 .swal2-icon.swal2-error [class^=swal2-x-mark-line] {
     position: absolute;
     height: 5px;
@@ -8585,8 +8592,14 @@ border-bottom: none;
     float: right;
 }
 
+.nus_phone {
+    color: #c40000;
+    font-weight: bold;
+}
+
 .hos_phone i,
-.sp_hos_phone i {
+.sp_hos_phone i,
+.nus_phone i {
     width: 40px;
     height: 40px;
     margin-right: 5px;
