@@ -376,16 +376,15 @@ export default {
    deleteLocalSto: function(id) {
             this.$swal({
             allowOutsideClick: false,
-            title: "確認",
-            text: "削除よろしいでしょうか",
+            text: "最近見た施設から削除してよろしいでしょうか 。",
             type: "warning",
             width: 350,
             height: 200,
             showCancelButton: true,
-            confirmButtonColor: "#dc3545",
+            confirmButtonColor: "#EEA025",
             cancelButtonColor: "#b1abab",
             cancelButtonTextColor: "#000",
-            confirmButtonText: "削除",
+            confirmButtonText: "はい",
             cancelButtonText: "キャンセル",
             confirmButtonClass: "all-btn",
             cancelButtonClass: "all-btn",
@@ -408,24 +407,14 @@ export default {
                 var new_local = l_sto_arr.toString();
                 localStorage.setItem('nursing_history', new_local);
                 this.local_sto = localStorage.getItem("nursing_history");
-            //     this.$swal({
-            //   title: "削除された",
-            //   text: "ファイルが削除されました。",
-            //   type: "success",
-            //   width: 350,
-            //   height: 200,
-            //   confirmButtonText: "はい",
-            //   confirmButtonColor: "#dc3545"
-            // });
+            
                 if (this.local_sto) {
+                    this.his_nus = this.local_sto.split(",").length;
                     this.getAllCustomer(this.local_sto);
                 } else {
-                    // window.location.reload();
+                   
                     this.$router.push({
-                        name: 'nursingSearch',
-                        // params: {
-                        //     page: 'subtab3'
-                        // }
+                        name: 'nursingSearch',                       
                     });
                 }
             }
@@ -436,12 +425,7 @@ export default {
                 this.his_nus = this.local_sto.split(",").length;
             }
      
-    },
-    // changeRoute(){
-
-    //     this.$router.push({name:'home', params: {page:'subtab3'}});
-
-    // },
+    },   
 
     getAllCustomer: function(local_storage) {
       this.axios
@@ -451,9 +435,19 @@ export default {
             if(response.data.length>0) {
                 this.nur_profiles = response.data;
                 if(response.data.length<this.his_nus) {
+                    this.$swal({
+                        position: 'top-end',
+                        type: 'info',
+                        text: 'すでに掲載されていない施設をリストから削除しました。',
+                        showConfirmButton: true,
+                        confirmButtonText: "閉じる",
+                        width: 400,
+                        height: 200,
+                        allowOutsideClick: false,
+                    });
                     // $('.msg').html('<span>Some Nursing Accounts are Deactivated!</span>');
                     var nus_id = '';
-                    this.message = "現在本サイトに掲載されていない介護施設については最近見た施設リストから削除しました。";
+                    // this.message = "現在本サイトに掲載されていない介護施設については最近見た施設リストから削除しました。";
                     for(var i= 0;i<this.nur_profiles.length;i++) {
                         if(i== this.nur_profiles.length-1) {
                             nus_id += this.nur_profiles[i]['id'];
@@ -470,10 +464,9 @@ export default {
                 this.his_nus = 0;
                 this.$swal({
                     allowOutsideClick: false,
-                    title: "確認",
-                    text: "お気に入りの病院は既に本サイトに掲載されておりませんので、最近見た施設リストから削除しました。",
+                    text: "すでに掲載されていない施設をリストから削除しました。",
                     type: 'info',
-                    width: 350,
+                    width: 400,
                     height: 200,
                     showConfirmButton: true,
                     // confirmButtonColor: "#dc3545",

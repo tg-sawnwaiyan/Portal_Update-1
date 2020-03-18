@@ -24,6 +24,7 @@
                             <autocomplete id="cusname"  placeholder="事業者名を検索" input-class="form-control" :source=customerList :results-display="formattedDisplay" @clear="cleartext()"  @selected="getSelected($event)">
                             </autocomplete> -->
                         <!-- </div> -->
+                 
                         <div class="col-md-12 choose-item">
                     
                              <autocomplete id="cusname"  placeholder="施設名で検索" input-class="form-control" :source=profileList :results-display="formattedDisplay" @clear="cleartext()"   @selected="getProfile($event)">
@@ -106,7 +107,7 @@
                                          詳細 <i :id="'icon' + comment.id" class="fas fa-sort-down animate rotate"></i></button>
                                 </div>
                             </div>
-                            <div class="cmt"><span><i class="fa fa-calendar"></i>&nbsp;{{comment.created_date | moment("YYYY年MM月DD日") }}</span> <span><i class="fa fa-clock"></i>&nbsp;{{comment.created_time}}&nbsp;投稿</span></div>
+                            <div class="cmt"><span><i class="fa fa-calendar-alt"></i>&nbsp;{{comment.created_date | moment("YYYY年MM月DD日") }}</span> <span><i class="fa fa-clock"></i>&nbsp;{{comment.created_time}}&nbsp;投稿</span></div>
                              <!--comment-->
                                 <div class="collapse" :id="'changeLink' + comment.id" style="margin-top:15px;">   
                                     <!-- <div class="cmt"><span><i class="fa fa-calendar"></i>&nbsp;{{comment.created_date | moment("YYYY年MM月DD日") }}投稿</span> <span><i class="fa fa-clock"></i>&nbsp;{{comment.created_time}}</span></div>                                -->
@@ -121,7 +122,7 @@
                                         </tr>
                                         <tr>
                                             <td  class="w-50">
-                                                   <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-calendar" aria-hidden="true"></i></span>生年月日:&nbsp;</span><span class="" v-if="comment.year != '' && comment.year != null"> {{comment.year}} 年生まれ</span></p> 
+                                                   <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-calendar-alt" aria-hidden="true"></i></span>生年月日:&nbsp;</span><span class="" v-if="comment.year != '' && comment.year != null"> {{comment.year}} 年生まれ</span></p> 
         
                                             <td  class="w-50">
                                                     <p class="mb-2"><span class="text-orange"><span class="job_ico">〒<i aria-hidden="true"></i></span>郵便番号:&nbsp;</span><span class=""> {{comment.zipcode}}</span></p>

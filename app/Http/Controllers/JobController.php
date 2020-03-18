@@ -650,12 +650,12 @@ class JobController extends Controller
         $profile = $request->profile;
         if($cId == 0)
         {
-            $query = "SELECT $profile.id, $profile.name FROM $profile";
+            $query = "SELECT $profile.id, $profile.name FROM $profile where $profile.name is not null and $profile.name != ''";
  
         }
         else{
             $query = "SELECT $profile.id, $profile.name FROM $profile
-            WHERE $profile.customer_id = $cId ";
+            WHERE $profile.customer_id = $cId and $profile.name is not null and $profile.name != ''";
         }
 
         $profile_list = DB::select($query);

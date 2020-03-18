@@ -580,16 +580,15 @@
                     },
                     deleteLocalSto: function(id) {
                           this.$swal({
-                            title: "確認",
-                            text: "削除よろしいでしょうか",
+                            text: "お気に入りから削除してよろしいでしょうか 。",
                             type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#dc3545",
+                            confirmButtonColor: "#EEA025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
-                            confirmButtonText: "削除",
+                            confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn",
@@ -622,6 +621,7 @@
                                 //     confirmButtonColor: "#dc3545"
                                 //     });
                                 if (this.local_sto) {
+                                    this.fav_nus = this.local_sto.split(",").length;
                                     this.getAllFavourite(this.local_sto);
                                 } else {
                                     // window.location.reload();
@@ -642,6 +642,8 @@
                         }
                     },
                     getAllFavourite: function(local_storage) {
+                        console.log("fav_nus",local_storage);
+                        console.log("fav_nus",this.fav_nus);
                         this.axios
                             .post('/api/nursing_fav/' + local_storage)
                             .then(response => {
@@ -649,9 +651,19 @@
                                 console.log("this.fav_nursing",this.fav_nursing);
                               
                                 if(this.fav_nursing.length < this.fav_nus && this.fav_nursing.length > 0)
-                                {      
+                                {   
+                                    this.$swal({
+                                        position: 'top-end',
+                                        type: 'info',
+                                        text: 'すでに掲載されていない施設をリストから削除しました。',
+                                        showConfirmButton: true,
+                                        confirmButtonText: "閉じる",
+                                        width: 400,
+                                        height: 200,
+                                        allowOutsideClick: false,
+                                    });   
                                      var nus_id = '';
-                                     this.message = "現在本サイトに掲載されていない介護施設についてはお気に入りリストから削除しました。";
+                                    //  this.message = "現在本サイトに掲載されていない介護施設についてはお気に入りリストから削除しました。";
                                      for(var i= 0;i<this.fav_nursing.length;i++)
                                      {
                                          if(i== this.fav_nursing.length-1)
@@ -671,21 +683,20 @@
                                 }
                                 if(this.fav_nursing.length == 0)
                                 { 
-                                  
+                                    this.nusFav = 0;
                                     this.$swal({   
                                     position: 'top-end',
                                     type: 'info',
-                                    // title: '作成されました',
-                                    text: 'お気に入りの介護施設は既に本サイトに掲載されておりませんので、お気に入りリストから削除しました。',
+                                    text: 'すでに掲載されていない施設をリストから削除しました。',
                                     showConfirmButton: true,
                                     confirmButtonText: "閉じる",
-                                    width: 250,
+                                    width: 400,
                                     height: 200,
                                     allowOutsideClick: false,
                                     }).then(response => {
                                          localStorage.setItem('nursing_fav','');
                                          this.local_sto = localStorage.getItem("nursing_fav");
-                                         this.nusFav = 0;
+                                         
                                           $('.fav-nursing-link-box>a').css({'cursor':'not-allowed','pointer-events':'none'});
                                           $( '.fav-nursing-link-box>a').parent('div').css({'cursor':'not-allowed'});
                                          this.$router.push({name: 'nursingSearch'});    

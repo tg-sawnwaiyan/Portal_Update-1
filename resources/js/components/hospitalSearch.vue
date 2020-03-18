@@ -37,10 +37,10 @@
             <div class="freeword-responsive">
                 <h3 class="map-resicon">
                   <div class="map-text-wrapper">
-                    <div>
-                      <!-- <img src="/images/map-responsive1.png" alt="" class="img-responsive"> -->
+                    <!-- <div>
+                      <img src="/images/map-responsive1.png" alt="" class="img-responsive"> 
                       <i class="fa icon map-fa-icon map-fa-icon-hospital"></i>
-                    </div>
+                    </div> -->
                     <div>
                       <p class="text-left hospital-map-header"> &nbsp;赤ちゃんからおとなまでみんなで通<br class="pc-768"/>える街の名医が見つかります。 </p>
                     </div>
@@ -71,7 +71,7 @@
                             <div class="row mt-2 mb-2">
                             <div class="col-lg-9 col-md-8 col-sm-12 m-b-8">
                             <select id="selectCity" class="form-control custom-select" v-model="id" @change="ChangeTownship">
-                                <option value="-1" disabled>▼市区町村</option>
+                                <option value="-1" >▼市区町村</option>
                                 <option v-for="city in cities" :value="city.id" :key="city.id">{{city.city_name}}</option>
                             </select>
                             </div>
@@ -401,11 +401,6 @@
               </nav>
             </div>
           </div>
-
-
-
-
-
             <span v-if="norecord_msg">
                     <div class="container-fuid m-t-20">
                         <p class="nosearch-icon">

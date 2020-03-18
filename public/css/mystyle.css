@@ -17,10 +17,17 @@ dd {
 }
 
 body {
-    font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+    font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif !important;
     /* background: #dfdfde; */
     background: #fff;
     scrollbar-width: thin;
+}
+
+pre,
+code,
+kbd,
+samp {
+    font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif !important;
 }
 
 body.all-bg {
@@ -249,7 +256,7 @@ scrollbar-width: thin;*/
 }
 
 .stepper-success-form {
-    width: 40%;
+    /* width: 40%; */
     margin: 0 auto;
     margin-top: 10px;
     display: block;
@@ -417,13 +424,18 @@ input::-ms-clear {
     display: none;
 }
 
-.disablefun{
-    cursor:'not-allowed'!important;
-    pointer-events:'none'!important;
+.disablefun {
+    cursor: 'not-allowed'!important;
+    pointer-events: 'none'!important;
 }
+<<<<<<< HEAD
 button:focus{
     outline: none;
 }
+=======
+
+
+>>>>>>> d4324689d667e919179ed24b52f8cc28646fa879
 /********************************** End Common **********************************/
 
 
@@ -1377,6 +1389,10 @@ border-radius: 3px;
     margin-right: 0px !important;
 }
 
+.advanced-search>div.form-check-inline {
+    padding-left: 10px;
+}
+
 .collapse.show {
     display: block;
     /* background: rgba(199, 220, 217, 1); */
@@ -1614,7 +1630,7 @@ box-shadow: 0px 0px 5px rgb(212, 201, 201); */
 }
 
 .freeword-responsive {
-    margin: 20px 0px;
+    margin: 0px 0px 20px 0px;
 }
 
 .freeword-responsive h3 {
@@ -5402,12 +5418,17 @@ margin-right: 2% !important;
 .m-b-10 {
     margin-bottom: 10px;
 }
- /*comment*/
+
+
+/*comment*/
+
 .cmt-1 {
     margin-bottom: 10px;
     left: 8px;
 }
- /*comment*/
+
+
+/*comment*/
 
 .secondary-bg-color {
     background-color: #0cc72c !important;
@@ -5453,7 +5474,7 @@ margin-right: 2% !important;
     min-width: 60px;
 }
 
-.confirm-disable-orangebtn{
+.confirm-disable-orangebtn {
     cursor: not-allowed!important;
     color: #bbb;
     border: 1px solid #bbb !important;
@@ -5461,8 +5482,9 @@ margin-right: 2% !important;
     box-shadow: none !important;
     min-width: 60px;
 }
-.confirm-disable-orangebtn:hover{
-    color:#bbb;
+
+.confirm-disable-orangebtn:hover {
+    color: #bbb;
 }
 
 .border-style {
@@ -6979,15 +7001,23 @@ display: block !important;
 /*  Start CommentList */
 
 .p-17 {
-    padding:17px;
-} /*comment*/
-.cmt{
+    padding: 17px;
+}
+
+
+/*comment*/
+
+.cmt {
     text-align: right;
     margin-right: 4px;
     font-size: 12px;
     color: #777;
     margin-top: -20px;
-} /*comment*/
+}
+
+
+/*comment*/
+
 button.confirmed {
     opacity: 0.5;
     cursor: not-allowed;
@@ -10379,15 +10409,14 @@ padding: 0;
 }
 
 @media only screen and (max-width: 990px) {
- /*comment*/
-    .cmt 
-    {
-    text-align: left;
-    font-size: 12px;
-    color: #777;
-    margin-top: 3px;
+    /*comment*/
+    .cmt {
+        text-align: left;
+        font-size: 12px;
+        color: #777;
+        margin-top: 3px;
     }
-     /*comment*/
+    /*comment*/
     .form-wrap .mailbox {
         width: 100%;
         margin-left: 0px;
@@ -11042,14 +11071,13 @@ width: 18rem;
 @media screen and (max-width: 1024px) and (min-width: 768px) {
     /*fav nursing*/
     /*comment*/
-    .cmt 
-    {
+    .cmt {
         font-size: 12px;
         color: #777;
         text-align: right;
         margin-top: -21px;
     }
-     /*comment*/
+    /*comment*/
     .lbl-size {
         width: 355px;
     }
@@ -11080,6 +11108,9 @@ width: 18rem;
 }
 
 @media only screen and (max-width:768px) {
+    .m-t-768 {
+        margin-top: 0px;
+    }
     .successful-resetpwd {
         width: 100% !important;
         margin-top: 34px;
@@ -11492,6 +11523,9 @@ width: 18rem;
 }
 
 @media only screen and (max-width: 620px) {
+    .choose-item .job-no {
+        float: left;
+    }
     .pagination {
         justify-content: center;
         text-align: center;

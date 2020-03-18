@@ -108,7 +108,7 @@ class CustomerController extends Controller
             $profileDelete = HospitalProfile::find($id);
         }
 
-        $getJob = DB::table('jobs')->select('jobs.*')->join('customers','jobs.customer_id','=','customers.id')->where(['jobs.profile_id'=>$id,'customers.type_id'=>$t_id])->get();
+        $getJob = JOB::select('jobs.*')->join('customers','jobs.customer_id','=','customers.id')->where(['jobs.profile_id'=>$id,'customers.type_id'=>$t_id])->get();
         $getjobarr = $getJob->toarray();
         
         if(count($getJob) > 0){                

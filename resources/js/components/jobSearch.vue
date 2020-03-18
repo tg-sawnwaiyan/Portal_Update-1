@@ -58,10 +58,10 @@
             <div class="freeword-responsive">
                 <h3 class="map-resicon">
                   <div class="map-text-wrapper">
-                    <div>
-                      <!-- <img src="/images/map-responsive1.png" alt="" class="img-responsive"> -->
+                    <!-- <div>
+                     <img src="/images/map-responsive1.png" alt="" class="img-responsive"> 
                       <i class="fa icon map-fa-icon map-fa-icon-job"></i>
-                    </div>
+                    </div> -->
                     <div>
                       <p class="text-left job-map-header"> &nbsp;あなたのやさしい 手を求めてる老人<br class="pc-768"/>ホーム・病院が見つかります。</p>
                     </div>
@@ -94,7 +94,7 @@
                     <div class="row mt-2 mb-2">
                       <div class="col-lg-9 col-md-8 col-sm-12 m-b-8">
                       <select id="selectCity" class="form-control custom-select" v-model="id" @change="changeTownship">
-                        <option value="-1" disabled>▼市区町村</option>
+                        <option value="-1" >▼市区町村</option>
                         <option v-for="city in cities" :value="city.id" :key="city.id" >{{city.city_name}}</option>
                     </select>
                     </div>

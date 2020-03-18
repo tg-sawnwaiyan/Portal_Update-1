@@ -293,11 +293,7 @@
                             <p v-html="nursing_profiles"></p>
                         </span>
                         <span v-else>
-<<<<<<< HEAD
                             <p class="no-data-color">データがありません。</p>
-=======
-                            <p class="no-data-color">表示されるデータがありません。</p>
->>>>>>> 5604e27684d2dad231bbde1aefd5829751fcec02
                         </span>
                     </div>
 
@@ -890,7 +886,7 @@
                                 <!-- <p class="card-title font-weight-bold">{{comment.email}}</p>
                                 <p class="comment-age" v-if="comment.year != null">{{ new Date().getFullYear() - comment.year}}年代</p>
                                 <p class="comment-age" v-else></p> -->
-                                <p class="comment-date"><i class="fa fa-calendar" aria-hidden="true"></i> {{comment.created_date | moment("YYYY年MM月DD日") }}投稿 <span class="ml-2"><i class="fa fa-clock" aria-hidden="true"></i> {{comment.created_time}}</span></p>
+                                <p class="comment-date"><i class="fa fa-calendar-alt" aria-hidden="true"></i> {{comment.created_date | moment("YYYY年MM月DD日") }}投稿 <span class="ml-2"><i class="fa fa-clock" aria-hidden="true"></i> {{comment.created_time}}</span></p>
                             </div>
                                 <read-more more-str="もっと見る" :text="comment.comment" :max-chars="160" class="m-t-comment"></read-more><br>
                                 <div>{{comment.customer}}</div>
@@ -1093,10 +1089,13 @@
                  <div class="col-12 m-b-20 pad-free-750">
                     <h5 class="profile_subtit">診療科目 </h5>
 
-                    <div class="row col-md-12" v-if="subjects">
-                    <ul class="sub_container" v-for="sub in subjects" :key="sub.id">
-                        <li>{{sub.name}}</li>
-                    </ul>
+                <div class="row col-md-12" v-if="subjects">
+                <ul class="sub_container" v-for="sub in subjects" :key="sub.id">
+                    <li>{{sub.name}}</li>
+                </ul>
+                </div>
+                <div class="col-12" v-else>
+                   <p class="no-data-color">データがありません。</p>
                 </div>
                 </div>
 
@@ -1282,7 +1281,7 @@
                                 <!-- <p class="card-title font-weight-bold">{{comment.email}}</p>
                                 <p class="comment-age" v-if="comment.year != null">{{ new Date().getFullYear() - comment.year}}年代</p>
                                 <p class="comment-age" v-else></p> -->
-                                <p class="comment-date"><i class="fa fa-calendar" aria-hidden="true"></i> {{comment.created_date | moment("YYYY年MM月DD日") }}投稿 <span class="ml-2"><i class="fa fa-clock" aria-hidden="true"></i> {{comment.created_time}}</span></p>
+                                <p class="comment-date"><i class="fa fa-calendar-alt" aria-hidden="true"></i> {{comment.created_date | moment("YYYY年MM月DD日") }}投稿 <span class="ml-2"><i class="fa fa-clock" aria-hidden="true"></i> {{comment.created_time}}</span></p>
                             </div>
                                 <read-more more-str="もっと見る" :text="comment.comment" :max-chars="160" class="m-t-comment"></read-more><br>
                                 <div>{{comment.customer}}</div>
@@ -1581,7 +1580,7 @@ export default {
                             }
                         });
                         if (cur_pos >= 100) {
-                            $(".fixed-nav").css({"position": "fixed","top":"65px"});
+                            $(".fixed-nav").css({"position": "fixed","top":"80px"});
                         } else {
                             $(".fixed-nav").css({"position": "unset", "top": "unset"});
                         }
@@ -2182,6 +2181,9 @@ export default {
 </script>
 
 <style scoped>
+.slick-list .draggable{
+    min-height: 200px !important;
+}
 #profilePublish > div.footer {
     padding-bottom: 13%;
 }
@@ -2680,9 +2682,9 @@ h3 {
     padding: 8px 5px;
     border: 0px;
     border-radius: 0;
-    border-top: 1px solid #eeeeee;
-    border-bottom: 1px solid #eeeeee;
-    background: linear-gradient(to bottom,#f6f6ea 0,#ecf8ff 100%);
+    border-top: 1px solid #cbe1f5;
+    border-bottom: 1px solid #eeeeee;   
+    background: linear-gradient(to bottom,#c0e5fd 0,#8ebeda 100%);
 }
 .CloseBtn {
     border: none !important;
@@ -2802,7 +2804,7 @@ h3 {
 }
 .payment-body p {
     font-size: 18px;
-    color: #d2571c;
+    color: #fd0e0e;
     font-weight: bold;
 }
 .payment-body p span {
@@ -2810,9 +2812,9 @@ h3 {
     padding: 0px 5px;
     margin-right: 3px;
     font-size: 14px;
-    color: #000;
-    background: #ffc;
-    border: 1px solid #ffc041;
+    color: #333333;
+    background: #93c2e0;
+    border: 1px solid #93c2e0;
     border-radius: 5px;
 }
  .circle_t{
@@ -2854,7 +2856,7 @@ h3 {
     .comment-date{
             font-size: 12px;
     /* color: #777; */
-    margin-top: 46px;
+    /* margin-top: 46px; */
     float: left !important;
     position: absolute;
 }
