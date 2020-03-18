@@ -315,8 +315,9 @@
                                     if(response.data.length<this.his_hos && response.data.length > 0) { 
                                         this.$swal({
                                             position: 'top-end',
-                                            type: 'info',
+                                            type: 'error',
                                             text: 'すでに掲載されていない施設をリストから削除しました。',
+                                            confirmButtonColor: "#ff5462",
                                             showConfirmButton: true,
                                             confirmButtonText: "閉じる",
                                             width: 400,
@@ -341,7 +342,8 @@
                                         this.his_hos = 0;
                                         this.$swal({
                                             text: "すでに掲載されていない施設をリストから削除しました。",
-                                            type: 'info',
+                                             confirmButtonColor: "#ff5462",
+                                            type: 'error',
                                             width: 400,
                                             height: 200,
                                             // showCancelButton: true,

@@ -391,8 +391,9 @@
                                 {
                                     this.$swal({
                                     position: 'top-end',
-                                    type: 'info',
+                                    type: 'error',
                                     text: 'すでに掲載されていない施設をリストから削除しました。',
+                                    confirmButtonColor: "#ff5462",
                                     showConfirmButton: true,
                                     confirmButtonText: "閉じる",
                                     width: 400,
@@ -420,8 +421,9 @@
                                 {
                                     this.$swal({
                                     position: 'top-end',
-                                    type: 'info',
+                                    type: 'error',
                                     text: 'すでに掲載されていない施設をリストから削除しました。',
+                                    confirmButtonColor: "#ff5462",
                                     showConfirmButton: true,
                                     confirmButtonText: "閉じる",
                                     width: 400,

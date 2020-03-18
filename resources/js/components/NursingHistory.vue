@@ -437,10 +437,11 @@ export default {
                 if(response.data.length<this.his_nus) {
                     this.$swal({
                         position: 'top-end',
-                        type: 'info',
+                        type: 'error',
                         text: 'すでに掲載されていない施設をリストから削除しました。',
                         showConfirmButton: true,
                         confirmButtonText: "閉じる",
+                        confirmButtonColor: "#ff5462",
                         width: 400,
                         height: 200,
                         allowOutsideClick: false,
@@ -465,11 +466,11 @@ export default {
                 this.$swal({
                     allowOutsideClick: false,
                     text: "すでに掲載されていない施設をリストから削除しました。",
-                    type: 'info',
+                    type: 'error',
                     width: 400,
                     height: 200,
                     showConfirmButton: true,
-                    // confirmButtonColor: "#dc3545",
+                    confirmButtonColor: "#ff5462",
                     // cancelButtonColor: "#b1abab",
                     // cancelButtonTextColor: "#000",
                     confirmButtonText: "閉じる",
