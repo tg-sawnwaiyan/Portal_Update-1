@@ -1522,7 +1522,8 @@
                     return function() {
                         infoWindow.setContent(infoWindowContent[i][0]);
                         infoWindow.open(this.map, marker);
-                    }
+                         jQuery(".gm-ui-hover-effect").attr('title', '閉じる');                   
+                         }
                     })(marker, i));
                     this.markerHover.push(marker)
                     var boundsListener = google.maps.event.addListener((this.map), 'bounds_changed', function(event) {
