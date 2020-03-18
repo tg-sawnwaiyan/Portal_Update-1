@@ -416,13 +416,13 @@
                     },
                 deleteJob(id) {
                         this.$swal({
-                            title: "確認",
+                            // title: "確認",
                             text: "求人を削除してよろしいでしょうか。",
                             type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#dc3545",
+                            confirmButtonColor: "#eea025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
                             confirmButtonText: "はい",
@@ -444,17 +444,26 @@
                                         this.norecord_msg = true;
                                     }
                                     this.$swal({
-                                        text: "求人を削除しました",
+                                        text: "求人を削除しました。",
                                         type: "success",
+                                        width: 350,
+                                        height: 200,
+                                        confirmButtonText: "閉じる",
+                                        confirmButtonColor: "#31cd38",
+                                        allowOutsideClick: false,
+                                    });
+                                })
+                                .catch(() => {
+                                    this.$swal({
+                                        title: "システムエラーです",
+                                        html: "社内エンジニアにお問い合わせください。<br/><a href='mailto:pg@management-partners.co.jp'>pg@management-partners.co.jp</a>",
+                                        type: "error",
                                         width: 350,
                                         height: 200,
                                         confirmButtonText: "閉じる",
                                         confirmButtonColor: "#dc3545",
                                         allowOutsideClick: false,
                                     });
-                                })
-                                .catch(() => {
-                                    this.$swal("Failed", "wrong");
                                 });
                         });
                     },

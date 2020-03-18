@@ -1346,12 +1346,12 @@ export default {
            
                     // console.log("mail");
                     this.$swal({
-                        html: "保存できません。<br/>必須項目を確認してください",
-                        type: "warning",
+                        html: "保存できません。<br/>必須項目を確認してください。",
+                        type: "error",
                         width: 350,
                         height: 200,
                         showCancelButton: false,
-                        confirmButtonColor: "#dc3545",
+                        confirmButtonColor: "#FF5462 ",
                         cancelButtonColor: "#b1abab",
                         cancelButtonTextColor: "#000",
                         confirmButtonText: "はい",
@@ -1495,9 +1495,9 @@ export default {
                         this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            text: '保存されました',
+                            text: '保存されました。',
                             confirmButtonText: "閉じる",
-                            confirmButtonColor: "#6cb2eb",
+                            confirmButtonColor: "#31cd38",
                             width: 250,
                             height: 200,
                             allowOutsideClick: false,
