@@ -11,7 +11,7 @@
                     <form @submit.prevent ="add">
                        
                         <div class="form-group">
-                        <label>職種大項目<span class="error sp2">必須</span></label>
+                        <label>職種カテゴリー<span class="error sp2">必須</span></label>
                             <select v-model="selectedValue" class="form-control" @change='getOccupation()'>
                                 <option value="0">選択してください。</option>
                                 <option v-for="occupations in occupationList" :key="occupations.id" v-bind:value="occupations.id">
@@ -109,13 +109,13 @@ export default {
                           if( `${this.$route.params.id}` == "undefined")
                 {
                     this.$swal({
-                             title: "確認",
-                            text: "職種を投稿してよろしいでしょうか。",
-                            type: "info",
+                            //  title: "確認",
+                            text: "求人職種を作成してよろしいでしょうか。",
+                            type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#6cb2eb",
+                            confirmButtonColor: "#eea025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
                             confirmButtonText: "はい",
@@ -134,9 +134,9 @@ export default {
                             position: 'top-end',
                             type: 'success',
                             // title:'確認済',
-                            text: '求人職種を投稿しました',
+                            text: '求人職種を作成しました。',
                             confirmButtonText: "閉じる",
-                            confirmButtonColor: "#6cb2eb",
+                            confirmButtonColor: "#31cd38",
                             // showConfirmButton: false,
                             // timer: 1800,
                             width: 250,
@@ -168,13 +168,13 @@ export default {
 
               updateType() {
                   this.$swal({
-                            title: "確認",
+                            // title: "確認",
                             text: "求人職種を更新してよろしいでしょうか。",
-                            type: "info",
+                            type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#6cb2eb",
+                            confirmButtonColor: "#eea025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
                             confirmButtonText: "はい",
@@ -192,9 +192,9 @@ export default {
                         this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            text: '求人職種を更新しました',
+                            text: '求人職種を更新しました。',
                             confirmButtonText: "閉じる",
-                            confirmButtonColor: "#6cb2eb",
+                            confirmButtonColor: "#31cd38 ",
                             width: 250,
                             height: 200,
                             allowOutsideClick: false,

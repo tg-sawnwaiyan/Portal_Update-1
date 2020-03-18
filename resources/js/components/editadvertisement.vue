@@ -218,13 +218,13 @@ export default {
             updateAds() {
                
                     this.$swal({
-                        title: "確認",
+                        // title: "確認",
                         text: "広告を更新してよろしいでしょうか。",
-                        type: "info",
+                        type: "warning",
                         width: 350,
                         height: 200,
                         showCancelButton: true,
-                        confirmButtonColor: "#6cb2eb",
+                        confirmButtonColor: "#eea025",
                         cancelButtonColor: "#b1abab",
                         cancelButtonTextColor: "#000",
                         confirmButtonText: "はい",
@@ -266,9 +266,9 @@ export default {
                             this.$swal({
                                 position: 'top-end',
                                 type: 'success',
-                                text: '広告を更新しました',                             
+                                text: '広告を更新しました。',                             
                                 confirmButtonText: "閉じる",
-                                confirmButtonColor: "#6cb2eb",
+                                confirmButtonColor: "#31cd38",
                                 width: 250,
                                 height: 200,
                                 allowOutsideClick: false,
@@ -286,13 +286,13 @@ export default {
               add() {
                   this.advertisement.location = "topbar";
                   this.$swal({
-                            title: "確認",
-                            text: "広告を投稿してよろしいでしょうか。",
-                            type: "info",
+                            // title: "確認",
+                            text: "広告を作成してよろしいでしょうか。",
+                            type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#6cb2eb",
+                            confirmButtonColor: "#eea025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
                             confirmButtonText: "はい",
@@ -316,9 +316,9 @@ export default {
                             position: 'top-end',
                             type: 'success',
                             // title:'確認済',
-                            text: '広告を投稿しました',
+                            text: '広告を投稿しました。',
                             confirmButtonText: "閉じる",
-                            confirmButtonColor: "#6cb2eb",
+                            confirmButtonColor: "#31cd38",
                             width: 250,
                             height: 200,
                             allowOutsideClick: false,

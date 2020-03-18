@@ -148,13 +148,13 @@
                    }
               
                     this.$swal({
-                        title: "確認",
+                        // title: "確認",
                         text: "ニュースを削除してよろしいでしょうか。",
                         type: "warning",
                         width: 350,
                         height: 200,
                         showCancelButton: true,
-                        confirmButtonColor: "#dc3545",
+                        confirmButtonColor: "#eea025",
                         cancelButtonColor: "#b1abab",
                         cancelButtonTextColor: "#000",
                         confirmButtonText: "はい",
@@ -184,12 +184,12 @@
                                  this.$loading(false);
 
                                 this.$swal({
-                                    text: "ニュースを削除しました",
+                                    text: "ニュースを削除しました。",
                                     type: "success",
                                     width: 350,
                                     height: 200,
                                     confirmButtonText: "閉じる",
-                                    confirmButtonColor: "#dc3545",
+                                    confirmButtonColor: "#31cd38",
                                      allowOutsideClick: false,
                                 });
                             })
