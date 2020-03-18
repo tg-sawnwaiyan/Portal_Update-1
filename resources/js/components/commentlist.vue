@@ -24,6 +24,7 @@
                             <autocomplete id="cusname"  placeholder="事業者名を検索" input-class="form-control" :source=customerList :results-display="formattedDisplay" @clear="cleartext()"  @selected="getSelected($event)">
                             </autocomplete> -->
                         <!-- </div> -->
+                 
                         <div class="col-md-12 choose-item">
                     
                              <autocomplete id="cusname"  placeholder="施設名で検索" input-class="form-control" :source=profileList :results-display="formattedDisplay" @clear="cleartext()"   @selected="getProfile($event)">

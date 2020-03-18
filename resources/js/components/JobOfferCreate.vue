@@ -803,15 +803,16 @@ import Autocomplete from 'vuejs-auto-complete'
                             !this.errors.working_hours&&
                             !this.errors.occupation_id && 
                             !this.errors.customer_id && 
-                            !this.errors.profile_id
+                            !this.errors.profile_id &&
+                            !this.errors.skills 
 
                         ) {
-                          console.log('null');
+                          
                             this.errors.checkallerror = "";
                             this.add();
                         }
                         else{
-                          console.log('not');
+                         
                           this.errors.checkallerror = "保存できません。必須項目を確認してください。"
                         }
                   },
