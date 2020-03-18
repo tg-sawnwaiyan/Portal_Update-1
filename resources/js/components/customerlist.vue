@@ -299,7 +299,7 @@
                 
                 deleteCustomer(id,type) {
                     if(type == 'delete'){
-                        var textval = '事業者を削除してよろしいでしょうか';
+                        var textval = '事業者を削除してよろしいでしょうか。';
                     }
                     else{
                         // var textval = '承認しない場合事業者情報が削除されます。';

@@ -219,7 +219,7 @@ export default {
                
                     this.$swal({
                         title: "確認",
-                        text: "広告を更新してよろしいでしょうか",
+                        text: "広告を更新してよろしいでしょうか。",
                         type: "info",
                         width: 350,
                         height: 200,
@@ -287,7 +287,7 @@ export default {
                   this.advertisement.location = "topbar";
                   this.$swal({
                             title: "確認",
-                            text: "広告を投稿してよろしいでしょうか",
+                            text: "広告を投稿してよろしいでしょうか。",
                             type: "info",
                             width: 350,
                             height: 200,

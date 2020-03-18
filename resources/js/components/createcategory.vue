@@ -60,7 +60,7 @@ export default {
             add() {
                  this.$swal({
                             title: "確認",
-                            text: "ニュースカテゴリーを作成してよろしいでしょうか",
+                            text: "ニュースカテゴリーを作成してよろしいでしょうか。",
                             type: "info",
                             width: 390,
                             height: 200,

@@ -104,7 +104,7 @@
                 deleteType(id) {
                         this.$swal({
                             title: "確認",
-                            text: "職種を削除してよろしいでしょうか",
+                            text: "職種を削除してよろしいでしょうか。",
                             type: "warning",
                             width: 350,
                             height: 200,
