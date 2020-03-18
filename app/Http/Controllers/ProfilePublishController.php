@@ -100,11 +100,11 @@ class ProfilePublishController extends Controller
         //for image slide show
         $logo = NursingProfile::where('id',$cusid)->select('logo as photo')->get()->toArray(); // to change
 
-        $gallery = Gallery::where('profile_id',$cusid)->where('type','photo')->get()->toArray();
+        $gallery = Gallery::where('profile_id',$cusid)->where('type','photo')->where('profile_type','nursing')->get()->toArray();
         $images = array_merge($logo,$gallery);
 
-        $panoimages = Gallery::where('profile_id',$cusid)->where('type','panorama')->select()->orderBy('id','desc')->get();
-        $videos = Gallery::where('profile_id',$cusid)->where('type','video')->select()->get()->toArray();
+        $panoimages = Gallery::where('profile_id',$cusid)->where('type','panorama')->where('profile_type','nursing')->select()->orderBy('id','desc')->get();
+        $videos = Gallery::where('profile_id',$cusid)->where('type','video')->where('profile_type','nursing')->select()->get()->toArray();
         for($i=0;$i<count($videos);$i++) {
             $first_arr = explode('v=',$videos[$i]['photo']);
             if(count($first_arr)>1) {
