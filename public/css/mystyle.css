@@ -1383,6 +1383,10 @@ border-radius: 3px;
     margin-right: 0px !important;
 }
 
+.advanced-search>div.form-check-inline {
+    padding-left: 10px;
+}
+
 .collapse.show {
     display: block;
     /* background: rgba(199, 220, 217, 1); */

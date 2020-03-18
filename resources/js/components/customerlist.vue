@@ -10,7 +10,7 @@
                 </div>
                 <div v-else class="container-fuid">
                     <h4 class="main-color mb-3">事業者検索 </h4>
-                    <div class="row mb-4">
+                    <div class="row mb-4 advanced-search">
                         <div class="col-xl-8 col-md-7">                      
                             <autocomplete id="cusname"  placeholder="事業者名で検索" input-class="form-control" :source=customerList :results-display="formattedDisplay" @clear="clearcustomer()"  @selected="getselected($event)">
                             </autocomplete>                           
