@@ -17,7 +17,7 @@ class CustomerProfileContoller extends Controller
         LEFT JOIN cities ON townships.city_id = cities.id
         LEFT JOIN special_features_junctions ON special_features_junctions.profile_id = hospital_profiles.id
         LEFT JOIN subject_junctions ON subject_junctions.profile_id = hospital_profiles.id
-        WHERE hospital_profiles.id IN (" . $local_sto . ") group by hospital_profiles.id";
+        WHERE hospital_profiles.activate=1 AND hospital_profiles.id IN (" . $local_sto . ") group by hospital_profiles.id";
         $hos_histories = DB::select($query);
         foreach($hos_histories as $hos) {
             $sfeature = $hos->special;
@@ -48,7 +48,7 @@ class CustomerProfileContoller extends Controller
         LEFT JOIN townships ON townships.id = nursing_profiles.townships_id
         LEFT JOIN cities ON townships.city_id = cities.id
         LEFT JOIN special_features_junctions ON special_features_junctions.profile_id = nursing_profiles.id
-        WHERE nursing_profiles.id IN (" . $local_sto . ") group by nursing_profiles.id";
+        WHERE nursing_profiles.activate=1 AND nursing_profiles.id IN (" . $local_sto . ") group by nursing_profiles.id";
         $nur_histories = DB::select($query);
         foreach($nur_histories as $nur) {
             $sfeature = $nur->special;

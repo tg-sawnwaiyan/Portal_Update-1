@@ -313,6 +313,16 @@
                                 // if(response.data.length<this.his_hos && response.data.length > 0) {
                                     this.hos_profiles = response.data;
                                     if(response.data.length<this.his_hos && response.data.length > 0) { 
+                                        this.$swal({
+                                            position: 'top-end',
+                                            type: 'info',
+                                            text: 'すでに掲載されていない施設をリストから削除しました。',
+                                            showConfirmButton: true,
+                                            confirmButtonText: "閉じる",
+                                            width: 400,
+                                            height: 200,
+                                            allowOutsideClick: false,
+                                        });
                                         var hos_id = '';
                                         // this.message = "現在本サイトに掲載されていない病院については最近見た施設リストから削除しました。";
                                         for(var i= 0;i<this.hos_profiles.length;i++) {
@@ -393,6 +403,7 @@
                                 this.local_sto = localStorage.getItem("hospital_history");
                                 
                                 if (this.local_sto) {
+                                    this.his_hos = this.local_sto.split(",").length;
                                     this.getAllCustomer(this.local_sto);
                                 } else {
                                     // window.location.reload();
@@ -408,7 +419,7 @@
                            
                             
                             if(this.local_sto){
-                            this.his_hos = this.local_sto.split(",").length;
+                                this.his_hos = this.local_sto.split(",").length;
                             }
                      
 
