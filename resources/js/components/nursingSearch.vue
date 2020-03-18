@@ -1426,6 +1426,8 @@
                 if(item.length  && mmarker.length)
                 {
                     for (var i = 0; i < item.length; i++) {
+                        var typename = item[i]['type_name'] == null ? '介護':item[i]['type_name'];
+                        var phonenum = item[i]['phone'] == null ? '':item[i]['phone'];
                         infoWindowContent.push([
                             '<div id="info_content">' +
                             '<div class="">' +
@@ -1433,7 +1435,7 @@
                                 '<thead>' +
                                     '<tr>' +
                                     '<td colspan="2"><span class="type-name">' +
-                                    item[i]['type_name']+
+                                    typename+
                                     '</span>'+
                                     '</td>' +
                                     '</tr>' +
@@ -1451,7 +1453,7 @@
                                 '<img src="/upload/nursing_profile/' + item[i]['logo'] + '" alt="image" width="100px" style="border:1px solid #ccc;" @error="imgUrlAlt"/>' +
                                 '</td>' +
                                 '<td style="padding-bottom:0px;">' +
-                                    '<p class="nus_phone"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span>' + item[i]['phone'] + '</p>' +
+                                    '<p class="nus_phone"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span>' + phonenum + '</p>' +
                                 '</td>' +
                                 '</tr>' +
                                 ' <tr>' +

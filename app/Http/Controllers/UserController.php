@@ -235,12 +235,15 @@ class UserController extends Controller
         $request = $request->all();
         $user = User::find(auth('api')->user()->id);
         $tmp = $request['file'];
+        $imageName = $request['photo'];
+        $imageName = str_replace(' ', '', $imageName);
+        $imageName = strtolower($imageName);
 
         if($user['type_id'] == '2') {
-            $destination = 'upload/hospital_profile/'.$request['photo'];
+            $destination = 'upload/hospital_profile/'.$imageName;
         }
        else {
-            $destination = 'upload/nursing_profile/'.$request['photo'];
+            $destination = 'upload/nursing_profile/'.$imageName;
         }
         move_uploaded_file($tmp, $destination);
         

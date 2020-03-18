@@ -189,7 +189,10 @@ class HospitalProfileController extends Controller
 
         $request = $request->all();
         foreach ($request as $file){
-            $destination = 'upload/hospital_profile/'.$file->getClientOriginalName();
+            $imageName = $file->getClientOriginalName();
+            $imageName = str_replace(' ', '', $imageName);
+            $imageName = strtolower($imageName);
+            $destination = 'upload/hospital_profile/'.$imageName;
             $upload_img = move_uploaded_file($file, $destination);
         }        
     }
