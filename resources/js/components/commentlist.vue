@@ -83,7 +83,7 @@
                                             <td> {{comment.title}} </td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3" class="align-top custom_title"><span style="text-align:right;color:#777;font-size:0.9em;"><span><i class="fa fa-calendar"></i>&nbsp;{{comment.created_date | moment("YYYY年MM月DD日") }}投稿</span> <span><i class="fa fa-clock"></i>&nbsp;{{comment.created_time}}</span></span></td>
+                                            <!-- <td colspan="3" class="align-top custom_title"><span style="text-align:right;color:#777;font-size:0.9em;"><span><i class="fa fa-calendar"></i>&nbsp;{{comment.created_date | moment("YYYY年MM月DD日") }}</span> <span><i class="fa fa-clock"></i>&nbsp;{{comment.created_time}} 投稿</span></span></td> -->
                                             <!-- <td> {{comment.title}} </td> -->
                                         </tr>
                                         <!-- <tr>
@@ -97,7 +97,7 @@
                                             <td> {{comment.email}} </td>
                                         </tr> -->
                                     </table>
-                                   
+                                                                    
                                 </div>
 
                                 <div class="col-3 text-right">
@@ -106,8 +106,9 @@
                                          詳細 <i :id="'icon' + comment.id" class="fas fa-sort-down animate rotate"></i></button>
                                 </div>
                             </div>
+                            <div class="cmt"><span><i class="fa fa-calendar"></i>&nbsp;{{comment.created_date | moment("YYYY年MM月DD日") }}</span> <span><i class="fa fa-clock"></i>&nbsp;{{comment.created_time}}&nbsp;投稿</span></div>
                              <!--comment-->
-                                <div class="collapse" :id="'changeLink' + comment.id">   
+                                <div class="collapse" :id="'changeLink' + comment.id" style="margin-top:15px;">   
                                     <!-- <div class="cmt"><span><i class="fa fa-calendar"></i>&nbsp;{{comment.created_date | moment("YYYY年MM月DD日") }}投稿</span> <span><i class="fa fa-clock"></i>&nbsp;{{comment.created_time}}</span></div>                                -->
                                     <table class="table table-bordered">
                                         <tr>
@@ -382,7 +383,7 @@
                                     // this.categories.splice(i, 1);
                                     this.$swal({
                                         // title: "削除済",
-                                        text: "口コミを削除しました",
+                                        text: "口コミを削除しました。",
                                         type: "success",
                                         width: 350,
                                         height: 200,
@@ -428,7 +429,7 @@
                                     this.comments = response.data.comments;
                                     this.$swal({
                                             title: "確認済",
-                                            text: "口コミを投稿しました",
+                                            text: "口コミが投稿されました。",
                                             type: "success",
                                             width: 350,
                                             height: 200,

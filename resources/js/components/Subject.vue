@@ -10,7 +10,7 @@
                         <div class="col-md-12">
                             <form @submit.prevent ="add">
                     <div class="form-group">
-                        <label>科目大項目 <span class="error sp2">必須</span></label>
+                        <label>科目カテゴリー <span class="error sp2">必須</span></label>
                             <select v-model="selectedValue" class="form-control" @change='getParent()'>
                                 <option value="0">選択してください。</option>
                                 <option v-for="Subjectlist in SubjectList" :key="Subjectlist.id" v-bind:value="Subjectlist.id">
@@ -115,7 +115,7 @@ export default {
                 {
                     this.$swal({
                             title: "確認",
-                            text: "診療科目を投稿してよろしいでしょうか",
+                            text: "診療科目を作成してよろしいでしょうか",
                             type: "info",
                             width: 350,
                             height: 200,
@@ -176,7 +176,7 @@ export default {
 
                 this.$swal({
                           title: "確認",
-                            text: "診療科目を更新してよろしいでしょうか",
+                            text: "診療科目を登録してよろしいでしょうか",
                             type: "info",
                             width: 350,
                             height: 200,

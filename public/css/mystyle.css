@@ -5395,11 +5395,12 @@ margin-right: 2% !important;
 .m-b-10 {
     margin-bottom: 10px;
 }
-
+ /*comment*/
 .cmt-1 {
     margin-bottom: 10px;
     left: 8px;
 }
+ /*comment*/
 
 .secondary-bg-color {
     background-color: #0cc72c !important;
@@ -6971,13 +6972,14 @@ display: block !important;
 /*  Start CommentList */
 .p-17 {
     padding:17px;
-}
+} /*comment*/
 .cmt{
     text-align: right;
     margin-right: 4px;
     font-size: 12px;
     color: #777;
-}
+    margin-top: -20px;
+} /*comment*/
 button.confirmed {
     opacity: 0.5;
     cursor: not-allowed;
@@ -10356,6 +10358,15 @@ padding: 0;
 }
 
 @media only screen and (max-width: 990px) {
+ /*comment*/
+    .cmt 
+    {
+    text-align: left;
+    font-size: 12px;
+    color: #777;
+    margin-top: 3px;
+    }
+     /*comment*/
     .form-wrap .mailbox {
         width: 100%;
         margin-left: 0px;
@@ -11009,6 +11020,15 @@ width: 18rem;
 
 @media screen and (max-width: 1024px) and (min-width: 768px) {
     /*fav nursing*/
+    /*comment*/
+    .cmt 
+    {
+        font-size: 12px;
+        color: #777;
+        text-align: right;
+        margin-top: -21px;
+    }
+     /*comment*/
     .lbl-size {
         width: 355px;
     }

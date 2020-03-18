@@ -15,7 +15,7 @@
                     <div class="row mb-4">
                         <div class="col-md-6">
                       
-                            <autocomplete id="cusname"  placeholder="事業者名で検索"  input-class="form-control" :source=customerList :results-display="formattedDisplay" @clear="clearcustomer()"  @selected="getselected($event)">
+                            <autocomplete id="cusname"  placeholder="事業者名で検索" input-class="form-control" :source=customerList :results-display="formattedDisplay" @clear="clearcustomer()"  @selected="getselected($event)">
                             </autocomplete>
                            
                         </div> 
@@ -23,52 +23,41 @@
                         <div class="col-md-6 form-check form-check-inline">
                           
                             <label class="form-check-label control control--checkbox"  style="padding-left:5px;">
-                            <input type="checkbox" class="form-check-input" value="1"   v-model="recordstatus" @change="searchCustomer">
+                            <input type="checkbox" class="form-check-input" value="1"   v-model="recordstatus" @change="searchCustomer()">
                             有効
                             <div class="control__indicator"></div>
                             </label>
 
-                            <label class="form-check-label control control--checkbox" style="padding-left:5px;" @change="searchCustomer">
+                            <label class="form-check-label control control--checkbox" style="padding-left:5px;" @change="searchCustomer()">
                             <input type="checkbox" class="form-check-input" value="0" v-model="recordstatus"  >
                                 無効
                             <div class="control__indicator"></div>
                             </label>
 
-                            <label class="form-check-label control control--checkbox" style="padding-left:5px;" @change="searchCustomer">
+                            <label class="form-check-label control control--checkbox" style="padding-left:5px;" @change="searchCustomer()">
                             <input  type="checkbox" class="form-check-input" value="2" v-model="status" >
                             登録承認審査中
                             <div class="control__indicator"></div>
                             </label>
                             
                         </div>
+                    </div>
                         
-                         <!-- <div class="col-md-6 choose-item">
+                      <!-- <div class="col-md-6 choose-item">
+                        <div class="col-md-6 choose-item">
                               <select  v-model="status" id="selectBox" class="form-control select_box" @change="searchCustomer()">
                                 <option selected="selected" value>状態を選択してください。</option>
                                 <option value="1"> 有効 </option>                            
                                 <option value="0"> 無効 </option>   
                                 <option value="2"> 登録承認審査中 </option>                              
-                            </select> 
-                        </div>                  -->
+                            </select>                              
+                        </div>                         
                         
                     </div>
-                    <!-- <div class="row mb-4">
-                        <div class="col-md-6">
-                             <input type="text" class="form-control" placeholder="事業者名で検索" id="search-word" v-model="searchkeyword" @keyup="searchCustomer()" />
-                        </div>
-                        <div class="col-md-6 choose-item">
-                            <select  v-model="status" id="selectBox" class="form-control select_box" @change="searchCustomer()">
-                                <option selected="selected" value>状態を選択してください。</option>
-                                <option value="1"> 有効 </option>                            
-                                <option value="0"> 無効 </option>   
-                                <option value="2"> 登録承認審査中 </option>                              
-                            </select>
-                        </div>
-                    </div> -->
-                    
+                                        
                     <hr/>
-                    <h5 class="header">{{title}}</h5>
-                    <!-- <div v-if="nosearch_msg" class="container-fuid no_search_data"> -->
+                    <h5 class="header">{{title}}</h5> -->
+                   <!-- <div v-if="nosearch_msg" class="container-fuid no_search_data"> -->
                     <div v-if="nosearch_msg" class="card card-default card-wrap no_search_data">
                         <p class="record-ico">
                             <i class="fa fa-exclamation"></i>

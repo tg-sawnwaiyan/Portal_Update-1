@@ -28,6 +28,7 @@ use App\method_payment;
 use App\Staff;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Input;
+
 class CustomerController extends Controller
 {
     /**
@@ -299,7 +300,7 @@ class CustomerController extends Controller
         if(!empty($checkUser)){
             return response()->json('already');
         }else{
-            // \Mail::to($getCustomer->email)->send(new SendMailable($getCustomer));
+            \Mail::to($getCustomer->email)->send(new SendMailable($getCustomer));
 
             $data = array(
                 'name'=>$getCustomer->name,
@@ -336,6 +337,7 @@ class CustomerController extends Controller
 
     public function search(Request $request)
     {
+     
         $request = $request->all();
         $search_word = $request['cusid'];
         if($request['recordstatus'] == null)
@@ -348,34 +350,32 @@ class CustomerController extends Controller
             $request['status'] = 'empty';
         }
        
-
+     
         $rec = "recordstatus"; $sta = "status";
 
         $query = "SELECT *,(CASE type_id WHEN '2' THEN CONCAT((200000+id)) ELSE CONCAT((500000+id)) END) as cusnum 
                     from customers where name like '%".$search_word."%' and type_id = ".$request['type']  ;
 
-        if($request['recordstatus'] != 'empty' && $request['status'] == 'empty')
+        if($request['recordstatus'] != 'empty'  && $request['status'] == 'empty')
         {
             $query .= " and $rec in (".$request['recordstatus'].") and $sta = 1";
         
         }
         if($request['status'] != 'empty' && $request['recordstatus'] == 'empty')
         {
-            $query .= "and $sta = 0 ";
+            $query .= " and $sta = 0 ";
         }
-   
-        // if($request['recordstatus'] != 0 && $request['status'] != 0 )
-        // {
-        //     $query .= " and  $sta in (0,1) and recordstatus = ";
-        // }
-
+        if($request['status'] != 'empty' && $request['recordstatus'] != 'empty' )
+        {
+             $query .= " and (($sta = 1 && $rec in (".$request['recordstatus'].")) or $sta = 0 )";
+        }
+     
 
         $query .= " order by created_at desc";
       
 
         $search_customers = DB::select($query);
-
-        $page = 1;
+        $page = Input::get('page', 1);
         $size = 12;
         $data = collect($search_customers);
        
