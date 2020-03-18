@@ -293,7 +293,15 @@
                             <p v-html="nursing_profiles"></p>
                         </span>
                         <span v-else>
+<<<<<<< HEAD
                             <p class="no-data-color">データがありません。</p>
+=======
+<<<<<<< HEAD
+                            <p class="no-data-color">データがありません。</p>
+=======
+                            <p class="no-data-color">表示されるデータがありません。</p>
+>>>>>>> 5604e27684d2dad231bbde1aefd5829751fcec02
+>>>>>>> 449ee2dc36f4f51504fbb6b670433f6d0d8feb58
                         </span>
                     </div>
 
