@@ -221,7 +221,7 @@ export default {
                         type: "success",
                         width: 350,
                         height: 200,
-                        confirmButtonColor: "#6cb2eb",                       
+                        confirmButtonColor: "#31CD38",                       
                         confirmButtonText: "閉じる",
                         confirmButtonClass: "all-btn",
                             

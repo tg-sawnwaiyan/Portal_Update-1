@@ -255,7 +255,7 @@ import {quillEditor} from 'vue-quill-editor'
                             allowOutsideClick: false,
                         }).then(response => {
                                 this.$swal({
-                                        text: "画像を削除しました",
+                                        text: "画像を削除しました。",
                                         type: "success",
                                         width: 350,
                                         height: 200,
@@ -314,7 +314,7 @@ import {quillEditor} from 'vue-quill-editor'
                                     text: 'ニュースを更新しました。',
                                     confirmButtonText: "閉じる",
                                     confirmButtonColor: "#31cd38",
-                                    width: 250,
+                                    width: 350,
                                     height: 200,
                                     allowOutsideClick: false,                                   
                                 })
@@ -363,7 +363,7 @@ import {quillEditor} from 'vue-quill-editor'
                             text: 'ニュースを投稿しました。',
                             confirmButtonText: "閉じる",
                             confirmButtonColor: "#31cd38",
-                            width: 270,
+                            width: 350,
                             height: 200,
                             allowOutsideClick: false,
                         })

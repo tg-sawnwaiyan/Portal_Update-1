@@ -90,9 +90,9 @@
                 this.$swal({       
                           text: "ご登録のメールアドレスにパスワード変更用のURLを送付しました。",
                           type: "success",
-                          width: 390,
+                          width: 400,
                           height: 200,                        
-                          confirmButtonColor: "#6cb2eb",                         
+                          confirmButtonColor: "#31CD38",                         
                           confirmButtonText: "閉じる",
                           confirmButtonClass: "all-btn",
                           allowOutsideClick: false,
@@ -105,12 +105,11 @@
                 if(error.response.status == 404){
                     
                     this.$swal({
-                                title: "このメールアドレスは存在しません。",
-                                text: "ご確認の上、もう一度お試しください。",
-                                type: "warning",
-                                width: 390,
+                                html: "このメールアドレスは存在しません。<br/>ご確認の上、もう一度お試しください。",
+                                type: "error",
+                                width: 350,
                                 height: 200,                        
-                                confirmButtonColor: "#6cb2eb",                         
+                                confirmButtonColor: "#FF5462",                         
                                 confirmButtonText: "閉じる",
                                 confirmButtonClass: "all-btn",
                                 allowOutsideClick: false,

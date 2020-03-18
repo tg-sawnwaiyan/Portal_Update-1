@@ -100,7 +100,7 @@ export default {
                             // timer: 1800,
                             confirmButtonText: "閉じる",
                             confirmButtonColor: "#31cd38",
-                            width: 250,
+                            width: 350,
                             height: 200,
                             allowOutsideClick: false,
                         })
@@ -130,7 +130,7 @@ export default {
                         // timer: 1500,
                         confirmButtonText: "閉じる",
                         confirmButtonColor: "#31cd38",
-                        width: 250,
+                        width: 350,
                         height: 200,
                         allowOutsideClick: false,
                       })

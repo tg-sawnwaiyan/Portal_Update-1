@@ -55,10 +55,10 @@ export default {
                 this.$swal({
                     position: 'top-end',
                     type: 'success',
-                    text: 'カテゴリーを更新しました',
+                    text: 'カテゴリーを更新しました。',
                     confirmButtonText: "閉じる",
                     confirmButtonColor: "#6cb2eb",
-                    width: 300,
+                    width: 350,
                     height: 200,
                     allowOutsideClick: false,
                 })

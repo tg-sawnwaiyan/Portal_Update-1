@@ -958,7 +958,7 @@
                         <textarea name="description" placeholder="コンテンツを入力してください。" class="form-control m-b-15 description white-bg-color" v-model="img.description" ></textarea>
                     </div>
                     <div class="col-md-12 text-right hos-del">
-                        <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,img.id,'photo')">
+                        <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,img.id,'photo','画像')">
                             <i class="fa fa-trash"></i> 削除
                         </a>
                     </div>
@@ -995,7 +995,7 @@
 
                 </div>
                 <div class="col-md-12 text-right hos-del">
-                  <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,video.id,'video')">
+                  <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,video.id,'video','動画')">
                   <i class="fa fa-trash"></i> 削除
                   </a>
                 </div>
@@ -1231,20 +1231,19 @@ export default {
             subjectCheck(check_id) {
                     $('.subject-'+check_id).attr('checked','true');
             },
-            DeltArr(indx,id,type) {
+            DeltArr(indx,id,type,name) {
 
 
               this.$swal({
-                        title: "確認",
-                        text: "職種を削除してよろしいでしょうか",
+                        text: name + "を削除してよろしいでしょうか。",
                         type: "warning",
                         width: 350,
                         height: 200,
                         showCancelButton: true,
-                        confirmButtonColor: "#dc3545",
+                        confirmButtonColor: "#EEA025",
                         cancelButtonColor: "#b1abab",
                         cancelButtonTextColor: "#000",
-                        confirmButtonText: "削除",
+                        confirmButtonText: "はい",
                         cancelButtonText: "キャンセル",
                         confirmButtonClass: "all-btn",
                         cancelButtonClass: "all-btn",
@@ -1267,12 +1266,12 @@ export default {
                                 .then(response=>{
 
                                     this.$swal({
-                                        text: "職種を削除しました",
+                                        text: name + "を削除しました。",
                                         type: "success",
                                         width: 350,
                                         height: 200,
                                         confirmButtonText: "閉じる",
-                                        confirmButtonColor: "#dc3545",
+                                        confirmButtonColor: "#31CD38",
                                          allowOutsideClick: false,
                                     });
                                 })
@@ -1351,13 +1350,13 @@ export default {
                         width: 350,
                         height: 200,
                         showCancelButton: false,
-                        confirmButtonColor: "#FF5462 ",
-                        cancelButtonColor: "#b1abab",
+                        confirmButtonColor: "#FF5462",
+                        // cancelButtonColor: "#b1abab",
                         cancelButtonTextColor: "#000",
-                        confirmButtonText: "はい",
-                        cancelButtonText: "キャンセル",
+                        confirmButtonText: "閉じる",
+                        // cancelButtonText: "キャンセル",
                         confirmButtonClass: "all-btn",
-                        cancelButtonClass: "all-btn",
+                        // cancelButtonClass: "all-btn",
                         allowOutsideClick: false,
                     })                    
                 } 
@@ -1498,7 +1497,7 @@ export default {
                             text: '保存されました。',
                             confirmButtonText: "閉じる",
                             confirmButtonColor: "#31cd38",
-                            width: 250,
+                            width: 350,
                             height: 200,
                             allowOutsideClick: false,
                         })

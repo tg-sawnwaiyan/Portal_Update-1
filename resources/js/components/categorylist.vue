@@ -160,7 +160,7 @@
                                             width: 350,
                                             height: 200,
                                             confirmButtonText: "閉じる",
-                                            confirmButtonColor: "#FF5462 ",
+                                            confirmButtonColor: "#FF5462",
                                             allowOutsideClick: false,
                                         });
                                     }

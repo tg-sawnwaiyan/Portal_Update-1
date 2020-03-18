@@ -117,7 +117,7 @@ export default {
                             text: 'カテゴリーを更新しました。',
                             confirmButtonText: "閉じる",
                             confirmButtonColor: "#31cd38  ",
-                            width: 300,
+                            width: 350,
                             height: 200,
                             allowOutsideClick: false,
                         })
