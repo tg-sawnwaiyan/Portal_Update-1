@@ -35,7 +35,8 @@ class CommentController extends Controller
                     ->orderBy('comments.id','DESC')
                     ->paginate(12);
 
-        $query = "select id,name from $p where recordstatus = 1 and name is not null";
+        $query = "select id,name from $p where recordstatus = 1 and name is not null and name != '' ";
+     
         $profilelist = DB::select($query);
         
 
@@ -44,6 +45,7 @@ class CommentController extends Controller
             $com->created_date = $splitTimeStamp[0];
             $com->created_time = $splitTimeStamp[1];
         }
+       
 
         return response()->json(array("commentlist"=>$commentList,"profilelist"=>$profilelist));
     }

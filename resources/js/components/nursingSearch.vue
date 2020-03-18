@@ -431,11 +431,12 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="pc-414-table sp-768-block" v-if="showOne">施設の種類</th>
+                                                    <th class="pc-414-table sp-768-block" v-if="showOne">施設の種類  </th>
                                                     <td class="sp-768-block sp-414-table" v-if="showOne">
 
                                                     <!--施設の種類から探す-->
                                                     <div class="dropdown search_rsp">
+                                                        
                                                     <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
                                                         施設の種類から探す
                                                     </button>
@@ -454,7 +455,9 @@
                                                         </a>
                                                         </li>
                                                     </ul>
+                                                     
                                                     <a v-if="w_width >= 420">
+                                                      
                                                             <div class="row">
                                                             <div class="col-lg-2 col-md-4 col-sm-4" v-for="fac_type in fac_types" :key="fac_type.id">
                                                                 <label class="form-check-label control control--checkbox">
@@ -991,13 +994,16 @@
                 },
                 })
                 .then((response) => { 
+                     
                     $("#mymap").css({'display' : 'block','height' : '400px','width':'100%'});
                     $("#filtertable").css("display", "block");
                     $("#nursing-search").css("display", "block");
+                   
     
                     if(response.data.nursing.length != 0){
                      
                         this.norecord_msg = false;
+                      
                         this.changeMap(response,1);
                         this.getTownships = [];
                     }else{
@@ -1005,6 +1011,10 @@
                         $("#mymap").css({'display' : 'none'});
                         this.nus_data = [];
                         this.norecord_msg = true;
+                        this.special_features = response.data.special_features;
+                        this.fac_types = response.data.fac_types;
+                        this.medical_acceptance = response.data.medical_acceptance;
+
                     }
                 });
 
@@ -1129,6 +1139,7 @@
             // make infowindow, marker , google map
             changeMap(response,freewordornot){ 
               
+                 
                 if(this.id == -1 && freewordornot == 2)
                 {
                     freewordornot = 1;
