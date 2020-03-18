@@ -25,7 +25,8 @@
                             </autocomplete> -->
                         <!-- </div> -->
                         <div class="col-md-12 choose-item">
-                             <autocomplete id="cusname"  placeholder="施設名で検索" input-class="form-control" :source=profileList :results-display="formattedDisplay" @clear="cleartext()"  @selected="getProfile($event)">
+                    
+                             <autocomplete id="cusname"  placeholder="施設名で検索" input-class="form-control" :source=profileList :results-display="formattedDisplay" @clear="cleartext()"   @selected="getProfile($event)">
                             </autocomplete> 
                             <!-- <label>施設名</label>
                          
@@ -191,7 +192,7 @@
 
 <script>
 
-     import Autocomplete from 'vuejs-auto-complete'
+     import Autocomplete from 'vuejs-auto-complete';
     export default {
        
         components: {
@@ -240,7 +241,7 @@
                         this.$loading(false);
                         this.comments = response.data.commentlist;
                         
-                        // this.profilelist = response.data.profilelist;
+                       // this.profilelist = response.data.profilelist;
                         this.norecord = this.comments.data.length;                   
                         if(this.norecord != 0) {
                             this.norecord_msg = false;

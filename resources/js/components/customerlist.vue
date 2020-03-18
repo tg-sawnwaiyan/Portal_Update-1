@@ -19,6 +19,31 @@
                             </autocomplete>
                            
                         </div> 
+                       
+                        <div class="col-md-6 form-check form-check-inline">
+                          
+                            <label class="form-check-label control control--checkbox"  style="padding-left:5px;">
+                            <input type="checkbox" class="form-check-input" value="1"   v-model="recordstatus" @change="searchCustomer()">
+                            有効
+                            <div class="control__indicator"></div>
+                            </label>
+
+                            <label class="form-check-label control control--checkbox" style="padding-left:5px;" @change="searchCustomer()">
+                            <input type="checkbox" class="form-check-input" value="0" v-model="recordstatus"  >
+                                無効
+                            <div class="control__indicator"></div>
+                            </label>
+
+                            <label class="form-check-label control control--checkbox" style="padding-left:5px;" @change="searchCustomer()">
+                            <input  type="checkbox" class="form-check-input" value="2" v-model="status" >
+                            登録承認審査中
+                            <div class="control__indicator"></div>
+                            </label>
+                            
+                        </div>
+                    </div>
+                        
+                      <!-- <div class="col-md-6 choose-item">
                         <div class="col-md-6 choose-item">
                               <select  v-model="status" id="selectBox" class="form-control select_box" @change="searchCustomer()">
                                 <option selected="selected" value>状態を選択してください。</option>
@@ -31,8 +56,8 @@
                     </div>
                                         
                     <hr/>
-                    <h5 class="header">{{title}}</h5>
-                    <!-- <div v-if="nosearch_msg" class="container-fuid no_search_data"> -->
+                    <h5 class="header">{{title}}</h5> -->
+                   <!-- <div v-if="nosearch_msg" class="container-fuid no_search_data"> -->
                     <div v-if="nosearch_msg" class="card card-default card-wrap no_search_data">
                         <p class="record-ico">
                             <i class="fa fa-exclamation"></i>
@@ -207,7 +232,16 @@
                     searchkeyword:'',
                     customerList:'',
                     profileList:[],
-                    selectedValue:0,
+                    recordstatus :[],
+                    status:[],
+
+
+
+                    // selectedValue:{
+                    //    activate:false,
+                    //    deactivate:false,
+                    //    pending:false,
+                    // },
                      table_name: {
                         profile: ''
                     },
@@ -219,7 +253,7 @@
 
                 this.$loading(true);
                 this.initialCall();
-                this.selectedValue = 0;
+               
                   this.axios.get('/api/job/customerList/'+this.type).then(response=> {
                     this.customerList = response.data;
                 });
@@ -267,6 +301,8 @@
                     this.cusid = '';
                     this.searchCustomer();
                 },
+
+               
 
                 
                 deleteCustomer(id,type) {
@@ -376,16 +412,19 @@
                         })
                         
                     },
+                  
 
                     searchCustomer(page) {
 
+                     
                         if(typeof page === "undefined"){
                             page = 1;
                         }
-                        // var search_word = $("#search-word").val();
+                      
+                        console.log("this.selectedValue",this.selectedValue);
                         let fd = new FormData();
-                        // fd.append("search_word", search_word);
-                        fd.append("status",this.status);
+                        fd.append("status",this.status)
+                        fd.append("recordstatus",this.recordstatus);
                         fd.append("cusid",this.cusid);
                       
                         if(this.$route.path == "/nuscustomerlist"){
@@ -399,6 +438,7 @@
                         this.axios.post("/api/customer/search?page="+page, fd).then(response => {
                             this.$loading(false);
                             this.customers = response.data;
+                         
                             if(this.customers.data.length != 0) {
                                 this.nosearch_msg = false;
                             }else{
