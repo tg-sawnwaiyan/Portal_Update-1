@@ -147,7 +147,16 @@ export default {
                                     });
                                 })
                                 .catch(() => {
-                                    this.$swal("Failed", "wrong");
+                                    this.$swal({
+                                        title: "システムエラーです",
+                                        html: "社内エンジニアにお問い合わせください。<br/><a href='mailto:pg@management-partners.co.jp'>pg@management-partners.co.jp</a>",
+                                        type: "error",
+                                        width: 350,
+                                        height: 200,
+                                        confirmButtonText: "閉じる",
+                                        confirmButtonColor: "#dc3545",
+                                        allowOutsideClick: false,
+                                    });
                                 });
                         });
                     },
