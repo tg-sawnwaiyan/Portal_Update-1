@@ -345,7 +345,7 @@
                 deleteComment(id) {
                         this.$swal({
                             title: "確認",
-                            text: "口コミを削除してよろしいでしょうか",
+                            text: "口コミを削除してよろしいでしょうか。",
                             type: "warning",
                             width: 350,
                             height: 200,
@@ -403,7 +403,7 @@
                     commentConfirm(id) {
                         this.$swal({
                             title: "確認",
-                            text: "口コミを投稿してよろしいでしょうか",
+                            text: "口コミを投稿してよろしいでしょうか。",
                             type: "info",
                             width: 350,
                             height: 200,

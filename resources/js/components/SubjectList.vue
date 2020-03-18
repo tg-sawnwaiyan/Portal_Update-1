@@ -102,7 +102,7 @@
                 deleteSubject(id) {
                         this.$swal({
                             title: "確認",
-                            text: "診療科目を削除してよろしいでしょうか",
+                            text: "診療科目を削除してよろしいでしょうか。",
                             type: "warning",
                             width: 350,
                             height: 200,
