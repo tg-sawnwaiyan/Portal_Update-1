@@ -11504,6 +11504,9 @@ width: 18rem;
 }
 
 @media only screen and (max-width: 620px) {
+    .choose-item .job-no {
+        float: left;
+    }
     .pagination {
         justify-content: center;
         text-align: center;
