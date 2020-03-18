@@ -8592,8 +8592,14 @@ border-bottom: none;
     float: right;
 }
 
+.nus_phone {
+    color: #c40000;
+    font-weight: bold;
+}
+
 .hos_phone i,
-.sp_hos_phone i {
+.sp_hos_phone i,
+.nus_phone i {
     width: 40px;
     height: 40px;
     margin-right: 5px;

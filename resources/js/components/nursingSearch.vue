@@ -1451,7 +1451,7 @@
                                 '<img src="/upload/nursing_profile/' + item[i]['logo'] + '" alt="image" width="100px" style="border:1px solid #ccc;" @error="imgUrlAlt"/>' +
                                 '</td>' +
                                 '<td style="padding-bottom:0px;">' +
-                                    '<p class="hos_phone float-right"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span>' + item[i]['phone'] + '</p>' +
+                                    '<p class="nus_phone"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span>' + item[i]['phone'] + '</p>' +
                                 '</td>' +
                                 '</tr>' +
                                 ' <tr>' +
