@@ -157,8 +157,9 @@ class JobApplyController extends Controller
             $jobapply->remark = $request->remark;
 
           
-            $tid = DB::table('jobs')->join('customers', 'customers.id', '=', 'jobs.customer_id') ->select('customers.type_id')->where('jobs.id',$jobapply->job_id)->get();
-            if($tid == '2')
+            $tid = DB::table('customers')->join('jobs', 'customers.id', '=', 'jobs.customer_id')->select('customers.type_id')->where('jobs.id',$jobapply->job_id)->value('type_id');
+            // "SELECT type_id from customers join jobs on customers.id=jobs.customer_id where jobs.id = 54";
+            if($tid == 2)
             {
                 $t = "hospital_profiles";
                 $num = 200000;
@@ -171,14 +172,13 @@ class JobApplyController extends Controller
             $query = "SELECT j.*,$t.email,$t.name as pro_name,c.name as cus_name,ci.city_name as city_name,t.township_name,
                        (CASE c.type_id WHEN '2' THEN CONCAT(($num+c.id),'-',LPAD(j.id, 4, '0')) ELSE CONCAT(($num+c.id),'-',LPAD($t.pro_num, 4, '0'),'-',LPAD(j.id, 4, '0')) END) as jobnum,
                        (CASE c.type_id WHEN '2' THEN CONCAT(($num+c.id),'-',LPAD($t.pro_num, 4, '0')) ELSE CONCAT(($num+c.id),'-',LPAD($t.pro_num, 4, '0')) END) as cusnum 
-                        from customers as c 
-                        join jobs as j on c.id = j.customer_id 
+                        from jobs as j 
+                        join customers as c on c.id = j.customer_id 
                         join townships as t on t.id = j.township_id 
                         join cities as ci on ci.id = t.city_id
                         join ".$t." on ".$t.".id = j.profile_id where c.recordstatus=1 and j.id = " . $jobapply->job_id;
 
             $infos = DB::select($query);
-
 
 
             foreach($infos as $info) {
