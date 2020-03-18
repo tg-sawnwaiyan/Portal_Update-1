@@ -39,16 +39,28 @@
           </div>
           <div class="form-group m-0 row bd">
             <div class="col-md-2 col-sm-12 form-left">
+              <label><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>都道府県</label>
+            </div>
+            <div class="col-md-10 col-sm-12 form-right">{{jobDetail.city_name}}</div>
+          </div>
+          <div class="form-group m-0 row bd">
+            <div class="col-md-2 col-sm-12 form-left">
+              <label><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>市区町村</label>
+            </div>
+            <div class="col-md-10 col-sm-12 form-right">{{jobDetail.township_name}}</div>
+          </div>
+          <div class="form-group m-0 row bd">
+            <div class="col-md-2 col-sm-12 form-left">
               <label><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>勤務地</label>
             </div>
-            <div class="col-md-10 col-sm-12 form-right">{{jobDetail.location}}</div>
+            <div class="col-md-10 col-sm-12 form-right"><pre>{{jobDetail.location}}</pre></div>
           </div>
 
           <div class="form-group m-0 row bd">
             <div class="col-md-2 col-sm-12 form-left">
               <label><span class="job_ico"><i class="fa fa-map-signs"></i></span>最寄り駅</label>
             </div>
-            <div class="col-md-10 col-sm-12 form-right">{{jobDetail.nearest_station}}</div>
+            <div class="col-md-10 col-sm-12 form-right"><pre>{{jobDetail.nearest_station}}</pre></div>
           </div>
           <div class="form-group m-0 row bd">
             <div class="col-md-2 col-sm-12 form-left">
@@ -73,19 +85,19 @@
             <div class="col-md-2 col-sm-12 form-left">
               <label><span class="job_ico"><i class="fa fa-id-card"></i></span>各種保険</label>
             </div>
-            <div class="col-md-10 col-sm-12 form-right">{{jobDetail.insurance}}</div>
+            <div class="col-md-10 col-sm-12 form-right"><pre>{{jobDetail.insurance}}</pre></div>
           </div>
           <div class="form-group m-0 row bd">
             <div class="col-md-2 col-sm-12 form-left">
               <label><span class="job_ico"><i class="fa fa-clock"></i></span>就業時間</label>
             </div>
-            <div class="col-md-10 col-sm-12 form-right">{{jobDetail.working_hours}}</div>
+            <div class="col-md-10 col-sm-12 form-right"><pre>{{jobDetail.working_hours}}</pre></div>
           </div>
           <div class="form-group m-0 row bd">
             <div class="col-md-2 col-sm-12 form-left">
               <label><span class="job_ico">休</span>休日休暇</label>
             </div>
-            <div class="col-md-10 col-sm-12 form-right">{{jobDetail.holidays}}</div>
+            <div class="col-md-10 col-sm-12 form-right"><pre>{{jobDetail.holidays}}</pre></div>
           </div>
           <div class="form-group m-0 row bd-all">
             <div class="col-md-2 col-sm-12 form-left">

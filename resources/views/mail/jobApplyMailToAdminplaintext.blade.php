@@ -8,6 +8,8 @@ TIS ティーズ より求人への応募がありました。
 
 仕事内容：{{$getComment->job_description}}
 経験・スキル：{{$getComment->skills}}
+都道府県：{{$getComment->city_name}}
+市区町村：{{$getComment->township_name}}
 勤務地：{{$getComment->job_location}}
 最寄り駅：{{$getComment->job_nearest_station}}
 雇用形態：{{$getComment->job_employment_status}}
