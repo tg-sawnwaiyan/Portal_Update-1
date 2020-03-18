@@ -1970,6 +1970,9 @@
 </script>
 
 <style scoped>
+.wd-in p{
+    min-height: 25px;
+}
 .cash-lbl {
     font-size: 1.4em;
 }
