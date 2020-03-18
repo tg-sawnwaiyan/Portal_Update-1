@@ -148,10 +148,7 @@
                      <i class="fas fa-arrow-left"></i> 
                 </div>
                     <span style="color:#2980b9" @click="$router.go(-1);">戻る</span> 
-                </div>
-                
-                
-
+                </div>       
 
                 <!-- <ul class="fav_his clearfix">
                     <li v-on:click='isFav = !isFav'>
