@@ -396,8 +396,8 @@
                                 })
                                 .catch(() => {
                                     this.$swal({
-                                        title: "システムエラーです",
-                                        html: "社内エンジニアにお問い合わせください。<br/><a href='mailto:pg@management-partners.co.jp'>pg@management-partners.co.jp</a>",
+                                       
+                                        html: "システムエラーです。<br/>社内エンジニアにお問い合わせください。<br/><a href='mailto:pg@management-partners.co.jp'>pg@management-partners.co.jp</a>",
                                         type: "error",
                                         width: 350,
                                         height: 200,
