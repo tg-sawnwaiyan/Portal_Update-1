@@ -376,16 +376,15 @@ export default {
    deleteLocalSto: function(id) {
             this.$swal({
             allowOutsideClick: false,
-            title: "確認",
-            text: "削除よろしいでしょうか",
+            text: "最近見た施設から削除してよろしいでしょうか 。",
             type: "warning",
             width: 350,
             height: 200,
             showCancelButton: true,
-            confirmButtonColor: "#dc3545",
+            confirmButtonColor: "#EEA025",
             cancelButtonColor: "#b1abab",
             cancelButtonTextColor: "#000",
-            confirmButtonText: "削除",
+            confirmButtonText: "はい",
             cancelButtonText: "キャンセル",
             confirmButtonClass: "all-btn",
             cancelButtonClass: "all-btn",
@@ -453,7 +452,7 @@ export default {
                 if(response.data.length<this.his_nus) {
                     // $('.msg').html('<span>Some Nursing Accounts are Deactivated!</span>');
                     var nus_id = '';
-                    this.message = "現在本サイトに掲載されていない介護施設については最近見た施設リストから削除しました。";
+                    // this.message = "現在本サイトに掲載されていない介護施設については最近見た施設リストから削除しました。";
                     for(var i= 0;i<this.nur_profiles.length;i++) {
                         if(i== this.nur_profiles.length-1) {
                             nus_id += this.nur_profiles[i]['id'];
@@ -470,10 +469,9 @@ export default {
                 this.his_nus = 0;
                 this.$swal({
                     allowOutsideClick: false,
-                    title: "確認",
-                    text: "お気に入りの病院は既に本サイトに掲載されておりませんので、最近見た施設リストから削除しました。",
+                    text: "すでに掲載されていない施設をリストから削除しました。",
                     type: 'info',
-                    width: 350,
+                    width: 400,
                     height: 200,
                     showConfirmButton: true,
                     // confirmButtonColor: "#dc3545",

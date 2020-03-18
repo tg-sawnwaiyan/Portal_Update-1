@@ -294,7 +294,6 @@
                         </span>
                         <span v-else>
                             <p class="no-data-color">データがありません。</p>
-
                         </span>
                     </div>
 
@@ -887,7 +886,7 @@
                                 <!-- <p class="card-title font-weight-bold">{{comment.email}}</p>
                                 <p class="comment-age" v-if="comment.year != null">{{ new Date().getFullYear() - comment.year}}年代</p>
                                 <p class="comment-age" v-else></p> -->
-                                <p class="comment-date"><i class="fa fa-calendar" aria-hidden="true"></i> {{comment.created_date | moment("YYYY年MM月DD日") }}投稿 <span class="ml-2"><i class="fa fa-clock" aria-hidden="true"></i> {{comment.created_time}}</span></p>
+                                <p class="comment-date"><i class="fa fa-calendar-alt" aria-hidden="true"></i> {{comment.created_date | moment("YYYY年MM月DD日") }}投稿 <span class="ml-2"><i class="fa fa-clock" aria-hidden="true"></i> {{comment.created_time}}</span></p>
                             </div>
                                 <read-more more-str="もっと見る" :text="comment.comment" :max-chars="160" class="m-t-comment"></read-more><br>
                                 <div>{{comment.customer}}</div>
@@ -1282,7 +1281,7 @@
                                 <!-- <p class="card-title font-weight-bold">{{comment.email}}</p>
                                 <p class="comment-age" v-if="comment.year != null">{{ new Date().getFullYear() - comment.year}}年代</p>
                                 <p class="comment-age" v-else></p> -->
-                                <p class="comment-date"><i class="fa fa-calendar" aria-hidden="true"></i> {{comment.created_date | moment("YYYY年MM月DD日") }}投稿 <span class="ml-2"><i class="fa fa-clock" aria-hidden="true"></i> {{comment.created_time}}</span></p>
+                                <p class="comment-date"><i class="fa fa-calendar-alt" aria-hidden="true"></i> {{comment.created_date | moment("YYYY年MM月DD日") }}投稿 <span class="ml-2"><i class="fa fa-clock" aria-hidden="true"></i> {{comment.created_time}}</span></p>
                             </div>
                                 <read-more more-str="もっと見る" :text="comment.comment" :max-chars="160" class="m-t-comment"></read-more><br>
                                 <div>{{comment.customer}}</div>
