@@ -65,7 +65,7 @@
                             <div class="row col-md-12 pad-free panorama panorama-box">
                                 <div class="col-4 col-sm-3 col-md-3 col-lg-1 mt-2 gallery-area-panorama pad-free" v-bind:id="'x-panorama'+indx" v-for="(img,indx) in panorama_arr" :key="img.id">
                                     <input type="hidden" class="already-panorama" v-model="img.photo">
-                                    <span class='img-close-btn' v-on:click="DeleteArr(indx,'panorama',img.id,img.photo)">X</span>
+                                    <span class='img-close-btn' v-on:click="DeleteArr(indx,'panorama',img.id,img.photo, 'パノラマ画像')">X</span>
                                     <img :src="'/upload/nursing_profile/Imagepanorama/'+ img.photo" class="img-fluid panorama-old-img" alt="profile" v-if="img.id!=null"  id="already-panorama">
                                     <img :src="img.path" class="img-fluid panorama-new-img" alt="profile" v-if="img.id==null" id="already-panorama">
                                 </div>
@@ -136,7 +136,7 @@
                                                 <table class="table m-b-0">
                                                     <tr>
                                                     <td colspan="2" class="text-right" style="border:none;!important">                                                        
-                                                        <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,'payment')">
+                                                        <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,'payment','タイプ')">
                                                         <i class="fa fa-trash"></i> 削除</a>
                                                         <span :class="'bg-trans btn dropdown-arrow changeLinkpayment'+indx" style="" @click="mainToggle('payment',indx)">
                                                             詳細 <i :id="'payment'+indx" v-bind:class="[payment.id != null? 'fas fa-sort-down animate rotate':'fas fa-sort-down']"></i>
@@ -404,7 +404,7 @@
                                         <div class="col-md-12 m-t-20 m-b-20 gallery-area-cooperate p-0" v-bind:id="'cooperated'+indx" v-for="(cooperate,indx) in cooperate_arr" :key="cooperate.id">
 
                                             <div class="clearfix margin-bottom750 m-b-30" style="text-align:right">                                                
-                                                 <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,'cooperate')">
+                                                 <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,'cooperate','協力医療機関')">
                                                 <i class="fa fa-trash"></i> 削除</a>
                                                 <span :class="'bg-trans btn dropdown-arrow changeLinkcooperate'+indx" style="" @click="mainToggle('cooperate',indx)">
                                                         詳細 
@@ -584,7 +584,7 @@
                                         <textarea name="description" placeholder="コンテンツ" class="form-control m-b-15 description white-bg-color" v-model="img.description"></textarea>
                                 </div>
                                 <div class="col-md-12 text-right">
-                                    <a class="mr-auto text-danger btn delete-borderbtn" @click="DeleteArr(indx,'photo',img.id,img.photo)"> <i class="fa fa-trash"></i> 削除</a>
+                                    <a class="mr-auto text-danger btn delete-borderbtn" @click="DeleteArr(indx,'photo',img.id,img.photo,'画像')"> <i class="fa fa-trash"></i> 削除</a>
                                 </div>
                             </div>
                         </div>
@@ -616,7 +616,7 @@
                                                     <textarea name="description" placeholder="コンテンツ" class="form-control m-b-15 description white-bg-color" v-model="video.description"></textarea>
                                                 </div>
                                                 <div class="col-md-12 text-right">
-                                                <a class="mr-auto text-danger btn delete-borderbtn" @click="DeleteArr(indx,'video',video.id,video.photo)"> <i class="fa fa-trash"></i> 削除</a>
+                                                <a class="mr-auto text-danger btn delete-borderbtn" @click="DeleteArr(indx,'video',video.id,video.photo,'動画')"> <i class="fa fa-trash"></i> 削除</a>
                                                 </div>
                                             </div>
                                     </div>
@@ -1016,18 +1016,17 @@ export default {
             },
 
 
-            DeltArr(indx,type) {
+            DeltArr(indx,type,name) {
                 this.$swal({
-                        title: "確認",
-                        text: "職種を削除してよろしいでしょうか",
+                        text: name+ "を削除してよろしいでしょうか。",
                         type: "warning",
                         width: 350,
                         height: 200,
                         showCancelButton: true,
-                        confirmButtonColor: "#dc3545",
+                        confirmButtonColor: "#EEA025",
                         cancelButtonColor: "#b1abab",
                         cancelButtonTextColor: "#000",
-                        confirmButtonText: "削除",
+                        confirmButtonText: "はい",
                         cancelButtonText: "キャンセル",
                         confirmButtonClass: "all-btn",
                         cancelButtonClass: "all-btn",
@@ -1050,18 +1049,17 @@ export default {
                 // }
 
             },
-            DeleteArr(indx,type,id,photo) {
+            DeleteArr(indx,type,id,photo,name) {
                 this.$swal({
-                        title: "確認",
-                        text: "職種を削除してよろしいでしょうか",
+                        text: name + "を削除してよろしいでしょうか。",
                         type: "warning",
                         width: 350,
                         height: 200,
                         showCancelButton: true,
-                        confirmButtonColor: "#dc3545",
+                        confirmButtonColor: "#EEA025",
                         cancelButtonColor: "#b1abab",
                         cancelButtonTextColor: "#000",
-                        confirmButtonText: "削除",
+                        confirmButtonText: "はい",
                         cancelButtonText: "キャンセル",
                         confirmButtonClass: "all-btn",
                         cancelButtonClass: "all-btn",
@@ -1088,12 +1086,12 @@ export default {
                             .post('/api/delete-pgallery',fd)
                             .then(response=>{
                                 this.$swal({
-                                    text: "職種を削除しました",
+                                    text: name + "を削除しました。",
                                     type: "success",
                                     width: 350,
                                     height: 200,
                                     confirmButtonText: "閉じる",
-                                    confirmButtonColor: "#dc3545",
+                                    confirmButtonColor: "#31CD38",
                                     allowOutsideClick: false,
                                 });
                             })
@@ -1256,11 +1254,11 @@ export default {
                 // title: "確認",
                 html: "保存できません。<br/>必須項目を確認してください。",
                 type: "error",
-                width: 370,
+                width: 350,
                 height: 200,
                 showCancelButton: false,
-                confirmButtonColor: "#FF5462 ",
-                confirmButtonText: "はい",
+                confirmButtonColor: "#FF5462",
+                confirmButtonText: "閉じる",
                 confirmButtonClass: "all-btn",
                 allowOutsideClick: false,
                 
@@ -1401,7 +1399,7 @@ export default {
                                         text: '保存されました。',
                                         confirmButtonText: "閉じる",
                                         confirmButtonColor: "#31cd38",
-                                        width: 250,
+                                        width: 350,
                                         height: 200,
                                         allowOutsideClick: false,
                                     })

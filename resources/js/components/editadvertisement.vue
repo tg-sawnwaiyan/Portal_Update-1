@@ -168,7 +168,7 @@ export default {
                     allowOutsideClick: false,
                 }).then(response => {
                         this.$swal({
-                                text: "画像を削除しました",
+                                text: "画像を削除しました。",
                                 type: "success",
                                 width: 350,
                                 height: 200,
@@ -269,7 +269,7 @@ export default {
                                 text: '広告を更新しました。',                             
                                 confirmButtonText: "閉じる",
                                 confirmButtonColor: "#31cd38",
-                                width: 250,
+                                width: 350,
                                 height: 200,
                                 allowOutsideClick: false,
                             })
@@ -319,7 +319,7 @@ export default {
                             text: '広告を投稿しました。',
                             confirmButtonText: "閉じる",
                             confirmButtonColor: "#31cd38",
-                            width: 250,
+                            width: 350,
                             height: 200,
                             allowOutsideClick: false,
                         })

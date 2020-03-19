@@ -326,7 +326,7 @@
                             this.$swal({
                             text: "お気に入りから削除してよろしいでしょうか 。",
                             type: "warning",
-                            width: 350,
+                            width: 400,
                             height: 200,
                             showCancelButton: true,
                             confirmButtonColor: "#EEA025",
