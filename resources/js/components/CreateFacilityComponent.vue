@@ -71,13 +71,13 @@ export default {
   methods: {
     add() {
      this.$swal({
-                            title: "確認",
+                            // title: "確認",
                             text: "院内施設を投稿してよろしいでしょうか。",
-                            type: "info",
+                            type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#6cb2eb",
+                            confirmButtonColor: "#eea025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
                             confirmButtonText: "はい",
@@ -95,12 +95,12 @@ export default {
                             position: 'top-end',
                             type: 'success',
                             // title:'確認済',
-                            text: '院内施設を投稿しました',
+                            text: '院内施設を投稿しました。',
                             // showConfirmButton: false,
                             // timer: 1800,
                             confirmButtonText: "閉じる",
-                            confirmButtonColor: "#6cb2eb",
-                            width: 250,
+                            confirmButtonColor: "#31cd38",
+                            width: 350,
                             height: 200,
                             allowOutsideClick: false,
                         })
@@ -125,12 +125,12 @@ export default {
             this.$swal({
                         position: 'top-end',
                         type: 'success',
-                        text: '院内施設を更新しました',
+                        text: '院内施設を更新しました。',
                         // showConfirmButton: false,
                         // timer: 1500,
                         confirmButtonText: "閉じる",
-                        confirmButtonColor: "#6cb2eb",
-                        width: 250,
+                        confirmButtonColor: "#31cd38",
+                        width: 350,
                         height: 200,
                         allowOutsideClick: false,
                       })

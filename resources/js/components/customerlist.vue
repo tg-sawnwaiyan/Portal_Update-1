@@ -304,13 +304,13 @@
                     }
                     
                         this.$swal({
-                            title: "確認",
+                            // title: "確認",
                             html: textval,
                             type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#dc3545",
+                            confirmButtonColor: "#eea025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
                             confirmButtonText: "はい",
@@ -351,13 +351,13 @@
                     },
                     comfirm(id) {
                         this.$swal({
-                            title: "確認",
+                            // title: "確認",
                             text: "本当に承認してよろしいでしょうか。",
                             type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#dc3545",
+                            confirmButtonColor: "#eea025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
                             confirmButtonText: "はい",
@@ -374,23 +374,23 @@
                                 if (response.data.status == 'success') {
                                     this.$swal({
                                         title: "新規登録承認",
-                                        text: "事業者にメールを送信しました",
+                                        text: "事業者にメールを送信しました。",
                                         type: "success",
                                         width: 350,
                                         height: 200,
                                         confirmButtonText: "閉じる",
-                                        confirmButtonColor: "#dc3545",
+                                        confirmButtonColor: "#31cd38",
                                         allowOutsideClick: false,
                                     });
                                 } else {
                                     this.$swal({
                                         title: "新規登録承認",
-                                        text: "顧客はすでに確認されています",
+                                        text: "顧客はすでに確認されています。",
                                         type: "warning",
                                         width: 350,
                                         height: 200,
                                         confirmButtonText: "閉じる",
-                                        confirmButtonColor: "#dc3545",
+                                        confirmButtonColor: "#31cd38",
                                         allowOutsideClick: false,
                                     });
                                 }

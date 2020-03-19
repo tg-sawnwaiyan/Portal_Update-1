@@ -221,7 +221,7 @@ export default {
                         type: "success",
                         width: 350,
                         height: 200,
-                        confirmButtonColor: "#6cb2eb",                       
+                        confirmButtonColor: "#31CD38",                       
                         confirmButtonText: "閉じる",
                         confirmButtonClass: "all-btn",
                             
@@ -318,13 +318,13 @@ export default {
         
             this.$swal({
                 allowOutsideClick: false,
-                title: "確認",
+                // title: "確認",
                 text: this.activate_text,
                 type: "warning",
                 width: 350,
                 height: 200,
                 showCancelButton: true,
-                confirmButtonColor: "#dc3545",
+                confirmButtonColor: "#eea025",
                 cancelButtonColor: "#b1abab",
                 cancelButtonTextColor: "#000",
                 confirmButtonText: "はい",
@@ -360,13 +360,13 @@ export default {
 
                 this.$swal({
                     allowOutsideClick: false,
-                    title: "確認",
+                    // title: "確認",
                     text: "施設を削除してよろしいでしょうか。",
                     type: "warning",
                     width: 350,
                     height: 200,
                     showCancelButton: true,
-                    confirmButtonColor: "#dc3545",
+                    confirmButtonColor: "#eea025",
                     cancelButtonColor: "#b1abab",
                     cancelButtonTextColor: "#000",
                     confirmButtonText: "はい",
@@ -550,6 +550,7 @@ h1.heading {
 }
 .card-title-leftwrapper{
   width: 70%;
+    min-height: 30px;
 }
 .card-title-rightwrapper{
   width: 30%;

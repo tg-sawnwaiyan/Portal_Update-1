@@ -344,13 +344,13 @@
                 // },
                 deleteComment(id) {
                         this.$swal({
-                            title: "確認",
+                            // title: "確認",
                             text: "口コミを削除してよろしいでしょうか。",
                             type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#dc3545",
+                            confirmButtonColor: "#eea025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
                             confirmButtonText: "はい",
@@ -389,26 +389,35 @@
                                         width: 350,
                                         height: 200,
                                         confirmButtonText: "閉じる",
-                                        confirmButtonColor: "#dc3545",
+                                        confirmButtonColor: "#31cd38",
                                         allowOutsideClick: false,
                                     });
 
                                 })
                                 .catch(() => {
-                                    this.$swal("Failed", "wrong");
+                                    this.$swal({
+                                       
+                                        html: "システムエラーです。<br/>社内エンジニアにお問い合わせください。<br/><a href='mailto:pg@management-partners.co.jp'>pg@management-partners.co.jp</a>",
+                                        type: "error",
+                                        width: 350,
+                                        height: 200,
+                                        confirmButtonText: "閉じる",
+                                        confirmButtonColor: "#FF5462",
+                                        allowOutsideClick: false,
+                                    });
                                 });
                         });
 
                     },
                     commentConfirm(id) {
                         this.$swal({
-                            title: "確認",
-                            text: "口コミを投稿してよろしいでしょうか。",
-                            type: "info",
+                            // title: "確認",
+                            text: "口コミを承認してよろしいでしょうか。",
+                            type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#6cb2eb",
+                            confirmButtonColor: "#eea025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
                             confirmButtonText: "はい",
@@ -429,24 +438,24 @@
                                     this.$loading(false);
                                     this.comments = response.data.comments;
                                     this.$swal({
-                                            title: "確認済",
-                                            text: "口コミが投稿されました。",
+                                            // title: "確認済",
+                                            text: "口コミを承認しました。",
                                             type: "success",
                                             width: 350,
                                             height: 200,
                                             confirmButtonText: "閉じる",
-                                            confirmButtonColor: "#6cb2eb",
+                                            confirmButtonColor: "#31cd38",
                                             allowOutsideClick: false,
                                         })
                                         .catch(() => {
                                             this.$swal({
-                                                title: "エラーメッセージ",
-                                                text: "プロセスを続行します",
+                                                // title: "エラーメッセージ",
+                                                html: "システムエラーです。<br/>社内エンジニアにお問い合わせください。",
                                                 type: "error",
                                                 width: 350,
                                                 height: 200,
                                                 confirmButtonText: "閉じる",
-                                                confirmButtonColor: "#dc3545",
+                                                confirmButtonColor: "#FF5462",
                                                 allowOutsideClick: false,
                                             });
                                         });

@@ -9,7 +9,7 @@
                       <div class="m-t-10">
                      
                           <span class="btn-file d-inline-block">画像を選択          
-                          <input type="file" name="" class ="pro-logo m-b-10" @change="logo_preview(this)">                                      
+                          <input type="file" name="" class ="pro-logo m-b-10" accept="image/*" @change="logo_preview(this)">                                      
                           </span>     
                           <span class="pl-4"></span>                                  
                             <span id="imgname" class="d-inline-block align-top pl-2">{{img_name}}</span>
@@ -942,7 +942,7 @@
                             </div>
                         </div> -->
                          <span class="btn-file d-inline-block">画像を選択        
-                          <input type="file" name="" class="hospital-photo" v-bind:class="img.classname" id="upload_img" @change="preview_image($event,indx)">
+                          <input type="file" name="" accept="image/*" class="hospital-photo" v-bind:class="img.classname" id="upload_img" @change="preview_image($event,indx)">
                           </span> 
                           <span class="d-inline-block align-top pt-2" v-bind:id="'img_name'+indx"></span>
                           <div class="col-md-12  p0-480" v-bind:class="img.id">
@@ -958,7 +958,7 @@
                         <textarea name="description" placeholder="コンテンツを入力してください。" class="form-control m-b-15 description white-bg-color" v-model="img.description" ></textarea>
                     </div>
                     <div class="col-md-12 text-right hos-del">
-                        <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,img.id,'photo')">
+                        <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,img.id,'photo','画像')">
                             <i class="fa fa-trash"></i> 削除
                         </a>
                     </div>
@@ -995,7 +995,7 @@
 
                 </div>
                 <div class="col-md-12 text-right hos-del">
-                  <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,video.id,'video')">
+                  <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,video.id,'video','動画')">
                   <i class="fa fa-trash"></i> 削除
                   </a>
                 </div>
@@ -1231,20 +1231,19 @@ export default {
             subjectCheck(check_id) {
                     $('.subject-'+check_id).attr('checked','true');
             },
-            DeltArr(indx,id,type) {
+            DeltArr(indx,id,type,name) {
 
 
               this.$swal({
-                        title: "確認",
-                        text: "職種を削除してよろしいでしょうか",
+                        text: name + "を削除してよろしいでしょうか。",
                         type: "warning",
                         width: 350,
                         height: 200,
                         showCancelButton: true,
-                        confirmButtonColor: "#dc3545",
+                        confirmButtonColor: "#EEA025",
                         cancelButtonColor: "#b1abab",
                         cancelButtonTextColor: "#000",
-                        confirmButtonText: "削除",
+                        confirmButtonText: "はい",
                         cancelButtonText: "キャンセル",
                         confirmButtonClass: "all-btn",
                         cancelButtonClass: "all-btn",
@@ -1267,12 +1266,12 @@ export default {
                                 .then(response=>{
 
                                     this.$swal({
-                                        text: "職種を削除しました",
+                                        text: name + "を削除しました。",
                                         type: "success",
                                         width: 350,
                                         height: 200,
                                         confirmButtonText: "閉じる",
-                                        confirmButtonColor: "#dc3545",
+                                        confirmButtonColor: "#31CD38",
                                          allowOutsideClick: false,
                                     });
                                 })
@@ -1346,18 +1345,18 @@ export default {
            
                     // console.log("mail");
                     this.$swal({
-                        html: "保存できません。<br/>必須項目を確認してください",
-                        type: "warning",
+                        html: "保存できません。<br/>必須項目を確認してください。",
+                        type: "error",
                         width: 350,
                         height: 200,
                         showCancelButton: false,
-                        confirmButtonColor: "#dc3545",
-                        cancelButtonColor: "#b1abab",
+                        confirmButtonColor: "#FF5462",
+                        // cancelButtonColor: "#b1abab",
                         cancelButtonTextColor: "#000",
-                        confirmButtonText: "はい",
-                        cancelButtonText: "キャンセル",
+                        confirmButtonText: "閉じる",
+                        // cancelButtonText: "キャンセル",
                         confirmButtonClass: "all-btn",
-                        cancelButtonClass: "all-btn",
+                        // cancelButtonClass: "all-btn",
                         allowOutsideClick: false,
                     })                    
                 } 
@@ -1495,10 +1494,10 @@ export default {
                         this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            text: '保存されました',
+                            text: '保存されました。',
                             confirmButtonText: "閉じる",
-                            confirmButtonColor: "#6cb2eb",
-                            width: 250,
+                            confirmButtonColor: "#31cd38",
+                            width: 350,
                             height: 200,
                             allowOutsideClick: false,
                         })

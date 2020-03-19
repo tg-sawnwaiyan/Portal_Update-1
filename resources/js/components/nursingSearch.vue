@@ -203,6 +203,7 @@
                                                             <td  v-for="items in nus_data" @mouseover="mouseover(items.alphabet)" @mouseleave="mouseleave(items.alphabet)" :id="items.alphabet" :key="items.nursing_id">
                                                                 <div class="wd-in">
                                                                     <span class="type-name" v-if="items.type_name">{{items.type_name}} </span>
+                                                                    <span class="type-name" v-else>介護</span>
 
                                                                     <div class="row m-t-10 m-b-10">
                                                                         <div class="col-5 col-lg-5 col-sm-6" style="padding-top:3px;">
@@ -548,7 +549,7 @@
                             </div>
                             <!--end search list-->
 
-                            <div class="m-b-10">
+                            <div class="">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-12 col-slg-12" style="margin-top:20px;" v-for="(nus,index) in displayItems" :key="nus.id">
                                         <div class="nur-content">
@@ -646,7 +647,7 @@
                                                 </div>
                                             </div>
                                             <!--responsive add-fav and phone-->
-                                                <div class="row m-t-10" id="job_detail">
+                                                <div class="row" id="job_detail">
                                                     <div class="col-md-6 col-sm-12 m-b-414">
                                                         <p class="sp_hos_phone sp-768" v-if="nus.phone"><span class="circle-phone" ><i class="fa fa-phone-alt"></i></span><span class="phone-no"><a :href="`tel:${nus.phone}`">{{nus.phone}}</a></span></p>
                                                     </div>
@@ -685,7 +686,7 @@
                                         </ul>
                                     </nav>
                                 </div> -->
-                                <div class="row mt-3">
+                                <div class="row">
                                     <div class="col-md-12 col-lg-12 col-sm-6" v-if="show_paginate">
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination">
@@ -1426,6 +1427,8 @@
                 if(item.length  && mmarker.length)
                 {
                     for (var i = 0; i < item.length; i++) {
+                        var typename = item[i]['type_name'] == null ? '介護':item[i]['type_name'];
+                        var phonenum = item[i]['phone'] == null ? '':item[i]['phone'];
                         infoWindowContent.push([
                             '<div id="info_content">' +
                             '<div class="">' +
@@ -1433,7 +1436,7 @@
                                 '<thead>' +
                                     '<tr>' +
                                     '<td colspan="2"><span class="type-name">' +
-                                    item[i]['type_name']+
+                                    typename+
                                     '</span>'+
                                     '</td>' +
                                     '</tr>' +
@@ -1441,17 +1444,17 @@
                                 '<tbody>' +
                                     '<tr>' +
                                     '<td colspan="2" class="text-left" style="padding-bottom:0px;">' +
-                                    '<img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld='+item[i]['alphabet']+'|fd0e0e|ffffff" alt="" style="margin-right:10px;">' +
+                                    '<img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld='+item[i]['alphabet']+'|fd0e0e|ffffff" alt="" style="margin-right:10px; @error="imgUrlAlt"">' +
                                     '<span class="item-name">' + item[i]['name'] + '</span> <br>' +
                                     '</td>' +
                                 '</tr>' +
 
                                 '<tr>' +
                                 '<td>' +
-                                '<img src="/upload/nursing_profile/' + item[i]['logo'] + '" alt="image" width="100px" style="border:1px solid #ccc;"/>' +
+                                '<img src="/upload/nursing_profile/' + item[i]['logo'] + '" alt="image" width="100px" style="border:1px solid #ccc;" @error="imgUrlAlt"/>' +
                                 '</td>' +
                                 '<td style="padding-bottom:0px;">' +
-                                    '<p class="hos_phone float-right"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span>' + item[i]['phone'] + '</p>' +
+                                    '<p class="nus_phone"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span>' + phonenum + '</p>' +
                                 '</td>' +
                                 '</tr>' +
                                 ' <tr>' +
@@ -1522,7 +1525,8 @@
                     return function() {
                         infoWindow.setContent(infoWindowContent[i][0]);
                         infoWindow.open(this.map, marker);
-                    }
+                         jQuery(".gm-ui-hover-effect").attr('title', '閉じる');                   
+                         }
                     })(marker, i));
                     this.markerHover.push(marker)
                     var boundsListener = google.maps.event.addListener((this.map), 'bounds_changed', function(event) {
@@ -1970,6 +1974,9 @@
 </script>
 
 <style scoped>
+.wd-in p{
+    min-height: 25px;
+}
 .cash-lbl {
     font-size: 1.4em;
 }

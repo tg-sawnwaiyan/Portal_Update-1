@@ -105,13 +105,13 @@
             methods: {
                 deleteCategory(id) {
                         this.$swal({
-                            title: "確認",
+                            // title: "確認",
                             text: "ニュースカテゴリーを削除してよろしいでしょうか。",
                             type: "warning",
                             width: 380,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#dc3545",
+                            confirmButtonColor: "#eea025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
                             confirmButtonText: "はい",
@@ -139,12 +139,12 @@
                                     // this.categories.splice(i, 1);
                                     this.$swal({
                                         // title: "削除済",
-                                        text: "ニュースカテゴリーを削除しました",
+                                        text: "ニュースカテゴリーを削除しました。",
                                         type: "success",
                                         width: 350,
                                         height: 200,
                                         confirmButtonText: "閉じる",
-                                        confirmButtonColor: "#dc3545",
+                                        confirmButtonColor: "#31cd38",
                                         allowOutsideClick: false,
                                         allowOutsideClick: false,
                                     });
@@ -154,13 +154,13 @@
                                     if(error.response.status == 404){
                                         // this.$swal("このカテゴリーに関連するニュースがあるため、削除できません。");
                                         this.$swal({
-                                            title: "削除に失敗しました",
-                                            text: "削除に失敗しました このカテゴリーのニュースが存在するため削除できません",
+                                            // title: "削除に失敗しました",
+                                            html: "削除に失敗しました。<br>削除しようとしたカテゴリーのニュースが存在するため削除できません。",
                                             type: "error",
                                             width: 350,
                                             height: 200,
                                             confirmButtonText: "閉じる",
-                                            confirmButtonColor: "#dc3545",
+                                            confirmButtonColor: "#FF5462",
                                             allowOutsideClick: false,
                                         });
                                     }
