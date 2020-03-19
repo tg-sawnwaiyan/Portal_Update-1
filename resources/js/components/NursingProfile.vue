@@ -1018,21 +1018,12 @@ export default {
 
             DeltArr(indx,type,name) {
                 this.$swal({
-<<<<<<< HEAD
-                        // title: "確認",
-                        text: "職種を削除してよろしいでしょうか。",
-=======
                         text: name+ "を削除してよろしいでしょうか。",
->>>>>>> 0872ecb405e08b34ad83d2b7437e471f9d6dc398
                         type: "warning",
                         width: 350,
                         height: 200,
                         showCancelButton: true,
-<<<<<<< HEAD
-                        confirmButtonColor: "#eea025",
-=======
                         confirmButtonColor: "#EEA025",
->>>>>>> 0872ecb405e08b34ad83d2b7437e471f9d6dc398
                         cancelButtonColor: "#b1abab",
                         cancelButtonTextColor: "#000",
                         confirmButtonText: "はい",
@@ -1060,21 +1051,12 @@ export default {
             },
             DeleteArr(indx,type,id,photo,name) {
                 this.$swal({
-<<<<<<< HEAD
-                        // title: "確認",
-                        text: "職種を削除してよろしいでしょうか。",
-=======
                         text: name + "を削除してよろしいでしょうか。",
->>>>>>> 0872ecb405e08b34ad83d2b7437e471f9d6dc398
                         type: "warning",
                         width: 350,
                         height: 200,
                         showCancelButton: true,
-<<<<<<< HEAD
-                        confirmButtonColor: "#eea025",
-=======
                         confirmButtonColor: "#EEA025",
->>>>>>> 0872ecb405e08b34ad83d2b7437e471f9d6dc398
                         cancelButtonColor: "#b1abab",
                         cancelButtonTextColor: "#000",
                         confirmButtonText: "はい",
