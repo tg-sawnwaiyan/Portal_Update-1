@@ -264,7 +264,7 @@
                                                 </tr>                                                
                                             </table>
                                             <!--special feature and subject-->
-                                          
+                                             <p class="job_id search_jobid"><span>施設番号:{{hos.profilenumber}}</span></p>
                                             <h5 class="header m-t-10">こだわりの特長</h5>
                                             <span v-for="(spe,index) in specialfeatures" :key="index+'-'+spe.name+'-'+hos.hos_id">
                                                 <span v-if="spe.profile_id == hos.hos_id" class="hos_feature_list">
