@@ -216,7 +216,7 @@
               localStorage.setItem('visit', this.visit);
               localStorage.setItem('loginuser', this.loginuser);
               // handle redirection
-              const redirectTo = this.$auth.user().role === 1 ? (this.$auth.user().type_id == 2 ? '/accountlist/hospital/'+ this.$auth.user().customer_id : '/accountlist/nursing/'+ this.$auth.user().customer_id ) : '/news_list'
+              const redirectTo = this.$auth.user().role === 1 ? (this.$auth.user().type_id == 2 ? '/profiledit/hospital/'+ this.$auth.user().customer_id : '/profiledit/nursing/'+ this.$auth.user().customer_id ) : '/news_list'
               this.$router.push({path: redirectTo})
             },
             error: function(e) {
