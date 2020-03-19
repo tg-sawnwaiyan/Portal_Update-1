@@ -197,6 +197,9 @@
                                                                     </p>
                                                                     <p>{{items.city_name}} <i class="fas fa-angle-double-right" style="color:#b9b5b5;"></i> {{items.township_name}}</p>
                                                                 </div>
+                                                                <div>
+                                                                    <p class="job_id1 search_jobid1 search_jobid"><span>施設番号:{{items.profilenumber}}</span></p>
+                                                                </div>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -204,7 +207,7 @@
                                                                 <div class="wd-in">
                                                                     <span class="type-name" v-if="items.type_name">{{items.type_name}} </span>
                                                                     <span class="type-name" v-else>介護</span>
-                                                                    <p class="job_id1 search_jobid"><span>施設番号:{{items.profilenumber}}</span></p>
+                                                                    
 
                                                                     <div class="row m-t-10 m-b-10">
                                                                         <div class="col-5 col-lg-5 col-sm-6" style="padding-top:3px;">
@@ -486,7 +489,7 @@
                                                     <h5 class="nur-tit">
                                                         <router-link :to="{ path:'/profile/nursing/'+ nus.nursing_id}" class="pseudolink" style="font-weight:bold;">{{nus.name}}</router-link>
                                                     </h5>
-                                                   <p class="job_id search_jobid"><span> 施設番号:{{nus.profilenumber}}</span></p>
+                                                   
 
                                                     <div class="d-flex sp-414" id="sp-414-block">
                                                         <span v-for="(fac,index) in fac_types" :key="index+'-'+fac.description+'-'+nus.id">
@@ -507,6 +510,9 @@
                                             </div>
 
                                             <p class="m-b-10"><span class="job_ico"><i class="fa fa-map-signs"></i></span>{{nus.city_name}} <i class="fas fa-angle-double-right" style="color:#b9b5b5;"></i> {{nus.township_name}} </p>
+                                            
+                                            <p class="job_id2"><span> 施設番号:{{nus.profilenumber}}</span></p>
+                                            
                                             <div class="col-12 pad-free m-b-10 clearfix">
                                                 <span class="num-room"> {{nus.num_rooms}} </span>
                                                 <p class="hos_phone float-right pc-768" v-if="nus.phone"><span class="circle-phone" ><i class="fa fa-phone-alt"></i></span><span class="phone-no"><a :href="`tel:${nus.phone}`">{{nus.phone}}</a></span></p>
