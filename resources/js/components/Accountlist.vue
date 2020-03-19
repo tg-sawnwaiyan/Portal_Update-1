@@ -140,49 +140,22 @@
 export default {
     data() {
        return{
-           createNew: false,
-            nursingprofile:[],
-            type:null,
-            hospitalprofile:[],
-            norecord_msg: false,
-            acc_status: true,
-            errors: {
-                password: "" ,
-                name:"",
-                city:'',
-                township:''
-            },
-
-            activate_text:'',
+           createNew: false, nursingprofile:[], type:null, hospitalprofile:[], norecord_msg: false, acc_status: true, errors: { password: "" , name:"", city:'', township:'' }, activate_text:'',
        }
     },
     created(){
         this.getAccountList();
-        // this.getCity();
     },
 
     methods: {
         imgUrlAlt(event) { 
             event.target.src = "/images/noimage.jpg"
         },
-        // getCity(){
-        //         this.nursing_data.city_id = 0;
-        //         this.nursing_data.town_id= 0;
-        //         this.axios.get('/api/hospital/citiesList').then(response => {
-
-        //                     this.city_list = response.data;
-
-        //         });
-        // },
-        ShowHideDiv(){
-            // this.createNew = true;
-                // document.getElementById('newcreate').style.display = "none";
-                // document.getElementById('nusNew').style.display = "block";   
-                // document.getElementById('nusBlock').style.display = "none";             
+        
+        ShowHideDiv(){                
             this.axios.post(`/api/nursing/movelatlng/${this.cusid}`)
             .then((response) => {
                 var pro_id = Number(response.data);
-                //need get profile id
                 this.$router.push({ path: '/profile/'+this.type+'/'+ pro_id });
             })    
         },
@@ -204,8 +177,7 @@ export default {
             }
             if(this.nursing_data.town_id != 0)
             {
-                this.errors.township = "";
-    
+                this.errors.township = "";    
             }
             else{
                 this.errors.township = "市区町村は必須です";
@@ -215,7 +187,6 @@ export default {
                 this.axios.post(`/api/nursing/movelatlng/${this.cusid}`, this.nursing_data)
                     .then((response) => {
                         this.$swal({
-                        // title: "確認",
                         allowOutsideClick: false,
                         text: "施設を作成しました。",
                         type: "success",
@@ -230,9 +201,6 @@ export default {
                         this.getAccountList();
                     });
 
-                    // document.getElementById('newcreate').style.display = "block";
-                    // document.getElementById('nusNew').style.display = "none";
-                    // document.getElementById('nusBlock').style.display = "block";
                     this.nursing_data.name = '';
                     this.nursing_data.town_id = 0;
                     this.nursing_data.city_id = 0;
@@ -241,13 +209,10 @@ export default {
         },
         CancelNew(){
             this.createNew = false;
-                // document.getElementById('newcreate').style.display = "block";
-                // document.getElementById('nusNew').style.display = "none";
-                // document.getElementById('nusBlock').style.display = "block";
-                this.nursing_data.city_id = 0;
-                this.nursing_data.town_id = 0;
-                this.errors.city = '';
-                this.errors.township = '';
+            this.nursing_data.city_id = 0;
+            this.nursing_data.town_id = 0;
+            this.errors.city = '';
+            this.errors.township = '';
         },
         getTownship(){
                 this.errors.city = '';
@@ -264,13 +229,9 @@ export default {
          
             this.cusid = this.$route.params.id;
             this.type = this.$route.params.type;
-           // this.type = this.$auth.user().type_id == 2?'hospital':'nursing';
             if(this.type == "nursing") {
                 this.axios.get(`/api/account_nursing/${this.cusid}`).then(response => {
-                    console.log("res",response.data)
-                //this.$loading(false);
                 this.nursingprofile = response.data.nuscustomer;
-                
                 if(response.data.status == 0) {
                     this.acc_status = false;
                 }
@@ -286,10 +247,7 @@ export default {
             });
             } else {
                 this.axios.get(`/api/account_hospital/${this.cusid}`).then(response => {
-                    console.log(response)
-                    //this.$loading(false);
                     this.hospitalprofile = response.data.hoscustomer;
-
                     if(response.data.status == 0) {
                         this.acc_status = false;
                     }
@@ -314,11 +272,9 @@ export default {
                 this.activate_text = "施設を公開してよろしいでしょうか。";
             }
           
-            this.type = this.$route.params.type;
-        
+            this.type = this.$route.params.type;        
             this.$swal({
                 allowOutsideClick: false,
-                // title: "確認",
                 text: this.activate_text,
                 type: "warning",
                 width: 350,
@@ -333,34 +289,23 @@ export default {
                 cancelButtonClass: "all-btn"
             }).then(response => {
                 this.axios.get(`/api/changeActivate/${id}/`+this.type)
-                        .then(response => {
-                            this.getAccountList();
-                    });
-                // this.$swal({
-                //     allowOutsideClick: false,
-                //     text: "正常に変更されました!",
-                //     type: "success",
-                //     width: 350,
-                //     height: 200,
-                //     confirmButtonText: "閉じる",
-                //     confirmButtonColor: "#dc3545"
-                // });
+                    .then(response => {
+                        this.getAccountList();
+                });
+            
             }).catch(error =>{
                 if(activate == 1){
                     $("#"+id).prop("checked", true);
                 }else{
                     $("#"+id).prop("checked", false);
-                }
-                
+                }                
             });
-
         },
         profileDelete(id){
             this.type = this.$route.params.type;
 
                 this.$swal({
                     allowOutsideClick: false,
-                    // title: "確認",
                     text: "施設を削除してよろしいでしょうか。",
                     type: "warning",
                     width: 350,
@@ -379,16 +324,7 @@ export default {
                     .then(response => {
                         this.$loading(false);
                         this.getAccountList();
-                    });
-                    // this.$swal({
-                    //     allowOutsideClick: false,
-                    //     text: "施設を削除しました。",
-                    //     type: "success",
-                    //     width: 350,
-                    //     height: 200,
-                    //     confirmButtonText: "閉じる",
-                    //     confirmButtonColor: "#dc3545"
-                    // });
+                    });                   
                 });
         }
     }
@@ -428,45 +364,7 @@ img{
 .rl{
     padding:0px;
 }
-@media screen and (max-width: 1200px) and ( min-width:990px ) {
-    .column{
-        /* -webkit-box-flex: 0;
-        -ms-flex: 0 0 33.33333333%;
-        flex: 0 0 33.33333333%;
-        max-width: 33.33333333%;
-        position: relative;
-        width: 100%;
-        padding-right: 15px;
-        padding-left: 15px; */
 
-    }
-}
-@media screen and (max-width: 1683px) and ( min-width:1201px ) {
-    .column{
-        /* -webkit-box-flex: 0;
-        -ms-flex: 0 0 33.33333333%;
-        flex: 0 0 33.33333333%;
-        max-width: 33.33333333%;
-        position: relative;
-        width: 100%;
-        padding-right: 15px;
-        padding-left: 15px; */
-
-    }
-}
-@media screen and (max-width: 787px) and ( min-width:576px ) {
-    .column{
-        /* -webkit-box-flex: 0;
-        -ms-flex: 0 0 33.33333333%;
-        flex: 0 0 33.33333333%;
-        max-width: 33.33333333%;
-        position: relative;
-        width: 100%;
-        padding-right: 15px;
-        padding-left: 15px; */
-
-    }
-}
 .column{
     padding-right: 7px;
     padding-left: 7px;
@@ -521,7 +419,6 @@ h1.heading {
     transition: box-shadow .25s; 
 }
 .card_1:hover {
-  /* box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19); */
   opacity: 0.9;
 }
 .img-card {
@@ -572,8 +469,6 @@ h1.heading {
   font-weight:600;
   text-transform: uppercase
 }
-
-
 /* toggle */
 .switch-input {
   display: none;

@@ -27,10 +27,8 @@ export default {
     methods:{
         created(){
             this.$loading(false);
-            console.log("created")
             if(this.$route.params.reload){
                 // location.reload();
-                console.log("hi")
             }
         },
         logout(){              
