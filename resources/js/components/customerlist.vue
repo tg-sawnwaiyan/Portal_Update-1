@@ -34,20 +34,7 @@
                             </label>                            
                         </div>
                     </div>                        
-                      <!-- <div class="col-md-6 choose-item">
-                        <div class="col-md-6 choose-item">
-                              <select  v-model="status" id="selectBox" class="form-control select_box" @change="searchCustomer()">
-                                <option selected="selected" value>状態を選択してください。</option>
-                                <option value="1"> 有効 </option>                            
-                                <option value="0"> 無効 </option>   
-                                <option value="2"> 登録承認審査中 </option>                              
-                            </select>                              
-                        </div> 
-                    </div>
-                                        
-                    <hr/>
-                    <h5 class="header">{{title}}</h5> -->
-                   <!-- <div v-if="nosearch_msg" class="container-fuid no_search_data"> -->
+                      
                     <div v-if="nosearch_msg" class="card card-default card-wrap no_search_data">
                         <p class="record-ico">
                             <i class="fa fa-exclamation"></i>
@@ -95,92 +82,28 @@
                                                 </div>
                                                 <div class="col-lg-10 col-md-8">{{customer.phone}}</div>
                                             </div>
-                                            <!-- <div class="row">
-                                                <div class="col-lg-2 col-md-4 custom_title">
-                                                    <strong>住所:</strong>
-                                                </div>
-                                                <div class="col-lg-10 col-md-8">{{customer.address}}</div>
-                                            </div> -->
-                                            <!-- <div class="col-md-2 max-width13"><strong>Logo:</strong></div><div class="col-md-10">{{customer.logo}}</div> -->
+                                            
                                             <div class="row mt-3">
                                                 <div class="col-md-12">
                                                     <button class="btn delete-borderbtn mr-2 mb-2" v-if="customer.status != 0" @click="deleteCustomer(customer.id,'delete')">削除</button>
                                                     <button class="btn delete-borderbtn mr-2 mb-2" v-if="customer.status == 0" @click="deleteCustomer(customer.id,'denied')">新規登録承認しない</button>
-                                                    <!-- <router-link :to="{name:'custedit',params:{id:customer.id}}" class="btn main-bg-color all-btn white">Edit</router-link> -->
-                                                    <!-- <button class="btn confirm-borderbtn" v-if="customer.status == 0">確認済</button> -->
-
-                                                    <button class="btn confirm-borderbtn  mb-2" :id="'confirm-btn'+customer.id" v-if="customer.status == 0" @click="comfirm(customer.id)"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;新規登録承認</button>
-                                                    <!-- <span class="btn confirm-borderbtn" style="border-color: #ccc!important; color: #ccc!important;cursor:not-allowed;" :id="'confirm-btn'+customer.id" v-else>登録承認済</span>     -->
-                                                    <span v-else class="">                                                  
-                                            <!-- <button class="btn confirm-orangebtn">プロフィール設定</button> -->
-                                            <span v-if="customer.status == 1 && customer.recordstatus == 0" class="btn confirm-disable-orangebtn mr-2 mb-2"><i class="fa fa-list"></i> 施設一覧</span>
-                                            <router-link :to="{ path:'/accountlist/'+ type +'/'+ customer.id}" v-if="customer.status == 1 && customer.recordstatus == 1" class="btn confirm-orangebtn mr-2 mb-2"><i class="fa fa-list"></i> 施設一覧</router-link>
-                                            <router-link :to="{ path:'/profiledit/'+ type +'/'+ customer.id}" v-if="customer.status == 1" class="btn confirm-orangebtn mb-2"><i class="fa fa-edit"></i> プロフィール設定</router-link>
-                                            <p class="mt-2" style="color: #81ad3b;font-weight: bold;"><i class="fa fa-check-circle" aria-hidden="true"></i>&nbsp;この事業者は登録承認済です。</p>
-                                                    </span>
                                                     
+                                                    <button class="btn confirm-borderbtn  mb-2" :id="'confirm-btn'+customer.id" v-if="customer.status == 0" @click="comfirm(customer.id)"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;新規登録承認</button>
+                                                    
+                                                    <span v-else class="">                                                  
+                                                    <span v-if="customer.status == 1 && customer.recordstatus == 0" class="btn confirm-disable-orangebtn mr-2 mb-2"><i class="fa fa-list"></i> 施設一覧</span>
+                                                    <router-link :to="{ path:'/accountlist/'+ type +'/'+ customer.id}" v-if="customer.status == 1 && customer.recordstatus == 1" class="btn confirm-orangebtn mr-2 mb-2"><i class="fa fa-list"></i> 施設一覧</router-link>
+                                                    <router-link :to="{ path:'/profiledit/'+ type +'/'+ customer.id}" v-if="customer.status == 1" class="btn confirm-orangebtn mb-2"><i class="fa fa-edit"></i> プロフィール設定</router-link>
+                                                    <p class="mt-2" style="color: #81ad3b;font-weight: bold;"><i class="fa fa-check-circle" aria-hidden="true"></i>&nbsp;この事業者は登録承認済です。</p>
+                                                    </span>                                                    
                                                 </div>
                                             </div>
-                                        </div>
-                                        <!-- <div class="col-sm-4">
-                                            <p class="text-right mt-2">
-                                            <router-link :to="{name: 'profiledit', params:{cusid: customer.id}}" v-if="customer.status == 1" class="btn confirm-orangebtn mb-2"><i class="fa fa-map"></i> プロフィール設定</router-link><br>
-                                            <router-link :to="{name: 'profile', params:{cusid: customer.id, type: customer.type_id == 2? 'hospital':'nursing'}}" v-if="customer.status == 1" class="btn confirm-orangebtn"><i class="fa fa-edit"></i> ページ編集</router-link>
-                                            </p>
-                                        </div> -->
+                                        </div>                                        
                                     </div>
                                 </td>
                             </tr>
-                        </table>
-                        <!-- <div v-for="customer in displayItems" :key="customer.id" class="card card-default m-b-20">
-                            <div class="card-body news-post">
-                                <div class="row">
-                                    <div class="col-lg-2 col-md-3">
-                                        <img :src="'/upload/hospital_profile/'+ customer.logo" class="img-fluid" alt="cust" v-if="customer.type_id == 2" @error="imgUrlAlt" />
-                                        <img :src="'/upload/nursing_profile/'+ customer.logo" class="img-fluid" alt="cust" v-if="customer.type_id != 2" @error="imgUrlAlt" />
-                                    </div>
-                                    <div class="col-lg-10 col-md-9">
-                                        <div class="row">
-                                            <div class="col-lg-2 col-md-4 custom_title">
-                                                <strong>事業者名:</strong>
-                                            </div>
-                                            <div class="col-lg-10 col-md-8">{{customer.name}}</div>
-                                            <div class="col-lg-2 col-md-4 custom_title">
-                                                <strong >状態:</strong>
-                                            </div>
-                                            <div class="col-lg-10 col-md-8" v-if="customer.recordstatus == '1'">Activate</div>
-                                            <div class="col-lg-10 col-md-8" v-else>Deactivate</div>
-
-                                            <div class="col-lg-2 col-md-4 custom_title">
-                                                <strong>メールアドレス:</strong>
-                                            </div>
-                                            <div class="col-lg-10 col-md-8">{{customer.email}}</div>
-                                            <div class="col-lg-2 col-md-4 custom_title">
-                                                <strong>電話番号:</strong>
-                                            </div>
-                                            <div class="col-lg-10 col-md-8">{{customer.phone}}</div>
-                                            <div class="col-lg-2 col-md-4 custom_title">
-                                                <strong>住所:</strong>
-                                            </div>
-                                            <div class="col-lg-10 col-md-8">{{customer.address}}</div>
-                                            </div>
-                                            <div class="row mt-3">
-                                                <div class="col-md-12">
-                                                    <button class="btn delete-borderbtn" @click="deleteCustomer(customer.id)">削除</button>
-                                                    <button class="btn confirm-borderbtn" :id="'confirm-btn'+customer.id" v-if="customer.status == 0" @click="comfirm(customer.id)">新規登録承認</button>
-                                                    <span class="btn confirm-borderbtn" style="border-color: #ccc!important; color: #ccc!important;cursor:not-allowed;" :id="'confirm-btn'+customer.id" v-else>登録承認済</span>
-                                                    <span class="float-right">
-                                                    <router-link :to="{name: 'profiledit', params:{cusid: customer.id}}" v-if="customer.status == 1" class="btn confirm-orangebtn">プロフィール設定</router-link>
-                                                    <router-link :to="{name: 'profile', params:{cusid: customer.id, type: customer.type_id == 2? 'hospital':'nursing'}}" v-if="customer.status == 1" class="btn confirm-orangebtn">ページ編集</router-link>
-                                                    </span>
-                                                </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                            </div>
-                        </div> -->
+                        </table>                        
                     </div>
-                    <!-- <pagination :data="customers" @pagination-change-page="searchCustomer"></pagination> -->
                     <div>
                         <pagination :data="customers" @pagination-change-page="searchCustomer" :limit="limitpc">
                                 <span slot="prev-nav"><i class="fas fa-angle-left"></i> 前へ</span>
@@ -195,8 +118,6 @@
 
 <script>
   import Autocomplete from 'vuejs-auto-complete'
-
-
     export default {
          components: {
             Autocomplete,
@@ -210,53 +131,23 @@
         },
         data() {
                 return {
-                    customers: [],
-                    items: [],
-                    norecord: 0,
-                    norecord_msg: false,
-                    nosearch_msg: false,
-                    title: '',
-                    type: null,
-                    status:'',
-                    searchkeyword:'',
-                    customerList:'',
-                    profileList:[],
-                    recordstatus :[],
-                    status:[],
-
-
-
-                    // selectedValue:{
-                    //    activate:false,
-                    //    deactivate:false,
-                    //    pending:false,
-                    // },
-                     table_name: {
-                        profile: ''
-                    },
-                    cusid:'',
-                  
+                    customers: [], items: [], norecord: 0, norecord_msg: false, nosearch_msg: false, title: '', type: null, status:'', searchkeyword:'', customerList:'', profileList:[], recordstatus :[], status:[], table_name: { profile: '' }, cusid:'',                  
                 };
             },
             created() {
-
                 this.$loading(true);
-                this.initialCall();
-               
+                this.initialCall();               
                   this.axios.get('/api/job/customerList/'+this.type).then(response=> {
                     this.customerList = response.data;
                 });
-
             },
-            methods: {
-               
+            methods: {               
                 initialCall(){
                     if(this.$route.path == "/nuscustomerlist"){
                         this.type = "nursing";
                         this.title = "介護施設事業者一覧";
                         this.axios.get("/api/customers/3").then(response => {
                             this.$loading(false);
-                            console.log(response.data)
                             this.customers = response.data;
                             this.norecord = this.customers.data.length;
                             if(this.norecord != 0){
@@ -281,30 +172,23 @@
                         });
                     }
                 },
-                getselected($event){
-                  
+                getselected($event){                  
                     this.cusid = $event.display;
                     this.searchCustomer();
                 },
                 clearcustomer(){
                     this.cusid = '';
                     this.searchCustomer();
-                },
-
-               
-
-                
+                },                          
                 deleteCustomer(id,type) {
                     if(type == 'delete'){
                         var textval = '事業者を削除してよろしいでしょうか。';
                     }
                     else{
-                        // var textval = '承認しない場合事業者情報が削除されます。';
                         var textval = '本当に承認しなくてよろしいでしょうか。<br/>承認しない場合事業者情報が削除されます。';
                     }
                     
                         this.$swal({
-                            // title: "確認",
                             html: textval,
                             type: "warning",
                             width: 350,

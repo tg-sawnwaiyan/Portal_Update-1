@@ -149,10 +149,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="modal-footer text-center fav-update-wrap">
-                                        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <button class="btn btn-secondary" @click="compareBtn()">比較する</button>
-                                        </button> -->
+                                    <div class="modal-footer text-center fav-update-wrap">                                        
                                         <button type="button"  data-dismiss="modal" aria-label="Close"  @click="compareBtn()" class="fav-update-btn">
                                            比較する
                                         </button>
@@ -166,9 +163,7 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLongTitle">交通アクセス／{{custname}}</h5>
-                                        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <button class="btn btn-secondary">閉じる&times;</button>
-                                        </button> -->
+                                        
                                         <button type="button" data-dismiss="modal" aria-label="Close" class="close">
                                             <button class="btn btn-secondary pc-480">×</button> <button class="btn btn-secondary close-480"><span>×</span>
                                         </button>
@@ -201,9 +196,7 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLongTitle">料金プラン</h5>
-                                        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <button class="btn btn-secondary">閉じる&times;</button>
-                                        </button> -->
+                                        
                                          <button type="button" data-dismiss="modal" aria-label="Close" class="close">
                                             <button class="btn btn-secondary pc-480">×</button> <button class="btn btn-secondary close-480"><span>×</span>
                                             </button>
@@ -250,20 +243,14 @@
                                 <span class="checkmark"></span>すべての資料請求にチェックを入れる
                                 <div class="controlinner__indicator m-l-3" style="top:8px;left:7px;"></div>
                             </label>
-                            <!-- <button type="button" class="btn btn-success all-btn float-right m-l-10" @click="addingMail()" :disabled="isdisable">資料請求する</button> -->
                         </div>
                         <div class="float-right check-resize">
-                            <!-- <label class="btn my-2 my-sm-0 all-btn secondary-bg-color btn-secondary control controlinner--checkbox pc-480" style="width:300px;">
-                                <input type="checkbox" @change="checkAll()" class="check-all-btn" />
-                                <span class="checkmark"></span>すべての資料請求にチェックを入れる
-                                <div class="controlinner__indicator" style="top:8px;left:7px;"></div>
-                            </label> -->
+                            
                             <label class="btn my-sm-0 all-btn secondary-bg-color btn-secondary control controlinner--checkbox fnt-check">
                                 <input type="checkbox" @change="checkAll()" class="check-all-btn" />
                                 <span class="checkmark m-l-10"></span>すべてチェック
                                 <div class="controlinner__indicator" style="top:7px;left:3px;margin-left:5px;"></div>
                             </label>
-                            <!-- <button type="button" class="btn btn-success all-btn float-right m-l-10 fnt-check" @click="addingMail()" :disabled="isdisable">資料請求する</button> -->
                         </div>
                     </div>
                     <div class="m-t-20" id="fav-history-page">
@@ -423,58 +410,7 @@
      
         data() {
                 return {
-                    status_all:'0',
-                    chek_status:true,
-                    errors: [],
-                    fav_nursing: [],
-                    local_sto: "",
-                    fav_email: [],
-                    arr_email: [],
-                    document_status: [],
-                    modal_btn: false,
-                    address_check: false,
-                    address_show: false,
-                    tran_check: false,
-                    tran_show: false,
-                    month_check: false,
-                    month_show: false,
-                    entry_check: false,
-                    entry_show: false,
-                    condition_check: false,
-                    condition_show: false,
-                    special_check: false,
-                    special_show: false,
-                    capacity_check: false,
-                    capacity_show: false,
-                    opening_check: false,
-                    opening_show: false,
-                    fav_nus :"",
-                    iscompare: false,
-                    markers: [{
-                        position: {
-                            lat: 0.0,
-                            lng: 0.0
-                        }
-                    }],
-                    center: {
-                        lat: 0,
-                        lng: 0
-                    },
-                    address: '',
-                    access: '',
-                    custname: '',
-                    payment_name: [],
-                    currentOffset: 0,
-                    windowSize: 5,
-                    paginationFactor: 261,
-                    disableBtn: false,
-                    check:false,
-                    checkallbtn:false,
-                    window:{
-                        width: 0,
-                        height: 0
-                    },
-                    message:''
+                    status_all:'0', chek_status:true, errors: [], fav_nursing: [], local_sto: "", fav_email: [], arr_email: [], document_status: [], modal_btn: false, address_check: false, address_show: false, tran_check: false, tran_show: false, month_check: false, month_show: false, entry_check: false, entry_show: false, condition_check: false, condition_show: false, special_check: false, special_show: false, capacity_check: false, capacity_show: false, opening_check: false, opening_show: false, fav_nus :"", iscompare: false, markers: [{ position: { lat: 0.0, lng: 0.0 } }], center: { lat: 0, lng: 0 }, address: '', access: '', custname: '', payment_name: [], currentOffset: 0, windowSize: 5, paginationFactor: 261, disableBtn: false, check:false, checkallbtn:false, window:{ width: 0, height: 0 }, message:''
                 };
             },
             computed: {
@@ -489,9 +425,7 @@
                 }
             },
 
-            created() {
-             
-            
+            created() {          
                 //for cardcarousel responsive
                 window.addEventListener('resize', this.handleResize)
                 this.handleResize(); 
@@ -535,11 +469,9 @@
                 }
                 else if (this.window.width >= 1440 && this.window.width < 1880) {
                     this.windowSize = 4;
-                     this.paginationFactor = 260;            
-                    // console.log(this.window.width);
+                    this.paginationFactor = 260;            
                 }
 
-                // $('.checkbox1').prop("checked", true);
                 this.iscompare = true;
                 this.address_check = true;
                 this.address_show = true;
@@ -610,45 +542,28 @@
                                     }
                                 var new_local = l_sto_arr.toString();
                                 localStorage.setItem('nursing_fav', new_local);
-                                this.local_sto = localStorage.getItem("nursing_fav");
-                                // this.$swal({
-                                //     title: "削除された",
-                                //     text: "ファイルが削除されました。",
-                                //     type: "success",
-                                //     width: 350,
-                                //     height: 200,
-                                //     confirmButtonText: "はい",
-                                //     confirmButtonColor: "#dc3545"
-                                //     });
+                                this.local_sto = localStorage.getItem("nursing_fav");                               
                                 if (this.local_sto) {
                                     this.fav_nus = this.local_sto.split(",").length;
                                     this.getAllFavourite(this.local_sto);
                                 } else {
-                                    // window.location.reload();
                                     this.$router.push({
-                                        name: 'nursingSearch',
-                                        // params: {
-                                        //     page: 'subtab3'
-                                        // }
+                                        name: 'nursingSearch',                                       
                                     });
                                 }
                             }
                       
                          });
-                            // alert('Delete Successfully!');
                            
                         if(this.local_sto){
                             this.fav_nus = this.local_sto.split(",").length;
                         }
                     },
                     getAllFavourite: function(local_storage) {
-                        console.log("fav_nus",local_storage);
-                        console.log("fav_nus",this.fav_nus);
                         this.axios
                             .post('/api/nursing_fav/' + local_storage)
                             .then(response => {
                                 this.fav_nursing = response.data;
-                                console.log("this.fav_nursing",this.fav_nursing);
                               
                                 if(this.fav_nursing.length < this.fav_nus && this.fav_nursing.length > 0)
                                 {   
@@ -663,7 +578,6 @@
                                         allowOutsideClick: false,
                                     });   
                                      var nus_id = '';
-                                    //  this.message = "現在本サイトに掲載されていない介護施設についてはお気に入りリストから削除しました。";
                                      for(var i= 0;i<this.fav_nursing.length;i++)
                                      {
                                          if(i== this.fav_nursing.length-1)
@@ -695,8 +609,7 @@
                                     allowOutsideClick: false,
                                     }).then(response => {
                                          localStorage.setItem('nursing_fav','');
-                                         this.local_sto = localStorage.getItem("nursing_fav");
-                                         
+                                         this.local_sto = localStorage.getItem("nursing_fav");                                         
                                           $('.fav-nursing-link-box>a').css({'cursor':'not-allowed','pointer-events':'none'});
                                           $( '.fav-nursing-link-box>a').parent('div').css({'cursor':'not-allowed'});
                                          this.$router.push({name: 'nursingSearch'});    
@@ -722,20 +635,11 @@
                                 'email': this.fav_nursing[i]['email'],
                                 'name': this.fav_nursing[i]['name']
                             });
-                        }
-
-                        
+                        }                        
                         
                         localStorage.setItem("document", JSON.stringify(this.document_status));
                         localStorage.removeItem("item");
-                        localStorage.setItem("item", JSON.stringify(this.fav_email));
-                      
-                        // this.$router.push({
-                        //     name: 'nursingFavouriteMail',
-                        //     // params: { favmail: this.fav_email},
-                        //     // props: true
-                        // });
-
+                        localStorage.setItem("item", JSON.stringify(this.fav_email));                      
                         let routeData = this.$router.resolve({name: 'nursingFavouriteMail',});
                         window.open(routeData.href, '_blank');
                     },

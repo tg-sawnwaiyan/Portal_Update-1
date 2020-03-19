@@ -291,20 +291,6 @@
                   </td>
                 </tr>
 
-                <!-- <tr class="text-center">
-                  <td colspan='2' style="border:none;">
-
-                     <button @click="ShowHide4" class="btn seemore-btn">
-                                <i class="fa" aria-hidden="true"></i>
-                                <span id="close4"><i class="fas fa-arrow-circle-up"></i> 閉じる</span>
-                            </button> -->
-                    <!-- <button @click="ShowHide4" class="btn seemore-btn">
-                      <i class="fa" aria-hidden="true"></i>
-                          <span id="close4"><i class="fas fa-arrow-circle-up"></i> 閉じる</span>
-                    </button> -->
-                  <!-- </td>
-                </tr> -->
-
                 <tr class="text-center">
                   <td colspan="2" style="border:none;">
                      <button class="main-bg-color create-btn all-btn col-lg-2 col-md-4 col-sm-2" @click="search"><i class="fas fa-search"></i>&nbsp; 検索 </button>
@@ -394,30 +380,6 @@
               </nav>
             </div>
 
-            <!-- <nav class="pagination" v-if="show_paginate">
-                <ul>
-                  <li>
-                      <span  @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
-                  </li>
-                </ul>
-                <ul class="previous">
-                    <li><span  @click="prev"><i class='fas fa-angle-left'></i> 前へ</span></li>
-                </ul>
-                <ul class="pages">
-                    <li v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
-                      <span  class="spanclass" @click="pageSelect(i)">{{i}}</span>
-                    </li>
-                </ul>
-                <ul class="next">
-                    <li><span  @click="next">次へ <i class='fas fa-angle-right'></i></span></li>
-                </ul>
-                <ul>
-                  <li>
-                      <span  @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
-                  </li>
-                </ul>
-              </nav> -->
-
             </div>
             </div>
         </div>
@@ -444,52 +406,7 @@ export default {
     //props: ['initOpen'],
     data(){
       return{
-        id:'',
-        townshipID:[],
-        township_id:[],
-        cities:[],
-        getCity:[],
-        township_id:-1,
-        moving_in:-1,
-        per_month:-1,
-        getTownships:[],
-        special_features:[],
-        fac_types:[],
-        fac_id:[],
-        medical_acceptance:[],
-        subjects:[],
-        occupationID:[],
-        occupations:[],
-        occupation:[],
-        toggleCheck: true,
-        toggleCheck_1: false,
-        empstatus:[],
-        job_data:[],
-        currentPage: 0,
-        size: 20,
-        pageRange: 5,
-        items: [],
-        show_paginate: false,
-        // loginuser: true,
-        selected: undefined,
-        locast:'',
-        company:[],
-        open:false,
-        norecord_msg: false,
-        window:{
-          width: 0,
-          height: 0
-        },
-        w_width: $(window).width(),
-       testclass:'',
-       array_len: 0,
-       searchword:'',
-       stateclick:false,
-       count:false,
-       clicksearch: false,
-       ci: false,
-       isActive: true,
-       isActivePreNext:true,
+        id:'', townshipID:[], township_id:[], cities:[], getCity:[], township_id:-1, moving_in:-1, per_month:-1, getTownships:[], special_features:[], fac_types:[], fac_id:[], medical_acceptance:[], subjects:[], occupationID:[], occupations:[], occupation:[], toggleCheck: true, toggleCheck_1: false, empstatus:[], job_data:[], currentPage: 0, size: 20, pageRange: 5, items: [], show_paginate: false, selected: undefined, locast:'', company:[], open:false, norecord_msg: false, window:{ width: 0, height: 0 }, w_width: $(window).width(), testclass:'', array_len: 0, searchword:'', stateclick:false, count:false, clicksearch: false, ci: false, isActive: true, isActivePreNext:true,
       }
     },
     created() {
@@ -519,23 +436,13 @@ export default {
         }
     });
     },
-    // toggle(id) {
-    // 	const index = this.opened.indexOf(id);
-    //   if (index > -1) {
-    //   	this.opened.splice(index, 1)
-    //   } else {
-    //   	this.opened.push(id)
-    //   }
-    // },
+    
      handleResize() {
         this.window.width = window.innerWidth;
         this.window.height = window.innerHeight;
-        //console.log('hello');
     },
     search()
-    {
-     
-    
+    {       
         this.count = true;
       
         if(this.townshipID == null || this.townshipID == '')
@@ -595,94 +502,71 @@ export default {
           }else{
               this.norecord_msg = true;
           }
-
-        })
-    
-
-         // window.scrollTo({ top : 1000, behavior: 'smooth' });
+        })   
     },
-    searchfreeword(){
-      
+    searchfreeword(){     
+        this.id = -1;
+        this.count = false;
+        this.stateclick = false;
+        this.townshipID = [];
+        this.occupationID = [];
+        this.empstatus = [];
+        this.ci = true;
 
-            //clear all checkbox
-            this.id = -1;
-            this.count = false;
-            this.stateclick = false;
-            this.townshipID = [];
-            this.occupationID = [];
-            this.empstatus = [];
-            this.ci = true;
+        if(this.townshipID == null || this.townshipID == '')
+        {
+            this.townshipID[0] = 0;
+        }
+        if(this.occupationID == null || this.occupationID == '')
+        {
+            this.occupationID[0] = 0;
+        }
+        if(this.empstatus == null || this.empstatus == '')
+        {
+            this.empstatus[0] = 0;
+        }
 
-            if(this.townshipID == null || this.townshipID == '')
-            {
-              this.townshipID[0] = 0;
+        if ($('#search-free-word').val() != '')
+        { 
+            
+            var search_word = $('#search-free-word').val();
+            this.searchword = search_word;
+        }
+        else if ($('#search-free-word-mob').val() != '')
+        { 
+            
+            var search_word = $('#search-free-word-mob').val();
+            this.searchword = search_word;
+        }
+        else{
+            var search_word = "all";
+            this.searchword = 'all';
+        }
+
+        this.axios.get('api/getjobsearch/'+ search_word,{
+            params:{ id: this.id, townshipID:this.townshipID, occupationID:this.occupationID, empstatus:this.empstatus },
+        })
+        .then((response)=>{
+            $('.jobselect').removeClass('jobselect');
+            $('#job_search').css("display","block");
+            this.job_data = response.data.job;
+            this.cities = response.data.city;
+            this.occupations = response.data.occupations;
+            this.getTownships = [];
+            this.array_len = ((this.occupations.length)%3)==0?((this.occupations.length)/3):Math.floor(((this.occupations.length)/3)+1);
+
+            if(this.job_data.length > this.size) {
+                this.show_paginate = true;
+            }else{
+                this.show_paginate = false;
             }
-            if(this.occupationID == null || this.occupationID == '')
-            {
-              this.occupationID[0] = 0;
+            if(this.job_data.length != 0) {
+                this.norecord_msg = false;
+            }else{
+                this.norecord_msg = true;
             }
-            if(this.empstatus == null || this.empstatus == '')
-            {
-              this.empstatus[0] = 0;
-            }
-
-            if ($('#search-free-word').val() != '')
-            { 
-               
-                var search_word = $('#search-free-word').val();
-                this.searchword = search_word;
-            }
-            else if ($('#search-free-word-mob').val() != '')
-            { 
-               
-                var search_word = $('#search-free-word-mob').val();
-                this.searchword = search_word;
-            }
-            else{
-                var search_word = "all";
-                this.searchword = 'all';
-            }
-
-            this.axios.get('api/getjobsearch/'+ search_word,{
-               params:{
-                    // id: -1,
-                    // townshipID:-1,
-                    // occupationID:-1,
-                    // empstatus:-1
-                    id: this.id,
-                    townshipID:this.townshipID,
-                    occupationID:this.occupationID,
-                    empstatus:this.empstatus
-
-                },
-            })
-            .then((response)=>{
-
-
-                $('.jobselect').removeClass('jobselect');
-                $('#job_search').css("display","block");
-                this.job_data = response.data.job;
-                this.cities = response.data.city;
-                this.occupations = response.data.occupations;
-                this.getTownships = [];
-                this.array_len = ((this.occupations.length)%3)==0?((this.occupations.length)/3):Math.floor(((this.occupations.length)/3)+1);
-
-                if(this.job_data.length > this.size) {
-                    this.show_paginate = true;
-                }else{
-                    this.show_paginate = false;
-                }
-                if(this.job_data.length != 0) {
-                    this.norecord_msg = false;
-                }else{
-
-                    this.norecord_msg = true;
-                }
-            });
-
-        
-
-        },
+        });   
+    },
 
     gotoJobdetail(jid) {
         this.$router.push({ name: 'job_details', params:{id:jid,loginuser:this.loginuser}});
@@ -729,18 +613,7 @@ export default {
             }
 
             this.axios.get('api/getmap',{
-            params:{
-              id: this.id,
-              township_id:-1,
-              moving_in:-1,
-              per_month:-1,
-              local:this.locast,
-              feature:'job',
-              SpecialFeatureID:[0],
-              MedicalAcceptanceID:[0],
-              FacTypeID:[0],
-              MoveID:[0],
-          },
+            params:{ id: this.id, township_id:-1, moving_in:-1, per_month:-1, local:this.locast, feature:'job', SpecialFeatureID:[0], MedicalAcceptanceID:[0], FacTypeID:[0], MoveID:[0], },
           })
           .then((response)=>{
 
@@ -753,15 +626,7 @@ export default {
             this.id = id
          })
 
-
-        // this.search();
-        },
-        // getStation(){
-        //    this.axios.get('api/getstation/'+ this.id)
-        //   .then((response)=>{
-        //     this.company = response.data.company;
-        //  })
-        // },
+        },       
 
       parentGetStateClick(e,parentVue) {
         var _this = parentVue;
@@ -810,7 +675,6 @@ export default {
           _this.getTownships = response.data.getTownships
 
           _this.occupations = response.data.occupations
-          //console.log("occu",_this.occupations)
           _this.id = id,
            _this.array_len = ((_this.occupations.length)%3)==0?((_this.occupations.length)/3):Math.floor(((_this.occupations.length)/3)+1);
               console.log(_this.array_len)
@@ -819,18 +683,10 @@ export default {
         document.getElementById('search-free-word').value = '';
         document.getElementById('search-free-word-mob').value = '';
         _this.search();
-
       },
 
       getCheck(e){
-
-         console.log(this.townshipID);
-        // console.log(this.townshipID);
-        // if(e.target.checked){
-        //   this.township_id = e.target.value;
-        //    this.township_id.push(e.target.value);
-        //    console.log(this.township_id);
-        // }
+        //  console.log(this.townshipID);      
       },
       features(e){
         if(e.target.checked){
@@ -981,32 +837,14 @@ export default {
     }
 	},
 };
-
-
-  // $("#search").on("click", function() {
-  //   alert('a');
-  //     // $("body").scrollTop(0);
-  // });
-
-
-// $(function() {
-//   $( '#divisionswrap ul li' ).on( 'click', function(e) {
-//         e.preventDefault();
-//         $( '#divisionswrap ul li' ).parent().find( 'li.active' ).removeClass( 'active' );
-//         $( this ).addClass( 'active' );
-//  });
-// });
-
-      //Hide all panels
-      function showCheckboxes() {
-  if ($('#checkboxes').is(':visible')) {
-    $('#checkboxes').hide();
-  }
-  else {
-    $('#checkboxes').show();
-  }
-}
-
+    function showCheckboxes() {
+        if ($('#checkboxes').is(':visible')) {
+            $('#checkboxes').hide();
+        }
+        else {
+            $('#checkboxes').show();
+        }
+    }
 
 $(document).click(function(e) {
   if(e.target.nodeName == 'BODY')
