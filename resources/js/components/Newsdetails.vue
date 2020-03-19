@@ -200,11 +200,13 @@ export default {
       .then(response => {
         this.newdetails = response.data.news;          
         this.getData = true; 
-   
+        console.log(this.newdetails)
         this.$ga.event({
-        eventCategory:  'NewsDeatail count by category',
-        eventAction:  this.newdetails[0]['cat_name'],
-        eventLabel:  'NewsDeatail',
+        eventLabel: this.newdetails[0]['title'],
+        eventCategory: 'News(ニュース)',
+        eventAction:  this.newdetails[0]['cat_name'] ,
+        eventValue: '-',
+       
       })
       });   
      
