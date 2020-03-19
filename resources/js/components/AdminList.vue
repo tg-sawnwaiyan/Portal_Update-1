@@ -134,7 +134,6 @@ export default {
                             this.axios
                                 .delete(`/api/main_admin/delete/${id}`)
                                 .then(response => {
-                                    console.log(response.data)
                                     this.admin_list = response.data;
                                     this.$swal({
                                         text: "特徴を削除しました。",

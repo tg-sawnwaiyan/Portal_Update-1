@@ -2,9 +2,6 @@
  <div class="">     
       <div class="col-12 col-lg-12 col-md-12 tab" >       
           <div class="card title_comment title_comment2" style="background:#edf2f4;">     
-                    <!-- <div class="card-header text-center jt1">
-                        <h4 style="padding-top: 20px;"><i class="	fa fa-comments" style="font-size:;"></i> 口コミ作成 </h4>
-                    </div> -->
                        <div class="col-12 m-b-10 m-t-8 com-mt"><h4 class="comment-apply-color t-t" style="margin-left:5px;"><i class="fa fa-comments com_ic"></i> 口コミ投稿</h4></div>
                     <div class="card-body ">
                         <div class="row">
@@ -14,7 +11,6 @@
                                     <li class="no-active">2.<span>内容のご</span>確認</li>
                                     <li>3.<span>送信</span>完了</li>
                                 </ul>
-                                <!-- <form @submit.prevent ="add" class="m-t-16 sendEmail comform comment"  method="post" > -->
                                 <form  class="m-t-16 sendEmail comform comment">
                                         <div class="form-group row">
                                             <div class="col-sm-4 text-left">
@@ -25,20 +21,7 @@
                                                 <div v-if="errors.title" style="color:red;">{{ errors.title }}</div>
                                              </div>
                                         </div>
-                                         <!-- <div class="form-group row">
-                                                <div class="col-sm-4">
-                                                </div>
-                                                <div class="col-sm-8">
-                                                     <span v-if="errors.title" class="error">{{errors.title[0]}}</span>
-                                                </div>
-                                         </div> -->                                       
-                                        <!-- <div class="form-group row">
-                                                <div class="col-sm-4">
-                                                </div>
-                                                <div class="col-sm-8">
-                                                     <span v-if="errors.comment" class="error">{{errors.comment}}</span>
-                                                </div>
-                                         </div> -->
+                                         
                                           <div class="form-group row">
                                                 <div class="col-sm-4 text-left">
                                                         <label for ="email" ><strong> メールアドレス（半角英数字）&nbsp;<span class="error sp1">必須</span></strong>  </label>
@@ -48,13 +31,7 @@
                                                       <div v-if="errors.email" style="color:red;">{{ errors.email }}</div>
                                                 </div>
                                         </div>
-                                        <!-- <div class="form-group row">
-                                                <div class="col-sm-4">
-                                                </div>
-                                                <div class="col-sm-8">
-                                                     <span v-if="errors.email" class="error">{{errors.email[0]}}</span>
-                                                </div>
-                                         </div> -->
+                                        
                                          <div class="form-group row">
                                             <div class="col-sm-4 text-left">
                                                 <label for ="name"  ><strong> お名前&nbsp;<span class="error sp1">必須</span></strong>   </label>
@@ -75,29 +52,7 @@
                                                 </select>
                                              </div>
                                         </div>
-                                        <!-- <div class="form-group row">
-                                            <div class="col-sm-4 text-left">
-                                                <label for ="gender"  ><strong> 性別 <span class="error sp1">必須</span></strong>   </label>
-                                            </div>
-                                             <div class="col-sm-8">
-                                                   <label class="control control--radio"> <input type="radio" class="custom-radio" v-model="comments.gender" value="0"  > 男性  <div class="control__indicator"></div></label>
-                                                   <label class="control control--radio"> <input type="radio" class="custom-radio" v-model="comments.gender" value="1" >女性  <div class="control__indicator"></div></label>
-                                             </div>
-                                        </div><br> -->
-
-                                        <!-- <div class="form-group row"  v-for="field in comments.fields" :key="field.id">
-                                            <div class="col-sm-4 text-right">
-                                                <label for ="zipcode"  ><strong> 郵便番号(半角数字)</strong>   </label>
-                                            </div>
-                                             <div class="col-sm-4"  style="margin-bottom:10px;">
-                                                 <input type="text" class="form-control box fnumericzip" value="firstzip" v-model="field.fzipcode" maxlength="3" v-on:keydown="isNumber">
-                                              <span v-if="errors.fzipcode" class="error">{{errors.fzipcode[0]}}</span>
-                                             </div>
-                                               <div class="col-sm-4">
-                                                 <input type="text" class="form-control box lnumericzip" value="secondzip" v-model="field.lzipcode" maxlength="4" v-on:keydown="isNumber">
-                                                  <span v-if="errors.lzipcode" class="error">{{errors.lzipcode[0]}}</span>
-                                             </div>
-                                        </div><br> -->
+                                       
                                          <div class="form-group row"  v-for="field in comments.fields" :key="field.id">
                                             <div class="col-sm-4">
                                                 <label for ="zipcode"  ><strong> 郵便番号(半角数字)</strong>   </label>
@@ -129,8 +84,7 @@
                                         <div class="form-group row">
                                             <div class="col-sm-5"></div>
                                             <div class="col-sm-4">
-                                              <!-- <a href="#" ><strong> 利用規約 </strong></a>
-                                              <a href="#" ><strong> 個人情報保護方針 </strong></a>      -->
+                                             
                                               <router-link to="/termsAndConditions" class="pseudolink"> <strong>「プライバシーポリシー」</strong></router-link>
                                             </div>
                                             <div class="col-sm-3"></div>
@@ -140,10 +94,7 @@
                                             <div class="col-sm-12 text-center">
                                                 <span class="btn btn-danger all-btn" @click="$router.go(-1)" > キャンセル </span>
                                                 <span class="btn main-bg-color white all-btn" @click="checkValidate()">確認画面へ進む</span>
-                                                
-                                                 <!-- <button class="btn main-bg-color white all-btn"> 利用規約、個人情報の取り扱いについてに同意して確認する </button> -->
-                                                 <!-- <button class="btn main-bg-color white all-btn"> 確認 </button> -->
-                                                      <!-- <span :disabled="isDisabled" >確認画面へ進む</span> -->
+                                               
                                             </div>                                            
                                         </div>
                                 </form>
@@ -292,8 +243,7 @@ export default {
             }
         },
         created(){
-            // this.pro_id = this.$route.params.id;
-            // this.type = this.$route.params.type;
+            
             this.comments.types = this.$route.params.type;
             this.comments.gender = 0;
             this.comments.profile_id = this.$route.params.id;
@@ -303,10 +253,8 @@ export default {
          methods: {
              checkValidate() {
                     if (this.comments.title) {
-                        // console.log('exist');
                         this.errors.title = "";
                     } else {
-                        // console.log('null');
                         this.errors.title = "口コミタイトルは必須です。";
                     }
                     if (this.comments.email){
@@ -351,74 +299,22 @@ export default {
                     .then((response) => {
                         this.$loading(false);
                         this.type="completed";
-                        this.name = ''
-                        // this.$swal({
-                        //     position: 'top-end',
-                        //     type: 'success',
-                        //     // title: '作成されました',
-                        //     text: '確認のためもうちょっとしばらくお待ちください。',
-                        //     showConfirmButton: false,
-                        //     timer: 1800,
-                        //     width: 250,
-                        //     height: 200,
-                        //     allowOutsideClick: false,
-                            
-                        // })
-                        // this.$router.go(-1);
-
-                    //  this.$router.push({name: 'profile'});
+                        this.name = ''                        
                     }).catch(error=>{
-
                     if(error.response.status == 422){
-
                         this.errors = error.response.data.errors
-
                     }
                 })
-
-
             },
              getYear: function(){
-
                this.comments.year = this.selectedValue;
-
            },
            editCmt: function() {
              this.type = 'register';
             }
-        //    CheckFirstZipcode(){
-        //        var fzip = $('.fnumericzip').val();
-        //        var lzip = $('.lnumericzip').val();
-
-        //         if(!fzip.match('/^(0|[1-9][0-9]*)$/')){
-
-        //            this.errors.fields = 'Zipcode must be numeric !'
-        //         }
-        //         else if(fzip.match('^(0|[1-9][0-9]*)$') && lzip == '' )
-        //         {
-        //              this.errors.fields = ''
-        //         }
-        //         else if(fzip.match('^(0|[1-9][0-9]*)$') && !lzip.match('^(0|[1-9][0-9]*)$'))
-        //         {
-
-        //              this.errors.fields = 'Zipcode must be numeric !'
-        //         }
-        //         else if(!fzip.match('^(0|[1-9][0-9]*)$') && lzip.match('^(0|[1-9][0-9]*)$'))
-        //         {
-        //              this.errors.fields = 'Zipcode must be numeric !'
-        //         }
-        //         else{
-        //             this.errors.fields = ''
-        //         }
-
-        //     }
-
 
          }
 }
-
-
-
 </script>
 
 

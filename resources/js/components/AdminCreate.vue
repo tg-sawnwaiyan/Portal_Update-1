@@ -4,12 +4,9 @@
         <div class="admin_card admin_registercard admin-create-wrapper">
             <div class="row">
                 <div class="col-md-12">
-                    <h4 class="page-header header" style="background:transparent;">{{ header }} <span v-if="show" class="btn btn-danger all-btn float-right m-b-10" @click="$router.go(-1)"><i class="fas fa-arrow-left"></i>&nbsp;戻る</span></h4>
-                    
-
+                    <h4 class="page-header header" style="background:transparent;">{{ header }} <span v-if="show" class="btn btn-danger all-btn float-right m-b-10" @click="$router.go(-1)"><i class="fas fa-arrow-left"></i>&nbsp;戻る</span></h4>                  
                 </div>
-                <!-- <div class="col-md-2"> -->
-                <!-- </div> -->
+                
                 <div class="col-md-12">
                     <form @submit.prevent="add">                       
                                 <div class="row">
@@ -44,12 +41,9 @@
                                             <span class="btn drop-bg-color m-l-8" style="min-width: 0px;" @click="passwordToggleDiv()">詳細&nbsp;<i class="fas fa-sort-down animate"  :class="{'rotate': !isRotate}"></i></span>
                                         </div>
                                     </div>
-                                    <div class="header2">
-                                       
+                                    <div class="header2">                                   
                                         
                                     </div>
-
-                                    <!-- <label class="heading-lbl col-md-2 col-12 pad-free">パスワード設定</label> -->
 
                                     <div class="password-setting">
                                         <label class="old-pass">現在のパスワード:<span class="error-star">*</span></label>
@@ -87,32 +81,7 @@
     export default {
         data() {
                 return {
-                    header: '管理者新規作成',
-                    subtitle: '作成',
-                    adminData: {
-                        name: '',
-                        email: '',
-                        password: '',
-                        old_password: '',
-                        new_password: '',
-                        confirm_password: '',
-                    },
-                    errors: {
-                        name: '',
-                        email: '',
-                        password: '',
-                        edit_password: '',
-                        old_password: '',
-                        new_password: '',
-                        confirm_password: '',
-                    },
-                    show: false,
-
-                    old_password: '',
-                    new_password: '',
-                    confirm_password: '',
-                    admin_id: this.$route.params.id,
-                    isRotate: false,
+                    header: '管理者新規作成', subtitle: '作成', adminData: { name: '', email: '', password: '', old_password: '', new_password: '', confirm_password: '', }, errors: { name: '', email: '', password: '', edit_password: '', old_password: '', new_password: '', confirm_password: '', }, show: false, old_password: '', new_password: '', confirm_password: '', admin_id: this.$route.params.id, isRotate: false,
                     mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
                 }
             },
@@ -187,7 +156,6 @@
                                         .then(response => {
                                             this.$loading(false);
                                             this.name = ''
-                                            console.log(response);
                                             this.$swal({
                                                 position: 'top-end',
                                                 type: 'success',
@@ -374,7 +342,6 @@
                                     });
                             } else {
                                 this.$swal({
-                                    // title: "確認",
                                     text: "新しいパスワードと確認パスワードは同じでなければなりません。",
                                     type: "warning",
                                     width: 350,

@@ -264,65 +264,7 @@
                                     <div id="filtertable" class="col-12">
                                         <table class="table table-bordered col-12 box-wrap">
                                             <tbody>
-                                                <!-- ------------------- -->
-                                                <!-- <tr>
-                                                    <th class="pc-414-table sp-768-block pc-rsp-table sp-rsp-block">地域</th>
-                                                    <td class="sp-768-block sp-414-table sp-rsp-block">
-                                                    <div class="row mt-2 mb-2">
-                                                    <div class="col-lg-9 col-md-8 col-sm-12 m-b-8">
-                                                        <select id="selectCity" class="form-control custom-select" v-model="id" @change="ChangeTownship">
-                                                        <option value="-1" disabled>▼市区町村</option>
-                                                        <option v-for="city in cities" :value="city.id" :key="city.id">{{city.city_name}}</option>
-                                                    </select>
-                                                    </div>
-                                                    <div class="col-lg-3 col-md-4 col-sm-12 pc-414">
-                                                    <button @click="toggleContent" class="btn seemore-btn">
-                                                        <i class="fa" aria-hidden="true"></i>
-                                                     
-                                                        <span id="close"><i class="fas fa-arrow-circle-up"></i> 市区町村エリアを閉じる </span>
-                                                    </button>
-                                                    </div>
-                                                    </div>
-                                                    <div class="toBeToggled" id="toBeToggled">
-                                              
-                                                    <div class="dropdown search_rsp">
-                                                        <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
-                                                        市から探す
-                                                        </button>
-                                                        <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 420" @click.stop="stopTheEvent">
-                                                            <li>
-                                                            <a data-value="option">
-                                                            <div class="row">
-                                                       
-                                                                <div class="col-lg-2 col-md-4 col-sm-4" v-for="township in getTownships" :key="township.id">
-                                                                <label class="form-check-label control control--checkbox">
-                                                                    <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @click="check" >
-                                                                    {{township.township_name}}
-                                                                    <div class="control__indicator"></div>
-                                                                </label>
-                                                                </div>
-                                                            </div>
-                                                            </a>
-                                                            </li>
-                                                        </ul>
-                                                        <a v-if="w_width >= 420">
-                                                      
-                                                            <div class="row">
-                                                                <div class="col-lg-2 col-md-4 col-sm-4" v-for="township in getTownships" :key="township.id">
-                                                                <label class="form-check-label control control--checkbox">
-                                                                    <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @click="check" >
-                                                                    {{township.township_name}}
-                                                                    <div class="control__indicator"></div>
-                                                                </label>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
                                                 
-                                                    </div>
-                                                    </td>
-                                                </tr> -->
-                                                <!-- ------------- -->
                                                 <tr>
                                                    
                                                     <th class="pc-414-table sp-768-block" v-if="showOne" style="padding:10px;">入居時の条件</th>
@@ -511,23 +453,7 @@
                                                         <!--end 医療面・診療科目から探す -->
                                                     </td>
                                                 </tr>
-                                                <!-- <tr class="text-center">
-                                                    <td colspan="2">
-                                                        <button @click="showOne = !showOne" class="btn btn-link mt-2">
-                                                   
-                                                        <button v-show="showOne" class="btn seemore-btn">
-                                                        <i class="fa" aria-hidden="true"></i>
-                                                            <span id="close4"><i class="fas fa-arrow-circle-up"></i> 閉じる</span>
-                                                        </button>
-                                                   
-                                                        <button v-show="!showOne" class="btn seemore-btn">
-                                                        <i class="fa" aria-hidden="true"></i>
-                                                            <span id="close4"><i class="fas fa-arrow-circle-down"></i> もっと見る</span>
-                                                        </button>
-                                                        
-                                                        </button>
-                                                    </td>
-                                                </tr> -->
+                                                
                                                 <tr class="text-center">
                                                     <td colspan="2" style="border:none;">
                                                         <button class="main-bg-color create-btn all-btn col-lg-2 col-md-4 col-sm-2" id="search" @click="search"><i class="fas fa-search"></i>&nbsp; 検索 </button>
@@ -665,27 +591,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <div class="col-12" v-if="show_paginate">
-                                    <nav aria-label="Page navigation example">
-                                        <ul class="pagination">
-                                        <li class="page-item">/
-                                            <span class="spanclass pc-480" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
-                                        </li>
-                                        <li class="page-item">
-                                            <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i><span class="pc-paginate"> 前へ</span></span>
-                                        </li>
-                                        <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
-                                            <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
-                                        </li>
-                                        <li class="page-item">
-                                            <span class="spanclass" @click="next"><span class="pc-paginate">次へ </span><i class='fas fa-angle-right'></i></span>
-                                        </li>
-                                        <li class="page-item">
-                                            <span class="spanclass pc-480" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
-                                        </li>
-                                        </ul>
-                                    </nav>
-                                </div> -->
+                                
                                 <div class="row">
                                     <div class="col-md-12 col-lg-12 col-sm-6" v-if="show_paginate">
                                     <nav aria-label="Page navigation example">
@@ -735,78 +641,8 @@
         },
 
         data() {
-
             return {
-                cityid:[],
-                listid : '',
-                map: null,
-                markers: [],
-                searchmarkers:[],
-                marker:[],
-                selectedLocation: null,
-                infoBoxOpen: false,
-                places: [],
-                id: [],
-                townshipID:[],
-                township_id:-1,
-                moving_in:-1,
-                per_month:-1,
-                cities: '',
-                getCity: [],
-                getTownships: [],
-                special_features: [],
-                fac_types: [],
-                fac_id: [],
-                medical_acceptance: [],
-                show: false,
-                showOne: true,
-                currentOffset: 0,
-                windowSize: 4,
-                paginationFactor: 328,
-                window:{
-                width: 0,
-                height: 0
-                },
-                nursingList: [],
-                alphabet: [],
-                markerHover:[],
-                SpecialFeatureID:[],
-                MedicalAcceptanceID:[],
-                FacTypeID:[],
-                MoveID:[],
-                nus_data:[],
-                specialfeature:[],
-                medicalacceptance:[],
-                factype:[],
-                selectedcity:'',
-                citylatlng:[],
-                view_pro_id: [],
-                currentPage: 0,
-                size: 20,
-                pageRange: 5,
-                items: [],
-                show_paginate: false,
-                onchangeid:0,
-                localst:'',
-                selected: undefined,
-                toggleCheck: true,
-                loading: false,
-                coordinate:[],
-                norecord_msg: false,
-                ci : false,
-                window:{
-                    width: 0,
-                    height: 0
-                },
-                w_width:$(window).width(),
-                cityArray: [],
-                allCity: [],
-                citynewArray:[],
-                boundsval: 'no marker',
-                searchword:'',
-                index:'',
-                clicksearch: false,
-                isActive: true,
+                cityid:[], listid : '', map: null, markers: [], searchmarkers:[], marker:[], selectedLocation: null, infoBoxOpen: false, places: [], id: [], townshipID:[], township_id:-1, moving_in:-1, per_month:-1, cities: '', getCity: [], getTownships: [], special_features: [], fac_types: [], fac_id: [], medical_acceptance: [], show: false, showOne: true, currentOffset: 0, windowSize: 4, paginationFactor: 328, window:{ width: 0, height: 0 }, nursingList: [], alphabet: [], markerHover:[], SpecialFeatureID:[], MedicalAcceptanceID:[], FacTypeID:[], MoveID:[], nus_data:[], specialfeature:[], medicalacceptance:[], factype:[], selectedcity:'', citylatlng:[], view_pro_id: [], currentPage: 0, size: 20, pageRange: 5, items: [], show_paginate: false, onchangeid:0, localst:'', selected: undefined, toggleCheck: true, loading: false, coordinate:[], norecord_msg: false, ci : false, window:{ width: 0, height: 0 }, w_width:$(window).width(), cityArray: [], allCity: [], citynewArray:[], boundsval: 'no marker', searchword:'', index:'', clicksearch: false, isActive: true,
             }
         },
 
@@ -963,24 +799,9 @@
                     this.locast = localStorage.getItem("nursing_fav");
                 }
 
-                
-
-                //  params:{
-                //     id: this.id,
-                   
-                //     Moving_in:this.moving_in,
-                //     Per_month:this.per_month,
-                //     local:this.locast
-
-                // },
-              
-
                 this.axios.get('/api/getnursingsearch/'+search_word,{
                 params:{
-                // id: -1 ,
-                // township_id:-1,
-                // Moving_in:-1,
-                // Per_month:-1,
+                
                 id: this.id,
                 townshipID:this.township_id,
                 Moving_in:this.moving_in,
