@@ -203,6 +203,7 @@
                                                             <td  v-for="items in nus_data" @mouseover="mouseover(items.alphabet)" @mouseleave="mouseleave(items.alphabet)" :id="items.alphabet" :key="items.nursing_id">
                                                                 <div class="wd-in">
                                                                     <span class="type-name" v-if="items.type_name">{{items.type_name}} </span>
+                                                                    <span class="type-name" v-else>介護</span>
 
                                                                     <div class="row m-t-10 m-b-10">
                                                                         <div class="col-5 col-lg-5 col-sm-6" style="padding-top:3px;">

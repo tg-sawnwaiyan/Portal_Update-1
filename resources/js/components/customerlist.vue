@@ -385,7 +385,7 @@
                                 } else {
                                     this.$swal({
                                         title: "新規登録承認",
-                                        text: "顧客はすでに確認されています",
+                                        text: "顧客はすでに確認されています。",
                                         type: "warning",
                                         width: 350,
                                         height: 200,

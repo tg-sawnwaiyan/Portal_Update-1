@@ -402,7 +402,7 @@
                                         width: 350,
                                         height: 200,
                                         confirmButtonText: "閉じる",
-                                        confirmButtonColor: "#dc3545",
+                                        confirmButtonColor: "#FF5462",
                                         allowOutsideClick: false,
                                     });
                                 });
@@ -449,13 +449,13 @@
                                         })
                                         .catch(() => {
                                             this.$swal({
-                                                title: "エラーメッセージ",
-                                                text: "プロセスを続行します",
+                                                // title: "エラーメッセージ",
+                                                html: "システムエラーです。<br/>社内エンジニアにお問い合わせください。",
                                                 type: "error",
                                                 width: 350,
                                                 height: 200,
                                                 confirmButtonText: "閉じる",
-                                                confirmButtonColor: "#dc3545",
+                                                confirmButtonColor: "#FF5462",
                                                 allowOutsideClick: false,
                                             });
                                         });

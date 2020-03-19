@@ -28,7 +28,7 @@
                                             <label>パスワード :<span class="error-star">*</span></label>
                                             <input type="password" class="form-control" v-model="adminData.password" placeholder="パスワードを入力してください。">
                                             <span v-if="errors.password" class="error-star">{{errors.password}}</span>
-                                            <div class="error-star" id="newpasswordlength" style="display: none;">パスワードは少なくとも6桁でなければなりません。</div>
+                                            <div class="error-star" id="newpasswordlength" style="display: none;">パスワードは6桁以上にしてください。</div>
                                         </div>
                                         <div><span class="btn main-bg-color white all-btn" v-if="show" @click="nameMailChange()">変更</span></div>
                                     </div>
@@ -59,7 +59,7 @@
                                         <label class="old-pass">新しいパスワード:<span class="error-star">*</span></label>
                                         <input type="password" name="new_password" placeholder="新しいパスワードを入力してください。" v-model="new_password" class="form-control new-password">
                                         <span v-if="errors.new_password" class="error-star">{{errors.new_password}}</span>
-                                        <div class="error-star" id="newpasswordlength" style="display: none;">パスワードは少なくとも6桁でなければなりません。</div>
+                                        <div class="error-star" id="newpasswordlength" style="display: none;">パスワードは6桁以上にしてください。</div>
                                         <br>
                                         <label class="old-pass">新しいパスワードをもう一度入力してください<span class="error-star">*</span></label>
                                         <input type="password" name="comfirm_password" class="form-control confirm-password" v-model="confirm_password" placeholder="新しいパスワードをもう一度入力してください" @keyup="password_validate()">
@@ -193,8 +193,8 @@
                                                 type: 'success',
                                                 text: '管理者を作成しました。',
                                                 confirmButtonText: "閉じる",
-                                                confirmButtonColor: "#6cb2eb",
-                                                width: 250,
+                                                confirmButtonColor: "#31CD38",
+                                                width: 350,
                                                 height: 200,
                                                 allowOutsideClick: false,
                                             })
@@ -272,9 +272,9 @@
                                                 type: 'success',
                                                 text: '管理者を更新しました',
                                                 confirmButtonText: "閉じる",
-                                                confirmButtonColor: "#6cb2eb",
+                                                confirmButtonColor: "#31CD38",
                                                 allowOutsideClick: false,
-                                                width: 250,
+                                                width: 350,
                                                 height: 200,
                                             }) 
                                             this.$router.push({
@@ -341,11 +341,11 @@
                                             this.$swal({                                               
                                                 position: 'top-end',
                                                 type: 'error',
-                                                text: '現在のパスワードが一致しません。',
+                                                text: '現在のパスワードに誤りがあります。',
                                                 confirmButtonText: "閉じる",
-                                                confirmButtonColor: "#6cb2eb",
+                                                confirmButtonColor: "#FF5462",
                                                 allowOutsideClick: false,
-                                                width: 250,
+                                                width: 350,
                                                 height: 200,
                                             })
                                             return;
@@ -353,10 +353,10 @@
                                             this.$swal({
                                                 position: 'top-end',
                                                 type: 'success',
-                                                text: '管理者を更新しました',
+                                                text: '管理者を更新しました。',
                                                 confirmButtonText: "閉じる",
-                                                confirmButtonColor: "#6cb2eb",
-                                                width: 250,
+                                                confirmButtonColor: "#31CD38",
+                                                width: 350,
                                                 height: 200,
                                                 allowOutsideClick: false,
                                             })
@@ -374,13 +374,13 @@
                                     });
                             } else {
                                 this.$swal({
-                                    title: "確認",
+                                    // title: "確認",
                                     text: "新しいパスワードと確認パスワードは同じでなければなりません。",
                                     type: "warning",
                                     width: 350,
                                     height: 200,
                                     showCancelButton: true,
-                                    confirmButtonColor: "#6cb2eb",
+                                    confirmButtonColor: "#EEA025",
                                     cancelButtonColor: "#b1abab",
                                     cancelButtonTextColor: "#000",
                                     confirmButtonText: "閉じる",

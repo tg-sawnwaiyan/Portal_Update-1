@@ -141,13 +141,13 @@
                                     if(error.response.status == 404){
                                         // this.$swal("このカテゴリーに関連するニュースがあるため、削除できません。");
                                         this.$swal({
-                                            title: "削除に失敗しました",
-                                            text: "削除に失敗しました この診療科目の施設が存在するため削除できません ",
+                                            // title: "削除に失敗しました",
+                                            html: "削除に失敗しました。 <br/>削除しようとした診療科目の施設が存在するため削除できません。 ",
                                             type: "error",
                                             width: 350,
                                             height: 200,
                                             confirmButtonText: "閉じる",
-                                            confirmButtonColor: "#dc3545",
+                                            confirmButtonColor: "#FF5462",
                                             allowOutsideClick: false,
                                         });
                                     }

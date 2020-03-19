@@ -145,7 +145,7 @@ export default {
                             confirmButtonColor: "#31cd38",
                             // showConfirmButton: false,
                             // timer: 1800,
-                            width: 250,
+                            width: 350,
                             height: 200,
                             allowOutsideClick: false,
                         })
@@ -202,7 +202,7 @@ export default {
                             // timer: 1800,
                             confirmButtonText: "閉じる",
                             confirmButtonColor: "#31cd38",
-                            width: 250,
+                            width: 350,
                             height: 200,
                             allowOutsideClick: false,
                         })

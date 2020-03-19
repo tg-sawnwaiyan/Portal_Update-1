@@ -142,7 +142,7 @@ export default {
                                         width: 350,
                                         height: 200,
                                         confirmButtonText: "閉じる",
-                                        confirmButtonColor: "#dc3545",
+                                        confirmButtonColor: "#31CD38",
                                         allowOutsideClick: false,
                                     });
                                 })
@@ -153,7 +153,7 @@ export default {
                                         width: 350,
                                         height: 200,
                                         confirmButtonText: "閉じる",
-                                        confirmButtonColor: "#dc3545",
+                                        confirmButtonColor: "#FF5462",
                                         allowOutsideClick: false,
                                     });
                                 });

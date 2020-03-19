@@ -139,7 +139,7 @@ export default {
                             confirmButtonColor: "#31cd38",
                             // showConfirmButton: false,
                             // timer: 1800,
-                            width: 250,
+                            width: 350,
                             height: 200,
                             allowOutsideClick: false,
                         })
@@ -195,7 +195,7 @@ export default {
                             text: '求人職種を更新しました。',
                             confirmButtonText: "閉じる",
                             confirmButtonColor: "#31cd38 ",
-                            width: 250,
+                            width: 350,
                             height: 200,
                             allowOutsideClick: false,
                         })
