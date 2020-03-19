@@ -9,7 +9,7 @@
                       <div class="m-t-10">
                      
                           <span class="btn-file d-inline-block">画像を選択          
-                          <input type="file" name="" class ="pro-logo m-b-10" @change="logo_preview(this)">                                      
+                          <input type="file" name="" class ="pro-logo m-b-10" accept="image/*" @change="logo_preview(this)">                                      
                           </span>     
                           <span class="pl-4"></span>                                  
                             <span id="imgname" class="d-inline-block align-top pl-2">{{img_name}}</span>
@@ -942,7 +942,7 @@
                             </div>
                         </div> -->
                          <span class="btn-file d-inline-block">画像を選択        
-                          <input type="file" name="" class="hospital-photo" v-bind:class="img.classname" id="upload_img" @change="preview_image($event,indx)">
+                          <input type="file" name="" accept="image/*" class="hospital-photo" v-bind:class="img.classname" id="upload_img" @change="preview_image($event,indx)">
                           </span> 
                           <span class="d-inline-block align-top pt-2" v-bind:id="'img_name'+indx"></span>
                           <div class="col-md-12  p0-480" v-bind:class="img.id">

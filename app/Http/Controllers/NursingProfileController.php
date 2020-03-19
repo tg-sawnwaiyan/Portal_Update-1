@@ -35,7 +35,10 @@ class NursingProfileController extends Controller
     public function movePanorama(Request $request) {
         $request = $request->all();
         foreach ($request as $file){
-            $destination = 'upload/nursing_profile/Imagepanorama/'.$file->getClientOriginalName();
+            $imageName = $file->getClientOriginalName();
+            $imageName = str_replace(' ', '', $imageName);
+            $imageName = strtolower($imageName);
+            $destination = 'upload/nursing_profile/Imagepanorama/'.$imageName;
             $upload_img = move_uploaded_file($file, $destination);
 
             // $imageName = $file->getClientOriginalName();
@@ -47,14 +50,20 @@ class NursingProfileController extends Controller
     public function movePhoto(Request $request) {
         $request = $request->all();
         foreach ($request as $file){
-            $destination = 'upload/nursing_profile/'.$file->getClientOriginalName();
+            $imageName = $file->getClientOriginalName();
+            $imageName = str_replace(' ', '', $imageName);
+            $imageName = strtolower($imageName);
+            $destination = 'upload/nursing_profile/'.$imageName;
             $upload_img = move_uploaded_file($file, $destination);
         }        
     }
 
     public function moveLogo(Request $request) {
         $request = $request->all();
-        $destination = 'upload/nursing_profile/'.$request['logo']->getClientOriginalName();
+        $imageName = $request['logo']->getClientOriginalName();
+        $imageName = str_replace(' ', '', $imageName);
+        $imageName = strtolower($imageName);
+        $destination = 'upload/nursing_profile/'.$imageName;
         $upload_img = move_uploaded_file($request['logo'], $destination);   
     }
 

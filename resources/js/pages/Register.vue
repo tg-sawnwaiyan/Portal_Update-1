@@ -304,7 +304,7 @@
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'はい',
-                cancelButtonText: 'いいえ',
+                cancelButtonText: 'キャンセル',
                 showCloseButton: true,
                 showLoaderOnConfirm: true,
                 allowOutsideClick: false,

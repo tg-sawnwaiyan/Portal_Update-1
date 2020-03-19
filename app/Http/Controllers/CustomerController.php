@@ -42,14 +42,18 @@ class CustomerController extends Controller
         return response()->json($customer);
     }
     public function nusaccount($id) {
-        NursingProfile::where(['email'=>NULL,'townships_id'=>0])->where('customer_id',$id)->delete();  
+        // NursingProfile::where('customer_id',$id)->where("email",'=',NULL,'OR')->where('townships_id','=',0)->delete();  
+        $del = "DELETE FROM nursing_profiles WHERE customer_id=$id AND (email=NULL or email='' or townships_id=0)";
+        DB::delete($del);
         $nuscustomer = NursingProfile::where(['nursing_profiles.customer_id'=>$id])->select('id','logo','name','phone','email','activate')->get();
         $status = Customer::where(['recordstatus'=>1,'id'=>$id])->count();
         // $status = NursingProfile::join('customers','customers.id','=','nursing_profiles.customer_id')->where(['customers.recordstatus'=>1,'nursing_profiles.customer_id'=>$id])->count();
         return response()->json(array("nuscustomer"=>$nuscustomer,"status"=>$status));
     }
     public function hosaccount($id) {
-        HospitalProfile::where(['email'=>NULL,'townships_id'=>0])->where('customer_id',$id)->delete();  
+        $del = "DELETE FROM hospital_profiles WHERE customer_id=$id AND (email=NULL or email='' or townships_id=0)";
+        DB::delete($del);
+        // HospitalProfile::where(['email'=>NULL,"or",'townships_id'=>0])->where('customer_id',$id)->delete();  
         $hoscustomer = HospitalProfile::where('customer_id',$id)->select('id','logo','name','phone','email','activate')->get();
         $status = Customer::where(['recordstatus'=>1,'id'=>$id])->count();
         // $status = HospitalProfile::join('customers','customers.id','=','hospital_profiles.customer_id')->where(['customers.recordstatus'=>1,'hospital_profiles.customer_id'=>$id])->count();

@@ -10,7 +10,7 @@
                                 <img :src="profile_img" id="thumbnil" class="profile_logo m-b-8 img-fluid fit-image-profile" alt="Logo"  @error="imgUrlAlt">                              
                                 <div class="m-t-10">
                                     <span class="btn-file d-inline-block">画像を選択                     
-                                    <input type="file" name="" class ="customer-logo m-b-10" id="customer-logo" @change="preview_image($event,'logo')">                                      
+                                    <input type="file" name="" class ="customer-logo m-b-10" accept="image/*" id="customer-logo" @change="preview_image($event,'logo')">                                      
                                     </span>                                      
                                      <span id="imgname" class="d-inline-block align-top pl-2">{{nursing_info.logo}}</span>
                                 </div>
@@ -57,7 +57,7 @@
                                 <label class="heading-lbl col-md-2 col-12 pad-free">パノラマ</label>
                                 <div class="heading-lbl col-md-2 col-12 pad-free">
                                     <span class="btn-file d-inline-block font-weight-normal">画像を選択                     
-                                        <input type="file" name="img" class="nursing-panorama m-b-10"  id="upload_panorama" @change="preview_panorama()" multiple>
+                                        <input type="file" name="img" class="nursing-panorama m-b-10" accept="image/*" id="upload_panorama" @change="preview_panorama()" multiple>
                                     </span> 
                                     <span id="imgname" class="d-inline-block align-top pl-2 text-truncate">{{img_name}}</span>
                                 </div>
@@ -569,7 +569,7 @@
                             <div class="col-12 col-md-6 gallery-area-photo" v-bind:id="'photo'+indx" v-for="(img,indx) in img_arr" :key="img.id">
                                 <div class="col-md-12">
                                     <span class="btn-file d-inline-block">画像を選択        
-                                        <input type="file" name="" class="nursing-photo" v-bind:class="img.classname" id="upload_img" @change="preview_image($event,indx)">
+                                        <input type="file" name="" class="nursing-photo" accept="image/*" v-bind:class="img.classname" id="upload_img" @change="preview_image($event,indx)">
                                     </span> 
                                     <span class="d-inline-block align-top pt-2" v-bind:id="'img_name'+indx"></span>
                                     <div class="col-md-12  p0-480" v-bind:class="img.id">

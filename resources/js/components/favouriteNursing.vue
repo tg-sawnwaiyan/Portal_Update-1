@@ -245,7 +245,7 @@
                         </span>
                         <div class="float-right pc-480">
                             
-                            <label class="btn my-2 my-sm-0 all-btn secondary-bg-color btn-secondary control controlinner--checkbox" style="width:300px;">
+                            <label class="btn my-2 my-sm-0 all-btn btn-secondary control controlinner--checkbox" style="width:300px;background-color:#63b7ff;">
                                 <input type="checkbox" @change="checkAll()" class="check-all-btn" v-model="checkallbtn" id="main-check-all"/>
                                 <span class="checkmark"></span>すべての資料請求にチェックを入れる
                                 <div class="controlinner__indicator m-l-3" style="top:8px;left:7px;"></div>

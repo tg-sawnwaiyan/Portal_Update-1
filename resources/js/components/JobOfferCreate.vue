@@ -9,7 +9,7 @@
                             <h4 class="page-header header">{{ header }}</h4>
                             <br />
                         </div>
-                        <form @submit.prevent="add" class="mt-2 pb-5 col-md-12">
+                        <form @submit.prevent="add" class="mt-2 col-md-12">
                           <div class="form-group" v-if="$auth.check(2)">
                                 <div class="form-group" v-if="editcheck">
                                     <label>事業者名 : </label>
@@ -458,7 +458,7 @@
                             <div v-if="errors.checkallerror" class="error">{{errors.checkallerror}}
                             </div>
 
-                            <div class="form-group mt-3 pb-5">
+                            <div class="form-group">
                                 <span class="btn bt-red all-btn" @click="$router.go(-1)">キャンセル</span>
                                 <span class="btn main-bg-color white all-btn"  @click="checkValidate()">{{subtitle}}</span>
                             </div>
