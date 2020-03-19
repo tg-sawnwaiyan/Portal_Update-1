@@ -638,36 +638,7 @@
                                     <div class="col-md-12 pad-free" id="mapbox">
                                         <span class="error pro-1" style="margin-top:0px!important;margin-bottom:10px;" v-if="loc == true">※都道府県と市区町村をを入力してください。</span>
                                         <GoogleMap :address="address_show" :township="nursing_info.townships_id" :city="city_id" :township_list="township_list" :lat_num='nursing_info.latitude' :lng_num='nursing_info.longitude'></GoogleMap>
-                                    </div>
-
-                                    <!-- <GoogleMap :address="nursing_info.address" :lat_num='35.6803997' :lng_num='139.76901739' v-if="nursing_info.latitude == 0"></GoogleMap> -->
-                                    <!-- <div class="form-group">
-                                            <label>住所<span class="error">*</span></label>
-                                            <quill-editor  ref="myQuilEditor"  name="address" :options="editorOption" @change="onCustomerAddressChange($event)" class="customer-address" v-model="nursing_info.address"/>
-                                    </div> -->
-
-                                    <!-- Test Station Area -->
-                                    <!-- <table class="table table-bordered table-wrapper">
-                                            <tr>
-                                                    <td>
-                                                            <div class="form-group">
-                                                                    <label  class="heading-lbl col-2 pad-free">駅</label>
-                                                                    <span class="btn all-btn main-bg-color" style="" @click="StationAdd()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate4}"></i></span>
-                                                                    <div class="col-md-10 float-right station-toggle-div toggle-div m-t-10">
-                                                                            <div class="row">
-                                                                                    <div v-for="stat in station_list" :key="stat.id" class="col-md-3 m-b-20">
-                                                                                            <label>
-                                                                                                    <input type="checkbox"  name="station" v-bind:value="stat.station_id" @click="featureCheck(stat.station_id)" v-model="stat.checked">
-                                                                                                    {{stat.station_name}}
-                                                                                            </label>
-                                                                                    </div>
-                                                                            </div>
-                                                                    </div>
-                                                            </div>
-                                                    </td>
-                                            </tr>
-                                    </table> -->
-                                    <!-- End Test Station Area -->
+                                    </div>                                    
 
                                     <div class="form-group m-b-0">
                                             <label class="font-weight-bold">交通 / アクセス</label>
@@ -717,112 +688,30 @@ export default {
        data() {
             return {
                 lang:{
-                days: ['日', '月', '火', '水', '木', '金', '土'],
-                months: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-                placeholder: {
-                date: new Date().toISOString().slice(0,10),
-                }
-            },
-                isRotate1: false,
-                isRotate2: false,
-                isRotate3: false,
-                isRotate4: false,
-                isRotate5: false,
-                fac_list: [],
-                feature_list:[],
-                medical_acceptance:[],
-                nursing_info:[],nursing_info_push:[], staff_info:[], staff_info_push:[],
-                acceptance: [],
-
-                img_arr:[],
-                video_arr:[],
-                panorama_arr:[], tmp_list:[],test:[],
-                cooperate_arr:[], cooperate_list:[],
-                payment_arr:[],payment_list:[],
-                profile_type:'nursing',
-                profile_arr:[], test:'',
-                station_list:[],chek_feature : [], panorama_count:'0', fac_types:[],
-                stations:[],
-
-                // to delete
-                count:-1, v_count: -1, c_count: -1, p_count: -1,
-                type:'',
-                title:[], v_title:[],
-                description:[], v_description:[],
-                img:[],
-                sub:[], coop_details:[], expense:[],remark:[],
-                method:[],move_in:[],room_type:[],monthly_usage:[],breadth:[],
-                security_deposit:[],other_use:[], rent:[], management_fee:[],
-                food_expense:[],life_service:[],cost_other:[],return_system:[],
-                depreciation_period:[],initial_depreciation:[],other_message:[],
-                cooperate_list:[], payment_list:[],meth_details:[],
-                // end
-                content: '',
-                editorOption:{
-                        debug:'info',
-                        placeholder:'Type your post...',
-                        readonly:true,
-                        theme:'snow',
+                    days: ['日', '月', '火', '水', '木', '金', '土'],
+                    months: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                    placeholder: {
+                        date: new Date().toISOString().slice(0,10),
+                    }
                 },
-
-                feature_val: '',
-                acceptance_remark_val: '',
-                nursing_remarks_val: '',
-                residence_form_val: '',
-                customer_address_val:'',
-                // customer_address_val: '',
-                access_val: '',
-                panorama_length: 0,
-                new_panorama_img: [],
-                ph_length: false,
-                ph_num: false,
-                city_id: 0,
-                township_list: [],
-                address_show: '',
-                img_name:'',profile_img:'',
-                pro_id: 0,
-                btn_disable: false,
-                mail_focus: false,
-                loc: false,
+                isRotate1: false, isRotate2: false, isRotate3: false, isRotate4: false, isRotate5: false, fac_list: [], feature_list:[], medical_acceptance:[], nursing_info:[],nursing_info_push:[], staff_info:[], staff_info_push:[], acceptance: [], img_arr:[], video_arr:[], panorama_arr:[], tmp_list:[],test:[], cooperate_arr:[], cooperate_list:[], payment_arr:[],payment_list:[], profile_type:'nursing', profile_arr:[], test:'', station_list:[],chek_feature : [], panorama_count:'0', fac_types:[], stations:[], count:-1, v_count: -1, c_count: -1, p_count: -1, type:'', title:[], v_title:[], description:[], v_description:[], img:[], sub:[], coop_details:[], expense:[],remark:[], method:[],move_in:[],room_type:[],monthly_usage:[],breadth:[], security_deposit:[],other_use:[], rent:[], management_fee:[], food_expense:[],life_service:[],cost_other:[],return_system:[], depreciation_period:[],initial_depreciation:[],other_message:[], cooperate_list:[], payment_list:[],meth_details:[], content: '', editorOption:{ debug:'info', placeholder:'Type your post...', readonly:true, theme:'snow', }, feature_val: '', acceptance_remark_val: '', nursing_remarks_val: '', residence_form_val: '', customer_address_val:'', access_val: '', panorama_length: 0, new_panorama_img: [], ph_length: false, ph_num: false, city_id: 0, township_list: [], address_show: '', img_name:'',profile_img:'', pro_id: 0, btn_disable: false, mail_focus: false, loc: false,
                 mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
             }
         },
-        //  computed: {
-        //     isdisable:function() {
-        //         return this.btn_disable;
-        //     }
-        // },
-
+        
         mounted() {
            document.getElementById('btn_click').click();
         },
 
         created(){
             this.pro_id = Number(this.$route.params.id);
-            console.log("pro_id",this.pro_id)
-            this.type = this.$route.params.type;
-            
-            // if(this.type != undefined && this.pro_id!= undefined){
-            //     localStorage.setItem('cusType',this.type);
-            //     localStorage.setItem('cusId',this.pro_id);
-            // }
-
-            // this.type = localStorage.getItem('cusType');
-            // this.pro_id = Number(localStorage.getItem('cusId'));
-
+            this.type = this.$route.params.type;       
             this.initialCall();
-
         },
 
         methods: {
             initialCall(){
-                this.address_show = $('#address_show').val();
-                // this.axios
-                // .get('/api/customerinfo/'+this.pro_id)
-                // .then(response=>{
-                //     this.nursing_info = response.data;
-                    
-                // });
+                this.address_show = $('#address_show').val();                
                 this.axios
                 .get('/api/nursinginfo/'+this.pro_id)
                 .then(response=>{
@@ -1040,14 +929,6 @@ export default {
                         }
                     });
 
-                // if(type == 'cooperate') {
-                //     this.cooperate_arr.splice(indx,1);
-                // }
-
-                // if(type == 'payment') {
-                //     this.payment_arr.splice(indx,1);
-                // }
-
             },
             DeleteArr(indx,type,id,photo,name) {
                 this.$swal({
@@ -1239,13 +1120,6 @@ export default {
                         this.btn_disable = true;
                     }
                 }
-                // if( this.loc == true || this.mail_focus == true || this.ph_num == true )
-                // {
-                //     this.btn_disable = true;
-                // }
-                // else{
-                //     this.btn_disable = false;
-                // }
                 
              if(this.btn_disable){
                     // console.log("mail");
