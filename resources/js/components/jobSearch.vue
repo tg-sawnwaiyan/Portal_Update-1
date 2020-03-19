@@ -319,7 +319,7 @@
                           </h5>
                         <div class="clearfix">
                           <span class="job_status">{{job.employment_status}}</span>
-                          <p class="job_id search_jobid"><span>求人番号:</span>{{job.jobnum}}</p>
+                          <p class="search_jobid"><span>求人番号:</span>{{job.jobnum}}</p>
                         </div>
                       </div>
                       <div class="job-body d-flex clearfix">

@@ -18,10 +18,11 @@
     <div class="row m-0" v-for="jobDetail in job_details" :key="jobDetail.id">
      
       <div class="col-12 p0-480">
-        <h4 class="job-title-color">{{jobDetail.title}} <label class="job_id" style="color:#000;">求人番号: {{jobDetail.jobid}}</label></h4>
+        <h4 class="job-title-color">{{jobDetail.title}} </h4>
+        <label class="job_id" style="color:#000;">求人番号: {{jobDetail.jobid}}</label>
 
       </div>
-      <div class="col-sm-10 col-12 offset-sm-1 p0-480">
+      <div class="col-xl-10 col-md-12 col-12 offset-xl-1 p0-480">
         <!-- <img src="/images/img1.jpg" class="img-responsive" style="width:150px;"> -->
 
         <div class="form-wrap mt-3 mb-3">

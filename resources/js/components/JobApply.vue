@@ -113,17 +113,17 @@
             </div>
             <div class="col-md-9 col-sm-12 form-right stepper-form">
                 <div class="form-group row pl-3">
-                    <!-- <div class="col-md-12 "><label> 郵便番号 </label> </div> -->
+                    <div class="col-md-12 sp-768"><label> 郵便番号 </label> </div>
                     <div class="col-md-12 p-0">
                         <input type="text" class="form-control box float-left" id="postal" placeholder="郵便番号を入力してください。" v-on:keydown="postalNumber" v-model="jobApply.postal" maxlength="7" />
-                        <span class="float-left submit1 btn main-bg-color continue all-btn submit m-l-20" @click="getPostal">郵便番号より住所を検索</span>
-                        <span class="float-left m-l-20">例）1006740 (<a href="https://www.post.japanpost.jp/zipcode/" target="_blank" class="pseudolink">郵便番号検索</a>)</span>
+                        <span class="float-left submit1 btn main-bg-color continue all-btn submit m-l-10" @click="getPostal">郵便番号より住所を検索</span>
+                        <span class="float-left m-l-10">例）1006740 (<a href="https://www.post.japanpost.jp/zipcode/" target="_blank" class="pseudolink">郵便番号検索</a>)</span>
                     </div>
                     <span id="jsErrorMessage" class="float-left eg-txt"></span>
                 </div>
 
                 <div class="form-group row pl-3">                                  
-                    <!-- <div class="col-md-12 "><label>  都道府県<span class="error sp1">必須</span></label></div> -->
+                    <div class="col-md-12 sp-768"><label>  都道府県<span class="error sp1">必須</span></label></div>
                     <div class="col-md-12 p-0">
                         <select v-model="jobApply.selectedValue" class="division form-control" id="division"  @change="getTownship(2)">
                             <option value="0">選択してください。</option>
@@ -136,7 +136,7 @@
                 </div>
 
                 <div class="form-group row pl-3">                             
-                    <!-- <div class="col-md-12 "><label>  市区町村 <span class="error sp1">必須</span></label></div> -->
+                    <div class="col-md-12 sp-768"><label>  市区町村 <span class="error sp1">必須</span></label></div>
                     <div class="col-md-12 p-0">
                         <select v-model="jobApply.township" class="division form-control" id="division" @change="aggreBtn">
                             <option value="0">選択してください。</option>
@@ -149,7 +149,7 @@
                 </div>
 
                 <div class="form-group row pl-3 m-b-0">
-                    <!-- <div class="col-md-12 "><label>番地（建物名)<span class="error sp1">必須</span></label></div> -->
+                    <div class="col-md-12 sp-768"><label>番地（建物名)<span class="error sp1">必須</span></label></div>
                     <div class="col-md-12 p-0">
                         <input type="text" class="city form-control float-left" id="str_address" v-model="jobApply.str_address" placeholder="番地を入力してください。" @keyup="focusCity" @change="aggreBtn"/>
                         <span class="float-left eg-txt">例）丸の内1-9-1 グラントウキョウノースタワー40階</span>
@@ -162,7 +162,7 @@
         </div>
 
         <div class="form-group m-0 row bd">
-            <div class="col-md-3 col-sm-12 form-left"><br/><strong>電話番号</strong></div>
+            <div class="col-md-3 col-sm-12 form-left"><strong>電話番号</strong></div>
             <div class="col-md-9 col-sm-12 form-right p-b-0">
             <div class="row pl-3">
                     <div class="col-md-12 p-0">
@@ -226,10 +226,10 @@
         </div>
        
         <div class="text-center mt-5 pb-5">
-           <div class="mt-1 col-sm-3 submit txt-err" v-if="btn_disable">
+           <div class="mt-1 submit txt-err" v-if="btn_disable">
               <div class="error">※未入力の必須項目がございます。</div>
             </div>
-            <button type="button" :disabled="isdisable" class="btn main-bg-color white all-btn width17" @click="checkValidate()">確認画面へ進む</button>
+            <button type="button" :disabled="isdisable" class="btn main-bg-color white all-btn" @click="checkValidate()">確認画面へ進む</button>
         </div>
 </form>
 

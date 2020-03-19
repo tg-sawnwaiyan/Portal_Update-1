@@ -117,11 +117,14 @@
                     </div>    
                 </div>
                  <div class="wt-4" v-if="this.$route.path !== '/'"> 
-                 <div style="margin-left:10px;">
-                     <i class="fas fa-arrow-left"></i> 
-                </div>
-                    <span style="color:#2980b9" @click="$router.go(-1);">戻る</span> 
+                 <span @click="$router.go(-1);">
+                    <div style="margin-left:10px;">
+                        <i class="fas fa-arrow-left"></i> 
+                    </div>
+                    <span style="color:#2980b9">戻る</span> 
+                </span>
                 </div>    
+                
                 
                 <ul class="menu" @click='isNav = !isNav'>
                 <li class="first-submenu">

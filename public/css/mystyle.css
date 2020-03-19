@@ -7565,7 +7565,7 @@ color: green;
     display: block;
     margin: 0 auto;
     color: #fff;
-    padding: 0.375rem 1.75rem;
+    /* padding: 0.375rem 1.75rem; */
 }
 
 .carousel-wrap .list-group-item {
@@ -8459,6 +8459,16 @@ border-bottom: none;
 }
 
 .job_id {
+    float: right;
+    padding: 2px 10px;
+    margin-top: 5px;
+    font-weight: bold;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 12px;
+}
+
+.search_jobid {
     float: right;
     padding: 2px 10px;
     margin-top: 5px;
@@ -10935,15 +10945,18 @@ padding: 0;
     /*End  profile publish */
     /* job details */
     .job_id {
-        float: none !important;
-        display: block;
-        /* width: 185px; */
-        margin-top: 20px;
+        /* position: absolute; */
+        margin-bottom: 0px;
         text-align: center;
     }
     .search_jobid {
         float: right;
+        padding: 2px 10px;
         margin-top: 5px;
+        font-weight: bold;
+        border: 1px solid #ddd;
+        border-radius: 12px;
+        font-size: 12px;
     }
     .job_status {
         margin-top: 7px;
@@ -11230,7 +11243,7 @@ width: 18rem;
         padding-bottom: 10px;
     }
     .m-l-20 {
-        margin-left: 65px !important;
+        /* margin-left: 65px !important; */
     }
     /* .postal {
         width: 100%;
@@ -11658,6 +11671,9 @@ width: 18rem;
 /*fav_slider*/
 
 @media only screen and (max-width:480px) {
+    .search_jobid {
+        float: none;
+    }
     .data-success {
         font-size: 16px;
     }
@@ -13083,6 +13099,7 @@ strong {
     right: 7px;
     top: 55px;
     font-size: 12px;
+    cursor: pointer;
 }
 
 
