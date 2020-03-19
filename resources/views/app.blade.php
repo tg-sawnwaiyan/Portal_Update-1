@@ -28,6 +28,17 @@
 <link rel="stylesheet" href="{{ asset('css/pannellum.css') }}"/>
 <link rel="stylesheet" href="{{asset('css/nprogress.css')}}">
 <script src="{{asset('js/nprogress.js')}}"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-158790104-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-158790104-1');
+</script>
+
 <style>
 
    .loader {

@@ -47,13 +47,19 @@ import adminlist from './components/AdminList'
 import admincreate from './components/AdminCreate'
 import sitepolicy from './components/sitepolicy'
 import Accountlist from './components/Accountlist'
-
-
+import analytics from './components/googleAnalytics'
 // import menu from './components/menu/Menu';
 
 // Routes
 const routes = [
-
+    {
+        path: '/analytics',
+        name: 'analytics',
+        component: analytics,
+        meta: {
+            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/Unauthorized' }
+        }
+    },
     {
         path: '/Unauthorized',
         name: 'Unauthorized',

@@ -60,7 +60,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('townshipJson/{township_name}','SearchMapController@townshipJson');
     // Route::get('cityJson/{theCity}','SearchMapController@cityJson');
     // Route::get('getstation/{id}','SearchMapController@getJobStation');
-
+    Route::post('analytics','googleAnalyticsController@analytics');
 
 // public route api end
 

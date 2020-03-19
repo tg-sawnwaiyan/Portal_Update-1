@@ -175,6 +175,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                         },
                     ]
                 },
+                
                 {
                     title: '介護施設',
                     icon: 'fa fa-user-md',
@@ -277,6 +278,13 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                             icon: 'fa fa-tasks',
                         },
                     ]
+                },
+                {
+                    title: 'analytics',
+                    icon: 'fa fa-newspaper',
+                    hidden: this.$auth.check(1),
+                    href: '/analytics',
+                  
                 },
                 {
                     title: 'ログアウト',

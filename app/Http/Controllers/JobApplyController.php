@@ -125,7 +125,7 @@ class JobApplyController extends Controller
      */
         public function store(Request $request)
         {
-
+return $request;
 
             $string = '';
             $count = count($request->skills);

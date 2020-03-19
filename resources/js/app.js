@@ -13,7 +13,11 @@ import * as VueGoogleMaps from "vue2-google-maps";
 import DatePicker from 'vue2-datepicker';
 import { BulmaAccordion, BulmaAccordionItem } from "vue-bulma-accordion";
 import Slick from 'vue-slick';//vue slick
-
+import Vue from 'vue'
+import VueAnalytics from 'vue-analytics'
+Vue.use(VueAnalytics, {
+    id: 'UA-158790104-1' 
+  })
 Vue.use(Slick);
 Vue.use(BulmaAccordion, BulmaAccordionItem)
 Vue.use(Vuex);
