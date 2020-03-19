@@ -116,7 +116,8 @@
                         </div>
                     </div>    
                 </div>
-                 <div class="wt-4" v-if="this.$route.path !== '/'"> 
+               
+                 <div class="wt-4" v-if="this.$route.path !== '/' && this.$route.path != '/nursingFavouriteMail'"> 
                  <div style="margin-left:10px;">
                      <i class="fas fa-arrow-left"></i> 
                 </div>
