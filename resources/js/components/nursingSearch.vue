@@ -204,6 +204,7 @@
                                                                 <div class="wd-in">
                                                                     <span class="type-name" v-if="items.type_name">{{items.type_name}} </span>
                                                                     <span class="type-name" v-else>介護</span>
+                                                                    <p class="job_id1 search_jobid"><span>施設番号:{{items.profilenumber}}</span></p>
 
                                                                     <div class="row m-t-10 m-b-10">
                                                                         <div class="col-5 col-lg-5 col-sm-6" style="padding-top:3px;">
@@ -485,6 +486,7 @@
                                                     <h5 class="nur-tit">
                                                         <router-link :to="{ path:'/profile/nursing/'+ nus.nursing_id}" class="pseudolink" style="font-weight:bold;">{{nus.name}}</router-link>
                                                     </h5>
+                                                   <p class="job_id search_jobid"><span> 施設番号:{{nus.profilenumber}}</span></p>
 
                                                     <div class="d-flex sp-414" id="sp-414-block">
                                                         <span v-for="(fac,index) in fac_types" :key="index+'-'+fac.description+'-'+nus.id">
@@ -1184,7 +1186,7 @@
                 var newresult=[];
                 var jsonfile = theCity+".json";
                 // https://testikportal.management-partners.co.jp
-                this.axios.get("https://testikportal.management-partners.co.jp/json/cities/"+jsonfile).then(respon => {
+                this.axios.get("./json/cities/"+jsonfile).then(respon => {
                     this.coordinate = respon.data.reduce((acc, val) => acc.concat(val), []);
                     this.boundariesGoogleMap(lat,lng,this.coordinate);  
                 }); 
@@ -1193,7 +1195,7 @@
                 else{
                     var jsonfile = theCity+".json";
                     jsonfile = jsonfile.toLowerCase();
-                    this.axios.get('https://testikportal.management-partners.co.jp/json/Townships/'+jsonfile).then(res => {
+                    this.axios.get('./json/Townships/'+jsonfile).then(res => {
                      var township_coor = []
                      for(var i = 0; i < res.data.features.length; i++)
                      {
@@ -1259,6 +1261,12 @@
                                     '<td colspan="2"><span class="type-name">' +
                                     typename+
                                     '</span>'+
+                                    '</td>' +
+                                    '</tr>' +
+                                    '<tr>' +
+                                    '<td colspan="2"><p class="job_id search_jobid"><span> 施設番号:' +
+                                     item[i]['profilenumber']+
+                                    '</span></p>'+
                                     '</td>' +
                                     '</tr>' +
                                 '</thead>' +

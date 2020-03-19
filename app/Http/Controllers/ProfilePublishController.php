@@ -60,8 +60,11 @@ class ProfilePublishController extends Controller
                 $videos[$i]['photo'] = $videos[$i]['photo'];
             }
         }
+        $query = "SELECT CONCAT((200000+customers.id),'-',LPAD(hospital_profiles.pro_num, 4, '0')) as profilenumber from customers join hospital_profiles on 
+                 customers.id = hospital_profiles.customer_id where hospital_profiles.id = ".$cusid;
+        $profilenumber = DB::select($query);
 
-        return response()->json(array("hospital"=>$hospital,"images"=>$images,"videos"=>$videos,"facility_list"=>$facility_list,"facility"=>$facility,"address"=>$address));
+        return response()->json(array("hospital"=>$hospital,"images"=>$images,"videos"=>$videos,"facility_list"=>$facility_list,"facility"=>$facility,"address"=>$address,"profilenumber"=>$profilenumber));
     }
 
     public function nursingProfile($cusid)
@@ -114,10 +117,14 @@ class ProfilePublishController extends Controller
                 $videos[$i]['photo'] = $videos[$i]['photo'];
             }
         }
+        $query = "SELECT CONCAT((500000+customers.id),'-',LPAD(nursing_profiles.pro_num, 4, '0')) as profilenumber from customers join nursing_profiles on 
+                          customers.id = nursing_profiles.customer_id where nursing_profiles.id = ".$cusid;
+        $profilenumber = DB::select($query);
+
 
         return response()->json(array("facility"=>$facility,"comedical"=>$comedical,"medicalacceptance"=>$medicalacceptance,
         "staff"=>$staff, "nurselatlong"=>$nurselatlong,"cost"=>$cost,"medical"=>$medical,"images"=>$images,"panoimages"=>$panoimages,"address"=>$address,
-        "videos"=>$videos));
+        "videos"=>$videos,"profilenumber"=>$profilenumber));
     }
 
     public function getComment($proid,$type)

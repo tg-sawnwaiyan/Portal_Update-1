@@ -3,7 +3,10 @@
     <div v-if="type == 'nursing'" id="nursingView">
          
         <!--panorama-->
-        <h4 class="profile-tit"  v-if="!currentPanoImage"> {{customer_name}}</h4>
+        <p class="job_id search_jobid"><span>施設番号:{{profilenumber}}</span></p>
+        <h4 class="profile-tit"  v-if="!currentPanoImage"> {{customer_name}}</h4> 
+        
+
 
         <div class="col-12 detail_profile_left pad-free"  v-if="currentPanoImage">
             <h4 class="profile-tit">{{customer_name}}</h4>
@@ -935,6 +938,7 @@
     </div>
 
     <div v-if="type == 'hospital'" id="hospitalView">
+            <p class="job_id search_jobid"><span>施設番号:{{profilenumber}}</span></p>
             <h5 class="profile-tit"> {{customer_name}}</h5>
            <div class="tab typelabel nav-link fixed-nav" v-bind:style="{width:width}">
                
@@ -1451,6 +1455,7 @@ export default {
             show_arr: [],
             show_comment: false,
             view_pro_id: false,
+            profilenumber:''
         };
     },
 
@@ -1657,6 +1662,8 @@ export default {
         
                 // this.nursing_profiles = response.data.feature;
                 // this.nus_method= response.data.method;
+              
+                this.profilenumber = response.data.profilenumber[0]['profilenumber'];
                 this.nus_pro = response.data.nurselatlong[0];
                 this.google = response.data.nurselatlong;
                 if(this.nus_pro['address'] == null){
@@ -1687,8 +1694,6 @@ export default {
                 this.medical = response.data.medical;
 
                 this.staff = response.data.staff;
-
-                
 
                 this.markers[0]['position']['lat']  = response.data.nurselatlong[0]['latitude'];
 
@@ -1755,7 +1760,8 @@ export default {
                 this.customer = response.data;
                 this.customer_name = response.data[0].name;
             });
-            this.axios.get('/api/profile/hospital/'+this.pro_id).then(response => {                      
+            this.axios.get('/api/profile/hospital/'+this.pro_id).then(response => {    
+                this.profilenumber = response.data.profilenumber[0]['profilenumber'];                  
                 this.google = response.data.hospital;
                 this.address = response.data.address;
                 this.hospitals = response.data.hospital;
