@@ -10,7 +10,7 @@
                                 <img :src="profile_img" id="thumbnil" class="profile_logo m-b-8 img-fluid fit-image-profile" alt="Logo"  @error="imgUrlAlt">                              
                                 <div class="m-t-10">
                                     <span class="btn-file d-inline-block">画像を選択                     
-                                    <input type="file" name="" class ="customer-logo m-b-10" id="customer-logo" @change="preview_image($event,'logo')">                                      
+                                    <input type="file" name="" class ="customer-logo m-b-10" accept="image/*" id="customer-logo" @change="preview_image($event,'logo')">                                      
                                     </span>                                      
                                      <span id="imgname" class="d-inline-block align-top pl-2">{{nursing_info.logo}}</span>
                                 </div>
@@ -57,7 +57,7 @@
                                 <label class="heading-lbl col-md-2 col-12 pad-free">パノラマ</label>
                                 <div class="heading-lbl col-md-2 col-12 pad-free">
                                     <span class="btn-file d-inline-block font-weight-normal">画像を選択                     
-                                        <input type="file" name="img" class="nursing-panorama m-b-10"  id="upload_panorama" @change="preview_panorama()" multiple>
+                                        <input type="file" name="img" class="nursing-panorama m-b-10" accept="image/*" id="upload_panorama" @change="preview_panorama()" multiple>
                                     </span> 
                                     <span id="imgname" class="d-inline-block align-top pl-2 text-truncate">{{img_name}}</span>
                                 </div>
@@ -65,7 +65,7 @@
                             <div class="row col-md-12 pad-free panorama panorama-box">
                                 <div class="col-4 col-sm-3 col-md-3 col-lg-1 mt-2 gallery-area-panorama pad-free" v-bind:id="'x-panorama'+indx" v-for="(img,indx) in panorama_arr" :key="img.id">
                                     <input type="hidden" class="already-panorama" v-model="img.photo">
-                                    <span class='img-close-btn' v-on:click="DeleteArr(indx,'panorama',img.id,img.photo)">X</span>
+                                    <span class='img-close-btn' v-on:click="DeleteArr(indx,'panorama',img.id,img.photo, 'パノラマ画像')">X</span>
                                     <img :src="'/upload/nursing_profile/Imagepanorama/'+ img.photo" class="img-fluid panorama-old-img" alt="profile" v-if="img.id!=null"  id="already-panorama">
                                     <img :src="img.path" class="img-fluid panorama-new-img" alt="profile" v-if="img.id==null" id="already-panorama">
                                 </div>
@@ -136,7 +136,7 @@
                                                 <table class="table m-b-0">
                                                     <tr>
                                                     <td colspan="2" class="text-right" style="border:none;!important">                                                        
-                                                        <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,'payment')">
+                                                        <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,'payment','タイプ')">
                                                         <i class="fa fa-trash"></i> 削除</a>
                                                         <span :class="'bg-trans btn dropdown-arrow changeLinkpayment'+indx" style="" @click="mainToggle('payment',indx)">
                                                             詳細 <i :id="'payment'+indx" v-bind:class="[payment.id != null? 'fas fa-sort-down animate rotate':'fas fa-sort-down']"></i>
@@ -404,7 +404,7 @@
                                         <div class="col-md-12 m-t-20 m-b-20 gallery-area-cooperate p-0" v-bind:id="'cooperated'+indx" v-for="(cooperate,indx) in cooperate_arr" :key="cooperate.id">
 
                                             <div class="clearfix margin-bottom750 m-b-30" style="text-align:right">                                                
-                                                 <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,'cooperate')">
+                                                 <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,'cooperate','協力医療機関')">
                                                 <i class="fa fa-trash"></i> 削除</a>
                                                 <span :class="'bg-trans btn dropdown-arrow changeLinkcooperate'+indx" style="" @click="mainToggle('cooperate',indx)">
                                                         詳細 
@@ -569,7 +569,7 @@
                             <div class="col-12 col-md-6 gallery-area-photo" v-bind:id="'photo'+indx" v-for="(img,indx) in img_arr" :key="img.id">
                                 <div class="col-md-12">
                                     <span class="btn-file d-inline-block">画像を選択        
-                                        <input type="file" name="" class="nursing-photo" v-bind:class="img.classname" id="upload_img" @change="preview_image($event,indx)">
+                                        <input type="file" name="" class="nursing-photo" accept="image/*" v-bind:class="img.classname" id="upload_img" @change="preview_image($event,indx)">
                                     </span> 
                                     <span class="d-inline-block align-top pt-2" v-bind:id="'img_name'+indx"></span>
                                     <div class="col-md-12  p0-480" v-bind:class="img.id">
@@ -584,7 +584,7 @@
                                         <textarea name="description" placeholder="コンテンツ" class="form-control m-b-15 description white-bg-color" v-model="img.description"></textarea>
                                 </div>
                                 <div class="col-md-12 text-right">
-                                    <a class="mr-auto text-danger btn delete-borderbtn" @click="DeleteArr(indx,'photo',img.id,img.photo)"> <i class="fa fa-trash"></i> 削除</a>
+                                    <a class="mr-auto text-danger btn delete-borderbtn" @click="DeleteArr(indx,'photo',img.id,img.photo,'画像')"> <i class="fa fa-trash"></i> 削除</a>
                                 </div>
                             </div>
                         </div>
@@ -616,7 +616,7 @@
                                                     <textarea name="description" placeholder="コンテンツ" class="form-control m-b-15 description white-bg-color" v-model="video.description"></textarea>
                                                 </div>
                                                 <div class="col-md-12 text-right">
-                                                <a class="mr-auto text-danger btn delete-borderbtn" @click="DeleteArr(indx,'video',video.id,video.photo)"> <i class="fa fa-trash"></i> 削除</a>
+                                                <a class="mr-auto text-danger btn delete-borderbtn" @click="DeleteArr(indx,'video',video.id,video.photo,'動画')"> <i class="fa fa-trash"></i> 削除</a>
                                                 </div>
                                             </div>
                                     </div>
@@ -638,36 +638,7 @@
                                     <div class="col-md-12 pad-free" id="mapbox">
                                         <span class="error pro-1" style="margin-top:0px!important;margin-bottom:10px;" v-if="loc == true">※都道府県と市区町村をを入力してください。</span>
                                         <GoogleMap :address="address_show" :township="nursing_info.townships_id" :city="city_id" :township_list="township_list" :lat_num='nursing_info.latitude' :lng_num='nursing_info.longitude'></GoogleMap>
-                                    </div>
-
-                                    <!-- <GoogleMap :address="nursing_info.address" :lat_num='35.6803997' :lng_num='139.76901739' v-if="nursing_info.latitude == 0"></GoogleMap> -->
-                                    <!-- <div class="form-group">
-                                            <label>住所<span class="error">*</span></label>
-                                            <quill-editor  ref="myQuilEditor"  name="address" :options="editorOption" @change="onCustomerAddressChange($event)" class="customer-address" v-model="nursing_info.address"/>
-                                    </div> -->
-
-                                    <!-- Test Station Area -->
-                                    <!-- <table class="table table-bordered table-wrapper">
-                                            <tr>
-                                                    <td>
-                                                            <div class="form-group">
-                                                                    <label  class="heading-lbl col-2 pad-free">駅</label>
-                                                                    <span class="btn all-btn main-bg-color" style="" @click="StationAdd()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate4}"></i></span>
-                                                                    <div class="col-md-10 float-right station-toggle-div toggle-div m-t-10">
-                                                                            <div class="row">
-                                                                                    <div v-for="stat in station_list" :key="stat.id" class="col-md-3 m-b-20">
-                                                                                            <label>
-                                                                                                    <input type="checkbox"  name="station" v-bind:value="stat.station_id" @click="featureCheck(stat.station_id)" v-model="stat.checked">
-                                                                                                    {{stat.station_name}}
-                                                                                            </label>
-                                                                                    </div>
-                                                                            </div>
-                                                                    </div>
-                                                            </div>
-                                                    </td>
-                                            </tr>
-                                    </table> -->
-                                    <!-- End Test Station Area -->
+                                    </div>                                    
 
                                     <div class="form-group m-b-0">
                                             <label class="font-weight-bold">交通 / アクセス</label>
@@ -717,112 +688,30 @@ export default {
        data() {
             return {
                 lang:{
-                days: ['日', '月', '火', '水', '木', '金', '土'],
-                months: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-                placeholder: {
-                date: new Date().toISOString().slice(0,10),
-                }
-            },
-                isRotate1: false,
-                isRotate2: false,
-                isRotate3: false,
-                isRotate4: false,
-                isRotate5: false,
-                fac_list: [],
-                feature_list:[],
-                medical_acceptance:[],
-                nursing_info:[],nursing_info_push:[], staff_info:[], staff_info_push:[],
-                acceptance: [],
-
-                img_arr:[],
-                video_arr:[],
-                panorama_arr:[], tmp_list:[],test:[],
-                cooperate_arr:[], cooperate_list:[],
-                payment_arr:[],payment_list:[],
-                profile_type:'nursing',
-                profile_arr:[], test:'',
-                station_list:[],chek_feature : [], panorama_count:'0', fac_types:[],
-                stations:[],
-
-                // to delete
-                count:-1, v_count: -1, c_count: -1, p_count: -1,
-                type:'',
-                title:[], v_title:[],
-                description:[], v_description:[],
-                img:[],
-                sub:[], coop_details:[], expense:[],remark:[],
-                method:[],move_in:[],room_type:[],monthly_usage:[],breadth:[],
-                security_deposit:[],other_use:[], rent:[], management_fee:[],
-                food_expense:[],life_service:[],cost_other:[],return_system:[],
-                depreciation_period:[],initial_depreciation:[],other_message:[],
-                cooperate_list:[], payment_list:[],meth_details:[],
-                // end
-                content: '',
-                editorOption:{
-                        debug:'info',
-                        placeholder:'Type your post...',
-                        readonly:true,
-                        theme:'snow',
+                    days: ['日', '月', '火', '水', '木', '金', '土'],
+                    months: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                    placeholder: {
+                        date: new Date().toISOString().slice(0,10),
+                    }
                 },
-
-                feature_val: '',
-                acceptance_remark_val: '',
-                nursing_remarks_val: '',
-                residence_form_val: '',
-                customer_address_val:'',
-                // customer_address_val: '',
-                access_val: '',
-                panorama_length: 0,
-                new_panorama_img: [],
-                ph_length: false,
-                ph_num: false,
-                city_id: 0,
-                township_list: [],
-                address_show: '',
-                img_name:'',profile_img:'',
-                pro_id: 0,
-                btn_disable: false,
-                mail_focus: false,
-                loc: false,
+                isRotate1: false, isRotate2: false, isRotate3: false, isRotate4: false, isRotate5: false, fac_list: [], feature_list:[], medical_acceptance:[], nursing_info:[],nursing_info_push:[], staff_info:[], staff_info_push:[], acceptance: [], img_arr:[], video_arr:[], panorama_arr:[], tmp_list:[],test:[], cooperate_arr:[], cooperate_list:[], payment_arr:[],payment_list:[], profile_type:'nursing', profile_arr:[], test:'', station_list:[],chek_feature : [], panorama_count:'0', fac_types:[], stations:[], count:-1, v_count: -1, c_count: -1, p_count: -1, type:'', title:[], v_title:[], description:[], v_description:[], img:[], sub:[], coop_details:[], expense:[],remark:[], method:[],move_in:[],room_type:[],monthly_usage:[],breadth:[], security_deposit:[],other_use:[], rent:[], management_fee:[], food_expense:[],life_service:[],cost_other:[],return_system:[], depreciation_period:[],initial_depreciation:[],other_message:[], cooperate_list:[], payment_list:[],meth_details:[], content: '', editorOption:{ debug:'info', placeholder:'Type your post...', readonly:true, theme:'snow', }, feature_val: '', acceptance_remark_val: '', nursing_remarks_val: '', residence_form_val: '', customer_address_val:'', access_val: '', panorama_length: 0, new_panorama_img: [], ph_length: false, ph_num: false, city_id: 0, township_list: [], address_show: '', img_name:'',profile_img:'', pro_id: 0, btn_disable: false, mail_focus: false, loc: false,
                 mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
             }
         },
-        //  computed: {
-        //     isdisable:function() {
-        //         return this.btn_disable;
-        //     }
-        // },
-
+        
         mounted() {
            document.getElementById('btn_click').click();
         },
 
         created(){
             this.pro_id = Number(this.$route.params.id);
-            console.log("pro_id",this.pro_id)
-            this.type = this.$route.params.type;
-            
-            // if(this.type != undefined && this.pro_id!= undefined){
-            //     localStorage.setItem('cusType',this.type);
-            //     localStorage.setItem('cusId',this.pro_id);
-            // }
-
-            // this.type = localStorage.getItem('cusType');
-            // this.pro_id = Number(localStorage.getItem('cusId'));
-
+            this.type = this.$route.params.type;       
             this.initialCall();
-
         },
 
         methods: {
             initialCall(){
-                this.address_show = $('#address_show').val();
-                // this.axios
-                // .get('/api/customerinfo/'+this.pro_id)
-                // .then(response=>{
-                //     this.nursing_info = response.data;
-                    
-                // });
+                this.address_show = $('#address_show').val();                
                 this.axios
                 .get('/api/nursinginfo/'+this.pro_id)
                 .then(response=>{
@@ -1016,18 +905,17 @@ export default {
             },
 
 
-            DeltArr(indx,type) {
+            DeltArr(indx,type,name) {
                 this.$swal({
-                        title: "確認",
-                        text: "職種を削除してよろしいでしょうか",
+                        text: name+ "を削除してよろしいでしょうか。",
                         type: "warning",
                         width: 350,
                         height: 200,
                         showCancelButton: true,
-                        confirmButtonColor: "#dc3545",
+                        confirmButtonColor: "#EEA025",
                         cancelButtonColor: "#b1abab",
                         cancelButtonTextColor: "#000",
-                        confirmButtonText: "削除",
+                        confirmButtonText: "はい",
                         cancelButtonText: "キャンセル",
                         confirmButtonClass: "all-btn",
                         cancelButtonClass: "all-btn",
@@ -1041,27 +929,18 @@ export default {
                         }
                     });
 
-                // if(type == 'cooperate') {
-                //     this.cooperate_arr.splice(indx,1);
-                // }
-
-                // if(type == 'payment') {
-                //     this.payment_arr.splice(indx,1);
-                // }
-
             },
-            DeleteArr(indx,type,id,photo) {
+            DeleteArr(indx,type,id,photo,name) {
                 this.$swal({
-                        title: "確認",
-                        text: "職種を削除してよろしいでしょうか",
+                        text: name + "を削除してよろしいでしょうか。",
                         type: "warning",
                         width: 350,
                         height: 200,
                         showCancelButton: true,
-                        confirmButtonColor: "#dc3545",
+                        confirmButtonColor: "#EEA025",
                         cancelButtonColor: "#b1abab",
                         cancelButtonTextColor: "#000",
-                        confirmButtonText: "削除",
+                        confirmButtonText: "はい",
                         cancelButtonText: "キャンセル",
                         confirmButtonClass: "all-btn",
                         cancelButtonClass: "all-btn",
@@ -1088,12 +967,12 @@ export default {
                             .post('/api/delete-pgallery',fd)
                             .then(response=>{
                                 this.$swal({
-                                    text: "職種を削除しました",
+                                    text: name + "を削除しました。",
                                     type: "success",
                                     width: 350,
                                     height: 200,
                                     confirmButtonText: "閉じる",
-                                    confirmButtonColor: "#dc3545",
+                                    confirmButtonColor: "#31CD38",
                                     allowOutsideClick: false,
                                 });
                             })
@@ -1241,26 +1120,19 @@ export default {
                         this.btn_disable = true;
                     }
                 }
-                // if( this.loc == true || this.mail_focus == true || this.ph_num == true )
-                // {
-                //     this.btn_disable = true;
-                // }
-                // else{
-                //     this.btn_disable = false;
-                // }
                 
              if(this.btn_disable){
                     // console.log("mail");
                    
               this.$swal({
                 // title: "確認",
-                html: "保存できません。<br/>必須項目を確認してください",
-                type: "warning",
-                width: 370,
+                html: "保存できません。<br/>必須項目を確認してください。",
+                type: "error",
+                width: 350,
                 height: 200,
                 showCancelButton: false,
-                confirmButtonColor: "#dc3545",
-                confirmButtonText: "はい",
+                confirmButtonColor: "#FF5462",
+                confirmButtonText: "閉じる",
                 confirmButtonClass: "all-btn",
                 allowOutsideClick: false,
                 
@@ -1398,10 +1270,10 @@ export default {
                                 this.$swal({
                                         position: 'top-end',
                                         type: 'success',
-                                        text: '保存されました',
+                                        text: '保存されました。',
                                         confirmButtonText: "閉じる",
-                                        confirmButtonColor: "#6cb2eb",
-                                        width: 250,
+                                        confirmButtonColor: "#31cd38",
+                                        width: 350,
                                         height: 200,
                                         allowOutsideClick: false,
                                     })

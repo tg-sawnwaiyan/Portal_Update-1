@@ -79,7 +79,7 @@
                                     <table class="table table-bordered">
                                         <tr>
                                             <td  class="w-50">
-                                                    <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-calendar" aria-hidden="true"></i></span>生年月日:&nbsp;</span><span class=""> {{jobapply.birthday}}</span></p>
+                                                    <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-calendar-alt" aria-hidden="true"></i></span>生年月日:&nbsp;</span><span class=""> {{jobapply.birthday}}</span></p>
                                             </td>
                                             <td class="w-50">
                                                 <!-- <p><span class="font-weight-bold">性別:</span><span>{{jobapply.gender}}</span></p>   -->
@@ -311,13 +311,13 @@ export default {
 
         jobApplicantDelete(id){
             this.$swal({
-                title: "確認",
-                text: "求人応募者を削除してよろしいでしょうか",
+                // title: "確認",
+                text: "求人応募者を削除してよろしいでしょうか。",
                 type: "warning",
                 width: 350,
                 height: 200,
                 showCancelButton: true,
-                confirmButtonColor: "#dc3545",
+                confirmButtonColor: "#eea025",
                 cancelButtonColor: "#b1abab",
                 cancelButtonTextColor: "#000",
                 confirmButtonText: "はい",
@@ -331,12 +331,12 @@ export default {
                         this.getJobapplicantList();
                     });
                 this.$swal({
-                    text: "求人応募者を削除しました",
+                    text: "求人応募者を削除しました。",
                     type: "success",
                     width: 350,
                     height: 200,
                     confirmButtonText: "閉じる",
-                    confirmButtonColor: "#dc3545",
+                    confirmButtonColor: "#31cd38",
                     allowOutsideClick: false,
                 });
             });                       

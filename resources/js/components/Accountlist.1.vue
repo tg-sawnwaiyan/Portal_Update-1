@@ -67,12 +67,7 @@
                                                 <router-link :to="{ path:'/jobapplicantlist/nursing/profile/'+ nursingprofiles.id}" style="font-weight:bold;text-decoration:underline;">
                                                 <i class="vsm--icon fa fa-list" style="color: #585858;"></i>求人応募者一覧</router-link>
                                             </p>
-                                            <!-- <p v-else>
-                                                <a style="font-weight:bold;color:#ccc;">
-                                                <i class="vsm--icon fa fa-edit fa-fw" style="color: #ccc;"></i>求人編集</a>&nbsp;&nbsp;
-                                                <a style="font-weight:bold;color:#ccc;">
-                                                <i class="vsm--icon fa fa-list" style="color: #ccc;"></i>求人応募者一覧</a>
-                                            </p> -->
+                                            
                                         </div>
                                         <div class="card-read-more">
                                             <router-link :to="{ path:'/profile/nursing/'+ nursingprofiles.id}" class="btn edit-borderbtn" style="float:left;">編集</router-link>
@@ -110,12 +105,7 @@
                                                 <router-link :to="{ path:'/jobapplicantlist/hospital/profile/'+ hospitalprofiles.id}" class="" style="font-weight:bold;text-decoration:underline;">
                                                     <i class="vsm--icon fa fa-list fa-fw" style="color: #585858;"></i>求人応募者一覧</router-link>
                                             </p>
-                                            <!-- <p v-else>
-                                                <a style="font-weight:bold;color:#ccc;">
-                                                    <i class="vsm--icon fa fa-edit fa-fw" style="color: #ccc;"></i>求人編集</a>&nbsp;&nbsp;
-                                                <a style="font-weight:bold;color:#ccc;">
-                                                    <i class="vsm--icon fa fa-list fa-fw" style="color: #ccc;"></i>求人応募者一覧</a>
-                                            </p> -->
+                                            
                                         </div>
                                         <div class="card-read-more">
                                             <router-link :to="{ path:'/profile/hospital/'+ hospitalprofiles.id}" class="btn edit-borderbtn" style="float:left;">編集</router-link>
@@ -231,11 +221,7 @@ export default {
                 });
         },
         ShowHideDiv(){
-            this.createNew = true;
-                // document.getElementById('newcreate').style.display = "none";
-                // document.getElementById('nusNew').style.display = "block";   
-                // document.getElementById('nusBlock').style.display = "none";             
-                
+            this.createNew = true;                  
         },
         CreateNew(){
 
@@ -272,7 +258,7 @@ export default {
                         type: "success",
                         width: 350,
                         height: 200,
-                        confirmButtonColor: "#6cb2eb",                       
+                        confirmButtonColor: "#31CD38",                       
                         confirmButtonText: "閉じる",
                         confirmButtonClass: "all-btn",
                             
@@ -281,9 +267,6 @@ export default {
                         this.getAccountList();
                     });
 
-                    // document.getElementById('newcreate').style.display = "block";
-                    // document.getElementById('nusNew').style.display = "none";
-                    // document.getElementById('nusBlock').style.display = "block";
                     this.nursing_data.name = '';
                     this.nursing_data.town_id = 0;
                     this.nursing_data.city_id = 0;
@@ -291,14 +274,11 @@ export default {
             }  
         },
         CancelNew(){
-            this.createNew = false;
-                // document.getElementById('newcreate').style.display = "block";
-                // document.getElementById('nusNew').style.display = "none";
-                // document.getElementById('nusBlock').style.display = "block";
-                this.nursing_data.city_id = 0;
-                this.nursing_data.town_id = 0;
-                this.errors.city = '';
-                this.errors.township = '';
+            this.createNew = false;               
+            this.nursing_data.city_id = 0;
+            this.nursing_data.town_id = 0;
+            this.errors.city = '';
+            this.errors.township = '';
         },
         getTownship(){
                 this.errors.city = '';
@@ -318,7 +298,6 @@ export default {
            // this.type = this.$auth.user().type_id == 2?'hospital':'nursing';
             if(this.type == "nursing") {
                 this.axios.get(`/api/account_nursing/${this.cusid}`).then(response => {
-                    console.log("res",response.data)
                 //this.$loading(false);
                 this.nursingprofile = response.data.nuscustomer;
                 
@@ -383,18 +362,10 @@ export default {
                 cancelButtonClass: "all-btn"
             }).then(response => {
                 this.axios.get(`/api/changeActivate/${id}/`+this.type)
-                        .then(response => {
-                            this.getAccountList();
-                    });
-                // this.$swal({
-                //     allowOutsideClick: false,
-                //     text: "正常に変更されました!",
-                //     type: "success",
-                //     width: 350,
-                //     height: 200,
-                //     confirmButtonText: "閉じる",
-                //     confirmButtonColor: "#dc3545"
-                // });
+                    .then(response => {
+                        this.getAccountList();
+                });
+            
             }).catch(error =>{
                 if(activate == 1){
                     $("#"+id).prop("checked", true);
@@ -430,15 +401,7 @@ export default {
                         this.$loading(false);
                         this.getAccountList();
                     });
-                    // this.$swal({
-                    //     allowOutsideClick: false,
-                    //     text: "施設を削除しました。",
-                    //     type: "success",
-                    //     width: 350,
-                    //     height: 200,
-                    //     confirmButtonText: "閉じる",
-                    //     confirmButtonColor: "#dc3545"
-                    // });
+                
                 });
         }
     }
@@ -478,45 +441,7 @@ img{
 .rl{
     padding:0px;
 }
-@media screen and (max-width: 1200px) and ( min-width:990px ) {
-    .column{
-        /* -webkit-box-flex: 0;
-        -ms-flex: 0 0 33.33333333%;
-        flex: 0 0 33.33333333%;
-        max-width: 33.33333333%;
-        position: relative;
-        width: 100%;
-        padding-right: 15px;
-        padding-left: 15px; */
 
-    }
-}
-@media screen and (max-width: 1683px) and ( min-width:1201px ) {
-    .column{
-        /* -webkit-box-flex: 0;
-        -ms-flex: 0 0 33.33333333%;
-        flex: 0 0 33.33333333%;
-        max-width: 33.33333333%;
-        position: relative;
-        width: 100%;
-        padding-right: 15px;
-        padding-left: 15px; */
-
-    }
-}
-@media screen and (max-width: 787px) and ( min-width:576px ) {
-    .column{
-        /* -webkit-box-flex: 0;
-        -ms-flex: 0 0 33.33333333%;
-        flex: 0 0 33.33333333%;
-        max-width: 33.33333333%;
-        position: relative;
-        width: 100%;
-        padding-right: 15px;
-        padding-left: 15px; */
-
-    }
-}
 .column{
     padding-right: 7px;
     padding-left: 7px;
@@ -571,7 +496,6 @@ h1.heading {
     transition: box-shadow .25s; 
 }
 .card_1:hover {
-  /* box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19); */
   opacity: 0.9;
 }
 .img-card {

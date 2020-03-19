@@ -128,16 +128,16 @@
                 // },
                 deleteAds(id) {
                         this.$swal({
-                            title: "確認",
-                            text: "広告を削除してよろしいでしょうか",
+                            // title: "確認",
+                            text: "広告を削除してよろしいでしょうか。",
                             type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#dc3545",
+                            confirmButtonColor: "#eea025 ",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
-                            confirmButtonText: "削除",
+                            confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
                             cancelButtonClass: "all-btn",
@@ -156,12 +156,12 @@
                                 //   this.advertisements.splice(a, 1);
                                 this.$swal({
                                     // title: "削除済",
-                                    text: "広告を削除しました",
+                                    text: "広告を削除しました。",
                                     type: "success",
                                     width: 350,
                                     height: 200,
                                     confirmButtonText: "閉じる",
-                                    confirmButtonColor: "#dc3545",
+                                    confirmButtonColor: "#31cd38",
                                     allowOutsideClick: false,
                                 });
                             });

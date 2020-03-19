@@ -37,9 +37,9 @@
                                 <div class="freeword-responsive">
                                     <h3 class="map-resicon">
                                     <div class="map-text-wrapper">
-                                        <div>
+                                        <!-- <div>
                                         <i class="fa icon map-fa-icon map-fa-icon-nursing"></i>
-                                        </div>
+                                        </div> -->
                                         <div>
                                         <p class="text-left nursing-map-header"> &nbsp;あなたらしい暮らしができる。そん<br class="pc-768"/>な老人ホームが見つかります。</p>
                                         </div>
@@ -135,7 +135,7 @@
                                         </div>
                                     </div>                                    
                                     <div class="col-lg-2 col-md-4 m-b-414 pc-768 align-self-center m-t-30">
-                                        <span class="btn seemore-btn select" style="width:100%;padding:15px 10px;font-size:0.8em;" id="showSearchMap" @click="showSearchMap"><i class="fas fa-exchange-alt"></i>&nbsp;都道府県を再選択する</span>                                    
+                                        <span class="btn seemore-btn select all-btn" style="width:100%;padding:15px 10px;font-size:0.8em;" id="showSearchMap" @click="showSearchMap"><i class="fas fa-exchange-alt"></i>&nbsp;都道府県を再選択する</span>                                    
                                     </div>
                                     </div>
                                 </div>
@@ -203,6 +203,8 @@
                                                             <td  v-for="items in nus_data" @mouseover="mouseover(items.alphabet)" @mouseleave="mouseleave(items.alphabet)" :id="items.alphabet" :key="items.nursing_id">
                                                                 <div class="wd-in">
                                                                     <span class="type-name" v-if="items.type_name">{{items.type_name}} </span>
+                                                                    <span class="type-name" v-else>介護</span>
+                                                                    <p class="job_id1 search_jobid"><span>施設番号:{{items.profilenumber}}</span></p>
 
                                                                     <div class="row m-t-10 m-b-10">
                                                                         <div class="col-5 col-lg-5 col-sm-6" style="padding-top:3px;">
@@ -263,65 +265,7 @@
                                     <div id="filtertable" class="col-12">
                                         <table class="table table-bordered col-12 box-wrap">
                                             <tbody>
-                                                <!-- ------------------- -->
-                                                <!-- <tr>
-                                                    <th class="pc-414-table sp-768-block pc-rsp-table sp-rsp-block">地域</th>
-                                                    <td class="sp-768-block sp-414-table sp-rsp-block">
-                                                    <div class="row mt-2 mb-2">
-                                                    <div class="col-lg-9 col-md-8 col-sm-12 m-b-8">
-                                                        <select id="selectCity" class="form-control custom-select" v-model="id" @change="ChangeTownship">
-                                                        <option value="-1" disabled>▼市区町村</option>
-                                                        <option v-for="city in cities" :value="city.id" :key="city.id">{{city.city_name}}</option>
-                                                    </select>
-                                                    </div>
-                                                    <div class="col-lg-3 col-md-4 col-sm-12 pc-414">
-                                                    <button @click="toggleContent" class="btn seemore-btn">
-                                                        <i class="fa" aria-hidden="true"></i>
-                                                     
-                                                        <span id="close"><i class="fas fa-arrow-circle-up"></i> 市区町村エリアを閉じる </span>
-                                                    </button>
-                                                    </div>
-                                                    </div>
-                                                    <div class="toBeToggled" id="toBeToggled">
-                                              
-                                                    <div class="dropdown search_rsp">
-                                                        <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
-                                                        市から探す
-                                                        </button>
-                                                        <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 420" @click.stop="stopTheEvent">
-                                                            <li>
-                                                            <a data-value="option">
-                                                            <div class="row">
-                                                       
-                                                                <div class="col-lg-2 col-md-4 col-sm-4" v-for="township in getTownships" :key="township.id">
-                                                                <label class="form-check-label control control--checkbox">
-                                                                    <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @click="check" >
-                                                                    {{township.township_name}}
-                                                                    <div class="control__indicator"></div>
-                                                                </label>
-                                                                </div>
-                                                            </div>
-                                                            </a>
-                                                            </li>
-                                                        </ul>
-                                                        <a v-if="w_width >= 420">
-                                                      
-                                                            <div class="row">
-                                                                <div class="col-lg-2 col-md-4 col-sm-4" v-for="township in getTownships" :key="township.id">
-                                                                <label class="form-check-label control control--checkbox">
-                                                                    <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @click="check" >
-                                                                    {{township.township_name}}
-                                                                    <div class="control__indicator"></div>
-                                                                </label>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
                                                 
-                                                    </div>
-                                                    </td>
-                                                </tr> -->
-                                                <!-- ------------- -->
                                                 <tr>
                                                    
                                                     <th class="pc-414-table sp-768-block" v-if="showOne" style="padding:10px;">入居時の条件</th>
@@ -431,11 +375,12 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="pc-414-table sp-768-block" v-if="showOne">施設の種類</th>
+                                                    <th class="pc-414-table sp-768-block" v-if="showOne">施設の種類  </th>
                                                     <td class="sp-768-block sp-414-table" v-if="showOne">
 
                                                     <!--施設の種類から探す-->
                                                     <div class="dropdown search_rsp">
+                                                        
                                                     <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
                                                         施設の種類から探す
                                                     </button>
@@ -454,7 +399,9 @@
                                                         </a>
                                                         </li>
                                                     </ul>
+                                                     
                                                     <a v-if="w_width >= 420">
+                                                      
                                                             <div class="row">
                                                             <div class="col-lg-2 col-md-4 col-sm-4" v-for="fac_type in fac_types" :key="fac_type.id">
                                                                 <label class="form-check-label control control--checkbox">
@@ -507,23 +454,7 @@
                                                         <!--end 医療面・診療科目から探す -->
                                                     </td>
                                                 </tr>
-                                                <!-- <tr class="text-center">
-                                                    <td colspan="2">
-                                                        <button @click="showOne = !showOne" class="btn btn-link mt-2">
-                                                   
-                                                        <button v-show="showOne" class="btn seemore-btn">
-                                                        <i class="fa" aria-hidden="true"></i>
-                                                            <span id="close4"><i class="fas fa-arrow-circle-up"></i> 閉じる</span>
-                                                        </button>
-                                                   
-                                                        <button v-show="!showOne" class="btn seemore-btn">
-                                                        <i class="fa" aria-hidden="true"></i>
-                                                            <span id="close4"><i class="fas fa-arrow-circle-down"></i> もっと見る</span>
-                                                        </button>
-                                                        
-                                                        </button>
-                                                    </td>
-                                                </tr> -->
+                                                
                                                 <tr class="text-center">
                                                     <td colspan="2" style="border:none;">
                                                         <button class="main-bg-color create-btn all-btn col-lg-2 col-md-4 col-sm-2" id="search" @click="search"><i class="fas fa-search"></i>&nbsp; 検索 </button>
@@ -545,7 +476,7 @@
                             </div>
                             <!--end search list-->
 
-                            <div class="m-b-10">
+                            <div class="">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-12 col-slg-12" style="margin-top:20px;" v-for="(nus,index) in displayItems" :key="nus.id">
                                         <div class="nur-content">
@@ -555,6 +486,7 @@
                                                     <h5 class="nur-tit">
                                                         <router-link :to="{ path:'/profile/nursing/'+ nus.nursing_id}" class="pseudolink" style="font-weight:bold;">{{nus.name}}</router-link>
                                                     </h5>
+                                                   <p class="job_id search_jobid"><span> 施設番号:{{nus.profilenumber}}</span></p>
 
                                                     <div class="d-flex sp-414" id="sp-414-block">
                                                         <span v-for="(fac,index) in fac_types" :key="index+'-'+fac.description+'-'+nus.id">
@@ -643,11 +575,11 @@
                                                 </div>
                                             </div>
                                             <!--responsive add-fav and phone-->
-                                                <div class="row m-t-10" id="job_detail">
+                                                <div class="row" id="job_detail">
                                                     <div class="col-md-6 col-sm-12 m-b-414">
                                                         <p class="sp_hos_phone sp-768" v-if="nus.phone"><span class="circle-phone" ><i class="fa fa-phone-alt"></i></span><span class="phone-no"><a :href="`tel:${nus.phone}`">{{nus.phone}}</a></span></p>
                                                     </div>
-                                                    <div class="col-md-6 col-sm-12 m-t-10">
+                                                    <div class="col-md-6 col-sm-12 m-t-768">
                                                         <p class="sp-768">
                                                             <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == '' && loginuser=='false'" :class="'view_pro_id'+nus.nursing_id" style="display:block;" @click="favAddFun('add',nus.nursing_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                                                             <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == 'check' && loginuser=='false'" :class="'done_pro_id'+nus.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',nus.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
@@ -661,28 +593,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <div class="col-12" v-if="show_paginate">
-                                    <nav aria-label="Page navigation example">
-                                        <ul class="pagination">
-                                        <li class="page-item">/
-                                            <span class="spanclass pc-480" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
-                                        </li>
-                                        <li class="page-item">
-                                            <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i><span class="pc-paginate"> 前へ</span></span>
-                                        </li>
-                                        <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
-                                            <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
-                                        </li>
-                                        <li class="page-item">
-                                            <span class="spanclass" @click="next"><span class="pc-paginate">次へ </span><i class='fas fa-angle-right'></i></span>
-                                        </li>
-                                        <li class="page-item">
-                                            <span class="spanclass pc-480" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
-                                        </li>
-                                        </ul>
-                                    </nav>
-                                </div> -->
-                                <div class="row mt-3">
+                                
+                                <div class="row">
                                     <div class="col-md-12 col-lg-12 col-sm-6" v-if="show_paginate">
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination">
@@ -731,78 +643,8 @@
         },
 
         data() {
-
             return {
-                cityid:[],
-                listid : '',
-                map: null,
-                markers: [],
-                searchmarkers:[],
-                marker:[],
-                selectedLocation: null,
-                infoBoxOpen: false,
-                places: [],
-                id: [],
-                townshipID:[],
-                township_id:-1,
-                moving_in:-1,
-                per_month:-1,
-                cities: '',
-                getCity: [],
-                getTownships: [],
-                special_features: [],
-                fac_types: [],
-                fac_id: [],
-                medical_acceptance: [],
-                show: false,
-                showOne: true,
-                currentOffset: 0,
-                windowSize: 4,
-                paginationFactor: 328,
-                window:{
-                width: 0,
-                height: 0
-                },
-                nursingList: [],
-                alphabet: [],
-                markerHover:[],
-                SpecialFeatureID:[],
-                MedicalAcceptanceID:[],
-                FacTypeID:[],
-                MoveID:[],
-                nus_data:[],
-                specialfeature:[],
-                medicalacceptance:[],
-                factype:[],
-                selectedcity:'',
-                citylatlng:[],
-                view_pro_id: [],
-                currentPage: 0,
-                size: 20,
-                pageRange: 5,
-                items: [],
-                show_paginate: false,
-                onchangeid:0,
-                localst:'',
-                selected: undefined,
-                toggleCheck: true,
-                loading: false,
-                coordinate:[],
-                norecord_msg: false,
-                ci : false,
-                window:{
-                    width: 0,
-                    height: 0
-                },
-                w_width:$(window).width(),
-                cityArray: [],
-                allCity: [],
-                citynewArray:[],
-                boundsval: 'no marker',
-                searchword:'',
-                index:'',
-                clicksearch: false,
-                isActive: true,
+                cityid:[], listid : '', map: null, markers: [], searchmarkers:[], marker:[], selectedLocation: null, infoBoxOpen: false, places: [], id: [], townshipID:[], township_id:-1, moving_in:-1, per_month:-1, cities: '', getCity: [], getTownships: [], special_features: [], fac_types: [], fac_id: [], medical_acceptance: [], show: false, showOne: true, currentOffset: 0, windowSize: 4, paginationFactor: 328, window:{ width: 0, height: 0 }, nursingList: [], alphabet: [], markerHover:[], SpecialFeatureID:[], MedicalAcceptanceID:[], FacTypeID:[], MoveID:[], nus_data:[], specialfeature:[], medicalacceptance:[], factype:[], selectedcity:'', citylatlng:[], view_pro_id: [], currentPage: 0, size: 20, pageRange: 5, items: [], show_paginate: false, onchangeid:0, localst:'', selected: undefined, toggleCheck: true, loading: false, coordinate:[], norecord_msg: false, ci : false, window:{ width: 0, height: 0 }, w_width:$(window).width(), cityArray: [], allCity: [], citynewArray:[], boundsval: 'no marker', searchword:'', index:'', clicksearch: false, isActive: true,
             }
         },
 
@@ -959,24 +801,9 @@
                     this.locast = localStorage.getItem("nursing_fav");
                 }
 
-                
-
-                //  params:{
-                //     id: this.id,
-                   
-                //     Moving_in:this.moving_in,
-                //     Per_month:this.per_month,
-                //     local:this.locast
-
-                // },
-              
-
                 this.axios.get('/api/getnursingsearch/'+search_word,{
                 params:{
-                // id: -1 ,
-                // township_id:-1,
-                // Moving_in:-1,
-                // Per_month:-1,
+                
                 id: this.id,
                 townshipID:this.township_id,
                 Moving_in:this.moving_in,
@@ -991,13 +818,16 @@
                 },
                 })
                 .then((response) => { 
+                     
                     $("#mymap").css({'display' : 'block','height' : '400px','width':'100%'});
                     $("#filtertable").css("display", "block");
                     $("#nursing-search").css("display", "block");
+                   
     
                     if(response.data.nursing.length != 0){
                      
                         this.norecord_msg = false;
+                      
                         this.changeMap(response,1);
                         this.getTownships = [];
                     }else{
@@ -1005,6 +835,10 @@
                         $("#mymap").css({'display' : 'none'});
                         this.nus_data = [];
                         this.norecord_msg = true;
+                        this.special_features = response.data.special_features;
+                        this.fac_types = response.data.fac_types;
+                        this.medical_acceptance = response.data.medical_acceptance;
+
                     }
                 });
 
@@ -1129,6 +963,7 @@
             // make infowindow, marker , google map
             changeMap(response,freewordornot){ 
               
+                 
                 if(this.id == -1 && freewordornot == 2)
                 {
                     freewordornot = 1;
@@ -1351,7 +1186,7 @@
                 var newresult=[];
                 var jsonfile = theCity+".json";
                 // https://testikportal.management-partners.co.jp
-                this.axios.get("https://testikportal.management-partners.co.jp/json/cities/"+jsonfile).then(respon => {
+                this.axios.get("./json/cities/"+jsonfile).then(respon => {
                     this.coordinate = respon.data.reduce((acc, val) => acc.concat(val), []);
                     this.boundariesGoogleMap(lat,lng,this.coordinate);  
                 }); 
@@ -1360,7 +1195,7 @@
                 else{
                     var jsonfile = theCity+".json";
                     jsonfile = jsonfile.toLowerCase();
-                    this.axios.get('https://testikportal.management-partners.co.jp/json/Townships/'+jsonfile).then(res => {
+                    this.axios.get('./json/Townships/'+jsonfile).then(res => {
                      var township_coor = []
                      for(var i = 0; i < res.data.features.length; i++)
                      {
@@ -1415,6 +1250,8 @@
                 if(item.length  && mmarker.length)
                 {
                     for (var i = 0; i < item.length; i++) {
+                        var typename = item[i]['type_name'] == null ? '介護':item[i]['type_name'];
+                        var phonenum = item[i]['phone'] == null ? '':item[i]['phone'];
                         infoWindowContent.push([
                             '<div id="info_content">' +
                             '<div class="">' +
@@ -1422,25 +1259,31 @@
                                 '<thead>' +
                                     '<tr>' +
                                     '<td colspan="2"><span class="type-name">' +
-                                    item[i]['type_name']+
+                                    typename+
                                     '</span>'+
+                                    '</td>' +
+                                    '</tr>' +
+                                    '<tr>' +
+                                    '<td colspan="2"><p class="job_id search_jobid"><span> 施設番号:' +
+                                     item[i]['profilenumber']+
+                                    '</span></p>'+
                                     '</td>' +
                                     '</tr>' +
                                 '</thead>' +
                                 '<tbody>' +
                                     '<tr>' +
                                     '<td colspan="2" class="text-left" style="padding-bottom:0px;">' +
-                                    '<img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld='+item[i]['alphabet']+'|fd0e0e|ffffff" alt="" style="margin-right:10px;">' +
+                                    '<img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld='+item[i]['alphabet']+'|fd0e0e|ffffff" alt="" style="margin-right:10px; @error="imgUrlAlt"">' +
                                     '<span class="item-name">' + item[i]['name'] + '</span> <br>' +
                                     '</td>' +
                                 '</tr>' +
 
                                 '<tr>' +
                                 '<td>' +
-                                '<img src="/upload/nursing_profile/' + item[i]['logo'] + '" alt="image" width="100px" style="border:1px solid #ccc;"/>' +
+                                '<img src="/upload/nursing_profile/' + item[i]['logo'] + '" alt="image" width="100px" style="border:1px solid #ccc;" @error="imgUrlAlt"/>' +
                                 '</td>' +
                                 '<td style="padding-bottom:0px;">' +
-                                    '<p class="hos_phone float-right"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span>' + item[i]['phone'] + '</p>' +
+                                    '<p class="nus_phone"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span>' + phonenum + '</p>' +
                                 '</td>' +
                                 '</tr>' +
                                 ' <tr>' +
@@ -1511,7 +1354,8 @@
                     return function() {
                         infoWindow.setContent(infoWindowContent[i][0]);
                         infoWindow.open(this.map, marker);
-                    }
+                         jQuery(".gm-ui-hover-effect").attr('title', '閉じる');                   
+                         }
                     })(marker, i));
                     this.markerHover.push(marker)
                     var boundsListener = google.maps.event.addListener((this.map), 'bounds_changed', function(event) {
@@ -1959,6 +1803,9 @@
 </script>
 
 <style scoped>
+.wd-in p{
+    min-height: 25px;
+}
 .cash-lbl {
     font-size: 1.4em;
 }

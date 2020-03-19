@@ -3,7 +3,10 @@
     <div v-if="type == 'nursing'" id="nursingView">
          
         <!--panorama-->
-        <h4 class="profile-tit"  v-if="!currentPanoImage"> {{customer_name}}</h4>
+        <p class="job_id search_jobid"><span>施設番号:{{profilenumber}}</span></p>
+        <h4 class="profile-tit"  v-if="!currentPanoImage"> {{customer_name}}</h4> 
+        
+
 
         <div class="col-12 detail_profile_left pad-free"  v-if="currentPanoImage">
             <h4 class="profile-tit">{{customer_name}}</h4>
@@ -188,7 +191,7 @@
                     <!--end for slide image-->
                     <!--for address-->
                      <div class="col-md-7 detail_profile_right col-slg-12 pad-free-750">
-                         <span class="top-mail-btn-res btn sp-414" @click="documentPost()" v-if="loginuser=='false' && !$auth.check()"><i data-v-b65423c6="" class="far fa-envelope" style="color: rgb(196, 0, 0)!important;font-size: 15px;font-weight: bold;;"></i>&nbsp;資料請求</span>
+                         <span class="top-mail-btn-res btn sp-414" @click="documentPost()" v-if="loginuser=='false' && !$auth.check()"><i data-v-b65423c6="" class="far fa-envelope" style="font-size: 15px;font-weight: bold;;"></i>&nbsp;資料請求</span>
                         <div class="row m-lr-0 pro-heading">
                              <div class="col-12 pad-free pc-1024">
                                 <h5 class="profile_header">介護情報</h5>
@@ -886,7 +889,7 @@
                                 <!-- <p class="card-title font-weight-bold">{{comment.email}}</p>
                                 <p class="comment-age" v-if="comment.year != null">{{ new Date().getFullYear() - comment.year}}年代</p>
                                 <p class="comment-age" v-else></p> -->
-                                <p class="comment-date"><i class="fa fa-calendar" aria-hidden="true"></i> {{comment.created_date | moment("YYYY年MM月DD日") }}投稿 <span class="ml-2"><i class="fa fa-clock" aria-hidden="true"></i> {{comment.created_time}}</span></p>
+                                <p class="comment-date"><i class="fa fa-calendar-alt" aria-hidden="true"></i> {{comment.created_date | moment("YYYY年MM月DD日") }}投稿 <span class="ml-2"><i class="fa fa-clock" aria-hidden="true"></i> {{comment.created_time}}</span></p>
                             </div>
                                 <read-more more-str="もっと見る" :text="comment.comment" :max-chars="160" class="m-t-comment"></read-more><br>
                                 <div>{{comment.customer}}</div>
@@ -935,6 +938,7 @@
     </div>
 
     <div v-if="type == 'hospital'" id="hospitalView">
+            <p class="job_id search_jobid"><span>施設番号:{{profilenumber}}</span></p>
             <h5 class="profile-tit"> {{customer_name}}</h5>
            <div class="tab typelabel nav-link fixed-nav" v-bind:style="{width:width}">
                
@@ -1089,10 +1093,13 @@
                  <div class="col-12 m-b-20 pad-free-750">
                     <h5 class="profile_subtit">診療科目 </h5>
 
-                    <div class="row col-md-12" v-if="subjects">
-                    <ul class="sub_container" v-for="sub in subjects" :key="sub.id">
-                        <li>{{sub.name}}</li>
-                    </ul>
+                <div class="row col-md-12" v-if="subjects">
+                <ul class="sub_container" v-for="sub in subjects" :key="sub.id">
+                    <li>{{sub.name}}</li>
+                </ul>
+                </div>
+                <div class="col-12" v-else>
+                   <p class="no-data-color">データがありません。</p>
                 </div>
                 </div>
 
@@ -1278,7 +1285,7 @@
                                 <!-- <p class="card-title font-weight-bold">{{comment.email}}</p>
                                 <p class="comment-age" v-if="comment.year != null">{{ new Date().getFullYear() - comment.year}}年代</p>
                                 <p class="comment-age" v-else></p> -->
-                                <p class="comment-date"><i class="fa fa-calendar" aria-hidden="true"></i> {{comment.created_date | moment("YYYY年MM月DD日") }}投稿 <span class="ml-2"><i class="fa fa-clock" aria-hidden="true"></i> {{comment.created_time}}</span></p>
+                                <p class="comment-date"><i class="fa fa-calendar-alt" aria-hidden="true"></i> {{comment.created_date | moment("YYYY年MM月DD日") }}投稿 <span class="ml-2"><i class="fa fa-clock" aria-hidden="true"></i> {{comment.created_time}}</span></p>
                             </div>
                                 <read-more more-str="もっと見る" :text="comment.comment" :max-chars="160" class="m-t-comment"></read-more><br>
                                 <div>{{comment.customer}}</div>
@@ -1329,11 +1336,11 @@
     </div>
     <div class="bottom-fixed-btn" v-if="loginuser=='false'">
          <div class="row justify-content-center">
-            <div class="col-8 col-md-3 col-lg-3 col-xl-2">
+            <div class="col-6 col-md-3 col-lg-3 col-xl-2">
                 <span class="bottom-fav-btn" v-if="!view_pro_id && loginuser=='false'" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                 <span class="bottom-fav-btn" style="color:#aaa;" v-if="view_pro_id && loginuser=='false'" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
             </div>
-            <div class="col-8 col-md-3 col-lg-3 col-xl-2 pc-414" v-if="loginuser=='false' && !$auth.check() && type == 'nursing'">       
+            <div class="col-6 col-md-3 col-lg-3 col-xl-2 pc-414" v-if="loginuser=='false' && !$auth.check() && type == 'nursing'">       
                 <span class="bottom-mail-btn" @click="documentPost()"><i data-v-b65423c6="" class="far fa-envelope" style="color: #fff  !important;font-size: 15px;"></i>&nbsp;資料請求</span>
             </div>
         </div>       
@@ -1448,6 +1455,7 @@ export default {
             show_arr: [],
             show_comment: false,
             view_pro_id: false,
+            profilenumber:''
         };
     },
 
@@ -1577,7 +1585,7 @@ export default {
                             }
                         });
                         if (cur_pos >= 100) {
-                            $(".fixed-nav").css({"position": "fixed","top":"65px"});
+                            $(".fixed-nav").css({"position": "fixed","top":"80px"});
                         } else {
                             $(".fixed-nav").css({"position": "unset", "top": "unset"});
                         }
@@ -1654,6 +1662,8 @@ export default {
         
                 // this.nursing_profiles = response.data.feature;
                 // this.nus_method= response.data.method;
+              
+                this.profilenumber = response.data.profilenumber[0]['profilenumber'];
                 this.nus_pro = response.data.nurselatlong[0];
                 this.google = response.data.nurselatlong;
                 if(this.nus_pro['address'] == null){
@@ -1684,8 +1694,6 @@ export default {
                 this.medical = response.data.medical;
 
                 this.staff = response.data.staff;
-
-                
 
                 this.markers[0]['position']['lat']  = response.data.nurselatlong[0]['latitude'];
 
@@ -1752,7 +1760,8 @@ export default {
                 this.customer = response.data;
                 this.customer_name = response.data[0].name;
             });
-            this.axios.get('/api/profile/hospital/'+this.pro_id).then(response => {                      
+            this.axios.get('/api/profile/hospital/'+this.pro_id).then(response => {    
+                this.profilenumber = response.data.profilenumber[0]['profilenumber'];                  
                 this.google = response.data.hospital;
                 this.address = response.data.address;
                 this.hospitals = response.data.hospital;
@@ -2010,35 +2019,8 @@ export default {
 
                 this.activeImageDescription = this.images[imageIndex].description;
         },
-            activate:function(el){
-            //  console.log(el)
-            //  this.active_el = el;
-            // console.log(this.active_el)
-            // if(el == 6){
-
-            //     $(".nav-item").on("click", function(e){
-            //     $("li.nav-item").removeClass("active");
-            //     $(this).addClass("active");
-            //                         });
-
-                // console.log('element6')
-
-                    // $('.top-fixed-btn.active').removeClass('active');
-                    //  $('.top-fixed-btn.active');
-
-
-                //    $('.top-fixed-btn2.active').css({'background':'red'});
-                //    $('.top-fixed-btn2').eq(active_el).addClass('active');
-                //    $('#top-fixed-btn2').css({'background':'green'});
-            //}
-            // else
-            // {
-
-            //     //   $('.top-fixed-btn').css({'color': '#000','width':'145px','cursor':' pointer','padding': '5px','border-radius': '5px','text-decoration': 'none','position': 'relative','box-shadow': '3px 5px 3px #ccc!important','background': '#fbaa84','border': '1px solid #ff9563;'});
-            //       $('.top-fixed-btn').eq(active_el).addClass('active');
-            // }
-
-
+        activate:function(el){
+        //    console.log(e); 
         },
 
         costConfirm(id,inx){
@@ -2178,6 +2160,9 @@ export default {
 </script>
 
 <style scoped>
+.slick-list .draggable{
+    min-height: 200px !important;
+}
 #profilePublish > div.footer {
     padding-bottom: 13%;
 }
@@ -2676,9 +2661,9 @@ h3 {
     padding: 8px 5px;
     border: 0px;
     border-radius: 0;
-    border-top: 1px solid #eeeeee;
-    border-bottom: 1px solid #eeeeee;
-    background: linear-gradient(to bottom,#f6f6ea 0,#ecf8ff 100%);
+    border-top: 1px solid #cbe1f5;
+    border-bottom: 1px solid #eeeeee;   
+    background: linear-gradient(to bottom,#c0e5fd 0,#8ebeda 100%);
 }
 .CloseBtn {
     border: none !important;
@@ -2798,7 +2783,7 @@ h3 {
 }
 .payment-body p {
     font-size: 18px;
-    color: #d2571c;
+    color: #fd0e0e;
     font-weight: bold;
 }
 .payment-body p span {
@@ -2806,9 +2791,9 @@ h3 {
     padding: 0px 5px;
     margin-right: 3px;
     font-size: 14px;
-    color: #000;
-    background: #ffc;
-    border: 1px solid #ffc041;
+    color: #333333;
+    background: #93c2e0;
+    border: 1px solid #93c2e0;
     border-radius: 5px;
 }
  .circle_t{
@@ -2850,7 +2835,7 @@ h3 {
     .comment-date{
             font-size: 12px;
     /* color: #777; */
-    margin-top: 46px;
+    /* margin-top: 46px; */
     float: left !important;
     position: absolute;
 }

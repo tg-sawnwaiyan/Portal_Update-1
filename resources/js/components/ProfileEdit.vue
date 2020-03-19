@@ -61,7 +61,7 @@
                                                 <label class="old-pass">新しいパスワード</label>
                                                 <input type="password" name="new_password" placeholder="新しいパスワードを入力してください。" class="form-control new-password" v-model="password">
                                                 <div class="error" id="newpassword" style="display: none;">新しいパスワードが必要です。</div>
-                                                <div class="error" id="newpasswordlength" style="display: none;">パスワードは少なくとも6桁でなければなりません。</div>
+                                                <div class="error" id="newpasswordlength" style="display: none;">パスワードは6桁以上にしてください。</div>
                                                 <br>
                                                 <label class="old-pass">新しいパスワードをもう一度入力してください</label>
                                                 <input type="password" name="comfirm_password" class="form-control confirm-password" placeholder="新しいパスワードをもう一度入力してください" v-model="password_confirmation" @keyup="password_validate()">
@@ -252,7 +252,7 @@
                                                 text: '更新されました',
                                                 confirmButtonText: "閉じる",
                                                 confirmButtonColor: "#6cb2eb",
-                                                width: 250,
+                                                width: 350,
                                                 height: 200,
                                                 allowOutsideClick: false,
                                             })
@@ -298,10 +298,10 @@
                                         this.$swal({
                                             position: 'top-end',
                                             type: 'error',
-                                            text: '現在のパスワードが一致しません',
+                                            text: '現在のパスワードに誤りがあります。',
                                             confirmButtonText: "閉じる",
-                                            confirmButtonColor: "#6cb2eb",
-                                            width: 250,
+                                            confirmButtonColor: "#FF5462 ",
+                                            width: 350,
                                             height: 200,
                                             allowOutsideClick: false,
                                         })
@@ -311,10 +311,10 @@
                                         this.$swal({
                                             position: 'top-end',
                                             type: 'success',
-                                            text: 'パスワードを変更しました',
+                                            text: 'パスワードを変更しました。',
                                             confirmButtonText: "閉じる",
-                                            confirmButtonColor: "#6cb2eb",
-                                            width: 250,
+                                            confirmButtonColor: "#31cd38",
+                                            width: 350,
                                             height: 200,
                                             allowOutsideClick: false,
                                         })
@@ -333,13 +333,13 @@
                                 });
                         } else {
                             this.$swal({
-                                    title: "確認",
-                                    text: "新しいパスワードと確認パスワードは同じでなければなりません",
+                                    // title: "確認",
+                                    text: "新しいパスワードと確認パスワードは同じでなければなりません。",
                                     type: "warning",
                                     width: 350,
                                     height: 200,
                                     showCancelButton: true,
-                                    confirmButtonColor: "#6cb2eb",
+                                    confirmButtonColor: "#eea025",
                                     cancelButtonColor: "#b1abab",
                                     cancelButtonTextColor: "#000",
                                     confirmButtonText: "閉じる",
@@ -360,14 +360,14 @@
                         arr.append('cus_id', this.cusid)
 
                         this.$swal({
-                            title: "確認",
+                            // title: "確認",
                             text: "メールアドレスと運営事業者名を変更してよろしいでしょうか。",
                             // text: "メールアドレスを変更してよろしいでしょうか。",
-                            type: "info",
+                            type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#6cb2eb",
+                            confirmButtonColor: "#eea025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
                             confirmButtonText: "はい",
@@ -386,8 +386,8 @@
                                             type: 'success',
                                             text: 'メールアドレスと運営事業者名を変更しました。',
                                             confirmButtonText: "閉じる",
-                                            confirmButtonColor: "#6cb2eb",
-                                            width: 250,
+                                            confirmButtonColor: "#31cd38",
+                                            width: 350,
                                             height: 200,
                                             allowOutsideClick: false,
                                         })
@@ -419,21 +419,21 @@
                     },
                     AccountStatusChange(status) {
                         if(status == '1') {
-                            var confirm_text = '事業者登録を無効にしますか';
+                            var confirm_text = '事業者登録を無効にしますか。';
                         } else {
-                            var confirm_text = '事業者登録を有効にしますか';
+                            var confirm_text = '事業者登録を有効にしますか。';
                         }
                         let fd = new FormData();
                             fd.append('status', status)
                             fd.append('cus_id',this.cusid)
                         this.$swal({
-                                title: "確認",
+                                // title: "確認",
                                 text: confirm_text,
                                 type: "warning",
                                 width: 350,
                                 height: 200,
                                 showCancelButton: true,
-                                confirmButtonColor: "#dc3545",
+                                confirmButtonColor: "#eea025",
                                 cancelButtonColor: "#b1abab",
                                 cancelButtonTextColor: "#000",
                                 confirmButtonText: "はい",
@@ -453,10 +453,10 @@
                                              this.$swal({
                                                 position: 'top-end',
                                                 type: 'success',
-                                                text: '事業者登録を有効にしました',
+                                                text: '事業者登録を有効にしました。',
                                                 confirmButtonText: "閉じる",
-                                                confirmButtonColor: "#6cb2eb",
-                                                width: 250,
+                                                confirmButtonColor: "#31cd38",
+                                                width: 350,
                                                 height: 200,
                                                 allowOutsideClick: false,
                                             });
@@ -466,10 +466,10 @@
                                              this.$swal({
                                                 position: 'top-end',
                                                 type: 'success',
-                                                text: '事業者登録を無効にしました',
+                                                text: '事業者登録を無効にしました。',
                                                 confirmButtonText: "閉じる",
-                                                confirmButtonColor: "#6cb2eb",
-                                                width: 250,
+                                                confirmButtonColor: "#31cd38",
+                                                width: 350,
                                                 height: 200,
                                                 allowOutsideClick: false,
                                             })

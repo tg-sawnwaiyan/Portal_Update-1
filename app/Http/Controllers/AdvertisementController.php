@@ -46,6 +46,7 @@ class AdvertisementController extends Controller
         
         $imageName = $request->photo->getClientOriginalName();
         $imgname = str_replace(' ', '', $imageName);
+        $imgname = strtolower($imgname);
         // move_uploaded_file($imageName, '/upload/advertisement/'.$imageName);
 
         $ads = new Advertisement();
@@ -108,6 +109,7 @@ class AdvertisementController extends Controller
         if(is_object($request->photo)) {
             $imageName = $request->photo->getClientOriginalName();
             $imageName = str_replace(' ', '', $imageName);
+            $imageName = strtolower($imageName);
             // $request->photo->move(public_path('/upload/advertisement'), $imageName);
             $request->photo->move('./upload/advertisement/', $imageName);
         } else {

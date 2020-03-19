@@ -36,11 +36,7 @@
         <section id="map-responsive">
             <div class="freeword-responsive">
                 <h3 class="map-resicon">
-                  <div class="map-text-wrapper">
-                    <div>
-                      <!-- <img src="/images/map-responsive1.png" alt="" class="img-responsive"> -->
-                      <i class="fa icon map-fa-icon map-fa-icon-hospital"></i>
-                    </div>
+                  <div class="map-text-wrapper">                    
                     <div>
                       <p class="text-left hospital-map-header"> &nbsp;赤ちゃんからおとなまでみんなで通<br class="pc-768"/>える街の名医が見つかります。 </p>
                     </div>
@@ -71,7 +67,7 @@
                             <div class="row mt-2 mb-2">
                             <div class="col-lg-9 col-md-8 col-sm-12 m-b-8">
                             <select id="selectCity" class="form-control custom-select" v-model="id" @change="ChangeTownship">
-                                <option value="-1" disabled>▼市区町村</option>
+                                <option value="-1" >▼市区町村</option>
                                 <option v-for="city in cities" :value="city.id" :key="city.id">{{city.city_name}}</option>
                             </select>
                             </div>
@@ -210,15 +206,6 @@
                             </td>
                         </tr>
 
-                        <!-- <tr class="text-center">
-                            <td colspan="2" style="border:none;">                        
-                            <button @click="ShowHide1" class="btn seemore-btn">
-                                <i class="fa" aria-hidden="true"></i>
-                                <span id="close2"><i class="fas fa-arrow-circle-up"></i> 閉じる</span>
-                            </button>
-                            </td>
-                        </tr> -->
-
                         <tr class="text-center">
                             <td colspan="2" style="border:none;">
                             <button type="button" class="main-bg-color create-btn all-btn col-lg-2 col-md-4 col-sm-2" id="search" name="search" value="検索"  @click="search">
@@ -236,15 +223,15 @@
                                     <div class="row pad-free">
                                         <div class="col-md-10 col-sm-12">
                                         <h5 class="hos-title">
+                                            
                                             <router-link :to="{ path:'/profile/hospital/'+ hos.hos_id}" class="pseudolink">{{hos.name}}</router-link>
+                                             <p class="job_id search_jobid"><span>施設番号:{{hos.profilenumber}}</span></p>
                                         </h5>
 
                                         </div>
                                         <div class="col-md-2 col-sm-12">
                                         <p class="float-right pc-768">
-                                            <!-- <span class="btn fav-profile fav-item fav-color" :class="'view_pro_id'+hos.nursing_id" style="" @click="favAddFun('add',hos.nursing_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
-                                            <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == 'check'" :class="'done_pro_id'+hos.nursing_id" style="color:#aaa;" @click="favAddFun('remove',hos.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
-                                        -->
+                                           
                                         <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == ''" :class="'view_pro_id'+hos.nursing_id" style="display:block;" @click="favAddFun('add',hos.hos_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                                         <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == 'check'" :class="'done_pro_id'+hos.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',hos.hos_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                                         </p>
@@ -266,26 +253,17 @@
                                         <div class="col-lg-3 col-md-6 job-img">
                                             <img v-bind:src="'/upload/hospital_profile/' + hos.logo"  alt="img" class="img-fluid" @error="imgUrlAlt">
 
-                                            <!-- <p class="hos_phone text-center m-t-20"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span><span class="phone-no">{{hos.phone}}</span></p> -->
                                         </div>
                                         <div class="col-lg-4 col-md-6 job-box">
-                                            <table  class="table table-bordered table-sm">
-                                                <!-- <tr>
-                                                <td style="width:30%;"><span class="job_ico"><i class="fa fa-user"></i></span>名前</td>
-                                                <td>{{hos.name}}</td>
-                                                </tr> -->
+                                            <table  class="table table-bordered table-sm">                                               
                                                 <tr>
-                                                <td style="width:34%;"><span class="job_ico"><i class="fa fa-envelope"></i></span>メールアドレス</td>
-                                                <td class="text-break">{{hos.email}}</td>
+                                                    <td style="width:34%;"><span class="job_ico"><i class="fa fa-envelope"></i></span>メールアドレス</td>
+                                                    <td class="text-break">{{hos.email}}</td>
                                                 </tr>
                                                 <tr>
-                                                <td style="width:30%;"><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>住所</td>
-                                                <td>{{hos.city_name}}{{hos.township_name}}{{hos.address}}</td>
-                                                </tr>
-                                                <!-- <tr>
-                                                <td style="width:30%;"><span class="job_ico"><i class="fa fa-calendar-alt"></i></span>休業日</td>
-                                                <td>{{hos.closed_day}}</td>
-                                                </tr> -->
+                                                    <td style="width:30%;"><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>住所</td>
+                                                    <td>{{hos.city_name}}{{hos.township_name}}{{hos.address}}</td>
+                                                </tr>                                                
                                             </table>
                                             <!--special feature and subject-->
                                           
@@ -302,11 +280,7 @@
                                             <h5 class="header">診療時間
                                                 <span class="hos_phone pc-768"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span><span class="phone-no"><a :href="`tel:${hos.phone}`">{{hos.phone}}</a></span></span>
                                             </h5>
-                                            <!-- <tr v-for="(time,index) in timetable" :key="index+'-'+time.id+'-'+hos.id">
-                                                <td v-if="hos.customer_id == time.customer_id" >
-                                                {{time.mon}} / {{time.tue}} / {{time.wed}} / {{time.thu}} / {{time.fri}} / {{time.sat}} / {{time.sun}} / {{time.part}}
-                                                </td>
-                                            </tr> -->
+                                            
                                             <table class="table table-bordered">
                                                 <thead>
                                                 <tr class="first-row">
@@ -335,7 +309,6 @@
                                                 </tbody>
                                             </table>
                                             <span v-if="hos.closed_day"> <strong> 休診日：</strong>{{hos.closed_day}}</span>
-                                            <!-- <p><span style="color: red; font-weight: bold; font-size: 15px;">※</span>診療時間は、変更される事や、診療科によって異なる場合があるため、直接医療機関のホームページ等でご確認ください。</p> -->
                                             <!--end schedule-->
                                         </div>
                                     </div>
@@ -357,27 +330,7 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="offset-md-4 col-md-8" v-if="show_paginate">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                    <li class="page-item">
-                        <span class="spanclass pc-480" @click="first" v-bind:class="isActive ? 'disable':'undisable'"><i class='fas fa-angle-double-left'></i> 最初</span>
-                    </li>
-                    <li class="page-item">
-                        <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i><span class="pc-paginate"> 前へ</span></span>
-                    </li>
-                    <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
-                        <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
-                    </li>
-                    <li class="page-item">
-                        <span class="spanclass" @click="next"><span class="pc-paginate">次へ </span><i class='fas fa-angle-right'></i></span>
-                    </li>
-                    <li class="page-item">
-                        <span class="spanclass pc-480" @click="last" v-bind:class="isActive ? 'undisable':'disable'">最後 <i class='fas fa-angle-double-right'></i></span>
-                    </li>
-                    </ul>
-                </nav>
-            </div> -->
+            
            <div class="row">
             <div class="col-md-12 col-lg-12 col-sm-6" v-if="show_paginate">
               <nav aria-label="Page navigation example">
@@ -401,11 +354,6 @@
               </nav>
             </div>
           </div>
-
-
-
-
-
             <span v-if="norecord_msg">
                     <div class="container-fuid m-t-20">
                         <p class="nosearch-icon">
@@ -439,48 +387,7 @@ import bulcomponent from './bulcomponent.vue'
 
     data() {
       return {
-        id: '',
-        timetable:[],
-        hos_data:[],
-        townshipID: [],
-        township_id: [],
-        cities: [],
-        getCity: [],
-        getTownships: [],
-        specialfeatureID:[],
-        special_features: [],
-        specialfeatures:[],
-        fac_types: [],
-        fac_id: [],
-        medical_acceptance: [],
-        subjectID:[],
-        subjects: [],
-        sub_child:[],
-        subject:[],
-        company:[],
-        toggleCheck: true,
-        toggleCheck_1: false,
-        currentPage: 0,
-        size: 20,
-        pageRange: 5,
-        items: [],
-        show_paginate: false,
-        selected: undefined,
-        localst:'',
-        norecord_msg: false,
-        int:0,
-        array_len: 0,
-        window:{
-          width: 0,
-          height: 0
-        },
-        w_width: $(window).width(),
-        showOne:true,
-        count:false,
-        stateclick:false,
-        clicksearch: false,
-        ci: false,
-        isActive: true,
+        id: '', timetable:[], hos_data:[], townshipID: [], township_id: [], cities: [], getCity: [], getTownships: [], specialfeatureID:[], special_features: [], specialfeatures:[], fac_types: [], fac_id: [], medical_acceptance: [], subjectID:[], subjects: [], sub_child:[], subject:[], company:[], toggleCheck: true, toggleCheck_1: false, currentPage: 0, size: 20, pageRange: 5, items: [], show_paginate: false, selected: undefined, localst:'', norecord_msg: false, int:0, array_len: 0, window:{ width: 0, height: 0 }, w_width: $(window).width(), showOne:true, count:false, stateclick:false, clicksearch: false, ci: false, isActive: true,
       }
     },
     created(){
@@ -632,13 +539,7 @@ import bulcomponent from './bulcomponent.vue'
         }
 
         this.axios.get('api/gethospitalsearch/'+ search_word,{
-        params:{
-            // id: -1,
-            // townshipID:-1,
-            // specialfeatureID:-1,
-            // subjectID:-1,
-            // local:this.locast
-
+        params:{            
             id: this.id,
             townshipID:this.townshipID,
             specialfeatureID:this.specialfeatureID,
@@ -804,11 +705,6 @@ import bulcomponent from './bulcomponent.vue'
             this.getTownships = response.data.getTownships
             this.special_features = response.data.special_features
             this.subjects = response.data.subjects;
-
-            //this.sub_child = response.data.sub_child;
-            //console.log("aaa",this.subjects);
-            // this.id = id;
-
         })
             // this.search();
     },
@@ -1041,21 +937,6 @@ import bulcomponent from './bulcomponent.vue'
     }
 	},
   };
-//   $(function() {
-//       $( '.division-box ul a.path li' ).on( 'click', function(e) {
-//             e.preventDefault();
-//             $( '.division-box ul  li' ).parent().find( 'li.spanclass' ).removeClass( 'active' );
-//             $( this ).addClass( 'active' );
-//     });
-//   });
-
-//   $(function() {
-// $( '#page-item button' ).on( 'click', function(e) {
-//             e.preventDefault();
-//             $( '#page-item button' ).parent().find( 'button.active' ).removeClass( 'active' );
-//             $( this ).addClass( 'active' );
-//     });
-//   });
 </script>
 
 
@@ -1147,9 +1028,6 @@ import bulcomponent from './bulcomponent.vue'
     border-left: 0.3em solid transparent;
     margin-left: 94px;
 }
-
-
-
 .disabled{
  /* display:none; */
  cursor: not-allowed !important;

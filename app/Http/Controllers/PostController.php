@@ -40,9 +40,12 @@ class PostController extends Controller
         if(is_object($request->photo)){
             $imageName = $request->photo->getClientOriginalName();
             $imageName = str_replace(' ', '', $imageName);
+            $imageName = strtolower($imageName);
             $request->photo->move('upload/news/', $imageName);
         }else {
             $imageName =$request->photo;
+            $imageName = str_replace(' ', '', $imageName);
+            $imageName = strtolower($imageName);
         }
         $post = new Post() ;
             $post->title = $request->input('title');
@@ -164,6 +167,7 @@ class PostController extends Controller
                 \File::delete($filename);
                 $imageName = $request->photo->getClientOriginalName();
                 $imageName = str_replace(' ', '', $imageName);
+                $imageName = strtolower($imageName);
                 $request->photo->move('upload/news/', $imageName);
             }
             else {
@@ -178,6 +182,7 @@ class PostController extends Controller
                 \File::delete($filename);
                 $imageName = $request->photo->getClientOriginalName();
                 $imageName = str_replace(' ', '', $imageName);
+                $imageName = strtolower($imageName);
                 $request->photo->move('upload/news/', $imageName);
             }
 

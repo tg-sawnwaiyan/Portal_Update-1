@@ -24,8 +24,10 @@
                             <autocomplete id="cusname"  placeholder="事業者名を検索" input-class="form-control" :source=customerList :results-display="formattedDisplay" @clear="cleartext()"  @selected="getSelected($event)">
                             </autocomplete> -->
                         <!-- </div> -->
+                 
                         <div class="col-md-12 choose-item">
-                             <autocomplete id="cusname"  placeholder="施設名で検索" input-class="form-control" :source=profileList :results-display="formattedDisplay" @clear="cleartext()"  @selected="getProfile($event)">
+                    
+                             <autocomplete id="cusname"  placeholder="施設名で検索" input-class="form-control" :source=profileList :results-display="formattedDisplay" @clear="cleartext()"   @selected="getProfile($event)">
                             </autocomplete> 
                             <!-- <label>施設名</label>
                          
@@ -105,7 +107,7 @@
                                          詳細 <i :id="'icon' + comment.id" class="fas fa-sort-down animate rotate"></i></button>
                                 </div>
                             </div>
-                            <div class="cmt"><span><i class="fa fa-calendar"></i>&nbsp;{{comment.created_date | moment("YYYY年MM月DD日") }}</span> <span><i class="fa fa-clock"></i>&nbsp;{{comment.created_time}}&nbsp;投稿</span></div>
+                            <div class="cmt"><span><i class="fa fa-calendar-alt"></i>&nbsp;{{comment.created_date | moment("YYYY年MM月DD日") }}</span> <span><i class="fa fa-clock"></i>&nbsp;{{comment.created_time}}&nbsp;投稿</span></div>
                              <!--comment-->
                                 <div class="collapse" :id="'changeLink' + comment.id" style="margin-top:15px;">   
                                     <!-- <div class="cmt"><span><i class="fa fa-calendar"></i>&nbsp;{{comment.created_date | moment("YYYY年MM月DD日") }}投稿</span> <span><i class="fa fa-clock"></i>&nbsp;{{comment.created_time}}</span></div>                                -->
@@ -120,7 +122,7 @@
                                         </tr>
                                         <tr>
                                             <td  class="w-50">
-                                                   <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-calendar" aria-hidden="true"></i></span>生年月日:&nbsp;</span><span class="" v-if="comment.year != '' && comment.year != null"> {{comment.year}} 年生まれ</span></p> 
+                                                   <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-calendar-alt" aria-hidden="true"></i></span>生年月日:&nbsp;</span><span class="" v-if="comment.year != '' && comment.year != null"> {{comment.year}} 年生まれ</span></p> 
         
                                             <td  class="w-50">
                                                     <p class="mb-2"><span class="text-orange"><span class="job_ico">〒<i aria-hidden="true"></i></span>郵便番号:&nbsp;</span><span class=""> {{comment.zipcode}}</span></p>
@@ -191,7 +193,7 @@
 
 <script>
 
-     import Autocomplete from 'vuejs-auto-complete'
+     import Autocomplete from 'vuejs-auto-complete';
     export default {
        
         components: {
@@ -240,7 +242,7 @@
                         this.$loading(false);
                         this.comments = response.data.commentlist;
                         
-                        // this.profilelist = response.data.profilelist;
+                       // this.profilelist = response.data.profilelist;
                         this.norecord = this.comments.data.length;                   
                         if(this.norecord != 0) {
                             this.norecord_msg = false;
@@ -342,13 +344,13 @@
                 // },
                 deleteComment(id) {
                         this.$swal({
-                            title: "確認",
-                            text: "口コミを削除してよろしいでしょうか",
+                            // title: "確認",
+                            text: "口コミを削除してよろしいでしょうか。",
                             type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#dc3545",
+                            confirmButtonColor: "#eea025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
                             confirmButtonText: "はい",
@@ -387,26 +389,35 @@
                                         width: 350,
                                         height: 200,
                                         confirmButtonText: "閉じる",
-                                        confirmButtonColor: "#dc3545",
+                                        confirmButtonColor: "#31cd38",
                                         allowOutsideClick: false,
                                     });
 
                                 })
                                 .catch(() => {
-                                    this.$swal("Failed", "wrong");
+                                    this.$swal({
+                                       
+                                        html: "システムエラーです。<br/>社内エンジニアにお問い合わせください。<br/><a href='mailto:pg@management-partners.co.jp'>pg@management-partners.co.jp</a>",
+                                        type: "error",
+                                        width: 350,
+                                        height: 200,
+                                        confirmButtonText: "閉じる",
+                                        confirmButtonColor: "#FF5462",
+                                        allowOutsideClick: false,
+                                    });
                                 });
                         });
 
                     },
                     commentConfirm(id) {
                         this.$swal({
-                            title: "確認",
-                            text: "口コミを投稿してよろしいでしょうか",
-                            type: "info",
+                            // title: "確認",
+                            text: "口コミを承認してよろしいでしょうか。",
+                            type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#6cb2eb",
+                            confirmButtonColor: "#eea025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
                             confirmButtonText: "はい",
@@ -427,24 +438,24 @@
                                     this.$loading(false);
                                     this.comments = response.data.comments;
                                     this.$swal({
-                                            title: "確認済",
-                                            text: "口コミが投稿されました。",
+                                            // title: "確認済",
+                                            text: "口コミを承認しました。",
                                             type: "success",
                                             width: 350,
                                             height: 200,
                                             confirmButtonText: "閉じる",
-                                            confirmButtonColor: "#6cb2eb",
+                                            confirmButtonColor: "#31cd38",
                                             allowOutsideClick: false,
                                         })
                                         .catch(() => {
                                             this.$swal({
-                                                title: "エラーメッセージ",
-                                                text: "プロセスを続行します",
+                                                // title: "エラーメッセージ",
+                                                html: "システムエラーです。<br/>社内エンジニアにお問い合わせください。",
                                                 type: "error",
                                                 width: 350,
                                                 height: 200,
                                                 confirmButtonText: "閉じる",
-                                                confirmButtonColor: "#dc3545",
+                                                confirmButtonColor: "#FF5462",
                                                 allowOutsideClick: false,
                                             });
                                         });

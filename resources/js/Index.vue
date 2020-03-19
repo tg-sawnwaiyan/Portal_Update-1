@@ -151,12 +151,7 @@
 .content-all.collapsed {
     padding-left: 50px;
 }
-/* .v-sidebar-menu .vsm--link {
-    border-bottom: 1px solid #485163;
-}
-.v-sidebar-menu .vsm--link.vsm--link_hover {
-    border-bottom: 0px solid #485163;
-} */
+
 .router-link-exact-active>i.fa, .router-link-exact-active>i.fas {
     color: #fff !important;
 }
@@ -205,32 +200,11 @@
                 }
             });                
         }
-        console.log("created")
         document.addEventListener('scroll', this.handleScroll);
-        console.log("aside "+this.$auth.check())
-        console.log("aside visit "+this.visit)
+        
         axios.interceptors.response.use((response) => {
-        console.log("status",response.data.status)
         if((response.data.status == "Token is Expired" || response.data.status == "Token is Invalid") && this.status == false ){
-
-            this.status = true
-        // Swal.fire({
-        //     title: 'セッションの有効期限が切れています。！',
-            // text: "お手数ですがログイン画面より再度ログインしてください。",
-        //     icon: 'warning',
-        //     showCancelButton: false,
-        //     confirmButtonColor: '#3085d6',
-        //     cancelButtonColor: '#d33',
-        //     confirmButtonText: 'OK'
-        // }).then((result) => {  
-        //     // console.log()
-            
-        //     if (result.value) {
-        //         this.$refs.myid.click();
-        //         response.data.status = "logout success"
-
-        //     }
-        // })
+        this.status = true;        
         this.visit = 'true';
         this.loginuser = 'false';
         localStorage.setItem('visit',this.visit);
@@ -246,10 +220,7 @@
         document.removeEventListener('scroll', this.handleScroll);
     },
     mounted(){
-        // this.axios.get('/api/auth/user').then(res=>{
-        //     console.log(res)
-        // })
-       
+        
         if(localStorage.getItem("visit")){
             this.visit = localStorage.getItem("visit");       
         }
@@ -339,7 +310,6 @@
             }
         },
         onCollapse (collapsed) {
-      console.log(collapsed)
       this.collapsed = collapsed
     }
     }
