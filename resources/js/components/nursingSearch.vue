@@ -204,7 +204,7 @@
                                                                 <div class="wd-in">
                                                                     <span class="type-name" v-if="items.type_name">{{items.type_name}} </span>
                                                                     <span class="type-name" v-else>介護</span>
-                                                                    <p class="job_id search_jobid"><span>施設番号:{{items.profilenumber}}</span></p>
+                                                                    <p class="job_id1 search_jobid"><span>施設番号:{{items.profilenumber}}</span></p>
 
                                                                     <div class="row m-t-10 m-b-10">
                                                                         <div class="col-5 col-lg-5 col-sm-6" style="padding-top:3px;">
