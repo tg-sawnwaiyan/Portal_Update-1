@@ -586,7 +586,7 @@
                                             <!--responsive add-fav and phone-->
                                                 <div class="row" id="job_detail">
                                                     <div class="col-md-6 col-sm-12 m-b-414">
-                                                        <p class="sp_hos_phone sp-768" v-if="nus.phone"><span class="circle-phone" ><i class="fa fa-phone-alt"></i></span><span class="phone-no"><a :href="`tel:${nus.phone}`">{{nus.phone}}</a></span></p>
+                                                        <p class="sp_hos_phone sp-768 m-b-10" v-if="nus.phone"><span class="circle-phone" ><i class="fa fa-phone-alt"></i></span><span class="phone-no"><a :href="`tel:${nus.phone}`">{{nus.phone}}</a></span></p>
                                                     </div>
                                                     <div class="col-md-6 col-sm-12 m-t-768">
                                                         <p class="sp-768">
