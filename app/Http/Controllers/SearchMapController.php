@@ -78,7 +78,7 @@ class SearchMapController extends Controller
         }
 
         $query = "SELECT '' as fav_check,c.name as cus_name,'' as alphabet,n.id as nursing_id,n.id,n.latitude as lat ,n.longitude as lng, n.*,ci.city_name,t.township_name,
-                    ty.description AS type_name,ci.city_name,t.township_name
+                    ty.description AS type_name,ci.city_name,t.township_name,CONCAT((500000+c.id),'-',LPAD(n.pro_num, 4, '0'))  as profilenumber 
                     FROM nursing_profiles AS n
                     join customers as c on c.id = n.customer_id
                     LEFT JOIN townships AS t  ON t.id = n.townships_id
@@ -265,7 +265,8 @@ class SearchMapController extends Controller
           }
 
           $query = "SELECT '' as fav_check,c.name as cus_name,'' as alphabet, n.id as nursing_id,n.latitude as lat ,n.longitude as lng,n.*, ci.id as city_id, 
-                    ci.city_eng,ci.city_name,t.township_name,f.description,ci.city_name,f.description AS type_name from nursing_profiles as n 
+                    ci.city_eng,ci.city_name,t.township_name,f.description,ci.city_name,f.description AS type_name ,CONCAT((500000+c.id),'-',LPAD(n.pro_num, 4, '0')) as profilenumber 
+                    from nursing_profiles as n
                     join customers as c on c.id = n.customer_id
                     left join townships as t on t.id = n.townships_id 
                     left join cities as ci on ci.id = t.city_id 
@@ -533,8 +534,9 @@ class SearchMapController extends Controller
           }
         
           
-          $query ="SELECT '' as fav_check,h.id as hos_id, h.*,ci.city_name,t.township_name
+          $query ="SELECT '' as fav_check,h.id as hos_id, h.*,ci.city_name,t.township_name,CONCAT((200000+c.id),'-',LPAD(h.pro_num, 4, '0'))  as profilenumber 
                   from  hospital_profiles as h 
+                  join customers as c on c.id = h.customer_id
                   left join townships as t on t.id = h.townships_id  
                   left join cities as ci on ci.id = t.city_id
                   left join special_features_junctions as spej on spej.profile_id = h.id 

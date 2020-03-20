@@ -84,29 +84,29 @@
                         <div class="form-group m-0 row bd">
                             <div class="col-md-3 col-sm-12 form-left"> 
                             <div class="row col-12 m-0 p-0">
-                                <div class="col-sm-3 col-md-6 p-0">
+                                <div class="col-xl-3 col-lg-3 col-12 p-0">
                                     <label class="subtitle"><strong>ご住所</strong></label>
                                 </div>               
-                                <div class="col-sm-9 col-md-6 p-0 stepper-form">                                                                   
-                                    <div class="form-left form-group pc-768"><label> <strong>郵便番号 </strong></label></div>
-                                    <div class="form-left form-group pc-768"><label><strong>都道府県</strong><span class="error sp1">必須</span></label></div>
-                                    <div class="form-left form-group pc-768"><label><strong>市区町村</strong> <span class="error sp1">必須</span></label></div>
-                                    <div class="form-left form-group pc-768"><label><strong>番地（建物名)</strong><span class="error sp1">必須</span></label></div>                                    
+                                <div class="col-xl-9 col-lg-9 col-12 p-0 stepper-form">                                                                   
+                                    <div class="form-left-child form-group pc-750"><label> <strong>郵便番号 </strong></label></div>
+                                    <div class="form-left-child form-group pc-750"><label><strong>都道府県</strong><span class="error sp1">必須</span></label></div>
+                                    <div class="form-left-child form-group pc-750"><label><strong>市区町村</strong> <span class="error sp1">必須</span></label></div>
+                                    <div class="form-left-child form-group pc-750"><label><strong>番地（建物名)</strong><span class="error sp1">必須</span></label></div>                                    
                                 </div>           
                             </div>    
                             </div>                           
                             <div class="col-md-9 col-sm-12 form-right stepper-form">
-                                <div class="form-group  row pl-3">
-                                    <div class="col-md-12 sp-768"><label> <strong>郵便番号 </strong></label></div>
-                                    <div class="col-md-12 p-0">
+                                <div class="form-group  rightwrap row pl-3">
+                                    <div class="col-md-12 sp-750"><label> <strong>郵便番号 </strong></label></div>
+                                    <div class="col-md-12 rightwrap-child p-0 ">
                                         <input type="text" v-model="comments.postal" name="postal" v-on:keydown="postalNumber" class="postal form-control float-left" id="postal" placeholder="郵便番号を入力してください。" maxlength="7"/>                                        
-                                        <span class="float-left submit1 btn main-bg-color continue all-btn submit m-l-10" @click="getPostal">郵便番号より住所を検索</span>
+                                        <span class="float-left submit1 btn main-bg-color continue all-btn submit m-l-10 pc-1024" @click="getPostal"><span class="first_txt">郵便番号より住所を</span><span class="dinone">検索</span></span>
                                         <span class="float-left m-l-10">例）1006740 (<a href="https://www.post.japanpost.jp/zipcode/" target="_blank" class="pseudolink">郵便番号検索</a>)</span>
                                     </div>
                                     <div id="jsErrorMessage" class="float-left eg-txt"></div>
                                 </div>
                                 <div class="form-group row pl-3">                                  
-                                    <div class="col-md-12 sp-768"><label> <strong> 都道府県</strong><span class="error sp1">必須</span></label></div>
+                                    <div class="col-md-12 sp-750"><label> <strong> 都道府県</strong><span class="error sp1">必須</span></label></div>
                                     <div class="col-md-12 p-0">
                                         <select v-model="comments.selectedValue" class="division form-control" id="division" @change="getTownship(2)">
                                             <option value="0">選択してください。</option>
@@ -119,7 +119,7 @@
                                 </div>
 
                                  <div class="form-group row pl-3">                             
-                                    <div class="col-md-12 sp-768"><label>  <strong>市区町村 </strong><span class="error sp1">必須</span></label></div>
+                                    <div class="col-md-12 sp-750"><label>  <strong>市区町村 </strong><span class="error sp1">必須</span></label></div>
                                     <div class="col-md-12 p-0">
                                         <select v-model="comments.township" class="division form-control" id="division" @change="aggreBtn">
                                             <option value="0">選択してください。</option>
@@ -131,7 +131,7 @@
                                     </div>  
                                 </div>
                                 <div class="form-group row pl-3 m-b-0">
-                                    <div class="col-md-12 sp-768"><label><strong>番地（建物名)</strong><span class="error sp1">必須</span></label></div>
+                                    <div class="col-md-12 sp-750"><label><strong>番地（建物名)</strong><span class="error sp1">必須</span></label></div>
                                     <div class="col-md-12 p-0">
                                          <input type="text" id="city" name="city" class="city form-control float-left" placeholder="番地を入力してください。" v-model="comments.city" @change="aggreBtn" @keyup="focusCity">
                                         <span class="float-left eg-txt">例）区丸の内1-9-1 グラントウキョウノースタワー40階</span>
@@ -140,7 +140,7 @@
                             </div>
                         </div>
                         <div class="form-group m-0 row bd-all">
-                            <div class="col-md-3 col-sm-12 form-left pt-4"><label class="form-left pl-0"><strong>電話番号</strong></label></div>
+                            <div class="col-md-3 col-sm-12 form-left"><label class="pl-0"><strong>電話番号</strong></label></div>
                             <div class="col-md-9 col-sm-12 form-right p-b-0">
                             <div class="row pl-3">
                                     <div class="col-md-12 p-0">
@@ -156,7 +156,7 @@
                             </div>
                             <!-- </div>
                             <div class="form-group m-0 row bd-all"> -->
-                            <div class="col-md-3 col-sm-12 form-left"><label class="form-left pl-0"><strong>メールアドレス </strong></label></div>
+                            <div class="col-md-3 col-sm-12 form-left"><label class="pl-0"><strong>メールアドレス </strong></label></div>
                             <div class="col-md-9 col-sm-12 form-right">
                             <div class="row pl-3">
                                 <div class="col-md-12 p-0">

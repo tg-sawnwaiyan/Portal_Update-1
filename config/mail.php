@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.gmail.com'),
+    'host' => env('MAIL_HOST', 't-i-s.sakura.ne.jp'),
     // 'host' => env('MAIL_HOST', 'mp-co.sakura.ne.jp'),
     // 'host' => env('MAIL_HOST', 'smtp.gmail.com'),
     // 'host' => env('MAIL_HOST', 'smtp.mailtrap.io'),
