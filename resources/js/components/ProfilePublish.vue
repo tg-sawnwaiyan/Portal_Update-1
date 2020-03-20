@@ -938,7 +938,7 @@
     </div>
 
     <div v-if="type == 'hospital'" id="hospitalView">
-            <p class="job_id search_jobid"><span>施設番号:{{profilenumber}}</span></p>
+            <p class="job_id5"><span>施設番号:{{profilenumber}}</span></p>
             <h5 class="profile-tit"> {{customer_name}}</h5>
            <div class="tab typelabel nav-link fixed-nav" v-bind:style="{width:width}">
                
