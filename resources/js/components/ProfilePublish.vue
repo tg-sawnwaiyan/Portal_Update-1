@@ -730,9 +730,9 @@
                             <div class="col-12 pad-free-750"> <p class="no-data-color">データがありません。</p> </div>
                         </div>
                         <div class="row gallery-list m-0 pad-free-750" v-else>
-                            <div v-for="(video) in  videos" :key="video.id" class="col-6  col-sm-4 col-md-4 col-lg-3 m-b-10">
+                            <div v-for="(video) in  videos" :key="video.id" class="col-6  col-sm-4 col-md-4 col-lg-3 m-b-10" style="width:100%">
                                 <div class="gallery-item" style="height:135px;">
-                                    <iframe :src="'https://www.youtube.com/embed/'+video.photo" controls></iframe>
+                                    <iframe :src="'https://www.youtube.com/embed/'+video.photo" controls width="100%"></iframe>
                                 </div>
                                 <span class="video_txt">{{video.title}}</span>
 
@@ -1218,10 +1218,10 @@
             <!-- Hospital Video -->
                 <div class="col-md-12 pad-free-750">
                     <h5 class="profile_subtit">動画</h5>
-                    <div class="row m-0 gallery-list" v-if="videos.length>0">
-                        <div v-for="(video) in  videos" :key="video.id" class="col-121 col-lg-3 col-md-4 col-sm-4 m-b-10">
+                    <div class="row m-0 gallery-list" v-if="videos.length>0" style="width:100%;">
+                        <div v-for="(video) in  videos" :key="video.id" class="col-12 col-lg-3 col-md-4 col-sm-4 m-b-10">
                             <div class="gallery-item" style="height:135px;">
-                                <iframe :src="'https://www.youtube.com/embed/'+video.photo" controls></iframe>
+                                <iframe :src="'https://www.youtube.com/embed/'+video.photo" controls width="100%"></iframe>
                             </div>
                             <span class="video_txt">{{video.title}}</span><br>
                         </div>
