@@ -1665,6 +1665,7 @@ export default {
               
                 this.profilenumber = response.data.profilenumber[0]['profilenumber'];
                 this.nus_pro = response.data.nurselatlong[0];
+                console.log("nuspro",this.nus_pro)
                 this.google = response.data.nurselatlong;
                 if(this.nus_pro['address'] == null){
                         this.nus_pro['address'] = '';
@@ -1730,6 +1731,12 @@ export default {
                     this.markers[0]['position']['lng']  = 139.76901739;
 
                 }
+                var catname = '介護';
+
+                this.$ga.event({
+                    eventCategory: '施設',
+                    eventAction: catname+' / '+this.profilenumber+' / '+this.nus_pro.name,
+                })
             });
 
             this.axios.get(`/api/profile/specialfeature/${this.type}/${this.pro_id}`) .then(response => {
@@ -1739,7 +1746,6 @@ export default {
             this.axios.get('/api/profile/comment/'+this.pro_id+'/'+this.type) .then(response => {
 
                 this.comments = response.data;
-                console.log(this.comments)
                 if(this.comments.length > this.size){
                     this.pagination = true;
                 }else{
@@ -1799,6 +1805,13 @@ export default {
                     this.markers[0]['position']['lng']  = 139.76901739;
                 }
 
+                var catname = '病院';
+
+                this.$ga.event({
+                    eventCategory: '施設',
+                    eventAction: catname+' / '+this.profilenumber+' / '+this.hospitals[0].name,
+                })
+
             });
 
             this.axios.get(`/api/profile/specialfeature/${this.type}/${this.pro_id}`).then(response => {
@@ -1829,6 +1842,8 @@ export default {
                 this.am_arr = response.data.am;
                 this.pm_arr = response.data.pm;
             });
+
+            
         }
 
         var new_width = $("#content-all").width();

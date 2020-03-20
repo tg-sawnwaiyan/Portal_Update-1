@@ -11,7 +11,7 @@
       
      
     </div>
-      <div class="col-12 m-b-15">
+      <div class="col-12 m-b-15" v-if="job_details.length>0">
         <h5 class="subtitle" style=""><strong>施設名:</strong> {{job_details[0].cusname}} </h5>
       </div>
     
@@ -137,6 +137,13 @@ export default {
       .get(`/api/job_details/${this.$route.params.id}`)
       .then(response => {
         this.job_details = response.data;
+        // console.log("res",response.data);
+        var catname = this.job_details[0].type_id == 2? '病院':'介護';
+
+        this.$ga.event({
+          eventCategory: '求人',
+          eventAction: catname+'/'+this.job_details[0].jobid+'/'+this.job_details[0].title,
+        }) 
       });
     this.job_id = this.$route.params.id;
   },

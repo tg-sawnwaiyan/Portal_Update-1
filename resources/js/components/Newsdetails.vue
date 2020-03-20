@@ -202,8 +202,7 @@ export default {
         this.getData = true; 
         this.$ga.event({
           eventCategory: 'ニュース',
-          eventAction: 'ニュース'+'\xa0\xa0\xa0\xa0\xa0'+this.newdetails[0].cat_name+'\xa0\xa0\xa0\xa0\xa0'+this.newdetails[0].title,
-          eventLabel: this.newdetails[0].title,
+          eventAction: this.newdetails[0].cat_name+' / '+this.newdetails[0].title,
         })     
       });   
      
