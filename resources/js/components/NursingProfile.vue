@@ -672,7 +672,9 @@ import {quillEditor} from 'vue-quill-editor'
 // import {Button, Input,Select} from 'iview'
 import GoogleMap from './GoogleMap.vue' 
 
+
 export default {
+    
         components: {
             GoogleMap,
             quillEditor,
@@ -687,6 +689,8 @@ export default {
 
        data() {
             return {
+                
+              
                 lang:{
                     days: ['日', '月', '火', '水', '木', '金', '土'],
                     months: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
@@ -694,7 +698,24 @@ export default {
                         date: new Date().toISOString().slice(0,10),
                     }
                 },
-                isRotate1: false, isRotate2: false, isRotate3: false, isRotate4: false, isRotate5: false, fac_list: [], feature_list:[], medical_acceptance:[], nursing_info:[],nursing_info_push:[], staff_info:[], staff_info_push:[], acceptance: [], img_arr:[], video_arr:[], panorama_arr:[], tmp_list:[],test:[], cooperate_arr:[], cooperate_list:[], payment_arr:[],payment_list:[], profile_type:'nursing', profile_arr:[], test:'', station_list:[],chek_feature : [], panorama_count:'0', fac_types:[], stations:[], count:-1, v_count: -1, c_count: -1, p_count: -1, type:'', title:[], v_title:[], description:[], v_description:[], img:[], sub:[], coop_details:[], expense:[],remark:[], method:[],move_in:[],room_type:[],monthly_usage:[],breadth:[], security_deposit:[],other_use:[], rent:[], management_fee:[], food_expense:[],life_service:[],cost_other:[],return_system:[], depreciation_period:[],initial_depreciation:[],other_message:[], cooperate_list:[], payment_list:[],meth_details:[], content: '', editorOption:{ debug:'info', placeholder:'Type your post...', readonly:true, theme:'snow', }, feature_val: '', acceptance_remark_val: '', nursing_remarks_val: '', residence_form_val: '', customer_address_val:'', access_val: '', panorama_length: 0, new_panorama_img: [], ph_length: false, ph_num: false, city_id: 0, township_list: [], address_show: '', img_name:'',profile_img:'', pro_id: 0, btn_disable: false, mail_focus: false, loc: false,
+                isRotate1: false, isRotate2: false, isRotate3: false, isRotate4: false, isRotate5: false, fac_list: [], feature_list:[], medical_acceptance:[], nursing_info:[],nursing_info_push:[], staff_info:[], staff_info_push:[], acceptance: [], img_arr:[], video_arr:[], panorama_arr:[], tmp_list:[],test:[], cooperate_arr:[], cooperate_list:[], payment_arr:[],payment_list:[], profile_type:'nursing', profile_arr:[], test:'', station_list:[],chek_feature : [], panorama_count:'0', fac_types:[], stations:[], count:-1, v_count: -1, c_count: -1, p_count: -1, type:'', title:[], v_title:[], description:[], v_description:[], img:[], sub:[], coop_details:[], expense:[],remark:[], method:[],move_in:[],room_type:[],monthly_usage:[],breadth:[], security_deposit:[],other_use:[], rent:[], management_fee:[], food_expense:[],life_service:[],cost_other:[],return_system:[], depreciation_period:[],initial_depreciation:[],other_message:[], cooperate_list:[], payment_list:[],meth_details:[], content: '', 
+                editorOption:{ debug:'info', placeholder:'', readonly:true, theme:'snow',
+                modules: {
+                        toolbar: [
+                        ['bold', 'italic', 'underline', 'strike'],
+                        ['blockquote', 'code-block'],
+                        [{ 'header': 1 }, { 'header': 2 },{ 'header': 1 }],
+                        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                        [{ 'script': 'sub' }, { 'script': 'super' }],
+                        [{ 'indent': '-1' }, { 'indent': '+1' }],
+                        [{ 'direction': 'rtl' }],
+                        [{ 'color': [] }, { 'background': [] }],
+                        [{ 'align': [] }],
+                        ['clean'],
+                        ['link', 'image', 'video']
+                        ]
+                    },
+                        }, feature_val: '', acceptance_remark_val: '', nursing_remarks_val: '', residence_form_val: '', customer_address_val:'', access_val: '', panorama_length: 0, new_panorama_img: [], ph_length: false, ph_num: false, city_id: 0, township_list: [], address_show: '', img_name:'',profile_img:'', pro_id: 0, btn_disable: false, mail_focus: false, loc: false,
                 mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
             }
         },
@@ -704,6 +725,8 @@ export default {
         },
 
         created(){
+        
+        
             this.pro_id = Number(this.$route.params.id);
             this.type = this.$route.params.type;       
             this.initialCall();
