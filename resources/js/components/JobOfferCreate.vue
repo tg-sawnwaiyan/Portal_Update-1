@@ -710,7 +710,6 @@ import Autocomplete from 'vuejs-auto-complete'
                         else{
                           this.errors.customer_id = "";
                         }
-                        console.log(this.selectedValue);
                         if((this.selectedValue == -1 && this.profileName == '') || ( this.selectedValue == 0) )
                         {
                           this.errors.profile_id = "施設名は必須です。";
@@ -718,9 +717,6 @@ import Autocomplete from 'vuejs-auto-complete'
                         else{
                           this.errors.profile_id = "";
                         }
-
-                        console.log(this.errors.customer_id);
-                        console.log(this.errors.profile_id);
 
                         if (this.joboffer.title == '') {
                             this.errors.title = '施設種別名は必須です。';

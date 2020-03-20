@@ -184,7 +184,6 @@
                     .get('/api/customerinfo/' + this.cusid)
                     .then(response => {
                         this.customer_info = response.data;
-                        console.log(this.customer_info);
                         if(this.customer_info.recordstatus == '1') {
                             this.accout_status = '無効にする';
                             this.accout_status2 = '現在有効';
@@ -445,7 +444,6 @@
                                 this.axios
                                     .post('api/customer/account_update', fd)
                                     .then((response) => {
-                                        console.log("update",response);
                                         this.customer_info = response.data;                                       
                                         if(this.customer_info.recordstatus == '1') {
                                             this.accout_status = '無効にする';

@@ -1249,9 +1249,6 @@ export default {
                                 s_features.push($(this).val());
                         });
                     this.chek_feature.push({special_feature_id:s_features});
-                    console.log(this.chek_feature)
-
-
                     var acceptance=[];
                     $.each($("input:radio.medical-acceptance:checked"), function(){
                             var accept_val = $(this).val();

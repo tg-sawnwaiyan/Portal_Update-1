@@ -294,7 +294,6 @@
                             page = 1;
                         }
                       
-                        console.log("this.selectedValue",this.selectedValue);
                         let fd = new FormData();
                         fd.append("status",this.status)
                         fd.append("recordstatus",this.recordstatus);

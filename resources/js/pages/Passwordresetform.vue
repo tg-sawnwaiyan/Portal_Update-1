@@ -88,14 +88,8 @@
       //
     },
     created() {
-        console.log(this.$route.query.code)
         this.axios.get(`/api/getStatus/${this.$route.query.code}`).then(res => {
-            console.log(res.data)
-            // if(res.data.status == 1){
-              
-            //     this.has_success = true;
-            //     this.error_text = "パスワードの再設定が完了しました。";
-            // }
+
              if(res.data.status == 2){
 
                 this.has_success = true;
@@ -141,17 +135,13 @@
                     this.axios.post('/api/resetpassword',fData) 
                     .then(response => {
                         this.$loading(false);
-                        console.log(response.data) 
                         if(response.data == "success"){
                             this.has_success = true;
                             this.error_text = "パスワードの再設定が完了しました。";
                         }
                         else{
                             this.has_success = true;
-                            this.error_text = "このパスワード再設定用URLま無効です。";
-                            // this.error_text = "Token Expired. Send Mail again.";
-                            // this.is_disabled = true;
-                            // $("#changePass").css('cursor','not-allowed')
+                            this.error_text = "このパスワード再設定用URLま無効です。";                         
                         }
                       
                     })
@@ -174,14 +164,12 @@
                 this.errors.confirmPassword = '';
             }
             if(($('#password').val() != $('#confirm_pass').val()) ) {
-                console.log('a');
                 this.has_error = true;
                 this.error_text = "※パスワードが一致しません。 ";
                 this.is_disabled = true;
                 $("#changePass").css('cursor','not-allowed')
             }
             else {
-                  console.log('b');
                 this.has_error = false;
                 this.is_disabled = false;
                 $("#changePass").css('cursor','pointer')

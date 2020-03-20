@@ -881,12 +881,7 @@
                 $("#nursing-search").css("display", "none");
                 $("#filtertable").css("display", "none");
                 document.getElementById('search-free-word').value = '';
-                if(this.window.width > 768){
-                    console.log('window greater than 768')
-                }
-                else{
-                    console.log('window less than 768')
-                }
+                
             },
 
             moveCarousel(direction) {
@@ -1637,7 +1632,6 @@
                 this.currentPage = 0;
                 const page = Math.ceil(this.nus_data.length / this.size);
                 const currentPage = this.currentPage + 1; 
-                console.log('currentPage',currentPage)
                 if(currentPage == 1){
                     let el1 = document.querySelector('.el1');
                     let el2 = document.querySelector('.el2');

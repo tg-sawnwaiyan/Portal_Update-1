@@ -222,12 +222,15 @@
                                     <div class="job-header">
                                     <div class="row pad-free">
                                         <div class="col-md-10 col-sm-12">
+                                        <div>
+                                          <p class="job_id4"><span>施設番号:{{hos.profilenumber}}</span></p>
+                                        </div>
                                         <h5 class="hos-title">
                                             
                                             <router-link :to="{ path:'/profile/hospital/'+ hos.hos_id}" class="pseudolink">{{hos.name}}</router-link>
                                          
                                         </h5>
-                                                <p class="job_id4 search_jobid"><span>施設番号:{{hos.profilenumber}}</span></p>
+                                               
                                         </div>
                                         <div class="col-md-2 col-sm-12">
                                         <p class="float-right pc-768">
@@ -596,14 +599,11 @@ import bulcomponent from './bulcomponent.vue'
             else{
 
                 var fav_arr = [index];
-                console.log(fav_arr);
                 localStorage.setItem("hospital_fav", fav_arr);
 
                 // $("#hos-fav-local").html(fav_arr.length);
                 this.hosFav = fav_arr.length;
             }
-            console.log('local');
-                console.log(localStorage.getItem("hospital_fav"));
             $(".fav-hospital-link-box>a").css({'cursor':'pointer','pointer-events':'auto'});
         }
         else{
@@ -716,7 +716,6 @@ import bulcomponent from './bulcomponent.vue'
         _this.count = false;
         _this.ci = false;
      
-        console.log("parent",parentVue);
         localStorage.setItem('features', 'hospital');
         //clear all checkbox
         _this.townshipID = [];
@@ -766,16 +765,12 @@ import bulcomponent from './bulcomponent.vue'
             _this.cities = response.data.city
             _this.getCity = response.data.getCity
             _this.getTownships = response.data.getTownships
-            console.log(_this.getTownships.length);
             _this.special_features = response.data.special_features
             _this.subjects = response.data.subjects
-            console.log('sub',_this.subjects);
             _this.company = response.data.company
         //   _this.sub_child = response.data.sub_child
             _this.id = id;
             _this.array_len = ((_this.subjects.length)%3)==0?((_this.subjects.length)/3):Math.floor(((_this.subjects.length)/3)+1);
-            console.log(_this.array_len)
-
         })
 
         document.getElementById('search-free-word').value = '';

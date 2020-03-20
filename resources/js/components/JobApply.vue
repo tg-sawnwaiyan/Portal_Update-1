@@ -499,13 +499,10 @@ export default {
     // this.axios.get("/api/getskill").then(response => {
     //   this.Job.fields = response.data;
     // });
-    console.log(this.$route.params.job_id)
     this.axios.get("/api/getjobtitle/" + this.jobApply.job_id).then(response => {
-        console.log(response.data)
       this.Job.title = response.data[0].title;
     });
     this.axios.get("/api/hospital/citiesList").then(response => {
-        console.log(response.data)
       this.city_list = response.data;
     });
     if(this.jobApply.first_name != '' && this.jobApply.last_name != '' && this.jobApply.selectedValue != 0 && this.jobApply.str_address != '' && this.jobApply.email != '' && this.jobApply.terms == true){
@@ -581,7 +578,6 @@ export default {
         this.$loading(true);
 
       // $("#loader").css("display", "block");
-      console.log(this.jobApply)
       this.axios
         .post("/api/jobapply", this.jobApply)
         .then(response => {
@@ -757,7 +753,6 @@ export default {
         var code = 0;
         $.each(each_val, function (key, value) {
             code = value.charCodeAt();
-            console.log(code)
             // if (!(code > 12352 && code < 12447)) {
             if (!(code > 12448 && code < 12543)) {
                 _this.charErr = true;

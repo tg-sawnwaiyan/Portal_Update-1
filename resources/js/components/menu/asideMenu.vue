@@ -289,8 +289,6 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
     },
 created() {
     this.url_name = this.$auth.user().type_id == 2 ? 'hospital/': 'nursing/' + this.$auth.user().customer_id;
-    console.log("aside "+this.$auth.check())
-    console.log("aside visit "+this.visit)
     axios.interceptors.response.use((response) => {
         // console.log(response.data)
         if((response.data.status == "Token is Expired" || response.data.status == "Token is Invalid") && this.status == false ){
@@ -339,7 +337,6 @@ created() {
             }
         },
         onCollapse (collapsed) {
-      console.log(collapsed)
       this.collapsed = collapsed
     }
     }
