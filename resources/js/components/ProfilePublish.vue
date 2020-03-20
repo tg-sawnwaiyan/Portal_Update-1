@@ -1,12 +1,16 @@
 <template>
   <div id="app">
-    <div v-if="type == 'nursing'" id="nursingView">
-         
-        <!--panorama-->
-        <p class="job_id3 search_jobid"><span>施設番号:{{profilenumber}}</span></p>
-        <h4 class="profile-tit"  v-if="!currentPanoImage"> {{customer_name}}</h4> 
-        
+    <div v-if="type == 'nursing'" id="nursingView">         
+        <!--panorama-->     
+        <p class="job_id3" v-if="$auth.user().role == 2"><span>施設番号:{{profilenumber}}</span></p>
+        <div v-else>
+            <div class="pc-9-180">
+                <span class="customer-id ">施設番号:{{profilenumber}}</span>
+            </div>
+            <p class="job_id3 sp-9-180"><span>施設番号:{{profilenumber}}</span></p>
+        </div>
 
+        <h4 class="profile-tit"  v-if="!currentPanoImage"> {{customer_name}}</h4>     
 
         <div class="col-12 detail_profile_left pad-free"  v-if="currentPanoImage">
             <h4 class="profile-tit">{{customer_name}}</h4>
@@ -938,7 +942,14 @@
     </div>
 
     <div v-if="type == 'hospital'" id="hospitalView">
-            <p class="job_id search_jobid"><span>施設番号:{{profilenumber}}</span></p>
+         <p class="job_id3" v-if="$auth.user().role == 2"><span>施設番号:{{profilenumber}}</span></p>
+
+        <div v-else>
+            <div class="pc-9-180">
+                <span class="customer-id ">施設番号:{{profilenumber}}</span>
+            </div>
+            <p class="job_id3 sp-9-180"><span>施設番号:{{profilenumber}}</span></p>
+        </div>
             <h5 class="profile-tit"> {{customer_name}}</h5>
            <div class="tab typelabel nav-link fixed-nav" v-bind:style="{width:width}">
                
@@ -1216,7 +1227,7 @@
                 <div class="col-md-12 pad-free-750">
                     <h5 class="profile_subtit">動画</h5>
                     <div class="row m-0 gallery-list" v-if="videos.length>0">
-                        <div v-for="(video) in  videos" :key="video.id" class="col-6 col-lg-3 col-md-4 col-sm-4 m-b-10">
+                        <div v-for="(video) in  videos" :key="video.id" class="col-121 col-lg-3 col-md-4 col-sm-4 m-b-10">
                             <div class="gallery-item" style="height:135px;">
                                 <iframe :src="'https://www.youtube.com/embed/'+video.photo" controls></iframe>
                             </div>
@@ -1466,6 +1477,7 @@ export default {
     },
 
     created(){
+       
         // console.log('this.$auth.check',this.$auth.check());
         // if(!this.$auth.check()){
         //     this.show_comment = true;

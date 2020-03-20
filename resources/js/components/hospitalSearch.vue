@@ -225,9 +225,9 @@
                                         <h5 class="hos-title">
                                             
                                             <router-link :to="{ path:'/profile/hospital/'+ hos.hos_id}" class="pseudolink">{{hos.name}}</router-link>
-                                             <p class="job_id search_jobid"><span>施設番号:{{hos.profilenumber}}</span></p>
+                                         
                                         </h5>
-
+                                                <p class="job_id4 search_jobid"><span>施設番号:{{hos.profilenumber}}</span></p>
                                         </div>
                                         <div class="col-md-2 col-sm-12">
                                         <p class="float-right pc-768">
