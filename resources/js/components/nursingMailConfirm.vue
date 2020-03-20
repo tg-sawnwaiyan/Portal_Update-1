@@ -59,54 +59,54 @@
                             </div>
                             <div class="form-group m-0 row bd">                               
                                 <div class="col-md-3 col-sm-12 form-left">                                   
-                                <div class="row col-12">
-                                <div class="col-sm-3 col-md-6 p-0">
+                                <div class="row col-12 m-0 p-0">
+                                <div class="col-xl-3 col-lg-3 col-12 p-0">
                                      <label class="subtitle"><strong>ご住所</strong></label>
                                 </div>               
-                                <div class="col-sm-9 col-md-6 p-0 text-bold">                                                                   
-                                        <div class="text-left form-left pc-768"><label>郵便番号 </label></div>
-                                        <div class="text-left form-left pc-768"><label>都道府県</label></div>
-                                        <div class="text-left form-left pc-768"><label>市区町村</label></div>
-                                        <div class="text-left form-left pc-768"><label>番地（建物名)</label></div>
+                                <div class="col-xl-9 col-lg-9 col-12 p-0 text-bold form-result">                                                                   
+                                        <div class="form-left-child form-group pc-750"><label>郵便番号 </label></div>
+                                        <div class="form-left-child form-group pc-750"><label>都道府県</label></div>
+                                        <div class="form-left-child form-group pc-750"><label>市区町村</label></div>
+                                        <div class="form-left-child form-group pc-750"><label>番地（建物名)</label></div>
                                     
                                 </div>           
-                            </div>    
+                                </div>    
                                 </div>
                                 <div class="col-md-9 col-sm-12 form-right stepper-result-form">
-                                    <div class="row pl-4">
-                                        <div class="col-md-3 sp-768">
-                                            <strong>郵便番号 </strong>
+                                    <div class="form-group  rightwrap row pl-3">
+                                        <div class="col-md-3 p-0-990 sp-750">
+                                            <label for=""><strong>郵便番号 </strong></label>
                                         </div>
                                         <div class="col-md-9 p-0">
                                           <!-- <input type="text" name="outputpostal" id="outputpostal" class="mailbox m-b-10" disabled v-model="comments.postal" /> -->
-                                          <label class="mailbox pl-2 p-t-10">{{comments.postal}}</label>
+                                          <label class="mailbox pl-2 label-result">{{comments.postal}}</label>
                                         </div>
                                     </div>
                                     <div class="form-group row pl-4">
-                                        <div class="col-md-3 sp-768">
+                                        <div class="col-md-3 p-0-990 sp-750">
                                              <strong>都道府県</strong>
                                         </div>
                                         <div class="col-md-9 p-0">
                                             <!-- <input type="text" name="outputdivision" id="outputdivision" class="mailbox m-b-15" disabled v-model="comments.division" /> -->
-                                            <label class="mailbox pl-2">{{comments.division}}</label>
+                                            <label class="mailbox pl-2 label-result" >{{comments.division}}</label>
                                         </div>
                                     </div>
                                     <div class="form-group row pl-4">
-                                        <div class="col-md-3  sp-768">
+                                        <div class="col-md-3 p-0-990 sp-750">
                                              <strong>市区町村</strong>
                                         </div>
                                         <div class="col-md-9 p-0">
                                             <!-- <input type="text" name="outputcity" id="outputcity" class="mailbox" disabled v-model="comments.city" /> -->
-                                            <label class="mailbox pl-2">{{comments.townshipname}}</label>
+                                            <label class="mailbox pl-2 label-result">{{comments.townshipname}}</label>
                                         </div>
                                     </div>
                                     <div class="form-group row pl-4 mb-0">
-                                        <div class="col-md-3 sp-768">
+                                        <div class="col-md-3 p-0-990 sp-750">
                                              <strong>番地（建物名）</strong>
                                         </div>
                                         <div class="col-md-9 p-0">
                                             <!-- <input type="text" name="outputcity" id="outputcity" class="mailbox" disabled v-model="comments.city" /> -->
-                                            <label class="mailbox pl-2">{{comments.city}}</label>
+                                            <label class="mailbox pl-2 label-result" >{{comments.city}}</label>
                                         </div>
                                     </div>
                                 </div>
