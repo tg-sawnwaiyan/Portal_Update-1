@@ -8500,13 +8500,26 @@ border-bottom: none;
 }
 
 .job_id1 {
-    /* float: right; */
     padding: 2px 10px;
-    margin-top: -58px;
+    /* margin-top: -27px; */
     font-weight: bold;
     border: 1px solid #ddd;
     border-radius: 12px;
     font-size: 12px;
+    margin-left: -2px!important;
+    text-align: center;
+}
+
+.job_id2 {
+    padding: 2px 10px;
+    margin-top: 5px;
+    font-weight: bold;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 12px;
+    width: 65%;
+    margin-bottom: 11px;
+    text-align: center;
 }
 
 .job_title {
@@ -10467,6 +10480,18 @@ padding: 0;
     .p-0-990 {
         padding: 0px !important;
     }
+    /*nursing-search*/
+    .job_id2 {
+        padding: 2px 10px;
+        margin-top: 5px;
+        font-weight: bold;
+        border: 1px solid #ddd;
+        border-radius: 12px;
+        font-size: 12px;
+        width: 43%;
+        margin-bottom: 11px;
+        text-align: center;
+    }
     /*comment*/
     .cmt {
         text-align: left;
@@ -10997,6 +11022,14 @@ padding: 0;
         border: 1px solid #ddd;
         border-radius: 12px;
         font-size: 12px;
+    }
+    .search_jobid1 {
+        /* float: left; */
+        /* margin-top: -24px; */
+        width: 71%;
+        position: relative;
+        /* margin-left: 85px; */
+        margin-right: 78px;
     }
     .job_status {
         margin-top: 7px;
@@ -13188,4 +13221,142 @@ strong {
 .pro-1 {
     margin-top: -19px !important;
     display: block;
+}
+
+
+/*nursing-search*/
+
+@media only screen and (min-width: 320px) {
+    /*nursing-search*/
+    .job_id2 {
+        padding: 2px 10px;
+        margin-top: 5px;
+        font-weight: bold;
+        border: 1px solid #ddd;
+        border-radius: 12px;
+        font-size: 12px;
+        width: 71%;
+        margin-bottom: 11px;
+        text-align: center;
+    }
+    .job_id3 {
+        float: none !important;
+        padding: 2px 10px;
+        margin-top: 5px;
+        font-weight: bold;
+        border: 1px solid #ddd;
+        border-radius: 12px;
+        font-size: 12px;
+        margin-bottom: 10px;
+        width: 61%;
+        text-align: center;
+        margin-left: 113px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .search_jobid1 {
+        /* float: left; */
+        /* margin-top: -24px; */
+        width: 71%;
+        position: relative;
+        /* margin-left: 85px; */
+        margin-right: 96px;
+    }
+    /*nursing-search*/
+    .job_id2 {
+        padding: 2px 10px;
+        margin-top: 5px;
+        font-weight: bold;
+        border: 1px solid #ddd;
+        border-radius: 12px;
+        font-size: 12px;
+        width: 32%;
+        margin-bottom: 11px;
+        text-align: center;
+    }
+    .job_id3 {
+        float: right!important;
+        padding: 2px 10px;
+        margin-top: 5px;
+        font-weight: bold;
+        border: 1px solid #ddd;
+        border-radius: 12px;
+        font-size: 12px;
+        margin-bottom: 10px;
+        width: 33%;
+        text-align: center;
+        /* margin-left: 150px; */
+    }
+}
+
+@media screen and (min-width:1024px) {
+    .search_jobid1 {
+        float: left;
+        /* margin-top: -31px; */
+        width: 49%;
+        position: relative;
+        /* margin-left: 85px; */
+        /* margin-right: -65px; */
+        margin-left: 192px;
+    }
+    .job_id2 {
+        padding: 2px 10px;
+        margin-top: 5px;
+        font-weight: bold;
+        border: 1px solid #ddd;
+        border-radius: 12px;
+        font-size: 12px;
+        width: 22%;
+        margin-bottom: 11px;
+        text-align: center;
+    }
+    .job_id3 {
+        float: right!important;
+        padding: 2px 10px;
+        margin-top: 5px;
+        font-weight: bold;
+        border: 1px solid #ddd;
+        border-radius: 12px;
+        font-size: 12px;
+        margin-bottom: 10px;
+        width: 22%;
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .search_jobid1 {
+        width: 53%;
+        margin-left: 153px;
+    }
+    .job_id2 {
+        padding: 2px 10px;
+        margin-top: 5px;
+        font-weight: bold;
+        border: 1px solid #ddd;
+        border-radius: 12px;
+        font-size: 12px;
+        width: 31%;
+        margin-bottom: 11px;
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 1440px) and (max-width:1280px) {
+    .search_jobid1 {
+        width: 53%;
+        margin-left: 153px;
+    }
+    .job_id2 {
+        padding: 2px 10px;
+        margin-top: 5px;
+        font-weight: bold;
+        border: 1px solid #ddd;
+        border-radius: 12px;
+        font-size: 12px;
+        width: 31%;
+        margin-bottom: 11px;
+        text-align: center;
+    }
 }

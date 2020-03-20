@@ -116,7 +116,7 @@
                         </div>
                     </div>    
                 </div>
-                 <div class="wt-4" v-if="this.$route.path !== '/'"> 
+                 <div class="wt-4" v-if="this.$route.path !== '/' && this.$route.path != '/nursingFavouriteMail'"> 
                  <span @click="$router.go(-1);">
                     <div style="margin-left:10px;">
                         <i class="fas fa-arrow-left"></i> 

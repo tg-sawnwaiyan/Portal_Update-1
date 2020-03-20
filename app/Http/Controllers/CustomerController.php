@@ -397,6 +397,7 @@ class CustomerController extends Controller
 
     public function accountStatusUpdate(Request $request)
    {
+    
        $request = $request->all();
     //    $user = User::find(auth('api')->user()->id);
        $cusId = $request['cus_id'];
@@ -411,14 +412,20 @@ class CustomerController extends Controller
        $customer = Customer::find($cusId);
        $table_name = $customer->type_id == 2 ? 'hospital_profiles': 'nursing_profiles';
 
-        if($request['status'] == '1') {
+        if($request['status'] == '1') { //de
+           
             $customer->recordstatus = '0';    
             $sql = "UPDATE $table_name SET activate = (CASE activate WHEN 1 THEN 2 ELSE 0 END) WHERE $table_name.customer_id = $cusId";
+            $sql1 = "UPDATE users SET recordstatus = 0 where customer_id = ".$cusId;
+            DB::update($sql1);
             DB::update($sql);           
         }
-        if($request['status'] == '0') {
+        if($request['status'] == '0') { //ac
+         
             $customer->recordstatus = '1';
             $sql = "UPDATE $table_name SET activate = (CASE activate WHEN 2 THEN 1 ELSE 0 END) WHERE $table_name.customer_id = $cusId";
+            $sql1 = "UPDATE users SET recordstatus = 1 where customer_id = ".$cusId;
+            DB::update($sql1);
             DB::update($sql);  
         }
         $customer->save();            
