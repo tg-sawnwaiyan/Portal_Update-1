@@ -1345,7 +1345,6 @@
                 .get('/api/get_latest_posts_by_catId/'+searchword)
                 .then(response => {
                     this.$loading(false);
-                    console.log("response.data.length",response.data.length);
                     if(response.data.length>0) {
                         this.post_groups = this.groupBy(response.data, 'name');
                     } else {
@@ -1453,11 +1452,7 @@
             searchCategory() {
                 this.$loading(true);
                 if ($('#search-free-word').val() == null || $('#search-free-word').val() == '' || $('#search-free-word').val() == 'null') {
-            console.log("statusBar",this.search_word);
                     this.clearSearch();
-
-                     console.log('null');
-
                 } else {
 
                     this.status = 1;
@@ -1479,11 +1474,7 @@
             },
 
             imgUrlAlt(event) {
-
-                console.log(event.target)
-
                 event.target.src = "/images/noimage.jpg"
-
             },
 
             scrollTo(element, scrollPixels, duration) {
@@ -1557,17 +1548,10 @@
             },
 
             swipeRight() {
-
                 const content = this.$refs.content;
-
                 this.scrollTo(content, 300, 800);
-
                 this.is_cat_slided = true;
-                console.log('right');
-              
-
                 this.computed_width = '98%';
-
             }           
 
         }

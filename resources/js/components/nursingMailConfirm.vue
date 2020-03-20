@@ -273,8 +273,6 @@
         },
         created() {
             this.comments = JSON.parse(localStorage.getItem("inputValue"));
-          
-            console.log(this.comments);
             // if (this.comments.present) {
             //   this.comments.present = "する";
             // } else {

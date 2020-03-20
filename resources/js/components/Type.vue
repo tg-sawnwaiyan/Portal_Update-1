@@ -122,7 +122,6 @@ export default {
             .post("/api/types/add", this.Type)
             .then(response => {
               this.name = "";
-              console.log(response);
               this.$swal({
                 position: "top-end",
                 type: "作成済",

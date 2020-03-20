@@ -431,7 +431,6 @@ export default {
       this.axios
         .post("/api/nursing_history/" + local_storage)
         .then(response => {
-            console.log(response.data)
             if(response.data.length>0) {
                 this.nur_profiles = response.data;
                 if(response.data.length<this.his_nus) {

@@ -404,11 +404,7 @@
     },
 
     mounted() {
-        console.log("or issubmenu",this.isSubmenu)
-        if(localStorage.getItem("isSubmenu")){
-            console.log("issubmenu",JSON.parse(localStorage.getItem("isSubmenu")))
-            // console.log("issubmenu",[JSON.parse(localStorage.getItem("isSubmenu"))])
-        }
+        
         if(localStorage.getItem("visit")){
             this.visit = localStorage.getItem("visit");
         }

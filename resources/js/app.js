@@ -15,10 +15,10 @@ import { BulmaAccordion, BulmaAccordionItem } from "vue-bulma-accordion";
 import Slick from 'vue-slick';//vue slick
 import VueAnalytics from 'vue-analytics'
 
-Vue.use(VueAnalytics, {
-  id: 'UA-161193570-2',
-  router,
-})
+// Vue.use(VueAnalytics, {
+//   id: 'UA-161193570-2',
+//   router,
+// })
 Vue.use(Slick);
 Vue.use(BulmaAccordion, BulmaAccordionItem)
 Vue.use(Vuex);

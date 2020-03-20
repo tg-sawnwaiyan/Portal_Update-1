@@ -354,7 +354,6 @@
                     this.axios.get("/api/job/index/"+this.type+"/"+this.pro_id).then(response => {
                         this.$loading(false);
                         this.jobs = response.data.profilejob;
-                        console.log('result',this.jobs)
                         this.customer_id = response.data.user;
                         if(this.jobs.data){
                             if(this.jobs.data.length != 0){
@@ -370,7 +369,6 @@
                     });
                 },
                 jobToggle(id) {
-                    console.log(id);
                         var class_by_id = $('#icon' + id).attr('class');
                         if (class_by_id == "fas fa-sort-down animate rotate") {
                             $('#icon' + id).removeClass("fas fa-sort-down animate rotate");
@@ -481,7 +479,6 @@
                          $("html, body").animate({ scrollTop: 0 }, "slow");
                         this.axios.post("/api/job/search?page="+page, fd).then(response => {
                             this.$loading(false);
-                            console.log("response.data.jobsearch",response.data.jobsearch);
                             this.jobs = response.data.jobsearch;
                            
                             if(this.jobs.data.length != 0){

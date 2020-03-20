@@ -213,7 +213,6 @@ export default {
   methods: {   
     imgUrlAlt(event) { 
       this.noimage = true;  
-      console.log("this.noimgae",this.noimage);
       event.target.src = "/images/noimage.jpg"
     },
 

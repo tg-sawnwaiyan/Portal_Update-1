@@ -130,7 +130,6 @@
          this.btn_color='btn login_btn_admin';
          this.cus = false;
         $('#altrole').addClass('admin_user_card');
-         console.log('ADMIN LOGIN');
        }else {
          this.name ='事業者ログイン';
          this.btn_color='btn login_btn';
