@@ -8659,7 +8659,9 @@ border-bottom: none;
     color: #c40000;
     font-weight: bold;
 }
-
+.nus_phone_none{
+    display: none;
+}
 .hos_phone i,
 .sp_hos_phone i,
 .nus_phone i {
@@ -13346,7 +13348,7 @@ strong {
 
 @media screen and (min-width:1024px) {
     .search_jobid1 {
-        float: left;
+        /* float: left; */
         /* margin-top: -31px; */
         /* width: 49%; */
         position: relative;
