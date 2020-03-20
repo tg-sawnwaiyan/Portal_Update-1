@@ -11,17 +11,18 @@
       
      
     </div>
-      <div class="col-12 m-b-15">
+      <div class="col-12 m-b-15" v-if="job_details.length>0">
         <h5 class="subtitle" style=""><strong>施設名:</strong> {{job_details[0].cusname}} </h5>
       </div>
     
     <div class="row m-0" v-for="jobDetail in job_details" :key="jobDetail.id">
      
       <div class="col-12 p0-480">
-        <h4 class="job-title-color">{{jobDetail.title}} <label class="job_id" style="color:#000;">求人番号: {{jobDetail.jobid}}</label></h4>
+        <h4 class="job-title-color">{{jobDetail.title}} </h4>
+        <label class="job_id" style="color:#000;">求人番号: {{jobDetail.jobid}}</label>
 
       </div>
-      <div class="col-sm-10 col-12 offset-sm-1 p0-480">
+      <div class="col-xl-10 col-md-12 col-12 offset-xl-1 p0-480">
         <!-- <img src="/images/img1.jpg" class="img-responsive" style="width:150px;"> -->
 
         <div class="form-wrap mt-3 mb-3">
@@ -136,6 +137,13 @@ export default {
       .get(`/api/job_details/${this.$route.params.id}`)
       .then(response => {
         this.job_details = response.data;
+        // console.log("res",response.data);
+        var catname = this.job_details[0].type_id == 2? '病院':'介護';
+
+        this.$ga.event({
+          eventCategory: '求人',
+          eventAction: catname+'/'+this.job_details[0].jobid+'/'+this.job_details[0].title,
+        }) 
       });
     this.job_id = this.$route.params.id;
   },

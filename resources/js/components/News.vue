@@ -1154,6 +1154,10 @@
     },
 
     created() {
+        this.$ga.event({
+            eventCategory: 'トップページ',
+            eventAction: '-',
+        })
         // console.log("role",this.$auth.user().customer_id)
         this.$nextTick(() => {
             if(this.$refs.infoBox){

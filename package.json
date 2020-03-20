@@ -47,6 +47,7 @@
         "request": "^2.88.0",
         "slick-carousel": "^1.8.1",
         "tslib": "^1.10.0",
+        "vue-analytics": "^5.22.1",
         "vue-axios": "^2.1.5",
         "vue-bulma-accordion": "^0.4.8",
         "vue-fixed-header": "^3.2.13",

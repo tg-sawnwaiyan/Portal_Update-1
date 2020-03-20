@@ -160,6 +160,29 @@ import {quillEditor} from 'vue-quill-editor'
                         body: "",
                         category_id: "",
                     },
+                     editorOption:{
+                    debug:'info',
+                    placeholder:'',
+                    readonly:true,
+                    theme:'snow',
+                    modules: {
+                        toolbar: [
+                        ['bold', 'italic', 'underline', 'strike'],
+                        ['blockquote', 'code-block'],
+                        [{ 'header': 1 }, { 'header': 2 }],
+                        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                        [{ 'script': 'sub' }, { 'script': 'super' }],
+                        [{ 'indent': '-1' }, { 'indent': '+1' }],
+                        [{ 'direction': 'rtl' }],
+                        [{ 'color': [] }, { 'background': [] }],
+                        [{ 'align': [] }],
+                        ['clean'],
+                        ['link', 'image', 'video']
+                        ]
+                    },
+                    access_val: '',
+                    detail_info: '', stations:[], station_list:[],
+            },
                     news: {
                         title: '',
                         mainPoint: '',
