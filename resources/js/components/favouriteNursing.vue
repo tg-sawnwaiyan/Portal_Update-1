@@ -246,7 +246,7 @@
                         </div>
                         <div class="float-right check-resize">
                             
-                            <label class="btn my-sm-0 all-btn secondary-bg-color btn-secondary control controlinner--checkbox fnt-check">
+                            <label class="btn my-sm-0 all-btn btn-secondary control controlinner--checkbox fnt-check" style="background-color:#63b7ff;">
                                 <input type="checkbox" @change="checkAll()" class="check-all-btn" />
                                 <span class="checkmark m-l-10"></span>すべてチェック
                                 <div class="controlinner__indicator" style="top:7px;left:3px;margin-left:5px;"></div>

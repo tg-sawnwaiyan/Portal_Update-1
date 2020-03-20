@@ -3,7 +3,7 @@
     <div v-if="type == 'nursing'" id="nursingView">
          
         <!--panorama-->
-        <p class="job_id search_jobid"><span>施設番号:{{profilenumber}}</span></p>
+        <p class="job_id3 search_jobid"><span>施設番号:{{profilenumber}}</span></p>
         <h4 class="profile-tit"  v-if="!currentPanoImage"> {{customer_name}}</h4> 
         
 

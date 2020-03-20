@@ -199,10 +199,15 @@ export default {
       .get(`/api/newdetails/${this.$route.params.id}`)
       .then(response => {
         this.newdetails = response.data.news;          
-        this.getData = true;      
+        this.getData = true; 
+        this.$ga.event({
+          eventCategory: 'ニュース',
+          eventAction: 'ニュース'+'\xa0\xa0\xa0\xa0\xa0'+this.newdetails[0].cat_name+'\xa0\xa0\xa0\xa0\xa0'+this.newdetails[0].title,
+          eventLabel: this.newdetails[0].title,
+        })     
       });   
      
-    // alert(this.$route.params.id);
+    // alert(this.$route.params.id);e
     this.relatedNews(this.$route.params.id);
   },
 
