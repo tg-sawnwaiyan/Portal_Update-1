@@ -56,7 +56,7 @@
                                         <td>{{feature.name}}</td>
                                         <td>{{feature.short_name}}</td>
                                         <!-- <td>{{feature.type}}</td> -->
-                                        <td class="text-right pr-4">
+                                        <td class="text-right">
                                             <!-- <button class="btn btn-sm btn-primary all-btn" v-if="getUser.status == 1">Approved</button> -->
                                             <router-link :to="{name:'specialfeature', params:{id : feature.id}}" class="btn edit-borderbtn">編集</router-link>
                                             <button class="btn text-danger delete-borderbtn" @click="deleteFeature(feature.id,feature.type)">削除</button>
