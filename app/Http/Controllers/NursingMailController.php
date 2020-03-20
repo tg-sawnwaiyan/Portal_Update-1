@@ -38,32 +38,11 @@ class NursingMailController extends Controller
      */
     public function mail(Request $request){
       
-        // $favourite_name = $request->fav_name;
-        // return $favourite_name[1];
-      
-    //    for($i = 1;$i< count($request->arr_reserve) ;$i++)
-    //    {
-    //        if($request->arr_reserve[$i] == true)
-    //        {
-    //            return 'true';
-    //        }else{
-    //            return 'false';
-    //        }
-    //    }
-        // if($request->arr_reserve[0])
-        // {
-        //     $request->arr_reserve[1] = "sample";
-        // }
-        // else{
-        //     $request->arr_reserve[1] = "no result";
-        // }
-        //  return $request;
         $favourite_mail = $request->fav_mail;
         $favourite_id = $request->fav_id;
         $favourite_name = $request->fav_name;
        
         $fav_documentation = $request->arr_document;
-        // return $request;
      
          for($i = 1; $i<count($favourite_id); $i++){
             
@@ -77,7 +56,6 @@ class NursingMailController extends Controller
                    $name_arr[] = $request->fav_name[$i];
                 
                    $request->fav_name_copy = $name_arr;
-                 
                     \Mail::to($favourite_mail[$i])->send(new nursingMailing($request));
                 } 
               
@@ -86,12 +64,6 @@ class NursingMailController extends Controller
     
     }      
 
-
-
-        // $admin_email = 'thuzar.ts92@gmail.com';
-        // $admin_email = 'susandiaung565@gmail.com';
-        // $admin_email = 'thuzar@management-partners.co.jp';
-        // $admin_email = 'management.partner87@gmail.com ';
         $admin_email = 'admin@t-i-s.jp';
        
         \Mail::to($admin_email)->send(new adminNursingMail($request));

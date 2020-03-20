@@ -222,12 +222,15 @@
                                     <div class="job-header">
                                     <div class="row pad-free">
                                         <div class="col-md-10 col-sm-12">
+                                        <div>
+                                          <p class="job_id4"><span>施設番号:{{hos.profilenumber}}</span></p>
+                                        </div>
                                         <h5 class="hos-title">
                                             
                                             <router-link :to="{ path:'/profile/hospital/'+ hos.hos_id}" class="pseudolink">{{hos.name}}</router-link>
                                          
                                         </h5>
-                                                <p class="job_id4 search_jobid"><span>施設番号:{{hos.profilenumber}}</span></p>
+                                               
                                         </div>
                                         <div class="col-md-2 col-sm-12">
                                         <p class="float-right pc-768">
