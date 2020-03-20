@@ -12,13 +12,20 @@ import Vuex from 'vuex';
 import * as VueGoogleMaps from "vue2-google-maps";
 import DatePicker from 'vue2-datepicker';
 import { BulmaAccordion, BulmaAccordionItem } from "vue-bulma-accordion";
-import Slick from 'vue-slick';//vue slick
+import Slick from 'vue-slick'; //vue slick
 import VueAnalytics from 'vue-analytics'
 
+<<<<<<< HEAD
 Vue.use(VueAnalytics, {
 //   id: 'UA-161193570-2',
   router,
 })
+=======
+// Vue.use(VueAnalytics, {
+//   id: 'UA-161193570-2',
+//   router,
+// })
+>>>>>>> 100f34d70cc8ada1bc5888f715ef8abaeb3ee3b9
 Vue.use(Slick);
 Vue.use(BulmaAccordion, BulmaAccordionItem)
 Vue.use(Vuex);
@@ -36,7 +43,7 @@ let globalData = new Vue({
         hosHis: 0,
         visit: 'true',
         loginuser: 'false',
-        test:[]
+        test: []
     }
 });
 Vue.mixin({
@@ -118,7 +125,7 @@ Vue.use(VueLoading, {
 
 window.events = new Vue();
 Vue.use(VueClazyLoad)
-// Vue.use(VueRouter);
+    // Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
 Vue.use(VueGoogleMaps, {
     load: {

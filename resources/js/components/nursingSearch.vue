@@ -195,11 +195,12 @@
                                                                     <p class="item-name"><img :src="'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld='+items.alphabet+'|fd0e0e|ffffff'" alt="">
                                                                         <router-link :to="{ path:'/profile/nursing/'+items.nursing_id}" class="pseudolink" style="font-weight:bold;color:#63b7ff !important">{{items.name}}</router-link>
                                                                     </p>
+                                                                   
+                                                                    <p class="job_id1 search_jobid1 search_jobid"><span>施設番号:{{items.profilenumber}}</span></p>
+                                                                
                                                                     <p>{{items.city_name}} <i class="fas fa-angle-double-right" style="color:#b9b5b5;"></i> {{items.township_name}}</p>
                                                                 </div>
-                                                                <div>
-                                                                    <p class="job_id1 search_jobid1 search_jobid"><span>施設番号:{{items.profilenumber}}</span></p>
-                                                                </div>
+                                                                
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -486,9 +487,11 @@
                                             <div class="job-header">
                                                 <div class="row pad-free">
                                                     <div class="col-lg-9 col-sm-9">
+                                                    <p class="job_id2"><span> 施設番号:{{nus.profilenumber}}</span></p>
                                                     <h5 class="nur-tit">
                                                         <router-link :to="{ path:'/profile/nursing/'+ nus.nursing_id}" class="pseudolink" style="font-weight:bold;">{{nus.name}}</router-link>
                                                     </h5>
+                                                  
                                                    
 
                                                     <div class="d-flex sp-414" id="sp-414-block">
@@ -511,7 +514,7 @@
 
                                             <p class="m-b-10"><span class="job_ico"><i class="fa fa-map-signs"></i></span>{{nus.city_name}} <i class="fas fa-angle-double-right" style="color:#b9b5b5;"></i> {{nus.township_name}} </p>
                                             
-                                            <p class="job_id2"><span> 施設番号:{{nus.profilenumber}}</span></p>
+                                            
                                             
                                             <div class="col-12 pad-free m-b-10 clearfix">
                                                 <span class="num-room"> {{nus.num_rooms}} </span>
@@ -1265,7 +1268,7 @@
                                     '</td>' +
                                     '</tr>' +
                                     '<tr>' +
-                                    '<td colspan="2"><p class="job_id search_jobid"><span> 施設番号:' +
+                                    '<td colspan="2"><p class="job_id search_jobid" style="float:left"><span> 施設番号:' +
                                      item[i]['profilenumber']+
                                     '</span></p>'+
                                     '</td>' +
