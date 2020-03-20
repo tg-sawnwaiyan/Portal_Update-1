@@ -11,12 +11,12 @@
                 <div v-else class="container-fuid">
                     <h4 class="main-color mb-3">事業者検索 </h4>
                     <div class="row mb-4 advanced-search">
-                        <div class="col-xl-8 col-md-7">                      
+                        <div class="col-xl-8 col-md-12">                      
                             <autocomplete id="cusname"  placeholder="事業者名で検索" input-class="form-control" :source=customerList :results-display="formattedDisplay" @clear="clearcustomer()"  @selected="getselected($event)">
                             </autocomplete>                           
                         </div> 
                        
-                        <div class="col-xl-4 col-md-5 p-t-768 form-check form-check-inline choose-item">                          
+                        <div class="col-xl-4 col-md-12 p-t-1024 form-check form-check-inline choose-item m-t-10">                          
                             <label class="form-check-label control control--checkbox"  style="padding-left:5px;">
                             <input type="checkbox" class="form-check-input" value="1"   v-model="recordstatus" @change="searchCustomer()">
                             有効
