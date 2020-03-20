@@ -1227,7 +1227,7 @@
                 <div class="col-md-12 pad-free-750">
                     <h5 class="profile_subtit">動画</h5>
                     <div class="row m-0 gallery-list" v-if="videos.length>0">
-                        <div v-for="(video) in  videos" :key="video.id" class="col-121 col-lg-3 col-md-4 col-sm-4 m-b-10">
+                        <div v-for="(video) in  videos" :key="video.id" class="col-12 col-lg-3 col-md-4 col-sm-4 m-b-10">
                             <div class="gallery-item" style="height:135px;">
                                 <iframe :src="'https://www.youtube.com/embed/'+video.photo" controls></iframe>
                             </div>
