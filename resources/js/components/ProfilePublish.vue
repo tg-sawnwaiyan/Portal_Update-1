@@ -10,10 +10,10 @@
             <p class="job_id3 sp-9-180"><span>施設番号:{{profilenumber}}</span></p>
         </div>
 
-        <h4 class="profile-tit"  v-if="!currentPanoImage"> {{customer_name}}</h4>     
+        <h4 class="profile-tit"  v-if="!currentPanoImage && nus_pro[0]"> {{nus_pro[0].name}}</h4>     
 
         <div class="col-12 detail_profile_left pad-free"  v-if="currentPanoImage">
-            <h4 class="profile-tit">{{customer_name}}</h4>
+            <h4 class="profile-tit" v-if="nus_pro[0]">{{nus_pro[0].name}}</h4>
 
             <div class="thumbnail-img pc-414" style="padding:0px;border:none;">
                 <div class="card-carousel" style="background:#fff;">
@@ -92,7 +92,7 @@
 
 
             <div class="row m-lr-0 ele pt-2"  id="element1">
-                 <div class="row col-12 list-wrap m-lr-0 white-bg-color" v-for="cust in customer" :key="cust.id">
+                 <div class="row col-12 list-wrap m-lr-0 white-bg-color" v-for="cust in nus_pro" :key="cust.id">
                     <!--for slideimage-->
                     <div class="col-md-5 detail_profile_left col-slg-12 pad-free-750">
                            <div class="col-12 pad-free sp-1024">
@@ -950,7 +950,7 @@
             </div>
             <p class="job_id3 sp-9-180"><span>施設番号:{{profilenumber}}</span></p>
         </div>
-            <h5 class="profile-tit"> {{customer_name}}</h5>
+            <h5 class="profile-tit" v-if="hospitals[0]"> {{hospitals[0].name}}</h5>
            <div class="tab typelabel nav-link fixed-nav" v-bind:style="{width:width}">
                
                 <button v-scroll-to="{ el: '#element1'}" class="top-fixed-btn" @click="activate(1)" :class="{ active : active_el == 1 }">
@@ -972,7 +972,7 @@
 
             <div class="row ele m-lr-0 pt-2" id="element1">
                 <!-- ee-->
-                 <div class="row col-12 list-wrap m-lr-0 white-bg-color" v-for="cust in customer" :key="cust.id">
+                 <div class="row col-12 list-wrap m-lr-0 white-bg-color" v-for="cust in hospitals" :key="cust.id">
                     <!--for slideimage-->
                     <div class="col-md-5 col-slg-12 col-sm-12 detail_profile_left pad-free-750">
                             <div class="col-12 pad-free sp-1024">
@@ -1113,15 +1113,14 @@
                    <p class="no-data-color">データがありません。</p>
                 </div>
                 </div>
-
              
             <!--end ee-->
 
                 <div class="col-12 m-b-20 pad-free-750">
                     <h5 class="profile_subtit">医院からのお知らせ </h5>
 
-                    <p v-for="hospital in hospitals" :key="hospital.id" class="col-12">
-                        <span v-if="hospital.details_info"><p v-html="hospital.details_info"></p></span>
+                    <p class="col-12">
+                        <span v-if="hospitals[0].details_info"><p v-html="hospitals[0].details_info"></p></span>
                         <span v-else><p class="no-data-color">データがありません。</p></span>
                     </p>
                 </div>
@@ -1171,16 +1170,10 @@
                         </div>
 
                         <div class="col-md-3 col-sm-12 pad-free-750">
-
-                            <div v-for="hospital in hospitals" :key="hospital.id">
-
-                                <p><strong class="font-weight-bold">休診日: </strong>
-                                    <span v-if="hospital.closed_day"><font>{{hospital.closed_day}}</font></span>
-                                    <span v-else> <p class="no-data-color">データがありません。</p> </span>
-                                </p>
-
-                            </div>
-
+                            <p><strong class="font-weight-bold">休診日: </strong>
+                                <span v-if="hospitals[0].closed_day"><font>{{hospitals[0].closed_day}}</font></span>
+                                <span v-else> <p class="no-data-color">データがありません。</p> </span>
+                            </p>
                         </div>
                     </div>
 
@@ -1200,7 +1193,6 @@
                                 <span v-else>
                                     <p> - </p>
                                 </span>
-                                <!-- <i class="fa fa-circle-o fa-stack-2x" v-if="fac.id === hosfacility.id"></i>  -->
                             </div>
                         </div>
                     </div>
@@ -1388,7 +1380,6 @@ export default {
             markers: [
                 {  position: { lat: 0, lng: 0 }  },
             ],
-            customer_name:'',
             am_arr:[],
             images:[],
             videos:[],
@@ -1398,7 +1389,6 @@ export default {
             center: { lat: 0, lng: 0 },
             address: '',
             google:[],
-            customer:[],
             hosfacilities:[],
             specialfeature:[],
             nusfacilities:[],
@@ -1476,18 +1466,7 @@ export default {
         loginuser:Boolean,
     },
 
-    created(){
-       
-        // console.log('this.$auth.check',this.$auth.check());
-        // if(!this.$auth.check()){
-        //     this.show_comment = true;
-        // }else{
-        //     if(this.$auth.user().role == 2){
-        //         if(this.$auth.user().customer_id){
-
-        //         }
-        //     }
-        // }
+    created(){       
         this.pro_id = Number(this.$route.params.id);
         this.type = this.$route.params.type;
 
@@ -1529,19 +1508,7 @@ export default {
                 this.view_pro_id = nus_fav_arr.includes(this.pro_id);
             }
         }
-        if(!this.$auth.check()){
-            this.show_comment = true;
-        }else{
-            if(this.$auth.user().role == 2){
-                this.show_comment = false;
-            }else{
-                if(this.$auth.user().customer_id == this.pro_id){
-                    this.show_comment = false;
-                }else{
-                    this.show_comment = true;
-                }
-            }
-        }
+        
         //
         this.axios.get("/api/advertisement/ads").then(response => {
             this.ads_list = response.data;
@@ -1631,12 +1598,10 @@ export default {
                         }
                     });
                     if (cur_pos >= 100) {
-                        // $(".fixed-nav").css({"position": "fixed","top": admin_top ,"display": "inline-flex","width": "100%"});
                         $(".fixed-nav").css({"position": "fixed","top": "40px" ,"display": "inline-flex","width": "100%"});
                     } else {
                         $(".fixed-nav").css({"position": "unset", "top": "unset"});
                     }
-                    //  $(".fixed-nav").css({"position": "unset","top":"unset"});
                 });
                 } else {
                     $(document).scroll(function() {
@@ -1650,7 +1615,6 @@ export default {
                         });
                         if (cur_pos >= 100) {
                             $(".fixed-nav").css({"position": "fixed","top": main_top ,"display": "inline-flex","width": "100%"});
-                            // $(".fixed-nav").css({"position": "fixed","top": "41px" ,"display": "inline-flex","width": "100%"});
                         } else {
                             $(".fixed-nav").css({"position": "unset", "top": "unset", "display": "none"});
                         }
@@ -1662,31 +1626,32 @@ export default {
 
         if(this.type == "nursing")
         {
-            this.axios.get('/api/profile/customer/'+this.pro_id+'/'+this.type) .then(response => {
-                this.customer = response.data;
-                this.customer_name = response.data[0].name;
-            });
+            // this.axios.get('/api/profile/customer/'+this.pro_id+'/'+this.type) .then(response => {
+            //     this.customer = response.data;
+            // });
             this.axios.get('/api/profile/nursing/'+this.pro_id) .then(response => {
-        
-                // this.nursing_profiles = response.data.feature;
-                // this.nus_method= response.data.method;
               
                 this.profilenumber = response.data.profilenumber[0]['profilenumber'];
-                this.nus_pro = response.data.nurselatlong[0];
+                this.nus_pro = response.data.nurselatlong;
+                console.log("nuspro",this.nus_pro)
                 this.google = response.data.nurselatlong;
-                if(this.nus_pro['address'] == null){
-                        this.nus_pro['address'] = '';
+                if(this.$auth.user().customer_id == this.nus_pro.customer_id){
+                    this.show_comment = false;
+                }
+
+                if(this.nus_pro[0]['address'] == null){
+                        this.nus_pro[0]['address'] = '';
                 }
                 this.address = response.data.address;
 
                 
-                if(this.nus_pro['address'] == null){
-                        this.nus_pro['address'] = '';
+                if(this.nus_pro[0]['address'] == null){
+                        this.nus_pro[0]['address'] = '';
                 }
 
-                this.customer[0]['address'] = this.address[0]['city_name'] + this.address[0]['township_name'] +this.nus_pro['address'];
+                this.nus_pro[0]['address'] = this.address[0]['city_name'] + this.address[0]['township_name'] +this.nus_pro[0]['address'];
 
-                this.google[0]['address'] = this.address[0]['city_name'] + this.address[0]['township_name'] +this.nus_pro['address'];
+                this.google[0]['address'] = this.address[0]['city_name'] + this.address[0]['township_name'] +this.nus_pro[0]['address'];
                 
                 this.nusfacilities = response.data.facility;
 
@@ -1742,7 +1707,7 @@ export default {
 
                 this.$ga.event({
                     eventCategory: '施設',
-                    eventAction: catname+' / '+this.profilenumber+' / '+this.nus_pro.name,
+                    eventAction: catname+' / '+this.profilenumber+' / '+this.nus_pro[0].name,
                 })
             });
 
@@ -1769,20 +1734,23 @@ export default {
         }
 
         else{
-            this.axios.get('/api/profile/customer/'+this.pro_id+'/'+this.type).then(response => {
-                this.customer = response.data;
-                this.customer_name = response.data[0].name;
-            });
+            // this.axios.get('/api/profile/customer/'+this.pro_id+'/'+this.type).then(response => {
+            //     this.customer = response.data;
+            // });
             this.axios.get('/api/profile/hospital/'+this.pro_id).then(response => {    
                 this.profilenumber = response.data.profilenumber[0]['profilenumber'];                  
                 this.google = response.data.hospital;
                 this.address = response.data.address;
                 this.hospitals = response.data.hospital;
+                console.log("hos",this.hospitals)
+                if(this.$auth.user().customer_id == this.hospitals[0].customer_id){
+                    this.show_comment = false;
+                }
                 if(this.hospitals[0]['address'] == null){
                     this.hospitals[0]['address'] = '';
                 }
 
-                this.customer[0]['address'] = this.address[0]['city_name'] + this.address[0]['township_name'] +this.hospitals[0]['address'];
+                this.hospitals[0]['address'] = this.address[0]['city_name'] + this.address[0]['township_name'] +this.hospitals[0]['address'];
                 this.google[0]['address'] = this.address[0]['city_name'] + this.address[0]['township_name'] +this.hospitals[0]['address'];
                 this.hosfacilities=response.data.facility_list;
                 this.fac_list = response.data.facility;
@@ -1851,6 +1819,20 @@ export default {
             });
 
             
+        }
+
+        if(!this.$auth.check()){
+            this.show_comment = true;
+        }else{
+            if(this.$auth.user().role == 2){
+                this.show_comment = false;
+            }else{
+                if(this.$auth.user().customer_id == this.pro_id){
+                    this.show_comment = false;
+                }else{
+                    this.show_comment = true;
+                }
+            }
         }
 
         var new_width = $("#content-all").width();
@@ -2072,14 +2054,19 @@ export default {
         documentPost() {
             localStorage.removeItem("item");
             this.fav_email.push({
-                'id': this.customer[0]['id'],
-                'email': this.customer[0]['email'],
-                'name': this.customer[0]['name']
+                'id': this.pro_id,
+                'email': this.nus_pro[0]['email'],
+                'name': this.nus_pro[0]['name'],
                 });
+            var document_status=[];
+            document_status[this.pro_id] = true;
+            localStorage.setItem("document", JSON.stringify(document_status));
             localStorage.setItem("item", JSON.stringify(this.fav_email));
-            this.$router.push({
-                name: 'nursingFavouriteMail',
-            });
+            // this.$router.push({
+            //     name: 'nursingFavouriteMail',
+            // });
+            let routeData = this.$router.resolve({name: 'nursingFavouriteMail',});
+            window.open(routeData.href, '_blank');
         },
         imgUrlAlt(event) {
             event.target.src = "/images/noimage.jpg"

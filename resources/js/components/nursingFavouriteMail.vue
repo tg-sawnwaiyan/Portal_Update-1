@@ -542,7 +542,7 @@
                 });
             },
             aggreBtn: function(){
-                if(($('#furigana').val().length > 0 && !this.charErr) && this.comments.name != '' && this.comments.selectedValue != 0 && this.comments.township != 0 && this.comments.city != '' && (this.mail_reg.test(this.comments.mail) || (!this.ph_length && !this.ph_num && this.comments.phone.length > 0 ) ) ){
+                if(($('#furigana').val().length > 0 && !this.charErr) && this.comments.name != '' && this.comments.selectedValue != 0 && this.comments.township != 0 && this.comments.city != '' && (this.mail_reg.test(this.comments.mail) || (!this.ph_length && !this.ph_num && this.comments.phone != '' ) ) ){
                     this.btn_disable=false;
                 }else{
                     this.btn_disable=true;

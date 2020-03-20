@@ -68,6 +68,7 @@
 
 
                         <li class="userprofile-name pc" v-if="$auth.check()">
+                            <span v-if="user.data">
                                 <span v-if="user.data.type_id == 1">
                                     <i class="fa fa-user userprofile-img" aria-hidden="true"></i>
                                     <label for="" style="color:#2980b9;font-weight:bold;text-shadow: 2px 2px #dcdcdc;">{{user.data.name}} </label>
@@ -85,7 +86,8 @@
                                 </span>
                                 <!-- <label for="">{{user.data.name}}</label> -->
                                 <!-- {{user.data.type_id}} -->
-                                </li>
+                            </span>
+                        </li>
                         <!-- <li v-if="$auth.check()" class="nav-item btn login-register-btn col-lg-6 p-lr-0">
                             <a href="#" @click.prevent="$auth.logout()">Logout</a>
                         </li> -->
