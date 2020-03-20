@@ -314,12 +314,13 @@
                    <div id="job_detail" class="col-lg-6 col-md-12" style="margin-top:20px;" v-for="(job,index) in displayItems" :key="index+'-'+job.title+'-'+job.jobid">
                      <div class="job-content">
                       <div class="job-header">
+                        <p class="search_jobid"><span>求人番号:</span>{{job.jobnum}}</p>
                         <h5 class="job-tit">
                           <router-link :to="{name: 'job_details', params:{id:job.jobid}}">{{job.jrecord}}{{job.title}}</router-link>
                           </h5>
                         <div class="clearfix">
                           <span class="job_status">{{job.employment_status}}</span>
-                          <p class="search_jobid"><span>求人番号:</span>{{job.jobnum}}</p>
+                          
                         </div>
                       </div>
                       <div class="job-body d-flex clearfix">
