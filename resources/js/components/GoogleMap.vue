@@ -175,8 +175,6 @@ export default {
   },
   methods: {
       // callParent(){
-      //     console.log(this.$parent.$options);
-      //     console.log(this.$parent.$options.methods);
       //   //   this.$parent.$options.methods.someParentMethod('hello');
       // },
     // receives a place object via the autocomplete component

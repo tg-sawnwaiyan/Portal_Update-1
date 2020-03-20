@@ -286,7 +286,6 @@
           
             this.$loading(true)
             this.axios.post(`api/analytics`,this.analytics).then(res => {
-                console.log(this.analytics);
                 this.$loading(false)
             
                 this.eventReport      = res.data.eventReport;

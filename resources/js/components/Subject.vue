@@ -67,8 +67,6 @@ export default {
              this.axios.get('/api/subjects/subjectlist')
               .then(function (response) {
                    this.SubjectList = response.data;
-                   console.log('aa',this.SubjectList);
-
               }.bind(this));
         },
         mounted() {
@@ -135,7 +133,6 @@ export default {
                         .then(response => {
                             this.$loading(false);
                             this.name = ''
-                            console.log(response);
                             this.$swal({
                             position: 'top-end',
                             type: 'success',

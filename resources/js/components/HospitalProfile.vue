@@ -1224,7 +1224,6 @@ export default {
                 this.img_name = document.getElementsByClassName('pro-logo')[0].files[0].name;
               },
             preview_image(event,indx) {
-                console.log("indc",indx);
                 this.img_arr[indx]['photo'] = event.target.files[0].name;
                 this.img_arr[indx]['src'] = URL.createObjectURL(event.target.files[0]);
                 $('#img_name'+indx).text(event.target.files[0].name);
@@ -1265,7 +1264,6 @@ export default {
                         allowOutsideClick: false,
 
                     }).then(response => {
-                        console.log(type+"/"+id)
                         if(type == 'photo') {
                             if(id){
 
@@ -1498,7 +1496,6 @@ export default {
 
                 if(this.save_hospital_info.length > 0) {
 
-                  console.log("this.save_hospital_info",this.save_hospital_info);
 
                     this.axios
                     .post(`/api/hospital/profile/${this.pro_id}`,this.save_hospital_info)
@@ -1543,8 +1540,6 @@ export default {
             },
             focusPhone(){
               var input_data = $('#phone').val();
-              console.log("input_data",input_data);
-              console.log("input_data",input_data.length);
               if(input_data.length == 0 || (input_data.length >= 10 && input_data.length <= 14 && input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-'))
               {
                   this.ph_num = false;

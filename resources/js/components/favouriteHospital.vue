@@ -296,7 +296,6 @@
                 else if (this.window.width >= 1440 && this.window.width < 1880) {
                     this.windowSize = 4;
                      this.paginationFactor = 271;            
-                    // console.log(this.window.width);
                 }
 
 

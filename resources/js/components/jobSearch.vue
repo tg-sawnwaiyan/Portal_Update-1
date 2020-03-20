@@ -677,7 +677,6 @@ export default {
           _this.occupations = response.data.occupations
           _this.id = id,
            _this.array_len = ((_this.occupations.length)%3)==0?((_this.occupations.length)/3):Math.floor(((_this.occupations.length)/3)+1);
-              console.log(_this.array_len)
          })
 
         document.getElementById('search-free-word').value = '';

@@ -1508,7 +1508,6 @@ export default {
             if(localStorage.getItem("hospital_fav")){
                 var nus_fav_arr = JSON.parse("[" + localStorage.getItem("hospital_fav") + "]");
                 this.view_pro_id = nus_fav_arr.includes(this.pro_id);
-                console.log("view_pro_id",this.view_pro_id)
             }
         }
         else{
@@ -1550,7 +1549,6 @@ export default {
         //end
         window.addEventListener('resize', this.handleResize);
         this.handleResize();
-        console.log(this.window.width);
         if(this.window.width >= 320 && this.window.width < 450) {
             this.windowSize = 1;
         }
@@ -1581,8 +1579,6 @@ export default {
 
         this.profile_id = this.pro_id;
         this.activePanoImage = 0;
-            console.log('window.innerWidth',window.innerWidth)
-            console.log('window.innerWidth',window.innerHeight)
         //for responsive
             if(this.window.width > 768) {
                 //greater than 768
@@ -1677,7 +1673,6 @@ export default {
               
                 this.profilenumber = response.data.profilenumber[0]['profilenumber'];
                 this.nus_pro = response.data.nurselatlong[0];
-                console.log("nuspro",this.nus_pro)
                 this.google = response.data.nurselatlong;
                 if(this.nus_pro['address'] == null){
                         this.nus_pro['address'] = '';
@@ -1983,7 +1978,6 @@ export default {
         handleResize() {
             this.window.width = window.innerWidth;
             this.window.height = window.innerHeight;
-            console.log('hello');
         },
         showLightbox: function(imageName) {
             this.$refs.lightbox.show(imageName);

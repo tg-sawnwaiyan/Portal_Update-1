@@ -309,7 +309,6 @@
                         this.axios
                             .post("/api/hospital_history/" + local_storage)
                             .then(response => {
-                                console.log(response.data)
                                 // if(response.data.length<this.his_hos && response.data.length > 0) {
                                     this.hos_profiles = response.data;
                                     if(response.data.length<this.his_hos && response.data.length > 0) { 
