@@ -20,12 +20,6 @@ Vue.use(VueAnalytics, {
   router,
 })
 
-
-// Vue.use(VueAnalytics, {
-//   id: 'UA-161193570-2',
-//   router,
-// })
-
 Vue.use(Slick);
 Vue.use(BulmaAccordion, BulmaAccordionItem)
 Vue.use(Vuex);
