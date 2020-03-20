@@ -459,6 +459,10 @@
                                                 width: 350,
                                                 height: 200,
                                                 allowOutsideClick: false,
+                                            }).then(response => {
+                                                if(this.$auth.user().role != 2){
+                                                    location.reload();
+                                                }                                                
                                             });
                                         } else {
                                             this.accout_status = '有効にする';
@@ -472,8 +476,13 @@
                                                 width: 350,
                                                 height: 200,
                                                 allowOutsideClick: false,
-                                            })
+                                            }).then(response => {
+                                                if(this.$auth.user().role != 2){
+                                                    location.reload();
+                                                }  
+                                            });
                                         }
+                                         
                                         if (this.customer_info.type_id == '2') {
                                             this.logo = '/upload/hospital_profile/' + response.data.logo;
                                         } else {
