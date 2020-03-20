@@ -1,15 +1,16 @@
 <template>
   <div id="app">
-    <div v-if="type == 'nursing'" id="nursingView">
-         
-        <!--panorama-->
-        <div class="pc-9-180">
-            <span class="customer-id ">施設番号:{{profilenumber}}</span>
+    <div v-if="type == 'nursing'" id="nursingView">         
+        <!--panorama-->     
+        <p class="job_id3" v-if="$auth.user().role == 2"><span>施設番号:{{profilenumber}}</span></p>
+        <div v-else>
+            <div class="pc-9-180">
+                <span class="customer-id ">施設番号:{{profilenumber}}</span>
+            </div>
+            <p class="job_id3 sp-9-180"><span>施設番号:{{profilenumber}}</span></p>
         </div>
-        <p class="job_id3 sp-9-180"><span>施設番号:{{profilenumber}}</span></p>
-        <h4 class="profile-tit"  v-if="!currentPanoImage"> {{customer_name}}</h4> 
-        
 
+        <h4 class="profile-tit"  v-if="!currentPanoImage"> {{customer_name}}</h4>     
 
         <div class="col-12 detail_profile_left pad-free"  v-if="currentPanoImage">
             <h4 class="profile-tit">{{customer_name}}</h4>
@@ -941,10 +942,14 @@
     </div>
 
     <div v-if="type == 'hospital'" id="hospitalView">
-         <div class="pc-9-180">
-            <span class="customer-id ">施設番号:{{profilenumber}}</span>
-        </div>
+         <p class="job_id3" v-if="$auth.user().role == 2"><span>施設番号:{{profilenumber}}</span></p>
+
+        <div v-else>
+            <div class="pc-9-180">
+                <span class="customer-id ">施設番号:{{profilenumber}}</span>
+            </div>
             <p class="job_id3 sp-9-180"><span>施設番号:{{profilenumber}}</span></p>
+        </div>
             <h5 class="profile-tit"> {{customer_name}}</h5>
            <div class="tab typelabel nav-link fixed-nav" v-bind:style="{width:width}">
                
@@ -1472,6 +1477,7 @@ export default {
     },
 
     created(){
+       
         // console.log('this.$auth.check',this.$auth.check());
         // if(!this.$auth.check()){
         //     this.show_comment = true;
