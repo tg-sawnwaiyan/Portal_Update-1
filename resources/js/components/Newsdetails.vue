@@ -201,14 +201,13 @@ export default {
         this.newdetails = response.data.news;          
         this.getData = true; 
         this.$ga.event({
-          eventCategory: 'NewsDetails',
-          eventAction: 'NewsDetails'+this.newdetails[0].cat_name+'   '+this.newdetails[0].title,
+          eventCategory: 'ニュース',
+          eventAction: 'ニュース'+'\xa0\xa0\xa0\xa0\xa0'+this.newdetails[0].cat_name+'\xa0\xa0\xa0\xa0\xa0'+this.newdetails[0].title,
           eventLabel: this.newdetails[0].title,
-          eventValue: this.newdetails[0].id
         })     
       });   
      
-    // alert(this.$route.params.id);
+    // alert(this.$route.params.id);e
     this.relatedNews(this.$route.params.id);
   },
 
