@@ -230,7 +230,7 @@
                     },
             },
             created() {
-
+                this.$loading(true);  
                   //for cardcarousel responsive
                 window.addEventListener('resize', this.handleResize)
                 this.handleResize(); 
@@ -309,6 +309,7 @@
                         this.axios
                             .post("/api/hospital_history/" + local_storage)
                             .then(response => {
+                                this.$loading(false);  
                                 // if(response.data.length<this.his_hos && response.data.length > 0) {
                                     this.hos_profiles = response.data;
                                     if(response.data.length<this.his_hos && response.data.length > 0) { 
