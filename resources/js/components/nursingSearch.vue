@@ -191,12 +191,11 @@
                                                                     <p class="item-fav btn btn-sm" v-if="items.fav_check == 'check' && loginuser=='false'" :class="'done_pro_id'+items.nursing_id" style="color:#aaa;" @click="favAddFun('remove',items.nursing_id,index);">
                                                                         <i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み
                                                                     </p>
+                                                                    <p class="job_id1 search_jobid1 search_jobid"><span>施設番号:{{items.profilenumber}}</span></p>
 
                                                                     <p class="item-name"><img :src="'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld='+items.alphabet+'|fd0e0e|ffffff'" alt="">
                                                                         <router-link :to="{ path:'/profile/nursing/'+items.nursing_id}" class="pseudolink" style="font-weight:bold;color:#63b7ff !important">{{items.name}}</router-link>
                                                                     </p>
-                                                                   
-                                                                    <p class="job_id1 search_jobid1 search_jobid"><span>施設番号:{{items.profilenumber}}</span></p>
                                                                 
                                                                     <p>{{items.city_name}} <i class="fas fa-angle-double-right" style="color:#b9b5b5;"></i> {{items.township_name}}</p>
                                                                 </div>
@@ -586,7 +585,7 @@
                                             <!--responsive add-fav and phone-->
                                                 <div class="row" id="job_detail">
                                                     <div class="col-md-6 col-sm-12 m-b-414">
-                                                        <p class="sp_hos_phone sp-768" v-if="nus.phone"><span class="circle-phone" ><i class="fa fa-phone-alt"></i></span><span class="phone-no"><a :href="`tel:${nus.phone}`">{{nus.phone}}</a></span></p>
+                                                        <p class="sp_hos_phone sp-768 m-b-10" v-if="nus.phone"><span class="circle-phone" ><i class="fa fa-phone-alt"></i></span><span class="phone-no"><a :href="`tel:${nus.phone}`">{{nus.phone}}</a></span></p>
                                                     </div>
                                                     <div class="col-md-6 col-sm-12 m-t-768">
                                                         <p class="sp-768">
@@ -1256,6 +1255,7 @@
                     for (var i = 0; i < item.length; i++) {
                         var typename = item[i]['type_name'] == null ? '介護':item[i]['type_name'];
                         var phonenum = item[i]['phone'] == null ? '':item[i]['phone'];
+                        var phclass = item[i]['phone'] == null ? 'nus_phone_none': 'nus_phone';
                         infoWindowContent.push([
                             '<div id="info_content">' +
                             '<div class="">' +
@@ -1268,7 +1268,7 @@
                                     '</td>' +
                                     '</tr>' +
                                     '<tr>' +
-                                    '<td colspan="2"><p class="job_id search_jobid" style="float:left"><span> 施設番号:' +
+                                    '<td colspan="2"><p class="job_id search_jobid" style="float:left;margin-top:0px;margin-bottom:0px;"><span> 施設番号:' +
                                      item[i]['profilenumber']+
                                     '</span></p>'+
                                     '</td>' +
@@ -1282,12 +1282,9 @@
                                     '</td>' +
                                 '</tr>' +
 
-                                '<tr>' +
-                                '<td>' +
-                                '<img src="/upload/nursing_profile/' + item[i]['logo'] + '" alt="image" width="100px" style="border:1px solid #ccc;" @error="imgUrlAlt"/>' +
-                                '</td>' +
-                                '<td style="padding-bottom:0px;">' +
-                                    '<p class="nus_phone"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span>' + phonenum + '</p>' +
+                                '<tr>' +                                
+                                '<td colspan="2">' +
+                                    '<p class="'+phclass+'"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span>' + phonenum + '</p>' +
                                 '</td>' +
                                 '</tr>' +
                                 ' <tr>' +

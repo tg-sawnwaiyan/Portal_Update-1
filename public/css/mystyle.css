@@ -691,11 +691,13 @@ border: 1px solid #eee; */
     color: #2980b9;
     font-weight: bold;
 }
+
 span.video_txt {
     min-height: 10px;
     margin-top: 20px;
     display: block;
 }
+
 
 /*End lightbox */
 
@@ -8659,7 +8661,9 @@ border-bottom: none;
     color: #c40000;
     font-weight: bold;
 }
-
+.nus_phone_none{
+    display: none;
+}
 .hos_phone i,
 .sp_hos_phone i,
 .nus_phone i {
@@ -13345,8 +13349,11 @@ strong {
 }
 
 @media screen and (min-width:1024px) {
+    .choose-item {
+        margin-top: 10px;
+    }
     .search_jobid1 {
-        float: left;
+        /* float: left; */
         /* margin-top: -31px; */
         /* width: 49%; */
         position: relative;
