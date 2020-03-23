@@ -48,12 +48,12 @@ export default {
 </script>
 
 <style>
-    .hospital-tabColor .nav-link {
+    /* .hospital-tabColor .nav-link {
         background: #63b7ff !important;
         color: #fff;
         border-right: 1px solid #fff;
         border-bottom: 0px;
-    }
+    } */
     .hospital-tabColor li.subtab3 > .router-link-active{
         background: #fff!important;
         color: #63b7ff !important;
@@ -142,9 +142,7 @@ export default {
         /* border: 1px solid #ff9563 !important; */
          border: 1px solid #63b7ff !important;
     }
-    .tab-pane{
-        padding: 10px;
-    }
+  
 </style>
 
 

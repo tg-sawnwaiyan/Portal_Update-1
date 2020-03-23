@@ -1813,13 +1813,6 @@
     color: #23a2f5;
 }
 .lds-ripple {
-  /* display: inline-block;
-  position: absolute;
-  width: 80px;
-  height: 80px;
-  top: 40%;
-  left: 50%;
-  z-index: 1; */
   position: absolute;
   width: 100% !important;
   height: 400px !important;
@@ -1858,13 +1851,7 @@
   }
 }
 
-.overlay{
-  /* position: relative;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.19);  
-  opacity: 0.1; */
+.overlay{ 
   top: 0;
   background-color: rgba(0, 0, 0, 0.19);
   position: relative;
@@ -1872,7 +1859,6 @@
   width: 100%;
   height: 400px;
 }
-
   .path {
     cursor: pointer;
   }
@@ -2010,18 +1996,6 @@ div#holder {
     display: none;
 }
 
-/* div.overlay {
-    position: relative;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #5e5e5e;
-    opacity: 0.7;
-    z-index: 1;
-} */
-
-/* div.overlay.standard { background: #fff url('/images/google/loading.jpg') no-repeat 50% 50%; } */
-
   .card_1 {
     display: inline-block;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .15);
@@ -2104,9 +2078,7 @@ div#holder {
   }
 
   #nursing-search .card-carousel--overflow-container {
-    overflow: hidden;
-    /* width: 992px; */
-    /* background: grey;  */
+    overflow: hidden;  
   }
 
   #nursing-search .card-carousel--nav__left,
@@ -2247,9 +2219,7 @@ div#holder {
 .nursing-borderColor {
     border: 1px solid #2980b9 !important;
 }
-.tab-pane{
-    padding: 10px;
-}
+
 .offset{
   width: 500px !important;
   margin: 20px auto;
@@ -2257,39 +2227,7 @@ div#holder {
 .carousel-img{
     /* position: absolute; */
 }
-
-#job_detail .fav-profile{
-  position: relative;
-  top: 0;
-  right: 0;
-}
 /************************responsive ****************************/
-
-@media only screen and (max-width: 480px){
-  table > tbody > tr th{
-    padding: 25px 5px;
-  }
-  table th, table td{
-    vertical-align: middle;
-  }
-  .dropdown-toggle::after {
-    position: absolute;
-    right: 12px;
-    top: 15px;
-  }
-}
-
-.dropdown-toggle::after {
-    display: inline-block;
-    margin-left: 0.255em;
-    vertical-align: 0.255em;
-    content: "";
-    border-top: 0.3em solid;
-    border-right: 0.3em solid transparent;
-    border-bottom: 0;
-    border-left: 0.3em solid transparent;
-    margin-left: 94px;
-}
 
 @media only screen and (max-width: 360px)  {
    #nursing-search .card-carousel {
@@ -2298,8 +2236,7 @@ div#holder {
      #nursing-search .card-carousel{
       overflow: visible;
     }
-    .nav-content
-    {
+    .nav-content{
 
       border: none;
       width: 0px;
@@ -2307,8 +2244,7 @@ div#holder {
     #nursing-search .nav-box[disabled] .nav-content {
     border:none;
     background: #fff;
-}
-
+    }
 }
 
 @media only screen and (max-width: 375px) {
@@ -2325,17 +2261,14 @@ div#holder {
       width: 0px;
     }
     #nursing-search .nav-box[disabled] .nav-content {
-    border:none;
-    background: #fff;
+        border:none;
+        background: #fff;
+    }
+    #nursing-search .card-carousel--nav__left,
+    #nursing-search .card-carousel--nav__right {
+        margin-left:-7px;
+    }
 }
- #nursing-search .card-carousel--nav__left,
- #nursing-search .card-carousel--nav__right {
-    margin-left:-7px;
-  }
-}
-
-
-
 
 @media only screen and (max-width: 450px) {
    #nursing-search .card-carousel {
@@ -2422,39 +2355,5 @@ div#holder {
     .wd-in {
         width: 323px;
     }
-}
-
-.disable{
- /* display:none; */
- cursor: not-allowed !important;
- background-color:gray;
-}
-
-.undisable{
-  /* display:block; */
-  cursor: pointer;
-}
-.pagination .spanclass:hover{
-  background-color:#2980b9 !important;
-}
-@media only screen and (max-width: 480px) {
-
-.previous span {
-  display:none;
-}
-
-.next span {
-  display:none;
-}
-}
-@media only screen and (max-width: 480px) {
-  .pagination .pages {
-    display: none;
-  }
-}
-
-.disabled{
- cursor: not-allowed !important;
- background-color:gray;
 }
 </style>

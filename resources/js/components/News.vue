@@ -1619,9 +1619,6 @@
     border: 1px solid #75b777 !important;
 }
 
-.tab-pane{
-    padding: 10px;
-}
 
 .left{
     float: left;

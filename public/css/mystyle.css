@@ -445,6 +445,10 @@ textarea:disabled::placeholder {
     opacity: 1;
 }
 
+.tab-pane {
+    padding: 10px;
+}
+
 
 /********************************** End Common **********************************/
 
@@ -1558,6 +1562,79 @@ border-radius: 3px;
 /******************************** end no search data ****************************************/
 
 
+/******************************** JOB, NURSING, HOSPITAL SEARCH *****************************/
+
+@media only screen and (max-width:1024px) {
+    table>tbody>tr th {
+        width: 100px !important;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    table>tbody>tr th {
+        padding: 25px 5px;
+    }
+    table th,
+    table td {
+        vertical-align: middle !important;
+        width: 50px !important;
+        padding: 5px !important;
+    }
+    .dropdown-toggle::after {
+        position: absolute;
+        right: 12px;
+        top: 15px;
+    }
+}
+
+.dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: "";
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+    margin-left: 94px;
+}
+
+.disabled {
+    /* display:none; */
+    cursor: not-allowed !important;
+    background-color: gray;
+}
+
+.enabled {
+    /* display:block; */
+    cursor: pointer;
+}
+
+.pagination .spanclass:hover {
+    background-color: #2980b9 !important;
+}
+
+.disabled {
+    cursor: not-allowed !important;
+    background-color: gray;
+}
+
+@media only screen and (max-width: 480px) {
+    .previous span {
+        display: none;
+    }
+    .next span {
+        display: none;
+    }
+    .pagination .pages {
+        display: none;
+    }
+}
+
+
+/*************************************END JOB, NURSING, HOSPITAL **************************/
+
+
 /***************************************** Job Search *****************************************/
 
 .arrow_icon {
@@ -1681,6 +1758,12 @@ box-shadow: 0px 0px 5px rgb(212, 201, 201); */
 
 .map-fa-icon-job {
     background: url(/images/map-responsive-job.png) center top no-repeat;
+}
+
+#job_detail .fav-profile {
+    position: relative;
+    top: 0;
+    right: 0;
 }
 
 
@@ -5861,6 +5944,12 @@ a:hover {
     border-color: #63b7ff #63b7ff #fff #63b7ff !important;
 }
 
+.hospital-tabColor .nav-link {
+    background: #63b7ff !important;
+    color: #fff;
+    border-right: 1px solid #fff;
+}
+
 .hospital-tabColor .nav-link.active {
     color: #63b7ff !important;
     font-weight: bold;
@@ -8591,6 +8680,24 @@ border-bottom: none;
 
 /*hospital search*/
 
+.result-span {
+    color: #23a2f5;
+}
+
+.toBeToggled {
+    display: block;
+}
+
+.toBeToggled1 {
+    display: none;
+}
+
+#hos table>tbody>tr th {
+    background-color: #e8e7e7;
+    width: 140px;
+    padding: 25px;
+}
+
 .table-innertitle {
     position: relative;
 }
@@ -8661,9 +8768,11 @@ border-bottom: none;
     color: #c40000;
     font-weight: bold;
 }
-.nus_phone_none{
+
+.nus_phone_none {
     display: none;
 }
+
 .hos_phone i,
 .sp_hos_phone i,
 .nus_phone i {
