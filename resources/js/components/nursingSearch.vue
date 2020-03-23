@@ -2224,9 +2224,6 @@ div#holder {
   width: 500px !important;
   margin: 20px auto;
 }
-.carousel-img{
-    /* position: absolute; */
-}
 /************************responsive ****************************/
 
 @media only screen and (max-width: 360px)  {
