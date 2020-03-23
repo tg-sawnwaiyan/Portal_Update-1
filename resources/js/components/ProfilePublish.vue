@@ -958,15 +958,15 @@
             <h5 class="profile-tit" v-if="hospitals[0]"> {{hospitals[0].name}}</h5>
            <div class="tab typelabel nav-link fixed-nav" v-bind:style="{width:width}">
                
-                <button v-scroll-to="{ el: '#element1'}" class="top-fixed-btn" @click="activate(1)" :class="{ active : active_el == 1 }">
+                <button v-scroll-to="{ el: '#element7'}" class="top-fixed-btn" @click="activate(7)" :class="{ active : active_el == 7 }">
                     病院情報
                 </button>
 
-                <button v-scroll-to="{ el: '#element2' }" class="top-fixed-btn" @click="activate(2)" :class="{ active : active_el == 2 }">
+                <button v-scroll-to="{ el: '#element8' }" class="top-fixed-btn" @click="activate(8)" :class="{ active : active_el == 8 }">
                     地図
                 </button>
 
-                <button v-scroll-to="{ el: '#element3' }" class="top-fixed-btn" @click="activate(3)" :class="{ active : active_el == 3 }">
+                <button v-scroll-to="{ el: '#element9' }" class="top-fixed-btn" @click="activate(9)" :class="{ active : active_el == 9 }">
                     口コミ
                 </button>
 
@@ -975,7 +975,7 @@
                 </button> -->
             </div>
 
-            <div class="row ele m-lr-0 pt-2" id="element1">
+            <div class="row ele m-lr-0 pt-2" id="element7">
                 <!-- ee-->
                  <div class="row col-12 list-wrap m-lr-0 white-bg-color" v-for="cust in hospitals" :key="cust.id">
                     <!--for slideimage-->
@@ -1125,7 +1125,7 @@
                     <h5 class="profile_subtit">医院からのお知らせ </h5>
 
                     <p class="col-12">
-                        <span v-if="hospitals[0].details_info"><p v-html="hospitals[0].details_info"></p></span>
+                        <span v-if="hospitals[0]"><p v-html="hospitals[0].details_info"></p></span>
                         <span v-else><p class="no-data-color">データがありません。</p></span>
                     </p>
                 </div>
@@ -1176,7 +1176,7 @@
 
                         <div class="col-md-3 col-sm-12 pad-free-750">
                             <p><strong class="font-weight-bold">休診日: </strong>
-                                <span v-if="hospitals[0].closed_day"><font>{{hospitals[0].closed_day}}</font></span>
+                                <span v-if="hospitals[0]"><font>{{hospitals[0].closed_day}}</font></span>
                                 <span v-else> <p class="no-data-color">データがありません。</p> </span>
                             </p>
                         </div>
@@ -1239,7 +1239,7 @@
                 </div>
             <!-- End -->
 
-            <div class="row m-lr-0" id="element2">
+            <div class="row m-lr-0" id="element8">
 
                  <h5 class="profile_header col-md-12"> 地図 </h5>
 
@@ -1286,7 +1286,7 @@
                         </div>
 
             </div>
-            <div class="row ele m-lr-0" id="element3">
+            <div class="row ele m-lr-0" id="element9">
                 <h5 class="profile_header col-12 m-t-20">口コミ</h5>
                    <div class="col-lg-12 col-md-12 col-sm-12 pad-free-750"  v-if="displayItems.length>0">
                     <div class="card mb-4" v-for="comment in displayItems" :key="comment.id">
