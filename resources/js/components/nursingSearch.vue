@@ -1803,54 +1803,9 @@
 </script>
 
 <style scoped>
-.wd-in p{
-    min-height: 25px;
-}
-.cash-lbl {
-    font-size: 1.4em;
-}
 .result-span {
     color: #23a2f5;
 }
-.lds-ripple {
-  position: absolute;
-  width: 100% !important;
-  height: 400px !important;
-
-}
-.lds-ripple > div {
-  display: flex;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-   z-index: 999;
-}
-.lds-ripple > div  div{
-  position: absolute;
-  border: 4px solid #fff;
-  opacity: 1;
-  border-radius: 50%;
-  z-index: 999;
-  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
-}
-.lds-ripple > div div:nth-child(2) {
-  animation-delay: -0.5s;
-}
-@keyframes lds-ripple {
-  0% {
-    width: 0;
-    height: 0;
-    opacity: 1;
-  }
-  100% {
-    width: 72px;
-    height: 72px;
-    opacity: 0;
-  }
-}
-
 .overlay{ 
   top: 0;
   background-color: rgba(0, 0, 0, 0.19);
@@ -1859,498 +1814,74 @@
   width: 100%;
   height: 400px;
 }
-  .path {
-    cursor: pointer;
-  }
-
-  .selected {
-    fill: #5c5959;
-    stroke: #111;
-    stroke-width: 2px;
-    stroke-linejoin: round;
-    color: #f27a24 !important;
-    font-weight: bold;
-  }
-
-  .path {
-    -moz-transition-property: opacity;
-    -o-transition-property: opacity;
-    -webkit-transition-property: opacity;
-    transition-property: opacity;
-    -moz-transition-duration: 0.5s;
-    -o-transition-duration: 0.5s;
-    -webkit-transition-duration: 0.5s;
-    transition-duration: 0.5s;
-    -moz-transition-timing-function: ease;
-    -o-transition-timing-function: ease;
-    -webkit-transition-timing-function: ease;
-    transition-timing-function: ease;
-    -moz-transition: fill 0.75s;
-    -o-transition: fill 0.75s;
-    -webkit-transition: fill 0.75s;
-    transition: fill 0.75s;
-  }
-
-  .path:hover,
-  .path:focus {
-    cursor: pointer;
-  }
-
-  .path:hover,
-  .path:hover .path,
-  .path:focus,
-  .path:focus .path {
-    color: #000;
-  }
-
-  .path:hover,
-  a:hover {
-    fill: #20487c !important;
-    stroke: #002868 !important;
-    stroke-width: 2px;
-    stroke-linejoin: round;
-    cursor: pointer;
-  }
-
-  .select {
+.select {
     display: none;
-  }
-
-  .left-div {
-    background-color: #e8e7e7;
-    text-align: right;
-    width: 140px;
-    padding: 25px;
-  }
-
-  .left-div-1 {
-    background-color: #e8e7e7;
-    text-align: right;
-    width: 140px;
-    padding: 25px;
-  }
-
-  .left-div-2 {
-    background-color: #e8e7e7;
-    text-align: right;
-    width: 140px;
-    padding: 25px;
-
-  }
-  .toBeToggled {
+}
+.toBeToggled {
     display: block;
-  }
-
-  .toBeToggled2 {
+}
+.toBeToggled2 {
     display: block;
-  }
-
-  .toBeToggled1 {
+}
+.toBeToggled1 {
     display: none;
-  }
-
-  .table th,
-  .table td {
+}
+.table th,
+.table td {
     border-top: none !important;
-  }
-
-  #nursing-search table>tbody>tr th {
+}
+#nursing-search table>tbody>tr th {
     background-color: #e8e7e7;
     width: 140px;
     padding: 25px;
-  }
-
-  label {
+}
+label {
     color: black !important;
-  }
-
-  .vue-map-container {
-    height: 640px;
-  }
-
-
-  .justBlock {
-    width: 100px;
-    height: 100px;
-    line-height: 100px;
-    text-align: center;
-    background-color: #bada55;
-    color: darkgreen;
-    font-family: sans-serif;
-    /* &:hover {
-    cursor:pointer;
-  } */
-  }
-
-  #mymap {
-    width: 100%;
-    /* height: 500px; */
-  }
-
+}
+#mymap {
+    width: 100%;    
+}
 div#holder {
     position: absolute;
-
 }
-
 .hidden {
     display: none;
 }
-
-  .card_1 {
+.card_1 {
     display: inline-block;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .15);
     margin: 20px;
-    position: relative;
-    /* margin-bottom: 50px; */
+    position: relative;   
     transition: all .2s ease-in-out;
-  }
-
-  .card_1:hover {
-    /*box-shadow: 0 5px 22px 0 rgba(0,0,0,.25);*/
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-    /* margin-bottom: 54px; */
-  }
-
-  .image {
+}
+.card_1:hover {   
+box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);   
+}
+.image {
     height: 200px;
     opacity: .7;
     overflow: hidden;
     transition: all .2s ease-in-out;
-  }
-
-  .image:hover,
-  .card_1:hover .image {
+}
+.image:hover,
+.card_1:hover .image {
     height: 200px;
     opacity: 1;
-  }
-
-  .text {
+}
+.text {
     background: #FFF;
     padding: 20px;
     min-height: 200px;
-  }
-
-  .text p {
+}
+.text p {
     margin-bottom: 0px;
-  }
-
-  .fab {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    position: absolute;
-    margin-top: -50px;
-    right: 20px;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, .3);
-    color: #fff;
-    font-size: 48px;
-    line-height: 48px;
-    text-align: center;
-    background: #0066A2;
-    -webkit-transition: -webkit-transform .2s ease-in-out;
-    transition: transform .2s ease-in-out;
-  }
-
-  .fab:hover {
-    background: #549D3C;
-    cursor: pointer;
-    -ms-transform: rotate(90deg);
-    -webkit-transform: rotate(90deg);
-    transform: rotate(90deg);
-  }
-    #nursing-search{
-      display: none;
-    }
-
-  #nursing-search .card-carousel-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 20px 0;
-    color: #666a73;
-  }
-
-  #nursing-search .card-carousel {
-    display: flex;
-    justify-content: center;
-    width: 1320px;
-    overflow:auto;
-  }
-
-  #nursing-search .card-carousel--overflow-container {
-    overflow: hidden;  
-  }
-
-  #nursing-search .card-carousel--nav__left,
-  #nursing-search .card-carousel--nav__right {
-    display: inline-block;
-    width: 15px;
-    height: 15px;
-    padding: 5px;
-    box-sizing: border-box;
-    border-top: 5px solid #2980b9;
-    border-right: 5px solid #2980b9;
-    margin: 4px 0px;
-    transition: transform 150ms linear;
-  }
-
-  #nursing-search .card-carousel--nav__left[disabled],
-  #nursing-search .card-carousel--nav__right[disabled] {
-    opacity: 0.2;
-    border-color: black;
-  }
-
-  #nursing-search .card-carousel--nav__left {
-    transform: rotate(-135deg);
-  }
-
-  #nursing-search .card-carousel--nav__left:active {
-    transform: rotate(-135deg) scale(0.9);
-  }
-
-  #nursing-search .card-carousel--nav__right {
-    transform: rotate(45deg);
-  }
-
-  #nursing-search .card-carousel--nav__right:active {
-    transform: rotate(45deg) scale(0.9);
-  }
-
-  #nursing-search .card-carousel-cards {
-    display: flex;
-    transition: transform 150ms ease-out;
-    transform: translatex(0px);
-  }
-
-  #nursing-search .card-carousel-cards .card-carousel--card:first-child {
-    margin-left: 0;
-  }
-
-  #nursing-search .card-carousel-cards .card-carousel--card:last-child {
-    margin-right: 0;
-  }
-
-
-  #nursing-search .card-carousel-cards .card-carousel--card img:hover {
-    opacity: 0.5;
-  }
-
-  #nursing-search .card-carousel-cards .card-carousel--card--footer {
-    border-top: 0;
-    padding: 7px 15px;
-  }
-
-  #nursing-search .card-carousel-cards .card-carousel--card--footer p {
-    padding: 3px 0;
-    margin: 0;
-    margin-bottom: 2px;
-    font-size: 19px;
-    font-weight: 500;
-    color: #2c3e50;
-    user-select: none;
-  }
-
-  #nursing-search .card-carousel-cards .card-carousel--card--footer p:nth-of-type(2) {
-    font-size: 12px;
-    font-weight: 300;
-    padding: 6px;
-    background: rgba(40, 44, 53, 0.06);
-    display: inline-block;
-    position: relative;
-    margin-left: 4px;
-    color: #666a73;
-  }
-
-  #nursing-search .card-carousel-cards .card-carousel--card--footer p:nth-of-type(2):before {
-    content: "";
-    float: left;
-    position: absolute;
-    top: 0;
-    left: -12px;
-    width: 0;
-    height: 0;
-    border-color: transparent rgba(40, 44, 53, 0.06) transparent transparent;
-    border-style: solid;
-    border-width: 12px 12px 12px 0;
-  }
-
- #nursing-search .card-carousel-cards .card-carousel--card--footer p:nth-of-type(2):after {
-    content: "";
-    position: absolute;
-    top: 10px;
-    left: -1px;
-    float: left;
-    width: 4px;
-    height: 4px;
-    border-radius: 2px;
-    background: white;
-    box-shadow: -0px -0px 0px #004977;
-}
-#nursing-search .nav-box[disabled] .card-carousel--nav__left,
-#nursing-search .nav-box[disabled] .card-carousel--nav__right {
-    border-top: 5px solid #000;
-    border-right: 5px solid #000;
-}
-#nursing-search .nav-box[disabled] .nav-content {
-    border: 2px solid #000;
-    background: #fff
-}
-
-.nav-content {
-    width: 40px;
-    height: 40px;
-    line-height: 50px;
-    vertical-align: middle;
-    background: #fffff4;
-    border: 2px solid #2980b9;
-    border-radius: 50%;
-    text-align: center;
 }
 .fav-profile {
     top:0px;
     right:15px;
 }
-.nursing-tabColor .nav-link {
-    background: #2980b9 !important;
-    color: #fff;
-    border-right: 1px solid #fff;
-}
-
-.nursing-borderColor {
-    border: 1px solid #2980b9 !important;
-}
-
 .offset{
   width: 500px !important;
   margin: 20px auto;
-}
-/************************responsive ****************************/
-
-@media only screen and (max-width: 360px)  {
-   #nursing-search .card-carousel {
-        width: 200px!important;
-    }
-     #nursing-search .card-carousel{
-      overflow: visible;
-    }
-    .nav-content{
-
-      border: none;
-      width: 0px;
-    }
-    #nursing-search .nav-box[disabled] .nav-content {
-    border:none;
-    background: #fff;
-    }
-}
-
-@media only screen and (max-width: 375px) {
-   #nursing-search .card-carousel {
-        width: 278px!important;
-    }
-    #nursing-search .card-carousel{
-      overflow: visible;
-    }
-    .nav-content
-    {
-
-      border: none;
-      width: 0px;
-    }
-    #nursing-search .nav-box[disabled] .nav-content {
-        border:none;
-        background: #fff;
-    }
-    #nursing-search .card-carousel--nav__left,
-    #nursing-search .card-carousel--nav__right {
-        margin-left:-7px;
-    }
-}
-
-@media only screen and (max-width: 450px) {
-   #nursing-search .card-carousel {
-        width: 280px !important;
-    }
-     #nursing-search .card-carousel{
-      overflow: visible;
-    }
-    .nav-content
-    {
-
-      border: none;
-      width: 0px;
-    }
-    #nursing-search .nav-box[disabled] .nav-content {
-    border:none;
-    background: #fff;
-
-}
- #nursing-search .card-carousel--nav__left,
- #nursing-search .card-carousel--nav__right {
-    margin-left:-7px;
-  }
-  .carousel-img{
-    width: 100px;
-  }
-}
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (max-width: 1023px) and (min-width: 768px) {
-   #nursing-search .card-carousel {
-        width: 415px!important;
-    }
-    .carousel-img{
-      width: 140px;
-    }
-}
-@media only screen and (max-width: 768px) and (min-width: 449px) {
-   #nursing-search .card-carousel {
-        width: 279px!important;
-    }
-}
-@media only screen and (max-width: 992px) and (min-width: 768px) {
-   #nursing-search .card-carousel {
-        width: 342px!important;
-    }
-    .wd-in {
-        width: 320px;
-    }
-}
-
-
-@media only screen and (max-width: 1020px) and (min-width: 992px) {
-   #nursing-search .card-carousel {
-        width: 823px!important;
-    }
-    .wd-in {
-        width: 377px;
-    }
-}
-@media only screen and (max-width: 1200px) and (min-width: 1024px) {
-   #nursing-search .card-carousel {
-        width: 827px!important;
-    }
-    .wd-in {
-        width: 391px;
-    }
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (max-width: 1440px) and (min-width: 1201px) {
-    #nursing-search .card-carousel {
-        /* width: 988px!important; */
-        width: 988px!important;
-    }
-    .wd-in {
-        width: 308px;
-    }
-}
-@media only screen and (max-width: 1880px) and (min-width: 1440px) {
-     #nursing-search .card-carousel {
-        width: 1033px!important;
-    }
-    .wd-in {
-        width: 323px;
-    }
 }
 </style>
