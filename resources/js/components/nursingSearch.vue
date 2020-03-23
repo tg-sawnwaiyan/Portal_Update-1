@@ -1123,8 +1123,8 @@
                 if(this.township_id == -1){
                     var mapProp = {
                         center: new google.maps.LatLng(lat, lng),
-                        minZoom: 3,
-                        maxZoom: 14,
+                        minZoom: 4,
+                        maxZoom: 18,
                         zoom: 7,
                         mapTypeId: google.maps.MapTypeId.ROADMAP,
                         options: {
@@ -1134,8 +1134,8 @@
                 }else{
                     var mapProp = {
                         center: new google.maps.LatLng(lat, lng),
-                        minZoom: 7,
-                        maxZoom: 14,
+                        minZoom: 4,
+                        maxZoom: 18,
                         zoom: 7,
                         mapTypeId: google.maps.MapTypeId.ROADMAP,
                         options: {

@@ -527,19 +527,29 @@
                 this.all_mail = JSON.parse(localStorage.getItem("item"));
                 // this.reservation = JSON.parse(localStorage.getItem("reserve"));
                 this.documentation = JSON.parse(localStorage.getItem("document"));
-                for (var i = 0; i < this.all_mail.length; i++) {
-                    this.comments.fav_mail.push(this.all_mail[i].email);
-                    this.comments.fav_id.push(this.all_mail[i].id);
-                    this.comments.fav_name.push(this.all_mail[i].name);
+                if(this.all_mail == null || this.documentation == null){
+                    this.$router.push({
+                        name: 'favouriteNursing',
+                    });
                 }
-                // this.comments.arr_reserve = this.reservation;
-                this.comments.arr_document = this.documentation;
-                this.comments.division = this.comments.selectedValue;
-                localStorage.setItem("inputValue", JSON.stringify(this.comments));
-                var data = JSON.parse(localStorage.getItem("inputValue"));
-                this.$router.push({
-                    name: 'nursingMailConfirm',
-                });
+                else{
+                    for (var i = 0; i < this.all_mail.length; i++) {
+                        this.comments.fav_mail.push(this.all_mail[i].email);
+                        this.comments.fav_id.push(this.all_mail[i].id);
+                        this.comments.fav_name.push(this.all_mail[i].name);
+                    }
+
+                    // this.comments.arr_reserve = this.reservation;
+                    this.comments.arr_document = this.documentation;
+                    this.comments.division = this.comments.selectedValue;
+                    localStorage.setItem("inputValue", JSON.stringify(this.comments));
+                    var data = JSON.parse(localStorage.getItem("inputValue"));
+                    this.$router.push({
+                        name: 'nursingMailConfirm',
+                    });
+                }
+                
+                
             },
             aggreBtn: function(){
                 if(($('#furigana').val().length > 0 && !this.charErr) && this.comments.name != '' && this.comments.selectedValue != 0 && this.comments.township != 0 && this.comments.city != '' && (this.mail_reg.test(this.comments.mail) || (!this.ph_length && !this.ph_num && this.comments.phone != '' ) ) ){

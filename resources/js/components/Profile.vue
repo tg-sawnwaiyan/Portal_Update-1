@@ -109,7 +109,7 @@ export default {
     this.scrollTop();
 
     var new_width = $("#content-all").width();
-    //var fixed_width = new_width - 49.5;
+    var fixed_width = new_width - 49.5;
     this.width = fixed_width + "px";
 
   },
