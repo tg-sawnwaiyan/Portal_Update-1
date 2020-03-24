@@ -116,13 +116,13 @@ export default {
     methods: {
                 deleteFeature(id) {
                         this.$swal({
-                            title: "確認",
+                            // title: "確認",
                             text: "特徴を削除してよろしいでしょうか。",
                             type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#dc3545",
+                            confirmButtonColor: "#EEA025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
                             confirmButtonText: "はい",
