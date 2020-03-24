@@ -297,52 +297,52 @@ export default {
             },
 
   created() {
-
- window.addEventListener('resize', this.handleResize)
-                this.handleResize(); 
-                if(this.window.width >=320 && this.window.width < 360) {
-                    this.windowSize = 1;  
-                  this.paginationFactor = 260;    
-                } 
-                else if(this.window.width >=360 && this.window.width < 375) {
-                    this.windowSize = 1;
-                     this.paginationFactor = 260;    
-                } 
-                 else if(this.window.width >=375 && this.window.width < 450) {
-                    this.windowSize = 1;
-                     this.paginationFactor = 260;    
-                }
-                
-                else if(this.window.width >= 414 && this.window.width < 768) {
-                    this.windowSize = 1;
-                     this.paginationFactor = 260; 
-                } 
-                else if(this.window.width >= 768 && this.window.width < 992) {
-                    this.windowSize = 2;
-                    this.paginationFactor = 260;  
-                }
-                else if(this.window.width >= 992 && this.window.width < 1024) {
-                    this.windowSize = 3; 
-                    this.paginationFactor = 255;                                 
-                }
-                else if(this.window.width >= 1024 && this.window.width < 1200) {
-                    this.windowSize = 3; 
-                      this.paginationFactor = 255;                                
-                }
-                else if (this.window.width >= 1200 && this.window.width < 1280) {
-                    this.windowSize = 3;
-                    this.paginationFactor = 260;                    
-                }
-                else if (this.window.width >= 1280 && this.window.width < 1440) {
-                    this.windowSize = 4;
-                    this.paginationFactor = 257;
-                    
-                }
-                else if (this.window.width >= 1440 && this.window.width < 1880) {
-                    this.windowSize = 4;
-                     this.paginationFactor = 260;            
-                    // console.log(this.window.width);
-                }
+    this.$loading(true);  
+    window.addEventListener('resize', this.handleResize)
+    this.handleResize(); 
+    if(this.window.width >=320 && this.window.width < 360) {
+        this.windowSize = 1;  
+        this.paginationFactor = 260;    
+    } 
+    else if(this.window.width >=360 && this.window.width < 375) {
+        this.windowSize = 1;
+            this.paginationFactor = 260;    
+    } 
+        else if(this.window.width >=375 && this.window.width < 450) {
+        this.windowSize = 1;
+            this.paginationFactor = 260;    
+    }
+    
+    else if(this.window.width >= 414 && this.window.width < 768) {
+        this.windowSize = 1;
+            this.paginationFactor = 260; 
+    } 
+    else if(this.window.width >= 768 && this.window.width < 992) {
+        this.windowSize = 2;
+        this.paginationFactor = 260;  
+    }
+    else if(this.window.width >= 992 && this.window.width < 1024) {
+        this.windowSize = 3; 
+        this.paginationFactor = 255;                                 
+    }
+    else if(this.window.width >= 1024 && this.window.width < 1200) {
+        this.windowSize = 3; 
+            this.paginationFactor = 255;                                
+    }
+    else if (this.window.width >= 1200 && this.window.width < 1280) {
+        this.windowSize = 3;
+        this.paginationFactor = 260;                    
+    }
+    else if (this.window.width >= 1280 && this.window.width < 1440) {
+        this.windowSize = 4;
+        this.paginationFactor = 257;
+        
+    }
+    else if (this.window.width >= 1440 && this.window.width < 1880) {
+        this.windowSize = 4;
+            this.paginationFactor = 260;            
+        // console.log(this.window.width);
+    }
     
     
     this.local_sto = localStorage.getItem("nursing_history");
@@ -431,6 +431,7 @@ export default {
       this.axios
         .post("/api/nursing_history/" + local_storage)
         .then(response => {
+            this.$loading(false);  
             if(response.data.length>0) {
                 this.nur_profiles = response.data;
                 if(response.data.length<this.his_nus) {

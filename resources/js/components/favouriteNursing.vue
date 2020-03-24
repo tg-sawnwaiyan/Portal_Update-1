@@ -425,7 +425,8 @@
                 }
             },
 
-            created() {          
+            created() {  
+                this.$loading(true);        
                 //for cardcarousel responsive
                 window.addEventListener('resize', this.handleResize)
                 this.handleResize(); 
@@ -563,6 +564,7 @@
                         this.axios
                             .post('/api/nursing_fav/' + local_storage)
                             .then(response => {
+                                this.$loading(false);
                                 this.fav_nursing = response.data;
                               
                                 if(this.fav_nursing.length < this.fav_nus && this.fav_nursing.length > 0)

@@ -573,6 +573,7 @@ import Autocomplete from 'vuejs-auto-complete'
             created() {
               this.joboffer.pref = 0;
               this.joboffer.str_address = 0;
+              this.joboffer.employmentstatus = 'その他';
              
                 this.axios.get("/api/job/occupationlist").then(
                     function(response) {
@@ -589,7 +590,6 @@ import Autocomplete from 'vuejs-auto-complete'
                   this.customerList = response.data;
                   this.formattedDisplay(this.customerList);
                 });
-                this.joboffer.employmentstatus = "ContractEmployee";
 
                 if (this.$route.name == 'jobedit') {
                     this.editcheck = true;

@@ -252,6 +252,7 @@
                     },
             },
             created() {
+                this.$loading(true);  
                //for cardcarousel responsive
                 window.addEventListener('resize', this.handleResize)
                 this.handleResize(); 
@@ -362,10 +363,7 @@
                                 } else {
                                     // window.location.reload();
                                     this.$router.push({
-                                        name: 'hospital_search',
-                                        // params: {
-                                        //     page: 'subtab3'
-                                        // }
+                                        name: 'hospital_search',                                        
                                     });
                                 }
                             }
@@ -382,9 +380,8 @@
                         this.axios
                             .post('/api/favHospital/' + local_storage)
                             .then(response => {
-                               
-                                this.fav_hospital = response.data;
-                              
+                               this.$loading(false);  
+                                this.fav_hospital = response.data;                             
                             
                                 if(this.fav_hospital.length < this.fav_hos && this.fav_hospital.length > 0)
                                 {
