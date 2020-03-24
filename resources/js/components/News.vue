@@ -208,8 +208,7 @@
                                    
                                     <div v-if="(w_width >= 1280) || (w_width <= 768 && w_width >= 480)" class="row col-sm-12 p-lr-0 m-0">
                                         <div class="col-sm-6 m-b-8 pad-new" v-for="item in latest_post_all_cats.slice(0, 8)"  :key="item.id">
-
-                                            <div class="col-md-12 row adslist-card news-3-card m-0">
+                                            <div class="col-md-12 row adslist-card news-3-card m-0" :class="item.category_id == 26?'break-news':''">
 
                                                 <div class="col-md-4 col-sm-4 img-box">
 
@@ -262,8 +261,7 @@
                                     <!-- one show -->
                                     <div v-if="(w_width < 1280 && w_width > 768) || (w_width < 480)" class="row col-sm-12 p-lr-0 m-0">
                                         <div class="col-sm-12 m-b-8 pad-new" v-for="item in latest_post_all_cats.slice(0, 4)"  :key="item.id">
-
-                                            <div class="col-md-12 row adslist-card news-3-card m-0">
+                                            <div class="col-md-12 row adslist-card news-3-card m-0" :class="item.category_id == 26?'break-news':''">
 
                                                 <div class="col-md-4 img-box">
 
@@ -312,9 +310,6 @@
                                                 </div>
 
                                             </div>
-
-
-
                                         </div>
                                     </div>
                                 </div>
@@ -328,8 +323,7 @@
                         <!-- two show -->
                         <div class="row col-12 m-lr-0 p-0" v-if="(w_width >= 1280) || (w_width <= 768 && w_width >= 480)">
                             <div class="col-md-6 col-sm-6 col-lg-3 m-b-8 pad-new" v-for="item in latest_post_all_cats.slice(8, 16)"  :key="item.id">
-
-                                <div class="col-md-12 row adslist-card news-3-card m-0">
+                                <div class="col-md-12 row adslist-card news-3-card m-0" :class="item.category_id == 26?'break-news':''">
 
                                     <div class="col-md-4 col-sm-4 img-box">
 
@@ -378,15 +372,13 @@
                                     </div>
 
                                 </div>
-
                             </div>
                         </div>
                         
                         <!-- one show -->
                         <div class="row col-md-12 pad-free m-0" v-if="(w_width < 1280 && w_width > 768) || (w_width < 480)">
                             <div class="col-md-4 m-b-8 pad-new" v-for="item in latest_post_all_cats.slice(4, 10)"  :key="item.id">
-
-                                <div class="col-md-12 row adslist-card news-3-card m-0">
+                                <div class="col-md-12 row adslist-card news-3-card m-0" :class="item.category_id == 26?'break-news':''">
 
                                     <div class="col-md-4 img-box">
 
@@ -435,7 +427,6 @@
                                     </div>
 
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -1321,6 +1312,7 @@
                     .get('/api/get_latest_post_all_cat')
 
                     .then(response => {
+                        console.log("bk",response.data)
                     
                         this.$loading(false);
                         this.latest_post_all_cats = response.data;

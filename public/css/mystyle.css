@@ -12508,7 +12508,7 @@ background-image: none;
         width: 100%;
     }
     /* end create news */
-    /* news list */
+    /* news list */    
     .List_tbl tr {
         width: 100%;
     }
@@ -13919,4 +13919,8 @@ strong {
     text-align: center;
     display: inline-block;
     /* float: left; */
+}
+
+.break-news{
+    border: 1px solid red!important;
 }

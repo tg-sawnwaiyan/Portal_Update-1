@@ -125,8 +125,15 @@ class HomeController extends Controller
 
         public function getLatestPostFromAllCat()
     {
-        $latest_post_all_cat = Post::orderBy('created_at', 'desc')->limit('16')->get();
-        return response()->json($latest_post_all_cat);
+        // $latest_post_all_cat = Post::orderBy('created_at', 'desc')->limit('16')->get();
+        $break_news = Post::where('category_id',26)->get()->toArray();
+        $limit = 16 - count($break_news);
+        $latestpost = Post::where('category_id','!=',26)->orderBy('created_at', 'desc')->limit("$limit")->get()->toArray();
+
+        $merge_arr = array_merge($break_news,$latestpost);
+        shuffle($merge_arr);
+
+        return response()->json($merge_arr);
     }
 
 

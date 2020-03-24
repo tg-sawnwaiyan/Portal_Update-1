@@ -64,12 +64,25 @@
                             </select>
                         <span v-if="errors.category_id" class="error">{{errors.category_id}}</span>
                     </div>
+               
+                     <div v-if="selectedValue == 26" class="form-group">
+                        <div class="row">
+                            <div class="col-3">
+                                <label> From Date</label>
+                                <date-picker class=""  valueType="format" v-model="news.from_date" style="margin-left: 20px;"></date-picker>
+                            </div>
+                             <div class="col-3">
+                                <label> To Date</label>
+                                <date-picker class=""  valueType="format" v-model="news.to_date" style="margin-left: 20px;"></date-picker>
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label>内容 <span class="error sp2">必須</span></label>
                         <quill-editor  ref="myQuilEditor" id="exampleFormControlTextarea1" class="rounded-0" placeholder="内容を入力してください。"  @change="onDetailInfoEditorChange($event)" v-model="news.body" :options="editorOption" @blur="onEditorBlur($event)" @focus="onEditorFocus($event)"/>
                         <span v-if="errors.body" class="error">{{errors.body}}</span>
                     </div>
-                    <div class="form-group">
+                    <div v-if="selectedValue != 26" class="form-group">
                         <label>関連ニュース</label>
                         <div class="card related-card">
                             <div class="card-body">
@@ -122,6 +135,7 @@
                             </div>
                         </div>
                     </div>
+                   
 
                     <div class="form-group">
                         <span @click="$router.go(-1)" :to="{name: 'news_list'}" class="btn bt-red all-btn">キャンセル</span>
@@ -191,6 +205,9 @@ import {quillEditor} from 'vue-quill-editor'
                         category_name: '',
                         related_news: '',
                         photo: '',
+                        from_date:'',
+                        to_date:'',
+
                     },
                     categories: {
                         id: '',
@@ -262,13 +279,13 @@ import {quillEditor} from 'vue-quill-editor'
                     },
                     removeUpload(e) {
                          this.$swal({
-                            title: "確認",
-                            text: "削除してよろしいでしょうか",
+                            // title: "確認",
+                            text: "削除してよろしいでしょうか。",
                             type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#dc3545",
+                            confirmButtonColor: "#eea025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
                             confirmButtonText: "はい",
@@ -283,7 +300,7 @@ import {quillEditor} from 'vue-quill-editor'
                                         width: 350,
                                         height: 200,
                                         confirmButtonText: "閉じる",
-                                        confirmButtonColor: "#dc3545",
+                                        confirmButtonColor: "#31cd38",
                                         allowOutsideClick: false,
                                        
                                     });
@@ -321,7 +338,14 @@ import {quillEditor} from 'vue-quill-editor'
                            
                         }).then(response => {
                             let fData = new FormData();
+                            if(this.news.category_id != 26 )
+                            {
+                                this.news.from_date = null;
+                                this.news.to_date = null;
+                            }
                             fData.append('photo', this.news.photo)
+                            fData.append('from_date', this.news.from_date)
+                            fData.append('to_date', this.news.to_date)
                             fData.append('title', this.news.title)
                             fData.append('main_point', this.news.main_point)
                             fData.append('body', this.news.body)
@@ -370,6 +394,8 @@ import {quillEditor} from 'vue-quill-editor'
                         }).then(response => {
                         let fData = new FormData();
                             fData.append('photo', this.news.photo)
+                            fData.append('from_date', this.news.from_date)
+                            fData.append('to_date', this.news.to_date)
                             fData.append('title', this.news.title)
                             fData.append('main_point', this.news.main_point)
                             fData.append('body', this.news.body)
@@ -452,13 +478,13 @@ import {quillEditor} from 'vue-quill-editor'
                         if(confirm)
                         {
                             this.$swal({
-                            title: "削除",
-                            text: "画像を削除してよろしいでしょうか",
+                            // title: "削除",
+                            text: "画像を削除してよろしいでしょうか。",
                             type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#d41010",
+                            confirmButtonColor: "#eea025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
                             confirmButtonText: "はい",
@@ -477,7 +503,7 @@ import {quillEditor} from 'vue-quill-editor'
                                         width: 350,
                                         height: 200,
                                         confirmButtonText: "閉じる",
-                                        confirmButtonColor: "#dc3545",
+                                        confirmButtonColor: "#31cd38",
                                         allowOutsideClick: false,
                                     });
                                     this.old_photo = old_photo;

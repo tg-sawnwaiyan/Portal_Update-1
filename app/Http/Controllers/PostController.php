@@ -37,6 +37,7 @@ class PostController extends Controller
     // add news
     public function add(Request $request)
     {
+       
         if(is_object($request->photo)){
             $imageName = $request->photo->getClientOriginalName();
             $imageName = str_replace(' ', '', $imageName);
@@ -56,7 +57,9 @@ class PostController extends Controller
             $post->related_news=$request->input('related_news');
             $post->user_id = 1;
             $post->recordstatus=1;
-
+            $post->from_date = $request->input('from_date');
+            $post->to_date = $request->input('to_date');
+        
             $post->save();
 
         return response()->json('The New successfully added');
@@ -209,6 +212,8 @@ class PostController extends Controller
             $post->photo = $imageName;
             $post->category_id=$request->input('category_id');
             $post->related_news=$request->input('related_news');
+            $post->from_date = $request->input('from_date');
+            $post->to_date = $request->input('to_date');
             $post->user_id = 1;
             $post->recordstatus=1;
             $post->save();
