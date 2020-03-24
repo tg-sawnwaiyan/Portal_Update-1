@@ -255,13 +255,12 @@ export default {
 };
 </script>
 
-<style >
-
-.hospital-tabColor .nav-link {
+<style>
+/* .hospital-tabColor .nav-link {
         background: #63b7ff !important;
         color: #fff;
         border-right: 1px solid #fff;
-}
+} */
 .news-tabColor .nav-link {
         background: #75b777 !important;
         color: #fff;

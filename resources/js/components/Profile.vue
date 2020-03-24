@@ -154,11 +154,11 @@ export default {
 </script>
 
 <style >
-.hospital-tabColor .nav-link {
+/* .hospital-tabColor .nav-link {
         background: #63b7ff !important;
         color: #fff;
         border-right: 1px solid #fff;
-}
+} */
 .nursing-tabColor .nav-link {
         /* background: #ff9563 !important; */
          background: #63b7ff !important;

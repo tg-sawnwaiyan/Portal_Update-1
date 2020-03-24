@@ -445,6 +445,10 @@ textarea:disabled::placeholder {
     opacity: 1;
 }
 
+.tab-pane {
+    padding: 10px;
+}
+
 
 /********************************** End Common **********************************/
 
@@ -1558,6 +1562,412 @@ border-radius: 3px;
 /******************************** end no search data ****************************************/
 
 
+/******************************** JOB, NURSING, HOSPITAL SEARCH *****************************/
+
+.wd-in p {
+    min-height: 25px;
+}
+
+.lds-ripple {
+    position: absolute;
+    width: 100% !important;
+    height: 400px !important;
+}
+
+.lds-ripple>div {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.lds-ripple>div div {
+    position: absolute;
+    border: 4px solid #fff;
+    opacity: 1;
+    border-radius: 50%;
+    z-index: 999;
+    animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.lds-ripple>div div:nth-child(2) {
+    animation-delay: -0.5s;
+}
+
+@keyframes lds-ripple {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        width: 72px;
+        height: 72px;
+        opacity: 0;
+    }
+}
+
+@media only screen and (max-width:1024px) {
+    table>tbody>tr th {
+        width: 100px !important;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    table>tbody>tr th {
+        padding: 25px 5px;
+    }
+    table th,
+    table td {
+        vertical-align: middle !important;
+        width: 50px !important;
+        padding: 5px !important;
+    }
+    .dropdown-toggle::after {
+        position: absolute;
+        right: 12px;
+        top: 15px;
+    }
+}
+
+.dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: "";
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+    margin-left: 94px;
+}
+
+.disabled {
+    /* display:none; */
+    cursor: not-allowed !important;
+    background-color: gray;
+}
+
+.enabled {
+    /* display:block; */
+    cursor: pointer;
+}
+
+.pagination .spanclass:hover {
+    background-color: #2980b9 !important;
+}
+
+.disabled {
+    cursor: not-allowed !important;
+    background-color: gray;
+}
+
+@media only screen and (max-width: 480px) {
+    .previous span {
+        display: none;
+    }
+    .next span {
+        display: none;
+    }
+    .pagination .pages {
+        display: none;
+    }
+}
+
+
+/*************************************END JOB, NURSING, HOSPITAL **************************/
+
+
+/*************************************Nursing Search **************************************/
+
+#nursing-search {
+    display: none;
+}
+
+#nursing-search .card-carousel-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    color: #666a73;
+}
+
+#nursing-search .card-carousel {
+    display: flex;
+    justify-content: center;
+    width: 1320px;
+    overflow: auto;
+}
+
+#nursing-search .card-carousel--overflow-container {
+    overflow: hidden;
+}
+
+#nursing-search .card-carousel--nav__left,
+#nursing-search .card-carousel--nav__right {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    padding: 5px;
+    box-sizing: border-box;
+    border-top: 5px solid #2980b9;
+    border-right: 5px solid #2980b9;
+    margin: 4px 0px;
+    transition: transform 150ms linear;
+}
+
+#nursing-search .card-carousel--nav__left[disabled],
+#nursing-search .card-carousel--nav__right[disabled] {
+    opacity: 0.2;
+    border-color: black;
+}
+
+#nursing-search .card-carousel--nav__left {
+    transform: rotate(-135deg);
+}
+
+#nursing-search .card-carousel--nav__left:active {
+    transform: rotate(-135deg) scale(0.9);
+}
+
+#nursing-search .card-carousel--nav__right {
+    transform: rotate(45deg);
+}
+
+#nursing-search .card-carousel--nav__right:active {
+    transform: rotate(45deg) scale(0.9);
+}
+
+#nursing-search .card-carousel-cards {
+    display: flex;
+    transition: transform 150ms ease-out;
+    transform: translatex(0px);
+}
+
+#nursing-search .card-carousel-cards .card-carousel--card:first-child {
+    margin-left: 0;
+}
+
+#nursing-search .card-carousel-cards .card-carousel--card:last-child {
+    margin-right: 0;
+}
+
+#nursing-search .card-carousel-cards .card-carousel--card img:hover {
+    opacity: 0.5;
+}
+
+#nursing-search .card-carousel-cards .card-carousel--card--footer {
+    border-top: 0;
+    padding: 7px 15px;
+}
+
+#nursing-search .card-carousel-cards .card-carousel--card--footer p {
+    padding: 3px 0;
+    margin: 0;
+    margin-bottom: 2px;
+    font-size: 19px;
+    font-weight: 500;
+    color: #2c3e50;
+    user-select: none;
+}
+
+#nursing-search .card-carousel-cards .card-carousel--card--footer p:nth-of-type(2) {
+    font-size: 12px;
+    font-weight: 300;
+    padding: 6px;
+    background: rgba(40, 44, 53, 0.06);
+    display: inline-block;
+    position: relative;
+    margin-left: 4px;
+    color: #666a73;
+}
+
+#nursing-search .card-carousel-cards .card-carousel--card--footer p:nth-of-type(2):before {
+    content: "";
+    float: left;
+    position: absolute;
+    top: 0;
+    left: -12px;
+    width: 0;
+    height: 0;
+    border-color: transparent rgba(40, 44, 53, 0.06) transparent transparent;
+    border-style: solid;
+    border-width: 12px 12px 12px 0;
+}
+
+#nursing-search .card-carousel-cards .card-carousel--card--footer p:nth-of-type(2):after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: -1px;
+    float: left;
+    width: 4px;
+    height: 4px;
+    border-radius: 2px;
+    background: white;
+    box-shadow: -0px -0px 0px #004977;
+}
+
+#nursing-search .nav-box[disabled] .card-carousel--nav__left,
+#nursing-search .nav-box[disabled] .card-carousel--nav__right {
+    border-top: 5px solid #000;
+    border-right: 5px solid #000;
+}
+
+#nursing-search .nav-box[disabled] .nav-content {
+    border: 2px solid #000;
+    background: #fff
+}
+
+#nursing-search .nav-content {
+    width: 40px;
+    height: 40px;
+    line-height: 50px;
+    vertical-align: middle;
+    background: #fffff4;
+    border: 2px solid #2980b9;
+    border-radius: 50%;
+    text-align: center;
+}
+
+
+/************************responsive ****************************/
+
+@media only screen and (max-width: 360px) {
+    #nursing-search .card-carousel {
+        width: 200px!important;
+    }
+    #nursing-search .card-carousel {
+        overflow: visible;
+    }
+    #nursing-search .nav-content {
+        border: none;
+        width: 0px;
+    }
+    #nursing-search .nav-box[disabled] .nav-content {
+        border: none;
+        background: #fff;
+    }
+}
+
+@media only screen and (max-width: 375px) {
+    #nursing-search .card-carousel {
+        width: 278px!important;
+    }
+    #nursing-search .card-carousel {
+        overflow: visible;
+    }
+    #nursing-search .nav-content {
+        border: none;
+        width: 0px;
+    }
+    #nursing-search .nav-box[disabled] .nav-content {
+        border: none;
+        background: #fff;
+    }
+    #nursing-search .card-carousel--nav__left,
+    #nursing-search .card-carousel--nav__right {
+        margin-left: -7px;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    #nursing-search .card-carousel {
+        width: 280px !important;
+    }
+    #nursing-search .card-carousel {
+        overflow: visible;
+    }
+    #nursing-search .nav-content {
+        border: none;
+        width: 0px;
+    }
+    #nursing-search .nav-box[disabled] .nav-content {
+        border: none;
+        background: #fff;
+    }
+    #nursing-search .card-carousel--nav__left,
+    #nursing-search .card-carousel--nav__right {
+        margin-left: -7px;
+    }
+    .wd-in .carousel-img {
+        width: 100px;
+    }
+}
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+
+@media only screen and (max-width: 1023px) and (min-width: 768px) {
+    #nursing-search .card-carousel {
+        width: 415px!important;
+    }
+    .wd-in .carousel-img {
+        width: 140px;
+    }
+}
+
+@media only screen and (max-width: 768px) and (min-width: 449px) {
+    #nursing-search .card-carousel {
+        width: 279px!important;
+    }
+}
+
+@media only screen and (max-width: 992px) and (min-width: 768px) {
+    #nursing-search .card-carousel {
+        width: 342px!important;
+    }
+    .wd-in {
+        width: 320px;
+    }
+}
+
+@media only screen and (max-width: 1020px) and (min-width: 992px) {
+    #nursing-search .card-carousel {
+        width: 823px!important;
+    }
+    .wd-in {
+        width: 377px;
+    }
+}
+
+@media only screen and (max-width: 1200px) and (min-width: 1024px) {
+    #nursing-search .card-carousel {
+        width: 827px!important;
+    }
+    .wd-in {
+        width: 391px;
+    }
+}
+
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+
+@media only screen and (max-width: 1440px) and (min-width: 1201px) {
+    #nursing-search .card-carousel {
+        width: 988px!important;
+    }
+    .wd-in {
+        width: 308px;
+    }
+}
+
+@media only screen and (max-width: 1880px) and (min-width: 1440px) {
+    #nursing-search .card-carousel {
+        width: 1033px!important;
+    }
+    .wd-in {
+        width: 323px;
+    }
+}
+
+
+/*************************************end Nursing Search **********************************/
+
+
 /***************************************** Job Search *****************************************/
 
 .arrow_icon {
@@ -1681,6 +2091,12 @@ box-shadow: 0px 0px 5px rgb(212, 201, 201); */
 
 .map-fa-icon-job {
     background: url(/images/map-responsive-job.png) center top no-repeat;
+}
+
+#job_detail .fav-profile {
+    position: relative;
+    top: 0;
+    right: 0;
 }
 
 
@@ -5861,6 +6277,22 @@ a:hover {
     border-color: #63b7ff #63b7ff #fff #63b7ff !important;
 }
 
+.nursing-tabColor .nav-link {
+    background: #2980b9 !important;
+    color: #fff;
+    border-right: 1px solid #fff;
+}
+
+.nursing-borderColor {
+    border: 1px solid #2980b9 !important;
+}
+
+.hospital-tabColor .nav-link {
+    background: #63b7ff !important;
+    color: #fff;
+    border-right: 1px solid #fff;
+}
+
 .hospital-tabColor .nav-link.active {
     color: #63b7ff !important;
     font-weight: bold;
@@ -8591,6 +9023,24 @@ border-bottom: none;
 
 /*hospital search*/
 
+.result-span {
+    color: #23a2f5;
+}
+
+.toBeToggled {
+    display: block;
+}
+
+.toBeToggled1 {
+    display: none;
+}
+
+#hos table>tbody>tr th {
+    background-color: #e8e7e7;
+    width: 140px;
+    padding: 25px;
+}
+
 .table-innertitle {
     position: relative;
 }
@@ -8661,9 +9111,11 @@ border-bottom: none;
     color: #c40000;
     font-weight: bold;
 }
-.nus_phone_none{
+
+.nus_phone_none {
     display: none;
 }
+
 .hos_phone i,
 .sp_hos_phone i,
 .nus_phone i {
@@ -9490,6 +9942,7 @@ font-size: 18px; */
 
 #info_content table tr td {
     border-top: 0px;
+    width: 305px;
 }
 
 .search-border-dash {
@@ -10655,24 +11108,25 @@ padding: 0;
         position: absolute;
         top: -12px;
         right: -7px;
-        width: 30px;
-        height: 30px;
-        padding: 1px 5px;
+        width: 35px;
+        height: 35px;
+        padding: 2px;
         margin-left: 6px;
         background: #2980b9;
         font-size: 11px;
         color: #fff;
         border-radius: 50%;
-        line-height: 30px;
+        line-height: 35px;
         vertical-align: middle;
+        text-align: center;
     }
     #sp_headerbar .count2 {
         position: absolute;
         top: -12px;
         right: -7px;
-        width: 30px;
-        height: 30px;
-        padding: 1px 5px;
+        width: 35px;
+        height: 35px;
+        padding: 2px;
         margin-right: -5px;
         background: #2980b9;
         font-size: 11px;
@@ -10680,6 +11134,7 @@ padding: 0;
         border-radius: 50%;
         line-height: 30px;
         vertical-align: middle;
+        text-align: center;
     }
     .sp_social {
         display: block;

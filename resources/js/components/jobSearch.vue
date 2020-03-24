@@ -1,6 +1,6 @@
 <template>
 <layout>
-<div>
+<div id="job-search-ui">
   
  
    <div class="col-md-12" style="border-bottom: 1px dashed #828282;padding-bottom: 10px; margin-bottom: 20px;">
@@ -854,183 +854,38 @@ $(document).click(function(e) {
 </script>
 
 
-<style scoped>
-.result-span {
+<style>
+#job-search-ui .result-span {
     color: #828282;
 }
-.jobselect {
+#job-search-ui .jobselect {
   display: none;
 }
-.offset {
+#job-search-ui .offset {
   display: none;
 }
-
-.toBeToggled4 {
+#job-search-ui .toBeToggled4 {
     display: block;
 }
-
-.toBeToggled1 {
+#job-search-ui .toBeToggled1 {
     display: none;
 }
-
-table > tbody > tr th{
+#job-search-ui table > tbody > tr th{
   background-color: #eeeeee;
-  /* text-align:right; */
   width:140px;
   padding:25px;
 }
-.job-tabColor .nav-link {
+#job-search-ui .job-tabColor .nav-link {
   background: #828282 !important;
   color: #fff;
   border-right: 1px solid #fff;
 }
-
-.job-borderColor {
+#job-search-ui .job-borderColor {
   border: 1px solid #828282 !important;
 }
-.tab-pane{
-  padding: 10px;
-}
-.offset{
+#job-search-ui .offset{
   width: 500px !important;
   margin: 20px auto;
 }
-/********/
-.container {
-  padding: 1rem 2%;
-}
 
-.toggle {
-  align-items: center;
-  background: #12C88A;
-  border-radius: 4px;
-  color: #FFF;
-  cursor: pointer;
-  display: flex;
-  justify-content: flex-start;
-  padding: 1rem 1.2rem;
-  margin-bottom: 2px;
-}
-
-.toggle i {
-  font-size: 1.2rem;
-  margin-right: .6rem;
-}
-
-.content {
-  background: #F8F8F8;
-  border-radius: 4px;
-  padding: 1rem 1.2rem;
-}
-
-.content > * {
-  line-height: 1.8;
-  margin: 0;
-  opacity: 1;
-  padding: 0;
-  visibility: visible;
-}
-
-.slide-enter-active,
-.slide-leave-active {
-  transition:
-    padding-top .3s ease-out,
-    padding-bottom .3s ease-out;
-}
-
-.slide-enter-active > * {
-  transition:
-    line-height .3s ease-out,
-    opacity .1s linear .1s,
-    visibility .1s linear .1s;
-}
-
-.slide-leave-active > * {
-  transition:
-    line-height .3s ease-out,
-    opacity .1s linear,
-    visibility .1s linear;
-}
-
-.slide-enter,
-.slide-leave-to {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
-.slide-enter > *,
-.slide-leave-to > * {
-  line-height: 0;
-  opacity: 0;
-  visibility: hidden;
-}
-/* .dropdown{
-  display: none;
-} */
-/************************responsive ****************************/
-@media only screen and (max-width:1024px) {
-  table > tbody > tr th{
-    width:100px;
-  }
-
-}
-@media only screen and (max-width: 480px){
-  table > tbody > tr th{
-    padding: 25px 5px;
-  }
-  table th, table td{
-    vertical-align: middle;
-  }
-  .dropdown-toggle::after {
-    position: absolute;
-    right: 12px;
-    top: 15px;
-  }
-}
-
-.dropdown-toggle::after {
-    display: inline-block;
-    margin-left: 0.255em;
-    vertical-align: 0.255em;
-    content: "";
-    border-top: 0.3em solid;
-    border-right: 0.3em solid transparent;
-    border-bottom: 0;
-    border-left: 0.3em solid transparent;
-    margin-left: 94px;
-}
-
-
-.disable{
- /* display:none; */
- cursor: not-allowed;
- background-color:gray;
-}
-
-.undisable{
-  /* display:block; */
-  cursor: pointer;
-}
-.pagination span:hover{
-  background-color:#2980b9 !important;
-}
-@media only screen and (max-width: 480px) {
-
-.previous span {
-  display:none;
-}
-
-.next span {
-  display:none;
-}
-}
-@media only screen and (max-width: 480px) {
-  .pagination .pages {
-    display: none;
-  }
-}
-.disabled{
- cursor: not-allowed !important;
- background-color:gray;
-}
 </style>
