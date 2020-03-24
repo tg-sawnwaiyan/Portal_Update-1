@@ -1643,10 +1643,20 @@ export default {
               
                 this.profilenumber = response.data.profilenumber[0]['profilenumber'];
                 this.nus_pro = response.data.nurselatlong;
-                console.log("nuspro",this.nus_pro)
                 this.google = response.data.nurselatlong;
-                if(this.$auth.user().customer_id == this.nus_pro.customer_id){
-                    this.show_comment = false;
+               
+                if(!this.$auth.check()){
+                    this.show_comment = true;
+                }else{
+                    if(this.$auth.user().role == 2){
+                        this.show_comment = false;
+                    }else{
+                        if(this.$auth.user().customer_id == this.nus_pro[0].customer_id){
+                            this.show_comment = false;
+                        }else{
+                            this.show_comment = true;
+                        }
+                    }
                 }
 
                 if(this.nus_pro[0]['address'] == null){
@@ -1752,10 +1762,21 @@ export default {
                 this.google = response.data.hospital;
                 this.address = response.data.address;
                 this.hospitals = response.data.hospital;
-                console.log("hos",this.hospitals)
-                if(this.$auth.user().customer_id == this.hospitals[0].customer_id){
-                    this.show_comment = false;
+                
+                if(!this.$auth.check()){
+                    this.show_comment = true;
+                }else{
+                    if(this.$auth.user().role == 2){
+                        this.show_comment = false;
+                    }else{
+                        if(this.$auth.user().customer_id == this.hospitals[0].customer_id){
+                            this.show_comment = false;
+                        }else{
+                            this.show_comment = true;
+                        }
+                    }
                 }
+
                 if(this.hospitals[0]['address'] == null){
                     this.hospitals[0]['address'] = '';
                 }
@@ -1829,21 +1850,7 @@ export default {
             });
 
             
-        }
-
-        if(!this.$auth.check()){
-            this.show_comment = true;
-        }else{
-            if(this.$auth.user().role == 2){
-                this.show_comment = false;
-            }else{
-                if(this.$auth.user().customer_id == this.pro_id){
-                    this.show_comment = false;
-                }else{
-                    this.show_comment = true;
-                }
-            }
-        }
+        }        
 
         var new_width = $("#content-all").width();
         var fixed_width = new_width - 80;
