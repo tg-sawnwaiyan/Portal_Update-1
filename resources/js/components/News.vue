@@ -207,129 +207,7 @@
                                     <!-- two show () aaaaaaaaa-->  
                                    
                                     <div v-if="(w_width >= 1280) || (w_width <= 768 && w_width >= 480)" class="row col-sm-12 p-lr-0 m-0">
-                                        <div class="col-sm-6 m-b-8 pad-new" v-for="latest_post_all_cat in latest_post_all_cats.slice(0, 2)" :key="latest_post_all_cat.id">
-
-                                            <div class="col-md-12 row m-0 pad-free">
-
-                                                <div class="hovereffect fit-image">
-
-                                                <clazy-load class="wrapper-1" @load="log"  src="/images/noimage.jpg" :key="latest_post_all_cat.id">
-
-                                                    <transition name="fade">
-
-                                                        <img :src="'/upload/news/' + latest_post_all_cat.photo " class="img-responsive fit-image" @error="imgUrlAlt">
-
-                                                    </transition>
-
-                                                    <!-- <img class="img-responsive fit-image" :src="'/upload/news/' + latest_post_all_cat.photo " alt="" @error="imgUrlAlt"> -->
-
-                                                    <transition name="fade" slot="placeholder">
-
-                                                    <div class="preloader">
-
-                                                        <div class="circle">
-
-                                                        <div class="circle-inner"></div>
-
-                                                        </div>
-
-                                                    </div>
-
-                                                    </transition>
-
-                                                </clazy-load>
-
-                                                    <div class="overlay">
-
-                                                        <router-link class="btn btn-sm all-btn secondary-bg-color m-t-20" :to="'/newsdetails/'+ latest_post_all_cat.id">詳細</router-link>
-
-                                                    </div>
-
-                                                    <div class="info">
-
-                                                        <div class="col-12" style="border:none;">
-
-                                                            <p class=" p_3">
-
-                                                                {{ latest_post_all_cat.main_point }}
-
-                                                            </p>
-
-                                                        </div>
-
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    <!-- one show -->
-                                    <div v-if="(w_width < 1280 && w_width > 768) || (w_width < 480)" class="row col-sm-12 p-lr-0 m-0">
-                                        <div class="col-sm-12 m-b-8 pad-new" v-for="latest_post_all_cat in latest_post_all_cats.slice(0, 1)" :key="latest_post_all_cat.id">
-                                            <div class="col-md-12 row m-0 pad-free">
-
-                                                <div class="hovereffect fit-image">
-
-                                                <clazy-load class="wrapper-1" @load="log"  src="/images/noimage.jpg" :key="latest_post_all_cat.id">
-
-                                                    <transition name="fade">
-
-                                                        <img :src="'/upload/news/' + latest_post_all_cat.photo " class="img-responsive fit-image" @error="imgUrlAlt">
-
-                                                    </transition>
-
-                                                    <!-- <img class="img-responsive fit-image" :src="'/upload/news/' + latest_post_all_cat.photo " alt="" @error="imgUrlAlt"> -->
-
-                                                    <transition name="fade" slot="placeholder">
-
-                                                    <div class="preloader">
-
-                                                        <div class="circle">
-
-                                                        <div class="circle-inner"></div>
-
-                                                        </div>
-
-                                                    </div>
-
-                                                    </transition>
-
-                                                </clazy-load>
-
-                                                    <div class="overlay">
-
-                                                        <router-link class="btn btn-sm all-btn secondary-bg-color m-t-20" :to="'/newsdetails/'+ latest_post_all_cat.id">詳細</router-link>
-
-                                                    </div>
-
-                                                    <div class="info">
-
-                                                        <div class="col-12" style="border:none;">
-
-                                                            <p class=" p_3">
-
-                                                                {{ latest_post_all_cat.main_point }}
-
-                                                            </p>
-
-                                                        </div>
-
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- two show -->
-                                  
-                                    <div class="row col-sm-12 p-lr-0 m-0 " v-if="(w_width >= 1280) || (w_width <= 768 && w_width >= 480)">
-                                  
-                                        <div class="col-sm-6 m-b-8 pad-new" v-for="item in latest_post_all_cats.slice(2, 6)"  :key="item.id">
+                                        <div class="col-sm-6 m-b-8 pad-new" v-for="item in latest_post_all_cats.slice(0, 8)"  :key="item.id">
 
                                             <div class="col-md-12 row adslist-card news-3-card m-0">
 
@@ -382,8 +260,8 @@
                                     </div>
 
                                     <!-- one show -->
-                                    <div class="row col-sm-12 p-lr-0 m-0 " v-if="(w_width < 1280 && w_width > 768) || (w_width < 480)">
-                                        <div class="col-sm-12 m-b-8 pad-new" v-for="item in latest_post_all_cats.slice(1, 3)"  :key="item.id">
+                                    <div v-if="(w_width < 1280 && w_width > 768) || (w_width < 480)" class="row col-sm-12 p-lr-0 m-0">
+                                        <div class="col-sm-12 m-b-8 pad-new" v-for="item in latest_post_all_cats.slice(0, 4)"  :key="item.id">
 
                                             <div class="col-md-12 row adslist-card news-3-card m-0">
 
@@ -449,7 +327,7 @@
                     <div class="col-md-12 m-lr-0 p-0 d-none d-sm-block" v-if="status == '0'">
                         <!-- two show -->
                         <div class="row col-12 m-lr-0 p-0" v-if="(w_width >= 1280) || (w_width <= 768 && w_width >= 480)">
-                            <div class="col-md-6 col-sm-6 col-lg-3 m-b-8 pad-new" v-for="item in latest_post_all_cats.slice(6, 14)"  :key="item.id">
+                            <div class="col-md-6 col-sm-6 col-lg-3 m-b-8 pad-new" v-for="item in latest_post_all_cats.slice(8, 16)"  :key="item.id">
 
                                 <div class="col-md-12 row adslist-card news-3-card m-0">
 
@@ -506,7 +384,7 @@
                         
                         <!-- one show -->
                         <div class="row col-md-12 pad-free m-0" v-if="(w_width < 1280 && w_width > 768) || (w_width < 480)">
-                            <div class="col-md-4 m-b-8 pad-new" v-for="item in latest_post_all_cats.slice(3, 11)"  :key="item.id">
+                            <div class="col-md-4 m-b-8 pad-new" v-for="item in latest_post_all_cats.slice(4, 10)"  :key="item.id">
 
                                 <div class="col-md-12 row adslist-card news-3-card m-0">
 
