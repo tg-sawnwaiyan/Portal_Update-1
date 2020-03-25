@@ -346,10 +346,12 @@ Route::post('get_latest_post', 'HomeController@getLatestPost');
 Route::get('get_latest_post_all_cat', 'HomeController@getLatestPostFromAllCat');
 Route::post('search', 'HomeController@search');
 Route::get('get_latest_posts_by_catId/{searchword}', 'HomeController@getLatestPostsByAllCatId');
+Route::get('get_news_by_catId/{searchword}/{id}', 'HomeController@get_news_by_catId');
 Route::get('get_cat_random', 'HomeController@getCategoryRandom');
 
 
 Route::get('newdetails/{id}', 'PostController@show');
+Route::get('newscategory/{id}', 'PostController@getNewsByCategory');
 Route::get('relatednews/{id}', 'PostController@show_related');
 // Route::get('newsdetailsrelated/{id}','PostController@relatednews');
 

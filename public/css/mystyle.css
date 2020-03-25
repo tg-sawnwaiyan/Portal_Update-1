@@ -804,7 +804,11 @@ input::-ms-clear {
 
 
 /********************************** News **********************************/
-
+.backbtn{
+    position: absolute;
+    right: 12px;
+    top:30%;
+}
 .breaking-tip {
     color: #fff;
     background-color: #e6001a;

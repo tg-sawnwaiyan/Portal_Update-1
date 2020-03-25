@@ -157,6 +157,19 @@ class HomeController extends Controller
                         ->toArray();
         return $query;
     }
+    public function get_news_by_catId($search_word,$id)
+    {
+        if($search_word == 'all_news_search')
+        {
+            $query = "SELECT * from posts where category_id = $id ";
+        }
+        else{
+            $query = "SELECT * from posts where category_id = $id and (title like '%".$search_word."%' or body like '%".$search_word."%')";
+        }
+       
+        $newslist = DB::select($query);
+        return $newslist;
+    }
 
     public function getLatestPostsByAllCatId($search_word) {
         // $posts = Category::join('posts', 'categories.id', '=', 'posts.category_id')

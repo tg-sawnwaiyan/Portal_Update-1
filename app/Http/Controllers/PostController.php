@@ -119,6 +119,13 @@ class PostController extends Controller
        return response()->json(array('news'=> $data));
     
     }
+
+    public function getNewsByCategory($id)
+    {
+        $cat_name = Category::where('id',$id)->select('name')->value('name');
+        $newslist = Post::where('category_id',$id)->get();
+        return response()->json(array('cat_name'=> $cat_name,'newslist'=>$newslist));
+    }
     
     public function show_related($id) {
     

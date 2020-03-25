@@ -47,6 +47,7 @@ import adminlist from './components/AdminList'
 import admincreate from './components/AdminCreate'
 import sitepolicy from './components/sitepolicy'
 import Accountlist from './components/Accountlist'
+import NewsCategory from './components/News_Category'
 
 
 // import menu from './components/menu/Menu';
@@ -112,6 +113,14 @@ const routes = [
         name: 'News',
         path: '/',
         component: News,
+        meta: {
+            auth: undefined
+        }
+    },
+    {
+        name: 'NewsCategory',
+        path: '/newscategory/:id',
+        component: NewsCategory,
         meta: {
             auth: undefined
         }
