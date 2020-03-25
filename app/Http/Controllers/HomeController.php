@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Category;
 use App\Post;
 use DB;
+use Carbon;
 
 class HomeController extends Controller
 {
@@ -26,7 +27,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $cats = DB::select("SELECT categories.* FROM categories INNER JOIN posts ON categories.id = posts.category_id WHERE categories.id != 26 GROUP BY categories.id");
+        
+        $cats = DB::select("SELECT categories.* FROM categories INNER JOIN posts ON categories.id = posts.category_id WHERE categories.id != 26  GROUP BY categories.id");
         return response()->json($cats);
     }
 
@@ -125,8 +127,10 @@ class HomeController extends Controller
 
         public function getLatestPostFromAllCat()
     {
-        // $latest_post_all_cat = Post::orderBy('created_at', 'desc')->limit('16')->get();
-        $break_news = Post::where('category_id',26)->get()->toArray();
+        $getTime = Carbon\Carbon::now()->toDateTimeString();
+        // $break_news = Post::where('category_id',26)->where('from_date','>=',$getTime,'and','to_date','<=',$getTime)->get()->toArray();
+        $query = "SELECT * from posts where (category_id = 26 and (from_date <= '".$getTime."' and to_date <= '".$getTime."')) limit 16";
+        $break_news = DB::select($query);
         $limit = 16 - count($break_news);
         $latestpost = Post::where('category_id','!=',26)->orderBy('created_at', 'desc')->limit("$limit")->get()->toArray();
 
@@ -197,7 +201,7 @@ class HomeController extends Controller
             $wh = " AND (posts.title LIKe '%{$search_word}%' OR posts.main_point LIKe '%{$search_word}%' OR posts.body LIKe '%{$search_word}%')";
         }
 
-        $cat = Category::select('id')->get();
+        $cat = Category::where('id','!=',26)->select('id')->get();
         if(count($cat) == 0)
         {
             $posts = [];
