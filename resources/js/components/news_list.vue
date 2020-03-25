@@ -53,11 +53,12 @@
                                 <td>
                                     <div v-if="newsList.photo !=null">
                                         <img :src="'/upload/news/'+ newsList.photo"   @error="imgUrlAlt" />
+                            
                                     </div>
                                     <div  v-else> <img src="/images/noimage.jpg" alt  /></div>
                                 </td>
                                 <td>
-                                    <h5>
+                                    <h5><span v-if="newsList.category_id == 26" class="breaking-tip" style="margin-right:5px;">PR</span>
                                         <router-link
                                             :to="{name: 'newdetails', params:{id:newsList.id}}"
                                             class="pseudolink"
