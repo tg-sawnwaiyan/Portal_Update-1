@@ -16,12 +16,13 @@
                                                 <span v-if="errors.title" class="error">{{errors.title}}</span>
                                     </div>
                             <div class="form-group">
-                                            <label>説明  <span class="error"></span></label>
-                                            <textarea name="description" class="form-control" cols="50" rows="5" v-model="advertisement.description"></textarea>
-                                    </div>
+                                <label>説明</label>
+                                <textarea name="description" class="form-control" cols="50" rows="5" v-model="advertisement.description"></textarea>
+                            </div>
                             <div class="form-group">
-                                <label>広告リンク  <span class="error"></span></label>
+                                <label>広告リンク  <span class="error sp2">必須</span></label>
                                 <input type="link" class="form-control box" id="link"  name="link" v-model="advertisement.link" placeholder="広告リンクを入力してください。">
+                                <span v-if="errors.link" class="error">{{errors.link}}</span>
                             </div>
                             <!-- <div class="form-group">
                                      <label>表示するロケーション : <span class="error">*</span></label><br/>
@@ -88,7 +89,8 @@ export default {
                 errors: {
                     title:"",
                     location:"",
-                    photo:""
+                    photo:"",
+                    link:"",
                 },
                 advertisement: {
                     title: '',
@@ -117,7 +119,7 @@ export default {
                 .get(`/api/advertisement/edit/${this.$route.params.id}`)
                 .then((response) => {
                     this.advertisement.title = response.data.title;
-                    this.advertisement.description = response.data.description;
+                    this.advertisement.description = response.data.description == null ? '':response.data.description;
                     this.advertisement.link = response.data.link;
                     this.advertisement.location = "topbar";
                     // this.ischeck = response.data.location;
@@ -355,11 +357,19 @@ export default {
                     this.errors.photo = "写真は必須です。";
                 }
 
-                if(!this.errors.title && !this.errors.photo && this.$route.params.id)
+                if(this.advertisement.link)
+                {
+                    this.errors.link = "";     
+                } else 
+                {    
+                    this.errors.link = "広告リンクは必須です。";
+                }
+
+                if(!this.errors.link && !this.errors.title && !this.errors.photo && this.$route.params.id)
                 {
                 this.updateAds();
                 }
-                else if(!this.errors.title && !this.errors.photo && !this.$route.params.id){
+                else if(!this.errors.title && !this.errors.title && !this.errors.photo && !this.$route.params.id){
                     this.add();
                 }
             }

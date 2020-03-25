@@ -50,42 +50,20 @@
                                     <h5 class="font-weight-bold">{{ads.title}}</h5>
                                     <!-- <div class="col-md-2 max-width16"><strong>描写  :</strong></div><div class="col-md-10">{{ads.description}}</div> -->
                                     <div class="d-flex mt-4">
-                                        <router-link :to="{name: 'editadvertisement', params: { id: ads.id }}" class="btn edit-borderbtn">編集</router-link>
+                                        <router-link :to="{path: '/editads/'+ads.id}" class="btn edit-borderbtn">編集</router-link>
                                         <button class="btn delete-borderbtn ml-2" @click="deleteAds(ads.id)">削除</button>
                                         <!-- <button class="btn delete-borderbtn" @click="toggleModal">削除</button>                                 -->
                                     </div>
                                 </td>
                             </tr>
                         </table>
-                        <!-- <div v-for="ads in displayItems" :key="ads.id" class="card card-default m-b-20">
-                            <div class="card-body news-post">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <img :src="'/upload/advertisement/'+ ads.photo" class="img-fluid" alt="ads" @error="imgUrlAlt" />
-                                    </div>
-                                <div class="col-md-9">
-                                    <div class="row">
-                                        <div class=" col-md-3 custom_title">
-                                            <strong>タイトル :</strong>
-                                        </div>
-                                        <div class="col-md-9">{{ads.title}}</div>
-                                    </div>
-                                        <div class="row mt-3">
-                                            <div class="col-md-6">
-                                                <router-link :to="{name: 'editadvertisement', params: { id: ads.id }}" class="btn edit-borderbtn">編集</router-link>
-                                                <button class="btn delete-borderbtn" @click="deleteAds(ads.id)">削除</button>
-                                            </div>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-                        </div> -->
+                        
                     </div>
                     <!-- <pagination :data="advertisements" @pagination-change-page="searchAdvertisment"></pagination> -->
-                            <pagination :data="advertisements" @pagination-change-page="searchAdvertisment" :limit="limitpc">
-                                <span slot="prev-nav"><i class="fas fa-angle-left"></i> 前へ</span>
-                                <span slot="next-nav">次へ <i class="fas fa-angle-right"></i></span>
-                            </pagination>
+                    <pagination :data="advertisements" @pagination-change-page="searchAdvertisment" :limit="limitpc">
+                        <span slot="prev-nav"><i class="fas fa-angle-left"></i> 前へ</span>
+                        <span slot="next-nav">次へ <i class="fas fa-angle-right"></i></span>
+                    </pagination>
                 </div>
             </div>
         </div>

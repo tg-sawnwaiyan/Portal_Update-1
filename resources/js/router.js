@@ -411,7 +411,7 @@ const routes = [
 
     {
         name: "editadvertisement",
-        path: "/editads",
+        path: "/editads/:id",
         component: editadvertisement,
         meta: {
             auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/Unauthorized'}
