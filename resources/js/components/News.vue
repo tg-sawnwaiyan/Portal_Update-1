@@ -457,8 +457,7 @@
             </span>
             <span v-else>
              <div class="col-md-12 category_box" id="view-1024-pattern" :class="'bordertop-color'+(5-(Math.floor(index%5)))" v-for="(group,name,index) in post_groups" :key="index">
-
-                <h4 class="category_news_title" :class="'h-color'+(5-(Math.floor(index%5)))"><span>{{name}}</span> 
+                <h4 class="category_news_title" :class="'h-color'+(5-(Math.floor(index%5)))"> <router-link :to="'/newscategory/'+group[0].id"><span>{{name}}</span> </router-link>
                     <label class="list-label" for="">新着ニュース一覧</label>
                     <label class="list-label sp-414">                         
                             <p :class="'newsChangeLink'+index" @click="newsToggle(index)" ><i :id="'newstogg' + index" class="fas fa-sort-down"></i></p>                      
