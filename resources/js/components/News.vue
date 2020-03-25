@@ -209,7 +209,7 @@
                                     <div v-if="(w_width >= 1280) || (w_width <= 768 && w_width >= 480)" class="row col-sm-12 p-lr-0 m-0">
                                         <div class="col-sm-6 m-b-8 pad-new" v-for="item in latest_post_all_cats.slice(0, 8)"  :key="item.id">
                                             <div class="col-md-12 row adslist-card news-3-card m-0" :class="item.category_id == 26?'break-news':''">
-                                                <span v-if="item.category_id == 26" class="breaking-tip">報告</span>
+                                                
 
                                                 <div class="col-md-4 col-sm-4 img-box">     
 
@@ -248,11 +248,9 @@
 
 
                                                 <div class="col-md-8 col-sm-8 txt-box">
-
+                                                    <span v-if="item.category_id == 26" class="breaking-tip">PR</span>
                                                     <router-link :to="'/newsdetails/'+item.id">
-
-                                                        <p> {{item.main_point}} </p>
-
+                                                        <span> {{item.main_point}} </span>
                                                     </router-link>
                                                 </div>
                                             </div>
@@ -263,7 +261,7 @@
                                     <div v-if="(w_width < 1280 && w_width > 768) || (w_width < 480)" class="row col-sm-12 p-lr-0 m-0">
                                         <div class="col-sm-12 m-b-8 pad-new" v-for="item in latest_post_all_cats.slice(0, 4)"  :key="item.id">
                                             <div class="col-md-12 row adslist-card news-3-card m-0" :class="item.category_id == 26?'break-news':''">
-                                                 <span v-if="item.category_id == 26" class="breaking-tip">報告</span>
+                                                
 
                                                 <div class="col-md-4 img-box">
 
@@ -302,12 +300,10 @@
 
 
                                                 <div class="col-md-8 txt-box">
-
+                                                    <span v-if="item.category_id == 26" class="breaking-tip">PR</span>
                                                     <router-link :to="'/newsdetails/'+item.id">
-
-                                                        <p> {{item.main_point}} </p>
-
-                                                    </router-link>
+                                                        <span> {{item.main_point}} </span>
+                                                    </router-link>                                                   
 
                                                 </div>
 
@@ -326,7 +322,7 @@
                         <div class="row col-12 m-lr-0 p-0" v-if="(w_width >= 1280) || (w_width <= 768 && w_width >= 480)">
                             <div class="col-md-6 col-sm-6 col-lg-3 m-b-8 pad-new" v-for="item in latest_post_all_cats.slice(8, 16)"  :key="item.id">
                                 <div class="col-md-12 row adslist-card news-3-card m-0" :class="item.category_id == 26?'break-news':''">
-                                     <span v-if="item.category_id == 26" class="breaking-tip">報告</span>
+                                     
 
                                     <div class="col-md-4 col-sm-4 img-box">
 
@@ -364,14 +360,11 @@
 
 
 
-                                    <div class="col-md-8 col-sm-8 txt-box">
-
+                                    <div class="col-md-8 col-sm-8 txt-box">                                        
+                                        <span v-if="item.category_id == 26" class="breaking-tip">PR</span>
                                         <router-link :to="'/newsdetails/'+item.id">
-
-                                            <p> {{item.main_point}} </p>
-
+                                            <span> {{item.main_point}} </span>
                                         </router-link>
-
                                     </div>
 
                                 </div>
@@ -382,7 +375,7 @@
                         <div class="row col-md-12 pad-free m-0" v-if="(w_width < 1280 && w_width > 768) || (w_width < 480)">
                             <div class="col-md-4 m-b-8 pad-new" v-for="item in latest_post_all_cats.slice(4, 10)"  :key="item.id">
                                 <div class="col-md-12 row adslist-card news-3-card m-0" :class="item.category_id == 26?'break-news':''">
-                                     <span v-if="item.category_id == 26" class="breaking-tip">報告</span>
+                                   
                                     <div class="col-md-4 img-box">
 
                                         <router-link :to="'/newsdetails/'+item.id">
@@ -420,12 +413,10 @@
 
 
                                     <div class="col-md-8 txt-box">
-
-                                        <router-link :to="'/newsdetails/'+item.id">
-
-                                            <p> {{item.main_point}} </p>
-
-                                        </router-link>
+                                    <span v-if="item.category_id == 26" class="breaking-tip">PR</span>
+                                    <router-link :to="'/newsdetails/'+item.id">
+                                        <span> {{item.main_point}} </span>
+                                    </router-link>
 
                                     </div>
 
