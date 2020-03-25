@@ -209,8 +209,9 @@
                                     <div v-if="(w_width >= 1280) || (w_width <= 768 && w_width >= 480)" class="row col-sm-12 p-lr-0 m-0">
                                         <div class="col-sm-6 m-b-8 pad-new" v-for="item in latest_post_all_cats.slice(0, 8)"  :key="item.id">
                                             <div class="col-md-12 row adslist-card news-3-card m-0" :class="item.category_id == 26?'break-news':''">
+                                                <span v-if="item.category_id == 26" class="breaking-tip">速報</span>
 
-                                                <div class="col-md-4 col-sm-4 img-box">
+                                                <div class="col-md-4 col-sm-4 img-box">     
 
                                                     <router-link :to="'/newsdetails/'+item.id">
 

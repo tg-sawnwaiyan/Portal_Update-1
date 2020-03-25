@@ -805,6 +805,17 @@ input::-ms-clear {
 
 /********************************** News **********************************/
 
+.breaking-tip {
+    color: #fff;
+    background-color: #e6001a;
+    border-radius: 2px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 1;
+    padding: 0px 2px;
+}
+
 .category_news_title {
     /* text-align: center; */
     padding: 0px 15px 15px 0px;
@@ -12508,7 +12519,7 @@ background-image: none;
         width: 100%;
     }
     /* end create news */
-    /* news list */    
+    /* news list */
     .List_tbl tr {
         width: 100%;
     }
@@ -13921,6 +13932,6 @@ strong {
     /* float: left; */
 }
 
-.break-news{
-    border: 1px solid red!important;
+.break-news {
+    border-bottom: 2px solid #e6001a !important;
 }
