@@ -810,8 +810,8 @@ input::-ms-clear {
     top:30%;
 }
 .breaking-tip {
-    color: #e6001a;
-    background-color: #ffcc1c;
+    color: #fff;
+    background-color: #e6001a;
     /* border-radius: 2px; */
     position: absolute;
     left: 0px;
