@@ -129,7 +129,7 @@ class HomeController extends Controller
     {
         $getTime = Carbon\Carbon::now()->toDateTimeString();
         // $break_news = Post::where('category_id',26)->where('from_date','>=',$getTime,'and','to_date','<=',$getTime)->get()->toArray();
-        $query = "SELECT * from posts where (category_id = 26 and (from_date <= '".$getTime."' and to_date <= '".$getTime."'))";
+        $query = "SELECT * from posts where (category_id = 26 and (from_date <= '".$getTime."' and to_date <= '".$getTime."')) limit 16";
         $break_news = DB::select($query);
         $limit = 16 - count($break_news);
         $latestpost = Post::where('category_id','!=',26)->orderBy('created_at', 'desc')->limit("$limit")->get()->toArray();
