@@ -61,10 +61,14 @@
                 </div>
               </div>-->  
                 <div class="col-md-12" >
-                  <h4 class="header news_detail_tit">{{news.title}}</h4>   
+                  <h4 :class="news.cat_name == 'Breaking News'?'bnews-header':'header news_detail_tit'">                  
+                    <span v-if="news.cat_name == 'Breaking News'" class="font-weight-bold breaking-news-tip"> {{news.cat_name}}</span>
+                      <span :class="news.cat_name == 'Breaking News'?'b-l':''"></span>  
+                    <span>{{news.title}}</span>
+                  </h4>   
                   <div class="set-date">
                     <p :class="'title'+ news.cat_id ">
-                     <span class="font-weight-bold"> {{news.cat_name}}</span>
+                     <span v-if="news.cat_name != 'Breaking News'" class="font-weight-bold" > {{news.cat_name}}</span>
                      <small style="color:#aaa;">
                       <i class="fa fa-calendar-alt"></i>
                       &nbsp;&nbsp;{{news.created_at}}
