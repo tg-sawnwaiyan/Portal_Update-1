@@ -68,14 +68,16 @@
                      <div v-if="selectedValue == 26" class="form-group">
                         <div class="row">
                             <div class="col-12 col-sm-3 col-md-2">
-                                <label>経済開始日</label>
+                                <label>掲載開始日 <span class="error sp2">必須</span></label>
                                 <date-picker class="" :lang="lang"  valueType="format" v-model="news.from_date" style="width:100%"></date-picker>
+                                <span v-if="errors.from_date" class="error">{{errors.from_date}}</span>
                             </div>
                              <div class="col-12 col-sm-3 col-md-2 mt-567-10">
-                                <label>経済終了日</label>
+                                <label>掲載終了日 </label>
                                 <date-picker class=""  :lang="lang" valueType="format" v-model="news.to_date"  style="width:100%"></date-picker>
                             </div>
                         </div>
+                        <span v-if="errors.date_check" class="error">{{errors.date_check}}</span>
                     </div>
                     <div class="form-group">
                         <label>内容 <span class="error sp2">必須</span></label>
@@ -181,6 +183,8 @@ import {quillEditor} from 'vue-quill-editor'
                         main_point: "",
                         body: "",
                         category_id: "",
+                        from_date: "",
+                        date_check: "",
                     },
                      editorOption:{
                     debug:'info',
@@ -522,6 +526,14 @@ import {quillEditor} from 'vue-quill-editor'
                         }
                     },
                     checkValidate() {
+                        if(this.selectedValue == 26){
+                            if(this.news.from_date == ''){
+                                this.errors.from_date = '掲載開始日は必須です。'
+                            }
+                            else{
+                                this.errors.from_date = '';
+                            }
+                        }
                         if (this.news.title) {
                             this.errors.title = "";
                         } else {
@@ -542,18 +554,54 @@ import {quillEditor} from 'vue-quill-editor'
                         } else {
                             this.errors.category_id = "ニュースのカテゴリーは必須です。";
                         }
-                        if (
-                            !this.errors.title &&
-                            !this.errors.main_point &&
-                            !this.errors.body &&
-                            !this.errors.category_id
-                        ) {
-                            if(this.status == 0) {
-                                this.add();
-                            } else {
-                                this.updatepost();
+                        if(this.selectedValue == 26){
+                            if (
+                                !this.errors.title &&
+                                !this.errors.main_point &&
+                                !this.errors.body &&
+                                !this.errors.category_id &&
+                                !this.errors.from_date
+                            ){
+                                //date 
+                                if(this.news.to_date != ''){
+
+                                    var fromd = new Date(this.news.from_date);
+                                    var tod = new Date(this.news.to_date)
+                                    if(fromd.getTime() >  tod.getTime()){
+                                        this.errors.date_check = "掲載終了日を掲載開始日より後にしてください。";
+                                    } else {
+                                        this.errors.date_check = '';
+                                        if(this.status == 0) {
+                                            this.add();
+                                        } else {
+                                            this.updatepost();
+                                        } 
+                                    } 
+                                }  
+                                else {
+                                    if(this.status == 0) {
+                                        this.add();
+                                    } else {
+                                        this.updatepost();
+                                    } 
+                                }                                                             
                             }
+                            
                         }
+                        else{
+                            if (
+                                !this.errors.title &&
+                                !this.errors.main_point &&
+                                !this.errors.body &&
+                                !this.errors.category_id
+                            ) {
+                                if(this.status == 0) {
+                                    this.add();
+                                } else {
+                                    this.updatepost();
+                                } 
+                            }
+                        }                        
                     },
             imgUrlAlt(event) {
               

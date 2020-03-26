@@ -76,6 +76,7 @@
                                                         <div class="col-12" style="border:none;">
 
                                                             <p class=" p_3">
+                                                                <span v-if="latest_post_all_cat.category_id == 26" class="breaking-tip">PR</span>
 
                                                                 {{ latest_post_all_cat.main_point }}
 
