@@ -47,6 +47,7 @@ class NursingProfileController extends Controller
             
         }
     }
+    //test
     public function movePhoto(Request $request) {
         $request = $request->all();
         foreach ($request as $file){
