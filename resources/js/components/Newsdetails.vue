@@ -155,7 +155,7 @@
                       </div>
                       <div class="info">
                         <div class="row">
-                          <div class="col-12">
+                          <div class="col-12 p-0">
                             <p class="p_3">{{ latest_post_all_cat.main_point }}</p>
                           </div>
                         </div>
