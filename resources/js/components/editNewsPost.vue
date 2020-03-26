@@ -67,13 +67,13 @@
                
                      <div v-if="selectedValue == 26" class="form-group">
                         <div class="row">
-                            <div class="col-3">
-                                <label> From Date</label>
-                                <date-picker class=""  valueType="format" v-model="news.from_date" style="margin-left: 20px;"></date-picker>
+                            <div class="col-12 col-sm-3 col-md-2">
+                                <label>経済開始日</label>
+                                <date-picker class=""  valueType="format" v-model="news.from_date" style="width:100%"></date-picker>
                             </div>
-                             <div class="col-3">
-                                <label> To Date</label>
-                                <date-picker class=""  valueType="format" v-model="news.to_date" style="margin-left: 20px;"></date-picker>
+                             <div class="col-12 col-sm-3 col-md-2 mt-567-10">
+                                <label>経済終了日</label>
+                                <date-picker class=""  valueType="format" v-model="news.to_date"  style="width:100%"></date-picker>
                             </div>
                         </div>
                     </div>

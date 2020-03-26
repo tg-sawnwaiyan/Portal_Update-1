@@ -804,20 +804,33 @@ input::-ms-clear {
 
 
 /********************************** News **********************************/
-.backbtn{
+
+.backbtn {
     position: absolute;
     right: 12px;
-    top:30%;
+    top: 30%;
 }
+
+
+/* .break-news {
+    border-top: 2px solid #bdb4b4 !important;
+    border-left: 1px solid #bdb4b4 !important;
+    border-right: 1px solid #bdb4b4 !important;
+    border-bottom: 1px solid #bdb4b4 !important;
+} */
+
 .breaking-tip {
-    color: #fff;
-    background-color: #e6001a;
-    /* border-radius: 2px; */
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    z-index: 1;
-    padding: 0px 2px;
+    background-color: #595959;
+    border-radius: 3px;
+    border: 1px solid #2c3e505c;
+    color: #fff !important;
+    display: inline-block;
+    font-size: 10px;
+    line-height: 15px;
+    margin-left: 0;
+    padding: 0 4px;
+    margin: 0 4px 0 0;
+    background: #595959;
 }
 
 .breaking-news-tip {
@@ -862,6 +875,11 @@ border-radius: 3px;
     position: relative;
     padding: 0 10px 0 0;
     height: 75px;
+    padding-top: 2px;
+}
+
+.txt-box span {
+    color: #000;
 }
 
 .txt-box .smallads-title {
@@ -991,6 +1009,16 @@ border-radius: 3px;
     padding: 2px 10px;
     border-radius: 5px;
     font-size: 13px;
+}
+
+.title26 span {
+    font-size: 13px;
+    background-color: #595959;
+    border-radius: 3px;
+    padding: 0px 4px;
+    font-weight: bold;
+    border: 1px solid #2c3e505c;
+    color: #fff;
 }
 
 .hovereffect {
@@ -12253,6 +12281,9 @@ width: 18rem;
 }
 
 @media only screen and (max-width:576px) {
+    .mt-567-10 {
+        margin-top: 10px;
+    }
     .admin-list-table>table {
         overflow-x: auto;
         white-space: nowrap;
@@ -12558,7 +12589,7 @@ background-image: none;
     }
     .List_tbl tr td {
         display: block;
-        width: 100%;
+        width: 100% !important;
     }
     .table.List_tbl td:first-child {
         width: 100%;
@@ -12744,7 +12775,7 @@ background-image: none;
     /* comment list */
     .commentlist_tbl td {
         display: block;
-        width: 100%;
+        width: 100% !important;
     }
     .commentlist_tbl td:nth-child(2) {
         padding-left: 5px;
@@ -13963,11 +13994,4 @@ strong {
     text-align: center;
     display: inline-block;
     /* float: left; */
-}
-
-.break-news {
-    border-top: 2px solid #e6001a !important;
-    border-left: 1px solid #bdb4b4 !important;
-    border-right: 1px solid #bdb4b4 !important;
-    border-bottom: 1px solid #bdb4b4 !important;
 }

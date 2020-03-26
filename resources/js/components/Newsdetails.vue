@@ -61,14 +61,18 @@
                 </div>
               </div>-->  
                 <div class="col-md-12" >
-                  <h4 :class="news.cat_name == '報告'?'bnews-header':'header news_detail_tit'">                  
-                    <span v-if="news.cat_name == '報告'" class="font-weight-bold breaking-news-tip"> {{news.cat_name}}</span>
-                      <span :class="news.cat_name == '報告'?'b-l':''"></span>  
+                  <!-- <h4 :class="news.cat_name == 'PR'?'bnews-header':'header news_detail_tit'">                  
+                    <span v-if="news.cat_name == 'PR'" class="font-weight-bold breaking-news-tip"> {{news.cat_name}}</span>
+                      <span :class="news.cat_name == 'PR'?'b-l':''"></span>  
                     <span>{{news.title}}</span>
-                  </h4>   
+                  </h4>    -->
+                  <h4 class="header news_detail_tit">                  
+                    <!-- <span class="breaking-news-tip"> {{news.cat_name}}</span>                      -->
+                    {{news.title}}
+                  </h4>  
                   <div class="set-date">
                     <p :class="'title'+ news.cat_id ">
-                     <span v-if="news.cat_name != '報告'" class="font-weight-bold" > {{news.cat_name}}</span>
+                     <span> {{news.cat_name}}</span>
                      <small style="color:#aaa;">
                       <i class="fa fa-calendar-alt"></i>
                       &nbsp;&nbsp;{{news.created_at}}
@@ -89,7 +93,7 @@
                     <p class="p5 mb-2 " v-html="news.body"></p>
                   </div>
                 </div>
-                <div class="col-md-12 mt-2 related-area">
+                <div class="col-md-12 mt-2 related-area" v-if="news.cat_name != 'PR'" >
                   <h5 class="seemore_tit" >記事をもっと見る</h5>
                   <br />
                   <!-- 関連ニュース -->
@@ -137,7 +141,7 @@
             </div>
             </div> -->
 
-            <div class="row col-md-12 m-lr-0 m-t-15" >   
+            <div class="row col-md-12 m-lr-0 m-t-15" v-if="latest_post_all_cats.length > 0">   
                 <div  class="row col-md-12 text-center m-lr-0 pad-free" style="border-top: 2px dashed #eee;" v-if="latest_post_all_cats.length != 0">
                   <h4 class="h4 next-title" style="border-left: 5px solid #2980b9;" >関連ニュース</h4>
                 </div>
