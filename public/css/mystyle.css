@@ -12281,6 +12281,9 @@ width: 18rem;
 }
 
 @media only screen and (max-width:576px) {
+    .mt-567-10 {
+        margin-top: 10px;
+    }
     .admin-list-table>table {
         overflow-x: auto;
         white-space: nowrap;
@@ -12586,7 +12589,7 @@ background-image: none;
     }
     .List_tbl tr td {
         display: block;
-        width: 100%;
+        width: 100% !important;
     }
     .table.List_tbl td:first-child {
         width: 100%;
@@ -12772,7 +12775,7 @@ background-image: none;
     /* comment list */
     .commentlist_tbl td {
         display: block;
-        width: 100%;
+        width: 100% !important;
     }
     .commentlist_tbl td:nth-child(2) {
         padding-left: 5px;
