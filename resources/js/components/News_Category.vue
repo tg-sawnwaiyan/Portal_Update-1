@@ -9,7 +9,7 @@
         </span>
     </div>       
        
-    <div class="col-sm-12 col-md-9 col-lg-6 pad-new m-b-15 float-right">
+    <div class="col-sm-12 col-md-9 col-lg-6 pad-new m-b-15 mt-567-10 float-right">
         
         <!--search input-->
         <div class="search-input m-b-10">
