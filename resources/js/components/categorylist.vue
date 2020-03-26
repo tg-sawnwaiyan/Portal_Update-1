@@ -48,7 +48,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-6 col-sm-8 m-t-8">{{category.name}}</div>
-                                        <div  v-if="category.name != '報告'" class="col-md-6 col-sm-4 text-right admin_page_edit">
+                                        <div  v-if="category.name != 'PR'" class="col-md-6 col-sm-4 text-right admin_page_edit">
                                             <router-link :to="{name:'editcategory', params:{id : category.id}}" class="btn edit-borderbtn">編集</router-link>
                                             <button class="btn text-danger delete-borderbtn" @click="deleteCategory(category.id)" >削除</button>
                                         </div>
