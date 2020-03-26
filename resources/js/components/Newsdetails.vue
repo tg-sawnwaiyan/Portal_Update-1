@@ -140,7 +140,8 @@
                 <h2> else wrapper</h2>
             </div>
             </div> -->
-
+          <section v-for="news in newdetails" :key="news.id">
+          <div v-if="news.cat_name != 'PR'">
             <div class="row col-md-12 m-lr-0 m-t-15" v-if="latest_post_all_cats.length > 0">   
                 <div  class="row col-md-12 text-center m-lr-0 pad-free" style="border-top: 2px dashed #eee;" v-if="latest_post_all_cats.length != 0">
                   <h4 class="h4 next-title" style="border-left: 5px solid #2980b9;" >関連ニュース</h4>
@@ -165,6 +166,8 @@
                 </div>
                 </div>
               </div>
+              </div>
+              </section>
           </div>
         </div>
       </div>
