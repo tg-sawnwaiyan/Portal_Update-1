@@ -427,6 +427,8 @@ import {quillEditor} from 'vue-quill-editor'
                     },
                     getstates: function() {
                         this.news.category_id = this.selectedValue;
+                        this.news.from_date = '';
+                        this.news.to_date = '';
                     },
                     getPostsByCatId: function(page) {
                         if (typeof page === 'undefined') {
