@@ -129,17 +129,18 @@ class HomeController extends Controller
     {
         $to_date = [];$from_date=[];
         $getTime = Carbon\Carbon::now()->toDateTimeString();
+        // return $getTime;
   
         $list = Post::where('category_id',26)->get();
         foreach ($list as $li) {
-            if($li->to_date == '0000-00-00 00:00:00')
+            if($li->to_date == '0000-00-00 00:00:00' || $li->to_date == null)
             {
                 $query = "SELECT * from posts where (category_id = 26 and (from_date <= '".$getTime."' and to_date = '0000-00-00 00:00:00')) limit 16 ";
                 $from_date = DB::select($query);
             }
-            if($li->to_date != '0000-00-00 00:00:00'){
+            if($li->to_date != '0000-00-00 00:00:00' && $li->to_date == null){
              
-                $query1 = "SELECT * from posts where (category_id = 26 and ((to_date != '0000-00-00 00:00:00') and (from_date <= '".$getTime."' and to_date <= '".$getTime."'))) limit 16";
+                $query1 = "SELECT * from posts where (category_id = 26 and ((to_date != '0000-00-00 00:00:00') and (from_date <= '".$getTime."' and to_date >= '".$getTime."'))) limit 16";
                 $to_date = DB::select($query1);
             }
           
