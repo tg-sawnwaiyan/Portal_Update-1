@@ -41,7 +41,7 @@
                                     <div class="col-9">
                                          <span class="job_id_1"><span>求人番号 :</span>{{jobapply.jobid}}</span>
                                     </div>
-                                     <div class="col-3 text-right">
+                                     <div class="col-3 pad-free-750 text-right">
                                         <button :class="'btn btn drop-bg-color changeLink'+jobapply.id"  @click="applicatnToggle(jobapply.id)">
                                         詳細  <i :id="'icon' + jobapply.id" class="fas fa-sort-down animate rotate"></i></button>
                                     </div>
