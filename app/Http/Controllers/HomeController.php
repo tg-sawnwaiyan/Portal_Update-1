@@ -127,10 +127,28 @@ class HomeController extends Controller
 
         public function getLatestPostFromAllCat()
     {
+        $to_date = [];$from_date=[];
         $getTime = Carbon\Carbon::now()->toDateTimeString();
-        // $break_news = Post::where('category_id',26)->where('from_date','>=',$getTime,'and','to_date','<=',$getTime)->get()->toArray();
-        $query = "SELECT * from posts where (category_id = 26 and (from_date <= '".$getTime."' and to_date <= '".$getTime."')) limit 16";
-        $break_news = DB::select($query);
+  
+        $list = Post::where('category_id',26)->get();
+        foreach ($list as $li) {
+            if($li->to_date == '0000-00-00 00:00:00' || $li->to_date == null)
+            {
+                $query = "SELECT * from posts where (category_id = 26 and (from_date <= '".$getTime."' and to_date = '0000-00-00 00:00:00')) limit 16 ";
+                $from_date = DB::select($query);
+            }
+            if($li->to_date != '0000-00-00 00:00:00' && $li->to_date != null){
+             
+                $query1 = "SELECT * from posts where (category_id = 26 and ((to_date != '0000-00-00 00:00:00') and (from_date <= '".$getTime."' and to_date >= '".$getTime."'))) limit 16";
+                $to_date = DB::select($query1);
+            }
+          
+        }
+        $break_news =array_merge($from_date,$to_date);
+      
+       
+        // $query = "SELECT * from posts where (category_id = 26 and (from_date <= '".$getTime."' and to_date <= '".$getTime."')) limit 16";
+        // $break_news = DB::select($query);
         $limit = 16 - count($break_news);
         $latestpost = Post::where('category_id','!=',26)->orderBy('created_at', 'desc')->limit("$limit")->get()->toArray();
 
