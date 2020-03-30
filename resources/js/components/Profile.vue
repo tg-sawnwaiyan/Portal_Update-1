@@ -49,7 +49,7 @@
 
 <style scoped>
 #Profile-page {
-  /* overflow: hidden; */
+  overflow: hidden;
   /* max-width: 1600px; */
   width: 100%;
   /* margin-top: 10px; */
