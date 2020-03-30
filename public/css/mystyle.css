@@ -1711,12 +1711,6 @@ border-radius: 3px;
     margin-left: 94px;
 }
 
-.disabled {
-    /* display:none; */
-    cursor: not-allowed !important;
-    background-color: gray;
-}
-
 .enabled {
     /* display:block; */
     cursor: pointer;
@@ -1728,7 +1722,7 @@ border-radius: 3px;
 
 .disabled {
     cursor: not-allowed !important;
-    background-color: gray;
+    background-color: gray !important;
 }
 
 @media only screen and (max-width: 480px) {
@@ -12382,6 +12376,9 @@ width: 18rem;
 /*fav_slider*/
 
 @media only screen and (max-width:480px) {
+    .maintab-content {
+        padding: 0px !important;
+    }
     .search_jobid {
         float: none;
     }
@@ -13101,7 +13098,7 @@ background-image: none;
     }
     #joboffer_list .all-btn {
         /* min-width: 50px; */
-        padding: 5px;
+        padding: 10px;
     }
     .admin_header div span.dinone {
         display: none;

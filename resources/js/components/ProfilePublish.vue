@@ -452,7 +452,7 @@
                     </div>
 
                     <!--Table responsive-->
-                    <div class="card sp-414 mb-3" v-for="(cost) in method_payment" :key="cost.id">
+                    <div class=" col-12 p-0 card sp-414 mb-3" v-for="(cost) in method_payment" :key="cost.id">
                         <div class="card-header font-weight-bold">{{cost.payment_name}}</div>
                         <div class="card-body payment-body">
                                 
@@ -1349,7 +1349,7 @@
     </div>
     <div class="bottom-fixed-btn" v-if="loginuser=='false'">
          <div class="row justify-content-center">
-            <div class="col-6 col-md-3 col-lg-3 col-xl-2">
+            <div class="col-6 col-md-3 col-lg-3 col-xl-2 p0-480">
                 <span class="bottom-fav-btn" v-if="!view_pro_id && loginuser=='false'" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                 <span class="bottom-fav-btn" style="color:#aaa;" v-if="view_pro_id && loginuser=='false'" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
             </div>
@@ -2197,7 +2197,7 @@ export default {
 }
 h2{
     background: #f0f0f0;
-    padding: 10px 0px;
+    padding: 5px;
 }
 h3 {
 	background: #f0f0f0;
