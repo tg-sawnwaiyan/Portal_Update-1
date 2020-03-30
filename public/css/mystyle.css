@@ -1747,6 +1747,21 @@ border-radius: 3px;
 
 /*************************************Nursing Search **************************************/
 
+.gm-style .gm-style-iw-d {
+    overflow: auto !important;
+    width: 259px !important;
+    max-width: 259px !important;
+}
+
+.gm-style .gm-style-iw-c {
+    width: 259px;
+    max-width: 259px !important;
+}
+
+.gm-style-iw {
+    width: 342px !important;
+}
+
 #nursing-search {
     display: none;
 }

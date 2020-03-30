@@ -1884,13 +1884,5 @@ div#holder {
   width: 500px !important;
   margin: 20px auto;
 }
-.gm-style .gm-style-iw-d {   
-    overflow: auto !important;
-    width: 259px !important;
-    max-width: 259px !important;
-}
-.gm-style .gm-style-iw-c {
-    width: 259px;
-    max-width: 259px !important;
-}
+
 </style>
