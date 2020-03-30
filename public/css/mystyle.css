@@ -6862,6 +6862,10 @@ color: #fff !important;
 }
 
 @media screen and (max-width: 480px) {
+    table.jobapp-tb th,
+    table.jobapp-tb td {
+        vertical-align: top !important;
+    }
     .admin-list-container .admin_registercard {
         width: auto;
         /* padding: 10px 0px; */
