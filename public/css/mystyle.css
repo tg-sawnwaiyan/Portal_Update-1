@@ -12376,9 +12376,9 @@ width: 18rem;
 /*fav_slider*/
 
 @media only screen and (max-width:480px) {
-    .maintab-content {
+    /* .maintab-content {
         padding: 0px !important;
-    }
+    } */
     .search_jobid {
         float: none;
     }
