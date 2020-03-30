@@ -1675,13 +1675,14 @@ border-radius: 3px;
 }
 
 @media only screen and (max-width:1024px) {
-    table>tbody>tr th {
+    /* table>tbody>tr th {
         width: 100px !important;
-    }
+    } */
 }
 
 @media only screen and (max-width: 480px) {
-    table>tbody>tr th {
+    /*for backup when necessary*/
+    /* table>tbody>tr th {
         padding: 25px 5px;
     }
     table th,
@@ -1689,7 +1690,8 @@ border-radius: 3px;
         vertical-align: middle !important;
         width: 50px !important;
         padding: 5px !important;
-    }
+    } */
+    /*end for backup when necessary*/
     .dropdown-toggle::after {
         position: absolute;
         right: 12px;
@@ -13065,7 +13067,7 @@ background-image: none;
     .nursing_table_title th,
     .nursing_table_title td {
         display: block;
-        width: 100%;
+        width: 100% !important;
     }
     .nursing_p-r-2 {
         padding-right: 2px !important;
