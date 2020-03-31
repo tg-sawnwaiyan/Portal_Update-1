@@ -66,11 +66,31 @@
                     <div class="card card-default m-b-20" v-for="comment in comments.data" :key="comment.id">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-9">
-                                    <!-- <strong>タイトル :</strong> {{comment.title}}  <br/>
-                                    <strong>顧客名 :</strong> {{comment.name}}  <br/>
-                                    <strong>メールアドレス:</strong>{{comment.email}} -->
-                                    <table class="commentlist_tbl">
+                                <div class="col-12 col-md-10 col-xl-9">   
+                                    
+                                     <div class="row boot-xl" id="customer_list">
+                                        <div class="col-xl-1 col-lg-2 col-md-4 custom_title">
+                                            <strong>事業者名</strong>
+                                        </div>
+                                        <div class="col-xl-11 col-lg-10 col-md-8">
+                                            <span class="pc-414-inline">: &nbsp;</span>{{comment.cus_name}} </div>
+                                    </div>
+                                    <div class="row boot-xl" id="customer_list">
+                                        <div class="col-xl-1 col-lg-2 col-md-4 custom_title">
+                                            <strong>施設名</strong>
+                                        </div>
+                                        <div class="col-xl-11 col-lg-10 col-md-8">
+                                            <span class="pc-414-inline">: &nbsp;</span>{{comment.pro_name}} </div>
+                                    </div>
+                                    <div class="row boot-xl" id="customer_list">
+                                        <div class="col-xl-1 col-lg-2 col-md-4 custom_title">
+                                            <strong>タイトル</strong>
+                                        </div>
+                                        <div class="col-xl-11 col-lg-10 col-md-8">
+                                            <span class="pc-414-inline">: &nbsp;</span>{{comment.title}} </div>
+                                    </div>
+                                    
+                                    <!-- <table class="commentlist_tbl">
                                         <tr>
                                             <td class="align-top custom_title font-weight-bold">事業者名 </td><td class="pc-414">:</td>
                                             <td> {{comment.cus_name}} </td>
@@ -82,35 +102,32 @@
                                         <tr>
                                             <td class="align-top custom_title font-weight-bold">タイトル </td><td class="pc-414">:</td>
                                             <td> {{comment.title}} </td>
-                                        </tr>
-                                        <tr>
-                                            <!-- <td colspan="3" class="align-top custom_title"><span style="text-align:right;color:#777;font-size:0.9em;"><span><i class="fa fa-calendar"></i>&nbsp;{{comment.created_date | moment("YYYY年MM月DD日") }}</span> <span><i class="fa fa-clock"></i>&nbsp;{{comment.created_time}} 投稿</span></span></td> -->
-                                            <!-- <td> {{comment.title}} </td> -->
-                                        </tr>
+                                        </tr> -->
+                                        <!-- <tr>
+                                            <td colspan="3" class="align-top custom_title"><span style="text-align:right;color:#777;font-size:0.9em;"><span><i class="fa fa-calendar"></i>&nbsp;{{comment.created_date | moment("YYYY年MM月DD日") }}</span> <span><i class="fa fa-clock"></i>&nbsp;{{comment.created_time}} 投稿</span></span></td>
+                                            <td> {{comment.title}} </td> 
+                                        </tr> -->
                                         <!-- <tr>
                                             <td class="align-top custom_title">お名前 :</td>
                                             <td> {{comment.name}} </td>
-                                        </tr> -->
-                                         
-                                         
+                                        </tr> -->    
                                             <!-- <tr>
                                             <td class="align-top custom_title">メールアドレス: </td>
                                             <td> {{comment.email}} </td>
                                         </tr> -->
-                                    </table>
+                                    <!-- </table> -->
                                                                     
                                 </div>
 
-                                <div class="col-3 text-right cmt3">
+                                <div class="col-12 col-md-2 col-xl-3 text-right cmt3 pc-414">
                                     <!-- <button class="'btn btn all-btn main-bg-color changeLink'+payment.id" type="button" @click="commentToggle(comment.id)"><span  :id="'icon' + comment.id"  class="fas fa-sort-down animate rotate"></span></button> -->
                                     <button :class="'btn drop-bg-color changeLink'+comment.id" style="min-width: 65px;font-size:13px;" @click="commentToggle(comment.id)">
                                          詳細 <i :id="'icon' + comment.id" class="fas fa-sort-down animate rotate"></i></button>
                                 </div>
                             </div>
-                            <div class="cmt"><span><i class="fa fa-calendar-alt"></i>&nbsp;{{comment.created_date | moment("YYYY年MM月DD日") }}</span> <span><i class="fa fa-clock"></i>&nbsp;{{comment.created_time}}&nbsp;投稿</span></div>
+                            <div class="cmt col-12 p-0 mt-750-10"><span><i class="fa fa-calendar-alt"></i>&nbsp;{{comment.created_date | moment("YYYY年MM月DD日") }}</span> <span><i class="fa fa-clock"></i>&nbsp;{{comment.created_time}}&nbsp;投稿</span></div>
                              
-                             <div class="cmt2 test">
-                                    <!-- <button class="'btn btn all-btn main-bg-color changeLink'+payment.id" type="button" @click="commentToggle(comment.id)"><span  :id="'icon' + comment.id"  class="fas fa-sort-down animate rotate"></span></button> -->
+                             <div class="cmt2 test sp-414">                                    
                                     <button :class="'btn drop-bg-color changeLink'+comment.id" style="min-width: 65px;font-size:13px;" @click="commentToggle(comment.id)">
                                          詳細 <i :id="'icon' + comment.id" class="fas fa-sort-down animate rotate"></i></button>
                                 </div>
