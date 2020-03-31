@@ -261,8 +261,12 @@ import {quillEditor} from 'vue-quill-editor'
                             .get(`/api/new/editPost/${this.$route.params.id}`)
                             .then((response) => {
                                 this.news = response.data;
-                              
-                               
+                            
+                                if(this.news.to_date == null)
+                                {
+                                    this.news.to_date = '';
+                                }
+                                
                                this.noimage = 0;
                                 this.checkedNews = [];
                                 if(this.news.related_news != undefined){
@@ -568,6 +572,7 @@ import {quillEditor} from 'vue-quill-editor'
 
                                     var fromd = new Date(this.news.from_date);
                                     var tod = new Date(this.news.to_date)
+                                   
                                     if(fromd.getTime() >  tod.getTime()){
                                         this.errors.date_check = "掲載終了日を掲載開始日より後にしてください。";
                                     } else {
