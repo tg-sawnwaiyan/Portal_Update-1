@@ -32,7 +32,7 @@
                         
                             <div class="list-group-item adslist-card m-b-10"  v-for="latest_post_all_cat in latest_post_all_cats" :key="latest_post_all_cat.id">
                                  <router-link :to="{name:'newdetails', params: {id:latest_post_all_cat.id}}">
-                                    <div class="slide-img">
+                                    <div class="slide-img" style="border:1px solid #eee;">
                                        <div class="col-sm-6 pad-free" >
 
                                             <div class="col-md-12 row m-0 pad-free">
@@ -1578,7 +1578,7 @@
     height: 80px !important;
     position: absolute;
     top:140px !important;
-    /* background-color: #2a2d2cb0; */
+    /* background-color: #fff; */
     background-color: rgba(42, 45, 44, 0.69);
     color: #fff;
     text-align: justify !important;

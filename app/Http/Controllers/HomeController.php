@@ -128,13 +128,13 @@ class HomeController extends Controller
         public function getLatestPostFromAllCat()
     {
         $to_date = [];$from_date=[];
-        $getTime = Carbon\Carbon::now()->toDateTimeString();
+        $getTime = Carbon\Carbon::now()->toDateString();
   
         $list = Post::where('category_id',26)->get();
         foreach ($list as $li) {
             if($li->to_date == '0000-00-00 00:00:00' || $li->to_date == null)
             {
-                $query = "SELECT * from posts where (category_id = 26 and (from_date <= '".$getTime."' and to_date = '0000-00-00 00:00:00')) limit 16 ";
+                $query = "SELECT * from posts where (category_id = 26 and (from_date <= '".$getTime."' and (to_date = '0000-00-00 00:00:00' or to_date=null))) limit 16 ";
                 $from_date = DB::select($query);
             }
             if($li->to_date != '0000-00-00 00:00:00' && $li->to_date != null){

@@ -93,7 +93,7 @@
         components: {
         },
         props:{        
-            limitpc: {
+            lll: {
                 type: Number,
                 default: 5
             },
