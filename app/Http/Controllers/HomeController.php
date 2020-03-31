@@ -133,28 +133,29 @@ class HomeController extends Controller
 
         $query = "SELECT * from posts 
         where category_id = 26 and from_date <= '".$getTime."' and 
-        (CASE to_date WHEN null THEN to_date is null ELSE to_date >= '".$getTime."')";
-        $aa = DB::select($query);
+        (CASE WHEN to_date is NULL THEN from_date <= '".$getTime."' and to_date is null ELSE from_date <= '".$getTime."' and to_date >= '".$getTime."' END) limit 16";
+        $break_news = DB::select($query);
   
-        $list = Post::where('category_id',26)->get();
-        foreach ($list as $li) {
+  
+        // $list = Post::where('category_id',26)->get();
+        // foreach ($list as $li) {
 
    
-            if($li->to_date == '0000-00-00 00:00:00' || $li->to_date == null)
-            {
+        //     if($li->to_date == '0000-00-00 00:00:00' || $li->to_date == null)
+        //     {
               
-                $query = "SELECT * from posts where (category_id = 26 and (from_date <= '".$getTime."' and (to_date = '0000-00-00 00:00:00' || to_date is null))) limit 16 ";
-                $from_date = DB::select($query);
-            }
-            if($li->to_date != '0000-00-00 00:00:00' && $li->to_date != null){
+        //         $query = "SELECT * from posts where (category_id = 26 and (from_date <= '".$getTime."' and (to_date = '0000-00-00 00:00:00' || to_date is null))) limit 16 ";
+        //         $from_date = DB::select($query);
+        //     }
+        //     if($li->to_date != '0000-00-00 00:00:00' && $li->to_date != null){
            
-                $query1 = "SELECT * from posts where (category_id = 26 and (((to_date != '0000-00-00 00:00:00' || to_date is not null)) and (from_date <= '".$getTime."' and to_date >= '".$getTime."'))) limit 16";
-                $to_date = DB::select($query1);
-            }
+        //         $query1 = "SELECT * from posts where (category_id = 26 and (((to_date != '0000-00-00 00:00:00' || to_date is not null)) and (from_date <= '".$getTime."' and to_date >= '".$getTime."'))) limit 16";
+        //         $to_date = DB::select($query1);
+        //     }
           
-        }
+        // }
      
-        $break_news =array_merge($from_date,$to_date);
+        // $break_news =array_merge($from_date,$to_date);
       
        
         // $query = "SELECT * from posts where (category_id = 26 and (from_date <= '".$getTime."' and to_date <= '".$getTime."')) limit 16";

@@ -76,7 +76,7 @@
                                <!-- <p><span class="font-weight-bold">メールアドレス:&nbsp;</span><span>{{jobapply.email}}</span></p> -->
                                 
                                 <div class="collapse" :id="'changeLink' + jobapply.id">                                    
-                                    <table class="table table-bordered">
+                                    <table class="table table-bordered jobapp-tb">
                                         <tr>
                                             <td  class="w-50">
                                                     <p class="mb-2"><span class="text-orange"><span class="job_ico"><i class="fa fa-calendar-alt" aria-hidden="true"></i></span>生年月日:&nbsp;</span><span class=""> {{jobapply.birthday}}</span></p>

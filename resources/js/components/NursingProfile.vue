@@ -289,6 +289,7 @@
                                 <div class="date-witdh-410">
                                     <div class="date-label">開設年月日</div>
                                     <div class="datepicker">
+                                       
                                         <date-picker class="box date-of-establishment" :lang="lang" v-model="nursing_info.date_of_establishment" id="datepickerbox" valueType="format"></date-picker>
                                     </div>
                                 </div>
@@ -303,6 +304,7 @@
                                                     <td class="width15 title-bg font-weight-bold">開設年月日</td>
 
                                                     <td >
+                                                        
                                                         <date-picker class="date-of-establishment" :lang="lang" v-model="nursing_info.date_of_establishment" id="datepickerbox" valueType="format"></date-picker>
                                                         <!-- <textarea class="form-control white-bg-color date-of-establishment" :options="editorOption" v-model="nursing_info.date_of_establishment"></textarea> -->
                                                     </td>
@@ -688,15 +690,17 @@ export default {
          
 
        data() {
-            return {
-                
+            return {                
               
                 lang:{
                     days: ['日', '月', '火', '水', '木', '金', '土'],
                     months: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
                     placeholder: {
-                        date: new Date().toISOString().slice(0,10),
-                    }
+                        // date: new Date().toISOString().slice(0,10),
+                        date: '年 / 月 / 日', 
+                    },
+                 
+                    
                 },
                 isRotate1: false, isRotate2: false, isRotate3: false, isRotate4: false, isRotate5: false, fac_list: [], feature_list:[], medical_acceptance:[], nursing_info:[],nursing_info_push:[], staff_info:[], staff_info_push:[], acceptance: [], img_arr:[], video_arr:[], panorama_arr:[], tmp_list:[],test:[], cooperate_arr:[], cooperate_list:[], payment_arr:[],payment_list:[], profile_type:'nursing', profile_arr:[], test:'', station_list:[],chek_feature : [], panorama_count:'0', fac_types:[], stations:[], count:-1, v_count: -1, c_count: -1, p_count: -1, type:'', title:[], v_title:[], description:[], v_description:[], img:[], sub:[], coop_details:[], expense:[],remark:[], method:[],move_in:[],room_type:[],monthly_usage:[],breadth:[], security_deposit:[],other_use:[], rent:[], management_fee:[], food_expense:[],life_service:[],cost_other:[],return_system:[], depreciation_period:[],initial_depreciation:[],other_message:[], cooperate_list:[], payment_list:[],meth_details:[], content: '', 
                 editorOption:{ debug:'info', placeholder:'', readonly:true, theme:'snow',
