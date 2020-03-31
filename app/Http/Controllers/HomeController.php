@@ -128,7 +128,7 @@ class HomeController extends Controller
         public function getLatestPostFromAllCat()
     {
         $to_date = [];$from_date=[];
-        $getTime = Carbon\Carbon::now()->toDateTimeString();
+        $getTime = Carbon\Carbon::now()->toDateString();
   
         $list = Post::where('category_id',26)->get();
         foreach ($list as $li) {
