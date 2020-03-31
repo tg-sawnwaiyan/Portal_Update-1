@@ -13,7 +13,7 @@ class SpecialFeatureController extends Controller
 
     public function index($type)
     {
-        $feature = special_feature::where('type','=',$type)->orderBy('id', 'desc')->paginate(12);
+        $feature = special_feature::where('type','=',$type)->orderBy('id', 'desc')->paginate(20);
         return response()->json($feature);
     }
 
@@ -112,7 +112,7 @@ class SpecialFeatureController extends Controller
                 return response()->json(['error' => 'この特徴に関連している施設がありますので削除できません。'], 404);
             }else{
                 $feature->delete();
-                $features = special_feature::where('type',$type)->orderBy('id','DESC')->paginate(12);
+                $features = special_feature::where('type',$type)->orderBy('id','DESC')->paginate(20);
                 return response()->json($features);
             }
         }else{
@@ -122,7 +122,7 @@ class SpecialFeatureController extends Controller
                 return response()->json(['error' => 'この特徴に関連している施設がありますので削除できません。'], 404);
             }else{
                 $feature->delete();
-                $features = special_feature::where('type',$type)->orderBy('id','DESC')->paginate(12);
+                $features = special_feature::where('type',$type)->orderBy('id','DESC')->paginate(20);
                 return response()->json($features);
             }
         }
@@ -139,7 +139,7 @@ class SpecialFeatureController extends Controller
                                 ->orwhere('short_name', 'LIKE', "%{$search_word}%");
                             })
                             ->orderBy('id','DESC')
-                            ->paginate(12);
+                            ->paginate(20);
         return response()->json($special_feature);
     }
 }

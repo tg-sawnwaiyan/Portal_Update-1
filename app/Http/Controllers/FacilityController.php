@@ -13,7 +13,7 @@ class FacilityController extends Controller
 
     public function index()
     {
-        $facilities = Facility::orderBy('id', 'DESC')->paginate(12);
+        $facilities = Facility::orderBy('id', 'DESC')->paginate(20);
         return response()->json($facilities);
     }
 
@@ -75,7 +75,7 @@ class FacilityController extends Controller
     {
         $facility = Facility::find($id);
         $facility->delete();
-        $facilities = Facility::orderBy('id', 'DESC')->paginate(12);
+        $facilities = Facility::orderBy('id', 'DESC')->paginate(20);
         return response()->json($facilities);
     }
 
@@ -87,7 +87,7 @@ class FacilityController extends Controller
         $search_facilities = Facility::query()
                             ->where('description', 'LIKE', "%{$search_word}%")
                             ->orderBy('id', 'DESC')
-                            ->paginate(12);
+                            ->paginate(20);
         return response()->json($search_facilities);
     }
 

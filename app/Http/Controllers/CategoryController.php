@@ -37,7 +37,7 @@ class CategoryController extends Controller
     {
         // $categories = Category::select('name')->get();
         // return $categories;
-        $categories = Category::orderBy('id','desc')->paginate(12); 
+        $categories = Category::orderBy('id','desc')->paginate(20); 
         return response()->json($categories);
     }
 
@@ -107,7 +107,7 @@ class CategoryController extends Controller
         }
         else{
            $category->delete();
-           $categories = Category::orderBy('id','DESC')->paginate(12);
+           $categories = Category::orderBy('id','DESC')->paginate(20);
            return response()->json($categories);
         }
         
@@ -130,7 +130,7 @@ class CategoryController extends Controller
         $search_categories = Category::query()
                             ->where('name', 'LIKE', "%{$search_word}%")
                             ->orderBy('id','DESC')
-                            ->paginate(12);
+                            ->paginate(20);
         return response()->json($search_categories);
 
     }
