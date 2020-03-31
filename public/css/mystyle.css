@@ -7941,13 +7941,13 @@ color: green;
 /* start .profile */
 
 .fixed-nav {
-    width: 79.9%;
+    /* width: 79.9%; */
     margin: 0 auto;
     padding: 0 !important;
     background: transparent;
-    -moz-transition: all 0.5s ease-in-out;
+    /* -moz-transition: all 0.5s ease-in-out;
     -webkit-transition: all 0.5s ease-in-out;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out; */
     /* overflow: hidden; */
     z-index: 4;
     left: 0;
