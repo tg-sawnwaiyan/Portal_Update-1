@@ -449,6 +449,38 @@ textarea:disabled::placeholder {
     padding: 10px;
 }
 
+::-webkit-input-placeholder {
+    /* WebKit, Blink, Edge */
+    color: #c7c2c2;
+}
+
+:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #c7c2c2;
+    opacity: 1;
+}
+
+::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #c7c2c2;
+    opacity: 1;
+}
+
+:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #c7c2c2;
+}
+
+::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: #c7c2c2;
+}
+
+::placeholder {
+    /* Most modern browsers support this now. */
+    color: #c7c2c2;
+}
+
 
 /********************************** End Common **********************************/
 
