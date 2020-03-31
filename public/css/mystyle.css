@@ -10512,6 +10512,21 @@ padding: 11px;
     display: none;
 }
 
+@media (min-width: 1200px) {
+    .boot-xl .col-xl-1 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 11.66666667% !important;
+        flex: 0 0 11.66666667% !important;
+        max-width: 11.66666667% !important;
+    }
+    .boot-xl .col-xl-11 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 71.33333333% !important;
+        flex: 0 0 71.33333333% !important;
+        max-width: 71.33333333% !important;
+    }
+}
+
 @media only screen and (max-width:1440px) {
     .card-title-leftwrapper {
         width: 56% !important;
