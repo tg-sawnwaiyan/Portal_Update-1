@@ -33,7 +33,7 @@ class CommentController extends Controller
                     ->where($p.'.recordstatus', 1)
                     ->where('comments.type',$t)
                     ->orderBy('comments.id','DESC')
-                    ->paginate(12);
+                    ->paginate(20);
 
         $query = "select id,name from $p where recordstatus = 1 and name is not null and name != '' ";
      
@@ -70,7 +70,7 @@ class CommentController extends Controller
                                                  ->where($p.'.recordstatus', 1)
                                                  ->where('comments.type',$t)
                                                  ->orderBy('comments.id','DESC')
-                                                 ->paginate(12);
+                                                 ->paginate(20);
         }
         else{
             $commentList = DB::table('comments')->join($p,'comments.profile_id','=',$p.'.id')
@@ -80,7 +80,7 @@ class CommentController extends Controller
                                                 ->where('comments.type',$t)
                                                 ->where('comments.profile_id',$profileid)
                                                 ->orderBy('comments.id','DESC')
-                                                 ->paginate(12);
+                                                 ->paginate(20);
         }
            
         // }
@@ -93,7 +93,7 @@ class CommentController extends Controller
         //         ->where('hospital_profiles.recordstatus', 1)
         //         ->where('comments.type','hospital')
         //         ->orderBy('comments.id','DESC')
-        //         ->paginate(12);
+        //         ->paginate(20);
         //     }
         //     else{
         //         $commentList = DB::table('comments')
@@ -103,7 +103,7 @@ class CommentController extends Controller
         //         ->where('comments.type','hospital')
         //         ->where('comments.profile_id',$profileid)
         //         ->orderBy('comments.id','DESC')
-        //         ->paginate(12);
+        //         ->paginate(20);
         //     }
            
         
@@ -245,7 +245,7 @@ class CommentController extends Controller
                         ->where("$p.recordstatus", 1)
                         ->where('comments.type',$type)
                         ->orderBy('comments.id','DESC')
-                        ->paginate(12);
+                        ->paginate(20);
         }
         else{
             $commentList = DB::table('comments')
@@ -256,7 +256,7 @@ class CommentController extends Controller
                         ->where('comments.type',$type)
                         ->where("$p.id",'=',$pro_id)
                         ->orderBy('comments.id','DESC')
-                        ->paginate(12);
+                        ->paginate(20);
         }
 
         foreach ($commentList as $com) {
@@ -293,7 +293,7 @@ class CommentController extends Controller
                                 ->where("$p.recordstatus", 1)
                                 ->where('comments.type',$type)
                                 ->orderBy('comments.id','DESC')
-                                ->paginate(12);
+                                ->paginate(20);
             }
             else{
                 $commentList = DB::table('comments')
@@ -304,7 +304,7 @@ class CommentController extends Controller
                                 ->where('comments.type',$type)
                                 ->where("$p.id","=",$pro_id)
                                 ->orderBy('comments.id','DESC')
-                                ->paginate(12);
+                                ->paginate(20);
             }
 
             foreach ($commentList as $com) {
@@ -351,7 +351,7 @@ class CommentController extends Controller
                                                  ->where($p.'.recordstatus', 1)
                                                  ->where('comments.type','nursing')
                                                  ->orderBy('comments.id','DESC')
-                                                 ->paginate(12);
+                                                 ->paginate(20);
         }
         else{
             $commentList = DB::table('comments')->join($p,'comments.profile_id','=',$p.'.id')
@@ -361,7 +361,7 @@ class CommentController extends Controller
                                                 ->where('comments.type',$t)
                                                 ->where('comments.profile_id',$profileid)
                                                 ->orderBy('comments.id','DESC')
-                                                ->paginate(12);
+                                                ->paginate(20);
         }
       
         // if($search_word != 0)
@@ -375,7 +375,7 @@ class CommentController extends Controller
         //         ->where('comments.type','nursing')
         //         ->select('comments.*')
         //         ->orderBy('comments.id','DESC')
-        //         ->paginate(12);
+        //         ->paginate(20);
         //     }
         //     else{
         //         $search_comment = DB::table('comments')
@@ -385,7 +385,7 @@ class CommentController extends Controller
         //         ->where('comments.type','hospital')
         //         ->select('comments.*')
         //         ->orderBy('comments.id','DESC')
-        //         ->paginate(12);
+        //         ->paginate(20);
         //     }
         // }
         // else{
@@ -397,7 +397,7 @@ class CommentController extends Controller
         //         ->where('comments.type','nursing')
         //         ->select('comments.*')
         //         ->orderBy('comments.id','DESC')
-        //         ->paginate(12);
+        //         ->paginate(20);
         //     }
         //     else{
         //         $search_comment = DB::table('comments')
@@ -406,7 +406,7 @@ class CommentController extends Controller
         //         ->where('comments.type','hospital')
         //         ->select('comments.*')
         //         ->orderBy('comments.id','DESC')
-        //         ->paginate(12);
+        //         ->paginate(20);
         //     }
         // }
        

@@ -449,6 +449,38 @@ textarea:disabled::placeholder {
     padding: 10px;
 }
 
+::-webkit-input-placeholder {
+    /* WebKit, Blink, Edge */
+    color: #c7c2c2;
+}
+
+:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #c7c2c2;
+    opacity: 1;
+}
+
+::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #c7c2c2;
+    opacity: 1;
+}
+
+:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #c7c2c2;
+}
+
+::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: #c7c2c2;
+}
+
+::placeholder {
+    /* Most modern browsers support this now. */
+    color: #c7c2c2;
+}
+
 
 /********************************** End Common **********************************/
 
@@ -6858,6 +6890,10 @@ color: #fff !important;
 }
 
 @media screen and (max-width: 480px) {
+    .pagination-prev-nav,
+    .pagination-next-nav {
+        display: none !important;
+    }
     table.jobapp-tb th,
     table.jobapp-tb td {
         vertical-align: top !important;
@@ -10475,6 +10511,21 @@ padding: 11px;
 
 #sp_adminheader ul.menu li.first-submenu {
     display: none;
+}
+
+@media (min-width: 1200px) {
+    .boot-xl .col-xl-1 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 11.66666667% !important;
+        flex: 0 0 11.66666667% !important;
+        max-width: 11.66666667% !important;
+    }
+    .boot-xl .col-xl-11 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 71.33333333% !important;
+        flex: 0 0 71.33333333% !important;
+        max-width: 71.33333333% !important;
+    }
 }
 
 @media only screen and (max-width:1440px) {

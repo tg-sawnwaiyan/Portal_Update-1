@@ -399,7 +399,7 @@ class JobApplyController extends Controller
         //                             ->orWhere('job_applies.email', 'LIKE', "%{$search_word}%");
         //                     });
         //     $query = $query->orderBy('job_applies.id','DESC')
-        //                     ->paginate(12);
+        //                     ->paginate(20);
         //     return response()->json($query);
         //      }else {
         //     $query = $query->leftjoin('jobs','job_applies.job_id','=','jobs.id');
@@ -414,7 +414,7 @@ class JobApplyController extends Controller
         //                             ->orWhere('job_applies.email', 'LIKE', "%{$search_word}%");
         //                     });
         //     $query = $query->orderBy('job_applies.id','DESC')
-        //                 ->paginate(12);
+        //                 ->paginate(20);
                             
         //     return $query;
         // }

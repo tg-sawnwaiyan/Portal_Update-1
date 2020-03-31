@@ -67,12 +67,12 @@
                
                      <div v-if="selectedValue == 26" class="form-group">
                         <div class="row">
-                            <div class="col-12 col-sm-3 col-md-2">
+                            <div class="col-12 col-sm-4 col-md-4">
                                 <label>掲載開始日 <span class="error sp2">必須</span></label>
                                 <date-picker class="" :lang="lang"  valueType="format" v-model="news.from_date" style="width:100%"></date-picker>
                                 <span v-if="errors.from_date" class="error">{{errors.from_date}}</span>
                             </div>
-                             <div class="col-12 col-sm-3 col-md-2 mt-567-10">
+                             <div class="col-12 col-sm-4 col-md-4 mt-567-10">
                                 <label>掲載終了日 </label>
                                 <date-picker class=""  :lang="lang" valueType="format" v-model="news.to_date"  style="width:100%"></date-picker>
                             </div>
@@ -172,7 +172,7 @@ import {quillEditor} from 'vue-quill-editor'
                         months: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
                         placeholder: {
                         //date: new Date().toISOString().slice(0,10),
-                        date: '年 / 月 / 日',
+                        date: '年 - 月 - 日',
 
                         }
                     },
@@ -261,8 +261,12 @@ import {quillEditor} from 'vue-quill-editor'
                             .get(`/api/new/editPost/${this.$route.params.id}`)
                             .then((response) => {
                                 this.news = response.data;
-                              
-                               
+                            
+                                if(this.news.to_date == null)
+                                {
+                                    this.news.to_date = '';
+                                }
+                                
                                this.noimage = 0;
                                 this.checkedNews = [];
                                 if(this.news.related_news != undefined){
@@ -568,6 +572,7 @@ import {quillEditor} from 'vue-quill-editor'
 
                                     var fromd = new Date(this.news.from_date);
                                     var tod = new Date(this.news.to_date)
+                                   
                                     if(fromd.getTime() >  tod.getTime()){
                                         this.errors.date_check = "掲載終了日を掲載開始日より後にしてください。";
                                     } else {
