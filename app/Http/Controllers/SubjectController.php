@@ -13,7 +13,7 @@ class SubjectController extends Controller
 
     public function index()
     {
-        $Subjects = Subject::orderBy('id', 'DESC')->paginate(12);
+        $Subjects = Subject::orderBy('id', 'DESC')->paginate(20);
 
         for($i=0;$i<count($Subjects);$i++)
         {
@@ -142,7 +142,7 @@ class SubjectController extends Controller
         }else{
             $Subject->delete();
         // return response()->json('The Subject was successfully deleted');
-        $subjects = Subject::orderBy('id', 'DESC')->paginate(12);
+        $subjects = Subject::orderBy('id', 'DESC')->paginate(20);
         return response()->json($subjects);
         }        
     }
@@ -154,7 +154,7 @@ class SubjectController extends Controller
         $search_subjects = Subject::query()
                             ->where('name', 'LIKE', "%{$search_word}%")
                             ->orderBy('id','DESC')
-                            ->paginate(12);
+                            ->paginate(20);
         return response()->json($search_subjects);
     }
 

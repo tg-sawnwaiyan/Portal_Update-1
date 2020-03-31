@@ -28,7 +28,7 @@ class PostController extends Controller
 
     //    $news_list = Post::orderBy('id','DESC')->get()->toArray();
     //    $category_list = Category::select('id','name')->get()->toArray();
-            $news_list = Post::orderBy('id', 'desc')->paginate(12);
+            $news_list = Post::orderBy('id', 'desc')->paginate(20);
             $category_list = Category::select('id','name')->get()->toArray();
     
             return response()->json(Array("news"=>$news_list,"category"=>$category_list));
@@ -248,10 +248,10 @@ class PostController extends Controller
         
         if($cat_id == 0)
         {
-           $posts = Post::orderBy('id', 'desc')->paginate(12);
+           $posts = Post::orderBy('id', 'desc')->paginate(20);
         }
         else{
-            $posts = Post::where('category_id',$cat_id)->orderBy('id','desc')->paginate(12);
+            $posts = Post::where('category_id',$cat_id)->orderBy('id','desc')->paginate(20);
         }
         return response()->json($posts);
     }
@@ -283,7 +283,7 @@ class PostController extends Controller
                         });
         }
         $query = $query->orderBy('created_at','DESC')
-                        ->paginate(12);
+                        ->paginate(20);
         return  response()->json($query);
         
     }
@@ -291,7 +291,7 @@ class PostController extends Controller
     public function getPostById(Request $request,$page,$postid) {
 
         $request = $request->all();
-        $posts = Post::where('id','<>',$postid)->where("category_id",$request['cat_id'])->orderBy('created_at','DESC')->paginate(12);
+        $posts = Post::where('id','<>',$postid)->where("category_id",$request['cat_id'])->orderBy('created_at','DESC')->paginate(20);
         return response()->json($posts);
     }
 

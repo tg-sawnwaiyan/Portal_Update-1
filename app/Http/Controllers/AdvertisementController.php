@@ -15,7 +15,7 @@ class AdvertisementController extends Controller
     public function index()
     {
 
-        $ads =Advertisement::orderBy('id', 'DESC')->paginate(12);
+        $ads =Advertisement::orderBy('id', 'DESC')->paginate(20);
         return response()->json($ads);
     }
     public function slider()
@@ -157,7 +157,7 @@ class AdvertisementController extends Controller
         //$filename = public_path().'/upload/advertisement/'.$file;
         \File::delete($filename);
         $ads->delete();
-        $advertisements = Advertisement::orderBy('id', 'DESC')->paginate(12);
+        $advertisements = Advertisement::orderBy('id', 'DESC')->paginate(20);
         return response()->json($advertisements);
         // return response()->json('The successfully deleted');
     }
@@ -170,7 +170,7 @@ class AdvertisementController extends Controller
         $advertisement = Advertisement::query()
                             ->where('title', 'LIKE', "%{$search_word}%")
                             ->orderBy('id','DESC')
-                            ->paginate(12);
+                            ->paginate(20);
         return response()->json($advertisement);
 
     }

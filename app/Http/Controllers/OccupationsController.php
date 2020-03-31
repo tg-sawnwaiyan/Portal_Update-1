@@ -15,7 +15,7 @@ class OccupationsController extends Controller
      */
     public function index()
     {
-        $occupation = Occupations::orderBy('id','DESC')->paginate(12);
+        $occupation = Occupations::orderBy('id','DESC')->paginate(20);
         return response()->json($occupation);
     }
 
@@ -158,7 +158,7 @@ class OccupationsController extends Controller
             return response()->json(['error' => 'この求人職種に関連している施設がありますので削除できません。'], 404);
         }else{
             $occupation->delete();
-        $occupations = Occupations::orderBy('id','DESC')->paginate(12);
+        $occupations = Occupations::orderBy('id','DESC')->paginate(20);
         return response()->json($occupations);
         }
     }
@@ -171,7 +171,7 @@ class OccupationsController extends Controller
         $search_occupations = Occupations::query()
                             ->where('name', 'LIKE', "%{$search_word}%")
                             ->orderBy('id','DESC')
-                            ->paginate(12);
+                            ->paginate(20);
         return response()->json($search_occupations);
     }
 }
