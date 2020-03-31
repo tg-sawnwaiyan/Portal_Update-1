@@ -6850,7 +6850,8 @@ color: #fff !important;
         display: none;
     }
     .pagination li.page-item {
-        display: block;
+        /* display: block; */
+        padding:1px;
     }
     .page-item:first-child,
     .page-item:nth-child( 2),

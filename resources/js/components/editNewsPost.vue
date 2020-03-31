@@ -69,12 +69,12 @@
                         <div class="row">
                             <div class="col-12 col-sm-3 col-md-2">
                                 <label>掲載開始日 <span class="error sp2">必須</span></label>
-                                <date-picker class=""  valueType="format" v-model="news.from_date" style="width:100%"></date-picker>
+                                <date-picker class="" :lang="lang"  valueType="format" v-model="news.from_date" style="width:100%"></date-picker>
                                 <span v-if="errors.from_date" class="error">{{errors.from_date}}</span>
                             </div>
                              <div class="col-12 col-sm-3 col-md-2 mt-567-10">
                                 <label>掲載終了日 </label>
-                                <date-picker class=""  valueType="format" v-model="news.to_date"  style="width:100%"></date-picker>
+                                <date-picker class=""  :lang="lang" valueType="format" v-model="news.to_date"  style="width:100%"></date-picker>
                             </div>
                         </div>
                         <span v-if="errors.date_check" class="error">{{errors.date_check}}</span>
@@ -167,6 +167,14 @@ import {quillEditor} from 'vue-quill-editor'
 
         data() {
                 return {
+                    lang:{
+                        days: ['日', '月', '火', '水', '木', '金', '土'],
+                        months: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                        placeholder: {
+                        date: new Date().toISOString().slice(0,10),
+
+                        }
+                    },
                     selectedValue: 0,
                     status:0,
                     arr: [],
