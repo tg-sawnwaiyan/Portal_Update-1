@@ -178,10 +178,3 @@
     }
 </script>
 
-<style>
-@media screen and (max-width:414px){
-    .pagination-prev-nav, .pagination-next-nav{
-        display: none !important;
-    }
-}
-</style>

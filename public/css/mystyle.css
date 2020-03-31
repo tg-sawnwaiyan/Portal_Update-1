@@ -6890,6 +6890,10 @@ color: #fff !important;
 }
 
 @media screen and (max-width: 480px) {
+    .pagination-prev-nav,
+    .pagination-next-nav {
+        display: none !important;
+    }
     table.jobapp-tb th,
     table.jobapp-tb td {
         vertical-align: top !important;
