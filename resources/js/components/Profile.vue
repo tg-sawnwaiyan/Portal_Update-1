@@ -1,7 +1,7 @@
 <template>
   <div id="Profile-page">
     <h4 v-if="login_person == 'customer' && visit == 'false'" class="header" style="background:transparent;">施設情報編集</h4>
-    <button @click="$router.go(-1)" v-if="login_person == 'admin' && visit == 'false'" class="btn btn-danger all-btn submit" style="float:right"><i class="fas fa-arrow-left"></i>&nbsp;戻る</button>
+    <button @click="$router.go(-1)" v-if="login_person == 'admin' && visit == 'false'" class="btn btn-danger all-btn submit admin-backbtn" style="float:right"><i class="fas fa-arrow-left"></i>&nbsp;戻る</button>
 
 
     <!-- <span v-if="loginuser=='false' || visit == 'true'">

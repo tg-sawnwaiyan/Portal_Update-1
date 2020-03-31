@@ -4324,7 +4324,7 @@ overflow-y: auto;
     /* top: 166px; */
     border-bottom: none;
     background: transparent;
-    margin-bottom: -2px;
+    /* margin-bottom: -2px; */
 }
 
 #Profile-page .nursing-tabColor .nav-link.active {
@@ -10644,6 +10644,11 @@ padding: 11px;
 }
 
 @media only screen and (max-width:1280px) {
+    .admin-backbtn {
+        min-width: 81px;
+        position: absolute;
+        right: 0;
+    }
     .card-title-leftwrapper {
         width: 48% !important;
     }
