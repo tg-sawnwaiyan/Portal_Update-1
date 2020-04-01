@@ -58,6 +58,24 @@
                                     <div  v-else> <img src="/images/noimage.jpg" alt  /></div>
                                 </td>
                                 <td>
+                                
+                              
+                             
+                                    <div style="text-align:right;" v-if="newsList.category_id == 26 && (newsList.to_date == null || newsList.to_date == '')">
+                                            <p style="margin-right: 129px;">  {{newsList.from_date}} </p>
+                                            <div style="margin-top:-21px;">PRに掲載期間必要</div>
+                                    </div>
+
+                                    <div v-else>
+                                        <div style="text-align:right;" v-if="newsList.category_id == 26">
+                                            <p>掲載期間 {{newsList.from_date}} - {{newsList.to_date}}</p>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    
+                                    
+                                    
                                     <h5><span v-if="newsList.category_id == 26" class="breaking-tip" style="margin-right:5px;font-size: 12px;line-height: 18px;">PR</span>
                                         <router-link
                                             :to="{name: 'newdetails', params:{id:newsList.id}}"

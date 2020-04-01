@@ -30,6 +30,14 @@ class PostController extends Controller
     //    $category_list = Category::select('id','name')->get()->toArray();
             $news_list = Post::orderBy('id', 'desc')->paginate(20);
             $category_list = Category::select('id','name')->get()->toArray();
+
+        
+            foreach ($news_list as $com) {
+                $splitTimeStamp = explode(" ",$com->from_date);
+                $com->from_date = $splitTimeStamp[0];
+                $splitTimeStamp1 = explode(" ",$com->to_date);
+                $com->to_date = $splitTimeStamp1[0];
+            }
     
             return response()->json(Array("news"=>$news_list,"category"=>$category_list));
 
