@@ -66,8 +66,8 @@
                                     </h5>
                                     <span class="card-title-rightwrapper model-7">                                                 
                                         <div class="checkbox">
-                                            <input type='checkbox' :id="newsList.id" v-if="newsList.recordstatus == 1" @click="changeActivate(newsList.id,newsList.recordstatus)" checked/>
-                                            <input type='checkbox' :id="newsList.id" v-if="newsList.recordstatus == 0" @click="changeActivate(newsList.id,newsList.recordstatus)"  />
+                                            <input type='checkbox' :id="newsList.id" v-if="newsList.recordstatus == 1" @click="changeActivate(newsList.category_id,newsList.id,newsList.recordstatus)" checked/>
+                                            <input type='checkbox' :id="newsList.id" v-if="newsList.recordstatus == 0" @click="changeActivate(newsList.category_id,newsList.id,newsList.recordstatus)"  />
                                             <label for="checkbox"></label>
                                             <div  v-if="newsList.recordstatus == 1" class="on">公開中</div>
                                             <div v-if="newsList.recordstatus == 0" class="on">非公開</div>
@@ -76,7 +76,7 @@
                                     <p class="mt-2">{{newsList.main_point}}</p>
                                     <div class="d-flex mt-4">
                                         <router-link :to="{ path:'/editPost/'+ newsList.id}" class="btn edit-borderbtn">編集</router-link>
-                                        <button class="btn delete-borderbtn ml-2" @click="deletePost(newsList.id)">削除</button>
+                                        <button class="btn delete-borderbtn ml-2" @click="deletePost(newsList.category_id,newsList.id)">削除</button>
                                     </div>
                                 </td>
                             </tr>
@@ -130,13 +130,14 @@
 
         },
         methods: {
-            changeActivate(id,activate, $event){
+            changeActivate(catid,id,activate, $event){
+                
                 if(activate == 1)
-                {
-                this.activate_text = "非公開にしてよろしいでしょうか。";
+                {                    
+                    this.activate_text = (catid == 26? "PR":"ニュース") +"を非公開にしてよろしいでしょうか。";
                 }
                 else{
-                    this.activate_text = "公開してよろしいでしょうか。";
+                    this.activate_text = (catid == 26? "PR":"ニュース") +"を公開してよろしいでしょうか。";
                 }
             
                 this.$swal({
@@ -188,7 +189,7 @@
                     });
             },
 
-            deletePost(id) {
+            deletePost(catid,id) {
                    var selected_category = document.getElementById("selectBox").value;
                    if(selected_category == null || selected_category == '')
                    {
@@ -197,7 +198,7 @@
               
                     this.$swal({
                         // title: "確認",
-                        text: "ニュースを削除してよろしいでしょうか。",
+                        text: (catid == 26? "PR":"ニュース") +"を削除してよろしいでしょうか。",
                         type: "warning",
                         width: 350,
                         height: 200,
