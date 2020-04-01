@@ -869,6 +869,7 @@ input::-ms-clear {
     padding: 0 4px;
     margin: 0 4px 0 0;
     background: #595959;
+    vertical-align: middle;
 }
 
 .breaking-news-tip {
