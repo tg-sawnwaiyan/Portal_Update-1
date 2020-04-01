@@ -2554,7 +2554,7 @@ border-top: 5px solid #e66527; */
 }
 
 .tel {
-    cursor: text;
+    cursor: pointer;
 }
 
 .h-tel .tel span {
