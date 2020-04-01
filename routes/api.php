@@ -213,6 +213,8 @@ Route::get('news_list', 'PostController@index');
         Route::get('ads', 'AdvertisementController@index');
         Route::post('update/{id}', 'AdvertisementController@update');
         Route::delete('delete/{id}','AdvertisementController@destroy');
+        Route::get('activate/{id}','AdvertisementController@activate');
+
     });
     // End Advertisement
 

@@ -21,7 +21,7 @@ class AdvertisementController extends Controller
     public function slider()
     {
 
-        $ads =Advertisement::orderBy('id', 'DESC')->get();
+        $ads =Advertisement::where('recordstatus',1)->orderBy('id', 'DESC')->get();
         return response()->json($ads);
     }
 
@@ -149,7 +149,7 @@ class AdvertisementController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
+    { 
         //
         $ads = Advertisement::find($id);
         $file= $ads->photo;
@@ -173,5 +173,19 @@ class AdvertisementController extends Controller
                             ->paginate(20);
         return response()->json($advertisement);
 
+    }
+
+    public function activate($id)
+    {
+        $ads = Advertisement::find($id);
+
+        if($ads->recordstatus == 0 ) {
+            $ads->recordstatus =1;
+        }
+        else {
+            $ads->recordstatus =0;
+        }
+        $ads->save();
+       return response()->json('success');
     }
 }
