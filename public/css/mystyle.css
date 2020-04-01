@@ -481,6 +481,12 @@ textarea:disabled::placeholder {
     color: #c7c2c2;
 }
 
+.admin-backbtn {
+    min-width: 81px;
+    position: absolute;
+    right: 15px;
+}
+
 
 /********************************** End Common **********************************/
 
@@ -3966,6 +3972,7 @@ li.userprofile-name>a {
 .tab-content1 {
     min-height: 350px;
     /* max-height: 900px; */
+    margin-top: -1px;
 }
 
 .tab-content2 {
@@ -10647,7 +10654,7 @@ padding: 11px;
     .admin-backbtn {
         min-width: 81px;
         position: absolute;
-        right: 0;
+        right: 15px;
     }
     .card-title-leftwrapper {
         width: 48% !important;
