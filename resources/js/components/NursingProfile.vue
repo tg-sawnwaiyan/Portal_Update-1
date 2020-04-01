@@ -27,7 +27,7 @@
                                 <input type="text" class="form-control customer-email col-md-10 col-12 nursing_input" id="btn" v-model="nursing_info.email" @change="aggreBtn" @keyup="focusMail" placeholder="メールアドレスを入力してください。">
                             </div>
                            
-                             <span class="error pro-1" v-if="mail_focus || nursing_info.email =='' || nursing_info.email.length == 0">※メールアドレスが正しくありません。</span>
+                             <span class="error pro-1" v-if="mail_focus || nursing_info.email =='' || nursing_info.email == null">※メールアドレスが正しくありません。</span>
                              <!-- <span v-else-if="this.nursing_info.email">sssss</span> -->
                            
                             <div class="form-group form-group-wrapper d-flex">
@@ -830,7 +830,7 @@ export default {
                 this.$loading(false);
             },
              aggreBtn: function(){
-                if((this.mail_reg.test(this.nursing_info.email)) && this.nursing_info.email != '' && this.nursing_info.email.length > 0){
+                if((this.mail_reg.test(this.nursing_info.email)) && this.nursing_info.email != '' && this.nursing_info.email != null){
                     this.btn_disable=false;
                 }else{
                     this.btn_disable=true;

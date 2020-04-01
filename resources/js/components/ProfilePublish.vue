@@ -712,7 +712,10 @@
 
                     <div class="col-md-12 pad-free-750">
                         <h5 class="profile_subtit">フォトアルバム</h5>
-                        <div class="row gallery-list m-0">
+                        <div class="row m-0" v-if="light_images == '' || light_images.length == 0">
+                            <div class="col-12 pad-free-750"> <p class="no-data-color">データがありません。</p> </div>
+                        </div>
+                        <div class="row gallery-list m-0" v-else>
                             <div v-for="(image,index) in  light_images" :key="index" class="col-6 col-md-4 col-sm-4 col-lg-3 m-b-10 ">
                                     <div class="gallery-item">
                                         <img :src ="'/upload/nursing_profile/' + image.name"  class="img-fluid" @click="showLightbox(image.name)"  @error="imgUrlAlt">
@@ -726,7 +729,7 @@
 
                     <div class="col-md-12 pad-free-750">
                         <h5 class="profile_subtit">動画</h5>
-                        <div class="row m-0" v-if="videos == ''">
+                        <div class="row m-0" v-if="videos == '' || videos.length == 0">
                             <div class="col-12 pad-free-750"> <p class="no-data-color">データがありません。</p> </div>
                         </div>
                         <div class="row gallery-list m-0 pad-free-750" v-else>
@@ -1207,7 +1210,10 @@
 
             <div class="col-md-12 pad-free-750">
                 <h5 class="profile_subtit">フォトアルバム</h5>
-                <div class="row m-0 gallery-list">
+                <div class="row m-0" v-if="light_images == '' || light_images.length == 0">
+                    <div class="col-12 pad-free-750"> <p class="no-data-color">データがありません。</p> </div>
+                </div>
+                <div class="row m-0 gallery-list" v-else>
                     <div v-for="(image,index) in  light_images" :key="index" class="col-6 col-lg-3 col-md-4 col-sm-4 m-b-10">
                         <div class=" gallery-item">
                             <img :src ="'/upload/hospital_profile/' + image.name" class="img-fluid" @click="showLightbox(image.name)" @error="imgUrlAlt" >
@@ -1722,15 +1728,31 @@ export default {
                 this.center['lng'] = response.data.nurselatlong[0]['longitude'];
 
                 this.images = response.data.images;
-
-                for(var i=0; i<this.images.length; i++){
-                    this.light_images.push({
-                        'name': this.images[i]['photo'],
-                        'description': this.images[i]['description'],
-                        'id': this.images[i]['id'],
-                        'title': this.images[i]['title']
-                    })
+                console.log("images",this.images)
+                if(this.images.length == 1){
+                    if(this.images[0]['photo'] != null){
+                        for(var i=0; i<this.images.length; i++){
+                            this.light_images.push({
+                                'name': this.images[i]['photo'],
+                                'description': this.images[i]['description'],
+                                'id': this.images[i]['id'],
+                                'title': this.images[i]['title']
+                            })
+                        }
+                    }
                 }
+                else{
+                    for(var i=0; i<this.images.length; i++){
+                        this.light_images.push({
+                            'name': this.images[i]['photo'],
+                            'description': this.images[i]['description'],
+                            'id': this.images[i]['id'],
+                            'title': this.images[i]['title']
+                        })
+                    }
+                }
+
+                
 
                 this.panoimages = response.data.panoimages;
 
@@ -1815,15 +1837,31 @@ export default {
                 this.center['lat'] = response.data.hospital[0]['latitude'];
                 this.center['lng'] = response.data.hospital[0]['longitude'];
                 this.images = response.data.images;
-
-                for(var i=0; i<this.images.length; i++){
-                    this.light_images.push({
-                        'name': this.images[i]['photo'],
-                        'description': this.images[i]['description'],
-                        'id': this.images[i]['id'],
-                        'title': this.images[i]['title']
-                    })
+                console.log("images",this.images)
+                if(this.images.length == 1){
+                    if(this.images[0]['photo'] != null){
+                        for(var i=0; i<this.images.length; i++){
+                            this.light_images.push({
+                                'name': this.images[i]['photo'],
+                                'description': this.images[i]['description'],
+                                'id': this.images[i]['id'],
+                                'title': this.images[i]['title']
+                            })
+                        }
+                    }
                 }
+                else{
+                    for(var i=0; i<this.images.length; i++){
+                        this.light_images.push({
+                            'name': this.images[i]['photo'],
+                            'description': this.images[i]['description'],
+                            'id': this.images[i]['id'],
+                            'title': this.images[i]['title']
+                        })
+                    }
+                }
+
+                
 
                 this.videos = response.data.videos;
                 // this.panoimages = response.data.panoimages;
