@@ -11,7 +11,7 @@
 
     <div>
 
-      <ul v-if="$auth.check() && visit =='false'" class="nav nav-tabs" :class="type == 'nursing'? 'nursing-tabColor': 'hospital-tabColor'" role="tablist" id="profilenav" v-bind:style="{width:width}" >
+      <ul class="nav nav-tabs" :class="type == 'nursing'? 'nursing-tabColor': 'hospital-tabColor'" role="tablist" v-if="$auth.check() && visit == 'false'" id="profilenav" v-bind:style="{width:width}" >
         <li role="presentation" class="subtab1 nav-item" v-if="loginuser=='true' && visit == 'false'">
           <label for="hospital" class="typelabel nav-link active" id="hospital-lbl">
             <i class="fa fa-edit"></i>
