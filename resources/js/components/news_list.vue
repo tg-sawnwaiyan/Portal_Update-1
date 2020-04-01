@@ -62,8 +62,7 @@
                               
                              
                                     <div style="text-align:right;" v-if="newsList.category_id == 26 && (newsList.to_date == null || newsList.to_date == '')">
-                                            <p style="margin-right: 129px;">  {{newsList.from_date}} </p>
-                                            <div style="margin-top:-21px;">PRに掲載期間必要</div>
+                                            <p style="margin-right: 99px;">掲載期間 {{newsList.from_date}} </p>
                                     </div>
 
                                     <div v-else>
