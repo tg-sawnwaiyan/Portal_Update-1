@@ -1,7 +1,7 @@
 <template>
   <div id="Profile-page">
     <h4 v-if="login_person == 'customer' && visit == 'false'" class="header" style="background:transparent;">施設情報編集</h4>
-    <button @click="$router.go(-1)" v-if="login_person == 'admin' && visit == 'false'" class="btn btn-danger all-btn submit" style="float:right"><i class="fas fa-arrow-left"></i>&nbsp;戻る</button>
+    <button @click="$router.go(-1)" v-if="login_person == 'admin' && visit == 'false'" class="btn btn-danger all-btn submit admin-backbtn" style="float:right"><i class="fas fa-arrow-left"></i>&nbsp;戻る</button>
 
 
     <!-- <span v-if="loginuser=='false' || visit == 'true'">
@@ -11,7 +11,7 @@
 
     <div>
 
-      <ul class="nav nav-tabs" :class="type == 'nursing'? 'nursing-tabColor': 'hospital-tabColor'" role="tablist" id="profilenav" v-bind:style="{width:width}" >
+      <ul class="nav nav-tabs" :class="type == 'nursing'? 'nursing-tabColor': 'hospital-tabColor'" role="tablist" v-if="$auth.check() && visit == 'false'" id="profilenav" v-bind:style="{width:width}" >
         <li role="presentation" class="subtab1 nav-item" v-if="loginuser=='true' && visit == 'false'">
           <label for="hospital" class="typelabel nav-link active" id="hospital-lbl">
             <i class="fa fa-edit"></i>
@@ -46,15 +46,6 @@
   </div>
 </template>
 
-
-<style scoped>
-#Profile-page {
-  overflow: hidden;
-  /* max-width: 1600px; */
-  width: 100%;
-  /* margin-top: 10px; */
-}
-</style>
 <script>
 import hospitalProfile from "./HospitalProfile.vue";
 
@@ -154,6 +145,12 @@ export default {
 </script>
 
 <style >
+#Profile-page {
+  /* overflow: hidden; */
+  /* max-width: 1600px; */
+  width: 100%;
+  /* margin-top: 10px; */
+}
 /* .hospital-tabColor .nav-link {
         background: #63b7ff !important;
         color: #fff;
