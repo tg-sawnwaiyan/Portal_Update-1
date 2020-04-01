@@ -96,14 +96,14 @@
                         <div class="form-group row">
                             <label class="col-12 col-lg-3 col-md-4 control-label">電話番号</label>
                             <div class="col-12 col-lg-9 col-md-8  p-0">
-                                <span style="color:#999;">※ 数字と'-'のみ </span>
+                                <span style="color:#999;">※ 数字のみ </span>
                                 <div class="input-group">
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
                                     </div>
-                                    <input class="form-control" id="phone" name="phone" pattern="[0-9-]*" v-model="phone"  placeholder="電話番号を入力してください。" @keyup="focusPhone" maxlength="13">
-                                    <span class="error" v-if="ph_length">※電話番号を確認してください。</span>
-                                    <span class="error" v-if="ph_num">※電話番号が必須です。</span>
+                                    <input class="form-control" id="phone" name="phone"  v-model="phone"  placeholder="電話番号を入力してください。" @keyup="focusPhone" maxlength="13">
+                                    <span class="error" v-if="errors.ph_length">{{errors.ph_length}}</span>
+                                    <span class="error" v-if="errors.ph_num">{{errors.ph_num}}</span>
                                 </div>
                             </div>
                         </div>
@@ -148,7 +148,9 @@
             email:"",
             password:"",
             username:"",
-            type:''
+            type:'',
+            ph_length:'',
+            ph_num:'',
             //cities:"",
             //township:""
         },
@@ -156,11 +158,14 @@
         success: false,
         show: true,
         url: '',
-        ph_length:false,
-        ph_num:false,
+        ph_length:'',
+        ph_num:'',
         arr:[],
         Numbers:[],
-        mail_reg:  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
+        mail_reg:  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
+        phone_reg: /^([0-9]*)$/
+
+
       }
 
     },
@@ -262,24 +267,18 @@
             this.errors.email ='※メールアドレスが必須です。';
             
         }
-
-        var input_data = $('#phone').val();
-        if(input_data.length >= 10 && input_data.length < 14 && input_data.charAt(input_data.length -1 ) != '-')
+       
+        if(this.phone != '' && this.phone != null)
         {
-            this.ph_num = false;
-            this.ph_length = false;
-        } else {
-            if(this.phone == '' || this.phone == null){
-                this.ph_num = true;
-                this.ph_length = false;
-            }
-            else{
-                this.ph_length = true;
-                this.ph_num = false;
-            }
-            
-            return;
+            this.error.ph_num = '';
         }
+        else{
+            this.errors.ph_num = '※電話番号が必須です。';
+             
+        }
+      
+
+     
 
         if(this.errors.email == '' && this.errors.username == '' && this.errors.password == '' && this.errors.type == '' &&  this.ph_length == false && this.ph_num == false)
         {
@@ -363,84 +362,34 @@
     },
 
     focusPhone: function(e) {
-      
-        var input_data = $('#phone').val();
-        if(((e.keyCode  >= 48 && e.keyCode  <= 57) || (e.keyCode  >= 96 && e.keyCode  <= 105) || (e.keyCode  == 8) || (e.keyCode  == 35) || (e.keyCode  == 36) || (e.keyCode  == 37) || (e.keyCode  == 39) || (e.keyCode  == 46) || (e.keyCode  == 109) || (e.keyCode  == 189)) && input_data.charAt(0) != '-' && !input_data.includes('--'))
+        if(this.phone != '')
         {
-            this.correctVal = input_data;
-            if(input_data.length >= 10 && input_data.length < 14 && input_data.charAt(input_data.length -1 ) != '-')
-            {
-                this.ph_num = false;
-                this.ph_length = false;
-            } else {
-                if(this.phone == '' || this.phone == null){
-                    this.ph_num = true;
-                    this.ph_length = false;
-                }
-                else{
-                    this.ph_length = true;
-                    this.ph_num = false;
-                }
-                
-                return;
-            }
+            this.errors.ph_num = '';
+        }
+       
+   
+      
+        if(this.phone != '' && (this.phone_reg).test(this.phone) && (this.phone.length >= 10 && this.phone.length <= 13))
+        {
+        
+           this.errors.ph_length = '';
+        
         }
         else{
-            // e.preventDefault();
-            this.phone = this.correctVal;
-
-            if(this.phone.length >= 10 && this.phone.length < 14 && this.phone.charAt(this.phone.length -1 ) != '-'){
-              this.ph_length = false;
-              this.ph_error = false;
-            }
-            else{
-                this.ph_length = true;
-                this.ph_error = false;
-                this.btn_disable = true;
-              
-            }
+      
+            this.errors.ph_length = '※電話番号を確認してください。';
         }
+
+        if(this.phone == '' || this.phone == null)
+        {
+          
+            this.errors.ph_length = '';
+        }
+
+      
      
     },   
-    // focusPhone: function(e) {
-      
-    //     var input_data = $('#phone').val();
-    //     if(((e.keyCode  >= 48 && e.keyCode  <= 57) || (e.keyCode  >= 96 && e.keyCode  <= 105) || (e.keyCode  == 8) || (e.keyCode  == 35) || (e.keyCode  == 36) || (e.keyCode  == 37) || (e.keyCode  == 39) || (e.keyCode  == 46) || (e.keyCode  == 109) || (e.keyCode  == 189)) && input_data.charAt(0) != '-' && !input_data.includes('--'))
-    //     {
-    //         this.correctVal = input_data;
-    //         if(input_data.length >= 10 && input_data.length < 14 && input_data.charAt(input_data.length -1 ) != '-')
-    //         {
-    //             this.ph_num = false;
-    //             this.ph_length = false;
-    //         } else {
-    //             if(this.phone == '' || this.phone == null){
-    //                 this.ph_num = true;
-    //                 this.ph_length = false;
-    //             }
-    //             else{
-    //                 this.ph_length = true;
-    //                 this.ph_num = false;
-    //             }
-                
-    //             return;
-    //         }
-    //     }
-    //     else{
-    //         this.phone = this.correctVal;
-
-    //         if(this.phone.length >= 10 && this.phone.length < 14 && this.phone.charAt(this.phone.length -1 ) != '-'){
-    //           this.ph_length = false;
-    //           this.ph_error = false;
-    //         }
-    //         else{
-    //             this.ph_length = true;
-    //             this.ph_error = false;
-    //             this.btn_disable = true;
-              
-    //         }
-    //     }
-     
-    // },   
+    
 
     },
 

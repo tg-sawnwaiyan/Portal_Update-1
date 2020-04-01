@@ -27,7 +27,7 @@
                             </router-link>
                         </div>
                     </div>
-                    
+                     
                     <!-- <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデタが消える。</div> -->
 
                     <div v-if="nosearch_msg" class="card card-default card-wrap">
@@ -48,11 +48,22 @@
                                 <td>
                                     <!-- <h5  class="mb-2"><strong>タイトル</strong></h5> -->
                                     <h5 class="font-weight-bold">{{ads.title}}</h5>
+                                    <div class="mt-4">
+                                    <span class="card-title-rightwrapper model-7">                                                 
+                                        <div class="checkbox">
+                                            <input type='checkbox' :id="ads.id" v-if="ads.recordstatus == 1" @click="changeActivate(ads.id,ads.recordstatus)" checked/>
+                                            <input type='checkbox' :id="ads.id" v-if="ads.recordstatus == 0" @click="changeActivate(ads.id,ads.recordstatus)"/>
+                                            <label for="checkbox"></label>
+                                            <div  class="on" v-if="ads.recordstatus == 1">公開中</div>
+                                            <div class="on"  v-if="ads.recordstatus == 0">非公開</div>
+                                        </div>                                                                                             
+                                    </span>
                                     <!-- <div class="col-md-2 max-width16"><strong>描写  :</strong></div><div class="col-md-10">{{ads.description}}</div> -->
                                     <div class="d-flex mt-4">
                                         <router-link :to="{path: '/editads/'+ads.id}" class="btn edit-borderbtn">編集</router-link>
                                         <button class="btn delete-borderbtn ml-2" @click="deleteAds(ads.id)">削除</button>
                                         <!-- <button class="btn delete-borderbtn" @click="toggleModal">削除</button>                                 -->
+                                    </div>
                                     </div>
                                 </td>
                             </tr>
@@ -88,6 +99,13 @@
                 };
             },
             created() {
+                this.getAds();
+            },
+            methods: {
+                // toggleModal() {
+                //     this.isOpen = !this.isOpen;
+                // },
+                getAds(){
                 this.$loading(true);
                 this.axios.get("/api/advertisement/ads").then(response => {
                     this.$loading(false);
@@ -99,11 +117,7 @@
                         this.norecord_msg = true;
                     }
                 });
-            },
-            methods: {
-                // toggleModal() {
-                //     this.isOpen = !this.isOpen;
-                // },
+                },
                 deleteAds(id) {
                         this.$swal({
                             // title: "確認",
@@ -169,6 +183,48 @@
                     imgUrlAlt(event) {
                         event.target.src = "/images/noimage.jpg"
                     },
+
+                changeActivate(id, recordstatus){
+                    if(recordstatus == 1)
+                    {
+                    this.activate_text = "広告を非公開にしてよろしいでしょうか。";
+                    }
+                    else{
+                        this.activate_text = "広告を公開してよろしいでしょうか。";
+                    }
+                    this.$loading(true);
+                    this.$swal({
+                        allowOutsideClick: false,
+                        text: this.activate_text,
+                        type: "warning",
+                        width: 350,
+                        height: 200,
+                        showCancelButton: true,
+                        confirmButtonColor: "#eea025",
+                        cancelButtonColor: "#b1abab",
+                        cancelButtonTextColor: "#000",
+                        confirmButtonText: "はい",
+                        cancelButtonText: "キャンセル",
+                        confirmButtonClass: "all-btn",
+                        cancelButtonClass: "all-btn"
+                    }).then(response => {
+                        this.axios.get("/api/advertisement/activate/"+id).then(response => {
+                           
+                                this.getAds();
+                        });
+                    
+                    }).catch(error =>{
+
+                        if(recordstatus == 1){
+                            $("#"+id).prop("checked", true);
+                        }else{
+                            $("#"+id).prop("checked", false);
+                        }
+                        this.$loading(false);                
+                    });
+                    
+                }
+                
             }
     }
 </script>

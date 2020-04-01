@@ -481,6 +481,12 @@ textarea:disabled::placeholder {
     color: #c7c2c2;
 }
 
+.admin-backbtn {
+    min-width: 81px;
+    position: absolute;
+    right: 15px;
+}
+
 
 /********************************** End Common **********************************/
 
@@ -863,6 +869,7 @@ input::-ms-clear {
     padding: 0 4px;
     margin: 0 4px 0 0;
     background: #595959;
+    vertical-align: middle;
 }
 
 .breaking-news-tip {
@@ -3966,6 +3973,7 @@ li.userprofile-name>a {
 .tab-content1 {
     min-height: 350px;
     /* max-height: 900px; */
+    /* margin-top: -1px; */
 }
 
 .tab-content2 {
@@ -4320,7 +4328,7 @@ overflow-y: auto;
 #profilenav {
     /* position: fixed;  */
     z-index: 5;
-    overflow: hidden;
+    /* overflow: hidden; */
     /* top: 166px; */
     border-bottom: none;
     background: transparent;
@@ -10644,6 +10652,11 @@ padding: 11px;
 }
 
 @media only screen and (max-width:1280px) {
+    .admin-backbtn {
+        min-width: 81px;
+        position: absolute;
+        right: 15px;
+    }
     .card-title-leftwrapper {
         width: 48% !important;
     }
@@ -12434,6 +12447,11 @@ width: 18rem;
     /* .maintab-content {
         padding: 0px !important;
     } */
+    .admin-backbtn {
+        min-width: 62px;
+        position: absolute;
+        right: 0px;
+    }
     .cmt2 {
         float: left;
         margin-left: -13px;

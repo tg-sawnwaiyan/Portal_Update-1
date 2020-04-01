@@ -73,7 +73,7 @@
                   <div class="set-date">
                     <p :class="'title'+ news.cat_id ">
                      <span> {{news.cat_name}}</span>
-                     <small style="color:#aaa;">
+                     <small style="color:#aaa;"  v-if="news.cat_name != 'PR'" >
                       <i class="fa fa-calendar-alt"></i>
                       &nbsp;&nbsp;{{news.created_at}}
                     </small>
@@ -90,7 +90,7 @@
                     <p class="img_2 details_title mb-1">{{news.main_point}}</p>
                   </div>
                   <div>
-                    <p class="p5 mb-2 " v-html="news.body"></p>
+                    <p class="p5 mb-2 text-justify" v-html="news.body"></p>
                   </div>
                 </div>
                 <div class="col-md-12 mt-2 related-area" v-if="news.cat_name != 'PR'" >

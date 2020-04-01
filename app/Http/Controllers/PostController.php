@@ -64,7 +64,7 @@ class PostController extends Controller
             $post->category_id=$request->input('category_id');
             $post->related_news=$request->input('related_news');
             $post->user_id = 1;
-            $post->recordstatus=1;
+            // $post->recordstatus=1;
             $post->from_date = $request->input('from_date');
             $post->to_date = $request->input('to_date');
         
@@ -230,7 +230,7 @@ class PostController extends Controller
             $post->from_date = $request->input('from_date');
             $post->to_date = $request->input('to_date');
             $post->user_id = 1;
-            $post->recordstatus=1;
+            // $post->recordstatus=1;
             $post->save();
 
 
@@ -301,6 +301,25 @@ class PostController extends Controller
         $request = $request->all();
         $posts = Post::where('id','<>',$postid)->where("category_id",$request['cat_id'])->orderBy('created_at','DESC')->paginate(20);
         return response()->json($posts);
+    }
+
+    public function changeRecordstatus($id)
+    {
+        $changeActivate =  Post::find($id);
+
+       if($changeActivate->recordstatus == 0 ) {
+
+            $changeActivate->recordstatus =1;
+       }
+       else {
+
+            $changeActivate->recordstatus =0;
+       }
+
+       $changeActivate->save();
+       
+       $data = array("changeActivate"=> $changeActivate, "success");
+       return response()->json($data);
     }
 
     // public function searchPost($search_word) {

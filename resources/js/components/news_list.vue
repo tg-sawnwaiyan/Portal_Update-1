@@ -76,16 +76,25 @@
                                     
                                     
                                     
-                                    <h5><span v-if="newsList.category_id == 26" class="breaking-tip" style="margin-right:5px;font-size: 12px;line-height: 18px;">PR</span>
+                                     <h5 class="align-middle"><span v-if="newsList.category_id == 26" class="breaking-tip" style="font-size: 12px;line-height: 12px;">PR</span>
                                         <router-link
                                             :to="{name: 'newdetails', params:{id:newsList.id}}"
                                             class="pseudolink"
                                         >{{newsList.title}}</router-link>
                                     </h5>
+                                    <span class="card-title-rightwrapper model-7">                                                 
+                                        <div class="checkbox">
+                                            <input type='checkbox' :id="newsList.id" v-if="newsList.recordstatus == 1" @click="changeActivate(newsList.category_id,newsList.id,newsList.recordstatus)" checked/>
+                                            <input type='checkbox' :id="newsList.id" v-if="newsList.recordstatus == 0" @click="changeActivate(newsList.category_id,newsList.id,newsList.recordstatus)"  />
+                                            <label for="checkbox"></label>
+                                            <div  v-if="newsList.recordstatus == 1" class="on">公開中</div>
+                                            <div v-if="newsList.recordstatus == 0" class="on">非公開</div>
+                                        </div>                                                                                             
+                                    </span>
                                     <p class="mt-2">{{newsList.main_point}}</p>
                                     <div class="d-flex mt-4">
                                         <router-link :to="{ path:'/editPost/'+ newsList.id}" class="btn edit-borderbtn">編集</router-link>
-                                        <button class="btn delete-borderbtn ml-2" @click="deletePost(newsList.id)">削除</button>
+                                        <button class="btn delete-borderbtn ml-2" @click="deletePost(newsList.category_id,newsList.id)">削除</button>
                                     </div>
                                 </td>
                             </tr>
@@ -130,6 +139,7 @@
                 isOpen: false,
                 items: [],
                 pagination: false,
+                activate_text: '',
             };
         },
         created() {
@@ -138,6 +148,44 @@
 
         },
         methods: {
+            changeActivate(catid,id,activate, $event){
+                
+                if(activate == 1)
+                {                    
+                    this.activate_text = (catid == 26? "PR":"ニュース") +"を非公開にしてよろしいでしょうか。";
+                }
+                else{
+                    this.activate_text = (catid == 26? "PR":"ニュース") +"を公開してよろしいでしょうか。";
+                }
+            
+                this.$swal({
+                    allowOutsideClick: false,
+                    text: this.activate_text,
+                    type: "warning",
+                    width: 350,
+                    height: 200,
+                    showCancelButton: true,
+                    confirmButtonColor: "#eea025",
+                    cancelButtonColor: "#b1abab",
+                    cancelButtonTextColor: "#000",
+                    confirmButtonText: "はい",
+                    cancelButtonText: "キャンセル",
+                    confirmButtonClass: "all-btn",
+                    cancelButtonClass: "all-btn"
+                }).then(response => {
+                    this.axios.get(`/api/changeRecordstatus/${id}`)
+                        .then(response => {
+                            this.getResults();
+                    });
+                
+                }).catch(error =>{
+                    if(activate == 1){
+                        $("#"+id).prop("checked", true);
+                    }else{
+                        $("#"+id).prop("checked", false);
+                    }                
+                });
+            },
             getResults() {
                 this.$http.get('/api/news_list')
                     .then(response => {
@@ -159,7 +207,7 @@
                     });
             },
 
-            deletePost(id) {
+            deletePost(catid,id) {
                    var selected_category = document.getElementById("selectBox").value;
                    if(selected_category == null || selected_category == '')
                    {
@@ -168,7 +216,7 @@
               
                     this.$swal({
                         // title: "確認",
-                        text: "ニュースを削除してよろしいでしょうか。",
+                        text: (catid == 26? "PR":"ニュース") +"を削除してよろしいでしょうか。",
                         type: "warning",
                         width: 350,
                         height: 200,
