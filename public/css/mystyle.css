@@ -3972,7 +3972,7 @@ li.userprofile-name>a {
 .tab-content1 {
     min-height: 350px;
     /* max-height: 900px; */
-    margin-top: -1px;
+    /* margin-top: -1px; */
 }
 
 .tab-content2 {
@@ -4327,11 +4327,11 @@ overflow-y: auto;
 #profilenav {
     /* position: fixed;  */
     z-index: 5;
-    overflow: hidden;
+    /* overflow: hidden; */
     /* top: 166px; */
     border-bottom: none;
     background: transparent;
-    /* margin-bottom: -2px; */
+    margin-bottom: -2px;
 }
 
 #Profile-page .nursing-tabColor .nav-link.active {
