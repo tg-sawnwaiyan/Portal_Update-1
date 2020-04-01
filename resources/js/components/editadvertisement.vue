@@ -369,7 +369,7 @@ export default {
                 {
                 this.updateAds();
                 }
-                else if(!this.errors.title && !this.errors.title && !this.errors.photo && !this.$route.params.id){
+                else if(!this.errors.link && !this.errors.title && !this.errors.photo && !this.$route.params.id){
                     this.add();
                 }
             }
