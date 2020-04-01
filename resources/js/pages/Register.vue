@@ -366,8 +366,10 @@
         {
             this.errors.ph_num = '';
         }
+       
+   
       
-        if(this.phone != '' && (this.phone_reg).test(this.phone))
+        if(this.phone != '' && (this.phone_reg).test(this.phone) && (this.phone.length >= 10 && this.phone.length <= 13))
         {
         
            this.errors.ph_length = '';
@@ -376,6 +378,12 @@
         else{
       
             this.errors.ph_length = '※電話番号を確認してください。';
+        }
+
+        if(this.phone == '' || this.phone == null)
+        {
+          
+            this.errors.ph_length = '';
         }
 
       

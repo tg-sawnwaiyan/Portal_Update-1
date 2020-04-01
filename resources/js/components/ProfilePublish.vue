@@ -58,7 +58,7 @@
         <!--end panorama-->
         <div class="row">
         <div class="col-12">
-            <div class="tab typelabel nav-link fixed-nav btn-group" v-bind:style="{width:width}">
+            <div class="tab typelabel nav-link fixed-nav btn-group el">
             
             <button v-scroll-to="{ el: '#element1'}" class="top-fixed-btn"  @click="activate(1)" :class="{ active : active_el == 1 }">
 
@@ -712,7 +712,10 @@
 
                     <div class="col-md-12 pad-free-750">
                         <h5 class="profile_subtit">フォトアルバム</h5>
-                        <div class="row gallery-list m-0">
+                        <div class="row m-0" v-if="light_images == '' || light_images.length == 0">
+                            <div class="col-12 pad-free-750"> <p class="no-data-color">データがありません。</p> </div>
+                        </div>
+                        <div class="row gallery-list m-0" v-else>
                             <div v-for="(image,index) in  light_images" :key="index" class="col-6 col-md-4 col-sm-4 col-lg-3 m-b-10 ">
                                     <div class="gallery-item">
                                         <img :src ="'/upload/nursing_profile/' + image.name"  class="img-fluid" @click="showLightbox(image.name)"  @error="imgUrlAlt">
@@ -726,7 +729,7 @@
 
                     <div class="col-md-12 pad-free-750">
                         <h5 class="profile_subtit">動画</h5>
-                        <div class="row m-0" v-if="videos == ''">
+                        <div class="row m-0" v-if="videos == '' || videos.length == 0">
                             <div class="col-12 pad-free-750"> <p class="no-data-color">データがありません。</p> </div>
                         </div>
                         <div class="row gallery-list m-0 pad-free-750" v-else>
@@ -956,7 +959,7 @@
             <p class="job_id3 sp-9-180"><span>施設番号:{{profilenumber}}</span></p>
         </div>
             <h5 class="profile-tit" v-if="hospitals[0]"> {{hospitals[0].name}}</h5>
-           <div class="tab typelabel nav-link fixed-nav" v-bind:style="{width:width}">
+           <div class="tab typelabel nav-link fixed-nav el">
                
                 <button v-scroll-to="{ el: '#element7'}" class="top-fixed-btn" @click="activate(7)" :class="{ active : active_el == 7 }">
                     病院情報
@@ -1207,7 +1210,10 @@
 
             <div class="col-md-12 pad-free-750">
                 <h5 class="profile_subtit">フォトアルバム</h5>
-                <div class="row m-0 gallery-list">
+                <div class="row m-0" v-if="light_images == '' || light_images.length == 0">
+                    <div class="col-12 pad-free-750"> <p class="no-data-color">データがありません。</p> </div>
+                </div>
+                <div class="row m-0 gallery-list" v-else>
                     <div v-for="(image,index) in  light_images" :key="index" class="col-6 col-lg-3 col-md-4 col-sm-4 m-b-10">
                         <div class=" gallery-item">
                             <img :src ="'/upload/hospital_profile/' + image.name" class="img-fluid" @click="showLightbox(image.name)" @error="imgUrlAlt" >
@@ -1477,6 +1483,11 @@ export default {
     },
 
     created(){       
+
+
+         window.addEventListener('scroll', this.handleScroll);
+
+
         this.pro_id = Number(this.$route.params.id);
         this.type = this.$route.params.type;
 
@@ -1557,11 +1568,16 @@ export default {
         this.profile_id = this.pro_id;
         this.activePanoImage = 0;
         //for responsive
+
+
+
             if(this.window.width > 768) {
                 //greater than 768
                 if(this.loginuser == 'true') {
+
                     $(document).scroll(function() {
-                            $(".fixed-nav").css({"position": "fixed","top":"65px"});
+   
+                          //  $(".fixed-nav").css({"position": "fixed","top":"65px"});
                         var cur_pos = $(this).scrollTop();
                         $('.ele').each(function(active_el){
                             if($(this).position().top <= (cur_pos+71)){
@@ -1569,16 +1585,22 @@ export default {
                                 $('.top-fixed-btn').eq(active_el).addClass('active');
                             }
                         });
-                        if (cur_pos >= 100) {
-                            $(".fixed-nav").css({"position": "fixed","top":"80px"});
-                        } else {
-                            $(".fixed-nav").css({"position": "unset", "top": "unset"});
-                        }
+                        // if (cur_pos >= 100) {
+                        //     $(".fixed-nav").css({"position": "fixed","top":"80px"});
+                        // } else {
+                        //     $(".fixed-nav").css({"position": "unset", "top": "unset"});
+                        // }
                         //  $(".fixed-nav").css({"position": "unset","top":"unset"});
                     });
+
+
+
                 } else {
+                    // public
+                    
                     $(document).scroll(function() {
-                        $(".fixed-nav").css({"position": "fixed","top":"100px"});
+                       
+                       // $(".fixed-nav").css({"position": "fixed","top":"100px"});
                         var cur_pos = $(this).scrollTop();
                         $('.ele').each(function(active_el){
                             if($(this).position().top <= (cur_pos+71)){
@@ -1586,11 +1608,11 @@ export default {
                                 $('.top-fixed-btn').eq(active_el).addClass('active');
                             }
                         });
-                        if (cur_pos >= 100) {
-                            $(".fixed-nav").css({"position": "fixed","top":"90px"});
-                        } else {
-                            $(".fixed-nav").css({"position": "unset", "top": "unset"});
-                        }
+                        // if (cur_pos >= 100) {
+                        //     $(".fixed-nav").css({"position": "fixed","top":"90px"});
+                        // } else {
+                        //     $(".fixed-nav").css({"position": "unset", "top": "unset"});
+                        // }
                     });
                 }
                 //greater than 768
@@ -1599,7 +1621,7 @@ export default {
                 //less than 768
                 if(this.loginuser == 'true') {
                 $(document).scroll(function() {
-                    $(".fixed-nav").css({"position": "fixed","top":"40px"});
+                   // $(".fixed-nav").css({"position": "fixed","top":"40px"});
                     var cur_pos = $(this).scrollTop();
                     $('.ele').each(function(active_el){
                         if($(this).position().top <= (cur_pos+71)){
@@ -1607,15 +1629,17 @@ export default {
                             $('.top-fixed-btn').eq(active_el).addClass('active');
                         }
                     });
-                    if (cur_pos >= 100) {
-                        $(".fixed-nav").css({"position": "fixed","top": "40px" ,"display": "inline-flex","width": "100%"});
-                    } else {
-                        $(".fixed-nav").css({"position": "unset", "top": "unset"});
-                    }
+                    // if (cur_pos >= 100) {
+                    //     $(".fixed-nav").css({"position": "fixed","top": "40px" ,"display": "inline-flex","width": "100%"});
+                    // } else {
+                    //     $(".fixed-nav").css({"position": "unset", "top": "unset"});
+                    // }
                 });
                 } else {
+
+               
                     $(document).scroll(function() {
-                        $(".fixed-nav").css({"position": "fixed","top":"77px"});
+                      //  $(".fixed-nav").css({"position": "fixed","top":"77px"});
                         var cur_pos = $(this).scrollTop();
                         $('.ele').each(function(active_el){
                             if($(this).position().top <= (cur_pos+71)){
@@ -1623,16 +1647,23 @@ export default {
                                 $('.top-fixed-btn').eq(active_el).addClass('active');
                             }
                         });
-                        if (cur_pos >= 100) {
-                            $(".fixed-nav").css({"position": "fixed","top": main_top ,"display": "inline-flex","width": "100%"});
-                        } else {
-                            $(".fixed-nav").css({"position": "unset", "top": "unset", "display": "none"});
-                        }
+                        // if (cur_pos >= 100) {
+                        //     $(".fixed-nav").css({"position": "fixed","top": main_top ,"display": "inline-flex","width": "100%"});
+                        // } else {
+                        //     $(".fixed-nav").css({"position": "unset", "top": "unset", "display": "none"});
+                        // }
                     });
                 }
                 //end less than 768
             }
             //for end responsive
+
+
+
+
+
+
+
 
         if(this.type == "nursing")
         {
@@ -1697,15 +1728,31 @@ export default {
                 this.center['lng'] = response.data.nurselatlong[0]['longitude'];
 
                 this.images = response.data.images;
-
-                for(var i=0; i<this.images.length; i++){
-                    this.light_images.push({
-                        'name': this.images[i]['photo'],
-                        'description': this.images[i]['description'],
-                        'id': this.images[i]['id'],
-                        'title': this.images[i]['title']
-                    })
+                console.log("images",this.images)
+                if(this.images.length == 1){
+                    if(this.images[0]['photo'] != null){
+                        for(var i=0; i<this.images.length; i++){
+                            this.light_images.push({
+                                'name': this.images[i]['photo'],
+                                'description': this.images[i]['description'],
+                                'id': this.images[i]['id'],
+                                'title': this.images[i]['title']
+                            })
+                        }
+                    }
                 }
+                else{
+                    for(var i=0; i<this.images.length; i++){
+                        this.light_images.push({
+                            'name': this.images[i]['photo'],
+                            'description': this.images[i]['description'],
+                            'id': this.images[i]['id'],
+                            'title': this.images[i]['title']
+                        })
+                    }
+                }
+
+                
 
                 this.panoimages = response.data.panoimages;
 
@@ -1790,15 +1837,31 @@ export default {
                 this.center['lat'] = response.data.hospital[0]['latitude'];
                 this.center['lng'] = response.data.hospital[0]['longitude'];
                 this.images = response.data.images;
-
-                for(var i=0; i<this.images.length; i++){
-                    this.light_images.push({
-                        'name': this.images[i]['photo'],
-                        'description': this.images[i]['description'],
-                        'id': this.images[i]['id'],
-                        'title': this.images[i]['title']
-                    })
+                console.log("images",this.images)
+                if(this.images.length == 1){
+                    if(this.images[0]['photo'] != null){
+                        for(var i=0; i<this.images.length; i++){
+                            this.light_images.push({
+                                'name': this.images[i]['photo'],
+                                'description': this.images[i]['description'],
+                                'id': this.images[i]['id'],
+                                'title': this.images[i]['title']
+                            })
+                        }
+                    }
                 }
+                else{
+                    for(var i=0; i<this.images.length; i++){
+                        this.light_images.push({
+                            'name': this.images[i]['photo'],
+                            'description': this.images[i]['description'],
+                            'id': this.images[i]['id'],
+                            'title': this.images[i]['title']
+                        })
+                    }
+                }
+
+                
 
                 this.videos = response.data.videos;
                 // this.panoimages = response.data.panoimages;
@@ -1851,8 +1914,8 @@ export default {
 
             
         }        
-
-        var new_width = $("#content-all").width();
+        
+        var new_width = document.querySelector("#content-all").offsetWidth;
         var fixed_width = new_width - 80;
         this.width = fixed_width + "px";
 
@@ -1866,6 +1929,13 @@ export default {
         var admin_header = $(".admin-header").height();
         var admin_top = admin_header  + "px" ;
     },
+
+
+    destroyed () {
+
+    window.removeEventListener('scroll', this.handleScroll);
+
+  },
 
     computed: {
         atEndOfList() {
@@ -1962,6 +2032,117 @@ export default {
         }
     },
     methods: {
+
+
+
+         handleScroll (event) {
+                
+             if(this.window.width > 768) {
+                //greater than 768
+                if(this.loginuser == 'true') {
+
+                        var el = document.querySelectorAll('.el');
+                        var index = 0, length = el.length;
+                        for ( ; index < length; index++) {
+                            // el[index].classList[3].css.border = "1px solid red;";
+                            el[index].style.position = "fixed";
+                            el[index].style.top = "75px";
+                            el[index].style.display = "block";
+                            el[index].style.width = "900px";
+                            el[index].style.margin = "0px 0px 0px 270px";
+                        }   
+                        var cur_pos = window.scrollY;
+                        if (cur_pos < 100) {
+                            var el = document.querySelectorAll('.el');
+                            var index = 0, length = el.length;
+                            for ( ; index < length; index++) {
+                                el[index].style.position = "unset";
+                                el[index].style.top = "unset";
+                                el[index].style.width = "";
+                                el[index].style.margin = "0px";
+                                //el[index].style.left = "0px";
+                            }     
+                        } 
+
+
+
+                } else {
+                    // public
+                        var el = document.querySelectorAll('.el');
+                        var index = 0, length = el.length;
+                        for ( ; index < length; index++) {
+                            // el[index].classList[3].css.border = "1px solid red;";
+                            el[index].style.position = "fixed";
+                            el[index].style.top = "85px";
+                            el[index].style.display = "block";
+                        }   
+                        var cur_pos = window.scrollY;
+                        if (cur_pos < 100) {
+                            var el = document.querySelectorAll('.el');
+                            var index = 0, length = el.length;
+                            for ( ; index < length; index++) {
+                                el[index].style.position = "unset";
+                                el[index].style.top = "unset";
+                            }     
+                        } 
+          
+                }
+                //greater than 768
+            }
+            else {
+                //less than 768
+                if(this.loginuser == 'true') {
+                     var el = document.querySelectorAll('.el');
+                        var index = 0, length = el.length;
+                        for ( ; index < length; index++) {
+                            // el[index].classList[3].css.border = "1px solid red;";
+                            el[index].style.width = "";
+                            el[index].style.position = "fixed";
+                            el[index].style.top = "40px";
+                            el[index].style.display = "inline-flex";
+                        }   
+                        var cur_pos = window.scrollY;
+                        if (cur_pos < 100) {
+                            var el = document.querySelectorAll('.el');
+                            var index = 0, length = el.length;
+                            for ( ; index < length; index++) {
+                                el[index].style.position = "unset";
+                                el[index].style.top = "unset";
+                                el[index].style.display = "none";
+                            }     
+                        } 
+                
+                } else {
+
+                        var el = document.querySelectorAll('.el');
+                        var index = 0, length = el.length;
+                        for ( ; index < length; index++) {
+                           
+                            el[index].style.position = "fixed";
+                            el[index].style.top = "75px";
+                            el[index].style.display = "inline-flex";
+                        }   
+                     // $(".fixed-nav").css({"position": "fixed","top":"100px"});
+                        var cur_pos = window.scrollY;
+                       
+                        if (cur_pos <= 100) {
+                            var el = document.querySelectorAll('.el');
+                            var index = 0, length = el.length;
+                            for ( ; index < length; index++) {
+                                el[index].style.position = "unset";
+                                el[index].style.display = "none";
+                                el[index].style.top = "unset";
+                            }     
+                        }
+
+                  
+                }
+                //end less than 768
+            }
+
+
+        
+        },
         next() {
             this.$refs.slick.next();
         },

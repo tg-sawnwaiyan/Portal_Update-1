@@ -59,20 +59,37 @@
                                         詳細 <i :id="'icon' + jobapply.id" class="fas fa-sort-down animate rotate"></i></button>
                                     </div>
                                 </div>
-                                <div class="row">
+                               
+                                <div class="row boot-xl" id="customer_list">
+                                    <div class="col-xl-1 col-lg-2 col-md-4 custom_title">
+                                        <strong>お名前</strong>
+                                    </div>
+                                    <div class="col-xl-11 col-lg-10 col-md-8"><span class="pc-414-inline">: &nbsp;</span>{{jobapply.first_name}}</div>
+                                </div>
+                                 <div class="row boot-xl" id="customer_list">
+                                    <div class="col-xl-1 col-lg-2 col-md-4 custom_title">
+                                        <strong>フリガナ</strong>
+                                    </div>
+                                    <div class="col-xl-11 col-lg-10 col-md-8"><span class="pc-414-inline">: &nbsp;</span>{{jobapply.last_name}}</div>
+                                </div>
+                              
+                                <!-- <div class="row">
                                     <div class="col-12">
                                         <div class="joboffer-tit clearfix">
-                                        <p><span class="font-weight-bold">お名前:&nbsp;</span>{{jobapply.first_name}}</p>
+                                        <p><span class="font-weight-bold">お名前:&nbsp;</span>
+                                        {{jobapply.first_name}}
+                                        </p>
                                         </div>
                                     </div>                                    
-                                </div>
-                                <div class="row">
+                                </div> -->
+                                <!-- <div class="row">
                                     <div class="col-12">
                                         <div class="joboffer-tit clearfix">
-                                             <p><span class="font-weight-bold">フリガナ:&nbsp; </span>{{jobapply.last_name}} </p>
+                                             <p><span class="font-weight-bold">フリガナ:&nbsp;
+                                                </span>{{jobapply.last_name}} </p>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                <!-- <p><span class="font-weight-bold">メールアドレス:&nbsp;</span><span>{{jobapply.email}}</span></p> -->
                                 
                                 <div class="collapse" :id="'changeLink' + jobapply.id">                                    

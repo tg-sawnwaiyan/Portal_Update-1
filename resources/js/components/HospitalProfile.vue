@@ -27,10 +27,10 @@
                       <!-- <label class="col-md-10 col-12 customer-email"> {{hospital_info.email}} </label> -->
                       <input type="text" class="form-control customer-email col-md-10 col-12 nursing_input" placeholder="メールアドレスを入力してください。" v-model="hospital_info.email" @change="aggreBtn" @keyup="focusMail">
                   </div>                          
-                    <span class="error pro-1" v-if="mail_focus || hospital_info.email =='' || hospital_info.email.length == 0">※メールアドレスが正しくありません。</span>                            
+                    <span class="error pro-1" v-if="mail_focus || hospital_info.email =='' || hospital_info.email == null">※メールアドレスが正しくありません。</span>                            
                   <div class="form-group form-group-wrapper d-flex">
                     <label class="heading-lbl col-md-2 col-12 pad-free">電話番号 </label>                            
-                    <input type="text" class="form-control customer-phone col-md-10 col-12 nursing_input" id="phone" placeholder="電話番号を入力してください。" v-model="hospital_info.phone" v-on:keyup="isNumberOnly" pattern="[0-9-]*"  @focusout="focusPhone"  maxlength="14">
+                    <input type="text" class="form-control customer-phone col-md-10 col-12 nursing_input" id="phone" placeholder="電話番号を入力してください。" v-model="hospital_info.phone"  @keyup="focusPhone"  maxlength="13">
                     <!-- v-on:keyup="isNumberOnly" -->
                   </div>                  
                   <span class="error pro-1" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>          
@@ -1114,7 +1114,8 @@ export default {
             btn_disable: false,
             mail_focus: false,
             loc: false,
-            mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
+            mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
+             phone_reg: /^([0-9]*)$/
             }
         },
         computed: {
@@ -1195,7 +1196,7 @@ export default {
             },
             
              aggreBtn: function(){
-                if((this.mail_reg.test(this.hospital_info.email) )  && this.hospital_info.email != '' && this.hospital_info.email.length > 0 ){
+                if((this.mail_reg.test(this.hospital_info.email) )  && this.hospital_info.email != '' && this.hospital_info.email != null ){
                     this.btn_disable=false;
                 }else{
                     this.btn_disable=true;
@@ -1525,31 +1526,53 @@ export default {
                 }
                 }
             },
-              isNumberOnly: function(event) {
-              var input_data = $('#phone').val();
-              var code = 0;
-              code = input_data.charCodeAt();
+            //   isNumberOnly: function(event) {
+            //   var input_data = $('#phone').val();
+            //   var code = 0;
+            //   code = input_data.charCodeAt();
 
-              if((48 <= code && code <= 57) && (this.hospital_info.phone.length >= 10 && this.hospital_info.phone.length <= 14)){
-                  this.ph_num = false;
-                  this.ph_length = false;
-              }else{
-                  this.ph_num = true;
-                  this.ph_length = true;
-              }
-            },
+            //   if((48 <= code && code <= 57) && (this.hospital_info.phone.length >= 10 && this.hospital_info.phone.length <= 14)){
+            //       this.ph_num = false;
+            //       this.ph_length = false;
+            //   }else{
+            //       this.ph_num = true;
+            //       this.ph_length = true;
+            //   }
+            // },
             focusPhone(){
-              var input_data = $('#phone').val();
-              if(input_data.length == 0 || (input_data.length >= 10 && input_data.length <= 14 && input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-'))
-              {
-                  this.ph_num = false;
-                  this.ph_length = false;
-              }
-              else{
-                  this.ph_num = true;
-                  this.ph_length = true;
-              }
-            }
+
+                if(this.hospital_info.phone != '')
+                {
+                    this.ph_num = false;
+                }
+            
+                if(this.hospital_info.phone != '' && (this.phone_reg).test(this.hospital_info.phone) && (this.hospital_info.phone.length >= 10 && this.hospital_info.phone.length <= 13))
+                {
+                
+                    this.ph_length = false;
+                
+                }
+                else{
+            
+                    this.ph_length = true;
+                }
+
+                 if(this.hospital_info.phone == '' || this.hospital_info.phone == null)
+                {
+                
+                    this.ph_length = false;
+                }
+                //   var input_data = $('#phone').val();
+                //   if(input_data.length == 0 || (input_data.length >= 10 && input_data.length <= 14 && input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-'))
+                //   {
+                //       this.ph_num = false;
+                //       this.ph_length = false;
+                //   }
+                //   else{
+                //       this.ph_num = true;
+                //       this.ph_length = true;
+                //   }
+                 }
             },
 
         }

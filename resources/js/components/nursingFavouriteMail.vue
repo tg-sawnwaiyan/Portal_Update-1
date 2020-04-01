@@ -145,13 +145,13 @@
                             <div class="row pl-3">
                                     <div class="col-md-12 p-0">
                                         <label class="col-md-12">※ 電話番号またはメールアドレス必須 <span class="error sp1">必須</span></label>
-                                        <input type="text" id="phone" name="number" class="form-control float-left" placeholder="電話番号を入力してください。" v-model="comments.phone" pattern="[0-9-]*" @focusout="focusPhone" @keyup="focusPhone" @change="aggreBtn" maxlength="13">
+                                        <input type="text" id="phone" name="number" class="form-control float-left" placeholder="電話番号を入力してください。" v-model="comments.phone"   @keyup="focusPhone" @change="aggreBtn" maxlength="13">
                                         <!-- v-on:keyup="isNumberOnly" -->
                                                                                
                                         <span class="float-left eg-txt">例）0312345678（半角）</span>
                                         <!-- <span class="error m-l-30" v-if="mail_focus">※入力は必須です。</span>                                        -->
                                     </div>
-                                     <span class="error m-l-30" v-if="ph_length || ph_error">※電話番号が正しくありません。もう一度入力してください。</span>
+                                     <span class="error m-l-30" v-if="ph_length">※電話番号が正しくありません。もう一度入力してください。</span>
                                 </div>
                             </div>
                             <!-- </div>
@@ -390,7 +390,7 @@
                 months: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
                 placeholder: {
                 //date: new Date().toISOString().slice(0,10),
-                date: '年 / 月 / 日',
+                date: '年 - 月 - 日',
 
                 }
             },
@@ -446,7 +446,8 @@
                 ph_error: false,
                 charErr:false,
                 correctVal: null,
-                mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
+                mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
+                phone_reg: /^([0-9]*)$/
             }
         },
         computed: {
@@ -553,9 +554,11 @@
                 
             },
             aggreBtn: function(){
-                if(($('#furigana').val().length > 0 && !this.charErr) && this.comments.name != '' && this.comments.selectedValue != 0 && this.comments.township != 0 && this.comments.city != '' && (this.mail_reg.test(this.comments.mail) || (!this.ph_length && !this.ph_num && this.comments.phone != '' ) ) ){
+                if(($('#furigana').val().length > 0 && !this.charErr) && this.comments.name != '' && this.comments.selectedValue != 0 && this.comments.township != 0 && this.comments.city != '' && ((this.mail_reg.test(this.comments.mail) || (!this.ph_length && this.comments.phone != '' ) ) && (!this.ph_length && !this.mail_focus))){
+                  
                     this.btn_disable=false;
                 }else{
+                  
                     this.btn_disable=true;
                 }
             },
@@ -594,12 +597,19 @@
                 }
             },
             focusMail: function(event) {
-                if((this.comments.mail != '' && this.mail_reg.test(this.comments.mail))){
-                    this.mail_focus=false;
-                }else{
-                    this.mail_focus=true;
-                    // this.ph_length = false;
+                if(this.comments.mail != '')
+                {
+                    if(this.mail_reg.test(this.comments.mail)){
+                         this.mail_focus=false;
+                    }else{
+                        this.mail_focus=true;
+                        // this.ph_length = false;
+                    }
                 }
+                else{
+                    this.mail_focus = false;
+                }
+               
                 this.aggreBtn();
                 // var input_data = $('#phone').val();
                 // var code = 0;
@@ -613,50 +623,68 @@
             },
 
             focusPhone: function(e) {
-                var input_data = this.comments.phone;
-                if(((e.keyCode  >= 48 && e.keyCode  <= 57) || (e.keyCode  >= 96 && e.keyCode  <= 105) || (e.keyCode  == 8) || (e.keyCode  == 35) || (e.keyCode  == 36) || (e.keyCode  == 37) || (e.keyCode  == 39) || (e.keyCode  == 46) || (e.keyCode  == 109) || (e.keyCode  == 189)) && input_data.charAt(0) != '-' && !input_data.includes('--'))
-                {
-                    this.correctVal = input_data;
-                    if(input_data.length >= 10 && input_data.length < 14 && input_data.charAt(input_data.length -1 ) != '-'){
-                    this.ph_error = false;
-                    this.ph_length = false;
-                    this.aggreBtn(); 
-                    }
-                    else{
-                    if(input_data.length == 0){
-                        this.ph_error = false;
+
+               if(this.comments.phone != '' )
+               {
+                    if( (this.phone_reg).test(this.comments.phone) && (this.comments.phone.length >= 10 && this.comments.phone.length <= 13))
+                    {
+                    
                         this.ph_length = false;
-                        this.aggreBtn(); 
-                    }
-                    else{
-                            this.ph_error = true;
-                            this.btn_disable = true;
-                    }
                     
                     }
-                }
-                else{
-                    // e.preventDefault();
-                    this.comments.phone = this.correctVal;
-                    if(this.comments.phone.length >= 10 && this.comments.phone.length < 14 && this.comments.phone.charAt(this.comments.phone.length -1 ) != '-'){
-                    this.ph_length = false;
-                    this.ph_error = false;
-                    this.aggreBtn(); 
-                    }
                     else{
-                        if(this.comments.phone.length == 0){
-                            this.ph_error = false;
-                            this.ph_length = false;
-                            this.aggreBtn(); 
-                        }
-                        else{
-                            this.ph_length = true;
-                            this.ph_error = false;
-                            this.btn_disable = true;
-                        }
-                    
+                        this.ph_length = true;
                     }
-                }
+               }
+               else{
+                        this.ph_length = false;
+               }
+            
+                this.aggreBtn();
+                // var input_data = this.comments.phone;
+                // if(((e.keyCode  >= 48 && e.keyCode  <= 57) || (e.keyCode  >= 96 && e.keyCode  <= 105) || (e.keyCode  == 8) || (e.keyCode  == 35) || (e.keyCode  == 36) || (e.keyCode  == 37) || (e.keyCode  == 39) || (e.keyCode  == 46) || (e.keyCode  == 109) || (e.keyCode  == 189)) && input_data.charAt(0) != '-' && !input_data.includes('--'))
+                // {
+                //     this.correctVal = input_data;
+                //     if(input_data.length >= 10 && input_data.length < 14 && input_data.charAt(input_data.length -1 ) != '-'){
+                //     this.ph_error = false;
+                //     this.ph_length = false;
+                //     this.aggreBtn(); 
+                //     }
+                //     else{
+                //     if(input_data.length == 0){
+                //         this.ph_error = false;
+                //         this.ph_length = false;
+                //         this.aggreBtn(); 
+                //     }
+                //     else{
+                //             this.ph_error = true;
+                //             this.btn_disable = true;
+                //     }
+                    
+                //     }
+                // }
+                // else{
+                //     // e.preventDefault();
+                //     this.comments.phone = this.correctVal;
+                //     if(this.comments.phone.length >= 10 && this.comments.phone.length < 14 && this.comments.phone.charAt(this.comments.phone.length -1 ) != '-'){
+                //     this.ph_length = false;
+                //     this.ph_error = false;
+                //     this.aggreBtn(); 
+                //     }
+                //     else{
+                //         if(this.comments.phone.length == 0){
+                //             this.ph_error = false;
+                //             this.ph_length = false;
+                //             this.aggreBtn(); 
+                //         }
+                //         else{
+                //             this.ph_length = true;
+                //             this.ph_error = false;
+                //             this.btn_disable = true;
+                //         }
+                    
+                //     }
+                // }
             
             },
 
@@ -708,25 +736,25 @@
 
             },
 
-            isNumberOnly: function(event) {
-                // var input_data = $('#phone').val();
-                var code = 0;
-                code = this.comments.phone.charCodeAt();
-                if(this.comments.phone.length >= 10 && this.comments.phone.length <= 14) {
-                    this.ph_length = false;
-                    // console.log('a',this.comments.phone.length)
-                }else{
-                    this.ph_length = true;
-                    // console.log('b',this.comments.phone.length)
-                }
-                if((48 <= code && code <= 57)){
-                    this.ph_error = false;
-                    // console.log('c')
-                }else{
-                    this.ph_error = true;
-                    // console.log('d')
-                }
-            },
+            // isNumberOnly: function(event) {
+            //     // var input_data = $('#phone').val();
+            //     var code = 0;
+            //     code = this.comments.phone.charCodeAt();
+            //     if(this.comments.phone.length >= 10 && this.comments.phone.length <= 14) {
+            //         this.ph_length = false;
+            //         // console.log('a',this.comments.phone.length)
+            //     }else{
+            //         this.ph_length = true;
+            //         // console.log('b',this.comments.phone.length)
+            //     }
+            //     if((48 <= code && code <= 57)){
+            //         this.ph_error = false;
+            //         // console.log('c')
+            //     }else{
+            //         this.ph_error = true;
+            //         // console.log('d')
+            //     }
+            // },
             postalNumber: function(event) {
                 if(!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105) 
                     && event.keyCode != 8 && event.keyCode != 46 && !(event.keyCode >= 37 && event.keyCode <= 40)) 

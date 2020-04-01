@@ -67,12 +67,12 @@
                
                      <div v-if="selectedValue == 26" class="form-group">
                         <div class="row">
-                            <div class="col-12 col-sm-3 col-md-2">
+                            <div class="col-12 col-sm-4 col-md-4">
                                 <label>掲載開始日 <span class="error sp2">必須</span></label>
                                 <date-picker class="" :lang="lang"  valueType="format" v-model="news.from_date" style="width:100%"></date-picker>
                                 <span v-if="errors.from_date" class="error">{{errors.from_date}}</span>
                             </div>
-                             <div class="col-12 col-sm-3 col-md-2 mt-567-10">
+                             <div class="col-12 col-sm-4 col-md-4 mt-567-10">
                                 <label>掲載終了日 </label>
                                 <date-picker class=""  :lang="lang" valueType="format" v-model="news.to_date"  style="width:100%"></date-picker>
                             </div>

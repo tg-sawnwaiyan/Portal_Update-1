@@ -48,39 +48,39 @@
                                 <td  class="p-4">
                                     <div class="row m-0">
                                         <div class="col-sm-12 p-0">
-                                            <div class="row">
-                                                <div class="col-lg-2 col-md-4 custom_title">
-                                                    <strong>事業者番号:</strong>
+                                            <div class="row boot-xl">
+                                                <div class="col-xl-1 col-lg-2 col-md-4 custom_title">
+                                                    <strong>事業者番号</strong>
                                                 </div>
-                                                <div class="col-lg-10 col-md-8">{{customer.cusnum}}</div>
+                                                <div class="col-xl-11 col-lg-10 col-md-8"><span class="pc-414-inline">: &nbsp;</span>{{customer.cusnum}}</div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-lg-2 col-md-4 custom_title">
-                                                    <strong>事業者名:</strong>
+                                            <div class="row boot-xl">
+                                                <div class="col-xl-1 col-lg-2 col-md-4 custom_title">
+                                                    <strong>事業者名</strong>
                                                 </div>
-                                                <div class="col-lg-10 col-md-8">{{customer.name}}</div>
+                                                <div class="col-xl-11 col-lg-10 col-md-8"><span class="pc-414-inline">: &nbsp;</span>{{customer.name}}</div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-lg-2 col-md-4 custom_title">
-                                                    <strong >状態:</strong>
+                                            <div class="row boot-xl">
+                                                <div class="col-xl-1 col-lg-2 col-md-4 custom_title">
+                                                    <strong >状態</strong>
                                                 </div>
-                                                <div class="col-lg-10 col-md-8" v-if="customer.status == 0" >登録承認審査中</div>
-                                                <div class="col-lg-10 col-md-8" v-else>
+                                                <div class="col-xl-11 col-lg-10 col-md-8" v-if="customer.status == 0" ><span class="pc-414-inline">: &nbsp;</span>登録承認審査中</div>
+                                                <div class="col-xl-11 col-lg-10 col-md-8" v-else><span class="pc-414-inline">: &nbsp;</span>
                                                     <span v-if="customer.recordstatus == '1'" >有効</span>
                                                     <span v-else >無効</span>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-lg-2 col-md-4 custom_title">
-                                                    <strong>メールアドレス:</strong>
+                                            <div class="row boot-xl">
+                                                <div class="col-xl-1 col-lg-2 col-md-4 custom_title">
+                                                    <strong>メールアドレス</strong>
                                                 </div>
-                                                <div class="col-lg-10 col-md-8">{{customer.email}}</div>
+                                                <div class="col-xl-11 col-lg-10 col-md-8"><span class="pc-414-inline">: &nbsp;</span>{{customer.email}}</div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-lg-2 col-md-4 custom_title">
-                                                    <strong>電話番号:</strong>
+                                            <div class="row boot-xl">
+                                                <div class="col-xl-1 col-lg-2 col-md-4 custom_title">
+                                                    <strong>電話番号</strong>
                                                 </div>
-                                                <div class="col-lg-10 col-md-8">{{customer.phone}}</div>
+                                                <div class="col-xl-11 col-lg-10 col-md-8"><span class="pc-414-inline">: &nbsp;</span>{{customer.phone}}</div>
                                             </div>
                                             
                                             <div class="row mt-3">
