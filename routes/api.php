@@ -320,6 +320,7 @@ Route::post('hospital/galleryupdate/{id}', 'HospitalProfileController@galleryupd
 Route::get('account_nursing/{id}','CustomerController@nusaccount');
 Route::get('account_hospital/{id}','CustomerController@hosaccount');
 Route::get('changeActivate/{id}/{type}','CustomerController@changeActivate');
+Route::get('changeRecordstatus/{id}','PostController@changeRecordstatus');
 // Route::get('changeActivateHos/{id}','CustomerController@changeActivateHos');
 Route::delete('profileDelete/{id}/{type}','CustomerController@profileDelete');
 // Route::delete('profileDeleteHos/{id}','CustomerController@profileDeleteHos');

@@ -167,12 +167,12 @@
             <div class="row pl-3">
                     <div class="col-md-12 p-0">
                         <label class="col-md-12">※ 電話番号またはメールアドレス必須 <span class="error sp1">必須</span></label>
-                        <input type="text" class="form-control float-left" id="phone" v-model="jobApply.phone" placeholder="電話番号を入力してください。" @keyup="focusPhone" @focusout="focusPhone" @change="aggreBtn" pattern="[0-9-]*" maxlength="13"/>
+                        <input type="text" class="form-control float-left" id="phone" v-model="jobApply.phone" placeholder="電話番号を入力してください。" @keyup="focusPhone"  @change="aggreBtn"  maxlength="13"/>
                         <!-- <span class="error m-l-30" v-if="focus_mail">※入力は必須です。</span> -->
                         <span class="float-left eg-txt">例）0312345678（半角）</span>
                         <!-- <span class="error m-l-30" v-if="mail_focus">※入力は必須です。</span>                                        -->
                     </div>
-                        <span class="error m-l-30" v-if="ph_length || ph_error">※電話番号が正しくありません。もう一度入力してください。</span>
+                        <span class="error m-l-30" v-if="ph_length">※電話番号が正しくありません。もう一度入力してください。</span>
                 </div>
             </div>
             <!-- </div>
@@ -492,7 +492,8 @@ export default {
     ph_error: false,
     charErr: false,
     correctVal: null,
-    mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
+    mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
+     phone_reg: /^([0-9]*)$/
     }
   },
   created() {
@@ -683,62 +684,89 @@ export default {
     },
 
     focusPhone: function(e) {
-        var input_data = this.jobApply.phone;
-        if(((e.keyCode  >= 48 && e.keyCode  <= 57) || (e.keyCode  >= 96 && e.keyCode  <= 105) || (e.keyCode  == 8) || (e.keyCode  == 35) || (e.keyCode  == 36) || (e.keyCode  == 37) || (e.keyCode  == 39) || (e.keyCode  == 46) || (e.keyCode  == 109) || (e.keyCode  == 189)) && input_data.charAt(0) != '-' && !input_data.includes('--'))
-        {
-            this.correctVal = input_data;
-            if(input_data.length >= 10 && input_data.length < 14 && input_data.charAt(input_data.length -1 ) != '-'){
-              this.ph_error = false;
-              this.ph_length = false;
-              this.aggreBtn(); 
-            }
-            else{
-              if(input_data.length == 0){
-                this.ph_error = false;
-                this.ph_length = false;
-                this.aggreBtn(); 
-              }
-              else{
-                    this.ph_error = true;
-                    this.btn_disable = true;
-              }
-              
-            }
-        }
-        else{
-            this.jobApply.phone = this.correctVal;
-            if(this.jobApply.phone.length >= 10 && this.jobApply.phone.length < 14 && this.jobApply.phone.charAt(this.jobApply.phone.length -1 ) != '-'){
-              this.ph_length = false;
-              this.ph_error = false;
-              this.aggreBtn(); 
-            }
-            else{
-                if(this.jobApply.phone.length == 0){
-                    this.ph_error = false;
+
+            if(this.jobApply.phone != '')
+            {
+                if((this.phone_reg).test(this.jobApply.phone) && (this.jobApply.phone.length >= 10 && this.jobApply.phone.length <= 13))
+                {
                     this.ph_length = false;
-                    this.aggreBtn(); 
                 }
                 else{
-                    this.ph_length = true;
-                    this.ph_error = false;
-                    this.btn_disable = true;
+                    this.ph_length = true;   
                 }
-              
             }
-        }
+            else{
+               this.ph_length = false;
+            }
+                
+
+                this.aggreBtn();
+
+        // var input_data = this.jobApply.phone;
+        // if(((e.keyCode  >= 48 && e.keyCode  <= 57) || (e.keyCode  >= 96 && e.keyCode  <= 105) || (e.keyCode  == 8) || (e.keyCode  == 35) || (e.keyCode  == 36) || (e.keyCode  == 37) || (e.keyCode  == 39) || (e.keyCode  == 46) || (e.keyCode  == 109) || (e.keyCode  == 189)) && input_data.charAt(0) != '-' && !input_data.includes('--'))
+        // {
+        //     this.correctVal = input_data;
+        //     if(input_data.length >= 10 && input_data.length < 14 && input_data.charAt(input_data.length -1 ) != '-'){
+        //       this.ph_error = false;
+        //       this.ph_length = false;
+        //       this.aggreBtn(); 
+        //     }
+        //     else{
+        //       if(input_data.length == 0){
+        //         this.ph_error = false;
+        //         this.ph_length = false;
+        //         this.aggreBtn(); 
+        //       }
+        //       else{
+        //             this.ph_error = true;
+        //             this.btn_disable = true;
+        //       }
+              
+        //     }
+        // }
+        // else{
+        //     this.jobApply.phone = this.correctVal;
+        //     if(this.jobApply.phone.length >= 10 && this.jobApply.phone.length < 14 && this.jobApply.phone.charAt(this.jobApply.phone.length -1 ) != '-'){
+        //       this.ph_length = false;
+        //       this.ph_error = false;
+        //       this.aggreBtn(); 
+        //     }
+        //     else{
+        //         if(this.jobApply.phone.length == 0){
+        //             this.ph_error = false;
+        //             this.ph_length = false;
+        //             this.aggreBtn(); 
+        //         }
+        //         else{
+        //             this.ph_length = true;
+        //             this.ph_error = false;
+        //             this.btn_disable = true;
+        //         }
+              
+        //     }
+        // }
      
     },
     
     focusMail: function(event) {
-        if((this.jobApply.email != '' && this.mail_reg.test(this.jobApply.email))){
-            this.focus_mail=false;
-        }else{
-            this.focus_mail=true;
-        }
+      if(this.jobApply.email != '')
+      {
+          if( this.mail_reg.test(this.jobApply.email)){
+              this.focus_mail=false;
+            
+          }else{
+              this.focus_mail=true;
+            
+          }
+      }
+      else{
+        this.focus_mail = false;
+      }
+       
         this.aggreBtn();
     },
     aggreBtn: function(){
-        if(($('#furigana').val().length > 0 && !this.charErr) && this.jobApply.first_name != '' && this.jobApply.last_name != '' && this.jobApply.selectedValue != 0 && this.jobApply.township != 0 && this.jobApply.city != '' && this.jobApply.str_address != '' && this.jobApply.terms == true && (this.mail_reg.test(this.jobApply.email) || (!this.ph_length && !this.ph_num && this.jobApply.phone.length > 0 ))){
+        if(($('#furigana').val().length > 0 && !this.charErr) && this.jobApply.first_name != '' && this.jobApply.last_name != '' && this.jobApply.selectedValue != 0 && this.jobApply.township != 0 && this.jobApply.city != '' && this.jobApply.str_address != '' && this.jobApply.terms == true && ((this.mail_reg.test(this.jobApply.email) || (!this.ph_length && this.jobApply.phone != '' )) && (!this.ph_length && !this.focus_mail))){
             this.btn_disable=false;
         }else{
             this.btn_disable=true;
