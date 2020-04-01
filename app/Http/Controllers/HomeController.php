@@ -28,7 +28,7 @@ class HomeController extends Controller
     public function index()
     {
         
-        $cats = DB::select("SELECT categories.* FROM categories INNER JOIN posts ON categories.id = posts.category_id WHERE categories.id != 26  GROUP BY categories.id");
+        $cats = DB::select("SELECT categories.* FROM categories INNER JOIN posts ON categories.id = posts.category_id WHERE categories.id != 26 and posts.recordstatus=1 GROUP BY categories.id");
         return response()->json($cats);
     }
 
@@ -68,7 +68,7 @@ class HomeController extends Controller
         $request = $request->all();
         $cat_id = $request['category_id'];
 
-        $latest_post = Post::where("category_id",$cat_id);
+        $latest_post = Post::where("category_id",$cat_id,"and")->where('recordstatus',1);
         // $search_word = $request['search_word'];
 
         // if(isset($request['search_word'])) {
@@ -132,7 +132,7 @@ class HomeController extends Controller
         // toDateTimeString
 
         $query = "SELECT * from posts 
-        where category_id = 26 and from_date <= '".$getTime."' and 
+        where category_id = 26 and recordstatus=1 and from_date <= '".$getTime."' and 
         (CASE WHEN to_date is NULL THEN from_date <= '".$getTime."' and to_date is null ELSE from_date <= '".$getTime."' and to_date >= '".$getTime."' END) limit 16";
         $break_news = DB::select($query);
   
@@ -161,7 +161,7 @@ class HomeController extends Controller
         // $query = "SELECT * from posts where (category_id = 26 and (from_date <= '".$getTime."' and to_date <= '".$getTime."')) limit 16";
         // $break_news = DB::select($query);
         $limit = 16 - count($break_news);
-        $latestpost = Post::where('category_id','!=',26)->orderBy('created_at', 'desc')->limit("$limit")->get()->toArray();
+        $latestpost = Post::where('category_id','!=',26)->where('recordstatus',1)->orderBy('created_at', 'desc')->limit("$limit")->get()->toArray();
 
         $merge_arr = array_merge($break_news,$latestpost);
         shuffle($merge_arr);
@@ -238,7 +238,7 @@ class HomeController extends Controller
         }
         else{
             for($i = 0; $i < count($cat); $i++) {
-                $sql.= "(SELECT categories.name,categories.pattern,categories.id,posts.id as pid,posts.title,posts.created_at, posts.photo, posts.main_point FROM categories INNER JOIN posts ON categories.id = posts.category_id WHERE categories.id = ".$cat[$i]['id']." ".$wh." order by posts.created_at desc LIMIT 25) UNION ";
+                $sql.= "(SELECT categories.name,categories.pattern,categories.id,posts.id as pid,posts.title,posts.created_at, posts.photo, posts.main_point FROM categories INNER JOIN posts ON categories.id = posts.category_id WHERE posts.recordstatus=1 and categories.id = ".$cat[$i]['id']." ".$wh." order by posts.created_at desc LIMIT 25) UNION ";
             }
             $sql = trim($sql,' UNION ');
 
