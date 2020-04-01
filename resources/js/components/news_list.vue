@@ -57,25 +57,18 @@
                                     </div>
                                     <div  v-else> <img src="/images/noimage.jpg" alt  /></div>
                                 </td>
-                                <td>
-                                
-                              
-                             
-                                    <div style="text-align:right;" v-if="newsList.category_id == 26 && (newsList.to_date == null || newsList.to_date == '')">
-                                            <p style="margin-right: 99px;">掲載期間 {{newsList.from_date}} ~</p>
+                                <td>     
+                                    <div class="col-12 p-0 posting-per" v-if="newsList.category_id == 26 && (newsList.to_date == null || newsList.to_date == '')">
+                                            <span><i class="fa fa-calendar-alt common-fa"></i>&nbsp;掲載期間 {{newsList.from_date}} ~</span>
                                     </div>
 
-                                    <div v-else>
-                                        <div style="text-align:right;" v-if="newsList.category_id == 26">
-                                            <p>掲載期間 {{newsList.from_date}} ~ {{newsList.to_date}}</p>
+                                    <div class="col-12 p-0" v-else>
+                                        <div class="posting-per" v-if="newsList.category_id == 26">
+                                            <span><i class="fa fa-calendar-alt common-fa"></i>&nbsp;掲載期間 {{newsList.from_date}} ~ {{newsList.to_date}}</span>
                                         </div>
                                     </div>
-                                    
-                                    
-                                    
-                                    
-                                    
-                                     <h5 class="align-middle"><span v-if="newsList.category_id == 26" class="breaking-tip" style="font-size: 12px;line-height: 12px;">PR</span>
+                                                                        
+                                     <h5 class="align-middle"><span v-if="newsList.category_id == 26" class="breaking-tip">PR</span>
                                         <router-link
                                             :to="{name: 'newdetails', params:{id:newsList.id}}"
                                             class="pseudolink"
