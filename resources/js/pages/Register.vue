@@ -96,7 +96,7 @@
                         <div class="form-group row">
                             <label class="col-12 col-lg-3 col-md-4 control-label">電話番号</label>
                             <div class="col-12 col-lg-9 col-md-8  p-0">
-                                <span style="color:#999;">※ 数字と'-'のみ </span>
+                                <span style="color:#999;">※ 数字のみ </span>
                                 <div class="input-group">
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
