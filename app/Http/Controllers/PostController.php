@@ -56,7 +56,7 @@ class PostController extends Controller
             $post->category_id=$request->input('category_id');
             $post->related_news=$request->input('related_news');
             $post->user_id = 1;
-            $post->recordstatus=1;
+            // $post->recordstatus=1;
             $post->from_date = $request->input('from_date');
             $post->to_date = $request->input('to_date');
         
@@ -222,7 +222,7 @@ class PostController extends Controller
             $post->from_date = $request->input('from_date');
             $post->to_date = $request->input('to_date');
             $post->user_id = 1;
-            $post->recordstatus=1;
+            // $post->recordstatus=1;
             $post->save();
 
 
