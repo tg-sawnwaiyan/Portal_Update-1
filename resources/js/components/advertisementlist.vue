@@ -187,10 +187,10 @@
                 changeActivate(id, recordstatus){
                     if(recordstatus == 1)
                     {
-                    this.activate_text = "非公開にしてよろしいでしょうか。";
+                    this.activate_text = "広告を非公開にしてよろしいでしょうか。";
                     }
                     else{
-                        this.activate_text = "公開してよろしいでしょうか。";
+                        this.activate_text = "広告を公開してよろしいでしょうか。";
                     }
                     this.$loading(true);
                     this.$swal({
