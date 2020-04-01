@@ -7,7 +7,6 @@ import PasswordResetForm from './pages/Passwordresetform'
 import Newsdetails from "./components/Newsdetails";
 import hospitalSearch from "./components/hospitalSearch";
 import JobApply from "./components/JobApply";
-import jobapplylist from "./components/jobapplylist";
 import customerlist from "./components/customerlist";
 import job_details from "./components/job_details";
 import news_list from "./components/news_list";
@@ -353,13 +352,6 @@ const routes = [
         }
     },
 
-    // {
-    //     name: "userPasswordResetList",
-    //     path: "/userPasswordResetList",
-    //     component: userPasswordResetList
-    // },
-
-
     {
         name: "favouriteHospital",
         path: "/favouriteHospital",
@@ -533,14 +525,7 @@ const routes = [
         auth: true
     }
   },
-  {
-    name:'jobapplylist',
-    path:'/jobapplylist',
-    component:jobapplylist,
-    meta: {
-        auth: true,
-    }
-  },
+
   {
     name:'adminlist',
     path:'/admin/t_is_admin_register',

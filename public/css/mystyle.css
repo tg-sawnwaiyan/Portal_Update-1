@@ -6910,7 +6910,7 @@ color: #fff !important;
     }
     .pagination li.page-item {
         /* display: block; */
-        padding:1px;
+        padding: 1px;
     }
     .page-item:first-child,
     .page-item:nth-child( 2),
@@ -7592,7 +7592,7 @@ display: block !important;
     margin-right: 4px;
     font-size: 12px;
     color: #777;
-    margin-top: -20px;
+    /* margin-top: -20px; */
 }
 
 
@@ -7978,13 +7978,13 @@ color: green;
 /* start .profile */
 
 .fixed-nav {
-    width: 79.9%;
+    /* width: 79.9%; */
     margin: 0 auto;
     padding: 0 !important;
     background: transparent;
-    -moz-transition: all 0.5s ease-in-out;
+    /* -moz-transition: all 0.5s ease-in-out;
     -webkit-transition: all 0.5s ease-in-out;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out; */
     /* overflow: hidden; */
     z-index: 4;
     left: 0;
@@ -10516,15 +10516,15 @@ padding: 11px;
 @media (min-width: 1200px) {
     .boot-xl .col-xl-1 {
         -webkit-box-flex: 0;
-        -ms-flex: 0 0 11.66666667% !important;
-        flex: 0 0 11.66666667% !important;
-        max-width: 11.66666667% !important;
+        -ms-flex: 0 0 13.666667% !important;
+        flex: 0 0 13.666667% !important;
+        max-width: 13.666667% !important;
     }
     .boot-xl .col-xl-11 {
         -webkit-box-flex: 0;
-        -ms-flex: 0 0 71.33333333% !important;
-        flex: 0 0 71.33333333% !important;
-        max-width: 71.33333333% !important;
+        -ms-flex: 0 0 86.333333% !important;
+        flex: 0 0 86.333333% !important;
+        max-width: 86.333333% !important;
     }
 }
 
@@ -11828,9 +11828,9 @@ width: 18rem;
         font-size: 12px;
         color: #777;
         text-align: right;
-        margin-top: -21px;
+        margin-top: 0px;
     }
-    .test{
+    .test {
         display: none;
     }
     /*comment*/
@@ -12434,12 +12434,11 @@ width: 18rem;
     /* .maintab-content {
         padding: 0px !important;
     } */
-    .cmt2 
-    {
-        float:left;
-        margin-left:-13px;
+    .cmt2 {
+        float: left;
+        margin-left: -13px;
     }
-    .cmt3{
+    .cmt3 {
         display: none;
     }
     .search_jobid {
@@ -14090,4 +14089,3 @@ strong {
     display: inline-block;
     /* float: left; */
 }
-

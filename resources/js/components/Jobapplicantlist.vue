@@ -64,13 +64,13 @@
                                     <div class="col-xl-1 col-lg-2 col-md-4 custom_title">
                                         <strong>お名前</strong>
                                     </div>
-                                    <div class="col-xl-11 col-lg-10 col-md-8"><span class="pc-414-inline">: &nbsp;</span> {{jobapply.first_name}}</div>
+                                    <div class="col-xl-11 col-lg-10 col-md-8"><span class="pc-414-inline">: &nbsp;</span>{{jobapply.first_name}}</div>
                                 </div>
                                  <div class="row boot-xl" id="customer_list">
                                     <div class="col-xl-1 col-lg-2 col-md-4 custom_title">
                                         <strong>フリガナ</strong>
                                     </div>
-                                    <div class="col-xl-11 col-lg-10 col-md-8"><span class="pc-414-inline">: &nbsp;</span> {{jobapply.last_name}}</div>
+                                    <div class="col-xl-11 col-lg-10 col-md-8"><span class="pc-414-inline">: &nbsp;</span>{{jobapply.last_name}}</div>
                                 </div>
                               
                                 <!-- <div class="row">
