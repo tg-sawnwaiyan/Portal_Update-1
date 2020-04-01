@@ -63,8 +63,9 @@
                                             :to="{name: 'newdetails', params:{id:newsList.id}}"
                                             class="pseudolink"
                                         >{{newsList.title}}</router-link>
-                                    </h5>
-                                    <span class="card-title-rightwrapper model-7">                                                 
+                                    </h5>                                   
+                                    <p class="mt-2">{{newsList.main_point}}</p>
+                                     <div class="card-title-rightwrapper model-7 mt-2">                                                 
                                         <div class="checkbox">
                                             <input type='checkbox' :id="newsList.id" v-if="newsList.recordstatus == 1" @click="changeActivate(newsList.id,newsList.recordstatus)" checked/>
                                             <input type='checkbox' :id="newsList.id" v-if="newsList.recordstatus == 0" @click="changeActivate(newsList.id,newsList.recordstatus)"  />
@@ -72,8 +73,7 @@
                                             <div  v-if="newsList.recordstatus == 1" class="on">公開中</div>
                                             <div v-if="newsList.recordstatus == 0" class="on">非公開</div>
                                         </div>                                                                                             
-                                    </span>
-                                    <p class="mt-2">{{newsList.main_point}}</p>
+                                    </div>
                                     <div class="d-flex mt-4">
                                         <router-link :to="{ path:'/editPost/'+ newsList.id}" class="btn edit-borderbtn">編集</router-link>
                                         <button class="btn delete-borderbtn ml-2" @click="deletePost(newsList.id)">削除</button>
