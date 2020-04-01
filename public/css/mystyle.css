@@ -12446,6 +12446,11 @@ width: 18rem;
     /* .maintab-content {
         padding: 0px !important;
     } */
+    .admin-backbtn {
+        min-width: 62px;
+        position: absolute;
+        right: 0px;
+    }
     .cmt2 {
         float: left;
         margin-left: -13px;
