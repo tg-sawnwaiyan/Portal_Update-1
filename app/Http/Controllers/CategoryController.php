@@ -45,7 +45,8 @@ class CategoryController extends Controller
     {
 
         $category_list = Category::select('id','name')->get()->toArray();
-        return response()->json($category_list);
+        $pr_category_list = Category::select('id','name')->where('id','!=',26)->get()->toArray();
+        return response()->json(array("categories"=>$category_list,"prcategories"=>$pr_category_list));
 
     }
 

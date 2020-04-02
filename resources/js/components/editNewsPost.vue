@@ -93,7 +93,7 @@
                                     <div class="d-flex align-items-center cat_box">
                                          <label class="cat_lbl"> カテゴリー</label>
                                         <select v-model="category_id_1" id="categories" class="form-control cat_select" @change='getPostsByCatId()'>
-                                            <option v-for="category in categories" :key="category.id" v-bind:value="category.id">
+                                            <option v-for="category in prcategories" :key="category.id" v-bind:value="category.id">
                                                 {{category.name}}
                                             </option>
                                         </select>
@@ -226,6 +226,11 @@ import {quillEditor} from 'vue-quill-editor'
                         id: '',
                         name: ''
                     },
+                    prcategories:{
+                        id:'',
+                        name:''
+                    },
+                
                     category_id_1: '1',
                     related_news: [],
                     checkedNews: [],
@@ -248,7 +253,8 @@ import {quillEditor} from 'vue-quill-editor'
             mounted() {
                 this.axios.get('/api/category/category_list')
                 .then(function(response) {
-                    this.categories = response.data;
+                    this.categories = response.data.categories;
+                    this.prcategories = response.data.prcategories;
                 }.bind(this));
             },
             methods: {
