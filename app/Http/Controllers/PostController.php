@@ -292,6 +292,13 @@ class PostController extends Controller
         }
         $query = $query->orderBy('created_at','DESC')
                         ->paginate(20);
+
+        foreach ($query as $com) {
+            $splitTimeStamp = explode(" ",$com->from_date);
+            $com->from_date = $splitTimeStamp[0];
+            $splitTimeStamp1 = explode(" ",$com->to_date);
+            $com->to_date = $splitTimeStamp1[0];
+        }
         return  response()->json($query);
         
     }
