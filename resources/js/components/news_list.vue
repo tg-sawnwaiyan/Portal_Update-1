@@ -57,25 +57,71 @@
                                     </div>
                                     <div  v-else> <img src="/images/noimage.jpg" alt  /></div>
                                 </td>
-                                <td>
-                                
-                              
-                             
-                                    <div style="text-align:right;" v-if="newsList.category_id == 26 && (newsList.to_date == null || newsList.to_date == '')">
-                                            <p style="margin-right: 99px;">掲載期間 {{newsList.from_date}} ~</p>
+                                <td>   
+                                    <!--posting period-->
+                                    <div class="row col-12 p-0 posting-per justify-content-end float-right m-b-10 pc-414">
+                                    <table class="table table-borderless text-right m-b-0 posting-per cmt">
+                                        <tr v-if="newsList.category_id == 26 && (newsList.to_date == null || newsList.to_date == '')">
+                                            <td>
+                                                <th>
+                                                    <span><i class="fa fa-calendar-alt common-fa"></i>&nbsp;<span style="color:#2c3e50 ">掲載期間</span></span>
+                                                </th>
+                                                <th>
+                                                    {{newsList.from_date}} 
+                                                </th>
+                                                <th>
+                                                    ~
+                                                </th>
+                                                
+                                            </td>
+                                        </tr>
+                                        <tr v-else>
+                                            <td v-if="newsList.category_id == 26">
+                                                <th>
+                                                    <span><i class="fa fa-calendar-alt common-fa"></i>&nbsp;<span style="color:#2c3e50 ">掲載期間</span></span>
+                                                </th>
+                                                <th>
+                                                    {{newsList.from_date}}
+                                                </th>
+                                                <th>
+                                                    ~
+                                                </th>
+                                                <th>
+                                                     <span>{{newsList.to_date}}</span>
+                                                </th>
+                                                
+                                               
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    </div>
+                                    <!--posting period-->
+
+                                    <div class="sp-414 m-b-10">
+                                    <div class="row col-12 p-0 m-0 posting-per justify-content-end" v-if="newsList.category_id == 26 && (newsList.to_date == null || newsList.to_date == '')">                                            
+                                            <div class="posting-firstwrap"> 
+                                                <span><i class="fa fa-calendar-alt common-fa"></i>&nbsp;<span style="color:#2c3e50 ">掲載期間</span></span>                                              
+                                                <span>{{newsList.from_date}} ~ </span>
+                                            </div>           
+                                              <div class="posting-secondwrap">
+                                              </div>                                                                           
                                     </div>
 
-                                    <div v-else>
-                                        <div style="text-align:right;" v-if="newsList.category_id == 26">
-                                            <p>掲載期間 {{newsList.from_date}} ~ {{newsList.to_date}}</p>
+                                    <div v-else>   
+                                        <div class="row p-0 m-0 posting-per justify-content-end " v-if="newsList.category_id == 26">                                     
+                                         <div class="p-0 posting-firstwrap">
+                                               <span><i class="fa fa-calendar-alt common-fa"></i>&nbsp;<span style="color:#2c3e50 ">掲載期間</span></span>
+                                             <span>{{newsList.from_date}} ~</span>
+                                            </div>
+                                            <div class="posting-secondwrap">
+                                                <span>{{newsList.to_date}}</span>
+                                            </div>
                                         </div>
+                                        
                                     </div>
-                                    
-                                    
-                                    
-                                    
-                                    
-                                     <h5 class="align-middle"><span v-if="newsList.category_id == 26" class="breaking-tip" style="font-size: 12px;line-height: 12px;">PR</span>
+                                    </div>
+                                                                        
+                                     <h5 class="align-middle"><span v-if="newsList.category_id == 26" class="breaking-tip">PR</span>
                                         <router-link
                                             :to="{name: 'newdetails', params:{id:newsList.id}}"
                                             class="pseudolink"

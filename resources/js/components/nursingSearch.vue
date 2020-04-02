@@ -191,7 +191,7 @@
                                                                     <p class="item-fav btn btn-sm" v-if="items.fav_check == 'check' && loginuser=='false'" :class="'done_pro_id'+items.nursing_id" style="color:#aaa;" @click="favAddFun('remove',items.nursing_id,index);">
                                                                         <i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み
                                                                     </p>
-                                                                    <p class="job_id1 search_jobid1 search_jobid"><span>施設番号:{{items.profilenumber}}</span></p>
+                                                                    <p class="job_id1 search_jobid"><span>施設番号:{{items.profilenumber}}</span></p>
 
                                                                     <p class="item-name"><img :src="'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld='+items.alphabet+'|fd0e0e|ffffff'" alt="">
                                                                         <router-link :to="{ path:'/profile/nursing/'+items.nursing_id}" class="pseudolink" style="font-weight:bold;color:#63b7ff !important">{{items.name}}</router-link>
@@ -652,15 +652,18 @@
 
         data() {
             return {
-                cityid:[], listid : '', map: null, markers: [], searchmarkers:[], marker:[], selectedLocation: null, infoBoxOpen: false, places: [], id: [], townshipID:[], township_id:-1, moving_in:-1, per_month:-1, cities: '', getCity: [], getTownships: [], special_features: [], fac_types: [], fac_id: [], medical_acceptance: [], show: false, showOne: true, currentOffset: 0, windowSize: 4, paginationFactor: 328, window:{ width: 0, height: 0 }, nursingList: [], alphabet: [], markerHover:[], SpecialFeatureID:[], MedicalAcceptanceID:[], FacTypeID:[], MoveID:[], nus_data:[], specialfeature:[], medicalacceptance:[], factype:[], selectedcity:'', citylatlng:[], view_pro_id: [], currentPage: 0, size: 1, pageRange: 5, items: [], show_paginate: false, onchangeid:0, localst:'', selected: undefined, toggleCheck: true, loading: false, coordinate:[], norecord_msg: false, ci : false, window:{ width: 0, height: 0 }, w_width:$(window).width(), cityArray: [], allCity: [], citynewArray:[], boundsval: 'no marker', searchword:'', index:'', clicksearch: false, isActive: true,
+                cityid:[], listid : '', map: null, markers: [], searchmarkers:[], marker:[], selectedLocation: null, infoBoxOpen: false, places: [], id: [], townshipID:[], township_id:-1, moving_in:-1, per_month:-1, cities: '', getCity: [], getTownships: [], special_features: [], fac_types: [], fac_id: [], medical_acceptance: [], show: false, showOne: true, currentOffset: 0, windowSize: 4, paginationFactor: 328, window:{ width: 0, height: 0 }, nursingList: [], alphabet: [], markerHover:[], SpecialFeatureID:[], MedicalAcceptanceID:[], FacTypeID:[], MoveID:[], nus_data:[], specialfeature:[], medicalacceptance:[], factype:[], selectedcity:'', citylatlng:[], view_pro_id: [], currentPage: 0, size: 20, pageRange: 5, items: [], show_paginate: false, onchangeid:0, localst:'', selected: undefined, toggleCheck: true, loading: false, coordinate:[], norecord_msg: false, ci : false, window:{ width: 0, height: 0 }, w_width:$(window).width(), cityArray: [], allCity: [], citynewArray:[], boundsval: 'no marker', searchword:'', index:'', clicksearch: false, isActive: true,
             }
         },
 
         created(){
             window.addEventListener('resize', this.handleResize)
             this.handleResize();
-
-            if(this.window.width >= 360 && this.window.width < 375) {
+            if(this.window.width >= 320 && this.window.width < 360) {
+                this.windowSize = 1;
+                this.paginationFactor=277;
+            }
+            else if(this.window.width >= 360 && this.window.width < 375) {
                 this.windowSize = 1;
                 this.paginationFactor=277;
             }
@@ -670,11 +673,11 @@
             }
             else if(this.window.width >= 450 && this.window.width < 768) {
                 this.windowSize = 1;
-                this.paginationFactor=277;
+                this.paginationFactor=341;
             }
             else if(this.window.width >= 768 && this.window.width < 992) {
-                this.windowSize = 1;
-                this.paginationFactor=341;
+                this.windowSize = 2;
+                this.paginationFactor=277;
             }
             else if(this.window.width >= 992 && this.window.width < 1024) {
                 this.windowSize = 2;
@@ -682,7 +685,7 @@
             }
             else if (this.window.width >= 1024 && this.window.width < 1200) {
                 this.windowSize = 3;
-                this.paginationFactor=412;
+                this.paginationFactor=270;
             }
                 else if (this.window.width >= 1200 && this.window.width < 1280) {
                 this.windowSize = 2;
@@ -692,9 +695,14 @@
                 this.windowSize = 3;
                 this.paginationFactor=329;
             }
-            else if (this.window.width >= 1440 && this.window.width < 1880) {
+            else if (this.window.width >= 1440 && this.window.width < 1800) {
                 this.windowSize = 3;
-                this.paginationFactor=344;
+                this.paginationFactor=340;
+                console.log(this.window.width);
+            }
+             else if (this.window.width >= 1800 && this.window.width < 1880) {
+                this.windowSize = 4;
+                this.paginationFactor=329;
             }
         },
 
