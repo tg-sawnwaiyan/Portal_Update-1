@@ -130,10 +130,10 @@
                                 <div><h2><img :src="'/upload/nursing_profile/' +currentImage" alt="" @error="imgUrlAlt" class="img-fluid"></h2></div>
                             </slick>
                             <slick>
-                                <p><strong>  {{activeImageTitle}} </strong></p>
+                                <p class="res-title"><strong>  {{activeImageTitle}} </strong></p>
                             </slick>
                             <slick>
-                                <p>{{activeImageDescription}}</p>
+                                <p class="res-descr">{{activeImageDescription}}</p>
                             </slick>
                             <slick :options="slickOptions2" ref="slickSetting2" id="res-pano">
                                     <div v-for="(image,index) in  images" :key="image.id" :class="[(activeImage == index) ? 'active' : '']" @click="activateImage(index)">
@@ -2367,6 +2367,16 @@ export default {
 </script>
 
 <style scoped>
+.res-title{
+    height: 35px;
+    overflow: hidden;
+    padding: 0px 5px;
+}
+.res-descr{
+    height: 70px;
+    overflow: hidden;
+    padding: 0px 5px;
+}
 
 .slick-list .draggable{
     min-height: 200px !important;
@@ -2409,12 +2419,7 @@ h3 img{
 .see-pano li{
     list-style: none;
 }
-button.slick-next .slick-arrow{
-    display: none;
-}
-.slick-next{
-    display: none !important;
-}
+
 /*end test*/
 /*slider*/
     #pano-slider-page .card-carousel {
