@@ -2002,7 +2002,7 @@ export default {
             return {
             slidesToShow: 1,
             slidesToScroll: 1,
-            arrows: true,
+            arrows: false,
             fade: false,
             adaptiveHeight: true,           
             }
@@ -2011,6 +2011,7 @@ export default {
             return {
             slidesToShow: 7,
             slidesToScroll: 1,
+            arrows:false,
             dots: false,
             focusOnSelect: true,
             responsive: [{
@@ -2366,6 +2367,7 @@ export default {
 </script>
 
 <style scoped>
+
 .slick-list .draggable{
     min-height: 200px !important;
 }
@@ -2386,10 +2388,15 @@ h3 {
     font-size: 2.25rem;
     margin: .1rem;
     position: relative;
-    text-align: left;
-    max-height: 230px;
+    text-align: left;   
     overflow: hidden;
     margin-bottom: 0px;
+    width: 44px!important;
+    max-width: 44px!important;
+    height: 33px!important;
+}
+h3 img{
+    height: 33px;
 }
 .res-pano{
     background: #eee;
@@ -2402,7 +2409,12 @@ h3 {
 .see-pano li{
     list-style: none;
 }
-
+button.slick-next .slick-arrow{
+    display: none;
+}
+.slick-next{
+    display: none !important;
+}
 /*end test*/
 /*slider*/
     #pano-slider-page .card-carousel {

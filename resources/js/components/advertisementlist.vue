@@ -48,7 +48,7 @@
                                 <td>
                                     <!-- <h5  class="mb-2"><strong>タイトル</strong></h5> -->
                                     <h5 class="font-weight-bold">{{ads.title}}</h5>
-                                    <div class="mt-4">
+                                    <div class="mt-2">
                                     <span class="card-title-rightwrapper model-7">                                                 
                                         <div class="checkbox">
                                             <input type='checkbox' :id="ads.id" v-if="ads.recordstatus == 1" @click="changeActivate(ads.id,ads.recordstatus)" checked/>
