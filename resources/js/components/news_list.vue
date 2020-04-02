@@ -58,14 +58,27 @@
                                     <div  v-else> <img src="/images/noimage.jpg" alt  /></div>
                                 </td>
                                 <td>     
-                                    <div class="col-12 p-0 posting-per" v-if="newsList.category_id == 26 && (newsList.to_date == null || newsList.to_date == '')">
-                                            <span><i class="fa fa-calendar-alt common-fa"></i>&nbsp;掲載期間 {{newsList.from_date}} ~</span>
+                                    <div class="row col-12 p-0 posting-per justify-content-end" v-if="newsList.category_id == 26 && (newsList.to_date == null || newsList.to_date == '')">                                            
+                                            <div class="col-2" style="width:180px;"> 
+                                                <span><i class="fa fa-calendar-alt common-fa"></i>&nbsp;掲載期間</span>                                              
+                                                <span>{{newsList.from_date}} ~ </span>
+                                            </div>
+                                            <div style="width:85px;">
+                                                
+                                            </div>                                            
                                     </div>
 
-                                    <div class="col-12 p-0" v-else>
-                                        <div class="posting-per" v-if="newsList.category_id == 26">
-                                            <span><i class="fa fa-calendar-alt common-fa"></i>&nbsp;掲載期間 {{newsList.from_date}} ~ {{newsList.to_date}}</span>
+                                    <div class="posting-per" v-else>   
+                                        <div class="row p-0 justify-content-end " v-if="newsList.category_id == 26">                                     
+                                         <div class="col-2 p-0" style="width:180px;">
+                                               <span><i class="fa fa-calendar-alt common-fa"></i>&nbsp;掲載期間</span>
+                                             <span>{{newsList.from_date}} ~</span>
+                                            </div>
+                                            <div style="width:85px;">
+                                                <span>{{newsList.to_date}}</span>
+                                            </div>
                                         </div>
+                                        
                                     </div>
                                                                         
                                      <h5 class="align-middle"><span v-if="newsList.category_id == 26" class="breaking-tip">PR</span>
