@@ -2050,6 +2050,13 @@ border-radius: 3px;
 }
 
 
+/* @media only screen and (max-width: 768px) {
+    #nursing-search .card-carousel {
+        width: 564px!important;
+    }
+} */
+
+
 /* Medium devices (landscape tablets, 768px and up) */
 
 @media only screen and (max-width: 1023px) and (min-width: 768px) {

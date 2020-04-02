@@ -130,10 +130,10 @@
                                 <div><h2><img :src="'/upload/nursing_profile/' +currentImage" alt="" @error="imgUrlAlt" class="img-fluid"></h2></div>
                             </slick>
                             <slick>
-                                <p><strong>  {{activeImageTitle}} </strong></p>
+                                <p class="res-title"><strong>  {{activeImageTitle}} </strong></p>
                             </slick>
                             <slick>
-                                <p>{{activeImageDescription}}</p>
+                                <p class="res-descr">{{activeImageDescription}}</p>
                             </slick>
                             <slick :options="slickOptions2" ref="slickSetting2" id="res-pano">
                                     <div v-for="(image,index) in  images" :key="image.id" :class="[(activeImage == index) ? 'active' : '']" @click="activateImage(index)">
@@ -2002,7 +2002,7 @@ export default {
             return {
             slidesToShow: 1,
             slidesToScroll: 1,
-            arrows: true,
+            arrows: false,
             fade: false,
             adaptiveHeight: true,           
             }
@@ -2011,6 +2011,7 @@ export default {
             return {
             slidesToShow: 7,
             slidesToScroll: 1,
+            arrows:false,
             dots: false,
             focusOnSelect: true,
             responsive: [{
@@ -2366,6 +2367,17 @@ export default {
 </script>
 
 <style scoped>
+.res-title{
+    height: 35px;
+    overflow: hidden;
+    padding: 0px 5px;
+}
+.res-descr{
+    height: 70px;
+    overflow: hidden;
+    padding: 0px 5px;
+}
+
 .slick-list .draggable{
     min-height: 200px !important;
 }
@@ -2386,10 +2398,15 @@ h3 {
     font-size: 2.25rem;
     margin: .1rem;
     position: relative;
-    text-align: left;
-    max-height: 230px;
+    text-align: left;   
     overflow: hidden;
     margin-bottom: 0px;
+    width: 44px!important;
+    max-width: 44px!important;
+    height: 33px!important;
+}
+h3 img{
+    height: 33px;
 }
 .res-pano{
     background: #eee;
