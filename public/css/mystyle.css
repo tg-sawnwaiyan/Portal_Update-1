@@ -493,7 +493,35 @@ textarea:disabled::placeholder {
 }
 
 .posting-per {
+    color: #777;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.posting-firstwrap {
+    width: 160px;
+}
+
+.posting-secondwrap {
+    width: 116px;
+}
+
+.posting-per th {
+    padding: 0px 5px 0px 0px;
+    color: #777;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+table.posting-per {
+    float: right;
+}
+
+.table.posting-per tr td:first-child {
     text-align: right;
+    float: right;
+    width: 250px;
+    padding: 0px;
 }
 
 
