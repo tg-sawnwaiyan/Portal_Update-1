@@ -11877,6 +11877,9 @@ width: 18rem;
 }
 
 @media only screen and (max-width:768px) {
+    .card-title-rightwrapper {
+        width: 100% !important;
+    }
     .form-wrap .form-right {
         border-left: none !important;
     }
@@ -13867,7 +13870,7 @@ strong {
 
 .on {
     margin-left: 56px;
-    margin-top: -28px;
+    margin-top: -31px;
     font-size: 15px;
     font-weight: bold;
 }

@@ -58,13 +58,31 @@
                                     <div  v-else> <img src="/images/noimage.jpg" alt  /></div>
                                 </td>
                                 <td>
-                                    <h5 class="align-middle"><span v-if="newsList.category_id == 26" class="breaking-tip" style="font-size: 12px;line-height: 12px;">PR</span>
+                                
+                              
+                             
+                                    <div style="text-align:right;" v-if="newsList.category_id == 26 && (newsList.to_date == null || newsList.to_date == '')">
+                                            <p style="margin-right: 99px;">掲載期間 {{newsList.from_date}} ~</p>
+                                    </div>
+
+                                    <div v-else>
+                                        <div style="text-align:right;" v-if="newsList.category_id == 26">
+                                            <p>掲載期間 {{newsList.from_date}} ~ {{newsList.to_date}}</p>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                     <h5 class="align-middle"><span v-if="newsList.category_id == 26" class="breaking-tip" style="font-size: 12px;line-height: 12px;">PR</span>
                                         <router-link
                                             :to="{name: 'newdetails', params:{id:newsList.id}}"
                                             class="pseudolink"
                                         >{{newsList.title}}</router-link>
-                                    </h5>
-                                    <span class="card-title-rightwrapper model-7">                                                 
+                                    </h5>                                   
+                                    <p class="mt-2">{{newsList.main_point}}</p>
+                                     <div class="card-title-rightwrapper model-7 mt-2">                                                 
                                         <div class="checkbox">
                                             <input type='checkbox' :id="newsList.id" v-if="newsList.recordstatus == 1" @click="changeActivate(newsList.category_id,newsList.id,newsList.recordstatus)" checked/>
                                             <input type='checkbox' :id="newsList.id" v-if="newsList.recordstatus == 0" @click="changeActivate(newsList.category_id,newsList.id,newsList.recordstatus)"  />
@@ -72,8 +90,7 @@
                                             <div  v-if="newsList.recordstatus == 1" class="on">公開中</div>
                                             <div v-if="newsList.recordstatus == 0" class="on">非公開</div>
                                         </div>                                                                                             
-                                    </span>
-                                    <p class="mt-2">{{newsList.main_point}}</p>
+                                    </div>
                                     <div class="d-flex mt-4">
                                         <router-link :to="{ path:'/editPost/'+ newsList.id}" class="btn edit-borderbtn">編集</router-link>
                                         <button class="btn delete-borderbtn ml-2" @click="deletePost(newsList.category_id,newsList.id)">削除</button>

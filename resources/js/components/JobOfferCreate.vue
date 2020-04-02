@@ -12,19 +12,19 @@
                         <form @submit.prevent="add" class="mt-2 col-md-12">
                           <div class="form-group" v-if="$auth.check(2)">
                                 <div class="form-group" v-if="editcheck">
-                                    <label>事業者名 : </label>
+                                    <label>事業者名</label>
                                     <label>{{cusName}}</label>
                                     <br>
-                                    <label>施設名 : </label>
+                                    <label>施設名</label>
                                     <label>{{profileName}}</label>
                                 </div>
                                 <div v-if="type == 'admin'">
-                                    <label>事業者名 : </label>
+                                    <label>事業者名</label>
                                     <autocomplete placeholder="事業者名を検索" input-class="form-control" :source=customerList :results-display="formattedDisplay" @clear="cleartext()" @selected="getSelected($event)">
                                     </autocomplete>
                                      <span v-if="errors.customer_id" class="error">{{errors.customer_id}}</span>
                                     <br>
-                                    <label>施設名 : </label>
+                                    <label>施設名</label>
                                     <select v-model="selectedValue" class="division form-control" @change="getProfile($event)">
                                         <option value="0">選択してください。</option>
                                         <option v-for="profile in profileList" :key="profile.id" v-bind:value="profile.id">
