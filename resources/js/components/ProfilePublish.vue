@@ -959,7 +959,7 @@
             <p class="job_id3 sp-9-180"><span>施設番号:{{profilenumber}}</span></p>
         </div>
             <h5 class="profile-tit" v-if="hospitals[0]"> {{hospitals[0].name}}</h5>
-           <div class="tab typelabel nav-link fixed-nav el">
+           <div class="tab typelabel nav-link fixed-nav el el2">
                
                 <button v-scroll-to="{ el: '#element7'}" class="top-fixed-btn" @click="activate(7)" :class="{ active : active_el == 7 }">
                     病院情報
@@ -1387,6 +1387,7 @@ export default {
     data() {
         var that = this;
         return {
+            nav_width:0,
             nus_pro:[],
             ads_list: [],
             profile_id: "",
@@ -1483,8 +1484,9 @@ export default {
     },
 
     created(){       
-
-
+        this.nav_width = document.querySelector('.content-all').offsetWidth;
+        // console.log('this.nav_width',this.nav_width)
+         
          window.addEventListener('scroll', this.handleScroll);
 
 
@@ -2043,7 +2045,10 @@ export default {
                 if(this.loginuser == 'true') {
 
                         var el = document.querySelectorAll('.el');
+                        var el2 = document.querySelectorAll('.el2');
+                       
                         var index = 0, length = el.length;
+                    
                         for ( ; index < length; index++) {
                             // el[index].classList[3].css.border = "1px solid red;";
                             el[index].style.position = "fixed";
@@ -2051,7 +2056,11 @@ export default {
                             el[index].style.display = "block";
                             el[index].style.width = "900px";
                             el[index].style.margin = "0px 0px 0px 270px";
+                           
                         }   
+                        for (let i = 0; i < el2.length; i++) {
+                            el2[i].style.margin = "";
+                        }
                         var cur_pos = window.scrollY;
                         if (cur_pos < 100) {
                             var el = document.querySelectorAll('.el');
@@ -2070,6 +2079,7 @@ export default {
                 } else {
                     // public
                         var el = document.querySelectorAll('.el');
+                        
                         var index = 0, length = el.length;
                         for ( ; index < length; index++) {
                             // el[index].classList[3].css.border = "1px solid red;";
@@ -2093,15 +2103,29 @@ export default {
             else {
                 //less than 768
                 if(this.loginuser == 'true') {
-                     var el = document.querySelectorAll('.el');
+                        var el = document.querySelectorAll('.el');
+                        var el2 = document.querySelectorAll('.el2');
                         var index = 0, length = el.length;
                         for ( ; index < length; index++) {
                             // el[index].classList[3].css.border = "1px solid red;";
                             el[index].style.width = "";
                             el[index].style.position = "fixed";
-                            el[index].style.top = "40px";
+                            el[index].style.top = "60px";
                             el[index].style.display = "inline-flex";
-                        }   
+                            el[index].style.margin = "0px";
+                        }
+
+                        if(this.window.width > 436 && this.window.width <= 1024){
+                            for (let i = 0; i < el2.length; i++) {
+                            el2[i].style.display = "flow-root list-item";
+                            el[index].style.top = "40px";
+                            } 
+                        }else{
+                           for (let i = 0; i < el2.length; i++) {
+                            el2[i].style.display = "inline-flex";
+                            } 
+                        } 
+                         
                         var cur_pos = window.scrollY;
                         if (cur_pos < 100) {
                             var el = document.querySelectorAll('.el');
