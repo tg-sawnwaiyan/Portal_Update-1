@@ -4178,6 +4178,7 @@ div.tabs>.card-head-tab>.nav-tabs .nav-link:hover {
     width: 100%;
     min-height: 100vh;
     padding-left: 230px;
+    overflow: hidden;
 }
 
 .custom-sidebar ul.adminview-sidebar li a {
