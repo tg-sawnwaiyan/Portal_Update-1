@@ -270,7 +270,7 @@
        
         if(this.phone != '' && this.phone != null)
         {
-            this.error.ph_num = '';
+            this.errors.ph_num = '';
         }
         else{
             this.errors.ph_num = '※電話番号が必須です。';
@@ -280,7 +280,7 @@
 
      
 
-        if(this.errors.email == '' && this.errors.username == '' && this.errors.password == '' && this.errors.type == '' &&  this.ph_length == false && this.ph_num == false)
+        if(this.errors.email == '' && this.errors.username == '' && this.errors.password == '' && this.errors.type == '' &&  this.errors.ph_length == '' && this.errors.ph_num == '')
         {
             
             var app = this

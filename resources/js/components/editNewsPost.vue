@@ -99,7 +99,7 @@
                                         </select>
                                     </div>
                                     <div class="search_box">
-                                        <input type="text" placeholder="関連ニュース検索" aria-label="search" id="search-word" class="form-control form_search" @keyup='getSearchPostsByCatId()'>
+                                        <input type="text" placeholder="関連ニュース検索" aria-label="search" id="search-word" class="form-control form_search" v-model="search_word"  @keyup='getSearchPostsByCatId()'>
                                     </div>
                                 </div>
                                 <br>
@@ -460,6 +460,7 @@ import {quillEditor} from 'vue-quill-editor'
                         var cat_id = this.category_id_1;
                         let fd = new FormData();
                         fd.append("cat_id", cat_id);
+                        fd.append("search_word",this.search_word);
 
                         this.axios
                         .post('/api/new/getPostsByCatId/page=' + page+"/"+`${this.$route.params.id}`,fd)
@@ -478,14 +479,15 @@ import {quillEditor} from 'vue-quill-editor'
                         }
                         var cat_id = this.category_id_1;
                         
-                        if(this.search_word == '') {
-                            var search_word = this.search_word;
-                        }  else {
-                            var search_word = $('#search-word').val();
-                        }
+                        // if(this.search_word == '') {
+                        //     var search_word = this.search_word;
+                        // }  else {
+                        //     var search_word = $('#search-word').val();
+                        // }
+                        // console.log("this.search_words",this.search_word);
 
                         let fd = new FormData();
-                        fd.append("search_word", search_word);
+                        fd.append("search_word", this.search_word);
                         fd.append("selected_category", cat_id);
                         fd.append("postid",`${this.$route.params.id}`)
                         this.axios.post("/api/news_list/search?page="+ page,fd).then(response => {
@@ -497,7 +499,7 @@ import {quillEditor} from 'vue-quill-editor'
                                 this.pagination = false;
                             }
                         });
-                        this.search_word = '1';
+                        // this.search_word = '1';
                     },
                     closeBtnMethod: function(old_photo) {
                         if(confirm)
