@@ -269,7 +269,8 @@ class PostController extends Controller
       
         $request = $request->all();
 
-        $query = Post::query();
+        $query = Post::join('categories','categories.id','=','posts.category_id')->select('posts.*','categories.name as cat_name');
+     
 
         if(isset($request['selected_category'])) {
             $category_id = $request['selected_category'];
