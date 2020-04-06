@@ -275,7 +275,7 @@ class PostController extends Controller
         if(isset($request['selected_category'])) {
             $category_id = $request['selected_category'];
             if($request['postid'] != null){
-                $query = $query->where('category_id', $category_id)->where('id','<>',$request['postid']);
+                $query = $query->where('category_id', $category_id)->where('posts.id','<>',$request['postid']);
             }
             else{
                 $query = $query->where('category_id', $category_id);
@@ -291,7 +291,7 @@ class PostController extends Controller
                                 ->orWhere('main_point', 'LIKE', "%{$search_word}%"); 
                         });
         }
-        $query = $query->orderBy('created_at','DESC')
+        $query = $query->orderBy('posts.created_at','DESC')
                         ->paginate(20);
 
         foreach ($query as $com) {

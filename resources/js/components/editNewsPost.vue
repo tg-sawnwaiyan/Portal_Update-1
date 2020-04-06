@@ -251,7 +251,7 @@ import {quillEditor} from 'vue-quill-editor'
                     search_word:'',
                     img_name : '',
                     noimage:0,
-                    nosearch_msg
+                    nosearch_msg:false,
                 }
             },
             created() {
@@ -474,6 +474,7 @@ import {quillEditor} from 'vue-quill-editor'
                         .then(response => {
                             this.related_news = response.data;
                             this.norecord = this.related_news.data.length;
+                            console.log("re",this.related_news)
 
                             if(this.norecord != 0) {
                                 this.nosearch_msg = false;
@@ -506,6 +507,13 @@ import {quillEditor} from 'vue-quill-editor'
                         fd.append("postid",`${this.$route.params.id}`)
                         this.axios.post("/api/news_list/search?page="+ page,fd).then(response => {
                             this.related_news = response.data;
+                            console.log("re",this.related_news)
+
+                            if(this.norecord != 0) {
+                                this.nosearch_msg = false;
+                            }else{
+                                this.nosearch_msg = true;
+                            }
                             this.check_head = true;
                             if(this.related_news.length > this.size) {
                                 this.pagination = true;
