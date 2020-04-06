@@ -275,10 +275,10 @@ class PostController extends Controller
         if(isset($request['selected_category'])) {
             $category_id = $request['selected_category'];
             if($request['postid'] != null){
-                $query = $query->where('category_id', $category_id)->where('posts.id','<>',$request['postid']);
+                $query = $query->where('posts.category_id', $category_id)->where('posts.id','<>',$request['postid']);
             }
             else{
-                $query = $query->where('category_id', $category_id);
+                $query = $query->where('posts.category_id', $category_id);
             }
            
         }
@@ -287,8 +287,8 @@ class PostController extends Controller
             $search_word = $request['search_word'];
 
             $query = $query->where(function($qu) use ($search_word){
-                            $qu->where('title', 'LIKE', "%{$search_word}%")
-                                ->orWhere('main_point', 'LIKE', "%{$search_word}%"); 
+                            $qu->where('posts.title', 'LIKE', "%{$search_word}%")
+                                ->orWhere('posts.main_point', 'LIKE', "%{$search_word}%"); 
                         });
         }
         $query = $query->orderBy('posts.created_at','DESC')
@@ -306,8 +306,23 @@ class PostController extends Controller
 
     public function getPostById(Request $request,$page,$postid) {
 
+        // $request = $request->all();
+        // $posts = Post::where('id','<>',$postid)->where("category_id",$request['cat_id'])->orderBy('created_at','DESC')->paginate(20);
+        // return response()->json($posts);
         $request = $request->all();
-        $posts = Post::where('id','<>',$postid)->where("category_id",$request['cat_id'])->orderBy('created_at','DESC')->paginate(20);
+        $posts = Post::where('id','<>',$postid)->where("category_id",$request['cat_id']);
+
+        
+        if(isset($request['search_word'])) {
+            $search_word = $request['search_word'];
+
+            $posts = $posts->where(function($qu) use ($search_word){
+                            $qu->where('title', 'LIKE', "%{$search_word}%")
+                                ->orWhere('main_point', 'LIKE', "%{$search_word}%"); 
+                        });
+        }
+
+        $posts = $posts->orderBy('created_at','DESC')->paginate(20);
         return response()->json($posts);
     }
 
