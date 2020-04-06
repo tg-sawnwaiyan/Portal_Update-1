@@ -25,10 +25,10 @@ class PostController extends Controller
 
     public function index()
     {
-
+       
     //    $news_list = Post::orderBy('id','DESC')->get()->toArray();
     //    $category_list = Category::select('id','name')->get()->toArray();
-            $news_list = Post::orderBy('id', 'desc')->paginate(20);
+            $news_list = Post::join('categories','categories.id','=','posts.category_id')->select('posts.*','categories.name as cat_name')->orderBy('posts.id', 'desc')->paginate(20);
             $category_list = Category::select('id','name')->get()->toArray();
 
         
