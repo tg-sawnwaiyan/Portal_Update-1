@@ -73,14 +73,14 @@
                                     </div> -->
                                 <table class="table table-borderless text-right m-b-0 posting-per cmt m-b-5">
                                         <tr v-if="newsList.cat_name != 'PR'">
-                                            <td style="width:121px;">
+                                            <!-- <td>
                                                  <th :class="'title'+ newsList.category_id " style="float:right;">
                                                     <span> {{newsList.cat_name}}</span> 
                                                 </th> 
-                                            </td>
-                                            <td style="width:250px;padding:0px;">
+                                            </td> -->
+                                            <td style="width:auto;">
                                                 <th :class="'title'+ newsList.category_id ">
-                                                    <!-- <span> {{newsList.cat_name}}</span> -->
+                                                    <span> {{newsList.cat_name}}</span>
                                                     <i class="fa fa-calendar-alt"></i>
                                                     {{newsList.created_at}}                                                    
                                                 </th>    
