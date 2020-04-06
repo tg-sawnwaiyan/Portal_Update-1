@@ -58,9 +58,40 @@
                                     <div  v-else> <img src="/images/noimage.jpg" alt  /></div>
                                 </td>
                                 <td>   
+                            
                                     <!--posting period-->
-                                    <div class="row col-12 p-0 posting-per justify-content-end float-right m-b-10 pc-414">
-                                    <table class="table table-borderless text-right m-b-0 posting-per cmt">
+                                    <div class="row col-12 p-0 posting-per justify-content-end m-b-10 pc-414">
+                                  
+                                     <!-- <div class="set-date"  v-if="newsList.cat_name != 'PR'" >
+                                            <p :class="'title'+ newsList.category_id ">
+                                            <span> {{newsList.cat_name}}</span>
+                                            <small style="color:#aaa;" >
+                                            <i class="fa fa-calendar-alt"></i>
+                                            &nbsp;&nbsp;{{newsList.created_at}}
+                                            </small>
+                                            </p>   
+                                    </div> -->
+                                <table class="table table-borderless text-right m-b-0 posting-per cmt m-b-5">
+                                        <tr v-if="newsList.cat_name != 'PR'">
+                                            <!-- <td>
+                                                 <th :class="'title'+ newsList.category_id " style="float:right;">
+                                                    <span> {{newsList.cat_name}}</span> 
+                                                </th> 
+                                            </td> -->
+                                            <td style="width:auto;">
+                                                <th :class="'title'+ newsList.category_id ">
+                                                    <span> {{newsList.cat_name}}</span>
+                                                    <i class="fa fa-calendar-alt"></i>
+                                                    {{newsList.created_at}}                                                    
+                                                </th>    
+                                                                                        
+                                            </td>
+                                            
+                                        </tr>
+                                    </table>
+
+                                   
+                                    <table class="table table-borderless text-right m-b-0 posting-per cmt" >
                                         <tr v-if="newsList.category_id == 26 && (newsList.to_date == null || newsList.to_date == '')">
                                             <td>
                                                 <th>
@@ -98,6 +129,14 @@
                                     <!--posting period-->
 
                                     <div class="sp-414 m-b-10">
+                                        <div class="set-date posting-per"  v-if="newsList.cat_name != 'PR'" style="text-indent: 0em;float:none;">
+                                            <div :class="'title'+ newsList.category_id ">
+                                            <span> {{newsList.cat_name}}</span>                                            
+                                            <i class="fa fa-calendar-alt common-fa"></i>
+                                            {{newsList.created_at}}                                           
+                                            </div>   
+                                        </div>
+
                                     <div class="row col-12 p-0 m-0 posting-per justify-content-end" v-if="newsList.category_id == 26 && (newsList.to_date == null || newsList.to_date == '')">                                            
                                             <div class="posting-firstwrap"> 
                                                 <span><i class="fa fa-calendar-alt common-fa"></i>&nbsp;<span style="color:#2c3e50 ">掲載期間</span></span>                                              

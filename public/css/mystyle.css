@@ -2856,7 +2856,6 @@ border-top: 5px solid #e66527; */
 
 .List_tbl tr td:first-child {
     width: 200px;
-    padding: 20px;
 }
 
 .List_tbl tr td:first-child div {
@@ -6027,6 +6026,10 @@ margin-right: 2% !important;
 
 .m-b-10 {
     margin-bottom: 10px;
+}
+
+.m-b-5 {
+    margin-bottom: 5px !important;
 }
 
 

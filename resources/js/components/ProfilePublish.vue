@@ -1484,7 +1484,7 @@ export default {
     },
 
     created(){       
-        this.nav_width = document.querySelector('.content-all').offsetWidth;
+        // this.nav_width = document.querySelector('.content-all').offsetWidth;
         // console.log('this.nav_width',this.nav_width)
          
          window.addEventListener('scroll', this.handleScroll);
@@ -2054,8 +2054,8 @@ export default {
                             el[index].style.position = "fixed";
                             el[index].style.top = "75px";
                             el[index].style.display = "block";
-                            el[index].style.width = "900px";
-                            el[index].style.margin = "0px 0px 0px 270px";
+                            // el[index].style.width = "900px";
+                            el[index].style.margin = "0px 0px 0px 175px";
                            
                         }   
                         for (let i = 0; i < el2.length; i++) {
@@ -2140,6 +2140,7 @@ export default {
                 } else {
 
                         var el = document.querySelectorAll('.el');
+                        var el2 = document.querySelectorAll('.el2');
                         var index = 0, length = el.length;
                         for ( ; index < length; index++) {
                            
@@ -2149,7 +2150,16 @@ export default {
                         }   
                      // $(".fixed-nav").css({"position": "fixed","top":"100px"});
                         var cur_pos = window.scrollY;
-                       
+                       if(this.window.width > 436 && this.window.width <= 1024){
+                            for (let i = 0; i < el2.length; i++) {
+                            el2[i].style.display = "flow-root list-item";
+                            el[index].style.top = "40px";
+                            } 
+                        }else{
+                           for (let i = 0; i < el2.length; i++) {
+                            el2[i].style.display = "inline-flex";
+                            } 
+                        } 
                         if (cur_pos <= 100) {
                             var el = document.querySelectorAll('.el');
                             var index = 0, length = el.length;

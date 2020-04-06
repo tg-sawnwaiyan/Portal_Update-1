@@ -25,10 +25,10 @@ class PostController extends Controller
 
     public function index()
     {
-
+       
     //    $news_list = Post::orderBy('id','DESC')->get()->toArray();
     //    $category_list = Category::select('id','name')->get()->toArray();
-            $news_list = Post::orderBy('id', 'desc')->paginate(20);
+            $news_list = Post::join('categories','categories.id','=','posts.category_id')->select('posts.*','categories.name as cat_name')->orderBy('posts.id', 'desc')->paginate(20);
             $category_list = Category::select('id','name')->get()->toArray();
 
         
@@ -269,12 +269,13 @@ class PostController extends Controller
       
         $request = $request->all();
 
-        $query = Post::query();
+        $query = Post::join('categories','categories.id','=','posts.category_id')->select('posts.*','categories.name as cat_name');
+     
 
         if(isset($request['selected_category'])) {
             $category_id = $request['selected_category'];
             if($request['postid'] != null){
-                $query = $query->where('category_id', $category_id)->where('id','<>',$request['postid']);
+                $query = $query->where('category_id', $category_id)->where('posts.id','<>',$request['postid']);
             }
             else{
                 $query = $query->where('category_id', $category_id);
@@ -290,7 +291,7 @@ class PostController extends Controller
                                 ->orWhere('main_point', 'LIKE', "%{$search_word}%"); 
                         });
         }
-        $query = $query->orderBy('created_at','DESC')
+        $query = $query->orderBy('posts.created_at','DESC')
                         ->paginate(20);
 
         foreach ($query as $com) {
