@@ -58,9 +58,21 @@
                                     <div  v-else> <img src="/images/noimage.jpg" alt  /></div>
                                 </td>
                                 <td>   
+                            
                                     <!--posting period-->
                                     <div class="row col-12 p-0 posting-per justify-content-end float-right m-b-10 pc-414">
-                                    <table class="table table-borderless text-right m-b-0 posting-per cmt">
+                                  
+                                     <div class="set-date"  v-if="newsList.cat_name != 'PR'" >
+                                            <p :class="'title'+ newsList.category_id ">
+                                            <span> {{newsList.cat_name}}</span>
+                                            <small style="color:#aaa;" >
+                                            <i class="fa fa-calendar-alt"></i>
+                                            &nbsp;&nbsp;{{newsList.created_at}}
+                                            </small>
+                                            </p>   
+                                    </div>
+                                   
+                                    <table class="table table-borderless text-right m-b-0 posting-per cmt" >
                                         <tr v-if="newsList.category_id == 26 && (newsList.to_date == null || newsList.to_date == '')">
                                             <td>
                                                 <th>
