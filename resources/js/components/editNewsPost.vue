@@ -122,6 +122,13 @@
                                     </div>
                                 </div>
 
+                                <div v-if="nosearch_msg" class="card card-default card-wrap">
+                                    <p class="record-ico">
+                                        <i class="fa fa-exclamation"></i>
+                                    </p>
+                                    <p class="record-txt01">検索したデータ見つかりません。</p>
+                                </div> 
+
                                 <!-- <div class="row">
                                     <pagination :data="related_news" @pagination-change-page="getPostsByCatId"></pagination>
                                 </div> -->
@@ -244,6 +251,7 @@ import {quillEditor} from 'vue-quill-editor'
                     search_word:'',
                     img_name : '',
                     noimage:0,
+                    nosearch_msg
                 }
             },
             created() {
@@ -465,6 +473,14 @@ import {quillEditor} from 'vue-quill-editor'
                         .post('/api/new/getPostsByCatId/page=' + page+"/"+`${this.$route.params.id}`,fd)
                         .then(response => {
                             this.related_news = response.data;
+                            this.norecord = this.related_news.data.length;
+
+                            if(this.norecord != 0) {
+                                this.nosearch_msg = false;
+                            }else{
+                                this.nosearch_msg = true;
+                            }
+                            
                             if(this.related_news.length > this.size) {
                                 this.pagination = true;
                             }else{
