@@ -499,11 +499,11 @@ textarea:disabled::placeholder {
 }
 
 .posting-firstwrap {
-    width: 160px;
+    /* width: 160px; */
 }
 
 .posting-secondwrap {
-    width: 116px;
+    /* width: 116px; */
 }
 
 .posting-per th {
@@ -514,13 +514,13 @@ textarea:disabled::placeholder {
 }
 
 table.posting-per {
-    float: right;
+    /* float: right; */
 }
 
 .table.posting-per tr td:first-child {
-    text-align: right;
-    float: right;
-    width: 250px;
+    text-align: left;
+    /* float: right; */
+    width: auto;
     padding: 0px;
 }
 

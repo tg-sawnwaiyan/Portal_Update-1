@@ -60,7 +60,7 @@
                                 <td>   
                             
                                     <!--posting period-->
-                                    <div class="row col-12 p-0 posting-per justify-content-end m-b-10 pc-414">
+                                    <div class="row col-12 posting-per justify-content-end m-b-10 pc-414">
                                   
                                      <!-- <div class="set-date"  v-if="newsList.cat_name != 'PR'" >
                                             <p :class="'title'+ newsList.category_id ">
@@ -131,13 +131,13 @@
                                     <div class="sp-414 m-b-10">
                                         <div class="set-date posting-per"  v-if="newsList.cat_name != 'PR'" style="text-indent: 0em;float:none;">
                                             <div :class="'title'+ newsList.category_id ">
-                                            <span> {{newsList.cat_name}}</span>                                            
+                                            <span class="m-b-2"> {{newsList.cat_name}}</span>                                         
                                             <i class="fa fa-calendar-alt common-fa"></i>
                                             {{newsList.created_at}}                                           
                                             </div>   
                                         </div>
 
-                                    <div class="row col-12 p-0 m-0 posting-per justify-content-end" v-if="newsList.category_id == 26 && (newsList.to_date == null || newsList.to_date == '')">                                            
+                                    <div class="row col-12 p-0 m-0 posting-per" v-if="newsList.category_id == 26 && (newsList.to_date == null || newsList.to_date == '')">                                            
                                             <div class="posting-firstwrap"> 
                                                 <span><i class="fa fa-calendar-alt common-fa"></i>&nbsp;<span style="color:#2c3e50 ">掲載期間</span></span>                                              
                                                 <span>{{newsList.from_date}} ~ </span>
@@ -147,7 +147,7 @@
                                     </div>
 
                                     <div v-else>   
-                                        <div class="row p-0 m-0 posting-per justify-content-end " v-if="newsList.category_id == 26">                                     
+                                        <div class="row m-0 posting-per" v-if="newsList.category_id == 26">                                     
                                          <div class="p-0 posting-firstwrap">
                                                <span><i class="fa fa-calendar-alt common-fa"></i>&nbsp;<span style="color:#2c3e50 ">掲載期間</span></span>
                                              <span>{{newsList.from_date}} ~</span>
@@ -166,7 +166,7 @@
                                             class="pseudolink"
                                         >{{newsList.title}}</router-link>
                                     </h5>                                   
-                                    <p class="mt-2">{{newsList.main_point}}</p>
+                                    <p class="mt-4">{{newsList.main_point}}</p>
                                      <div class="card-title-rightwrapper model-7 mt-2">                                                 
                                         <div class="checkbox">
                                             <input type='checkbox' :id="newsList.id" v-if="newsList.recordstatus == 1" @click="changeActivate(newsList.category_id,newsList.id,newsList.recordstatus)" checked/>
