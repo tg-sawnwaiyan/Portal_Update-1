@@ -40,15 +40,15 @@
                     <div v-else class="container-fuid">
                         <table  class="table List_tbl">
                             <tr  v-for="ads in advertisements.data" :key="ads.id">
-                                <td>
+                                <td class="p-3">
                                     <div>
                                         <img :src="'/upload/advertisement/'+ ads.photo" class="img-fluid" alt="ads" @error="imgUrlAlt" />
                                     </div>
                                 </td>
-                                <td>
+                                <td class="p-3">
                                     <!-- <h5  class="mb-2"><strong>タイトル</strong></h5> -->
                                     <h5 class="font-weight-bold">{{ads.title}}</h5>
-                                    <div class="mt-2">
+                                    <div class="mt-4">
                                     <span class="card-title-rightwrapper model-7">                                                 
                                         <div class="checkbox">
                                             <input type='checkbox' :id="ads.id" v-if="ads.recordstatus == 1" @click="changeActivate(ads.id,ads.recordstatus)" checked/>

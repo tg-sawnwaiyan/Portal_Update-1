@@ -60,7 +60,7 @@
                                     </div>
                                 </div>
                                
-                                <div class="row boot-xl" id="customer_list">
+                                <div class="row boot-xl mt-4" id="customer_list">
                                     <div class="col-xl-1 col-lg-2 col-md-4 custom_title">
                                         <strong>お名前</strong>
                                     </div>

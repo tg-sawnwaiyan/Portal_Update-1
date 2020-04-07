@@ -45,7 +45,7 @@
                     <div v-else class="container-fuid">
                         <table class="table table-bordered">
                             <tr v-for="customer in customers.data" :key="customer.id">
-                                <td  class="p-4">
+                                <td  class="p-3">
                                     <div class="row m-0">
                                         <div class="col-sm-12 p-0">
                                             <div class="row boot-xl">
