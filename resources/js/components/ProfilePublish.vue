@@ -2052,7 +2052,7 @@ export default {
                         for ( ; index < length; index++) {
                             // el[index].classList[3].css.border = "1px solid red;";
                             el[index].style.position = "fixed";
-                            el[index].style.top = "75px";
+                            el[index].style.top = "85px";
                             el[index].style.display = "block";
                             // el[index].style.width = "900px";
                             el[index].style.margin = "0px 0px 0px 175px";
