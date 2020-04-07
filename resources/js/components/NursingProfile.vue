@@ -1355,49 +1355,29 @@ export default {
 
 </script>
 
- <style scoped>
- @media screen and (max-width:580px){
-    .d-flex{
-        display:  block !important;
-    }
-    .panorama-box { 
-        padding: 0px !important;  
-        margin: 0px !important;          
-    }
- }
+ <style scoped> 
 .gallery-area-panorama {  
     /* background: #e6e6e6;; */
     padding: 2px;
 }
-@media (min-width: 992px) {
-    .panorama-box .col-lg-1{
-        -webkit-box-flex: 0;
-        -ms-flex: 0 0 16.66666667%;
-        flex: 0 0 16.66666667%;
-        max-width: 16.66666667%;
-    }
-}
-       
-.panorama-old-img{      
-   height: 85px;
+.panorama-old-img{
+    height: 120px;
     background-size: cover;
-} 
-             
+    width: 260px;
+}       
 .panorama-new-img{       
-    height: 85px;
+    height: 120px;
     background-size: cover;
+    width: 260px !important;
 }  
 .quill-editor{ 
     background-color: #fff; 
 } 
          
 .panorama-box {     
-    margin: 0px;  
-    /* padding: 10px 10px 20px 0px;  
-    margin-bottom: 15px;  */
+    margin: 0px; 
  }
- .form-wrap .sp1,
-.sp3 {
+.form-wrap .sp1,.sp3 {
     /* margin: 0 5px; */
     padding: 0 5px 0 5px;
     background: #F54336;
@@ -1408,5 +1388,34 @@ export default {
     vertical-align: text-top;
     width: 35px;
 }
+
+@media (max-width: 1440px){
+    .panorama-old-img{      
+        height: 85px !important;        
+        width: 188px !important;
+    } 
+    .panorama-new-img{      
+        height: 85px !important;        
+        width: 188px !important;
+    } 
+}
+@media (min-width: 992px) {
+    .panorama-box .col-lg-1{
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 16.66666667%;
+        flex: 0 0 16.66666667%;
+        max-width: 16.66666667%;
+        width: 294px !important
+    }
+}
+@media screen and (max-width:580px){
+    .d-flex{
+        display:  block !important;
+    }
+    .panorama-box { 
+        padding: 0px !important;  
+        margin: 0px !important;          
+    }
+ }
 
  </style>
