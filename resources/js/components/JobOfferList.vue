@@ -76,7 +76,7 @@
                                     </div>   
                                 </div>
                                 <div class="row">
-                                     <div class="col-12 col-md-5">
+                                     <div class="col-12">
                                         <div class="joboffer-tit clearfix">
                                             <router-link class="pseudolink" :to="{name: 'job_details', params:{id:job.id,loginuser:loginuser}}">{{job.title}} </router-link>                                            
                                         </div>
@@ -86,7 +86,7 @@
                                         詳細 <i :id="'icon' + job.id" class="fas fa-sort-down animate rotate"></i></button>
                                     </div> -->
                                 </div>
-                                <div class="row">
+                                <div class="row mt-4">
                                     <div class="model-7 col-12">
                                         <div class="checkbox">
                                             <input type='checkbox' v-if="job.recordstatus == 1" @click="confirm(job.id)" checked/>

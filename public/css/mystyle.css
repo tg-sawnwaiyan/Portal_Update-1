@@ -524,6 +524,10 @@ table.posting-per {
     padding: 0px;
 }
 
+.card-body {
+    padding: 1rem !important;
+}
+
 
 /********************************** End Common **********************************/
 
@@ -14045,7 +14049,7 @@ strong {
 
 @media screen and (min-width:1024px) {
     .choose-item {
-        margin-top: 10px;
+        /* margin-top: 10px; */
     }
     .search_jobid1 {
         /* float: left; */

@@ -50,15 +50,14 @@
                     <div v-else class="container-fuid">
                         <table class="table List_tbl">
                             <tr v-for="newsList in news_list.data" :key="newsList.id">
-                                <td>
+                                <td class="p-3">
                                     <div v-if="newsList.photo !=null">
                                         <img :src="'/upload/news/'+ newsList.photo"   @error="imgUrlAlt" />
                             
                                     </div>
                                     <div  v-else> <img src="/images/noimage.jpg" alt  /></div>
                                 </td>
-                                <td>   
-                            
+                                <td class="p-3">                             
                                     <!--posting period-->
                                     <div class="row col-12 posting-per justify-content-end m-b-10 pc-414">
                                   
