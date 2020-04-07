@@ -520,7 +520,7 @@ table.posting-per {
 .table.posting-per tr td:first-child {
     text-align: right;
     float: right;
-    width: 250px;
+    width: auto;
     padding: 0px;
 }
 
