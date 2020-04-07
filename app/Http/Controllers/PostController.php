@@ -256,11 +256,21 @@ class PostController extends Controller
         
         if($cat_id == 0)
         {
-           $posts = Post::orderBy('id', 'desc')->paginate(20);
+        //    $posts = Post::orderBy('id', 'desc')->paginate(20);
+        $posts = Post::join('categories','categories.id','=','posts.category_id')->select('posts.*','categories.name as cat_name')->orderBy('posts.id', 'desc')->paginate(20);
         }
         else{
-            $posts = Post::where('category_id',$cat_id)->orderBy('id','desc')->paginate(20);
+            // $posts = Post::where('category_id',$cat_id)->orderBy('id','desc')->paginate(20);
+            $posts = Post::join('categories','categories.id','=','posts.category_id')->select('posts.*','categories.name as cat_name')->where('category_id',$cat_id)->orderBy('posts.id', 'desc')->paginate(20);
         }
+
+        foreach ($posts as $com) {
+            $splitTimeStamp = explode(" ",$com->from_date);
+            $com->from_date = $splitTimeStamp[0];
+            $splitTimeStamp1 = explode(" ",$com->to_date);
+            $com->to_date = $splitTimeStamp1[0];
+        }
+
         return response()->json($posts);
     }
 

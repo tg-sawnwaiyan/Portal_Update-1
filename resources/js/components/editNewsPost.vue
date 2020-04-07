@@ -122,7 +122,7 @@
                                     </div>
                                 </div>
 
-                                <div v-if="nosearch_msg" class="card card-default card-wrap">
+                                <div v-if="nosearch_msg" class="card card-default card-wrap" style="height:250px;padding-top:30px;">
                                     <p class="record-ico">
                                         <i class="fa fa-exclamation"></i>
                                     </p>
