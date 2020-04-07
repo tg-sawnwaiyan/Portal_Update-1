@@ -70,7 +70,7 @@
                                             </small>
                                             </p>   
                                     </div> -->
-                                <table class="table table-borderless text-right m-b-0 posting-per cmt m-b-5">
+                                <table class="table table-borderless text-right m-b-0 posting-per cmt">
                                         <tr v-if="newsList.cat_name != 'PR'">
                                             <!-- <td>
                                                  <th :class="'title'+ newsList.category_id " style="float:right;">
