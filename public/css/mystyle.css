@@ -2338,6 +2338,7 @@ box-shadow: 0px 0px 5px rgb(212, 201, 201); */
     font-weight: bold;
     font-size: 1.5rem;
     border-radius: 1px;
+    min-height: 40px;
     /* color: #ff9563;
     border-bottom: 1px dashed #ff9563; */
     color: #2981cc;
