@@ -2342,6 +2342,7 @@ box-shadow: 0px 0px 5px rgb(212, 201, 201); */
     border-bottom: 1px dashed #ff9563; */
     color: #2981cc;
     border-bottom: 1px dashed #2981cc;
+    min-height: 40px;
 }
 
 #hospitalView .profile-tit {
@@ -7270,7 +7271,7 @@ body::-webkit-scrollbar-thumb {
 
 .set-date {
     float: right;
-    text-indent: 2em;
+    text-indent: 0em;
     margin-bottom: 2px;
 }
 
