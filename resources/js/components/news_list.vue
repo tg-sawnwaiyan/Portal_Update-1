@@ -80,7 +80,7 @@
                                             <td style="width:auto;">
                                                 <th :class="'title'+ newsList.category_id ">
                                                     <span> {{newsList.cat_name}}</span>
-                                                    <i class="fa fa-calendar-alt"></i>
+                                                    <i class="fa fa-calendar-alt"></i>&nbsp;
                                                     {{newsList.created_at}}                                                    
                                                 </th>    
                                                                                         
@@ -94,7 +94,7 @@
                                         <tr v-if="newsList.category_id == 26 && (newsList.to_date == null || newsList.to_date == '')">
                                             <td>
                                                 <th>
-                                                    <span><i class="fa fa-calendar-alt common-fa"></i>&nbsp;<span style="color:#2c3e50 ">掲載期間</span></span>
+                                                    <span><i class="fa fa-calendar-alt common-fa"></i></span>
                                                 </th>
                                                 <th>
                                                     {{newsList.from_date}} 
@@ -108,7 +108,7 @@
                                         <tr v-else>
                                             <td v-if="newsList.category_id == 26">
                                                 <th>
-                                                    <span><i class="fa fa-calendar-alt common-fa"></i>&nbsp;<span style="color:#2c3e50 ">掲載期間</span></span>
+                                                    <span><i class="fa fa-calendar-alt common-fa"></i></span>
                                                 </th>
                                                 <th>
                                                     {{newsList.from_date}}
@@ -131,14 +131,14 @@
                                         <div class="set-date posting-per"  v-if="newsList.cat_name != 'PR'" style="text-indent: 0em;float:none;">
                                             <div :class="'title'+ newsList.category_id ">
                                             <span class="m-b-2"> {{newsList.cat_name}}</span>                                         
-                                            <i class="fa fa-calendar-alt common-fa"></i>
+                                            <i class="fa fa-calendar-alt common-fa"></i>&nbsp;
                                             {{newsList.created_at}}                                           
                                             </div>   
                                         </div>
 
                                     <div class="row col-12 p-0 m-0 posting-per" v-if="newsList.category_id == 26 && (newsList.to_date == null || newsList.to_date == '')">                                            
                                             <div class="posting-firstwrap"> 
-                                                <span><i class="fa fa-calendar-alt common-fa"></i>&nbsp;<span style="color:#2c3e50 ">掲載期間</span></span>                                              
+                                                <span><i class="fa fa-calendar-alt common-fa"></i></span>                                              
                                                 <span>{{newsList.from_date}} ~ </span>
                                             </div>           
                                               <div class="posting-secondwrap">
@@ -148,7 +148,7 @@
                                     <div v-else>   
                                         <div class="row m-0 posting-per" v-if="newsList.category_id == 26">                                     
                                          <div class="p-0 posting-firstwrap">
-                                               <span><i class="fa fa-calendar-alt common-fa"></i>&nbsp;<span style="color:#2c3e50 ">掲載期間</span></span>
+                                               <span><i class="fa fa-calendar-alt common-fa"></i></span>
                                              <span>{{newsList.from_date}} ~</span>
                                             </div>
                                             <div class="posting-secondwrap">
