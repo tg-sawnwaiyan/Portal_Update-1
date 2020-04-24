@@ -43,7 +43,7 @@ class CustomerController extends Controller
     }
     public function nusaccount($id) {
         // NursingProfile::where('customer_id',$id)->where("email",'=',NULL,'OR')->where('townships_id','=',0)->delete();  
-        $del = "DELETE FROM nursing_profiles WHERE customer_id=$id AND (email=NULL or email='' or townships_id=0)";
+        $del = "DELETE FROM nursing_profiles WHERE customer_id=$id AND ISNULL(email)";
         DB::delete($del);
         $nuscustomer = NursingProfile::where(['nursing_profiles.customer_id'=>$id])->select('id','logo','name','phone','email','activate')->get();
         $status = Customer::where(['recordstatus'=>1,'id'=>$id])->count();
@@ -51,7 +51,7 @@ class CustomerController extends Controller
         return response()->json(array("nuscustomer"=>$nuscustomer,"status"=>$status));
     }
     public function hosaccount($id) {
-        $del = "DELETE FROM hospital_profiles WHERE customer_id=$id AND (email=NULL or email='' or townships_id=0)";
+        $del = "DELETE FROM hospital_profiles WHERE customer_id=$id AND ISNULL(email)";
         DB::delete($del);
         // HospitalProfile::where(['email'=>NULL,"or",'townships_id'=>0])->where('customer_id',$id)->delete();  
         $hoscustomer = HospitalProfile::where('customer_id',$id)->select('id','logo','name','phone','email','activate')->get();
@@ -317,14 +317,14 @@ class CustomerController extends Controller
             DB::table('users')->insert($data);
            
             $lastid = User::where('email',$getCustomer->email)->select('id')->value('id'); //user table last id
-            $model_has_roles = array(
-                'role_id'=>2,
-                'model_type'=> 'App\User',
-                'model_id'=> $lastid,
-            );
+            // $model_has_roles = array(
+            //     'role_id'=>2,
+            //     'model_type'=> 'App\User',
+            //     'model_id'=> $lastid,
+            // );
 
            
-           DB::table('model_has_roles')->insert($model_has_roles);
+        //    DB::table('model_has_roles')->insert($model_has_roles);
 
             $cus = Customer::find($id);
             $cus->status = 1;

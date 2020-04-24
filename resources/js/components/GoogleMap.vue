@@ -65,7 +65,7 @@
                         <input type="text" class="form-control white-bg-color" name="new_long" v-model="new_long" id="new_long" ref="new_long">
                       </div>
                       <div class="nursing_map col-lg-4 col-md-12">
-                        <span class="btn news-post-btn all-btn" @click="addressSelect(Number(new_lat),Number(new_long))">緯度経度から地図を検索</span>
+                        <span class="btn news-post-btn all-btn" @click="addressSelect(parseFloat(new_lat),parseFloat(new_long))">緯度経度から地図を検索</span>
                       </div>
                     </div>
                   </div>
@@ -114,6 +114,8 @@ export default {
          address:String,
          township: Number,
          city: Number,
+         latnum: Number,
+         lngnum: Number,
          township_list: Array 
         },
   data () {
@@ -134,8 +136,6 @@ export default {
       city_list: [],
       address_val: '',
       test:'',
- 
-
     //   selected_city:this.city,
     }
   },
@@ -151,29 +151,38 @@ export default {
 
 //       }
 //   },
-  created() {
-    
-    this.markers = [{
-        position: {
-          lat: Number(localStorage.getItem('lat_num')),
-          lng: Number(localStorage.getItem('lng_num'))
+created(){    
+    this.center = { lat: parseFloat(35.6899624), lng: parseFloat(139.6915642) }
+},
+  
+  watch: {
+    latnum(){
+        if(this.latnum != undefined){            
+            this.mapCall();
         }
-      }];
-     
-    this.new_lat = Number(localStorage.getItem('lat_num'));
-    this.new_long = Number(localStorage.getItem('lng_num'));
-
-
-    this.center = { lat: Number(localStorage.getItem('lat_num')), lng: Number(localStorage.getItem('lng_num')) }
-
-    $('#gmap-search').css({'display':'none'});
-    this.axios.get('/api/hospital/citiesList')
-        .then(response => {
-            this.city_list = response.data;
-        });
-       
+    }    
   },
   methods: {
+      mapCall(){
+      this.markers = [{
+        position: {
+            lat: parseFloat(this.latnum),
+            lng: parseFloat(this.lngnum)
+          }
+        }];
+      
+      this.new_lat = parseFloat(this.latnum);
+      this.new_long = parseFloat(this.lngnum);
+
+
+      this.center = { lat: parseFloat(this.latnum), lng: parseFloat(this.lngnum) }
+
+      $('#gmap-search').css({'display':'none'});
+      this.axios.get('/api/hospital/citiesList')
+      .then(response => {
+          this.city_list = response.data;
+      });
+    },
       // callParent(){
       //   //   this.$parent.$options.methods.someParentMethod('hello');
       // },
@@ -182,8 +191,8 @@ export default {
       // Add a new marker
       this.markers.push({
         position: {
-          lng: lng_add,
-          lat: lat_add
+          lng: parseFloat(lng_add),
+          lat: parseFloat(lat_add)
         }
       });
     //   this.markers.push({
@@ -198,8 +207,8 @@ export default {
       // Scroll the map to the new position
       this.$refs.map.$mapPromise.then((map) => {
         map.panTo({
-          lng: lng_add,
-          lat: lat_add
+          lng: parseFloat(lng_add),
+          lat: parseFloat(lat_add)
         });
       });
     },
@@ -237,8 +246,8 @@ export default {
     geolocate: function() {
       navigator.geolocation.getCurrentPosition(position => {
         this.center = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
+          lat: parseFloat(position.coords.latitude),
+          lng: parseFloat(position.coords.longitude)
         };
       });
     },
@@ -306,9 +315,9 @@ export default {
                     localStorage.setItem('townshiplist',JSON.stringify(this.township_list));
                     // this.township = this.township_list[0].id;
                     
-                    this.new_lat = response.data.coordinate[0].latitude;
-                    this.new_long = response.data.coordinate[0].longitude;
-                    this.addressSelect(this.new_lat,this.new_long);
+                    // this.new_lat = response.data.coordinate[0].latitude;
+                    // this.new_long = response.data.coordinate[0].longitude;
+                    // this.addressSelect(this.new_lat,this.new_long);
                 });
             },
             postalNumber: function(event) {

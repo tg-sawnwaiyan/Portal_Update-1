@@ -85,7 +85,7 @@
                                             <div class="col-sm-5"></div>
                                             <div class="col-sm-4">
                                              
-                                              <router-link to="/termsAndConditions" class="pseudolink"> <strong>「プライバシーポリシー」</strong></router-link>
+                                              <router-link to="/privacyPolicy" class="pseudolink"> <strong>「プライバシーポリシー」</strong></router-link>
                                             </div>
                                             <div class="col-sm-3"></div>
                                         </div>

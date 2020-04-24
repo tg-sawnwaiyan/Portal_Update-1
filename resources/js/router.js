@@ -33,7 +33,7 @@ import favouriteNursing from "./components/favouriteNursing";
 import specialfeature from "./components/CreateSpecialFeature";
 import nursingFavouriteMail from "./components/nursingFavouriteMail";
 import nursingMailConfirm from "./components/nursingMailConfirm";
-import termsAndConditions from './components/termsAndConditions';
+import privacyPolicy from './components/privacyPolicy';
 import occupation from './components/occupation';
 import occupationlist from './components/occupationlist';
 import nursingSearch from './components/nursingSearch';
@@ -491,9 +491,9 @@ const routes = [
     }
   },
   {
-    name: 'termsAndConditions',
-    path: '/termsAndConditions',
-    component: termsAndConditions,
+    name: 'privacyPolicy',
+    path: '/privacyPolicy',
+    component: privacyPolicy,
     meta: {
         auth: false
     }

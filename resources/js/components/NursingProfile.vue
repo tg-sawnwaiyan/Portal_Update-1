@@ -639,7 +639,7 @@
                                 <div class="col-md-12 p-0">
                                     <div class="col-md-12 pad-free" id="mapbox">
                                         <span class="error pro-1" style="margin-top:0px!important;margin-bottom:10px;" v-if="loc == true">※都道府県と市区町村をを入力してください。</span>
-                                        <GoogleMap :address="address_show" :township="nursing_info.townships_id" :city="city_id" :township_list="township_list" :lat_num='nursing_info.latitude' :lng_num='nursing_info.longitude'></GoogleMap>
+                                        <GoogleMap :address="address_show" :township="nursing_info.townships_id" :city="city_id" :township_list="township_list" :latnum='nursing_info.latitude' :lngnum='nursing_info.longitude'></GoogleMap>
                                     </div>                                    
 
                                     <div class="form-group m-b-0">
@@ -753,6 +753,7 @@ export default {
                     .then(response=>{
                         this.city_id = Number(response.data[0].city_id);
                         this.township_list = response.data[0].township_list;
+                        localStorage.setItem('townshiplist',JSON.stringify(this.township_list));
                     });
 
                     if(this.nursing_info.latitude == 0){
@@ -764,6 +765,7 @@ export default {
                         localStorage.setItem('lng_num',this.nursing_info.longitude);
                     }
                     this.focusMail();
+                    
 
                 });
 
@@ -1152,9 +1154,14 @@ export default {
                 }
             },
             createProfile() {
-                if($('#new_lat').val() == "" || $('#new_long').val() == "" || $('#gmaptownship').val() == 0){
+                if($('#new_lat').val() == "" || $('#new_lat').val() == 0 || $('#new_long').val() == "" || $('#new_long').val() == 0 || $('#gmaptownship').val() == 0){
                     this.loc = true;
                     this.btn_disable = true;
+                    this.nursing_info.townships_id = $('#gmaptownship').val();
+                    // this.nursing_info.latitude = $('#new_lat').val();
+                    // this.nursing_info.longitude = $('#new_long').val();
+                    this.city_id = $('#division').val();
+                    this.township_list = JSON.parse(localStorage.getItem("townshiplist"));
                 }
                 else{
                     this.loc = false;
@@ -1163,7 +1170,7 @@ export default {
                     this.nursing_info.longitude = $('#new_long').val();
                     this.city_id = $('#division').val();
                     this.township_list = JSON.parse(localStorage.getItem("townshiplist"));
-                    if(this.mail_focus != true && this.ph_num != true){
+                    if(this.mail_focus != true && this.ph_num != true && this.nursing_info.name != '' && this.nursing_info.name != null){
                         this.btn_disable = false;
                     }
                     else{
@@ -1187,7 +1194,11 @@ export default {
                 allowOutsideClick: false,
                 
             })                    
-                  
+                this.nursing_info.townships_id = $('#gmaptownship').val();
+                    // this.nursing_info.latitude = $('#new_lat').val();
+                    // this.nursing_info.longitude = $('#new_long').val();
+                    this.city_id = $('#division').val();
+                    this.township_list = JSON.parse(localStorage.getItem("townshiplist"));  
      
                 }
                 else{              

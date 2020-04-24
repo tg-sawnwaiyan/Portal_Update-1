@@ -19,23 +19,26 @@
                     <p class="record-ico">
                         <i class="fa fa-exclamation"></i>
                     </p>                    
-                    <p class="record-txt01" v-if="norecord_msg">施設が登録されていません。</p>
+                    <p class="record-txt01" v-if="norecord_msg && type == 'nursing'">施設が登録されていません。</p>
+                    <p class="record-txt01" v-if="norecord_msg && type == 'hospital'">病院が登録されていません。</p>
                     <span class="main-bg-color create-btn all-btn" v-if="norecord_msg" @click="ShowHideDiv()">
-                        <i class="fas fa-plus-circle"></i> 施設新規作成
+                        <span v-if="type == 'nursing'"><i class="fas fa-plus-circle"></i> 施設新規作成</span>
+                        <span v-else><i class="fas fa-plus-circle"></i> 病院新規作成</span>
                     </span> 
                 </div>
                 <div v-if="!createNew && !norecord_msg" class="col-12 tab-content" id="nusBlock">                        
                     <div class="p-2 p0-480">                            
                         <div class="container-fuid">                                
                             <div class="col-md-12 d-flex header pb-3 admin_header">
-                                <h5>施設一覧</h5>
+                                <h5 v-if="type == 'nursing'">施設一覧</h5>
+                                <h5 v-else>病院一覧</h5>
                                 <div class="ml-auto">
                                     <a class="" id="newcreate">
                                         <span v-if="type == 'nursing'" class="main-bg-color create-btn all-btn"  @click="ShowHideDiv()">
                                             <span><i class="fas fa-plus-circle"></i> <span class="dinone">介護施設新規作成</span></span>
                                         </span>
                                         <span v-else class="main-bg-color create-btn all-btn"  @click="ShowHideDiv()">
-                                        <i class="fas fa-plus-circle"></i> <span class="dinone">病院施設新規作成</span>
+                                        <i class="fas fa-plus-circle"></i> <span class="dinone">病院新規作成</span>
                                         </span>
                                     </a>
                                 </div>
@@ -118,7 +121,7 @@
                                             </p> -->
                                         </div>
                                         <div class="card-read-more">
-                                            <router-link :to="{ path:'/profile/hospital/'+ hospitalprofiles.id}" class="btn edit-borderbtn" style="float:left;">施設情報編集</router-link>
+                                            <router-link :to="{ path:'/profile/hospital/'+ hospitalprofiles.id}" class="btn edit-borderbtn" style="float:left;">病院情報編集</router-link>
                                                 
                                             <span class="btn text-danger delete-borderbtn" @click="profileDelete(hospitalprofiles.id)" ><i class="fa fa-trash-o" aria-hidden="true"></i>削除</span>
                                         </div>
