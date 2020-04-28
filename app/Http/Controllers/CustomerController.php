@@ -221,7 +221,7 @@ class CustomerController extends Controller
     public function update($id,Request $request)
     {
         if($id == 0) {
-            $u_id = auth('api')->user()->id;
+            $u_id = Auth::user()->id;
             $id = User::where('id',$u_id)->select('customer_id')->value('customer_id');
         }
         $customer = Customer::find($id);
@@ -300,7 +300,8 @@ class CustomerController extends Controller
 
         $checkUser = User::where('email',$getCustomer->email)->select('email')->value('email');
     
-        $comfirmUser =  auth('api')->user()->id;
+        $comfirmUser =  Auth::user()->id;
+        // $comfirmUser =  auth('api')->user()->id;
         if(!empty($checkUser)){
             return response()->json('already');
         }else{

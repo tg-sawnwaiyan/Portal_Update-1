@@ -31,7 +31,7 @@
                         <slick  v-if="latest_post_all_cats.length > 0 && status == '0'" ref="slick" :options="categoryslider" class="cat-slider d-block d-sm-none">  
                         
                             <div class="list-group-item adslist-card m-b-10"  v-for="latest_post_all_cat in latest_post_all_cats" :key="latest_post_all_cat.id">
-                                 <router-link :to="{name:'newdetails', params: {id:latest_post_all_cat.id}}">
+                                 <router-link :to="{path:'/newsdetails/'+latest_post_all_cat.id}">
                                     <div class="slide-img" style="border:1px solid #eee;">
                                        <div class="col-sm-6 pad-free" >
 
@@ -179,7 +179,7 @@
 
                                                     <li  class="list-group-item" style="padding:6px 0px 4px 0px!important;"  v-if = "posts[0].id != post.id">
 
-                                                        <router-link :to="{name:'newdetails', params: {id:post.id}}">
+                                                        <router-link :to="{path:'/newsdetails/'+post.id}">
 
                                                             <img src="/images/4.png" alt="" style="width:16px; height: 16px;" class="img-responsive float-right" @error="imgUrlAlt">
 
@@ -438,19 +438,18 @@
                 <div class="container-fuid no_search_data">
                    <!-- <svg x="0px" y="0px" width="60" height="60" viewBox="0 0 172 172" style=" fill:#000000;"><g transform=""><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><path d="M0,172v-172h172v172z" fill="none"></path><path d="M3.44,168.56v-165.12h165.12v165.12z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><path d="M0,172v-172h172v172z" fill="none"></path><path d="M3.44,168.56v-165.12h165.12v165.12z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><g fill="#cccccc"><path d="M74.53333,17.2c-31.59643,0 -57.33333,25.73692 -57.33333,57.33333c0,31.59641 25.7369,57.33333 57.33333,57.33333c13.73998,0 26.35834,-4.87915 36.24766,-12.97839l34.23203,34.23203c1.43802,1.49778 3.5734,2.10113 5.5826,1.57735c2.0092,-0.52378 3.57826,-2.09284 4.10204,-4.10204c0.52378,-2.0092 -0.07957,-4.14458 -1.57735,-5.5826l-34.23203,-34.23203c8.09923,-9.88932 12.97839,-22.50768 12.97839,-36.24766c0,-31.59641 -25.7369,-57.33333 -57.33333,-57.33333zM74.53333,28.66667c25.39939,0 45.86667,20.46729 45.86667,45.86667c0,25.39937 -20.46728,45.86667 -45.86667,45.86667c-25.39939,0 -45.86667,-20.46729 -45.86667,-45.86667c0,-25.39937 20.46728,-45.86667 45.86667,-45.86667zM91.67734,51.52161c-1.51229,0.03575 -2.94918,0.66766 -3.99765,1.75807l-13.14636,13.14636l-13.14636,-13.14636c-1.07942,-1.10959 -2.56162,-1.73559 -4.10963,-1.73568c-2.33303,0.00061 -4.43306,1.41473 -5.31096,3.57628c-0.8779,2.16155 -0.3586,4.6395 1.31331,6.26669l13.14636,13.14636l-13.14636,13.14636c-1.49777,1.43802 -2.10111,3.5734 -1.57733,5.58259c0.52378,2.0092 2.09283,3.57825 4.10203,4.10203c2.0092,0.52378 4.14457,-0.07956 5.58259,-1.57733l13.14636,-13.14636l13.14636,13.14636c1.43802,1.49778 3.5734,2.10113 5.5826,1.57735c2.0092,-0.52378 3.57826,-2.09284 4.10204,-4.10204c0.52378,-2.0092 -0.07957,-4.14458 -1.57735,-5.5826l-13.14636,-13.14636l13.14636,-13.14636c1.70419,-1.63875 2.22781,-4.1555 1.31865,-6.33798c-0.90916,-2.18248 -3.06468,-3.58317 -5.42829,-3.52739z"></path></g></g></g></svg>
                     <br><br>
-                    検索したデータ見つかりません。<br>
                     申し訳ありませんが、検索結果がありませんでした。 -->
                     <p class="nosearch-icon">
                         <svg x="0px" y="0px" width="30" height="30" viewBox="0 0 172 172" style=" fill:red;"><g transform=""><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><path d="M0,172v-172h172v172z" fill="none"></path><path d="M3.44,168.56v-165.12h165.12v165.12z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><path d="M0,172v-172h172v172z" fill="none"></path><path d="M3.44,168.56v-165.12h165.12v165.12z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><g fill="#666666"><path d="M74.53333,17.2c-31.59643,0 -57.33333,25.73692 -57.33333,57.33333c0,31.59641 25.7369,57.33333 57.33333,57.33333c13.73998,0 26.35834,-4.87915 36.24766,-12.97839l34.23203,34.23203c1.43802,1.49778 3.5734,2.10113 5.5826,1.57735c2.0092,-0.52378 3.57826,-2.09284 4.10204,-4.10204c0.52378,-2.0092 -0.07957,-4.14458 -1.57735,-5.5826l-34.23203,-34.23203c8.09923,-9.88932 12.97839,-22.50768 12.97839,-36.24766c0,-31.59641 -25.7369,-57.33333 -57.33333,-57.33333zM74.53333,28.66667c25.39939,0 45.86667,20.46729 45.86667,45.86667c0,25.39937 -20.46728,45.86667 -45.86667,45.86667c-25.39939,0 -45.86667,-20.46729 -45.86667,-45.86667c0,-25.39937 20.46728,-45.86667 45.86667,-45.86667zM91.67734,51.52161c-1.51229,0.03575 -2.94918,0.66766 -3.99765,1.75807l-13.14636,13.14636l-13.14636,-13.14636c-1.07942,-1.10959 -2.56162,-1.73559 -4.10963,-1.73568c-2.33303,0.00061 -4.43306,1.41473 -5.31096,3.57628c-0.8779,2.16155 -0.3586,4.6395 1.31331,6.26669l13.14636,13.14636l-13.14636,13.14636c-1.49777,1.43802 -2.10111,3.5734 -1.57733,5.58259c0.52378,2.0092 2.09283,3.57825 4.10203,4.10203c2.0092,0.52378 4.14457,-0.07956 5.58259,-1.57733l13.14636,-13.14636l13.14636,13.14636c1.43802,1.49778 3.5734,2.10113 5.5826,1.57735c2.0092,-0.52378 3.57826,-2.09284 4.10204,-4.10204c0.52378,-2.0092 -0.07957,-4.14458 -1.57735,-5.5826l-13.14636,-13.14636l13.14636,-13.14636c1.70419,-1.63875 2.22781,-4.1555 1.31865,-6.33798c-0.90916,-2.18248 -3.06468,-3.58317 -5.42829,-3.52739z"></path></g></g></g></svg>
                     </p>
-                     <p class="nosearch-data">検索したデータ見つかりません。</p>
-                     <p class="nosearch"> 申し訳ありませんが、検索結果がありませんでした。</p>
+                     <p class="nosearch-data">お探しの条件に合うニュースは見つかりませんでした。</p>
+                     <!-- <p class="nosearch"> 申し訳ありませんが、検索結果がありませんでした。</p> -->
                 </div>
             </span>
             <span v-else>
   
-                <div v-for="(group,name,index) in post_groups" :key="index" class="col-md-12 category_box" id="view-1024-pattern" :class="'bordertop-color'+(5-(Math.floor(index%5)))" >
-                    <h4  class="category_news_title" :class="'h-color'+(5-(Math.floor(index%5)))"> <router-link :to="'/newscategory/'+group[0].id"><span >{{name}}</span> </router-link>
+                <div v-for="(group,name,index) in post_groups" :key="index" class="col-md-12 category_box" id="view-1024-pattern" :class="'bordertop-color'+(5-(Math.floor(group[0].id%5)))" >
+                    <h4  class="category_news_title" :class="'h-color'+(5-(Math.floor(group[0].id%5)))"> <router-link :to="'/newscategory/'+group[0].id"><span >{{name}} </span> </router-link>
                         <label class="list-label" for="">新着ニュース一覧</label>
                         <label class="list-label sp-414">                         
                                 <p :class="'newsChangeLink'+index" @click="newsToggle(index)" ><i :id="'newstogg' + index" class="fas fa-sort-down"></i></p>                      
@@ -494,13 +493,13 @@
                             </div>
 
                             <div class="pad-new pattern-child" v-if="group[1]">
-                                <router-link v-for="(item,index) in group.slice(1, 4)" :key="index" :to="'/newsdetails/'+item.pid">
+                                <router-link v-for="(item,inx) in group.slice(1, 4)" :key="inx" :to="'/newsdetails/'+item.pid">
 
                                     <div class="col-12 row m-b-10 adslist-card m-lr-0 news-3-card">
 
                                         <div class="col-4 img-box">
 
-                                            <clazy-load class="wrapper-4" @load="log" src="/images/noimage.jpg" :key="index" >
+                                            <clazy-load class="wrapper-4" @load="log" src="/images/noimage.jpg" :key="inx" >
 
                                                 <!-- <img v-bind:src="'/upload/news/' + item.photo" class="fit-image" style="height:5rem;width:6rem" @error="imgUrlAlt"> -->
 
@@ -543,7 +542,7 @@
                             </div>
 
                             <div class="pad-new pattern-child" v-if="group[4]">
-                                <router-link v-for="(item,index) in group.slice(4,12)" :key="index" :to="'/newsdetails/'+item.pid" style="color:#333;">
+                                <router-link v-for="(item,inx) in group.slice(4,12)" :key="inx" :to="'/newsdetails/'+item.pid" style="color:#333;">
 
                                     <p class="text-truncate news-list-display">
 
@@ -556,13 +555,13 @@
                             </div>
 
                             <div class="pad-new pattern-child" v-if="group[12]">
-                                <router-link v-for="(item,index) in group.slice(12, 15)" :key="index" :to="'/newsdetails/'+item.pid">
+                                <router-link v-for="(item,inx) in group.slice(12, 15)" :key="inx" :to="'/newsdetails/'+item.pid">
 
                                     <div class="col-12 row m-b-10 adslist-card m-lr-0 news-3-card">
 
                                         <div class="col-4 img-box">
 
-                                            <clazy-load class="wrapper-4" @load="log" src="/images/noimage.jpg" :key="index" >
+                                            <clazy-load class="wrapper-4" @load="log" src="/images/noimage.jpg" :key="inx" >
 
                                                 <transition name="fade">
 
@@ -608,13 +607,13 @@
                         <slick :options="slickOptions" class="news-slider-width"> 
                             <div class="pad-new pattern-child" v-if="group[0]">
 
-                                <router-link v-for="(item,index) in group.slice(0, 3)" :key="index" :to="'/newsdetails/'+item.pid">
+                                <router-link v-for="(item,inx) in group.slice(0, 3)" :key="inx" :to="'/newsdetails/'+item.pid">
 
                                     <div class="col-12 row m-b-10 adslist-card m-lr-0 news-3-card">
 
                                         <div class="col-4 img-box">
 
-                                            <clazy-load class="wrapper-4" @load="log" src="/images/noimage.jpg" :key="index">
+                                            <clazy-load class="wrapper-4" @load="log" src="/images/noimage.jpg" :key="inx">
 
                                                 <transition name="fade">
 
@@ -656,7 +655,7 @@
 
                             <div class="pad-new pattern-child" v-if="group[3]">
 
-                                <router-link v-for="(item,index) in group.slice(3, 11)" :key="index" :to="'/newsdetails/'+item.pid" style="color:#333;">
+                                <router-link v-for="(item,inx) in group.slice(3, 11)" :key="inx" :to="'/newsdetails/'+item.pid" style="color:#333;">
 
                                     <p class="text-truncate news-list-display">
 
@@ -670,13 +669,13 @@
 
                             <div class="pad-new pattern-child" v-if="group[11]">
 
-                                <router-link v-for="(item,index) in group.slice(11, 14)" :key="index" :to="'/newsdetails/'+item.pid">
+                                <router-link v-for="(item,inx) in group.slice(11, 14)" :key="inx" :to="'/newsdetails/'+item.pid">
 
                                     <div class="col-12 row m-b-10 adslist-card m-lr-0 news-3-card">
 
                                         <div class="col-4 img-box">
 
-                                            <clazy-load class="wrapper-4" @load="log" src="/images/noimage.jpg" :key="index">
+                                            <clazy-load class="wrapper-4" @load="log" src="/images/noimage.jpg" :key="inx">
 
                                                 <transition name="fade">
 
@@ -718,7 +717,7 @@
 
                             <div class="pad-new pattern-child" v-if="group[14]">
 
-                                <router-link v-for="(item,index) in group.slice(14, 22)" :key="index" :to="'/newsdetails/'+item.pid" style="color:#333;">
+                                <router-link v-for="(item,inx) in group.slice(14, 22)" :key="inx" :to="'/newsdetails/'+item.pid" style="color:#333;">
 
                                     <p class="text-truncate news-list-display">
 
@@ -765,13 +764,13 @@
 
                             <div class="pad-new pattern-child" v-if="group[1]">
 
-                                <router-link v-for="(item,index) in group.slice(1, 4)" :key="index" :to="'/newsdetails/'+item.pid">
+                                <router-link v-for="(item,inx) in group.slice(1, 4)" :key="inx" :to="'/newsdetails/'+item.pid">
 
                                     <div class="col-12 row m-b-10 adslist-card m-lr-0 news-3-card">
 
                                         <div class="col-4 img-box">
 
-                                            <clazy-load class="wrapper-4" @load="log" src="/images/noimage.jpg" :key="index">
+                                            <clazy-load class="wrapper-4" @load="log" src="/images/noimage.jpg" :key="inx">
 
                                             <transition name="fade">
 
@@ -813,13 +812,13 @@
 
                             <div class="pad-new pattern-child" v-if="group[4]">
 
-                                <router-link v-for="(item,index) in group.slice(4, 7)" :key="index" :to="'/newsdetails/'+item.pid">
+                                <router-link v-for="(item,inx) in group.slice(4, 7)" :key="inx" :to="'/newsdetails/'+item.pid">
 
                                     <div class="col-12 row m-b-10 adslist-card m-lr-0 news-3-card">
 
                                         <div class="col-4 img-box">
 
-                                            <clazy-load class="wrapper-4" @load="log" src="/images/noimage.jpg" :key="index">
+                                            <clazy-load class="wrapper-4" @load="log" src="/images/noimage.jpg" :key="inx">
 
                                             <transition name="fade">
 

@@ -71,8 +71,8 @@
                     {{news.title}}
                   </h4>  
                   <div class="set-date">
-                    <p :class="'title'+ news.cat_id ">
-                     <span> {{news.cat_name}}</span>
+                    <p :class="news.cat_id == 26 ? 'title26':'title'+(5-(Math.floor(news.cat_id%5)))">
+                     <span> {{news.cat_name}} </span>
                      <small style="color:#aaa;"  v-if="news.cat_name != 'PR'" >
                       <i class="fa fa-calendar-alt"></i>
                       &nbsp;&nbsp;{{news.created_at}}

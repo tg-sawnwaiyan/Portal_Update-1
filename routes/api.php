@@ -58,9 +58,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('getCity','SearchMapController@getCity');
     Route::get('profile_view/{proid}/{type}','ProfilePublishController@getCustomerLatLng');
     Route::get('townshipJson/{township_name}','SearchMapController@townshipJson');
-    // Route::get('cityJson/{theCity}','SearchMapController@cityJson');
-    // Route::get('getstation/{id}','SearchMapController@getJobStation');
-
 
 // public route api end
 
@@ -185,7 +182,7 @@ Route::group(['middleware' => ['auth:api']], function() {
 
     // News
     Route::post('news_list/search', 'PostController@search');
-Route::get('news_list', 'PostController@index');
+    Route::get('news_list', 'PostController@index');
     Route::group(['prefix' => 'new'], function () {
         Route::post('add', 'PostController@add');
         Route::get('editPost/{id}', 'PostController@edit');
@@ -230,6 +227,14 @@ Route::get('news_list', 'PostController@index');
         Route::post('search/{type}','SpecialFeatureController@search');
     });
     //End SpecialFeature
+
+    Route::group(['prefix' => 'main_admin'], function () {
+        Route::get('admin_list','UserController@getAdminList');
+        Route::post('add','UserController@storeAdmin');
+        Route::get('edit/{id}','UserController@editAdmin');
+        Route::post('update','UserController@updateAdmin');
+        Route::delete('delete/{id}','UserController@deleteAdmin');
+    });
 
 });
 // login route api end
@@ -416,10 +421,3 @@ Route::get('jobapplicantlist/{type}/{page}/{search_id}','JobApplyController@joba
 Route::delete('jobApplicantDelete/{id}','JobApplyController@jobApplicantDelete');
 Route::post('jobapplicant/search','JobApplyController@search');
 
-Route::group(['prefix' => 'main_admin'], function () {
-    Route::get('admin_list','UserController@getAdminList');
-    Route::post('add','UserController@storeAdmin');
-    Route::get('edit/{id}','UserController@editAdmin');
-    Route::post('update','UserController@updateAdmin');
-    Route::delete('delete/{id}','UserController@deleteAdmin');
-});

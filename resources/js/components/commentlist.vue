@@ -53,13 +53,13 @@
                         
                     <h5 class="header">{{title}}</h5>
                     
-                    <!-- <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div> -->
+                    <!-- <div v-if="nosearch_msg" class="container-fuid no_search_data">データが見つかりません。</div> -->
 
                     <div v-if="nosearch_msg" class="card card-default card-wrap">
                         <p class="record-ico">
                             <i class="fa fa-exclamation"></i>
                         </p>
-                        <p class="record-txt01">検索したデータ見つかりません。</p>
+                        <p class="record-txt01">データが見つかりません。</p>
                     </div>
                     
                     <div v-else class="container-fuid">

@@ -2,11 +2,11 @@
   <div class="tab-content job-detail">
     <div class="col-md-12 pad-free m-b-20">
       <nav aria-label="breadcrumb">
-        <ol class="breadcrumb" v-if="loginuser == 'false'">
+        <ol class="breadcrumb" v-if="!$auth.check()">
           <li class="breadcrumb-item"><a href="/" class="router-link-active">ホーム</a></li>
           <li aria-current="page" class="breadcrumb-item active">求人詳細</li>
         </ol>
-        <a @click="$router.go(-1)" v-if="$route.params.id && loginuser == 'true'" class="btn btn-danger all-btn submit float-right"><i class="fas fa-arrow-left"></i>&nbsp;戻る</a>
+        <a @click="$router.go(-1)" v-if="$route.params.id && $auth.check(2)" class="btn btn-danger all-btn submit float-right"><i class="fas fa-arrow-left"></i>&nbsp;戻る</a>
       </nav>
       
      
@@ -112,7 +112,7 @@
               <!-- <button type="button" class="btn btn-warning btn-width white">戻る</button> -->
               <!-- <span class="btn main-bg-color white all-btn" @click="jobApply()">確認画面へ進む</span> -->
               <router-link :to="{name: 'jobapply', params: { job_id: job_id }}"
-              class="btn job_detail_btn" v-if="loginuser == 'false'">この案件に応募する</router-link>
+              class="btn job_detail_btn" v-if="!$auth.check()">この案件に応募する</router-link>
             </div>
           </div>
         </div>
@@ -132,7 +132,6 @@ export default {
     };
   },
   created() {
-      // this.login_user = this.$route.params.loginuser;
     this.axios
       .get(`/api/job_details/${this.$route.params.id}`)
       .then(response => {

@@ -126,6 +126,6 @@ class AuthController extends Controller
     private function guard()
     {
         return Auth::guard();
-        return \Auth::Guard('api');
+        // return \Auth::Guard('api');
     }
 }

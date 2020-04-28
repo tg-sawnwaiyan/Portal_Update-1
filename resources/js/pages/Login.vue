@@ -17,7 +17,7 @@
               <div class="input-group">
                   <div class="input-group-append">
                       <span class="input-group-text"><i class="fas fa-user"></i></span>
-                  </div>
+                  </div>                    
                   <input type="text" id="email" class="form-control input_user" placeholder="メールアドレス" v-model="email"  autofocus @keyup="focusMail"> 
                   <span v-if="errors.email" class="error"><small>{{errors.email}}</small></span>
               </div>
@@ -112,7 +112,7 @@
         name:'',
         btn_color:'',
         cus:true,
-        
+        showPass: false,
         mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
       }
     },

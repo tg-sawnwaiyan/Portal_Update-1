@@ -48,13 +48,13 @@
                             </h5>
                         </div>
                     
-                    <!-- <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div> -->
+                    <!-- <div v-if="nosearch_msg" class="container-fuid no_search_data">データが見つかりません。</div> -->
 
                     <div v-if="nosearch_msg" class="card card-default card-wrap">
                         <p class="record-ico">
                             <i class="fa fa-exclamation"></i>
                         </p>
-                        <p class="record-txt01">検索したデータ見つかりません。</p>
+                        <p class="record-txt01">データが見つかりません。</p>
                     </div>
                    
 
@@ -78,7 +78,7 @@
                                 <div class="row">
                                      <div class="col-12">
                                         <div class="joboffer-tit clearfix">
-                                            <router-link class="pseudolink" :to="{name: 'job_details', params:{id:job.id,loginuser:loginuser}}">{{job.title}} </router-link>                                            
+                                            <router-link class="pseudolink" :to="{path:'/job_details/'+job.id}">{{job.title}} </router-link>                                            
                                         </div>
                                     </div>
                                     <!-- <div class="col-7 col-md-7">
@@ -148,7 +148,7 @@
                                 <tr  v-for="job in jobs.data" :key="job.id">
                                     <th>
                                         <h5 class="joboffer-tit clearfix">
-                                            <router-link :to="{name: 'job_details', params:{id:job.id,loginuser:loginuser}}">{{job.title}} </router-link>
+                                            <router-link :to="{path:'/job_details/'+job.id}">{{job.title}} </router-link>
                                             <div class="model-7">
                                                 <div class="checkbox">
                                                     <input type='checkbox' v-if="job.recordstatus == 1" @click="confirm(job.id)" checked/>

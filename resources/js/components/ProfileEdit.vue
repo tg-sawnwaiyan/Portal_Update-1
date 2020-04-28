@@ -6,9 +6,14 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <h4 class="page-header header">プロフィール設定 <span v-if="!$auth.check(2)" style="color: red; font-size: 0.8em; margin-left: 20px; font-weight: normal;">このアカウントは現在無効となっています</span> <a v-if="$auth.check(2)" @click="$router.go(-1)" class="btn bt-red all-btn submit float-right"><i class="fas fa-arrow-left"></i>&nbsp;戻る</a></h4>
+                            <h4 class="page-header header">プロフィール設定 <a v-if="$auth.check(2)" @click="$router.go(-1)" class="btn bt-red all-btn submit float-right"><i class="fas fa-arrow-left"></i>&nbsp;戻る</a></h4>
+                            <span v-if="!$auth.check(2) && derecordstatus != 1" class="deactive">このアカウントは現在無効となっています</span>
                             <br>
                         </div>
+                        <!-- <div class="col-md-12">
+                            <h4 class="page-header header">プロフィール設定 <span v-if="!$auth.check(2) && customer_info.recordstatus != 1" style="color: red; font-size: 0.8em; margin-left: 20px; font-weight: normal;">このアカウントは現在無効となっています</span> <a v-if="$auth.check(2)" @click="$router.go(-1)" class="btn bt-red all-btn submit float-right"><i class="fas fa-arrow-left"></i>&nbsp;戻る</a></h4>
+                            <br>
+                        </div> -->
                         <form class="col-md-8">
                             <div class="card card-default m-b-20 col-md-11">
                                 <div class="card-body">
@@ -140,6 +145,7 @@
     export default {
         data() {
                 return {
+                    derecordstatus: 1,
                     btnred: 'bt-red',
                     btnsuccess: 'bt-suc',
                     customer_info: [],
@@ -182,6 +188,7 @@
                     .get('/api/customerinfo/' + this.cusid)
                     .then(response => {
                         this.customer_info = response.data;
+                        this.derecordstatus = this.customer_info.recordstatus;
                         if(this.customer_info.recordstatus == '1') {
                             this.accout_status = '無効にする';
                             this.accout_status2 = '現在有効';

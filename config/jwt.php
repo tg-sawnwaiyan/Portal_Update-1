@@ -86,7 +86,7 @@ return [
     | Notice: If you set this to null you should remove 'exp' element from 'required_claims' list.
     |
     */
-    'ttl' => env('JWT_TTL', 120),
+    'ttl' => env('JWT_TTL', 60),
     /*
     |--------------------------------------------------------------------------
     | Refresh time to live
@@ -103,7 +103,7 @@ return [
     | systems in place to revoke the token if necessary.
     |
     */
-    'refresh_ttl' => env('JWT_REFRESH_TTL', 120),
+    'refresh_ttl' => env('JWT_REFRESH_TTL', 20160),
     /*
     |--------------------------------------------------------------------------
     | JWT hashing algorithm
