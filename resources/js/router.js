@@ -79,7 +79,7 @@ const routes = [
         name: 'login',
         component: Login,
         meta: {
-            auth: false
+            auth: undefined
         }
     },
     {
@@ -87,7 +87,7 @@ const routes = [
         name: 'admin_login',
         component: Login,
         meta: {
-            auth: false
+            auth: undefined
         }
     },
 
