@@ -17,7 +17,7 @@
               <div class="input-group">
                   <div class="input-group-append">
                       <span class="input-group-text"><i class="fas fa-user"></i></span>
-                  </div>
+                  </div>                    
                   <input type="text" id="email" class="form-control input_user" placeholder="メールアドレス" v-model="email"  autofocus @keyup="focusMail"> 
                   <span v-if="errors.email" class="error"><small>{{errors.email}}</small></span>
               </div>
@@ -26,7 +26,15 @@
                   <div class="input-group-append">
                       <span class="input-group-text"><i class="fas fa-key"></i></span>
                   </div>
-                  <input type="password" class="form-control input_pass" name="password" value=""  id="password" v-model="password" placeholder="パスワード" @keyup="focusPassword" >
+                    <!-- hide password-->
+                    <input class="form-control input_pass m-l1" type="password" v-model="password" v-show="!showPass" @keyup="focusPassword"/>
+                    <!-- show password-->
+                    <input class="form-control input_pass" type="text" v-model="password" v-show="showPass" @keyup="focusPassword"/>
+                    <span class="btn showpwd-btn" @click="showPass = !showPass">
+                    <span v-show="!showPass"  class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                    <span v-show="showPass" class="fa fa-fw fa-eye-slash"></span>
+                    </span>
+                  <!-- <input type="password" class="form-control input_pass" name="password" value=""  id="password" v-model="password" placeholder="パスワード" @keyup="focusPassword" > -->
                 <span v-if="errors.password" class="error"><small>{{errors.password}}</small></span>
               </div>
               <div class="d-flex justify-content-center mt-3">
@@ -112,7 +120,7 @@
         name:'',
         btn_color:'',
         cus:true,
-        
+        showPass: false,
         mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
       }
     },

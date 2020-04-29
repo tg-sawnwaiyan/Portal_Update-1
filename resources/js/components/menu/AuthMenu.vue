@@ -114,8 +114,12 @@
                             <li v-if="$auth.check(1)" @click="toggle">
                                 <router-link :to="{ path: `/profiledit/${this.$auth.user().type_id == 2 ? 'hospital/': 'nursing/'}${this.$auth.user().customer_id}` }"><i class="fa fa-cog"></i>  プロフィール設定</router-link>
                             </li>
-                            <li v-if="$auth.check(1)" @click="toggle">
-                                <router-link :to="{ path: `/accountlist/${this.$auth.user().type_id == 2 ? 'hospital/': 'nursing/'}${this.$auth.user().customer_id}` }"><i class="fa fa-user"></i>  施設一覧</router-link>
+                            <li v-if="$auth.check(1)" @click="toggle">                              
+
+                                <router-link v-if="this.$auth.user().type_id == 2" :to="{ path: `/accountlist/${this.$auth.user().type_id == 2 ? 'hospital/': 'nursing/'}${this.$auth.user().customer_id}` }"><i class="fa fa-user"></i>  病院一覧</router-link>
+
+                                <router-link v-else :to="{ path: `/accountlist/${this.$auth.user().type_id == 2 ? 'hospital/': 'nursing/'}${this.$auth.user().customer_id}` }"><i class="fa fa-user"></i>  施設一覧</router-link>
+                                
                             </li>
                             <!-- <li v-if="$auth.check(1)">
                                 <span @click="subMenu(0)" :class="{ active : isActive == 0 }"><i class="fas fa-users"></i>  求人 <i class="fas fa-angle-right" :class="{ down : isRotate == 0 }"></i></span>

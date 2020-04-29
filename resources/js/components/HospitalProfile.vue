@@ -18,8 +18,8 @@
               </div>            
               <div class="col-lg-8 col-md-7">
                   <div class="form-group form-group-wrapper d-flex">
-                      <label class="heading-lbl col-md-2 col-12 pad-free">施設名称 <p class="error sp3 sp-t">必須</p></label>
-                      <input type="text" class="form-control customer-name col-md-10 col-12 nursing_input" placeholder="施設名称を入力してください。" v-model="hospital_info.name">
+                      <label class="heading-lbl col-md-2 col-12 pad-free">病院名称 <p class="error sp3 sp-t">必須</p></label>
+                      <input type="text" class="form-control customer-name col-md-10 col-12 nursing_input" placeholder="病院名称を入力してください。" v-model="hospital_info.name">
                   </div>
 
                   <div class="form-group form-group-wrapper d-flex">
@@ -1012,7 +1012,7 @@
                     <div class="col-md-10 hos_toggle float-right m-t-10 map-toggle-div toggle-div pad-free">
                         <div class="col-md-12">
                         <span class="error pro-1" style="margin-top:0px!important;margin-bottom:10px;" v-if="loc == true">※都道府県と市区町村をを入力してください。</span>
-                            <GoogleMap  :address="address_show" :township="hospital_info.townships_id" :lat_num='hospital_info.latitude' :lng_num='hospital_info.longitude' :city="city_id" :township_list="township_list"></GoogleMap>
+                            <GoogleMap  :address="address_show" :township="hospital_info.townships_id" :latnum='hospital_info.latitude' :lngnum='hospital_info.longitude' :city="city_id" :township_list="township_list"></GoogleMap>
                             <!-- <GoogleMap :address="hospital_info.address" :lat_num='35.6803997' :lng_num='139.76901739' v-if="hospital_info.latitude == 0"></GoogleMap> -->
 
                             <div class="form-group">
@@ -1160,6 +1160,7 @@ export default {
                     .then(response=>{
                         this.city_id = Number(response.data[0].city_id);
                         this.township_list = response.data[0].township_list;
+                        localStorage.setItem('townshiplist',JSON.stringify(this.township_list));
                     });
 
                     if(this.hospital_info.latitude == 0){
@@ -1328,9 +1329,12 @@ export default {
                 this.isRotate4 = !this.isRotate4;
             },
             Create_Profile () {    
-              if($('#new_lat').val() == "" || $('#new_long').val() == "" || $('#gmaptownship').val() == 0){
+              if($('#new_lat').val() == "" || $('#new_lat').val() == 0 || $('#new_long').val() == "" || $('#new_long').val() == 0 || $('#gmaptownship').val() == 0 ){
                     this.loc = true;
                     this.btn_disable = true;
+                    this.hospital_info.townships_id = $('#gmaptownship').val();
+                    this.city_id = $('#division').val();
+                    this.township_list = JSON.parse(localStorage.getItem("townshiplist"));
                 }
                 else{
                     this.loc = false;
@@ -1339,7 +1343,7 @@ export default {
                     this.hospital_info.longitude = $('#new_long').val();
                     this.city_id = $('#division').val();
                     this.township_list = JSON.parse(localStorage.getItem("townshiplist"));
-                    if(this.mail_focus != true && this.ph_num != true){
+                    if(this.mail_focus != true && this.ph_num != true && this.hospital_info.name != null && this.hospital_info.name != ''){
                         this.btn_disable = false;
                     }
                     else{
@@ -1372,7 +1376,10 @@ export default {
                         confirmButtonClass: "all-btn",
                         // cancelButtonClass: "all-btn",
                         allowOutsideClick: false,
-                    })                    
+                    })  
+                    this.hospital_info.townships_id = $('#gmaptownship').val();
+                    this.city_id = $('#division').val();
+                    this.township_list = JSON.parse(localStorage.getItem("townshiplist"));                  
                 } 
 
                   

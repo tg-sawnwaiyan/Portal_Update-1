@@ -246,7 +246,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                 },
                 {
                     href: `/accountlist/${this.$auth.user().type_id == 2 ? 'hospital/': 'nursing/'}${this.$auth.user().customer_id}`,
-                    title: '施設一覧' ,
+                    title: this.$auth.user().type_id == 2 ? '病院一覧': '施設一覧' ,
                     icon: 'fa fa-user',
                     disabled:this.$auth.user().recordstatus==1?false:true,
                     hidden: this.$auth.check(2),

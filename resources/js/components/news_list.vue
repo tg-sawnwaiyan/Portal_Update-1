@@ -38,13 +38,13 @@
                         </div>
                     </div>
                     
-                    <!-- <div v-if="nosearch_msg" class="container-fuid no_search_data">検索したデータ見つかりません。</div> -->
+                    <!-- <div v-if="nosearch_msg" class="container-fuid no_search_data">データが見つかりません。</div> -->
 
                     <div v-if="nosearch_msg" class="card card-default card-wrap">
                     <p class="record-ico">
                         <i class="fa fa-exclamation"></i>
                     </p>
-                     <p class="record-txt01">検索したデータ見つかりません。</p>
+                     <p class="record-txt01">データが見つかりません。</p>
                 </div> 
 
                     <div v-else class="container-fuid">
@@ -78,7 +78,7 @@
                                                 </th> 
                                             </td> -->
                                             <td style="width:auto;">
-                                                <th :class="'title'+ newsList.category_id ">
+                                                <th :class="'title'+(5-(Math.floor(newsList.category_id%5)))">
                                                     <span> {{newsList.cat_name}}</span>
                                                     <i class="fa fa-calendar-alt"></i>&nbsp;
                                                     {{newsList.created_at}}                                                    
@@ -161,7 +161,7 @@
                                                                         
                                      <h5 class="align-middle"><span v-if="newsList.category_id == 26" class="breaking-tip">PR</span>
                                         <router-link
-                                            :to="{name: 'newdetails', params:{id:newsList.id}}"
+                                            :to="{path: '/newsdetails/'+newsList.id}"
                                             class="pseudolink"
                                         >{{newsList.title}}</router-link>
                                     </h5>                                   

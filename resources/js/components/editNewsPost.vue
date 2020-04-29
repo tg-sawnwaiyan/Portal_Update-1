@@ -11,7 +11,6 @@
                 <div v-else>
                     <h4 class="page-header header">ニュース新規作成</h4>
                 </div>
-                <br>
                 <form @submit.prevent="updatepost">
                     <div class="form-group">
                         <label>題名 <span class="error sp2">必須</span></label>
@@ -126,7 +125,7 @@
                                     <p class="record-ico">
                                         <i class="fa fa-exclamation"></i>
                                     </p>
-                                    <p class="record-txt01">検索したデータ見つかりません。</p>
+                                    <p class="record-txt01">データが見つかりません。</p>
                                 </div> 
 
                                 <!-- <div class="row">

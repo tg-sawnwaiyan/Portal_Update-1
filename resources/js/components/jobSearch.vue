@@ -316,7 +316,7 @@
                       <div class="job-header">
                         <p class="search_jobid"><span>求人番号:</span>{{job.jobnum}}</p>
                         <h5 class="job-tit">
-                          <router-link :to="{name: 'job_details', params:{id:job.jobid}}">{{job.jrecord}}{{job.title}}</router-link>
+                          <router-link :to="{path:'/job_details/'+job.jobid}">{{job.jrecord}}{{job.title}}</router-link>
                           </h5>
                         <div class="clearfix">
                           <span class="job_status">{{job.employment_status}}</span>
@@ -351,7 +351,7 @@
                       </div>
                       <div class="mt-4 detail-btn">
                         <span class="btn all-btn" @click="gotoJobdetail(job.jobid)">詳細を見る</span>
-                        <!-- <router-link :to="{name: 'job_details', params:{id:job.jobid}}" class="btn all-btn">詳細を見る</router-link> -->
+                        <!-- <router-link :to="{path:'/job_details/'+job.jobid}" class="btn all-btn">詳細を見る</router-link> -->
                         </div>
                     </div>
                   </div>
@@ -570,7 +570,7 @@ export default {
     },
 
     gotoJobdetail(jid) {
-        this.$router.push({ name: 'job_details', params:{id:jid,loginuser:this.loginuser}});
+        this.$router.push({ path:'/job_details/'+jid});
     },
 
     toggleContent4() {

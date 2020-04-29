@@ -1,6 +1,6 @@
 <template>
   <div id="Profile-page">
-    <h4 v-if="login_person == 'customer' && visit == 'false'" class="header" style="background:transparent;">施設情報編集</h4>
+    <h4 v-if="login_person == 'customer' && visit == 'false'" class="header" style="background:transparent;">{{heading}}</h4>
     <button @click="$router.go(-1)" v-if="login_person == 'admin' && visit == 'false'" class="btn btn-danger all-btn submit admin-backbtn" style="float:right"><i class="fas fa-arrow-left"></i>&nbsp;戻る</button>
 
 
@@ -76,11 +76,18 @@ export default {
         l_storage_nus_fav: [],
         view_pro_id: false,
         pro_id:0,
+        heading:"",
     };
   },
   created() {    
     this.pro_id = Number(this.$route.params.id);
     this.type = this.$route.params.type;
+    if(this.type == 'hospital'){
+      this.heading = "病院情報編集";
+    }
+    else{
+      this.heading = "施設情報編集";
+    }
     
     if(this.$auth.check()){        
         if(this.$auth.user().role === 1){

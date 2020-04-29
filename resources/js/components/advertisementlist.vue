@@ -34,7 +34,7 @@
                     <p class="record-ico">
                         <i class="fa fa-exclamation"></i>
                     </p>
-                     <p class="record-txt01">検索したデータ見つかりません。</p>
+                     <p class="record-txt01">データが見つかりません。</p>
                     </div>
                     
                     <div v-else class="container-fuid">

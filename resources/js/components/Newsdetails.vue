@@ -71,8 +71,8 @@
                     {{news.title}}
                   </h4>  
                   <div class="set-date">
-                    <p :class="'title'+ news.cat_id ">
-                     <span> {{news.cat_name}}</span>
+                    <p :class="news.cat_id == 26 ? 'title26':'title'+(5-(Math.floor(news.cat_id%5)))">
+                     <span> {{news.cat_name}} </span>
                      <small style="color:#aaa;"  v-if="news.cat_name != 'PR'" >
                       <i class="fa fa-calendar-alt"></i>
                       &nbsp;&nbsp;{{news.created_at}}
@@ -93,20 +93,17 @@
                     <p class="p5 mb-2 text-justify" v-html="news.body"></p>
                   </div>
                 </div>
-                <div class="col-md-12 mt-2 related-area" v-if="news.cat_name != 'PR'" >
+                <!-- <div class="col-md-12 mt-2 related-area" v-if="news.cat_name != 'PR'" >
                   <h5 class="seemore_tit" >記事をもっと見る</h5>
                   <br />
-                  <!-- 関連ニュース -->
                
                   <div class="pad-free" v-for="latest_new in latest_news" :key="latest_new.id" style="display:inline;margin-right:10px;" >
                     <a :href="'/newsdetails/'+latest_new.id">
                       <span>{{ latest_new.main_point }} |</span>
                     </a>
-                    <!-- <router-link :to="'/newsdetails/'+ latest_new.id">
-                      <span>{{ latest_new.main_point }} |</span>
-                    </router-link> -->
+                    
                   </div>
-                </div>             
+                </div>              -->
             </div>
             <!-- <div class="related_wrap">
                 <h4 class="next-title" style="border-left: 5px solid orange;">関連ニュース</h4>
@@ -190,7 +187,6 @@ export default {
     return {
       newdetails: [],
       latest_post_all_cats: [],
-      latest_news: [],
       othersDetails: true,
       getData:false,
       noimage:false,
@@ -251,7 +247,7 @@ export default {
           this.latest_post_all_cats = response.data.related_news;
         }
       
-        this.latest_news = response.data.latest_news;
+        // this.latest_news = response.data.latest_news;
       });
     },
     changeRoute(e,tab){
