@@ -27,9 +27,9 @@
                       <span class="input-group-text"><i class="fas fa-key"></i></span>
                   </div>
                     <!-- hide password-->
-                    <input class="form-control input_pass m-l1" type="password" v-model="password" v-show="!showPass" @keyup="focusPassword"/>
+                    <input class="form-control input_pass m-l1" type="password" placeholder="パスワード" v-model="password" v-show="!showPass" @keyup="focusPassword"/>
                     <!-- show password-->
-                    <input class="form-control input_pass" type="text" v-model="password" v-show="showPass" @keyup="focusPassword"/>
+                    <input class="form-control input_pass" type="text" placeholder="パスワード" v-model="password" v-show="showPass" @keyup="focusPassword"/>
                     <span class="btn showpwd-btn" @click="showPass = !showPass">
                     <span v-show="!showPass"  class="fa fa-fw fa-eye field-icon toggle-password"></span>
                     <span v-show="showPass" class="fa fa-fw fa-eye-slash"></span>

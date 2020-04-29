@@ -16,9 +16,11 @@ import Slick from 'vue-slick'; //vue slick
 import VueAnalytics from 'vue-analytics'
 
 Vue.use(VueAnalytics, {
-    id: 'UA-164662727-1',
+    id: 'UA-161193570-2',
     router,
 })
+// id: 'UA-164662727-1',
+// id: 'UA-161193570-2',
 
 Vue.use(Slick);
 Vue.use(BulmaAccordion, BulmaAccordionItem)

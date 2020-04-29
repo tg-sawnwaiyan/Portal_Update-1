@@ -13,7 +13,7 @@ const config = {
   registerData: {url: 'api/auth/register', method: 'POST', redirect: '/login'},
   loginData: {url: 'api/auth/login', method: 'POST', redirect: '', fetchUser: true},
   loginAdminData: {url: 'api/auth/admin_login', method: 'POST', redirect: '', fetchUser: true},
-  logoutData: {url: 'api/auth/logout', method: 'POST', redirect: '/', makeRequest: true},
+  logoutData: {url: 'api/auth/logout', method: 'POST', redirect: '/login', makeRequest: true},
   fetchData: {url: 'api/auth/user', method: 'GET', enabled: true},
   refreshData: {url: 'api/auth/refresh', method: 'GET', enabled: false, interval:60}
 }

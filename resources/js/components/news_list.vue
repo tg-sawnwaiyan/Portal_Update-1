@@ -94,6 +94,7 @@
                                         <tr v-if="newsList.category_id == 26 && (newsList.to_date == null || newsList.to_date == '')">
                                             <td>
                                                 <th>
+                                                    <span v-if="newsList.category_id == 26" class="breaking-tip">PR</span>
                                                     <span><i class="fa fa-calendar-alt common-fa"></i></span>
                                                 </th>
                                                 <th>
@@ -108,6 +109,7 @@
                                         <tr v-else>
                                             <td v-if="newsList.category_id == 26">
                                                 <th>
+                                                    <span v-if="newsList.category_id == 26" class="breaking-tip">PR</span>
                                                     <span><i class="fa fa-calendar-alt common-fa"></i></span>
                                                 </th>
                                                 <th>
@@ -136,9 +138,10 @@
                                             </div>   
                                         </div>
 
-                                    <div class="row col-12 p-0 m-0 posting-per" v-if="newsList.category_id == 26 && (newsList.to_date == null || newsList.to_date == '')">                                            
+                                    <div class="row col-12 p-0 m-0 posting-per" v-if="newsList.category_id == 26 && (newsList.to_date == null || newsList.to_date == '')"> 
+                                            <span v-if="newsList.category_id == 26" class="breaking-tip">PR</span>                                           
                                             <div class="posting-firstwrap"> 
-                                                <span><i class="fa fa-calendar-alt common-fa"></i></span>                                              
+                                                <span>&nbsp;<i class="fa fa-calendar-alt common-fa"></i></span>                                              
                                                 <span>{{newsList.from_date}} ~ </span>
                                             </div>           
                                               <div class="posting-secondwrap">
@@ -146,10 +149,11 @@
                                     </div>
 
                                     <div v-else>   
-                                        <div class="row m-0 posting-per" v-if="newsList.category_id == 26">                                     
-                                         <div class="p-0 posting-firstwrap">
-                                               <span><i class="fa fa-calendar-alt common-fa"></i></span>
-                                             <span>{{newsList.from_date}} ~</span>
+                                        <div class="row m-0 posting-per" v-if="newsList.category_id == 26"> 
+                                            <span v-if="newsList.category_id == 26" class="breaking-tip">PR</span>                                    
+                                            <div class="p-0 posting-firstwrap">
+                                                <span>&nbsp;<i class="fa fa-calendar-alt common-fa"></i></span>
+                                                <span>{{newsList.from_date}} ~</span>
                                             </div>
                                             <div class="posting-secondwrap">
                                                 <span>{{newsList.to_date}}</span>
@@ -159,7 +163,7 @@
                                     </div>
                                     </div>
                                                                         
-                                     <h5 class="align-middle"><span v-if="newsList.category_id == 26" class="breaking-tip">PR</span>
+                                     <h5 class="align-middle">
                                         <router-link
                                             :to="{path: '/newsdetails/'+newsList.id}"
                                             class="pseudolink"

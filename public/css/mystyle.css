@@ -929,7 +929,7 @@ input::-ms-clear {
     border: 1px solid #2c3e505c;
     color: #fff !important;
     display: inline-block;
-    font-size: inherit;
+    font-size: 13px;
     /* line-height: 15px; */
     margin-left: 0;
     padding: 0 4px;
@@ -11867,7 +11867,7 @@ padding: 0;
 
 @media (min-width: 320px) {
     .source-img-small {
-        width: 90%;
+        width: 100%;
     }
     /* .ads-card{
 width: 18rem;
