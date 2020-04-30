@@ -181,7 +181,7 @@
 
                                                         <router-link :to="{path:'/newsdetails/'+post.id}">
 
-                                                            <img src="/images/4.png" alt="" style="width:16px; height: 16px;" class="img-responsive float-right" @error="imgUrlAlt">
+                                                            <!-- <img src="/images/4.png" alt="" style="width:16px; height: 16px;" class="img-responsive float-right" @error="imgUrlAlt"> -->
 
                                                             <span class="source-img-small d-inline-block text-truncate">{{ post.main_point }} </span>
 
@@ -247,12 +247,14 @@
                                                 </div>
 
 
-
-                                                <div class="col-md-8 col-sm-8 txt-box">
-                                                    <span v-if="item.category_id == 26" class="breaking-tip">PR</span>
+                                                <div class="col-md-8 col-sm-8 txt-box">                                                   
+                                                    
                                                     <router-link :to="'/newsdetails/'+item.id">
-                                                        <span> {{item.main_point}} </span>
+                                                        <!-- <span> {{item.main_point}} </span> -->
+                                                        <read-more more-str="" less-str="read less"  :max-chars="25" :text="item.main_point"></read-more>
                                                     </router-link>
+                                                    <span v-if="item.category_id == 26" class="breaking-tip for-read-more">PR</span>
+                                                    <span v-else :class="'title'+(5-(Math.floor(item.category_id%5)))" class=" for-read-more"><span>{{item.cname}}</span></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -301,10 +303,13 @@
 
 
                                                 <div class="col-md-8 txt-box">
-                                                    <span v-if="item.category_id == 26" class="breaking-tip">PR</span>
+                                                    
                                                     <router-link :to="'/newsdetails/'+item.id">
-                                                        <span> {{item.main_point}} </span>
-                                                    </router-link>                                                   
+                                                        <!-- <span> {{item.main_point}} </span> -->
+                                                        <read-more more-str="" less-str="read less"  :max-chars="25" :text="item.main_point"></read-more>
+                                                    </router-link>
+                                                    <span v-if="item.category_id == 26" class="breaking-tip for-read-more">PR</span>
+                                                    <span v-else :class="'title'+(5-(Math.floor(item.category_id%5)))" class=" for-read-more"><span>{{item.cname}}</span></span>                                                
 
                                                 </div>
 
@@ -362,10 +367,13 @@
 
 
                                     <div class="col-md-8 col-sm-8 txt-box">                                        
-                                        <span v-if="item.category_id == 26" class="breaking-tip">PR</span>
+                                        
                                         <router-link :to="'/newsdetails/'+item.id">
-                                            <span> {{item.main_point}} </span>
+                                            <!-- <span> {{item.main_point}} </span> -->
+                                            <read-more more-str="" less-str="read less"  :max-chars="25" :text="item.main_point"></read-more>
                                         </router-link>
+                                        <span v-if="item.category_id == 26" class="breaking-tip for-read-more">PR</span>
+                                        <span v-else :class="'title'+(5-(Math.floor(item.category_id%5)))" class=" for-read-more"><span>{{item.cname}}</span></span>
                                     </div>
 
                                 </div>
@@ -414,10 +422,13 @@
 
 
                                     <div class="col-md-8 txt-box">
-                                    <span v-if="item.category_id == 26" class="breaking-tip">PR</span>
+                                    
                                     <router-link :to="'/newsdetails/'+item.id">
-                                        <span> {{item.main_point}} </span>
+                                        <!-- <span> {{item.main_point}} </span> -->
+                                        <read-more more-str="" less-str="read less"  :max-chars="25" :text="item.main_point"></read-more>
                                     </router-link>
+                                    <span v-if="item.category_id == 26" class="breaking-tip for-read-more">PR</span>
+                                    <span v-else :class="'title'+(5-(Math.floor(item.category_id%5)))" class=" for-read-more"><span>{{item.cname}}</span></span>
 
                                     </div>
 

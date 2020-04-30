@@ -131,7 +131,7 @@ class HomeController extends Controller
         $getTime = Carbon\Carbon::now()->toDateString();
         // toDateTimeString
 
-        $query = "SELECT * from posts 
+        $query = "SELECT *,'' as cname from posts 
         where category_id = 26 and recordstatus=1 and from_date <= '".$getTime."' and 
         (CASE WHEN to_date is NULL THEN from_date <= '".$getTime."' and to_date is null ELSE from_date <= '".$getTime."' and to_date >= '".$getTime."' END) limit 16";
         $break_news = DB::select($query);
@@ -161,7 +161,7 @@ class HomeController extends Controller
         // $query = "SELECT * from posts where (category_id = 26 and (from_date <= '".$getTime."' and to_date <= '".$getTime."')) limit 16";
         // $break_news = DB::select($query);
         $limit = 16 - count($break_news);
-        $latestpost = Post::where('category_id','!=',26)->where('recordstatus',1)->orderBy('created_at', 'desc')->limit("$limit")->get()->toArray();
+        $latestpost = Post::join('categories', 'posts.category_id', '=', 'categories.id' )->select('posts.*','categories.name as cname')->where('category_id','!=',26)->where('posts.recordstatus',1)->orderBy('posts.created_at', 'desc')->limit("$limit")->get()->toArray();
 
         $merge_arr = array_merge($break_news,$latestpost);
         shuffle($merge_arr);
