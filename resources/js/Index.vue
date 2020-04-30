@@ -306,7 +306,12 @@
             if(item.title == 'ログアウト'){
                 this.loginuser = 'false';
                 localStorage.setItem('loginuser', this.loginuser);
-                this.$auth.logout();
+                if(this.$auth.check(2)){
+                    this.$auth.logoutAdmin();
+                }
+                else{
+                    this.$auth.logout();
+                }
             }
         },
         onCollapse (collapsed) {

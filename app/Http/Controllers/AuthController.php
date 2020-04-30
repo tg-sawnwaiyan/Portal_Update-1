@@ -78,9 +78,7 @@ class AuthController extends Controller
         return response()->json(auth()->user());
     }
     public function logout()
-    {   
-        
-       
+    {        
         Auth::logout();
         JWTAuth::parseToken()->invalidate();
         return response()->json([
@@ -88,7 +86,7 @@ class AuthController extends Controller
             'msg' => 'Logged out Successfully.'
         ], 200);
     }
-    
+        
     public function user(Request $request)
     {
         $user = User::find(Auth::user()->id);

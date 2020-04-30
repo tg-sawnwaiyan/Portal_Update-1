@@ -25,7 +25,7 @@
                 <span style="font-size:20px;display:block;">URLに間違いがないかご確認ください。</span>
                 </p>
                  <div class="text-center">
-                <a href="#" @click.prevent="logout()" class="gohome all-btn" style="">ホームページに戻る</a>
+                <a href="/" class="gohome all-btn" style="">ホームページに戻る</a>
                  </div>
             </div>
         </div>
@@ -45,7 +45,12 @@ export default {
         logout(){              
             this.loginuser = 'false';
             localStorage.setItem('loginuser', this.loginuser);
-            this.$auth.logout();
+            if(this.$auth.check(2)){
+                this.$auth.logoutAdmin();
+            }
+            else{
+                this.$auth.logout();
+            }
         }
     }
 }

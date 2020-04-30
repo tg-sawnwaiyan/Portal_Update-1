@@ -88,35 +88,35 @@ const routes = [
         name: 'login',
         beforeEnter: guard, 
         component: Login,
-        meta: {
-            auth: undefined
-        }
+        // meta: {
+        //     auth: undefined
+        // }
     },
     {
         path: '/admin_login',
         name: 'admin_login',
         beforeEnter: guard,
         component: Login,
-        meta: {
-            auth: undefined
-        }
+        // meta: {
+        //     auth: undefined
+        // }
     },
 
     {
         path: '/reset',
         name: 'reset',
         component: PasswordResetMail,
-        meta: {
-            auth: false
-        }
+        // meta: {
+        //     auth: false
+        // }
     },
     {
         path: '/resetpassword',
         name: 'resetpassword',
         component: PasswordResetForm,
-        meta: {
-            auth: false
-        }
+        // meta: {
+        //     auth: false
+        // }
     },
 
     {
