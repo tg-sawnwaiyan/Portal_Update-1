@@ -51,6 +51,15 @@ import NewsCategory from './components/News_Category'
 
 // import menu from './components/menu/Menu';
 
+function guard(to, from, next){
+    next();
+    if(localStorage.getItem('loginuser') == 'true') {
+        next('/'); // allow to enter route
+    } else{
+        next(); // go to '/login';
+    }
+}
+
 // Routes
 const routes = [
 
@@ -77,6 +86,7 @@ const routes = [
     {
         path: '/login',
         name: 'login',
+        beforeEnter: guard, 
         component: Login,
         meta: {
             auth: undefined
@@ -85,6 +95,7 @@ const routes = [
     {
         path: '/admin_login',
         name: 'admin_login',
+        beforeEnter: guard,
         component: Login,
         meta: {
             auth: undefined
