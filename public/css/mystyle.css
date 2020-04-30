@@ -10524,15 +10524,22 @@ padding: 11px;
     color: #636b6f;
 }
 
+.unauth-title {
+    font-size: 36px;
+    padding: 20px;
+    color: #636b6f;
+}
+
 .gohome {
-    text-decoration: none;
-    border: none;
-    padding: 7px 15px 10px 15px;
-    color: #fff;
     background: #2980b9;
     font-weight: bold;
     border-radius: 5px;
+    width: 150px;
+    height: 40px;
+    padding: 10px 12px;
+    line-height: 42px;
     font-size: 20px;
+    position: relative;
 }
 
 .gohome:hover {
@@ -11186,6 +11193,10 @@ padding: 0;
     /*create_news*/
     .title {
         font-size: 13px;
+    }
+    .unauth-title {
+        font-size: 23px;
+        padding: 10px;
     }
     .card_height {
         float: left;
