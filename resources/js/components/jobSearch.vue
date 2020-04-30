@@ -445,6 +445,7 @@ export default {
     search()
     {       
         this.count = true;
+        this.$loading(true);
       
         if(this.townshipID == null || this.townshipID == '')
         {
@@ -482,6 +483,7 @@ export default {
               empstatus:this.empstatus
           },
         }).then((response)=>{
+          this.$loading(false);
             this.job_data = response.data.job;
             this.occupations = response.data.occupations;
             this.array_len = ((this.occupations.length)%3)==0?((this.occupations.length)/3):Math.floor(((this.occupations.length)/3)+1);

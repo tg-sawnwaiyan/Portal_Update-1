@@ -184,11 +184,11 @@
                                                                 <div class="wd-in">
                                                                     <p class="mb-2 clearfix"><span class="num-room">{{items.num_rooms}} </span><span class="float-right">{{items.date_of_establishment}}</span></p>
 
-                                                                    <p class="item-fav btn btn-sm" v-if="items.fav_check == '' && loginuser=='false'" :class="'view_pro_id'+items.nursing_id" style="" @click="favAddFun('add',items.nursing_id,index);">
+                                                                    <p class="item-fav btn btn-sm" v-if="items.fav_check == '' && !$auth.check()" :class="'view_pro_id'+items.nursing_id" style="" @click="favAddFun('add',items.nursing_id,index);">
                                                                         <i class="fas fa-plus-square" style="color:#c40000;"></i> お気に入りに追加 {{items.fav_check}}
                                                                     </p>
 
-                                                                    <p class="item-fav btn btn-sm" v-if="items.fav_check == 'check' && loginuser=='false'" :class="'done_pro_id'+items.nursing_id" style="color:#aaa;" @click="favAddFun('remove',items.nursing_id,index);">
+                                                                    <p class="item-fav btn btn-sm" v-if="items.fav_check == 'check' && !$auth.check()" :class="'done_pro_id'+items.nursing_id" style="color:#aaa;" @click="favAddFun('remove',items.nursing_id,index);">
                                                                         <i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み
                                                                     </p>
                                                                     <p class="job_id1 search_jobid"><span>施設番号:{{items.profilenumber}}</span></p>
@@ -505,8 +505,8 @@
                                                     </div>
 
                                                     <div class="col-lg-3 col-sm-3 text-right pc-768">
-                                                    <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == '' && loginuser=='false'" :class="'view_pro_id'+nus.nursing_id" style="display:block;" @click="favAddFun('add',nus.nursing_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
-                                                    <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == 'check' && loginuser=='false'" :class="'done_pro_id'+nus.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',nus.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
+                                                    <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == '' && !$auth.check()" :class="'view_pro_id'+nus.nursing_id" style="display:block;" @click="favAddFun('add',nus.nursing_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
+                                                    <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == 'check' && !$auth.check()" :class="'done_pro_id'+nus.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',nus.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -589,8 +589,8 @@
                                                     </div>
                                                     <div class="col-md-6 col-sm-12 m-t-768">
                                                         <p class="sp-768">
-                                                            <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == '' && loginuser=='false'" :class="'view_pro_id'+nus.nursing_id" style="display:block;" @click="favAddFun('add',nus.nursing_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
-                                                            <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == 'check' && loginuser=='false'" :class="'done_pro_id'+nus.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',nus.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
+                                                            <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == '' && !$auth.check()" :class="'view_pro_id'+nus.nursing_id" style="display:block;" @click="favAddFun('add',nus.nursing_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
+                                                            <span class="btn fav-profile fav-item fav-color" v-if="nus.fav_check == 'check' && !$auth.check()" :class="'done_pro_id'+nus.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',nus.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                                                         </p>
                                                     </div>
                                                 </div>
@@ -1198,7 +1198,7 @@
                 var jsonfile = theCity+".json";
                 // https://t-i-s.jp
                 // https://testikportal.management-partners.co.jp/
-                this.axios.get("https://t-i-s.jp/json/cities/"+jsonfile).then(respon => {
+                this.axios.get("https://test.t-i-s.jp/json/cities/"+jsonfile).then(respon => {
                     this.coordinate = respon.data.reduce((acc, val) => acc.concat(val), []);
                     this.boundariesGoogleMap(lat,lng,this.coordinate);  
                 }); 
@@ -1207,7 +1207,7 @@
                 else{
                     var jsonfile = theCity+".json";
                     jsonfile = jsonfile.toLowerCase();
-                    this.axios.get('https://t-i-s.jp/json/Townships/'+jsonfile).then(res => {
+                    this.axios.get('https://test.t-i-s.jp/json/Townships/'+jsonfile).then(res => {
                      var township_coor = []
                      for(var i = 0; i < res.data.features.length; i++)
                      {
