@@ -540,7 +540,7 @@
 
 
 
-                                        <div class="col-8 txt-box">
+                                        <div class="col-8 pattern-txt-box">
 
                                             <p> {{item.main_point}} </p>
 
@@ -600,7 +600,7 @@
 
 
 
-                                        <div class="col-8 txt-box">
+                                        <div class="col-8 pattern-txt-box">
 
                                             <p> {{item.main_point}} </p>
 
@@ -652,7 +652,7 @@
 
 
 
-                                        <div class="col-8 txt-box">
+                                        <div class="col-8 pattern-txt-box">
 
                                             <p> {{item.main_point}} </p>
 
@@ -714,7 +714,7 @@
 
 
 
-                                        <div class="col-8 txt-box">
+                                        <div class="col-8 pattern-txt-box">
 
                                             <p> {{item.main_point}} </p>
 
@@ -809,7 +809,7 @@
 
 
 
-                                        <div class="col-8 txt-box">
+                                        <div class="col-8 pattern-txt-box">
 
                                             <p> {{item.main_point}} </p>
 
@@ -857,7 +857,7 @@
 
 
 
-                                        <div class="col-8 txt-box">
+                                        <div class="col-8 pattern-txt-box">
 
                                             <p> {{item.main_point}} </p>
 
