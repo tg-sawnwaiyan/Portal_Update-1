@@ -253,7 +253,7 @@
                                                         <!-- <span> {{item.main_point}} </span> -->
                                                         <read-more more-str="" less-str="read less"  :max-chars="25" :text="item.main_point"></read-more>
                                                     </router-link>
-                                                    <span v-if="item.category_id == 26" class="breaking-tip for-read-more">PR</span>
+                                                    <span v-if="item.category_id == 26" class="breaking-tip for-read-more" style="bottom:0px;">PR</span>
                                                     <span v-else :class="'title'+(5-(Math.floor(item.category_id%5)))" class=" for-read-more"><span>{{item.cname}}</span></span>
                                                 </div>
                                             </div>
@@ -308,7 +308,7 @@
                                                         <!-- <span> {{item.main_point}} </span> -->
                                                         <read-more more-str="" less-str="read less"  :max-chars="25" :text="item.main_point"></read-more>
                                                     </router-link>
-                                                    <span v-if="item.category_id == 26" class="breaking-tip for-read-more">PR</span>
+                                                    <span v-if="item.category_id == 26" class="breaking-tip for-read-more" style="bottom:0px;">PR</span>
                                                     <span v-else :class="'title'+(5-(Math.floor(item.category_id%5)))" class=" for-read-more"><span>{{item.cname}}</span></span>                                                
 
                                                 </div>
@@ -372,7 +372,7 @@
                                             <!-- <span> {{item.main_point}} </span> -->
                                             <read-more more-str="" less-str="read less"  :max-chars="25" :text="item.main_point"></read-more>
                                         </router-link>
-                                        <span v-if="item.category_id == 26" class="breaking-tip for-read-more">PR</span>
+                                        <span v-if="item.category_id == 26" class="breaking-tip for-read-more" style="bottom:0px;">PR</span>
                                         <span v-else :class="'title'+(5-(Math.floor(item.category_id%5)))" class=" for-read-more"><span>{{item.cname}}</span></span>
                                     </div>
 
@@ -427,7 +427,7 @@
                                         <!-- <span> {{item.main_point}} </span> -->
                                         <read-more more-str="" less-str="read less"  :max-chars="25" :text="item.main_point"></read-more>
                                     </router-link>
-                                    <span v-if="item.category_id == 26" class="breaking-tip for-read-more">PR</span>
+                                    <span v-if="item.category_id == 26" class="breaking-tip for-read-more" style="bottom:0px;">PR</span>
                                     <span v-else :class="'title'+(5-(Math.floor(item.category_id%5)))" class=" for-read-more"><span>{{item.cname}}</span></span>
 
                                     </div>
@@ -516,7 +516,7 @@
 
                                                 <transition name="fade">
 
-                                                    <img :src="'/upload/news/' + item.photo" class="fit-image-0 img-fluid"  @error="imgUrlAlt">
+                                                    <img :src="'/upload/news/' + item.photo" class="fit-image-0"  @error="imgUrlAlt">
 
                                                 </transition>
 
@@ -541,8 +541,9 @@
 
 
                                         <div class="col-8 pattern-txt-box">
+                                            <!-- <read-more more-str="" less-str=""  :max-chars="40" :text="item.main_point"></read-more> -->
 
-                                            <p> {{item.main_point}} </p>
+                                            <p>{{item.main_point}}</p>
 
                                         </div>
 
@@ -601,8 +602,9 @@
 
 
                                         <div class="col-8 pattern-txt-box">
+                                            <!-- <read-more more-str="" less-str=""  :max-chars="40" :text="item.main_point"></read-more> -->
 
-                                            <p> {{item.main_point}} </p>
+                                            <p>{{item.main_point}}</p>
 
                                         </div>
 
@@ -653,8 +655,9 @@
 
 
                                         <div class="col-8 pattern-txt-box">
+                                            <!-- <read-more more-str="" less-str=""  :max-chars="40" :text="item.main_point"></read-more> -->
 
-                                            <p> {{item.main_point}} </p>
+                                            <p>{{item.main_point}}</p>
 
                                         </div>
 
@@ -715,8 +718,9 @@
 
 
                                         <div class="col-8 pattern-txt-box">
+                                            <!-- <read-more more-str="" less-str=""  :max-chars="40" :text="item.main_point"></read-more> -->
 
-                                            <p> {{item.main_point}} </p>
+                                            <p>{{item.main_point}}</p>
 
                                         </div>
 
@@ -785,7 +789,7 @@
 
                                             <transition name="fade">
 
-                                                <img v-bind:src="'/upload/news/' + item.photo" class="fit-image-0 img-fluid" @error="imgUrlAlt">
+                                                <img v-bind:src="'/upload/news/' + item.photo" class="fit-image-0" @error="imgUrlAlt">
 
                                             </transition>
 
@@ -810,8 +814,9 @@
 
 
                                         <div class="col-8 pattern-txt-box">
+                                            <!-- <read-more more-str="" less-str=""  :max-chars="40" :text="item.main_point"></read-more> -->
 
-                                            <p> {{item.main_point}} </p>
+                                            <p>{{item.main_point}}</p>
 
                                         </div>
 
@@ -833,7 +838,7 @@
 
                                             <transition name="fade">
 
-                                                <img v-bind:src="'/upload/news/' + item.photo" class="fit-image-0 img-fluid" @error="imgUrlAlt">
+                                                <img v-bind:src="'/upload/news/' + item.photo" class="fit-image-0" @error="imgUrlAlt">
 
                                             </transition>
 
@@ -858,8 +863,9 @@
 
 
                                         <div class="col-8 pattern-txt-box">
+                                            <!-- <read-more more-str="" less-str=""  :max-chars="40" :text="item.main_point"></read-more> -->
 
-                                            <p> {{item.main_point}} </p>
+                                            <p>{{item.main_point}}</p>
 
                                         </div>
 
