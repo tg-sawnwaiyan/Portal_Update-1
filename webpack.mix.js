@@ -10,11 +10,11 @@ require('laravel-mix-bundle-analyzer');
 
 // }
 
-// if (mix.isWatching()) {
+if (mix.isWatching()) {
 
-//    mix.bundleAnalyzer();
+   mix.bundleAnalyzer();
 
-// }
+}
 
 
 

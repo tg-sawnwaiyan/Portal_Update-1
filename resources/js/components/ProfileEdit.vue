@@ -14,7 +14,7 @@
                             <h4 class="page-header header">プロフィール設定 <span v-if="!$auth.check(2) && customer_info.recordstatus != 1" style="color: red; font-size: 0.8em; margin-left: 20px; font-weight: normal;">このアカウントは現在無効となっています</span> <a v-if="$auth.check(2)" @click="$router.go(-1)" class="btn bt-red all-btn submit float-right"><i class="fas fa-arrow-left"></i>&nbsp;戻る</a></h4>
                             <br>
                         </div> -->
-                        <form class="col-md-8">
+                        <form class="col-md-8" autocomplete="off">
                             <div class="card card-default m-b-20 col-md-11">
                                 <div class="card-body">
                                     <!-- <div class="header2"> -->

@@ -3,7 +3,7 @@
         <div class="card-body">
             <h4 class="page-header header">カテゴリー編集</h4>
             <br>
-            <form @submit.prevent="updateCategory">
+            <form @submit.prevent="updateCategory" autocomplete="off">
               <div class="form-group">
                 <label>
                   カテゴリー名:

@@ -8,7 +8,7 @@
                         <div class="col-md-12">
                             <h4 class="page-header header">{{ header }}</h4>
                         </div>
-                        <form @submit.prevent="add" class="col-md-12">
+                        <form @submit.prevent="add" class="col-md-12" autocomplete="off">
                           <div class="form-group" v-if="$auth.check(2)">
                                 <div class="form-group" v-if="editcheck">
                                     <label>事業者名</label>

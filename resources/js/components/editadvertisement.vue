@@ -9,7 +9,7 @@
                             <br>
                         </div>
                         <div class="col-md-12">
-                             <form @submit.prevent="updateAds">
+                             <form @submit.prevent="updateAds" autocomplete="off">
                             <div class="form-group">
                                                 <label>広告タイトル <span class="error sp2">必須</span></label>
                                                 <input type="title" class="form-control box" id="title"  name="title" v-model="advertisement.title" placeholder="広告タイトルを入力してください。">

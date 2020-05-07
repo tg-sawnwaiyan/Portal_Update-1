@@ -4,7 +4,7 @@
         <div class="card-body">
             <h4 class="page-header header">{{ header }}</h4>
             <br>
-            <form @submit.prevent="add">
+            <form @submit.prevent="add" autocomplete="off">
                 <div class="form_group">
                     <label> 施設種別 <span class="error sp2">必須</span></label>
                     <select v-model="feature.type" name="type" class="form-control">

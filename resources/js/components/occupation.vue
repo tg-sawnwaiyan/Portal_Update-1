@@ -8,7 +8,7 @@
                     <h4 class="page-header header">{{ header }}</h4>
                 </div>
                 <div class="col-md-12">
-                    <form @submit.prevent ="add">
+                    <form @submit.prevent ="add" autocomplete="off">
                        
                         <div class="form-group">
                         <label>職種カテゴリー<span class="error sp2">必須</span></label>

@@ -17,7 +17,7 @@
                         <li class="active">2.<span>入力内容のご確認</span>確認</li>
                         <li>3.<span>送信完了</span>完了</li>
                     </ul>
-                    <form class="col-md-12 form-wrap" @submit.prevent="add" method="post">
+                    <form class="col-md-12 form-wrap" @submit.prevent="add" method="post" autocomplete="off">
                         <h4 class="form-tit">資料請求される方について</h4>
                         <div class="mb-5">
                             <p class="require-txt">

@@ -8,7 +8,7 @@
               <h4 class="page-header header">{{ header }}</h4>
             </div>
             <div class="col-md-12">
-              <form @submit.prevent="add">
+              <form @submit.prevent="add" autocomplete="off">
                 <div class="form-group">
                   <label>
                     事業者の種類 :

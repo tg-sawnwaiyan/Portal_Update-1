@@ -11,7 +11,7 @@
                                     <li class="no-active">2.<span>内容のご</span>確認</li>
                                     <li>3.<span>送信</span>完了</li>
                                 </ul>
-                                <form  class="m-t-16 sendEmail comform comment">
+                                <form  class="m-t-16 sendEmail comform comment" autocomplete="off">
                                         <div class="form-group row">
                                             <div class="col-sm-4 text-left">
                                                 <label for ="title"  ><strong> 口コミタイトル &nbsp;<span class="error sp1">必須</span></strong>   </label>
@@ -105,7 +105,7 @@
                                     <li class="active">2.<span>内容のご</span>確認</li>
                                     <li>3.<span>送信</span>完了</li>
                                 </ul>
-                                <form @submit.prevent ="add" class="m-t-16 sendEmail comform comment"  method="post" >
+                                <form @submit.prevent ="add" class="m-t-16 sendEmail comform comment"  method="post" autocomplete="off">
                                         <div class="form-group row">
                                             <div class="col-sm-4 text-left">
                                                 <label for ="title"  ><strong> 口コミタイトル </strong>   </label>

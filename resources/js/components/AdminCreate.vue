@@ -8,7 +8,7 @@
                 </div>
                 
                 <div class="col-md-12">
-                    <form @submit.prevent="add">                       
+                    <form @submit.prevent="add" autocomplete="off">                       
                                 <div class="row">
                                     <div class="col-md-12 m-t-8">
                                         <div class="form-group">

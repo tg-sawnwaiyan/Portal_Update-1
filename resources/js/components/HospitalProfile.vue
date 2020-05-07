@@ -1,6 +1,6 @@
 <template>
   <div class="card profile m-t-22 " style="border:none;">
-    <form class="col-md-12 form-class pad-free-750">
+    <form class="col-md-12 form-class pad-free-750" autocomplete="off">
         <div class="col-md-12 pad-free">
             <div class="row">             
                <div class="col-lg-4 col-md-5">

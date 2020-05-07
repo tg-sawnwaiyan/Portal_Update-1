@@ -39,7 +39,7 @@
         </div>
         <div class="row m-0">
 
-            <form class="col-md-12 pad-free" id="fav-hospital-page">
+            <form class="col-md-12 pad-free" id="fav-hospital-page" autocomplete="off">
                 <div class="col-12"  id="fav-history-page">
                     <div class="justify-content-lg-center">
                         <div>

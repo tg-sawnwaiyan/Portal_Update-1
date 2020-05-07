@@ -1,7 +1,7 @@
 <template>
     <div class="card profile m-t-22 " style="border:none;">
         <!-- <span style="position:fixed;right:50px;" class="btn secondary-bg-color all-btn" @click="createProfile()">作成</span> -->
-        <form class="col-md-12 form-class pad-free-750">
+        <form class="col-md-12 form-class pad-free-750" autocomplete="off">
             <div class="col-md-12 pad-free">
                 <button v-scroll-to="{ el: '#btn'}" id="btn_click" hidden></button>
                     <div class="row ">

@@ -24,7 +24,7 @@
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                                     </div>
-                                   <input type="text" class="form-control" name="name" v-model="username"  placeholder="事業者名を入力してください。" @keyup="focusName">
+                                   <input type="text" autocomplete="off" class="form-control" name="name" v-model="username"  placeholder="事業者名を入力してください。" @keyup="focusName">
                                     <span v-if="errors.username" class="error">{{errors.username}}</span>
                                 </div>
                             </div>
@@ -37,7 +37,7 @@
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" name="email" v-model="email"  placeholder="メールアドレスを入力してください。"  @keyup="focusMail"> 
+                                    <input type="text" autocomplete="off" class="form-control" name="email" v-model="email"  placeholder="メールアドレスを入力してください。"  @keyup="focusMail"> 
                                     <span v-if="errors.email" class="error">{{errors.email}}</span>
                                 </div>
                             </div>
@@ -50,7 +50,7 @@
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fas fa-key"></i></span>
                                     </div>
-                                    <input type="password" class="form-control" name="password" @keyup="password_validate()" v-model="password" id="pwd"  placeholder="パスワードを入力してください。">
+                                    <input type="password" autocomplete="off" class="form-control" name="password" @keyup="password_validate()" v-model="password" id="pwd"  placeholder="パスワードを入力してください。">
                                     <span v-if="errors.password" class="error">{{errors.password}}</span>
                                 </div>
                             </div>
@@ -63,7 +63,7 @@
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fas fa-key"></i></span>
                                     </div>
-                                    <input type="password" class="form-control" name="comfirm_password" id="confirm_pwd" @keyup="password_validate()" v-model="password_confirmation"  placeholder="パスワードをもう一度入カしてください。">
+                                    <input type="password" autocomplete="off" class="form-control" name="comfirm_password" id="confirm_pwd" @keyup="password_validate()" v-model="password_confirmation"  placeholder="パスワードをもう一度入カしてください。">
                                     <span v-if="errors.password" class="error">{{errors.password}}</span>
                                 </div>
                             </div>

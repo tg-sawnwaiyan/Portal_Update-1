@@ -23,7 +23,7 @@
                         <li>3.<span>送信完了</span>完了</li>
                     </ul>
                     <!--inputform-->
-                    <form class="col-md-12 form-wrap">
+                    <form class="col-md-12 form-wrap" autocomplete="off">
                         <h4 class="form-tit">資料請求される方について</h4>
                         <!-- <h4 class="nursing-info">資料請求される方について</h4> -->
                         <p class="require-txt"><span class="error sp1" style="margin-left:0px;">必須</span> のついた項目は全て入力してくださいますようお願いいたします。</p>

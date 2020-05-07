@@ -26,7 +26,7 @@
           <li>3.<span>送信</span>完了</li>
         </ul>
 <!-- test date-picker -->
-    <form class="col-md-12 form-wrap p-0">
+    <form class="col-md-12 form-wrap p-0" autocomplete="off">
         <div class="form-group m-0 row bd">
 
             <div class="col-md-3 col-sm-12 form-left">
@@ -244,7 +244,7 @@
           <li class="active">2.<span>内容のご</span>確認</li>
           <li>3.<span>送信</span>完了</li>
         </ul>
-        <form class="col-md-12 form-wrap p-0">
+        <form class="col-md-12 form-wrap p-0" autocomplete="off">
           <div class="form-group m-0 row bd">
             <div class="col-sm-3 form-left">
               <label for="first_name">

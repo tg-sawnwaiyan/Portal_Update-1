@@ -11,10 +11,10 @@
                 <div v-else>
                     <h4 class="page-header header">ニュース新規作成</h4>
                 </div>
-                <form @submit.prevent="updatepost">
+                <form @submit.prevent="updatepost" autocomplete="off">
                     <div class="form-group">
                         <label>題名 <span class="error sp2">必須</span></label>
-                        <input type="text" class="form-control" placeholder="題名を入力してください。" v-model="news.title">
+                        <input type="text" autocomplete="off" class="form-control" placeholder="題名を入力してください。" v-model="news.title">
                         <span v-if="errors.title" class="error">{{errors.title}}</span>
                     </div>
 
@@ -50,7 +50,7 @@
                  
                     <div class="form-group">
                         <label>内容要約 <span class="error sp2">必須</span></label>
-                        <input type="text" class="form-control" placeholder="ニュースの内容要約を入力してください。" v-model="news.main_point">
+                        <input type="text" autocomplete="off" class="form-control" placeholder="ニュースの内容要約を入力してください。" v-model="news.main_point">
                         <span v-if="errors.main_point" class="error">{{errors.main_point}}</span>
                     </div>
                     <div class="form-group">
@@ -98,7 +98,7 @@
                                         </select>
                                     </div>
                                     <div class="search_box">
-                                        <input type="text" placeholder="関連ニュース検索" aria-label="search" id="search-word" class="form-control form_search" v-model="search_word"  @keyup='getSearchPostsByCatId()'>
+                                        <input type="text" autocomplete="off" placeholder="関連ニュース検索" aria-label="search" id="search-word" class="form-control form_search" v-model="search_word"  @keyup='getSearchPostsByCatId()'>
                                     </div>
                                 </div>
                                 <br>
