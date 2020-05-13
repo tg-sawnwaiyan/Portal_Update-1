@@ -52,77 +52,7 @@
                                 <!-- <span v-if="errors.description" class="error">{{errors.description}}</span> -->
                                  <!-- <span v-if="errors.includes('description')" class="error">題名は必須です。(description)</span> -->
                                 <span v-if="errors.description" class="error">{{errors.description}}</span>
-                            </div>
-
-                            <!-- <div class="form-group row">
-                <div class="col-sm-3">
-                  <label for="title">
-                    <strong>
-                      施設種別
-                      <span class="error sp2">必須</span>
-                    </strong>
-                  </label>
-                </div>
-
-                <div class="col-sm-9">
-                  <input
-                    type="title"
-                    class="form-control box"
-                    id="title"
-                    name="title"
-                    v-model="joboffer.title"
-                  />
-                  <div class="mt-1">
-                    <span v-if="errors.title" class="error">{{errors.title[0]}}</span>
-                  </div>
-                </div>
-              </div>-->
-
-                            <!-- <div class="form-group row">
-                <div class="col-sm-3">
-                  <label for="description">
-                    <strong>
-                      仕事内容
-                      <span class="error sp2">必須</span>
-                    </strong>
-                  </label>
-                </div>
-
-                <div class="col-sm-9">
-                  <textarea
-                    name="description"
-                    class="form-control"
-                    cols="50"
-                    rows="5"
-                    v-model="joboffer.description"
-                  ></textarea>
-                  <div class="mt-1">
-                    <span v-if="errors.description" class="error">{{errors.description[0]}}</span>
-                  </div>
-                </div>
-              </div>-->
-<!-- ---------------------------------------------------------------------- -->
-                            <!-- <div class="form-group">
-                                <label for="description" class="mt-2">
-                                    経験・スキル:
-                                    <a class="btn btn-sm main-bg-color all-btn white mb-2 ml-4" @click="addRow">
-                                        <i class="fas fa-plus-circle"></i> 新スキルを追加
-                                    </a>
-                                </label>
-                                <div class="mb-5">
-                                    <div class="form-group row sk" id="newlinktpl" v-for="(field,id) in joboffer.fields" :key="id">
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" v-model="field.skills" placeholder="経験・スキルを入力してください。" />
-                                          
-                                        </div>
-
-                                        <div class="col-sm-3">
-                                            <a class="text-danger" style="cursor: pointer;" @click="delRow(id)">削除</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="newlink"></div>
-                            </div> -->
+                            </div>                         
 
 
                               <div class="form-group">
@@ -136,43 +66,6 @@
                              
                             </div>
 
-
-
-                         
-<!-- --------------------------------------------------------------------------- -->
-
-                            <!-- <div class="mb-1 row">
-                <div class="col-sm-3">
-                  <label for="skill">
-                    <strong>経験・スキル</strong>
-                  </label>
-                </div>
-                <div class="col-sm-9">
-                  <a class="btn btn-sm main-bg-color all-btn white mb-2" @click="addRow">
-                    <i class="fas fa-plus-circle"></i> 新スキルを追加
-                  </a>
-                </div>
-              </div>
-              <div class="mb-5">
-                <div
-                  class="form-group row sk"
-                  id="newlinktpl"
-                  v-for="(field,id) in joboffer.fields"
-                  :key="id"
-                >
-                  <div class="col-sm-3"></div>
-
-                  <div class="col-sm-7">
-                    <input type="text" class="form-control" v-model="field.skills" />
-
-                  </div>
-
-                  <div class="col-sm-2">
-                    <a class="text-danger" style="cursor: pointer;" @click="delRow(id)">削除</a>
-                  </div>
-                </div>
-              </div>
-              <div id="newlink"></div>-->
                             <div class="form-group">
                                 <label for="location">
                                     郵便番号 
@@ -208,9 +101,7 @@
                                   </select>
                               
                                   
-                                  <!-- <input type="text" class="form-control box" v-model="joboffer.pref" placeholder="都道府県を入力してください。" /> -->
-                                  <!-- <span v-if="errors.pref" class="error">{{errors.pref}}</span> -->
-                                  <!-- <span v-if="errors.includes('pref')" class="error">題名は必須です。(pref)</span> -->
+                                
                                   <span v-if="errors.pref" class="error">{{errors.pref}}</span>
                                 </div>
                                 <div class="col-md-6">
@@ -245,50 +136,7 @@
                                  <span v-if="errors.location" class="error">{{errors.location}}</span>
                                  <!-- <span v-if="errors.includes('location')" class="error">題名は必須です。(location)</span> -->
 
-                            </div>
-
-                            <!-- <div class="form-group row">
-                <div class="col-sm-3">
-                  <label for="勤務地">
-                    <strong>
-                      勤務地
-                      <span class="error sp2">必須</span>
-                    </strong>
-                  </label>
-                </div>
-
-                <div class="col-sm-9">
-                  <textarea
-                    name="location"
-                    class="form-control"
-                    cols="50"
-                    rows="5"
-                    v-model="joboffer.location"
-                  ></textarea>
-                  <div class="mt-1">
-                    <span v-if="errors.location" class="error">{{errors.location[0]}}</span>
-                  </div>
-                </div>
-              </div>-->
-
-                            <!-- <div class="form-group row">
-                <div class="col-sm-3">
-                  <label for="neareststation">
-                    <strong>最寄り駅</strong>
-                  </label>
-                </div>
-
-                <div class="col-sm-9">
-                  <textarea
-                    name="neareststation"
-                    class="form-control"
-                    cols="50"
-                    rows="5"
-                    v-model="joboffer.nearest_station"
-                    placeholder="最寄り駅を入力してください。"
-                  ></textarea>
-                </div>
-              </div>-->
+                            </div>                           
 
                             <div class="form-group">
                                 <label for="neareststation">最寄り駅</label>
@@ -318,51 +166,7 @@
                                 </label>
                             </div>
 
-                            <!-- <div class="form-group row">
-                <div class="col-sm-3">
-                  <label for="neareststation">
-                    <strong>雇用形態</strong>
-                  </label>
-                </div>
-
-                <div class="col-sm-9">
-                  <label>
-                    <input
-                      type="radio"
-                      value="ContractEmployee"
-                      v-model="joboffer.employmentstatus"
-                    />
-                    <strong>契約社員</strong>
-                  </label>
-
-                  <label>
-                    <input type="radio" value="Part" v-model="joboffer.employmentstatus" />
-                    <strong>非常勤</strong>
-                  </label>
-
-                  <label>
-                    <input type="radio" value="Full" v-model="joboffer.employmentstatus" />
-                    <strong>正職員</strong>
-                  </label>
-
-                  <label>
-                    <input type="radio" value="Other" v-model="joboffer.employmentstatus" />
-                    <strong>その他</strong>
-                  </label>
-                </div>
-              </div>-->
-
-                            <!-- <div class="form-group row">
-                <div class="col-sm-3"></div>
-
-                <div class="col-sm-9">
-                  <span
-                    v-if="errors.employment_status"
-                    class="error"
-                  >{{errors.employment_status[0]}}</span>
-                </div>
-              </div>-->
-
+                        
                             <div class="form-group">
                                 <label for="salary">職種</label>
                                 <span class="error sp2">必須</span>
@@ -379,21 +183,7 @@
                                     <span class="error sp2">必須</span>
                                 </label>
                                 <div class="row m-0">
-                                  <!-- <div class="col-sm-4 pl-0 col-12 joboffer-salary-type">
-                                    <select v-model="joboffer.salary_type" class="form-control">
-                                        <option v-bind:value='-1'>選択 </option>
-                                        <option value='時給'>時給</option>
-                                        <option value="日給">日給</option>
-                                        <option value="月給">月給</option>
-                                    </select>
-                                      <p v-if="errors.salary_type" class="error">{{errors.salary_type}}</p>
-                                    </div> -->
-                                       <!-- <span v-if="errors.includes('salary_type')" class="error">題名は必須です。(salary_type)</span> -->
-                                    <!-- <div class="col-sm-4 col-12 joboffer-salary">
-                                      <input type="text" class="form-control" v-model="joboffer.salary" name="salary" placeholder="給与を入力してください。" v-on:keydown="isNumber" />
-                                      <p v-if="errors.salary" class="error">{{errors.salary}}</p>
-                                    </div> -->
-
+                                 
                                     <div class="ml-0 joboffer-salary col-6" style="padding-left:0px;">
                                       <input type="text" class="form-control" v-model="joboffer.salary" name="salary" placeholder="給与を入力してください。"/>
                                       <p v-if="errors.salary" class="error">{{errors.salary}}</p>
@@ -408,23 +198,7 @@
                                 <textarea name="salary_remark" class="form-control" cols="50" rows="5" v-model="joboffer.salary_remark" placeholder="給料備考を入力してください。"></textarea>
                             </div>
 
-                            <!-- <div class="form-group row">
-                <div class="col-sm-3">
-                  <label for="salary">
-                    <strong>
-                      給与
-                      <span class="error sp2">必須</span>
-                    </strong>
-                  </label>
-                </div>
-
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" v-model="joboffer.salary" name="salary" />
-                  <div class="mt-2">
-                    <span v-if="errors.salary" class="error">{{errors.salary[0]}}</span>
-                  </div>
-                </div>
-              </div>-->
+                            
 
                             <div class="form-group">
                                 <label for="allowance">諸手当</label>
@@ -925,52 +699,7 @@ import Autocomplete from 'vuejs-auto-complete'
                 getParent: function() {
                   this.joboffer.occupation_id = this.selectedValue;
                 },
-            //      add() {
-            //      if(this.errors.length ==0)
-            //     {
-            //       // this.$swal({
-            //       //       title: "確認",
-            //       //       text: "更新よろしいでしょうか。",
-            //       //       type: "info",
-            //       //       width: 350,
-            //       //       height: 200,
-            //       //       showCancelButton: true,
-            //       //       confirmButtonColor: "#6cb2eb",
-            //       //       cancelButtonColor: "#b1abab",
-            //       //       cancelButtonTextColor: "#000",
-            //       //       confirmButtonText: "更新",
-            //       //       cancelButtonText: "キャンセル",
-            //       //       confirmButtonClass:  "all-btn",
-            //       //       cancelButtonClass: "all-btn"
-            //       //   }).then(response => {
-            //         console.log("add fun no error");
-            //         this.axios.post("/api/job/add", this.joboffer)
-            //         .then(response => {
-            //         this.name = ''
-            //         // console.log(response);
-            //         this.$swal({
-            //         position: 'top-end',
-            //         type: 'success',
-            //         title: '作成されました',
-            //         confirmButtonText: "はい",
-            //         confirmButtonColor: "#6cb2eb",
-
-            //         width: 250,
-            //         height: 200,
-            //         })
-            //         // alert('Successfully Created')
-            //         this.$router.push({name: 'jobofferlist'});
-            //         }).catch(error=>{
-
-            //             if(error.response.status == 422){
-
-            //                 this.errors = error.response.data.errors
-
-            //             }
-            //         })
-            // // })
-            //     }
-            // },
+           
 
                 addRow: function() {
                     this.joboffer.fields.push({
@@ -998,68 +727,7 @@ import Autocomplete from 'vuejs-auto-complete'
                     }
                 },
 
-                // isNumber: function(event) {
-                //     if (!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105) && event.keyCode != 8 && event.keyCode != 46 && !(event.keyCode >= 37 && event.keyCode <= 40)) {
-                //         event.preventDefault();
-                //     }
-                // },
-
-                // onBlurNumber(e) {
-                //   this.joboffer.salary = this.thousandSeprator(this.joboffer.salary);
-                // },
-                // thousandSeprator(amount) {
-                //   if (amount !== '' || amount !== undefined || amount !== 0 || amount !== '0' || amount !== null) {
-                //       return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                //   } else {
-                //       return amount;
-                //   }
-                // },
-
-                // my_function (event) {
-                // 	// const char = String.fromCharCode(event.keyCode);
-                // 	// if (!/[0-9]/.test(char)) {
-                //   // 	event.preventDefault();
-                //   // }
-
-                //   var keyCode = event.key;
-                //   if ( (keyCode != 8 || keyCode ==32 ) && (keyCode < 48 || keyCode > 57)) {
-                //     console.log(keyCode);
-                //     return false;
-                //   }
-                // },
-                // createCheck: function(check) {
-
-                //     this.joboffer.employment_status.shift()
-
-                //     if (check == "Full") {
-
-                //         this.joboffer.employment_status.push({
-
-                //             fchecked: 1,
-
-                //         });
-
-                //     } else if (check == "Part") {
-
-                //         this.joboffer.employment_status.push({
-
-                //             pchecked: 1,
-
-                //         });
-
-                //     } else {
-
-                //         this.joboffer.employment_status.push({
-
-                //             fchecked: 1,
-
-                //             pchecked: 1
-
-                //         });
-
-                //     }
-
-                // },
+              
 
                 updateJob() {
                         this.$swal({

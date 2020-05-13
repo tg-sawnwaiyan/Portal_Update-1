@@ -26,46 +26,9 @@
         <div class="justify-content-md-center scrolldiv2">
           <div class="col-md-12 pad-free">
             <div class="row m-lr-0 mb-3" v-for="news in newdetails" :key="news.id">
-              <!-- <div class="col-md-12">
-                <h4 class="h_4 header">{{newdetails.title}}</h4>
-                <p class="set-date">
-                  <small style="color:#aaa;">
-                    <i class="fa fa-calendar-alt"></i>
-                    &nbsp;&nbsp;{{newdetails.created_at}}
-                  </small>
-                </p>
-              </div>
-              <div class="col-md-8">
-                <p class="p5">{{newdetails.body}}</p>
-              </div>
-              <div class="col-md-4 mt-2 related-area">
-                <img
-                  :src="'/upload/news/'+ newdetails.photo"
-                  class="img-responsive img_2 news_photo"
-                />
-                <p class="img_2">
-                  {{newdetails.main_point}}
-                  <br />
-
-                </p>
-                <p class="img_2 header" style="font-size:22px;">もっと記事を見る</p>
-
-                <div
-                  class="col-sm-12 pad-free"
-                  v-for="latest_new in latest_news"
-                  :key="latest_new.id"
-                >
-                  <router-link :to="'/newsdetails/'+ latest_new.id">
-                    <span>{{ latest_new.main_point }}</span>
-                  </router-link>
-                </div>
-              </div>-->  
+             
                 <div class="col-md-12" >
-                  <!-- <h4 :class="news.cat_name == 'PR'?'bnews-header':'header news_detail_tit'">                  
-                    <span v-if="news.cat_name == 'PR'" class="font-weight-bold breaking-news-tip"> {{news.cat_name}}</span>
-                      <span :class="news.cat_name == 'PR'?'b-l':''"></span>  
-                    <span>{{news.title}}</span>
-                  </h4>    -->
+                  
                   <h4 class="header news_detail_tit">                  
                     <!-- <span class="breaking-news-tip"> {{news.cat_name}}</span>                      -->
                     {{news.title}}
@@ -93,50 +56,9 @@
                     <p class="p5 mb-2 text-justify" v-html="news.body"></p>
                   </div>
                 </div>
-                <!-- <div class="col-md-12 mt-2 related-area" v-if="news.cat_name != 'PR'" >
-                  <h5 class="seemore_tit" >記事をもっと見る</h5>
-                  <br />
-               
-                  <div class="pad-free" v-for="latest_new in latest_news" :key="latest_new.id" style="display:inline;margin-right:10px;" >
-                    <a :href="'/newsdetails/'+latest_new.id">
-                      <span>{{ latest_new.main_point }} |</span>
-                    </a>
-                    
-                  </div>
-                </div>              -->
+                
             </div>
-            <!-- <div class="related_wrap">
-                <h4 class="next-title" style="border-left: 5px solid orange;">関連ニュース</h4>
-                <div class="related_content">
-                  <div class="related_box clearfix" v-for="latest_post_all_cat in latest_post_all_cats"
-                    :key="latest_post_all_cat.id">
-                      <router-link :to="'/newsdetails/'+ latest_post_all_cat.id">
-                      <div class="hovereffect" style="cursor:pointer;">
-                        <img class="fit-image"
-                          v-bind:src="'/upload/news/' + latest_post_all_cat.photo"
-                          alt="img"
-                          @error="imgUrlAlt"
-                        />
-                        <div class="overlay">
-                          <span class="btn btn-sm all-btn secondary-bg-color m-t-20">詳細</span>
-                        </div>
-                        <div class="info">
-                            <p>{{ latest_post_all_cat.main_point }}</p>
-                        </div>              
-                      </div>
-                    </router-link>
-                  </div>
-                </div>
-            </div> -->
-            <!-- {{latest_post_all_cats}} -->
-            <!-- <div v-for="latest_post_all_cat in latest_post_all_cats" :key="latest_post_all_cat.id">
-            <div v-if="latest_post_all_cats">
-                  <h2> if wrapper</h2>
-            </div>
-            <div v-else>
-                <h2> else wrapper</h2>
-            </div>
-            </div> -->
+            
           <section v-for="news in newdetails" :key="news.id">
           <div v-if="news.cat_name != 'PR'">
             <div class="row col-md-12 m-lr-0 m-t-15" v-if="latest_post_all_cats.length > 0">   
@@ -227,20 +149,9 @@ export default {
      
       event.target.src = "/images/noimage.jpg"
     },
-    // getLatestPostFromAllCat: function() {
-    //         this.axios
-    //         .get(`/api/get_latest_post_all_cat`)
-    //         .then(response => {
-    //                 //console.log(response);
-    //                 //this.latest_post_all_cats = response.data;
-    //         });
-    // },
+    
     relatedNews: function(pid) {
-      // this.axios
-      // .get(`/api/newsdetailsrelated/${id}`).then(response => {
-      //     console.log(response);
-      //     this.latest_post_all_cats= response.data;
-      // });
+     
       this.axios.get(`/api/relatednews/${pid}`).then(response => {
         if(response.data.related_news != null)
         {

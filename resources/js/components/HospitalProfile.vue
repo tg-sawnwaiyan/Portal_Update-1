@@ -49,26 +49,7 @@
                 <textarea name="congestion" class="form-control col-md-10 col-12  hos-768 congestion white-bg-color" v-model="hospital_info.congestion"></textarea>
             </div>
 
-        <!-- <div class="form-group">
-                <label>フォトアルバム<span class="error">*</span></label>
-                <input type="file" class="" value="Upload Photo" id="upload_file" @change="preview_image();" multiple>
-                <div class="col-md-12">
-                        <div class="row" id="image_preview"></div>
-                </div>
-        </div>-->       
-
-        <!-- <div class="form-group form-group-wrapper row ml-0 mr-0">
-          <label class="heading-lbl col-2 pad-free">
-            診療科目
-            <span class="error">*</span>
-          </label>
-          <textarea
-            name="medicaldepartment"
-            class="form-control col-10 white-bg-color subject"
-            v-model="hospital_info.subject"
-          ></textarea>
-        </div> -->
-
+        
         <!-- test -->        
         <table class="table table-bordered table-wrapper">
             <tr>
@@ -732,198 +713,13 @@
           </tr>
         </table>
 
-        <!-- <div class="form-group form-group-wrapper">
-          <label class="heading-lbl">地図</label>
-          <span
-            class="btn all-btn main-bg-color m-l-10"
-            style="min-width: 0px;"
-            @click="maptogglediv()"
-          >
-            <i class="fas fa-sort-down"></i>
-          </span>
-          <div class="map-toggle-div toggle-div">
-            <div class="col-md-12">
-              <GoogleMap></GoogleMap>
-            </div>
-            <div class="form-group">
-              <label>
-                郵便番号
-                <span class="error">*</span>
-              </label>
-              <input
-                type="text"
-                v-model="this.postal"
-                name="postal"
-                class="postal form-control"
-                id="postal"
-                v-on:keyup="getPostal"
-                placeholder="郵便番号を入力してください。"
-                maxlength="7"
-              />
-              <div id="jsErrorMessage"></div>
-            </div>
-            <div class="form-group">
-              <label>
-                市区町村、番地（建物名）:
-                <span class="error sp1">必須</span>
-              </label>
-              <input
-                type="text"
-                id="city"
-                name="city"
-                class="city form-control"
-                placeholder="市区町村、番地を入力してください。"
-                v-model="this.city"
-        />-->
-
-        <!-- <span v-if="errors.city" class="error">{{errors.city[0]}}</span> -->
-
-        <!-- <input type="text" class="form-control" id="city" placeholder="市区町村、番地を入力してください。" v-model="zipStreet"> -->
-
-        <!-- <p>例）東京都千代田区丸の内1-9-1 グラントウキョウノースタワー40階</p>
-            </div>
-            <div class="form-group">
-              <label>
-                住所
-                <span class="error">*</span>
-              </label>
-              <textarea
-                name="address"
-                rows="10"
-                class="form-control customer-address"
-                v-model="hospital_info.address"
-              ></textarea>
-            </div>
-            <div class="form-group">
-              <label>
-                交通 / アクセス
-                <span class="error">*</span>
-              </label>
-              <textarea
-                name="access"
-                rows="10"
-                class="form-control access"
-                v-model="hospital_info.access"
-              ></textarea>
-            </div>
-          </div>
-        </div>-->
-
-
-
-        <!-- <table class="table table-bordered table-wrapper">
-
-          <tr>
-
-            <td>
-
-              <label class="heading-lbl col-2 pad-free">地図</label>
-
-              <span
-
-                class="btn all-btn main-bg-color"
-
-                style="min-width: 0px;"
-
-                @click="maptogglediv()"
-
-              >
-
-                <i class="fas fa-sort-down animate" :class="{rotate:isRotate5}"></i>
-
-              </span>
-
-              <div class="col-md-10 float-right m-t-10 map-toggle-div toggle-div pad-free">
-
-                <div class="col-md-12">
-
-                    <GoogleMap :address="hospital_info.address" :lat_num='nursing_info.latitude' :lng_num='nursing_info.longitude' v-if="nursing_info.latitude != 0"></GoogleMap>
-                    <GoogleMap :address="hospital_info.address" :lat_num='35.6803997' :lng_num='139.76901739' v-if="nursing_info.latitude == 0"></GoogleMap>
-
-
-
-                  <div class="form-group">
-
-                    <label>
-                      交通 / アクセス
-
-                      <span class="error">*</span>
-
-                    </label>
-
-                    <textarea
-
-                      name="access"
-
-                      rows="10"
-
-                      class="form-control access white-bg-color"
-
-                      v-model="hospital_info.access"
-
-                    ></textarea>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-            </td>
-
-          </tr>
-
-        </table> -->
-        <!-- Test Station Area -->
-        <!-- <table class="table table-bordered table-wrapper">
-                <tr>
-                        <td>
-                                <div class="form-group">
-                                        <label  class="heading-lbl col-2 pad-free">駅</label>
-                                        <span class="btn all-btn main-bg-color" style="min-width: 0px;" @click="StationAdd()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate4}"></i></span>
-                                        <div class="col-md-10 float-right station-toggle-div toggle-div m-t-10">
-                                                <div class="row">
-                                                        <div v-for="stat in station_list" :key="stat.id" class="col-md-3 m-b-20">
-                                                                <label>
-                                                                        <input type="checkbox"  name="station" v-bind:value="stat.id" @click="stationCheck(stat.id)" v-model="stat.checked">
-                                                                        {{stat.name}}
-                                                                </label>
-                                                        </div>
-                                                </div>
-                                        </div>
-                                </div>
-                        </td>
-                </tr>
-        </table> -->
-        <!-- End Test Station Area -->
-
         <div class="form-group form-group-wrapper">
           <label class="headinglbl col-6 col-lg-2 pad-free">フォトアルバム</label>          
            <span class='changeGalleryLink bg-trans btn dropdown-arrow nursing_toggle_responsive' @click="toggleEvent('photo','6')">
               詳細 <i id="gallery" class="fas fa-sort-down" :class="{'rotate': isRotate6}"></i>
             </span>
 
-          <!-- <div id="changeGalleryLink" class="col-md-12">
-                <div class="row" id ="gallery-photo">
-                        <div class="col-md-6 gallery-area-photo" v-bind:id="'photo'+indx" v-for="(img,indx) in img_arr" :key="img.id">
-                                <div class="col-md-12">
-                                        <input type="file" name="" class="hospital-photo m-b-10" v-bind:class="img.id" id="upload_img" @change="preview_image(img.id,indx)">
-                                        <div class="col-md-12 m-b-10" v-bind:class="img.id">
-                                                <input type="hidden" class="already-photo" v-model="img.photo">
-                                                <img :src="'/upload/hospital_profile/'+ img.photo" class="img-fluid" alt="profile" v-if="img.photo" v-bind:id="'already-photo'+indx" @error="imgUrlAlt">
-                                        </div>
-                                </div>
-                                <div class="col-md-12">
-                                        <input type="text" name="title" placeholder="タイトル" class="form-control m-b-15 title white-bg-color" v-model="img.title">
-                                        <textarea name="description" placeholder="コンテンツ" class="form-control m-b-15 description white-bg-color" v-model="img.description"></textarea>
-                                </div>
-                                <div class="col-md-12 text-right">
-                                        <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,'photo')"> <i class="fa fa-trash"></i> 削除</a>
-                                </div>
-                        </div>
-                </div>
-          </div> -->
-
+          
         <div id="changeGalleryLink" class="row col-12 m-0 photo-toggle-div pad-free">
           <div class="col-12 col-lg-12 float-right p-0">
             <span class="galleryadd btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px;" @click="galleryAdd()">
@@ -934,13 +730,7 @@
             
               <div class="col-md-6 gallery-area-photo p0-990" v-bind:id="'photo'+indx" v-for="(img,indx) in img_arr" :key="img.id" >
                     <div class="col-md-12">
-                          <!-- <input type="file" name class="hospital-photo m-b-15 p-t-10"  v-bind:class="'classname'+indx" id="upload_img" @change="preview_image($event,indx)" />  
-                        <div class="col-md-12" v-bind:class="img.id">
-                            <input type="hidden" class="already-photo" v-model="img.photo" />
-                            <div>
-                            <img v-bind:src="img.src" class="img-fluid hospital-image" alt="profile" v-if="img.src != null" @error="imgUrlAlt"/>
-                            </div>
-                        </div> -->
+                          
                          <span class="btn-file d-inline-block">画像を選択        
                           <input type="file" name="" accept="image/*" class="hospital-photo" v-bind:class="img.classname" id="upload_img" @change="preview_image($event,indx)">
                           </span> 
@@ -1533,19 +1323,7 @@ export default {
                 }
                 }
             },
-            //   isNumberOnly: function(event) {
-            //   var input_data = $('#phone').val();
-            //   var code = 0;
-            //   code = input_data.charCodeAt();
-
-            //   if((48 <= code && code <= 57) && (this.hospital_info.phone.length >= 10 && this.hospital_info.phone.length <= 14)){
-            //       this.ph_num = false;
-            //       this.ph_length = false;
-            //   }else{
-            //       this.ph_num = true;
-            //       this.ph_length = true;
-            //   }
-            // },
+            
             focusPhone(){
 
                 if(this.hospital_info.phone != '')
@@ -1569,16 +1347,7 @@ export default {
                 
                     this.ph_length = false;
                 }
-                //   var input_data = $('#phone').val();
-                //   if(input_data.length == 0 || (input_data.length >= 10 && input_data.length <= 14 && input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-'))
-                //   {
-                //       this.ph_num = false;
-                //       this.ph_length = false;
-                //   }
-                //   else{
-                //       this.ph_num = true;
-                //       this.ph_length = true;
-                //   }
+                
                  }
             },
 

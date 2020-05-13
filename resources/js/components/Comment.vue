@@ -200,13 +200,7 @@
 export default {
           data() {
             return {
-                errors: {
-                    title: "",
-                    email: "",
-                    name:"",
-                    comment:"",
-                    phonamene: ""
-                },
+                errors: { title: "", email: "", name:"", comment:"", phonamene: "" },
 
                 comments: {
                         type:'confirm',

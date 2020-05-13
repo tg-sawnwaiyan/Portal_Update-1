@@ -743,6 +743,7 @@ export default {
                 this.axios
                 .get('/api/nursinginfo/'+this.pro_id)
                 .then(response=>{
+                    console.log(response.data)
                   
                     this.nursing_info = response.data;
                       this.address_show = this.nursing_info.address;

@@ -496,13 +496,6 @@ import {quillEditor} from 'vue-quill-editor'
                         }
                         var cat_id = this.category_id_1;
                         
-                        // if(this.search_word == '') {
-                        //     var search_word = this.search_word;
-                        // }  else {
-                        //     var search_word = $('#search-word').val();
-                        // }
-                        // console.log("this.search_words",this.search_word);
-
                         let fd = new FormData();
                         fd.append("search_word", this.search_word);
                         fd.append("selected_category", cat_id);

@@ -13,44 +13,14 @@
                 <div v-else class="container-fuid">
                     <h4 class="main-color mb-3">口コミ検索</h4>
                     <div class="row mb-4">
-                        <!-- <div class="col-md-6"> -->
-                            <!-- <select  v-model="profileid" class="division form-control"  @change="getComment()">
-                                <option value="0">選択してください。</option>
-                                <option  id="search-item" v-for="pro in profilelist" :key="pro.id" v-bind:value="pro.id">
-                                    {{pro.name}}
-                                </option>
-                            </select> -->
-                            <!-- <label>事業者名</label>
-                            <autocomplete id="cusname"  placeholder="事業者名を検索" input-class="form-control" :source=customerList :results-display="formattedDisplay" @clear="cleartext()"  @selected="getSelected($event)">
-                            </autocomplete> -->
-                        <!-- </div> -->
-                 
+                                         
                         <div class="col-md-12 choose-item">
-                    
-                             <autocomplete id="cusname"  placeholder="施設名で検索" input-class="form-control" :source=profileList :results-display="formattedDisplay" @clear="cleartext()"   @selected="getProfile($event)">
+                            <autocomplete id="cusname"  placeholder="施設名で検索" input-class="form-control" :source=profileList :results-display="formattedDisplay" @clear="cleartext()"   @selected="getProfile($event)">
                             </autocomplete> 
-                            <!-- <label>施設名</label>
-                         
-                            <select v-model="selectedValue" class="division form-control" @change="getComment()">
-                                <option value="0">選択してください。</option>
-                                <option v-for="profile in profileList" :key="profile.id" v-bind:value="profile.id">
-                                    {{profile.name}}
-                                </option>
-                            </select> -->
-                              
                         </div>
                     </div>
                     <hr />
-                     <!-- <div class="form-group" >
-                        Search with profile name
-                        <select  v-model="profileid" class="division form-control"  @change="getComment()">
-                                <option value="0">選択してください。</option>
-                                <option  id="search-item" v-for="pro in profilelist" :key="pro.id" v-bind:value="pro.id">
-                                    {{pro.name}}
-                                </option>
-                        </select>
-                     </div> -->
-                        
+                                             
                     <h5 class="header">{{title}}</h5>
                     
                     <!-- <div v-if="nosearch_msg" class="container-fuid no_search_data">データが見つかりません。</div> -->
@@ -90,33 +60,7 @@
                                             <span class="pc-414-inline">: &nbsp;</span>{{comment.title}} </div>
                                     </div>
                                     
-                                    <!-- <table class="commentlist_tbl">
-                                        <tr>
-                                            <td class="align-top custom_title font-weight-bold">事業者名 </td><td class="pc-414">:</td>
-                                            <td> {{comment.cus_name}} </td>
-                                        </tr>
-                                         <tr>
-                                            <td class="align-top custom_title font-weight-bold">施設名 </td><td class="pc-414">:</td>
-                                            <td> {{comment.pro_name}} </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="align-top custom_title font-weight-bold">タイトル </td><td class="pc-414">:</td>
-                                            <td> {{comment.title}} </td>
-                                        </tr> -->
-                                        <!-- <tr>
-                                            <td colspan="3" class="align-top custom_title"><span style="text-align:right;color:#777;font-size:0.9em;"><span><i class="fa fa-calendar"></i>&nbsp;{{comment.created_date | moment("YYYY年MM月DD日") }}</span> <span><i class="fa fa-clock"></i>&nbsp;{{comment.created_time}} 投稿</span></span></td>
-                                            <td> {{comment.title}} </td> 
-                                        </tr> -->
-                                        <!-- <tr>
-                                            <td class="align-top custom_title">お名前 :</td>
-                                            <td> {{comment.name}} </td>
-                                        </tr> -->    
-                                            <!-- <tr>
-                                            <td class="align-top custom_title">メールアドレス: </td>
-                                            <td> {{comment.email}} </td>
-                                        </tr> -->
-                                    <!-- </table> -->
-                                                                    
+                                                                                                        
                                 </div>
 
                                 <div class="col-12 col-md-2 col-xl-3 text-right cmt3 pc-414">
@@ -169,35 +113,7 @@
                                 </div>
                           <!--comment-->
                         </div>
-                        <!--don't-->
-                        <!-- <div class="collapse card-body commentContainer" :id="'changeLink' + comment.id">
-                            <div class="commentWrap">
-
-                                <div class="d-flex ">
-                                    <p class="comment-underline comment-title p-b-0">{{comment.name}} <span style="font-size:12px;color:#a7a2a2ee;">
-                                        |&nbsp;{{comment.email}}|&nbsp;
-                                        <span v-if="comment.year != '' && comment.year != null">{{comment.year}} 年生まれ</span>
-                                        </span>  
-                                     <p class="comment-date">
-                                        <i class="fa fa-star" aria-hidden="true"></i> {{comment.zipcode}}<span class="ml-2">
-                                        <i class="fa fa-calendar" aria-hidden="true"></i> {{comment.created_date | moment("YYYY年MM月DD日") }}投稿 
-                                        </span>
-                                        <span class="ml-2">
-                                        <i class="fa fa-clock" aria-hidden="true"></i> {{comment.created_time}}
-                                        </span>
-                                    </p>
-
-                                </div>
-                          
-                            </div> 
-                               --> 
-                                <!-- <div name="exp[]" class="col-md-12 p-0"><p style="color:#736e6e;">{{comment.comment}}</p></div> -->
-                                <!-- <div  class="col-md-12 m-t-20"><p style="color:#736e6e;">{{comment.email}}</p></div> -->
-                                <!-- <div  class="col-md-12 m-t-20"><p style="color:#736e6e;">{{comment.year}}</p></div> -->
-                                <!-- <div  class="col-md-12 m-t-20" v-if="comment.zipcode"><span class="text-orange"><span class="job_ico">★</span></span><p style="color:#736e6e;">{{comment.zipcode}}</p></div> -->
-                              
-                        <!-- </div> -->
-                         
+                                                
                     </div>
                 </div>
                 <!-- <pagination :data="comments" @pagination-change-page="searchcomment"></pagination> -->
@@ -349,22 +265,7 @@
                     this.getComment();
                 },
     
-                // getSelected(event){
-                  
-                //     if(this.type == "nursing"){
-                //         this.table_name.profile = 'nursing_profiles';
-                //     }else {
-                //         this.table_name.profile = 'hospital_profiles';
-                //     }
-                   
-
-                //     this.cusid = event.value;
-                //     this.axios.post(`/api/job/profileList/${this.cusid}`,this.table_name).then(response=> {
-                //     this.profileList = response.data;
-                //     this.selectedValue = 0;
-                   
-                // });
-                // },
+                
                 deleteComment(id) {
                         this.$swal({
                             // title: "確認",

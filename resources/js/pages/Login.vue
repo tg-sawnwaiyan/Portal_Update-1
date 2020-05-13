@@ -48,62 +48,7 @@
       </div>
     </div>
   </div>
-  <!-- <div class="loginwrapper">
-		<div class="d-flex justify-content-center h-100">
-        <div class="user_card" id="altrole">
-            <div class="links login_top">
-             <router-link to="/register" class="ml-auto text login_1">登録</router-link>
-              <a href="/" class="mr-auto text-white login_2">ホーム</a>
-            </div>
-
-            <div class="d-flex justify-content-center">
-              <div class="brand_logo_container logo_bk">
-                <img src="/images/login.png" class="brand_logo" alt="logo">
-              </div>
-            </div>
-            <div class="d-flex justify-content-center">
-              <div class="row width">
-                <div class="col-12 m-t-80">
-                  <div class="user_name">{{name}}</div>
-                <form autocomplete="off" @submit.prevent="login" method="post">
-                  <div class="m-b-20 loginposition">
-                    <div class="input-group ">
-                        <div class="input-group-append">
-                            <span class="input-group-text"><i class="fas fa-user"></i></span>
-                        </div>
-                      <input type="text" id="email" class="form-control input_user" placeholder="ユーザー名" v-model="email"  autofocus @keyup="focusMail"> 
-                    </div>
-                     <span v-if="errors.email" class="error"><small>{{errors.email}}</small></span>
-                  </div>
-                   <div class="m-b-20 loginposition">
-                      <div class="input-group ">
-                          <div class="input-group-append">
-                              <span class="input-group-text"><i class="fas fa-key"></i></span>
-                          </div>
-                          <input type="password" class="form-control input_pass" name="password" value=""  id="password" v-model="password" placeholder="パスワード" @keyup="focusPassword" >
-                        
-                      </div>
-                      <span v-if="errors.password" class="error"><small>{{errors.password}}</small></span>
-                   </div>
-                    <span class="alert alert-danger" v-if="has_error">パスワードが間違っています。</span>
-
-                    <div class="d-flex justify-content-center mt-3">
-                      <button type="submit" name="button" id="getUser" :class="btn_color">ログイン</button>
-                    </div>
-                </form>
-                <div class="mt-4">
-                  <div class="d-flex justify-content-center links">
-                    <span>
-                        <router-link :to="{name: 'reset'}" class="nav-link pad-free">パスワードをお忘れですか？</router-link>
-                    </span>
-                  </div>
-                </div>
-                </div>
-              </div>
-            </div>
-        </div>
-    </div>
-  </div> -->
+  
 
 </template>
 <script>

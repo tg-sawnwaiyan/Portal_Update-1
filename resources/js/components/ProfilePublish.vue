@@ -860,7 +860,7 @@
 
                            </GmapMap>
 
-                            <div class="m-t-20"  v-for="m in google" :key="m.id" >
+                            <div class="m-t-20"  v-for="m in nus_pro" :key="m.id" >
                                 <table border="1" class="table table-bordered map_tbl">
                                     <tbody>
                                     <tr>
@@ -1259,7 +1259,7 @@
 
                 </div>
               
-                <div  class="col-12 m-t-20 pad-free-750" v-for="m in google" :key="m.id" >
+                <div  class="col-12 m-t-20 pad-free-750" v-for="m in hospitals" :key="m.id" >
                              <table border="1" class="table table-bordered map_tbl" >
                                     <tbody>
                                     <tr>
@@ -1673,10 +1673,10 @@ export default {
             //     this.customer = response.data;
             // });
             this.axios.get('/api/profile/nursing/'+this.pro_id) .then(response => {
-              
+            //   console.log("test address",response.data);
                 this.profilenumber = response.data.profilenumber[0]['profilenumber'];
                 this.nus_pro = response.data.nurselatlong;
-                this.google = response.data.nurselatlong;
+                // this.google = response.data.nurselatlong;
                
                 if(!this.$auth.check()){
                     this.show_comment = true;
@@ -1698,14 +1698,12 @@ export default {
                 this.address = response.data.address;
 
                 
-                if(this.nus_pro[0]['address'] == null){
-                        this.nus_pro[0]['address'] = '';
-                }
+                // if(this.nus_pro[0]['address'] == null){
+                //         this.nus_pro[0]['address'] = '';
+                // }
 
                 this.nus_pro[0]['address'] = this.address[0]['city_name'] + this.address[0]['township_name'] +this.nus_pro[0]['address'];
-
-                this.google[0]['address'] = this.address[0]['city_name'] + this.address[0]['township_name'] +this.nus_pro[0]['address'];
-                
+                // this.google[0]['address'] = this.address[0]['city_name'] + this.address[0]['township_name'] +this.nus_pro[0]['address'];
                 this.nusfacilities = response.data.facility;
 
                 this.nursing_profiles = response.data.nurselatlong[0]['feature'];
@@ -1730,7 +1728,6 @@ export default {
                 this.center['lng'] = response.data.nurselatlong[0]['longitude'];
 
                 this.images = response.data.images;
-                console.log("images",this.images)
                 if(this.images.length == 1){
                     if(this.images[0]['photo'] != null){
                         for(var i=0; i<this.images.length; i++){
@@ -1808,7 +1805,7 @@ export default {
             // });
             this.axios.get('/api/profile/hospital/'+this.pro_id).then(response => {    
                 this.profilenumber = response.data.profilenumber[0]['profilenumber'];                  
-                this.google = response.data.hospital;
+                // this.google = response.data.hospital;
                 this.address = response.data.address;
                 this.hospitals = response.data.hospital;
                 
@@ -1831,7 +1828,7 @@ export default {
                 }
 
                 this.hospitals[0]['address'] = this.address[0]['city_name'] + this.address[0]['township_name'] +this.hospitals[0]['address'];
-                this.google[0]['address'] = this.address[0]['city_name'] + this.address[0]['township_name'] +this.hospitals[0]['address'];
+                // this.google[0]['address'] = this.address[0]['city_name'] + this.address[0]['township_name'] +this.hospitals[0]['address'];
                 this.hosfacilities=response.data.facility_list;
                 this.fac_list = response.data.facility;
                 this.markers[0]['position']['lat']  = response.data.hospital[0]['latitude'];
@@ -1839,7 +1836,7 @@ export default {
                 this.center['lat'] = response.data.hospital[0]['latitude'];
                 this.center['lng'] = response.data.hospital[0]['longitude'];
                 this.images = response.data.images;
-                console.log("images",this.images)
+                // console.log("images",this.images)
                 if(this.images.length == 1){
                     if(this.images[0]['photo'] != null){
                         for(var i=0; i<this.images.length; i++){

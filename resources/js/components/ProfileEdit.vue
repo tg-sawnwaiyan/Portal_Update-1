@@ -23,30 +23,7 @@
                                 </div>
                             </div>
                             <!--card-->
-                            <!-- <div class="card card-default m-b-20 col-md-11">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-12 m-t-8">
-                                            <div class="header2">
-                                                <h5 class=" clearfix">顧客ロゴ</h5>
-                                            </div>
-                                            <div class="form-group mg">
-                                                <div>
-                                                    <img :src="logo" id="thumbnil" class="profile_logo m-b-8" alt="Logo"  @error="imgUrlAlt" width="200px" >
-                                                    <br>
-                                                    <input type="file" name="" class="customer-logo m-b-10" id="customer-logo" @change="preview_image(this)">
-
-                                                </div>
-                                                <div class="">
-                                                    <span class="btn main-bg-color white all-btn"  @click="profileChange()">
-                                                        変更
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
+                           
                             <!--card-->
 
                             <!--card-->

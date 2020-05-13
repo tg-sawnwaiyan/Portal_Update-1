@@ -48,12 +48,7 @@ export default {
 </script>
 
 <style>
-    /* .hospital-tabColor .nav-link {
-        background: #63b7ff !important;
-        color: #fff;
-        border-right: 1px solid #fff;
-        border-bottom: 0px;
-    } */
+    
     .hospital-tabColor li.subtab3 > .router-link-active{
         background: #fff!important;
         color: #63b7ff !important;

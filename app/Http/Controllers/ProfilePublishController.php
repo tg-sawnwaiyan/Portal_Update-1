@@ -97,8 +97,8 @@ class ProfilePublishController extends Controller
         //                      ->where('nursing_profiles.id','=',$cusid)->get();
         $nurselatlong = NursingProfile::where('id',$cusid)->get(); 
 
-        $query  = "SELECT cities.city_name,townships.township_name from townships join cities where townships.id =".$nurselatlong[0]->townships_id;
-        $address = DB::select($query);
+        $addquery  = "SELECT cities.city_name,townships.township_name from townships inner join cities on townships.city_id=cities.id where townships.id =".$nurselatlong[0]->townships_id;
+        $address = DB::select($addquery);
 
         //for image slide show
         $logo = NursingProfile::where('id',$cusid)->select('logo as photo')->get()->toArray(); // to change

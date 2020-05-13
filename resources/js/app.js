@@ -124,9 +124,10 @@ window.events = new Vue();
 Vue.use(VueClazyLoad)
     // Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
+// AIzaSyC-2U_IRuSrajQavHadFp8FlXNi61MA3nw
 Vue.use(VueGoogleMaps, {
     load: {
-        key: "AIzaSyC-2U_IRuSrajQavHadFp8FlXNi61MA3nw",
+        key: "AIzaSyCLpN6Z5g0gMqpj6fLDpkpzdUPPDzcwoqo",
     }
 });
 // Set Vue globally

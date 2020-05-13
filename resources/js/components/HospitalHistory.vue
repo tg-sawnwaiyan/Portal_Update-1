@@ -162,24 +162,7 @@
                                                         </dl>
                                                     </td>
                                                 </tr>
-                                                <!-- <tr>
-                                                        <td v-for="hos_profile in hos_profiles" :key="hos_profile.id">
-                                                            <dl>
-                                                                <dt class="text-left">専門医</dt>
-                                                                <dd class="profile_wd text-left m-l-10" v-if="hos_profile.specialist != null">{{hos_profile.specialist}}</dd>
-                                                                <dd v-else>-</dd>
-                                                            </dl>
-                                                        </td>
-                                                    </tr>
-                                                <tr>
-                                                    <td v-for="hos_profile in hos_profiles" :key="hos_profile.id">
-                                                        <dl>
-                                                            <dt class="text-left">医療部</dt>
-                                                            <dd class="profile_wd text-left m-l-10">{{hos_profile.medical_department}}</dd>
-                                                        </dl>
-                                                    </td>
-                                                </tr> -->
-                                                
+                                                                                              
                                             </table>
 
                                         </div>

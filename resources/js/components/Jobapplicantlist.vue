@@ -73,23 +73,7 @@
                                     <div class="col-xl-11 col-lg-10 col-md-8"><span class="pc-414-inline">: &nbsp;</span>{{jobapply.last_name}}</div>
                                 </div>
                               
-                                <!-- <div class="row">
-                                    <div class="col-12">
-                                        <div class="joboffer-tit clearfix">
-                                        <p><span class="font-weight-bold">お名前:&nbsp;</span>
-                                        {{jobapply.first_name}}
-                                        </p>
-                                        </div>
-                                    </div>                                    
-                                </div> -->
-                                <!-- <div class="row">
-                                    <div class="col-12">
-                                        <div class="joboffer-tit clearfix">
-                                             <p><span class="font-weight-bold">フリガナ:&nbsp;
-                                                </span>{{jobapply.last_name}} </p>
-                                        </div>
-                                    </div>
-                                </div> -->
+                                
                                <!-- <p><span class="font-weight-bold">メールアドレス:&nbsp;</span><span>{{jobapply.email}}</span></p> -->
                                 
                                 <div class="collapse" :id="'changeLink' + jobapply.id">                                    
@@ -128,52 +112,7 @@
                             </div>
                         </div>
 
-                    <!-- <div class="container-fuid scroll_responsive">
-                        <table class="table table-hover custom-table">
-                            <thead>
-                                <tr>
-                                    <th>姓</th>
-
-                                    <th>名</th>
-
-                                    <th>生年月日</th>
-
-                                    <th>性別</th>
-
-                                    <th>郵便番号 </th>
-
-                                    <th>街路住所</th> -->
-
-                                    <!-- <th>自宅住所</th> -->
-
-                                    <!-- <th>電話番号</th>
-
-                                    <th style="width:115px;">メールアドレス</th>
-                                </tr>
-                            </thead>
-                            <tbody> -->
-                                <!-- <tr  v-for="jobapply in jobapplies.data" :key="jobapply.id">
-                                    <td>{{jobapply.first_name}}</td>
-
-                                    <td>{{jobapply.last_name}}</td>
-
-                                    <td>{{jobapply.birtdday}}</td>
-
-                                    <td>{{jobapply.gender}}</td>
-
-                                    <td>{{jobapply.postal}}</td>
-
-                                    <td>{{jobapply.street_address}}</td> -->
-
-                                    <!-- <td>{{jobapply.home_address}}</td> -->
-
-                                    <!-- <td>{{jobapply.phone}}</td>
-
-                                    <td>{{jobapply.email}}</td>
-                                </tr>
-                            </tbody>
-                        </table> -->
-                    <!-- </div> -->
+                   
                     <!-- <pagination :data="jobapplies" @pagination-change-page="searchApplicantList"></pagination> -->
                     <pagination :data="jobapplies" @pagination-change-page="searchApplicantList" :limit="limitpc" class="mt-3">
                         <span slot="prev-nav"><i class="fas fa-angle-left"></i> 前へ</span>
@@ -297,15 +236,6 @@ export default {
                    
                 }
                
-                
-                // this.norecord = this.jobapplies.data.length;
-              
-            
-                // if (this.norecord > this.size) {
-                //     this.pagination = true;
-                // } else {
-                //     this.pagination = false;
-                // }
             });
         },
 

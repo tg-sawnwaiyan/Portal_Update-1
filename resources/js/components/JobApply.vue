@@ -327,16 +327,7 @@
               <span class="pl-4">{{ jobApply.str_address }}</span>
             </div>
           </div>
-          <!-- <div class="form-group m-0 row bd">
-            <div class="col-sm-3 form-left">
-              <label for="home_address">
-                <strong>番地以下</strong>
-              </label>
-            </div>
-            <div class="col-md-9 col-sm-12 form-right">
-              <span class="pl-4">{{ jobApply.home_address }}</span>
-            </div>
-          </div> -->
+          
           <div class="form-group m-0 row bd">
             <div class="col-sm-3 form-left">
               <label for="phone">
@@ -357,16 +348,7 @@
               <span class="pl-4">{{ jobApply.email }}</span>
             </div>
           </div>
-          <!-- <div class="form-group m-0 row bd">
-            <div class="col-sm-3">
-              <label for="skill">
-                <strong>スキル</strong>
-              </label>
-            </div>f
-            <div class="col-md-9 col-sm-12 form-right">
-              <span class="pl-4">{{ jobApply.skill }}</span>
-            </div>
-          </div> -->
+          
           <div class="form-group m-0 row bd-all">
             <div class="col-sm-3 form-left">
               <label for="remark">
@@ -387,10 +369,7 @@
             <div class="col-sm-2 col-md-2"></div>
           </div>
 
-          <!-- <div class="text-center mt-4 pb-5 form-group row pc-m-0-10">
-            <span class="btn btn-danger white all-btn width17 pc-m-r-10" @click="editUserInfo()">入力画面へ戻る</span>
-            <span class="btn main-bg-color white all-btn width17" @click="apply()">応募する</span>
-          </div> -->
+          
           <br />
           <!-- <div v-if="success" class="alert alert-success mt-3">Apply sent!</div> -->
 
@@ -601,36 +580,7 @@ export default {
     },
     checkValidate() {
 
-    //   if (this.jobApply.first_name) {
-    //     this.errors.first_name = "";
-    //   } else {
-    //     this.errors.first_name = "お名前は必須です。";
-    //   }
-    //   if (this.jobApply.last_name) {
-    //     this.errors.last_name = "";
-    //   } else {
-    //     this.errors.last_name = "フリガナは必須です。";
-    //   }
-    //   if (this.jobApply.str_address) {
-    //     this.errors.str_address = "";
-    //   } else {
-    //     this.errors.str_address = "電話番号は必須です。";
-    //   }
-    //   if (this.jobApply.phone) {
-    //     this.errors.phone = "";
-    //   } else {
-    //     this.errors.phone = "電話番号は必須です。";
-    //   }
-    //   if (this.jobApply.email) {
-    //     this.errors.email = "";
-    //   } else {
-    //     this.errors.email = "メールアドレスは必須です。";
-    //   }
-    //   if (this.jobApply.terms) {
-    //     this.errors.terms = "";
-    //   } else {
-    //     this.errors.terms = "「同意する」にチェックは必須です。";
-    //   }
+    
       if (
         !this.errors.first_name &&
         !this.errors.first_name &&
@@ -702,50 +652,7 @@ export default {
 
                 this.aggreBtn();
 
-        // var input_data = this.jobApply.phone;
-        // if(((e.keyCode  >= 48 && e.keyCode  <= 57) || (e.keyCode  >= 96 && e.keyCode  <= 105) || (e.keyCode  == 8) || (e.keyCode  == 35) || (e.keyCode  == 36) || (e.keyCode  == 37) || (e.keyCode  == 39) || (e.keyCode  == 46) || (e.keyCode  == 109) || (e.keyCode  == 189)) && input_data.charAt(0) != '-' && !input_data.includes('--'))
-        // {
-        //     this.correctVal = input_data;
-        //     if(input_data.length >= 10 && input_data.length < 14 && input_data.charAt(input_data.length -1 ) != '-'){
-        //       this.ph_error = false;
-        //       this.ph_length = false;
-        //       this.aggreBtn(); 
-        //     }
-        //     else{
-        //       if(input_data.length == 0){
-        //         this.ph_error = false;
-        //         this.ph_length = false;
-        //         this.aggreBtn(); 
-        //       }
-        //       else{
-        //             this.ph_error = true;
-        //             this.btn_disable = true;
-        //       }
-              
-        //     }
-        // }
-        // else{
-        //     this.jobApply.phone = this.correctVal;
-        //     if(this.jobApply.phone.length >= 10 && this.jobApply.phone.length < 14 && this.jobApply.phone.charAt(this.jobApply.phone.length -1 ) != '-'){
-        //       this.ph_length = false;
-        //       this.ph_error = false;
-        //       this.aggreBtn(); 
-        //     }
-        //     else{
-        //         if(this.jobApply.phone.length == 0){
-        //             this.ph_error = false;
-        //             this.ph_length = false;
-        //             this.aggreBtn(); 
-        //         }
-        //         else{
-        //             this.ph_length = true;
-        //             this.ph_error = false;
-        //             this.btn_disable = true;
-        //         }
-              
-        //     }
-        // }
-     
+            
     },
     
     focusMail: function(event) {

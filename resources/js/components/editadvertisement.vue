@@ -24,20 +24,7 @@
                                 <input type="link" class="form-control box" id="link"  name="link" v-model="advertisement.link" placeholder="広告リンクを入力してください。">
                                 <span v-if="errors.link" class="error">{{errors.link}}</span>
                             </div>
-                            <!-- <div class="form-group">
-                                     <label>表示するロケーション : <span class="error">*</span></label><br/>
-                                <div class="col-sm-9" v-for="advertisements in advertisement.location" :key="advertisements.id">
-                                    <label class="form-check-label control control--checkbox">
-                                        <input type = "checkbox" value ="topbar" id="tbar" name="top_bar" v-model="advertisements.topbars"> <strong>トップバー </strong> (240px*120px 300円)
-                                        <div class="control__indicator"></div>
-                                        </label><br/>
-                                    <label class="form-check-label control control--checkbox">
-                                        <input type = "checkbox"  value ="sidebar" id="sbar" name="side_bar" v-model="advertisements.sidebars" ><strong> サイドバー </strong>(167px*100px 200円)
-                                        <div class="control__indicator"></div>
-                                    </label>
-                                
-                                </div>
-                            </div> -->
+                            
                             <div class="form-group" id="showimage">
                                 <label>写真 <span class="error sp2">必須</span></label><br/>
                                 <div class="d-flex align-items-center">
@@ -188,27 +175,7 @@ export default {
                         }
                 }); 
             },
-            // updateCheck: function (check){
-            //     this.advertisement.location.shift()
-            //    if(check == "topbar"){
-            //      this.advertisement.location.push({
-            //         topbars: 1,
-            //         sidebars:0
-            //     });
-            //    }
-            //    else if(check == "sidebar"){
-            //         this.advertisement.location.push({
-            //             topbars: 0,
-            //             sidebars:1
-            //         });
-            //    }
-            //    else{
-            //         this.advertisement.location.push({
-            //             topbars: 1,
-            //             sidebars:1
-            //         });
-            //     }
-            // },
+            
             uploadImage() {
                 
                 $('.image_preview').html("<div class='col-md-2'><img src='" + URL.createObjectURL(event.target.files[0]) + "' class='show-img'></div>");
@@ -238,21 +205,7 @@ export default {
                         this.errors = [];
                         let adsData = new FormData();
                         this.advertisement.location = "topbar";
-                        // for(var i=0;i<arr.length;i++)
-                        // {
-                        //     if(arr[i]['topbars'] == 1 && arr[i]['sidebars'] == 0)
-                        //     {
-                        //         adsData.append('location', 'topbar');
-                        //     }
-                        //     else if(arr[i]['sidebars'] == 1 && arr[i]['topbars'] == 0)
-                        //     {
-                        //         adsData.append('location', 'sidebar');
-                        //     }
-                        //     else if(arr[i]['sidebars'] == 1 && arr[i]['topbars'] == 1)
-                        //     {
-                        //         adsData.append('location', 'sidebar,topbar');
-                        //     }
-                        // }
+                        
                         adsData.append('location',this.advertisement.location)
                         adsData.append('title',this.advertisement.title)
                         adsData.append('description',this.advertisement.description)
