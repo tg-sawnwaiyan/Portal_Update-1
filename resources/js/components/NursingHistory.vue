@@ -37,7 +37,7 @@
                         <div class="modal-body">
                            
                             <GmapMap id="googlemap" ref="map" :center="center" :zoom="10">
-                                <GmapMarker v-for="(m, index) in markers" :key="index" :position="m.position" :clickable="true" :draggable="true" @click="center=m.position" />
+                                <GmapMarker v-for="(m, index) in markers" :key="index" :position="m.position" :clickable="true" :draggable="false" @click="center=m.position" />
                             </GmapMap>
                         </div>
                         <div class="modal-body">
