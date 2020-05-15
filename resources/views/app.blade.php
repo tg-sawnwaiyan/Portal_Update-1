@@ -121,12 +121,7 @@
 
 <!-- <script src="/js/app.js" type="text/javascript"></script> -->
 <!-- <script src="{{ asset('js/map-api.js') }}"></script> -->
-<!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDh0MSZcj7IfA4NJiXrgebtauW_o-q2t8M"></script> -->
 
-<!-- Real map -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2U_IRuSrajQavHadFp8FlXNi61MA3nw"></script>
-<!-- Test map -->
-<!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLpN6Z5g0gMqpj6fLDpkpzdUPPDzcwoqo&callback=initMap"></script> -->
 
 <!-- <script src="http://maps.google.com/maps/api/js"></script> -->
 <!-- <script src="{{ asset('js/vue2-5-13.js') }}"></script>
