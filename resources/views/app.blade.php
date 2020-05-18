@@ -119,10 +119,6 @@
   <index ></index>
 </div>
 
-<!-- <script src="/js/app.js" type="text/javascript"></script> -->
-<!-- <script src="{{ asset('js/map-api.js') }}"></script> -->
-
-
 <!-- <script src="http://maps.google.com/maps/api/js"></script> -->
 <!-- <script src="{{ asset('js/vue2-5-13.js') }}"></script>
 <script src="{{ asset('js/vue-scrollto.js') }}"></script> -->
