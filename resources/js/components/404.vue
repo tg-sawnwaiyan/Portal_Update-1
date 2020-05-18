@@ -39,16 +39,16 @@ export default {
                 // location.reload();
             }
         },
-        logout(){              
-            this.loginuser = 'false';
-            localStorage.setItem('loginuser', this.loginuser);
-            if(this.$auth.check(2)){
-                this.$auth.logoutAdmin();
-            }
-            else{
-                this.$auth.logout();
-            }
-        }
+        // logout(){              
+        //     this.loginuser = 'false';
+        //     localStorage.setItem('loginuser', this.loginuser);
+        //     if(this.$auth.check(2)){
+        //         this.$auth.logoutAdmin();
+        //     }
+        //     else{
+        //         this.$auth.logout();
+        //     }
+        // }
     }
 }
 </script>

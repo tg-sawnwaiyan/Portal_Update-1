@@ -32,20 +32,22 @@
 
 <script>
 export default {
-    methods:{
-        created(){
-            this.$loading(false);
-            if(this.$route.params.reload){
-                // location.reload();
-            }
-        },
+    created(){
+        this.$loading(false);
+        if(this.$route.params.reload){
+            // location.reload();
+        }
+    },
+    methods:{        
         logout(){              
             this.loginuser = 'false';
             localStorage.setItem('loginuser', this.loginuser);
-            if(this.$auth.check(2)){
+            if(this.logintoken == 'admin'){
+                this.logintoken = '';
                 this.$auth.logoutAdmin();
             }
             else{
+                this.logintoken = '';
                 this.$auth.logout();
             }
         }

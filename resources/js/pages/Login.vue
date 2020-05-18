@@ -141,6 +141,7 @@
               this.$loading(false);
               this.visit = 'false';
               this.loginuser = 'true';
+              this.logintoken = 'admin';
               localStorage.setItem('visit', this.visit);
               localStorage.setItem('loginuser', this.loginuser);
               // handle redirection
@@ -165,6 +166,7 @@
               this.$loading(false);
               this.visit = 'false';
               this.loginuser = 'true';
+              this.logintoken = 'customer';
               localStorage.setItem('visit', this.visit);
               localStorage.setItem('loginuser', this.loginuser);
               // handle redirection

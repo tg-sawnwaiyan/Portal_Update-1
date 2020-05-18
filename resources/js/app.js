@@ -39,7 +39,8 @@ let globalData = new Vue({
         hosHis: 0,
         visit: 'true',
         loginuser: 'false',
-        test: []
+        test: [],
+        logintoken: '',
     }
 });
 
@@ -72,6 +73,10 @@ Vue.mixin({
         test: {
             get: function() { return globalData.$data.test },
             set: function(newVal) { globalData.$data.test = newVal; }
+        },
+        logintoken: {
+            get: function() { return globalData.$data.logintoken },
+            set: function(newVal) { globalData.$data.logintoken = newVal; }
         }
     }
 })
