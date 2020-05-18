@@ -3148,7 +3148,7 @@ textarea {
     display: block;
     cursor: pointer;
     background-color: #0cc72c !important;
-    box-shadow: 0px 1px 1px #ccc!important;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12) !important;
     color: #fff;
     padding: 6px;
     border-radius: 5px;
@@ -3164,7 +3164,7 @@ textarea {
     display: block;
     cursor: pointer;
     background-color: #fff !important;
-    box-shadow: 0px 1px 1px #ccc!important;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12) !important;
     border: 1px solid #544e4e;
     padding: 6px;
     border-radius: 5px;
@@ -7688,7 +7688,7 @@ margin: 0;
 
 #googlemap {
     min-height: 300px;
-    border: 3px solid #ccc;
+    /* border: 3px solid #ccc; */
     border-radius: 4px;
 }
 
