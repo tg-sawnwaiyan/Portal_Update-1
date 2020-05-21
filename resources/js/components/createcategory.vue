@@ -7,7 +7,12 @@
                 <div class="form-group">
                     <label>{{label}} <span class="error sp2">必須</span></label>
                     <input type="text" class="form-control"  v-model="category.name"  :placeholder='[[placeholder]]'>
-                        <span v-if="errors.name" class="error">{{errors.name}}</span>
+                    <span v-if="errors.name" class="error">{{errors.name}}</span>
+                </div>
+                <div class="form-group">
+                    <label>タブ順序</label>
+                    <input type="number" v-on:keydown="isNumber" class="form-control"  v-model="category.order_number" placeholder="タブ順序を半角数字で入力してください。">
+                    <span v-if="errors.order_number" class="error">{{errors.order_number}}</span>
                 </div>
                 <div class="form-group"> 
                     <router-link class="btn bt-red all-btn" to="/categorylist" > キャンセル </router-link>
@@ -23,9 +28,11 @@ export default {
             return {
                 errors: {
                         name: "",
+                        order_number: null,
                 },
                 category: {
                         name: '',
+                        order_number: null,
                         user_id:'',
                         recordstatus: ''
                     },
@@ -74,6 +81,9 @@ export default {
                             cancelButtonClass: "all-btn",
                             allowOutsideClick: false,
                         }).then(response => { 
+                            if(this.category.order_number == null || this.category.order_number == ''){
+                                this.category.order_number = 0;
+                            }
                             this.$loading(true);
                             this.axios.post('/api/category/add', this.category)
                     .then((response) => {
@@ -105,6 +115,9 @@ export default {
              });     
             },
              updateCategory() { 
+                 if(this.category.order_number == null || this.category.order_number == ''){
+                     this.category.order_number = 0;
+                 }
                
                     this.$loading(true);
                     this.axios.post(`/api/category/update/${this.$route.params.id}`, this.category)
@@ -152,6 +165,13 @@ export default {
                         this.updateCategory();
                     }
                 },
+            isNumber: function(event) {
+                if(!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105) 
+                    && event.keyCode != 8 && event.keyCode != 46 && !(event.keyCode >= 37 && event.keyCode <= 40)) 
+                {
+                    event.preventDefault();
+                }
+            },
 
         }
 

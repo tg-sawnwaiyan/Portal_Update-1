@@ -169,7 +169,9 @@
                                                     <td v-for="nur_profile in nur_profiles" :key="nur_profile.id">
                                                         <dl>
                                                             <dt class="text-left">入居時の費用</dt>
-                                                            <dd class="profile_price"><strong>{{(Math.floor(Number(nur_profile.moving_in_from)/10000))==0? '' : (Math.floor(Number(nur_profile.moving_in_from)/10000)).toLocaleString()+'万' }}{{(Number(nur_profile.moving_in_from)%10000)==0 ? '' : (Number(nur_profile.moving_in_from)%10000).toLocaleString()}}円～</strong></dd>
+                                                            <dd class="profile_price">
+                                                                <strong v-if="Number(nur_profile.moving_in_from) == 0">0円</strong>
+                                                                <strong v-else>{{(Math.floor(Number(nur_profile.moving_in_from)/10000))==0? '' : (Math.floor(Number(nur_profile.moving_in_from)/10000)).toLocaleString()+'万' }}{{(Number(nur_profile.moving_in_from)%10000)==0 ? '' : (Number(nur_profile.moving_in_from)%10000).toLocaleString()}}円～</strong></dd>
                                                         </dl>
                                                     </td>
                                                 </tr>
@@ -178,7 +180,9 @@
                                                     <td v-for="nur_profile in nur_profiles" :key="nur_profile.id">
                                                         <dl>
                                                             <dt class="text-left">月額の費用</dt>
-                                                            <dd class="profile_price"><strong>{{(Math.floor(Number(nur_profile.per_month_from)/10000))==0? '' : (Math.floor(Number(nur_profile.per_month_from)/10000)).toLocaleString()+'万' }}{{(Number(nur_profile.per_month_from)%10000)==0 ? '' : (Number(nur_profile.per_month_from)%10000).toLocaleString()}}円～</strong></dd>
+                                                            <dd class="profile_price">
+                                                                <strong v-if="Number(nur_profile.per_month_from) == 0">0円</strong>
+                                                                <strong v-else>{{(Math.floor(Number(nur_profile.per_month_from)/10000))==0? '' : (Math.floor(Number(nur_profile.per_month_from)/10000)).toLocaleString()+'万' }}{{(Number(nur_profile.per_month_from)%10000)==0 ? '' : (Number(nur_profile.per_month_from)%10000).toLocaleString()}}円～</strong></dd>
                                                         </dl>
                                                     </td>
                                                 </tr>

@@ -536,18 +536,30 @@
                                                             <td style="width:30%"><span class="job_ico">&#xa5;</span>入居時費用</td>
                                                             <!-- <td><span class="cash-lbl">{{Number(nus.moving_in_to)/10000}} </span>万円</td> -->
                                                             <td class="cash-lbl">
+                                                                <span v-if="Number(nus.moving_in_from) == 0">0円</span>
+                                                                <span v-else>
                                                                 {{(Math.floor(Number(nus.moving_in_from)/10000))==0? '' : (Math.floor(Number(nus.moving_in_from)/10000)).toLocaleString()+'万' }}{{(Number(nus.moving_in_from)%10000)==0 ? '' : (Number(nus.moving_in_from)%10000).toLocaleString()}}円
+                                                                </span>
                                                                     ~
+                                                                <span v-if="Number(nus.moving_in_to) == 0">0円</span>
+                                                                <span v-else>
                                                                 {{(Math.floor(Number(nus.moving_in_to)/10000))==0? '' : (Math.floor(Number(nus.moving_in_to)/10000)).toLocaleString()+'万' }}{{(Number(nus.moving_in_to)%10000)==0 ? '' : (Number(nus.moving_in_to)%10000).toLocaleString()}}円
+                                                                </span>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td style="width:30%"><span class="job_ico">&#xa5;</span>月額費用</td>
                                                             <td>
                                                                 <font class="cash-lbl">
+                                                                    <span v-if="Number(nus.per_month_from) == 0">0円</span>
+                                                                    <span v-else>
                                                                     {{(Math.floor(Number(nus.per_month_from)/10000))==0? '' : (Math.floor(Number(nus.per_month_from)/10000)).toLocaleString()+'万' }}{{(Number(nus.per_month_from)%10000)==0 ? '' : (Number(nus.per_month_from)%10000).toLocaleString()}}円
+                                                                    </span>
                                                                         ~
+                                                                    <span v-if="Number(nus.per_month_to) == 0">0円</span>
+                                                                    <span v-else>
                                                                     {{(Math.floor(Number(nus.per_month_to)/10000))==0? '' : (Math.floor(Number(nus.per_month_to)/10000)).toLocaleString()+'万' }}{{(Number(nus.per_month_to)%10000)==0 ? '' : (Number(nus.per_month_to)%10000).toLocaleString()}}円
+                                                                    </span>
                                                                 </font>
                                                             </td>
                                                         </tr>

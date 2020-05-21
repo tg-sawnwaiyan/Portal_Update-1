@@ -113,15 +113,40 @@
 
 </head>
 <body class="c-app flex-row align-items-center all-bg" >
-<div class="se-pre-con"></div>
 
 <div id="app">
-  <index ></index>
+    @browser('isIE')
+    <div>
+        <nav class="navbar navbar-expand-lg  main-header">
+            <div class="container nav-warp d-flex">
+            <div class="d-flex align-items-center">
+                <a class="navbar-brand logo-text">               
+                <h4 class="logo_subtitle">介護医療福祉の総合サイト</h4>
+                <img src="/images/fixed_logo.png" style="width:215px;height:auto;" />
+                </a>
+            </div>
+            </div>
+        </nav>
+        <div class="unauth-page">
+            <div class="content">
+                <div class="unauth-title">
+                <div class="col-12" style="margin:0 auto;margin-bottom: 30px;">
+                    <img src="/images/error-100.png" style="width: 8%;">               
+                </div>
+                <p class="unauth-title m-b-20">本サイトはお使いのブラウザには対応しておりません。</p>               
+                </div>
+            </div>
+        </div>
+    </div>
+    @else
+        <div class="se-pre-con"></div>
+        <index ></index>
+    @endbrowser
+    
 </div>
 
 <!-- <script src="/js/app.js" type="text/javascript"></script> -->
 <!-- <script src="{{ asset('js/map-api.js') }}"></script> -->
-
 
 <!-- <script src="http://maps.google.com/maps/api/js"></script> -->
 <!-- <script src="{{ asset('js/vue2-5-13.js') }}"></script>

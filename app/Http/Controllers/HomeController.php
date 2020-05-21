@@ -28,7 +28,7 @@ class HomeController extends Controller
     public function index()
     {
         
-        $cats = DB::select("SELECT categories.* FROM categories INNER JOIN posts ON categories.id = posts.category_id WHERE categories.id != 26 and posts.recordstatus=1 GROUP BY categories.id");
+        $cats = DB::select("SELECT categories.* FROM categories INNER JOIN posts ON categories.id = posts.category_id WHERE categories.id != 26 and posts.recordstatus=1 GROUP BY categories.id ORDER BY categories.order_number DESC");
         return response()->json($cats);
     }
 
@@ -230,7 +230,7 @@ class HomeController extends Controller
             $wh = " AND (posts.title LIKe '%{$search_word}%' OR posts.main_point LIKe '%{$search_word}%' OR posts.body LIKe '%{$search_word}%')";
         }
 
-        $cat = Category::where('id','!=',26)->select('id')->get();
+        $cat = Category::where('id','!=',26)->select('id')->orderBy('order_number','desc')->get();
         if(count($cat) == 0)
         {
             $posts = [];

@@ -183,7 +183,7 @@
 
                                                             <!-- <img src="/images/4.png" alt="" style="width:16px; height: 16px;" class="img-responsive float-right" @error="imgUrlAlt"> -->
 
-                                                            <span class="source-img-small d-inline-block text-truncate">{{ post.main_point }} </span>
+                                                            <span class="source-img-small d-inline-block text-truncate">{{ post.main_point }}</span>
 
                                                         </router-link>
 
@@ -957,9 +957,9 @@
 
             this.getLatestPostsByCatID();
 
-            this.getPostByCatID();
+            
 
-            this.getLatestPostByCatID();
+            
 
             this.getLatestPostFromAllCat();
             
@@ -1171,6 +1171,7 @@
             getAllCat: function() {
                 this.axios .get('/api/home') 
                 .then(response => {
+                    console.log("cats",response.data);
                         this.cats = response.data;
                         var total_word = 0;
                         $.each(this.cats, function(key,value) {
@@ -1188,6 +1189,10 @@
                         // else{
                         //       this.is_cat_overflow = false;
                         // }
+
+                        this.getPostByCatID();
+
+                        this.getLatestPostByCatID();
 
                     });
 
@@ -1240,7 +1245,7 @@
             },
 
 
-            getPostByCatID: function(catId = 1) {
+            getPostByCatID: function(catId = this.cats[0].id) {
                 if ($('#search-free-word').val() != null) {
                     var search_word = $('#search-free-word').val();
                 } else {
@@ -1250,7 +1255,7 @@
                 if (catId !== undefined) {
                     var cat_id = catId;
                 } else {
-                    var cat_id = 1;
+                    var cat_id = this.cats[0].id;
                 }
                 let fd = new FormData();
                 fd.append('search_word', search_word);
@@ -1259,6 +1264,7 @@
                 this.categoryId = cat_id;
                 this.axios.post("/api/posts", fd)
                     .then(response => {
+                        console.log("posts ",response.data)
                         this.posts = response.data;
                     });
             },
@@ -1288,9 +1294,10 @@
 
                 } else {
 
-                    var cat_id = 1;
+                    var cat_id = this.cats[0].id;
 
                 }
+                console.log("this cats",this.cats[0].id)
 
                 let fd = new FormData();
 

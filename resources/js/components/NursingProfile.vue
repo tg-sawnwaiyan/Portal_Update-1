@@ -118,12 +118,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group displayFlex clearfix">
+                            <!-- <div class="form-group displayFlex clearfix">
                                 <label class="heading-lbl col-lg-2 col-md-3 pad-free">支払い方法</label>
                                 <div class="col-12 col-lg-10 col-md-12 pad-free nursing-m-b-15">
                                     <input type="text"  class="form-control col-md-9 col-12 nursing-payment-method float-left white-bg-color" v-model="nursing_info.method">
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="form-group">
                                 <label class="headinglbl col-6 col-lg-2 col-md-3 pad-free">タイプ</label>
                                 <div class="col-6 col-lg-10 float-right p-0 addbtn-right">
@@ -353,8 +353,8 @@
                                             <tr>
                                                     <td class="width15 title-bg font-weight-bold">類型</td>
                                                     <td>
-                                                        <select class="form-control white-bg-color fac-type">
-                                                            <option>施設タイプを選択</option>
+                                                        <select class="form-control white-bg-color fac-type" v-model="nursing_info.fac_type">
+                                                            <option value='0'>施設タイプを選択</option>
                                                             <option v-for="fac in fac_types" :key="fac.id" v-bind:value="fac.id" :selected="fac.id == nursing_info.fac_type">{{ fac.description }}</option>
                                                         </select>
                                                     </td>

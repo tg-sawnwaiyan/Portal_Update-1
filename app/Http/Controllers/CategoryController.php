@@ -37,7 +37,7 @@ class CategoryController extends Controller
     {
         // $categories = Category::select('name')->get();
         // return $categories;
-        $categories = Category::orderBy('id','desc')->paginate(20); 
+        $categories = Category::orderBy('order_number','desc')->paginate(20); 
         return response()->json($categories);
     }
 
@@ -65,6 +65,7 @@ class CategoryController extends Controller
 
         $category = new Category();
         $category->name = $request->input('name');
+        $category->order_number = $request->input('order_number');
         $category->user_id = 1;
         $category->recordstatus = 1;
 
@@ -88,6 +89,7 @@ class CategoryController extends Controller
         // ]);
         $category = Category::find($id);
         $category->name = $request->input('name');
+        $category->order_number = $request->input('order_number');
         $category->user_id = 1;
         $category->recordstatus = 1;
         $category -> save();
