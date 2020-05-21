@@ -369,9 +369,9 @@
                         </table>
                     </div> -->
 
-                    <div v-if="method_payment.length > 0" class="row col-md-12 pc-414">
-                        <div class="cost_tb">
-                            <div class="row col-12 m-0 p-0" >
+                    <div v-if="method_payment.length > 0" class="pc-414">
+                        <!-- <div class="cost_tb"> -->
+                            <div class="row col-12 m-0 p-0 cost_tb" >
                                 <div class="col-md-12 main-cost-wrap pad-free-750">
                                     <table class="table table-bordered cost_table main-cost-table">
                                         <thead>
@@ -494,7 +494,7 @@
                                 </div>
 
                             </div>
-                        </div>
+                        
                     </div>
                     <div v-else class="row col-12 m-0 m-b-768"> <p class="no-data-color">データがありません。</p> </div>
 
@@ -620,7 +620,7 @@
                         </span></div>
                     </div>
                     <!--end fav and mail btn-->
-                    <div class="row col-12">
+                    <div class="row col-12 m-0 p-0">
                     <div v-for="nus in nusfacilities" :key="nus.id" class="col-md-12 pad-free-750" >
 
                         <table border="1" class="table table-bordered cost_table facility_tbl">
@@ -1138,7 +1138,7 @@
                                 </div>
                                  <!--fav and mail btn-->
                                 <div class="d-block float-right m-b-20" v-if="loginuser=='false'">
-                                    <div class="m-r-10 float-left">
+                                    <div class="float-left">
                                         <span class="bottom-fav-btn" v-if="!view_pro_id && loginuser=='false'" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                                         <span class="bottom-fav-btn" style="color:#aaa;" v-if="view_pro_id && loginuser=='false'" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                                         </div>
@@ -1345,7 +1345,7 @@
                  <h5 class="profile_header col-md-12"> 地図 </h5>
                   <!--fav and mail btn-->
                 <div class="d-block float-right m-b-20" v-if="loginuser=='false'">
-                    <div class="m-r-10 float-left">
+                    <div class="float-left">
                         <span class="bottom-fav-btn" v-if="!view_pro_id && loginuser=='false'" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                         <span class="bottom-fav-btn" style="color:#aaa;" v-if="view_pro_id && loginuser=='false'" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                         </div>

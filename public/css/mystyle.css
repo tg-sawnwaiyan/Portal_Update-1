@@ -575,6 +575,16 @@ table.posting-per {
 
 /* Nursing & Hospital Profile */
 
+.detail_profile_right {
+    padding-left: 10px;
+    padding-right: 0px;
+}
+
+.detail_profile_left {
+    padding-left: 0px;
+    padding-right: 10px;
+}
+
 .displayFlex {
     display: flex;
 }
@@ -2070,10 +2080,10 @@ border-radius: 3px;
 
 @media only screen and (max-width: 360px) {
     .bottom-mail-btn {
-        width: 113px;
+        width: 113px !important;
     }
     .bottom-fav-btn {
-        width: 152px;
+        width: 152px !important;
     }
     #nursing-search .card-carousel {
         width: 200px!important;
