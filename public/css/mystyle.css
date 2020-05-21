@@ -1,4 +1,5 @@
 /* style for individual page and overall */
+
 .for-ie-browser {
     font-size: 24px;
     text-align: center;
@@ -2068,6 +2069,12 @@ border-radius: 3px;
 /************************responsive ****************************/
 
 @media only screen and (max-width: 360px) {
+    .bottom-mail-btn {
+        width: 113px;
+    }
+    .bottom-fav-btn {
+        width: 152px;
+    }
     #nursing-search .card-carousel {
         width: 200px!important;
     }
@@ -7037,6 +7044,13 @@ color: #fff !important;
 }
 
 @media screen and (max-width: 480px) {
+    .bottom-mail-btn {
+        width: 152px;
+        margin-right: 3px;
+    }
+    .bottom-fav-btn {
+        width: 152px;
+    }
     .pagination-prev-nav,
     .pagination-next-nav {
         display: none !important;
@@ -12046,6 +12060,9 @@ width: 18rem;
     }
     .m-t-768 {
         margin-top: 0px;
+    }
+    .m-b-768 {
+        margin-bottom: 20px !important;
     }
     .successful-resetpwd {
         width: 100% !important;

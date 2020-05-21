@@ -195,7 +195,7 @@
                     <!--end for slide image-->
                     <!--for address-->
                      <div class="col-md-7 detail_profile_right col-slg-12 pad-free-750">
-                         <span class="top-mail-btn-res btn sp-414" @click="documentPost()" v-if="loginuser=='false' && !$auth.check()"><i data-v-b65423c6="" class="far fa-envelope" style="font-size: 15px;font-weight: bold;;"></i>&nbsp;資料請求</span>
+                         <!-- <span class="top-mail-btn-res btn sp-414" @click="documentPost()" v-if="loginuser=='false' && !$auth.check()"><i data-v-b65423c6="" class="far fa-envelope" style="font-size: 15px;font-weight: bold;;"></i>&nbsp;資料請求</span> -->
                         <div class="m-lr-0 pro-heading">
                              <div class="col-12 pad-free pc-1024">
                                 <h5 class="profile_header">介護情報</h5>
@@ -206,7 +206,7 @@
                                         <span class="bottom-fav-btn" v-if="!view_pro_id && loginuser=='false'" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                                         <span class="bottom-fav-btn" style="color:#aaa;" v-if="view_pro_id && loginuser=='false'" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                                         </div>
-                                    <div class="float-right"><span class=" pc-414" v-if="loginuser=='false' && !$auth.check() && type == 'nursing'">       
+                                    <div class="float-right"><span class="" v-if="loginuser=='false' && !$auth.check() && type == 'nursing'">       
                                         <span class="bottom-mail-btn" @click="documentPost()"><i data-v-b65423c6="" class="far fa-envelope" style="color: #fff  !important;font-size: 15px;"></i>&nbsp;資料請求</span>
                                     </span></div>
                                 </div>
@@ -325,12 +325,12 @@
                         <span class="bottom-fav-btn" v-if="!view_pro_id && loginuser=='false'" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                         <span class="bottom-fav-btn" style="color:#aaa;" v-if="view_pro_id && loginuser=='false'" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                         </div>
-                    <div class="float-right"><span class=" pc-414" v-if="loginuser=='false' && !$auth.check() && type == 'nursing'">       
+                    <div class="float-right"><span class="" v-if="loginuser=='false' && !$auth.check() && type == 'nursing'">       
                         <span class="bottom-mail-btn" @click="documentPost()"><i data-v-b65423c6="" class="far fa-envelope" style="color: #fff  !important;font-size: 15px;"></i>&nbsp;資料請求</span>
                     </span></div>
                 </div>
                 <!--end fav and mail btn-->
-                    <div class="col-md-12 d-flex">
+                    <div class="col-md-12 d-flex m-b-768">
                         <span v-if="nursing_profiles != null">
                             <p v-html="nursing_profiles"></p>
                         </span>
@@ -349,7 +349,7 @@
                         <span class="bottom-fav-btn" v-if="!view_pro_id && loginuser=='false'" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                         <span class="bottom-fav-btn" style="color:#aaa;" v-if="view_pro_id && loginuser=='false'" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                         </div>
-                    <div class="float-right"><span class=" pc-414" v-if="loginuser=='false' && !$auth.check() && type == 'nursing'">       
+                    <div class="float-right"><span class="" v-if="loginuser=='false' && !$auth.check() && type == 'nursing'">       
                         <span class="bottom-mail-btn" @click="documentPost()"><i data-v-b65423c6="" class="far fa-envelope" style="color: #fff  !important;font-size: 15px;"></i>&nbsp;資料請求</span>
                     </span></div>
                 </div>
@@ -369,10 +369,10 @@
                         </table>
                     </div> -->
 
-                    <div v-if="method_payment.length > 0" class="col-md-12 pc-414">
+                    <div v-if="method_payment.length > 0" class="row col-md-12 pc-414">
                         <div class="cost_tb">
-                            <div class="row" >
-                                <div class="col-md-12  main-cost-wrap pad-free-750">
+                            <div class="row col-12 m-0 p-0" >
+                                <div class="col-md-12 main-cost-wrap pad-free-750">
                                     <table class="table table-bordered cost_table main-cost-table">
                                         <thead>
                                             <tr>
@@ -496,6 +496,7 @@
                             </div>
                         </div>
                     </div>
+                    <div v-else class="row col-12 m-0 m-b-768"> <p class="no-data-color">データがありません。</p> </div>
 
                     <!--Table responsive-->
                     <div class=" col-12 p-0 card sp-414 mb-3" v-for="(cost) in method_payment" :key="cost.id">
@@ -613,8 +614,8 @@
                         <div class="m-r-10 float-left">
                             <span class="bottom-fav-btn" v-if="!view_pro_id && loginuser=='false'" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                             <span class="bottom-fav-btn" style="color:#aaa;" v-if="view_pro_id && loginuser=='false'" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
-                            </div>
-                        <div class="float-right"><span class=" pc-414" v-if="loginuser=='false' && !$auth.check() && type == 'nursing'">       
+                        </div>
+                        <div class="float-right"><span class="" v-if="loginuser=='false' && !$auth.check() && type == 'nursing'">       
                             <span class="bottom-mail-btn" @click="documentPost()"><i data-v-b65423c6="" class="far fa-envelope" style="color: #fff  !important;font-size: 15px;"></i>&nbsp;資料請求</span>
                         </span></div>
                     </div>
@@ -769,7 +770,7 @@
 
                     <div class="col-md-12 pad-free-750">
                         <h5 class="profile_subtit">フォトアルバム</h5>
-                        <div class="row m-0" v-if="light_images == '' || light_images.length == 0">
+                        <div class="row m-0 m-b-768" v-if="light_images == '' || light_images.length == 0">
                             <div class="col-12 pad-free-750"> <p class="no-data-color">データがありません。</p> </div>
                         </div>
                         <div class="row gallery-list m-0" v-else>
@@ -786,7 +787,7 @@
 
                     <div class="col-md-12 pad-free-750">
                         <h5 class="profile_subtit">動画</h5>
-                        <div class="row m-0" v-if="videos == '' || videos.length == 0">
+                        <div class="row m-0 m-b-768" v-if="videos == '' || videos.length == 0">
                             <div class="col-12 pad-free-750"> <p class="no-data-color">データがありません。</p> </div>
                         </div>
                         <div class="row gallery-list m-0 pad-free-750" v-else>
@@ -830,7 +831,7 @@
 
                                 </div>
                         </div>
-                        <div class="col-12" v-else> <p class="no-data-color">データがありません。</p> </div>
+                        <div class="col-12 m-b-768" v-else> <p class="no-data-color">データがありません。</p> </div>
                     </div>
 
                     <div class="col-12 pad-free-750">
@@ -902,7 +903,7 @@
                             </div>
 
                         </div>
-                        <div v-else class="col-12"> <p class="no-data-color">データがありません。</p> </div>
+                        <div v-else class="col-12 m-b-768"> <p class="no-data-color">データがありません。</p> </div>
 
                     </div>
                     </div>
@@ -918,7 +919,7 @@
                         <span class="bottom-fav-btn" v-if="!view_pro_id && loginuser=='false'" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                         <span class="bottom-fav-btn" style="color:#aaa;" v-if="view_pro_id && loginuser=='false'" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                         </div>
-                    <div class="float-right"><span class=" pc-414" v-if="loginuser=='false' && !$auth.check() && type == 'nursing'">       
+                    <div class="float-right"><span class="" v-if="loginuser=='false' && !$auth.check() && type == 'nursing'">       
                         <span class="bottom-mail-btn" @click="documentPost()"><i data-v-b65423c6="" class="far fa-envelope" style="color: #fff  !important;font-size: 15px;"></i>&nbsp;資料請求</span>
                     </span></div>
                 </div>
@@ -995,7 +996,7 @@
 
                </div>
                <div v-else class="row col-12 m-0 p-0">
-                   <div class="col-12">
+                   <div class="col-12 m-b-768">
                         <p class="no-data-color pb-3">口コミはありません。</p>
                    </div>
                   
@@ -1141,7 +1142,7 @@
                                         <span class="bottom-fav-btn" v-if="!view_pro_id && loginuser=='false'" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                                         <span class="bottom-fav-btn" style="color:#aaa;" v-if="view_pro_id && loginuser=='false'" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                                         </div>
-                                    <div class="float-right"><span class=" pc-414" v-if="loginuser=='false' && !$auth.check() && type == 'nursing'">       
+                                    <div class="float-right"><span class="" v-if="loginuser=='false' && !$auth.check() && type == 'nursing'">       
                                         <span class="bottom-mail-btn" @click="documentPost()"><i data-v-b65423c6="" class="far fa-envelope" style="color: #fff  !important;font-size: 15px;"></i>&nbsp;資料請求</span>
                                     </span></div>
                                 </div>
@@ -1197,7 +1198,7 @@
                                 <li>{{special.short_name}}</li>
                             </ul>
                         </div>
-                        <div class="row m-lr-0" v-else> <p class="no-data-color">データがありません。</p> </div>
+                        <div class="row m-lr-0 m-b-768" v-else> <p class="no-data-color">データがありません。</p> </div>
 
                        
                     </div>
@@ -1211,7 +1212,7 @@
                     <li>{{sub.name}}</li>
                 </ul>
                 </div>
-                <div class="col-12" v-else>
+                <div class="col-12 m-b-768" v-else>
                    <p class="no-data-color">データがありません。</p>
                 </div>
                 </div>
@@ -1348,7 +1349,7 @@
                         <span class="bottom-fav-btn" v-if="!view_pro_id && loginuser=='false'" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                         <span class="bottom-fav-btn" style="color:#aaa;" v-if="view_pro_id && loginuser=='false'" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                         </div>
-                    <div class="float-right"><span class=" pc-414" v-if="loginuser=='false' && !$auth.check() && type == 'nursing'">       
+                    <div class="float-right"><span class="" v-if="loginuser=='false' && !$auth.check() && type == 'nursing'">       
                         <span class="bottom-mail-btn" @click="documentPost()"><i data-v-b65423c6="" class="far fa-envelope" style="color: #fff  !important;font-size: 15px;"></i>&nbsp;資料請求</span>
                     </span></div>
                 </div>
@@ -2702,12 +2703,11 @@ h3 img{
 }
 
 .cost_tb{
-
     /* border: 1px solid #ccc; */
     border-left: 0px;
-     border-bottom: 0px;
+    border-bottom: 0px;
     padding-bottom: 1px;
-     background: #fff;
+     /* background: #fff; */
      /* padding: 10px; */
     /* padding-bottom: 20px; */
 
