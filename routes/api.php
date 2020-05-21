@@ -60,6 +60,7 @@ Route::group(['middleware' => ['auth:api']], function() {
         Route::get('edit/{id}', 'CategoryController@edit');
         Route::post('update/{id}', 'CategoryController@update');
         Route::delete('delete/{id}', 'CategoryController@destroy');
+        // Route::post('orderupdate/{length}', 'CategoryController@OrderUpdate');
     });
     // End Category
 
