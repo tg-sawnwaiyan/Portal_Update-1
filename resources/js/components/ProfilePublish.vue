@@ -89,14 +89,38 @@
             </div>
         </div>
         </div>
-
-
             <div class="row m-lr-0 ele pt-2"  id="element1">
                  <div class="row col-12 list-wrap m-lr-0 white-bg-color" v-for="cust in nus_pro" :key="cust.id">
                     <!--for slideimage-->
                     <div class="col-md-5 detail_profile_left col-slg-12 pad-free-750">
                            <div class="col-12 pad-free sp-1024">
-                                <h5 class="profile_header">介護情報</h5>
+                                <h5 class="profile_header">
+                                <span class="span-height">介護情報</span>
+                                <!--fav and mail btn-->
+                                <div class="d-block float-right pc-414" v-if="loginuser=='false'">
+                                    <div class="m-r-10 float-left">
+                                        <span class="bottom-fav-btn" v-if="!view_pro_id && loginuser=='false'" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
+                                        <span class="bottom-fav-btn" style="color:#aaa;" v-if="view_pro_id && loginuser=='false'" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
+                                        </div>
+                                    <div class="float-right"><span class="" v-if="loginuser=='false' && !$auth.check() && type == 'nursing'">       
+                                        <span class="bottom-mail-btn" @click="documentPost()"><i data-v-b65423c6="" class="far fa-envelope" style="color: #fff  !important;font-size: 15px;"></i>&nbsp;資料請求</span>
+                                    </span></div>
+                                </div>
+                                <!--end fav and mail btn-->
+                                </h5>
+                                <!--fav and mail btn-->
+                                <section class="row col-12 m-0 p-0">
+                                <div class="d-block float-right ml-0 m-b-20 sp-414" v-if="loginuser=='false'">
+                                    <div class="m-r-10 float-left">
+                                        <span class="bottom-fav-btn" v-if="!view_pro_id && loginuser=='false'" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
+                                        <span class="bottom-fav-btn" style="color:#aaa;" v-if="view_pro_id && loginuser=='false'" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
+                                        </div>
+                                    <div class="float-right"><span class="" v-if="loginuser=='false' && !$auth.check() && type == 'nursing'">       
+                                        <span class="bottom-mail-btn" @click="documentPost()"><i data-v-b65423c6="" class="far fa-envelope" style="color: #fff  !important;font-size: 15px;"></i>&nbsp;資料請求</span>
+                                    </span></div>
+                                </div>
+                                </section>
+                                <!--end fav and mail btn-->
                             </div>
                            <div class="thumbnail-img pc-414">
                              <div class="card-carousel">
@@ -198,10 +222,10 @@
                          <!-- <span class="top-mail-btn-res btn sp-414" @click="documentPost()" v-if="loginuser=='false' && !$auth.check()"><i data-v-b65423c6="" class="far fa-envelope" style="font-size: 15px;font-weight: bold;;"></i>&nbsp;資料請求</span> -->
                         <div class="m-lr-0 pro-heading">
                              <div class="col-12 pad-free pc-1024">
-                                <h5 class="profile_header">介護情報</h5>
-                             </div>
+                                <h5 class="profile_header">
+                                    <span class="span-height">介護情報</span>
                               <!--fav and mail btn-->
-                                <div class="d-block float-right m-b-20" v-if="loginuser=='false'">
+                                <div class="d-block float-right" v-if="loginuser=='false'">
                                     <div class="m-r-10 float-left">
                                         <span class="bottom-fav-btn" v-if="!view_pro_id && loginuser=='false'" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                                         <span class="bottom-fav-btn" style="color:#aaa;" v-if="view_pro_id && loginuser=='false'" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
@@ -211,6 +235,8 @@
                                     </span></div>
                                 </div>
                                 <!--end fav and mail btn-->
+                                </h5>
+                             </div>
                              
                             <table class="table table-bordered info_tbl">
                                     <tbody>
@@ -317,10 +343,10 @@
             </div>
 
             <div class="ele m-lr-0" id="element2">
-
-                <h5 class="profile_header">特長 </h5>                
+                <h5 class="profile_header">
+                <span class="span-height">特長</span>
                 <!--fav and mail btn-->
-                <div class="d-block float-right m-b-20" v-if="loginuser=='false'">
+                <div class="d-block float-right pc-414" v-if="loginuser=='false'">
                     <div class="m-r-10 float-left">
                         <span class="bottom-fav-btn" v-if="!view_pro_id && loginuser=='false'" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                         <span class="bottom-fav-btn" style="color:#aaa;" v-if="view_pro_id && loginuser=='false'" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
@@ -330,21 +356,36 @@
                     </span></div>
                 </div>
                 <!--end fav and mail btn-->
-                    <div class="col-md-12 d-flex m-b-768">
-                        <span v-if="nursing_profiles != null">
-                            <p v-html="nursing_profiles"></p>
-                        </span>
-                        <span v-else>
-                            <p class="no-data-color">データがありません。</p>
-                        </span>
-                    </div>
+                </h5>
+                <!--fav and mail btn-->
+                <section class="row col-12 m-0 p-0">
+                <div class="d-block float-right ml-0 m-b-20 sp-414" v-if="loginuser=='false'">
+                    <div class="m-r-10 float-left">
+                        <span class="bottom-fav-btn" v-if="!view_pro_id && loginuser=='false'" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
+                        <span class="bottom-fav-btn" style="color:#aaa;" v-if="view_pro_id && loginuser=='false'" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
+                        </div>
+                    <div class="float-right"><span class="" v-if="loginuser=='false' && !$auth.check() && type == 'nursing'">       
+                        <span class="bottom-mail-btn" @click="documentPost()"><i data-v-b65423c6="" class="far fa-envelope" style="color: #fff  !important;font-size: 15px;"></i>&nbsp;資料請求</span>
+                    </span></div>
+                </div>
+                </section>
+                <!--end fav and mail btn-->                
+                <div class="col-md-12 d-flex m-b-768">
+                    <span v-if="nursing_profiles != null">
+                        <p v-html="nursing_profiles"></p>
+                    </span>
+                    <span v-else>
+                        <p class="no-data-color">データがありません。</p>
+                    </span>
+                </div>
 
             </div>
 
             <div class="ele m-lr-0" id="element3">
-                <h5 class="profile_header col-md-12">費用</h5>
+                <h5 class="profile_header">
+                <span class="span-height">費用</span>
                 <!--fav and mail btn-->
-                <div class="d-block float-right m-b-20" v-if="loginuser=='false'">
+                <div class="d-block float-right pc-414" v-if="loginuser=='false'">
                     <div class="m-r-10 float-left">
                         <span class="bottom-fav-btn" v-if="!view_pro_id && loginuser=='false'" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                         <span class="bottom-fav-btn" style="color:#aaa;" v-if="view_pro_id && loginuser=='false'" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
@@ -354,20 +395,35 @@
                     </span></div>
                 </div>
                 <!--end fav and mail btn-->
-                    <!-- <div class="row col-12 pad-free-750 m-0">
-                        <table class="table table-striped table-bordered payment-tbl" >
-                            <tr>
-                                <th class="custom-bg-color">
-                                    <font>支払方法</font>
-                                </th>
-                                <td v-if="nus_method">
-                                    <p>{{nus_method}}</p>
-                                </td>
-                                <td v-else> -
-                                </td>
-                            </tr>
-                        </table>
-                    </div> -->
+                </h5>
+                <!--fav and mail btn-->
+                <section class="row col-12 m-0 p-0">
+                <div class="d-block float-right ml-0 m-b-20 sp-414" v-if="loginuser=='false'">
+                    <div class="m-r-10 float-left">
+                        <span class="bottom-fav-btn" v-if="!view_pro_id && loginuser=='false'" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
+                        <span class="bottom-fav-btn" style="color:#aaa;" v-if="view_pro_id && loginuser=='false'" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
+                        </div>
+                    <div class="float-right"><span class="" v-if="loginuser=='false' && !$auth.check() && type == 'nursing'">       
+                        <span class="bottom-mail-btn" @click="documentPost()"><i data-v-b65423c6="" class="far fa-envelope" style="color: #fff  !important;font-size: 15px;"></i>&nbsp;資料請求</span>
+                    </span></div>
+                </div>
+                </section>
+                <!--end fav and mail btn-->   
+                
+                <!-- <div class="row col-12 pad-free-750 m-0">
+                    <table class="table table-striped table-bordered payment-tbl" >
+                        <tr>
+                            <th class="custom-bg-color">
+                                <font>支払方法</font>
+                            </th>
+                            <td v-if="nus_method">
+                                <p>{{nus_method}}</p>
+                            </td>
+                            <td v-else> -
+                            </td>
+                        </tr>
+                    </table>
+                </div> -->
 
                     <div v-if="method_payment.length > 0" class="pc-414">
                         <!-- <div class="cost_tb"> -->
@@ -607,159 +663,133 @@
             </div>
 
             <div class="ele m-lr-0" id="element4">
-                <!-- <div class="row"> -->
-                    <h5 class="profile_header col-md-12"> 施設の概要</h5>
-                     <!--fav and mail btn-->
-                    <div class="d-block float-right m-b-20" v-if="loginuser=='false'">
-                        <div class="m-r-10 float-left">
-                            <span class="bottom-fav-btn" v-if="!view_pro_id && loginuser=='false'" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
-                            <span class="bottom-fav-btn" style="color:#aaa;" v-if="view_pro_id && loginuser=='false'" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
+                <h5 class="profile_header">
+                <span class="span-height">施設の概要</span>
+                <!--fav and mail btn-->
+                <div class="d-block float-right pc-414" v-if="loginuser=='false'">
+                    <div class="m-r-10 float-left">
+                        <span class="bottom-fav-btn" v-if="!view_pro_id && loginuser=='false'" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
+                        <span class="bottom-fav-btn" style="color:#aaa;" v-if="view_pro_id && loginuser=='false'" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                         </div>
-                        <div class="float-right"><span class="" v-if="loginuser=='false' && !$auth.check() && type == 'nursing'">       
-                            <span class="bottom-mail-btn" @click="documentPost()"><i data-v-b65423c6="" class="far fa-envelope" style="color: #fff  !important;font-size: 15px;"></i>&nbsp;資料請求</span>
-                        </span></div>
-                    </div>
-                    <!--end fav and mail btn-->
+                    <div class="float-right"><span class="" v-if="loginuser=='false' && !$auth.check() && type == 'nursing'">       
+                        <span class="bottom-mail-btn" @click="documentPost()"><i data-v-b65423c6="" class="far fa-envelope" style="color: #fff  !important;font-size: 15px;"></i>&nbsp;資料請求</span>
+                    </span></div>
+                </div>
+                <!--end fav and mail btn-->
+                </h5>
+                <!--fav and mail btn-->
+                <section class="row col-12 m-0 p-0">
+                <div class="d-block float-right ml-0 m-b-20 sp-414" v-if="loginuser=='false'">
+                    <div class="m-r-10 float-left">
+                        <span class="bottom-fav-btn" v-if="!view_pro_id && loginuser=='false'" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
+                        <span class="bottom-fav-btn" style="color:#aaa;" v-if="view_pro_id && loginuser=='false'" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
+                        </div>
+                    <div class="float-right"><span class="" v-if="loginuser=='false' && !$auth.check() && type == 'nursing'">       
+                        <span class="bottom-mail-btn" @click="documentPost()"><i data-v-b65423c6="" class="far fa-envelope" style="color: #fff  !important;font-size: 15px;"></i>&nbsp;資料請求</span>
+                    </span></div>
+                </div>
+                </section>
+                <!--end fav and mail btn--> 
+               
                     <div class="row col-12 m-0 p-0">
                     <div v-for="nus in nusfacilities" :key="nus.id" class="col-md-12 pad-free-750" >
-
                         <table border="1" class="table table-bordered cost_table facility_tbl">
-
                             <tbody>
-
                                 <tr>
-
                                 <th custom-bg-color> 事業主体</th>
-
                                 <td v-if="nus.business_entity">{{nus.business_entity}}</td>
                                 <td v-else>-</td>
-
                             </tr>
-
                             <tr>
-
                                 <th custom-bg-color>開設年月日</th>
-
                                 <td v-if="nus.date_of_establishment">{{nus.date_of_establishment}}</td>
                                 <td v-else>-</td>
-
                             </tr>
 
                             <tr>
-
                                 <th custom-bg-color> 土地の権利形態 </th>
-
                                 <td v-if="nus.land_right_form">{{nus.land_right_form}}</td>
                                 <td v-else>-</td>
-
                             </tr>
 
                             <tr>
-
                                 <th custom-bg-color>建物の権利形態</th>
-
                                 <td v-if="nus.building_right_form">{{nus.building_right_form}}</td>
                                 <td v-else>-</td>
-
                             </tr>
 
                             <tr>
-
                                 <th custom-bg-color>敷地面積</th>
-
                                 <td v-if="nus.site_area">{{nus.site_area}}</td>
                                 <td v-else>-</td>
-
                             </tr>
 
                             <tr>
-
                                 <th custom-bg-color>延床面積</th>
-
                                 <td v-if="nus.floor_area">{{nus.floor_area}}</td>
                                 <td v-else>-</td>
-
                             </tr>
 
                             <tr>
 
                                 <th custom-bg-color>構造</th>
-
                                 <td v-if="nus.construction">{{nus.construction}}</td>
                                 <td v-else>-</td>
-
                             </tr>
 
                             <tr>
-
                                 <th custom-bg-color>定員</th>
-
                                 <td v-if="nus.capacity">{{nus.capacity}}</td>
                                 <td v-else>-</td>
-
                             </tr>
 
                             <tr>
 
                                 <th custom-bg-color>総居室・戸数 </th>
-
                                 <td v-if="nus.num_rooms">{{nus.num_rooms}}</td>
                                 <td v-else>-</td>
-
                             </tr>
 
                             <tr>
 
                                 <th custom-bg-color>居住の権利形態 </th>
-
                                 <td v-if="nus.residence_form"><p v-html="nus.residence_form"></p></td>
                                 <td v-else>-</td>
-
                             </tr>
 
                             <tr>
 
                                 <th custom-bg-color>類型 </th>
-
                                 <td v-if="nus.fac_type">{{nus.fac_type}}</td>
                                 <td v-else>-</td>
-
                             </tr>
 
                             <tr>
 
                                 <th custom-bg-color>入居条件</th>
-
                                 <td v-if="nus.occupancy_condition">{{nus.occupancy_condition}}</td>
                                 <td v-else>-</td>
-
                             </tr>
 
                             <tr>
 
                                 <th custom-bg-color>居室区分・間取り等 </th>
-
                                 <td v-if="nus.room_floor">{{nus.room_floor}}</td>
                                 <td v-else>-</td>
-
                             </tr>
 
                             <tr>
 
                                 <th custom-bg-color> 居室設備</th>
-
                                 <td v-if="nus.living_room_facilities">{{nus.living_room_facilities}}</td>
                                 <td v-else>-</td>
-
                             </tr>
 
                             <tr>
 
                                 <th custom-bg-color>共用施設・設備 </th>
-
                                 <td v-if="nus.equipment">{{nus.equipment}}</td>
                                 <td v-else>-</td>
-
                             </tr>
 
                             </tbody>
@@ -911,10 +941,10 @@
             </div>
 
             <div class="ele m-lr-0" id="element5">
-         
-                <h5 class="profile_header col-md-12"> 地図 </h5>
-                 <!--fav and mail btn-->
-                <div class="d-block float-right m-b-20" v-if="loginuser=='false'">
+                <h5 class="profile_header">
+                <span class="span-height">地図</span>
+                <!--fav and mail btn-->
+                <div class="d-block float-right pc-414" v-if="loginuser=='false'">
                     <div class="m-r-10 float-left">
                         <span class="bottom-fav-btn" v-if="!view_pro_id && loginuser=='false'" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                         <span class="bottom-fav-btn" style="color:#aaa;" v-if="view_pro_id && loginuser=='false'" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
@@ -924,6 +954,20 @@
                     </span></div>
                 </div>
                 <!--end fav and mail btn-->
+                </h5>
+                <!--fav and mail btn-->
+                <section class="row col-12 m-0 p-0">
+                <div class="d-block float-right ml-0 m-b-20 sp-414" v-if="loginuser=='false'">
+                    <div class="m-r-10 float-left">
+                        <span class="bottom-fav-btn" v-if="!view_pro_id && loginuser=='false'" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
+                        <span class="bottom-fav-btn" style="color:#aaa;" v-if="view_pro_id && loginuser=='false'" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
+                        </div>
+                    <div class="float-right"><span class="" v-if="loginuser=='false' && !$auth.check() && type == 'nursing'">       
+                        <span class="bottom-mail-btn" @click="documentPost()"><i data-v-b65423c6="" class="far fa-envelope" style="color: #fff  !important;font-size: 15px;"></i>&nbsp;資料請求</span>
+                    </span></div>
+                </div>
+                </section>
+                <!--end fav and mail btn-->                 
                         <div class="row col-lg-12 col-md-12 col-sm-12 pad-0-res m-0 p-0">
                             <GmapMap class="col-12" id="googlemap" ref="map" :center="center" :zoom="10" >
                             <GmapMarker v-for="(m, index) in markers" :key="index" :position="m.position" :clickable="true" :draggable="false" @click="center=m.position" />
@@ -1067,8 +1111,33 @@
                     <!--for slideimage-->
                     <div class="col-md-5 col-slg-12 col-sm-12 detail_profile_left pad-free-750">
                             <div class="col-12 pad-free sp-1024">
-                                <h5 class="profile_header">病院情報</h5>
-                                
+                                <h5 class="profile_header">
+                                <span class="span-height">病院情報</span>
+                                <!--fav and mail btn-->
+                                <div class="d-block float-right pc-414" v-if="loginuser=='false'">
+                                    <div class="m-r-10 float-left">
+                                        <span class="bottom-fav-btn" v-if="!view_pro_id && loginuser=='false'" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
+                                        <span class="bottom-fav-btn" style="color:#aaa;" v-if="view_pro_id && loginuser=='false'" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
+                                        </div>
+                                    <div class="float-right"><span class="" v-if="loginuser=='false' && !$auth.check() && type == 'nursing'">       
+                                        <span class="bottom-mail-btn" @click="documentPost()"><i data-v-b65423c6="" class="far fa-envelope" style="color: #fff  !important;font-size: 15px;"></i>&nbsp;資料請求</span>
+                                    </span></div>
+                                </div>
+                                <!--end fav and mail btn-->
+                                </h5>
+                                <!--fav and mail btn-->
+                                <section class="row col-12 m-0 p-0">
+                                <div class="d-block float-right ml-0 m-b-20 sp-414" v-if="loginuser=='false'">
+                                    <div class="m-r-10 float-left">
+                                        <span class="bottom-fav-btn" v-if="!view_pro_id && loginuser=='false'" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
+                                        <span class="bottom-fav-btn" style="color:#aaa;" v-if="view_pro_id && loginuser=='false'" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
+                                        </div>
+                                    <div class="float-right"><span class="" v-if="loginuser=='false' && !$auth.check() && type == 'nursing'">       
+                                        <span class="bottom-mail-btn" @click="documentPost()"><i data-v-b65423c6="" class="far fa-envelope" style="color: #fff  !important;font-size: 15px;"></i>&nbsp;資料請求</span>
+                                    </span></div>
+                                </div>
+                                </section>
+                                <!--end fav and mail btn-->                                                               
                             </div>
                            <div class="thumbnail-img pc-414">
                              <div class="card-carousel">
@@ -1134,11 +1203,11 @@
                         <div class="row m-lr-0">
                             <div class="col-12 pro-heading pad-free">
                                 <div class="col-12 pad-free pc-1024">
-                                    <h5 class="profile_header">病院情報 </h5>
-                                </div>
-                                 <!--fav and mail btn-->
-                                <div class="d-block float-right m-b-20" v-if="loginuser=='false'">
-                                    <div class="float-left">
+                                    <h5 class="profile_header">
+                                    <span class="span-height">病院情報</span>
+                              <!--fav and mail btn-->
+                                <div class="d-block float-right" v-if="loginuser=='false'">
+                                    <div class="m-r-10 float-left">
                                         <span class="bottom-fav-btn" v-if="!view_pro_id && loginuser=='false'" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                                         <span class="bottom-fav-btn" style="color:#aaa;" v-if="view_pro_id && loginuser=='false'" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                                         </div>
@@ -1147,6 +1216,8 @@
                                     </span></div>
                                 </div>
                                 <!--end fav and mail btn-->
+                                </h5>                                   
+                                </div>                                 
                                 <table class="table table-bordered info_tbl">
                                     <tr>
                                         <th class="custom-bg-color">
@@ -1341,11 +1412,11 @@
             <!-- End -->
 
             <div class="m-lr-0" id="element8">
-
-                 <h5 class="profile_header col-md-12"> 地図 </h5>
-                  <!--fav and mail btn-->
-                <div class="d-block float-right m-b-20" v-if="loginuser=='false'">
-                    <div class="float-left">
+                 <h5 class="profile_header">
+                <span class="span-height">地図</span>
+                <!--fav and mail btn-->
+                <div class="d-block float-right pc-414" v-if="loginuser=='false'">
+                    <div class="m-r-10 float-left">
                         <span class="bottom-fav-btn" v-if="!view_pro_id && loginuser=='false'" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
                         <span class="bottom-fav-btn" style="color:#aaa;" v-if="view_pro_id && loginuser=='false'" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                         </div>
@@ -1354,6 +1425,20 @@
                     </span></div>
                 </div>
                 <!--end fav and mail btn-->
+                </h5>
+                <!--fav and mail btn-->
+                <section class="row col-12 m-0 p-0">
+                <div class="d-block float-right ml-0 m-b-20 sp-414" v-if="loginuser=='false'">
+                    <div class="m-r-10 float-left">
+                        <span class="bottom-fav-btn" v-if="!view_pro_id && loginuser=='false'" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
+                        <span class="bottom-fav-btn" style="color:#aaa;" v-if="view_pro_id && loginuser=='false'" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
+                        </div>
+                    <div class="float-right"><span class="" v-if="loginuser=='false' && !$auth.check() && type == 'nursing'">       
+                        <span class="bottom-mail-btn" @click="documentPost()"><i data-v-b65423c6="" class="far fa-envelope" style="color: #fff  !important;font-size: 15px;"></i>&nbsp;資料請求</span>
+                    </span></div>
+                </div>
+                </section>
+                <!--end fav and mail btn--> 
 
                 <div class="row col-lg-12 col-md-12 col-sm-12 pad-free-750 m-0 p-0">
 
