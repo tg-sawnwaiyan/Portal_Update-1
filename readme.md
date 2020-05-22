@@ -1,4 +1,4 @@
-<p align="center"><img src="https://github.com/Thuzar-TS/Portal_Update/tree/dev/public/images/fixed_logo.png"></p>
+<p align="center">TIS</p>
 
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
