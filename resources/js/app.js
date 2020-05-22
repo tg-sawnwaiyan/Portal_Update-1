@@ -131,6 +131,7 @@ Vue.use(VueClazyLoad)
 Vue.use(VueAxios, axios);
 
 
+
 // Set Vue globally
 window.Vue = Vue
     // Set Vue router
