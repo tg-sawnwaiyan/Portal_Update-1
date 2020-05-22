@@ -271,7 +271,7 @@ const routes = [
     },
     {
         name: "profile",
-        path: "/profile/:type/:id",
+        path: "/profile/:type/:id/:aa",
         component: Profile,
         // props: true,
         meta: {
