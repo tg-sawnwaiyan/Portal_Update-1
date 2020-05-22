@@ -106,7 +106,7 @@
                           <div class="form-left-child form-group pc-750 font-weight-bold"><label>郵便番号 </label></div>
                           <div class="form-left-child form-group pc-750 font-weight-bold"><label>都道府県<span class="error sp1">必須</span></label></div>
                           <div class="form-left-child form-group pc-750 font-weight-bold"><label>市区町村 <span class="error sp1">必須</span></label></div>
-                          <div class="form-left-child form-group pc-750 font-weight-bold"><label>番地（建物名)<span class="error sp1">必須</span></label></div>
+                          <div class="form-left-child form-group pc-750 font-weight-bold"><label>番地（建物名)</label></div>
                       
                   </div>           
               </div>     
@@ -151,11 +151,11 @@
                 <div class="form-group row pl-3 m-b-0">
                     <div class="col-md-12 sp-750"><label>番地（建物名)<span class="error sp1">必須</span></label></div>
                     <div class="col-md-12 p-0">
-                        <input type="text" class="city form-control float-left" id="str_address" v-model="jobApply.str_address" placeholder="番地を入力してください。" @keyup="focusCity" @change="aggreBtn"/>
+                        <input type="text" class="city form-control float-left" id="str_address" v-model="jobApply.str_address" placeholder="番地を入力してください。"/>
                         <span class="float-left eg-txt">例）丸の内1-9-1 グラントウキョウノースタワー40階</span>
                         <br>
-                        <span class="error m-l-30" v-if="focus_city">※入力は必須です。</span>
-                        <div v-if="errors.str_address" class="text-danger mt-2 ml-4">{{ errors.str_address }}</div>
+                        <!-- <span class="error m-l-30" v-if="focus_city">※入力は必須です。</span> -->
+                        <!-- <div v-if="errors.str_address" class="text-danger mt-2 ml-4">{{ errors.str_address }}</div> -->
                     </div>
                 </div>
             </div>
@@ -673,7 +673,7 @@ export default {
         this.aggreBtn();
     },
     aggreBtn: function(){
-        if(($('#furigana').val().length > 0 && !this.charErr) && this.jobApply.first_name != '' && this.jobApply.last_name != '' && this.jobApply.selectedValue != 0 && this.jobApply.township != 0 && this.jobApply.city != '' && this.jobApply.str_address != '' && this.jobApply.terms == true && ((this.mail_reg.test(this.jobApply.email) || (!this.ph_length && this.jobApply.phone != '' )) && (!this.ph_length && !this.focus_mail))){
+        if(($('#furigana').val().length > 0 && !this.charErr) && this.jobApply.first_name != '' && this.jobApply.last_name != '' && this.jobApply.selectedValue != 0 && this.jobApply.township != 0 && this.jobApply.city != '' && this.jobApply.terms == true && ((this.mail_reg.test(this.jobApply.email) || (!this.ph_length && this.jobApply.phone != '' )) && (!this.ph_length && !this.focus_mail))){
             this.btn_disable=false;
         }else{
             this.btn_disable=true;
