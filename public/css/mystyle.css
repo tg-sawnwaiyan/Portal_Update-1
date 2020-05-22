@@ -575,6 +575,10 @@ table.posting-per {
 
 /* Nursing & Hospital Profile */
 
+.span-height {
+    line-height: 34px;
+}
+
 .detail_profile_right {
     padding-left: 10px;
     padding-right: 0px;
@@ -2083,7 +2087,7 @@ border-radius: 3px;
         width: 113px !important;
     }
     .bottom-fav-btn {
-        width: 152px !important;
+        width: 160px !important;
     }
     #nursing-search .card-carousel {
         width: 200px!important;
@@ -3180,7 +3184,7 @@ textarea {
     background-color: #0cc72c !important;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12) !important;
     color: #fff;
-    padding: 6px;
+    padding: 8px;
     border-radius: 5px;
     text-align: center;
     text-decoration: none;
@@ -3196,13 +3200,13 @@ textarea {
     background-color: #fff !important;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12) !important;
     border: 1px solid #544e4e;
-    padding: 6px;
+    padding: 8px;
     border-radius: 5px;
     text-align: center;
     text-decoration: none;
     font-size: 14.4px;
     z-index: 4;
-    width: 160px;
+    width: 175px;
 }
 
 
@@ -7059,7 +7063,7 @@ color: #fff !important;
         margin-right: 3px;
     }
     .bottom-fav-btn {
-        width: 152px;
+        width: 165px;
     }
     .pagination-prev-nav,
     .pagination-next-nav {
@@ -8784,6 +8788,7 @@ font-weight: bold;
 .table td {
     padding: 0.50rem;
     vertical-align: top;
+    word-break: break-all;
 }
 
 .custom-table>tbody tr {
@@ -10645,7 +10650,7 @@ padding: 11px;
 }
 
 .sp-414 {
-    display: none;
+    display: none !important;
 }
 
 .pc-414 {
@@ -13129,6 +13134,9 @@ background-image: none;
 }
 
 @media only screen and (max-width: 414px) {
+    .span-height {
+        line-height: 0px;
+    }
     .sp-t {
         margin-left: 73px !important;
         margin-top: -23px !important;
@@ -13793,6 +13801,10 @@ strong {
 }
 
 @media only screen and (max-width:320px) {
+    .bottom-mail-btn {
+        width: 108px !important;
+        margin-right: 0px;
+    }
     .searchButtonNews {
         width: 30%;
     }
