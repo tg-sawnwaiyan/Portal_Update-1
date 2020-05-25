@@ -2645,7 +2645,7 @@ border-top: 5px solid #e66527; */
 
 .gNav li a {
     padding: 0px 5px 0px 20px;
-    font-size: 12px;
+    font-size: 16px;
     color: #444;
 }
 
@@ -2707,7 +2707,7 @@ border-top: 5px solid #e66527; */
 .h-tel .tel span {
     padding: 10px 0 0 0;
     line-height: 1.1;
-    font-size: 14px;
+    font-size: 16px;
     /* font-weight: bold; */
     color: #444;
 }
@@ -2721,9 +2721,9 @@ border-top: 5px solid #e66527; */
 }
 
 .main-header .navbar-nav .nav-link {
-    width: 130px;
+    width: 160px;
     margin-top: 3px;
-    font-size: 12px;
+    font-size: 16px;
     color: #000;
     font-weight: bold;
     cursor: pointer;
@@ -4145,7 +4145,7 @@ li.userprofile-name>a {
 
 .nav-link {
     color: #095c5f;
-    font-size: 15px;
+    font-size: 18px;
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -6227,7 +6227,7 @@ margin-right: 2% !important;
 }
 
 .fav-item {
-    font-size: 14px;
+    font-size: 16px;
     padding: 5px 10px;
     margin-bottom: 15px;
 }
@@ -6289,6 +6289,7 @@ min-height: 252px; */
 
 li.userprofile-name {
     text-align: right;
+    font-size: 16px;
 }
 
 li.userprofile-name:hover {
@@ -10842,6 +10843,7 @@ padding: 11px;
     .h-tel {
         padding-left: 12px;
         margin: 10px 0;
+        width: 142px;
     }
     .gSecondNav li {
         background: transparent;
@@ -10961,8 +10963,11 @@ padding: 11px;
     .main-header .nav-item {
         padding: 3px 8px 5px 8px;
     }
+    .main-header .navbar-nav .nav-link {
+        width: 145px;
+    }
     .main-header .navbar-nav .nav-link span {
-        font-size: 12px;
+        font-size: 14px;
     }
     #app .logo-text {
         padding: 0;
@@ -11418,7 +11423,7 @@ padding: 0;
         margin: 0px auto;
         background: #fff;
         margin-left: 6px;
-        font-size: 12px;
+        font-size: 16px;
     }
     #sp_headerbar .fav_his {
         float: left;
@@ -14122,7 +14127,7 @@ strong {
     position: absolute;
     right: 7px;
     top: 55px;
-    font-size: 12px;
+    font-size: 14px;
     cursor: pointer;
 }
 
