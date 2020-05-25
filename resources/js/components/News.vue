@@ -6,12 +6,7 @@
                     <div class="col-md-12 m-lr-0 p-0">
                         <!-- <form class="col-lg-12 mb-2 pad-free"> -->
                             <div class="row col-md-12 m-lr-0 p-0" v-if="!latest_post_null">
-                                <div class="col-sm-12 col-md-3 col-lg-6">
-                                    <div class="col-md-2 float-right">
-                                        <!-- <span class="btn btn my-2 col-md-12 my-sm-0 danger-bg-color btn-danger" v-if="status == 1" @click="clearSearch()">X</span> -->
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-9 col-lg-6 pad-new m-b-15">
+                                <div class="col-sm-12 pad-new col-lg-6 m-b-15 newssearch-width">
                                      <!--search input-->
                                     <div class="search-input">
                                         <span class="btn btn col-md-12 my-sm-0 danger-bg-color btn-danger cross-btn" v-if="status == 1" @click="clearSearch()">X</span>
@@ -19,8 +14,7 @@
                                         <button type="submit" class="searchButtonNews" @click="searchCategory()">
                                             <i class="fas fa-search"></i> 検索
                                         </button>
-                                    </div>
-                                    <!--end search input-->  
+                                    </div>                                    
                                 </div>
                             </div>
                         <!-- </form> -->
@@ -1639,6 +1633,10 @@
     }
     #view-1024-pattern .col-lg-3:last-child {
         display: none;
+    }
+    .newssearch-width{
+        max-width: 66.666667%;
+        flex: 0 0 66.666667%;
     }
 }
 
