@@ -106,7 +106,7 @@
             </div>
             <div class="col-md-10 col-sm-12 form-right">
               <div v-if="jobDetail.type_id == 3">
-                <router-link :to="{ path:'/profile/nursing/'+jobDetail.profile_id +'/'+1}" class="pseudolink" style="font-weight:bold;color:#63b7ff !important">{{jobDetail.cusname}}</router-link>
+                <router-link :to="{ path:'/profile/nursing/'+jobDetail.profile_id }" class="pseudolink" style="font-weight:bold;color:#63b7ff !important">{{jobDetail.cusname}}</router-link>
               </div>
               <div v-else>
                 <router-link :to="{ path:'/profile/hospital/'+jobDetail.profile_id}" class="pseudolink" style="font-weight:bold;color:#63b7ff !important">{{jobDetail.cusname}}</router-link>
