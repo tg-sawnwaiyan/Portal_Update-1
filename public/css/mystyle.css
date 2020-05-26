@@ -4479,6 +4479,7 @@ overflow-y: auto;
 .fac-check-box {
     text-align: center;
     padding: 8px;
+    min-height: 25px;
 }
 
 #profilenav {
@@ -6778,6 +6779,7 @@ a:hover {
 .cost_table th,
 .map_tbl th {
     width: 250px;
+   
 }
 
 .cost_table td,
@@ -6787,6 +6789,7 @@ a:hover {
 
 .info_tbl th {
     width: 200px;
+    border: 1px solid #dee2e6;
 }
 
 .payment-tbl th {
@@ -6914,7 +6917,7 @@ color: #fff !important;
     padding: 0px 1rem !important;
     margin-bottom: 8px !important;
     background-color: transparent !important;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
 }
 
@@ -12807,10 +12810,10 @@ transition: background-color .3s;
         padding: 1px;
     }
     /* .page-item .spanclass {
-width: 28px;
-height: 25px;
-background-image: none;
-} */
+        width: 28px;
+        height: 25px;
+        background-image: none;
+        } */
     .spanclass {
         float: left;
         margin-top: 2px;
@@ -12949,8 +12952,24 @@ background-image: none;
         margin-left: 12px;
         margin-top: 20px;
     }
+    .info_tbl tr{
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        border-bottom: 0;
+    }
     .info_tbl th {
-        width: 90px;
+        width: 100%;
+        border: none;
+    }
+    .info_tbl td{
+        width: 100%;
+        min-height: 45px;    
     }
     .cash-lbl {
         font-size: 1.4em;
@@ -12970,7 +12989,9 @@ background-image: none;
         font-size: 12px;
     }
     .staff_tbl tr,
-    .moving-in_tbl tr {
+    .moving-in_tbl tr,
+    .cost_table tr,
+    .map_tbl tr {
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
@@ -12983,19 +13004,25 @@ background-image: none;
     }
     .staff_tbl th,
     .moving-in_tbl th {
-        width: 100px;
+        width: 100% !important;
+        min-height: 40px;
     }
     .staff_tbl td,
     .moving-in_tbl td {
-        width: calc(100% - 100px);
+        /* width: calc(100% - 100px); */
+        width: 100%;
+        min-height: 40px;
     }
     .cost_table th,
     .map_tbl th {
-        width: 100px;
+        /* width: 100px; */
+        width: 100%;
+        min-height: 40px;        
     }
     .cost_table td,
     .map_tbl td {
-        width: calc(100% - 100px);
+        width: 100%;
+        min-height: 40px;
     }
     #googlemap {
         min-height: 200px;
