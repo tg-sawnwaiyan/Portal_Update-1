@@ -27,7 +27,9 @@ php artisan key:generate
 php artisan jwt:secret
 ```
 
-Since migration files are not update, please import ```extra_files/portal.sql``` file to your mysql database.
+## DATABASE
+Since migration files are not update, you have to import sql file to database.
+
 For Database import (if you installed xampp)
 1. Open ```C:/xampp/php/php.ini``` file and make these changes
 ```bash
@@ -41,3 +43,9 @@ upload_max_filesize = 100M
 
 - In Browser, go to localhost/phpmyadmin
 - Create database ```portal``` with collation ```utf8mb4_unicode_ci```
+- Import ```extra_files/portal.sql``` file to your ```portal``` database.
+
+## Node_Modules
+Some changes in ```node_modules```
+- Copy ```extra/auth.js and extra/index.js``` and overwrite in ```project/node_modules/@websanova/vue-auth/src/```
+- Replace ```No Results.```  ```検索条件当てはまるデータはありません。```
