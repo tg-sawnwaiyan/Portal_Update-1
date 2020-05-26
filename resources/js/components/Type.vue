@@ -8,7 +8,7 @@
               <h4 class="page-header header">{{ header }}</h4>
             </div>
             <div class="col-md-12">
-              <form @submit.prevent="add">
+              <form @submit.prevent="add" autocomplete="off">
                 <div class="form-group">
                   <label>
                     事業者の種類 :
@@ -115,13 +115,13 @@ export default {
           cancelButtonText: "キャンセル",
           confirmButtonText: "作成",
           confirmButtonClass: "all-btn",
-          cancelButtonClass: "all-btn"
+          cancelButtonClass: "all-btn",
+          allowOutsideClick: false,
         }).then(response => {
           this.axios
             .post("/api/types/add", this.Type)
             .then(response => {
               this.name = "";
-              console.log(response);
               this.$swal({
                 position: "top-end",
                 type: "作成済",
@@ -131,7 +131,8 @@ export default {
                 width: 350,
                 height: 200,
                 confirmButtonText: "はい",
-                confirmButtonColor: "#6cb2eb"
+                confirmButtonColor: "#6cb2eb",
+                allowOutsideClick: false,
               });
               // alert('Successfully Created')
               this.$router.push({ name: "typelist" });
@@ -161,7 +162,8 @@ export default {
         cancelButtonText: "キャンセル",
         confirmButtonText: "更新",
         confirmButtonClass: "all-btn",
-        cancelButtonClass: "all-btn"
+        cancelButtonClass: "all-btn",
+        allowOutsideClick: false,
       }).then(response => {
         this.axios
           .post(`/api/types/update/${this.$route.params.id}`, this.Type)
@@ -175,12 +177,21 @@ export default {
               width: 350,
               height: 200,
               confirmButtonText: "はい",
-              confirmButtonColor: "#6cb2eb"
+              confirmButtonColor: "#6cb2eb",
+              allowOutsideClick: false,
             });
             this.$router.push({ name: "typelist" });
           })
           .catch(() => {
-            this.$swal("Failed", "wrong");
+            this.$swal({               
+                html: "システムエラーです。<br/>社内エンジニアにお問い合わせください。<br/><a href='mailto:pg@management-partners.co.jp'>pg@management-partners.co.jp</a>",
+                type: "error",
+                width: 350,
+                height: 200,
+                confirmButtonText: "閉じる",
+                confirmButtonColor: "#FF5462",
+                allowOutsideClick: false,
+            });
           });
       });
     },
@@ -190,7 +201,7 @@ export default {
                         this.errors.name = "";
                     } else {
                         // console.log('null');
-                        this.errors.name = " 事業者の種類が必須です。";
+                        this.errors.name = " 事業者の種類は必須です。";
                     }
                    if (
                         !this.errors.name

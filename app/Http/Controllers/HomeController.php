@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Category;
 use App\Post;
 use DB;
+use Carbon;
 
 class HomeController extends Controller
 {
@@ -26,7 +27,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $cats = DB::select("SELECT categories.* FROM categories INNER JOIN posts ON categories.id = posts.category_id GROUP BY categories.id");
+        
+        $cats = DB::select("SELECT categories.* FROM categories INNER JOIN posts ON categories.id = posts.category_id WHERE categories.id != 26 and posts.recordstatus=1 GROUP BY categories.id ORDER BY categories.order_number DESC");
         return response()->json($cats);
     }
 
@@ -45,7 +47,7 @@ class HomeController extends Controller
         $request = $request->all();
         $cat_id = $request['category_id'];
 
-        $posts = Post::where("category_id",$cat_id)->orderBy('created_at', 'desc')->limit(9)->get();
+        $posts = Post::where(["category_id"=>$cat_id, 'recordstatus'=>1])->orderBy('created_at', 'desc')->limit(9)->get();
         // if(isset($request['search_word'])) {
         //     $search_word = $request['search_word'];
         //     $posts = $posts->where(function($qu) use ($search_word){
@@ -66,7 +68,7 @@ class HomeController extends Controller
         $request = $request->all();
         $cat_id = $request['category_id'];
 
-        $latest_post = Post::where("category_id",$cat_id);
+        $latest_post = Post::where("category_id",$cat_id,"and")->where('recordstatus',1);
         // $search_word = $request['search_word'];
 
         // if(isset($request['search_word'])) {
@@ -96,7 +98,7 @@ class HomeController extends Controller
 
 
         $pattern_arr = [1,2,3];
-        $random = "SELECT  id, pattern from categories order by rand()      ";
+        $random = "SELECT  id, pattern from categories order by rand()";
         $cat_random = DB::select($random);
         $k = count($cat_random);
         for($i=0;$i<count($cat_random);$i++)
@@ -125,8 +127,46 @@ class HomeController extends Controller
 
         public function getLatestPostFromAllCat()
     {
-        $latest_post_all_cat = Post::orderBy('created_at', 'desc')->limit('14')->get();
-        return response()->json($latest_post_all_cat);
+        $to_date = [];$from_date=[];
+        $getTime = Carbon\Carbon::now()->toDateString();
+        // toDateTimeString
+
+        $query = "SELECT *,'' as cname from posts 
+        where category_id = 26 and recordstatus=1 and from_date <= '".$getTime."' and 
+        (CASE WHEN to_date is NULL THEN from_date <= '".$getTime."' and to_date is null ELSE from_date <= '".$getTime."' and to_date >= '".$getTime."' END) limit 16";
+        $break_news = DB::select($query);
+  
+  
+        // $list = Post::where('category_id',26)->get();
+        // foreach ($list as $li) {
+
+   
+        //     if($li->to_date == '0000-00-00 00:00:00' || $li->to_date == null)
+        //     {
+              
+        //         $query = "SELECT * from posts where (category_id = 26 and (from_date <= '".$getTime."' and (to_date = '0000-00-00 00:00:00' || to_date is null))) limit 16 ";
+        //         $from_date = DB::select($query);
+        //     }
+        //     if($li->to_date != '0000-00-00 00:00:00' && $li->to_date != null){
+           
+        //         $query1 = "SELECT * from posts where (category_id = 26 and (((to_date != '0000-00-00 00:00:00' || to_date is not null)) and (from_date <= '".$getTime."' and to_date >= '".$getTime."'))) limit 16";
+        //         $to_date = DB::select($query1);
+        //     }
+          
+        // }
+     
+        // $break_news =array_merge($from_date,$to_date);
+      
+       
+        // $query = "SELECT * from posts where (category_id = 26 and (from_date <= '".$getTime."' and to_date <= '".$getTime."')) limit 16";
+        // $break_news = DB::select($query);
+        $limit = 16 - count($break_news);
+        $latestpost = Post::join('categories', 'posts.category_id', '=', 'categories.id' )->select('posts.*','categories.name as cname')->where('category_id','!=',26)->where('posts.recordstatus',1)->orderBy('posts.created_at', 'desc')->limit("$limit")->get()->toArray();
+
+        $merge_arr = array_merge($break_news,$latestpost);
+        shuffle($merge_arr);
+
+        return response()->json($merge_arr);
     }
 
 
@@ -149,6 +189,19 @@ class HomeController extends Controller
                         ->get()
                         ->toArray();
         return $query;
+    }
+    public function get_news_by_catId($search_word,$id)
+    {
+        if($search_word == 'all_news_search')
+        {
+            $query = "SELECT * from posts where category_id = $id ";
+        }
+        else{
+            $query = "SELECT * from posts where category_id = $id and (title like '%".$search_word."%' or body like '%".$search_word."%')";
+        }
+       
+        $newslist = DB::select($query);
+        return $newslist;
     }
 
     public function getLatestPostsByAllCatId($search_word) {
@@ -177,16 +230,25 @@ class HomeController extends Controller
             $wh = " AND (posts.title LIKe '%{$search_word}%' OR posts.main_point LIKe '%{$search_word}%' OR posts.body LIKe '%{$search_word}%')";
         }
 
-        $cat = Category::select('id')->get();
-        for($i = 0; $i < count($cat); $i++) {
-            $sql.= "(SELECT categories.name,categories.pattern,categories.id,posts.id as pid,posts.title,posts.created_at, posts.photo, posts.main_point FROM categories INNER JOIN posts ON categories.id = posts.category_id WHERE categories.id = ".$cat[$i]['id']." ".$wh." order by posts.created_at desc LIMIT 25) UNION ";
+        $cat = Category::where('id','!=',26)->select('id')->orderBy('order_number','desc')->get();
+        if(count($cat) == 0)
+        {
+            $posts = [];
+            return response()->json($posts);
         }
+        else{
+            for($i = 0; $i < count($cat); $i++) {
+                $sql.= "(SELECT categories.name,categories.pattern,categories.id,posts.id as pid,posts.title,posts.created_at, posts.photo, posts.main_point FROM categories INNER JOIN posts ON categories.id = posts.category_id WHERE posts.recordstatus=1 and categories.id = ".$cat[$i]['id']." ".$wh." order by posts.created_at desc LIMIT 25) UNION ";
+            }
+            $sql = trim($sql,' UNION ');
 
-        $sql = trim($sql,' UNION ');
+            $posts = DB::select($sql);
+    
+            return response()->json($posts);
+        }
+       
 
-        $posts = DB::select($sql);
-
-        return response()->json($posts);
+      
     }
 }
 

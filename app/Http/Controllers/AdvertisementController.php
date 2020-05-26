@@ -15,13 +15,13 @@ class AdvertisementController extends Controller
     public function index()
     {
 
-        $ads =Advertisement::orderBy('id', 'DESC')->paginate(12);
+        $ads =Advertisement::orderBy('id', 'DESC')->paginate(20);
         return response()->json($ads);
     }
     public function slider()
     {
 
-        $ads =Advertisement::orderBy('id', 'DESC')->get();
+        $ads =Advertisement::where('recordstatus',1)->orderBy('id', 'DESC')->get();
         return response()->json($ads);
     }
 
@@ -46,6 +46,7 @@ class AdvertisementController extends Controller
         
         $imageName = $request->photo->getClientOriginalName();
         $imgname = str_replace(' ', '', $imageName);
+        $imgname = strtolower($imgname);
         // move_uploaded_file($imageName, '/upload/advertisement/'.$imageName);
 
         $ads = new Advertisement();
@@ -108,6 +109,7 @@ class AdvertisementController extends Controller
         if(is_object($request->photo)) {
             $imageName = $request->photo->getClientOriginalName();
             $imageName = str_replace(' ', '', $imageName);
+            $imageName = strtolower($imageName);
             // $request->photo->move(public_path('/upload/advertisement'), $imageName);
             $request->photo->move('./upload/advertisement/', $imageName);
         } else {
@@ -147,7 +149,7 @@ class AdvertisementController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
+    { 
         //
         $ads = Advertisement::find($id);
         $file= $ads->photo;
@@ -155,8 +157,8 @@ class AdvertisementController extends Controller
         //$filename = public_path().'/upload/advertisement/'.$file;
         \File::delete($filename);
         $ads->delete();
-        $advertisements = Advertisement::all()->toArray();
-        return array_reverse($advertisements);
+        $advertisements = Advertisement::orderBy('id', 'DESC')->paginate(20);
+        return response()->json($advertisements);
         // return response()->json('The successfully deleted');
     }
 
@@ -168,8 +170,22 @@ class AdvertisementController extends Controller
         $advertisement = Advertisement::query()
                             ->where('title', 'LIKE', "%{$search_word}%")
                             ->orderBy('id','DESC')
-                            ->paginate(12);
+                            ->paginate(20);
         return response()->json($advertisement);
 
+    }
+
+    public function activate($id)
+    {
+        $ads = Advertisement::find($id);
+
+        if($ads->recordstatus == 0 ) {
+            $ads->recordstatus =1;
+        }
+        else {
+            $ads->recordstatus =0;
+        }
+        $ads->save();
+       return response()->json('success');
     }
 }

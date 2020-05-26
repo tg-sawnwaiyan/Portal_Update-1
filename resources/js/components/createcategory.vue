@@ -1,17 +1,22 @@
 <template>
-    <div class="card">
+    <div class="card"  id="cat_post">
         <div class="card-body">
             <h4 class="page-header header">{{title}}</h4>
             <br>
             <form>
                 <div class="form-group">
-                    <label>{{label}}<span class="error">*</span></label>
+                    <label>{{label}} <span class="error sp2">必須</span></label>
                     <input type="text" class="form-control"  v-model="category.name"  :placeholder='[[placeholder]]'>
-                        <span v-if="errors.name" class="error">{{errors.name}}</span>
+                    <span v-if="errors.name" class="error">{{errors.name}}</span>
+                </div>
+                <div class="form-group">
+                    <label>タブ順序</label>
+                    <input type="number" v-on:keydown="isNumber" class="form-control"  v-model="category.order_number" placeholder="タブ順序を半角数字で入力してください。">
+                    <span v-if="errors.order_number" class="error">{{errors.order_number}}</span>
                 </div>
                 <div class="form-group"> 
+                    <router-link class="btn bt-red all-btn" to="/categorylist" > キャンセル </router-link>
                     <span class="btn main-bg-color white all-btn" @click="checkValidate()"> {{buttontext}}</span>
-                    <router-link class="btn btn-danger all-btn" to="/categorylist" > キャンセル </router-link>
                 </div>
             </form>  
         </div>
@@ -23,9 +28,11 @@ export default {
             return {
                 errors: {
                         name: "",
+                        order_number: null,
                 },
                 category: {
                         name: '',
+                        order_number: null,
                         user_id:'',
                         recordstatus: ''
                     },
@@ -37,8 +44,8 @@ export default {
         },
           created() {
               if(this.$route.name == "editcategory"){
-                    this.title = "カテゴリー編集";
-                    this.label = "カテゴリー名:";
+                    this.title = "ニュースカテゴリー編集";
+                    this.label = "ニュースカテゴリー名 ";
                     this.placeholder = "カテゴリー名を入力してください。";
                     this.buttontext = "保存";
                     this.axios
@@ -49,7 +56,7 @@ export default {
                 }
                 else{
                    this.title = "ニュースカテゴリー作成";
-                   this.label = "ニュースカテゴリー名 :";
+                   this.label = "ニュースカテゴリー名 ";
                    this.placeholder = "ニュースカテゴリー名を入力してください。";
                    this.buttontext = "作成";
                 }
@@ -59,20 +66,24 @@ export default {
          methods: {
             add() {
                  this.$swal({
-                            title: "確認",
-                            text: "ニュースカテゴリを作成してよろしいでしょうか。",
-                            type: "info",
+                            // title: "確認",
+                            text: "ニュースカテゴリーを作成してよろしいでしょうか。",
+                            type: "warning",
                             width: 390,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#6cb2eb",
+                            confirmButtonColor: "#eea025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
                             confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
                         }).then(response => { 
+                            if(this.category.order_number == null || this.category.order_number == ''){
+                                this.category.order_number = 0;
+                            }
                             this.$loading(true);
                             this.axios.post('/api/category/add', this.category)
                     .then((response) => {
@@ -82,13 +93,14 @@ export default {
                             position: 'top-end',
                             type: 'success',
                             // title:'確認済',
-                            text: 'ニュースカテゴリを作成しました。',
+                            text: 'ニュースカテゴリーを作成しました。',
                             // showConfirmButton: false,
                             // timer: 1800,
                             confirmButtonText: "閉じる",
-                            confirmButtonColor: "#6cb2eb",
+                            confirmButtonColor: "#31cd38",
                             width: 350,
                             height: 200,
+                            allowOutsideClick: false,
                         })
                         // alert('Successfully Created')
                      this.$router.push({name: 'categorylist'});
@@ -103,6 +115,9 @@ export default {
              });     
             },
              updateCategory() { 
+                 if(this.category.order_number == null || this.category.order_number == ''){
+                     this.category.order_number = 0;
+                 }
                
                     this.$loading(true);
                     this.axios.post(`/api/category/update/${this.$route.params.id}`, this.category)
@@ -114,9 +129,10 @@ export default {
                             type: 'success',
                             text: 'カテゴリーを更新しました。',
                             confirmButtonText: "閉じる",
-                            confirmButtonColor: "#6cb2eb",
-                            width: 300,
+                            confirmButtonColor: "#31cd38  ",
+                            width: 350,
                             height: 200,
+                            allowOutsideClick: false,
                         })
                         this.$router.push({name: 'categorylist'});
                     }).catch(error=>{
@@ -131,11 +147,11 @@ export default {
             
                     if(!this.category.name && !this.$route.params.id){
                       
-                        this.errors.name = " ニュースカテゴリー名が必須です。";
+                        this.errors.name = " ニュースカテゴリー名は必須です。";
                     }
                     else if(!this.category.name && this.$route.params.id){
                      
-                        this.errors.name = "カテゴリー名が必須です。";
+                        this.errors.name = "カテゴリー名は必須です。";
                     }
                     else if(this.category.name ) {
                        
@@ -149,10 +165,18 @@ export default {
                         this.updateCategory();
                     }
                 },
+            isNumber: function(event) {
+                if(!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105) 
+                    && event.keyCode != 8 && event.keyCode != 46 && !(event.keyCode >= 37 && event.keyCode <= 40)) 
+                {
+                    event.preventDefault();
+                }
+            },
 
         }
 
 }
 </script>
+
 
 

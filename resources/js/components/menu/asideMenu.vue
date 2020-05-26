@@ -9,7 +9,7 @@
                     <div class="admin-logo">
                         <a href="/">LOGO <span v-show="isClick">HERE</span></a>
                     </div>
-                    
+
                     <ul class="adminview-sidebar pc">
                         <li class="admintit-item">
                             <i class="fas fa-tachometer-alt"></i><span class="nav-txt" v-show="isClick">管理画面</span>
@@ -29,7 +29,7 @@
                                 <li v-if="$auth.check(2)"><router-link to="/nuscustomerlist" class="nav-link"><i class="fa fa-user"></i>&nbsp;<span>事業者</span></router-link></li>
                                 <li v-if="$auth.check(2)"><router-link to="/nusfeaturelist" class="nav-link" ><i class="fa fa-list"></i>&nbsp;&nbsp;<span class="nav-txt">特徴設定</span></router-link></li>
                                 <li v-if="$auth.check(2)"><router-link to="/occupationlist" class="nav-link"><i class="fa fa-suitcase"></i>&nbsp;&nbsp;<span class="nav-txt">職種設定</span></router-link></li>
-                                <li v-if="$auth.check(2)"><router-link to="/nuscommentlist" class="nav-link"><i class="fa fa-list"></i>&nbsp;<span>コメント一覧</span></router-link></li>
+                                <li v-if="$auth.check(2)"><router-link to="/nuscommentlist" class="nav-link"><i class="fa fa-list"></i>&nbsp;<span>口コミ一覧</span></router-link></li>
                             </ul>
                         </li>
                         <li v-if="$auth.check(2)">
@@ -40,11 +40,11 @@
                                 <li v-if="$auth.check(2)"><router-link to="/facilitieslist" class="nav-link" ><i class="fa fa-sun"></i>&nbsp;<span class="nav-txt">院内施設設定</span></router-link></li>
                                 <li v-if="$auth.check(2)"><router-link to="/hosfeaturelist" class="nav-link" ><i class="fa fa-list"></i>&nbsp;&nbsp;<span class="nav-txt">特徴設定</span></router-link></li>
                                 <li v-if="$auth.check(2)"><router-link to="/subjectlist" class="nav-link"><i class="fa fa-user-md"></i>&nbsp;&nbsp;<span class="nav-txt">診察科目設定</span></router-link></li>
-                                <li v-if="$auth.check(2)"><router-link to="/hoscommentlist" class="nav-link"><i class="fa fa-list"></i>&nbsp;<span>コメント一覧</span></router-link></li>
+                                <li v-if="$auth.check(2)"><router-link to="/hoscommentlist" class="nav-link"><i class="fa fa-list"></i>&nbsp;<span>口コミ一覧</span></router-link></li>
                             </ul>
-                        </li>                     
+                        </li>
                         <li  v-if="$auth.check(2)"><router-link to="/ads" class="nav-link"><i class="fa fa-globe"></i>&nbsp;&nbsp;<span class="nav-txt" v-show="isClick">広告</span></router-link></li>
-                        <li v-if="$auth.check(1)"><router-link to="/profiledit" class="nav-link"><i class="fa fa-map" ></i>&nbsp;&nbsp;<span class="nav-txt">プロファイル編集</span></router-link></li>
+                        <li v-if="$auth.check(1)"><router-link to="/profiledit" class="nav-link"><i class="fa fa-map" ></i>&nbsp;&nbsp;<span class="nav-txt">プロフィール編集</span></router-link></li>
                         <li v-if="$auth.check(1)"><router-link to="/profile" class="nav-link"><i class="fa fa-map"></i>&nbsp;&nbsp;<span class="nav-txt">マイページ</span></router-link></li>
                         <li v-if="$auth.check(1)"><router-link to="/jobofferlist" class="nav-link"><i class="fa fa-edit" ></i>&nbsp;&nbsp;<span class="nav-txt">仕事一覧</span> </router-link></li>
                         <li v-if="$auth.check()">
@@ -52,11 +52,11 @@
                         </li>
                     </ul>
                 </div>
-            </div> 
+            </div>
       </transition>
     </div> -->
-     <div v-if="$auth.check() && visit == 'false'" id="content-all" class="content-all"  :class="[{'collapsed' : collapsed}]"> 
-        <sidebar-menu :menu="menu"  :collapsed="collapsed" :show-one-child="true" @toggle-collapse="onCollapse"  @item-click="onItemClick"/>           
+     <div v-if="$auth.check() && visit == 'false'" id="content-all" class="content-all"  :class="[{'collapsed' : collapsed}]">
+        <sidebar-menu :menu="menu"  :collapsed="collapsed" :show-one-child="true" @toggle-collapse="onCollapse"  @item-click="onItemClick"/>
         <transition name="fade">
             <div class="maintab-content" id="v-pills-tabContent">
                 <!-- <span @click="menuToggle()">Click</span> -->
@@ -73,39 +73,32 @@
                             <!-- vue component -->
                                 <router-view :key="$route.fullPath"></router-view>
                             </div>
-                            
+
                         </div>
                     </div>
                     <div class="container-fluid footer footer-div">
-                            <span>Copyright©Management Partners Corp.All Rights Reserved. </span>
+                            <span>Copyright©TRUST-ESTATE Co,Ltd.All Rights Reserved. </span>
                     </div>
                 </section>
             </div>
-        </transition>  
+        </transition>
     </div>
-    
+
 </template>
 <style  scoped>
 .v-sidebar-menu {
-    top: 50px;
+    top: 60px;
     bottom: 0;
-    height: auto !important; 
+    height: auto !important;
     background-color: #222d32;
 }
 .v-sidebar-menu.vsm_expanded{
-    max-width: 230px !important;   
+    max-width: 230px !important;
 }
 .v-sidebar-menu .vsm--link_level-1.vsm--link_exact-active, .v-sidebar-menu .vsm--link_level-1.vsm--link_active {
-    -webkit-box-shadow: 0px 0px 0px 0px red inset; 
+    -webkit-box-shadow: 0px 0px 0px 0px red inset;
     box-shadow: 0px 0px 0px 0px red inset;
 }
-/* .v-sidebar-menu .vsm--header {
-    font-size: 18px;
-    background: #2c3b41;
-}
-.v-sidebar-menu .vsm--link {
-    font-size: 15px;
-} */
 .slide-enter-active {
    -moz-transition-duration: 0.3s;
    -webkit-transition-duration: 0.3s;
@@ -152,6 +145,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
         status:false,
         isClick: true,
         collapsed: false,
+        url_name: null,
         menu: [
                 {
                     header: true,
@@ -161,19 +155,24 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                 },
                 {
                     title: 'ニュース',
-                    icon: 'fa fa-list-ul',
+                    icon: 'fa fa-newspaper',
                     hidden: this.$auth.check(1),
                     child: [
                         {
-                        href: '/news_list',
-                        title: 'ニュース一覧',
-                        icon: 'fa fa-file-alt'
+                            href: '/news_list',
+                            title: 'ニュース一覧',
+                            icon: 'fa fa-file-alt'
                         },
                         {
-                        href: '/categorylist',
-                        title: 'カテゴリー設定',
-                        icon: 'fa fa-file-alt'
-                        }
+                            href: '/categorylist',
+                            title: 'カテゴリー設定',
+                            icon: 'fa fa-file-alt'
+                        },
+                        {
+                            href: '/ads',
+                            title: '広告',
+                            icon: 'fa fa-globe',
+                        },
                     ]
                 },
                 {
@@ -188,19 +187,19 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                         },
                         {
                         href: '/nusfeaturelist',
-                        title: '特徴設定',
+                        title: '特長設定',
                         icon: 'fa fa-list'
-                        },                        
+                        },
                         {
                         href: '/nuscommentlist',
-                        title: 'コメント一覧',
+                        title: '口コミ一覧',
                         icon: 'fa fa-list'
                         }
                     ]
                 },
                 {
                     title: '病院',
-                    icon: 'fa fa-user-md',
+                    icon: 'fas fa-briefcase-medical',
                     hidden: this.$auth.check(1),
                     child: [
                         {
@@ -211,11 +210,11 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                         {
                         href: '/facilitieslist',
                         title: '院内施設設定',
-                        icon: 'fa fa-sun'
+                        icon: 'fa fa-list'
                         },
                         {
                         href: '/hosfeaturelist',
-                        title: '特徴設定',
+                        title: '特長設定',
                         icon: 'fa fa-list'
                         },
                         {
@@ -225,52 +224,60 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
                         },
                         {
                         href: '/hoscommentlist',
-                        title: 'コメント一覧',
+                        title: '口コミ一覧',
                         icon: 'fa fa-list'
                         }
                     ]
                 },
-                {
-                    href: '/occupationlist',
-                    title: '求人職種設定',
-                    icon: 'fa fa-suitcase',
-                    hidden: this.$auth.check(1)
-                },
-                {
-                    href: '/ads',
-                    title: '広告',
-                    icon: 'fa fa-globe',
-                    hidden: this.$auth.check(1)
-                },
+                
+                
+                
                 {
                     header: true,
-                    title: '事業者管理画面',
+                    title: `事業者管理画面${this.$auth.user().type_id == 2 ? ' (病院)': ' (介護施設)'}`,
                     hidden: this.$auth.check(2),
                     hiddenOnCollapse: true
-                },
+                },                
                 {
-                    href: '/profiledit',
-                    title: 'プロファイル設定',
-                    icon: 'fa fa-map',
+                    href: `/profiledit/${this.$auth.user().type_id == 2 ? 'hospital/': 'nursing/'}${this.$auth.user().customer_id}`,
+                    title: 'プロフィール設定',
+                    icon: 'fa fa-cog',
                     hidden: this.$auth.check(2)
                 },
                 {
-                    href: '/profile',
-                    title: 'マイページ編集',
-                    icon: 'fa fa-map',
-                    hidden: this.$auth.check(2)
+                    href: `/accountlist/${this.$auth.user().type_id == 2 ? 'hospital/': 'nursing/'}${this.$auth.user().customer_id}`,
+                    title: this.$auth.user().type_id == 2 ? '病院一覧': '施設一覧' ,
+                    icon: 'fa fa-user',
+                    disabled:this.$auth.user().recordstatus==1?false:true,
+                    hidden: this.$auth.check(2),
                 },
+                // {
+                //     href: '/profile',
+                //     title: 'マイページ編集',
+                //     icon: 'fa fa-map',
+                //     hidden: this.$auth.check(2)
+                // },
                 {
-                    href: '/jobofferlist',
-                    title: '求人編集',
-                    icon: 'fa fa-edit',
-                    // hidden: this.$auth.check(2)
-                },
-                {
-                    href: '/jobapplicantlist',
-                    title: '求人応募者一覧',
-                    icon: 'fa fa-tasks',
-                    // hidden: this.$auth.check(2)
+                    title: '求人',
+                    icon: 'fas fa-users',  
+                    hidden: this.$auth.check(1),                  
+                    child: [
+                        {
+                            href: '/occupationlist',
+                            title: '求人職種設定',
+                            icon: 'fa fa-suitcase',
+                        },
+                        {
+                            href: '/jobofferlist',
+                            title: '求人編集',
+                            icon: 'fa fa-tasks',
+                        },
+                        {
+                            href: '/jobapplicantlist',
+                            title: '求人応募者一覧',
+                            icon: 'fa fa-tasks',
+                        },
+                    ]
                 },
                 {
                     title: 'ログアウト',
@@ -281,8 +288,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
       }
     },
 created() {
-    console.log("aside "+this.$auth.check())
-    console.log("aside visit "+this.visit)
+    this.url_name = this.$auth.user().type_id == 2 ? 'hospital/': 'nursing/' + this.$auth.user().customer_id;
     axios.interceptors.response.use((response) => {
         // console.log(response.data)
         if((response.data.status == "Token is Expired" || response.data.status == "Token is Invalid") && this.status == false ){
@@ -296,9 +302,9 @@ created() {
         //     confirmButtonColor: '#3085d6',
         //     cancelButtonColor: '#d33',
         //     confirmButtonText: 'OK'
-        // }).then((result) => {  
+        // }).then((result) => {
         //     // console.log()
-            
+
         //     if (result.value) {
         //         this.$refs.myid.click();
         //         response.data.status = "logout success"
@@ -306,28 +312,36 @@ created() {
         //     }
         // })
         this.visit = 'true';
+        this.loginuser = 'false';
         localStorage.setItem('visit',this.visit);
+        localStorage.setItem('loginuser',this.loginuser);
         this.$router.push({name: 'Unauthorized',params: {reload:"reload"}});
         }
-        
+
         return response
 
         })
 
     },
     methods: {
-       
+
         menuToggle(){
             $("#admin-side-menu").toggle('medium');
             $("#menu-overlay").toggle('medium');
         },
         onItemClick(event, item){
             if(item.title == 'ログアウト'){
-                this.$auth.logout();
+                this.loginuser = 'false';
+                localStorage.setItem('loginuser', this.loginuser);
+                if(this.$auth.check(2)){
+                    this.$auth.logoutAdmin();
+                }
+                else{
+                    this.$auth.logout();
+                }
             }
         },
         onCollapse (collapsed) {
-      console.log(collapsed)
       this.collapsed = collapsed
     }
     }

@@ -7,6 +7,7 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <meta name="user" content="Auth::user()">
 <title>{{ config('app.name', 'Healthcare Portal') }}</title>
+<link rel="shortcut icon" href="{{ asset('/images/icon1.ico') }}">
 <script src="{{ asset('js/manifest.js') }}" defer></script> 
 <script src="{{ asset('js/vendor.js') }}" defer></script>
 <script src="{{ asset('js/app.js') }}" defer></script>
@@ -27,6 +28,15 @@
 <link rel="stylesheet" href="{{ asset('css/pannellum.css') }}"/>
 <link rel="stylesheet" href="{{asset('css/nprogress.css')}}">
 <script src="{{asset('js/nprogress.js')}}"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-161193570-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-161193570-2');
+</script>
 
 <style>
 
@@ -48,7 +58,8 @@
         width: 100%;
         height: 100%;
         z-index: 9999;
-        background: url("./images/loading1.gif") center no-repeat #fff;
+        /* background: url("./images/loading1.gif") center no-repeat #fff; */
+         background: url("./images/pageloading.gif") center no-repeat #fff; 
     }
       /* Safari */
       @-webkit-keyframes spin {
@@ -101,17 +112,47 @@
 </style>
 
 </head>
-<body>
-<div class="se-pre-con"></div>
+<body class="c-app flex-row align-items-center all-bg" >
 
 <div id="app">
-  <index ></index>
+    @browser('isIE')
+    <div>
+        <nav class="navbar navbar-expand-lg  main-header">
+            <div class="container nav-warp d-flex">
+            <div class="d-flex align-items-center">
+                <a class="navbar-brand logo-text">               
+                <h4 class="logo_subtitle">介護医療福祉の総合サイト</h4>
+                <img src="/images/fixed_logo.png" style="width:215px;height:auto;" />
+                </a>
+            </div>
+            </div>
+        </nav>
+        <div class="unauth-page">
+            <div class="content">
+                <div class="unauth-title">
+                <div class="col-12" style="margin:0 auto;margin-bottom: 30px;">
+                    <img src="/images/error-100.png" style="width: 8%;">               
+                </div>
+                <p class="unauth-title m-b-20">本サイトはお使いのブラウザには対応しておりません。</p>               
+                </div>
+            </div>
+        </div>
+    </div>
+    @else
+        <div class="se-pre-con"></div>
+        <index ></index>
+    @endbrowser
+    
 </div>
 
 <!-- <script src="/js/app.js" type="text/javascript"></script> -->
 <!-- <script src="{{ asset('js/map-api.js') }}"></script> -->
-<!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDh0MSZcj7IfA4NJiXrgebtauW_o-q2t8M"></script> -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2U_IRuSrajQavHadFp8FlXNi61MA3nw"></script>
+
+<!-- Real map -->
+<!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key="></script> -->
+<!-- Test map -->
+<!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key="></script> -->
+
 <!-- <script src="http://maps.google.com/maps/api/js"></script> -->
 <!-- <script src="{{ asset('js/vue2-5-13.js') }}"></script>
 <script src="{{ asset('js/vue-scrollto.js') }}"></script> -->

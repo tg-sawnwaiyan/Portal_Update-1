@@ -1,12 +1,5 @@
 <template>
-    <div >
-        <div class="d-flex justify-content-end m-b-10" v-if="!norecord_msg">
-            <router-link to="/createfacility" class="main-bg-color create-btn all-btn">
-                <i class="fas fa-plus-circle"></i> 院内施設新規作成
-            </router-link>
-            <!-- <a href="/joboffer" class="float-right" style="color: blue;"></a> -->
-        </div>
-
+    <div>
         <!--card-->
         <div class="col-12  tab-content">
             <div class="p-2 p0-480">
@@ -14,23 +7,37 @@
                     <p class="record-ico">
                         <i class="fa fa-exclamation"></i>
                     </p>
-                    <p>OOPS!!</p>
-                    <p class="record-txt01">表示するデータありません</p>
-                    <p>表示するデータありません‼新しいデータを作成してください。</p>
-                    <a href="/createfacility" class="main-bg-color create-btn all-btn">
-                        <i class="fas fa-plus-circle"></i> 新しいデータ作成
-                    </a>
+                    <p class="record-txt01">院内施設が登録されていません。</p>
+                    <router-link to="/createfacility" class="main-bg-color create-btn all-btn">
+                        <i class="fas fa-plus-circle"></i> 院内施設新規作成
+                    </router-link>
                 </div>
                 <div v-else class="container-fuid">
-                    <h4 class="main-color m-b-10">院内施設検索</h4>
-                    <div class="row">
+                    <h4 class="main-color mb-3">院内施設検索</h4>
+                    <div class="row mb-4">
                         <div class="col-md-12">
                             <input type="text" class="form-control" placeholder="施設検索" id="search-item" @keyup="searchFacility()" />
                         </div>
                     </div>
                     <hr />
-                    <h5 class="header">院内施設一覧</h5>
-                    <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデタが消える。</div>
+                    <div class="d-flex header pb-3 admin_header">
+                        <h5>院内施設一覧</h5>
+                        <div class="ml-auto" v-if="!norecord_msg">
+                            <router-link to="/createfacility" class="main-bg-color create-btn all-btn">
+                                <i class="fas fa-plus-circle"></i> <span class="first_txt">院内施設</span><span class="dinone">新規作成</span>
+                            </router-link>
+                        </div>
+                    </div>
+                    
+                    <!-- <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデタが消える。</div> -->
+
+                    <div v-if="nosearch_msg" class="card card-default card-wrap">
+                        <p class="record-ico">
+                            <i class="fa fa-exclamation"></i>
+                        </p>
+                        <p class="record-txt01">データが見つかりません。</p>
+                    </div>
+                    
                     <div v-else class="container-fuid">
                         <div class="card card-default m-b-20" v-for="facility in facilities.data" :key="facility.id">
                             <div class="card-body">
@@ -47,7 +54,13 @@
                             </div>
                         </div>
                     </div>
-                    <pagination :data="facilities" @pagination-change-page="searchFacility"></pagination>
+                    <!-- <pagination :data="facilities" @pagination-change-page="searchFacility"></pagination> -->
+                    <div>
+                        <pagination :data="facilities" @pagination-change-page="searchFacility" :limit="limitpc">
+                                <span slot="prev-nav"><i class="fas fa-angle-left"></i> 前へ</span>
+                                <span slot="next-nav">次へ <i class="fas fa-angle-right"></i></span>
+                          </pagination>
+                    </div>
                 </div>
             </div>
         </div>
@@ -55,6 +68,12 @@
 </template>
 <script>
     export default {
+         props:{
+            limitpc: {
+                type: Number,
+                default: 5
+            },
+        },
         data() {
                 return {
                     facilities: [],
@@ -84,19 +103,20 @@
             methods: {
                 deleteFacility(id) {
                         this.$swal({
-                            title: "確認",
+                            // title: "確認",
                             text: "院内施設を削除してよろしいでしょうか。",
                             type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#dc3545",
+                            confirmButtonColor: "#eea025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
-                            confirmButtonText: "削除",
+                            confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
                         }).then(response => {
                             this.axios
                                 .delete(`/api/facility/delete/${id}`)
@@ -118,11 +138,20 @@
                                         width: 350,
                                         height: 200,
                                         confirmButtonText: "閉じる",
-                                        confirmButtonColor: "#dc3545"
+                                        confirmButtonColor: "#31cd38",
+                                        allowOutsideClick: false,
                                     });
                                 })
                                 .catch(() => {
-                                    this.$swal("Failed", "wrong");
+                                    this.$swal({                                      
+                                        html: "システムエラーです。<br/>社内エンジニアにお問い合わせください。<br/><a href='mailto:pg@management-partners.co.jp'>pg@management-partners.co.jp</a>",
+                                        type: "error",
+                                        width: 350,
+                                        height: 200,
+                                        confirmButtonText: "閉じる",
+                                        confirmButtonColor: "#FF5462",
+                                        allowOutsideClick: false,
+                                    });
                                 });
                         });
                     },
@@ -135,6 +164,7 @@
                     let fd = new FormData();
                     fd.append("search_word", search_word);
                     this.$loading(true);
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
                     this.axios.post("/api/facility/search?page="+page, fd).then(response => {
                     this.$loading(false);
                     this.facilities = response.data;

@@ -27,8 +27,8 @@ class SendMailable extends Mailable
      * @return $this
      */
     public function build()
-    {
-        return $this->view('mail.mail')
-                    ->subject('[T-IS ティーズ]事業者新規登録確認');
+    { return $this->view(['mail.mail','mail.mailplaintext'])
+       
+                    ->subject('[TIS ティーズ]事業者新規登録確認');
     }
 }

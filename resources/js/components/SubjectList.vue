@@ -1,26 +1,21 @@
 <template>
     <div>
-        <div class="d-flex justify-content-end m-b-10" v-if="!norecord_msg">
-            <router-link to="/subject" class="main-bg-color create-btn all-btn">
-                <i class="fas fa-plus-circle"></i> 診療科目新規作成
-            </router-link>
-        </div>
         <div class="col-12 tab-content">
             <div class="p-2 p0-480">
                 <div v-if="norecord_msg" class="card card-default card-wrap">
                     <p class="record-ico">
                         <i class="fa fa-exclamation"></i>
                     </p>
-                    <p>OOPS!!</p>
-                    <p class="record-txt01">表示するデータありません</p>
-                    <p>表示するデータありません‼新しいデータを作成してください。</p>
-                    <a href="/subject" class="main-bg-color create-btn all-btn">
-                        <i class="fas fa-plus-circle"></i> 新しく作る
-                    </a>
+                    
+                    <p class="record-txt01">診療科目が登録されていません。</p>
+                   
+                    <router-link to="/subject" class="main-bg-color create-btn all-btn">
+                        <i class="fas fa-plus-circle"></i> 診療科目新規作成
+                    </router-link>
                 </div>
                 <div v-else class="container-fuid">
-                    <h4 class="main-color m-b-10">診療科目検索</h4>
-                    <div class="row">
+                    <h4 class="main-color mb-3">診療科目検索</h4>
+                    <div class="row mb-4">
                         <div class="col-md-12">
                             <input type="text" class="form-control" placeholder="診療科目検索" id="search-item" @keyup="searchSubject()">
                         </div>
@@ -29,8 +24,24 @@
                     </div> -->
                     </div>
                     <hr/>
-                    <h5 class="header">診療科目一覧</h5>
-                    <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデタが消える。</div>
+                    <div class="d-flex header pb-3 admin_header">
+                        <h5>診療科目一覧</h5>
+                        <div class="ml-auto" v-if="!norecord_msg">
+                            <router-link to="/subject" class="main-bg-color create-btn all-btn">
+                                <i class="fas fa-plus-circle"></i> <span class="first_txt">診療科目</span><span class="dinone">新規作成</span>
+                            </router-link>
+                        </div>
+                    </div>
+                    
+                    <!-- <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデタが消える。</div> -->
+
+                    <div v-if="nosearch_msg" class="card card-default card-wrap">
+                        <p class="record-ico">
+                            <i class="fa fa-exclamation"></i>
+                        </p>
+                        <p class="record-txt01">データが見つかりません。</p>
+                    </div>
+                    
                     <div v-else class="container-fuid">
                         <div class="card card-default m-b-20" v-for="subject in subjects.data" :key="subject.id">
                             <div class="card-body">
@@ -43,7 +54,13 @@
                                     </div>
                                 </div>
                     </div>
-                    <pagination :data="subjects" @pagination-change-page="searchSubject"></pagination>
+                    <!-- <pagination :data="subjects" @pagination-change-page="searchSubject"></pagination> -->
+                      <div>
+                            <pagination :data="subjects" @pagination-change-page="searchSubject" :limit="limitpc">
+                                <span slot="prev-nav"><i class="fas fa-angle-left"></i> 前へ</span>
+                                <span slot="next-nav">次へ <i class="fas fa-angle-right"></i></span>
+                            </pagination>
+                        </div>
                 </div>
             </div>
         </div>
@@ -51,6 +68,12 @@
 </template>
 <script>
     export default {
+          props:{
+                limitpc: {
+                type: Number,
+                default: 5
+            },
+        },
         data() {
                 return {
                     subjects: [],
@@ -78,19 +101,20 @@
             methods: {
                 deleteSubject(id) {
                         this.$swal({
-                            title: "確認",
+                            // title: "確認",
                             text: "診療科目を削除してよろしいでしょうか。",
                             type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#dc3545",
+                            confirmButtonColor: "#eea025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
-                            confirmButtonText: "削除",
+                            confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
                         }).then(response => {
                             this.axios.delete(`/api/subjects/delete/${id}`)
                                 .then(response => {
@@ -110,10 +134,23 @@
                                         width: 350,
                                         height: 200,
                                         confirmButtonText: "閉じる",
-                                        confirmButtonColor: "#dc3545"
+                                        confirmButtonColor: "#31cd38",
+                                        allowOutsideClick: false,
                                     });
-                                }).catch(() => {
-                                    this.$swal("失礼しました。", "サーバーに問題があります。");
+                                }).catch(error=>{
+                                    if(error.response.status == 404){
+                                        // this.$swal("このカテゴリーに関連するニュースがあるため、削除できません。");
+                                        this.$swal({
+                                            // title: "削除に失敗しました",
+                                            html: "削除に失敗しました。 <br/>削除しようとした診療科目の施設が存在するため削除できません。 ",
+                                            type: "error",
+                                            width: 350,
+                                            height: 200,
+                                            confirmButtonText: "閉じる",
+                                            confirmButtonColor: "#FF5462",
+                                            allowOutsideClick: false,
+                                        });
+                                    }
                                 });
                         });
                     },
@@ -126,6 +163,7 @@
                         let fd = new FormData();
                         fd.append("search_word", search_word)
                         this.$loading(true);
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
                         this.axios.post("/api/subjects/search?page="+page, fd).then(response => {
                         this.$loading(false);
                         this.subjects = response.data;
@@ -139,3 +177,4 @@
             }
     }
 </script>
+

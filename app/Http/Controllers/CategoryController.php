@@ -37,7 +37,7 @@ class CategoryController extends Controller
     {
         // $categories = Category::select('name')->get();
         // return $categories;
-        $categories = Category::orderBy('id','desc')->paginate(12); 
+        $categories = Category::orderBy('order_number','desc')->paginate(20); 
         return response()->json($categories);
     }
 
@@ -45,7 +45,8 @@ class CategoryController extends Controller
     {
 
         $category_list = Category::select('id','name')->get()->toArray();
-        return response()->json($category_list);
+        $pr_category_list = Category::select('id','name')->where('id','!=',26)->get()->toArray();
+        return response()->json(array("categories"=>$category_list,"prcategories"=>$pr_category_list));
 
     }
 
@@ -64,6 +65,7 @@ class CategoryController extends Controller
 
         $category = new Category();
         $category->name = $request->input('name');
+        $category->order_number = $request->input('order_number');
         $category->user_id = 1;
         $category->recordstatus = 1;
 
@@ -87,6 +89,7 @@ class CategoryController extends Controller
         // ]);
         $category = Category::find($id);
         $category->name = $request->input('name');
+        $category->order_number = $request->input('order_number');
         $category->user_id = 1;
         $category->recordstatus = 1;
         $category -> save();
@@ -107,8 +110,8 @@ class CategoryController extends Controller
         }
         else{
            $category->delete();
-           $categories = Category::all()->toArray();
-           return array_reverse($categories);
+           $categories = Category::orderBy('id','DESC')->paginate(20);
+           return response()->json($categories);
         }
         
      
@@ -130,7 +133,7 @@ class CategoryController extends Controller
         $search_categories = Category::query()
                             ->where('name', 'LIKE', "%{$search_word}%")
                             ->orderBy('id','DESC')
-                            ->paginate(12);
+                            ->paginate(20);
         return response()->json($search_categories);
 
     }

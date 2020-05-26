@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Subject;
 use App\HospitalProfile;
 use App\SubjectJunctions;
+use DB;
 use Illuminate\Http\Request;
 
 class SubjectController extends Controller
@@ -12,7 +13,7 @@ class SubjectController extends Controller
 
     public function index()
     {
-        $Subjects = Subject::orderBy('id', 'DESC')->paginate(12);
+        $Subjects = Subject::orderBy('id', 'DESC')->paginate(20);
 
         for($i=0;$i<count($Subjects);$i++)
         {
@@ -134,10 +135,16 @@ class SubjectController extends Controller
     public function destroy($id)
     {
         $Subject = Subject::find($id);
-        $Subject->delete();
+        $sub_junction = "SELECT * FROM subject_junctions WHERE subject_junctions.subject_id = $id";
+        $junction_data = DB::select($sub_junction);
+        if(count($junction_data) != 0) {
+            return response()->json(['error' => 'この診療科目に関連している病院施設がありますので削除できません。'], 404);
+        }else{
+            $Subject->delete();
         // return response()->json('The Subject was successfully deleted');
-        $subjects = Subject::all()->toArray();
-        return $subjects;
+        $subjects = Subject::orderBy('id', 'DESC')->paginate(20);
+        return response()->json($subjects);
+        }        
     }
 
     public function search(Request $request) {
@@ -147,14 +154,14 @@ class SubjectController extends Controller
         $search_subjects = Subject::query()
                             ->where('name', 'LIKE', "%{$search_word}%")
                             ->orderBy('id','DESC')
-                            ->paginate(12);
+                            ->paginate(20);
         return response()->json($search_subjects);
     }
 
     public function getHospitalClinicalSubject($customer_id) {
-        $subject_list = Subject::all()->toArray();
+        $subject_list = Subject::where('parent','!=',0)->get()->toArray();
 
-        $clinical_subject = SubjectJunctions::where('customer_id','=',$customer_id)->get()->toArray();
+        $clinical_subject = SubjectJunctions::where('profile_id','=',$customer_id)->get()->toArray();
       
 
         for($indx=0; $indx<count($clinical_subject); $indx++) {

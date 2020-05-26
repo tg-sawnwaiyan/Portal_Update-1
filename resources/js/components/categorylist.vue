@@ -1,10 +1,5 @@
 <template>
         <div>
-            <div class="d-flex justify-content-end m-b-10" v-if="!norecord_msg">               
-                <router-link to="/createcategory" class="main-bg-color create-btn all-btn">
-                    <i class="fas fa-plus-circle"></i> カテゴリー新規作成
-                </router-link>           
-            </div>
             <!--card-->
             <div class="col-12  tab-content">
                 <div class="p-2 p0-480">
@@ -12,16 +7,16 @@
                         <p class="record-ico">
                             <i class="fa fa-exclamation"></i>
                         </p>
-                        <p>OOPS!!</p>
-                        <p class="record-txt01">表示するデータありません</p>
-                        <p>表示するデータありません‼新しいデータを作成してください。</p>
-                        <a href="/createcategory" class="main-bg-color create-btn all-btn">
+                   
+                        <p class="record-txt01">ニュースカテゴリーが登録されていません。</p>
+                       
+                        <router-link to="/createcategory" class="main-bg-color create-btn all-btn">
                             <i class="fas fa-plus-circle"></i> カテゴリー新規作成
-                        </a>
+                        </router-link>
                     </div>
                     <div v-else class="container-fuid">
-                        <h4 class="main-color m-b-10">ニュースカテゴリー検索</h4>
-                        <div class="row">
+                        <h4 class="main-color mb-3">ニュースカテゴリー検索</h4>
+                        <div class="row mb-4">
                             <div class="col-md-12">
                                 <input type="text" class="form-control" placeholder="ニュースカテゴリー検索" id="search-item" @keyup="searchCategory()" />
                             </div>
@@ -30,14 +25,30 @@
                             </div>-->
                         </div>
                         <hr />
-                        <h5 class="header">ニュースカテゴリー一覧</h5>
-                        <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデータが消える。</div>
+                        <div class="d-flex header pb-3 admin_header">
+                            <h5>ニュースカテゴリー一覧</h5>
+                            <div class="ml-auto" v-if="!norecord_msg">
+                                <router-link to="/createcategory" class="main-bg-color create-btn all-btn">
+                                    <i class="fas fa-plus-circle"></i> <span class="first_txt">カテゴリー</span><span class="dinone">新規作成</span>
+                                </router-link>
+                            </div>
+                        </div>
+                        
+                        <!-- <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデータが消える。</div> -->
+
+                            <div v-if="nosearch_msg" class="card card-default card-wrap">
+                                <p class="record-ico">
+                                    <i class="fa fa-exclamation"></i>
+                                </p>
+                                <p class="record-txt01">データが見つかりません。</p>
+                            </div>
+                        
                         <div v-else class="container-fuid">
                             <div class="card card-default m-b-20" v-for="category in categories.data" :key="category.id">
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-6 col-sm-8 m-t-8">{{category.name}}</div>
-                                        <div class="col-md-6 col-sm-4 text-right admin_page_edit">
+                                        <div class="col-md-6 col-sm-8 m-t-8">{{category.name}} ({{category.order_number}})</div>
+                                        <div  v-if="category.name != 'PR'" class="col-md-6 col-sm-4 text-right admin_page_edit">
                                             <router-link :to="{name:'editcategory', params:{id : category.id}}" class="btn edit-borderbtn">編集</router-link>
                                             <button class="btn text-danger delete-borderbtn" @click="deleteCategory(category.id)" >削除</button>
                                         </div>
@@ -45,7 +56,13 @@
                                 </div>
                             </div>
                         </div>
-                        <pagination :data="categories" @pagination-change-page="searchCategory"></pagination>
+                        <!-- <pagination :data="categories" @pagination-change-page="searchCategory"></pagination> -->
+                        <div>
+                            <pagination :data="categories" @pagination-change-page="searchCategory" :limit="limitpc">
+                                <span slot="prev-nav"><i class="fas fa-angle-left"></i> 前へ</span>
+                                <span slot="next-nav">次へ <i class="fas fa-angle-right"></i></span>
+                            </pagination>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -56,6 +73,12 @@
 
 <script>
     export default {
+           props:{
+            limitpc: {
+                type: Number,
+                default: 5
+            },
+        },
         data() {
                 return {
                     categories: [],
@@ -82,25 +105,26 @@
             methods: {
                 deleteCategory(id) {
                         this.$swal({
-                            title: "確認",
-                            text: "ニュースカテゴリを削除してよろしいでしょうか。",
+                            // title: "確認",
+                            text: "ニュースカテゴリーを削除してよろしいでしょうか。",
                             type: "warning",
                             width: 380,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#dc3545",
+                            confirmButtonColor: "#eea025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
                             confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
                         }).then(response => {
                             this.axios
                                 .delete(`/api/category/delete/${id}`)
                                 .then(response => {
                                     this.categories = response.data;
-                                    this.norecord = this.categories.length;
+                                    this.norecord = this.categories.data.length;
                                     if (this.norecord > this.size) {
                                         this.pagination = true;
                                     } else {
@@ -120,21 +144,24 @@
                                         width: 350,
                                         height: 200,
                                         confirmButtonText: "閉じる",
-                                        confirmButtonColor: "#dc3545"
+                                        confirmButtonColor: "#31cd38",
+                                        allowOutsideClick: false,
+                                        allowOutsideClick: false,
                                     });
 
                                 })
                                  .catch(error=>{
                                     if(error.response.status == 404){
-                                        // this.$swal("このカテゴリに関連するニュースがあるため、削除できません。");
+                                        // this.$swal("このカテゴリーに関連するニュースがあるため、削除できません。");
                                         this.$swal({
-                                            title: "削除に失敗しました",
-                                            text: "削除に失敗しました このカテゴリのニュースが存在するため削除できません。 ",
+                                            // title: "削除に失敗しました",
+                                            html: "削除に失敗しました。<br>削除しようとしたカテゴリーのニュースが存在するため削除できません。",
                                             type: "error",
                                             width: 350,
                                             height: 200,
                                             confirmButtonText: "閉じる",
-                                            confirmButtonColor: "#dc3545"
+                                            confirmButtonColor: "#FF5462",
+                                            allowOutsideClick: false,
                                         });
                                     }
                                 });
@@ -149,6 +176,7 @@
                         let fd = new FormData();
                         fd.append("search_word", search_word);
                         this.$loading(true);
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
                         this.axios.post("/api/category/search?page="+page, fd).then(response => {
                             this.$loading(false);
                             this.categories = response.data;

@@ -1,19 +1,17 @@
-<template>
-    <div class="loginwrapper">
-        <div class="d-flex justify-content-center h-100">     
-            <div class="admin_card admin_registercard">
-                <div class="row m-b-10">
-                <div class="col-md-12">
+<template>   
+        <div class="d-flex justify-content-center h-100 admin-list-container">      
+            <div class="admin_card admin_registercard admin-list-wrapper">
+                <div class="col-md-12 m-b-10">               
                     <router-link :to="{name:'news_list'}" class="btn btn-danger all-btn submit">管理者画面へ</router-link>
                     <router-link :to="{name:'admincreate'}" class="float-right main-bg-color create-btn all-btn">
                         <i class="fas fa-plus-circle"></i> 管理者新規作成
-                    </router-link>
-                </div>
+                    </router-link>                
             </div>
-                <div class="col-md-12 scrolldiv">
-                <h6 class="header">管理者一覧</h6>
+                <div class="col-md-12 admin-list">
+                <h6 class="page-header header" style="background:transparent;">管理者一覧</h6>
+                <div class="scroll_responsive admin-list-table">
                 <table class="table table-hover custom-table">
-                    <thead style="background-color:rgb(183, 218, 210);">
+                    <thead>
                         <tr>
                             <th>管理者名</th>
                             <th>メールアドレス</th>
@@ -25,12 +23,13 @@
                             <td>{{admin.name}}</td>
                             <td >{{admin.email}}</td>
                             <td class="text-right">
-                                <router-link :to="{name: 'admincreate', params: { id: admin.id }}" class="btn edit-borderbtn">編集</router-link>
+                                <router-link :to="{path: '/admin/edit/'+admin.id}" class="btn edit-borderbtn">編集</router-link>
                                 <button class="btn text-danger delete-borderbtn" @click="deleteFeature(admin.id)">削除</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
+                </div>
                 </div>
                 <div class="col-12" v-if="pagination">
                         <nav aria-label="Page navigation example">
@@ -54,8 +53,7 @@
                         </nav>
                     </div>
             </div>
-        </div>
-    </div>
+        </div>    
 </template>
 <script>
 export default {
@@ -118,24 +116,24 @@ export default {
     methods: {
                 deleteFeature(id) {
                         this.$swal({
-                            title: "確認",
+                            // title: "確認",
                             text: "特徴を削除してよろしいでしょうか。",
                             type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#dc3545",
+                            confirmButtonColor: "#EEA025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
                             confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
                         }).then(response => {
                             this.axios
                                 .delete(`/api/main_admin/delete/${id}`)
                                 .then(response => {
-                                    console.log(response.data)
                                     this.admin_list = response.data;
                                     this.$swal({
                                         text: "特徴を削除しました。",
@@ -143,11 +141,20 @@ export default {
                                         width: 350,
                                         height: 200,
                                         confirmButtonText: "閉じる",
-                                        confirmButtonColor: "#dc3545"
+                                        confirmButtonColor: "#31CD38",
+                                        allowOutsideClick: false,
                                     });
                                 })
                                 .catch(() => {
-                                    this.$swal("Failed", "wrong");
+                                    this.$swal({                                        
+                                        html: "システムエラーです。<br/>社内エンジニアにお問い合わせください。<br/><a href='mailto:pg@management-partners.co.jp'>pg@management-partners.co.jp</a>",
+                                        type: "error",
+                                        width: 350,
+                                        height: 200,
+                                        confirmButtonText: "閉じる",
+                                        confirmButtonColor: "#FF5462",
+                                        allowOutsideClick: false,
+                                    });
                                 });
                         });
                     },

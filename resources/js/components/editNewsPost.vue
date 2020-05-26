@@ -1,50 +1,60 @@
 <template>
     <!-- Page Content  -->
-    <div id="content">
+    <div id="news_post">
         <div class="card">
             <div class="card-body">
+                
                 <div v-if='status == 1'>
                     <h4 class="page-header header">ニュース編集</h4>
                 </div>
+                
                 <div v-else>
                     <h4 class="page-header header">ニュース新規作成</h4>
                 </div>
-                <br>
-                <form @submit.prevent="updatepost">
+                <form @submit.prevent="updatepost" autocomplete="off">
                     <div class="form-group">
-                        <label>題名:<span class="error">*</span></label>
-                        <input type="text" class="form-control" placeholder="題名を入力してください。" v-model="news.title">
+                        <label>題名 <span class="error sp2">必須</span></label>
+                        <input type="text" autocomplete="off" class="form-control" placeholder="題名を入力してください。" v-model="news.title">
                         <span v-if="errors.title" class="error">{{errors.title}}</span>
                     </div>
 
                     <div class="form-group" id="showimage">
-                        <label class="">写真:</label>
-                        <div class="custom-file">
+                        <label class="">写真</label>
+                        <!-- <div class="custom-file">
                             <input type="file" ref="file" accept="image/*" @change="fileSelected">
-                        </div>
-                    </div>
-
-                    <div class="image_show" v-if="upload_img">
+                        </div> -->
+                        <div class="d-flex align-items-center">
+                            <span class="btn-file d-inline-block">画像を選択        
+                                <input type="file" ref="file" accept="image/*" @change="fileSelected">
+                            </span> 
+                            <span class="pl-4">{{img_name}}</span>
+                        </div>                    
+                        
+                    </div>                    
+                    
+                    <div class="image_show" v-if="upload_img ">
                         <div class='col-md-2'>
-                            <span class='img-close-btn' v-on:click="removeUpload()">X</span>
-                            <img :src="upload_img" class='show-img'>
+                            <!-- <span class='img-close-btn test' v-on:click="removeUpload()" v-if='status == 1'>X</span> -->
+                            <img :src="upload_img" class='show-img' @error="imgUrlAlt">
                         </div>
-                    </div>
-                    <div class="form-group image_update" id="x-image" v-if ="news.photo && !upload_img && !old_photo">
+                    </div>  
+    
+                    <div  class="form-group image_update" id="x-image" v-if ="noimage == 0 && news.photo && !upload_img && !old_photo">
                         <div class="col-md-12" >
-                            <div id='x-image' class='col-md-2'>
+                            <div id='x-image' class='col-md-2' >
                                 <span class='img-close-btn' v-on:click='closeBtnMethod(news.photo)'>X</span>
-                                <img :src="'/upload/news/'+ news.photo" class='show-img' alt="">
+                                <img :src="'/upload/news/'+ news.photo" class='show-img' alt="" @error="imgUrlAlt1">
                             </div>
                         </div>
                     </div>
+                 
                     <div class="form-group">
-                        <label>主な情報:<span class="error">*</span></label>
-                        <input type="text" class="form-control" placeholder="ニュースの主な情報を入力してください。" v-model="news.main_point">
+                        <label>内容要約 <span class="error sp2">必須</span></label>
+                        <input type="text" autocomplete="off" class="form-control" placeholder="ニュースの内容要約を入力してください。" v-model="news.main_point">
                         <span v-if="errors.main_point" class="error">{{errors.main_point}}</span>
                     </div>
                     <div class="form-group">
-                        <label>カテゴリー:<span class="error">*</span></label>
+                        <label>カテゴリー <span class="error sp2">必須</span></label>
                             <select v-model="selectedValue" class="form-control" @change='getstates()'>
                                 <option v-bind:value="0">選択してください。</option>
                                 <option v-for="category in categories" :key="category.id" v-bind:value="category.id">
@@ -53,32 +63,48 @@
                             </select>
                         <span v-if="errors.category_id" class="error">{{errors.category_id}}</span>
                     </div>
+               
+                     <div v-if="selectedValue == 26" class="form-group">
+                        <div class="row">
+                            <div class="col-12 col-sm-4 col-md-4">
+                                <label>掲載開始日 <span class="error sp2">必須</span></label>
+                                <date-picker class="" :lang="lang"  valueType="format" v-model="news.from_date" style="width:100%"></date-picker>
+                                <span v-if="errors.from_date" class="error">{{errors.from_date}}</span>
+                            </div>
+                             <div class="col-12 col-sm-4 col-md-4 mt-567-10">
+                                <label>掲載終了日 </label>
+                                <date-picker class=""  :lang="lang" valueType="format" v-model="news.to_date"  style="width:100%"></date-picker>
+                            </div>
+                        </div>
+                        <span v-if="errors.date_check" class="error">{{errors.date_check}}</span>
+                    </div>
                     <div class="form-group">
-                        <label>内容:<span class="error">*</span></label>
+                        <label>内容 <span class="error sp2">必須</span></label>
                         <quill-editor  ref="myQuilEditor" id="exampleFormControlTextarea1" class="rounded-0" placeholder="内容を入力してください。"  @change="onDetailInfoEditorChange($event)" v-model="news.body" :options="editorOption" @blur="onEditorBlur($event)" @focus="onEditorFocus($event)"/>
                         <span v-if="errors.body" class="error">{{errors.body}}</span>
                     </div>
-                    <div class="form-group">
-                        <label>関連ニュース:</label>
+                    <div v-if="selectedValue != 26" class="form-group">
+                        <label>関連ニュース</label>
                         <div class="card related-card">
                             <div class="card-body">
                                 <input type="hidden" v-model="old_photo" >
                                 <div class="d-sm-flex">
                                     <div class="d-flex align-items-center cat_box">
-                                         <label class="cat_lbl"> カテゴリー:</label>
+                                         <label class="cat_lbl"> カテゴリー</label>
                                         <select v-model="category_id_1" id="categories" class="form-control cat_select" @change='getPostsByCatId()'>
-                                            <option v-for="category in categories" :key="category.id" v-bind:value="category.id">
+                                            <option v-for="category in prcategories" :key="category.id" v-bind:value="category.id">
                                                 {{category.name}}
                                             </option>
                                         </select>
                                     </div>
                                     <div class="search_box">
-                                        <input type="text" placeholder="関連ニュース検索" aria-label="search" id="search-word" class="form-control form_search" @keyup='getSearchPostsByCatId()'>
+                                        <input type="text" autocomplete="off" placeholder="関連ニュース検索" aria-label="search" id="search-word" class="form-control form_search" v-model="search_word"  @keyup='getSearchPostsByCatId()'>
                                     </div>
                                 </div>
                                 <br>
+                            
 
-                                <div class="row">
+                                <div class="row m-0">
                                     <div class="related_post_box card card-default" v-for="r_news in related_news.data" :key="r_news.id">
                                         <div class="card-body">
                                             <label class="form-check-label control control--checkbox">
@@ -95,19 +121,34 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                <div v-if="nosearch_msg" class="card card-default card-wrap" style="height:250px;padding-top:30px;">
+                                    <p class="record-ico">
+                                        <i class="fa fa-exclamation"></i>
+                                    </p>
+                                    <p class="record-txt01">データが見つかりません。</p>
+                                </div> 
+
+                                <!-- <div class="row">
                                     <pagination :data="related_news" @pagination-change-page="getPostsByCatId"></pagination>
-                                </div>
+                                </div> -->
+
+                                 <div>
+                              <pagination :data="related_news" @pagination-change-page="getSearchPostsByCatId" :limit="limitpc" class="mt-3">
+                                <span slot="prev-nav"><i class="fas fa-angle-left"></i> 前へ</span>
+                                <span slot="next-nav">次へ <i class="fas fa-angle-right"></i></span>
+                            </pagination>
+                        </div>
                                 
                                 <input type="hidden" v-model="checkedNews" >
                             </div>
                         </div>
                     </div>
+                   
 
                     <div class="form-group">
+                        <span @click="$router.go(-1)" :to="{name: 'news_list'}" class="btn bt-red all-btn">キャンセル</span>
                         <span class="btn main-bg-color white all-btn" @click="checkValidate()" v-if='status == 1'> 保存</span>
                         <span class="btn main-bg-color white all-btn" @click="checkValidate()" v-if='status == 0'> 作成</span>
-                        <span @click="$router.go(-1)" :to="{name: 'news_list'}" class="btn btn-danger all-btn">キャンセル</span>
                     </div>
                 </form>
             </div>
@@ -123,9 +164,24 @@ import {quillEditor} from 'vue-quill-editor'
         components: {
             quillEditor
         },
+           props:{
+            limitpc: {
+                type: Number,
+                default: 5
+            },
+        },
 
         data() {
                 return {
+                    lang:{
+                        days: ['日', '月', '火', '水', '木', '金', '土'],
+                        months: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                        placeholder: {
+                        //date: new Date().toISOString().slice(0,10),
+                        date: '年 - 月 - 日',
+
+                        }
+                    },
                     selectedValue: 0,
                     status:0,
                     arr: [],
@@ -134,7 +190,32 @@ import {quillEditor} from 'vue-quill-editor'
                         main_point: "",
                         body: "",
                         category_id: "",
+                        from_date: "",
+                        date_check: "",
                     },
+                     editorOption:{
+                    debug:'info',
+                    placeholder:'',
+                    readonly:true,
+                    theme:'snow',
+                    modules: {
+                        toolbar: [
+                        ['bold', 'italic', 'underline', 'strike'],
+                        ['blockquote', 'code-block'],
+                        [{ 'header': 1 }, { 'header': 2 }],
+                        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                        [{ 'script': 'sub' }, { 'script': 'super' }],
+                        [{ 'indent': '-1' }, { 'indent': '+1' }],
+                        [{ 'direction': 'rtl' }],
+                        [{ 'color': [] }, { 'background': [] }],
+                        [{ 'align': [] }],
+                        ['clean'],
+                        ['link', 'image', 'video']
+                        ]
+                    },
+                    access_val: '',
+                    detail_info: '', stations:[], station_list:[],
+            },
                     news: {
                         title: '',
                         mainPoint: '',
@@ -143,11 +224,19 @@ import {quillEditor} from 'vue-quill-editor'
                         category_name: '',
                         related_news: '',
                         photo: '',
+                        from_date:'',
+                        to_date:'',
+
                     },
                     categories: {
                         id: '',
                         name: ''
                     },
+                    prcategories:{
+                        id:'',
+                        name:''
+                    },
+                
                     category_id_1: '1',
                     related_news: [],
                     checkedNews: [],
@@ -158,16 +247,21 @@ import {quillEditor} from 'vue-quill-editor'
                     pageRange: 5,
                     items: [],
                     pagination: false,
-                    search_word:''
+                    search_word:'',
+                    img_name : '',
+                    noimage:0,
+                    nosearch_msg:false,
                 }
             },
             created() {
+                this.noimage = 0;
                 this.getResults();
-            },
+            }, 
             mounted() {
                 this.axios.get('/api/category/category_list')
                 .then(function(response) {
-                    this.categories = response.data;
+                    this.categories = response.data.categories;
+                    this.prcategories = response.data.prcategories;
                 }.bind(this));
             },
             methods: {
@@ -180,7 +274,13 @@ import {quillEditor} from 'vue-quill-editor'
                             .get(`/api/new/editPost/${this.$route.params.id}`)
                             .then((response) => {
                                 this.news = response.data;
-
+                            
+                                if(this.news.to_date == null)
+                                {
+                                    this.news.to_date = '';
+                                }
+                                
+                               this.noimage = 0;
                                 this.checkedNews = [];
                                 if(this.news.related_news != undefined){
                                     this.checkedNews = this.news.related_news.split(',');
@@ -204,22 +304,25 @@ import {quillEditor} from 'vue-quill-editor'
                     fileSelected(e) {
                         this.news.photo = event.target.files[0];
                         this.upload_img = URL.createObjectURL(event.target.files[0]);
+                        const file =event.target.files[0];
+                        this.img_name = file.name;
                     },
                     removeUpload(e) {
                          this.$swal({
-                            title: "確認",
-                            text: "削除してよろしいでしょうか",
+                            // title: "確認",
+                            text: "削除してよろしいでしょうか。",
                             type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#dc3545",
+                            confirmButtonColor: "#eea025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
                             confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
                         }).then(response => {
                                 this.$swal({
                                         text: "画像を削除しました。",
@@ -227,9 +330,13 @@ import {quillEditor} from 'vue-quill-editor'
                                         width: 350,
                                         height: 200,
                                         confirmButtonText: "閉じる",
-                                        confirmButtonColor: "#dc3545"
+                                        confirmButtonColor: "#31cd38",
+                                        allowOutsideClick: false,
+                                       
                                     });
-                           });
+                           }).then(response => {
+                            this.img_name = '';
+                         });
                         this.news.photo = '';
                         this.upload_img = '';
                         this.reset();
@@ -244,22 +351,31 @@ import {quillEditor} from 'vue-quill-editor'
                     },
                     updatepost() {
                         this.$swal({
-                            title:"確認",
-                            text: "ニュースを更新よろしいでしょうか。",
-                            type: "info",
+                            // title:"確認",
+                            text: "ニュースを更新してよろしいでしょうか。",
+                            type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#6cb2eb",
+                            confirmButtonColor: "#eea025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
                             confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
+                           
                         }).then(response => {
                             let fData = new FormData();
+                            if(this.news.category_id != 26 )
+                            {
+                                this.news.from_date = null;
+                                this.news.to_date = null;
+                            }
                             fData.append('photo', this.news.photo)
+                            fData.append('from_date', this.news.from_date)
+                            fData.append('to_date', this.news.to_date)
                             fData.append('title', this.news.title)
                             fData.append('main_point', this.news.main_point)
                             fData.append('body', this.news.body)
@@ -274,9 +390,10 @@ import {quillEditor} from 'vue-quill-editor'
                                     type: 'success',
                                     text: 'ニュースを更新しました。',
                                     confirmButtonText: "閉じる",
-                                    confirmButtonColor: "#6cb2eb",
-                                    width: 250,
+                                    confirmButtonColor: "#31cd38",
+                                    width: 350,
                                     height: 200,
+                                    allowOutsideClick: false,                                   
                                 })
 
                                 this.$router.go(-1);
@@ -290,22 +407,25 @@ import {quillEditor} from 'vue-quill-editor'
                     },
                     add() {
                             this.$swal({
-                            title: "確認",
+                            // title: "確認",
                             text: "ニュースを投稿してよろしいでしょうか。",
-                            type: "info",
+                            type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#6cb2eb",
+                            confirmButtonColor: "#eea025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
                             confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,                         
                         }).then(response => {
                         let fData = new FormData();
                             fData.append('photo', this.news.photo)
+                            fData.append('from_date', this.news.from_date)
+                            fData.append('to_date', this.news.to_date)
                             fData.append('title', this.news.title)
                             fData.append('main_point', this.news.main_point)
                             fData.append('body', this.news.body)
@@ -321,9 +441,10 @@ import {quillEditor} from 'vue-quill-editor'
                             type: 'success',
                             text: 'ニュースを投稿しました。',
                             confirmButtonText: "閉じる",
-                            confirmButtonColor: "#6cb2eb",
-                            width: 270,
+                            confirmButtonColor: "#31cd38",
+                            width: 350,
                             height: 200,
+                            allowOutsideClick: false,
                         })
                             this.$router.push({
                                 name: 'news_list'
@@ -336,6 +457,8 @@ import {quillEditor} from 'vue-quill-editor'
                     },
                     getstates: function() {
                         this.news.category_id = this.selectedValue;
+                        this.news.from_date = '';
+                        this.news.to_date = '';
                     },
                     getPostsByCatId: function(page) {
                         if (typeof page === 'undefined') {
@@ -344,11 +467,22 @@ import {quillEditor} from 'vue-quill-editor'
                         var cat_id = this.category_id_1;
                         let fd = new FormData();
                         fd.append("cat_id", cat_id);
+                        fd.append("search_word",this.search_word);
 
                         this.axios
-                        .post('/api/new/getPostsByCatId/page=' + page,fd)
+                        .post('/api/new/getPostsByCatId/page=' + page+"/"+`${this.$route.params.id}`,fd)
                         .then(response => {
                             this.related_news = response.data;
+                            this.norecord = this.related_news.data.length;
+                           
+
+                            if(this.norecord != 0) {
+                                this.nosearch_msg = false;
+                            }else{
+                                this.nosearch_msg = true;
+                            }
+
+                            
                             if(this.related_news.length > this.size) {
                                 this.pagination = true;
                             }else{
@@ -356,23 +490,26 @@ import {quillEditor} from 'vue-quill-editor'
                             }
                         });
                     },
-                    getSearchPostsByCatId: function(page) {
+                    getSearchPostsByCatId(page) {
                         if (typeof page === 'undefined') {
                             page = 1;
                         }
                         var cat_id = this.category_id_1;
                         
-                        if(this.search_word == '') {
-                            var search_word = this.search_word;
-                        }  else {
-                            var search_word = $('#search-word').val();
-                        }
-
                         let fd = new FormData();
-                        fd.append("search_word", search_word);
+                        fd.append("search_word", this.search_word);
                         fd.append("selected_category", cat_id);
-                        this.axios.post("/api/news_list/search?page=" + page,fd).then(response => {
+                        fd.append("postid",`${this.$route.params.id}`)
+                        this.axios.post("/api/news_list/search?page="+ page,fd).then(response => {
                             this.related_news = response.data;
+                            console.log("re",this.related_news)
+                            this.norecord = this.related_news.data.length;
+
+                            if(this.norecord != 0) {
+                                this.nosearch_msg = false;
+                            }else{
+                                this.nosearch_msg = true;
+                            }
                             this.check_head = true;
                             if(this.related_news.length > this.size) {
                                 this.pagination = true;
@@ -380,25 +517,26 @@ import {quillEditor} from 'vue-quill-editor'
                                 this.pagination = false;
                             }
                         });
-                        this.search_word = '1';
+                        // this.search_word = '1';
                     },
                     closeBtnMethod: function(old_photo) {
                         if(confirm)
                         {
                             this.$swal({
-                            title: "削除",
+                            // title: "削除",
                             text: "画像を削除してよろしいでしょうか。",
                             type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#d41010",
+                            confirmButtonColor: "#eea025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
                             confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
                             }).then(response =>{
                             var image_x = document.getElementById('x-image');
                             image_x.parentNode.removeChild(image_x);
@@ -410,7 +548,8 @@ import {quillEditor} from 'vue-quill-editor'
                                         width: 350,
                                         height: 200,
                                         confirmButtonText: "閉じる",
-                                        confirmButtonColor: "#dc3545"
+                                        confirmButtonColor: "#31cd38",
+                                        allowOutsideClick: false,
                                     });
                                     this.old_photo = old_photo;
                                     this.getPostsByCatId;
@@ -418,48 +557,122 @@ import {quillEditor} from 'vue-quill-editor'
                         }
                     },
                     checkValidate() {
+                        if(this.selectedValue == 26){
+                            if(this.news.from_date == ''){
+                                this.errors.from_date = '掲載開始日は必須です。'
+                            }
+                            else{
+                                this.errors.from_date = '';
+                            }
+                        }
                         if (this.news.title) {
                             this.errors.title = "";
                         } else {
-                            this.errors.title = "ニュースの題名が必須です。";
+                            this.errors.title = "ニュースの題名は必須です。";
                         }
                         if (this.news.main_point) {
                             this.errors.main_point = "";
                         } else {
-                            this.errors.main_point = "ニュースの主な情報が必須です。";
+                            this.errors.main_point = "ニュースの内容要約は必須です。";
                         }
                         if (this.news.body) {
                             this.errors.body = "";
                         } else {
-                            this.errors.body = "ニュースの内容が必須です。";
+                            this.errors.body = "ニュースの内容は必須です。";
                         }
                         if (this.news.category_id) {
                             this.errors.category_id = "";
                         } else {
-                            this.errors.category_id = "ニュースのカテゴリーが必須です。";
+                            this.errors.category_id = "ニュースのカテゴリーは必須です。";
                         }
-                        if (
-                            !this.errors.title &&
-                            !this.errors.main_point &&
-                            !this.errors.body &&
-                            !this.errors.category_id
-                        ) {
-                            if(this.status == 0) {
-                                this.add();
-                            } else {
-                                this.updatepost();
+                        if(this.selectedValue == 26){
+                            if (
+                                !this.errors.title &&
+                                !this.errors.main_point &&
+                                !this.errors.body &&
+                                !this.errors.category_id &&
+                                !this.errors.from_date
+                            ){
+                                //date 
+                                if(this.news.to_date != ''){
+
+                                    var fromd = new Date(this.news.from_date);
+                                    var tod = new Date(this.news.to_date)
+                                   
+                                    if(fromd.getTime() >  tod.getTime()){
+                                        this.errors.date_check = "掲載終了日を掲載開始日より後にしてください。";
+                                    } else {
+                                        this.errors.date_check = '';
+                                        if(this.status == 0) {
+                                            this.add();
+                                        } else {
+                                            this.updatepost();
+                                        } 
+                                    } 
+                                }  
+                                else {
+                                    if(this.status == 0) {
+                                        this.add();
+                                    } else {
+                                        this.updatepost();
+                                    } 
+                                }                                                             
                             }
+                            
                         }
+                        else{
+                            if (
+                                !this.errors.title &&
+                                !this.errors.main_point &&
+                                !this.errors.body &&
+                                !this.errors.category_id
+                            ) {
+                                if(this.status == 0) {
+                                    this.add();
+                                } else {
+                                    this.updatepost();
+                                } 
+                            }
+                        }                        
                     },
-                imgUrlAlt(event) {
-                event.target.src = "images/noimage.jpg"
+            imgUrlAlt(event) {
+              
+               event.target.src = "/images/noimage.jpg"
             },
+
+            imgUrlAlt1(event) {
+              
+                this.noimage = 1;
+                event.target.src = "/images/noimage.jpg"
+            },
+
+            
+            
             }
+
+            
+            
     }
+
+
+
+ 
 </script>
 
 <style>
  .quill-editor{
           background-color: #fff;
   }
+     .bt-red
+    {
+    color: #fff;
+    background-color: #e3342f;
+    border-color: #e3342f;
+    }
+    .bt-suc
+    {   
+        color: #fff;
+        background-color: #0cc72c; 
+        border-color: #0cc72c;
+    }
 </style>

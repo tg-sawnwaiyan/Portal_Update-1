@@ -1,33 +1,44 @@
 <template>
     <div>
-        <div class="d-flex justify-content-end m-b-10" v-if="!norecord_msg">
-            <router-link to="/occupation" class="main-bg-color create-btn all-btn">
-                <i class="fas fa-plus-circle"></i> 職種新規作成
-            </router-link>
-        </div>
         <div class="col-12 tab-content">
             <div class="p-2 p0-480">
                 <div v-if="norecord_msg" class="card card-default card-wrap">
                     <p class="record-ico">
                         <i class="fa fa-exclamation"></i>
                     </p>
-                    <p>OOPS!!</p>
-                    <p class="record-txt01">表示するデータありません</p>
-                    <p>表示するデータありません‼新しいデータを作成してください。</p>
-                    <a href="/occupation" class="main-bg-color create-btn all-btn">
-                        <i class="fas fa-plus-circle"></i> 新しく作る
-                    </a>
+               
+                    <p class="record-txt01">求人職種が登録されていません。</p>
+                
+                    <router-link to="/occupation" class="main-bg-color create-btn all-btn">
+                        <i class="fas fa-plus-circle"></i> 職種新規作成
+                    </router-link>
                 </div>
                 <div v-else class="container-fuid">
-                    <h4 class="main-color m-b-10">求人職種検索</h4>
-                    <div class="row">
+                    <h4 class="main-color mb-3">求人職種検索</h4>
+                    <div class="row mb-4">
                         <div class="col-md-12">
                             <input type="text" class="form-control" placeholder="職種検索" id="search-item" @keyup="searchOccupation()">
                         </div>
                     </div>
                     <hr/>
-                    <h5 class="header">求人職種一覧</h5>
-                    <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデタが消える。</div>
+                    <div class="d-flex header pb-3 admin_header">
+                        <h5>求人職種一覧</h5>
+                        <div class="ml-auto" v-if="!norecord_msg">
+                            <router-link to="/occupation" class="main-bg-color create-btn all-btn">
+                                <i class="fas fa-plus-circle"></i> <span class="first_txt">職種</span><span class="dinone">新規作成</span>
+                            </router-link>
+                        </div>
+                    </div>
+                    
+                    <!-- <div v-if="nosearch_msg" class="container-fuid no_search_data">新規作成するデタが消える。</div> -->
+
+                    <div v-if="nosearch_msg" class="card card-default card-wrap">
+                            <p class="record-ico">
+                                <i class="fa fa-exclamation"></i>
+                            </p>
+                            <p class="record-txt01">データが見つかりません。</p>
+                    </div>
+                    
                     <div v-else class="container-fuid">
                         <div class="card card-default m-b-20" v-for="occupations in occupation.data" :key="occupations.id">
                             <div class="card-body">
@@ -41,7 +52,13 @@
                                 </div>
                         </div>
                     </div>
-                    <pagination :data="occupation" @pagination-change-page="searchOccupation"></pagination>
+                    <!-- <pagination :data="occupation" @pagination-change-page="searchOccupation"></pagination> -->
+                    <div>
+                            <pagination :data="occupation" @pagination-change-page="searchOccupation" :limit="limitpc">
+                                <span slot="prev-nav"><i class="fas fa-angle-left"></i> 前へ</span>
+                                <span slot="next-nav">次へ <i class="fas fa-angle-right"></i></span>
+                            </pagination>
+                        </div>
                 </div>
             </div>
         </div>
@@ -50,6 +67,14 @@
 
 <script>
     export default {
+        
+          props:{
+                limitpc: {
+                type: Number,
+                default: 5
+            },
+        },
+
         data() {
                 return {
                     occupation: [],
@@ -78,19 +103,20 @@
 
                 deleteType(id) {
                         this.$swal({
-                            title: "確認",
+                            // title: "確認",
                             text: "職種を削除してよろしいでしょうか。",
                             type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#dc3545",
+                            confirmButtonColor: "#eea025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
-                            confirmButtonText: "削除",
+                            confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
                         }).then(response => {
                             this.axios
                                 .delete(`/api/occupation/delete/${id}`)
@@ -107,15 +133,28 @@
                                     // this.occupation.splice(i, 1)
                                     this.$swal({
                                         // title: "削除済",
-                                        text: "職種を削除しました。",
+                                        text: "求人職種を削除しました。",
                                         type: "success",
                                         width: 350,
                                         height: 200,
                                         confirmButtonText: "閉じる",
-                                        confirmButtonColor: "#dc3545"
+                                        confirmButtonColor: "#31cd38",
+                                        allowOutsideClick: false,
                                     });
-                                }).catch(() => {
-                                    this.$swal("Failed", "wrong");
+                                }).catch(error=>{
+                                    if(error.response.status == 404){
+                                        // this.$swal("このカテゴリーに関連するニュースがあるため、削除できません。");
+                                        this.$swal({
+                                            title: "削除に失敗しました",
+                                            text: "削除に失敗しました この求人職種の施設が存在するため削除できません ",
+                                            type: "error",
+                                            width: 350,
+                                            height: 200,
+                                            confirmButtonText: "閉じる",
+                                            confirmButtonColor: "#FF5462",
+                                            allowOutsideClick: false,
+                                        });
+                                    }
                                 });
                         });
 
@@ -129,6 +168,7 @@
                         let fd = new FormData();
                         fd.append("search_word", search_word);
                         this.$loading(true);
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
                         this.axios.post("/api/occupation/search?page="+page, fd).then(response => {
                             this.$loading(false);
                             this.occupation = response.data;
@@ -142,3 +182,4 @@
             }
     }
 </script>
+

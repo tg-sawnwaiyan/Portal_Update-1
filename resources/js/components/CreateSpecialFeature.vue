@@ -4,33 +4,32 @@
         <div class="card-body">
             <h4 class="page-header header">{{ header }}</h4>
             <br>
-            <form @submit.prevent="add">
-                <div class="form-group">
-                    <label>特徴 :<span class="error">*</span></label>
-                    <input type="text" class="form-control"  v-model="feature.name"  placeholder="特徴を入力してください。" >
-                    <!-- <span v-if="errors.name" class="error">{{errors.name[0]}}</span> -->
-                        <span v-if="errors.name" class="error">{{errors.name}}</span>
-                </div>
-                <div class="form-group">
-                    <label>特徴の略語 :<span class="error">*</span></label>
-                    <input type="text" class="form-control" v-model="feature.short_name"  placeholder="特徴の略語を入力してください。" >
-                        <!-- <span v-if="errors.short_name" class="error">{{errors.short_name[0]}}</span> -->
-                        <span v-if="errors.short_name" class="error">{{errors.short_name}}</span>
-                </div>
+            <form @submit.prevent="add" autocomplete="off">
                 <div class="form_group">
-                    <label> カテゴリー:<span class="error">*</span></label>
+                    <label> 施設種別 <span class="error sp2">必須</span></label>
                     <select v-model="feature.type" name="type" class="form-control">
                             <option v-bind:value='-1'>選択してください。 </option>
                             <option value="nursing">介護</option>
                             <option value="hospital" >病院</option>
                     </select>
                     <span v-if="errors.type" class="error">{{errors.type}}</span>
-                        <!-- <span v-if="errors.nur" class="error">{{errors.nur}}</span> -->
                 </div> <br/>
 
+                <div class="form-group">
+                    <label>特長 <span class="error sp2">必須</span></label>
+                    <input type="text" class="form-control"  v-model="feature.name"  placeholder="特長を入力してください。" >
+                        <span v-if="errors.name" class="error">{{errors.name}}</span>
+                </div>
+                <div class="form-group">
+                    <label>特長の略語 <span class="error sp2">必須</span></label>
+                    <input type="text" class="form-control" v-model="feature.short_name"  placeholder="特長の略語を入力してください。" >
+                        <span v-if="errors.short_name" class="error">{{errors.short_name}}</span>
+                </div>
+                
+
                 <div class="form-group ">
-                        <span class="btn main-bg-color white all-btn" @click="checkValidate()"> {{subtitle}}</span>
-                    <span class="btn btn-danger all-btn" @click="$router.go(-1)" > キャンセル </span>
+                    <span class="btn bt-red all-btn" @click="$router.go(-1)" > キャンセル </span>
+                    <span class="btn main-bg-color white all-btn" @click="checkValidate()"> {{subtitle}}</span>
                 </div>
             </form>
         </div>
@@ -41,78 +40,37 @@
 export default {
           data() {
             return {
-                errors: {
-                   name:"",
-				   short_name:"",
-                   selectedValue:"",
-                   host:"",
-                   nurse:"",
-                   type: ""
-
-                },
-                feature: {
-                        name: '',
-                        short_name:'',
-                        type: '-1',
-                        host:"",
-                        nurse:""
-                    },
-                    selectedValue:0,
-                    header: '特徴新規作成',
-                    subtitle: '作成'
+                errors: { name:"", short_name:"", selectedValue:"", host:"", nurse:"", type: "" }, feature: { name: '', short_name:'', type: '-1', host:"", nurse:"" }, selectedValue:0, header: '特長新規作成', subtitle: '作成'
             }
         },
           created() {
-            //   console.log('22222');
-              console.log(this.$route.params.id);
-              if(this.$route.params.id){
-              //  alert('title');
-                //  this.title = this.title.toUpperCase();
-
+              if(this.$route.params.id){              
                   this.axios
                     .get(`/api/feature/edit/${this.$route.params.id}`)
                     .then((response) => {
-
-                    this.feature= response.data;
-                    // if(this.feature.type == 'hospital')
-                    // {
-                    //     this.feature.type = 'hospital';
-                    // }
-                    // else if (this.feature.type == '介護') {
-                    //     this.feature.type = '介護';
-                    // }
-                      this.header = ' 特徴編集';
+                    this.feature= response.data;                   
+                      this.header = ' 特長編集';
                         this.subtitle = '保存';
                         return this.header;
                         return this.subtitle;
-
                 });
               }
         },
 
          methods: {
               checkValidate() {
-                //   alert(1);
                      if (this.feature.name) {
-                        // console.log('exist');
                         this.errors.name = "";
                     } else {
-                        // console.log('null');
-                        this.errors.name = " 特徴が必須です。";
+                        this.errors.name = " 特長は必須です。";
                     }
-
                     if (this.feature.short_name) {
-                        // console.log('exist');
                         this.errors.short_name = "";
                     } else {
-                        // console.log('null');
-                        this.errors.short_name = " 特徴の略語が必須です。";
+                        this.errors.short_name = " 特長の略語は必須です。";
                     }
-                    
-
                     if (this.feature.type == '-1') {
-                        console.log(this.feature.type);
-                        this.errors.type = " カテゴリが必須です。";
+                        this.errors.type = " カテゴリーは必須です。";
                     }
                     else {
                         this.errors.type = "";
@@ -121,10 +79,8 @@ export default {
                    if (
                         !this.errors.name &&
                         !this.errors.short_name &&
-                        !this.errors.type
-                        
-                    ) {
-                        
+                        !this.errors.type                        
+                    ) {                        
                         this.add();
                     }
                 },
@@ -132,83 +88,66 @@ export default {
             add() {
                  if( !this.$route.params.id || this.$route.params.id == 'undefined')
                 {
-                    // console.log(`${this.$route.params.id}`);
-                    // console.log('this.$route.params.id');
                     this.$swal({
-                            title: "確認",
-                            text: "特徴を投稿してよろしいでしょうか。",
-                            type: "success",
+                            text: "特長を作成してよろしいでしょうか。",
+                            type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#6cb2eb",
+                            confirmButtonColor: "#eea025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
                             confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
                             }).then(response =>{
                                 this.$loading(true);
                             this.axios.post('/api/feature/add', this.feature)
                         .then(response => {
                             this.$loading(false);
                             this.name = ''
-                            console.log(response);
                             this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            // title:'確認済',
-                            text: '特徴を投稿しました。',
+                            text: '特長を投稿しました。',
                             confirmButtonText: "閉じる",
-                            confirmButtonColor: "#6cb2eb",
-                            // showConfirmButton: false,
-                            // timer: 1800,
-                            width: 250,
+                            confirmButtonColor: "#31cd38",                            
+                            width: 350,
                             height: 200,
+                            allowOutsideClick: false,
                         })
-                        // alert('Successfully Created')
-                        // this.$router.push({name: 'featurelist'});
                         this.$router.go(-1);
                         }).catch(error=>{
                             console.log(error)
 
                     if(error.response.status == 422){
-
                         this.errors = error.response.data.errors
-
                     }
                 })
             })
-
-                }
-                else{
-                    //console.log('bbbbb');
-                    console.log(this.$route.params.id);
-                     this.updateFeature();
-                }
-
-            },
-        //     onChange: function(){
-        //        this.feature.type = this.selectedValue;
-        //     //    console.log(this.selectedValue);
-
-        //    },
+            }
+            else{
+                    this.updateFeature();
+            }
+        },
+        
             updateFeature() {
                  this.$swal({
-                            title: "確認",
-                            text: "特徴を更新してよろしいでしょうか。",
-                            type: "info",
+                            text: "特長を更新してよろしいでしょうか。",
+                            type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#6cb2eb",
+                            confirmButtonColor: "#eea025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
                             confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
                         }).then(response => { 
                             this.$loading(true);
                             this.axios.post(`/api/feature/update/${this.$route.params.id}`, this.feature)
@@ -217,29 +156,24 @@ export default {
                     this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            text: '特徴を更新しました。',
+                            text: '特長を更新しました。',
                             confirmButtonText: "閉じる",
-                            confirmButtonColor: "#6cb2eb",
-                            width: 250,
+                            confirmButtonColor: "#31cd38",
+                            width: 350,
                             height: 200,
+                            allowOutsideClick: false,
                         })
-                    // this.$router.push({name: 'featurelist'});
                     this.$router.go(-1);
                 }).catch(error=>{
                     console.log(error)
                 if(error.response.status == 422){
-
                     this.errors = error.response.data.errors
-
                 }
-                         });
+            });
            
              }) ;
            }
 
         }
-
 }
 </script>
-
-

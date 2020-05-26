@@ -10,6 +10,8 @@ use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
 use App\Customer;
+use App\NursingProfile;
+use App\HospitalProfile;
 
 class UserController extends Controller
 
@@ -41,6 +43,37 @@ class UserController extends Controller
         $data = User::orderBy('id','DESC')->paginate(5);
         return view('users.index',compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
+
+    }
+
+    public function checkuser(Request $request)
+
+    {
+        $lat_lng = null;
+
+        if($request->user()->type_id == 2){
+            $lat_lng = HospitalProfile::select('id','latitude','longitude')->where('customer_id', $request->user()->customer_id)->get();
+        }
+        else if($request->user()->type_id > 2) {
+            $lat_lng = NursingProfile::select('id','latitude','longitude')->where('customer_id', $request->user()->customer_id)->get();
+        }
+
+        return response()->json(array("user"=>$request->user(), "lat_lng"=>$lat_lng));
+
+    }
+    public function checkprofile(Request $request,$type,$proid)
+
+    {
+        $lat_lng = null;
+        
+        if($type == 'hospital'){
+            $lat_lng = HospitalProfile::select('id','latitude','longitude')->where('id', $proid)->get();
+        }
+        else if($type == 'nursing') {
+            $lat_lng = NursingProfile::select('id','latitude','longitude')->where('id', $proid)->get();
+        }
+    
+        return response()->json(array("user"=>$request->user(), "lat_lng"=>$lat_lng));
 
     }
 
@@ -170,7 +203,7 @@ class UserController extends Controller
         }
         $user = User::find($id);
         $user->update($input);
-        DB::table('model_has_roles')->where('model_id',$id)->delete();
+        // DB::table('model_has_roles')->where('model_id',$id)->delete();
         $user->assignRole($request->input('roles'));
         return redirect()->route('users.index')
 
@@ -202,12 +235,15 @@ class UserController extends Controller
         $request = $request->all();
         $user = User::find(auth('api')->user()->id);
         $tmp = $request['file'];
+        $imageName = $request['photo'];
+        $imageName = str_replace(' ', '', $imageName);
+        $imageName = strtolower($imageName);
 
         if($user['type_id'] == '2') {
-            $destination = 'upload/hospital_profile/'.$request['photo'];
+            $destination = 'upload/hospital_profile/'.$imageName;
         }
        else {
-            $destination = 'upload/nursing_profile/'.$request['photo'];
+            $destination = 'upload/nursing_profile/'.$imageName;
         }
         move_uploaded_file($tmp, $destination);
         
@@ -220,10 +256,15 @@ class UserController extends Controller
             $customer = Customer::find($cusId);
             $user = User::find($customer['user_id']);
         }else{
+            $getUser = auth('api')->user()->id;
+            $customer = Customer::where('user_id',$getUser)->first();
             $user = User::find(auth('api')->user()->id);
         }    
         if (Hash::check($request['old_pass'], $user['password'])) {
+            $customer->password = Hash::make($request['new_pass']);
             $user->password = Hash::make($request['new_pass']);
+            
+            $customer->save();
             $user->save();
         } 
         else {
@@ -234,20 +275,23 @@ class UserController extends Controller
     public function changeEmail(Request $request) {
         $request = $request->all();
         $cusId = $request['cus_id'];
-        if(auth()->user()->role == 2) {
-            $customer = Customer::find($cusId);
+        $customer = Customer::find($cusId);
+        if(auth()->user()->role == 2) {            
             $user = User::find($customer['user_id']);
         }else{
             $user = User::find(auth('api')->user()->id);
         } 
-        // $user = User::find(auth('api')->user()->id);
+        if ($request['name'] != null && $request['name'] != ''){
+            $user->name = $request['name'];
+            $customer->name = $request['name'];
+        }
+
         $user->email = $request['email'];
         $user->save();
-
-        $customer = Customer::find($user['customer_id']);
-        $customer->email = $request['email'];
+        
+        $customer->email = $request['email'];        
         $customer->save();
-      
+      return $customer;
     }
     public function getAdminList(Request $request) {
         $admin_list = User::where('role',2)->get();
@@ -283,19 +327,24 @@ class UserController extends Controller
         $input = $request->all();
         $adminId = $input['admin_id'];
         $admin = User::find($adminId);
-      
-        if(Hash::check($input['old_pass'] , $admin['password'])){
-        $admin->name = $input['name'];
+        if($input['old_pass'] == ''){
+            $admin->name = $input['name'];
         $admin->email = $input['email'];
-        $admin->password = Hash::make($request->input('new_pass'));
-        $admin->role = 2;
-        $admin->type_id = 1;
         $admin->save();
         return response()->json('The Admin successfully updated');
-    }else{
-        return response()->json('oldpasswordwrong');
-    }
-
+        }else{
+            if(Hash::check($input['old_pass'] , $admin['password'])){
+                $admin->name = $input['name'];
+                $admin->email = $input['email'];
+                $admin->password = Hash::make($request->input('new_pass'));
+                $admin->role = 2;
+                $admin->type_id = 1;
+                $admin->save();
+                return response()->json('The Admin successfully updated');
+            }else{
+                return response()->json('oldpasswordwrong');
+            }
+        }
     }
 
 

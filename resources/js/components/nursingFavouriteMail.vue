@@ -3,20 +3,13 @@
     <div>
         <div class="tab-content job-detail">
             <div class="row">
-                <div class="col-md-12 pad-free m-b-10">
-                    <nav aria-label="breadcrumb">
-                        <!-- <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><span @click="changeRoute()" class="link-span">ホーム</span></li>
-                            <li class="breadcrumb-item"><a href="/">介護のお気に入り一覧</a></li>
-                            <li class="breadcrumb-item active">資料請求</li>
-                        </ol> -->
+                <div class="col-md-12 pad-free m-b-10 cmt-1">
+                    <nav aria-label="breadcrumb">                       
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item">
-                                <!-- <router-link to="/">ホーム</router-link> -->
+                            <li class="breadcrumb-item">                                
                                 <router-link to="/" >ホーム</router-link>
-                            </li>
-                            <!-- <li class="breadcrumb-item active" aria-current="page">rrr</li> -->
-                           <li class="breadcrumb-item"><span>介護のお気に入り</span></li>
+                            </li>                          
+                           <li class="breadcrumb-item"><span>介護施設資料請求</span></li>
                         </ol>
                     </nav>
                 </div>
@@ -25,51 +18,51 @@
                 </div>
                 <div class="col-md-12 register_box" v-if="type == 'register'">
                     <ul class="multi-step">
-                        <li class="active">1.お客様情報のご入力</li>
-                        <li class="no-active">2.入力内容のご確認</li>
-                        <li>3.送信完了</li>
+                        <li class="active">1.<span>お客様情報のご入力</span>入力</li>
+                        <li class="no-active">2.<span>入力内容のご確認</span>確認</li>
+                        <li>3.<span>送信完了</span>完了</li>
                     </ul>
                     <!--inputform-->
-                    <form class="col-md-12 form-wrap">
+                    <form class="col-md-12 form-wrap" autocomplete="off">
                         <h4 class="form-tit">資料請求される方について</h4>
                         <!-- <h4 class="nursing-info">資料請求される方について</h4> -->
                         <p class="require-txt"><span class="error sp1" style="margin-left:0px;">必須</span> のついた項目は全て入力してくださいますようお願いいたします。</p>
                         <div class="form-group m-0 row bd">
-                            <div class="col-md-3 col-sm-12 form-left"><label>お名前 <span class="error sp1">必須</span></label></div>
+                            <div class="col-md-3 col-sm-12 form-left"><label><strong>お名前 </strong><span class="error sp1">必須</span></label></div>
                             <div class="col-md-9 col-sm-12 form-right">
-                                <input type="text" id="tbname" name="name" class="form-control float-left" placeholder="お名前を入力してください。" v-model="comments.name" @change="aggreBtn" @keyup="focusName"/>
-                                <span class="float-left eg-txt">例）探し 太郎</span>
+                                <input type="text" id="tbname" name="name" class="form-control float-left" placeholder="お名前を入力してください。" v-model="comments.name" @change="aggreBtn" @focusout="focusName" @keyup="focusName"/>
+                                <span class="float-left eg-txt">例）探し太郎</span>
                                  <span class="error m-l-30" v-if="comment_focus">※入力は必須です。</span>
                             </div>
                         </div>
                         <div class="form-group m-0 row bd">
-                            <div class="col-md-3 col-sm-12 form-left"> <label>ふりがな <span class="error sp1">必須</span></label></div>
+                            <div class="col-md-3 col-sm-12 form-left"> <label><strong>フリガナ </strong><span class="error sp1">必須</span></label></div>
                             <div class="col-md-9 col-sm-12 form-right">
                                 <div class="col-md-12 pad-free">
                                     <!-- <div class="col-md-9 pad-free"> -->
-                                        <input type="text" id="furigana" name="furigana" class="form-control float-left" placeholder="ふりがなを入力してください。" v-model="comments.furigana" @keyup="ChekChar"    @change="aggreBtn"/>
+                                        <input type="text" id="furigana" name="furigana" class="form-control float-left" placeholder="フリガナを入力してください。" v-model="comments.furigana" @keyup="ChekChar" @focusout="ChekChar" @change="aggreBtn"/>
                                     <!-- </div>
                                     <div class="col-md-3"> -->
-                                         <span class="float-left eg-txt"> 例）サガシ　タロウ</span>
+                                         <span class="float-left eg-txt"> 例）サガシタロウ</span>
                                         <span class="error m-l-30" v-if="furigana_focus " >※入力は必須です。</span>
 
                                     <!-- </div> -->
 
                                 </div>
-                                 <span class="float-left text-danger p-l-30" v-if="charErr">※カタカナで入力してください!</span>
+                                 <span class="float-left error p-l-30" v-if="charErr">※カタカナで入力してください。</span>
 
                             </div>
                         </div>
                         <div class="form-group m-0 row bd">
-                            <div class="col-md-3 col-sm-12 form-left"> <label>生年月日 </label></div>
+                            <div class="col-md-3 col-sm-12 form-left"> <label><strong>生年月日</strong> </label></div>
                             <div class="col-md-9 col-sm-12 form-right">
                                 <!-- <input type="text" id="bdate" name="bdate" class="form-control float-left" placeholder="生年月日を入力してください。" v-model="comments.bdate" @change="aggreBtn" @focusout="focusbdate"/> -->
-                                <date-picker class="box" :lang="lang" valueType="format" v-model="comments.bdate" style="margin-left: 11px;"></date-picker>
+                                <date-picker class="" :lang="lang" valueType="format" v-model="comments.bdate" style="margin-left: 20px;"></date-picker>
                                 <!-- <span class="error m-l-30" v-if="bdate_focus">※入力は必須です。</span> -->
                             </div>
                         </div>
                         <div class="form-group m-0 row bd">
-                                <div class="col-md-3 col-sm-12 form-left"><label>性別 </label></div>
+                                <div class="col-md-3 col-sm-12 form-left"><label><strong>性別</strong> </label></div>
                                 <div class="col-md-9 col-sm-12 form-right pl-4">
                                     <label class="control control--radio">
                                         <input type="radio" class="custom-radio" id="sex1" name="sex1" value="男性"  v-model="comments.sex1">&nbsp;男性&nbsp;&nbsp;&nbsp;&nbsp;
@@ -89,19 +82,31 @@
                                 </div>
                             </div>
                         <div class="form-group m-0 row bd">
-                            <div class="col-md-3 col-sm-12 form-left"><label>ご住所:</label></div>
-                            <div class="col-md-9 col-sm-12 form-right">
-                                <div class="form-group row pl-3">
-                                    <div class="col-md-12 "><label> 郵便番号 </label></div>
-                                    <div class="col-md-12 p-0">
-                                        <input type="text" v-model="comments.postal" name="postal" class="postal form-control float-left" id="postal" placeholder="郵便番号を入力してください。" maxlength="7"/>
-                                        <div id="jsErrorMessage" class="float-left eg-txt"></div>
-                                        <span class="float-left submit1 btn main-bg-color continue all-btn submit m-l-20" @click="getPostal">検索</span>
-                                        <span class="float-left m-l-20">例）1006740 (<a href="https://www.post.japanpost.jp/zipcode/" target="_blank">郵便番号検索</a>)</span>
+                            <div class="col-md-3 col-sm-12 form-left"> 
+                            <div class="row col-12 m-0 p-0">
+                                <div class="col-xl-3 col-lg-3 col-12 p-0">
+                                    <label class="subtitle"><strong>ご住所</strong></label>
+                                </div>               
+                                <div class="col-xl-9 col-lg-9 col-12 p-0 stepper-form">                                                                   
+                                    <div class="form-left-child form-group pc-750"><label> <strong>郵便番号 </strong></label></div>
+                                    <div class="form-left-child form-group pc-750"><label><strong>都道府県</strong><span class="error sp1">必須</span></label></div>
+                                    <div class="form-left-child form-group pc-750"><label><strong>市区町村</strong> <span class="error sp1">必須</span></label></div>
+                                    <div class="form-left-child form-group pc-750"><label><strong>番地（建物名)</strong><span class="error sp1">必須</span></label></div>                                    
+                                </div>           
+                            </div>    
+                            </div>                           
+                            <div class="col-md-9 col-sm-12 form-right stepper-form">
+                                <div class="form-group  rightwrap row pl-3">
+                                    <div class="col-md-12 sp-750"><label> <strong>郵便番号 </strong></label></div>
+                                    <div class="col-md-12 rightwrap-child p-0 ">
+                                        <input type="text" v-model="comments.postal" name="postal" v-on:keydown="postalNumber" class="postal form-control float-left" id="postal" placeholder="郵便番号を入力してください。" maxlength="7"/>                                        
+                                        <span class="float-left submit1 btn main-bg-color continue all-btn submit m-l-10 pc-1024" @click="getPostal"><span class="first_txt">郵便番号より住所を</span><span class="dinone">検索</span></span>
+                                        <span class="float-left m-l-10">例）1006740 (<a href="https://www.post.japanpost.jp/zipcode/" target="_blank" class="pseudolink">郵便番号検索</a>)</span>
                                     </div>
+                                    <div id="jsErrorMessage" class="float-left eg-txt"></div>
                                 </div>
                                 <div class="form-group row pl-3">                                  
-                                    <div class="col-md-12 "><label>  都道府県<span class="error sp1">必須</span></label></div>
+                                    <div class="col-md-12 sp-750"><label> <strong> 都道府県</strong><span class="error sp1">必須</span></label></div>
                                     <div class="col-md-12 p-0">
                                         <select v-model="comments.selectedValue" class="division form-control" id="division" @change="getTownship(2)">
                                             <option value="0">選択してください。</option>
@@ -114,7 +119,7 @@
                                 </div>
 
                                  <div class="form-group row pl-3">                             
-                                    <div class="col-md-12 "><label>  市区町村 <span class="error sp1">必須</span></label></div>
+                                    <div class="col-md-12 sp-750"><label>  <strong>市区町村 </strong><span class="error sp1">必須</span></label></div>
                                     <div class="col-md-12 p-0">
                                         <select v-model="comments.township" class="division form-control" id="division" @change="aggreBtn">
                                             <option value="0">選択してください。</option>
@@ -125,8 +130,8 @@
                                         <!-- <span v-if="errors.division" class="error">{{errors.division[0]}}</span> -->
                                     </div>  
                                 </div>
-                                <div class="form-group row pl-3">
-                                    <div class="col-md-12 "><label>番地（建物名)<span class="error sp1">必須</span></label></div>
+                                <div class="form-group row pl-3 m-b-0">
+                                    <div class="col-md-12 sp-750"><label><strong>番地（建物名)</strong><span class="error sp1">必須</span></label></div>
                                     <div class="col-md-12 p-0">
                                          <input type="text" id="city" name="city" class="city form-control float-left" placeholder="番地を入力してください。" v-model="comments.city" @change="aggreBtn" @keyup="focusCity">
                                         <span class="float-left eg-txt">例）区丸の内1-9-1 グラントウキョウノースタワー40階</span>
@@ -135,25 +140,25 @@
                             </div>
                         </div>
                         <div class="form-group m-0 row bd-all">
-                            <div class="col-md-3 col-sm-12 form-left"><br/><label>電話番号</label></div>
-                            <div class="col-md-9 col-sm-12 form-right">
-                            <div class="form-group row pl-3">
+                            <div class="col-md-3 col-sm-12 form-left"><label class="pl-0"><strong>電話番号</strong></label></div>
+                            <div class="col-md-9 col-sm-12 form-right p-b-0">
+                            <div class="row pl-3">
                                     <div class="col-md-12 p-0">
                                         <label class="col-md-12">※ 電話番号またはメールアドレス必須 <span class="error sp1">必須</span></label>
-                                        <input type="text" id="phone" name="number" class="form-control float-left" placeholder="電話番号を入力してください。" v-model="comments.phone" pattern="[0-9-]*" @keyup="focusPhone" @change="aggreBtn" maxlength="14" title="Please enter number only.">
+                                        <input type="text" id="phone" name="number" class="form-control float-left" placeholder="電話番号を入力してください。" v-model="comments.phone"   @keyup="focusPhone" @change="aggreBtn" maxlength="13">
                                         <!-- v-on:keyup="isNumberOnly" -->
                                                                                
                                         <span class="float-left eg-txt">例）0312345678（半角）</span>
                                         <!-- <span class="error m-l-30" v-if="mail_focus">※入力は必須です。</span>                                        -->
                                     </div>
-                                     <span class="error m-l-30" v-if="ph_length || ph_error">※電話番号が正しくありません。もう一度入力してください。</span>
+                                     <span class="error m-l-30" v-if="ph_length">※電話番号が正しくありません。もう一度入力してください。</span>
                                 </div>
                             </div>
                             <!-- </div>
                             <div class="form-group m-0 row bd-all"> -->
-                            <div class="col-md-3 col-sm-12 form-left"><label>メールアドレス </label></div>
+                            <div class="col-md-3 col-sm-12 form-left"><label class="pl-0"><strong>メールアドレス </strong></label></div>
                             <div class="col-md-9 col-sm-12 form-right">
-                            <div class="form-group row pl-3">
+                            <div class="row pl-3">
                                 <div class="col-md-12 p-0">
                                         <input type="email" id="mail" name="mail" class="form-control float-left" placeholder="メールアドレスを入力してください。" v-model="comments.mail" @change="aggreBtn" @keyup="focusMail">                          
                                         <span class="float-left eg-txt"> 例）abc@example.jp （半角）</span>
@@ -169,14 +174,16 @@
                                 <input type="checkbox" id="present"  name="present" value="早分かり用語集」プレゼントを希望する" v-model="comments.present" @change="aggreBtn">「早分かり用語集」プレゼントを希望する
                             </div>
                         </div> -->
-                        <div class="mt-4 submit txt-err" v-if="btn_disable">
-                            <div class="error">※未入力の必須項目がございます</div>
-                        </div>
+                       
 
-                        <div class="btn-list mt-2  clearfix">
+                        <div class="btn-list mt-5 clearfix">
+                             <div class="mt-1 submit txt-err" v-if="btn_disable">
+                            <div class="error">※未入力の必須項目がございます。</div>
+                        </div>
                             <ul>
+                                <!-- <li class="m-r-15"><a @click="$router.go(-1)" class="btn btn-danger all-btn submit">戻る</a></li> -->
                                 <li> <button type="button" :disabled="isdisable" class="submit1 btn main-bg-color continue all-btn submit" @click="add()">確認ページに進む</button></li>
-                                <li class="m-r-15"><a @click="$router.go(-1)" class="btn btn-danger all-btn submit">戻る</a></li>
+                                
                             </ul>
                         </div>
                         <!--next_form-->
@@ -184,29 +191,30 @@
                             <h5 class="form-tit">入居対象者様について</h5>
                             <div class="form-group m-0 row bd">
                                 <div class="col-md-3 col-sm-12 form-left">
-                                    <label>入居対象者様とのご関係</label></div>
+                                    <label><strong>入居対象者様とのご関係</strong></label>
+                                </div>
                                 <div class="col-md-9 col-sm-12 form-right">
                                     <select class="form-control" id="relation"  v-model="comments.relation">
-                                    <option value="">選択してください</option>
-                                    <option value="本人">本人</option>
-                                    <option value="家族">家族</option>
-                                    <option value="親族">親族</option>
-                                    <option value="友人">友人</option>
-                                    <option value="ケアマネージャー">ケアマネージャー</option>
-                                    <option value="ソーシャルワーカー">ソーシャルワーカー</option>
-                                    <option value="その他">その他</option>
-                                </select>
+                                        <option value="">選択してください</option>
+                                        <option value="本人">本人</option>
+                                        <option value="家族">家族</option>
+                                        <option value="親族">親族</option>
+                                        <option value="友人">友人</option>
+                                        <option value="ケアマネージャー">ケアマネージャー</option>
+                                        <option value="ソーシャルワーカー">ソーシャルワーカー</option>
+                                        <option value="その他">その他</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group m-0 row bd">
-                                <div class="col-md-3 col-sm-12 form-left"><label>お名前</label></div>
+                                <div class="col-md-3 col-sm-12 form-left"><label><strong>お名前</strong></label></div>
                                 <div class="col-md-9 col-sm-12 form-right">
                                     <input type="text" id="ttname" name="ttname" class="form-control float-left" placeholder="お名前を入力してください。"  v-model="comments.ttname">
-                                    <span class="eg-txt float-left">例）探し 太郎</span>
+                                    <span class="eg-txt float-left">例）探し太郎</span>
                                 </div>
                             </div>
                             <div class="form-group m-0 row bd">
-                                <div class="col-md-3 col-sm-12 form-left"><label>性別</label></div>
+                                <div class="col-md-3 col-sm-12 form-left"><label><strong>性別</strong></label></div>
                                 <div class="col-md-9 col-sm-12 form-right pl-4">
                                      <label class=" control control--radio">
                                         <input type="radio" class="custom-radio" id="sex" name="sex" value="男性"  v-model="comments.sex">&nbsp;男性&nbsp;&nbsp;&nbsp;&nbsp;
@@ -224,7 +232,7 @@
                                 </div>
                             </div>
                             <div class="form-group m-0 row bd">
-                                <div class="col-md-3 col-sm-12 form-left"><label>年齢</label></div>
+                                <div class="col-md-3 col-sm-12 form-left"><label><strong>年齢</strong></label></div>
                                 <div class="col-md-9 col-sm-12 form-right">
                                     <select class="form-control" id="years"  v-model="comments.years">
                                         <option value="">選択してください</option>
@@ -305,7 +313,7 @@
                                 </div>
                             </div>
                             <div class="form-group m-0 row bd">
-                                <div class="col-md-3 col-sm-12 form-left"><label>介護度</label></div>
+                                <div class="col-md-3 col-sm-12 form-left"><label><strong>介護度</strong></label></div>
                                 <div class="col-md-9 col-sm-12 form-right">
                                     <select class="form-control" id="nursing"  v-model="comments.nursing">
                                         <option value="">選択してください</option>
@@ -320,7 +328,7 @@
                                 </div>
                             </div>
                             <div class="form-group m-0 row bd">
-                                <div class="col-md-3 col-sm-12 form-left"><label>認知症</label></div>
+                                <div class="col-md-3 col-sm-12 form-left"><label><strong>認知症</strong></label></div>
                                 <div class="col-md-9 col-sm-12 form-right pl-4">
                                     <label class="control control--radio">
                                         <input type="radio" class="custom-radio" id="fect" name="fect" value="あり"  v-model="comments.fect">&nbsp;あり&nbsp;&nbsp;&nbsp;&nbsp;
@@ -347,22 +355,24 @@
                                 </div>
                             </div> -->
                             <div class="form-group m-0 row bd-all">
-                                <div class="col-md-3 col-sm-12 form-left"><label>ご要望や、お困りごと、その他お問い合わせ</label></div>
+                                <div class="col-md-3 col-sm-12 form-left"><label><strong>ご要望や、お困りごと、その他お問い合わせ</strong></label></div>
                                 <div class="col-md-9 col-sm-12 form-right pl-4">
                                     <textarea name="hope" id="hope" class="form-control m-0"   v-model="comments.hope" ></textarea>
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-4 col-sm-3 submit txt-err" v-if="btn_disable">
-                            <div class="error">※未入力の必須項目がございます</div>
-                        </div>
-                        <div class="btn-list  clearfix">
+                        
+                        <div class="btn-list mt-5 clearfix">
+                            <div class="mt-1 submit txt-err" v-if="btn_disable">
+                            <div class="error">※未入力の必須項目がございます。</div>
+                            </div>
                             <ul>
-                                <li> <button type="button" :disabled="isdisable" class="submit1 btn main-bg-color continue all-btn submit" @click="add()" >確認ページに進む</button></li>
-                                <li class="m-r-15">
+                                <!-- <li class="m-r-15"> -->
                                 <!-- <router-link :to="{name: 'favouriteNursing'}"  class="btn btn-danger all-btn submit">戻る</router-link> -->
-                                <a @click="$router.go(-1)" class="btn btn-danger all-btn submit">戻る</a>
-                                </li>
+                                <!-- <a @click="$router.go(-1)" class="btn btn-danger all-btn submit">戻る</a>
+                                </li> -->
+                                <li> <button type="button" :disabled="isdisable" class="submit1 btn main-bg-color continue all-btn submit" @click="add()" >確認ページに進む</button></li>
+                               
                             </ul>
                         </div>
                     </form>
@@ -379,7 +389,8 @@
                 days: ['日', '月', '火', '水', '木', '金', '土'],
                 months: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
                 placeholder: {
-                date: new Date().toISOString().slice(0,10),
+                //date: new Date().toISOString().slice(0,10),
+                date: '年 - 月 - 日',
 
                 }
             },
@@ -434,7 +445,9 @@
                 ph_length: false,
                 ph_error: false,
                 charErr:false,
-                mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
+                correctVal: null,
+                mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
+                phone_reg: /^([0-9]*)$/
             }
         },
         computed: {
@@ -453,7 +466,7 @@
                 .then(response => {
                     this.city_list = response.data;
                 });
-            if(this.comments.name != '' && this.comments.fav_mail != '' && this.comments.postal != '' && this.comments.selectedValue != 0 && this.comments.township != 0 && this.comments.city != '' && (this.comments.phone != '' || this.comments.mail != '')){
+            if(this.comments.name != '' && this.comments.fav_mail != '' && this.comments.selectedValue != 0 && this.comments.township != 0 && this.comments.city != '' && (this.comments.phone != '' || this.comments.mail != '')){
                     this.btn_disable=false;
                 }else{
                     this.btn_disable=true;
@@ -516,24 +529,36 @@
                 this.all_mail = JSON.parse(localStorage.getItem("item"));
                 // this.reservation = JSON.parse(localStorage.getItem("reserve"));
                 this.documentation = JSON.parse(localStorage.getItem("document"));
-                for (var i = 0; i < this.all_mail.length; i++) {
-                    this.comments.fav_mail.push(this.all_mail[i].email);
-                    this.comments.fav_id.push(this.all_mail[i].id);
-                    this.comments.fav_name.push(this.all_mail[i].name);
+                if(this.all_mail == null || this.documentation == null){
+                    this.$router.push({
+                        name: 'favouriteNursing',
+                    });
                 }
-                // this.comments.arr_reserve = this.reservation;
-                this.comments.arr_document = this.documentation;
-                this.comments.division = this.comments.selectedValue;
-                localStorage.setItem("inputValue", JSON.stringify(this.comments));
-                var data = JSON.parse(localStorage.getItem("inputValue"));
-                this.$router.push({
-                    name: 'nursingMailConfirm',
-                });
+                else{
+                    for (var i = 0; i < this.all_mail.length; i++) {
+                        this.comments.fav_mail.push(this.all_mail[i].email);
+                        this.comments.fav_id.push(this.all_mail[i].id);
+                        this.comments.fav_name.push(this.all_mail[i].name);
+                    }
+
+                    // this.comments.arr_reserve = this.reservation;
+                    this.comments.arr_document = this.documentation;
+                    this.comments.division = this.comments.selectedValue;
+                    localStorage.setItem("inputValue", JSON.stringify(this.comments));
+                    var data = JSON.parse(localStorage.getItem("inputValue"));
+                    this.$router.push({
+                        name: 'nursingMailConfirm',
+                    });
+                }
+                
+                
             },
             aggreBtn: function(){
-                if(($('#furigana').val().length > 0 && !this.charErr) && this.comments.name != '' && this.comments.selectedValue != 0 && this.comments.township != 0 && this.comments.city != '' && (this.mail_reg.test(this.comments.mail) || (!this.ph_length && !this.ph_num && this.comments.phone.length > 0 ) ) ){
+                if(($('#furigana').val().length > 0 && !this.charErr) && this.comments.name != '' && this.comments.selectedValue != 0 && this.comments.township != 0 && this.comments.city != '' && ((this.mail_reg.test(this.comments.mail) || (!this.ph_length && this.comments.phone != '' ) ) && (!this.ph_length && !this.mail_focus))){
+                  
                     this.btn_disable=false;
                 }else{
+                  
                     this.btn_disable=true;
                 }
             },
@@ -572,12 +597,19 @@
                 }
             },
             focusMail: function(event) {
-                if((this.comments.mail != '' && this.mail_reg.test(this.comments.mail))){
-                    this.mail_focus=false;
-                }else{
-                    this.mail_focus=true;
-                    // this.ph_length = false;
+                if(this.comments.mail != '')
+                {
+                    if(this.mail_reg.test(this.comments.mail)){
+                         this.mail_focus=false;
+                    }else{
+                        this.mail_focus=true;
+                        // this.ph_length = false;
+                    }
                 }
+                else{
+                    this.mail_focus = false;
+                }
+               
                 this.aggreBtn();
                 // var input_data = $('#phone').val();
                 // var code = 0;
@@ -589,24 +621,91 @@
                 // }
 
             },
-            focusPhone(){
 
-            //   var input_data = $('#phone').val(); 
-            //   console.log(input_data.length)
-                
-              if(this.comments.phone.charAt(this.comments.phone.length - 1) != '-' && this.comments.phone.charAt(0) != '-' && ((this.comments.phone.length >= 10 && this.comments.phone.length <= 14) || this.comments.phone.length == 0))
-              {  
-                  this.ph_num = false;
-                  this.ph_length = false; 
-                  this.aggreBtn();    
-              }
-              else{
-                  this.ph_num = true;
-                  this.ph_length = true;
-                  this.btn_disable = true;
-              }
+            focusPhone: function(e) {
+
+               if(this.comments.phone != '' )
+               {
+                    if( (this.phone_reg).test(this.comments.phone) && (this.comments.phone.length >= 10 && this.comments.phone.length <= 13))
+                    {
                     
+                        this.ph_length = false;
+                    
+                    }
+                    else{
+                        this.ph_length = true;
+                    }
+               }
+               else{
+                        this.ph_length = false;
+               }
+            
+                this.aggreBtn();
+                // var input_data = this.comments.phone;
+                // if(((e.keyCode  >= 48 && e.keyCode  <= 57) || (e.keyCode  >= 96 && e.keyCode  <= 105) || (e.keyCode  == 8) || (e.keyCode  == 35) || (e.keyCode  == 36) || (e.keyCode  == 37) || (e.keyCode  == 39) || (e.keyCode  == 46) || (e.keyCode  == 109) || (e.keyCode  == 189)) && input_data.charAt(0) != '-' && !input_data.includes('--'))
+                // {
+                //     this.correctVal = input_data;
+                //     if(input_data.length >= 10 && input_data.length < 14 && input_data.charAt(input_data.length -1 ) != '-'){
+                //     this.ph_error = false;
+                //     this.ph_length = false;
+                //     this.aggreBtn(); 
+                //     }
+                //     else{
+                //     if(input_data.length == 0){
+                //         this.ph_error = false;
+                //         this.ph_length = false;
+                //         this.aggreBtn(); 
+                //     }
+                //     else{
+                //             this.ph_error = true;
+                //             this.btn_disable = true;
+                //     }
+                    
+                //     }
+                // }
+                // else{
+                //     // e.preventDefault();
+                //     this.comments.phone = this.correctVal;
+                //     if(this.comments.phone.length >= 10 && this.comments.phone.length < 14 && this.comments.phone.charAt(this.comments.phone.length -1 ) != '-'){
+                //     this.ph_length = false;
+                //     this.ph_error = false;
+                //     this.aggreBtn(); 
+                //     }
+                //     else{
+                //         if(this.comments.phone.length == 0){
+                //             this.ph_error = false;
+                //             this.ph_length = false;
+                //             this.aggreBtn(); 
+                //         }
+                //         else{
+                //             this.ph_length = true;
+                //             this.ph_error = false;
+                //             this.btn_disable = true;
+                //         }
+                    
+                //     }
+                // }
+            
             },
+
+            // focusPhone(){
+
+            // //   var input_data = $('#phone').val(); 
+            // //   console.log(input_data.length)
+                
+            //   if(this.comments.phone.charAt(this.comments.phone.length - 1) != '-' && this.comments.phone.charAt(0) != '-' && ((this.comments.phone.length >= 10 && this.comments.phone.length <= 14) || this.comments.phone.length == 0))
+            //   {  
+            //       this.ph_num = false;
+            //       this.ph_length = false; 
+            //       this.aggreBtn();    
+            //   }
+            //   else{
+            //       this.ph_num = true;
+            //       this.ph_length = true;
+            //       this.btn_disable = true;
+            //   }
+                    
+            // },
             ChekChar: function(event) {
                 var _this = this;
                // $('.char-err').text('');
@@ -637,28 +736,32 @@
 
             },
 
-            isNumberOnly: function(event) {
-                // var input_data = $('#phone').val();
-                var code = 0;
-                code = this.comments.phone.charCodeAt();
-                if(this.comments.phone.length >= 10 && this.comments.phone.length <= 14) {
-                    this.ph_length = false;
-                    // console.log('a',this.comments.phone.length)
-                }else{
-                    this.ph_length = true;
-                    // console.log('b',this.comments.phone.length)
+            // isNumberOnly: function(event) {
+            //     // var input_data = $('#phone').val();
+            //     var code = 0;
+            //     code = this.comments.phone.charCodeAt();
+            //     if(this.comments.phone.length >= 10 && this.comments.phone.length <= 14) {
+            //         this.ph_length = false;
+            //         // console.log('a',this.comments.phone.length)
+            //     }else{
+            //         this.ph_length = true;
+            //         // console.log('b',this.comments.phone.length)
+            //     }
+            //     if((48 <= code && code <= 57)){
+            //         this.ph_error = false;
+            //         // console.log('c')
+            //     }else{
+            //         this.ph_error = true;
+            //         // console.log('d')
+            //     }
+            // },
+            postalNumber: function(event) {
+                if(!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105) 
+                    && event.keyCode != 8 && event.keyCode != 46 && !(event.keyCode >= 37 && event.keyCode <= 40)) 
+                {
+                    event.preventDefault();
                 }
-                if((48 <= code && code <= 57)){
-                    this.ph_error = false;
-                    // console.log('c')
-                }else{
-                    this.ph_error = true;
-                    // console.log('d')
-                }
-
-
-
-            }
+            },
         }
     }
 </script>

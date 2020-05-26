@@ -1,41 +1,40 @@
 <template>
 
-<div class="row o-r1 m-r-20">
-      <div class="col-12 o-r2">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h4 class="page-header header">{{ header }}</h4>
-                        </div>
-                             <div class="col-md-12">
-                                 <form @submit.prevent ="add">
-                                <div class="form-group">
-                                    <label>科目 :<span class="error">*</span></label>
-                                    <input type="text" class="form-control"  v-model="Subject.name"  placeholder="科目を入力してください。" >
-                                    <span v-if="errors.name" class="error">{{errors.name}}</span>
-                                </div>
-                                <div class="form-group">
-                                <label>ペアレント :<span class="error">*</span></label>
-                                    <select v-model="selectedValue" class="form-control" @change='getParent()'>
-                                        <option value="0">選択してください。</option>
-                                        <option v-for="Subjectlist in SubjectList" :key="Subjectlist.id" v-bind:value="Subjectlist.id">
-                                            {{Subjectlist.name}}
-                                        </option>
-                                    </select>
-                            </div><br/>
-                                 <div class="form-group">
-                                        <span class="btn main-bg-color white all-btn" @click="checkValidate()">{{subtitle}}</span>
-                                        <router-link class="btn btn-danger all-btn" to="/subjectlist" > キャンセル </router-link>
-                                         <!-- <button class="btn news-post-btn all-btn">{{subtitle}}</button> -->
-                                        
-                                </div>
-                             </form>
-                             </div>
-                    </div>
+<div id="create_subject">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="page-header header">{{ header }}</h4>
                 </div>
+                        <div class="col-md-12">
+                            <form @submit.prevent ="add" autocomplete="off">
+                    <div class="form-group">
+                        <label>科目カテゴリー <span class="error sp2">必須</span></label>
+                            <select v-model="selectedValue" class="form-control" @change='getParent()'>
+                                <option value="0">選択してください。</option>
+                                <option v-for="Subjectlist in SubjectList" :key="Subjectlist.id" v-bind:value="Subjectlist.id">
+                                    {{Subjectlist.name}}
+                                </option>
+                            </select>
+                    </div>
+                        <div class="form-group">
+                            <label>科目 <span class="error sp2">必須</span></label>
+                            <input type="text" class="form-control"  v-model="Subject.name"  placeholder="科目を入力してください。" >
+                            <span v-if="errors.name" class="error">{{errors.name}}</span>
+                        </div>
+                        <br/>
+                            <div class="form-group">
+                                <router-link class="btn btn-danger all-btn" to="/subjectlist" > キャンセル </router-link>
+                                <span class="btn main-bg-color white all-btn" @click="checkValidate()">{{subtitle}}</span>
+                                    <!-- <button class="btn news-post-btn all-btn">{{subtitle}}</button> -->
+                                
+                        </div>
+                        </form>
+                        </div>
             </div>
-      </div>
+        </div>
+    </div>
 </div>
 </template>
 
@@ -68,8 +67,6 @@ export default {
              this.axios.get('/api/subjects/subjectlist')
               .then(function (response) {
                    this.SubjectList = response.data;
-                   console.log('aa',this.SubjectList);
-
               }.bind(this));
         },
         mounted() {
@@ -101,7 +98,7 @@ export default {
                         this.errors.name = "";
                     } else {
                         // console.log('null');
-                        this.errors.name = "診療科目が必須です。";
+                        this.errors.name = "診療科目は必須です。";
                     }
                    if (
                         !this.errors.name
@@ -115,37 +112,39 @@ export default {
                  if( `${this.$route.params.id}` == "undefined")
                 {
                     this.$swal({
-                            title: "確認",
-                            text: "診療科目を投稿してよろしいでしょうか。",
-                            type: "success",
+                            // title: "確認",
+                            text: "診療科目を作成してよろしいでしょうか。",
+                            type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#6cb2eb",
+                            confirmButtonColor: "#eea025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
                             confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
+
                             }).then(response =>{
                                 this.$loading(true);
                                    this.axios.post('/api/subjects/add', this.Subject)
                         .then(response => {
                             this.$loading(false);
                             this.name = ''
-                            console.log(response);
                             this.$swal({
                             position: 'top-end',
                             type: 'success',
                             // title:'確認済',
-                            text: '診療科目投稿しました。',
+                            text: '診療科目を作成しました。',
                             confirmButtonText: "閉じる",
-                            confirmButtonColor: "#6cb2eb",
+                            confirmButtonColor: "#31cd38",
                             // showConfirmButton: false,
                             // timer: 1800,
-                            width: 250,
+                            width: 350,
                             height: 200,
+                            allowOutsideClick: false,
                         })
                         // alert('Successfully Created')
                         this.$router.push({name: 'subjectlist'});
@@ -173,19 +172,20 @@ export default {
            updateSubject() {
 
                 this.$swal({
-                          title: "確認",
-                            text: "診療科目を更新してよろしいでしょうか。",
-                            type: "info",
+                        //   title: "確認",
+                            text: "診療科目を登録してよろしいでしょうか。",
+                            type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#6cb2eb",
+                            confirmButtonColor: "#eea025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
                             confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
                         }).then(response => { 
                             this.$loading(true);
                              this.axios.post(`api/subjects/update/${this.$route.params.id}`, this.Subject)
@@ -194,13 +194,14 @@ export default {
                         this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            text: '診療科目を更新しました。',
+                            text: '診療科目を更新しました',
                             // showConfirmButton: false,
                             // timer: 1800,
                             confirmButtonText: "閉じる",
-                            confirmButtonColor: "#6cb2eb",
-                            width: 250,
+                            confirmButtonColor: "#31cd38",
+                            width: 350,
                             height: 200,
+                            allowOutsideClick: false,
                         })
                         // this.name = ''
                         //   alert('Successfully Updated!')

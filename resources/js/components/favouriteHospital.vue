@@ -1,8 +1,8 @@
 <template>
     <div class="col-12 scrolldiv2 pb-3 tab-content" id="hospital">
-        <div class="col-12 pl-0">
+        <div class="col-12 pad-free pad-free-75">
             <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
+                <ol class="breadcrumb" style="padding-left:0px !important;padding-right:0px !important;">
                     <li class="breadcrumb-item">
                         <router-link to="/">ホーム</router-link>
                     </li>
@@ -10,8 +10,8 @@
                 </ol>
             </nav>
         </div>
-        <div class="col-12">
-            <div class="col-md-12 fav-his-header">
+        <div class="col-12 pad-free">
+            <div class="col-md-12 fav-his-header pad-free">
                 <svg x="0px" y="0px" width="24" height="24" viewBox="0 0 172 172" style=" fill:#000000;">
                     <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
                         <path d="M0,172v-172h172v172z" fill="none"></path>
@@ -39,9 +39,9 @@
         </div>
         <div class="row m-0">
 
-            <form class="col-md-12 pad-free" id="fav-hospital-page">
+            <form class="col-md-12 pad-free" id="fav-hospital-page" autocomplete="off">
                 <div class="col-12"  id="fav-history-page">
-                    <div class="row justify-content-lg-center">
+                    <div class="justify-content-lg-center">
                         <div>
                             <label> {{message}} </label>
                         </div>
@@ -64,7 +64,7 @@
                                                             <div class="profile_img_wrap">
                                                                 <img class="profile_img" v-bind:src="'/upload/hospital_profile/' + hos_profile.logo" alt  @error="imgUrlAlt"/>
                                                             </div> 
-                                                            <router-link :to="{name: 'profile', params: {cusid:hos_profile.customer_id, type: 'hospital'}}" class="pseudolink">{{hos_profile.name}}</router-link>
+                                                            <router-link :to="{ path:'/profile/hospital/'+ hos_profile.id}" class="pseudolink">{{hos_profile.name}}</router-link>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -76,7 +76,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td v-for="hos_profile in fav_hospital" :key="hos_profile.id" style="word-wrap: break-word;">
-                                                            <div class="profile_wd"> <a :href="hos_profile.website" target="_blank" class="profile_wd">{{hos_profile.website}}</a></div>
+                                                            <div class="profile_wd"> <a :href="hos_profile.website" target="_blank" class="profile_wd pseudolink">{{hos_profile.website}}</a></div>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -252,6 +252,7 @@
                     },
             },
             created() {
+                this.$loading(true);  
                //for cardcarousel responsive
                 window.addEventListener('resize', this.handleResize)
                 this.handleResize(); 
@@ -296,7 +297,6 @@
                 else if (this.window.width >= 1440 && this.window.width < 1880) {
                     this.windowSize = 4;
                      this.paginationFactor = 271;            
-                    // console.log(this.window.width);
                 }
 
 
@@ -324,19 +324,20 @@
                     deleteLocalSto: function(id) {
 
                             this.$swal({
-                            title: "確認",
-                            text: "削除よろしいでしょうか",
+                            text: "お気に入りから削除してよろしいでしょうか 。",
                             type: "warning",
-                            width: 350,
+                            width: 400,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#dc3545",
+                            confirmButtonColor: "#EEA025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
-                            confirmButtonText: "削除",
+                            confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
+                            
                         }).then(response => { 
                             var l_sto = this.local_sto;
                             var l_sto_arr = l_sto.split(",");
@@ -355,24 +356,14 @@
                                 var new_local = l_sto_arr.toString();
                                 localStorage.setItem('hospital_fav', new_local);
                                 this.local_sto = localStorage.getItem("hospital_fav");
-                                // this.$swal({
-                                // title: "削除された",
-                                // text: "ファイルが削除されました。",
-                                // type: "success",
-                                // width: 350,
-                                // height: 200,
-                                // confirmButtonText: "はい",
-                                // confirmButtonColor: "#dc3545"
-                                // });
+                                
                                 if (this.local_sto) {
+                                    this.fav_hos =this.local_sto.split(",").length;
                                     this.getAllFavourite(this.local_sto);
                                 } else {
                                     // window.location.reload();
                                     this.$router.push({
-                                        name: 'hospital_search',
-                                        // params: {
-                                        //     page: 'subtab3'
-                                        // }
+                                        name: 'hospital_search',                                        
                                     });
                                 }
                             }
@@ -389,15 +380,24 @@
                         this.axios
                             .post('/api/favHospital/' + local_storage)
                             .then(response => {
-                               
-                                this.fav_hospital = response.data;
-                              
+                               this.$loading(false);  
+                                this.fav_hospital = response.data;                             
                             
                                 if(this.fav_hospital.length < this.fav_hos && this.fav_hospital.length > 0)
                                 {
-                                  var hos_id = '';
-                                  this.message = "現在本サイトに掲載されていない病院についてはお気に入りリストから削除しました。"
-                                   for(var i= 0;i<this.fav_hospital.length;i++)
+                                    this.$swal({
+                                    position: 'top-end',
+                                    type: 'info',
+                                    text: 'すでに掲載されていない施設をリストから削除しました。',
+                                    showConfirmButton: true,
+                                    confirmButtonText: "閉じる",
+                                    width: 400,
+                                    height: 200,
+                                    allowOutsideClick: false,
+                                    });
+                                    var hos_id = '';
+                                //   this.message = "現在本サイトに掲載されていない病院についてはお気に入りリストから削除しました。"
+                                    for(var i= 0;i<this.fav_hospital.length;i++)
                                      {
                                          if(i== this.fav_hospital.length-1)
                                          {
@@ -417,12 +417,12 @@
                                     this.$swal({
                                     position: 'top-end',
                                     type: 'info',
-                                    // title: '作成されました',
-                                    text: 'お気に入りの病院は既に本サイトに掲載されておりませんので、お気に入りリストから削除しました。',
+                                    text: 'すでに掲載されていない施設をリストから削除しました。',
                                     showConfirmButton: true,
                                     confirmButtonText: "閉じる",
-                                    width: 250,
+                                    width: 400,
                                     height: 200,
+                                    allowOutsideClick: false,
                                     }).then(response => {
                                         localStorage.setItem('hospital_fav','');
                                         this.local_sto = localStorage.getItem("hospital_fav");
@@ -439,24 +439,11 @@
                             
                     },
                      imgUrlAlt(event) {
-                event.target.src = "images/noimage.jpg"
+                event.target.src = "/images/noimage.jpg"
             }
             }
     };
 </script>
 <style>
-    .first-row {
-        color: #fff;
-        background-color: #a2a7a1;
-        border-bottom: 1px solid #ccc;
-        border-right: 1px solid #ccc;
-        text-align: center;
-        padding: 10px;
-        font-size: 100%;
-    }
-
-    .second-row {
-        background-color: #eff7ec;
-    }
-    
+   
 </style>

@@ -1,8 +1,13 @@
 <template>
   <layout>
 <div>
-  <div class="col-md-12" style="border-bottom: 1px dashed #ff6117;padding-bottom: 10px; margin-bottom: 20px;">
-    <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#ff6117;"></i>&nbsp;地図検索</h5>
+  <div class="col-md-12" style="border-bottom: 1px dashed #2980b9;padding-bottom: 10px; margin-bottom: 20px;">
+    <h5 class="font-weight-bold"><i class="fas fa-map" style="color:#2980b9;"></i>&nbsp;地図検索 
+        <span v-if="count == false  && searchword != '' && searchword == 'all' && hos_data.length && !stateclick "> 「<span class="result-span">全国</span>の病院 <span class="result-span"> {{hos_data.length}} </span>件」 </span>
+        <span v-if="count == false && searchword != '' && searchword != 'all' && hos_data.length && !stateclick "> 「<span class="result-span">{{searchword}}</span>の病院 <span class="result-span"> {{hos_data.length}} </span>件」 </span>
+        <span v-if="count == false && id != '-1' && hos_data.length  && stateclick"> 「<span class="result-span">{{hos_data[0].city_name}}</span>の病院 <span class="result-span"> {{hos_data.length}} </span>件」</span>
+        <span v-if="count == true && hos_data.length ">「<span class="result-span">{{hos_data[0].city_name}}</span>の病院 <span class="result-span"> {{hos_data.length}} </span>件」</span>
+    </h5> 
   </div>
   <div class="search-map card-body"  @mouseover="getStateHover">
     <div class="row" id="hos">
@@ -11,13 +16,13 @@
           <!-- <div class="info-box"></div> -->
           <div class="row map-wrap">
           <div class="col-lg-5 col-md-12 col-sm-12 float-left map-leftwrapper">
-            <h2 class="map-header" style="bottom: 120px;">赤ちゃんからおと<br/>なまでみんなで通<br/>える街の名医が見<br/>つかります。</h2>
+            <h2 class="map-header hospital-map-header" style="bottom: 120px;">赤ちゃんからおと<br/>なまでみんなで通<br/>える街の名医が見<br/>つかります。</h2>
 
             <!--search input-->
               <div class="wrap">
                 <div class="search">
-                    <input type="text" id="search-free-word" class="searchTerm" placeholder="地名、施設名などを入力">
-                    <button type="submit" class="searchButton" @click="searchfreeword">
+                    <input type="text" id="search-free-word" class="searchTerm" placeholder="地名、病院名、診療科目などを入力" style="border: 3px solid #63b7ff;">
+                    <button type="submit" class="searchButton" style="border: 1px solid #63b7ff;background: #63b7ff;" @click="searchfreeword">
                       <i class="fas fa-search"></i> 検索
                   </button>
                 </div>
@@ -28,74 +33,63 @@
             <maptag></maptag>
         </div>
           </div>
-        <section id="map-responsive">            
-            <div class="freeword-responsive"> 
+        <section id="map-responsive">
+            <div class="freeword-responsive">
                 <h3 class="map-resicon">
-                  <div class="map-text-wrapper">
+                  <div class="map-text-wrapper">                    
                     <div>
-                      <!-- <img src="/images/map-responsive1.png" alt="" class="img-responsive"> -->
-                      <i class="fa icon map-fa-icon"></i>
-                    </div>             
-                    <div>
-                      <p class="text-left"> &nbsp;赤ちゃんからおとなまでみんなで通<br class="pc-768"/>える街の名医が見つかります。 </p>    
+                      <p class="text-left hospital-map-header"> &nbsp;赤ちゃんからおとなまでみんなで通<br class="pc-768"/>える街の名医が見つかります。 </p>
                     </div>
                   </div>
-                </h3>              
+                </h3>
              <!--search input-->
-                <div class="search">
-                    <input type="text" class="searchTerm" id="search-free-word" placeholder="地名、施設名などを入力">
+                <div class="search hospital-search-box">
+                    <input type="text" class="searchTerm" id="search-free-word-mob" placeholder="地名、病院名、診療科目などを入力">
                     <button type="submit" class="searchButton" @click="searchfreeword">
                       <i class="fas fa-search"></i> 検索
                     </button>
                 </div>
               <!--end search input-->
-            </div>  
-            <bulcomponent></bulcomponent>                            
+            </div>
+            <bulcomponent v-if="!clicksearch && (!ci || (ci && hos_data.length < 1))"></bulcomponent>
         </section>
         <div id="scroll-responsive">
             <div id="hos_search" class="col-12 hospitalselect pad-free m-b-10">
-                <span v-if="norecord_msg">
-                    <div class="container-fuid m-t-20">
-                        <p class="nosearch-icon">
-                            <svg x="0px" y="0px" width="30" height="30" viewBox="0 0 172 172" style=" fill:red;"><g transform=""><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><path d="M0,172v-172h172v172z" fill="none"></path><path d="M3.44,168.56v-165.12h165.12v165.12z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><path d="M0,172v-172h172v172z" fill="none"></path><path d="M3.44,168.56v-165.12h165.12v165.12z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><g fill="#666666"><path d="M74.53333,17.2c-31.59643,0 -57.33333,25.73692 -57.33333,57.33333c0,31.59641 25.7369,57.33333 57.33333,57.33333c13.73998,0 26.35834,-4.87915 36.24766,-12.97839l34.23203,34.23203c1.43802,1.49778 3.5734,2.10113 5.5826,1.57735c2.0092,-0.52378 3.57826,-2.09284 4.10204,-4.10204c0.52378,-2.0092 -0.07957,-4.14458 -1.57735,-5.5826l-34.23203,-34.23203c8.09923,-9.88932 12.97839,-22.50768 12.97839,-36.24766c0,-31.59641 -25.7369,-57.33333 -57.33333,-57.33333zM74.53333,28.66667c25.39939,0 45.86667,20.46729 45.86667,45.86667c0,25.39937 -20.46728,45.86667 -45.86667,45.86667c-25.39939,0 -45.86667,-20.46729 -45.86667,-45.86667c0,-25.39937 20.46728,-45.86667 45.86667,-45.86667zM91.67734,51.52161c-1.51229,0.03575 -2.94918,0.66766 -3.99765,1.75807l-13.14636,13.14636l-13.14636,-13.14636c-1.07942,-1.10959 -2.56162,-1.73559 -4.10963,-1.73568c-2.33303,0.00061 -4.43306,1.41473 -5.31096,3.57628c-0.8779,2.16155 -0.3586,4.6395 1.31331,6.26669l13.14636,13.14636l-13.14636,13.14636c-1.49777,1.43802 -2.10111,3.5734 -1.57733,5.58259c0.52378,2.0092 2.09283,3.57825 4.10203,4.10203c2.0092,0.52378 4.14457,-0.07956 5.58259,-1.57733l13.14636,-13.14636l13.14636,13.14636c1.43802,1.49778 3.5734,2.10113 5.5826,1.57735c2.0092,-0.52378 3.57826,-2.09284 4.10204,-4.10204c0.52378,-2.0092 -0.07957,-4.14458 -1.57735,-5.5826l-13.14636,-13.14636l13.14636,-13.14636c1.70419,-1.63875 2.22781,-4.1555 1.31865,-6.33798c-0.90916,-2.18248 -3.06468,-3.58317 -5.42829,-3.52739z"></path></g></g></g></svg>
-                        </p>
-                        <p class="nosearch-data">お探しの条件に合う施設・物件は見つかりませんでした。</p>
-                        <p class="nosearch">条件を変更を行うと該当施設が増える可能性がございますので、再度ご検索ください。</p>
-                    </div>
-                </span>
-                <div v-else>
+
+                <div>
                     <h5 class="profile_header m-t-10" style="border-left: 5px solid #63b7ff;">現在の検索条件</h5>
 
-                    <table class="table table-bordered col-12">
+                    <table class="table table-bordered col-12" style="border:none;">
                         <tbody>
                         <tr>
                             <th class="pc-414-table sp-768-block">地域</th>
                             <td class="sp-768-block sp-414-table">
                             <div class="row mt-2 mb-2">
-                            <div class="col-lg-9 col-md-8 col-sm-12">
+                            <div class="col-lg-9 col-md-8 col-sm-12 m-b-8">
                             <select id="selectCity" class="form-control custom-select" v-model="id" @change="ChangeTownship">
-                                <option value="" disabled>▼市区町村</option>
+                                <option value="-1" >▼市区町村</option>
                                 <option v-for="city in cities" :value="city.id" :key="city.id">{{city.city_name}}</option>
                             </select>
                             </div>
                             <div class="col-lg-3 col-md-4 col-sm-12 pc-414">
-                            <button @click="toggleContent" class="btn seemore-btn" v-if="getTownships.length > 0">
+                            <button @click="toggleContent" v-if="getTownships.length > 0" class="btn seemore-btn all-btn">
                                 <i class="fa" aria-hidden="true"></i>
                                 <!-- <em>{{city.city_name}}</em> -->
-                                <span id="close"><i class="fas fa-arrow-circle-up"></i> 市区町村エリアを閉じる</span>
+                                <span id="close"><i class="fas fa-arrow-circle-up"></i> 市区町村エリアを閉じる </span>
                             </button>
+
                             </div>
                             </div>
                             <div class="toBeToggled" id="toBeToggled">
-                              <div class="dropdown">
+                              <div class="dropdown search_rsp">
                                   <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
                                   市から探す
-                                  </button> 
-                                  <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768" @click.stop="stopTheEvent">
+                                  </button>
+                                  <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 420" @click.stop="stopTheEvent">
                                     <li>
                                     <a data-value="option">
                                       <div class="row">
-                                        <div class="col-lg-2 col-md-4 col-sm-4" v-for="township in getTownships" :key="township.id">                                          
+                                        <div class="col-lg-2 col-md-4 col-sm-4" v-for="township in getTownships" :key="township.id">
                                           <label class="form-check-label control control--checkbox">
                                             <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @click="getCheck($event)" >
                                             {{township.township_name}}
@@ -106,9 +100,9 @@
                                     </a>
                                     </li>
                                   </ul>
-                                  <a v-if="w_width >= 768">
+                                  <a v-if="w_width >= 420">
                                     <div class="row">
-                                        <div class="col-lg-2 col-md-4 col-sm-4" v-for="township in getTownships" :key="township.id">                                          
+                                        <div class="col-lg-2 col-md-4 col-sm-4" v-for="township in getTownships" :key="township.id">
                                           <label class="form-check-label control control--checkbox">
                                             <input class="form-check-input" type="checkbox" :id="township.id" :value="township.id" v-model="townshipID" @click="getCheck($event)">
                                             {{township.township_name}}
@@ -117,24 +111,25 @@
                                         </div>
                                       </div>
                                   </a>
-                              </div>   
+                              </div>
                             </div>
                             </td>
-                        </tr>                       
-                        <tr class="toBeToggled1 ShowHide1">
+                        </tr>
+                        <tr >
                             <th class="pc-414-table sp-768-block">特長</th>
                             <td class="sp-768-block sp-414-table">
                               <!--特長から探す-->
-                              <div class="dropdown">
+                              <div class="dropdown search_rsp">
                                 <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
                                   特長から探す
-                                </button> 
-                                <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 768" @click.stop="stopTheEvent">
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMenuButton" v-if="w_width <= 420" @click.stop="stopTheEvent">
                                   <li>
+
                                   <a data-value="option">
                                       <div class="row">
                                       <div class="col-lg-2 col-md-4 col-sm-4" v-for="feature in special_features" :key="feature.id">
-                                          <!-- <label class="form-check-label" > -->
+                                        <!-- <label class="form-check-label" > -->
                                           <label class="form-check-label control control--checkbox">
                                           <input  class="form-check-input" type="checkbox" :id="feature.id" v-model="specialfeatureID" :value="feature.id" @click="features($event)" >
                                           {{feature.name}}
@@ -145,7 +140,8 @@
                                   </a>
                                   </li>
                                 </ul>
-                                <a v-if="w_width >= 768">
+                                <a v-if="w_width >= 420">
+
                                       <div class="row">
                                       <div class="col-lg-2 col-md-4 col-sm-4" v-for="feature in special_features" :key="feature.id">
                                           <!-- <label class="form-check-label" > -->
@@ -159,39 +155,40 @@
                                   </a>
                               </div>
                               <!--end 特長から探す -->
-                            
+
                             </td>
                         </tr>
-                        <tr class="toBeToggled1 ShowHide1">
+                        <tr >
                             <th class="pc-414-table sp-768-block">診療科目</th>
                             <td class="sp-768-block sp-414-table" id="test-td">
-                                <div class="form-check form-check-inline row align-items-start innerwrapper" v-if="w_width >= 768">
-                                    <div v-for="(v,i) in array_len"  :key="i">                                     
-                                        <div class="hospital-subject"  v-for="(subject,index) in subjects.slice((i*3),((i*3)+3))"  :key="index" v-bind:class="{ lastblock: i==array_len-1 }">    
-                                           <strong class="table-innertitle row col-12 m-b-10">{{subject.name}}</strong>                                                                      
-                                            <div class="row col-md-12">                                                                                            
+                                <div class="form-check form-check-inline row align-items-start innerwrapper" v-if="w_width >= 420">
+                                    <div v-for="(v,i) in array_len"  :key="i">
+                                        <div class="hospital-subject"  v-for="(subject,index) in subjects.slice((i*3),((i*3)+3))"  :key="index" v-bind:class="{ lastblock: i==array_len-1 }">
+                                           <strong class="table-innertitle row col-12 m-b-10">{{subject.name}}</strong>
+                                            <div class="row col-md-12">
                                                 <div class="col-lg-6 col-md-12 pad-free" v-for="ch in subject.child" :key="ch.id+1">
                                                     <label class="form-check-label control control--checkbox" style="padding-left:5px;">
                                                     <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
                                                     {{ch.name}}
                                                     <div class="control__indicator"></div>
                                                     </label>
-                                                </div>      
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>    
-                                </div>   
+                                    </div>
+                                </div>
                                 <!--test-->
-                                <div>
+                                <div v-if="w_width <= 420">
                                 <h5 class="font-weight-bold sp-414">診療科目</h5>
-                                <div class="dropdown m-b-10" v-for="(v,i) in subjects" :key="i" >                                 
+                                <div class="dropdown  m-b-10" v-for="(v,i) in subjects" :key="i">
                                 <button type="button" class="btn btn-default btn-sm dropdown-toggle sp-414" data-toggle="dropdown" style="width:100%;text-align:left;">
                                  {{v.name}}
-                                  <ul class="dropdown-menu dropdown-menu-form" aria-labelledby="dropdownMMenuButton" v-if="w_width <= 768"  @click.stop="stopTheEvent">
-                                  <li v-for="ch in v.child" :key="ch.id+1">                                 
+
+                                  <ul class="dropdown-menu dropdown-menu-form search_rsp" aria-labelledby="dropdownMMenuButton"  @click.stop="stopTheEvent">
+                                  <li v-for="ch in v.child" :key="ch.id+1">
                                   <a data-value="option" >
                                       <div class="row">
-                                      <div class="col-lg-2 col-md-4 col-sm-4" >                                       
+                                      <div class="col-lg-2 col-md-4 col-sm-4" >
                                           <label class="form-check-label control control--checkbox">
                                           <input  class="form-check-input" type="checkbox" :id="ch.id" v-model="subjectID" :value="ch.id">
                                           {{ch.name}}
@@ -202,23 +199,15 @@
                                   </a>
                                   </li>
                                 </ul>
-                                </button> 
+                                </button>
                                 </div>
                                 </div>
-                                <!--end test-->   
+                                <!--end test-->
                             </td>
                         </tr>
 
                         <tr class="text-center">
                             <td colspan="2" style="border:none;">
-                            <button @click="ShowHide1" class="btn seemore-btn">
-                                <i class="fa" aria-hidden="true"></i>
-                                <span id="close2"><i class="fas fa-arrow-circle-down"></i> もっと見る</span>
-                            </button>
-                            </td>
-                        </tr>
-                        <tr class="text-center">
-                            <td colspan="2">
                             <button type="button" class="main-bg-color create-btn all-btn col-lg-2 col-md-4 col-sm-2" id="search" name="search" value="検索"  @click="search">
                             <i class="fas fa-search"></i>&nbsp; 検索
                             </button>
@@ -233,27 +222,33 @@
                                     <div class="job-header">
                                     <div class="row pad-free">
                                         <div class="col-md-10 col-sm-12">
+                                        <div>
+                                          <p class="job_id4"><span>施設番号:{{hos.profilenumber}}</span></p>
+                                        </div>
                                         <h5 class="hos-title">
-                                            <router-link :to="{name: 'profile', params: {cusid:hos.cus_id, type: 'hospital'}}" class="pseudolink">{{hos.name}}</router-link>
+                                            
+                                            <router-link :to="{ path:'/profile/hospital/'+ hos.hos_id}" class="pseudolink">{{hos.name}}</router-link>
+                                         
                                         </h5>
-                                     
-                                        <div class="clearfix d-flex m-t-10">
-                                        <span v-for="(sub,index) in subject" :key="index+'-'+sub.name+'-'+hos.hos_id">
-                                            <span v-if="sub.customer_id == hos.cus_id" class="job_status">
-                                              {{sub.name}}
-                                            </span>
-                                        </span>
-                                    </div>
+                                               
                                         </div>
                                         <div class="col-md-2 col-sm-12">
                                         <p class="float-right pc-768">
-                                            <!-- <span class="btn fav-profile fav-item fav-color" :class="'view_pro_id'+hos.nursing_id" style="" @click="favAddFun('add',hos.nursing_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
-                                            <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == 'check'" :class="'done_pro_id'+hos.nursing_id" style="color:#aaa;" @click="favAddFun('remove',hos.nursing_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
-                                        -->
-                                        <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == ''" :class="'view_pro_id'+hos.nursing_id" style="display:block;" @click="favAddFun('add',hos.hos_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
-                                        <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == 'check'" :class="'done_pro_id'+hos.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',hos.hos_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
+                                           
+                                        <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == '' && !$auth.check()" :class="'view_pro_id'+hos.nursing_id" style="display:block;" @click="favAddFun('add',hos.hos_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
+                                        <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == 'check' && !$auth.check()" :class="'done_pro_id'+hos.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',hos.hos_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                                         </p>
                                         </div>
+                                    </div>
+                                    <div class="row col-12">
+                                      <div class="clearfix">
+
+                                        <span v-for="(sub,index) in subject" :key="index+'-'+sub.name+'-'+hos.hos_id">
+                                            <span v-if="sub.profile_id == hos.hos_id" class="job_status">
+                                              {{sub.name}}
+                                            </span>
+                                        </span>
+                                      </div>
                                     </div>
                                     </div>
 
@@ -261,31 +256,23 @@
                                         <div class="col-lg-3 col-md-6 job-img">
                                             <img v-bind:src="'/upload/hospital_profile/' + hos.logo"  alt="img" class="img-fluid" @error="imgUrlAlt">
 
-                                            <!-- <p class="hos_phone text-center m-t-20"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span><span class="phone-no">{{hos.phone}}</span></p> -->
                                         </div>
                                         <div class="col-lg-4 col-md-6 job-box">
-                                            <table  class="table table-bordered table-sm">
-                                                <!-- <tr>
-                                                <td style="width:30%;"><span class="job_ico"><i class="fa fa-user"></i></span>名前</td>
-                                                <td>{{hos.name}}</td>
-                                                </tr> -->
+                                            <table  class="table table-bordered table-sm">                                               
                                                 <tr>
-                                                <td style="width:34%;"><span class="job_ico"><i class="fa fa-envelope"></i></span>メールアドレス</td>
-                                                <td class="text-break">{{hos.email}}</td>
+                                                    <td style="width:34%;"><span class="job_ico"><i class="fa fa-envelope"></i></span>メールアドレス</td>
+                                                    <td class="text-break">{{hos.email}}</td>
                                                 </tr>
                                                 <tr>
-                                                <td style="width:30%;"><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>住所</td>
-                                                <td>{{hos.address}}</td>
-                                                </tr>
-                                                <!-- <tr>
-                                                <td style="width:30%;"><span class="job_ico"><i class="fa fa-calendar-alt"></i></span>休業日</td>
-                                                <td>{{hos.closed_day}}</td>
-                                                </tr> -->
+                                                    <td style="width:30%;"><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>住所</td>
+                                                    <td>{{hos.city_name}}{{hos.township_name}}{{hos.address}}</td>
+                                                </tr>                                                
                                             </table>
                                             <!--special feature and subject-->
+                                          
                                             <h5 class="header m-t-10">こだわりの特長</h5>
                                             <span v-for="(spe,index) in specialfeatures" :key="index+'-'+spe.name+'-'+hos.hos_id">
-                                                <span v-if="spe.customer_id == hos.cus_id" class="feature_list">
+                                                <span v-if="spe.profile_id == hos.hos_id" class="hos_feature_list">
                                                 {{spe.name}}
                                                 </span>
                                             </span>
@@ -296,11 +283,7 @@
                                             <h5 class="header">診療時間
                                                 <span class="hos_phone pc-768"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span><span class="phone-no"><a :href="`tel:${hos.phone}`">{{hos.phone}}</a></span></span>
                                             </h5>
-                                            <!-- <tr v-for="(time,index) in timetable" :key="index+'-'+time.id+'-'+hos.id">
-                                                <td v-if="hos.customer_id == time.customer_id" >
-                                                {{time.mon}} / {{time.tue}} / {{time.wed}} / {{time.thu}} / {{time.fri}} / {{time.sat}} / {{time.sun}} / {{time.part}}
-                                                </td>
-                                            </tr> -->
+                                            
                                             <table class="table table-bordered">
                                                 <thead>
                                                 <tr class="first-row">
@@ -316,62 +299,73 @@
                                                 </thead>
                                                 <tbody>
                                                 <tr v-for="(time,index) in timetable" :key="index+'-'+time.id+'-'+hos.hos_id" class="text-center">
-                                                    <td class="second-hos-row" style="width:8%;" v-if="(hos.cus_id == time.customer_id && time.part == 'am' )">午前</td>
-                                                    <td class="second-hos-row" style="width:8%;" v-if="(hos.cus_id == time.customer_id && time.part == 'pm' )">午後</td>
-                                                    <td style="width:10%;" v-if="hos.cus_id == time.customer_id">{{time.mon}}</td>
-                                                    <td style="width:10%;" v-if="hos.cus_id == time.customer_id">{{time.tue}}</td>
-                                                    <td style="width:10%;" v-if="hos.cus_id == time.customer_id">{{time.wed}}</td>
-                                                    <td style="width:10%;" v-if="hos.cus_id == time.customer_id">{{time.thu}}</td>
-                                                    <td style="width:10%;" v-if="hos.cus_id == time.customer_id">{{time.fri}}</td>
-                                                    <td style="width:10%;" v-if="hos.cus_id == time.customer_id">{{time.sat}}</td>
-                                                    <td style="width:10%;" v-if="hos.cus_id == time.customer_id">{{time.sun}}</td>
+                                                    <td class="second-hos-row" style="width:8%;" v-if="(hos.hos_id == time.profile_id && time.part == 'am' )">午前</td>
+                                                    <td class="second-hos-row" style="width:8%;" v-if="(hos.hos_id == time.profile_id && time.part == 'pm' )">午後</td>
+                                                    <td style="width:10%;" v-if="hos.hos_id == time.profile_id">{{time.mon}}</td>
+                                                    <td style="width:10%;" v-if="hos.hos_id == time.profile_id">{{time.tue}}</td>
+                                                    <td style="width:10%;" v-if="hos.hos_id == time.profile_id">{{time.wed}}</td>
+                                                    <td style="width:10%;" v-if="hos.hos_id == time.profile_id">{{time.thu}}</td>
+                                                    <td style="width:10%;" v-if="hos.hos_id == time.profile_id">{{time.fri}}</td>
+                                                    <td style="width:10%;" v-if="hos.hos_id == time.profile_id">{{time.sat}}</td>
+                                                    <td style="width:10%;" v-if="hos.hos_id == time.profile_id">{{time.sun}}</td>
                                                 </tr>
                                                 </tbody>
                                             </table>
-                                            <span> <strong> 休診日：</strong>{{hos.closed_day}}</span>
-                                            <!-- <p><span style="color: red; font-weight: bold; font-size: 15px;">※</span>診療時間は、変更される事や、診療科によって異なる場合があるため、直接医療機関のホームページ等でご確認ください。</p> -->
+                                            <span v-if="hos.closed_day"> <strong> 休診日：</strong>{{hos.closed_day}}</span>
                                             <!--end schedule-->
                                         </div>
                                     </div>
                                     <div class="row m-t-10">
-                                      <div class="col-md-6 col-sm-12 m-b-414">
+                                      <div class="col-md-6 col-sm-12 m-b-414 m-b-8">
                                         <span class="sp_hos_phone sp-768"><span class="circle-phone"><i class="fa fa-phone-alt"></i></span><span class="phone-no"><a :href="`tel:${hos.phone}`">{{hos.phone}}</a></span></span>
                                       </div>
-                                      <div class="col-md-6 col-sm-12 m-t-10">
-                                         <p class="sp-768">                                           
-                                          <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == ''" :class="'view_pro_id'+hos.nursing_id" style="display:block;" @click="favAddFun('add',hos.hos_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
-                                          <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == 'check'" :class="'done_pro_id'+hos.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',hos.hos_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
+                                      <div class="col-md-6 col-sm-12">
+                                         <p class="sp-768">
+                                          <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == '' && !$auth.check()" :class="'view_pro_id'+hos.nursing_id" style="display:block;" @click="favAddFun('add',hos.hos_id,index);"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
+                                          <span class="btn fav-profile fav-item fav-color" v-if="hos.fav_check == 'check' && !$auth.check()" :class="'done_pro_id'+hos.nursing_id" style="color:#aaa;display:block;" @click="favAddFun('remove',hos.hos_id,index);"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
                                         </p>
                                       </div>
                                     </div>
-                                    <div class="mt-4 detail-btn text-center"><router-link :to="{name: 'profile', params: {cusid:hos.cus_id, type: 'hospital'}}" class="btn all-btn">詳細を見る</router-link></div>
+                                    <div class="mt-4 detail-btn text-center"><router-link :to="{ path:'/profile/hospital/'+ hos.hos_id}" class="btn all-btn">詳細を見る</router-link></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="offset-md-4 col-md-8" v-if="show_paginate">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                    <li class="page-item">
-                        <span class="spanclass pc-480" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
-                    </li>
-                    <li class="page-item">
-                        <span class="spanclass" @click="prev"><i class='fas fa-angle-left'></i><span class="pc-paginate"> 前へ</span></span>
-                    </li>
-                    <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
-                        <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
-                    </li>
-                    <li class="page-item">
-                        <span class="spanclass" @click="next"><span class="pc-paginate">次へ </span><i class='fas fa-angle-right'></i></span>
-                    </li>
-                    <li class="page-item">
-                        <span class="spanclass pc-480" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
-                    </li>
-                    </ul>
-                </nav>
+            
+           <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-6" v-if="show_paginate">
+              <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li class="page-item previous">
+                    <span class="spanclass el1 disabled" @click="first"><i class='fas fa-angle-double-left'></i> 最初</span>
+                  </li>
+                  <li class="page-item ">
+                    <span class="spanclass" @click="prev()"><i class='fas fa-angle-left'></i> 前へ</span>
+                  </li>
+                  <li class="page-item" v-for="(i,index) in displayPageRange" :key="index" :class="{active_page: i-1 === currentPage}">
+                    <span class="spanclass" @click="pageSelect(i)">{{i}}</span>
+                  </li>
+                  <li class="page-item ">
+                    <span class="spanclass" @click="next">次へ <i class='fas fa-angle-right'></i></span>
+                  </li>
+                  <li class="page-item next">
+                    <span class="spanclass el2" @click="last">最後 <i class='fas fa-angle-double-right'></i></span>
+                  </li>
+                </ul>
+              </nav>
             </div>
+          </div>
+            <span v-if="norecord_msg">
+                    <div class="container-fuid m-t-20">
+                        <p class="nosearch-icon">
+                            <svg x="0px" y="0px" width="30" height="30" viewBox="0 0 172 172" style=" fill:red;"><g transform=""><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><path d="M0,172v-172h172v172z" fill="none"></path><path d="M3.44,168.56v-165.12h165.12v165.12z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><path d="M0,172v-172h172v172z" fill="none"></path><path d="M3.44,168.56v-165.12h165.12v165.12z" fill="none"></path><path d="M86,172c-47.49649,0 -86,-38.50351 -86,-86v0c0,-47.49649 38.50351,-86 86,-86v0c47.49649,0 86,38.50351 86,86v0c0,47.49649 -38.50351,86 -86,86z" fill="none"></path><path d="M86,168.56c-45.59663,0 -82.56,-36.96337 -82.56,-82.56v0c0,-45.59663 36.96337,-82.56 82.56,-82.56v0c45.59663,0 82.56,36.96337 82.56,82.56v0c0,45.59663 -36.96337,82.56 -82.56,82.56z" fill="none"></path><g fill="#666666"><path d="M74.53333,17.2c-31.59643,0 -57.33333,25.73692 -57.33333,57.33333c0,31.59641 25.7369,57.33333 57.33333,57.33333c13.73998,0 26.35834,-4.87915 36.24766,-12.97839l34.23203,34.23203c1.43802,1.49778 3.5734,2.10113 5.5826,1.57735c2.0092,-0.52378 3.57826,-2.09284 4.10204,-4.10204c0.52378,-2.0092 -0.07957,-4.14458 -1.57735,-5.5826l-34.23203,-34.23203c8.09923,-9.88932 12.97839,-22.50768 12.97839,-36.24766c0,-31.59641 -25.7369,-57.33333 -57.33333,-57.33333zM74.53333,28.66667c25.39939,0 45.86667,20.46729 45.86667,45.86667c0,25.39937 -20.46728,45.86667 -45.86667,45.86667c-25.39939,0 -45.86667,-20.46729 -45.86667,-45.86667c0,-25.39937 20.46728,-45.86667 45.86667,-45.86667zM91.67734,51.52161c-1.51229,0.03575 -2.94918,0.66766 -3.99765,1.75807l-13.14636,13.14636l-13.14636,-13.14636c-1.07942,-1.10959 -2.56162,-1.73559 -4.10963,-1.73568c-2.33303,0.00061 -4.43306,1.41473 -5.31096,3.57628c-0.8779,2.16155 -0.3586,4.6395 1.31331,6.26669l13.14636,13.14636l-13.14636,13.14636c-1.49777,1.43802 -2.10111,3.5734 -1.57733,5.58259c0.52378,2.0092 2.09283,3.57825 4.10203,4.10203c2.0092,0.52378 4.14457,-0.07956 5.58259,-1.57733l13.14636,-13.14636l13.14636,13.14636c1.43802,1.49778 3.5734,2.10113 5.5826,1.57735c2.0092,-0.52378 3.57826,-2.09284 4.10204,-4.10204c0.52378,-2.0092 -0.07957,-4.14458 -1.57735,-5.5826l-13.14636,-13.14636l13.14636,-13.14636c1.70419,-1.63875 2.22781,-4.1555 1.31865,-6.33798c-0.90916,-2.18248 -3.06468,-3.58317 -5.42829,-3.52739z"></path></g></g></g></svg>
+                        </p>
+                        <p class="nosearch-data">お探しの条件に合う病院は見つかりませんでした。</p>
+                        <p class="nosearch">条件の変更を行い再度ご検索いだだくと見つかる可能性がございます。</p>
+                    </div>
+                </span>
         </div>
       </div>
     </div>
@@ -383,10 +377,10 @@
 
 
 <script>
-import maptag from './map.vue' 
-import layout from '../components/home.vue' 
-import bulcomponent from './bulcomponent.vue' 
- 
+import maptag from './map.vue'
+import layout from '../components/home.vue'
+import bulcomponent from './bulcomponent.vue'
+
   export default {
     components: {
         maptag,
@@ -396,48 +390,12 @@ import bulcomponent from './bulcomponent.vue'
 
     data() {
       return {
-        id: '',
-        timetable:[],
-        hos_data:[],
-        townshipID: [],
-        township_id: [],
-        cities: [],
-        getCity: [],
-        getTownships: [],
-        specialfeatureID:[],
-        special_features: [],
-        specialfeatures:[],
-        fac_types: [],
-        fac_id: [],
-        medical_acceptance: [],
-        subjectID:[],
-        subjects: [],
-        sub_child:[],
-        subject:[],
-        company:[],
-        toggleCheck: true,
-        toggleCheck_1: false,
-        currentPage: 0,
-        size: 20,
-        pageRange: 5,
-        items: [],
-        show_paginate: false,
-        selected: undefined,
-        localst:'',
-        norecord_msg: false,
-        int:0,
-        array_len: 0,
-        window:{
-          width: 0,
-          height: 0
-        },
-        w_width: $(window).width(),
-
+        id: '', timetable:[], hos_data:[], townshipID: [], township_id: [], cities: [], getCity: [], getTownships: [], specialfeatureID:[], special_features: [], specialfeatures:[], fac_types: [], fac_id: [], medical_acceptance: [], subjectID:[], subjects: [], sub_child:[], subject:[], company:[], toggleCheck: true, toggleCheck_1: false, currentPage: 0, size: 20, pageRange: 5, items: [], show_paginate: false, selected: undefined, localst:'', norecord_msg: false, int:0, array_len: 0, window:{ width: 0, height: 0 }, w_width: $(window).width(), showOne:true, count:false, stateclick:false, clicksearch: false, ci: false, isActive: true,
       }
     },
     created(){
-        
-       window.addEventListener('resize', this.handleResize);
+
+        window.addEventListener('resize', this.handleResize);
         this.handleResize();
     },
     mounted() {
@@ -445,15 +403,15 @@ import bulcomponent from './bulcomponent.vue'
             $('#navtab').addClass('hospital-tabColor');
             $('.tab-content').removeClass('news-borderColor job-borderColor nursing-borderColor hospital-borderColor');
             $('#upper-tab').addClass('hospital-borderColor');
-            
+
         },
     methods: {
     stopTheEvent:function(e){
-        $('.dropdown-menu').on('click', function(e) {    
-            console.log('bb');
+        $('.dropdown-menu').on('click', function(e) {
+
             if($(this).hasClass('dropdown-menu-form')) {
                 e.stopPropagation();
-                console.log('aa')
+
             }
         });
     },
@@ -463,6 +421,7 @@ import bulcomponent from './bulcomponent.vue'
         //console.log('hello');
     },
     search(){
+        this.count = true;
         this.$loading(true);
         if(this.townshipID == null || this.townshipID == '')
         {
@@ -481,6 +440,17 @@ import bulcomponent from './bulcomponent.vue'
         {
 
             var search_word = $('#search-free-word').val();
+            this.searchword = search_word;
+        }
+        else if ($('#search-free-word-mob').val() != '')
+        {
+
+            var search_word = $('#search-free-word-mob').val();
+            this.searchword = search_word;
+        }
+        else{
+          var search_word = 'null';
+          this.searchword = '';
         }
         if(localStorage.getItem("hospital_fav") == null){
 
@@ -500,8 +470,8 @@ import bulcomponent from './bulcomponent.vue'
             local:this.locast
         },
         }).then((response)=>{
+        this.showOne = false;
         this.$loading(false);
-        console.log(response)
         this.getTownships = response.data.township;
         this.hos_data = response.data.hospital;
         this.timetable = response.data.timetable;
@@ -509,8 +479,7 @@ import bulcomponent from './bulcomponent.vue'
         this.subject = response.data.subject;
         this.subjects = response.data.subjects;
         this.company = response.data.company;
-        // this.int = this.subjects.length
-        console.log(this.int)
+
         if(this.hos_data.length > this.size) {
             this.show_paginate = true;
         }else{
@@ -522,21 +491,47 @@ import bulcomponent from './bulcomponent.vue'
             this.norecord_msg = true;
         }
         })
+     
     },
     searchfreeword(){
+
+        this.ci = true;
+        this.count = false;
+        this.stateclick = false;
         //clear all checkbox
         this.id = -1;
         this.townshipID = [];
         this.specialfeatureID = [];
         this.subjectID = [];
 
+        if(this.townshipID == null || this.townshipID == '')
+        {
+        this.townshipID[0] = 0;
+        }
+        if(this.specialfeatureID == null || this.specialfeatureID == '')
+        {
+        this.specialfeatureID[0] = 0;
+        }
+        if(this.subjectID == null || this.subjectID == '')
+        {
+        this.subjectID[0] = 0;
+        }
+
         if ($('#search-free-word').val() != '')
         {
 
             var search_word = $('#search-free-word').val();
+            this.searchword = search_word;
+        }
+        else if ($('#search-free-word-mob').val() != '')
+        {
+
+            var search_word = $('#search-free-word-mob').val();
+            this.searchword = search_word;
         }
         else{
                 var search_word = "all";
+                 this.searchword = search_word;
         }
             if(localStorage.getItem("hospital_fav") == null){
 
@@ -547,24 +542,27 @@ import bulcomponent from './bulcomponent.vue'
         }
 
         this.axios.get('api/gethospitalsearch/'+ search_word,{
-        params:{
-            id: -1,
-            townshipID:-1,
-            specialfeatureID:-1,
-            subjectID:-1,
+        params:{            
+            id: this.id,
+            townshipID:this.townshipID,
+            specialfeatureID:this.specialfeatureID,
+            subjectID:this.subjectID,
             local:this.locast
+
         },
         }).then((response)=>{
-                
+
                     $('.hospitalselect').removeClass('hospitalselect');
                     $('#hos_search').css("display","block");
                     this.hos_data = response.data.hospital;
                     this.cities = response.data.city;
                     this.timetable = response.data.timetable;
                     this.specialfeatures = response.data.specialfeature;
+                    this.special_features = response.data.special_feature;
                     this.getTownships = [];
                     this.subject = response.data.subject;
                     this.subjects = response.data.subjects;
+                   
                     if(this.hos_data.length > this.size) {
                         this.show_paginate = true;
                     }else{
@@ -575,21 +573,22 @@ import bulcomponent from './bulcomponent.vue'
                     }else{
                         this.norecord_msg = true;
                     }
-                
-                
+                  this.array_len = ((this.subjects.length)%3)==0?((this.subjects.length)/3):Math.floor(((this.subjects.length)/3)+1);
+               
 
             });
+
         },
 
         favAddFun(status,index,ind){
-            
-        
+
+
         if(status == 'add'){
 
             this.hos_data[ind].fav_check = 'check';
-                
+
             if(localStorage.getItem("hospital_fav")){
-                
+
                 var fav_arr = JSON.parse("[" + localStorage.getItem("hospital_fav") + "]");
                 fav_arr.push(index);
                 fav_arr = [...new Set(fav_arr)];
@@ -598,16 +597,13 @@ import bulcomponent from './bulcomponent.vue'
                 this.hosFav = fav_arr.length;
             }
             else{
-            
+
                 var fav_arr = [index];
-                console.log(fav_arr);
                 localStorage.setItem("hospital_fav", fav_arr);
-                
+
                 // $("#hos-fav-local").html(fav_arr.length);
                 this.hosFav = fav_arr.length;
             }
-            console.log('local');
-                console.log(localStorage.getItem("hospital_fav"));
             $(".fav-hospital-link-box>a").css({'cursor':'pointer','pointer-events':'auto'});
         }
         else{
@@ -644,6 +640,7 @@ import bulcomponent from './bulcomponent.vue'
         return result
     },
     toggleContent() {
+
         this.toggleCheck = !this.toggleCheck;
         if (this.toggleCheck == true) {
             $('#close').empty();
@@ -657,20 +654,27 @@ import bulcomponent from './bulcomponent.vue'
         }
     },
     ShowHide1() {
-        this.toggleCheck_1 = !this.toggleCheck_1;
+
+         this.toggleCheck_1 = !this.toggleCheck_1;
+      
         if (this.toggleCheck_1 == true) {
             $('#close2').empty();
-            $(".ShowHide1").slideDown();
+            // $(".ShowHide1").toggle("medium");
+             $(".ShowHide1").slideDown();
             $('#close2').append('<i class="fas fa-arrow-circle-up"></i> 閉じる');
 
         } else {
             $('#close2').empty();
+            // $(".ShowHide1").toggle("medium");
             $(".ShowHide1").slideUp();
             $('#close2').append('<i class="fas fa-arrow-circle-down"></i> もっと見る');
         }
-        console.log($('#test-td').width() + "width")
+
     },
     ChangeTownship(){
+        this.count = false;
+      
+  
         this.townshipID = [];
         if(localStorage.getItem("hospital_fav") == null){
             this.locast = 0;
@@ -686,29 +690,32 @@ import bulcomponent from './bulcomponent.vue'
             moving_in:-1,
             per_month:-1,
             local:this.locast,
-            feature:'hospital'
+            feature:'hospital',
+            SpecialFeatureID:[0],
+            MedicalAcceptanceID:[0],
+            FacTypeID:[0],
+            MoveID:[0],
         },
         })
         .then((response) => {
-            console.log(response)
+            this.showOne = false;
             $('.hospitalselect').removeClass('hospitalselect');
             this.cities = response.data.city
             this.getCity = response.data.getCity
             this.getTownships = response.data.getTownships
             this.special_features = response.data.special_features
             this.subjects = response.data.subjects;
-            
-            //this.sub_child = response.data.sub_child;
-            //console.log("aaa",this.subjects);
-            // this.id = id;
-
         })
-            this.search();
+            // this.search();
     },
 
-    parentGetStateClick(e,parentVue) {
+    parentGetStateClick(e,parentVue) {        
         var _this = parentVue;
-        console.log("parent",parentVue);
+        _this.clicksearch = true;
+        _this.stateclick = true;
+        _this.count = false;
+        _this.ci = false;
+     
         localStorage.setItem('features', 'hospital');
         //clear all checkbox
         _this.townshipID = [];
@@ -734,6 +741,7 @@ import bulcomponent from './bulcomponent.vue'
         else{
             _this.locast = localStorage.getItem("hospital_fav");
         }
+        _this.searchword = '';
         _this.$loading(true);
         _this.axios.get('api/getmap',{
             params:{
@@ -743,30 +751,32 @@ import bulcomponent from './bulcomponent.vue'
             per_month:-1,
             local:_this.locast,
             feature:'hospital',
+            SpecialFeatureID:[0],
+            MedicalAcceptanceID:[0],
+            FacTypeID:[0],
+            MoveID:[0],
         },
         })
         .then((response) => {
-            
+             this.showOne = false;
             _this.$loading(false);
             $('#hos_search').css("display","block");
             $('.hospitalselect').removeClass('hospitalselect');
             _this.cities = response.data.city
             _this.getCity = response.data.getCity
             _this.getTownships = response.data.getTownships
-            console.log(_this.getTownships.length);
             _this.special_features = response.data.special_features
             _this.subjects = response.data.subjects
-            console.log('sub',_this.subjects);
             _this.company = response.data.company
         //   _this.sub_child = response.data.sub_child
             _this.id = id;
             _this.array_len = ((_this.subjects.length)%3)==0?((_this.subjects.length)/3):Math.floor(((_this.subjects.length)/3)+1);
-            console.log(_this.array_len)
-
         })
 
         document.getElementById('search-free-word').value = '';
+        document.getElementById('search-free-word-mob').value = '';
         _this.search();
+     
 
 
     },
@@ -785,26 +795,104 @@ import bulcomponent from './bulcomponent.vue'
         }
     },
     first() {
-      this.currentPage = 0;
+       this.currentPage = 0;
+       const page = Math.ceil(this.hos_data.length / this.size);
+       const currentPage = this.currentPage + 1; 
+       if(currentPage == 1){
+        let el1 = document.querySelector('.el1');
+        let el2 = document.querySelector('.el2');
+        el1.classList.add('disabled');
+        el2.classList.remove('disabled');
+      }
+
     },
     last() {
       this.currentPage = this.pages - 1;
+      const page = Math.ceil(this.hos_data.length / this.size);
+      const currentPage = this.currentPage + 1; 
+       if(currentPage == page){
+        let el1 = document.querySelector('.el1');
+        let el2 = document.querySelector('.el2');
+        el1.classList.remove('disabled');
+        el2.classList.add('disabled');
+      }
     },
     prev() {
       if(0<this.currentPage) {
         this.currentPage--;
       }
+       const page = Math.ceil(this.hos_data.length / this.size);
+       const currentPage = this.currentPage + 1; 
+       if(currentPage > 1 && currentPage < page){
+        let el1 = document.querySelector('.el1');
+        let el2 = document.querySelector('.el2');
+        el1.classList.remove('disabled');
+        el2.classList.remove('disabled');
+      }
+      else if(currentPage == page){
+        let el1 = document.querySelector('.el1');
+        let el2 = document.querySelector('.el2');
+        el1.classList.remove('disabled');
+        el2.classList.add('disabled');
+      }
+      else if(currentPage == 1){
+        let el1 = document.querySelector('.el1');
+        let el2 = document.querySelector('.el2');
+        el1.classList.add('disabled');
+        el2.classList.remove('disabled');
+      }
+
     },
     next() {
       if(this.currentPage < this.pages - 1) {
         this.currentPage++;
       }
+      const page = Math.ceil(this.hos_data.length / this.size);
+       const currentPage = this.currentPage + 1; 
+       if(currentPage > 1 && currentPage < page){
+        let el1 = document.querySelector('.el1');
+        let el2 = document.querySelector('.el2');
+        el1.classList.remove('disabled');
+        el2.classList.remove('disabled');
+      }
+       else if(currentPage == page){
+        let el1 = document.querySelector('.el1');
+        let el2 = document.querySelector('.el2');
+        el1.classList.remove('disabled');
+        el2.classList.add('disabled');
+      }
+       else if(currentPage == 1){
+        let el1 = document.querySelector('.el1');
+        let el2 = document.querySelector('.el2');
+        el1.classList.add('disabled');
+        el2.classList.remove('disabled');
+      }
     },
     imgUrlAlt(event) {
-        event.target.src = "images/noimage.jpg"
+        event.target.src = "/images/noimage.jpg"
     },
     pageSelect(index) {
         this.currentPage = index - 1;
+        const page = Math.ceil(this.hos_data.length / this.size);
+        const currentPage = this.currentPage + 1; 
+        if(currentPage > 1 && currentPage < page){
+          let el1 = document.querySelector('.el1');
+          let el2 = document.querySelector('.el2');
+          el1.classList.remove('disabled');
+          el2.classList.remove('disabled');
+        }
+        else if(currentPage == page){
+          let el1 = document.querySelector('.el1');
+          let el2 = document.querySelector('.el2');
+          el1.classList.remove('disabled');
+          el2.classList.add('disabled');
+        }
+        else if(currentPage == 1){
+          let el1 = document.querySelector('.el1');
+          let el2 = document.querySelector('.el2');
+          el1.classList.add('disabled');
+          el2.classList.remove('disabled');
+        }
     }
     },
     computed: {
@@ -844,186 +932,5 @@ import bulcomponent from './bulcomponent.vue'
     }
 	},
   };
-//   $(function() {
-//       $( '.division-box ul a.path li' ).on( 'click', function(e) {
-//             e.preventDefault();
-//             $( '.division-box ul  li' ).parent().find( 'li.spanclass' ).removeClass( 'active' );
-//             $( this ).addClass( 'active' );
-//     });
-//   });
-
-//   $(function() {
-// $( '#page-item button' ).on( 'click', function(e) {
-//             e.preventDefault();
-//             $( '#page-item button' ).parent().find( 'button.active' ).removeClass( 'active' );
-//             $( this ).addClass( 'active' );
-//     });
-//   });
 </script>
 
-
-<style>
-
-.lastblock{
-       display: block;
-
-}
-  .hospitalselect {
-    display: none;
-  }
-
-  span.tooltip {
-    padding: 0px 5px;
-    position: relative;
-    background: #ffbb99;
-    cursor: pointer;
-  }
-
-  .tooltip-info {
-    position: absolute;
-    top: -9999px;
-    left: -9999px;
-  }
-
-  span.tooltip::before {
-    content: attr(data-tooltip);
-    position: absolute;
-    top: 1.5em;
-    font-size: 0.9em;
-    padding: 1px 5px;
-    display: none;
-    color: white;
-    background: rgba(0, 0, 0, 0.75);
-    border-radius: 4px;
-    transition: opacity 0.1s ease-out;
-    z-index: 99;
-    text-align: left;
-  }
-
-  span:hover::before {
-    display: inline-block;
-  }
-
-  [data-toggle="collapse"] .fa:before {
-    content: "\f139";
-  }
-
-  [data-toggle="collapse"].collapsed .fa:before {
-    content: "\f13a";
-  }
-
-
-  .card-2 {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    border-radius: 10px;
-  }
-
-  .toBeToggled {
-    display: block;
-  }
-
-  .toBeToggled1 {
-    display: none;
-  }
-  #hos table>tbody>tr th {
-    background-color: #e8e7e7;
-    width: 140px;
-    padding: 25px;
-  }
-  
-.page-item.active_page .spanclass {
-  z-index: 1;
-  background-color: #ffbb99;
-    background-image: none;
-    border: 1px solid #8e3c15;
-}
-
-  .hospital-tabColor .nav-link {
-        background: #63b7ff !important;
-        color: #fff;
-        border-right: 1px solid #fff;
-    }
-.hospital-borderColor {
-        border: 1px solid #63b7ff !important;
-    }
-.tab-pane{
-        padding: 10px;
-    }
-.page-item .spanclass{
-  cursor: pointer;
-}
-.first-row{
-    color: #fff;
-    background-color: #a2a7a1;
-    border-bottom: 1px solid #ccc;
-    border-right: 1px solid #ccc;
-    text-align: center;
-    padding: 10px;
-    font-size: 100%;
-}
-.nosearch-icon{
-    border: 1px solid #b0abab;
-    width: 60px;
-    height: 60px;
-    border-radius: 10px;
-    text-align: center;
-    margin: 0 auto 10px;
-    line-height: 60px;
-    vertical-align: middle;
-    background: #ddd;
-}
-.nosearch-data{
-    font-size: 25px;
-    color: #f57e46;
-    font-weight: bold;
-    margin: 20px 0;
-    text-align: center;
-}
-.nosearch{
-    font-size: 14px;
-    color: #a5a5a5;
-    font-weight: bold;
-    margin: 20px 0;
-    text-align: center;
-}
-#job_detail .fav-profile{
-  position: relative;
-  top: 0;
-  right: 0;
-}
-/************************responsive ****************************/
-@media only screen and (max-width:1024px) {
-  table > tbody > tr th{  
-    width:100px !important;
-  }
- 
-}
-@media only screen and (max-width: 480px){
-  table > tbody > tr th{
-    padding: 25px 5px;
-  }
-  table th, table td{
-    vertical-align: middle !important;
-    width: 50px !important;
-    padding: 5px !important;
-  }
-  .dropdown-toggle::after {    
-    position: absolute;
-    right: 12px;
-    top: 15px;
-  }
-}
-
-.dropdown-toggle::after {
-    display: inline-block;
-    margin-left: 0.255em;
-    vertical-align: 0.255em;
-    content: "";
-    border-top: 0.3em solid;
-    border-right: 0.3em solid transparent;
-    border-bottom: 0;
-    border-left: 0.3em solid transparent;
-    margin-left: 94px;
-}
-
-</style>

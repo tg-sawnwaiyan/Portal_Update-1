@@ -21,7 +21,7 @@ class Authenticate extends Middleware
                
                 return response()->json(['status' => 'Token is Expired']);
             }else{
-                return response()->json(['status' => 'Authorization Token not found']);
+                return response()->json(['status' => 'Token not found']);
             }
         }
     

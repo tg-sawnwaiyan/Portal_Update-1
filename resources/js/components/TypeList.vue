@@ -15,8 +15,8 @@
             <p class="record-ico">
               <i class="fa fa-exclamation"></i>
             </p>
-            <p>OOPS!!</p>
-            <p class="record-txt01">表示するデータありません</p>
+           
+            <p class="record-txt01">表示するデータありません。</p>
             <p>表示するデータありません‼新しいデータを作成してください。</p>
             <a href="/type" class="main-bg-color create-btn all-btn">
               <i class="fas fa-plus-circle"></i> 新しく作る
@@ -90,7 +90,8 @@ export default {
         confirmButtonText: "削除",
         cancelButtonText: "キャンセル",
         confirmButtonClass: "all-btn",
-        cancelButtonClass: "all-btn"
+        cancelButtonClass: "all-btn",
+        allowOutsideClick: false,
       }).then(response => {
         this.axios
           .delete(`/api/types/delete/${id}`)
@@ -106,11 +107,20 @@ export default {
               width: 350,
               height: 200,
               confirmButtonText: "はい",
-              confirmButtonColor: "#dc3545"
+              confirmButtonColor: "#dc3545",
+              allowOutsideClick: false,
             });
           })
           .catch(() => {
-            this.$swal("Failed", "wrong");
+            this.$swal({             
+              html: "システムエラーです。<br/>社内エンジニアにお問い合わせください。<br/><a href='mailto:pg@management-partners.co.jp'>pg@management-partners.co.jp</a>",
+              type: "error",
+              width: 350,
+              height: 200,
+              confirmButtonText: "閉じる",
+              confirmButtonColor: "#FF5462",
+              allowOutsideClick: false,
+          });
           });
       });
     },

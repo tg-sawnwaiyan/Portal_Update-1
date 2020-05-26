@@ -2,9 +2,9 @@
     <div>
         <div class="scrolldiv2 pb-5 tab-content" id="nursing">
             <div class="row m-0">
-                <div class="col-12 pl-0">
+                <div class="col-12 pad-free pad-free-75">
                     <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
+                        <ol class="breadcrumb" style="padding-left:0px !important;padding-right:0px !important;">
                             <li class="breadcrumb-item">
                                 <router-link to="/">ホーム</router-link>
                             </li>
@@ -12,8 +12,8 @@
                         </ol>
                     </nav>
                 </div>
-                <div class="col-md-12">
-                    <div class="col-md-12 fav-his-header">
+                <div class="col-md-12 pad-free">
+                    <div class="col-md-12 fav-his-header pad-free">
                         <svg x="0px" y="0px" width="24" height="24" viewBox="0 0 172 172" style=" fill:#000000;">
                             <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
                                 <path d="M0,172v-172h172v172z" fill="none"></path>
@@ -39,7 +39,7 @@
                 </div>
 
                 <!--compare box-->
-                <div class="col-12 mt-2 mb-4">
+                <div class="col-12 mt-2 mb-4 pad-free-750">
                     <div class="row m-0">
                         <div class="col-md-11 compare-wrap" @click="itemCompare()" data-toggle="modal" data-target=".bd-example-modal-lg">
                             <dl class="itemBox favnur" id="bd" v-if="!iscompare">
@@ -49,7 +49,7 @@
                             <dl class="itemBox favnur" id="bd" v-else>
                                 <dt class="pr-4">比較する項目</dt>
                                 <dd>
-                                    <ul class="item-compare">
+                                    <ul class="item-compare" style="padding:5px">
                                         <li v-if="address_check">住所</li>
                                         <li v-if="tran_check">交通手段</li>
                                         <li v-if="month_check">月額費用</li>
@@ -63,7 +63,7 @@
                             </dl>
                         </div>
 
-                        <div class="col-md-1 fav-update-wrap">
+                        <div class="col-md-1 fav-update-wrap fav-update-wrap2">
                             <button class="fav-update-btn" @click="itemCompare()" data-toggle="modal" data-target=".bd-example-modal-lg">変更する</button>
                         </div>
 
@@ -73,7 +73,7 @@
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLongTitle">比較する項目を選ぶ</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <button class="btn btn-secondary pc-480">閉じる&times;</button>
+                                            <button class="btn btn-secondary pc-480">&times;</button>
                                             <button class="btn btn-secondary close-480"><span>&times;</span></button>
                                         </button>
                                     </div>
@@ -149,10 +149,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="modal-footer text-center">
-                                        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <button class="btn btn-secondary" @click="compareBtn()">比較する</button>
-                                        </button> -->
+                                    <div class="modal-footer text-center fav-update-wrap">                                        
                                         <button type="button"  data-dismiss="modal" aria-label="Close"  @click="compareBtn()" class="fav-update-btn">
                                            比較する
                                         </button>
@@ -166,14 +163,16 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLongTitle">交通アクセス／{{custname}}</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <button class="btn btn-secondary">閉じる&times;</button>
+                                        
+                                        <button type="button" data-dismiss="modal" aria-label="Close" class="close">
+                                            <button class="btn btn-secondary pc-480">×</button> <button class="btn btn-secondary close-480"><span>×</span>
                                         </button>
+                                            </button>
                                     </div>
                                     <div class="modal-body">
                                        
                                         <GmapMap id="googlemap" ref="map" :center="center" :zoom="10">
-                                            <GmapMarker v-for="(m, index) in markers" :key="index" :position="m.position" :clickable="true" :draggable="true" @click="center=m.position" />
+                                            <GmapMarker v-for="(m, index) in markers" :key="index" :position="m.position" :clickable="true" :draggable="false" @click="center=m.position" />
                                         </GmapMap>
                                     </div>
                                     <div class="modal-body">
@@ -197,8 +196,10 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLongTitle">料金プラン</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <button class="btn btn-secondary">閉じる&times;</button>
+                                        
+                                         <button type="button" data-dismiss="modal" aria-label="Close" class="close">
+                                            <button class="btn btn-secondary pc-480">×</button> <button class="btn btn-secondary close-480"><span>×</span>
+                                            </button>
                                         </button>
                                     </div>
                                     <div class="modal-body">
@@ -232,30 +233,24 @@
                 <!--result-->
                 <div class="col-12">
                     <div class="clearfix">
-                        <div>
+                        <span>
                             <label><strong> {{message}} </strong></label>
-                        </div>
+                        </span>
                         <div class="float-right pc-480">
                             
-                            <label class="btn my-2 my-sm-0 all-btn secondary-bg-color btn-secondary control controlinner--checkbox" style="width:300px;">
+                            <label class="btn my-2 my-sm-0 all-btn btn-secondary control controlinner--checkbox" style="width:300px;background-color:#63b7ff;">
                                 <input type="checkbox" @change="checkAll()" class="check-all-btn" v-model="checkallbtn" id="main-check-all"/>
                                 <span class="checkmark"></span>すべての資料請求にチェックを入れる
-                                <div class="controlinner__indicator" style="top:8px;left:7px;"></div>
+                                <div class="controlinner__indicator m-l-3" style="top:8px;left:7px;"></div>
                             </label>
-                            <!-- <button type="button" class="btn btn-success all-btn float-right m-l-10" @click="addingMail()" :disabled="isdisable">資料請求する</button> -->
                         </div>
                         <div class="float-right check-resize">
-                            <!-- <label class="btn my-2 my-sm-0 all-btn secondary-bg-color btn-secondary control controlinner--checkbox pc-480" style="width:300px;">
+                            
+                            <label class="btn my-sm-0 all-btn btn-secondary control controlinner--checkbox fnt-check" style="background-color:#63b7ff;">
                                 <input type="checkbox" @change="checkAll()" class="check-all-btn" />
-                                <span class="checkmark"></span>すべての資料請求にチェックを入れる
-                                <div class="controlinner__indicator" style="top:8px;left:7px;"></div>
-                            </label> -->
-                            <label class="btn my-sm-0 all-btn secondary-bg-color btn-secondary control controlinner--checkbox fnt-check">
-                                <input type="checkbox" @change="checkAll()" class="check-all-btn" />
-                                <span class="checkmark"></span>すべてチェック
-                                <div class="controlinner__indicator" style="top:8px;left:3px;"></div>
+                                <span class="checkmark m-l-10"></span>すべてチェック
+                                <div class="controlinner__indicator" style="top:7px;left:3px;margin-left:5px;"></div>
                             </label>
-                            <!-- <button type="button" class="btn btn-success all-btn float-right m-l-10 fnt-check" @click="addingMail()" :disabled="isdisable">資料請求する</button> -->
                         </div>
                     </div>
                     <div class="m-t-20" id="fav-history-page">
@@ -278,13 +273,13 @@
                                                                         <img class="profile_img" style="" v-bind:src="'/upload/nursing_profile/' + nur_profile.logo" alt  @error="imgUrlAlt"/>
                                                                     </div> 
                                                                     <div class="profile_wd">
-                                                                        <router-link :to="{name: 'profile', params: {cusid:nur_profile.customer_id, type: 'nursing'}}" class="pseudolink" style="font-weight:bold;">{{nur_profile.name}}</router-link>
+                                                                        <router-link :to="{ path:'/profile/nursing/'+ nur_profile.id}" class="pseudolink" style="font-weight:bold;">{{nur_profile.name}}</router-link>
                                                                     </div>
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td v-for="nur_profile in fav_nursing" :key="nur_profile.id">
-                                                                    <span class="btn btn-danger all-btn hos-btn m-t-8" @click="deleteLocalSto(nur_profile.id)">お気に入りリストから削除</span>
+                                                                    <span class="btn bt-red all-btn hos-btn m-t-8" @click="deleteLocalSto(nur_profile.id)">お気に入りリストから削除</span>
                                                                     <label class="btn all-btn res-btn hos-btn control controlinner--checkbox p-l-30">
                                                                         <input type="checkbox" value="document_status[nur_profile.id]" name="documentation" class="checkbox2" v-model="document_status[nur_profile.id]" @change="checkSingle(nur_profile.id)">
                                                                         <span class="checkmark"></span>資料請求
@@ -314,14 +309,16 @@
                                                             </tr>
                                                             <tr v-if="address_show || tran_show">
                                                                 <td v-for="nur_profile in fav_nursing" :key="nur_profile.id">
-                                                                    <div v-if="tran_show || address_show" class="profile_wd"><span class="pseudolink" @click="googlemap(nur_profile.id)" data-toggle="modal" data-target=".bd-example-modal-google"><i class="fa fa-search"></i> 地図・交通アクセス</span></div>
+                                                                    <div v-if="tran_show || address_show" class="profile_wd"><span class="pseudolink" @click="googlemap(nur_profile.id)" data-toggle="modal" data-target=".bd-example-modal-google"><i class="fa fa-search m-r-5"></i> 地図・交通アクセス</span></div>
                                                                 </td>
                                                             </tr>
                                                             <tr v-if="entry_show">
                                                                 <td v-for="nur_profile in fav_nursing" :key="nur_profile.id">
                                                                     <dl>
                                                                         <dt class="text-left">入居時の費用</dt>
-                                                                        <dd class="profile_price"><strong>{{(Math.floor(Number(nur_profile.moving_in_from)/10000))==0? '' : (Math.floor(Number(nur_profile.moving_in_from)/10000)).toLocaleString()+'万' }}{{(Number(nur_profile.moving_in_from)%10000)==0 ? '' : (Number(nur_profile.moving_in_from)%10000).toLocaleString()}}円～</strong></dd>
+                                                                        <dd class="profile_price">
+                                                                            <strong v-if="Number(nur_profile.moving_in_from) == 0">0円</strong>
+                                                                            <strong v-else>{{(Math.floor(Number(nur_profile.moving_in_from)/10000))==0? '' : (Math.floor(Number(nur_profile.moving_in_from)/10000)).toLocaleString()+'万' }}{{(Number(nur_profile.moving_in_from)%10000)==0 ? '' : (Number(nur_profile.moving_in_from)%10000).toLocaleString()}}円～</strong></dd>
                                                                     </dl>
                                                                 </td>
                                                             </tr>
@@ -329,13 +326,19 @@
                                                                 <td v-for="nur_profile in fav_nursing" :key="nur_profile.id">
                                                                     <dl>
                                                                         <dt class="text-left">月額の費用</dt>
-                                                                        <dd class="profile_price"><strong>{{(Math.floor(Number(nur_profile.per_month_from)/10000))==0? '' : (Math.floor(Number(nur_profile.per_month_from)/10000)).toLocaleString()+'万' }}{{(Number(nur_profile.per_month_from)%10000)==0 ? '' : (Number(nur_profile.per_month_from)%10000).toLocaleString()}}円～</strong></dd>
+                                                                        <dd class="profile_price">
+                                                                            
+                                                                            <strong v-if="Number(nur_profile.per_month_from) == 0">0円</strong>
+                                                                            <strong v-else>
+                                                                                {{(Math.floor(Number(nur_profile.per_month_from)/10000))==0? '' : (Math.floor(Number(nur_profile.per_month_from)/10000)).toLocaleString()+'万' }}{{(Number(nur_profile.per_month_from)%10000)==0 ? '' : (Number(nur_profile.per_month_from)%10000).toLocaleString()}}円～
+                                                                            </strong>
+                                                                        </dd>
                                                                     </dl>
                                                                 </td>
                                                             </tr>
                                                             <tr v-if="month_show || entry_show">
                                                                 <td v-for="nur_profile in fav_nursing" :key="nur_profile.id">
-                                                                    <div class="profile_wd"><span class="pseudolink" @click="monthlyCost(nur_profile.id)" data-toggle="modal" data-target=".bd-example-modal-cost"><i class="fa fa-search"></i> 料金プランの詳細</span></div>
+                                                                    <div class="profile_wd"><span class="pseudolink" @click="monthlyCost(nur_profile.id)" data-toggle="modal" data-target=".bd-example-modal-cost"><i class="fa fa-search m-r-5"></i> 料金プランの詳細</span></div>
                                                                 </td>
                                                             </tr>
                                                             <tr v-if="condition_show">
@@ -389,7 +392,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-success col-sm-4 offset-sm-4 col-md-2 offset-md-5 m-b-10" @click="addingMail()" :disabled="isdisable">資料請求する</button>
+                    <button type="button" class="btn all-btn bt-suc col-sm-4 offset-sm-4 col-md-2 offset-md-5 m-b-10" @click="addingMail()" :disabled="isdisable">資料請求する</button>
                 </div>
                 <!--end compare box-->
                 <!--result-->
@@ -415,58 +418,7 @@
      
         data() {
                 return {
-                    status_all:'0',
-                    chek_status:true,
-                    errors: [],
-                    fav_nursing: [],
-                    local_sto: "",
-                    fav_email: [],
-                    arr_email: [],
-                    document_status: [],
-                    modal_btn: false,
-                    address_check: false,
-                    address_show: false,
-                    tran_check: false,
-                    tran_show: false,
-                    month_check: false,
-                    month_show: false,
-                    entry_check: false,
-                    entry_show: false,
-                    condition_check: false,
-                    condition_show: false,
-                    special_check: false,
-                    special_show: false,
-                    capacity_check: false,
-                    capacity_show: false,
-                    opening_check: false,
-                    opening_show: false,
-                    fav_nus :"",
-                    iscompare: false,
-                    markers: [{
-                        position: {
-                            lat: 0.0,
-                            lng: 0.0
-                        }
-                    }],
-                    center: {
-                        lat: 0,
-                        lng: 0
-                    },
-                    address: '',
-                    access: '',
-                    custname: '',
-                    payment_name: [],
-                    currentOffset: 0,
-                    windowSize: 5,
-                    paginationFactor: 261,
-                    disableBtn: false,
-                    check:false,
-                    checkallbtn:false,
-                    window:{
-                        width: 0,
-                        height: 0
-                    },
-                    message:''
+                    status_all:'0', chek_status:true, errors: [], fav_nursing: [], local_sto: "", fav_email: [], arr_email: [], document_status: [], modal_btn: false, address_check: false, address_show: false, tran_check: false, tran_show: false, month_check: false, month_show: false, entry_check: false, entry_show: false, condition_check: false, condition_show: false, special_check: false, special_show: false, capacity_check: false, capacity_show: false, opening_check: false, opening_show: false, fav_nus :"", iscompare: false, markers: [{ position: { lat: 0.0, lng: 0.0 } }], center: { lat: 0, lng: 0 }, address: '', access: '', custname: '', payment_name: [], currentOffset: 0, windowSize: 5, paginationFactor: 261, disableBtn: false, check:false, checkallbtn:false, window:{ width: 0, height: 0 }, message:''
                 };
             },
             computed: {
@@ -481,9 +433,8 @@
                 }
             },
 
-            created() {
-             
-            
+            created() {  
+                this.$loading(true);        
                 //for cardcarousel responsive
                 window.addEventListener('resize', this.handleResize)
                 this.handleResize(); 
@@ -527,11 +478,9 @@
                 }
                 else if (this.window.width >= 1440 && this.window.width < 1880) {
                     this.windowSize = 4;
-                     this.paginationFactor = 260;            
-                    // console.log(this.window.width);
+                    this.paginationFactor = 260;            
                 }
 
-                // $('.checkbox1').prop("checked", true);
                 this.iscompare = true;
                 this.address_check = true;
                 this.address_show = true;
@@ -572,19 +521,19 @@
                     },
                     deleteLocalSto: function(id) {
                           this.$swal({
-                            title: "確認",
-                            text: "削除よろしいでしょうか",
+                            text: "お気に入りから削除してよろしいでしょうか 。",
                             type: "warning",
-                            width: 350,
+                            width: 400,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#dc3545",
+                            confirmButtonColor: "#EEA025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
-                            confirmButtonText: "削除",
+                            confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
                         }).then(response => { 
                              var l_sto = this.local_sto;
                             var l_sto_arr = l_sto.split(",");
@@ -602,47 +551,43 @@
                                     }
                                 var new_local = l_sto_arr.toString();
                                 localStorage.setItem('nursing_fav', new_local);
-                                this.local_sto = localStorage.getItem("nursing_fav");
-                                // this.$swal({
-                                //     title: "削除された",
-                                //     text: "ファイルが削除されました。",
-                                //     type: "success",
-                                //     width: 350,
-                                //     height: 200,
-                                //     confirmButtonText: "はい",
-                                //     confirmButtonColor: "#dc3545"
-                                //     });
+                                this.local_sto = localStorage.getItem("nursing_fav");                               
                                 if (this.local_sto) {
+                                    this.fav_nus = this.local_sto.split(",").length;
                                     this.getAllFavourite(this.local_sto);
                                 } else {
-                                    // window.location.reload();
                                     this.$router.push({
-                                        name: 'nursingSearch',
-                                        // params: {
-                                        //     page: 'subtab3'
-                                        // }
+                                        name: 'nursingSearch',                                       
                                     });
                                 }
                             }
                       
                          });
-                            // alert('Delete Successfully!');
                            
                         if(this.local_sto){
                             this.fav_nus = this.local_sto.split(",").length;
                         }
                     },
                     getAllFavourite: function(local_storage) {
-                       
                         this.axios
                             .post('/api/nursing_fav/' + local_storage)
                             .then(response => {
+                                this.$loading(false);
                                 this.fav_nursing = response.data;
                               
                                 if(this.fav_nursing.length < this.fav_nus && this.fav_nursing.length > 0)
-                                {      
+                                {   
+                                    this.$swal({
+                                        position: 'top-end',
+                                        type: 'info',
+                                        text: 'すでに掲載されていない施設をリストから削除しました。',
+                                        showConfirmButton: true,
+                                        confirmButtonText: "閉じる",
+                                        width: 400,
+                                        height: 200,
+                                        allowOutsideClick: false,
+                                    });   
                                      var nus_id = '';
-                                     this.message = "現在本サイトに掲載されていない介護施設についてはお気に入りリストから削除しました。";
                                      for(var i= 0;i<this.fav_nursing.length;i++)
                                      {
                                          if(i== this.fav_nursing.length-1)
@@ -662,20 +607,19 @@
                                 }
                                 if(this.fav_nursing.length == 0)
                                 { 
-                                  
+                                    this.nusFav = 0;
                                     this.$swal({   
                                     position: 'top-end',
                                     type: 'info',
-                                    // title: '作成されました',
-                                    text: 'お気に入りの介護施設は既に本サイトに掲載されておりませんので、お気に入りリストから削除しました。',
+                                    text: 'すでに掲載されていない施設をリストから削除しました。',
                                     showConfirmButton: true,
                                     confirmButtonText: "閉じる",
-                                    width: 250,
+                                    width: 400,
                                     height: 200,
+                                    allowOutsideClick: false,
                                     }).then(response => {
                                          localStorage.setItem('nursing_fav','');
-                                         this.local_sto = localStorage.getItem("nursing_fav");
-                                         this.nusFav = 0;
+                                         this.local_sto = localStorage.getItem("nursing_fav");                                         
                                           $('.fav-nursing-link-box>a').css({'cursor':'not-allowed','pointer-events':'none'});
                                           $( '.fav-nursing-link-box>a').parent('div').css({'cursor':'not-allowed'});
                                          this.$router.push({name: 'nursingSearch'});    
@@ -701,16 +645,13 @@
                                 'email': this.fav_nursing[i]['email'],
                                 'name': this.fav_nursing[i]['name']
                             });
-                        }
+                        }                        
                         
                         localStorage.setItem("document", JSON.stringify(this.document_status));
                         localStorage.removeItem("item");
-                        localStorage.setItem("item", JSON.stringify(this.fav_email));
-                        this.$router.push({
-                            name: 'nursingFavouriteMail',
-                            // params: { favmail: this.fav_email},
-                            // props: true
-                        });
+                        localStorage.setItem("item", JSON.stringify(this.fav_email));                      
+                        let routeData = this.$router.resolve({name: 'nursingFavouriteMail',});
+                        window.open(routeData.href, '_blank');
                     },
                     checkAll() {
                         this.disableBtn = '';
@@ -819,9 +760,8 @@
                         }
                     },
                 imgUrlAlt(event) {
-                event.target.src = "images/noimage.jpg"
+                event.target.src = "/images/noimage.jpg"
             }
             }
     };
 </script>
-

@@ -13,7 +13,7 @@ class SpecialFeatureController extends Controller
 
     public function index($type)
     {
-        $feature = special_feature::where('type','=',$type)->orderBy('id', 'desc')->paginate(12);
+        $feature = special_feature::where('type','=',$type)->orderBy('id', 'desc')->paginate(20);
         return response()->json($feature);
     }
 
@@ -27,7 +27,7 @@ class SpecialFeatureController extends Controller
        
         $cooperate_list = special_feature::where('type','=',$profile_type)->get()->toArray();
        
-        $profile_feature = SpecialFeaturesJunctions::where('customer_id','=',$customer_id)->get()->toArray();
+        $profile_feature = SpecialFeaturesJunctions::where('profile_id','=',$customer_id)->get()->toArray();
       
         for($indx=0; $indx<count($profile_feature); $indx++) {
             for($sec_indx = 0; $sec_indx<count($cooperate_list); $sec_indx++) {
@@ -102,25 +102,44 @@ class SpecialFeatureController extends Controller
     }
 
 
-    public function destroy($id)
+    public function destroy($id,$type)
     {
         $feature = special_feature::find($id);
-        $feature->delete();
-        $features = special_feature::orderBy('id','DESC')->get()->toArray();
-         return $features;
-        // return response()->json('The Feature successfully deleted');
+        if($type == 'nursing') {
+            $feature_junction = "SELECT * FROM special_features_junctions WHERE special_features_junctions.special_feature_id = $id";
+            $junction_data = DB::select($feature_junction);
+            if(count($junction_data) != 0) {
+                return response()->json(['error' => 'この特徴に関連している施設がありますので削除できません。'], 404);
+            }else{
+                $feature->delete();
+                $features = special_feature::where('type',$type)->orderBy('id','DESC')->paginate(20);
+                return response()->json($features);
+            }
+        }else{
+            $feature_junction = "SELECT * FROM special_features_junctions WHERE special_features_junctions.special_feature_id = $id";
+            $junction_data = DB::select($feature_junction);
+            if(count($junction_data) != 0) {
+                return response()->json(['error' => 'この特徴に関連している施設がありますので削除できません。'], 404);
+            }else{
+                $feature->delete();
+                $features = special_feature::where('type',$type)->orderBy('id','DESC')->paginate(20);
+                return response()->json($features);
+            }
+        }
     }
 
-    public function search(Request $request)
+    public function search(Request $request,$type)
     {
         $request = $request->all();
         $search_word = $request['search_word'];
 
-        $special_feature = special_feature::query()
-                            ->where('name', 'LIKE', "%{$search_word}%")
-                            ->orwhere('short_name', 'LIKE', "%{$search_word}%")
+        $special_feature = special_feature::where('type',$type)
+                            ->where(function($query) use($search_word){
+                                $query->where('name', 'LIKE', "%{$search_word}%")
+                                ->orwhere('short_name', 'LIKE', "%{$search_word}%");
+                            })
                             ->orderBy('id','DESC')
-                            ->paginate(12);
+                            ->paginate(20);
         return response()->json($special_feature);
     }
 }

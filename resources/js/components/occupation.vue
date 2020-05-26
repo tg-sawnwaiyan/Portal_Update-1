@@ -1,39 +1,39 @@
 <template>
 
-<div class="row o-r1 m-r-5">
-      <div class="col-12 o-r2">
-          <div class="card">
-              <div class="card-body">
-                  <div class="row">
-                      <div class="col-md-12">
-                            <h4 class="page-header header">{{ header }}</h4>
+<div>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="page-header header">{{ header }}</h4>
+                </div>
+                <div class="col-md-12">
+                    <form @submit.prevent ="add" autocomplete="off">
+                       
+                        <div class="form-group">
+                        <label>職種カテゴリー<span class="error sp2">必須</span></label>
+                            <select v-model="selectedValue" class="form-control" @change='getOccupation()'>
+                                <option value="0">選択してください。</option>
+                                <option v-for="occupations in occupationList" :key="occupations.id" v-bind:value="occupations.id">
+                                    {{occupations.name}}
+                                </option>
+                            </select>
+                    </div>
+                    <div class="form-group">
+                            <label>職種<span class="error sp2">必須</span></label>
+                            <input type="text" class="form-control"  v-model="occupation.name"  placeholder="職種名を入力してください。" >
+                            <span v-if="errors.name" class="error">{{errors.name}}</span>
                         </div>
-                        <div class="col-md-12">
-                            <form @submit.prevent ="add">
-                                <div class="form-group">
-                                    <label>職種名 :<span class="error">*</span></label>
-                                    <input type="text" class="form-control"  v-model="occupation.name"  placeholder="職種名を入力してください。" >
-                                    <span v-if="errors.name" class="error">{{errors.name}}</span>
-                                </div>
-                                <div class="form-group">
-                                <label>ペアレント :<span class="error">*</span></label>
-                                    <select v-model="selectedValue" class="form-control" @change='getOccupation()'>
-                                        <option value="0">選択してください。</option>
-                                        <option v-for="occupations in occupationList" :key="occupations.id" v-bind:value="occupations.id">
-                                            {{occupations.name}}
-                                        </option>
-                                    </select>
-                            </div><br/>
-                            <div class="form-group ">
-                                <span class="btn main-bg-color white all-btn" @click="checkValidate()">{{subtitle}}</span>
-                                <router-link class="btn btn-danger all-btn" to="/occupationlist" > キャンセル </router-link>
-                            </div>
-                            </form>
-                        </div>
-                  </div>
-              </div>
-          </div>
-      </div>
+
+                    <div class="form-group ">
+                        <router-link class="btn bt-red all-btn" to="/occupationlist" > キャンセル </router-link>
+                        <span class="btn main-bg-color white all-btn" @click="checkValidate()">{{subtitle}}</span>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 </template>
@@ -96,7 +96,7 @@ export default {
                         this.errors.name = "";
                     } else {
                         // console.log('null');
-                        this.errors.name = " 職種が必須です。";
+                        this.errors.name = " 職種は必須です。";
                     }
                    if (
                         !this.errors.name
@@ -109,37 +109,38 @@ export default {
                           if( `${this.$route.params.id}` == "undefined")
                 {
                     this.$swal({
-                             title: "確認",
-                            text: "職種を投稿してよろしいでしょうか。",
-                            type: "success",
+                            //  title: "確認",
+                            text: "求人職種を作成してよろしいでしょうか。",
+                            type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#6cb2eb",
+                            confirmButtonColor: "#eea025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
                             confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
                             }).then(response =>{
                                 this.$loading(true);
                                   this.axios.post('/api/occupation/add', this.occupation)
                         .then(response => {
                             this.$loading(false);
                             this.name = ''
-                            console.log(response);
                             this.$swal({
                             position: 'top-end',
                             type: 'success',
                             // title:'確認済',
-                            text: '求人職種を投稿しました。',
+                            text: '求人職種を作成しました。',
                             confirmButtonText: "閉じる",
-                            confirmButtonColor: "#6cb2eb",
+                            confirmButtonColor: "#31cd38",
                             // showConfirmButton: false,
                             // timer: 1800,
-                            width: 250,
+                            width: 350,
                             height: 200,
+                            allowOutsideClick: false,
                         })
                         // alert('Successfully Created')
                         this.$router.push({name: 'occupationlist'});
@@ -166,19 +167,20 @@ export default {
 
               updateType() {
                   this.$swal({
-                            title: "確認",
+                            // title: "確認",
                             text: "求人職種を更新してよろしいでしょうか。",
-                            type: "info",
+                            type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#6cb2eb",
+                            confirmButtonColor: "#eea025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
                             confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
                         }).then(response => {
                             this.$loading(true);
                             this.axios.post(`/api/occupation/update/${this.$route.params.id}`, this.occupation)
@@ -191,9 +193,10 @@ export default {
                             type: 'success',
                             text: '求人職種を更新しました。',
                             confirmButtonText: "閉じる",
-                            confirmButtonColor: "#6cb2eb",
-                            width: 250,
+                            confirmButtonColor: "#31cd38 ",
+                            width: 350,
                             height: 200,
+                            allowOutsideClick: false,
                         })
                         this.$router.push({name: 'occupationlist'});
                     }).catch(error=>{

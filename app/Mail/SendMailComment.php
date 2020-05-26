@@ -29,7 +29,7 @@ class SendMailComment extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.comment')
-                    ->subject("[T-IS ティーズ] 口コミが投稿されました");
+        return $this->view(['mail.comment','mail.commentplaintext'])
+                    ->subject("[TIS ティーズ]口コミが投稿されました");
     }
 }

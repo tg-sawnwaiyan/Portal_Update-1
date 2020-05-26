@@ -2,14 +2,14 @@
   <div>
     <div class="tab-content job-detail">
       <div class="col-md-12 pad-free m-b-20">
-      <nav aria-label="breadcrumb">
+      <!-- <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
               <router-link to="/" class="router-link-active">ホーム</router-link>
           </li>
-          <li aria-current="page" class="breadcrumb-item active">仕事詳細</li>
+          <li aria-current="page" class="breadcrumb-item active">求人応募</li>
         </ol>
-      </nav>
+      </nav> -->
     </div>
 
         <!-- <div class="col-12 text-center p-3 jt1 mb-4">
@@ -26,7 +26,7 @@
           <li>3.<span>送信</span>完了</li>
         </ul>
 <!-- test date-picker -->
-    <form class="col-md-12 form-wrap p0-480">
+    <form class="col-md-12 form-wrap p-0" autocomplete="off">
         <div class="form-group m-0 row bd">
 
             <div class="col-md-3 col-sm-12 form-left">
@@ -38,8 +38,8 @@
                 </label>
             </div>
             <div class="col-md-9 col-sm-12 form-right">
-                <input type="text" class="form-control float-left" id="first_name" placeholder="お名前を入力してください。" v-model="jobApply.first_name" @keyup="focusName" @change="aggreBtn"/>
-                <span class="float-left eg-txt">例）探し 太郎</span>
+                <input type="text" class="form-control float-left" id="first_name" placeholder="お名前を入力してください。" v-model="jobApply.first_name" @focusout="focusName" @keyup="focusName" @change="aggreBtn"/>
+                <span class="float-left eg-txt">例）探し太郎</span>
                 <span class="error m-l-30" v-if="focus_name">※入力は必須です。</span>
                 <!-- <div v-if="errors.first_name" class="text-danger mt-2 ml-4">{{ errors.first_name }}</div> -->
             </div>
@@ -48,15 +48,15 @@
             <div class="col-md-3 col-sm-12 form-left">
                 <label for="furigana">
                     <strong>
-                  ふりがな
+                  フリガナ                  
                   <span class="error sp1">必須</span>
                 </strong>
                 </label>
             </div>
             <div class="col-md-9 col-sm-12 form-right">
                 <div class="col-md-12 pad-free">
-                    <input type="text" class="form-control float-left" id="furigana" placeholder="ふりがなを入力してください。" v-model="jobApply.last_name" @keyup="ChekChar"  @change="aggreBtn"/>
-                    <span class="float-left eg-txt"> 例）サガシ　タロウ</span>
+                    <input type="text" class="form-control float-left" id="furigana" placeholder="フリガナを入力してください。" v-model="jobApply.last_name" @keyup="ChekChar" @focusout="ChekChar" @change="aggreBtn"/>
+                    <span class="float-left eg-txt"> 例）サガシタロウ</span>
                     <!-- <span class="error m-l-30" v-if="focus_lname">※入力は必須です。</span> -->
                     <span class="error m-l-30" v-if="jobApply.furigana_focus   ">※入力は必須です。</span>
                     <!-- <div v-if="errors.last_name" class="text-danger mt-2 ml-4">{{ errors.last_name }}</div> -->
@@ -73,15 +73,7 @@
                 </label>
             </div>
             <div class="col-md-9 col-sm-12 form-right">
-                <!-- <input
-                type="text"
-                class="form-control box"
-                placeholder="○○日○○月○○○○年"
-                id="birthday"
-                v-model="jobApply.birthday"
-              /> -->
-
-                <date-picker class="box date-of-establishment" :lang="lang" v-model="jobApply.birthday" id="datepickerbox" valueType="format" style="margin-left: 11px;"></date-picker>
+                <date-picker class="" :lang="lang" v-model="jobApply.birthday" id="datepickerbox" valueType="format" style="margin-left: 20px;"></date-picker>
 
             </div>
         </div>
@@ -105,20 +97,33 @@
             </div>
         </div>
         <div class="form-group m-0 row bd">
-            <div class="col-md-3 col-sm-12 form-left"><strong>ご住所:</strong></div>
-            <div class="col-md-9 col-sm-12 form-right">
-                <div class="form-group row pl-3">
-                    <div class="col-md-12 "><label> 郵便番号 </label> </div>
-                    <div class="col-md-12 p-0">
-                        <input type="text" class="form-control box float-left" id="postal" placeholder="郵便番号を入力してください。" v-model="jobApply.postal" maxlength="7" />
-                        <span id="jsErrorMessage" class="float-left eg-txt"></span>
-                        <span class="float-left submit1 btn main-bg-color continue all-btn submit m-l-20" @click="getPostal">検索</span>
-                        <span class="float-left m-l-20">例）1006740 (<a href="https://www.post.japanpost.jp/zipcode/" target="_blank">郵便番号検索</a>)</span>
+            <div class="col-md-3 col-sm-12 form-left">              
+              <div class="row col-12 m-0 p-0">
+                  <div class="col-xl-3 col-lg-3 col-12 p-0">
+                      <label class="subtitle"><strong>ご住所</strong></label>
+                  </div>               
+                  <div class="col-xl-9 col-lg-9 col-12 p-0 stepper-form">                                                                   
+                          <div class="form-left-child form-group pc-750 font-weight-bold"><label>郵便番号 </label></div>
+                          <div class="form-left-child form-group pc-750 font-weight-bold"><label>都道府県<span class="error sp1">必須</span></label></div>
+                          <div class="form-left-child form-group pc-750 font-weight-bold"><label>市区町村 <span class="error sp1">必須</span></label></div>
+                          <div class="form-left-child form-group pc-750 font-weight-bold"><label>番地（建物名)</label></div>
+                      
+                  </div>           
+              </div>     
+            </div>
+            <div class="col-md-9 col-sm-12 form-right stepper-form">
+                <div class="form-group  rightwrap row pl-3">
+                    <div class="col-md-12 sp-750"><label> 郵便番号 </label> </div>
+                    <div class="col-md-12 rightwrap-child p-0">
+                        <input type="text" class="postal form-control float-left" id="postal" placeholder="郵便番号を入力してください。" v-on:keydown="postalNumber" v-model="jobApply.postal" maxlength="7" />
+                        <span class="float-left submit1 btn main-bg-color continue all-btn submit m-l-10" @click="getPostal"><span class="first_txt">郵便番号より住所を</span><span class="dinone">検索</span></span>
+                        <span class="float-left m-l-10">例）1006740 (<a href="https://www.post.japanpost.jp/zipcode/" target="_blank" class="pseudolink">郵便番号検索</a>)</span>
                     </div>
+                    <span id="jsErrorMessage" class="float-left eg-txt"></span>
                 </div>
 
                 <div class="form-group row pl-3">                                  
-                    <div class="col-md-12 "><label>  都道府県<span class="error sp1">必須</span></label></div>
+                    <div class="col-md-12 sp-750"><label>  都道府県<span class="error sp1">必須</span></label></div>
                     <div class="col-md-12 p-0">
                         <select v-model="jobApply.selectedValue" class="division form-control" id="division"  @change="getTownship(2)">
                             <option value="0">選択してください。</option>
@@ -131,7 +136,7 @@
                 </div>
 
                 <div class="form-group row pl-3">                             
-                    <div class="col-md-12 "><label>  市区町村 <span class="error sp1">必須</span></label></div>
+                    <div class="col-md-12 sp-750"><label>  市区町村 <span class="error sp1">必須</span></label></div>
                     <div class="col-md-12 p-0">
                         <select v-model="jobApply.township" class="division form-control" id="division" @change="aggreBtn">
                             <option value="0">選択してください。</option>
@@ -143,43 +148,44 @@
                     </div>  
                 </div>
 
-                <div class="form-group row pl-3">
-                    <div class="col-md-12 "><label>番地（建物名)<span class="error sp1">必須</span></label></div>
+                <div class="form-group row pl-3 m-b-0">
+                    <div class="col-md-12 sp-750"><label>番地（建物名)</label></div>
                     <div class="col-md-12 p-0">
-                        <input type="text" class="city form-control float-left" id="str_address" v-model="jobApply.str_address" placeholder="番地を入力してください。" @keyup="focusCity" @change="aggreBtn"/>
+                        <input type="text" class="city form-control float-left" id="str_address" v-model="jobApply.str_address" placeholder="番地を入力してください。"/>
                         <span class="float-left eg-txt">例）丸の内1-9-1 グラントウキョウノースタワー40階</span>
                         <br>
-                        <span class="error m-l-30" v-if="focus_city">※入力は必須です。</span>
-                        <div v-if="errors.str_address" class="text-danger mt-2 ml-4">{{ errors.str_address }}</div>
+                        <!-- <span class="error m-l-30" v-if="focus_city">※入力は必須です。</span> -->
+                        <!-- <div v-if="errors.str_address" class="text-danger mt-2 ml-4">{{ errors.str_address }}</div> -->
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="form-group m-0 row bd">
-            <div class="col-md-3 col-sm-12 form-left"><br/><strong>電話番号</strong></div>
-            <div class="col-md-9 col-sm-12 form-right">
-            <div class="form-group row pl-3">
+            <div class="col-md-3 col-sm-12 form-left"><strong>電話番号</strong></div>
+            <div class="col-md-9 col-sm-12 form-right p-b-0">
+            <div class="row pl-3">
                     <div class="col-md-12 p-0">
                         <label class="col-md-12">※ 電話番号またはメールアドレス必須 <span class="error sp1">必須</span></label>
-                        <input type="text" class="form-control float-left" id="phone" v-model="jobApply.phone" placeholder="電話番号を入力してください。" @keyup="focusPhone" @change="aggreBtn" pattern="[0-9-]*" title="Please enter number only." maxlength="14"/>
+                        <input type="text" class="form-control float-left" id="phone" v-model="jobApply.phone" placeholder="電話番号を入力してください。" @keyup="focusPhone"  @change="aggreBtn"  maxlength="13"/>
                         <!-- <span class="error m-l-30" v-if="focus_mail">※入力は必須です。</span> -->
                         <span class="float-left eg-txt">例）0312345678（半角）</span>
                         <!-- <span class="error m-l-30" v-if="mail_focus">※入力は必須です。</span>                                        -->
                     </div>
-                        <span class="error m-l-30" v-if="ph_length || ph_error">※電話番号が正しくありません。もう一度入力してください。</span>
+                        <span class="error m-l-30" v-if="ph_length">※電話番号が正しくありません。もう一度入力してください。</span>
                 </div>
             </div>
             <!-- </div>
             <div class="form-group m-0 row bd-all"> -->
             <div class="col-md-3 col-sm-12 form-left"><strong>メールアドレス </strong></div>
             <div class="col-md-9 col-sm-12 form-right">
-            <div class="form-group row pl-3">
-                <div class="col-md-12 p-0">
+                <div class="row pl-3">
+                    <div class="col-md-12 p-0">
                         <input type="text" class="form-control float-left" id="email" placeholder="メールアドレスを入力してください。" v-model="jobApply.email" @keyup="focusMail"  @change="aggreBtn"/>
                         <span class="float-left eg-txt"> 例）abc@example.jp （半角）</span>
-                        <span class="error m-l-30" v-if="focus_mail && this.jobApply.email !=''">※メールアドレスが正しくありません。もう一度入力してください。</span>
+                        
                     </div>
+                    <span class="error m-l-30" v-if="focus_mail && this.jobApply.email !=''">※メールアドレスが正しくありません。もう一度入力してください。</span>
                 </div>
             </div>
         </div>
@@ -208,7 +214,7 @@
             </div>
             <div class="col-md-9 col-sm-12 form-right" style="cursor:pointer;">
                 <label for class="ml-4">
-                    <router-link to="/termsAndConditions" target="_blank">「プライバシーポリシー」</router-link>をご確認いただき、よろしければ「同意する」にチェックをして、内容を送信してください。
+                    <router-link to="/privacyPolicy" target="_blank" class="pseudolink">「プライバシーポリシー」</router-link>をご確認いただき、よろしければ「同意する」にチェックをして、内容を送信してください。
                 </label>
                 <br />
                 <label class="ml-4 control control--checkbox">
@@ -218,11 +224,12 @@
                 <div v-if="errors.terms" class="text-danger ml-4">{{ errors.terms }}</div>
             </div>
         </div>
-        <div class="mt-4 col-sm-3 submit txt-err" v-if="btn_disable">
-            <div class="error">※未入力の必須項目がございます</div>
-        </div>
-        <div class="text-center mt-2 pb-5">
-            <button type="button" :disabled="isdisable" class="btn main-bg-color white all-btn width17" @click="checkValidate()">確認画面へ進む</button>
+       
+        <div class="text-center mt-5 pb-5">
+           <div class="mt-1 submit txt-err" v-if="btn_disable">
+              <div class="error">※未入力の必須項目がございます。</div>
+            </div>
+            <button type="button" :disabled="isdisable" class="btn main-bg-color white all-btn" @click="checkValidate()">確認画面へ進む</button>
         </div>
 </form>
 
@@ -237,7 +244,7 @@
           <li class="active">2.<span>内容のご</span>確認</li>
           <li>3.<span>送信</span>完了</li>
         </ul>
-        <form class="col-md-10 offset-md-1 form-wrap">
+        <form class="col-md-12 form-wrap p-0" autocomplete="off">
           <div class="form-group m-0 row bd">
             <div class="col-sm-3 form-left">
               <label for="first_name">
@@ -320,16 +327,7 @@
               <span class="pl-4">{{ jobApply.str_address }}</span>
             </div>
           </div>
-          <!-- <div class="form-group m-0 row bd">
-            <div class="col-sm-3 form-left">
-              <label for="home_address">
-                <strong>番地以下</strong>
-              </label>
-            </div>
-            <div class="col-md-9 col-sm-12 form-right">
-              <span class="pl-4">{{ jobApply.home_address }}</span>
-            </div>
-          </div> -->
+          
           <div class="form-group m-0 row bd">
             <div class="col-sm-3 form-left">
               <label for="phone">
@@ -350,16 +348,7 @@
               <span class="pl-4">{{ jobApply.email }}</span>
             </div>
           </div>
-          <!-- <div class="form-group m-0 row bd">
-            <div class="col-sm-3">
-              <label for="skill">
-                <strong>スキル</strong>
-              </label>
-            </div>f
-            <div class="col-md-9 col-sm-12 form-right">
-              <span class="pl-4">{{ jobApply.skill }}</span>
-            </div>
-          </div> -->
+          
           <div class="form-group m-0 row bd-all">
             <div class="col-sm-3 form-left">
               <label for="remark">
@@ -371,19 +360,16 @@
             </div>
           </div>
 
-          <div class="ml-auto mt-4 pb-5 form-group row pc-m-0-10">
+          <div class="ml-auto row pc-m-0-10 mt-5">
             <div class="col-sm-2 col-md-2"></div>
             <div class="col-sm-8 col-md-8 text-center">
-                <span class="btn btn-danger white all-btn width17 pc-m-r-10" @click="editUserInfo()">入力画面へ戻る</span> 
-                <span class="btn main-bg-color white all-btn width17" @click="apply()">応募する</span>
+                <span class="btn btn-danger white all-btn pc-m-r-10" @click="editUserInfo()">入力画面へ戻る</span> 
+                <span class="btn main-bg-color white all-btn" @click="apply()">応募する</span>
             </div>
             <div class="col-sm-2 col-md-2"></div>
           </div>
 
-          <!-- <div class="text-center mt-4 pb-5 form-group row pc-m-0-10">
-            <span class="btn btn-danger white all-btn width17 pc-m-r-10" @click="editUserInfo()">入力画面へ戻る</span>
-            <span class="btn main-bg-color white all-btn width17" @click="apply()">応募する</span>
-          </div> -->
+          
           <br />
           <!-- <div v-if="success" class="alert alert-success mt-3">Apply sent!</div> -->
 
@@ -396,15 +382,14 @@
           <li class="active">2.<span>内容のご</span>確認</li>
           <li class="active">3.<span>送信</span>完了</li>
         </ul>
-        <div class="text-center">
-          <h3>入力内容は送信されました。</h3>
-          <br />
-          <p>ご登録頂き、ありがとうございます。</p>
-          <p>今後ともどうぞよろしくお願い申し上げます。</p>
-          <br />
-          <br />
-          <router-link class="btn btn-info all-btn width17" to="/">ホームへ戻る</router-link>
-        </div>
+        
+          <h4 class="text-center">求人への応募が完了しました</h4>
+           <div class="row col-12 stepper-success-form text-center">   
+              <p>担当者より連絡があるまでしばらくおまちください。</p> 
+           </div>
+           <div class="multi-step mt-5">          
+            <router-link class="btn btn-info all-btn width17" to="/">ホームへ戻る</router-link>
+           </div>
 
         <br />
         <br />
@@ -422,7 +407,8 @@ export default {
         days: ['日', '月', '火', '水', '木', '金', '土'],
         months: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
         placeholder: {
-          date: new Date().toISOString().slice(0,10),
+          //date: new Date().toISOString().slice(0,10),
+          date: '年 - 月 - 日',
 
         }
       },
@@ -484,7 +470,9 @@ export default {
     ph_length: false,
     ph_error: false,
     charErr: false,
-    mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
+    correctVal: null,
+    mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
+     phone_reg: /^([0-9]*)$/
     }
   },
   created() {
@@ -492,13 +480,10 @@ export default {
     // this.axios.get("/api/getskill").then(response => {
     //   this.Job.fields = response.data;
     // });
-    console.log(this.$route.params.job_id)
     this.axios.get("/api/getjobtitle/" + this.jobApply.job_id).then(response => {
-        console.log(response.data)
       this.Job.title = response.data[0].title;
     });
     this.axios.get("/api/hospital/citiesList").then(response => {
-        console.log(response.data)
       this.city_list = response.data;
     });
     if(this.jobApply.first_name != '' && this.jobApply.last_name != '' && this.jobApply.selectedValue != 0 && this.jobApply.str_address != '' && this.jobApply.email != '' && this.jobApply.terms == true){
@@ -574,7 +559,6 @@ export default {
         this.$loading(true);
 
       // $("#loader").css("display", "block");
-      console.log(this.jobApply)
       this.axios
         .post("/api/jobapply", this.jobApply)
         .then(response => {
@@ -595,39 +579,8 @@ export default {
       this.jobApply.skills.push(job);
     },
     checkValidate() {
-      console.log('this.error');
-      console.log(this.errors);
 
-    //   if (this.jobApply.first_name) {
-    //     this.errors.first_name = "";
-    //   } else {
-    //     this.errors.first_name = "お名前が必須です。";
-    //   }
-    //   if (this.jobApply.last_name) {
-    //     this.errors.last_name = "";
-    //   } else {
-    //     this.errors.last_name = "ふりがなが必須です。";
-    //   }
-    //   if (this.jobApply.str_address) {
-    //     this.errors.str_address = "";
-    //   } else {
-    //     this.errors.str_address = "電話番号が必須です。";
-    //   }
-    //   if (this.jobApply.phone) {
-    //     this.errors.phone = "";
-    //   } else {
-    //     this.errors.phone = "電話番号が必須です。";
-    //   }
-    //   if (this.jobApply.email) {
-    //     this.errors.email = "";
-    //   } else {
-    //     this.errors.email = "メールアドレスが必須です。";
-    //   }
-    //   if (this.jobApply.terms) {
-    //     this.errors.terms = "";
-    //   } else {
-    //     this.errors.terms = "「同意する」にチェックが必須です。";
-    //   }
+    
       if (
         !this.errors.first_name &&
         !this.errors.first_name &&
@@ -679,40 +632,48 @@ export default {
             this.btn_disable = true;
         }
     },
-    focusPhone(){
 
-    //   var input_data = $('#phone').val(); 
-    //   console.log(input_data.length)
-        
-        if(this.jobApply.phone.charAt(this.jobApply.phone.length - 1) != '-' && this.jobApply.phone.charAt(0) != '-' && ((this.jobApply.phone.length >= 10 && this.jobApply.phone.length <= 14) || this.jobApply.phone.length == 0))
-        {  
-            this.ph_num = false;
-            this.ph_length = false; 
-             this.aggreBtn();    
-        }
-        else{
-            this.ph_num = true;
-            this.ph_length = true;
-            this.btn_disable = true;
-        }
-             
+    focusPhone: function(e) {
+
+            if(this.jobApply.phone != '')
+            {
+                if((this.phone_reg).test(this.jobApply.phone) && (this.jobApply.phone.length >= 10 && this.jobApply.phone.length <= 13))
+                {
+                    this.ph_length = false;
+                }
+                else{
+                    this.ph_length = true;   
+                }
+            }
+            else{
+               this.ph_length = false;
+            }
+                
+
+                this.aggreBtn();
+
+            
     },
+    
     focusMail: function(event) {
-
-        if((this.jobApply.email != '' && this.mail_reg.test(this.jobApply.email))){
-            this.focus_mail=false;
-        }else{
-            this.focus_mail=true;
-        }
+      if(this.jobApply.email != '')
+      {
+          if( this.mail_reg.test(this.jobApply.email)){
+              this.focus_mail=false;
+            
+          }else{
+              this.focus_mail=true;
+            
+          }
+      }
+      else{
+        this.focus_mail = false;
+      }
+       
         this.aggreBtn();
-        // if(this.jobApply.phone.length >= 10 && this.jobApply.phone.length <= 14) {
-        //     this.ph_length = false;
-        // }else{
-        //     this.ph_length = true;
-        // }
     },
     aggreBtn: function(){
-        if(($('#furigana').val().length > 0 && !this.charErr) && this.jobApply.first_name != '' && this.jobApply.last_name != '' && this.jobApply.selectedValue != 0 && this.jobApply.township != 0 && this.jobApply.city != '' && this.jobApply.str_address != '' && this.jobApply.terms == true && (this.mail_reg.test(this.jobApply.email) || (!this.ph_length && !this.ph_num && this.jobApply.phone.length > 0 ))){
+        if(($('#furigana').val().length > 0 && !this.charErr) && this.jobApply.first_name != '' && this.jobApply.last_name != '' && this.jobApply.selectedValue != 0 && this.jobApply.township != 0 && this.jobApply.city != '' && this.jobApply.terms == true && ((this.mail_reg.test(this.jobApply.email) || (!this.ph_length && this.jobApply.phone != '' )) && (!this.ph_length && !this.focus_mail))){
             this.btn_disable=false;
         }else{
             this.btn_disable=true;
@@ -728,7 +689,6 @@ export default {
         var code = 0;
         $.each(each_val, function (key, value) {
             code = value.charCodeAt();
-            console.log(code)
             // if (!(code > 12352 && code < 12447)) {
             if (!(code > 12448 && code < 12543)) {
                 _this.charErr = true;
@@ -751,44 +711,14 @@ export default {
         }  
         this.aggreBtn();    
     },
+    postalNumber: function(event) {
+        if(!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105) 
+            && event.keyCode != 8 && event.keyCode != 46 && !(event.keyCode >= 37 && event.keyCode <= 40)) 
+        {
+            event.preventDefault();
+        }
+    },
 
-    // focusFuri: function(event) {
-    //     if(this.jobApply.last_name != ''){
-    //         this.jobApply.furigana_focus=false;
-    //         this.aggreBtn();
-    //     }else{
-    //         this.jobApply.furigana_focus=true;　
-    //         this.btn_disable = true;
-    //     }
-    // },
-
-
-    // isNumberOnly: function(event) {
-    //     var input_data = $('#phone').val();
-    //     var code = 0;
-    //     code = input_data.charCodeAt();
-    //     if(this.jobApply.phone.length >= 9 && this.jobApply.phone.length <= 14) {
-    //         this.ph_length = false;
-    //     }else{
-    //         this.ph_length = true;
-    //     }
-    //     if((48 <= code && code <= 57)){
-    //         this.ph_error = false;
-    //     }else{
-    //         this.ph_error = true;
-    //     }
-
-                // if(!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105)
-                //     && event.keyCode != 8 && event.keyCode != 46 && !(event.keyCode >= 37 && event.keyCode <= 40))
-                // {
-                //     // event.preventDefault();
-                //     this.ph_error = true;
-                // }
-                // else{
-                //     this.ph_error = false;
-
-                // }
-           // }
   }
 };
 </script>

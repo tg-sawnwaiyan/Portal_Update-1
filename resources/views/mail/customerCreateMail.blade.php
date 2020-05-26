@@ -1,38 +1,18 @@
-<div style="width:800px;">
-<div style="text-align: center;">
-	        <div style="padding: 60px;">
+<pre>TIS ティーズ管理者様
 
-                <span style="font-size: 40px;font-weight: bold;color: #d2571c;text-shadow: 3px 4px #ccc;">LOGO <span style="font-size: 30px; color: #f57e46;">HERE</span></span>
+TIS ティーズに事業者の登録申請がありました。
+管理画面にログイン後承認をお願いします。
 
-	            <h5 style="color:#3e4348;font-size: 16px;margin-bottom: 30px;font-weight: bold;text-align: left;">
-                    【 顧客要求を作成する 】
-                </h5>
-                <p style="text-align:left;margin:2px;color:#3e4348;font-size: 14px;">【 情報 】</p> 
-                <p style="text-align:left;margin:2px;color:#3e4348;font-size: 12px;">
-                    事業者名: {{$getComment->name}}
-                    <br>
-                    メールアドレス: {{$getComment->email}}
-                    <br>
-                    タイプを選択: {{$getComment->type}}
-                    <br>
-                    都道府県: {{$getComment->city_name}}
-                    <br>
-                    住所 : {{$getComment->township_name}}
-                    <br>
-                    電話番号: {{$getComment->phone}}
-                </p> 
-                <br>
-                <p style="text-align: left;margin: 0px;">
-                    ***********************************************************************************************************************************</p>   
-                <p style="font-size:12px;color:#807c7c;text-align:left;"> 
-                    <span style="color:#000">[T-IS ティーズ] </span>
-                    <br/>
-                    〒163-0713
-                    <br/>                        
-                    東京都新宿区西新宿2-7-1小田急第一生命ビル13階 
-                    <br/>                       
-                    TEL：03-6911-???? FAX：03-6911-????
-                </p>	          
-	        </div>
-	    </div>
-</div>
+【申請のあった事業者情報】
+事業者名：{{$getComment->name}}
+メールアドレス：{{$getComment->email}}
+事業者タイプ：{{$getComment->type}}
+電話番号：{{$getComment->phone}}
+
+************************************************************************************
+TIS ティーズ
+運営会社　株式会社 TRUST-ESTATE
+〒164-0003　東京都中野区東中野1-59-9　リックビル2階
+TEL：03-6279-1951   FAX：03-6279-1952
+************************************************************************************
+</pre>

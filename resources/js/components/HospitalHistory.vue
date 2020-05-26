@@ -1,9 +1,9 @@
 <template>
     <div>
         <div class="col-12 scrolldiv2 pb-3 tab-content" id="hospital">
-            <div class="col-12 pl-0">
+            <div class="col-12 pad-free pad-free-75">
                 <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
+                    <ol class="breadcrumb" style="padding-left:0px !important;padding-right:0px !important;">
                         <li class="breadcrumb-item">
                             <router-link to="/">ホーム</router-link>
                         </li>
@@ -11,8 +11,8 @@
                     </ol>
                 </nav>
             </div>
-            <div class="col-12">
-                <div class="col-md-12 fav-his-header">
+            <div class="col-12 pad-free">
+                <div class="col-md-12 fav-his-header pad-free">
                     <svg x="0px" y="0px" width="24" height="24" viewBox="0 0 172 172" style=" fill:#000000;">
                         <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
                             <path d="M0,172v-172h172v172z" fill="none"></path>
@@ -28,7 +28,7 @@
             <div id="fav-hospital-page">
             <div class="col-12" id="fav-history-page">
                 <div class="row justify-content-lg-center">
-                    <div class="card-carousel-wrapper">
+                    <div class="card-carousel-wrapper m-l-4">
 
                         <div class="nav-box" @click="moveCarousel(-1)" :disabled="atHeadOfList">
                             <div class="nav-content mr-2">
@@ -50,7 +50,7 @@
                                                              <img class="profile_img" v-bind:src="'/upload/hospital_profile/' + hos_profile.logo" alt style="width: 250px"  @error="imgUrlAlt"/>
                                                         </div>
                                                        
-                                                        <router-link :to="{name: 'profile', params: {cusid:hos_profile.customer_id, type: 'hospital'}}" class="pseudolink">{{hos_profile.name}}</router-link>
+                                                        <router-link :to="{ path:'/profile/hospital/'+ hos_profile.id}" class="pseudolink">{{hos_profile.name}}</router-link>
 
                                                     </td>
                                                 </tr>
@@ -64,7 +64,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td v-for="hos_profile in hos_profiles" :key="hos_profile.id" style="word-wrap: break-word;">
-                                                        <div class="profile_wd"> <a :href="hos_profile.website" target="_blank">{{hos_profile.website}}</a></div>
+                                                        <div class="profile_wd"> <a :href="hos_profile.website" target="_blank" class="pseudolink">{{hos_profile.website}}</a></div>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -162,24 +162,7 @@
                                                         </dl>
                                                     </td>
                                                 </tr>
-                                                <!-- <tr>
-                                                        <td v-for="hos_profile in hos_profiles" :key="hos_profile.id">
-                                                            <dl>
-                                                                <dt class="text-left">専門医</dt>
-                                                                <dd class="profile_wd text-left m-l-10" v-if="hos_profile.specialist != null">{{hos_profile.specialist}}</dd>
-                                                                <dd v-else>-</dd>
-                                                            </dl>
-                                                        </td>
-                                                    </tr>
-                                                <tr>
-                                                    <td v-for="hos_profile in hos_profiles" :key="hos_profile.id">
-                                                        <dl>
-                                                            <dt class="text-left">医療部</dt>
-                                                            <dd class="profile_wd text-left m-l-10">{{hos_profile.medical_department}}</dd>
-                                                        </dl>
-                                                    </td>
-                                                </tr> -->
-                                                
+                                                                                              
                                             </table>
 
                                         </div>
@@ -230,7 +213,7 @@
                     },
             },
             created() {
-
+                this.$loading(true);  
                   //for cardcarousel responsive
                 window.addEventListener('resize', this.handleResize)
                 this.handleResize(); 
@@ -309,12 +292,22 @@
                         this.axios
                             .post("/api/hospital_history/" + local_storage)
                             .then(response => {
-                                console.log(response.data)
+                                this.$loading(false);  
                                 // if(response.data.length<this.his_hos && response.data.length > 0) {
                                     this.hos_profiles = response.data;
                                     if(response.data.length<this.his_hos && response.data.length > 0) { 
+                                        this.$swal({
+                                            position: 'top-end',
+                                            type: 'info',
+                                            text: 'すでに掲載されていない施設をリストから削除しました。',
+                                            showConfirmButton: true,
+                                            confirmButtonText: "閉じる",
+                                            width: 400,
+                                            height: 200,
+                                            allowOutsideClick: false,
+                                        });
                                         var hos_id = '';
-                                        this.message = "現在本サイトに掲載されていない病院については最近見た施設リストから削除しました。";
+                                        // this.message = "現在本サイトに掲載されていない病院については最近見た施設リストから削除しました。";
                                         for(var i= 0;i<this.hos_profiles.length;i++) {
                                             if(i== this.hos_profiles.length-1) {
                                                 hos_id += this.hos_profiles[i]['id'];
@@ -330,10 +323,9 @@
                                     } else if(response.data.length == 0){
                                         this.his_hos = 0;
                                         this.$swal({
-                                            // title: "確認",
-                                            text: "お気に入りの病院は既に本サイトに掲載されておりませんので、最近見た施設リストから削除しました。",
+                                            text: "すでに掲載されていない施設をリストから削除しました。",
                                             type: 'info',
-                                            width: 350,
+                                            width: 400,
                                             height: 200,
                                             // showCancelButton: true,
                                             showConfirmButton: true,
@@ -343,6 +335,7 @@
                                             confirmButtonText: "閉じる",
                                             // cancelButtonText: "キャンセル",
                                             confirmButtonClass: "all-btn",
+                                            allowOutsideClick: false,
                                             // cancelButtonClass: "all-btn"
                                         }).then(response => {
                                             localStorage.setItem('hospital_history','');
@@ -359,19 +352,20 @@
                     deleteLocalSto: function(id) {
 
                             this.$swal({
-                            title: "確認",
-                            text: "削除よろしいでしょうか",
+                            text: "最近見た施設から削除してよろしいでしょうか 。",
                             type: "warning",
                             width: 350,
                             height: 200,
                             showCancelButton: true,
-                            confirmButtonColor: "#dc3545",
+                            confirmButtonColor: "#EEA025",
                             cancelButtonColor: "#b1abab",
                             cancelButtonTextColor: "#000",
-                            confirmButtonText: "削除",
+                            confirmButtonText: "はい",
                             cancelButtonText: "キャンセル",
                             confirmButtonClass: "all-btn",
-                            cancelButtonClass: "all-btn"
+                            cancelButtonClass: "all-btn",
+                            allowOutsideClick: false,
+
                         }).then(response => { 
                             var l_sto = this.local_sto;
                             var l_sto_arr = l_sto.split(",");
@@ -390,16 +384,9 @@
                                 var new_local = l_sto_arr.toString();
                                 localStorage.setItem('hospital_history', new_local);
                                 this.local_sto = localStorage.getItem("hospital_history");
-                                // this.$swal({
-                                // title: "削除された",
-                                // text: "ファイルが削除されました。",
-                                // type: "success",
-                                // width: 350,
-                                // height: 200,
-                                // confirmButtonText: "はい",
-                                // confirmButtonColor: "#dc3545"
-                                // });
+                                
                                 if (this.local_sto) {
+                                    this.his_hos = this.local_sto.split(",").length;
                                     this.getAllCustomer(this.local_sto);
                                 } else {
                                     // window.location.reload();
@@ -415,29 +402,17 @@
                            
                             
                             if(this.local_sto){
-                            this.his_hos = this.local_sto.split(",").length;
+                                this.his_hos = this.local_sto.split(",").length;
                             }
                      
 
                     },
                 imgUrlAlt(event) {
-                event.target.src = "images/noimage.jpg"
+                event.target.src = "/images/noimage.jpg"
             }
             }
     };
 </script>
 <style>
-    .first-row {
-        color: #fff;
-        background-color: #a2a7a1;
-        border-bottom: 1px solid #ccc;
-        border-right: 1px solid #ccc;
-        text-align: center;
-        padding: 10px;
-        font-size: 100%;
-    }
-
-    .second-row {
-        background-color: #eff7ec;
-    }
+ 
 </style>

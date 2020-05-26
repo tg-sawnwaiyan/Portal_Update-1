@@ -1,200 +1,66 @@
 <template>
-
   <div class="card profile m-t-22 " style="border:none;">
-    <form class="col-md-12 form-class">
-     <div class="col-md-12 pad-free">
-
-        <div class="form-group form-group-wrapper d-flex">
-
-                <label class="heading-lbl col-md-2 col-12 pad-free">施設名称 <span class="error">*</span></label>
-
-                <input type="text" class="form-control customer-name col-md-10 col-12 nursing_input" placeholder="施設名称を入力してください。" v-model="customer_info.name">
-        </div>
-
-        <div class="form-group form-group-wrapper d-flex">
-
-                <label class="heading-lbl1 col-md-2 col-12 pad-free">メールアドレス <span class="error">*</span></label>
-                <label class="col-md-10 col-12 customer-email"> {{customer_info.email}} </label>
-
-                <!-- <input type="text" class="form-control customer-email col-10 float-right"  placeholder="Email" v-model="customer_info.email"> -->
-        </div>
-        <div class="form-group form-group-wrapper d-flex">
-
-                <label class="heading-lbl col-md-2 col-12 pad-free">電話番号 <span class="error">*</span></label>
-                <div class="col-md-10 col-12 row">
-                <input type="text" class="form-control customer-phone col-md-10 col-12 nursing_input" id="phone" placeholder="Phone" v-model="customer_info.phone" pattern="[0-9-]*"  @focusout="focusPhone"  maxlength="14" title="Please enter number only.">
-                <!-- v-on:keyup="isNumberOnly" -->
-                <span class="error" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>
-                <span class="error" v-else></span>
-                </div>
-        </div>
-
-        <!-- <div class="form-group">
-                <label>フォトアルバム<span class="error">*</span></label>
-                <input type="file" class="" value="Upload Photo" id="upload_file" @change="preview_image();" multiple>
-                <div class="col-md-12">
-                        <div class="row" id="image_preview"></div>
-                </div>
-        </div>-->
-
-        <div class="form-group form-group-wrapper">
-
-          <label class="heading-lbl col-md-2 col-12 pad-free">フォトアルバム</label>
-
-          <span class="galleryadd btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px;" @click="galleryAdd()">
-
-            <i class="fas fa-plus-circle"></i> 追加
-
-          </span>
-           <span class='changeGalleryLink btn btn all-btn main-bg-color nursing_toggle_responsive' style="min-width: 0px;" @click="galleryToggle" >
-                  <i id="gallery" class="fas fa-sort-down"></i>
-            </span>
-
-          <!-- <div id="changeGalleryLink" class="col-md-12">
-                <div class="row" id ="gallery-photo">
-                        <div class="col-md-6 gallery-area-photo" v-bind:id="'photo'+indx" v-for="(img,indx) in img_arr" :key="img.id">
-                                <div class="col-md-12">
-                                        <input type="file" name="" class="hospital-photo m-b-10" v-bind:class="img.id" id="upload_img" @change="preview_image(img.id,indx)">
-                                        <div class="col-md-12 m-b-10" v-bind:class="img.id">
-                                                <input type="hidden" class="already-photo" v-model="img.photo">
-                                                <img :src="'/upload/hospital_profile/'+ img.photo" class="img-fluid" alt="profile" v-if="img.photo" v-bind:id="'already-photo'+indx" @error="imgUrlAlt">
-                                        </div>
-                                </div>
-                                <div class="col-md-12">
-                                        <input type="text" name="title" placeholder="タイトル" class="form-control m-b-15 title white-bg-color" v-model="img.title">
-                                        <textarea name="description" placeholder="コンテンツ" class="form-control m-b-15 description white-bg-color" v-model="img.description"></textarea>
-                                </div>
-                                <div class="col-md-12 text-right">
-                                        <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,'photo')"> <i class="fa fa-trash"></i> 削除</a>
-                                </div>
-                        </div>
-                </div>
-          </div> -->
-
-        <div id="changeGalleryLink" class="col-md-12">
-
-
-            <div class="row" id="gallery-photo">
-
-
-
-              <div
-
-                class="col-md-6 gallery-area-photo p0-990 p0-480"
-
-                v-bind:id="'photo'+indx"
-
-                v-for="(img,indx) in img_arr"
-
-                :key="img.id"
-
-              >
-
-                <div class="col-md-12 p0-990 p0-480">
-
-                  <input type="file" name class="hospital-photo m-b-15 p-t-10"  v-bind:class="'classname'+indx" id="upload_img" @change="preview_image($event,indx)" />
-                  <div class="col-md-12" v-bind:class="img.id">
-                    <input type="hidden" class="already-photo" v-model="img.photo" />
-                    <div>
-                    <img v-bind:src="img.src" class="img-fluid hospital-image" alt="profile" v-if="img.src != null" @error="imgUrlAlt"/>
-                    </div>
+    <form class="col-md-12 form-class pad-free-750" autocomplete="off">
+        <div class="col-md-12 pad-free">
+            <div class="row">             
+               <div class="col-lg-4 col-md-5">
+                  <div class="form-group form-group-wrapper">
+                        <img :src="logo" class="profile_logo m-b-8 img-fluid fit-image-profile" @error="imgUrlAlt" >                             
+                      <div class="m-t-10">
+                     
+                          <span class="btn-file d-inline-block">画像を選択          
+                          <input type="file" name="" class ="pro-logo m-b-10" accept="image/*" @change="logo_preview(this)">                                      
+                          </span>     
+                          <span class="pl-4"></span>                                  
+                            <span id="imgname" class="d-inline-block align-top pl-2">{{img_name}}</span>
+                      </div>                      
+                  </div>
+              </div>            
+              <div class="col-lg-8 col-md-7">
+                  <div class="form-group form-group-wrapper d-flex">
+                      <label class="heading-lbl col-md-2 col-12 pad-free">病院名称 <p class="error sp3 sp-t">必須</p></label>
+                      <input type="text" class="form-control customer-name col-md-10 col-12 nursing_input" placeholder="病院名称を入力してください。" v-model="hospital_info.name">
                   </div>
 
-                </div>
-
-                <div class="col-md-12">
-                  <label class="m-t-10">タイトル:</label>
-                  <input type="text" name="title" placeholder="タイトルを入力してください。" class="form-control m-b-15 title white-bg-color" v-model="img.title" />
-                  <label>コンテンツ:</label>
-                  <textarea name="description" placeholder="コンテンツを入力してください。" class="form-control m-b-15 description white-bg-color" v-model="img.description" ></textarea>
-
-                </div>
-                <div class="col-md-12 text-right hos-del">
-                  <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,img.id,'photo')">
-                    <i class="fa fa-trash"></i> 削除
-                  </a>
-                 </div>
-
+                  <div class="form-group form-group-wrapper d-flex">
+                      <label class="heading-lbl col-md-2 col-12 pad-free">メールアドレス<p class="error sp3 sp-t2">必須</p></label>
+                      <!-- <label class="col-md-10 col-12 customer-email"> {{hospital_info.email}} </label> -->
+                      <input type="text" class="form-control customer-email col-md-10 col-12 nursing_input" placeholder="メールアドレスを入力してください。" v-model="hospital_info.email" @change="aggreBtn" @keyup="focusMail">
+                  </div>                          
+                    <span class="error pro-1" v-if="mail_focus || hospital_info.email =='' || hospital_info.email == null">※メールアドレスが正しくありません。</span>                            
+                  <div class="form-group form-group-wrapper d-flex">
+                    <label class="heading-lbl col-md-2 col-12 pad-free">電話番号 </label>                            
+                    <input type="text" class="form-control customer-phone col-md-10 col-12 nursing_input" id="phone" placeholder="電話番号を入力してください。" v-model="hospital_info.phone"  @keyup="focusPhone"  maxlength="13">
+                    <!-- v-on:keyup="isNumberOnly" -->
+                  </div>                  
+                  <span class="error pro-1" v-if="ph_length || ph_num">※電話番号が正しくありません。もう一度入力してください。</span>          
               </div>
-
             </div>
 
-          </div>
-
-        </div>
-
-        <div class="form-group form-group-wrapper">
-
-          <label class="heading-lbl col-2 pad-free">動画</label>
-
-          <span class="galleryvideo btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px;" @click="galleryVideoAdd()" >
-
-            <i class="fas fa-plus-circle"></i> 追加
-
-          </span>
-
-           <span class='changeGalleryVideoLink  btn btn all-btn main-bg-color nursing_toggle_responsive  ' style="min-width: 0px;" @click="galleryVideoToggle" >
-                                        <i id="video" class="fas fa-sort-down"></i>
-           </span>
-
-          <div id="changeGalleryVideoLink" class="col-md-12">
-
-            <div class="row" id="gallery-video">
-
-              <!-- Add by + Button -->
-
-              <div class="col-md-6 gallery-area-video p0-480" v-bind:id="'video'+indx" v-for="(video,indx) in video_arr" :key="video.id" >
-
-                <div class="col-md-12">
-                  <label>URL:</label>
-                  <input type="text" name="url" placeholder="URLを入力してください。" class="form-control m-b-15 video-url white-bg-color" v-model="video.photo" />
-
-                </div>
-
-                <div class="col-md-12">
-                  <label>タイトル:</label>
-                  <input type="text" name="title" placeholder="タイトルを入力してください。" class="form-control m-b-15 title white-bg-color" v-model="video.title" />
-                  <label>コンテンツ:</label>
-                  <textarea name="description" placeholder="コンテンツを入力してください。" class="form-control m-b-15 description white-bg-color" v-model="video.description" ></textarea>
-
-                </div>
-                <div class="col-md-12 text-right hos-del">
-                  <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,video.id,'video')">
-
-                  <i class="fa fa-trash"></i> 削除
-
-                  </a>
-                </div>
-
-              </div>
-
+        
+            <div class="form-group form-group-wrapper row ml-0 mr-0">
+                <label class="heading-lbl col-md-2 col-12 pad-free">公式サイト</label>
+                <input type="text" name="official-website" class="form-control col-md-10 col-12  hos-768 website white-bg-color" v-model="hospital_info.website" />
             </div>
 
-          </div>
 
-        </div>
+            <div class="form-group form-group-wrapper row mr-0 ml-0">
+                <label class="heading-lbl col-md-2 col-12 pad-free">混雑状況</label>
+                <textarea name="congestion" class="form-control col-md-10 col-12  hos-768 congestion white-bg-color" v-model="hospital_info.congestion"></textarea>
+            </div>
 
-        <!-- <div class="form-group form-group-wrapper row ml-0 mr-0">
-          <label class="heading-lbl col-2 pad-free">
-            診療科目
-            <span class="error">*</span>
-          </label>
-          <textarea
-            name="medicaldepartment"
-            class="form-control col-10 white-bg-color subject"
-            v-model="hospital_info.subject"
-          ></textarea>
-        </div> -->
-
-        <!-- test -->
+        
+        <!-- test -->        
         <table class="table table-bordered table-wrapper">
             <tr>
                 <td>
-                    <div class="form-group">
-                        <label  class="heading-lbl col-2 pad-free">診療科目 </label>
-                        <span class="btn all-btn main-bg-color nursing_toggle_responsive" style="min-width: 0px;" @click="clinicalSubject()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate1}"></i></span>
-                        <div class="col-md-10 float-right clinical-subject-toggle-div toggle-div m-t-10">
-                            <div class="row"> <div v-for="subj in clinical_subj" :key="subj.id" class="form-check form-check-inline col-sm-3">
+                    <div class="form-group m-b-0">
+                        <label  class="headinglbl col-6 col-lg-2 col-md-3 pad-free">診療科目</label>
+                        <span class="bg-trans btn dropdown-arrow nursing_toggle_responsive" @click="toggleEvent('clinical-subject','1')">
+                            詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate1}"></i></span>
+                        <div class="col-xl-10 col-md-12 float-right clinical-subject-toggle-div toggle-div m-t-10">
+                        
+                            <div class="row"> <div v-for="subj in clinical_subj" :key="subj.id" class="form-check form-check-inline col-6 col-md-4 col-lg-3">
                                     <label class="form-check-label control control--checkbox" style="padding-left:5px;">
                                         <input type="checkbox" class="form-check-input"  name="subject" v-bind:value="subj.id" @click="subjectCheck(subj.id)" v-model="subj.checked">
                                           {{subj.name}}
@@ -205,40 +71,24 @@
                         </div>
                     </div>
                 </td>
-              </tr>
-          </table>
+            </tr>
+        </table>
         <!-- end -->
 
 
-
         <div class="form-group form-group-wrapper row ml-0 mr-0">
+            <label class="heading-lbl col-2 pad-free"> 専門医</label>
+            <textarea name="specialist" class="form-control col-md-10 col-12 hos-768 specialist white-bg-color" v-model="hospital_info.specialist" ></textarea>
+        </div>  
 
-          <label class="heading-lbl col-2 pad-free">
-
-            専門医
-
-            <span class="error">*</span>
-
-          </label>
-
-          <textarea
-
-            name="specialist"
-
-            class="form-control col-md-10 col-12 hos-768 specialist white-bg-color"
-
-            v-model="hospital_info.specialist"
-
-          ></textarea>
-        </div>
         <table class="table table-bordered table-wrapper">
-          <tr>
-                  <th class="nursing_table" style="border:none;"> <label class="heading-lbl hos_lbl pad-free">医院からのお知らせ <span class="error">*</span></label></th>
-                  <td class="nursing_table1" style="border:none;">
-                          <!-- <textarea name="feature" id="" cols="30" rows="10" ></textarea> -->
-                          <quill-editor  ref="myQuilEditor" name="detailsinfo" class="details-info" @change="onDetailInfoEditorChange($event)" v-model="hospital_info.details_info" :options="editorOption"/>
-                  </td>
-          </tr>
+            <tr>
+                <th class="nursing_table pc-414-table sp-768-block" style="border:none;"> <label class="heading-lbl hos_lbl pad-free">医院からのお知らせ </label></th>
+                <td class="nursing_table1 pc-414-table sp-768-block" style="border:none;">
+                    <!-- <textarea name="feature" id="" cols="30" rows="10" ></textarea> -->
+                    <quill-editor  ref="myQuilEditor" name="detailsinfo" class="details-info" @change="onDetailInfoEditorChange($event)" v-model="hospital_info.details_info" :options="editorOption"/>
+                </td>
+            </tr>
         </table>
         <!-- <div class="form-group">
                             <label class="heading-lbl">診療科目<span class="error">*</span></label>
@@ -246,162 +96,65 @@
         </div>-->
 
         <table class="table table-bordered table-wrapper">
-
           <tr>
-
             <td>
-
-              <label class="heading-lbl col-2 pad-free">診療時間 </label>
-
-              <span
-
-                class="btn all-btn main-bg-color nursing_toggle_responsive"
-
-                style="min-width: 0px;"
-
-                @click="scheduletogglediv()"
-
-              >
-
+              <label class="headinglbl col-6 col-lg-2 col-md-3 pad-free">診療時間 </label>
+              <span  class="bg-trans btn dropdown-arrow nursing_toggle_responsive" @click="toggleEvent('schedule','2')">詳細
                 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate2}"></i>
-
               </span>
 
               <div class="col-md-10 hos_toggle float-right m-t-10 schedule-toggle-div toggle-div pad-free">
-
                 <div class="col-12">
-
                   <div class="row">
-
                     <table class="table table-striped table-bordered">
-
-                      <tr>
-
+                      <tr class="first-row"> 
                         <th>&nbsp;</th>
-
                         <th class="text-center">午前</th>
-
                         <th class="text-center">午後</th>
-
                       </tr>
 
                       <tr>
-
-                        <td >月</td>
-
+                        <td class="text-center font-weight-bold second-row">月</td>
                         <td>
-
                           <div class="row">
-
                             <div class="col-lg-6">
-
-                              <span>から:</span>
-
-                              <input
-
-                                type="text"
-
-                                class="form-control am-from0 white-bg-color" placeholder="0:00"
-
-                                v-model="schedule_arr.am_mon_from"
-
-                              />
-
+                              <span>から</span>
+                              <input type="text" class="form-control am-from0 white-bg-color" placeholder="0:00" v-model="schedule_arr.am_mon_from"/>
                             </div>
 
                             <div class="col-lg-6 m-t-768">
-
-                              <span>まで:</span>
-
-                              <input
-
-                                type="text"
-
-                                class="form-control am-to0 white-bg-color" placeholder="0:00"
-
-                                v-model="schedule_arr.am_mon_to"
-
-                              />
-
+                              <span>まで</span>
+                              <input type="text" class="form-control am-to0 white-bg-color" placeholder="0:00" v-model="schedule_arr.am_mon_to"/>
                             </div>
-
                           </div>
-
                         </td>
 
                         <td>
-
                           <div class="row">
-
                             <div class="col-lg-6">
-
-                              <span>から:</span>
-
-                              <input
-
-                                type="text"
-
-                                class="form-control pm-from0 white-bg-color" placeholder="0:00"
-
-                                v-model="schedule_arr.pm_mon_from"
-
-                              />
-
+                              <span>から</span>
+                              <input type="text" class="form-control pm-from0 white-bg-color" placeholder="0:00" v-model="schedule_arr.pm_mon_from"/>
                             </div>
 
                             <div class="col-lg-6 m-t-768">
-
-                              <span>まで:</span>
-
-                              <input
-
-                                type="text"
-
-                                class="form-control pm-to0 white-bg-color" placeholder="0:00"
-
-                                v-model="schedule_arr.pm_mon_to"
-
-                              />
-
+                              <span>まで</span>
+                              <input type="text" class="form-control pm-to0 white-bg-color" placeholder="0:00" v-model="schedule_arr.pm_mon_to"/>
                             </div>
-
                           </div>
-
                         </td>
-
                       </tr>
 
                       <tr>
-
-                        <td>火</td>
-
+                        <td class="text-center font-weight-bold second-row">火</td>
                         <td>
-
                           <div class="row">
-
                             <div class="col-lg-6">
-
-                              <span>から:</span>
-
-                              <input
-
-                                type="text"
-
-                                class="form-control am-from1 white-bg-color" placeholder="0:00"
-
-                                v-model="schedule_arr.am_tue_from"
-
-                              />
-
+                              <span>から</span>
+                              <input type="text" class="form-control am-from1 white-bg-color" placeholder="0:00" v-model="schedule_arr.am_tue_from"/>
                             </div>
-
                             <div class="col-lg-6 m-t-768">
-
-                              <span>まで:</span>
-
-                              <input
-
-                                type="text"
+                              <span>まで</span>
+                              <input type="text"
 
                                 class="form-control am-to1 white-bg-color" placeholder="0:00"
 
@@ -421,7 +174,7 @@
 
                             <div class="col-lg-6">
 
-                              <span>から:</span>
+                              <span>から</span>
 
                               <input
 
@@ -437,7 +190,7 @@
 
                             <div class="col-lg-6 m-t-768">
 
-                              <span>まで:</span>
+                              <span>まで</span>
 
                               <input
 
@@ -459,7 +212,7 @@
 
                       <tr>
 
-                        <td>水</td>
+                        <td class="text-center font-weight-bold second-row">水</td>
 
                         <td>
 
@@ -467,7 +220,7 @@
 
                             <div class="col-lg-6">
 
-                              <span>から:</span>
+                              <span>から</span>
 
                               <input
 
@@ -483,7 +236,7 @@
 
                             <div class="col-lg-6 m-t-768">
 
-                              <span>まで:</span>
+                              <span>まで</span>
 
                               <input
 
@@ -507,7 +260,7 @@
 
                             <div class="col-lg-6">
 
-                              <span>から:</span>
+                              <span>から</span>
 
                               <input
 
@@ -523,7 +276,7 @@
 
                             <div class="col-lg-6 m-t-768">
 
-                              <span>まで:</span>
+                              <span>まで</span>
 
                               <input
 
@@ -545,7 +298,7 @@
 
                       <tr>
 
-                        <td>木</td>
+                        <td class="text-center font-weight-bold second-row">木</td>
 
                         <td>
 
@@ -553,7 +306,7 @@
 
                             <div class="col-lg-6">
 
-                              <span>から:</span>
+                              <span>から</span>
 
                               <input
 
@@ -569,7 +322,7 @@
 
                             <div class="col-lg-6 m-t-768">
 
-                              <span>まで:</span>
+                              <span>まで</span>
 
                               <input
 
@@ -593,7 +346,7 @@
 
                             <div class="col-lg-6">
 
-                              <span>から:</span>
+                              <span>から</span>
 
                               <input
 
@@ -609,7 +362,7 @@
 
                             <div class="col-lg-6 m-t-768">
 
-                              <span>まで:</span>
+                              <span>まで</span>
 
                               <input
 
@@ -631,7 +384,7 @@
 
                       <tr>
 
-                        <td>金</td>
+                        <td class="text-center font-weight-bold second-row">金</td>
 
                         <td>
 
@@ -639,7 +392,7 @@
 
                             <div class="col-lg-6">
 
-                              <span>から:</span>
+                              <span>から</span>
 
                               <input
 
@@ -655,7 +408,7 @@
 
                             <div class="col-lg-6 m-t-768">
 
-                              <span>まで:</span>
+                              <span>まで</span>
 
                               <input
 
@@ -679,7 +432,7 @@
 
                             <div class="col-lg-6">
 
-                              <span>から:</span>
+                              <span>から</span>
 
                               <input
 
@@ -695,7 +448,7 @@
 
                             <div class="col-lg-6 m-t-768">
 
-                              <span>まで:</span>
+                              <span>まで</span>
 
                               <input
 
@@ -717,7 +470,7 @@
 
                       <tr>
 
-                        <td>土</td>
+                        <td class="text-center font-weight-bold second-row">土</td>
 
                         <td>
 
@@ -725,7 +478,7 @@
 
                             <div class="col-lg-6">
 
-                              <span>から:</span>
+                              <span>から</span>
 
                               <input
 
@@ -741,7 +494,7 @@
 
                             <div class="col-lg-6 m-t-768">
 
-                              <span>まで:</span>
+                              <span>まで</span>
 
                               <input
 
@@ -765,7 +518,7 @@
 
                             <div class="col-lg-6">
 
-                              <span>から:</span>
+                              <span>から</span>
 
                               <input
 
@@ -781,7 +534,7 @@
 
                             <div class="col-lg-6 m-t-768">
 
-                              <span>まで:</span>
+                              <span>まで</span>
 
                               <input
 
@@ -803,7 +556,7 @@
 
                       <tr>
 
-                        <td>日</td>
+                        <td class="text-center font-weight-bold second-row">日</td>
 
                         <td>
 
@@ -811,7 +564,7 @@
 
                             <div class="col-lg-6">
 
-                              <span>から:</span>
+                              <span>から</span>
 
                               <input
 
@@ -827,7 +580,7 @@
 
                             <div class="col-lg-6 m-t-768">
 
-                              <span>まで:</span>
+                              <span>まで</span>
 
                               <input
 
@@ -851,7 +604,7 @@
 
                             <div class="col-lg-6">
 
-                              <span>から:</span>
+                              <span>から</span>
 
                               <input
 
@@ -867,7 +620,7 @@
 
                             <div class="col-lg-6 m-t-768">
 
-                              <span>まで:</span>
+                              <span>まで</span>
 
                               <input
 
@@ -904,356 +657,156 @@
 
 
         <div class="form-group form-group-wrapper row ml-0 mr-0">
-
           <label class="heading-lbl col-md-2 col-12 pad-free">休診日 </label>
-
-          <textarea
-
-            name="close-day"
-
-            class="form-control white-bg-color close-day col-md-10 col-12 hos-768"
-
-            v-model="hospital_info.closed_day"
-
-          ></textarea>
-
+          <textarea name="close-day" class="form-control white-bg-color close-day col-md-10 col-12 hos-768" v-model="hospital_info.closed_day" ></textarea>
         </div>
 
 
 
         <table class="table table-bordered table-wrapper">
-
           <tr>
-
             <td>
-
-              <div class="form-group">
-
-                <label class="heading-lbl col-2 pad-free">施設情報 </label>
-
-                <span
-
-                  class="btn all-btn main-bg-color nursing_toggle_responsive"
-
-                  style="min-width: 0px;"
-
-                  @click="factogglediv()"
-
-                >
-
-                  <i class="fas fa-sort-down animate"  :class  ="{'rotate': isRotate3}"></i>
-
+              <div class="form-group m-b-0">
+                <label class="headinglbl col-6 col-lg-2 col-md-3 pad-free">院内施設情報 </label>
+                <span class="bg-trans btn dropdown-arrow nursing_toggle_responsive" @click="toggleEvent('hos-fac','3')" >詳細 
+                    <i class="fas fa-sort-down animate"  :class  ="{'rotate': isRotate3}"></i>
                 </span>
 
-
-
-                <div class="col-md-10 float-right hos-fac-toggle-div toggle-div m-t-10">
-
+                <div class="col-xl-10 col-md-12 float-right hos-fac-toggle-div toggle-div m-t-10">
                   <div class="row">
-
-                    <div v-for="fac in fac_list" :key="fac.id" class="form-check form-check-inline col-sm-3">
-
+                    <div v-for="fac in fac_list" :key="fac.id" class="form-check form-check-inline col-6 col-md-4 col-lg-3">
                       <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-
                         <input type="checkbox" class="form-check-input" name="facility" :class="'facility-'+fac.id" v-bind:value="fac.id" @click="facilityCheck(fac.id)" v-model="fac.checked" />
-
                         {{fac.description}}
                         <div class="control__indicator"></div>
                       </label>
-
                     </div>
-
                   </div>
-
                 </div>
-
               </div>
-
             </td>
-
           </tr>
-
         </table>
-
-
 
         <table class="table table-bordered table-wrapper">
-
           <tr>
-
             <td>
-
-              <div class="form-group">
-
-                <label class="heading-lbl hos_lbl1  col-2 pad-free ">
-
-                  こだわりの特長
-
-                  <span class="error">*</span>
-
-                </label>
-
-                <span
-
-                  class="btn all-btn main-bg-color nursing_toggle_responsive btn-toggle"
-
-                  style="min-width: 0px;"
-
-                  @click="specialFeAdd()"
-
-                >
-
-                  <i class="fas fa-sort-down animate" :class="{rotate:isRotate4}"></i>
-
+              <div class="form-group m-b-0">
+                <label class="hos_lbl headinglbl col-6 col-lg-2 col-md-3 pad-free">こだわりの特長</label>
+                <span class="bg-trans btn dropdown-arrow nursing_toggle_responsive btn-toggle" @click="toggleEvent('special-feature','4')">
+                  詳細 <i class="fas fa-sort-down animate" :class="{rotate:isRotate4}"></i>
                 </span>
 
-
-
-                <div class="col-md-10 float-right special-feature-toggle-div toggle-div m-t-10">
-
+                <div class="col-xl-10 col-md-12 float-right special-feature-toggle-div toggle-div m-t-10">
                   <div class="row">
-
-                    <div v-for="feat in feature_list" :key="feat.id" class="form-check form-check-inline col-sm-3">
-
+                    <div v-for="feat in feature_list" :key="feat.id" class="form-check form-check-inline col-6 col-md-4 col-lg-3">
                       <label class="form-check-label control control--checkbox" style="padding-left:5px;">
-
                         <input type="checkbox" class="form-check-input" name="special-features" :class="'feature-'+feat.id" v-bind:value="feat.id" @click="featureCheck(feat.id)" v-model="feat.checked"/>
-
                         {{feat.name}}
                         <div class="control__indicator"></div>
-
                       </label>
-
                     </div>
-
                   </div>
-
                 </div>
-
               </div>
-
             </td>
-
           </tr>
-
         </table>
 
+        <div class="form-group form-group-wrapper">
+          <label class="headinglbl col-6 col-lg-2 pad-free">フォトアルバム</label>          
+           <span class='changeGalleryLink bg-trans btn dropdown-arrow nursing_toggle_responsive' @click="toggleEvent('photo','6')">
+              詳細 <i id="gallery" class="fas fa-sort-down" :class="{'rotate': isRotate6}"></i>
+            </span>
 
+          
+        <div id="changeGalleryLink" class="row col-12 m-0 photo-toggle-div pad-free">
+          <div class="col-12 col-lg-12 float-right p-0">
+            <span class="galleryadd btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px;" @click="galleryAdd()">
+            <i class="fas fa-plus-circle"></i> 追加
+            </span>
+          </div>      
+            <div class="row col-12 pad-free m-0" id="gallery-photo">
+            
+              <div class="col-md-6 gallery-area-photo p0-990" v-bind:id="'photo'+indx" v-for="(img,indx) in img_arr" :key="img.id" >
+                    <div class="col-md-12">
+                          
+                         <span class="btn-file d-inline-block">画像を選択        
+                          <input type="file" name="" accept="image/*" class="hospital-photo" v-bind:class="img.classname" id="upload_img" @change="preview_image($event,indx)">
+                          </span> 
+                          <span class="d-inline-block align-top pt-2" v-bind:id="'img_name'+indx"></span>
+                          <div class="col-md-12  p0-480" v-bind:class="img.id">
+                              <input type="hidden" class="already-photo" v-model="img.photo">
+                              <img v-bind:src="img.src" class="img-fluid hospital-image" alt="profile" v-if="img.src!=null" @error="imgUrlAlt">
+                          </div>
+                    </div>
 
-        <div class="form-group form-group-wrapper row ml-0 mr-0">
-
-          <label class="heading-lbl col-md-2 col-12 pad-free">公式サイト</label>
-
-          <input
-
-            type="text"
-
-            name="official-website"
-
-            class="form-control col-md-10 col-12  hos-768 website white-bg-color"
-
-            v-model="hospital_info.website"
-
-          />
-
-        </div>
-
-
-
-        <div class="form-group form-group-wrapper row mr-0 ml-0">
-
-          <label class="heading-lbl col-md-2 col-12 pad-free">混雑状況</label>
-
-          <textarea
-
-            name="congestion"
-
-            class="form-control col-md-10 col-12  hos-768 congestion white-bg-color"
-
-            v-model="hospital_info.congestion"
-
-          ></textarea>
-
-        </div>
-
-
-
-        <!-- <div class="form-group form-group-wrapper">
-          <label class="heading-lbl">地図</label>
-          <span
-            class="btn all-btn main-bg-color m-l-10"
-            style="min-width: 0px;"
-            @click="maptogglediv()"
-          >
-            <i class="fas fa-sort-down"></i>
-          </span>
-          <div class="map-toggle-div toggle-div">
-            <div class="col-md-12">
-              <GoogleMap></GoogleMap>
-            </div>
-            <div class="form-group">
-              <label>
-                郵便番号
-                <span class="error">*</span>
-              </label>
-              <input
-                type="text"
-                v-model="this.postal"
-                name="postal"
-                class="postal form-control"
-                id="postal"
-                v-on:keyup="getPostal"
-                placeholder="郵便番号を入力してください。"
-                maxlength="7"
-              />
-              <div id="jsErrorMessage"></div>
-            </div>
-            <div class="form-group">
-              <label>
-                市区町村、番地（建物名）:
-                <span class="error sp1">必須</span>
-              </label>
-              <input
-                type="text"
-                id="city"
-                name="city"
-                class="city form-control"
-                placeholder="市区町村、番地を入力してください。"
-                v-model="this.city"
-        />-->
-
-        <!-- <span v-if="errors.city" class="error">{{errors.city[0]}}</span> -->
-
-        <!-- <input type="text" class="form-control" id="city" placeholder="市区町村、番地を入力してください。" v-model="zipStreet"> -->
-
-        <!-- <p>例）東京都千代田区丸の内1-9-1 グラントウキョウノースタワー40階</p>
-            </div>
-            <div class="form-group">
-              <label>
-                住所
-                <span class="error">*</span>
-              </label>
-              <textarea
-                name="address"
-                rows="10"
-                class="form-control customer-address"
-                v-model="customer_info.address"
-              ></textarea>
-            </div>
-            <div class="form-group">
-              <label>
-                交通 / アクセス
-                <span class="error">*</span>
-              </label>
-              <textarea
-                name="access"
-                rows="10"
-                class="form-control access"
-                v-model="hospital_info.access"
-              ></textarea>
+                    <div class="col-md-12">
+                        <label class="m-t-10 font-weight-bold">タイトル</label>
+                        <input type="text" name="title" placeholder="タイトルを入力してください。" class="form-control m-b-15 white-bg-color" v-model="img.title" />
+                        <label class="font-weight-bold">コンテンツ</label>
+                        <textarea name="description" placeholder="コンテンツを入力してください。" class="form-control m-b-15 description white-bg-color" v-model="img.description" ></textarea>
+                    </div>
+                    <div class="col-md-12 text-right hos-del">
+                        <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,img.id,'photo','画像')">
+                            <i class="fa fa-trash"></i> 削除
+                        </a>
+                    </div>
+              </div>
             </div>
           </div>
-        </div>-->
+        </div>
 
+        <div class="form-group form-group-wrapper">
+          <label class="headinglbl col-6 col-lg-2 pad-free">動画</label>         
 
+           <span class='changeGalleryVideoLink bg-trans btn dropdown-arrow nursing_toggle_responsive' @click="toggleEvent('video','7')">
+           詳細 <i id="video" class="fas fa-sort-down" :class="{'rotate': isRotate7}"></i>
+           </span>
 
-        <!-- <table class="table table-bordered table-wrapper">
-
-          <tr>
-
-            <td>
-
-              <label class="heading-lbl col-2 pad-free">地図</label>
-
-              <span
-
-                class="btn all-btn main-bg-color"
-
-                style="min-width: 0px;"
-
-                @click="maptogglediv()"
-
-              >
-
-                <i class="fas fa-sort-down animate" :class="{rotate:isRotate5}"></i>
-
-              </span>
-
-              <div class="col-md-10 float-right m-t-10 map-toggle-div toggle-div pad-free">
-
+          <div id="changeGalleryVideoLink" class="row col-12 m-0 p-0 video-toggle-div">
+            <div class="col-12 col-lg-12 float-right p-0">
+              <span class="galleryvideo btn all-btn main-bg-color float-right nursing_add_responsive" style="min-width: 0px;" @click="galleryVideoAdd()" >
+              <i class="fas fa-plus-circle"></i> 追加</span>
+            </div>
+            <div class="row col-12 pad-free m-0" id="gallery-video">
+              <!-- Add by + Button -->
+              <div class="col-md-6 gallery-area-photo p0-990 p0-480" v-bind:id="'video'+indx" v-for="(video,indx) in video_arr" :key="video.id" >
                 <div class="col-md-12">
-
-                    <GoogleMap :address="customer_info.address" :lat_num='nursing_info.latitude' :lng_num='nursing_info.longitude' v-if="nursing_info.latitude != 0"></GoogleMap>
-                    <GoogleMap :address="customer_info.address" :lat_num='35.6803997' :lng_num='139.76901739' v-if="nursing_info.latitude == 0"></GoogleMap>
-
-
-
-                  <div class="form-group">
-
-                    <label>
-                      交通 / アクセス
-
-                      <span class="error">*</span>
-
-                    </label>
-
-                    <textarea
-
-                      name="access"
-
-                      rows="10"
-
-                      class="form-control access white-bg-color"
-
-                      v-model="hospital_info.access"
-
-                    ></textarea>
-
-                  </div>
-
+                  <label class="font-weight-bold">URL</label>
+                  <input type="text" name="url" placeholder="URLを入力してください。" class="form-control m-b-15 video-url white-bg-color" v-model="video.photo" />                
                 </div>
 
+                <div class="col-md-12">
+                  <label class="font-weight-bold">タイトル</label>
+                  <input type="text" name="title" placeholder="タイトルを入力してください。" class="form-control m-b-15 white-bg-color" v-model="video.title" />
+                  <label class="font-weight-bold">コンテンツ</label>
+                  <textarea name="description" placeholder="コンテンツを入力してください。" class="form-control m-b-15 description white-bg-color" v-model="video.description" ></textarea>
+
+                </div>
+                <div class="col-md-12 text-right hos-del">
+                  <a class="mr-auto text-danger btn delete-borderbtn" @click="DeltArr(indx,video.id,'video','動画')">
+                  <i class="fa fa-trash"></i> 削除
+                  </a>
+                </div>
               </div>
+            </div>
+          </div>
 
-            </td>
-
-          </tr>
-
-        </table> -->
-        <!-- Test Station Area -->
-        <!-- <table class="table table-bordered table-wrapper">
-                <tr>
-                        <td>
-                                <div class="form-group">
-                                        <label  class="heading-lbl col-2 pad-free">駅</label>
-                                        <span class="btn all-btn main-bg-color" style="min-width: 0px;" @click="StationAdd()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate4}"></i></span>
-                                        <div class="col-md-10 float-right station-toggle-div toggle-div m-t-10">
-                                                <div class="row">
-                                                        <div v-for="stat in station_list" :key="stat.id" class="col-md-3 m-b-20">
-                                                                <label>
-                                                                        <input type="checkbox"  name="station" v-bind:value="stat.id" @click="stationCheck(stat.id)" v-model="stat.checked">
-                                                                        {{stat.name}}
-                                                                </label>
-                                                        </div>
-                                                </div>
-                                        </div>
-                                </div>
-                        </td>
-                </tr>
-        </table> -->
-        <!-- End Test Station Area -->
+        </div>
         <table class="table table-bordered table-wrapper">
             <tr>
                 <td>
-                    <label class="heading-lbl col-2 pad-free">地図</label>
-                    <span class="btn all-btn main-bg-color nursing_toggle_responsive" style="min-width: 0px;" @click="maptogglediv()"><i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
+                    <label class="headinglbl col-6 col-lg-2 pad-free">地図</label>
+                    <span class="bg-trans btn dropdown-arrow nursing_toggle_responsive" @click="toggleEvent('map','5')">詳細 <i class="fas fa-sort-down animate" :class="{'rotate': isRotate5}"></i></span>
                     <div class="col-md-10 hos_toggle float-right m-t-10 map-toggle-div toggle-div pad-free">
                         <div class="col-md-12">
-                            <GoogleMap :address="address_show" :township="customer_info.townships_id" :lat_num='hospital_info.latitude' :lng_num='hospital_info.longitude' :city="city_id" :township_list="township_list"></GoogleMap>
-                            <!-- <GoogleMap :address="customer_info.address" :lat_num='35.6803997' :lng_num='139.76901739' v-if="hospital_info.latitude == 0"></GoogleMap> -->
+                        <span class="error pro-1" style="margin-top:0px!important;margin-bottom:10px;" v-if="loc == true">※都道府県と市区町村をを入力してください。</span>
+                            <GoogleMap  :address="address_show" :township="hospital_info.townships_id" :latnum='hospital_info.latitude' :lngnum='hospital_info.longitude' :city="city_id" :township_list="township_list"></GoogleMap>
+                            <!-- <GoogleMap :address="hospital_info.address" :lat_num='35.6803997' :lng_num='139.76901739' v-if="hospital_info.latitude == 0"></GoogleMap> -->
 
                             <div class="form-group">
-                                <label>交通 / アクセス<span class="error">*</span></label>
+                                <label>交通 / アクセス</label>
                                 <!-- <textarea name="address" rows="10" class="form-control"></textarea> -->
                                 <quill-editor  ref="myQuilEditor" name="address" :options="editorOption" class="transporation-access" @change="onAccessEditorChange($event)" v-model="hospital_info.access"/>
                             </div>
@@ -1261,49 +814,17 @@
                     </div>
                 </td>
             </tr>
-        </table>
-        <!-- Consultation -->
-
-
-
-        <!-- End Consultation -->
-
-
-
-        <!-- Facilities -->
-
-
-
-        <!-- End Facilities -->
-
-
-
-        <!-- <hr class="hor-line m-t-30"> -->
-
-
-
-        <!-- <hr class="hor-line m-t-30"> -->
-
-
-
-        <!-- Map -->
-
-
-
-        <!-- End Map -->
-
-        <div style="position:fixed;width:100%;background:rgba(0,0,0,.5);left:0;right:0;bottom:0;padding:0 0 10px 0;">
-            <div class="row col-2 col-offset-5 mx-auto">
-                <span class="btn secondary-bg-color col-8 offset-2 all-btn m-t-15 pad-10" @click="Create_Profile()">更新</span>
+        </table>  
+        <div class="bottom-fixed-btn">
+            <div class="row justify-content-center">
+                <div class="col-8 col-md-3 col-lg-2">
+                    <span class="btn secondary-bg-color col-8 offset-2 all-btn" @click="Create_Profile()" id="create-profile">保存</span>
+                </div>                        
             </div>
-        </div>
-
+        </div>      
       </div>
-
     </form>
-
   </div>
-
 </template>
 
 
@@ -1321,6 +842,7 @@ export default {
                 // Button,
                 // Input,
                 // Select,
+                 email:''
         },
        data() {
             return {
@@ -1331,82 +853,105 @@ export default {
                 profile_type:'hospital',
                 schedule_arr:[],shedule_am:[],shedule_pm:[],
                 schedule_list:[],
-                customer_info:[],
-                customer_info_push:[],
+                hospital_info:[],
+                hospital_info_push:[],
                 hospital_info:[],  save_hospital_info:[],
                 chek_feature : [],
                 subjects:[],
                 facilities:[],
                 city: '',
                 postal: '',clinical_subj:[],
+
                 isRotate1: false,
                 isRotate2: false,
                 isRotate3: false,
                 isRotate4: false,
                 isRotate5: false,
-                    editorOption:{
-                debug:'info',
-                placeholder:'Type your post...',
-                readonly:true,
-                theme:'snow',
-                access_val: '',
-                detail_info: '', stations:[], station_list:[],
+                isRotate6: false,
+                isRotate7: false,
+
+                editorOption:{
+                    debug:'info',
+                    placeholder:'',
+                    readonly:true,
+                    theme:'snow',
+                     modules: {
+                        toolbar: [
+                        ['bold', 'italic', 'underline', 'strike'],
+                        ['blockquote', 'code-block'],
+                        [{ 'header': 1 }, { 'header': 2 }],
+                        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                        [{ 'script': 'sub' }, { 'script': 'super' }],
+                        [{ 'indent': '-1' }, { 'indent': '+1' }],
+                        [{ 'direction': 'rtl' }],
+                        [{ 'color': [] }, { 'background': [] }],
+                        [{ 'align': [] }],
+                        ['clean'],
+                        ['link', 'image', 'video']
+                        ]
+                    },
+                    access_val: '',
+                    detail_info: '', stations:[], station_list:[],
             },
             ph_length: false,
             ph_num: false,
             city_id: 0,
             township_list: [],
-            address_show:''
+            address_show:'',
+            logo:'',
+            img_name:'',
+            pro_id: 0,
+            btn_disable: false,
+            mail_focus: false,
+            loc: false,
+            mail_reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
+             phone_reg: /^([0-9]*)$/
+            }
+        },
+        computed: {
+            isdisable:function() {
+                return this.btn_disable;
             }
         },
         created(){
 
+          
+            this.pro_id = Number(this.$route.params.id);
+            this.type = this.$route.params.type;
 
-                if(this.type != undefined && this.cusid!= undefined){
-                        localStorage.setItem('cusType',this.type);
-                        localStorage.setItem('cusId',this.cusid);
-                }
-
-                this.type = localStorage.getItem('cusType');
-                this.cusid = Number(localStorage.getItem('cusId'));
-
-                // this.axios
-                //   .get('/api/station/'+this.cusid)
-                //   .then(response=>{
-                //       this.station_list = response.data;
-                // });
-
-                this.initialCall();
-                // quill.editor.disable()
+            this.initialCall();
         },
         methods: {
+
             initialCall(){
               this.address_show = $('#address_show').val();
+           
                 this.axios
-                .get('/api/clinical-subject/'+this.cusid)
+                .get('/api/clinical-subject/'+this.pro_id)
                 .then(response=>{
                     this.clinical_subj = response.data;
                 });
-                 this.axios
-                .get('/api/schedule/'+this.cusid)
+
+                this.axios
+                .get('/api/schedule/'+this.pro_id)
                 .then(response=>{
                     this.schedule_arr = response.data;
                 });
+
                 this.axios
-                .get('/api/customerinfo/'+this.cusid)
+                .get('/api/hospitalinfo/'+this.pro_id)
                 .then(response=>{
-                    this.customer_info = response.data;
+                    this.hospital_info = response.data;
+                    this.logo = '/upload/hospital_profile/'+ this.hospital_info.logo;
+                    this.address_show = this.hospital_info.address;
+        
                     this.axios
-                    .get('/api/nurscities/'+this.customer_info.townships_id)
+                    .get('/api/nurscities/'+this.hospital_info.townships_id)
                     .then(response=>{
                         this.city_id = Number(response.data[0].city_id);
                         this.township_list = response.data[0].township_list;
+                        localStorage.setItem('townshiplist',JSON.stringify(this.township_list));
                     });
-                });
-                this.axios
-                .get('/api/hospitalinfo/'+this.cusid)
-                .then(response=>{
-                    this.hospital_info = response.data;
 
                     if(this.hospital_info.latitude == 0){
                         localStorage.setItem('lat_num',35.6803997);
@@ -1416,48 +961,70 @@ export default {
                         localStorage.setItem('lat_num',this.hospital_info.latitude);
                         localStorage.setItem('lng_num',this.hospital_info.longitude);
                     }
+                     this.focusMail();
                 });
                 this.axios
-                .get('/api/hospital-pgallery/'+this.cusid)
+                .get('/api/pgallery/'+this.pro_id + '/hospital')
                 .then(response=>{
                         this.img_arr = response.data;
 
                 });
                 this.axios
-                .get('/api/hospital-vgallery/'+this.cusid)
+                .get('/api/vgallery/'+this.pro_id+'/hospital')
                 .then(response=>{
                         this.video_arr = response.data;
                 });
                 this.axios
-                .get('/api/feature/'+this.profile_type+'/'+this.cusid)
+                .get('/api/feature/'+this.profile_type+'/'+this.pro_id)
                 .then(response=>{
                         this.feature_list = response.data;
                 });
                 this.axios
-                .get('/api/facility/'+this.profile_type+'/'+this.cusid)
+                .get('/api/facility/'+this.profile_type+'/'+this.pro_id)
                 .then(response=>{
                         this.fac_list = response.data;
                 });
             },
-             imgUrlAlt(event) {
-                event.target.src = "images/noimage.jpg"
+            
+             aggreBtn: function(){
+                if((this.mail_reg.test(this.hospital_info.email) )  && this.hospital_info.email != '' && this.hospital_info.email != null ){
+                    this.btn_disable=false;
+                }else{
+                    this.btn_disable=true;
+                }
             },
-            scheduletogglediv() {
-                    $(".schedule-toggle-div").toggle('medium');
-                    this.isRotate2 = !this.isRotate2;
+
+            focusMail: function(event) {
+
+                if((this.hospital_info.email != '' && this.mail_reg.test(this.hospital_info.email))){
+                    this.mail_focus=false;
+                   
+                }else{
+                 
+                    this.mail_focus=true;
+                   
+                }
+                this.aggreBtn();
+            
             },
-            maptogglediv() {
-                    $(".map-toggle-div").toggle('medium');
-                    this.isRotate5 = !this.isRotate5;
+
+            imgUrlAlt(event) {
+                event.target.src = "/images/noimage.jpg"
             },
-            factogglediv() {
-                    $(".hos-fac-toggle-div").toggle('medium');
-                    this.isRotate3 = !this.isRotate3;
-            },
+            logo_preview(fileInput) {
+                this.logo = URL.createObjectURL(event.target.files[0]);
+                this.img_name = document.getElementsByClassName('pro-logo')[0].files[0].name;
+              },
             preview_image(event,indx) {
                 this.img_arr[indx]['photo'] = event.target.files[0].name;
                 this.img_arr[indx]['src'] = URL.createObjectURL(event.target.files[0]);
+                $('#img_name'+indx).text(event.target.files[0].name);
             },
+            toggleEvent(type,indx) {
+                $("."+type+"-toggle-div").toggle('medium');
+                this['isRotate'+indx] = !this['isRotate'+indx];
+            },
+
             facilityCheck(check_id) {
                     $('.facility-'+check_id).attr('checked','true');
             },
@@ -1470,37 +1037,32 @@ export default {
             subjectCheck(check_id) {
                     $('.subject-'+check_id).attr('checked','true');
             },
-            clinicalSubject() {
-                     $(".clinical-subject-toggle-div").toggle('medium');
-                     this.isRotate1 = !this.isRotate1;
-
-            },
-            DeltArr(indx,id,type) {
+            DeltArr(indx,id,type,name) {
 
 
               this.$swal({
-                        title: "確認",
-                        text: "職種を削除してよろしいでしょうか。",
+                        text: name + "を削除してよろしいでしょうか。",
                         type: "warning",
                         width: 350,
                         height: 200,
                         showCancelButton: true,
-                        confirmButtonColor: "#dc3545",
+                        confirmButtonColor: "#EEA025",
                         cancelButtonColor: "#b1abab",
                         cancelButtonTextColor: "#000",
-                        confirmButtonText: "削除",
+                        confirmButtonText: "はい",
                         cancelButtonText: "キャンセル",
                         confirmButtonClass: "all-btn",
-                        cancelButtonClass: "all-btn"
+                        cancelButtonClass: "all-btn",
+                        allowOutsideClick: false,
+
                     }).then(response => {
-                        console.log(type+"/"+id)
                         if(type == 'photo') {
                             if(id){
 
                                 let fd = new FormData();
                                 fd.append('id',id);
                                 fd.append('photo',this.img_arr[indx]['photo']);
-                                fd.append('customer_id',this.cusid)
+                                fd.append('customer_id',this.pro_id)
                                 fd.append('custype','hospital')
                                 this.img_arr.splice(indx,1);
 
@@ -1509,12 +1071,13 @@ export default {
                                 .then(response=>{
 
                                     this.$swal({
-                                        text: "職種を削除しました。",
+                                        text: name + "を削除しました。",
                                         type: "success",
                                         width: 350,
                                         height: 200,
                                         confirmButtonText: "閉じる",
-                                        confirmButtonColor: "#dc3545"
+                                        confirmButtonColor: "#31CD38",
+                                         allowOutsideClick: false,
                                     });
                                 })
                                 .catch(error=>{
@@ -1535,82 +1098,83 @@ export default {
 
             },
             galleryAdd() {
-
-                    var date = new Date;
-                    var s = date.getMilliseconds();
-                    var m = date.getMinutes();
-                    var h = date.getHours();
-                    // var classname = "class"+h+m+s;
-                    // var c = "'"+classname+"'";
-                    this.img_arr.push({id:null,photo:'',title:'',description:'', src:null});
-
-
+                var date = new Date;
+                var s = date.getMilliseconds();
+                var m = date.getMinutes();
+                var h = date.getHours();
+                this.img_arr.push({id:null,photo:'',title:'',description:'', src:null});
             },
-             galleryToggle()
-                {
-
-                      var class_by_id = $('#gallery').attr('class');
-
-                      if(class_by_id == "fas fa-sort-down animate rotate")
-                      {
-
-                                $('#gallery').removeClass("fas fa-sort-down animate rotate");
-                                $('.changeGalleryLink').addClass("fas fa-sort-down");
-                                $('#changeGalleryLink').show('medium');
-                                $('.galleryadd').show();
-                      }
-                      else {
-                                $('#gallery').removeClass("fas fa-sort-down");
-                                $('.changeGalleryLink').removeClass("fas fa-sort-down");
-                                $('#gallery').addClass("fas fa-sort-down animate rotate");
-                                $('#changeGalleryLink').hide('medium');
-                                $('.galleryadd').hide();
-                      }
-                },
-                galleryVideoToggle()
-                {
-                       var class_by_id = $('#video').attr('class');
-
-                      if(class_by_id == "fas fa-sort-down animate rotate")
-                      {
-                                $('#video').removeClass("fas fa-sort-down animate rotate");
-                                $('.changeGalleryVideoLink').addClass("fas fa-sort-down");
-                                $('#changeGalleryVideoLink').show('medium');
-                                 $('.galleryvideo').show();
-                      }
-                      else {
-
-                                $('#video').removeClass("fas fa-sort-down");
-                                $('.changeGalleryVideoLink').removeClass("fas fa-sort-down");
-                                $('#video').addClass("fas fa-sort-down animate rotate");
-                                $('#changeGalleryVideoLink').hide('medium');
-                                $('.galleryvideo').hide();
-                      }
-                },
             onAccessEditorChange({ editor, html, text }) {
-                // console.log('editor change!', editor, html, text)
-                // this.access_val = html
                 this.hospital_info.access = html;
             },
             onDetailInfoEditorChange({ editor, html, text }) {
-                // console.log('editor change!', editor, html, text)
-                // this.detail_info = jQuery(html).text();
-                this.hospital_info.details_info = jQuery(html).text();
+                this.hospital_info.details_info = html;
             },
             galleryVideoAdd() {
                    this.video_arr.push({title:'',description:'',url:''});
 
             },
-            specialFeAdd() {
-                     $(".special-feature-toggle-div").toggle('medium');
-                     this.isRotate4 = !this.isRotate4;
-            },
             StationAdd() {
                 $(".station-toggle-div").toggle('medium');
                 this.isRotate4 = !this.isRotate4;
             },
-            Create_Profile () {
+            Create_Profile () {    
+              if($('#new_lat').val() == "" || $('#new_lat').val() == 0 || $('#new_long').val() == "" || $('#new_long').val() == 0 || $('#gmaptownship').val() == 0 ){
+                    this.loc = true;
+                    this.btn_disable = true;
+                    this.hospital_info.townships_id = $('#gmaptownship').val();
+                    this.city_id = $('#division').val();
+                    this.township_list = JSON.parse(localStorage.getItem("townshiplist"));
+                }
+                else{
+                    this.loc = false;
+                    this.hospital_info.townships_id = $('#gmaptownship').val();
+                    this.hospital_info.latitude = $('#new_lat').val();
+                    this.hospital_info.longitude = $('#new_long').val();
+                    this.city_id = $('#division').val();
+                    this.township_list = JSON.parse(localStorage.getItem("townshiplist"));
+                    if(this.mail_focus != true && this.ph_num != true && this.hospital_info.name != null && this.hospital_info.name != ''){
+                        this.btn_disable = false;
+                    }
+                    else{
+                        this.btn_disable = true;
+                    }
+                }       
 
+            //   if($('#new_lat').val() == "" || $('#new_long').val() == "" || $('#gmaptownship').val() == 0 || this.mail_focus == true || this.ph_num == true )
+            //   {
+            //     this.btn_disable = true;
+            //   }
+            //   else{
+            //     this.btn_disable = false;
+            //   }
+            
+                if(this.btn_disable){
+           
+                    // console.log("mail");
+                    this.$swal({
+                        html: "保存できません。<br/>必須項目を確認してください。",
+                        type: "error",
+                        width: 350,
+                        height: 200,
+                        showCancelButton: false,
+                        confirmButtonColor: "#FF5462",
+                        // cancelButtonColor: "#b1abab",
+                        cancelButtonTextColor: "#000",
+                        confirmButtonText: "閉じる",
+                        // cancelButtonText: "キャンセル",
+                        confirmButtonClass: "all-btn",
+                        // cancelButtonClass: "all-btn",
+                        allowOutsideClick: false,
+                    })  
+                    this.hospital_info.townships_id = $('#gmaptownship').val();
+                    this.city_id = $('#division').val();
+                    this.township_list = JSON.parse(localStorage.getItem("townshiplist"));                  
+                } 
+
+                  
+            else {
+                var logo = document.getElementsByClassName('pro-logo')[0].files[0];               
                 this.save_hospital_info = [];
                 this.$loading(true);
 
@@ -1621,14 +1185,31 @@ export default {
 
                 this.hospital_info.latitude = $('#new_lat').val();
                 this.hospital_info.longitude = $('#new_long').val();
-                this.customer_info.address = $('#address_val').val();
+                this.hospital_info.address = $('#address_show').val();
                 this.address_show = $('#address_show').val();
 
-                this.customer_info.townships_id = Number($('#gmaptownship').val());
+                this.hospital_info.townships_id = Number($('#gmaptownship').val());
                 localStorage.setItem('lat_num',this.hospital_info.latitude);
                 localStorage.setItem('lng_num',this.hospital_info.longitude);
+
+                if(logo)
+                {
+                  this.hospital_info.logo = logo.name;
+                  let fd = new FormData();   
+                  fd.append('logo', logo)
+                  this.axios.post('/api/hospital/movephoto', fd)
+                      .then(response => {
+                          }).catch(error=>{
+
+                              if(error.response.status == 422){
+                                  this.errors = error.response.data.errors
+                              }
+                      })
+                }
+               
                 let pt = new FormData();
                 var img = document.getElementsByClassName('gallery-area-photo');
+           
                 for(var i =this.img_arr.length-1;i>=0;i--)
                 {
                     this.img_arr[i]['type'] = 'photo';
@@ -1636,14 +1217,21 @@ export default {
                     {
                         this.img_arr.splice(i,1);
                     }
-
-
                     var file = img[i].getElementsByClassName('hospital-photo')[0].files[0];
-                    console.log(img[i].getElementsByClassName('hospital-photo')[0].files)
+                   
                     if(file) {
+                    
                         pt.append(i ,file )
                     }
+                  
                 }
+
+         
+
+                // if(logo){
+                //     this.hospital_info.logo = logo.name;
+                //     pt.append('logo', logo)
+                // }
 
                 for(var i =this.video_arr.length-1;i>=0;i--)
                 {
@@ -1655,6 +1243,7 @@ export default {
 
                 }
 
+            
                 this.axios.post('/api/hospital/movephoto', pt)
                     .then(response => {
                         }).catch(error=>{
@@ -1685,8 +1274,6 @@ export default {
                     });
                     this.subjects.push({subject_id:chek_subj});
 
-
-
                 // Consultation
                 this.schedule_list = [];
                 for(var j = 0; j< 2; j++) {
@@ -1699,7 +1286,7 @@ export default {
                 }
 
 
-                    this.save_hospital_info.push({ customer_info:this.customer_info,hospital_info:this.hospital_info,facilities:this.facilities,
+                    this.save_hospital_info.push({ hospital_info:this.hospital_info,facilities:this.facilities,
                     schedule_list:this.schedule_list,chek_feature:this.chek_feature, subjects:this.subjects, image:this.img_arr,video:this.video_arr
                 });
 
@@ -1707,8 +1294,9 @@ export default {
 
                 if(this.save_hospital_info.length > 0) {
 
+
                     this.axios
-                    .post(`/api/hospital/profile/${this.cusid}`,this.save_hospital_info)
+                    .post(`/api/hospital/profile/${this.pro_id}`,this.save_hospital_info)
                     .then((response) => {
 
                         this.initialCall();
@@ -1716,11 +1304,12 @@ export default {
                         this.$swal({
                             position: 'top-end',
                             type: 'success',
-                            title: '更新されました',
+                            text: '保存されました。',
                             confirmButtonText: "閉じる",
-                            confirmButtonColor: "#6cb2eb",
-                            width: 250,
+                            confirmButtonColor: "#31cd38",
+                            width: 350,
                             height: 200,
+                            allowOutsideClick: false,
                         })
                         this.$loading(false);
                     }).catch(error=>{
@@ -1732,39 +1321,63 @@ export default {
                         }
                     }) ;
                 }
+                }
             },
-              isNumberOnly: function(event) {
-              var input_data = $('#phone').val();
-              var code = 0;
-              code = input_data.charCodeAt();
-
-              if((48 <= code && code <= 57) && (this.customer_info.phone.length >= 10 && this.customer_info.phone.length <= 14)){
-                  this.ph_num = false;
-                  this.ph_length = false;
-              }else{
-                  this.ph_num = true;
-                  this.ph_length = true;
-              }
-            },
+            
             focusPhone(){
-              var input_data = $('#phone').val();
-              if(input_data.length >= 10 && input_data.length <= 14 && input_data.charAt(input_data.length - 1) != '-' && input_data.charAt(0) != '-')
-              {
-                  this.ph_num = false;
-                  this.ph_length = false;
-              }
-              else{
-                  this.ph_num = true;
-                  this.ph_length = true;
-              }
-            }
+
+                if(this.hospital_info.phone != '')
+                {
+                    this.ph_num = false;
+                }
+            
+                if(this.hospital_info.phone != '' && (this.phone_reg).test(this.hospital_info.phone) && (this.hospital_info.phone.length >= 10 && this.hospital_info.phone.length <= 13))
+                {
+                
+                    this.ph_length = false;
+                
+                }
+                else{
+            
+                    this.ph_length = true;
+                }
+
+                 if(this.hospital_info.phone == '' || this.hospital_info.phone == null)
+                {
+                
+                    this.ph_length = false;
+                }
+                
+                 }
             },
 
         }
 
 </script>
-<style>
- .quill-editor{
-          background-color: #fff;
-  }
+<style scoped>
+.profile-logo{
+    max-height: 120px;
+    overflow: hidden;
+}
+.quill-editor{
+    background-color: #fff;
+}
+ @media screen and (max-width:414px){
+     .d-flex{
+         display:  block !important;
+     }
+ }
+
+ .form-wrap .sp1,
+.sp3 {
+    /* margin: 0 5px; */
+    padding: 0 5px 0 5px;
+    background: #F54336;
+    font-size: 12px;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 3px;
+    vertical-align: text-top;
+    width: 35px;
+}
 </style>

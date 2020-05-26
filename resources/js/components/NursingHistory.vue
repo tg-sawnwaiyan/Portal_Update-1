@@ -1,9 +1,9 @@
 <template>
     <div class="scrolldiv2 pb-5 tab-content" id="nursing">
         <div class="row m-0">
-            <div class="col-12 pl-0">
+            <div class="col-12 pad-free pad-free-75">
                 <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
+                    <ol class="breadcrumb" style="padding-left:0px !important;padding-right:0px !important;">
                         <li class="breadcrumb-item">
                             <router-link to="/">ホーム</router-link>
                         </li>
@@ -11,8 +11,8 @@
                     </ol>
                 </nav>
             </div>
-            <div class="col-md-12">
-                <div class="col-md-12 fav-his-header">
+            <div class="col-md-12 pad-free">
+                <div class="col-md-12 fav-his-header pad-free">
                     <svg x="0px" y="0px" width="24" height="24" viewBox="0 0 172 172" style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#c40000"><path d="M86,15.0472l-78.83333,70.9528h21.5v64.5h59.44694c-1.3545,-4.54367 -2.11361,-9.3525 -2.11361,-14.33333h-43v-63.14225l43,-38.6888l57.61328,51.66439h21.22006zM136.19466,100.24935c-19.78717,0 -35.83333,16.04617 -35.83333,35.83333c0,19.78717 16.04617,35.83333 35.83333,35.83333c19.78717,0 35.83333,-16.04617 35.83333,-35.83333c0,-19.78717 -16.04617,-35.83333 -35.83333,-35.83333zM150.89193,119.24382l10.02213,10.03613l-28.30274,28.30274l-21.13606,-21.13607l10.02213,-10.03613l11.11393,11.11393z"></path></g></g></svg>
                 &nbsp;<span class="font-weight-bold"> 最近見た介護施設リスト</span>
                 &nbsp;<span class ="job_count"> {{his_nus}}件</span>
@@ -26,14 +26,18 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLongTitle">交通アクセス／{{custname}}</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <button class="btn btn-secondary">閉じる&times;</button>
+                            </button> -->
+                             <button type="button" data-dismiss="modal" aria-label="Close" class="close">
+                                <button class="btn btn-secondary pc-480">×</button> <button class="btn btn-secondary close-480"><span>×</span>
+                                            </button>
                             </button>
                         </div>
                         <div class="modal-body">
                            
                             <GmapMap id="googlemap" ref="map" :center="center" :zoom="10">
-                                <GmapMarker v-for="(m, index) in markers" :key="index" :position="m.position" :clickable="true" :draggable="true" @click="center=m.position" />
+                                <GmapMarker v-for="(m, index) in markers" :key="index" :position="m.position" :clickable="true" :draggable="false" @click="center=m.position" />
                             </GmapMap>
                         </div>
                         <div class="modal-body">
@@ -58,12 +62,16 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLongTitle">料金プラン</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <button class="btn btn-secondary">閉じる&times;</button>
-                            </button>
+                            </button> -->
+                             <button type="button" data-dismiss="modal" aria-label="Close" class="close">
+                                            <button class="btn btn-secondary pc-480">×</button> <button class="btn btn-secondary close-480"><span>×</span>
+                                            </button>
+                                        </button>
                         </div>
                         <div class="modal-body">
-                            <table class="table table-bordered price_tbl">
+                            <table class="table table-bordered price_tbl test">
                                 <thead>
                                     <tr>
                                         <th scope="col">プラン名／居室詳細</th>
@@ -111,7 +119,7 @@
                                                                 <img class="profile_img" v-bind:src="'/upload/nursing_profile/' + nur_profile.logo" alt @error="imgUrlAlt"/>
                                                             </div>
                                                             <div class="profile_wd">
-                                                                <router-link class="pseudolink" :to="{name: 'profile', params: {cusid:nur_profile.customer_id, type: 'nursing'}}" >{{nur_profile.name}}</router-link>
+                                                                <router-link class="pseudolink" :to="{ path:'/profile/nursing/'+ nur_profile.id}" >{{nur_profile.name}}</router-link>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -153,7 +161,7 @@
 
                                                     <tr>
                                                     <td v-for="nur_profile in nur_profiles" :key="nur_profile.id">
-                                                        <div class="profile_wd"><span class="pseudolink" @click="googlemap(nur_profile.id)" data-toggle="modal" data-target=".bd-example-modal-google"><i class="fa fa-search"></i>地図・交通アクセス</span></div>
+                                                        <div class="profile_wd"><span class="pseudolink" @click="googlemap(nur_profile.id)" data-toggle="modal" data-target=".bd-example-modal-google" data-backdrop="static" data-keyboard="false"><i class="fa fa-search m-r-5"></i>地図・交通アクセス</span></div>
                                                     </td>
                                                 </tr>
 
@@ -161,7 +169,9 @@
                                                     <td v-for="nur_profile in nur_profiles" :key="nur_profile.id">
                                                         <dl>
                                                             <dt class="text-left">入居時の費用</dt>
-                                                            <dd class="profile_price"><strong>{{(Math.floor(Number(nur_profile.moving_in_from)/10000))==0? '' : (Math.floor(Number(nur_profile.moving_in_from)/10000)).toLocaleString()+'万' }}{{(Number(nur_profile.moving_in_from)%10000)==0 ? '' : (Number(nur_profile.moving_in_from)%10000).toLocaleString()}}円～</strong></dd>
+                                                            <dd class="profile_price">
+                                                                <strong v-if="Number(nur_profile.moving_in_from) == 0">0円</strong>
+                                                                <strong v-else>{{(Math.floor(Number(nur_profile.moving_in_from)/10000))==0? '' : (Math.floor(Number(nur_profile.moving_in_from)/10000)).toLocaleString()+'万' }}{{(Number(nur_profile.moving_in_from)%10000)==0 ? '' : (Number(nur_profile.moving_in_from)%10000).toLocaleString()}}円～</strong></dd>
                                                         </dl>
                                                     </td>
                                                 </tr>
@@ -170,14 +180,16 @@
                                                     <td v-for="nur_profile in nur_profiles" :key="nur_profile.id">
                                                         <dl>
                                                             <dt class="text-left">月額の費用</dt>
-                                                            <dd class="profile_price"><strong>{{(Math.floor(Number(nur_profile.per_month_from)/10000))==0? '' : (Math.floor(Number(nur_profile.per_month_from)/10000)).toLocaleString()+'万' }}{{(Number(nur_profile.per_month_from)%10000)==0 ? '' : (Number(nur_profile.per_month_from)%10000).toLocaleString()}}円～</strong></dd>
+                                                            <dd class="profile_price">
+                                                                <strong v-if="Number(nur_profile.per_month_from) == 0">0円</strong>
+                                                                <strong v-else>{{(Math.floor(Number(nur_profile.per_month_from)/10000))==0? '' : (Math.floor(Number(nur_profile.per_month_from)/10000)).toLocaleString()+'万' }}{{(Number(nur_profile.per_month_from)%10000)==0 ? '' : (Number(nur_profile.per_month_from)%10000).toLocaleString()}}円～</strong></dd>
                                                         </dl>
                                                     </td>
                                                 </tr>
 
                                                 <tr>
                                                     <td v-for="nur_profile in nur_profiles" :key="nur_profile.id">
-                                                        <div class="profile_wd"><span class="pseudolink" @click="monthlyCost(nur_profile.id)" data-toggle="modal" data-target=".bd-example-modal-cost"><i class="fa fa-search"></i>料金プランの詳細</span></div>
+                                                        <div class="profile_wd"><span class="pseudolink" @click="monthlyCost(nur_profile.id)" data-toggle="modal" data-target=".bd-example-modal-cost" data-backdrop="static" data-keyboard="false"><i class="fa fa-search m-r-5"></i>料金プランの詳細</span></div>
                                                     </td>
                                                 </tr>
 
@@ -289,52 +301,52 @@ export default {
             },
 
   created() {
-
- window.addEventListener('resize', this.handleResize)
-                this.handleResize(); 
-                if(this.window.width >=320 && this.window.width < 360) {
-                    this.windowSize = 1;  
-                  this.paginationFactor = 260;    
-                } 
-                else if(this.window.width >=360 && this.window.width < 375) {
-                    this.windowSize = 1;
-                     this.paginationFactor = 260;    
-                } 
-                 else if(this.window.width >=375 && this.window.width < 450) {
-                    this.windowSize = 1;
-                     this.paginationFactor = 260;    
-                }
-                
-                else if(this.window.width >= 414 && this.window.width < 768) {
-                    this.windowSize = 1;
-                     this.paginationFactor = 260; 
-                } 
-                else if(this.window.width >= 768 && this.window.width < 992) {
-                    this.windowSize = 2;
-                    this.paginationFactor = 260;  
-                }
-                else if(this.window.width >= 992 && this.window.width < 1024) {
-                    this.windowSize = 3; 
-                    this.paginationFactor = 255;                                 
-                }
-                else if(this.window.width >= 1024 && this.window.width < 1200) {
-                    this.windowSize = 3; 
-                      this.paginationFactor = 255;                                
-                }
-                else if (this.window.width >= 1200 && this.window.width < 1280) {
-                    this.windowSize = 3;
-                    this.paginationFactor = 260;                    
-                }
-                else if (this.window.width >= 1280 && this.window.width < 1440) {
-                    this.windowSize = 4;
-                    this.paginationFactor = 257;
-                    
-                }
-                else if (this.window.width >= 1440 && this.window.width < 1880) {
-                    this.windowSize = 4;
-                     this.paginationFactor = 260;            
-                    // console.log(this.window.width);
-                }
+    this.$loading(true);  
+    window.addEventListener('resize', this.handleResize)
+    this.handleResize(); 
+    if(this.window.width >=320 && this.window.width < 360) {
+        this.windowSize = 1;  
+        this.paginationFactor = 260;    
+    } 
+    else if(this.window.width >=360 && this.window.width < 375) {
+        this.windowSize = 1;
+            this.paginationFactor = 260;    
+    } 
+        else if(this.window.width >=375 && this.window.width < 450) {
+        this.windowSize = 1;
+            this.paginationFactor = 260;    
+    }
+    
+    else if(this.window.width >= 414 && this.window.width < 768) {
+        this.windowSize = 1;
+            this.paginationFactor = 260; 
+    } 
+    else if(this.window.width >= 768 && this.window.width < 992) {
+        this.windowSize = 2;
+        this.paginationFactor = 260;  
+    }
+    else if(this.window.width >= 992 && this.window.width < 1024) {
+        this.windowSize = 3; 
+        this.paginationFactor = 255;                                 
+    }
+    else if(this.window.width >= 1024 && this.window.width < 1200) {
+        this.windowSize = 3; 
+            this.paginationFactor = 255;                                
+    }
+    else if (this.window.width >= 1200 && this.window.width < 1280) {
+        this.windowSize = 3;
+        this.paginationFactor = 260;                    
+    }
+    else if (this.window.width >= 1280 && this.window.width < 1440) {
+        this.windowSize = 4;
+        this.paginationFactor = 257;
+        
+    }
+    else if (this.window.width >= 1440 && this.window.width < 1880) {
+        this.windowSize = 4;
+            this.paginationFactor = 260;            
+        // console.log(this.window.width);
+    }
     
     
     this.local_sto = localStorage.getItem("nursing_history");
@@ -366,21 +378,21 @@ export default {
         }
     },
    deleteLocalSto: function(id) {
-
             this.$swal({
-            title: "確認",
-            text: "削除よろしいでしょうか",
+            allowOutsideClick: false,
+            text: "最近見た施設から削除してよろしいでしょうか 。",
             type: "warning",
             width: 350,
             height: 200,
             showCancelButton: true,
-            confirmButtonColor: "#dc3545",
+            confirmButtonColor: "#EEA025",
             cancelButtonColor: "#b1abab",
             cancelButtonTextColor: "#000",
-            confirmButtonText: "削除",
+            confirmButtonText: "はい",
             cancelButtonText: "キャンセル",
             confirmButtonClass: "all-btn",
-            cancelButtonClass: "all-btn"
+            cancelButtonClass: "all-btn",
+            allowOutsideClick: false,
         }).then(response => { 
             var l_sto = this.local_sto;
             var l_sto_arr = l_sto.split(",");
@@ -399,24 +411,14 @@ export default {
                 var new_local = l_sto_arr.toString();
                 localStorage.setItem('nursing_history', new_local);
                 this.local_sto = localStorage.getItem("nursing_history");
-            //     this.$swal({
-            //   title: "削除された",
-            //   text: "ファイルが削除されました。",
-            //   type: "success",
-            //   width: 350,
-            //   height: 200,
-            //   confirmButtonText: "はい",
-            //   confirmButtonColor: "#dc3545"
-            // });
+            
                 if (this.local_sto) {
+                    this.his_nus = this.local_sto.split(",").length;
                     this.getAllCustomer(this.local_sto);
                 } else {
-                    // window.location.reload();
+                   
                     this.$router.push({
-                        name: 'nursingSearch',
-                        // params: {
-                        //     page: 'subtab3'
-                        // }
+                        name: 'nursingSearch',                       
                     });
                 }
             }
@@ -427,24 +429,29 @@ export default {
                 this.his_nus = this.local_sto.split(",").length;
             }
      
-    },
-    // changeRoute(){
-
-    //     this.$router.push({name:'home', params: {page:'subtab3'}});
-
-    // },
+    },   
 
     getAllCustomer: function(local_storage) {
       this.axios
         .post("/api/nursing_history/" + local_storage)
         .then(response => {
-            console.log(response.data)
+            this.$loading(false);  
             if(response.data.length>0) {
                 this.nur_profiles = response.data;
                 if(response.data.length<this.his_nus) {
+                    this.$swal({
+                        position: 'top-end',
+                        type: 'info',
+                        text: 'すでに掲載されていない施設をリストから削除しました。',
+                        showConfirmButton: true,
+                        confirmButtonText: "閉じる",
+                        width: 400,
+                        height: 200,
+                        allowOutsideClick: false,
+                    });
                     // $('.msg').html('<span>Some Nursing Accounts are Deactivated!</span>');
                     var nus_id = '';
-                    this.message = "現在本サイトに掲載されていない介護施設については最近見た施設リストから削除しました。";
+                    // this.message = "現在本サイトに掲載されていない介護施設については最近見た施設リストから削除しました。";
                     for(var i= 0;i<this.nur_profiles.length;i++) {
                         if(i== this.nur_profiles.length-1) {
                             nus_id += this.nur_profiles[i]['id'];
@@ -460,10 +467,10 @@ export default {
             } else {
                 this.his_nus = 0;
                 this.$swal({
-                    title: "確認",
-                    text: "お気に入りの病院は既に本サイトに掲載されておりませんので、最近見た施設リストから削除しました。",
+                    allowOutsideClick: false,
+                    text: "すでに掲載されていない施設をリストから削除しました。",
                     type: 'info',
-                    width: 350,
+                    width: 400,
                     height: 200,
                     showConfirmButton: true,
                     // confirmButtonColor: "#dc3545",
@@ -472,6 +479,7 @@ export default {
                     confirmButtonText: "閉じる",
                     // cancelButtonText: "キャンセル",
                     confirmButtonClass: "all-btn",
+                    allowOutsideClick: false,
                     // cancelButtonClass: "all-btn"
                 }).then(response => {
                     localStorage.setItem('nursing_history','');
@@ -508,7 +516,7 @@ export default {
                         }
                     },
           imgUrlAlt(event) {
-                event.target.src = "images/noimage.jpg"
+                event.target.src = "/images/noimage.jpg"
             }
 
 

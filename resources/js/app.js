@@ -12,7 +12,15 @@ import Vuex from 'vuex';
 import * as VueGoogleMaps from "vue2-google-maps";
 import DatePicker from 'vue2-datepicker';
 import { BulmaAccordion, BulmaAccordionItem } from "vue-bulma-accordion";
-import Slick from 'vue-slick';//vue slick
+import Slick from 'vue-slick'; //vue slick
+import VueAnalytics from 'vue-analytics'
+
+Vue.use(VueAnalytics, {
+    id: 'UA-164662727-1',
+    router,
+})
+// id: 'UA-164662727-1',
+// id: 'UA-161193570-2',
 
 Vue.use(Slick);
 Vue.use(BulmaAccordion, BulmaAccordionItem)
@@ -30,9 +38,12 @@ let globalData = new Vue({
         nusHis: 0,
         hosHis: 0,
         visit: 'true',
-        test:[]
+        loginuser: 'false',
+        test: [],
+        logintoken: '',
     }
 });
+
 Vue.mixin({
     computed: {
         nusFav: {
@@ -55,9 +66,17 @@ Vue.mixin({
             get: function() { return globalData.$data.visit },
             set: function(newVal) { globalData.$data.visit = newVal; }
         },
+        loginuser: {
+            get: function() { return globalData.$data.loginuser },
+            set: function(newVal) { globalData.$data.loginuser = newVal; }
+        },
         test: {
             get: function() { return globalData.$data.test },
             set: function(newVal) { globalData.$data.test = newVal; }
+        },
+        logintoken: {
+            get: function() { return globalData.$data.logintoken },
+            set: function(newVal) { globalData.$data.logintoken = newVal; }
         }
     }
 })
@@ -108,13 +127,15 @@ Vue.use(VueLoading, {
 
 window.events = new Vue();
 Vue.use(VueClazyLoad)
-// Vue.use(VueRouter);
+    // Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
+
 Vue.use(VueGoogleMaps, {
     load: {
-        key: "AIzaSyC-2U_IRuSrajQavHadFp8FlXNi61MA3nw",
+        key: "javascript-map-api-key-here",
     }
 });
+
 // Set Vue globally
 window.Vue = Vue
     // Set Vue router

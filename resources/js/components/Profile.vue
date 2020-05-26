@@ -1,18 +1,18 @@
 <template>
   <div id="Profile-page">
-    <h4 v-if="login_person == 'customer' && visit == 'false'" class="header" style="background:transparent;">マイページ編集</h4>
-    <button @click="$router.go(-1)" v-if="login_person == 'admin' && visit == 'false'" class="btn btn-danger all-btn submit" style="float:right">戻る</button>
+    <h4 v-if="login_person == 'customer' && visit == 'false'" class="header" style="background:transparent;">{{heading}}</h4>
+    <button @click="$router.go(-1)" v-if="login_person == 'admin' && visit == 'false'" class="btn btn-danger all-btn submit admin-backbtn" style="float:right"><i class="fas fa-arrow-left"></i>&nbsp;戻る</button>
 
 
-    <span v-if="!loginuser || visit == 'true'">
+    <!-- <span v-if="loginuser=='false' || visit == 'true'">
       <h4 v-if="type == 'nursing'" class="public-nurheader" style="background:transparent;"><i class="fas fa-user-md"></i> ページ</h4>
       <h4 v-if="type == 'hospital'" class="public-hosheader" style="background:transparent;"><i class="fas fa-briefcase-medical"></i> ページ</h4>
-    </span>
+    </span> -->
 
-    <div v-if="type == 'nursing'">
+    <div>
 
-      <ul class="nav nav-tabs nursing-tabColor" role="tablist" id="profilenav" v-bind:style="{width:width}" >
-        <li role="presentation" class="subtab1 nav-item" v-if="loginuser">
+      <ul class="nav nav-tabs" :class="type == 'nursing'? 'nursing-tabColor': 'hospital-tabColor'" role="tablist" v-if="$auth.check() && visit == 'false'" id="profilenav" v-bind:style="{width:width}" >
+        <li role="presentation" class="subtab1 nav-item" v-if="loginuser=='true' && visit == 'false'">
           <label for="hospital" class="typelabel nav-link active" id="hospital-lbl">
             <i class="fa fa-edit"></i>
             <input type="radio" v-model="btntype" value="create" v-on:change="changeBtnType('hospital-lbl','nursing-lbl')" name="btntype" id="hospital" />
@@ -20,62 +20,25 @@
           </label>
         </li>
 
-        <li role="presentation" class="subtab2 nav-item" v-if="loginuser" >
-          <label for="nursing" class="typelabel dim-btn nav-link" id="nursing-lbl">
-            <input type="radio" v-model="btntype" value="view" v-on:change="changeBtnType('nursing-lbl','hospital-lbl')" name="btntype" id="nursing" />
-            <span ><i class="fas fa-search" style="font-size:18px;"></i>&nbsp;プレビュー</span>
-            <!-- <span v-if="!loginuser"></span> -->
-          </label>
-        </li>
-
-        <span class="btn fav-profile fav-item fav-color" v-if="!view_pro_id && !loginuser" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
-        <span class="btn fav-profile fav-item fav-color" style="color:#aaa;" v-if="view_pro_id && !loginuser" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
-      </ul>
-
-      <div class="tab-content nursing-borderColor tab-content1 tabs">
-        <form class="col-md-12 pad-free">
-          <div class="col-md-12 pad-free tab-pane" v-if="btntype == 'create'">
-            <nursingProfile :cusid="cusid" :type="type"></nursingProfile>
-          </div>
-
-          <div class="col-md-12 pad-free" v-if="btntype == 'view'">
-            <profilePublish :cusid="cusid" :type="type" :loginuser="loginuser"></profilePublish>
-          </div>
-        </form>
-      </div>
-
-    </div>
-
-    <div v-if="type == 'hospital'">
-      <ul class="nav nav-tabs hospital-tabColor" role="tablist" id="profilenav"  v-bind:style="{width:width}">
-        <li role="presentation" class="subtab1 nav-item" v-if="loginuser">
-          <label for="hospital" class="typelabel nav-link active" id="hospital-lbl">
-            <i class="fa fa-edit"></i>
-            <input type="radio" v-model="btntype" value="create" v-on:change="changeBtnType('hospital-lbl','nursing-lbl')" name="btntype" id="hospital" />
-            編集
-          </label>
-        </li>
-
-        <li role="presentation" class="subtab2 nav-item" v-if="loginuser">
+        <li role="presentation" class="subtab2 nav-item" v-if="loginuser=='true' && visit == 'false'" >
           <label for="nursing" class="typelabel nav-link" id="nursing-lbl">
             <input type="radio" v-model="btntype" value="view" v-on:change="changeBtnType('nursing-lbl','hospital-lbl')" name="btntype" id="nursing" />
-            <span><i class="fas fa-search" style="font-size:18px;"></i>&nbsp;プレビュー</span>
-            <!-- <span v-if="!loginuser"><i class="fas fa-briefcase-medical"></i></span> -->
+            <span ><i class="fas fa-search" style="font-size:18px;"></i>&nbsp;プレビュー</span>
+            <!-- <span v-if="loginuser=='false'"></span> -->
           </label>
         </li>
 
-        <span class="btn fav-profile fav-item fav-color" v-if="!view_pro_id && !loginuser" @click="favAddFun('add');view_pro_id = !view_pro_id"><i class="fas fa-plus-square" style="color:#c40000!important;"></i>&nbsp; お気に入りに追加</span>
-        <span class="btn fav-profile fav-item fav-color" v-if="view_pro_id && !loginuser" @click="favAddFun('remove');view_pro_id = !view_pro_id"><i class="fas fa-check-double" style="color:#c40000!important;"></i>&nbsp; 追加済み</span>
       </ul>
 
-      <div class="tab-content hospital-borderColor tab-content1 tabs">
-        <form class="col-md-12 pad-free">
+      <div class="tab-content tab-content1 tabs" :class="type == 'nursing'? 'nursing-borderColor': 'hospital-borderColor'">
+        <form class="col-md-12 pad-free" autocomplete="off">
           <div class="col-md-12 pad-free tab-pane" v-if="btntype == 'create'">
-            <hospitalProfile></hospitalProfile>
+            <nursingProfile v-if="type == 'nursing'"></nursingProfile>
+            <hospitalProfile v-if="type == 'hospital'"></hospitalProfile>
           </div>
 
           <div class="col-md-12 pad-free" v-if="btntype == 'view'">
-            <profilePublish :cusid="cusid" :type="type" :loginuser="loginuser"></profilePublish>
+            <profilePublish :pro_id="pro_id" :type="type" :loginuser="loginuser"></profilePublish>
           </div>
         </form>
       </div>
@@ -83,14 +46,6 @@
   </div>
 </template>
 
-
-<style scoped>
-#Profile-page {
-  overflow: hidden;
-  /* max-width: 1600px; */
-  width: 100%;
-}
-</style>
 <script>
 import hospitalProfile from "./HospitalProfile.vue";
 
@@ -110,49 +65,40 @@ export default {
   data() {
     return {
         type: null,
-        cusid: null,
+        // pro_id: null,
         btntype: "",
         width: "",
         login_person : null,
-        loginuser: true,
+        // loginuser: true,
         l_storage_hos_history: [],
         l_storage_nus_history: [],
         l_storage_hos_fav: [],
         l_storage_nus_fav: [],
         view_pro_id: false,
         pro_id:0,
+        heading:"",
     };
   },
-  created() {
-
-    if(this.$auth.check()){
+  created() {    
+    this.pro_id = Number(this.$route.params.id);
+    this.type = this.$route.params.type;
+    if(this.type == 'hospital'){
+      this.heading = "病院情報編集";
+    }
+    else{
+      this.heading = "施設情報編集";
+    }
+    
+    if(this.$auth.check()){        
         if(this.$auth.user().role === 1){
-            this.login_person = 'customer';
-            this.axios.get('/api/user').then(response => {
-                this.loginView(response);
-            })
+            this.login_person = 'customer';            
         }
         else if(this.$auth.user().role === 2) {
-            if(this.$route.params.type){
-                localStorage.setItem("cusType", this.$route.params.type);
-                this.type = this.$route.params.type;
-            }
-            else{
-                this.type = localStorage.getItem("cusType");
-            }
-            if(this.$route.params.cusid){
-                localStorage.setItem("cusId", this.$route.params.cusid);
-                this.cusid = Number(this.$route.params.cusid);
-            }
-            else{
-                this.cusid = Number(localStorage.getItem("cusId"));
-            }
-
             this.login_person = 'admin';
-            this.axios.get(`/api/admin/${this.cusid}/${this.type}`).then(response => {
-                this.loginView(response);
-            })
         }
+        this.axios.get(`/api/getprofile/${this.pro_id}/${this.type}`).then(response => {
+            this.loginView(response);
+        })
     }
     else{
         this.publicView();
@@ -166,236 +112,38 @@ export default {
 
   },
   methods: {
-    loginView(response){
-      console.log('a',response.data);
+    loginView(response){   
+        this.loginuser = 'true';     
         if(this.visit == 'false'){
             this.btntype = "create";
-            this.loginuser = true;
-            this.pro_id = response.data.lat_lng[0].id;
+            // this.loginuser = true;
             localStorage.setItem("lat_num", response.data.lat_lng[0].latitude==0?'35.6803997':response.data.lat_lng[0].latitude);
             localStorage.setItem("lng_num", response.data.lat_lng[0].longitude==0?'139.76901739':response.data.lat_lng[0].longitude);
-
-            if(this.login_person == 'customer') {
-                localStorage.setItem("cusId", response.data.user.customer_id);
-                this.cusid = response.data.user.customer_id;
-
-                if(response.data.user.type_id == 2){
-                    localStorage.setItem("cusType", 'hospital');
-                    this.type = 'hospital';
-                }
-                else{
-                    localStorage.setItem("cusType", 'nursing');
-                    this.type = 'nursing';
-                }
-            }
         }
         else{
             this.btntype = "view";
-            this.loginuser = false;
-            if (this.$route.params.type) {
-            this.type = this.$route.params.type;
-            localStorage.setItem("cusType", this.type);
-            }
-            if (this.$route.params.cusid) {
-            this.cusid = this.$route.params.cusid;
-            localStorage.setItem("cusId", this.cusid);
-            }
-            this.type = localStorage.getItem("cusType");
-            this.cusid = Number(localStorage.getItem("cusId"));
-
-            this.axios.get(`/api/profile_view/${this.cusid}/${this.type}`).then(response => {
-                this.pro_id = response.data[0].pro_id;
+            // this.loginuser = false;            
+            this.axios.get(`/api/profile_view/${this.pro_id}/${this.type}`).then(response => {
                 localStorage.setItem("lat_num", response.data[0].latitude);
-                localStorage.setItem("lng_num", response.data[0].longitude);
-
-                if(this.type == 'hospital'){
-                    if(localStorage.getItem("hospital_history")) {
-                        var hos_his_arr = JSON.parse("[" + localStorage.getItem("hospital_history") + "]");
-                        hos_his_arr.push(response.data[0].pro_id);
-                        hos_his_arr = [...new Set(hos_his_arr)];
-                        localStorage.setItem("hospital_history", hos_his_arr);
-                        // $("#hos-his-local").html(hos_his_arr.length);
-                        this.hosHis = hos_his_arr.length;
-                    }
-                    else{
-                        var hos_his_arr = [response.data[0].pro_id];
-                        localStorage.setItem("hospital_history", hos_his_arr);
-                        // $("#hos-his-local").html(hos_his_arr.length);
-                        this.hosHis = hos_his_arr.length;
-                        $('.his-hospital-link-box>a').css({'cursor':'pointer','pointer-events':'auto'});
-                    }
-                    if(localStorage.getItem("hospital_fav")){
-                        var nus_fav_arr = JSON.parse("[" + localStorage.getItem("hospital_fav") + "]");
-                        this.view_pro_id = nus_fav_arr.includes(response.data[0].pro_id);
-                    }
-                }
-                else{
-                    if(localStorage.getItem("nursing_history")) {
-                        var nus_his_arr = JSON.parse("[" + localStorage.getItem("nursing_history") + "]");
-                        nus_his_arr.push(response.data[0].pro_id);
-                        nus_his_arr = [...new Set(nus_his_arr)];
-                        localStorage.setItem("nursing_history", nus_his_arr);
-                        // $("#nus-his-local").html(nus_his_arr.length);
-                        this.nusHis = nus_his_arr.length;
-                    }
-                    else{
-                        var nus_his_arr = [response.data[0].pro_id];
-                        localStorage.setItem("nursing_history", nus_his_arr);
-                        // $("#nus-his-local").html(nus_his_arr.length);
-                        this.nusHis = nus_his_arr.length;
-                        $('.his-nursing-link-box>a').css({'cursor':'pointer','pointer-events':'auto'});
-                    }
-
-                    if(localStorage.getItem("nursing_fav")){
-                        var nus_fav_arr = JSON.parse("[" + localStorage.getItem("nursing_fav") + "]");
-                        this.view_pro_id = nus_fav_arr.includes(response.data[0].pro_id);
-                    }
-                }
+                localStorage.setItem("lng_num", response.data[0].longitude);                
             });
         }
     },
     publicView(){
         this.btntype = "view";
-        this.loginuser = false;
-        if (this.$route.params.type) {
-        this.type = this.$route.params.type;
-        localStorage.setItem("cusType", this.type);
-        }
-        if (this.$route.params.cusid) {
-        this.cusid = this.$route.params.cusid;
-        localStorage.setItem("cusId", this.cusid);
-        }
-        this.type = localStorage.getItem("cusType");
-        this.cusid = Number(localStorage.getItem("cusId"));
-
-        this.axios.get(`/api/profile_view/${this.cusid}/${this.type}`).then(response => {
-            console.log(response)
-            this.pro_id = response.data[0].pro_id;
+        this.loginuser = 'false';        
+        this.axios.get(`/api/profile_view/${this.pro_id}/${this.type}`).then(response => {
             localStorage.setItem("lat_num", response.data[0].latitude);
-            localStorage.setItem("lng_num", response.data[0].longitude);
-
-
-            if(this.type == 'hospital'){
-                if(localStorage.getItem("hospital_history")) {
-                    var hos_his_arr = JSON.parse("[" + localStorage.getItem("hospital_history") + "]");
-                    hos_his_arr.push(response.data[0].pro_id);
-                    hos_his_arr = [...new Set(hos_his_arr)];
-                    localStorage.setItem("hospital_history", hos_his_arr);
-                    // $("#hos-his-local").html(hos_his_arr.length);
-                    this.hosHis = hos_his_arr.length;
-                }
-                else{
-                    var hos_his_arr = [response.data[0].pro_id];
-                    localStorage.setItem("hospital_history", hos_his_arr);
-                    // $("#hos-his-local").html(hos_his_arr.length);
-                    this.hosHis = hos_his_arr.length;
-                    $('.his-hospital-link-box>a').css({'cursor':'pointer','pointer-events':'auto'});
-                }
-                if(localStorage.getItem("hospital_fav")){
-                    var nus_fav_arr = JSON.parse("[" + localStorage.getItem("hospital_fav") + "]");
-                    this.view_pro_id = nus_fav_arr.includes(response.data[0].pro_id);
-                }
-            }
-            else{
-                if(localStorage.getItem("nursing_history")) {
-                    var nus_his_arr = JSON.parse("[" + localStorage.getItem("nursing_history") + "]");
-                    nus_his_arr.push(response.data[0].pro_id);
-                    nus_his_arr = [...new Set(nus_his_arr)];
-                    localStorage.setItem("nursing_history", nus_his_arr);
-                    // $("#nus-his-local").html(nus_his_arr.length);
-                    this.nusHis = nus_his_arr.length;
-                }
-                else{
-                    var nus_his_arr = [response.data[0].pro_id];
-                    localStorage.setItem("nursing_history", nus_his_arr);
-                    // $("#nus-his-local").html(nus_his_arr.length);
-                    this.nusHis = nus_his_arr.length;
-                    $('.his-nursing-link-box>a').css({'cursor':'pointer','pointer-events':'auto'});
-                }
-
-                if(localStorage.getItem("nursing_fav")){
-                    var nus_fav_arr = JSON.parse("[" + localStorage.getItem("nursing_fav") + "]");
-                    this.view_pro_id = nus_fav_arr.includes(response.data[0].pro_id);
-                }
-            }
+            localStorage.setItem("lng_num", response.data[0].longitude);            
         });
     },
+
     changeBtnType(a,b) {
       this.scrollTop();
         document.getElementById(a).classList.add("active");
         document.getElementById(b).classList.remove("active");
-
-
-      // if (this.btntype == "create") {
-      //   document.getElementById("hospital-lbl").classList.add("dim-btn");
-      //   document.getElementById("nursing-lbl").classList.remove("dim-btn");
-      // } else {
-      //   document.getElementById("nursing-lbl").classList.add("dim-btn");
-      //   document.getElementById("hospital-lbl").classList.remove("dim-btn");
-      // }
     },
-    favAddFun(status){
-        if(this.type == 'nursing'){
-            var locReplace = "nursing_fav";
-            var varReplace = "#nus-fav-local";
-            var linkBox = ".fav-nursing-link-box>a";
-        }
-        else{
-            var locReplace = "hospital_fav";
-            var varReplace = "#hos-fav-local";
-            var linkBox = ".fav-hospital-link-box>a";
-        }
-
-        if(status == 'add'){
-            if(localStorage.getItem(locReplace)){
-                var fav_arr = JSON.parse("[" + localStorage.getItem(locReplace) + "]");
-                fav_arr.push(this.pro_id);
-                fav_arr = [...new Set(fav_arr)];
-                localStorage.setItem(locReplace, fav_arr);
-                // $(varReplace).html(fav_arr.length);
-                if(this.type == 'nursing'){
-                    this.nusFav = fav_arr.length;
-                }
-                else{
-                    this.hosFav = fav_arr.length;
-                }
-            }
-            else{
-                var fav_arr = [this.pro_id];
-                localStorage.setItem(locReplace, fav_arr);
-                // $(varReplace).html(fav_arr.length);
-                if(this.type == 'nursing'){
-                    this.nusFav = fav_arr.length;
-                }
-                else{
-                    this.hosFav = fav_arr.length;
-                }
-            }
-            $(linkBox).css({'cursor':'pointer','pointer-events':'auto'});
-        }
-        else{
-            var fav_arr = JSON.parse("[" + localStorage.getItem(locReplace) + "]");
-            var index = fav_arr.indexOf(this.pro_id);
-            if (index > -1) {
-                fav_arr.splice(index, 1);
-                localStorage.setItem(locReplace, fav_arr);
-            }
-            // $(varReplace).html(fav_arr.length);
-            if(this.type == 'nursing'){
-                this.nusFav = fav_arr.length;
-            }
-            else{
-                this.hosFav = fav_arr.length;
-            }
-
-            if(fav_arr.length == 0){
-                $(linkBox).css({'cursor':'not-allowed','pointer-events':'none'})
-            }
-            else{
-                $(linkBox).css({'cursor':'pointer','pointer-events':'auto'})
-            }
-        }
-    },
+    
     scrollTop(){
       $("html, body").animate({ scrollTop: 0 }, "slow");
     }
@@ -404,13 +152,20 @@ export default {
 </script>
 
 <style >
-.hospital-tabColor .nav-link {
+#Profile-page {
+  /* overflow: hidden; */
+  /* max-width: 1600px; */
+  width: 100%;
+  /* margin-top: 10px; */
+}
+/* .hospital-tabColor .nav-link {
         background: #63b7ff !important;
         color: #fff;
         border-right: 1px solid #fff;
-}
+} */
 .nursing-tabColor .nav-link {
-        background: #ff9563 !important;
+        /* background: #ff9563 !important; */
+         background: #63b7ff !important;
         color: #fff !important;
         border-right: 1px solid #fff;
 }
@@ -418,6 +173,7 @@ export default {
         border: 1px solid #63b7ff !important;
 }
 .nursing-borderColor {
-        border: 1px solid #ff9563 !important;
+        /* border: 1px solid #ff9563 !important; */
+        border: 1px solid #63b7ff !important;
 }
 </style>

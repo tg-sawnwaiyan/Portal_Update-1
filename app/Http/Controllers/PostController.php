@@ -25,11 +25,19 @@ class PostController extends Controller
 
     public function index()
     {
-
+       
     //    $news_list = Post::orderBy('id','DESC')->get()->toArray();
     //    $category_list = Category::select('id','name')->get()->toArray();
-            $news_list = Post::orderBy('id', 'desc')->paginate(12);
+            $news_list = Post::join('categories','categories.id','=','posts.category_id')->select('posts.*','categories.name as cat_name')->orderBy('posts.id', 'desc')->paginate(20);
             $category_list = Category::select('id','name')->get()->toArray();
+
+        
+            foreach ($news_list as $com) {
+                $splitTimeStamp = explode(" ",$com->from_date);
+                $com->from_date = $splitTimeStamp[0];
+                $splitTimeStamp1 = explode(" ",$com->to_date);
+                $com->to_date = $splitTimeStamp1[0];
+            }
     
             return response()->json(Array("news"=>$news_list,"category"=>$category_list));
 
@@ -37,12 +45,16 @@ class PostController extends Controller
     // add news
     public function add(Request $request)
     {
+       
         if(is_object($request->photo)){
             $imageName = $request->photo->getClientOriginalName();
             $imageName = str_replace(' ', '', $imageName);
+            $imageName = strtolower($imageName);
             $request->photo->move('upload/news/', $imageName);
         }else {
             $imageName =$request->photo;
+            $imageName = str_replace(' ', '', $imageName);
+            $imageName = strtolower($imageName);
         }
         $post = new Post() ;
             $post->title = $request->input('title');
@@ -52,8 +64,10 @@ class PostController extends Controller
             $post->category_id=$request->input('category_id');
             $post->related_news=$request->input('related_news');
             $post->user_id = 1;
-            $post->recordstatus=1;
-
+            // $post->recordstatus=1;
+            $post->from_date = $request->input('from_date');
+            $post->to_date = $request->input('to_date');
+        
             $post->save();
 
         return response()->json('The New successfully added');
@@ -113,9 +127,16 @@ class PostController extends Controller
        return response()->json(array('news'=> $data));
     
     }
+
+    public function getNewsByCategory($id)
+    {
+        $cat_name = Category::where('id',$id)->select('name')->value('name');
+        $newslist = Post::where('category_id',$id)->get();
+        return response()->json(array('cat_name'=> $cat_name,'newslist'=>$newslist));
+    }
     
     public function show_related($id) {
-
+    
         $related_news = Post::select('related_news','category_id')->where('id',$id)->get();
         if($related_news[0]["related_news"] != null) {
             $sql = "select * from posts where id in(".$related_news[0]["related_news"].")";
@@ -142,6 +163,8 @@ class PostController extends Controller
     public function edit($id)
     {
         $posts = Post::find($id);
+      
+     
         return response()->json($posts);
     }
 
@@ -162,6 +185,7 @@ class PostController extends Controller
                 \File::delete($filename);
                 $imageName = $request->photo->getClientOriginalName();
                 $imageName = str_replace(' ', '', $imageName);
+                $imageName = strtolower($imageName);
                 $request->photo->move('upload/news/', $imageName);
             }
             else {
@@ -176,6 +200,7 @@ class PostController extends Controller
                 \File::delete($filename);
                 $imageName = $request->photo->getClientOriginalName();
                 $imageName = str_replace(' ', '', $imageName);
+                $imageName = strtolower($imageName);
                 $request->photo->move('upload/news/', $imageName);
             }
 
@@ -202,8 +227,10 @@ class PostController extends Controller
             $post->photo = $imageName;
             $post->category_id=$request->input('category_id');
             $post->related_news=$request->input('related_news');
+            $post->from_date = $request->input('from_date');
+            $post->to_date = $request->input('to_date');
             $post->user_id = 1;
-            $post->recordstatus=1;
+            // $post->recordstatus=1;
             $post->save();
 
 
@@ -217,48 +244,115 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function delete($id)
+    public function delete($id,$cat_id)
     {
+     
         $post = Post::find($id);
         $file= $post->photo;
         $filename = './upload/news/'.$file;
         \File::delete($filename);
         $post->delete();
+       
+        
+        if($cat_id == 0)
+        {
+        //    $posts = Post::orderBy('id', 'desc')->paginate(20);
+        $posts = Post::join('categories','categories.id','=','posts.category_id')->select('posts.*','categories.name as cat_name')->orderBy('posts.id', 'desc')->paginate(20);
+        }
+        else{
+            // $posts = Post::where('category_id',$cat_id)->orderBy('id','desc')->paginate(20);
+            $posts = Post::join('categories','categories.id','=','posts.category_id')->select('posts.*','categories.name as cat_name')->where('category_id',$cat_id)->orderBy('posts.id', 'desc')->paginate(20);
+        }
 
-        $posts = Post::orderBy('id', 'desc')->paginate(15);
+        foreach ($posts as $com) {
+            $splitTimeStamp = explode(" ",$com->from_date);
+            $com->from_date = $splitTimeStamp[0];
+            $splitTimeStamp1 = explode(" ",$com->to_date);
+            $com->to_date = $splitTimeStamp1[0];
+        }
+
         return response()->json($posts);
     }
 
     public function search(Request $request)
     {
+      
         $request = $request->all();
 
-        $query = Post::query();
+        $query = Post::join('categories','categories.id','=','posts.category_id')->select('posts.*','categories.name as cat_name');
+     
 
         if(isset($request['selected_category'])) {
             $category_id = $request['selected_category'];
-            $query = $query->where('category_id', $category_id);
+            if($request['postid'] != null){
+                $query = $query->where('posts.category_id', $category_id)->where('posts.id','<>',$request['postid']);
+            }
+            else{
+                $query = $query->where('posts.category_id', $category_id);
+            }
+           
         }
 
         if(isset($request['search_word'])) {
             $search_word = $request['search_word'];
 
             $query = $query->where(function($qu) use ($search_word){
-                            $qu->where('title', 'LIKE', "%{$search_word}%")
-                                ->orWhere('main_point', 'LIKE', "%{$search_word}%"); 
+                            $qu->where('posts.title', 'LIKE', "%{$search_word}%")
+                                ->orWhere('posts.main_point', 'LIKE', "%{$search_word}%"); 
                         });
         }
-        $query = $query->orderBy('id','DESC')
-                        ->paginate(12);
+        $query = $query->orderBy('posts.created_at','DESC')
+                        ->paginate(20);
+
+        foreach ($query as $com) {
+            $splitTimeStamp = explode(" ",$com->from_date);
+            $com->from_date = $splitTimeStamp[0];
+            $splitTimeStamp1 = explode(" ",$com->to_date);
+            $com->to_date = $splitTimeStamp1[0];
+        }
         return  response()->json($query);
         
     }
 
-    public function getPostById(Request $request) {
-        $request = $request->all();
+    public function getPostById(Request $request,$page,$postid) {
 
-        $posts = Post::where("category_id",$request['cat_id'])->orderBy('created_at','DESC')->paginate(12);
+        // $request = $request->all();
+        // $posts = Post::where('id','<>',$postid)->where("category_id",$request['cat_id'])->orderBy('created_at','DESC')->paginate(20);
+        // return response()->json($posts);
+        $request = $request->all();
+        $posts = Post::where('id','<>',$postid)->where("category_id",$request['cat_id']);
+
+        
+        if(isset($request['search_word'])) {
+            $search_word = $request['search_word'];
+
+            $posts = $posts->where(function($qu) use ($search_word){
+                            $qu->where('title', 'LIKE', "%{$search_word}%")
+                                ->orWhere('main_point', 'LIKE', "%{$search_word}%"); 
+                        });
+        }
+
+        $posts = $posts->orderBy('created_at','DESC')->paginate(20);
         return response()->json($posts);
+    }
+
+    public function changeRecordstatus($id)
+    {
+        $changeActivate =  Post::find($id);
+
+       if($changeActivate->recordstatus == 0 ) {
+
+            $changeActivate->recordstatus =1;
+       }
+       else {
+
+            $changeActivate->recordstatus =0;
+       }
+
+       $changeActivate->save();
+       
+       $data = array("changeActivate"=> $changeActivate, "success");
+       return response()->json($data);
     }
 
     // public function searchPost($search_word) {

@@ -13,7 +13,7 @@ class FacilityController extends Controller
 
     public function index()
     {
-        $facilities = Facility::orderBy('id', 'DESC')->paginate(12);
+        $facilities = Facility::orderBy('id', 'DESC')->paginate(20);
         return response()->json($facilities);
     }
 
@@ -75,8 +75,8 @@ class FacilityController extends Controller
     {
         $facility = Facility::find($id);
         $facility->delete();
-        $facilities = Facility::all()->toArray();
-        return array_reverse($facilities);
+        $facilities = Facility::orderBy('id', 'DESC')->paginate(20);
+        return response()->json($facilities);
     }
 
     public function search(Request $request)
@@ -87,7 +87,7 @@ class FacilityController extends Controller
         $search_facilities = Facility::query()
                             ->where('description', 'LIKE', "%{$search_word}%")
                             ->orderBy('id', 'DESC')
-                            ->paginate(12);
+                            ->paginate(20);
         return response()->json($search_facilities);
     }
 
@@ -95,10 +95,10 @@ class FacilityController extends Controller
         $facility_list = Facility::all()->toArray();
 
         if($profile_type == 'nursing') {
-            $profile_facility = NursingProfile::where('customer_id','=',$customer_id)->value('facilities');
+            $profile_facility = NursingProfile::where('id','=',$customer_id)->value('facilities');
         }
         if($profile_type == 'hospital') {
-            $profile_facility = HospitalProfile::where('customer_id','=',$customer_id)->value('facilities');
+            $profile_facility = HospitalProfile::where('id','=',$customer_id)->value('facilities');
         }
 
         $facility = explode(',',$profile_facility);

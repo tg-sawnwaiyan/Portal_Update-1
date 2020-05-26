@@ -1,9 +1,9 @@
 <template>
-    <div class="card text-dark">
+    <div class="card text-dark" id="cat_post">
         <div class="card-body">
             <h4 class="page-header header">カテゴリー編集</h4>
             <br>
-            <form @submit.prevent="updateCategory">
+            <form @submit.prevent="updateCategory" autocomplete="off">
               <div class="form-group">
                 <label>
                   カテゴリー名:
@@ -14,8 +14,8 @@
               </div>
 
               <div class="form-group">
-                <button class="btn main-bg-color white all-btn" @click="clickValidation()">保存</button>
-                <router-link to="/categorylist" class="btn btn-danger all-btn">キャンセル</router-link>
+                    <router-link to="/categorylist" class="btn btn-danger all-btn">キャンセル</router-link>
+                    <button class="btn main-bg-color white all-btn" @click="clickValidation()">保存</button>
               </div>
             </form>
         </div>
@@ -58,8 +58,9 @@ export default {
                     text: 'カテゴリーを更新しました。',
                     confirmButtonText: "閉じる",
                     confirmButtonColor: "#6cb2eb",
-                    width: 300,
+                    width: 350,
                     height: 200,
+                    allowOutsideClick: false,
                 })
                 this.$router.push({name: 'categorylist'});
             }).catch(error=>{
@@ -75,7 +76,7 @@ export default {
         if (this.category.name) {
                 this.$swal({
                 title: "確認",
-                text: "カテゴリーを更新してよろしいでしょうか。",
+                text: "カテゴリーを更新してよろしいでしょうか",
                 type: "success",
                 width: 350,
                 height: 200,
@@ -86,14 +87,15 @@ export default {
                 confirmButtonText: "はい",
                 cancelButtonText: "キャンセル",
                 confirmButtonClass: "all-btn",
-                cancelButtonClass: "all-btn"
+                cancelButtonClass: "all-btn",
+                allowOutsideClick: false,
             }).then(response => { 
             
                 this.errors.name = null;
                 this.updateCategory();
             })
         } else {
-        this.errors.name = " カテゴリー名が必須です。";
+        this.errors.name = " カテゴリー名は必須です。";
         }
         if (
             !this.errors.name

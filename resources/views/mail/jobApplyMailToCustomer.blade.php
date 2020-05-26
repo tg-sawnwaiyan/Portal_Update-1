@@ -1,50 +1,40 @@
-<div style="width:800px;">
-<div style="text-align: center;">
-	        <div style="padding: 60px;">
+<pre>{{$getComment->cus_name}}({{$getComment->cusnum}}) 様
 
-                <span style="font-size: 40px;font-weight: bold;color: #d2571c;text-shadow: 3px 4px #ccc;">LOGO <span style="font-size: 30px; color: #f57e46;">HERE</span></span>
+TIS ティーズ より求人への応募がありました。
 
-	            <h5 style="color:#3e4348;font-size: 12px;margin-bottom: 30px;font-weight: bold;text-align: left;">
-              {{$getComment->cus_name}} ({{$getComment->cusnum}})&nbsp;&nbsp;様
-                    <p style="margin-top:10px;">【T-IS ティーズ】より求人への応募がありました。</p>                    
-              </h5>
-              <p style="text-align:left;margin:2px;color:#3e4348;font-size: 16px;font-weight:bold;"><span style="color:#d2571c">◎&nbsp;</span>{{$getComment->job_title}}</p>
-                    <p style="text-align:left;margin:2px;color:#3e4348;font-size: 12px;padding-left:10px;"> 【求人番号: {{$getComment->jobnum}}】</p>
-                    <p style="text-align: left;margin: 0px;">
-                    ***********************************************************************************************************************************</p>
-                    <p style="text-align:left;margin:2px;color:#3e4348;font-size: 16px;">◎【ご応募された方の情報】</p> 
-                    <p style="text-align:left;margin:2px;color:#3e4348;font-size: 12px;">
-                    お名前：{{$getComment->first_name}}
-                    <br>
-                    ふりがな：{{$getComment->last_name}}
-                    <br>
-                    生年月日：{{$getComment->birthday}}
-                    <br>
-                    性別：{{$getComment->gender}}
-                    <br>
-                    郵便番号：{{$getComment->postal}}
-                    <br>
-                    住所：{{$getComment->cityname}}{{$getComment->townshipname}}{{$getComment->street_address}}
-                    <br>    
-                  
-                    電話番号：{{$getComment->phone}}
-                    <br>
-                    メールアドレス：{{$getComment->email}}
-                    <br>
-                    ご希望等：
-                    </p> 
-                    <br>
-                    <p style="text-align: left;margin: 0px;">
-                    ***********************************************************************************************************************************</p>   
-                    <p style="font-size:12px;color:#807c7c;text-align:left;"> 
-                       <span style="color:#000">[T-IS ティーズ] </span>
-                        <br/>
-                        〒163-0713
-                        <br/>                        
-                        東京都新宿区西新宿2-7-1小田急第一生命ビル13階 
-                        <br/>                       
-                        TEL：03-6911-???? FAX：03-6911-????
-                   </p>	          
-	        </div>
-	    </div>
-</div>
+【応募があった求人】
+求人タイトル：{{$getComment->job_title}}
+求人番号:{{$getComment->jobnum}}
+
+仕事内容：{{$getComment->job_description}}
+経験・スキル：{{$getComment->skills}}
+都道府県：{{$getComment->city_name}}
+市区町村：{{$getComment->township_name}}
+勤務地：{{$getComment->job_location}}
+最寄り駅：{{$getComment->job_nearest_station}}
+雇用形態：{{$getComment->job_employment_status}}
+給料：{{$getComment->salary}}
+特別な条件：{{$getComment->allowances}}
+各種保険：{{$getComment->insurance}}
+就業時間：{{$getComment->job_working_hours}}
+休日休暇：{{$getComment->holidays}}
+施設名：{{$getComment->pro_name}}
+
+【ご応募された方の情報】
+お名前：{{$getComment->first_name}}
+フリガナ：{{$getComment->last_name}}
+生年月日：{{$getComment->birthday}}
+性別：{{$getComment->gender}}
+郵便番号：{{$getComment->postal}}
+住所：{{$getComment->street_address}}
+電話番号：{{$getComment->phone}}
+メールアドレス：{{$getComment->email}}
+ご希望等：{{$getComment->remark}}
+
+************************************************************************************
+TIS ティーズ
+運営会社　株式会社 TRUST-ESTATE
+〒164-0003　東京都中野区東中野1-59-9　リックビル2階
+TEL：03-6279-1951   FAX：03-6279-1952
+************************************************************************************
+ </pre>
