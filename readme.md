@@ -51,7 +51,7 @@ upload_max_filesize = 100M
 
 ### Node_Modules
 Some changes in ```node_modules```
-- Copy ```extra/auth.js, extra/index.js``` and overwrite in ```project/node_modules/@websanova/vue-auth/src/```
+- Copy ```extra_files/auth.js, extra_files/index.js``` and overwrite in ```project/node_modules/@websanova/vue-auth/src/```
 - Search ```No Results.``` in ```project/node_modules/vuejs-auto-complete/dist/build.js``` and replace with ```検索条件当てはまるデータはありません。```
 
 ### RUN
