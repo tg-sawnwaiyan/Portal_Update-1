@@ -82,6 +82,8 @@ Routes
 
 Auth
 - Laravel and Vue js JWT authentication
+- In .vue components, you can check auth with ```$auth.check(), this.$auth.check()```
+- In controllers, ```Auth::user(), auth()->user()```
 
 Mailing System
 - Laravel Mail system
