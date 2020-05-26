@@ -6,6 +6,7 @@
         <div v-else>
             <div class="pc-9-180">
                 <span class="customer-id ">施設番号:{{profilenumber}}</span>
+                <span  class="btn bt-red all-btn" @click="$router.go(-1)">キャンセル</span>
             </div>
             <p class="job_id3 sp-9-180"><span>施設番号:{{profilenumber}}</span></p>
         </div>
@@ -1666,7 +1667,8 @@ export default {
             show_arr: [],
             show_comment: false,
             view_pro_id: false,
-            profilenumber:''
+            profilenumber:'',
+           
         };
     },
 
@@ -1674,12 +1676,13 @@ export default {
         pro_id:Number,
         type:String,
         loginuser:Boolean,
+       
     },
 
     created(){       
         // this.nav_width = document.querySelector('.content-all').offsetWidth;
         // console.log('this.nav_width',this.nav_width)
-         
+       
          window.addEventListener('scroll', this.handleScroll);
 
 
