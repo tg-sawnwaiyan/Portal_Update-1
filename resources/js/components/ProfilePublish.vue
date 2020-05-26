@@ -461,7 +461,7 @@
                                     <label class="cost_heading_lbl m-b-15">{{cost.payment_name}}</label>
                                     <div class="col-md-12">
                                         <label class="cost_heading_lbl_mini"><i class="fas fa-yen-sign"></i> 入居にかかる費用</label>
-                                        <table id="costDetails" class="table table-condensed cost_table moving-in_tbl">
+                                        <table id="costDetails" class="table table-condensed table-bordered cost_table moving-in_tbl">
                                             <tbody>
                                                 <tr>
                                                     <th>入居一時金または</th>
@@ -475,7 +475,7 @@
 
                                     <div class="col-md-12">
                                         <label class="cost_heading_lbl_mini"><i class="fas fa-yen-sign"></i> 月額費用</label>
-                                        <table class="table table-condensed cost_table">
+                                        <table class="table table-condensed table-bordered cost_table">
                                             <tbody>
 
                                                 <tr>
@@ -510,7 +510,7 @@
 
                                     <div class="col-md-12">
                                         <label class="cost_heading_lbl_mini"><i class="fas fa-yen-sign"></i> 返還金について</label>
-                                        <table class="table table-condensed cost_table">
+                                        <table class="table table-condensed table-bordered cost_table">
                                             <tbody>
 
                                                 <tr>
@@ -570,7 +570,7 @@
                                 <label class="cost_heading_lbl_respon m-b-15">{{cost.payment_name}}</label>
                                 <div class="col-md-12">
                                     <label class="cost_heading_lbl_mini_res"><i class="fas fa-yen-sign"></i> 入居にかかる費用</label>
-                                    <table id="costDetails" class="table table-condensed cost_table moving-in_tbl">
+                                    <table id="costDetails" class="table table-condensed table-bordered cost_table moving-in_tbl">
                                         <tbody>
                                             <tr>
                                                 <th class="method-name-respon">入居一時金または</th>
@@ -584,7 +584,7 @@
 
                                 <div class="col-md-12">
                                     <label class="cost_heading_lbl_mini_res"><i class="fas fa-yen-sign"></i> 月額費用</label>
-                                    <table class="table table-condensed cost_table">
+                                    <table class="table table-condensed table-bordered cost_table">
                                         <tbody>
 
                                             <tr>
@@ -619,7 +619,7 @@
 
                                 <div class="col-md-12">
                                     <label class="cost_heading_lbl_mini_res"><i class="fas fa-yen-sign"></i> 返還金について</label>
-                                    <table class="table table-condensed cost_table">
+                                    <table class="table table-condensed table-bordered cost_table">
                                         <tbody>
 
                                             <tr>
@@ -975,7 +975,7 @@
 
                            </GmapMap>
 
-                            <div class="col-md-12 m-t-20"  v-for="m in nus_pro" :key="m.id" >
+                            <div class="col-md-12 m-t-20 pad-free-750"  v-for="m in nus_pro" :key="m.id" >
                                 <table border="1" class="table table-bordered map_tbl">
                                     <tbody>
                                     <tr>
@@ -2865,7 +2865,7 @@ h3 img{
 }
 
 .cost_table td{
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc;*/
     padding: 8px 10px;
     /* text-align: center; */
     line-height: 1.7;
@@ -3107,6 +3107,11 @@ h3 img{
 .hideCloseBtn {
     display: none;
 }
+.payment-footer{
+    display: inline-block;
+    width: 100%;
+    
+}
 .payment-footer .changeLink{
     padding: 8px 5px;
     border: 0px;
@@ -3125,6 +3130,7 @@ h3 img{
 }
 .miniChangeLink {
     padding: 0px;
+    height: 100vh;
 }
 .payment-footer .miniChangeLink {
     padding: 10px;
@@ -3274,6 +3280,30 @@ h3 img{
 @media only screen and (max-width:750px) {
     .comment-age {
         margin: 0px;
+    }
+    .cost_table th{
+        border: none !important;
+    }
+    table.timeTable tr > * {
+        display: block;
+    }
+    table.timeTable tr {
+        display: table-cell;
+        vertical-align: top;
+    }
+    .first-row{
+        border: none;
+        padding: 0px;
+    }
+    table.timeTable th, table.timeTable td{
+        width: 100% !important;
+
+    }
+    tr.first-row th{
+        width: auto !important;
+    }
+    tr.last th{
+        width: auto !important;
     }
 }
 @media only screen and (max-width: 450px) and (min-width: 320px) {

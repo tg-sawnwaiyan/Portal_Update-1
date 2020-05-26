@@ -46,7 +46,7 @@ upload_max_filesize = 100M
 - Create database ```portal``` with collation ```utf8mb4_unicode_ci```
 - Import ```project/extra_files/portal.sql``` file to your ```portal``` database.
 
-3. Clone .env-example to .env file.
+3. Clone .env.example to .env file.
 4. Change your computer IP address and database connection in .env file.
 
 ### Node_Modules
@@ -82,6 +82,8 @@ Routes
 
 Auth
 - Laravel and Vue js JWT authentication
+- In .vue components, you can check auth with ```$auth.check(), this.$auth.check()```
+- In controllers, ```Auth::user(), auth()->user()```
 
 Mailing System
 - Laravel Mail system
