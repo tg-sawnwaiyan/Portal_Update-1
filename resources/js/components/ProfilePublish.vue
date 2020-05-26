@@ -3284,6 +3284,27 @@ h3 img{
     .cost_table th{
         border: none !important;
     }
+    table.timeTable tr > * {
+        display: block;
+    }
+    table.timeTable tr {
+        display: table-cell;
+        vertical-align: top;
+    }
+    .first-row{
+        border: none;
+        padding: 0px;
+    }
+    table.timeTable th, table.timeTable td{
+        width: 100% !important;
+
+    }
+    tr.first-row th{
+        width: auto !important;
+    }
+    tr.last th{
+        width: auto !important;
+    }
 }
 @media only screen and (max-width: 450px) and (min-width: 320px) {
     .comment-age {
