@@ -21,6 +21,7 @@ git clone https://github.com/Thuzar-TS/Portal_Update.git
 ```
 Go to project folder.
 ```bash
+git checkout your-branch-name
 composer install
 npm install
 php artisan key:generate
@@ -57,3 +58,30 @@ Some changes in ```node_modules```
 - ```npm run watch```
 - ```php artisan serve --host ip-address --port 8000```
 - In browser ip-address:8000 => Project is running.
+
+### Project Structure
+1. Public view
+2. Supplier view
+3. Admin view
+
+In view part
+- In app.blade.php, call index.vue
+- In index.vue(main layout), router view here and check authorized, change layouts
+
+Menus
+- Menu.vue (public header menu)
+- AuthMenu.vue (authorized header menu)
+- asideMenu.vue (authorized aside menu)
+
+Components
+- All vue files are in ```project/resources/js/```
+
+Routes
+- Vue js router view for components (```project/resources/js/router.js```)
+- api route for laravel backend (```project/routes/api.php```)
+
+Auth
+- Laravel and Vue js JWT authentication
+
+Mailing System
+- Laravel Mail system
