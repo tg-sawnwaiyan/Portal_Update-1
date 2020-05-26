@@ -105,11 +105,11 @@
               <label><span class="job_ico"><i class="fa fa-building"></i></span>施設名</label>
             </div>
             <div class="col-md-10 col-sm-12 form-right">
-              <div v-if="jobDetail.type_id == 3">
-                <router-link :to="{ path:'/profile/nursing/'+jobDetail.profile_id }" class="pseudolink" style="font-weight:bold;color:#63b7ff !important">{{jobDetail.cusname}}</router-link>
+              <div v-if="jobDetail.type_id == 2">
+                <router-link :to="{ path:'/profile/hospital/'+jobDetail.profile_id }" class="pseudolink" style="font-weight:bold;color:#63b7ff !important">{{jobDetail.cusname}}</router-link>
               </div>
               <div v-else>
-                <router-link :to="{ path:'/profile/hospital/'+jobDetail.profile_id}" class="pseudolink" style="font-weight:bold;color:#63b7ff !important">{{jobDetail.cusname}}</router-link>
+                <router-link :to="{ path:'/profile/nursing/'+jobDetail.profile_id}" class="pseudolink" style="font-weight:bold;color:#63b7ff !important">{{jobDetail.cusname}}</router-link>
               </div>
 
               

@@ -309,7 +309,10 @@
                      <p class="nosearch">条件の変更を行い再度ご検索いだだくと見つかる可能性がございます。</p>
                 </div>
             </span>
-             <div class="col-12">
+            
+            
+            
+             <div id="scroll" class="col-12">
                 <div class="row pad-free m-b-10">
                    <div id="job_detail" class="col-lg-6 col-md-12" style="margin-top:20px;" v-for="(job,index) in displayItems" :key="index+'-'+job.title+'-'+job.jobid">
                      <div class="job-content">
@@ -422,6 +425,32 @@ export default {
 
         window.addEventListener('resize', this.handleResize);
         this.handleResize();
+    },
+    watch: {
+      
+      job_data(){
+
+          if(this.job_data.length >= 0){ 
+          
+
+
+              // const headerHeight = 10; 
+              // const buffer = 10; 
+              // const scrollToEl = document.querySelector("#scroll");
+              // const topOfElement = window.pageYOffset + scrollToEl.getBoundingClientRect().top - headerHeight - buffer;
+              // window.scroll({ top: topOfElement, behavior: "smooth" });
+
+let item = document.querySelector("#job_search");
+let wrapper = document.querySelector("#scroll");
+let count = item.offsetTop - wrapper.scrollTop - 1000 // xx = any extra distance from top ex. 60
+wrapper.scrollBy({top: count, left: 0, behavior: 'smooth'})
+
+
+            //  var elmnt = document.querySelector("#scroll")                    
+            //  elmnt.scrollIntoView(true); 
+          }
+
+      }    
     },
     mounted() {
             $('#navtab').removeClass('news-tabColor hospital-tabColor nursing-tabColor job-tabColor');
