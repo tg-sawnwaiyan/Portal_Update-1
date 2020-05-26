@@ -1,13 +1,13 @@
-## TIS ティーズ
+# TIS ティーズ
 
 This project can provide portal of Nursing Home and Hospitals in JAPAN. Their related news and related job offers can be searched.
 
-## USING LANGUAGE
+### USING LANGUAGE
 
 - Laravel 5.8
 - VueJS
 
-## PREREQUISITES
+### PREREQUISITES
 
 - PHP 7.3
 - MySQL
@@ -15,7 +15,7 @@ This project can provide portal of Nursing Home and Hospitals in JAPAN. Their re
 - Git
 - Node
 
-## INSTALLATION
+### INSTALLATION
 ```bash
 git clone https://github.com/Thuzar-TS/Portal_Update.git
 ```
@@ -27,7 +27,7 @@ php artisan key:generate
 php artisan jwt:secret
 ```
 
-## DATABASE
+### DATABASE
 Since migration files are not update, you have to import sql file to database.
 
 For Database import (if you installed xampp)
@@ -43,9 +43,17 @@ upload_max_filesize = 100M
 
 - In Browser, go to localhost/phpmyadmin
 - Create database ```portal``` with collation ```utf8mb4_unicode_ci```
-- Import ```extra_files/portal.sql``` file to your ```portal``` database.
+- Import ```project/extra_files/portal.sql``` file to your ```portal``` database.
 
-## Node_Modules
+3. Clone .env-example to .env file.
+4. Change your computer IP address and database connection in .env file.
+
+### Node_Modules
 Some changes in ```node_modules```
-- Copy ```extra/auth.js and extra/index.js``` and overwrite in ```project/node_modules/@websanova/vue-auth/src/```
-- Replace ```No Results.```  ```検索条件当てはまるデータはありません。```
+- Copy ```extra/auth.js, extra/index.js``` and overwrite in ```project/node_modules/@websanova/vue-auth/src/```
+- Search ```No Results.``` in ```project/node_modules/vuejs-auto-complete/dist/build.js``` and replace with ```検索条件当てはまるデータはありません。```
+
+### RUN
+- ```npm run watch```
+- ```php artisan serve --host ip-address --port 8000```
+- In browser ip-address:8000 => Project is running.
