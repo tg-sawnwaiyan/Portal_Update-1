@@ -130,7 +130,11 @@ Vue.use(VueClazyLoad)
     // Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
 
-
+Vue.use(VueGoogleMaps, {
+    load: {
+        key: "javascript-map-api-key-here",
+    }
+});
 
 // Set Vue globally
 window.Vue = Vue

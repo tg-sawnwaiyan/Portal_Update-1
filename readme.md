@@ -1,13 +1,13 @@
-## TIS ティーズ
+# TIS ティーズ
 
 This project can provide portal of Nursing Home and Hospitals in JAPAN. Their related news and related job offers can be searched.
 
-## USING LANGUAGE
+### USING LANGUAGE
 
 - Laravel 5.8
 - VueJS
 
-## PREREQUISITES
+### PREREQUISITES
 
 - PHP 7.3
 - MySQL
@@ -15,19 +15,20 @@ This project can provide portal of Nursing Home and Hospitals in JAPAN. Their re
 - Git
 - Node
 
-## INSTALLATION
+### INSTALLATION
 ```bash
 git clone https://github.com/Thuzar-TS/Portal_Update.git
 ```
 Go to project folder.
 ```bash
+git checkout your-branch-name
 composer install
 npm install
 php artisan key:generate
 php artisan jwt:secret
 ```
 
-## DATABASE
+### DATABASE
 Since migration files are not update, you have to import sql file to database.
 
 For Database import (if you installed xampp)
@@ -43,9 +44,44 @@ upload_max_filesize = 100M
 
 - In Browser, go to localhost/phpmyadmin
 - Create database ```portal``` with collation ```utf8mb4_unicode_ci```
-- Import ```extra_files/portal.sql``` file to your ```portal``` database.
+- Import ```project/extra_files/portal.sql``` file to your ```portal``` database.
 
-## Node_Modules
+3. Clone .env-example to .env file.
+4. Change your computer IP address and database connection in .env file.
+
+### Node_Modules
 Some changes in ```node_modules```
-- Copy ```extra/auth.js and extra/index.js``` and overwrite in ```project/node_modules/@websanova/vue-auth/src/```
-- Replace ```No Results.```  ```検索条件当てはまるデータはありません。```
+- Copy ```extra/auth.js, extra/index.js``` and overwrite in ```project/node_modules/@websanova/vue-auth/src/```
+- Search ```No Results.``` in ```project/node_modules/vuejs-auto-complete/dist/build.js``` and replace with ```検索条件当てはまるデータはありません。```
+
+### RUN
+- ```npm run watch```
+- ```php artisan serve --host ip-address --port 8000```
+- In browser ip-address:8000 => Project is running.
+
+### Project Structure
+1. Public view
+2. Supplier view
+3. Admin view
+
+In view part
+- In app.blade.php, call index.vue
+- In index.vue(main layout), router view here and check authorized, change layouts
+
+Menus
+- Menu.vue (public header menu)
+- AuthMenu.vue (authorized header menu)
+- asideMenu.vue (authorized aside menu)
+
+Components
+- All vue files are in ```project/resources/js/```
+
+Routes
+- Vue js router view for components (```project/resources/js/router.js```)
+- api route for laravel backend (```project/routes/api.php```)
+
+Auth
+- Laravel and Vue js JWT authentication
+
+Mailing System
+- Laravel Mail system
