@@ -531,6 +531,7 @@ textarea:disabled::placeholder {
     color: #777;
     font-weight: 600;
     font-size: 12px;
+    vertical-align: middle;
 }
 
 table.posting-per {
@@ -4532,6 +4533,9 @@ overflow-y: auto;
     right: 10px;
     z-index: 9999;
 }
+#headerbar .fav-item {
+    font-size: 16px;
+}
 
 #headerbar .router-link-exact-active {
     font-weight: bold;
@@ -6228,7 +6232,7 @@ margin-right: 2% !important;
 }
 
 .fav-item {
-    font-size: 16px;
+    font-size: 14px;
     padding: 5px 10px;
     margin-bottom: 15px;
 }
@@ -9344,11 +9348,11 @@ border-bottom: none;
     display: none;
 }
 
-#hos table>tbody>tr th {
+/* #hos table>tbody>tr th {
     background-color: #e8e7e7;
     width: 140px;
     padding: 25px;
-}
+} */
 
 .table-innertitle {
     position: relative;
@@ -10636,7 +10640,9 @@ padding: 11px;
 .pc-9-180 {
     display: none;
 }
-
+.pc-2000{
+    display: none;
+}
 .sp-9-180 {
     display: block;
 }
@@ -11298,6 +11304,9 @@ padding: 0;
 }
 
 @media only screen and (max-width: 990px) {
+    .pc-990{
+        display: none;
+    }
     .job_id4 {
         /* float: left; */
         padding: 2px 10px;
@@ -11513,6 +11522,15 @@ padding: 0;
         right: 10px;
         top: 18px;
         z-index: 99;
+    }
+    .wt-admin{
+        border-right: 1px solid #2980b9;
+        padding-right: 10px;
+        position: absolute;
+        right: 110px;
+        top: 22px;
+        font-size: 14px;
+        cursor: pointer;
     }
     .login_socail {
         margin-top: -20px !important;
@@ -12366,6 +12384,21 @@ width: 18rem;
 }
 
 @media only screen and (max-width:750px) {
+    table.consultTable tr > * {
+        display: block;
+    }
+    table.consultTable tr {
+        display: table-cell;
+        vertical-align: top;
+    }
+    .first-row{
+        border: none;
+        padding: 0px;
+    }
+    table.consultTable th, table.consultTable td{
+        width: 100% !important;
+
+    }   
     .mt-750-10 {
         margin-top: 10px;
     }
@@ -12952,6 +12985,26 @@ transition: background-color .3s;
         margin-left: 12px;
         margin-top: 20px;
     }
+    .job-box table tr{
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        border-bottom: 0;
+
+    }
+    .job-box table th{
+        width: 100% !important;
+        border: none;
+    }
+    .job-box td{
+        width: 100% !important;
+        min-height: 45px;  
+    }
     .info_tbl tr{
         display: -webkit-box;
         display: -ms-flexbox;
@@ -13294,7 +13347,7 @@ transition: background-color .3s;
     /*create_news*/
     .sp-414-timetable .table th,
     .sp-414-timetable .table td {
-        padding: 0px !important;
+        padding: 5px !important;
         vertical-align: middle;
     }
     .hos-content {
@@ -13419,6 +13472,9 @@ transition: background-color .3s;
 @media only screen and (max-width: 380px) {
     .searchButtonNews {
         width: 30%;
+    }
+    .wt-admin{      
+        right: 45px !important;      
     }
     /* .loginwrapper {
         height: 105vh;
@@ -13557,9 +13613,13 @@ transition: background-color .3s;
     }
     .sp-9-180 {
         display: none;
-    }
+    }    
 }
-
+@media only screen and (min-width: 1881px) {
+    .pc-2000 {
+        display: block;
+    }   
+}
 
 /**************card carousel***********************/
 
@@ -14157,7 +14217,6 @@ strong {
     font-size: 14px;
     cursor: pointer;
 }
-
 
 /*end_menu*/
 

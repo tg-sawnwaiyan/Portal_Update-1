@@ -3,7 +3,7 @@
 <div>    
     <div class="col-12">
         <h4 class="profile-tit">{{cat_name}}</h4>
-        <span @click="$router.go(-1);" class="backbtn" style="cursor:pointer;">
+        <span @click="$router.go(-1);" class="backbtn pc-990" style="cursor:pointer;">
             <i class="fas fa-arrow-left"></i> 
             <span style="color:#2980b9">戻る</span> 
         </span>
