@@ -4533,6 +4533,9 @@ overflow-y: auto;
     right: 10px;
     z-index: 9999;
 }
+#headerbar .fav-item {
+    font-size: 16px;
+}
 
 #headerbar .router-link-exact-active {
     font-weight: bold;
@@ -6229,7 +6232,7 @@ margin-right: 2% !important;
 }
 
 .fav-item {
-    font-size: 16px;
+    font-size: 14px;
     padding: 5px 10px;
     margin-bottom: 15px;
 }
@@ -11517,6 +11520,15 @@ padding: 0;
         top: 18px;
         z-index: 99;
     }
+    .wt-admin{
+        border-right: 1px solid #2980b9;
+        padding-right: 10px;
+        position: absolute;
+        right: 110px;
+        top: 22px;
+        font-size: 14px;
+        cursor: pointer;
+    }
     .login_socail {
         margin-top: -20px !important;
     }
@@ -13423,6 +13435,9 @@ transition: background-color .3s;
     .searchButtonNews {
         width: 30%;
     }
+    .wt-admin{      
+        right: 45px !important;      
+    }
     /* .loginwrapper {
         height: 105vh;
         padding: 10px 40px;
@@ -14164,7 +14179,6 @@ strong {
     font-size: 14px;
     cursor: pointer;
 }
-
 
 /*end_menu*/
 
