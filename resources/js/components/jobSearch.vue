@@ -447,7 +447,6 @@ export default {
             // const topOfElement = window.pageYOffset + elmnt.getBoundingClientRect().top - headerHeight - buffer;       
             //  elmnt.scrollIntoView({block:"start",offsetHeight:2000}); 
           }
-
       }    
     },
     mounted() {
