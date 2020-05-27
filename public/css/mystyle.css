@@ -566,7 +566,21 @@ table.posting-per {
     top: 0px;
     left: 210px;
 }
-
+.disabledlink{
+    color: currentColor;
+    cursor: not-allowed;
+    opacity: 0.5;
+    text-decoration: none;
+    
+}
+.disabledlink:hover{
+    text-decoration: none;
+}
+.enabledlink{
+    color: #63b7ff;
+    text-decoration: underline;
+    
+}
 
 /********************************** End Common **********************************/
 

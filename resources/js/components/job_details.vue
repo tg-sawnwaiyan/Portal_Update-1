@@ -108,20 +108,18 @@
                  
               <div v-if="jobDetail.type_id == 2">   
                   <div v-if="jobDetail.activate == 0">
-                    <a href="#" class="disabled btn btn-sn btn-info">{{jobDetail.cusname}}</a>
+                    <a href="#" class="disabledlink">{{jobDetail.cusname}}</a>
                   </div>
                   <div v-else>
-                     <router-link  class="main-bg-color create-btn all-btn" :to="{ path:'/profile/hospital/'+jobDetail.profile_id }">{{jobDetail.cusname}}</router-link>
-                    
+                     <router-link  class="enabledlink" :to="{ path:'/profile/hospital/'+jobDetail.profile_id }">{{jobDetail.cusname}}</router-link>                    
                   </div>          
               </div>
               <div v-else> 
                  <div v-if="jobDetail.activate == 0">
-                   <a href="#" class="disabled btn btn-sn btn-info">{{jobDetail.cusname}}</a>
-                     
+                   <a href="#" class="disabledlink">{{jobDetail.cusname}}</a>                     
                   </div>
                   <div v-else>
-                    <router-link  class="main-bg-color create-btn all-btn" :to="{ path:'/profile/nursing/'+jobDetail.profile_id }">{{jobDetail.cusname}}</router-link>
+                    <router-link  class="enabledlink" :to="{ path:'/profile/nursing/'+jobDetail.profile_id }">{{jobDetail.cusname}}</router-link>
                     
                   </div>    
               </div>
