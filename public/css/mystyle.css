@@ -531,6 +531,7 @@ textarea:disabled::placeholder {
     color: #777;
     font-weight: 600;
     font-size: 12px;
+    vertical-align: middle;
 }
 
 table.posting-per {
