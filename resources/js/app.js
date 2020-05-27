@@ -132,7 +132,7 @@ Vue.use(VueAxios, axios);
 
 Vue.use(VueGoogleMaps, {
     load: {
-        key: "",
+        key: "AIzaSyCLpN6Z5g0gMqpj6fLDpkpzdUPPDzcwoqo",
     }
 });
 
