@@ -1682,6 +1682,7 @@ export default {
     created(){       
         // this.nav_width = document.querySelector('.content-all').offsetWidth;
         // console.log('this.nav_width',this.nav_width)
+        // console.log("previous ",document.referrer)
        
          window.addEventListener('scroll', this.handleScroll);
 
