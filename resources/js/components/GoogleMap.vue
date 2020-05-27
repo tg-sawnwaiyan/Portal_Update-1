@@ -51,7 +51,7 @@
                       </div> -->
                       <div class="col-md-2">
                         <!-- <span class="btn news-post-btn all-btn" @click="searchAddress()">番地検索</span> -->
-                        <span id="submit" class="btn secondary-bg-color all-btn" style="width:100%;" @click="initMap('clickfun')">Geocode</span>
+                        <span id="submit" class="btn secondary-bg-color all-btn" style="width:100%;" @click="initMap('clickfun')">住所から地図を検索</span>
                       </div>
                     </div>
                     <p class="m-l-768">例）丸の内1-9-1　グラントウキョウノースタワー40階</p>
