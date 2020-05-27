@@ -9348,11 +9348,11 @@ border-bottom: none;
     display: none;
 }
 
-#hos table>tbody>tr th {
+/* #hos table>tbody>tr th {
     background-color: #e8e7e7;
     width: 140px;
     padding: 25px;
-}
+} */
 
 .table-innertitle {
     position: relative;
@@ -11304,6 +11304,9 @@ padding: 0;
 }
 
 @media only screen and (max-width: 990px) {
+    .pc-990{
+        display: none;
+    }
     .job_id4 {
         /* float: left; */
         padding: 2px 10px;
@@ -12381,6 +12384,21 @@ width: 18rem;
 }
 
 @media only screen and (max-width:750px) {
+    table.consultTable tr > * {
+        display: block;
+    }
+    table.consultTable tr {
+        display: table-cell;
+        vertical-align: top;
+    }
+    .first-row{
+        border: none;
+        padding: 0px;
+    }
+    table.consultTable th, table.consultTable td{
+        width: 100% !important;
+
+    }   
     .mt-750-10 {
         margin-top: 10px;
     }
@@ -12967,6 +12985,26 @@ transition: background-color .3s;
         margin-left: 12px;
         margin-top: 20px;
     }
+    .job-box table tr{
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        border-bottom: 0;
+
+    }
+    .job-box table th{
+        width: 100% !important;
+        border: none;
+    }
+    .job-box td{
+        width: 100% !important;
+        min-height: 45px;  
+    }
     .info_tbl tr{
         display: -webkit-box;
         display: -ms-flexbox;
@@ -13309,7 +13347,7 @@ transition: background-color .3s;
     /*create_news*/
     .sp-414-timetable .table th,
     .sp-414-timetable .table td {
-        padding: 0px !important;
+        padding: 5px !important;
         vertical-align: middle;
     }
     .hos-content {

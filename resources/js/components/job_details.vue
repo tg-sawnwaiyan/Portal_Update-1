@@ -6,7 +6,7 @@
           <li class="breadcrumb-item"><a href="/" class="router-link-active">ホーム</a></li>
           <li aria-current="page" class="breadcrumb-item active">求人詳細</li>
         </ol>
-        <a @click="$router.go(-1)" v-if="$route.params.id && $auth.check(2)" class="btn btn-danger all-btn submit float-right"><i class="fas fa-arrow-left"></i>&nbsp;戻る</a>
+        <a @click="$router.go(-1)" v-if="$route.params.id && $auth.check(2)" class="btn btn-danger all-btn submit float-right pc-990"><i class="fas fa-arrow-left"></i>&nbsp;戻る</a>
       </nav>
       
      
