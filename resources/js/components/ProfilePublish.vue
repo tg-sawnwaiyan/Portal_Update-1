@@ -2,13 +2,28 @@
   <div id="app">
     <div v-if="type == 'nursing'" id="nursingView">         
         <!--panorama-->     
-        <p class="job_id3" v-if="$auth.user().role == 2"><span>施設番号:{{profilenumber}}</span></p>
-        <div v-else>
+        <p class="job_id3" v-if="$auth.user().role == 2">
+            <span>施設番号:{{profilenumber}}</span>              
+        </p>
+        <div v-else> 
+            <div @click="$router.go(-1);" class="pc-2000" style="cursor:pointer;right:0;top:0;text-align:right;">
+                    <i class="fas fa-arrow-left"></i> 
+                    <span style="color:#2980b9">戻る</span> 
+            </div>          
             <div class="pc-9-180">
+                <span @click="$router.go(-1);" class="backbtn" style="cursor:pointer;right:0;top:1%;">
+                    <i class="fas fa-arrow-left"></i> 
+                    <span style="color:#2980b9">戻る</span> 
+                </span>
                 <span class="customer-id ">施設番号:{{profilenumber}}</span>
-                <span  class="btn bt-red all-btn" @click="$router.go(-1)">キャンセル</span>
+               
             </div>
-            <p class="job_id3 sp-9-180"><span>施設番号:{{profilenumber}}</span></p>
+            <div class="sp-9-180">             
+            <p class="job_id3">
+                <span>施設番号:{{profilenumber}}</span>
+            </p>
+            </div>
+              
         </div>
 
         <h4 class="profile-tit"  v-if="!currentPanoImage && nus_pro[0]"> {{nus_pro[0].name}}</h4>     
