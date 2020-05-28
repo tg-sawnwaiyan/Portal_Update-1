@@ -7,12 +7,11 @@
                     <i class="fas fa-arrow-left"></i> 
                     <span style="color:#2980b9">戻る</span> 
             </div>          
-            <div class="pc-9-180">
-                <span @click="$router.go(-1);" class="backbtn" style="cursor:pointer;right:0;top:1%;">
+             <div class="pc-991-1880">
+                <span @click="$router.go(-1);" class="backbtn" style="cursor:pointer;right:0;top:1%;;position:relative;">
                     <i class="fas fa-arrow-left"></i> 
                     <span style="color:#2980b9">戻る</span> 
-                </span>
-                <span class="customer-id ">施設番号:{{profilenumber}}</span>
+                </span>                
                
             </div>
             <div class="sp-9-180">             
@@ -26,12 +25,11 @@
                     <i class="fas fa-arrow-left"></i> 
                     <span style="color:#2980b9">戻る</span> 
             </div>          
-            <div class="pc-9-180">
-                <span @click="$router.go(-1);" class="backbtn" style="cursor:pointer;right:0;top:1%;">
+            <div class="pc-991-1880">
+                <span @click="$router.go(-1);" class="backbtn" style="cursor:pointer;right:0;top:1%;;position:relative;">
                     <i class="fas fa-arrow-left"></i> 
                     <span style="color:#2980b9">戻る</span> 
-                </span>
-                <span class="customer-id ">施設番号:{{profilenumber}}</span>
+                </span>                
                
             </div>
             <div class="sp-9-180">             
@@ -42,7 +40,10 @@
               
         </div>
 
-        <h4 class="profile-tit"  v-if="!currentPanoImage && nus_pro[0]"> {{nus_pro[0].name}}</h4>     
+        <h4 class="profile-tit"  v-if="!currentPanoImage && nus_pro[0]">
+        <span>{{nus_pro[0].name}}</span>
+        <span class="customer-id pc-991-1880">施設番号:{{profilenumber}}</span> </h4>
+            
 
         <div class="col-12 detail_profile_left pad-free"  v-if="currentPanoImage">
             <h4 class="profile-tit" v-if="nus_pro[0]">{{nus_pro[0].name}}</h4>

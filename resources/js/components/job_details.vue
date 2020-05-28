@@ -108,19 +108,22 @@
                  
               <div v-if="jobDetail.type_id == 2">   
                   <div v-if="jobDetail.activate == 0">
-                    <a href="#" class="disabledlink">{{jobDetail.cusname}}</a>
+                    <span>{{jobDetail.cusname}}</span>
+                    <a href="#" class="disabledlink">事業者詳細</a>
                   </div>
                   <div v-else>
-                     <router-link  class="enabledlink" :to="{ path:'/profile/hospital/'+jobDetail.profile_id }">{{jobDetail.cusname}}</router-link>                    
+                      <span>{{jobDetail.cusname}}</span>
+                     <router-link  class="enabledlink" :to="{ path:'/profile/hospital/'+jobDetail.profile_id }">事業者詳細</router-link>                    
                   </div>          
               </div>
               <div v-else> 
                  <div v-if="jobDetail.activate == 0">
-                   <a href="#" class="disabledlink">{{jobDetail.cusname}}</a>                     
+                    <span>{{jobDetail.cusname}}</span>
+                    <a href="#" class="disabledlink">事業者詳細</a>                     
                   </div>
                   <div v-else>
-                    <router-link  class="enabledlink" :to="{ path:'/profile/nursing/'+jobDetail.profile_id }">{{jobDetail.cusname}}</router-link>
-                    
+                    <span>{{jobDetail.cusname}}</span>
+                    <router-link  class="enabledlink" :to="{ path:'/profile/nursing/'+jobDetail.profile_id }">事業者詳細</router-link>                    
                   </div>    
               </div>
               
