@@ -4,13 +4,17 @@
         <!--panorama-->     
         <div v-if="$auth.user().role == 2">
             <div @click="$router.go(-1);" class="pc-2000" style="cursor:pointer;right:0;top:0;text-align:right;">
+                <span class="btn btn-danger all-btn submit">
                     <i class="fas fa-arrow-left"></i> 
-                    <span style="color:#2980b9">戻る</span> 
+                    <span>戻る</span> 
+                </span>                    
             </div>          
              <div class="pc-991-1880">
                 <span @click="$router.go(-1);" class="backbtn" style="cursor:pointer;right:0;top:1%;;position:relative;">
-                    <i class="fas fa-arrow-left"></i> 
-                    <span style="color:#2980b9">戻る</span> 
+                   <span class="btn btn-danger all-btn submit">
+                        <i class="fas fa-arrow-left"></i> 
+                        <span>戻る</span> 
+                    </span> 
                 </span>                
                
             </div>
@@ -22,13 +26,17 @@
         </div>
         <div v-else> 
             <div @click="$router.go(-1);" class="pc-2000" style="cursor:pointer;right:0;top:0;text-align:right;">
+                    <span class="btn btn-danger all-btn submit">
                     <i class="fas fa-arrow-left"></i> 
-                    <span style="color:#2980b9">戻る</span> 
+                    <span>戻る</span> 
+                </span>  
             </div>          
             <div class="pc-991-1880">
                 <span @click="$router.go(-1);" class="backbtn" style="cursor:pointer;right:0;top:1%;;position:relative;">
+                    <span class="btn btn-danger all-btn submit">
                     <i class="fas fa-arrow-left"></i> 
-                    <span style="color:#2980b9">戻る</span> 
+                    <span>戻る</span> 
+                </span> 
                 </span>                
                
             </div>
