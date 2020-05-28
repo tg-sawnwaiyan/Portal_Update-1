@@ -109,7 +109,7 @@
               <div v-if="jobDetail.type_id == 2">   
                   <div v-if="jobDetail.activate == 0">
                     <span>{{jobDetail.cusname}}</span>
-                    <a href="#" class="disabledlink">事業者詳細</a>
+                    <span class="disabledlink">事業者詳細</span>
                   </div>
                   <div v-else>
                       <span>{{jobDetail.cusname}}</span>
@@ -119,7 +119,7 @@
               <div v-else> 
                  <div v-if="jobDetail.activate == 0">
                     <span>{{jobDetail.cusname}}</span>
-                    <a href="#" class="disabledlink">事業者詳細</a>                     
+                    <span class="disabledlink">事業者詳細</span>                     
                   </div>
                   <div v-else>
                     <span>{{jobDetail.cusname}}</span>

@@ -580,6 +580,7 @@ table.posting-per {
     min-width: 85px;
     display: inline-block;
     margin-left:5px;
+    pointer-events: none;
     
 }
 .disabledlink:hover{
