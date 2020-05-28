@@ -533,7 +533,7 @@
                                                         <td>{{nus.name}}</td              >
                                                         </tr> -->
                                                         <tr>
-                                                            <td style="width:30%"><span class="job_ico">&#xa5;</span>入居時費用</td>
+                                                            <td><span class="job_ico">&#xa5;</span>入居時費用</td>
                                                             <!-- <td><span class="cash-lbl">{{Number(nus.moving_in_to)/10000}} </span>万円</td> -->
                                                             <td class="cash-lbl">
                                                                 <span v-if="Number(nus.moving_in_from) == 0">0円</span>
@@ -548,7 +548,7 @@
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td style="width:30%"><span class="job_ico">&#xa5;</span>月額費用</td>
+                                                            <td><span class="job_ico">&#xa5;</span>月額費用</td>
                                                             <td>
                                                                 <font class="cash-lbl">
                                                                     <span v-if="Number(nus.per_month_from) == 0">0円</span>
@@ -568,16 +568,16 @@
                                                         <td>{{nus.email}}</td>
                                                         </tr> -->
                                                         <tr>
-                                                        <td style="width:30%;"><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>住所</td>
+                                                        <td><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>住所</td>
                                                         <td>{{nus.city_name}}{{nus.township_name}}{{nus.address}}</td>
                                                         </tr>
                                                         <tr>
-                                                        <td style="width:30%;"><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>アクセス</td>
+                                                        <td><span class="job_ico"><i class="fa fa-map-marker-alt"></i></span>アクセス</td>
                                                         <td><p v-html="nus.access"></p></td>
                                                         </tr>
                                                         <tr>
                                                            
-                                                        <td style="width:30%;"><span class="job_ico"><i class="fa fa-building"></i></span>運営事業者名 </td>
+                                                        <td><span class="job_ico"><i class="fa fa-building"></i></span>運営事業者名 </td>
                                                         <td>{{nus.cus_name}}</td>
                                                         </tr>
                                                         <!-- <tr>

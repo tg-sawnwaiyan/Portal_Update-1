@@ -2,16 +2,56 @@
   <div id="app">
     <div v-if="type == 'nursing'" id="nursingView">         
         <!--panorama-->     
-        <p class="job_id3" v-if="$auth.user().role == 2"><span>施設番号:{{profilenumber}}</span></p>
-        <div v-else>
-            <div class="pc-9-180">
-                <span class="customer-id ">施設番号:{{profilenumber}}</span>
-                <span  class="btn bt-red all-btn" @click="$router.go(-1)">キャンセル</span>
+        <div v-if="$auth.user().role == 2">
+            <div @click="$router.go(-1);" class="pc-2000" style="cursor:pointer;right:0;top:0;text-align:right;">
+                <span class="btn btn-danger all-btn submit">
+                    <i class="fas fa-arrow-left"></i> 
+                    <span>戻る</span> 
+                </span>                    
+            </div>          
+             <div class="pc-991-1880">
+                <span @click="$router.go(-1);" class="backbtn" style="cursor:pointer;right:0;top:1%;;position:relative;">
+                   <span class="btn btn-danger all-btn submit">
+                        <i class="fas fa-arrow-left"></i> 
+                        <span>戻る</span> 
+                    </span> 
+                </span>                
+               
             </div>
-            <p class="job_id3 sp-9-180"><span>施設番号:{{profilenumber}}</span></p>
+            <div class="sp-9-180">             
+            <p class="job_id3">
+                <span>施設番号:{{profilenumber}}</span>
+            </p>
+            </div>
+        </div>
+        <div v-else> 
+            <div @click="$router.go(-1);" class="pc-2000" style="cursor:pointer;right:0;top:0;text-align:right;">
+                    <span class="btn btn-danger all-btn submit">
+                    <i class="fas fa-arrow-left"></i> 
+                    <span>戻る</span> 
+                </span>  
+            </div>          
+            <div class="pc-991-1880">
+                <span @click="$router.go(-1);" class="backbtn" style="cursor:pointer;right:0;top:1%;;position:relative;">
+                    <span class="btn btn-danger all-btn submit">
+                    <i class="fas fa-arrow-left"></i> 
+                    <span>戻る</span> 
+                </span> 
+                </span>                
+               
+            </div>
+            <div class="sp-9-180">             
+            <p class="job_id3">
+                <span>施設番号:{{profilenumber}}</span>
+            </p>
+            </div>
+              
         </div>
 
-        <h4 class="profile-tit"  v-if="!currentPanoImage && nus_pro[0]"> {{nus_pro[0].name}}</h4>     
+        <h4 class="profile-tit"  v-if="!currentPanoImage && nus_pro[0]">
+        <span>{{nus_pro[0].name}}</span>
+        <span class="customer-id pc-991-1880">施設番号:{{profilenumber}}</span> </h4>
+            
 
         <div class="col-12 detail_profile_left pad-free"  v-if="currentPanoImage">
             <h4 class="profile-tit" v-if="nus_pro[0]">{{nus_pro[0].name}}</h4>
@@ -1682,6 +1722,7 @@ export default {
     created(){       
         // this.nav_width = document.querySelector('.content-all').offsetWidth;
         // console.log('this.nav_width',this.nav_width)
+        // console.log("previous ",document.referrer)
        
          window.addEventListener('scroll', this.handleScroll);
 

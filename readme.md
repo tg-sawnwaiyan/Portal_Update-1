@@ -87,3 +87,9 @@ Auth
 
 Mailing System
 - Laravel Mail system
+
+Style
+- Common css ```project/public/css/mystyle.css```
+- css code are partitioned for pages with comment in mystyle.css
+- some css codes are in individual components.
+
